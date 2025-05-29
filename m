@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA80EC5AD49
-	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 16:35:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5B76C54FB3
+	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 16:42:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A026B10E0AB;
-	Thu, 29 May 2025 16:35:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93A4A10E109;
+	Thu, 29 May 2025 16:42:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nEALjpwP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XeXjS7DR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5962310E745
- for <intel-xe@lists.freedesktop.org>; Thu, 29 May 2025 16:35:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C6BB10E109
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 May 2025 16:42:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748536525; x=1780072525;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=K3cBIwkvZKX/nz2n4medYU62CNr8GILJXdowv63Cw/c=;
- b=nEALjpwPQXXYsbeptSfUCElRDn2G1RLgrsL4BFwk2/bjan0HUHG7P1PO
- FLSSegUM5jHbJZUJlkC/tlrEIvSsupgPCPYvQI0rNsY2NWY9FyDuAaGxR
- vRFtZY9glV5W/fDtRDnxROw9P31U3Hm4A/YKsWy0IBfLpdoXUK5lwtUbh
- gLtLsNEpOZNHzxYxCT56uqXxE7TTqD8ZG5G1UtWp28xam9YpZMJaBSAxJ
- ImfOF0LCIGx4vIf2Dzh2djry4SlxNuVcPJlsdLIXaVsYHiRc2vxjDGkyo
- i2dsAgo6cw+1VQkS1lzYqtpO9D0zxQX4tpzpRtwboPdvVp/912ndIUCeN A==;
-X-CSE-ConnectionGUID: Iz1f1p7WSaKQ88sEbjYrKw==
-X-CSE-MsgGUID: QWs5zw3WRO6l7qd4DqMPVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="53233210"
-X-IronPort-AV: E=Sophos;i="6.16,193,1744095600"; d="scan'208";a="53233210"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2025 09:35:25 -0700
-X-CSE-ConnectionGUID: K7o8CEAPQxqTlFvVNP8WRw==
-X-CSE-MsgGUID: XKP0sVLvS3qvRJfZ/qUH8g==
+ t=1748536930; x=1780072930;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=w+J0cF0RnfzzSw28877KFTArKBIoN5WicfNc66Rr8h0=;
+ b=XeXjS7DRlkn0qvyF1VfLG0jKqRfqrvcGh+gk5uTXSAdPSJZlQp5jUraC
+ ROailN7FhRvr31xRPCJXQF4AiQAYCESPmIgBadnXayGpdzSU4AYi2MoiB
+ i7iS6aOPS2C3WlgfMRWSCrXvM0keE3JsDMvR0FzgH0nCYOOm1x8f5IykZ
+ DT16aAOhJXyZeuNCRBYSp9MV0z/7Uduch2bae3KEsPvRfUWISGzItB9Q6
+ SW5q3Jn3TZYbL9FOJtF3Bmiw3Pok3Apr3ZzqCaHtls+GV0vSrcfp5Qh8q
+ PNbZFW4SOvhlbfvcw2Sn5h+5PucfAkcr/OE3JOxRPPDCdV26gLjJd9eGY A==;
+X-CSE-ConnectionGUID: PY5lEKLsQG2gm1MGDwIoTg==
+X-CSE-MsgGUID: UBBsg6lWRtym9etgvLVZ5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="50496273"
+X-IronPort-AV: E=Sophos;i="6.16,193,1744095600"; d="scan'208";a="50496273"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2025 09:42:09 -0700
+X-CSE-ConnectionGUID: LW0cUKB8SPud19m8uefmeg==
+X-CSE-MsgGUID: 95liCq9wSnijjUmdiTMyxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,193,1744095600"; d="scan'208";a="148399127"
-Received: from unknown (HELO sinjan-Super-Server.iind.intel.com)
- ([10.190.239.39])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2025 09:35:24 -0700
-From: Karthik Poosa <karthik.poosa@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,193,1744095600"; d="scan'208";a="148766774"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2025 09:42:08 -0700
+From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
- Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v12 6/6] drm/xe/hwmon: Expose power sysfs entries based on
- firmware support
-Date: Thu, 29 May 2025 22:04:58 +0530
-Message-Id: <20250529163458.2354509-7-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250529163458.2354509-1-karthik.poosa@intel.com>
-References: <20250529163458.2354509-1-karthik.poosa@intel.com>
+Cc: thomas.hellstrom@linux.intel.com,
+	himal.prasad.ghimiray@intel.com
+Subject: [PATCH] drm/xe: Do not warn on SVM migration failing because of 64k
+ requirements
+Date: Thu, 29 May 2025 09:43:38 -0700
+Message-Id: <20250529164338.1745515-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,139 +66,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable hwmon sysfs entries (power_xxx) only when GPU firmware
-supports it.
-Previously, these entries were created if the MMIO register
-was present. Now, we enable based on the data in the register.
+On platforms which only support 64k VRAM pages, it is expected that 4k
+faults will not migrate. Do not warn on this, rather print a debug
+message.
 
-v2: Remove a unnecessary comment. (Rodrigo)
-
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 63 ++++++++++++++++++++---------------
- 1 file changed, 37 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index c57c613471c3..778354c91f59 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -298,16 +298,6 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channe
- 	} else {
- 		rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
- 		pkg_power_sku = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
--
--		/*
--		 * Valid check of REG_PKG_RAPL_LIMIT is already done in xe_hwmon_power_is_visible.
--		 * So not checking it again here.
--		 */
--		if (!xe_reg_is_valid(pkg_power_sku)) {
--			drm_warn(&xe->drm, "pkg_power_sku invalid\n");
--			*value = 0;
--			goto unlock;
--		}
- 		reg_val = xe_mmio_read32(mmio, rapl_limit);
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 871ac81bb04a..f27fb9b588de 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -821,7 +821,7 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
  	}
  
-@@ -652,17 +642,20 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
- 	int ret = 0;
- 	int channel = (index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
- 	u32 power_attr = (index > 1) ? PL2_HWMON_ATTR : PL1_HWMON_ATTR;
--	u32 uval;
-+	u32 uval = 0;
-+	struct xe_reg rapl_limit;
-+	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 
- 	xe_pm_runtime_get(hwmon->xe);
- 
- 	if (hwmon->xe->info.has_mbx_power_limits) {
- 		xe_hwmon_pcode_read_power_limit(hwmon, power_attr, channel, &uval);
--		ret = (uval & PWR_LIM_EN) ? attr->mode : 0;
- 	} else if (power_attr != PL2_HWMON_ATTR) {
--		ret = xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT,
--						       channel)) ? attr->mode : 0;
-+		rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
-+		if (xe_reg_is_valid(rapl_limit))
-+			uval = xe_mmio_read32(mmio, rapl_limit);
+ 	if (preferred_region_is_vram && range_size <= SZ_64K && !supports_4K_migration(vm->xe)) {
+-		drm_warn(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
++		drm_dbg(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
+ 		return false;
  	}
-+	ret = (uval & PWR_LIM_EN) ? attr->mode : 0;
  
- 	xe_pm_runtime_put(hwmon->xe);
- 
-@@ -806,24 +799,20 @@ static umode_t
- xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- {
- 	u32 uval = 0;
--	struct xe_reg rapl_limit;
-+	struct xe_reg reg;
- 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 
- 	switch (attr) {
- 	case hwmon_power_max:
- 	case hwmon_power_cap:
--	case hwmon_power_label:
- 		if (hwmon->xe->info.has_mbx_power_limits) {
- 			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &uval);
- 		} else if (attr != PL2_HWMON_ATTR) {
--			rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
--			if (xe_reg_is_valid(rapl_limit))
--				uval = xe_mmio_read32(mmio, rapl_limit);
-+			reg = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
-+			if (xe_reg_is_valid(reg))
-+				uval = xe_mmio_read32(mmio, reg);
- 		}
- 		if (uval & PWR_LIM_EN) {
--			if (attr == hwmon_power_label)
--				return 0444;
--
- 			drm_info(&hwmon->xe->drm, "%s is supported on channel %d\n",
- 				 PWR_ATTR_TO_STR(attr), channel);
- 			return 0664;
-@@ -832,17 +821,39 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 			PWR_ATTR_TO_STR(attr), channel);
- 		return 0;
- 	case hwmon_power_rated_max:
--		if (hwmon->xe->info.has_mbx_power_limits)
-+		if (hwmon->xe->info.has_mbx_power_limits) {
- 			return 0;
--		else
--			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU,
--					       channel)) ? 0444 : 0;
-+		} else {
-+			reg = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
-+			if (xe_reg_is_valid(reg))
-+				uval = xe_mmio_read32(mmio, reg);
-+			return uval ? 0444 : 0;
-+		}
- 	case hwmon_power_crit:
- 		if (channel == CHANNEL_CARD) {
- 			xe_hwmon_pcode_read_i1(hwmon, &uval);
- 			return (uval & POWER_SETUP_I1_WATTS) ? 0644 : 0;
- 		}
- 		break;
-+	case hwmon_power_label:
-+		if (hwmon->xe->info.has_mbx_power_limits) {
-+			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &uval);
-+		} else {
-+			reg = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
-+			if (xe_reg_is_valid(reg))
-+				uval = xe_mmio_read32(mmio, reg);
-+
-+			if (!uval) {
-+				reg = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
-+				if (xe_reg_is_valid(reg))
-+					uval = xe_mmio_read32(mmio, reg);
-+			}
-+		}
-+		if ((!(uval & PWR_LIM_EN)) && channel == CHANNEL_CARD) {
-+			xe_hwmon_pcode_read_i1(hwmon, &uval);
-+			return (uval & POWER_SETUP_I1_WATTS) ? 0444 : 0;
-+		}
-+		return (uval) ? 0444 : 0;
- 	default:
- 		return 0;
- 	}
 -- 
-2.25.1
+2.34.1
 
