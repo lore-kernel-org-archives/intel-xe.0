@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB6EAC5AD49
-	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 16:35:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA80EC5AD49
+	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 16:35:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC0C10E745;
-	Thu, 29 May 2025 16:35:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A026B10E0AB;
+	Thu, 29 May 2025 16:35:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eLvtyNez";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nEALjpwP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B746710E0AB
- for <intel-xe@lists.freedesktop.org>; Thu, 29 May 2025 16:35:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5962310E745
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 May 2025 16:35:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748536522; x=1780072522;
+ t=1748536525; x=1780072525;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=d/0iFC4p7sI3AEU4y8LecSgKYUNQBb3Ezxoz41J3wwQ=;
- b=eLvtyNeziOLx6o+ZnheH+iKXYtLN7d3z53mBFrEF1ysMvHNYIx2K8A/F
- mB7j1I112ZlwA+jHxb+uLwBJq/ETIx/xnHDjaD3kF9czgQnm0RIIB24U0
- tbe3Be/wo2Zh1Lg9/4GSi+Mq7IGYfS6hMCp8Tliwp7oZX5PmH1mqfkFK4
- zzfBD6pLatRXwOIQf1VT45rqyEdlZs7SHOtQbjdnIHwX0C9S0Z1OQGEpm
- eFxz5ec1/eaZuRPrFiNvU3Wl3JGEo8s8VhNohsbfA9YnqD/DZ61g/kEj0
- UNbRfr3atg9A8b5yscF8Cpn3dgA6gFE4jI4SbH8XGOhYBh9dnRXfD9Vqp w==;
-X-CSE-ConnectionGUID: kLVl0usSTWeAJ0p1yb8z2g==
-X-CSE-MsgGUID: m+EZkvNdQV6PxMO0aBm95w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="53233206"
-X-IronPort-AV: E=Sophos;i="6.16,193,1744095600"; d="scan'208";a="53233206"
+ bh=K3cBIwkvZKX/nz2n4medYU62CNr8GILJXdowv63Cw/c=;
+ b=nEALjpwPQXXYsbeptSfUCElRDn2G1RLgrsL4BFwk2/bjan0HUHG7P1PO
+ FLSSegUM5jHbJZUJlkC/tlrEIvSsupgPCPYvQI0rNsY2NWY9FyDuAaGxR
+ vRFtZY9glV5W/fDtRDnxROw9P31U3Hm4A/YKsWy0IBfLpdoXUK5lwtUbh
+ gLtLsNEpOZNHzxYxCT56uqXxE7TTqD8ZG5G1UtWp28xam9YpZMJaBSAxJ
+ ImfOF0LCIGx4vIf2Dzh2djry4SlxNuVcPJlsdLIXaVsYHiRc2vxjDGkyo
+ i2dsAgo6cw+1VQkS1lzYqtpO9D0zxQX4tpzpRtwboPdvVp/912ndIUCeN A==;
+X-CSE-ConnectionGUID: Iz1f1p7WSaKQ88sEbjYrKw==
+X-CSE-MsgGUID: QWs5zw3WRO6l7qd4DqMPVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="53233210"
+X-IronPort-AV: E=Sophos;i="6.16,193,1744095600"; d="scan'208";a="53233210"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2025 09:35:22 -0700
-X-CSE-ConnectionGUID: tUaKy0NgTFCSNH3pgRj9eQ==
-X-CSE-MsgGUID: 4Wg5B+U7SkWngTlDaFAibw==
+ 29 May 2025 09:35:25 -0700
+X-CSE-ConnectionGUID: K7o8CEAPQxqTlFvVNP8WRw==
+X-CSE-MsgGUID: XKP0sVLvS3qvRJfZ/qUH8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,193,1744095600"; d="scan'208";a="148399097"
+X-IronPort-AV: E=Sophos;i="6.16,193,1744095600"; d="scan'208";a="148399127"
 Received: from unknown (HELO sinjan-Super-Server.iind.intel.com)
  ([10.190.239.39])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2025 09:35:21 -0700
+ 29 May 2025 09:35:24 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v12 5/6] drm/xe/hwmon: Read energy status from PMT
-Date: Thu, 29 May 2025 22:04:57 +0530
-Message-Id: <20250529163458.2354509-6-karthik.poosa@intel.com>
+Subject: [PATCH v12 6/6] drm/xe/hwmon: Expose power sysfs entries based on
+ firmware support
+Date: Thu, 29 May 2025 22:04:58 +0530
+Message-Id: <20250529163458.2354509-7-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250529163458.2354509-1-karthik.poosa@intel.com>
 References: <20250529163458.2354509-1-karthik.poosa@intel.com>
@@ -68,189 +69,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Read card and package energy status using pmt apis instead
-of xe_mmio for supported platforms.
-Enable Battlemage to read energy from PMT.
+Enable hwmon sysfs entries (power_xxx) only when GPU firmware
+supports it.
+Previously, these entries were created if the MMIO register
+was present. Now, we enable based on the data in the register.
 
-v2:
- - Remove unused has_pmt_energy field. (Badal)
- - Use GENMASK to extract energy data. (Badal)
-
-v3:
- - Move PMT energy register offset and GENMASK to xe_pmt.h
- - Address review comments. (Jani)
-
-v4:
- - Remove unnecessary debug print. (Badal)
-
-v5:
- - Resolve an unused variable warning.
- - Add a return value check.
+v2: Remove a unnecessary comment. (Rodrigo)
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_pcode_regs.h |  2 -
- drivers/gpu/drm/xe/regs/xe_pmt.h        |  5 +++
- drivers/gpu/drm/xe/xe_hwmon.c           | 49 +++++++++++++++++++------
- drivers/gpu/drm/xe/xe_vsec.c            |  4 +-
- drivers/gpu/drm/xe/xe_vsec.h            |  4 ++
- 5 files changed, 49 insertions(+), 15 deletions(-)
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-index c556a04670ee..fb097607b86c 100644
---- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-@@ -18,12 +18,10 @@
- #define PVC_GT0_PLATFORM_ENERGY_STATUS          XE_REG(0x28106c)
- #define PVC_GT0_PACKAGE_POWER_SKU               XE_REG(0x281080)
- 
--#define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
- #define BMG_FAN_1_SPEED				XE_REG(0x138140)
- #define BMG_FAN_2_SPEED				XE_REG(0x138170)
- #define BMG_FAN_3_SPEED				XE_REG(0x1381a0)
- #define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
- #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
--#define BMG_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
- 
- #endif /* _XE_PCODE_REGS_H_ */
-diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
-index f45abcd96ba8..b0efd9b48d1e 100644
---- a/drivers/gpu/drm/xe/regs/xe_pmt.h
-+++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
-@@ -10,6 +10,11 @@
- #define BMG_PMT_BASE_OFFSET		0xDB000
- #define BMG_DISCOVERY_OFFSET		(SOC_BASE + BMG_PMT_BASE_OFFSET)
- 
-+#define PUNIT_TELEMETRY_GUID		XE_REG(BMG_DISCOVERY_OFFSET + 0x4)
-+#define BMG_ENERGY_STATUS_PMT_OFFSET	(0x30)
-+#define	ENERGY_PKG			REG_GENMASK64(31, 0)
-+#define	ENERGY_CARD			REG_GENMASK64(63, 32)
-+
- #define BMG_TELEMETRY_BASE_OFFSET	0xE0000
- #define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
- 
+---
+ drivers/gpu/drm/xe/xe_hwmon.c | 63 ++++++++++++++++++++---------------
+ 1 file changed, 37 insertions(+), 26 deletions(-)
+
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index f07592aba226..c57c613471c3 100644
+index c57c613471c3..778354c91f59 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -20,6 +20,8 @@
- #include "xe_pcode_api.h"
- #include "xe_sriov.h"
- #include "xe_pm.h"
-+#include "xe_vsec.h"
-+#include "regs/xe_pmt.h"
+@@ -298,16 +298,6 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channe
+ 	} else {
+ 		rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
+ 		pkg_power_sku = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
+-
+-		/*
+-		 * Valid check of REG_PKG_RAPL_LIMIT is already done in xe_hwmon_power_is_visible.
+-		 * So not checking it again here.
+-		 */
+-		if (!xe_reg_is_valid(pkg_power_sku)) {
+-			drm_warn(&xe->drm, "pkg_power_sku invalid\n");
+-			*value = 0;
+-			goto unlock;
+-		}
+ 		reg_val = xe_mmio_read32(mmio, rapl_limit);
+ 	}
  
- enum xe_hwmon_reg {
- 	REG_TEMP,
-@@ -252,12 +254,7 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
- 			return GT_PERF_STATUS;
- 		break;
- 	case REG_PKG_ENERGY_STATUS:
--		if (xe->info.platform == XE_BATTLEMAGE) {
--			if (channel == CHANNEL_PKG)
--				return BMG_PACKAGE_ENERGY_STATUS;
--			else
--				return BMG_PLATFORM_ENERGY_STATUS;
--		} else if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG) {
-+		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG) {
- 			return PVC_GT0_PLATFORM_ENERGY_STATUS;
- 		} else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG)) {
- 			return PCU_CR_PACKAGE_ENERGY_STATUS;
-@@ -450,9 +447,32 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
- 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 	struct xe_hwmon_energy_info *ei = &hwmon->ei[channel];
- 	u64 reg_val;
-+	int ret = 0;
-+
-+	/* Energy is supported only for card and pkg */
-+	if (channel > CHANNEL_PKG) {
-+		*energy = 0;
-+		return;
-+	}
+@@ -652,17 +642,20 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
+ 	int ret = 0;
+ 	int channel = (index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
+ 	u32 power_attr = (index > 1) ? PL2_HWMON_ATTR : PL1_HWMON_ATTR;
+-	u32 uval;
++	u32 uval = 0;
++	struct xe_reg rapl_limit;
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
  
--	reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
--							channel));
-+	if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
-+		ret = xe_pmt_telem_read(to_pci_dev(hwmon->xe->drm.dev),
-+					xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
-+					&reg_val, BMG_ENERGY_STATUS_PMT_OFFSET,	sizeof(reg_val));
-+		if (ret != sizeof(reg_val)) {
-+			drm_warn(&hwmon->xe->drm, "energy read from pmt failed, ret %d\n", ret);
-+			*energy = 0;
-+			return;
-+		}
-+
-+		if (channel == CHANNEL_PKG)
-+			reg_val = REG_FIELD_GET64(ENERGY_PKG, reg_val);
-+		else
-+			reg_val = REG_FIELD_GET64(ENERGY_CARD, reg_val);
-+	} else {
-+		reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
-+								channel));
-+	}
+ 	xe_pm_runtime_get(hwmon->xe);
  
- 	if (reg_val >= ei->reg_val_prev)
- 		ei->accum_energy += reg_val - ei->reg_val_prev;
-@@ -934,11 +954,18 @@ xe_hwmon_in_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- static umode_t
- xe_hwmon_energy_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ 	if (hwmon->xe->info.has_mbx_power_limits) {
+ 		xe_hwmon_pcode_read_power_limit(hwmon, power_attr, channel, &uval);
+-		ret = (uval & PWR_LIM_EN) ? attr->mode : 0;
+ 	} else if (power_attr != PL2_HWMON_ATTR) {
+-		ret = xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT,
+-						       channel)) ? attr->mode : 0;
++		rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
++		if (xe_reg_is_valid(rapl_limit))
++			uval = xe_mmio_read32(mmio, rapl_limit);
+ 	}
++	ret = (uval & PWR_LIM_EN) ? attr->mode : 0;
+ 
+ 	xe_pm_runtime_put(hwmon->xe);
+ 
+@@ -806,24 +799,20 @@ static umode_t
+ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
  {
-+	long energy = 0;
-+
+ 	u32 uval = 0;
+-	struct xe_reg rapl_limit;
++	struct xe_reg reg;
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 
  	switch (attr) {
- 	case hwmon_energy_input:
- 	case hwmon_energy_label:
--		return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
--				       channel)) ? 0444 : 0;
-+		if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
-+			xe_hwmon_energy_get(hwmon, channel, &energy);
-+			return energy ? 0444 : 0;
+ 	case hwmon_power_max:
+ 	case hwmon_power_cap:
+-	case hwmon_power_label:
+ 		if (hwmon->xe->info.has_mbx_power_limits) {
+ 			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &uval);
+ 		} else if (attr != PL2_HWMON_ATTR) {
+-			rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
+-			if (xe_reg_is_valid(rapl_limit))
+-				uval = xe_mmio_read32(mmio, rapl_limit);
++			reg = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
++			if (xe_reg_is_valid(reg))
++				uval = xe_mmio_read32(mmio, reg);
+ 		}
+ 		if (uval & PWR_LIM_EN) {
+-			if (attr == hwmon_power_label)
+-				return 0444;
+-
+ 			drm_info(&hwmon->xe->drm, "%s is supported on channel %d\n",
+ 				 PWR_ATTR_TO_STR(attr), channel);
+ 			return 0664;
+@@ -832,17 +821,39 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ 			PWR_ATTR_TO_STR(attr), channel);
+ 		return 0;
+ 	case hwmon_power_rated_max:
+-		if (hwmon->xe->info.has_mbx_power_limits)
++		if (hwmon->xe->info.has_mbx_power_limits) {
+ 			return 0;
+-		else
+-			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU,
+-					       channel)) ? 0444 : 0;
 +		} else {
-+			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
-+					       channel)) ? 0444 : 0;
++			reg = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
++			if (xe_reg_is_valid(reg))
++				uval = xe_mmio_read32(mmio, reg);
++			return uval ? 0444 : 0;
 +		}
+ 	case hwmon_power_crit:
+ 		if (channel == CHANNEL_CARD) {
+ 			xe_hwmon_pcode_read_i1(hwmon, &uval);
+ 			return (uval & POWER_SETUP_I1_WATTS) ? 0644 : 0;
+ 		}
+ 		break;
++	case hwmon_power_label:
++		if (hwmon->xe->info.has_mbx_power_limits) {
++			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &uval);
++		} else {
++			reg = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
++			if (xe_reg_is_valid(reg))
++				uval = xe_mmio_read32(mmio, reg);
++
++			if (!uval) {
++				reg = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
++				if (xe_reg_is_valid(reg))
++					uval = xe_mmio_read32(mmio, reg);
++			}
++		}
++		if ((!(uval & PWR_LIM_EN)) && channel == CHANNEL_CARD) {
++			xe_hwmon_pcode_read_i1(hwmon, &uval);
++			return (uval & POWER_SETUP_I1_WATTS) ? 0444 : 0;
++		}
++		return (uval) ? 0444 : 0;
  	default:
  		return 0;
  	}
-@@ -1283,4 +1310,4 @@ int xe_hwmon_register(struct xe_device *xe)
- 
- 	return 0;
- }
--
-+MODULE_IMPORT_NS("INTEL_PMT_TELEMETRY");
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index b378848d3b7b..3e573b0b7ebd 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -149,8 +149,8 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
- 	return 0;
- }
- 
--static int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
--			     u32 count)
-+int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
-+		      u32 count)
- {
- 	struct xe_device *xe = pdev_to_xe_device(pdev);
- 	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
-diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
-index 5777c53faec2..dabfb4e02d70 100644
---- a/drivers/gpu/drm/xe/xe_vsec.h
-+++ b/drivers/gpu/drm/xe/xe_vsec.h
-@@ -4,8 +4,12 @@
- #ifndef _XE_VSEC_H_
- #define _XE_VSEC_H_
- 
-+#include <linux/types.h>
-+
-+struct pci_dev;
- struct xe_device;
- 
- void xe_vsec_init(struct xe_device *xe);
-+int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset, u32 count);
- 
- #endif
 -- 
 2.25.1
 
