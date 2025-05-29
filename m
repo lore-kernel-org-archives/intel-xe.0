@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8AF5C5AD49
-	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 19:31:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6846C54FB3
+	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 20:19:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E96810E76C;
-	Thu, 29 May 2025 19:31:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YlQhsWAM";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AC1810E767
- for <intel-xe@lists.freedesktop.org>; Thu, 29 May 2025 19:31:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748547104; x=1780083104;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=w0eqe3BfktdsZhMhiCP3zG2PDhV6cCDXDK89RZi8JBc=;
- b=YlQhsWAMBXXLRYZanUIymwu+HRgDP8+ElwJyeOY1ro+rvWA3TMcm6bwF
- L7KBfvOWwovdJXJlsFy8PH3SwZx9OffqzMWbm/9miVSWuTjrZBQKS6WsD
- SA+LhDOtR7qbrkcQItaO9MKQfRxTCSv3MECwuyKWlRfa7RY9A4CuyNdim
- 2d2TWYlSrv0OKoaNl2w2VdOKIsiY+CL0LDYJLtZzq/HTTrjphL9FlPnWi
- 52qLuQqWF4do+LWy3tG1WSjmMfcFVwm7KdfAvNAeVmkAyjONDU9pqa2PL
- ohYSTw8AUdWtPvm9SZhZMH2sd3gIIfuKfIwlYHtbZhjyCX9KopkfULlDk Q==;
-X-CSE-ConnectionGUID: MrA79/noSjuW3d9QuIvbmw==
-X-CSE-MsgGUID: +U9fpwzJSdq/53dqh64UHA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="68049959"
-X-IronPort-AV: E=Sophos;i="6.16,193,1744095600"; d="scan'208";a="68049959"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2025 12:31:44 -0700
-X-CSE-ConnectionGUID: KZV60oIYRdWZt8Tkzpizyw==
-X-CSE-MsgGUID: zNOWaHynTni1OEdqFd0k4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,193,1744095600"; d="scan'208";a="144642031"
-Received: from psoham-nuc7i7bnh.iind.intel.com ([10.190.216.151])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2025 12:31:41 -0700
-From: Soham Purkait <soham.purkait@intel.com>
-To: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, karthik.poosa@intel.com, riana.tauro@intel.com,
- jani.nikula@intel.com
-Cc: lucas.demarchi@intel.com, soham.purkait@intel.com, ashutosh.dixit@intel.com
-Subject: [PATCH 3/3] drm/xe/xe_debugfs: Exposure of pcie link state residency
- counters through debugfs
-Date: Fri, 30 May 2025 00:56:20 +0530
-Message-Id: <20250529192620.1227468-4-soham.purkait@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250529192620.1227468-1-soham.purkait@intel.com>
-References: <20250529192620.1227468-1-soham.purkait@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4992F10E1F4;
+	Thu, 29 May 2025 20:19:50 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D750B10E1F4;
+ Thu, 29 May 2025 20:19:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5889533644111940817=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Simplify_an?=
+ =?utf-8?q?d_fix_32b_wrap?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 29 May 2025 20:19:48 -0000
+Message-ID: <174854998885.32035.16122361076369825896@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250529-xe-hwmon-wrap-v1-1-60d3f1eed17d@intel.com>
+In-Reply-To: <20250529-xe-hwmon-wrap-v1-1-60d3f1eed17d@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,92 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-    Add a debugfs node named dgfx_link_state_residencys in order to
-obtain the pcie link state residency counter values for L0,
-L1, L1.2
+--===============5889533644111940817==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Soham Purkait <soham.purkait@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c | 49 +++++++++++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index d83cd6ed3fa8..41a7302a9286 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -185,6 +185,47 @@ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
- 	return size;
- }
- 
-+static int read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
-+                                  u64 *dst, u32 offset, char *name)
-+{	
-+	int ret = xe_pmt_telem_read(to_pci_dev(xe->drm.dev),
-+				xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
-+				dst, offset, sizeof(u64));
-+	if (ret != sizeof(u64)) {
-+		drm_warn(&xe->drm, "%s residency counter failed to read, ret %d\n", name, ret);
-+	}
-+	return 0;
-+}
-+
-+static ssize_t dgfx_link_state_residencys_show(struct file *f, char __user *ubuf,
-+				 size_t size, loff_t *pos)
-+{
-+	u64 link_res;
-+	char buf[256];
-+	int len = 0;
-+	struct xe_device *xe;
-+	struct xe_mmio *mmio;
-+
-+	xe = file_inode(f)->i_private;
-+	xe_pm_runtime_get(xe);
-+	mmio = xe_root_tile_mmio(xe);	
-+
-+	link_res = 0;
-+	read_residency_counter(xe, mmio, &link_res, PCIE_LINK_L0_RESIDENCY_COUNTER, "PCIE LINK L0");
-+	len = scnprintf(buf, sizeof(buf), "PCIE LINK L0 RESIDENCY :  %llu\n", link_res);
-+
-+	link_res = 0;
-+	read_residency_counter(xe, mmio, &link_res, PCIE_LINK_L1_RESIDENCY_COUNTER, "PCIE LINK L1");
-+	len += scnprintf(buf + len, sizeof(buf) - len, "PCIE LINK L1 RESIDENCY : %llu\n", link_res);
-+
-+	link_res = 0;
-+	read_residency_counter(xe, mmio, &link_res, PCIE_LINK_L1_2_RESIDENCY_COUNTER, "PCIE LINK L1.2");
-+	len += scnprintf(buf + len, sizeof(buf) - len, "PCIE LINK L1.2 RESIDENCY : %llu\n", link_res);
-+
-+	xe_pm_runtime_put(xe);
-+	return simple_read_from_buffer(ubuf, size, pos, buf, len);
-+}
-+
- static const struct file_operations wedged_mode_fops = {
- 	.owner = THIS_MODULE,
- 	.read = wedged_mode_show,
-@@ -226,6 +267,11 @@ static const struct file_operations atomic_svm_timeslice_ms_fops = {
- 	.write = atomic_svm_timeslice_ms_set,
- };
- 
-+static const struct file_operations dgfx_link_state_residencys_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dgfx_link_state_residencys_show,
-+};
-+
- void xe_debugfs_register(struct xe_device *xe)
- {
- 	struct ttm_device *bdev = &xe->ttm;
-@@ -249,6 +295,9 @@ void xe_debugfs_register(struct xe_device *xe)
- 	debugfs_create_file("atomic_svm_timeslice_ms", 0600, root, xe,
- 			    &atomic_svm_timeslice_ms_fops);
- 
-+	debugfs_create_file("dgfx_link_state_residencys", 0444, root, xe,
-+			    &dgfx_link_state_residencys_fops);
-+
- 	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
- 		man = ttm_manager_type(bdev, mem_type);
- 
--- 
-2.34.1
+Series: drm/xe/hwmon: Simplify and fix 32b wrap
+URL   : https://patchwork.freedesktop.org/series/149657/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3161-901190a062301f01d432d9cf164a6b013df3e745_BAT -> xe-pw-149657v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3161-901190a062301f01d432d9cf164a6b013df3e745 -> xe-pw-149657v1
+
+  IGT_8384: 8384
+  xe-3161-901190a062301f01d432d9cf164a6b013df3e745: 901190a062301f01d432d9cf164a6b013df3e745
+  xe-pw-149657v1: 149657v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149657v1/index.html
+
+--===============5889533644111940817==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Simplify and fix 32b wrap</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149657/">https://patchwork.freedesktop.org/series/149657/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149657v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149657v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3161-901190a062301f01d432d9cf164a6b013df3e745_BAT -&gt; xe-pw-149657v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3161-901190a062301f01d432d9cf164a6b013df3e745 -&gt; xe-pw-149657v1</li>
+</ul>
+<p>IGT_8384: 8384<br />
+  xe-3161-901190a062301f01d432d9cf164a6b013df3e745: 901190a062301f01d432d9cf164a6b013df3e745<br />
+  xe-pw-149657v1: 149657v1</p>
+
+</body>
+</html>
+
+--===============5889533644111940817==--
