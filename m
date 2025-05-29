@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47F6DC54FB3
-	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 04:28:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF0DCC54FB3
+	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 04:34:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC22910E1C6;
-	Thu, 29 May 2025 04:28:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6483710E27B;
+	Thu, 29 May 2025 04:34:00 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 858F710E1C6;
- Thu, 29 May 2025 04:28:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3667268836712074747=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0725C10E210;
+ Thu, 29 May 2025 04:34:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vm=3A_Add_a_helper_x?=
- =?utf-8?q?e=5Fvm=5Frange=5Ftilemask=5Ftlb=5Finvalidation=28=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Create_LRC?=
+ =?utf-8?q?_BO_without_VM?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 29 May 2025 04:28:12 -0000
-Message-ID: <174849289253.30683.12939392121419730938@1538d3639d33>
+Date: Thu, 29 May 2025 04:34:00 -0000
+Message-ID: <174849324000.30702.16803258222317342225@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250529040439.1447961-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20250529040439.1447961-1-himal.prasad.ghimiray@intel.com>
+References: <20250529040448.2425873-2-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20250529040448.2425873-2-niranjana.vishwanathapura@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3667268836712074747==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/vm: Add a helper xe_vm_range_tilemask_tlb_invalidation()
-URL   : https://patchwork.freedesktop.org/series/149615/
+Series: drm/xe: Create LRC BO without VM
+URL   : https://patchwork.freedesktop.org/series/149616/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3156-2f74377e0846598397723197386e6d9d65b7711e_BAT -> xe-pw-149615v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 2f74377e0846 drm-tip: 2025y-05m-28d-21h-54m-39s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Create LRC BO without VM
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8382 -> IGT_8383
-  * Linux: xe-3156-2f74377e0846598397723197386e6d9d65b7711e -> xe-pw-149615v1
-
-  IGT_8382: 8382
-  IGT_8383: 8383
-  xe-3156-2f74377e0846598397723197386e6d9d65b7711e: 2f74377e0846598397723197386e6d9d65b7711e
-  xe-pw-149615v1: 149615v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149615v1/index.html
-
---===============3667268836712074747==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vm: Add a helper xe_vm_range_tilemask_tlb_invalidation()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149615/">https://patchwork.freedesktop.org/series/149615/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149615v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149615v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3156-2f74377e0846598397723197386e6d9d65b7711e_BAT -&gt; xe-pw-149615v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8382 -&gt; IGT_8383</li>
-<li>Linux: xe-3156-2f74377e0846598397723197386e6d9d65b7711e -&gt; xe-pw-149615v1</li>
-</ul>
-<p>IGT_8382: 8382<br />
-  IGT_8383: 8383<br />
-  xe-3156-2f74377e0846598397723197386e6d9d65b7711e: 2f74377e0846598397723197386e6d9d65b7711e<br />
-  xe-pw-149615v1: 149615v1</p>
-
-</body>
-</html>
-
---===============3667268836712074747==--
