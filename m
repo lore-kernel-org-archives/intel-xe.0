@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2592C54F30
-	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 05:51:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF386C3ABB2
+	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 06:05:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F24E10E244;
-	Fri, 30 May 2025 05:51:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 838F910E00A;
+	Fri, 30 May 2025 06:05:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hi+FOn8Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S/Lm8a1H";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D03D910E244
- for <intel-xe@lists.freedesktop.org>; Fri, 30 May 2025 05:51:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0D1B10E00A
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 May 2025 06:05:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748584274; x=1780120274;
+ t=1748585101; x=1780121101;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=Aq5pGdhMLOcfwh96dcb/XmJtX/2iV3OPWjfNlbOx92Q=;
- b=hi+FOn8YvnH5xdeEPspgVQI26havuDw3zxKSYzhlTOoQxe7ea0zw7MDw
- sydJ3VbFdkQj/30n0pZO08u8ITvhBizFfpuOxzBQqzU367rAMzu2wy+E1
- tu8SyNy79PVyLGvgw5QldCh0rtdRBWbfTpWQzT+cc9vBVrqg37TD4XWd4
- KZ5l7l7hABS4dqVn84y0LaIOLwWnLG4+BdeBboW+n3qM+Z2wm7aVF0sdo
- /+CgZUi02/SoSHfEiJMhjuERaIlhfx0EUdB+zRALfwq98QKgsTL/0PPJx
- cto99vD+faHDvQFgy7+cbT+2h5jH5z/wnW1R0moSPfbqoNKttV4AH5i5K g==;
-X-CSE-ConnectionGUID: bgSQL+ZHQQWWhicCrRZNpA==
-X-CSE-MsgGUID: c0X9b3pjRYi2/HQo8HygFA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="62013538"
-X-IronPort-AV: E=Sophos;i="6.16,195,1744095600"; d="scan'208";a="62013538"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2025 22:51:13 -0700
-X-CSE-ConnectionGUID: EmUH+x8SQtqIA/CEd/gwyQ==
-X-CSE-MsgGUID: 7MKKDDXnSRmCgZ9/SnSLVg==
+ bh=0REZk7aNED8pVzvFbeOusTqH+zGRjELoiiqS+sBQzj4=;
+ b=S/Lm8a1HGVrfWr92aZXn+0XBscyb76XeygkUxrjENn2f4d8JzViB8xHe
+ JeWJaXAV8qxzBeyUBcCX6h7cmtqCBh7KqeP84BSKYXxP9FXh1uT/K0MeT
+ fyIN7bsYdtLOK8S5Wl+A13uaUJFxt4DzBhZHkkzBs1vudc+CTSE+UZyGv
+ Njr7G8mF6IjOgw1maUkpT3cR2rRJ+nJhtpWx3XjwhHLyk00HOrxLVDGoP
+ 8I0+FQaUwbw/MVJGidZcakawMlGm8JcM//H5wtYVTVxHqCupKMa/mB7yN
+ n7qvOYd9ttvIaDTFISZsHja3Jx298Q0hMbWDeXbNvPSbKE1666TlNpR/s w==;
+X-CSE-ConnectionGUID: y9e6Jv2FRPGWzxqUZi1Ctg==
+X-CSE-MsgGUID: l8Y6kDIcQg6aS/xkRt7UqA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="50721628"
+X-IronPort-AV: E=Sophos;i="6.16,195,1744095600"; d="scan'208";a="50721628"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2025 23:04:56 -0700
+X-CSE-ConnectionGUID: FXxnSC96QX6Iy9Kk1e3m4g==
+X-CSE-MsgGUID: K4eh6IJfTfCqupFnQGAc2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,195,1744095600"; d="scan'208";a="174668676"
+X-IronPort-AV: E=Sophos;i="6.16,195,1744095600"; d="scan'208";a="143750849"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2025 22:51:12 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2025 23:04:55 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@linux.intel.com,
 	himal.prasad.ghimiray@intel.com
-Subject: [PATCH] drm/xe: Make VMA tile_present,
+Subject: [PATCH v2] drm/xe: Make VMA tile_present,
  tile_invalidated access rules clear
-Date: Thu, 29 May 2025 22:52:33 -0700
-Message-Id: <20250530055233.1780550-1-matthew.brost@intel.com>
+Date: Thu, 29 May 2025 23:06:26 -0700
+Message-Id: <20250530060626.1818866-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -70,6 +70,9 @@ Document VMA tile_invalidated access rules, use READ_ONCE / WRITE_ONCE
 for opportunistic checks of tile_present and tile_invalidated, move
 tile_invalidated state change from page fault handler to PT code under
 the correct locks, and add lockdep asserts to TLB invalidation paths.
+
+v2:
+ - Assert VM dma-resv lock rather than BO in zap PTEs
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
@@ -116,7 +119,7 @@ index 7a8f87709e39..05fbc83c64b7 100644
  unlock_dma_resv:
  	drm_exec_fini(&exec);
 diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index c9c41fbe125c..f39d5cc9f411 100644
+index c9c41fbe125c..ab3076b4a21c 100644
 --- a/drivers/gpu/drm/xe/xe_pt.c
 +++ b/drivers/gpu/drm/xe/xe_pt.c
 @@ -907,6 +907,11 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma)
@@ -124,7 +127,7 @@ index c9c41fbe125c..f39d5cc9f411 100644
  	u8 pt_mask = (vma->tile_present & ~vma->tile_invalidated);
  
 +	if (xe_vma_bo(vma))
-+		xe_bo_assert_held(xe_vma_bo(vma));
++		xe_vm_assert_held(xe_vma_vm(vma));
 +	else if (xe_vma_is_userptr(vma))
 +		lockdep_assert_held(&xe_vma_vm(vma)->userptr.notifier_lock);
 +
