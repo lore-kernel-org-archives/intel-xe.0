@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5317C54F30
-	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 07:02:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D8E8C3ABB2
+	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 07:02:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D47610E794;
-	Fri, 30 May 2025 07:02:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEB1110E7EB;
+	Fri, 30 May 2025 07:02:45 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B548010E219;
- Fri, 30 May 2025 07:02:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 035AF10E7C5;
+ Fri, 30 May 2025 07:02:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_drop_redun?=
- =?utf-8?q?dant_conversion_to_bool_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_drop_redundant_?=
+ =?utf-8?q?conversion_to_bool_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 30 May 2025 07:02:32 -0000
-Message-ID: <174858855273.34133.3597987661414623086@1538d3639d33>
+Date: Fri, 30 May 2025 07:02:44 -0000
+Message-ID: <174858856400.34133.7331479324802946127@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250529160937.490147-1-raag.jadav@intel.com>
 In-Reply-To: <20250529160937.490147-1-raag.jadav@intel.com>
@@ -48,9 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d94defa5c0a9 drm-tip: 2025y-05m-30d-05h-00m-37s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: drop redundant conversion to bool
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b3f0124ff4b124be30f0d70e799b6d017e9f8f4a
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Thu May 29 21:39:37 2025 +0530
+
+    drm/xe: drop redundant conversion to bool
+    
+    The result of integer comparison already evaluates to bool. No need for
+    explicit conversion.
+    
+    No functional impact.
+    
+    Fixes: 0e414bf7ad01 ("drm/xe: Expose PCIe link downgrade attributes")
+    Reported-by: kernel test robot <lkp@intel.com>
+    Closes: https://lore.kernel.org/oe-kbuild-all/202505292205.MoljmkjQ-lkp@intel.com/
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch d94defa5c0a9e9fb29a60bd4ce78bac9018224bc drm-intel
+b3f0124ff4b1 drm/xe: drop redundant conversion to bool
 
 
