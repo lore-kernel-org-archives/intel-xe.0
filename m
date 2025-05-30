@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30B76C5B552
-	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 20:38:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 422ECC5AD49
+	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 20:38:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAA3010E887;
-	Fri, 30 May 2025 20:38:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB12F10E88B;
+	Fri, 30 May 2025 20:38:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oiu6Oo0c";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZAqblGE9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3561210E87E
- for <intel-xe@lists.freedesktop.org>; Fri, 30 May 2025 20:38:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D0B410E88B
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 May 2025 20:38:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748637501; x=1780173501;
+ t=1748637510; x=1780173510;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K3FdjElLYKZq6JaUYsUYJ5Vc/wp2u0acHhjHGWcZw94=;
- b=Oiu6Oo0cZgxoRJ5DGexQz5dhxsPIf4mA5RUMgGUy4vW33cjtI01VtmT4
- 6QFRbxIzpGvPqeLj3nYL4UKm7UwBOBW8Cgu82Z5EcwNfDgPfr9lLbroEc
- TjpBI01fQaD9nNyqjllwgQ2WPpQfBFE8h7Cyn1l34xX6h4EMyo2LXGyiV
- K65vEX4yoLKTqdc6swZxV21uEowOi1MFmABrkHQUG9jSQUoIw2V89DO2N
- qlZMS6hBinY0g5iNbDUgHv1sDSe01tSrE3rAp3N6jCxq8fEZCkHUftzSQ
- WpOdKFElFSapTnRsqx4K/Ot+LtXdrqZYd66NRiwoCRQIeVoZstodNa50O w==;
-X-CSE-ConnectionGUID: nc0W9erySF+5zWyqb2eoEA==
-X-CSE-MsgGUID: 4ngftG3JSvCU8oFqXpu51A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="54406012"
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="54406012"
+ bh=vQcJkCtHo2tfr2BhwkHbhJQ614nh7MqrF/KwkHrEFwk=;
+ b=ZAqblGE9J/cRLYvDqttk1D7+DmlxMkkIIdqGX3xcnQ7NtyfOksyRIiv0
+ 5awFV2pUDoSI3otY+1/OR5dR9MXD2FHsycHxmK30AOuDme9yfNjoSebSw
+ pBbbhP3r+YZ/DWtWIEbaXW9wNhlprOmnH4A5TNW7jzNN3+ABV4THcodlL
+ fjkGik1sAkiy7JPCQgoFCGzd/8ag65Iy1M8r6yppKxiyOQSCmzJ0kQ9w5
+ Lu6a7O3vMikZ4cVgYsc68IMZE4Jqq71I/oaOzBkkXSJUtZ92dSCtLM0mg
+ rCnFy79q4MfQE/YRqKUxF5Uqn+phYzLUoKolEplrSzyRPt09Q5hwwaP9u A==;
+X-CSE-ConnectionGUID: cnU+WMocRnq8P2R/OWaJeQ==
+X-CSE-MsgGUID: Mfwq2ecFQOKdV/uRf1TMdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="54406026"
+X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="54406026"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2025 13:38:21 -0700
-X-CSE-ConnectionGUID: zMnxnZiiRtakDhorYJ8Kew==
-X-CSE-MsgGUID: lnmmWgFlRqeDXiMzHL8cWA==
+ 30 May 2025 13:38:30 -0700
+X-CSE-ConnectionGUID: oW2C4mlbQEKyt7T0kB+TVQ==
+X-CSE-MsgGUID: 4AcIo2j5QJmoqe8/m8wkzQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="143824238"
+X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="143824276"
 Received: from mjruhl-desk.amr.corp.intel.com (HELO mjruhl-desk.intel.com)
  ([10.124.223.23])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2025 13:38:20 -0700
+ 30 May 2025 13:38:29 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hdegoede@redhat.com, ilpo.jarvinen@linux.intel.com,
  lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: [PATCH v2 4/8] platform/x86/intel: refactor endpoint usage
-Date: Fri, 30 May 2025 16:37:53 -0400
-Message-ID: <20250530203757.190853-5-michael.j.ruhl@intel.com>
+Subject: [PATCH v2 7/8] platform/x86/intel/pmt: use a version struct
+Date: Fri, 30 May 2025 16:37:56 -0400
+Message-ID: <20250530203757.190853-8-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250530203757.190853-1-michael.j.ruhl@intel.com>
 References: <20250530203757.190853-1-michael.j.ruhl@intel.com>
@@ -69,399 +69,315 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The use of an endpoint has introduced a dependency
-in all class/pmt drivers to have an endpoint allocated.
-
-The telemetry driver has this allocation, the crashlog
-does not.
-
-The current usage is very telemetry focused, but should
-be common code.
-
-With this in mind, rename the struct telemetry_endpoint
-to struct class_endpoint. Refactor the common endpoint
-code to be in the class.c module.
+In preparation for supporting multiple crashlog versions, use
+a struct to keep bit offset info for the status and control
+bits.
 
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/platform/x86/intel/pmc/core.c       |  3 +-
- drivers/platform/x86/intel/pmc/core.h       |  4 +-
- drivers/platform/x86/intel/pmc/core_ssram.c |  2 +-
- drivers/platform/x86/intel/pmt/class.c      | 45 ++++++++++++++++++
- drivers/platform/x86/intel/pmt/class.h      | 21 +++++++--
- drivers/platform/x86/intel/pmt/telemetry.c  | 51 ++++-----------------
- drivers/platform/x86/intel/pmt/telemetry.h  | 23 ++++------
- 7 files changed, 84 insertions(+), 65 deletions(-)
+ drivers/platform/x86/intel/pmt/crashlog.c | 177 ++++++++++++++--------
+ 1 file changed, 113 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/platform/x86/intel/pmc/core.c b/drivers/platform/x86/intel/pmc/core.c
-index 7a1d11f2914f..805f56665d1d 100644
---- a/drivers/platform/x86/intel/pmc/core.c
-+++ b/drivers/platform/x86/intel/pmc/core.c
-@@ -29,6 +29,7 @@
- #include <asm/tsc.h>
+diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
+index 09cd0a1346f3..e6eea8809a56 100644
+--- a/drivers/platform/x86/intel/pmt/crashlog.c
++++ b/drivers/platform/x86/intel/pmt/crashlog.c
+@@ -22,21 +22,6 @@
+ /* Crashlog discovery header types */
+ #define CRASH_TYPE_OOBMSM	1
  
- #include "core.h"
-+#include "../pmt/class.h"
- #include "../pmt/telemetry.h"
- 
- /* Maximum number of modes supported by platfoms that has low power mode capability */
-@@ -1198,7 +1199,7 @@ int get_primary_reg_base(struct pmc *pmc)
- 
- void pmc_core_punit_pmt_init(struct pmc_dev *pmcdev, u32 guid)
- {
--	struct telem_endpoint *ep;
-+	struct class_endpoint *ep;
- 	struct pci_dev *pcidev;
- 
- 	pcidev = pci_get_domain_bus_and_slot(0, 0, PCI_DEVFN(10, 0));
-diff --git a/drivers/platform/x86/intel/pmc/core.h b/drivers/platform/x86/intel/pmc/core.h
-index 945a1c440cca..1c12ea7c3ce3 100644
---- a/drivers/platform/x86/intel/pmc/core.h
-+++ b/drivers/platform/x86/intel/pmc/core.h
-@@ -16,7 +16,7 @@
- #include <linux/bits.h>
- #include <linux/platform_device.h>
- 
--struct telem_endpoint;
-+struct class_endpoint;
- 
- #define SLP_S0_RES_COUNTER_MASK			GENMASK(31, 0)
- 
-@@ -432,7 +432,7 @@ struct pmc_dev {
- 
- 	bool has_die_c6;
- 	u32 die_c6_offset;
--	struct telem_endpoint *punit_ep;
-+	struct class_endpoint *punit_ep;
- 	struct pmc_info *regmap_list;
- };
- 
-diff --git a/drivers/platform/x86/intel/pmc/core_ssram.c b/drivers/platform/x86/intel/pmc/core_ssram.c
-index 739569803017..3e670fc380a5 100644
---- a/drivers/platform/x86/intel/pmc/core_ssram.c
-+++ b/drivers/platform/x86/intel/pmc/core_ssram.c
-@@ -42,7 +42,7 @@ static u32 pmc_core_find_guid(struct pmc_info *list, const struct pmc_reg_map *m
- 
- static int pmc_core_get_lpm_req(struct pmc_dev *pmcdev, struct pmc *pmc)
- {
--	struct telem_endpoint *ep;
-+	struct class_endpoint *ep;
- 	const u8 *lpm_indices;
- 	int num_maps, mode_offset = 0;
- 	int ret, mode;
-diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-index 7233b654bbad..bba552131bc2 100644
---- a/drivers/platform/x86/intel/pmt/class.c
-+++ b/drivers/platform/x86/intel/pmt/class.c
-@@ -76,6 +76,47 @@ int pmt_telem_read_mmio(struct pci_dev *pdev, struct pmt_callbacks *cb, u32 guid
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_read_mmio, "INTEL_PMT");
- 
-+/* Called when all users unregister and the device is removed */
-+static void pmt_class_ep_release(struct kref *kref)
-+{
-+	struct class_endpoint *ep;
-+
-+	ep = container_of(kref, struct class_endpoint, kref);
-+	kfree(ep);
-+}
-+
-+void intel_pmt_release_endpoint(struct class_endpoint *ep)
-+{
-+	kref_put(&ep->kref, pmt_class_ep_release);
-+}
-+EXPORT_SYMBOL_NS_GPL(intel_pmt_release_endpoint, "INTEL_PMT");
-+
-+int intel_pmt_add_endpoint(struct intel_vsec_device *ivdev,
-+			   struct intel_pmt_entry *entry)
-+{
-+	struct class_endpoint *ep;
-+
-+	ep = kzalloc(sizeof(*ep), GFP_KERNEL);
-+	if (!ep)
-+		return -ENOMEM;
-+
-+	ep->pcidev = ivdev->pcidev;
-+	ep->header.access_type = entry->header.access_type;
-+	ep->header.guid = entry->header.guid;
-+	ep->header.base_offset = entry->header.base_offset;
-+	ep->header.size = entry->header.size;
-+	ep->base = entry->base;
-+	ep->present = true;
-+	ep->cb = ivdev->priv_data;
-+
-+	/* Endpoint lifetimes are managed by kref, not devres */
-+	kref_init(&ep->kref);
-+
-+	entry->ep = ep;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_NS_GPL(intel_pmt_add_endpoint, "INTEL_PMT");
- /*
-  * sysfs
-  */
-@@ -97,6 +138,10 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
- 	if (count > entry->size - off)
- 		count = entry->size - off;
- 
-+	/* verify endpoint is available */
-+	if (!entry->ep)
-+		return -ENODEV;
-+
- 	count = pmt_telem_read_mmio(entry->ep->pcidev, entry->cb, entry->header.guid, buf,
- 				    entry->base, off, count);
- 
-diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-index b2006d57779d..d2d8f9e31c9d 100644
---- a/drivers/platform/x86/intel/pmt/class.h
-+++ b/drivers/platform/x86/intel/pmt/class.h
-@@ -9,8 +9,6 @@
- #include <linux/err.h>
- #include <linux/io.h>
- 
--#include "telemetry.h"
+-/* Control Flags */
+-#define CRASHLOG_FLAG_DISABLE		BIT(28)
 -
- /* PMT access types */
- #define ACCESS_BARID		2
- #define ACCESS_LOCAL		3
-@@ -19,11 +17,19 @@
- #define GET_BIR(v)		((v) & GENMASK(2, 0))
- #define GET_ADDRESS(v)		((v) & GENMASK(31, 3))
+-/*
+- * Bits 29 and 30 control the state of bit 31.
+- *
+- * Bit 29 will clear bit 31, if set, allowing a new crashlog to be captured.
+- * Bit 30 will immediately trigger a crashlog to be generated, setting bit 31.
+- * Bit 31 is the read-only status with a 1 indicating log is complete.
+- */
+-#define CRASHLOG_FLAG_TRIGGER_CLEAR	BIT(29)
+-#define CRASHLOG_FLAG_TRIGGER_EXECUTE	BIT(30)
+-#define CRASHLOG_FLAG_TRIGGER_COMPLETE	BIT(31)
+-#define CRASHLOG_FLAG_TRIGGER_MASK	GENMASK(31, 28)
+-
+ /* Crashlog Discovery Header */
+ #define CONTROL_OFFSET		0x0
+ #define GUID_OFFSET		0x4
+@@ -48,10 +33,63 @@
+ /* size is in bytes */
+ #define GET_SIZE(v)		((v) * sizeof(u32))
  
-+struct kref;
- struct pci_dev;
- 
--struct telem_endpoint {
-+struct class_header {
-+	u8	access_type;
-+	u16	size;
-+	u32	guid;
-+	u32	base_offset;
++/*
++ * Type 1 Version 0
++ * status and control registers are combined.
++ *
++ * Bits 29 and 30 control the state of bit 31.
++ * Bit 29 will clear bit 31, if set, allowing a new crashlog to be captured.
++ * Bit 30 will immediately trigger a crashlog to be generated, setting bit 31.
++ * Bit 31 is the read-only status with a 1 indicating log is complete.
++ */
++#define TYPE1_VER0_STATUS_OFFSET	0x00
++#define TYPE1_VER0_CONTROL_OFFSET	0x00
++
++#define TYPE1_VER0_DISABLE		BIT(28)
++#define TYPE1_VER0_CLEAR		BIT(29)
++#define TYPE1_VER0_EXECUTE		BIT(30)
++#define TYPE1_VER0_COMPLETE		BIT(31)
++#define TYPE1_VER0_TRIGGER_MASK		GENMASK(31, 28)
++
++/* After offset, order alphabetically, not bit ordered */
++struct crashlog_status {
++	u32 offset;
++	u32 clear;
++	u32 complete;
++	u32 disable;
 +};
 +
-+struct class_endpoint {
- 	struct pci_dev		*pcidev;
--	struct telem_header	header;
-+	struct class_header	header;
- 	struct pmt_callbacks	*cb;
- 	void __iomem		*base;
- 	bool			present;
-@@ -38,7 +44,7 @@ struct intel_pmt_header {
++struct crashlog_control {
++	u32 offset;
++	u32 trigger_mask;
++	u32 clear;
++	u32 disable;
++	u32 manual;
++};
++
++struct crashlog_info {
++	struct crashlog_status status;
++	struct crashlog_control control;
++};
++
++const struct crashlog_info crashlog_type1_ver0 = {
++	.status.offset = CONTROL_OFFSET,
++	.status.clear = TYPE1_VER0_CLEAR,
++	.status.complete = TYPE1_VER0_COMPLETE,
++	.status.disable = TYPE1_VER0_DISABLE,
++
++	.control.offset = CONTROL_OFFSET,
++	.control.trigger_mask = TYPE1_VER0_TRIGGER_MASK,
++	.control.clear = TYPE1_VER0_CLEAR,
++	.control.disable = TYPE1_VER0_DISABLE,
++	.control.manual = TYPE1_VER0_EXECUTE,
++};
++
+ struct crashlog_entry {
+ 	/* entry must be first member of struct */
+ 	struct intel_pmt_entry		entry;
+ 	struct mutex			control_mutex;
++	const struct crashlog_info	*info;
  };
  
- struct intel_pmt_entry {
--	struct telem_endpoint	*ep;
-+	struct class_endpoint	*ep;
- 	struct intel_pmt_header	header;
- 	struct bin_attribute	pmt_bin_attr;
- 	struct kobject		*kobj;
-@@ -69,4 +75,9 @@ int intel_pmt_dev_create(struct intel_pmt_entry *entry,
- 			 struct intel_vsec_device *dev, int idx);
- void intel_pmt_dev_destroy(struct intel_pmt_entry *entry,
- 			   struct intel_pmt_namespace *ns);
-+
-+int intel_pmt_add_endpoint(struct intel_vsec_device *ivdev,
-+			   struct intel_pmt_entry *entry);
-+void intel_pmt_release_endpoint(struct class_endpoint *ep);
-+
- #endif
-diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
-index ac3a9bdf5601..27d09867e6a3 100644
---- a/drivers/platform/x86/intel/pmt/telemetry.c
-+++ b/drivers/platform/x86/intel/pmt/telemetry.c
-@@ -18,6 +18,7 @@
- #include <linux/overflow.h>
- 
- #include "class.h"
-+#include "telemetry.h"
- 
- #define TELEM_SIZE_OFFSET	0x0
- #define TELEM_GUID_OFFSET	0x4
-@@ -93,48 +94,14 @@ static int pmt_telem_header_decode(struct intel_pmt_entry *entry,
- 	return 0;
- }
- 
--static int pmt_telem_add_endpoint(struct intel_vsec_device *ivdev,
--				  struct intel_pmt_entry *entry)
--{
--	struct telem_endpoint *ep;
--
--	/* Endpoint lifetimes are managed by kref, not devres */
--	entry->ep = kzalloc(sizeof(*(entry->ep)), GFP_KERNEL);
--	if (!entry->ep)
--		return -ENOMEM;
--
--	ep = entry->ep;
--	ep->pcidev = ivdev->pcidev;
--	ep->header.access_type = entry->header.access_type;
--	ep->header.guid = entry->header.guid;
--	ep->header.base_offset = entry->header.base_offset;
--	ep->header.size = entry->header.size;
--	ep->base = entry->base;
--	ep->present = true;
--	ep->cb = ivdev->priv_data;
--
--	kref_init(&ep->kref);
--
--	return 0;
--}
--
- static DEFINE_XARRAY_ALLOC(telem_array);
- static struct intel_pmt_namespace pmt_telem_ns = {
- 	.name = "telem",
- 	.xa = &telem_array,
- 	.pmt_header_decode = pmt_telem_header_decode,
--	.pmt_add_endpoint = pmt_telem_add_endpoint,
-+	.pmt_add_endpoint = intel_pmt_add_endpoint,
+ struct pmt_crashlog_priv {
+@@ -60,24 +98,10 @@ struct pmt_crashlog_priv {
  };
  
--/* Called when all users unregister and the device is removed */
--static void pmt_telem_ep_release(struct kref *kref)
+ /*
+- * I/O
++ * This is the generic access to a PMT struct. So the use of
++ * struct crashlog_entry
++ * doesn't "make sense" here.
+  */
+-static bool pmt_crashlog_complete(struct intel_pmt_entry *entry)
 -{
--	struct telem_endpoint *ep;
+-	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
 -
--	ep = container_of(kref, struct telem_endpoint, kref);
--	kfree(ep);
+-	/* return current value of the crashlog complete flag */
+-	return !!(control & CRASHLOG_FLAG_TRIGGER_COMPLETE);
 -}
 -
- unsigned long pmt_telem_get_next_endpoint(unsigned long start)
+-static bool pmt_crashlog_disabled(struct intel_pmt_entry *entry)
+-{
+-	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
+-
+-	/* return current value of the crashlog disabled flag */
+-	return !!(control & CRASHLOG_FLAG_DISABLE);
+-}
+-
+ static bool pmt_crashlog_supported(struct intel_pmt_entry *entry)
  {
- 	struct intel_pmt_entry *entry;
-@@ -155,7 +122,7 @@ unsigned long pmt_telem_get_next_endpoint(unsigned long start)
+ 	u32 discovery_header = readl(entry->disc_table + CONTROL_OFFSET);
+@@ -93,40 +117,64 @@ static bool pmt_crashlog_supported(struct intel_pmt_entry *entry)
+ 	return crash_type == CRASH_TYPE_OOBMSM && version == 0;
  }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_get_next_endpoint, "INTEL_PMT_TELEMETRY");
  
--struct telem_endpoint *pmt_telem_register_endpoint(int devid)
-+struct class_endpoint *pmt_telem_register_endpoint(int devid)
++/*
++ * I/O
++ */
++static bool pmt_crashlog_complete(struct intel_pmt_entry *entry,
++				  const struct crashlog_status *status)
++{
++	u32 reg = readl(entry->disc_table + status->offset);
++
++	/* return current value of the crashlog complete flag */
++	return !!(reg & status->complete);
++}
++
++static bool pmt_crashlog_disabled(struct intel_pmt_entry *entry,
++				  const struct crashlog_status *status)
++{
++	u32 reg = readl(entry->disc_table + status->offset);
++
++	/* return current value of the crashlog disabled flag */
++	return !!(reg & status->disable);
++}
++
+ static void pmt_crashlog_set_disable(struct intel_pmt_entry *entry,
++				     const struct crashlog_control *control,
+ 				     bool disable)
  {
- 	struct intel_pmt_entry *entry;
- 	unsigned long index = devid;
-@@ -174,9 +141,9 @@ struct telem_endpoint *pmt_telem_register_endpoint(int devid)
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_register_endpoint, "INTEL_PMT_TELEMETRY");
+-	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
++	u32 reg = readl(entry->disc_table + control->offset);
  
--void pmt_telem_unregister_endpoint(struct telem_endpoint *ep)
-+void pmt_telem_unregister_endpoint(struct class_endpoint *ep)
+ 	/* clear trigger bits so we are only modifying disable flag */
+-	control &= ~CRASHLOG_FLAG_TRIGGER_MASK;
++	reg &= ~control->trigger_mask;
+ 
+ 	if (disable)
+-		control |= CRASHLOG_FLAG_DISABLE;
++		reg |= control->disable;
+ 	else
+-		control &= ~CRASHLOG_FLAG_DISABLE;
++		reg &= ~control->disable;
+ 
+-	writel(control, entry->disc_table + CONTROL_OFFSET);
++	writel(reg, entry->disc_table + control->offset);
+ }
+ 
+-static void pmt_crashlog_set_clear(struct intel_pmt_entry *entry)
++static void pmt_crashlog_set_clear(struct intel_pmt_entry *entry,
++				   const struct crashlog_control *control)
  {
--	kref_put(&ep->kref, pmt_telem_ep_release);
-+	intel_pmt_release_endpoint(ep);
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_unregister_endpoint, "INTEL_PMT_TELEMETRY");
+-	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
++	u32 reg = readl(entry->disc_table + control->offset);
  
-@@ -206,7 +173,7 @@ int pmt_telem_get_endpoint_info(int devid, struct telem_endpoint_info *info)
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_get_endpoint_info, "INTEL_PMT_TELEMETRY");
+-	control &= ~CRASHLOG_FLAG_TRIGGER_MASK;
+-	control |= CRASHLOG_FLAG_TRIGGER_CLEAR;
++	reg &= ~control->trigger_mask;
++	reg |= control->clear;
  
--int pmt_telem_read(struct telem_endpoint *ep, u32 id, u64 *data, u32 count)
-+int pmt_telem_read(struct class_endpoint *ep, u32 id, u64 *data, u32 count)
+-	writel(control, entry->disc_table + CONTROL_OFFSET);
++	writel(reg, entry->disc_table + control->offset);
+ }
+ 
+-static void pmt_crashlog_set_execute(struct intel_pmt_entry *entry)
++static void pmt_crashlog_set_execute(struct intel_pmt_entry *entry,
++				     const struct crashlog_control *control)
  {
- 	u32 offset, size;
+-	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
++	u32 reg = readl(entry->disc_table + control->offset);
  
-@@ -226,7 +193,7 @@ int pmt_telem_read(struct telem_endpoint *ep, u32 id, u64 *data, u32 count)
+-	control &= ~CRASHLOG_FLAG_TRIGGER_MASK;
+-	control |= CRASHLOG_FLAG_TRIGGER_EXECUTE;
++	reg &= ~control->trigger_mask;
++	reg |= control->manual;
+ 
+-	writel(control, entry->disc_table + CONTROL_OFFSET);
++	writel(reg, entry->disc_table + control->offset);
  }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_read, "INTEL_PMT_TELEMETRY");
  
--int pmt_telem_read32(struct telem_endpoint *ep, u32 id, u32 *data, u32 count)
-+int pmt_telem_read32(struct class_endpoint *ep, u32 id, u32 *data, u32 count)
+ /*
+@@ -135,8 +183,8 @@ static void pmt_crashlog_set_execute(struct intel_pmt_entry *entry)
+ static ssize_t
+ enable_show(struct device *dev, struct device_attribute *attr, char *buf)
  {
- 	u32 offset, size;
+-	struct intel_pmt_entry *entry = dev_get_drvdata(dev);
+-	int enabled = !pmt_crashlog_disabled(entry);
++	struct crashlog_entry *crashlog = dev_get_drvdata(dev);
++	int enabled = !pmt_crashlog_disabled(&crashlog->entry, &crashlog->info->status);
  
-@@ -245,7 +212,7 @@ int pmt_telem_read32(struct telem_endpoint *ep, u32 id, u32 *data, u32 count)
+ 	return sprintf(buf, "%d\n", enabled);
  }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_read32, "INTEL_PMT_TELEMETRY");
- 
--struct telem_endpoint *
-+struct class_endpoint *
- pmt_telem_find_and_register_endpoint(struct pci_dev *pcidev, u32 guid, u16 pos)
+@@ -145,19 +193,19 @@ static ssize_t
+ enable_store(struct device *dev, struct device_attribute *attr,
+ 	     const char *buf, size_t count)
  {
- 	int devid = 0;
-@@ -279,7 +246,7 @@ static void pmt_telem_remove(struct auxiliary_device *auxdev)
- 	for (i = 0; i < priv->num_entries; i++) {
- 		struct intel_pmt_entry *entry = &priv->entry[i];
+-	struct crashlog_entry *entry;
++	struct crashlog_entry *crashlog;
+ 	bool enabled;
+ 	int result;
  
--		kref_put(&entry->ep->kref, pmt_telem_ep_release);
-+		pmt_telem_unregister_endpoint(entry->ep);
- 		intel_pmt_dev_destroy(entry, &pmt_telem_ns);
+-	entry = dev_get_drvdata(dev);
++	crashlog = dev_get_drvdata(dev);
+ 
+ 	result = kstrtobool(buf, &enabled);
+ 	if (result)
+ 		return result;
+ 
+-	guard(mutex)(&entry->control_mutex);
++	guard(mutex)(&crashlog->control_mutex);
+ 
+-	pmt_crashlog_set_disable(&entry->entry, !enabled);
++	pmt_crashlog_set_disable(&crashlog->entry, &crashlog->info->control, !enabled);
+ 
+ 	return count;
+ }
+@@ -166,11 +214,11 @@ static DEVICE_ATTR_RW(enable);
+ static ssize_t
+ trigger_show(struct device *dev, struct device_attribute *attr, char *buf)
+ {
+-	struct intel_pmt_entry *entry;
++	struct crashlog_entry *crashlog;
+ 	int trigger;
+ 
+-	entry = dev_get_drvdata(dev);
+-	trigger = pmt_crashlog_complete(entry);
++	crashlog = dev_get_drvdata(dev);
++	trigger = pmt_crashlog_complete(&crashlog->entry, &crashlog->info->status);
+ 
+ 	return sprintf(buf, "%d\n", trigger);
+ }
+@@ -179,32 +227,32 @@ static ssize_t
+ trigger_store(struct device *dev, struct device_attribute *attr,
+ 	      const char *buf, size_t count)
+ {
+-	struct crashlog_entry *entry;
++	struct crashlog_entry *crashlog;
+ 	bool trigger;
+ 	int result;
+ 
+-	entry = dev_get_drvdata(dev);
++	crashlog = dev_get_drvdata(dev);
+ 
+ 	result = kstrtobool(buf, &trigger);
+ 	if (result)
+ 		return result;
+ 
+-	guard(mutex)(&entry->control_mutex);
++	guard(mutex)(&crashlog->control_mutex);
+ 
+ 	if (!trigger) {
+-		pmt_crashlog_set_clear(&entry->entry);
++		pmt_crashlog_set_clear(&crashlog->entry, &crashlog->info->control);
+ 		return count;
  	}
- 	mutex_unlock(&ep_lock);
-diff --git a/drivers/platform/x86/intel/pmt/telemetry.h b/drivers/platform/x86/intel/pmt/telemetry.h
-index d45af5512b4e..e987dd32a58a 100644
---- a/drivers/platform/x86/intel/pmt/telemetry.h
-+++ b/drivers/platform/x86/intel/pmt/telemetry.h
-@@ -2,6 +2,8 @@
- #ifndef _TELEMETRY_H
- #define _TELEMETRY_H
  
-+#include "class.h"
-+
- /* Telemetry types */
- #define PMT_TELEM_TELEMETRY	0
- #define PMT_TELEM_CRASHLOG	1
-@@ -9,16 +11,9 @@
- struct telem_endpoint;
- struct pci_dev;
+ 	/* we cannot trigger a new crash if one is still pending */
+-	if (pmt_crashlog_complete(&entry->entry))
++	if (pmt_crashlog_complete(&crashlog->entry, &crashlog->info->status))
+ 		return -EEXIST;
  
--struct telem_header {
--	u8	access_type;
--	u16	size;
--	u32	guid;
--	u32	base_offset;
--};
--
- struct telem_endpoint_info {
- 	struct pci_dev		*pdev;
--	struct telem_header	header;
-+	struct class_header	header;
- };
+ 	/* if device is currently disabled, return busy */
+-	if (pmt_crashlog_disabled(&entry->entry))
++	if (pmt_crashlog_disabled(&crashlog->entry, &crashlog->info->status))
+ 		return -EBUSY;
  
- /**
-@@ -47,7 +42,7 @@ unsigned long pmt_telem_get_next_endpoint(unsigned long start);
-  * * endpoint    - On success returns pointer to the telemetry endpoint
-  * * -ENXIO      - telemetry endpoint not found
-  */
--struct telem_endpoint *pmt_telem_register_endpoint(int devid);
-+struct class_endpoint *pmt_telem_register_endpoint(int devid);
+-	pmt_crashlog_set_execute(&entry->entry);
++	pmt_crashlog_set_execute(&crashlog->entry, &crashlog->info->control);
  
- /**
-  * pmt_telem_unregister_endpoint() - Unregister a telemetry endpoint
-@@ -55,7 +50,7 @@ struct telem_endpoint *pmt_telem_register_endpoint(int devid);
-  *
-  * Decrements the kref usage counter for the endpoint.
-  */
--void pmt_telem_unregister_endpoint(struct telem_endpoint *ep);
-+void pmt_telem_unregister_endpoint(struct class_endpoint *ep);
+ 	return count;
+ }
+@@ -230,9 +278,10 @@ static int pmt_crashlog_header_decode(struct intel_pmt_entry *entry,
+ 	if (!pmt_crashlog_supported(entry))
+ 		return 1;
  
- /**
-  * pmt_telem_get_endpoint_info() - Get info for an endpoint from its devid
-@@ -80,8 +75,8 @@ int pmt_telem_get_endpoint_info(int devid, struct telem_endpoint_info *info);
-  * * endpoint    - On success returns pointer to the telemetry endpoint
-  * * -ENXIO      - telemetry endpoint not found
-  */
--struct telem_endpoint *pmt_telem_find_and_register_endpoint(struct pci_dev *pcidev,
--				u32 guid, u16 pos);
-+struct class_endpoint *pmt_telem_find_and_register_endpoint(struct pci_dev *pcidev,
-+							    u32 guid, u16 pos);
+-	/* initialize control mutex */
++	/* initialize the crashlog struct */
+ 	crashlog = container_of(entry, struct crashlog_entry, entry);
+ 	mutex_init(&crashlog->control_mutex);
++	crashlog->info = &crashlog_type1_ver0;
  
- /**
-  * pmt_telem_read() - Read qwords from counter sram using sample id
-@@ -101,7 +96,7 @@ struct telem_endpoint *pmt_telem_find_and_register_endpoint(struct pci_dev *pcid
-  * * -EPIPE      - The device was removed during the read. Data written
-  *                 but should be considered invalid.
-  */
--int pmt_telem_read(struct telem_endpoint *ep, u32 id, u64 *data, u32 count);
-+int pmt_telem_read(struct class_endpoint *ep, u32 id, u64 *data, u32 count);
- 
- /**
-  * pmt_telem_read32() - Read qwords from counter sram using sample id
-@@ -121,6 +116,6 @@ int pmt_telem_read(struct telem_endpoint *ep, u32 id, u64 *data, u32 count);
-  * * -EPIPE      - The device was removed during the read. Data written
-  *                 but should be considered invalid.
-  */
--int pmt_telem_read32(struct telem_endpoint *ep, u32 id, u32 *data, u32 count);
-+int pmt_telem_read32(struct class_endpoint *ep, u32 id, u32 *data, u32 count);
- 
- #endif
+ 	header->access_type = GET_ACCESS(readl(disc_table));
+ 	header->guid = readl(disc_table + GUID_OFFSET);
 -- 
 2.49.0
 
