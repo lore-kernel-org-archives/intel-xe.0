@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A4FAC5AD49
-	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 20:34:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA5C8C5AD49
+	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 20:34:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD86C10E87E;
-	Fri, 30 May 2025 20:34:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8836310E878;
+	Fri, 30 May 2025 20:34:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PH2AwgGI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X6JJYZ57";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0C0410E87A
- for <intel-xe@lists.freedesktop.org>; Fri, 30 May 2025 20:34:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5782E10E881
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 May 2025 20:34:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748637264; x=1780173264;
+ t=1748637270; x=1780173270;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K3FdjElLYKZq6JaUYsUYJ5Vc/wp2u0acHhjHGWcZw94=;
- b=PH2AwgGI5C6N79h6CWo3ZqNZxsSvS59RQXSQ3A5pG8/O/Vot37Vfs2vB
- JnxEVvjZKNrAe/Gf8vDAMEyVh5281dUzfM/raIiFyuWyHRTgeZVlT0F+g
- sIxq3zOvWlCowqcJuuX/Kn7MAwyr/0YU8X5Ja+NyjBy4vez2CWh/JtIG5
- U4xkrZSHci6b92fw8jre/wzhkQ7+40jgO3iA52Zbostkl9sTyrDAWuJzn
- oVTqbSWFF3gzWQnKTk97LkNCgLroGKNlWHA5kTukNIWdDsSWNI7M2urpg
- mj8QXqSDLPtmIrakcVh3Jci9zhmk2gcs6uveesUhXLfuFFP+yutC2qq2M Q==;
-X-CSE-ConnectionGUID: bXcBcnFBRze2V5E6GQScDw==
-X-CSE-MsgGUID: BvFneS8cQ7a+DKx64Ib5Pw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="54405777"
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="54405777"
+ bh=9cDQbkxmkOwg5ni8Ci2XPkw2I0HGftzC089pq0QmGlA=;
+ b=X6JJYZ5794LZ2Hucl/IqexPZT8lzHfZcOwjZBsnrp+JmXMtFtxmQEG4W
+ lpZTDSzCRPyYONoHgRoMkfQlP9/ck7glLReA6C4KcvKVKE0ys2Tg5Jw0v
+ 1+R2ljevdCFlwpnlYjFdzzCkK3EaffaUUbdc1pR/OaPt5QxIh445N79PJ
+ Is9V0VITViwrv1QA6p+fYCxYC0pwPxytu/Ril5l+IQDYnEHAm6W+Erh4z
+ cYxmX/MB9QULg5LIne0y2U/J+yGnyDY9RuPB20kuqsgp4Fy+VNK1fP41Z
+ zLLCfJRz8jYiFRqXeXM3YRb/J0LjZ1v+Jw59V2or0N0Ia5d4J7zL5zTfX A==;
+X-CSE-ConnectionGUID: V9l7h4NtSmK1mBlGbY0ddQ==
+X-CSE-MsgGUID: D05eHpZURDityyqeQCFQdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="54405779"
+X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="54405779"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2025 13:34:24 -0700
-X-CSE-ConnectionGUID: Mm6ymq2FT5mm0soDhRTJgw==
-X-CSE-MsgGUID: SbzVKRsxTbOOmphR/llPIQ==
+ 30 May 2025 13:34:30 -0700
+X-CSE-ConnectionGUID: a/rtaXybSZm9xHxtNeE+cg==
+X-CSE-MsgGUID: Gf35lT07QbGYe+N5AhPcPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="149246660"
+X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="149246677"
 Received: from mjruhl-desk.amr.corp.intel.com (HELO mjruhl-desk.intel.com)
  ([10.124.223.23])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2025 13:34:22 -0700
+ 30 May 2025 13:34:28 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hdegoede@redhat.com, ilpo.jarvinen@linux.intel.com,
  lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: [PATCH 04/10] platform/x86/intel: refactor endpoint usage
-Date: Fri, 30 May 2025 16:33:41 -0400
-Message-ID: <20250530203356.190234-4-michael.j.ruhl@intel.com>
+Subject: [PATCH 05/10] platform/x86/intel/pmt: crashlog binary file endpoint
+Date: Fri, 30 May 2025 16:33:42 -0400
+Message-ID: <20250530203356.190234-5-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250530203356.190234-1-michael.j.ruhl@intel.com>
 References: <20250530203356.190234-1-michael.j.ruhl@intel.com>
@@ -69,399 +69,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The use of an endpoint has introduced a dependency
-in all class/pmt drivers to have an endpoint allocated.
+Usage of the intel_pmt_read() for binary sysfs, requires an
+allocated endpoint struct. The crashlog driver does not
+allocate the endpoint.
 
-The telemetry driver has this allocation, the crashlog
-does not.
+Without the ep, the crashlog usage causes the following NULL
+pointer exception:
 
-The current usage is very telemetry focused, but should
-be common code.
+BUG: kernel NULL pointer dereference, address: 0000000000000000
+Oops: Oops: 0000 [#1] SMP NOPTI
+RIP: 0010:intel_pmt_read+0x3b/0x70 [pmt_class]
+Code:
+Call Trace:
+ <TASK>
+ ? sysfs_kf_bin_read+0xc0/0xe0
+ kernfs_fop_read_iter+0xac/0x1a0
+ vfs_read+0x26d/0x350
+ ksys_read+0x6b/0xe0
+ __x64_sys_read+0x1d/0x30
+ x64_sys_call+0x1bc8/0x1d70
+ do_syscall_64+0x6d/0x110
 
-With this in mind, rename the struct telemetry_endpoint
-to struct class_endpoint. Refactor the common endpoint
-code to be in the class.c module.
+Add the endpoint information to the crashlog driver to avoid
+the NULL pointer exception.
 
+Fixes: 416eeb2e1fc7 ("platform/x86/intel/pmt: telemetry: Export API to read telemetry")
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/platform/x86/intel/pmc/core.c       |  3 +-
- drivers/platform/x86/intel/pmc/core.h       |  4 +-
- drivers/platform/x86/intel/pmc/core_ssram.c |  2 +-
- drivers/platform/x86/intel/pmt/class.c      | 45 ++++++++++++++++++
- drivers/platform/x86/intel/pmt/class.h      | 21 +++++++--
- drivers/platform/x86/intel/pmt/telemetry.c  | 51 ++++-----------------
- drivers/platform/x86/intel/pmt/telemetry.h  | 23 ++++------
- 7 files changed, 84 insertions(+), 65 deletions(-)
+ drivers/platform/x86/intel/pmt/crashlog.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/platform/x86/intel/pmc/core.c b/drivers/platform/x86/intel/pmc/core.c
-index 7a1d11f2914f..805f56665d1d 100644
---- a/drivers/platform/x86/intel/pmc/core.c
-+++ b/drivers/platform/x86/intel/pmc/core.c
-@@ -29,6 +29,7 @@
- #include <asm/tsc.h>
- 
- #include "core.h"
-+#include "../pmt/class.h"
- #include "../pmt/telemetry.h"
- 
- /* Maximum number of modes supported by platfoms that has low power mode capability */
-@@ -1198,7 +1199,7 @@ int get_primary_reg_base(struct pmc *pmc)
- 
- void pmc_core_punit_pmt_init(struct pmc_dev *pmcdev, u32 guid)
- {
--	struct telem_endpoint *ep;
-+	struct class_endpoint *ep;
- 	struct pci_dev *pcidev;
- 
- 	pcidev = pci_get_domain_bus_and_slot(0, 0, PCI_DEVFN(10, 0));
-diff --git a/drivers/platform/x86/intel/pmc/core.h b/drivers/platform/x86/intel/pmc/core.h
-index 945a1c440cca..1c12ea7c3ce3 100644
---- a/drivers/platform/x86/intel/pmc/core.h
-+++ b/drivers/platform/x86/intel/pmc/core.h
-@@ -16,7 +16,7 @@
- #include <linux/bits.h>
- #include <linux/platform_device.h>
- 
--struct telem_endpoint;
-+struct class_endpoint;
- 
- #define SLP_S0_RES_COUNTER_MASK			GENMASK(31, 0)
- 
-@@ -432,7 +432,7 @@ struct pmc_dev {
- 
- 	bool has_die_c6;
- 	u32 die_c6_offset;
--	struct telem_endpoint *punit_ep;
-+	struct class_endpoint *punit_ep;
- 	struct pmc_info *regmap_list;
- };
- 
-diff --git a/drivers/platform/x86/intel/pmc/core_ssram.c b/drivers/platform/x86/intel/pmc/core_ssram.c
-index 739569803017..3e670fc380a5 100644
---- a/drivers/platform/x86/intel/pmc/core_ssram.c
-+++ b/drivers/platform/x86/intel/pmc/core_ssram.c
-@@ -42,7 +42,7 @@ static u32 pmc_core_find_guid(struct pmc_info *list, const struct pmc_reg_map *m
- 
- static int pmc_core_get_lpm_req(struct pmc_dev *pmcdev, struct pmc *pmc)
- {
--	struct telem_endpoint *ep;
-+	struct class_endpoint *ep;
- 	const u8 *lpm_indices;
- 	int num_maps, mode_offset = 0;
- 	int ret, mode;
-diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-index 7233b654bbad..bba552131bc2 100644
---- a/drivers/platform/x86/intel/pmt/class.c
-+++ b/drivers/platform/x86/intel/pmt/class.c
-@@ -76,6 +76,47 @@ int pmt_telem_read_mmio(struct pci_dev *pdev, struct pmt_callbacks *cb, u32 guid
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_read_mmio, "INTEL_PMT");
- 
-+/* Called when all users unregister and the device is removed */
-+static void pmt_class_ep_release(struct kref *kref)
-+{
-+	struct class_endpoint *ep;
-+
-+	ep = container_of(kref, struct class_endpoint, kref);
-+	kfree(ep);
-+}
-+
-+void intel_pmt_release_endpoint(struct class_endpoint *ep)
-+{
-+	kref_put(&ep->kref, pmt_class_ep_release);
-+}
-+EXPORT_SYMBOL_NS_GPL(intel_pmt_release_endpoint, "INTEL_PMT");
-+
-+int intel_pmt_add_endpoint(struct intel_vsec_device *ivdev,
-+			   struct intel_pmt_entry *entry)
-+{
-+	struct class_endpoint *ep;
-+
-+	ep = kzalloc(sizeof(*ep), GFP_KERNEL);
-+	if (!ep)
-+		return -ENOMEM;
-+
-+	ep->pcidev = ivdev->pcidev;
-+	ep->header.access_type = entry->header.access_type;
-+	ep->header.guid = entry->header.guid;
-+	ep->header.base_offset = entry->header.base_offset;
-+	ep->header.size = entry->header.size;
-+	ep->base = entry->base;
-+	ep->present = true;
-+	ep->cb = ivdev->priv_data;
-+
-+	/* Endpoint lifetimes are managed by kref, not devres */
-+	kref_init(&ep->kref);
-+
-+	entry->ep = ep;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_NS_GPL(intel_pmt_add_endpoint, "INTEL_PMT");
- /*
-  * sysfs
-  */
-@@ -97,6 +138,10 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
- 	if (count > entry->size - off)
- 		count = entry->size - off;
- 
-+	/* verify endpoint is available */
-+	if (!entry->ep)
-+		return -ENODEV;
-+
- 	count = pmt_telem_read_mmio(entry->ep->pcidev, entry->cb, entry->header.guid, buf,
- 				    entry->base, off, count);
- 
-diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-index b2006d57779d..d2d8f9e31c9d 100644
---- a/drivers/platform/x86/intel/pmt/class.h
-+++ b/drivers/platform/x86/intel/pmt/class.h
-@@ -9,8 +9,6 @@
- #include <linux/err.h>
- #include <linux/io.h>
- 
--#include "telemetry.h"
--
- /* PMT access types */
- #define ACCESS_BARID		2
- #define ACCESS_LOCAL		3
-@@ -19,11 +17,19 @@
- #define GET_BIR(v)		((v) & GENMASK(2, 0))
- #define GET_ADDRESS(v)		((v) & GENMASK(31, 3))
- 
-+struct kref;
- struct pci_dev;
- 
--struct telem_endpoint {
-+struct class_header {
-+	u8	access_type;
-+	u16	size;
-+	u32	guid;
-+	u32	base_offset;
-+};
-+
-+struct class_endpoint {
- 	struct pci_dev		*pcidev;
--	struct telem_header	header;
-+	struct class_header	header;
- 	struct pmt_callbacks	*cb;
- 	void __iomem		*base;
- 	bool			present;
-@@ -38,7 +44,7 @@ struct intel_pmt_header {
- };
- 
- struct intel_pmt_entry {
--	struct telem_endpoint	*ep;
-+	struct class_endpoint	*ep;
- 	struct intel_pmt_header	header;
- 	struct bin_attribute	pmt_bin_attr;
- 	struct kobject		*kobj;
-@@ -69,4 +75,9 @@ int intel_pmt_dev_create(struct intel_pmt_entry *entry,
- 			 struct intel_vsec_device *dev, int idx);
- void intel_pmt_dev_destroy(struct intel_pmt_entry *entry,
- 			   struct intel_pmt_namespace *ns);
-+
-+int intel_pmt_add_endpoint(struct intel_vsec_device *ivdev,
-+			   struct intel_pmt_entry *entry);
-+void intel_pmt_release_endpoint(struct class_endpoint *ep);
-+
- #endif
-diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
-index ac3a9bdf5601..27d09867e6a3 100644
---- a/drivers/platform/x86/intel/pmt/telemetry.c
-+++ b/drivers/platform/x86/intel/pmt/telemetry.c
-@@ -18,6 +18,7 @@
- #include <linux/overflow.h>
- 
- #include "class.h"
-+#include "telemetry.h"
- 
- #define TELEM_SIZE_OFFSET	0x0
- #define TELEM_GUID_OFFSET	0x4
-@@ -93,48 +94,14 @@ static int pmt_telem_header_decode(struct intel_pmt_entry *entry,
- 	return 0;
- }
- 
--static int pmt_telem_add_endpoint(struct intel_vsec_device *ivdev,
--				  struct intel_pmt_entry *entry)
--{
--	struct telem_endpoint *ep;
--
--	/* Endpoint lifetimes are managed by kref, not devres */
--	entry->ep = kzalloc(sizeof(*(entry->ep)), GFP_KERNEL);
--	if (!entry->ep)
--		return -ENOMEM;
--
--	ep = entry->ep;
--	ep->pcidev = ivdev->pcidev;
--	ep->header.access_type = entry->header.access_type;
--	ep->header.guid = entry->header.guid;
--	ep->header.base_offset = entry->header.base_offset;
--	ep->header.size = entry->header.size;
--	ep->base = entry->base;
--	ep->present = true;
--	ep->cb = ivdev->priv_data;
--
--	kref_init(&ep->kref);
--
--	return 0;
--}
--
- static DEFINE_XARRAY_ALLOC(telem_array);
- static struct intel_pmt_namespace pmt_telem_ns = {
- 	.name = "telem",
- 	.xa = &telem_array,
- 	.pmt_header_decode = pmt_telem_header_decode,
--	.pmt_add_endpoint = pmt_telem_add_endpoint,
+diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
+index c6d8a7a61d39..94858bfb52f8 100644
+--- a/drivers/platform/x86/intel/pmt/crashlog.c
++++ b/drivers/platform/x86/intel/pmt/crashlog.c
+@@ -250,6 +250,7 @@ static struct intel_pmt_namespace pmt_crashlog_ns = {
+ 	.xa = &crashlog_array,
+ 	.attr_grp = &pmt_crashlog_group,
+ 	.pmt_header_decode = pmt_crashlog_header_decode,
 +	.pmt_add_endpoint = intel_pmt_add_endpoint,
  };
  
--/* Called when all users unregister and the device is removed */
--static void pmt_telem_ep_release(struct kref *kref)
--{
--	struct telem_endpoint *ep;
--
--	ep = container_of(kref, struct telem_endpoint, kref);
--	kfree(ep);
--}
--
- unsigned long pmt_telem_get_next_endpoint(unsigned long start)
- {
- 	struct intel_pmt_entry *entry;
-@@ -155,7 +122,7 @@ unsigned long pmt_telem_get_next_endpoint(unsigned long start)
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_get_next_endpoint, "INTEL_PMT_TELEMETRY");
+ /*
+@@ -260,8 +261,12 @@ static void pmt_crashlog_remove(struct auxiliary_device *auxdev)
+ 	struct pmt_crashlog_priv *priv = auxiliary_get_drvdata(auxdev);
+ 	int i;
  
--struct telem_endpoint *pmt_telem_register_endpoint(int devid)
-+struct class_endpoint *pmt_telem_register_endpoint(int devid)
- {
- 	struct intel_pmt_entry *entry;
- 	unsigned long index = devid;
-@@ -174,9 +141,9 @@ struct telem_endpoint *pmt_telem_register_endpoint(int devid)
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_register_endpoint, "INTEL_PMT_TELEMETRY");
- 
--void pmt_telem_unregister_endpoint(struct telem_endpoint *ep)
-+void pmt_telem_unregister_endpoint(struct class_endpoint *ep)
- {
--	kref_put(&ep->kref, pmt_telem_ep_release);
-+	intel_pmt_release_endpoint(ep);
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_unregister_endpoint, "INTEL_PMT_TELEMETRY");
- 
-@@ -206,7 +173,7 @@ int pmt_telem_get_endpoint_info(int devid, struct telem_endpoint_info *info)
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_get_endpoint_info, "INTEL_PMT_TELEMETRY");
- 
--int pmt_telem_read(struct telem_endpoint *ep, u32 id, u64 *data, u32 count)
-+int pmt_telem_read(struct class_endpoint *ep, u32 id, u64 *data, u32 count)
- {
- 	u32 offset, size;
- 
-@@ -226,7 +193,7 @@ int pmt_telem_read(struct telem_endpoint *ep, u32 id, u64 *data, u32 count)
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_read, "INTEL_PMT_TELEMETRY");
- 
--int pmt_telem_read32(struct telem_endpoint *ep, u32 id, u32 *data, u32 count)
-+int pmt_telem_read32(struct class_endpoint *ep, u32 id, u32 *data, u32 count)
- {
- 	u32 offset, size;
- 
-@@ -245,7 +212,7 @@ int pmt_telem_read32(struct telem_endpoint *ep, u32 id, u32 *data, u32 count)
- }
- EXPORT_SYMBOL_NS_GPL(pmt_telem_read32, "INTEL_PMT_TELEMETRY");
- 
--struct telem_endpoint *
-+struct class_endpoint *
- pmt_telem_find_and_register_endpoint(struct pci_dev *pcidev, u32 guid, u16 pos)
- {
- 	int devid = 0;
-@@ -279,7 +246,7 @@ static void pmt_telem_remove(struct auxiliary_device *auxdev)
- 	for (i = 0; i < priv->num_entries; i++) {
- 		struct intel_pmt_entry *entry = &priv->entry[i];
- 
--		kref_put(&entry->ep->kref, pmt_telem_ep_release);
-+		pmt_telem_unregister_endpoint(entry->ep);
- 		intel_pmt_dev_destroy(entry, &pmt_telem_ns);
- 	}
- 	mutex_unlock(&ep_lock);
-diff --git a/drivers/platform/x86/intel/pmt/telemetry.h b/drivers/platform/x86/intel/pmt/telemetry.h
-index d45af5512b4e..e987dd32a58a 100644
---- a/drivers/platform/x86/intel/pmt/telemetry.h
-+++ b/drivers/platform/x86/intel/pmt/telemetry.h
-@@ -2,6 +2,8 @@
- #ifndef _TELEMETRY_H
- #define _TELEMETRY_H
- 
-+#include "class.h"
+-	for (i = 0; i < priv->num_entries; i++)
+-		intel_pmt_dev_destroy(&priv->entry[i].entry, &pmt_crashlog_ns);
++	for (i = 0; i < priv->num_entries; i++) {
++		struct intel_pmt_entry *entry = &priv->entry[i].entry;
 +
- /* Telemetry types */
- #define PMT_TELEM_TELEMETRY	0
- #define PMT_TELEM_CRASHLOG	1
-@@ -9,16 +11,9 @@
- struct telem_endpoint;
- struct pci_dev;
++		intel_pmt_release_endpoint(entry->ep);
++		intel_pmt_dev_destroy(entry, &pmt_crashlog_ns);
++	}
+ }
  
--struct telem_header {
--	u8	access_type;
--	u16	size;
--	u32	guid;
--	u32	base_offset;
--};
--
- struct telem_endpoint_info {
- 	struct pci_dev		*pdev;
--	struct telem_header	header;
-+	struct class_header	header;
- };
- 
- /**
-@@ -47,7 +42,7 @@ unsigned long pmt_telem_get_next_endpoint(unsigned long start);
-  * * endpoint    - On success returns pointer to the telemetry endpoint
-  * * -ENXIO      - telemetry endpoint not found
-  */
--struct telem_endpoint *pmt_telem_register_endpoint(int devid);
-+struct class_endpoint *pmt_telem_register_endpoint(int devid);
- 
- /**
-  * pmt_telem_unregister_endpoint() - Unregister a telemetry endpoint
-@@ -55,7 +50,7 @@ struct telem_endpoint *pmt_telem_register_endpoint(int devid);
-  *
-  * Decrements the kref usage counter for the endpoint.
-  */
--void pmt_telem_unregister_endpoint(struct telem_endpoint *ep);
-+void pmt_telem_unregister_endpoint(struct class_endpoint *ep);
- 
- /**
-  * pmt_telem_get_endpoint_info() - Get info for an endpoint from its devid
-@@ -80,8 +75,8 @@ int pmt_telem_get_endpoint_info(int devid, struct telem_endpoint_info *info);
-  * * endpoint    - On success returns pointer to the telemetry endpoint
-  * * -ENXIO      - telemetry endpoint not found
-  */
--struct telem_endpoint *pmt_telem_find_and_register_endpoint(struct pci_dev *pcidev,
--				u32 guid, u16 pos);
-+struct class_endpoint *pmt_telem_find_and_register_endpoint(struct pci_dev *pcidev,
-+							    u32 guid, u16 pos);
- 
- /**
-  * pmt_telem_read() - Read qwords from counter sram using sample id
-@@ -101,7 +96,7 @@ struct telem_endpoint *pmt_telem_find_and_register_endpoint(struct pci_dev *pcid
-  * * -EPIPE      - The device was removed during the read. Data written
-  *                 but should be considered invalid.
-  */
--int pmt_telem_read(struct telem_endpoint *ep, u32 id, u64 *data, u32 count);
-+int pmt_telem_read(struct class_endpoint *ep, u32 id, u64 *data, u32 count);
- 
- /**
-  * pmt_telem_read32() - Read qwords from counter sram using sample id
-@@ -121,6 +116,6 @@ int pmt_telem_read(struct telem_endpoint *ep, u32 id, u64 *data, u32 count);
-  * * -EPIPE      - The device was removed during the read. Data written
-  *                 but should be considered invalid.
-  */
--int pmt_telem_read32(struct telem_endpoint *ep, u32 id, u32 *data, u32 count);
-+int pmt_telem_read32(struct class_endpoint *ep, u32 id, u32 *data, u32 count);
- 
- #endif
+ static int pmt_crashlog_probe(struct auxiliary_device *auxdev,
 -- 
 2.49.0
 
