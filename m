@@ -4,60 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFE0EC5B543
-	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 13:56:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC768C5AD49
+	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 14:02:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B56110E872;
-	Fri, 30 May 2025 13:56:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7532110E869;
+	Fri, 30 May 2025 14:02:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YRj1TAdg";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="LhFlHy4I";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C38110E813
- for <intel-xe@lists.freedesktop.org>; Fri, 30 May 2025 13:56:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748613373; x=1780149373;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=guvRe4FPAtnPY6mK+VaSMAImHPTPV9z487CX81lv+Lg=;
- b=YRj1TAdg7js6OiiX0cJ98+2FRE+vkJWxlYjwKf6NLpjFMlu3fcwp9m89
- ihmawNJM2KSVQGGFg21jDH1Qe61QoD7vunBLvlkJwKfAovB56JdzbIf2z
- wDVN2moW9nqDZQzUU4lJKDLEBheB67vu1ddji4szQNWilRELLUAkSc4xi
- L6RzVYj1BGC7+pQT5sg+qtALpG5QgO5SpT8SDurIjFmbaAkBgjyWh+tym
- iVnVUV2C1sLUu60z9L/vi7jg5vgrcgWyf4ULn3rLdTR6Z0dXk1kZ5kevC
- ZvnhiwEdDHJ84Y9dIzeasFY4fgdiqw7PbAlzV6msqhKP3CkmQ4SrVwhgN g==;
-X-CSE-ConnectionGUID: PrK3cn4pRbW48ygvSKpoFQ==
-X-CSE-MsgGUID: UlXAAw5JSxuBYvNKeoNzLg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="68256328"
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="68256328"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2025 06:56:02 -0700
-X-CSE-ConnectionGUID: 4B8tBy2XSiu4s6WG+24xQA==
-X-CSE-MsgGUID: TuvAAd7zTbyt54pRimGifg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="174763947"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa001.fm.intel.com with ESMTP; 30 May 2025 06:56:01 -0700
-Received: from [10.245.84.121] (unknown [10.245.84.121])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 2CA0233EB0;
- Fri, 30 May 2025 14:56:00 +0100 (IST)
-Message-ID: <b0c8aff1-0037-41da-bbb3-89cfa6cfcfb4@intel.com>
-Date: Fri, 30 May 2025 15:55:59 +0200
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48A7E10E866;
+ Fri, 30 May 2025 14:02:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=Jw/iW6kDfuazfFnJ3ThMomSzFiIqDF4wTfRfp9mR/Zc=; b=LhFlHy4IRuuzrS6H4RTXt571G2
+ 96Ks25Vsvbx4T1ysncpj9SFhzzMibTDwc4PqZs8/SkjtT5fnHy/iS2GRslG9MT6gyPh5waiA2FI7d
+ OaI4Rn/1gpofcUiUj76kh32G8Zt1sHbG8CUAwvIumglzdd7jEU09F39CnruX/Dd6U3nCstn+Xitkc
+ 5qWPMS8/srFYefTZCKNRzZSSiYez9UZX9VfHb+cSGSxYE7MjdHThecOxO31gBsOn+U+VuMtvzm6cp
+ a5KVDh4xQ3f3jiI5KUloTs5vZV6392OfwfrNW4NfOEjp3WQJxYTJyqhUuJO1Gg7hboQHREOXMtLV9
+ qS73bxFQ==;
+Received: from [189.7.87.163]
+ (helo=1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uL0JD-00FFzl-5O; Fri, 30 May 2025 16:02:07 +0200
+From: =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+Subject: [PATCH v2 0/8] drm/sched: Allow drivers to skip the reset with
+ DRM_GPU_SCHED_STAT_NO_HANG
+Date: Fri, 30 May 2025 11:01:29 -0300
+Message-Id: <20250530-sched-skip-reset-v2-0-c40a8d2d8daa@igalia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] drm/xe/vf: Store the GuC FW info in guc->fw
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Lukasz Laguna <lukasz.laguna@intel.com>
-References: <20250528234229.4185039-6-daniele.ceraolospurio@intel.com>
- <20250528234229.4185039-10-daniele.ceraolospurio@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250528234229.4185039-10-daniele.ceraolospurio@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIADm6OWgC/2WNywqDMBBFf0Vm3Sl5oEJX/Y/iIk0mZmirkhGxi
+ P/eVOiqy3PgnruBUGYSuFQbZFpYeBwKmFMFPrmhJ+RQGIwytaqVQfGJAsqDJ8wkNOM9tl431lg
+ bHJTZlCnyeiRvXeHEMo/5fTws+mt/MfsfWzQqpKBC0yrtbKQr9+7J7uzHF3T7vn8A2KxwRLEAA
+ AA=
+X-Change-ID: 20250502-sched-skip-reset-bf7c163233da
+To: Matthew Brost <matthew.brost@intel.com>, 
+ Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Simona Vetter <simona@ffwll.ch>, 
+ David Airlie <airlied@gmail.com>, Melissa Wen <mwen@igalia.com>, 
+ Lucas Stach <l.stach@pengutronix.de>, 
+ Russell King <linux+etnaviv@armlinux.org.uk>, 
+ Christian Gmeiner <christian.gmeiner@gmail.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>, 
+ Liviu Dudau <liviu.dudau@arm.com>
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, Min Ma <min.ma@amd.com>, 
+ Lizhi Hou <lizhi.hou@amd.com>, Oded Gabbay <ogabbay@kernel.org>, 
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
+ Qiang Yu <yuq825@gmail.com>, Lyude Paul <lyude@redhat.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4965; i=mcanal@igalia.com;
+ h=from:subject:message-id; bh=bvbFtDN8LUs6gC9/vnDEczOc/zKPUklYbbjZ0PSBMVE=;
+ b=owEBbQGS/pANAwAIAT/zDop2iPqqAcsmYgBoObpTTwwm7BYr4Eh8TH+XehAp8f2Bc7eOwUlzd
+ mKRtro4gseJATMEAAEIAB0WIQT45F19ARZ3Bymmd9E/8w6Kdoj6qgUCaDm6UwAKCRA/8w6Kdoj6
+ qrOBB/9Xf7mv8SDdxZgAH+gW/MfjUOBnMvHPPppQk+Wun6gpVTPbjNex8Ikw1WLqao50JdRAQNP
+ 8BTpEVWPfgaAwUMJkQWoWohveDHzvxuCfLDsqemjAm0SdKs5qCA8v9as41tHcezh7IuDvkdDWjR
+ tLI7Mr+BnyL320vgVudQXY7DuwEuTKovoZIj2I/QB+a5wtX9xEmR7Rwop6oVlmNueQyeMj0+Aac
+ iZ00wQb0mDiRGvrDppG8K/RnpMNgPNKMIWcqc1KRmyB+POSUMBNxbNXs6d7W5Bt/3Q1kE32czkT
+ msXpx4ID0uHuC8zCsXgn529pf3Jpe2+nSFJv2T2UBymjgRlk
+X-Developer-Key: i=mcanal@igalia.com; a=openpgp;
+ fpr=F8E45D7D0116770729A677D13FF30E8A7688FAAA
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,206 +94,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+When the DRM scheduler times out, it's possible that the GPU isn't hung;
+instead, a job may still be running, and there may be no valid reason to
+reset the hardware. This can occur in two situations:
 
+  1. The GPU exposes some mechanism that ensures the GPU is still making
+     progress. By checking this mechanism, the driver can safely skip the
+     reset, re-arm the timeout, and allow the job to continue running until
+     completion. This is the case for v3d, Etnaviv, and Xe.
 
-On 29.05.2025 01:42, Daniele Ceraolo Spurio wrote:
-> The GuC compatibility version that we read from the CSS header in
-> native/PF and the GuC VF version that we get when a VF handshakes with
-> the GuC are the same version number, so we should store it into the same
-> structure. This makes all the checks based on the compatibility version
-> automatically work for VFs without having to copy the value over.
-> 
-> For completion, also copy the wanted version and set the path to a known
-> string to indicate that the FW is PF-loaded. This way all the info will
-> be coherent when dumped from debugfs.
-> 
-> v2: several code cleanups and style changes (Michal), rebase on
-> bootstrap changes.
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Lukasz Laguna <lukasz.laguna@intel.com>
+  2. Timeout has fired before the free-job worker. Consequently, the
+     scheduler calls `timedout_job()` for a job that isn't timed out.
 
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+These two scenarios are problematic because the job was removed from the
+`sched->pending_list` before calling `sched->ops->timedout_job()`, which
+means that when the job finishes, it won't be freed by the scheduler
+though `sched->ops->free_job()`. As a result, the job and its resources
+won't be freed, leading to a memory leak.
 
-with few nits below
+For v3d specifically, we have observed that these memory leaks can be
+significant in certain scenarios, as reported by users in [1][2]. To
+address this situation, I submitted a patch similar to commit 704d3d60fec4
+("drm/etnaviv: don't block scheduler when GPU is still active") for v3d [3].
+This patch has already landed in drm-misc-fixes and successfully resolved
+the users' issues.
 
-> ---
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 32 ++++++++++++++++++--
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  4 +++
->  drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 ++
->  drivers/gpu/drm/xe/xe_uc_fw.c             | 37 ++++++++++++++++++-----
->  4 files changed, 65 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> index 8aed27904c58..148076435a12 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -173,6 +173,9 @@ static int vf_handshake_with_guc(struct xe_gt *gt)
->  	} else {
->  		vf_wanted_guc_version(gt, &wanted);
->  		xe_gt_assert(gt, wanted.major != GUC_VERSION_MAJOR_ANY);
-> +
-> +		/* First time we handshake, so record the minimum wanted */
-> +		gt->sriov.vf.wanted_guc_version = wanted;
->  	}
->  
->  	err = guc_action_match_version(guc, &wanted, guc_version);
-> @@ -265,6 +268,30 @@ int xe_gt_sriov_vf_bootstrap(struct xe_gt *gt)
->  	return 0;
->  }
->  
-> +/**
-> + * xe_gt_sriov_vf_guc_versions - Minimum required and found GuC ABI versions
-> + * @gt: the &xe_gt
-> + * @min: pointer to the xe_uc_fw_version to be filled with the min version
+However, as I mentioned in [3], exposing the scheduler's internals within
+the drivers isn't ideal and I believe this specific situation can be
+addressed within the DRM scheduler framework.
 
-in all related code we use term "wanted" so maybe use the same here?
+This series aims to resolve this issue by adding a new DRM sched status
+that allows a driver to skip the reset. This new status will indicate that
+the job should be reinserted into the pending list, and the driver will
+still signal its completion.
 
-	@wanted: pointer to the &xe_uc_fw_version to be filled with
-	the minimal wanted GuC ABI version
+[1] https://gitlab.freedesktop.org/mesa/mesa/-/issues/12227
+[2] https://github.com/raspberrypi/linux/issues/6817
+[3] https://lore.kernel.org/dri-devel/20250430210643.57924-1-mcanal@igalia.com/T/
 
-> + * @found: pointer to the xe_uc_fw_version to be filled with the found version
-> + *
-> + * This function is for VF use only.
+Best Regards,
+- Maíra
 
-"Can only be used after successful version handshake with the GuC."
+---
+v1 -> v2:
 
-due to the assert below
+- Fix several grammar nits across the documentation and commit messages.
+- Drop "drm/sched: Always free the job after the timeout" (Tvrtko Ursulin)
+- [1/8] NEW PATCH: Rename DRM_GPU_SCHED_STAT_NOMINAL to a more semantic
+	name (Tvrtko Ursulin, Philipp Stanner)
+- [2/8] Rename DRM_GPU_SCHED_STAT_RUNNING to DRM_GPU_SCHED_STAT_NO_HANG (Tvrtko Ursulin, Philipp Stanner)
+- [2/8] Requeue free-job work after reinserting the job to the pending list (Matthew Brost)
+- [2/8] Create a helper function to reinsert the job (Philipp Stanner)
+- [2/8] Rewrite the commit message (Philipp Stanner)
+- [2/8] Add a comment to `drm_sched_start()` documentation, similar to what
+	was commented in `drm_sched_stop()` (Philipp Stanner)
+- [3/8] Keep HZ as timeout for `drm_mock_sched_job_wait_scheduled()` (Tvrtko Ursulin)
+- [4/8] Use a job flag to indicate that `timedout_job()` should skip the
+	reset (Tvrtko Ursulin)
+- [7/8] Use DRM_GPU_SCHED_STAT_NO_HANG to re-arm the timer in other cases
+	as well (Matthew Brost)
+- Link to v1: https://lore.kernel.org/r/20250503-sched-skip-reset-v1-0-ed0d6701a3fe@igalia.com
 
-> + */
-> +void xe_gt_sriov_vf_guc_versions(struct xe_gt *gt,
-> +				 struct xe_uc_fw_version *min,
-> +				 struct xe_uc_fw_version *found)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> +	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+---
+Maíra Canal (8):
+      drm/sched: Rename DRM_GPU_SCHED_STAT_NOMINAL to DRM_GPU_SCHED_STAT_RESET
+      drm/sched: Allow drivers to skip the reset and keep on running
+      drm/sched: Reduce scheduler's timeout for timeout tests
+      drm/sched: Add new test for DRM_GPU_SCHED_STAT_NO_HANG
+      drm/v3d: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
+      drm/etnaviv: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
+      drm/xe: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
+      drm/panfrost: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
 
-        ^^^^
-
-> +
-> +	if (min)
-> +		*min =  gt->sriov.vf.wanted_guc_version;
-> +
-> +	if (found)
-> +		*found = gt->sriov.vf.guc_version;
-> +
-> +	return;
-> +}
-> +
->  static int guc_action_vf_notify_resfix_done(struct xe_guc *guc)
->  {
->  	u32 request[GUC_HXG_REQUEST_MSG_MIN_LEN] = {
-> @@ -1259,6 +1286,7 @@ void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p)
->  void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
->  {
->  	struct xe_uc_fw_version *guc_version = &gt->sriov.vf.guc_version;
-> +	struct xe_uc_fw_version *wanted = &gt->sriov.vf.wanted_guc_version;
->  	struct xe_gt_sriov_vf_relay_version *pf_version = &gt->sriov.vf.pf_version;
->  	struct xe_uc_fw_version ver;
->  
-> @@ -1269,8 +1297,8 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
->  	vf_minimum_guc_version(gt, &ver);
->  	drm_printf(p, "\tbase:\t%u.%u.%u.*\n", ver.branch, ver.major, ver.minor);
->  
-> -	vf_wanted_guc_version(gt, &ver);
-> -	drm_printf(p, "\twanted:\t%u.%u.%u.*\n", ver.branch, ver.major, ver.minor);
-> +	drm_printf(p, "\twanted:\t%u.%u.%u.*\n",
-> +		   wanted->branch, wanted->major, wanted->minor);
->  
->  	drm_printf(p, "\thandshake:\t%u.%u.%u.%u\n",
->  		   guc_version->branch, guc_version->major,
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> index 9db41afddd5a..a35576d1e5c6 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> @@ -11,9 +11,13 @@
->  struct drm_printer;
->  struct xe_gt;
->  struct xe_reg;
-> +struct xe_uc_fw_version;
->  
->  int xe_gt_sriov_vf_reset(struct xe_gt *gt);
->  int xe_gt_sriov_vf_bootstrap(struct xe_gt *gt);
-> +void xe_gt_sriov_vf_guc_versions(struct xe_gt *gt,
-> +				 struct xe_uc_fw_version *min,
-> +				 struct xe_uc_fw_version *found);
->  int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
->  int xe_gt_sriov_vf_connect(struct xe_gt *gt);
->  int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> index d614acbe0b5f..ef041679e9d4 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> @@ -60,6 +60,8 @@ struct xe_gt_sriov_vf_runtime {
->   * struct xe_gt_sriov_vf - GT level VF virtualization data.
->   */
->  struct xe_gt_sriov_vf {
-> +	/** @wanted_guc_version: minimum wanted GuC ABI version. */
-> +	struct xe_uc_fw_version wanted_guc_version;
->  	/** @guc_version: negotiated GuC ABI version. */
->  	struct xe_uc_fw_version guc_version;
->  	/** @self_config: resource configurations. */
-> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-> index 7b2d01d39b86..074e29057495 100644
-> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
-> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-> @@ -16,6 +16,7 @@
->  #include "xe_gsc.h"
->  #include "xe_gt.h"
->  #include "xe_gt_printk.h"
-> +#include "xe_gt_sriov_vf.h"
->  #include "xe_guc.h"
->  #include "xe_map.h"
->  #include "xe_mmio.h"
-> @@ -665,6 +666,33 @@ do { \
->  			  ver_->major, ver_->minor, ver_->patch); \
->  } while (0)
->  
-> +static void uc_fw_vf_override(struct xe_uc_fw *uc_fw)
-> +{
-> +	struct xe_uc_fw_version *compat = &uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
-> +	struct xe_uc_fw_version *wanted = &uc_fw->versions.wanted;
-> +
-> +	/* Only GuC/HuC are supported */
-> +	if (uc_fw->type != XE_UC_FW_TYPE_GUC && uc_fw->type != XE_UC_FW_TYPE_HUC)
-> +		uc_fw->path = NULL;
-> +
-> +	/* VF will support only firmwares that driver can autoselect */
-> +	xe_uc_fw_change_status(uc_fw, uc_fw->path ?
-> +			       XE_UC_FIRMWARE_PRELOADED :
-> +			       XE_UC_FIRMWARE_NOT_SUPPORTED);
-> +
-> +	if (!xe_uc_fw_is_supported(uc_fw))
-> +		return;
-> +
-> +	/* PF is doing the loading, so we don't need a path on the VF */
-> +	uc_fw->path = "Loaded by PF";
-> +
-> +	/* The GuC versions are set up during the VF bootstrap */
-> +	if (uc_fw->type == XE_UC_FW_TYPE_GUC) {
-> +		uc_fw->versions.wanted_type = XE_UC_FW_VER_COMPATIBILITY;
-> +		xe_gt_sriov_vf_guc_versions(uc_fw_to_gt(uc_fw), wanted, compat);
-> +	}
-> +}
-> +
->  static int uc_fw_request(struct xe_uc_fw *uc_fw, const struct firmware **firmware_p)
->  {
->  	struct xe_device *xe = uc_fw_to_xe(uc_fw);
-> @@ -684,14 +712,7 @@ static int uc_fw_request(struct xe_uc_fw *uc_fw, const struct firmware **firmwar
->  	uc_fw_auto_select(xe, uc_fw);
->  
->  	if (IS_SRIOV_VF(xe)) {
-> -		/* Only GuC/HuC are supported */
-> -		if (uc_fw->type != XE_UC_FW_TYPE_GUC &&
-> -		    uc_fw->type != XE_UC_FW_TYPE_HUC)
-> -			uc_fw->path = NULL;
-> -		/* VF will support only firmwares that driver can autoselect */
-> -		xe_uc_fw_change_status(uc_fw, uc_fw->path ?
-> -				       XE_UC_FIRMWARE_PRELOADED :
-> -				       XE_UC_FIRMWARE_NOT_SUPPORTED);
-> +		uc_fw_vf_override(uc_fw);
->  		return 0;
->  	}
->  
+ drivers/accel/amdxdna/aie2_ctx.c                 |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c          |  2 +-
+ drivers/gpu/drm/etnaviv/etnaviv_sched.c          | 13 +++---
+ drivers/gpu/drm/imagination/pvr_queue.c          |  4 +-
+ drivers/gpu/drm/lima/lima_sched.c                |  6 +--
+ drivers/gpu/drm/nouveau/nouveau_exec.c           |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_sched.c          |  2 +-
+ drivers/gpu/drm/panfrost/panfrost_job.c          | 10 ++---
+ drivers/gpu/drm/panthor/panthor_mmu.c            |  2 +-
+ drivers/gpu/drm/panthor/panthor_sched.c          |  2 +-
+ drivers/gpu/drm/scheduler/sched_main.c           | 51 ++++++++++++++++++++++--
+ drivers/gpu/drm/scheduler/tests/mock_scheduler.c |  7 +++-
+ drivers/gpu/drm/scheduler/tests/sched_tests.h    |  1 +
+ drivers/gpu/drm/scheduler/tests/tests_basic.c    | 51 ++++++++++++++++++++++--
+ drivers/gpu/drm/v3d/v3d_sched.c                  |  6 +--
+ drivers/gpu/drm/xe/xe_guc_submit.c               | 14 ++-----
+ include/drm/gpu_scheduler.h                      |  7 +++-
+ 17 files changed, 136 insertions(+), 46 deletions(-)
+---
+base-commit: df1c3093aee3daee4d56a5cb8cdba75c1ef6962f
+change-id: 20250502-sched-skip-reset-bf7c163233da
 
