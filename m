@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2F19C5B543
-	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 14:42:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD630C5B543
+	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 14:42:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 849B810E128;
-	Fri, 30 May 2025 14:42:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B6D510E172;
+	Fri, 30 May 2025 14:42:17 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC0F610E128;
- Fri, 30 May 2025 14:42:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F3E410E172;
+ Fri, 30 May 2025 14:42:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?b?4pyTIENJLlBhdGNoX2FwcGxpZWQ6IHN1Y2Nlc3MgZm9yIGRybS94ZTogcmVtb3Zl?=
- =?utf-8?b?IHVubWF0Y2hlZCB4ZV92bV91bmxvY2soKSBmcm9tIF9feGVfZXhlY19xdWV1ZV9p?=
- =?utf-8?b?bml0KCkgKHJldjIp?=
+Subject: =?utf-8?b?4pyTIENJLmNoZWNrcGF0Y2g6IHN1Y2Nlc3MgZm9yIGRybS94ZTogcmVtb3ZlIHVu?=
+ =?utf-8?b?bWF0Y2hlZCB4ZV92bV91bmxvY2soKSBmcm9tIF9feGVfZXhlY19xdWV1ZV9pbml0?=
+ =?utf-8?b?KCkgKHJldjIp?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maciej Patelczyk" <maciej.patelczyk@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 30 May 2025 14:42:05 -0000
-Message-ID: <174861612595.35759.6549785920734424155@1538d3639d33>
+Date: Fri, 30 May 2025 14:42:16 -0000
+Message-ID: <174861613643.35759.14223797735241740496@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250530135627.2821612-1-maciej.patelczyk@intel.com>
 In-Reply-To: <20250530135627.2821612-1-maciej.patelczyk@intel.com>
@@ -49,9 +49,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5ee21c4d445a drm-tip: 2025y-05m-30d-08h-13m-14s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: remove unmatched xe_vm_unlock() from __xe_exec_queue_init()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 20b29cb8b3b6e29b9b5c90ae71e7a642978d3452
+Author: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Date:   Fri May 30 15:56:27 2025 +0200
+
+    drm/xe: remove unmatched xe_vm_unlock() from __xe_exec_queue_init()
+    
+    There is unmatched xe_vm_unlock() in the __xe_exec_queue_init().
+    Leftover from commit fbeaad071a98 ("drm/xe: Create LRC BO without VM")
+    
+    Fixes: fbeaad071a98 ("drm/xe: Create LRC BO without VM")
+    Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+    Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
++ /mt/dim checkpatch 5ee21c4d445a914860e59678f036866f80ebade4 drm-intel
+20b29cb8b3b6 drm/xe: remove unmatched xe_vm_unlock() from __xe_exec_queue_init()
 
 
