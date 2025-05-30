@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AEC7C5B552
-	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 20:34:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F400FC5AD49
+	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 20:38:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0772110E886;
-	Fri, 30 May 2025 20:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E73210E23B;
+	Fri, 30 May 2025 20:38:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WS1Jtn2r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hLgjVhTc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8801110E87A
- for <intel-xe@lists.freedesktop.org>; Fri, 30 May 2025 20:34:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6961810E23B
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 May 2025 20:38:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748637278; x=1780173278;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Jav3HndAgFtm0Gwf3otH4ki5eiu8VemhgpEIgq/H1sc=;
- b=WS1Jtn2rV+G2jPYYDrX5KYGi1S9HQWb/FicfnVSSPTh2RYJtWG/xJUiw
- ytoVCbiSAgirgcxCVTPA8VjIsCKmQ+SFBtXsLN0kyYj3pZh5yzt3Jy9k2
- CbYztG/9bdo4G9nq6LLkpufEWYIO+MldaMRRVogBAD5LhyEehLkRKzvfr
- t0a7ZPSOtCw2NC2exiROi/tohkdinmQiLhlyfIs2/7lWMchaozpbepWIA
- K68CGHxywbjF1TpF93sv0elfO+1zycUn396qulzfFSvK2X2jcgrUuwFTI
- 5d4kELKvEpf2xEkUNShU/yKW3rVPSt9UfGGBx/wZGCRQJ+RcAVo08XGqQ Q==;
-X-CSE-ConnectionGUID: kFwJdGD/RB+kgbWdfVr3Ag==
-X-CSE-MsgGUID: KS68pdM2RoOgqEbUgE79Hw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="54405798"
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="54405798"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ t=1748637492; x=1780173492;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=X2T6/ikAozhJHRbTcneZ9gphT23f/xYf7x2oazwx2NA=;
+ b=hLgjVhTcAC5KnUhR6HeNCctzv0l7JlchKtN9OVN/rZZWDSaF1jRDzeH7
+ wRjl4Qh0hXQd7mY+2YLQyiwKN/x4M85ToXINGOA9R8AsH5vVaLveYN8iK
+ KvYKNU0m2skMgZqwUv8vlaSh4sLUSccarPQtkczUcG2leahseqD6u55OK
+ H4NenIHjFEb7tjsKcAaobsACKv7TOunFNlTPox8lZmoLkvHNyY1JEkSZF
+ LeAiTzltG0siTTtbm9GV9V9CT3ApZLTNMKjWUBNVvzqCVT77M39jCUu3z
+ rR8pki/txaz4WYCimCZuKgQJQq+/NEXlNXhz+Sc8RF60VWdikCtuTwlWD w==;
+X-CSE-ConnectionGUID: ZHRaYldpTPONq9rl/W6KSw==
+X-CSE-MsgGUID: OHA2BrOGT8i/frzAyVzMjg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="54405991"
+X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="54405991"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2025 13:34:38 -0700
-X-CSE-ConnectionGUID: yx6G/tQZQ7u9hWKUbO98SA==
-X-CSE-MsgGUID: b30sPzSySVawIcdgRuXwvQ==
+ 30 May 2025 13:38:12 -0700
+X-CSE-ConnectionGUID: 0nGvPDCtRVCCwIjtaxLSxQ==
+X-CSE-MsgGUID: QwbVC4f+THGe4ct0dOCEug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="149246691"
+X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="143824156"
 Received: from mjruhl-desk.amr.corp.intel.com (HELO mjruhl-desk.intel.com)
  ([10.124.223.23])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2025 13:34:37 -0700
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2025 13:38:11 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hdegoede@redhat.com, ilpo.jarvinen@linux.intel.com,
  lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: [PATCH 09/10] sysfs debug
-Date: Fri, 30 May 2025 16:33:46 -0400
-Message-ID: <20250530203356.190234-9-michael.j.ruhl@intel.com>
+Subject: [PATCH v2 0/8] Crashlog Type1 Version2 support
+Date: Fri, 30 May 2025 16:37:49 -0400
+Message-ID: <20250530203757.190853-1-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250530203356.190234-1-michael.j.ruhl@intel.com>
-References: <20250530203356.190234-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,60 +68,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
- drivers/platform/x86/intel/pmt/crashlog.c | 31 +++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+The Intel BMG GPU device supports the crashlog feature,
+which was exposed in an Xe driver patch
+(drm/xe/vsec: Support BMG devices), however the version
+of crashlog used by the BMG GPU does not have a supporing
+PMT driver.
 
-diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-index 7291c93d71df..985f2c685841 100644
---- a/drivers/platform/x86/intel/pmt/crashlog.c
-+++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -469,6 +469,34 @@ trigger_store(struct device *dev, struct device_attribute *attr,
- }
- static DEVICE_ATTR_RW(trigger);
- 
-+#define DEBUG_REGISTER_INFO
-+#ifdef DEBUG_REGISTER_INFO
-+static ssize_t
-+status_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct crashlog_entry *crashlog = dev_get_drvdata(dev);
-+	u32 status = readl(crashlog->entry.disc_table + crashlog->info->status.offset);
-+	u32 control = readl(crashlog->entry.disc_table + crashlog->info->control.offset);
-+	int len = 0;
-+
-+	len += sysfs_emit_at(buf, len, "clear_support: 0x%08x\n", status & crashlog->info->status.clear_supported);
-+	len += sysfs_emit_at(buf, len, "rearmed: 0x%08x\n", status & crashlog->info->status.rearmed);
-+	len += sysfs_emit_at(buf, len, "error: 0x%08x\n", status & crashlog->info->status.error);
-+	len += sysfs_emit_at(buf, len, "consumed: 0x%08x\n", status & crashlog->info->status.consumed);
-+	len += sysfs_emit_at(buf, len, "disable: 0x%08x\n", status & crashlog->info->status.disabled);
-+	len += sysfs_emit_at(buf, len, "cleared: 0x%08x\n", status & crashlog->info->status.cleared);
-+	len += sysfs_emit_at(buf, len, "in_progress: 0x%08x\n", status & crashlog->info->status.in_progress);
-+	len += sysfs_emit_at(buf, len, "complete: 0x%08x\n", status & crashlog->info->status.complete);
-+	len += sysfs_emit_at(buf, len, "sts_off: 0x%02x  ctl_off: 0x%02x\n", crashlog->info->status.offset,
-+			     crashlog->info->control.offset);
-+	len += sysfs_emit_at(buf, len, "status:  0x%08x\n", status);
-+	len += sysfs_emit_at(buf, len, "control: 0x%08x\n", control);
-+
-+	return len;
-+}
-+static DEVICE_ATTR_RO(status);
-+#endif
-+
- static struct attribute *pmt_crashlog_attrs[] = {
- 	&dev_attr_enable.attr,
- 	&dev_attr_trigger.attr,
-@@ -482,6 +510,9 @@ static struct attribute *pmt_crashlog_ver2_attrs[] = {
- 	&dev_attr_error.attr,
- 	&dev_attr_rearm.attr,
- 	&dev_attr_trigger.attr,
-+#ifdef DEBUG_REGISTER_INFO
-+	&dev_attr_status.attr,
-+#endif
- 	NULL
- };
- 
+Update the PMT crashlog driver to support the BMG crashlog
+feature.
+
+v2:
+ - fix a misconfig for the crashlog DVSEC info in the xe
+   driver
+ - address review comments
+
+Michael J. Ruhl (8):
+  drm/xe: Correct BMG VSEC header sizing
+  platform/x86/intel/pmt: white space cleanup
+  platform/x86/intel/pmt: use guard(mutex)
+  platform/x86/intel: refactor endpoint usage
+  platform/x86/intel/pmt: crashlog binary file endpoint
+  platform/x86/intel/pmt: decouple sysfs and namespace
+  platform/x86/intel/pmt: use a version struct
+  platform/x86/intel/pmt: support BMG crashlog
+
+ drivers/gpu/drm/xe/xe_vsec.c                |  20 +-
+ drivers/platform/x86/intel/pmc/core.c       |   3 +-
+ drivers/platform/x86/intel/pmc/core.h       |   4 +-
+ drivers/platform/x86/intel/pmc/core_ssram.c |   2 +-
+ drivers/platform/x86/intel/pmt/class.c      |  57 ++-
+ drivers/platform/x86/intel/pmt/class.h      |  23 +-
+ drivers/platform/x86/intel/pmt/crashlog.c   | 467 ++++++++++++++++----
+ drivers/platform/x86/intel/pmt/telemetry.c  |  51 +--
+ drivers/platform/x86/intel/pmt/telemetry.h  |  23 +-
+ 9 files changed, 478 insertions(+), 172 deletions(-)
+
 -- 
 2.49.0
 
