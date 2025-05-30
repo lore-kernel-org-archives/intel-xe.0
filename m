@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C69CC5B549
-	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 09:18:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56A0BC5B552
+	for <intel-xe@archiver.kernel.org>; Fri, 30 May 2025 09:20:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B23D210E7FF;
-	Fri, 30 May 2025 09:18:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4FC610E052;
+	Fri, 30 May 2025 09:20:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kANMRo+r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ncwrFjB4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D00A910E7FF;
- Fri, 30 May 2025 09:18:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC7B89C83
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 May 2025 09:20:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748596720; x=1780132720;
+ t=1748596824; x=1780132824;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=oMsKmsyrNOYgv5H/s25cR51oo50PfjYa4eF3FA93CEI=;
- b=kANMRo+rwHOkRTII1pSH9LEsmZ4Pvt+ilBxvTR+iW1ez6uLxCSRS0V6W
- fMCzWPFPJ0QQoZ81q8J9Zo64GoVnrphLt/qvlevZaU/9xhf5jZaKWKUpx
- 55lgUUULthf24LXgzVcpiB1jE2EkiAZJPTyGdqjtzmDdJlAPPhVG+eFwc
- uiG/b1tcrAkJ9OQaL1ipBbuDgGU6O2aMABDHJVKroiC+GVGNy8/9IuK8u
- lJ4+7bKxBixoUpAp5/EI44Hq9ZZDsskJVq9aaLA8siscnc9nT+xQFlKXq
- 5fFjg8JryZMx1eHDcpqyHnDDw2nMTNtOoYc+Ju82S6DZRnp4KYIfUX2z7 w==;
-X-CSE-ConnectionGUID: K8gK1FrmQdWEmUr1vlENqw==
-X-CSE-MsgGUID: Qiz75pvnR1e5iariRgNK6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="50687242"
-X-IronPort-AV: E=Sophos;i="6.16,195,1744095600"; d="scan'208";a="50687242"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2025 02:18:39 -0700
-X-CSE-ConnectionGUID: 2d790ofVTDuw+Py7OMehww==
-X-CSE-MsgGUID: VZJgxLi2RliBYCLrXBd3Gg==
+ bh=IirqSX6xi8sFfhF2hXbVKRpc4vJJx1a65CXNntbGqg0=;
+ b=ncwrFjB4z1X5k+5UMz5HBXTsUbq5saCSHjDqh2LebVTCkdOSzHZoxzfj
+ KtVxzGwSs9HBY0PxVqbOcA+B24tdwMaeHZaKqfBSIrONxtrjhNrbhHzpI
+ wrM8A6Es+zp/3ZjGQ8eNFn+hXOEIKnJi2oze/cAE8nraXE1JdrLqLjNt2
+ xdTLujmQtOjQrS17o71o39P0FluYR8lyro48Z/AA9FnDWKUhjR9MiKB9P
+ np7lgzfqqrm86kbgaQbyud/3kZDdISw0mCRMs3hSs1knkgTQCIKOwAluA
+ pvtSDMKMEOoJS3Vsol+fXt6YxNVsPPRVSWQHddeNUGuOpk6gagMutVuhQ w==;
+X-CSE-ConnectionGUID: jibapjn/QCS18up1QtMHvw==
+X-CSE-MsgGUID: cgCsaAS8T/uQxNkCcgEwOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="50830502"
+X-IronPort-AV: E=Sophos;i="6.16,195,1744095600"; d="scan'208";a="50830502"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2025 02:20:24 -0700
+X-CSE-ConnectionGUID: wLRoNyf9RMuTGJbOMH1QMQ==
+X-CSE-MsgGUID: 65aPUp9ETROHrKlW19tjNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,195,1744095600"; d="scan'208";a="148853753"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa004.jf.intel.com with ESMTP; 30 May 2025 02:18:38 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH] drm/i915/display: Implement wa_16011342517
-Date: Fri, 30 May 2025 14:42:40 +0530
-Message-Id: <20250530091240.56570-1-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.16,195,1744095600"; d="scan'208";a="174826507"
+Received: from dev.igk.intel.com ([10.211.135.225])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2025 02:20:23 -0700
+From: Maciej Patelczyk <maciej.patelczyk@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: niranjana.vishwanathapura@intel.com, matthew.brost@intel.com,
+ maarten.lankhorst@linux.intel.com,
+ Maciej Patelczyk <maciej.patelczyk@intel.com>
+Subject: [PATCH] drm/xe: remove unmatched xe_vm_unlock() from
+ __xe_exec_queue_init()
+Date: Fri, 30 May 2025 10:48:56 +0200
+Message-Id: <20250530084856.2612849-1-maciej.patelczyk@intel.com>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,69 +67,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While doing voltage swing for type-c phy
-for DP 1.62 and HDMI write the
-LOADGEN_SHARING_PMD_DISABLE bit to 1.
+There is unmatched xe_vm_unlock() in the __xe_exec_queue_init().
+Leftover from fbeaad071a98 ("drm/xe: Create LRC BO without VM")
 
--v2: Update commit message.
-     Add bspec[Suraj]
-
-Bspec: 55359
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+Fixes: fbeaad071a98 ("drm/xe: Create LRC BO without VM")
+Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c         | 16 ++++++++++++++++
- .../gpu/drm/i915/display/intel_dkl_phy_regs.h    |  4 ++++
- 2 files changed, 20 insertions(+)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 4c845dd410a2..2cdd51cdfe17 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -77,6 +77,7 @@
- #include "intel_psr.h"
- #include "intel_quirks.h"
- #include "intel_snps_phy.h"
-+#include "intel_step.h"
- #include "intel_tc.h"
- #include "intel_vdsc.h"
- #include "intel_vdsc_regs.h"
-@@ -1439,6 +1440,21 @@ static void tgl_dkl_phy_set_signal_levels(struct intel_encoder *encoder,
- 					  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK,
- 					  val);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 32c6923df7c3..fee22358cc09 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -114,7 +114,6 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 
+ static int __xe_exec_queue_init(struct xe_exec_queue *q)
+ {
+-	struct xe_vm *vm = q->vm;
+ 	int i, err;
+ 	u32 flags = 0;
+ 
+@@ -136,7 +135,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
+ 		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
+ 		if (IS_ERR(q->lrc[i])) {
+ 			err = PTR_ERR(q->lrc[i]);
+-			goto err_unlock;
++			goto err_lrc;
  		}
-+
-+		/* Wa_16011342517:adl-p */
-+		if (display->platform.alderlake_p &&
-+		    IS_DISPLAY_STEP(display, STEP_A0, STEP_D0)) {
-+			if ((intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
-+			     crtc_state->port_clock == 594000) ||
-+			     (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP) &&
-+			     crtc_state->port_clock == 162000)) {
-+				intel_dkl_phy_rmw(display, DKLP_PCS_GLUE_TX_DPCNTL2(tc_port),
-+						  LOADGEN_SHARING_PMD_DISABLE, 1);
-+			} else {
-+				intel_dkl_phy_rmw(display, DKLP_PCS_GLUE_TX_DPCNTL2(tc_port),
-+						  LOADGEN_SHARING_PMD_DISABLE, 0);
-+			}
-+		}
  	}
- }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h b/drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h
-index 56085b32956d..70ad3f1b1289 100644
---- a/drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h
-@@ -188,6 +188,10 @@ struct intel_dkl_phy_reg {
- 								 _DKL_CMN_UC_DW27)
- #define  DKL_CMN_UC_DW27_UC_HEALTH			(0x1 << 15)
+@@ -146,9 +145,6 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
  
-+#define _DKLP_PCS_GLUE_TX_DPCNTL2                       0xB68
-+#define DKLP_PCS_GLUE_TX_DPCNTL2(tc_port)		_DKL_REG(tc_port, \
-+								 _DKLP_PCS_GLUE_TX_DPCNTL2)
-+#define LOADGEN_SHARING_PMD_DISABLE                     REG_BIT(12)
- /*
-  * Each Dekel PHY is addressed through a 4KB aperture. Each PHY has more than
-  * 4KB of register space, so a separate index is programmed in HIP_INDEX_REG0
+ 	return 0;
+ 
+-err_unlock:
+-	if (vm)
+-		xe_vm_unlock(vm);
+ err_lrc:
+ 	for (i = i - 1; i >= 0; --i)
+ 		xe_lrc_put(q->lrc[i]);
 -- 
-2.25.1
+2.35.0
 
