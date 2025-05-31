@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA874C5B549
-	for <intel-xe@archiver.kernel.org>; Sat, 31 May 2025 00:13:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13C41C5B556
+	for <intel-xe@archiver.kernel.org>; Sat, 31 May 2025 00:13:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A498010E272;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF17310E27E;
 	Sat, 31 May 2025 00:13:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="irWkbe93";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fn2WWh7k";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09EFA10E00F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57DF110E24A
  for <intel-xe@lists.freedesktop.org>; Sat, 31 May 2025 00:13:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1748650385; x=1780186385;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ee7bcug2rkI6YmfZh9njHl3JoEkNSqqh384RgzqtGG4=;
- b=irWkbe93T0gIskwBXxi8YNCDBNRG/mNZowD7ktNK40PhiuqNi2rzEvsa
- AhN1GqmYFyZNhX+V9wUFQ0S7es1xMTOtjRpcwGFwaPp4MV5lty9hQtK7k
- Oj0I/pgQnMg3Xu3MfysffQuu2P49ih5W8V5hvupoum4u1rWXY+ylbFZcD
- oTPxuQOMnXBrA2zi0NGZCgTErlFAgbB0fKKgPYndyoCyUBXYiaznKC/DL
- VKqMrYg89kJIAHI+2YEGJ0cFn82BZ24VmE4Y9XMlsSNcVqNUWBoowIEjJ
- elXEvm2Rk9OUpHmSiehKLall1XSLIglw2BV07ecrkQNM+9p3Ib6g9x3i3 w==;
-X-CSE-ConnectionGUID: W/q6GofURZKIXQ0N43KPbA==
-X-CSE-MsgGUID: 85a8jdi9Q9mm5QYIriGDmw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="50669549"
-X-IronPort-AV: E=Sophos;i="6.16,197,1744095600"; d="scan'208";a="50669549"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=o2XcUCqOhQ34xCybEJjgf2JCDWe8Nb+Pnub4E5I/7eU=;
+ b=fn2WWh7k9C19aS6xfhbhdyY1vXdxUimrALe6fwI0sf9+MLsc3I316dNx
+ hvFzU49mIl9PRzPdkE/+L50lfvyMPQjWjwn6fD95QdMby0niflij6UUfZ
+ bfSxSwKWq27mq6Ivsb8RMxeD3l4qyVJP14Sp4Z9n5XvpwRCpqg1S7/IWF
+ kvVtaaF0y0aFOBAG7O+0GvubL8O05Wo+VutLmbkm7P8UxIx/p/mWbC+16
+ sYqQgCaiEpt32fkOXzSJu6QWcritkmdND4dVsPxKcXtaLpeWt4qHouQrF
+ 8Rfu2m1B5K2BTbszghD7G+ukE0QHXJevfpTGssfTRr4mQyGzqdOnL2WU+ w==;
+X-CSE-ConnectionGUID: FNDfFQ0LTuW+CNctYt0a1Q==
+X-CSE-MsgGUID: kO7brOf/TKi0u6Q6suIZmg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="50669552"
+X-IronPort-AV: E=Sophos;i="6.16,197,1744095600"; d="scan'208";a="50669552"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 May 2025 17:13:05 -0700
-X-CSE-ConnectionGUID: ZRFo6oKVQle0VKc7OCLS3Q==
-X-CSE-MsgGUID: 3qt1QzfdRRSHJAIBoeDYGQ==
+X-CSE-ConnectionGUID: ox5+mv6iQ9SJNE8K3mD+Cg==
+X-CSE-MsgGUID: wezLQk4lRnmXr1tIib1gCw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,197,1744095600"; d="scan'208";a="143928007"
+X-IronPort-AV: E=Sophos;i="6.16,197,1744095600"; d="scan'208";a="143928016"
 Received: from orsosgc001.jf.intel.com ([10.165.21.142])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 May 2025 17:13:04 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH v2 0/5] Enable media OA
-Date: Fri, 30 May 2025 17:12:54 -0700
-Message-ID: <20250531001259.630681-1-ashutosh.dixit@intel.com>
+Subject: [PATCH 3/5] drm/xe/oa: Introduce stream->oa_unit
+Date: Fri, 30 May 2025 17:12:57 -0700
+Message-ID: <20250531001259.630681-4-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250531001259.630681-1-ashutosh.dixit@intel.com>
+References: <20250531001259.630681-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,23 +66,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We had previously enabled render and compute OA units. Enable media OA
-units with this series.
+Previously, the oa_unit associated with an OA stream was derived from hwe
+associated with the stream (stream->hwe->oa_unit). This breaks with OAM_SAG
+since OAM_SAG does not have any attached hardware engines. Resolve this by
+introducing stream->oa_unit and stop depending on stream->hwe.
 
-v2: Added Patch 5
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_oa.c       | 51 +++++++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_oa_types.h |  3 ++
+ 2 files changed, 37 insertions(+), 17 deletions(-)
 
-Ashutosh Dixit (5):
-  drm/xe/oa: Expose media OA units
-  drm/xe/oa: Print hwe to OA unit mapping
-  drm/xe/oa: Introduce stream->oa_unit
-  drm/xe/oa: Assign hwe for OAM_SAG
-  drm/xe/oa: Enable OAM latency measurement
-
- drivers/gpu/drm/xe/regs/xe_oa_regs.h |   3 +
- drivers/gpu/drm/xe/xe_oa.c           | 197 ++++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_oa_types.h     |   6 +
- 3 files changed, 153 insertions(+), 53 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index a7d3fd5d21559..66157b5d6f162 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -83,7 +83,7 @@ struct xe_oa_config {
+ 
+ struct xe_oa_open_param {
+ 	struct xe_file *xef;
+-	u32 oa_unit_id;
++	struct xe_oa_unit *oa_unit;
+ 	bool sample;
+ 	u32 metric_set;
+ 	enum xe_oa_format_name oa_format;
+@@ -200,7 +200,7 @@ static void free_oa_config_bo(struct xe_oa_config_bo *oa_bo, struct dma_fence *l
+ 
+ static const struct xe_oa_regs *__oa_regs(struct xe_oa_stream *stream)
+ {
+-	return &stream->hwe->oa_unit->regs;
++	return &stream->oa_unit->regs;
+ }
+ 
+ static u32 xe_oa_hw_tail_read(struct xe_oa_stream *stream)
+@@ -460,7 +460,7 @@ static u32 __oa_ccs_select(struct xe_oa_stream *stream)
+ 
+ static u32 __oactrl_used_bits(struct xe_oa_stream *stream)
+ {
+-	return stream->hwe->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG ?
++	return stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG ?
+ 		OAG_OACONTROL_USED_BITS : OAM_OACONTROL_USED_BITS;
+ }
+ 
+@@ -481,7 +481,7 @@ static void xe_oa_enable(struct xe_oa_stream *stream)
+ 		__oa_ccs_select(stream) | OAG_OACONTROL_OA_COUNTER_ENABLE;
+ 
+ 	if (GRAPHICS_VER(stream->oa->xe) >= 20 &&
+-	    stream->hwe->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG)
++	    stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG)
+ 		val |= OAG_OACONTROL_OA_PES_DISAG_EN;
+ 
+ 	xe_mmio_rmw32(&stream->gt->mmio, regs->oa_ctrl, __oactrl_used_bits(stream), val);
+@@ -848,7 +848,7 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 
+ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
+ {
+-	struct xe_oa_unit *u = stream->hwe->oa_unit;
++	struct xe_oa_unit *u = stream->oa_unit;
+ 	struct xe_gt *gt = stream->hwe->gt;
+ 
+ 	if (WARN_ON(stream != u->exclusive_stream))
+@@ -1145,14 +1145,31 @@ static int decode_oa_format(struct xe_oa *oa, u64 fmt, enum xe_oa_format_name *n
+ 	return -EINVAL;
+ }
+ 
++static struct xe_oa_unit *xe_oa_lookup_oa_unit(struct xe_oa *oa, u32 oa_unit_id)
++{
++	struct xe_gt *gt;
++	int gt_id, i;
++
++	for_each_gt(gt, oa->xe, gt_id) {
++		for (i = 0; i < gt->oa.num_oa_units; i++) {
++			struct xe_oa_unit *u = &gt->oa.oa_unit[i];
++
++			if (u->oa_unit_id == oa_unit_id)
++				return u;
++		}
++	}
++
++	return NULL;
++}
++
+ static int xe_oa_set_prop_oa_unit_id(struct xe_oa *oa, u64 value,
+ 				     struct xe_oa_open_param *param)
+ {
+-	if (value >= oa->oa_unit_ids) {
++	param->oa_unit = xe_oa_lookup_oa_unit(oa, value);
++	if (!param->oa_unit) {
+ 		drm_dbg(&oa->xe->drm, "OA unit ID out of range %lld\n", value);
+ 		return -EINVAL;
+ 	}
+-	param->oa_unit_id = value;
+ 	return 0;
+ }
+ 
+@@ -1683,13 +1700,13 @@ static const struct file_operations xe_oa_fops = {
+ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 			     struct xe_oa_open_param *param)
+ {
+-	struct xe_oa_unit *u = param->hwe->oa_unit;
+ 	struct xe_gt *gt = param->hwe->gt;
+ 	unsigned int fw_ref;
+ 	int ret;
+ 
+ 	stream->exec_q = param->exec_q;
+ 	stream->poll_period_ns = DEFAULT_POLL_PERIOD_NS;
++	stream->oa_unit = param->oa_unit;
+ 	stream->hwe = param->hwe;
+ 	stream->gt = stream->hwe->gt;
+ 	stream->oa_buffer.format = &stream->oa->oa_formats[param->oa_format];
+@@ -1710,7 +1727,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 	 * buffer whose size, circ_size, is a multiple of the report size
+ 	 */
+ 	if (GRAPHICS_VER(stream->oa->xe) >= 20 &&
+-	    stream->hwe->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG && stream->sample)
++	    stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG && stream->sample)
+ 		stream->oa_buffer.circ_size =
+ 			param->oa_buffer_size -
+ 			param->oa_buffer_size % stream->oa_buffer.format->size;
+@@ -1768,7 +1785,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 	drm_dbg(&stream->oa->xe->drm, "opening stream oa config uuid=%s\n",
+ 		stream->oa_config->uuid);
+ 
+-	WRITE_ONCE(u->exclusive_stream, stream);
++	WRITE_ONCE(stream->oa_unit->exclusive_stream, stream);
+ 
+ 	hrtimer_setup(&stream->poll_check_timer, xe_oa_poll_check_timer_cb, CLOCK_MONOTONIC,
+ 		      HRTIMER_MODE_REL);
+@@ -1804,7 +1821,7 @@ static int xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
+ 	int ret;
+ 
+ 	/* We currently only allow exclusive access */
+-	if (param->hwe->oa_unit->exclusive_stream) {
++	if (param->oa_unit->exclusive_stream) {
+ 		drm_dbg(&oa->xe->drm, "OA unit already in use\n");
+ 		ret = -EBUSY;
+ 		goto exit;
+@@ -1880,9 +1897,9 @@ static u64 oa_exponent_to_ns(struct xe_gt *gt, int exponent)
+ 	return div_u64(nom + den - 1, den);
+ }
+ 
+-static bool engine_supports_oa_format(const struct xe_hw_engine *hwe, int type)
++static bool oa_unit_supports_oa_format(struct xe_oa_open_param *param, int type)
+ {
+-	switch (hwe->oa_unit->type) {
++	switch (param->oa_unit->type) {
+ 	case DRM_XE_OA_UNIT_TYPE_OAG:
+ 		return type == DRM_XE_OA_FMT_TYPE_OAG || type == DRM_XE_OA_FMT_TYPE_OAR ||
+ 			type == DRM_XE_OA_FMT_TYPE_OAC || type == DRM_XE_OA_FMT_TYPE_PEC;
+@@ -1921,7 +1938,7 @@ static int xe_oa_assign_hwe(struct xe_oa *oa, struct xe_oa_open_param *param)
+ 		/* Else just get the first hwe attached to the oa unit */
+ 		for_each_gt(gt, oa->xe, i) {
+ 			for_each_hw_engine(hwe, gt, id) {
+-				if (xe_oa_unit_id(hwe) == param->oa_unit_id) {
++				if (hwe->oa_unit == param->oa_unit) {
+ 					param->hwe = hwe;
+ 					goto out;
+ 				}
+@@ -1929,10 +1946,10 @@ static int xe_oa_assign_hwe(struct xe_oa *oa, struct xe_oa_open_param *param)
+ 		}
+ 	}
+ out:
+-	if (!param->hwe || xe_oa_unit_id(param->hwe) != param->oa_unit_id) {
++	if (!param->hwe || param->hwe->oa_unit != param->oa_unit) {
+ 		drm_dbg(&oa->xe->drm, "Unable to find hwe (%d, %d) for OA unit ID %d\n",
+ 			param->exec_q ? param->exec_q->class : -1,
+-			param->engine_instance, param->oa_unit_id);
++			param->engine_instance, param->oa_unit->oa_unit_id);
+ 		ret = -EINVAL;
+ 	}
+ 
+@@ -2013,7 +2030,7 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
+ 
+ 	f = &oa->oa_formats[param.oa_format];
+ 	if (!param.oa_format || !f->size ||
+-	    !engine_supports_oa_format(param.hwe, f->type)) {
++	    !oa_unit_supports_oa_format(&param, f->type)) {
+ 		drm_dbg(&oa->xe->drm, "Invalid OA format %d type %d size %d for class %d\n",
+ 			param.oa_format, f->type, f->size, param.hwe->class);
+ 		ret = -EINVAL;
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+index 52e33c37d5ee8..a01c85931e2a5 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -182,6 +182,9 @@ struct xe_oa_stream {
+ 	/** @gt: gt associated with the oa stream */
+ 	struct xe_gt *gt;
+ 
++	/** @oa_unit: oa unit for this stream */
++	struct xe_oa_unit *oa_unit;
++
+ 	/** @hwe: hardware engine associated with this oa stream */
+ 	struct xe_hw_engine *hwe;
+ 
 -- 
 2.48.1
 
