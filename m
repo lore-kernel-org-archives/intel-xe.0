@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F181C5B543
-	for <intel-xe@archiver.kernel.org>; Sat, 31 May 2025 00:23:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97CF9C5AD49
+	for <intel-xe@archiver.kernel.org>; Sat, 31 May 2025 00:31:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B00710E00F;
-	Sat, 31 May 2025 00:23:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F39610E00F;
+	Sat, 31 May 2025 00:31:51 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5456D10E00F;
- Sat, 31 May 2025 00:23:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5770143640306690996=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F20610E00F;
+ Sat, 31 May 2025 00:31:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFull=3A_success_for_drm/xe/hwmon=3A_Add_mailbo?=
- =?utf-8?q?x_power_limits=2C_PL2=2C_read_energy_from_PMT_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Enable_media_OA?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Poosa, Karthik" <karthik.poosa@intel.com>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 31 May 2025 00:23:29 -0000
-Message-ID: <174865100932.37012.2860574528935221032@1538d3639d33>
+Date: Sat, 31 May 2025 00:31:49 -0000
+Message-ID: <174865150931.37012.4519980164868535612@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250529103430.2348053-1-karthik.poosa@intel.com>
-In-Reply-To: <20250529103430.2348053-1-karthik.poosa@intel.com>
+References: <20250531001259.630681-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20250531001259.630681-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,2198 +39,2894 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5770143640306690996==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/hwmon: Add mailbox power limits, PL2, read energy from PMT (rev2)
-URL   : https://patchwork.freedesktop.org/series/149633/
+Series: Enable media OA
+URL   : https://patchwork.freedesktop.org/series/149715/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7_FULL -> xe-pw-149633v2_FULL
-====================================================
+STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-rx4581.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-rx8111.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-rx6110.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-rx8010.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-rx8025.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-rx8581.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-rx8111.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-s35390a.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-sd3078.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-stk17ta8.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-rx8581.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-s35390a.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-sd3078.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-tps6586x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-stk17ta8.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-tps6594.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-tps65910.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-wilco-ec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-tps6586x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-tps6594.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-tps65910.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-wilco-ec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-wm831x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-wm8350.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-x1205.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/algos/i2c-algo-bit.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-wm831x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-wm8350.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rtc/rtc-x1205.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/algos/i2c-algo-bit.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/algos/i2c-algo-pca.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-scmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ccgx-ucsi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ali1535.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/algos/i2c-algo-pca.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-scmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ccgx-ucsi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ali1563.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ali1535.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ali15x3.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-amd756.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-amd8111.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ali1563.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ali15x3.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-cht-wc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-amd756.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-amd8111.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-i801.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-isch.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ismt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-cht-wc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-nforce2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-i801.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-isch.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ismt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-nvidia-gpu.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-nforce2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-piix4.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-sis5595.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-sis630.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-nvidia-gpu.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-sis96x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-piix4.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-sis5595.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-sis630.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-via.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-viapro.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-sis96x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-viai2c-zhaoxin.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-viai2c-common.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-amd-mp2-pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-via.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-viapro.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-viai2c-zhaoxin.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-viai2c-common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-amd-mp2-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-amd-mp2-plat.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-cbus-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-designware-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-gpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-amd-mp2-plat.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-cbus-gpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-designware-pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-kempld.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ocores.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-pca-platform.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-simtec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-xiic.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-kempld.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ocores.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-pca-platform.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-simtec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-diolan-u2c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-xiic.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-dln2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ljca.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-cp2615.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-diolan-u2c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-dln2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-ljca.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-cp2615.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-parport.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-mchp-pci1xxxx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-robotfuzz-osif.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-taos-evm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-parport.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-mchp-pci1xxxx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-robotfuzz-osif.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-tiny-usb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-viperboard.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-taos-evm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-cros-ec-tunnel.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-mlxcpld.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-tiny-usb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-viperboard.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-cros-ec-tunnel.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-mlxcpld.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-virtio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-ltc4306.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/busses/i2c-virtio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-gpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-ltc4306.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-mlxcpld.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-pca9541.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-pca954x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-reg.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-mlxcpld.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-pca9541.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/i2c-smbus.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-pca954x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/muxes/i2c-mux-reg.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/i2c-mux.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/i2c-stub.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/i2c-smbus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i3c/i3c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/i2c-mux.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i2c/i2c-stub.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i3c/master/i3c-master-cdns.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i3c/master/dw-i3c-master.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i3c/i3c.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i3c/master/svc-i3c-master.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i3c/master/i3c-master-cdns.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i3c/master/dw-i3c-master.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i3c/master/mipi-i3c-hci/mipi-i3c-hci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i3c/master/svc-i3c-master.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-adstech-dvb-t-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-alink-dtu-m.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/i3c/master/mipi-i3c-hci/mipi-i3c-hci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-adstech-dvb-t-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-anysee.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-alink-dtu-m.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-apac-viewcomp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-astrometa-t2hybrid.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-asus-pc39.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-anysee.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-apac-viewcomp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-astrometa-t2hybrid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-asus-pc39.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-asus-ps3-100.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-ati-tv-wonder-hd-600.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-ati-x10.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-asus-ps3-100.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-ati-tv-wonder-hd-600.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-ati-x10.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-a16d.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-cardbus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-dvbt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-m135a.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-a16d.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-cardbus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-m733a-rm-k6.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-dvbt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-m135a.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-rm-ks.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-m733a-rm-k6.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avertv-303.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avermedia-rm-ks.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-azurewave-ad-tu700.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-avertv-303.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-beelink-gs1.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-azurewave-ad-tu700.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-beelink-mxiii.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-behold-columbus.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-beelink-gs1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-behold.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-beelink-mxiii.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-behold-columbus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-budget-ci-old.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-cinergy-1400.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-behold.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-cinergy.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-budget-ci-old.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-cinergy-1400.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-ct-90405.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-cinergy.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-d680-dmb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-delock-61959.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dib0700-nec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-ct-90405.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dib0700-rc5.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-d680-dmb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-delock-61959.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dib0700-nec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-digitalnow-tinytwin.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-digittrade.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dib0700-rc5.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dm1105-nec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvb-t.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-digitalnow-tinytwin.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-digittrade.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dm1105-nec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvb-t.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvbt-pro.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dreambox.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dtt200u.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvbt-pro.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dreambox.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dvbsky.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dvico-mce.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dtt200u.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dvico-portable.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-em-terratec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dvbsky.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dvico-mce.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-encore-enltv2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-dvico-portable.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-em-terratec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-encore-enltv-fm53.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-encore-enltv2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-encore-enltv.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-encore-enltv-fm53.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-evga-indtube.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-eztv.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-encore-enltv.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-flydvb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-evga-indtube.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-eztv.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-flyvideo.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-fusionhdtv-mce.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-flydvb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-gadmei-rm008z.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-flyvideo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-fusionhdtv-mce.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-geekbox.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-gadmei-rm008z.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-genius-tvgo-a11mce.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-gotview7135.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-geekbox.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-hauppauge.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-genius-tvgo-a11mce.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-gotview7135.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-hisi-poplar.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-hisi-tv-demo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-hauppauge.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-imon-mce.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-hisi-poplar.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-hisi-tv-demo.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-imon-pad.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-imon-mce.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-imon-rsc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-iodata-bctv7e.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-imon-pad.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-it913x-v1.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-imon-rsc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-iodata-bctv7e.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-it913x-v2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-kaiomy.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-khadas.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-it913x-v1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-khamsin.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-it913x-v2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-kaiomy.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-khadas.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-kworld-315u.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-kworld-pc150u.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-khamsin.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-kworld-plus-tv-analog.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-leadtek-y04g0051.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-kworld-315u.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-kworld-pc150u.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-lme2510.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-kworld-plus-tv-analog.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-leadtek-y04g0051.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-manli.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-mecool-kiii-pro.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/kallsyms
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-mecool-kii-pro.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/sorttable
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-lme2510.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/asn1_compiler
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-manli.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-mecool-kiii-pro.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-medion-x10-digitainer.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-mecool-kii-pro.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-medion-x10.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-medion-x10-or2x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-minix-neo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-medion-x10-digitainer.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-medion-x10.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/basic/fixdep
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-medion-x10-or2x.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/genksyms/genksyms.o
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-msi-digivox-iii.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-minix-neo.ko
+  YACC    debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/genksyms/parse.tab.[ch]
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-msi-digivox-ii.ko
+  LEX     debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/genksyms/lex.lex.c
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere-plus.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-msi-digivox-iii.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-msi-digivox-ii.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-mygica-utv3.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere-plus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-nebula.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-nec-terratec-cinergy-xs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-norwood.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-mygica-utv3.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/selinux/mdp/mdp
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-nebula.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-nec-terratec-cinergy-xs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-npgtech.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-norwood.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-odroid.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pctv-sedna.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pine64.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-npgtech.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-odroid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pctv-sedna.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pinnacle-color.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/sign-file
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pine64.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/insert-sys-cert
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pinnacle-grey.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/mod/modpost.o
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pixelview-002t.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/mod/file2alias.o
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/mod/sumversion.o
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pinnacle-color.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/mod/symsearch.o
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pinnacle-grey.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pixelview-002t.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pixelview-mk12.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pixelview-new.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pixelview.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pixelview-mk12.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pixelview-new.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-powercolor-real-angel.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pixelview.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-proteus-2309.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-purpletv.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pv951.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-powercolor-real-angel.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-proteus-2309.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-purpletv.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-pv951.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-rc6-mce.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-real-audio-220-32-keys.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-reddo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-rc6-mce.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-real-audio-220-32-keys.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-siemens-gigaset-rc20.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-reddo.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-snapstream-firefly.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-streamzap.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-su3000.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-siemens-gigaset-rc20.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tanix-tx3mini.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-snapstream-firefly.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-streamzap.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-su3000.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tanix-tx5max.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tbs-nec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tanix-tx3mini.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-technisat-ts35.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tanix-tx5max.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tbs-nec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-technisat-ts35.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-technisat-usb2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-c-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-s2-hd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-technisat-usb2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-c-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-xs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-s2-hd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-terratec-slim-2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-terratec-slim.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tevii-nec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-xs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-terratec-slim-2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-terratec-slim.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tevii-nec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tivo.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand-02.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tivo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand-02.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-trekstor.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tt-1500.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-twinhan1027.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-trekstor.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-tt-1500.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-twinhan1027.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-vega-s9x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-videomate-m1f.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-videomate-s350.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-vega-s9x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-videomate-m1f.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-videomate-tv-pvr.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-videomate-s350.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-videostrong-kii-pro.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-wetek-hub.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-wetek-play2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-videomate-tv-pvr.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-videostrong-kii-pro.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-wetek-hub.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-winfast.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-wetek-play2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-winfast-usbii-deluxe.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-x96max.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-winfast.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-winfast-usbii-deluxe.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-xbox-360.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-x96max.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-xbox-dvd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-zx-irdec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-xbox-360.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/rc-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-xbox-dvd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/keymaps/rc-zx-irdec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-imon-decoder.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-jvc-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/rc-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-mce_kbd-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-imon-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-jvc-decoder.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-nec-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-mce_kbd-decoder.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-rc5-decoder.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-rc6-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-nec-decoder.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-rcmm-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-rc5-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-rc6-decoder.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-sanyo-decoder.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-sharp-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-rcmm-decoder.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-sony-decoder.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-xmp-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-sanyo-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-sharp-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-sony-decoder.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir-xmp-decoder.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ene_ir.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/fintek-cir.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/igorplugusb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ene_ir.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/fintek-cir.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/igorplugusb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/iguanair.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/imon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/imon_raw.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ite-cir.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/iguanair.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/imon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/imon_raw.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/mceusb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ite-cir.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/nuvoton-cir.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/redrat3.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/serial_ir.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/streamzap.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/nuvoton-cir.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/mceusb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/redrat3.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/serial_ir.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir_toy.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ttusbir.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/streamzap.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/winbond-cir.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ati_remote.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/rc-loopback.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ir_toy.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ttusbir.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/winbond-cir.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/ati_remote.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/rc-loopback.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/xbox_remote.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/core/cec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/i2c/ch7322.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/i2c/tda9950.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/rc/xbox_remote.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/core/cec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/i2c/ch7322.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/platform/cros-ec/cros-ec-cec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/i2c/tda9950.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/platform/cec-gpio/cec-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/platform/seco/seco-cec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/usb/pulse8/pulse8-cec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/usb/rainshadow/rainshadow-cec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/platform/cros-ec/cros-ec-cec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/platform/cec-gpio/cec-gpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/platform/seco/seco-cec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/usb/pulse8/pulse8-cec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/media/cec/usb/rainshadow/rainshadow-cec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/pps/clients/pps-ldisc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/pps/clients/pps_parport.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/pps/clients/pps-gpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/pps/clients/pps-ldisc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/pps/clients/pps_parport.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_ines.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_kvm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/pps/clients/pps-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_vmclock.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_clockmatrix.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_ines.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_kvm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_vmclock.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_fc3.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_clockmatrix.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_idt82p33.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_mock.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_fc3.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_idt82p33.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_mock.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/genksyms/parse.tab.o
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_vmw.ko
+  HOSTCC  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/genksyms/lex.lex.o
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_ocp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/reset/atc260x-poweroff.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_vmw.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ip5xxx_power.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ptp/ptp_ocp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/reset/atc260x-poweroff.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max8925_power.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/wm831x_backup.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/wm831x_power.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ip5xxx_power.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/wm8350_power.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max8925_power.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/wm831x_backup.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/wm831x_power.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/test_power.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/wm8350_power.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/88pm860x_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/adp5061.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/test_power.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/cw2015_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/88pm860x_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/adp5061.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ds2760_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ds2780_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ds2781_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/cw2015_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ds2782_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ltc2941-battery-gauge.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ds2760_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ds2780_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ds2781_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ds2782_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ltc2941-battery-gauge.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/goldfish_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/sbs-battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/sbs-charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/sbs-manager.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/goldfish_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/sbs-battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/sbs-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/sbs-manager.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq27xxx_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq27xxx_battery_i2c.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq27xxx_battery_hdq.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/da9030_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/da9052-battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq27xxx_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq27xxx_battery_i2c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq27xxx_battery_hdq.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/da9030_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/da9052-battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/da9150-fg.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max17042_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max1720x_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max1721x_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/da9150-fg.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max17042_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max1720x_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max1721x_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/rt5033_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/rt5033_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/rt9455_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/rt9467-charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/rt9471.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/rt5033_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/rt5033_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/rt9455_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/rt9467-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/rt9471.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/88pm860x_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/isp1704_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max8903_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/lp8727_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/88pm860x_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/isp1704_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max8903_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/gpio-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/lp8727_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/lt3651-charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ltc4162-l-charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max14577_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max77693_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/gpio-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/lt3651-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ltc4162-l-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max14577_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max77693_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max77976_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max8997_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max8998_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/mt6360_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max77976_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max8997_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/max8998_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq2415x_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/mt6360_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq24190_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq24257_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq24735-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq2415x_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq2515x_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq24190_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq24257_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq24735-charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq25890_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq25980_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq2515x_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq256xx_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq25890_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq25980_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/smb347-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bq256xx_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/tps65090-charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/axp288_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/cros_charge-control.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/cros_usbpd-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/smb347-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/tps65090-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/axp288_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/cros_charge-control.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/cros_peripheral_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/cros_usbpd-charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bd99954-charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/wilco-charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/surface_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/cros_peripheral_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/bd99954-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/wilco-charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/surface_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/surface_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ug3105_battery.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/mm8013.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/sequencing/pwrseq-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/surface_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/ug3105_battery.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/supply/mm8013.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/hwmon-vid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/power/sequencing/pwrseq-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/acpi_power_meter.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asus_atk0110.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asus-ec-sensors.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/hwmon-vid.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asus_wmi_sensors.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/acpi_power_meter.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asus_atk0110.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asus-ec-sensors.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/hp-wmi-sensors.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asb100.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asus_wmi_sensors.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83627hf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83773g.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/hp-wmi-sensors.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asb100.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83792d.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83627hf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83773g.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83793.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83795.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83781d.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83792d.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83791d.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83793.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83795.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83781d.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/abituguru.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/abituguru3.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83791d.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ad7314.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ad7414.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/abituguru.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/abituguru3.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ad7314.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ad7418.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ad7414.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adc128d818.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adcxx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm1025.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ad7418.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adc128d818.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adcxx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm1026.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm1025.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm1029.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm1031.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm1177.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm1026.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm1029.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm1031.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm9240.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm1177.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ads7828.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ads7871.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7x10.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7310.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adm9240.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ads7828.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ads7871.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7x10.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7310.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7410.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7411.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7462.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7470.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7410.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7411.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7462.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7470.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7475.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/aht10.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/applesmc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/aquacomputer_d5next.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/as370-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/adt7475.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/aht10.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/applesmc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/aquacomputer_d5next.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asc7621.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/as370-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asus_rog_ryujin.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/atxp1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/axi-fan-control.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asc7621.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/asus_rog_ryujin.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/atxp1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/chipcap2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/axi-fan-control.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/coretemp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/corsair-cpro.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/corsair-psu.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/cros_ec_hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/chipcap2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/coretemp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/corsair-cpro.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/corsair-psu.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/cros_ec_hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/da9052-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/da9055-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/dell-smm-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/dme1737.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/drivetemp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/da9052-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/da9055-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/dell-smm-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/dme1737.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/drivetemp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ds620.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ds1621.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/emc1403.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/emc2103.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/emc2305.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ds620.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ds1621.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/emc1403.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/emc2103.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/emc2305.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/emc6w201.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/f71805f.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/f71882fg.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/f75375s.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/fam15h_power.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/emc6w201.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/f71805f.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/f71882fg.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/f75375s.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/fam15h_power.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/fschmd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ftsteutates.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/g760a.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/g762.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/gigabyte_waterforce.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/fschmd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ftsteutates.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/g760a.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/g762.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/gigabyte_waterforce.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/gl518sm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/gl520sm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/hih6130.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/hs3001.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/i5500_temp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/gl518sm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/gl520sm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/hih6130.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/hs3001.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/i5500_temp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/i5k_amb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ibmaem.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ibmpex.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ina209.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/i5k_amb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ibmaem.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ibmpex.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ina209.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ina2xx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ina238.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ina3221.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/intel-m10-bmc-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/it87.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ina2xx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ina238.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ina3221.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/intel-m10-bmc-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/it87.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/jc42.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/k8temp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/k10temp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lenovo-ec-sensors.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/jc42.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/k8temp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/k10temp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lenovo-ec-sensors.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lineage-pem.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm63.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm70.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm73.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm75.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lineage-pem.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm63.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm70.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm73.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm77.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm78.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm75.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm80.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm83.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm77.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm78.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm80.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm83.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm85.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm87.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm90.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm92.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm85.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm87.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm90.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm92.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm93.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm95234.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm95241.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm95245.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2945.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2947-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm93.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm95234.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm95241.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/lm95245.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2945.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2947-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2947-i2c.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2947-spi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2990.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2991.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2947-i2c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2947-spi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2990.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2991.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2992.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4151.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4215.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4222.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc2992.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4151.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4215.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4222.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4245.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4260.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4261.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4282.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4245.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4260.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max1111.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4282.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/ltc4261.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max127.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max16065.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max1619.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max1111.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max1668.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max127.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max16065.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max1619.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max197.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max31722.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max1668.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max31730.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max31760.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max197.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max31722.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max31730.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max6620.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max31760.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max6621.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max6639.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max6650.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max6620.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max6621.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max6639.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max6650.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max6697.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max31790.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max31827.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/mc13783-adc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/mc34vr500.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max6697.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max31790.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/max31827.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/mc13783-adc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/mc34vr500.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/mcp3021.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tc654.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tps23861.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/mlxreg-fan.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/mcp3021.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tc654.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tps23861.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/menf21bmc_hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/mlxreg-fan.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/mr75203.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct6683.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct6775-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct6775.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/menf21bmc_hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/mr75203.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct6683.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct6775-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct6775.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct6775-i2c.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct7802.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct7904.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/npcm750-pwm-fan.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct6775-i2c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct7802.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nzxt-kraken2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nct7904.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/npcm750-pwm-fan.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nzxt-kraken3.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nzxt-smart2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nzxt-kraken2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/oxp-sensors.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pc87360.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nzxt-kraken3.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/nzxt-smart2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pc87427.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/oxp-sensors.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pcf8591.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pc87360.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/powerz.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/powr1220.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pc87427.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pcf8591.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pt5161l.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/powerz.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/powr1220.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pwm-fan.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pt5161l.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sbtsi_temp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sbrmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pwm-fan.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sch56xx-common.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sch5627.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sbtsi_temp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sbrmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sch5636.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sht15.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sch56xx-common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sch5627.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sht21.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sht3x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sch5636.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sht15.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sht4x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sht21.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sht3x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/shtc1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sis5595.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sht4x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/smpro-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/shtc1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/smsc47b397.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sis5595.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/smsc47m1.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/smpro-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/smsc47m192.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/stts751.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/smsc47b397.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/smsc47m1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/surface_fan.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/smsc47m192.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sy7636a-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/stts751.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/amc6821.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/surface_fan.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tc74.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/sy7636a-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/thmc50.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/amc6821.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp102.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tc74.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp103.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/thmc50.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp108.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp102.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp401.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp103.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp421.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp108.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp464.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp513.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp401.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp421.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/via-cputemp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp464.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/tmp513.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/via686a.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/vt1211.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/vt8231.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/via-cputemp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83627ehf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/via686a.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/vt1211.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/vt8231.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83l785ts.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83l786ng.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83627ehf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83l785ts.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/w83l786ng.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/wm831x-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/wm8350-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/xgene-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/occ/occ-hwmon-common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/wm831x-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/wm8350-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/occ/occ-p8-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/xgene-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/occ/occ-hwmon-common.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/peci/peci-cputemp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/peci/peci-dimmtemp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pmbus_core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pmbus.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/occ/occ-p8-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/peci/peci-cputemp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/peci/peci-dimmtemp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pmbus_core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pmbus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/acbel-fsg032.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/adm1266.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/adm1275.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/adp1050.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/acbel-fsg032.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/adm1266.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/adm1275.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/adp1050.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/bel-pfe.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/bpa-rs600.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/delta-ahe50dc-fan.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/fsp-3y.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ibm-cffps.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/bel-pfe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/bpa-rs600.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/delta-ahe50dc-fan.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/fsp-3y.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/dps920ab.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ibm-cffps.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/inspur-ipsps.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ir35221.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ir36021.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/dps920ab.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/inspur-ipsps.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ir35221.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ir36021.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ir38064.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/irps5401.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/isl68137.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/lm25066.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ir38064.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/irps5401.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/isl68137.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/lt7182s.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/lm25066.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ltc2978.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ltc3815.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max15301.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/lt7182s.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ltc2978.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max16064.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ltc3815.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max15301.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max16601.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max20730.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max16064.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max20751.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max31785.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max16601.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max20730.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max34440.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max20751.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max31785.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max8688.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp2856.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp2888.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max34440.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp2891.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/max8688.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp2856.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp2888.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp2975.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp2891.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp2993.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp5023.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp5920.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp2975.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp2993.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp5023.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp5990.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp5920.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp9941.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mpq7932.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mpq8785.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp5990.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pli1209bc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mp9941.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mpq7932.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/mpq8785.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pm6764tr.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pxe1610.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pli1209bc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/q54sj108a2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pm6764tr.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pxe1610.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/stpddc60.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/tda38640.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/q54sj108a2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/tps40422.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/tps53679.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/stpddc60.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/tda38640.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/tps546d24.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/tps40422.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/tps53679.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ucd9000.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ucd9200.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/tps546d24.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/xdp710.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/xdpe12284.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ucd9000.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/ucd9200.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/xdpe152c4.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/xdp710.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/xdpe12284.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/zl6100.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pim4328.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_powerclamp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/xdpe152c4.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/x86_pkg_temp_thermal.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/zl6100.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwmon/pmbus/pim4328.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_powerclamp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_soc_dts_iosf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_soc_dts_thermal.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/x86_pkg_temp_thermal.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int3400_thermal.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_soc_dts_iosf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_soc_dts_thermal.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int3402_thermal.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int3400_thermal.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int3403_thermal.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int3402_thermal.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int3401_thermal.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci_legacy.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int3403_thermal.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int3401_thermal.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci_legacy.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rapl.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rfim.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_mbox.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_req.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rapl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rfim.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_mbox.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_hint.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_power_floor.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_req.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int3406_thermal.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/acpi_thermal_rel.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_hint.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_power_floor.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/int3406_thermal.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_bxt_pmic_thermal.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/int340x_thermal/acpi_thermal_rel.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_pch_thermal.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_tcc_cooling.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/pretimeout_panic.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_bxt_pmic_thermal.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_pch_thermal.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thermal/intel/intel_tcc_cooling.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/pcwd_pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/wdt_pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/pretimeout_panic.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/pcwd_usb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/cadence_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/pcwd_pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/wdt_pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/twl4030_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/pcwd_usb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/cadence_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/dw_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/retu_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/acquirewdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/twl4030_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/advantechwdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/advantech_ec_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/dw_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/retu_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/acquirewdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/advantechwdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/advantech_ec_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/alim1535_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/alim7101_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ebc-c384_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/exar_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/alim1535_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/alim7101_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ebc-c384_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/f71808e_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/exar_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sp5100_tco.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sbc_fitpc2_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/eurotechwdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ib700wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/f71808e_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sp5100_tco.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sbc_fitpc2_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/eurotechwdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ibmasr.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ib700wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/wafer5823wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/i6300esb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ie6xx_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ibmasr.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/wafer5823wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/i6300esb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/iTCO_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/lenovo_se10_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ie6xx_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/iTCO_vendor_support.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/it8712f_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/iTCO_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/lenovo_se10_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/it87_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/iTCO_vendor_support.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/it8712f_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/hpwdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/kempld_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sc1200wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/it87_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/pc87413_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/hpwdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/kempld_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sc1200wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/nv_tco.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sbc60xxwdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/pc87413_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sch311x_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/smsc37b787_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/nv_tco.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sbc60xxwdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/tqmx86_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sch311x_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/via_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/smsc37b787_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/w83627hf_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/w83877f_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/tqmx86_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/via_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/w83627hf_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/w83977f_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/w83877f_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/machzwd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sbc_epx_c3.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/mei_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/w83977f_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/machzwd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ni903x_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/sbc_epx_c3.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/nic7018_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/mei_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/mlx_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/simatic-ipc-wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ni903x_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/of_xilinx_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/nic7018_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/mlx_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/simatic-ipc-wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/mena21_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/xen_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/of_xilinx_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/cros_ec_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/mena21_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/xen_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/da9052_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/da9055_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/cros_ec_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/da9062_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/da9063_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/wdat_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/da9052_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/da9055_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/da9062_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/da9063_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/wdat_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/wm831x_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/wm8350_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/max63xx_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/wm831x_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ziirave_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/wm8350_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/max63xx_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/menf21bmc_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/menz69_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/ziirave_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/rave-sp-wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/raid0.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/menf21bmc_wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/menz69_wdt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/raid1.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/watchdog/rave-sp-wdt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/raid0.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/raid10.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/raid456.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/bcache/bcache.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/raid1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-unstripe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/raid10.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-bufio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/raid456.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-bio-prison.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-unstripe.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-crypt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/bcache/bcache.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-delay.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-bufio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-bio-prison.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-flakey.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-crypt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-delay.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-multipath.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-flakey.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-round-robin.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-queue-length.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-multipath.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-round-robin.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-service-time.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-queue-length.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-historical-service-time.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-io-affinity.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-switch.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-service-time.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-snapshot.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-historical-service-time.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-io-affinity.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-switch.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/persistent-data/dm-persistent-data.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-mirror.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-log.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-snapshot.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-region-hash.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-log-userspace.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/persistent-data/dm-persistent-data.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-mirror.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-log.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-region-hash.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-zero.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-log-userspace.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-raid.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-thin-pool.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-verity.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-zero.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-vdo/dm-vdo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-raid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-thin-pool.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-verity.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-cache.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-cache-smq.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-ebs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-era.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-clone.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-cache.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-vdo/dm-vdo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-cache-smq.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-ebs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-era.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-clone.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-log-writes.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-integrity.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-zoned.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-writecache.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-log-writes.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-integrity.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-zoned.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/md/dm-writecache.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/edac_mce_amd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i5100_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i5400_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i7300_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i7core_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/sb_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/edac_mce_amd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i5100_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i5400_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i7300_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i7core_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/sb_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/pnd2_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/igen6_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/e752x_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/pnd2_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i82975x_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/igen6_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/e752x_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i3000_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i82975x_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i3200_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/ie31200_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/x38_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i3000_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/amd64_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i3200_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/ie31200_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/x38_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/skx_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/skx_edac_common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/amd64_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i10nm_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/cpufreq/speedstep-lib.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/skx_edac.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/skx_edac_common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/edac/i10nm_edac.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/cpufreq/p4-clockmod.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/cpufreq/speedstep-lib.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/cpufreq/amd_freq_sensitivity.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/cpuidle/cpuidle-haltpoll.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/core/mmc_block.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/cpufreq/p4-clockmod.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/cpufreq/amd_freq_sensitivity.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/cpuidle/cpuidle-haltpoll.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/core/sdio_uart.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/core/mmc_block.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/sdhci_f_sdh30.ko
+  HOSTLD  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/genksyms/genksyms
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/wbsd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/alcor.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/core/sdio_uart.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/sdhci_f_sdh30.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/mtk-sd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/wbsd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/alcor.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/tifm_sd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/mmc_spi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/of_mmc_spi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/mtk-sd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/cb710-mmc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/tifm_sd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/mmc_spi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/of_mmc_spi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/via-sdmmc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/cb710-mmc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/vub300.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/ushc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/usdhi6rol0.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/via-sdmmc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/vub300.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/ushc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/toshsd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/usdhi6rol0.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/rtsx_pci_sdmmc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/rtsx_usb_sdmmc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/mmc_hsq.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/sdhci-xenon-driver.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/toshsd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/rtsx_pci_sdmmc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/rtsx_usb_sdmmc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/core/ufshcd-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/mmc_hsq.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mmc/host/sdhci-xenon-driver.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/tc-dwc-g210-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/ufshcd-dwc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/tc-dwc-g210.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/cdns-pltfrm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/core/ufshcd-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/tc-dwc-g210-pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/ufshcd-dwc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/tc-dwc-g210.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/ufshcd-pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/cdns-pltfrm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/ufshcd-pltfrm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/cirrus/cs_dsp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/efi/efi-pstore.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/ufshcd-pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ufs/host/ufshcd-pltfrm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/efi/efibc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/cirrus/cs_dsp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/efi/efi-pstore.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/efi/test/efi_test.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/efi/capsule-loader.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/efi/efibc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/iscsi_ibft.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/efi/test/efi_test.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/efi/capsule-loader.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/qemu_fw_cfg.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/ccp/ccp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/iscsi_ibft.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/ccp/ccp-crypto.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/inside-secure/crypto_safexcel.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/firmware/qemu_fw_cfg.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_common/intel_qat.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/ccp/ccp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/ccp/ccp-crypto.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_dh895xcc/qat_dh895xcc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/inside-secure/crypto_safexcel.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_c3xxx/qat_c3xxx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_c62x/qat_c62x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_4xxx/qat_4xxx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_dh895xcc/qat_dh895xcc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_420xx/qat_420xx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_common/intel_qat.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_c3xxx/qat_c3xxx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_c62x/qat_c62x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_4xxx/qat_4xxx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_dh895xccvf/qat_dh895xccvf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_420xx/qat_420xx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_c3xxxvf/qat_c3xxxvf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_c62xvf/qat_c62xvf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_dh895xccvf/qat_dh895xccvf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/iaa/iaa_crypto.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_c3xxxvf/qat_c3xxxvf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/atmel-i2c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/qat/qat_c62xvf/qat_c62xvf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/atmel-ecc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/intel/iaa/iaa_crypto.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/atmel-i2c.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/atmel-sha204a.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/cavium/nitrox/n5pf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/atmel-ecc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/padlock-aes.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/padlock-sha.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/atmel-sha204a.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/cavium/nitrox/n5pf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/virtio/virtio_crypto.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/padlock-aes.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/padlock-sha.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/amlogic/amlogic-gxl-crypto.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/virtio/virtio_crypto.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/uhid.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-generic.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/crypto/amlogic/amlogic-gxl-crypto.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-a4tech.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/uhid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-generic.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-accutouch.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-alps.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-apple.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-a4tech.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-asus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-belkin.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-accutouch.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-alps.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-apple.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-asus.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-belkin.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-cherry.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-chicony.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-corsair.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-corsair-void.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-cherry.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-chicony.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-corsair.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-cougar.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-corsair-void.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-cp2112.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-cypress.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-elan.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-elecom.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-cougar.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-cp2112.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-cypress.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-elan.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-elo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-elecom.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-ft260.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-glorious.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-vivaldi-common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-elo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-ft260.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-glorious.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-vivaldi-common.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-google-hammer.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-vivaldi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-holtek-kbd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-holtek-mouse.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-holtekff.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-google-hammer.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-vivaldi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-holtek-kbd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-holtek-mouse.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-holtekff.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-ite.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-jabra.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-kensington.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-keytouch.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-lenovo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-ite.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-jabra.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-kensington.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-keytouch.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-lenovo.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-logitech.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-lg-g15.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-logitech-dj.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-logitech-hidpp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-logitech.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-lg-g15.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-logitech-dj.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-logitech-hidpp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-magicmouse.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-mcp2200.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-mcp2221.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-microsoft.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-monterey.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-magicmouse.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-mcp2200.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-mcp2221.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-microsoft.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-monterey.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-multitouch.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-ntrig.ko
+dpkg-deb: building package 'linux-libc-dev' in '../linux-libc-dev_6.15.0-g1ec4206949b6-2_amd64.deb'.
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-penmount.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-plantronics.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-multitouch.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-ntrig.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-penmount.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-primax.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-plantronics.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-razer.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-redragon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-primax.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-razer.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-redragon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-common.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-arvo.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-isku.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-kone.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-koneplus.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-arvo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-isku.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-kone.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-konepure.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-koneplus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-kovaplus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-lua.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-pyra.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-ryos.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-konepure.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-kovaplus.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-lua.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-pyra.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-ryos.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-savu.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-rmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-saitek.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-samsung.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-roccat-savu.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-rmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-saitek.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-samsung.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-semitek.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-sigmamicro.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-steam.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-topre.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-xiaomi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-semitek.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-sigmamicro.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-steam.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-topre.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-xiaomi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-sensor-hub.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-sensor-custom.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/usbhid/usbhid.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/usbhid/usbkbd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/usbhid/usbmouse.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-sensor-hub.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/hid-sensor-custom.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/usbhid/usbhid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/usbhid/usbkbd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/i2c-hid/i2c-hid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/usbhid/usbmouse.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/i2c-hid/i2c-hid-acpi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/i2c-hid/i2c-hid-of.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/intel-ish-hid/intel-ishtp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/i2c-hid/i2c-hid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/i2c-hid/i2c-hid-acpi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/i2c-hid/i2c-hid-of.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/intel-ish-hid/intel-ishtp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/intel-ish-hid/intel-ish-ipc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/intel-ish-hid/intel-ishtp-hid.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/intel-ish-hid/intel-ishtp-loader.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/amd-sfh-hid/amd_sfh.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/intel-ish-hid/intel-ish-ipc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/intel-ish-hid/intel-ishtp-hid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/intel-ish-hid/intel-ishtp-loader.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/surface-hid/surface_hid_core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/surface-hid/surface_kbd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/amd-sfh-hid/amd_sfh.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/vme_user/vme_user.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/vme_user/vme_tsi148.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/surface-hid/surface_hid_core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hid/surface-hid/surface_kbd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/vme_user/vme_fake.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/vme_user/vme_user.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/vme_user/vme_tsi148.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fbtft.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_agm1264k-fl.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_bd663474.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/vme_user/vme_fake.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_hx8340bn.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fbtft.ko
+  HOSTLD  debian/linux-headers-6.15.0-xe+/usr/src/linux-headers-6.15.0-xe+/scripts/mod/modpost
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_agm1264k-fl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_bd663474.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_hx8347d.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_hx8340bn.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_hx8353d.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_hx8357d.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9163.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9320.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_hx8347d.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_hx8353d.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_hx8357d.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9163.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9320.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9325.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9340.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9341.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9481.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9325.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9340.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9341.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9481.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9486.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_pcd8544.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ra8875.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_s6d02a1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_s6d1121.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ili9486.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_pcd8544.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ra8875.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_s6d02a1.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_s6d1121.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_seps525.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_sh1106.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1289.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_seps525.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_sh1106.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1289.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1305.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1306.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1325.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1331.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1351.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1305.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1306.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1325.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1331.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_st7735r.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_ssd1351.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_st7789v.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_tinylcd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_tls8204.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_st7735r.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_st7789v.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_tinylcd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_tls8204.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_uc1611.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_uc1701.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_upd161704.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/most/net/most_net.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_uc1611.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_uc1701.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/fbtft/fb_upd161704.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/most/i2c/most_i2c.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/amd/pmc/amd-pmc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/most/net/most_net.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/amd/pmf/amd-pmf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/alienware-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/staging/most/i2c/most_i2c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/amd/pmc/amd-pmc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dcdbas.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/amd/pmf/amd-pmf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/alienware-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell_rbu.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dcdbas.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-pc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-smbios.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell_rbu.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-smo8800.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-pc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-smbios.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-lis3lv02d.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-smo8800.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi-aio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-lis3lv02d.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi-descriptor.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi-aio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi-ddv.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi-led.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi-descriptor.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi-sysman/dell-wmi-sysman.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/hp/hp_accel.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/hp/hp-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi-ddv.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi-led.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/hp/hp-bioscfg/hp-bioscfg.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/dell/dell-wmi-sysman/dell-wmi-sysman.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/hp/hp_accel.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/hp/hp-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_led.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_pm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/hp/hp-bioscfg/hp-bioscfg.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/wmi/intel-wmi-sbl-fw-update.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/wmi/intel-wmi-thunderbolt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_led.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_pm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/wmi/intel-wmi-sbl-fw-update.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/ifs/intel_ifs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/wmi/intel-wmi-thunderbolt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/int1092/intel_sar.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_discrete.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_tps68470.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/ifs/intel_ifs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/int1092/intel_sar.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_discrete.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_tps68470.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_common.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core_pltdrv.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/pmt/pmt_class.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/pmt/pmt_telemetry.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core_pltdrv.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/pmt/pmt_class.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/pmt/pmt_crashlog.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/pmt/pmt_telemetry.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_common.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mmio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/pmt/pmt_crashlog.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mmio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_msr.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi_core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_msr.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi_core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_pltdrv.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_debugfs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_pltdrv.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_debugfs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-common.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-tpmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-hid.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-vbtn.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-int0002_vgpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-ishtp_eclite.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-tpmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-hid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-vbtn.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-int0002_vgpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-ishtp_eclite.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-sdsi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-vsec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-bytcrc_pwrsrc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-bxtwc_tmu.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-sdsi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-vsec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-bytcrc_pwrsrc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-bxtwc_tmu.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-chtdc_ti_pwrbtn.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-chtwc_int33fe.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-crystal_cove_charger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-mrfld_pwrbtn.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-punit_ipc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-chtdc_ti_pwrbtn.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-chtwc_int33fe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-crystal_cove_charger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-mrfld_pwrbtn.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-punit_ipc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-plr_tpmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-tpmi_power_domains.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-vsec_tpmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-smartconnect.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-plr_tpmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-tpmi_power_domains.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-vsec_tpmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel/intel-smartconnect.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/wmi-bmof.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/huawei-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/mxm-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/nvidia-wmi-ec-backlight.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/wmi-bmof.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/huawei-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/mxm-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/xiaomi-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/nvidia-wmi-ec-backlight.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/gigabyte-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/acerhdf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/acer-wireless.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/xiaomi-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/gigabyte-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/acerhdf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/acer-wireless.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/acer-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/adv_swbutton.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/apple-gmux.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/asus-laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/acer-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/adv_swbutton.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/apple-gmux.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/asus-wireless.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/asus-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/asus-laptop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/asus-nb-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/asus-tf103c-dock.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/eeepc-laptop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/eeepc-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/asus-wireless.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/asus-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/asus-nb-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/asus-tf103c-dock.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/eeepc-laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/eeepc-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/meraki-mx100.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/fujitsu-laptop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/fujitsu-tablet.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/gpd-pocket-fan.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/meraki-mx100.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/fujitsu-laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/fujitsu-tablet.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/gpd-pocket-fan.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/uv_sysfs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/ibm_rtl.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/hdaps.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/thinkpad_acpi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/think-lmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/uv_sysfs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/ibm_rtl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/hdaps.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/lenovo-yogabook.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/thinkpad_acpi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/think-lmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/lenovo-yoga-tab2-pro-1380-fastcharger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/lenovo-wmi-camera.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/quickstart.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/lenovo-yogabook.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/meegopad_anx7428.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/lenovo-yoga-tab2-pro-1380-fastcharger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/lenovo-wmi-camera.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/quickstart.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/msi-ec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/msi-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/meegopad_anx7428.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/msi-wmi-platform.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/msi-ec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/msi-wmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/msi-wmi-platform.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/pcengines-apuv2.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/barco-p50-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/samsung-laptop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/samsung-q10.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/toshiba_bluetooth.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/pcengines-apuv2.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/barco-p50-gpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/samsung-laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/samsung-q10.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/toshiba_haps.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/toshiba_bluetooth.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/inspur_platform_profile.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/classmate-laptop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/lg-laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/toshiba_haps.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/inspur_platform_profile.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/classmate-laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/lg-laptop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/panasonic-laptop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/system76_acpi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/topstar-laptop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/firmware_attributes_class.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/panasonic-laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/system76_acpi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/topstar-laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/firmware_attributes_class.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/serial-multi-instantiate.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/wireless-hotkey.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/x86-android-tablets/vexia_atla10_ec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/x86-android-tablets/x86-android-tablets.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel_ips.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/serial-multi-instantiate.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/wireless-hotkey.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/x86-android-tablets/vexia_atla10_ec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/x86-android-tablets/x86-android-tablets.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel_scu_pltdrv.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel_ips.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel_scu_ipcutil.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/siemens/simatic-ipc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/siemens/simatic-ipc-batt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel_scu_pltdrv.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/intel_scu_ipcutil.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/siemens/simatic-ipc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/siemens/simatic-ipc-batt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-apollolake.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-elkhartlake.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-f7188x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/silicom-platform.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-apollolake.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-elkhartlake.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-f7188x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/winmate-fm07-keys.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/silicom-platform.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/sel3350-platform.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/mellanox/mlx-platform.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/mellanox/mlxreg-hotplug.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/winmate-fm07-keys.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/mellanox/mlxreg-io.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/x86/sel3350-platform.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/mellanox/mlx-platform.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/mellanox/mlxreg-hotplug.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/mellanox/mlxreg-lc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/mellanox/nvsw-sn2201.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/mellanox/mlxreg-io.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/chromeos_acpi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/mellanox/mlxreg-lc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/mellanox/nvsw-sn2201.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/chromeos_laptop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/chromeos_acpi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/chromeos_privacy_screen.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/chromeos_pstore.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/chromeos_tbmc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/chromeos_laptop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/chromeos_privacy_screen.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/chromeos_pstore.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/chromeos_tbmc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_i2c.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_ishtp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_typec_switch.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_spi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_i2c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_ishtp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_typec_switch.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_uart.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_spi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros-ec-typec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_lpcs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_kbd_led_backlight.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_uart.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_chardev.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros-ec-typec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_lpcs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_kbd_led_backlight.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_lightbar.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_chardev.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_debugfs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros-ec-sensorhub.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_sysfs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_lightbar.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_debugfs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros-ec-sensorhub.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_ec_sysfs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_hps_i2c.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_usbpd_logger.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_usbpd_notify.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/wilco_ec/wilco_ec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/wilco_ec/wilco_ec_debugfs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_hps_i2c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_usbpd_logger.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/cros_usbpd_notify.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/wilco_ec/wilco_ec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/wilco_ec/wilco_ec_debugfs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/wilco_ec/wilco_ec_events.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/wilco_ec/wilco_ec_telem.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface3-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface3_power.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/wilco_ec/wilco_ec_events.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/chrome/wilco_ec/wilco_ec_telem.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface3-wmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_acpi_notify.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/aggregator/surface_aggregator.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface3_power.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_aggregator_cdev.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_aggregator_hub.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_acpi_notify.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_aggregator_registry.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/aggregator/surface_aggregator.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_aggregator_cdev.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_aggregator_hub.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_aggregator_tabletsw.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_dtx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_gpe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_aggregator_registry.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_hotplug.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_platform_profile.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_aggregator_tabletsw.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_dtx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_gpe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_hotplug.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surface_platform_profile.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surfacepro3_button.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mailbox/mailbox-altera.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/vboxguest/vboxguest.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/platform/surface/surfacepro3_button.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mailbox/mailbox-altera.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/coco/tdx-guest/tdx-guest.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/vboxguest/vboxguest.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/coco/tsm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/coco/efi_secret/efi_secret.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/coco/sev-guest/sev-guest.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/vmgenid.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/coco/tdx-guest/tdx-guest.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/coco/tsm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/nitro_enclaves/nitro_enclaves.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/coco/efi_secret/efi_secret.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/coco/sev-guest/sev-guest.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/vmgenid.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/acrn/acrn.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hv/hv_vmbus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hv/hv_utils.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/nitro_enclaves/nitro_enclaves.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hv/hv_balloon.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/virt/acrn/acrn.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hv/hv_utils.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hv/hv_vmbus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-axp288.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-fsa9480.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hv/hv_balloon.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-intel-int3496.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-axp288.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-intel-cht-wc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-fsa9480.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-intel-mrfld.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-intel-int3496.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-intel-cht-wc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-max14577.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-intel-mrfld.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-max3355.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-max77693.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-max14577.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-max77843.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-max8997.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-max3355.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-max77693.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-palmas.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-ptn5150.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-max77843.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-max8997.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-rt8973a.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-sm5502.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-palmas.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-ptn5150.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-usb-gpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-rt8973a.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-sm5502.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-usbc-cros-ec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-usbc-tusb320.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-usb-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/powercap/intel_rapl_common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-usbc-cros-ec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/extcon/extcon-usbc-tusb320.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/powercap/intel_rapl_msr.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/powercap/intel_rapl_tpmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/perf/dwc_pcie_pmu.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/powercap/intel_rapl_common.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/perf/cxl_pmu.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/powercap/intel_rapl_msr.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ras/amd/atl/amd_atl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/powercap/intel_rapl_tpmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/perf/dwc_pcie_pmu.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ras/amd/fmpm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/perf/cxl_pmu.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ras/amd/atl/amd_atl.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ras/amd/fmpm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_acpi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_gth.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_sth.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_acpi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_msu.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_gth.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_pti.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_sth.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_msu_sink.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_msu.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/nvmem/nvmem-rave-sp-eeprom.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_pti.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/nvmem/nvmem-rmem.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/intel_th/intel_th_msu_sink.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/nvmem/nvmem_qcom-spmi-sdam.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/nvmem/nvmem-rave-sp-eeprom.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/accel/habanalabs/habanalabs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/nvmem/nvmem-rmem.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/accel/ivpu/intel_vpu.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/vdpa.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/nvmem/nvmem_qcom-spmi-sdam.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/vdpa_sim/vdpa_sim.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/vdpa_sim/vdpa_sim_net.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/vdpa_sim/vdpa_sim_blk.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/vdpa.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/vdpa_user/vduse.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/accel/ivpu/intel_vpu.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/vdpa_sim/vdpa_sim.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/vdpa_sim/vdpa_sim_net.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/vdpa_sim/vdpa_sim_blk.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/accel/habanalabs/habanalabs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/ifcvf/ifcvf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/vdpa_user/vduse.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/virtio_pci/vp_vdpa.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/alibaba/eni_vdpa.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/ifcvf/ifcvf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/solidrun/snet_vdpa.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/virtio_pci/vp_vdpa.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/octeon_ep/octep_vdpa.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/alibaba/eni_vdpa.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/parport/parport.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/parport/parport_pc.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/solidrun/snet_vdpa.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vdpa/octeon_ep/octep_vdpa.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/parport/parport_serial.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/parport/parport.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/target_core_mod.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/parport/parport_pc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/target_core_iblock.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/parport/parport_serial.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/target_core_file.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/target_core_pscsi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/target_core_user.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/target_core_iblock.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/loopback/tcm_loop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/target_core_file.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/target_core_mod.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/target_core_pscsi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/target_core_user.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/iscsi/iscsi_target_mod.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/loopback/tcm_loop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/tcm_remote/tcm_remote.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/parsers/cmdlinepart.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/parsers/redboot.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/chipreg.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/tcm_remote/tcm_remote.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/cfi_probe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/target/iscsi/iscsi_target_mod.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/parsers/cmdlinepart.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/parsers/redboot.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/chipreg.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/cfi_util.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/cfi_probe.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/cfi_cmdset_0020.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/cfi_cmdset_0002.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/cfi_cmdset_0001.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/cfi_util.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/cfi_cmdset_0020.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/cfi_cmdset_0002.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/cfi_cmdset_0001.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/gen_probe.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/jedec_probe.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/map_ram.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/map_rom.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/gen_probe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/jedec_probe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/map_ram.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/map_rom.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/map_absent.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/lpddr/qinfo_probe.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/lpddr/lpddr_cmds.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/map_funcs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/l440gx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/chips/map_absent.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/lpddr/qinfo_probe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/lpddr/lpddr_cmds.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/map_funcs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/l440gx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/amd76xrom.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/esb2rom.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/ichxrom.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/ck804xrom.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/amd76xrom.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/esb2rom.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/ichxrom.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/ck804xrom.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/physmap.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/sbc_gxx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/nettel.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/scb2_flash.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/physmap.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/sbc_gxx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/nettel.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/scb2_flash.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/plat-ram.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/slram.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/phram.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/pmc551.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/maps/plat-ram.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/slram.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/phram.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/pmc551.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/mtdram.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/block2mtd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/mtd_dataflash.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/mchp23k256.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/mchp48l640.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/mtdram.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/block2mtd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/mtd_dataflash.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/mchp23k256.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/mchp48l640.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/sst25l.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/onenand/onenand.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/onenand/generic.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/nand.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/devices/sst25l.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/onenand/onenand.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/onenand/generic.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/sm_common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/nand.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/cafe_nand.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/denali.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/denali_pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/diskonchip.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/sm_common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/cafe_nand.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/denali.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/denali_pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/nandsim.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/diskonchip.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/plat_nand.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/r852.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/nandsim.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/gpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/plat_nand.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/mxic_nand.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/r852.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/arasan-nand-controller.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/spi/spinand.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/nandcore.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/mxic_nand.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/raw/arasan-nand-controller.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtd_blkdevs.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/spi/spinand.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nand/nandcore.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtdblock.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtdblock_ro.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtd_blkdevs.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/ftl.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nftl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtdblock.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtdblock_ro.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/inftl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/ftl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/nftl.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/rfd_ftl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/inftl.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/ssfdc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/sm_ftl.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtdoops.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/rfd_ftl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/ssfdc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtdpstore.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/sm_ftl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtdoops.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtdswap.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/spi-nor/spi-nor.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/ubi/ubi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtdpstore.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/ubi/gluebi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/mtdswap.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/ubi/nvmem.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/spi-nor/spi-nor.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/hyperbus/hyperbus-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/ubi/ubi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/ubi/gluebi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/spmi/spmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/ubi/nvmem.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mtd/hyperbus/hyperbus-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/spmi/spmi-devres.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/spmi/hisi-spmi-controller.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hsi/clients/hsi_char.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/spmi/spmi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hsi/hsi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/slimbus/slimbus.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/spmi/spmi-devres.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/spmi/hisi-spmi-controller.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hsi/clients/hsi_char.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hsi/hsi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/slimbus/slimbus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/slimbus/slim-qcom-ctrl.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_cif.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/slimbus/slim-qcom-ctrl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_pdrv_genirq.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_cif.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_dmem_genirq.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_aec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_sercos3.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_pdrv_genirq.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_dmem_genirq.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_aec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_sercos3.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_pci_generic.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_netx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_mf624.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_pci_generic.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_netx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_mf624.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_hv_generic.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/vfio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/vfio_iommu_type1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/pci/vfio-pci-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/pci/vfio-pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/uio/uio_hv_generic.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/vfio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/vfio_iommu_type1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/pci/virtio/virtio-vfio-pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/pci/vfio-pci-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/pci/vfio-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/pci/qat/qat_vfio_pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/mdev/mdev.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/block/aoe/aoe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/pci/virtio/virtio-vfio-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/amd_axi_w1.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/pci/qat/qat_vfio_pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vfio/mdev/mdev.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/block/aoe/aoe.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/amd_axi_w1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/matrox_w1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/ds2490.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/ds2482.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/w1-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/sgi_w1.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/matrox_w1.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/ds2490.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/ds2482.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/w1-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/w1-uart.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/sgi_w1.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_therm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_smem.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2405.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/masters/w1-uart.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_therm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_smem.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2405.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2408.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2413.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2406.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2423.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2430.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2408.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2413.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2406.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2423.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2431.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2430.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2805.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2433.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2438.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2431.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2805.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2433.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2438.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds250x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2780.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2781.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds28e04.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds250x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2780.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds2781.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds28e17.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds28e04.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/wire.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/core/memstick.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/core/ms_block.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/slaves/w1_ds28e17.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/core/mspro_block.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/w1/wire.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/core/memstick.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/core/ms_block.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/host/tifm_ms.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/host/jmb38x_ms.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/host/r592.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/core/mspro_block.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/host/rtsx_usb_ms.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/host/tifm_ms.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/host/jmb38x_ms.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/host/r592.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/dca/dca.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/memstick/host/rtsx_usb_ms.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ssb/ssb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/bcma/bcma.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost_net.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/dca/dca.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost_scsi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ssb/ssb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/bcma/bcma.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost_net.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost_vsock.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vringh.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost_scsi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost_vdpa.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost_vsock.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vringh.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost_iotlb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost_vdpa.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/rpmsg_core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/vhost/vhost_iotlb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/rpmsg_char.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/rpmsg_ctrl.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/rpmsg_core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/rpmsg_ns.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/rpmsg_char.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/rpmsg_ctrl.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/qcom_glink.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/rpmsg_ns.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/qcom_glink_rpm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/virtio_rpmsg_bus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ipack/devices/ipoctal.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/qcom_glink.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/qcom_glink_rpm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ipack/carriers/tpci200.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/rpmsg/virtio_rpmsg_bus.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ipack/devices/ipoctal.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ipack/ipack.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/ntb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/hw/idt/ntb_hw_idt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ipack/carriers/tpci200.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/hw/intel/ntb_hw_intel.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/hw/epf/ntb_hw_epf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ipack/ipack.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/ntb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/hw/idt/ntb_hw_idt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/hw/mscc/ntb_hw_switchtec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/hw/intel/ntb_hw_intel.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/hw/epf/ntb_hw_epf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/test/ntb_pingpong.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/test/ntb_tool.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/hw/mscc/ntb_hw_switchtec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/test/ntb_perf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/test/ntb_pingpong.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/test/ntb_tool.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/ntb_transport.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mcb/mcb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mcb/mcb-pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/test/ntb_perf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mcb/mcb-lpc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thunderbolt/thunderbolt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/ntb/ntb_transport.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mcb/mcb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mcb/mcb-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mcb/mcb-lpc.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_p_basic.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_p_sys-t.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/dummy_stm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_console.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/thunderbolt/thunderbolt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_p_basic.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_p_sys-t.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/dummy_stm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_console.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_heartbeat.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_ftrace.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/tee/tee.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/tee/amdtee/amdtee.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_heartbeat.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/hwtracing/stm/stm_ftrace.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/tee/tee.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/tee/amdtee/amdtee.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mux/mux-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mux/mux-adg792a.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mux/mux-adgs1408.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mux/mux-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/siox/siox-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mux/mux-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mux/mux-adg792a.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mux/mux-adgs1408.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/mux/mux-gpio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/siox/siox-bus-gpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/siox/siox-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss-serial.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss-mtk.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/siox/siox-bus-gpio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss-serial.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss-mtk.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss-sirf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss-ubx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss-usb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/counter/counter.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss-sirf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss-ubx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/gnss/gnss-usb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/counter/i8254.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/counter/counter.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/counter/104-quad-8.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/counter/interrupt-cnt.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/counter/intel-qep.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/counter/i8254.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/counter/104-quad-8.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/most/most_core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/counter/interrupt-cnt.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/counter/intel-qep.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/most/most_usb.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/most/most_cdev.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/most/most_snd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/most/most_core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/peci/peci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/most/most_usb.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/most/most_cdev.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/most/most_snd.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/peci/peci-cpu.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soundcore.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/peci/peci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-ctl-led.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-hwdep.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/drivers/peci/peci-cpu.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soundcore.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-ctl-led.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-timer.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-hwdep.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-hrtimer.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-pcm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-pcm-dmaengine.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-timer.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-hrtimer.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-seq-device.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-pcm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-pcm-dmaengine.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-rawmidi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/seq/snd-seq.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/seq/snd-seq-midi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-seq-device.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/seq/snd-seq-midi-emul.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-rawmidi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/seq/snd-seq-midi-event.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/seq/snd-seq.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/seq/snd-seq-midi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-compress.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/seq/snd-seq-midi-emul.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/drivers/snd-dummy.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/seq/snd-seq-midi-event.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/drivers/snd-aloop.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/core/snd-compress.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/drivers/opl3/snd-opl3-lib.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/drivers/snd-dummy.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/drivers/opl3/snd-opl3-synth.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/drivers/snd-aloop.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/drivers/mpu401/snd-mpu401-uart.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/drivers/opl3/snd-opl3-lib.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/isa/sb/snd-sb-common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/drivers/opl3/snd-opl3-synth.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/snd-ad1889.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/drivers/mpu401/snd-mpu401-uart.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/snd-als300.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/snd-als4000.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/isa/sb/snd-sb-common.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/snd-ad1889.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/snd-cs4281.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/snd-als300.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/snd-als4000.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/ac97/snd-ac97-codec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/ali5451/snd-ali5451.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/ctxfi/snd-ctxfi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/snd-cs4281.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/cs46xx/snd-cs46xx.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/ac97/snd-ac97-codec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/ali5451/snd-ali5451.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/echoaudio/snd-darla20.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/echoaudio/snd-darla24.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/ctxfi/snd-ctxfi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-codec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/cs46xx/snd-cs46xx.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-codec-generic.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/echoaudio/snd-darla20.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-codec-realtek.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/echoaudio/snd-darla24.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-codec-senarytech.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-codec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-codec-hdmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-codec-generic.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-scodec-component.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-codec-realtek.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-codec-senarytech.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-codec-hdmi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-scodec-component.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-intel.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/rme9652/snd-hdsp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/rme9652/snd-hdspm.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/snd-soc-acpi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/hda/snd-hda-intel.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/rme9652/snd-hdsp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/pci/rme9652/snd-hdspm.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/snd-soc-acpi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/snd-soc-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-ac97.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-ak4619.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-cs40l50.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-cs530x.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-cs530x-i2c.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-ac97.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-ak4619.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/snd-soc-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-cs40l50.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-cs530x.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-cs530x-i2c.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-es8311.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-hda-codec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-hdmi-codec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-pcm6240.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-es8311.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-hda-codec.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-hdmi-codec.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/amd/snd-acp-config.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/codecs/snd-soc-pcm6240.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/dwc/designware_i2s.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/common/snd-soc-acpi-intel-sdca-quirks.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/amd/snd-acp-config.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/dwc/designware_i2s.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/common/snd-soc-acpi-intel-sdca-quirks.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/atom/sst/snd-intel-sst-pci.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/sdca/snd-soc-sdca.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/atom/sst/snd-intel-sst-pci.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/hda/snd-hda-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/soc/sdca/snd-soc-sdca.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/hda/ext/snd-hda-ext-core.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/hda/snd-intel-dspcfg.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/hda/snd-intel-sdw-acpi.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/x86/snd-hdmi-lpe-audio.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/ac97_bus.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/hda/snd-hda-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/hda/ext/snd-hda-ext-core.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/hda/snd-intel-dspcfg.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/hda/snd-intel-sdw-acpi.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/x86/snd-hdmi-lpe-audio.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/sound/ac97_bus.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/core/pktgen.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/802/p8022.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/802/psnap.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/802/stp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/802/garp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/core/pktgen.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/802/p8022.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/802/psnap.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/802/stp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/802/garp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/802/mrp.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_police.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_gact.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_mirred.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_sample.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/802/mrp.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_police.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_gact.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_mirred.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_sample.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_nat.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_pedit.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_skbedit.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_csum.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_nat.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_pedit.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_skbedit.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_csum.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_vlan.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_bpf.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_connmark.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_ctinfo.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_vlan.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_bpf.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_connmark.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_skbmod.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_ctinfo.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_tunnel_key.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_ct.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/act_gate.ko
+  INSTALL debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel/net/sched/cls_u32.ko
+  STRIP   debian/linux-image-6.15.0-xe+/lib/modules/6.15.0-xe+/kernel
 
-Summary
--------
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-149633v2_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@hotunbind-rebind:
-    - shard-adlp:         [PASS][1] -> [SKIP][2] ([Intel XE#4963])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@core_hotunplug@hotunbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@core_hotunplug@hotunbind-rebind.html
-
-  * igt@fbdev@unaligned-read:
-    - shard-adlp:         [PASS][3] -> [SKIP][4] ([Intel XE#2134])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@fbdev@unaligned-read.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@fbdev@unaligned-read.html
-
-  * igt@kms_async_flips@async-flip-with-page-flip-events-tiled-atomic@pipe-d-hdmi-a-2-4-mc-ccs:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][5] ([Intel XE#3767]) +15 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-432/igt@kms_async_flips@async-flip-with-page-flip-events-tiled-atomic@pipe-d-hdmi-a-2-4-mc-ccs.html
-
-  * igt@kms_atomic_transition@plane-all-modeset-transition-fencing-internal-panels:
-    - shard-bmg:          NOTRUN -> [SKIP][6] ([Intel XE#2370])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_atomic_transition@plane-all-modeset-transition-fencing-internal-panels.html
-
-  * igt@kms_big_fb@linear-16bpp-rotate-270:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][7] ([Intel XE#316]) +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_big_fb@linear-16bpp-rotate-270.html
-
-  * igt@kms_big_fb@x-tiled-64bpp-rotate-90:
-    - shard-bmg:          NOTRUN -> [SKIP][8] ([Intel XE#2327])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_big_fb@x-tiled-64bpp-rotate-90.html
-
-  * igt@kms_big_fb@y-tiled-addfb-size-offset-overflow:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][9] ([Intel XE#607])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_big_fb@y-tiled-addfb-size-offset-overflow.html
-
-  * igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][10] ([Intel XE#1124]) +4 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip.html
-
-  * igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:
-    - shard-bmg:          NOTRUN -> [SKIP][11] ([Intel XE#1124]) +5 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html
-
-  * igt@kms_bw@connected-linear-tiling-2-displays-2160x1440p:
-    - shard-bmg:          [PASS][12] -> [SKIP][13] ([Intel XE#2314] / [Intel XE#2894])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_bw@connected-linear-tiling-2-displays-2160x1440p.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_bw@connected-linear-tiling-2-displays-2160x1440p.html
-
-  * igt@kms_bw@connected-linear-tiling-3-displays-2560x1440p:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][14] ([Intel XE#2191])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_bw@connected-linear-tiling-3-displays-2560x1440p.html
-
-  * igt@kms_bw@linear-tiling-1-displays-3840x2160p:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][15] ([Intel XE#367])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_bw@linear-tiling-1-displays-3840x2160p.html
-
-  * igt@kms_bw@linear-tiling-4-displays-3840x2160p:
-    - shard-bmg:          NOTRUN -> [SKIP][16] ([Intel XE#367])
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_bw@linear-tiling-4-displays-3840x2160p.html
-
-  * igt@kms_ccs@ccs-on-another-bo-4-tiled-mtl-rc-ccs-cc@pipe-c-dp-2:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][17] ([Intel XE#787]) +188 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-432/igt@kms_ccs@ccs-on-another-bo-4-tiled-mtl-rc-ccs-cc@pipe-c-dp-2.html
-
-  * igt@kms_ccs@crc-primary-basic-4-tiled-lnl-ccs:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][18] ([Intel XE#2907])
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_ccs@crc-primary-basic-4-tiled-lnl-ccs.html
-
-  * igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-a-hdmi-a-3:
-    - shard-bmg:          NOTRUN -> [SKIP][19] ([Intel XE#2652] / [Intel XE#787]) +4 other tests skip
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-a-hdmi-a-3.html
-
-  * igt@kms_ccs@missing-ccs-buffer-y-tiled-gen12-rc-ccs:
-    - shard-bmg:          NOTRUN -> [SKIP][20] ([Intel XE#2887]) +5 other tests skip
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_ccs@missing-ccs-buffer-y-tiled-gen12-rc-ccs.html
-
-  * igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc@pipe-a-dp-4:
-    - shard-dg2-set2:     [PASS][21] -> [INCOMPLETE][22] ([Intel XE#4212])
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-dg2-433/igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc@pipe-a-dp-4.html
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-433/igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc@pipe-a-dp-4.html
-
-  * igt@kms_ccs@random-ccs-data-4-tiled-mtl-mc-ccs@pipe-d-dp-2:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][23] ([Intel XE#455] / [Intel XE#787]) +30 other tests skip
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-432/igt@kms_ccs@random-ccs-data-4-tiled-mtl-mc-ccs@pipe-d-dp-2.html
-
-  * igt@kms_cdclk@plane-scaling@pipe-b-dp-4:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][24] ([Intel XE#4416]) +3 other tests skip
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_cdclk@plane-scaling@pipe-b-dp-4.html
-
-  * igt@kms_chamelium_color@ctm-0-50:
-    - shard-bmg:          NOTRUN -> [SKIP][25] ([Intel XE#2325])
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_chamelium_color@ctm-0-50.html
-
-  * igt@kms_chamelium_color@ctm-0-75:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][26] ([Intel XE#306]) +1 other test skip
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_chamelium_color@ctm-0-75.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-multiple:
-    - shard-lnl:          NOTRUN -> [SKIP][27] ([Intel XE#373])
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_chamelium_frames@hdmi-crc-multiple.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-single:
-    - shard-bmg:          NOTRUN -> [SKIP][28] ([Intel XE#2252]) +2 other tests skip
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_chamelium_frames@hdmi-crc-single.html
-
-  * igt@kms_chamelium_hpd@vga-hpd-with-enabled-mode:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][29] ([Intel XE#373]) +4 other tests skip
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_chamelium_hpd@vga-hpd-with-enabled-mode.html
-
-  * igt@kms_content_protection@atomic-dpms:
-    - shard-bmg:          NOTRUN -> [SKIP][30] ([Intel XE#2341])
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_content_protection@atomic-dpms.html
-
-  * igt@kms_content_protection@srm@pipe-a-dp-2:
-    - shard-bmg:          NOTRUN -> [FAIL][31] ([Intel XE#1178])
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_content_protection@srm@pipe-a-dp-2.html
-
-  * igt@kms_content_protection@srm@pipe-a-dp-4:
-    - shard-dg2-set2:     NOTRUN -> [FAIL][32] ([Intel XE#1178]) +2 other tests fail
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_content_protection@srm@pipe-a-dp-4.html
-
-  * igt@kms_cursor_crc@cursor-random-512x170:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][33] ([Intel XE#308])
-   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_cursor_crc@cursor-random-512x170.html
-
-  * igt@kms_cursor_crc@cursor-sliding-64x21:
-    - shard-bmg:          NOTRUN -> [SKIP][34] ([Intel XE#2320]) +1 other test skip
-   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_crc@cursor-sliding-64x21.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - shard-lnl:          NOTRUN -> [SKIP][35] ([Intel XE#323])
-   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@cursora-vs-flipb-legacy:
-    - shard-bmg:          NOTRUN -> [SKIP][36] ([Intel XE#2291]) +1 other test skip
-   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_legacy@cursora-vs-flipb-legacy.html
-
-  * igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size:
-    - shard-bmg:          [PASS][37] -> [SKIP][38] ([Intel XE#2291]) +1 other test skip
-   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size.html
-   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size.html
-
-  * igt@kms_cursor_legacy@short-busy-flip-before-cursor-toggle:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][39] ([Intel XE#323])
-   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_cursor_legacy@short-busy-flip-before-cursor-toggle.html
-
-  * igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-3:
-    - shard-bmg:          NOTRUN -> [SKIP][40] ([Intel XE#1340])
-   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-3.html
-
-  * igt@kms_dp_aux_dev:
-    - shard-bmg:          [PASS][41] -> [SKIP][42] ([Intel XE#3009])
-   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_dp_aux_dev.html
-   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_dp_aux_dev.html
-
-  * igt@kms_dp_linktrain_fallback@dp-fallback:
-    - shard-bmg:          [PASS][43] -> [SKIP][44] ([Intel XE#4294])
-   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_dp_linktrain_fallback@dp-fallback.html
-   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_dp_linktrain_fallback@dp-fallback.html
-
-  * igt@kms_dp_linktrain_fallback@dsc-fallback:
-    - shard-bmg:          NOTRUN -> [SKIP][45] ([Intel XE#4331])
-   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_dp_linktrain_fallback@dsc-fallback.html
-
-  * igt@kms_draw_crc@draw-method-blt:
-    - shard-adlp:         [PASS][46] -> [SKIP][47] ([Intel XE#4947]) +1 other test skip
-   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_draw_crc@draw-method-blt.html
-   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_draw_crc@draw-method-blt.html
-
-  * igt@kms_dsc@dsc-with-output-formats:
-    - shard-lnl:          NOTRUN -> [SKIP][48] ([Intel XE#2244])
-   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_dsc@dsc-with-output-formats.html
-
-  * igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-out-visible-area:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][49] ([Intel XE#4422])
-   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-out-visible-area.html
-
-  * igt@kms_feature_discovery@display-3x:
-    - shard-bmg:          NOTRUN -> [SKIP][50] ([Intel XE#2373])
-   [50]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_feature_discovery@display-3x.html
-
-  * igt@kms_feature_discovery@psr2:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][51] ([Intel XE#1135])
-   [51]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_feature_discovery@psr2.html
-
-  * igt@kms_flip@2x-flip-vs-dpms-on-nop-interruptible:
-    - shard-bmg:          [PASS][52] -> [SKIP][53] ([Intel XE#2316]) +4 other tests skip
-   [52]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_flip@2x-flip-vs-dpms-on-nop-interruptible.html
-   [53]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@2x-flip-vs-dpms-on-nop-interruptible.html
-
-  * igt@kms_flip@2x-flip-vs-expired-vblank-interruptible@bd-dp2-hdmi-a3:
-    - shard-bmg:          NOTRUN -> [FAIL][54] ([Intel XE#3321]) +1 other test fail
-   [54]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible@bd-dp2-hdmi-a3.html
-
-  * igt@kms_flip@2x-plain-flip-interruptible:
-    - shard-bmg:          NOTRUN -> [SKIP][55] ([Intel XE#2316]) +1 other test skip
-   [55]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@2x-plain-flip-interruptible.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@a-dp4:
-    - shard-dg2-set2:     [PASS][56] -> [FAIL][57] ([Intel XE#301]) +5 other tests fail
-   [56]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-dg2-434/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-dp4.html
-   [57]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-433/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-dp4.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a3:
-    - shard-bmg:          [PASS][58] -> [FAIL][59] ([Intel XE#3321]) +2 other tests fail
-   [58]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-3/igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a3.html
-   [59]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a3.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling:
-    - shard-bmg:          NOTRUN -> [SKIP][60] ([Intel XE#2293] / [Intel XE#2380]) +1 other test skip
-   [60]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling@pipe-a-valid-mode:
-    - shard-bmg:          NOTRUN -> [SKIP][61] ([Intel XE#2293]) +1 other test skip
-   [61]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling@pipe-a-valid-mode.html
-
-  * igt@kms_frontbuffer_tracking@drrs-rgb101010-draw-mmap-wc:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][62] ([Intel XE#651]) +14 other tests skip
-   [62]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_frontbuffer_tracking@drrs-rgb101010-draw-mmap-wc.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-shrfb-pgflip-blt:
-    - shard-bmg:          NOTRUN -> [SKIP][63] ([Intel XE#2312]) +18 other tests skip
-   [63]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-shrfb-pgflip-blt.html
-
-  * igt@kms_frontbuffer_tracking@fbc-tiling-linear:
-    - shard-bmg:          NOTRUN -> [SKIP][64] ([Intel XE#4141]) +1 other test skip
-   [64]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-tiling-linear.html
-
-  * igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-cur-indfb-draw-blt:
-    - shard-bmg:          NOTRUN -> [SKIP][65] ([Intel XE#2311]) +2 other tests skip
-   [65]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-cur-indfb-draw-blt.html
-
-  * igt@kms_frontbuffer_tracking@fbcdrrs-2p-primscrn-pri-shrfb-draw-blt:
-    - shard-lnl:          NOTRUN -> [SKIP][66] ([Intel XE#656]) +6 other tests skip
-   [66]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_frontbuffer_tracking@fbcdrrs-2p-primscrn-pri-shrfb-draw-blt.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-draw-mmap-wc:
-    - shard-bmg:          NOTRUN -> [SKIP][67] ([Intel XE#2313]) +5 other tests skip
-   [67]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-draw-mmap-wc.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-move:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][68] ([Intel XE#653]) +15 other tests skip
-   [68]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-move.html
-
-  * igt@kms_hdr@brightness-with-hdr:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][69] ([Intel XE#455]) +6 other tests skip
-   [69]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_hdr@brightness-with-hdr.html
-
-  * igt@kms_joiner@basic-ultra-joiner:
-    - shard-bmg:          NOTRUN -> [SKIP][70] ([Intel XE#2927])
-   [70]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_joiner@basic-ultra-joiner.html
-
-  * igt@kms_joiner@invalid-modeset-force-ultra-joiner:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][71] ([Intel XE#2925])
-   [71]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_joiner@invalid-modeset-force-ultra-joiner.html
-
-  * igt@kms_plane_lowres@tiling-yf:
-    - shard-bmg:          NOTRUN -> [SKIP][72] ([Intel XE#2393])
-   [72]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_plane_lowres@tiling-yf.html
-
-  * igt@kms_plane_multiple@2x-tiling-4:
-    - shard-bmg:          [PASS][73] -> [SKIP][74] ([Intel XE#4596])
-   [73]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-3/igt@kms_plane_multiple@2x-tiling-4.html
-   [74]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_plane_multiple@2x-tiling-4.html
-
-  * igt@kms_plane_multiple@2x-tiling-y:
-    - shard-bmg:          NOTRUN -> [SKIP][75] ([Intel XE#4596])
-   [75]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_plane_multiple@2x-tiling-y.html
-
-  * igt@kms_plane_scaling@invalid-num-scalers:
-    - shard-adlp:         [PASS][76] -> [SKIP][77] ([Intel XE#4950]) +16 other tests skip
-   [76]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_plane_scaling@invalid-num-scalers.html
-   [77]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_plane_scaling@invalid-num-scalers.html
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-b:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][78] ([Intel XE#2763]) +2 other tests skip
-   [78]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-b.html
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-d:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][79] ([Intel XE#2763] / [Intel XE#455]) +1 other test skip
-   [79]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-d.html
-
-  * igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-b:
-    - shard-bmg:          NOTRUN -> [SKIP][80] ([Intel XE#2763]) +4 other tests skip
-   [80]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-b.html
-
-  * igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-75@pipe-a:
-    - shard-lnl:          NOTRUN -> [SKIP][81] ([Intel XE#2763]) +5 other tests skip
-   [81]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-75@pipe-a.html
-
-  * igt@kms_pm_lpsp@kms-lpsp:
-    - shard-bmg:          NOTRUN -> [SKIP][82] ([Intel XE#2499])
-   [82]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_pm_lpsp@kms-lpsp.html
-
-  * igt@kms_pm_rpm@basic-rte:
-    - shard-adlp:         [PASS][83] -> [SKIP][84] ([Intel XE#4962])
-   [83]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_pm_rpm@basic-rte.html
-   [84]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_pm_rpm@basic-rte.html
-
-  * igt@kms_psr2_sf@fbc-pr-overlay-plane-update-sf-dmg-area:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][85] ([Intel XE#1489]) +5 other tests skip
-   [85]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_psr2_sf@fbc-pr-overlay-plane-update-sf-dmg-area.html
-
-  * igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf:
-    - shard-lnl:          NOTRUN -> [SKIP][86] ([Intel XE#2893] / [Intel XE#4608])
-   [86]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf.html
-
-  * igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf@pipe-b-edp-1:
-    - shard-lnl:          NOTRUN -> [SKIP][87] ([Intel XE#4608]) +1 other test skip
-   [87]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf@pipe-b-edp-1.html
-
-  * igt@kms_psr2_sf@pr-overlay-plane-update-sf-dmg-area:
-    - shard-bmg:          NOTRUN -> [SKIP][88] ([Intel XE#1489]) +4 other tests skip
-   [88]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_psr2_sf@pr-overlay-plane-update-sf-dmg-area.html
-
-  * igt@kms_psr@fbc-pr-no-drrs:
-    - shard-bmg:          NOTRUN -> [SKIP][89] ([Intel XE#2234] / [Intel XE#2850]) +4 other tests skip
-   [89]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_psr@fbc-pr-no-drrs.html
-
-  * igt@kms_psr@fbc-psr2-primary-render:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][90] ([Intel XE#2850] / [Intel XE#929]) +5 other tests skip
-   [90]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_psr@fbc-psr2-primary-render.html
-
-  * igt@kms_psr_stress_test@flip-primary-invalidate-overlay:
-    - shard-bmg:          NOTRUN -> [SKIP][91] ([Intel XE#2414])
-   [91]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_psr_stress_test@flip-primary-invalidate-overlay.html
-
-  * igt@kms_rotation_crc@primary-y-tiled-reflect-x-90:
-    - shard-bmg:          NOTRUN -> [SKIP][92] ([Intel XE#3414] / [Intel XE#3904]) +1 other test skip
-   [92]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_rotation_crc@primary-y-tiled-reflect-x-90.html
-
-  * igt@kms_rotation_crc@primary-yf-tiled-reflect-x-270:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][93] ([Intel XE#3414])
-   [93]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-270.html
-
-  * igt@kms_setmode@basic:
-    - shard-bmg:          [PASS][94] -> [FAIL][95] ([Intel XE#2883]) +1 other test fail
-   [94]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_setmode@basic.html
-   [95]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_setmode@basic.html
-
-  * igt@kms_vrr@cmrr@pipe-a-edp-1:
-    - shard-lnl:          [PASS][96] -> [FAIL][97] ([Intel XE#4459]) +1 other test fail
-   [96]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-2/igt@kms_vrr@cmrr@pipe-a-edp-1.html
-   [97]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-3/igt@kms_vrr@cmrr@pipe-a-edp-1.html
-
-  * igt@kms_vrr@flipline:
-    - shard-bmg:          NOTRUN -> [SKIP][98] ([Intel XE#1499])
-   [98]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_vrr@flipline.html
-
-  * igt@kms_writeback@writeback-pixel-formats:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][99] ([Intel XE#756]) +1 other test skip
-   [99]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_writeback@writeback-pixel-formats.html
-
-  * igt@sriov_basic@enable-vfs-bind-unbind-each-numvfs-all:
-    - shard-bmg:          NOTRUN -> [SKIP][100] ([Intel XE#1091] / [Intel XE#2849])
-   [100]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@sriov_basic@enable-vfs-bind-unbind-each-numvfs-all.html
-
-  * igt@xe_compute_preempt@compute-threadgroup-preempt@engine-drm_xe_engine_class_compute:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][101] ([Intel XE#1280] / [Intel XE#455]) +1 other test skip
-   [101]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_compute_preempt@compute-threadgroup-preempt@engine-drm_xe_engine_class_compute.html
-
-  * igt@xe_eudebug@attach-debug-metadata:
-    - shard-bmg:          NOTRUN -> [SKIP][102] ([Intel XE#4837]) +2 other tests skip
-   [102]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_eudebug@attach-debug-metadata.html
-
-  * igt@xe_evict@evict-large-external:
-    - shard-lnl:          NOTRUN -> [SKIP][103] ([Intel XE#688])
-   [103]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@xe_evict@evict-large-external.html
-
-  * igt@xe_exec_basic@many-execqueues-bindexecqueue-userptr-rebind:
-    - shard-adlp:         [PASS][104] -> [SKIP][105] ([Intel XE#4945]) +28 other tests skip
-   [104]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_exec_basic@many-execqueues-bindexecqueue-userptr-rebind.html
-   [105]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_exec_basic@many-execqueues-bindexecqueue-userptr-rebind.html
-
-  * igt@xe_exec_basic@multigpu-no-exec-bindexecqueue:
-    - shard-bmg:          NOTRUN -> [SKIP][106] ([Intel XE#2322]) +3 other tests skip
-   [106]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_exec_basic@multigpu-no-exec-bindexecqueue.html
-
-  * igt@xe_exec_basic@multigpu-no-exec-null-defer-bind:
-    - shard-dg2-set2:     [PASS][107] -> [SKIP][108] ([Intel XE#1392]) +6 other tests skip
-   [107]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-dg2-435/igt@xe_exec_basic@multigpu-no-exec-null-defer-bind.html
-   [108]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-432/igt@xe_exec_basic@multigpu-no-exec-null-defer-bind.html
-
-  * igt@xe_exec_basic@multigpu-no-exec-userptr:
-    - shard-lnl:          NOTRUN -> [SKIP][109] ([Intel XE#1392])
-   [109]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@xe_exec_basic@multigpu-no-exec-userptr.html
-
-  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate-race:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][110] ([Intel XE#288]) +12 other tests skip
-   [110]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate-race.html
-
-  * igt@xe_exec_sip_eudebug@breakpoint-writesip:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][111] ([Intel XE#4837]) +7 other tests skip
-   [111]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_exec_sip_eudebug@breakpoint-writesip.html
-
-  * igt@xe_exec_system_allocator@many-execqueues-mmap-huge-nomemset:
-    - shard-lnl:          NOTRUN -> [SKIP][112] ([Intel XE#4943]) +1 other test skip
-   [112]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@xe_exec_system_allocator@many-execqueues-mmap-huge-nomemset.html
-
-  * igt@xe_exec_system_allocator@threads-many-large-execqueues-mmap-new-huge:
-    - shard-bmg:          NOTRUN -> [SKIP][113] ([Intel XE#4943]) +8 other tests skip
-   [113]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_exec_system_allocator@threads-many-large-execqueues-mmap-new-huge.html
-
-  * igt@xe_exec_system_allocator@threads-many-stride-mmap-remap-eocheck:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][114] ([Intel XE#4915]) +122 other tests skip
-   [114]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_exec_system_allocator@threads-many-stride-mmap-remap-eocheck.html
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - shard-adlp:         [PASS][115] -> [FAIL][116] ([Intel XE#3099]) +1 other test fail
-   [115]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_live_ktest@xe_dma_buf.html
-   [116]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_live_ktest@xe_dma_buf.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][117] ([Intel XE#2229])
-   [117]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  * igt@xe_oa@non-privileged-map-oa-buffer:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][118] ([Intel XE#2541] / [Intel XE#3573]) +1 other test skip
-   [118]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@xe_oa@non-privileged-map-oa-buffer.html
-
-  * igt@xe_oa@syncs-syncobj-wait-cfg:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][119] ([Intel XE#2541] / [Intel XE#3573] / [Intel XE#4501])
-   [119]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_oa@syncs-syncobj-wait-cfg.html
-
-  * igt@xe_pat@pat-index-xe2:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][120] ([Intel XE#977])
-   [120]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@xe_pat@pat-index-xe2.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][121] ([Intel XE#2838] / [Intel XE#979])
-   [121]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_peer2peer@read:
-    - shard-bmg:          NOTRUN -> [SKIP][122] ([Intel XE#2427])
-   [122]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_peer2peer@read.html
-
-  * igt@xe_pm@s2idle-vm-bind-unbind-all:
-    - shard-adlp:         [PASS][123] -> [DMESG-WARN][124] ([Intel XE#2953] / [Intel XE#4173]) +4 other tests dmesg-warn
-   [123]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-8/igt@xe_pm@s2idle-vm-bind-unbind-all.html
-   [124]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-1/igt@xe_pm@s2idle-vm-bind-unbind-all.html
-
-  * igt@xe_pm@s3-d3cold-basic-exec:
-    - shard-bmg:          NOTRUN -> [SKIP][125] ([Intel XE#2284])
-   [125]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_pm@s3-d3cold-basic-exec.html
-
-  * igt@xe_pm@s4-mocs:
-    - shard-lnl:          [PASS][126] -> [ABORT][127] ([Intel XE#1794])
-   [126]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-1/igt@xe_pm@s4-mocs.html
-   [127]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-2/igt@xe_pm@s4-mocs.html
-
-  * igt@xe_pm@vram-d3cold-threshold:
-    - shard-bmg:          NOTRUN -> [SKIP][128] ([Intel XE#579])
-   [128]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_pm@vram-d3cold-threshold.html
-
-  * igt@xe_pxp@display-black-pxp-fb:
-    - shard-bmg:          NOTRUN -> [SKIP][129] ([Intel XE#4733])
-   [129]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_pxp@display-black-pxp-fb.html
-
-  * igt@xe_query@multigpu-query-cs-cycles:
-    - shard-bmg:          NOTRUN -> [SKIP][130] ([Intel XE#944])
-   [130]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_query@multigpu-query-cs-cycles.html
-
-  * igt@xe_query@multigpu-query-mem-usage:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][131] ([Intel XE#944]) +1 other test skip
-   [131]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_query@multigpu-query-mem-usage.html
-
-  * igt@xe_sriov_auto_provisioning@fair-allocation:
-    - shard-lnl:          NOTRUN -> [SKIP][132] ([Intel XE#4130])
-   [132]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@xe_sriov_auto_provisioning@fair-allocation.html
-
-  * igt@xe_sriov_auto_provisioning@selfconfig-reprovision-increase-numvfs:
-    - shard-bmg:          NOTRUN -> [SKIP][133] ([Intel XE#4130])
-   [133]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_sriov_auto_provisioning@selfconfig-reprovision-increase-numvfs.html
-
-  * igt@xe_sriov_scheduling@nonpreempt-engine-resets:
-    - shard-dg2-set2:     NOTRUN -> [SKIP][134] ([Intel XE#4351])
-   [134]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_sriov_scheduling@nonpreempt-engine-resets.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip:
-    - shard-adlp:         [DMESG-FAIL][135] ([Intel XE#4543]) -> [PASS][136]
-   [135]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-1/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip.html
-   [136]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-1/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip.html
-
-  * igt@kms_bw@connected-linear-tiling-2-displays-1920x1080p:
-    - shard-bmg:          [SKIP][137] ([Intel XE#2314] / [Intel XE#2894]) -> [PASS][138] +1 other test pass
-   [137]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_bw@connected-linear-tiling-2-displays-1920x1080p.html
-   [138]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_bw@connected-linear-tiling-2-displays-1920x1080p.html
-
-  * igt@kms_cursor_crc@cursor-size-hints:
-    - shard-bmg:          [SKIP][139] ([Intel XE#2320] / [Intel XE#5042]) -> [PASS][140]
-   [139]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_crc@cursor-size-hints.html
-   [140]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_crc@cursor-size-hints.html
-
-  * igt@kms_cursor_crc@cursor-suspend:
-    - shard-bmg:          [INCOMPLETE][141] ([Intel XE#4820]) -> [PASS][142]
-   [141]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_crc@cursor-suspend.html
-   [142]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_cursor_crc@cursor-suspend.html
-
-  * igt@kms_cursor_crc@cursor-suspend@pipe-d-dp-2:
-    - shard-bmg:          [INCOMPLETE][143] -> [PASS][144]
-   [143]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_crc@cursor-suspend@pipe-d-dp-2.html
-   [144]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_cursor_crc@cursor-suspend@pipe-d-dp-2.html
-
-  * igt@kms_cursor_legacy@cursora-vs-flipb-atomic-transitions-varying-size:
-    - shard-bmg:          [SKIP][145] ([Intel XE#2291]) -> [PASS][146] +8 other tests pass
-   [145]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_cursor_legacy@cursora-vs-flipb-atomic-transitions-varying-size.html
-   [146]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_cursor_legacy@cursora-vs-flipb-atomic-transitions-varying-size.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic:
-    - shard-adlp:         [DMESG-WARN][147] ([Intel XE#2953] / [Intel XE#4173]) -> [PASS][148]
-   [147]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-2/igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic.html
-   [148]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-8/igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic.html
-
-  * igt@kms_feature_discovery@display-2x:
-    - shard-bmg:          [SKIP][149] ([Intel XE#2373]) -> [PASS][150]
-   [149]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_feature_discovery@display-2x.html
-   [150]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_feature_discovery@display-2x.html
-
-  * igt@kms_flip@2x-nonexisting-fb:
-    - shard-bmg:          [SKIP][151] ([Intel XE#2316]) -> [PASS][152] +8 other tests pass
-   [151]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_flip@2x-nonexisting-fb.html
-   [152]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_flip@2x-nonexisting-fb.html
-
-  * igt@kms_flip@flip-vs-suspend:
-    - shard-bmg:          [INCOMPLETE][153] ([Intel XE#2049] / [Intel XE#2597]) -> [PASS][154] +1 other test pass
-   [153]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_flip@flip-vs-suspend.html
-   [154]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@flip-vs-suspend.html
-
-  * igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1:
-    - shard-lnl:          [FAIL][155] ([Intel XE#886]) -> [PASS][156] +1 other test pass
-   [155]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-2/igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1.html
-   [156]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1.html
-
-  * igt@kms_hdr@invalid-hdr:
-    - shard-bmg:          [SKIP][157] ([Intel XE#1503]) -> [PASS][158]
-   [157]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_hdr@invalid-hdr.html
-   [158]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_hdr@invalid-hdr.html
-
-  * igt@kms_joiner@invalid-modeset-force-big-joiner:
-    - shard-bmg:          [SKIP][159] ([Intel XE#3012]) -> [PASS][160]
-   [159]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_joiner@invalid-modeset-force-big-joiner.html
-   [160]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_joiner@invalid-modeset-force-big-joiner.html
-
-  * igt@kms_properties@connector-properties-atomic@pipe-none-hdmi-a-4:
-    - shard-bmg:          [DMESG-WARN][161] ([Intel XE#3428]) -> [PASS][162] +3 other tests pass
-   [161]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_properties@connector-properties-atomic@pipe-none-hdmi-a-4.html
-   [162]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_properties@connector-properties-atomic@pipe-none-hdmi-a-4.html
-
-  * igt@kms_setmode@basic:
-    - shard-lnl:          [FAIL][163] ([Intel XE#2883]) -> [PASS][164] +1 other test pass
-   [163]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-7/igt@kms_setmode@basic.html
-   [164]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-7/igt@kms_setmode@basic.html
-
-  * igt@kms_setmode@invalid-clone-single-crtc:
-    - shard-bmg:          [SKIP][165] ([Intel XE#1435]) -> [PASS][166]
-   [165]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_setmode@invalid-clone-single-crtc.html
-   [166]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_setmode@invalid-clone-single-crtc.html
-
-  * igt@xe_exec_basic@multigpu-no-exec-userptr-invalidate-race:
-    - shard-dg2-set2:     [SKIP][167] ([Intel XE#1392]) -> [PASS][168] +5 other tests pass
-   [167]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-dg2-432/igt@xe_exec_basic@multigpu-no-exec-userptr-invalidate-race.html
-   [168]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_exec_basic@multigpu-no-exec-userptr-invalidate-race.html
-
-  * igt@xe_exec_system_allocator@threads-shared-vm-many-large-execqueues-new-bo-map-nomemset:
-    - shard-lnl:          [FAIL][169] ([Intel XE#5018]) -> [PASS][170]
-   [169]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-5/igt@xe_exec_system_allocator@threads-shared-vm-many-large-execqueues-new-bo-map-nomemset.html
-   [170]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-7/igt@xe_exec_system_allocator@threads-shared-vm-many-large-execqueues-new-bo-map-nomemset.html
-
-  * igt@xe_pm@s4-multiple-execs:
-    - shard-lnl:          [ABORT][171] ([Intel XE#1794]) -> [PASS][172]
-   [171]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-2/igt@xe_pm@s4-multiple-execs.html
-   [172]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@xe_pm@s4-multiple-execs.html
-
-  
-#### Warnings ####
-
-  * igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip:
-    - shard-adlp:         [SKIP][173] ([Intel XE#1124]) -> [SKIP][174] ([Intel XE#4947]) +1 other test skip
-   [173]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html
-   [174]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html
-
-  * igt@kms_big_fb@x-tiled-8bpp-rotate-270:
-    - shard-adlp:         [SKIP][175] ([Intel XE#316]) -> [SKIP][176] ([Intel XE#4947])
-   [175]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_big_fb@x-tiled-8bpp-rotate-270.html
-   [176]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_big_fb@x-tiled-8bpp-rotate-270.html
-
-  * igt@kms_big_fb@y-tiled-32bpp-rotate-270:
-    - shard-adlp:         [SKIP][177] ([Intel XE#316]) -> [SKIP][178] ([Intel XE#2351] / [Intel XE#4947])
-   [177]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_big_fb@y-tiled-32bpp-rotate-270.html
-   [178]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_big_fb@y-tiled-32bpp-rotate-270.html
-
-  * igt@kms_bw@linear-tiling-3-displays-1920x1080p:
-    - shard-adlp:         [SKIP][179] ([Intel XE#367]) -> [SKIP][180] ([Intel XE#4950])
-   [179]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_bw@linear-tiling-3-displays-1920x1080p.html
-   [180]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_bw@linear-tiling-3-displays-1920x1080p.html
-
-  * igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs:
-    - shard-adlp:         [SKIP][181] ([Intel XE#3442]) -> [SKIP][182] ([Intel XE#4947])
-   [181]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html
-   [182]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html
-
-  * igt@kms_ccs@missing-ccs-buffer-yf-tiled-ccs:
-    - shard-adlp:         [SKIP][183] ([Intel XE#455] / [Intel XE#787]) -> [SKIP][184] ([Intel XE#4947])
-   [183]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_ccs@missing-ccs-buffer-yf-tiled-ccs.html
-   [184]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_ccs@missing-ccs-buffer-yf-tiled-ccs.html
-
-  * igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc:
-    - shard-dg2-set2:     [INCOMPLETE][185] ([Intel XE#1727] / [Intel XE#3113] / [Intel XE#3124]) -> [INCOMPLETE][186] ([Intel XE#2705] / [Intel XE#4212])
-   [185]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-dg2-433/igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc.html
-   [186]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-433/igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc.html
-
-  * igt@kms_chamelium_frames@hdmi-frame-dump:
-    - shard-adlp:         [SKIP][187] ([Intel XE#373]) -> [SKIP][188] ([Intel XE#4950]) +2 other tests skip
-   [187]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_chamelium_frames@hdmi-frame-dump.html
-   [188]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_chamelium_frames@hdmi-frame-dump.html
-
-  * igt@kms_content_protection@atomic:
-    - shard-bmg:          [SKIP][189] ([Intel XE#2341] / [Intel XE#5042]) -> [SKIP][190] ([Intel XE#2341])
-   [189]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_content_protection@atomic.html
-   [190]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_content_protection@atomic.html
-
-  * igt@kms_content_protection@legacy:
-    - shard-bmg:          [FAIL][191] ([Intel XE#1178]) -> [SKIP][192] ([Intel XE#2341])
-   [191]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-3/igt@kms_content_protection@legacy.html
-   [192]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_content_protection@legacy.html
-
-  * igt@kms_content_protection@lic-type-0:
-    - shard-bmg:          [TIMEOUT][193] ([Intel XE#4862]) -> [SKIP][194] ([Intel XE#2341])
-   [193]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_content_protection@lic-type-0.html
-   [194]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_content_protection@lic-type-0.html
-
-  * igt@kms_content_protection@srm:
-    - shard-bmg:          [SKIP][195] ([Intel XE#2341]) -> [FAIL][196] ([Intel XE#1178])
-   [195]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_content_protection@srm.html
-   [196]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_content_protection@srm.html
-
-  * igt@kms_cursor_crc@cursor-onscreen-256x85:
-    - shard-bmg:          [SKIP][197] ([Intel XE#2320] / [Intel XE#5042]) -> [SKIP][198] ([Intel XE#2320])
-   [197]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_crc@cursor-onscreen-256x85.html
-   [198]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_crc@cursor-onscreen-256x85.html
-
-  * igt@kms_cursor_legacy@2x-cursor-vs-flip-legacy:
-    - shard-bmg:          [SKIP][199] ([Intel XE#2291] / [Intel XE#5042]) -> [SKIP][200] ([Intel XE#2291])
-   [199]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_legacy@2x-cursor-vs-flip-legacy.html
-   [200]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_legacy@2x-cursor-vs-flip-legacy.html
-
-  * igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size:
-    - shard-adlp:         [SKIP][201] ([Intel XE#309]) -> [SKIP][202] ([Intel XE#4950]) +1 other test skip
-   [201]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size.html
-   [202]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size.html
-
-  * igt@kms_dither@fb-8bpc-vs-panel-6bpc:
-    - shard-bmg:          [SKIP][203] ([Intel XE#4879]) -> [SKIP][204] ([Intel XE#1340])
-   [203]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_dither@fb-8bpc-vs-panel-6bpc.html
-   [204]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_dither@fb-8bpc-vs-panel-6bpc.html
-
-  * igt@kms_flip@2x-absolute-wf_vblank:
-    - shard-adlp:         [SKIP][205] ([Intel XE#310]) -> [SKIP][206] ([Intel XE#4950])
-   [205]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_flip@2x-absolute-wf_vblank.html
-   [206]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_flip@2x-absolute-wf_vblank.html
-
-  * igt@kms_flip@2x-blocking-absolute-wf_vblank-interruptible:
-    - shard-bmg:          [FAIL][207] ([Intel XE#2882]) -> [SKIP][208] ([Intel XE#2316])
-   [207]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_flip@2x-blocking-absolute-wf_vblank-interruptible.html
-   [208]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@2x-blocking-absolute-wf_vblank-interruptible.html
-
-  * igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset:
-    - shard-bmg:          [DMESG-WARN][209] ([Intel XE#3428]) -> [SKIP][210] ([Intel XE#2316]) +1 other test skip
-   [209]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset.html
-   [210]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset.html
-
-  * igt@kms_flip@2x-flip-vs-expired-vblank-interruptible:
-    - shard-bmg:          [SKIP][211] ([Intel XE#2316]) -> [FAIL][212] ([Intel XE#3321])
-   [211]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
-   [212]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling:
-    - shard-adlp:         [SKIP][213] ([Intel XE#455]) -> [SKIP][214] ([Intel XE#4947])
-   [213]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling.html
-   [214]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling.html
-
-  * igt@kms_frontbuffer_tracking@drrs-2p-primscrn-indfb-pgflip-blt:
-    - shard-bmg:          [SKIP][215] ([Intel XE#2312]) -> [SKIP][216] ([Intel XE#2311]) +19 other tests skip
-   [215]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_frontbuffer_tracking@drrs-2p-primscrn-indfb-pgflip-blt.html
-   [216]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_frontbuffer_tracking@drrs-2p-primscrn-indfb-pgflip-blt.html
-
-  * igt@kms_frontbuffer_tracking@drrs-2p-scndscrn-pri-indfb-draw-mmap-wc:
-    - shard-bmg:          [SKIP][217] ([Intel XE#2311]) -> [SKIP][218] ([Intel XE#2312]) +14 other tests skip
-   [217]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_frontbuffer_tracking@drrs-2p-scndscrn-pri-indfb-draw-mmap-wc.html
-   [218]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@drrs-2p-scndscrn-pri-indfb-draw-mmap-wc.html
-
-  * igt@kms_frontbuffer_tracking@drrs-rgb565-draw-render:
-    - shard-adlp:         [SKIP][219] ([Intel XE#651]) -> [SKIP][220] ([Intel XE#4947]) +1 other test skip
-   [219]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_frontbuffer_tracking@drrs-rgb565-draw-render.html
-   [220]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_frontbuffer_tracking@drrs-rgb565-draw-render.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-rte:
-    - shard-bmg:          [SKIP][221] ([Intel XE#4141] / [Intel XE#5042]) -> [SKIP][222] ([Intel XE#4141])
-   [221]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_frontbuffer_tracking@fbc-2p-rte.html
-   [222]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-2p-rte.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-mmap-wc:
-    - shard-adlp:         [SKIP][223] ([Intel XE#656]) -> [SKIP][224] ([Intel XE#2351] / [Intel XE#4947])
-   [223]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-mmap-wc.html
-   [224]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-mmap-wc.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-render:
-    - shard-adlp:         [SKIP][225] ([Intel XE#656]) -> [SKIP][226] ([Intel XE#4947]) +8 other tests skip
-   [225]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-render.html
-   [226]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-render.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-move:
-    - shard-bmg:          [SKIP][227] ([Intel XE#4141]) -> [SKIP][228] ([Intel XE#2312]) +5 other tests skip
-   [227]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-move.html
-   [228]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-move.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-onoff:
-    - shard-bmg:          [SKIP][229] ([Intel XE#2312]) -> [SKIP][230] ([Intel XE#4141]) +10 other tests skip
-   [229]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-onoff.html
-   [230]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-onoff.html
-
-  * igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-cur-indfb-draw-render:
-    - shard-bmg:          [SKIP][231] ([Intel XE#2311] / [Intel XE#5042]) -> [SKIP][232] ([Intel XE#2311])
-   [231]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-cur-indfb-draw-render.html
-   [232]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-cur-indfb-draw-render.html
-
-  * igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-pri-shrfb-draw-blt:
-    - shard-adlp:         [SKIP][233] ([Intel XE#651]) -> [SKIP][234] ([Intel XE#2351] / [Intel XE#4947])
-   [233]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-pri-shrfb-draw-blt.html
-   [234]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-pri-shrfb-draw-blt.html
-
-  * igt@kms_frontbuffer_tracking@fbcdrrs-2p-scndscrn-indfb-msflip-blt:
-    - shard-bmg:          [SKIP][235] ([Intel XE#2312] / [Intel XE#5042]) -> [SKIP][236] ([Intel XE#2312]) +4 other tests skip
-   [235]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_frontbuffer_tracking@fbcdrrs-2p-scndscrn-indfb-msflip-blt.html
-   [236]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcdrrs-2p-scndscrn-indfb-msflip-blt.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw:
-    - shard-adlp:         [SKIP][237] ([Intel XE#653]) -> [SKIP][238] ([Intel XE#4947]) +1 other test skip
-   [237]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw.html
-   [238]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-indfb-draw-render:
-    - shard-bmg:          [SKIP][239] ([Intel XE#2313]) -> [SKIP][240] ([Intel XE#2312]) +12 other tests skip
-   [239]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-indfb-draw-render.html
-   [240]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-indfb-draw-render.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-blt:
-    - shard-bmg:          [SKIP][241] ([Intel XE#2312]) -> [SKIP][242] ([Intel XE#2313]) +21 other tests skip
-   [241]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-blt.html
-   [242]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-blt.html
-
-  * igt@kms_hdr@brightness-with-hdr:
-    - shard-bmg:          [SKIP][243] ([Intel XE#3374] / [Intel XE#3544]) -> [SKIP][244] ([Intel XE#3544])
-   [243]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-3/igt@kms_hdr@brightness-with-hdr.html
-   [244]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_hdr@brightness-with-hdr.html
-
-  * igt@kms_hdr@invalid-metadata-sizes:
-    - shard-adlp:         [SKIP][245] ([Intel XE#455]) -> [SKIP][246] ([Intel XE#4950]) +2 other tests skip
-   [245]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_hdr@invalid-metadata-sizes.html
-   [246]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_hdr@invalid-metadata-sizes.html
-
-  * igt@kms_plane_multiple@2x-tiling-yf:
-    - shard-bmg:          [SKIP][247] ([Intel XE#4596]) -> [SKIP][248] ([Intel XE#5021])
-   [247]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_plane_multiple@2x-tiling-yf.html
-   [248]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_plane_multiple@2x-tiling-yf.html
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-25:
-    - shard-bmg:          [SKIP][249] ([Intel XE#2763] / [Intel XE#5042]) -> [SKIP][250] ([Intel XE#2763]) +1 other test skip
-   [249]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_plane_scaling@planes-downscale-factor-0-25.html
-   [250]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_plane_scaling@planes-downscale-factor-0-25.html
-
-  * igt@kms_pm_backlight@basic-brightness:
-    - shard-adlp:         [SKIP][251] ([Intel XE#870]) -> [SKIP][252] ([Intel XE#4947])
-   [251]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_pm_backlight@basic-brightness.html
-   [252]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_pm_backlight@basic-brightness.html
-
-  * igt@kms_pm_dc@dc9-dpms:
-    - shard-adlp:         [FAIL][253] ([Intel XE#3325]) -> [SKIP][254] ([Intel XE#734])
-   [253]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-8/igt@kms_pm_dc@dc9-dpms.html
-   [254]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-6/igt@kms_pm_dc@dc9-dpms.html
-
-  * igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-sf:
-    - shard-adlp:         [SKIP][255] ([Intel XE#1489]) -> [SKIP][256] ([Intel XE#4947])
-   [255]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-sf.html
-   [256]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-sf.html
-
-  * igt@kms_psr@psr-basic:
-    - shard-adlp:         [SKIP][257] ([Intel XE#2850] / [Intel XE#929]) -> [SKIP][258] ([Intel XE#4947]) +4 other tests skip
-   [257]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_psr@psr-basic.html
-   [258]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_psr@psr-basic.html
-
-  * igt@xe_configfs@survivability-mode:
-    - shard-adlp:         [SKIP][259] ([Intel XE#5084]) -> [SKIP][260] ([Intel XE#4945])
-   [259]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_configfs@survivability-mode.html
-   [260]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_configfs@survivability-mode.html
-
-  * igt@xe_eu_stall@non-blocking-re-enable:
-    - shard-adlp:         [SKIP][261] ([Intel XE#4497]) -> [SKIP][262] ([Intel XE#4945])
-   [261]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_eu_stall@non-blocking-re-enable.html
-   [262]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_eu_stall@non-blocking-re-enable.html
-
-  * igt@xe_eudebug@basic-client-th:
-    - shard-adlp:         [SKIP][263] ([Intel XE#4837]) -> [SKIP][264] ([Intel XE#4945]) +2 other tests skip
-   [263]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_eudebug@basic-client-th.html
-   [264]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_eudebug@basic-client-th.html
-
-  * igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-invalidate:
-    - shard-adlp:         [SKIP][265] ([Intel XE#1392]) -> [SKIP][266] ([Intel XE#4945]) +1 other test skip
-   [265]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-invalidate.html
-   [266]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-invalidate.html
-
-  * igt@xe_exec_fault_mode@once-userptr-invalidate-prefetch:
-    - shard-adlp:         [SKIP][267] ([Intel XE#288]) -> [SKIP][268] ([Intel XE#4945]) +3 other tests skip
-   [267]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_exec_fault_mode@once-userptr-invalidate-prefetch.html
-   [268]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_exec_fault_mode@once-userptr-invalidate-prefetch.html
-
-  * igt@xe_exec_mix_modes@exec-simple-batch-store-dma-fence:
-    - shard-adlp:         [SKIP][269] ([Intel XE#2360]) -> [SKIP][270] ([Intel XE#4945])
-   [269]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_exec_mix_modes@exec-simple-batch-store-dma-fence.html
-   [270]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_exec_mix_modes@exec-simple-batch-store-dma-fence.html
-
-  * igt@xe_exec_system_allocator@many-malloc:
-    - shard-adlp:         [SKIP][271] ([Intel XE#4915]) -> [SKIP][272] ([Intel XE#4945]) +47 other tests skip
-   [271]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_exec_system_allocator@many-malloc.html
-   [272]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_exec_system_allocator@many-malloc.html
-
-  * igt@xe_oa@create-destroy-userspace-config:
-    - shard-adlp:         [SKIP][273] ([Intel XE#2541] / [Intel XE#3573]) -> [SKIP][274] ([Intel XE#4945])
-   [273]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_oa@create-destroy-userspace-config.html
-   [274]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_oa@create-destroy-userspace-config.html
-
-  * igt@xe_pm@d3cold-basic:
-    - shard-adlp:         [SKIP][275] ([Intel XE#2284] / [Intel XE#366]) -> [SKIP][276] ([Intel XE#4945])
-   [275]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_pm@d3cold-basic.html
-   [276]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_pm@d3cold-basic.html
-
-  * igt@xe_query@multigpu-query-invalid-size:
-    - shard-adlp:         [SKIP][277] ([Intel XE#944]) -> [SKIP][278] ([Intel XE#4945])
-   [277]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_query@multigpu-query-invalid-size.html
-   [278]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_query@multigpu-query-invalid-size.html
-
-  
-  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
-  [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
-  [Intel XE#1135]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1135
-  [Intel XE#1178]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1178
-  [Intel XE#1280]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1280
-  [Intel XE#1340]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1340
-  [Intel XE#1392]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1392
-  [Intel XE#1435]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1435
-  [Intel XE#1489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489
-  [Intel XE#1499]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1499
-  [Intel XE#1503]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1503
-  [Intel XE#1727]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727
-  [Intel XE#1794]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1794
-  [Intel XE#2049]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2049
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-  [Intel XE#2191]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2191
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
-  [Intel XE#2252]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252
-  [Intel XE#2284]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2284
-  [Intel XE#2291]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2291
-  [Intel XE#2293]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2293
-  [Intel XE#2311]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311
-  [Intel XE#2312]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2312
-  [Intel XE#2313]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313
-  [Intel XE#2314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2314
-  [Intel XE#2316]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2316
-  [Intel XE#2320]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320
-  [Intel XE#2322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322
-  [Intel XE#2325]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2325
-  [Intel XE#2327]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327
-  [Intel XE#2341]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2341
-  [Intel XE#2351]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2351
-  [Intel XE#2360]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2360
-  [Intel XE#2370]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2370
-  [Intel XE#2373]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2373
-  [Intel XE#2380]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2380
-  [Intel XE#2393]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2393
-  [Intel XE#2414]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2414
-  [Intel XE#2427]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2427
-  [Intel XE#2499]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2499
-  [Intel XE#2541]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2541
-  [Intel XE#2597]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2597
-  [Intel XE#2652]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2652
-  [Intel XE#2705]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2705
-  [Intel XE#2763]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2763
-  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
-  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#2882]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2882
-  [Intel XE#2883]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2883
-  [Intel XE#2887]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887
-  [Intel XE#2893]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2893
-  [Intel XE#2894]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2894
-  [Intel XE#2907]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2907
-  [Intel XE#2925]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2925
-  [Intel XE#2927]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2927
-  [Intel XE#2953]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2953
-  [Intel XE#3009]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3009
-  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
-  [Intel XE#3012]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3012
-  [Intel XE#306]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/306
-  [Intel XE#308]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/308
-  [Intel XE#309]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/309
-  [Intel XE#3099]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3099
-  [Intel XE#310]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/310
-  [Intel XE#3113]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3113
-  [Intel XE#3124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3124
-  [Intel XE#316]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/316
-  [Intel XE#323]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/323
-  [Intel XE#3321]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3321
-  [Intel XE#3325]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3325
-  [Intel XE#3374]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3374
-  [Intel XE#3414]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3414
-  [Intel XE#3428]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3428
-  [Intel XE#3442]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3442
-  [Intel XE#3544]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544
-  [Intel XE#3573]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3573
-  [Intel XE#366]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/366
-  [Intel XE#367]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/367
-  [Intel XE#373]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/373
-  [Intel XE#3767]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3767
-  [Intel XE#3904]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3904
-  [Intel XE#4130]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4130
-  [Intel XE#4141]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141
-  [Intel XE#4173]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4173
-  [Intel XE#4212]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4212
-  [Intel XE#4294]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4294
-  [Intel XE#4331]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4331
-  [Intel XE#4351]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4351
-  [Intel XE#4416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4416
-  [Intel XE#4422]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4422
-  [Intel XE#4459]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4459
-  [Intel XE#4497]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4497
-  [Intel XE#4501]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4501
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-  [Intel XE#4596]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4596
-  [Intel XE#4608]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4608
-  [Intel XE#4733]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4733
-  [Intel XE#4820]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4820
-  [Intel XE#4837]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837
-  [Intel XE#4862]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4862
-  [Intel XE#4879]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4879
-  [Intel XE#4915]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4915
-  [Intel XE#4943]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4943
-  [Intel XE#4945]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945
-  [Intel XE#4947]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947
-  [Intel XE#4950]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4950
-  [Intel XE#4962]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4962
-  [Intel XE#4963]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4963
-  [Intel XE#5018]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5018
-  [Intel XE#5021]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5021
-  [Intel XE#5042]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5042
-  [Intel XE#5084]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5084
-  [Intel XE#579]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/579
-  [Intel XE#607]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/607
-  [Intel XE#651]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/651
-  [Intel XE#653]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/653
-  [Intel XE#656]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/656
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#734]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/734
-  [Intel XE#756]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/756
-  [Intel XE#787]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/787
-  [Intel XE#870]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/870
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
-  [Intel XE#944]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/944
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
-
-
-Build changes
--------------
-
-  * Linux: xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7 -> xe-pw-149633v2
-
-  IGT_8384: 8384
-  xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7: 39820349458f14e376f4d49e1d77ab0805c9dfa7
-  xe-pw-149633v2: 149633v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/index.html
-
---===============5770143640306690996==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Add mailbox power limits, PL2, read energy from PMT (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149633/">https://patchwork.freedesktop.org/series/149633/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7_FULL -&gt; xe-pw-149633v2_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-149633v2_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@hotunbind-rebind:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@core_hotunplug@hotunbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@core_hotunplug@hotunbind-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4963">Intel XE#4963</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@unaligned-read:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@fbdev@unaligned-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@fbdev@unaligned-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_async_flips@async-flip-with-page-flip-events-tiled-atomic@pipe-d-hdmi-a-2-4-mc-ccs:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-432/igt@kms_async_flips@async-flip-with-page-flip-events-tiled-atomic@pipe-d-hdmi-a-2-4-mc-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3767">Intel XE#3767</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_atomic_transition@plane-all-modeset-transition-fencing-internal-panels:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_atomic_transition@plane-all-modeset-transition-fencing-internal-panels.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2370">Intel XE#2370</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@linear-16bpp-rotate-270:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_big_fb@linear-16bpp-rotate-270.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/316">Intel XE#316</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@x-tiled-64bpp-rotate-90:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_big_fb@x-tiled-64bpp-rotate-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327">Intel XE#2327</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@y-tiled-addfb-size-offset-overflow:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_big_fb@y-tiled-addfb-size-offset-overflow.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/607">Intel XE#607</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_bw@connected-linear-tiling-2-displays-2160x1440p:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_bw@connected-linear-tiling-2-displays-2160x1440p.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_bw@connected-linear-tiling-2-displays-2160x1440p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2314">Intel XE#2314</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2894">Intel XE#2894</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_bw@connected-linear-tiling-3-displays-2560x1440p:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_bw@connected-linear-tiling-3-displays-2560x1440p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2191">Intel XE#2191</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_bw@linear-tiling-1-displays-3840x2160p:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_bw@linear-tiling-1-displays-3840x2160p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/367">Intel XE#367</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_bw@linear-tiling-4-displays-3840x2160p:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_bw@linear-tiling-4-displays-3840x2160p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/367">Intel XE#367</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@ccs-on-another-bo-4-tiled-mtl-rc-ccs-cc@pipe-c-dp-2:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-432/igt@kms_ccs@ccs-on-another-bo-4-tiled-mtl-rc-ccs-cc@pipe-c-dp-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/787">Intel XE#787</a>) +188 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-basic-4-tiled-lnl-ccs:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_ccs@crc-primary-basic-4-tiled-lnl-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2907">Intel XE#2907</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-a-hdmi-a-3:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-a-hdmi-a-3.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2652">Intel XE#2652</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/787">Intel XE#787</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@missing-ccs-buffer-y-tiled-gen12-rc-ccs:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_ccs@missing-ccs-buffer-y-tiled-gen12-rc-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887">Intel XE#2887</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc@pipe-a-dp-4:</p>
-<ul>
-<li>shard-dg2-set2:     <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-dg2-433/igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc@pipe-a-dp-4.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-433/igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc@pipe-a-dp-4.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4212">Intel XE#4212</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@random-ccs-data-4-tiled-mtl-mc-ccs@pipe-d-dp-2:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-432/igt@kms_ccs@random-ccs-data-4-tiled-mtl-mc-ccs@pipe-d-dp-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/787">Intel XE#787</a>) +30 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cdclk@plane-scaling@pipe-b-dp-4:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_cdclk@plane-scaling@pipe-b-dp-4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4416">Intel XE#4416</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_color@ctm-0-50:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_chamelium_color@ctm-0-50.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2325">Intel XE#2325</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_color@ctm-0-75:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_chamelium_color@ctm-0-75.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/306">Intel XE#306</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-multiple:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_chamelium_frames@hdmi-crc-multiple.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/373">Intel XE#373</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-single:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_chamelium_frames@hdmi-crc-single.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252">Intel XE#2252</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@vga-hpd-with-enabled-mode:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_chamelium_hpd@vga-hpd-with-enabled-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/373">Intel XE#373</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@atomic-dpms:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_content_protection@atomic-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2341">Intel XE#2341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@srm@pipe-a-dp-2:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_content_protection@srm@pipe-a-dp-2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1178">Intel XE#1178</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@srm@pipe-a-dp-4:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_content_protection@srm@pipe-a-dp-4.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1178">Intel XE#1178</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-random-512x170:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_cursor_crc@cursor-random-512x170.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/308">Intel XE#308</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-sliding-64x21:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_crc@cursor-sliding-64x21.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320">Intel XE#2320</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/323">Intel XE#323</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@cursora-vs-flipb-legacy:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_legacy@cursora-vs-flipb-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2291">Intel XE#2291</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2291">Intel XE#2291</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@short-busy-flip-before-cursor-toggle:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_cursor_legacy@short-busy-flip-before-cursor-toggle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/323">Intel XE#323</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-3:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-3.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1340">Intel XE#1340</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dp_aux_dev:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_dp_aux_dev.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_dp_aux_dev.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3009">Intel XE#3009</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dp_linktrain_fallback@dp-fallback:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_dp_linktrain_fallback@dp-fallback.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_dp_linktrain_fallback@dp-fallback.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4294">Intel XE#4294</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dp_linktrain_fallback@dsc-fallback:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_dp_linktrain_fallback@dsc-fallback.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4331">Intel XE#4331</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_draw_crc@draw-method-blt:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_draw_crc@draw-method-blt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_draw_crc@draw-method-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-with-output-formats:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_dsc@dsc-with-output-formats.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-out-visible-area:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-out-visible-area.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4422">Intel XE#4422</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_feature_discovery@display-3x:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_feature_discovery@display-3x.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2373">Intel XE#2373</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_feature_discovery@psr2:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_feature_discovery@psr2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1135">Intel XE#1135</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-flip-vs-dpms-on-nop-interruptible:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_flip@2x-flip-vs-dpms-on-nop-interruptible.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@2x-flip-vs-dpms-on-nop-interruptible.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2316">Intel XE#2316</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-flip-vs-expired-vblank-interruptible@bd-dp2-hdmi-a3:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible@bd-dp2-hdmi-a3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3321">Intel XE#3321</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-plain-flip-interruptible:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@2x-plain-flip-interruptible.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2316">Intel XE#2316</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@a-dp4:</p>
-<ul>
-<li>shard-dg2-set2:     <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-dg2-434/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-dp4.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-433/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-dp4.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) +5 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a3:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-3/igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3321">Intel XE#3321</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2293">Intel XE#2293</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2380">Intel XE#2380</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling@pipe-a-valid-mode:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2293">Intel XE#2293</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrs-rgb101010-draw-mmap-wc:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_frontbuffer_tracking@drrs-rgb101010-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/651">Intel XE#651</a>) +14 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-primscrn-shrfb-pgflip-blt:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-shrfb-pgflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2312">Intel XE#2312</a>) +18 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-tiling-linear:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-tiling-linear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141">Intel XE#4141</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-cur-indfb-draw-blt:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-cur-indfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311">Intel XE#2311</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcdrrs-2p-primscrn-pri-shrfb-draw-blt:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_frontbuffer_tracking@fbcdrrs-2p-primscrn-pri-shrfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/656">Intel XE#656</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-draw-mmap-wc:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313">Intel XE#2313</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-move:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/653">Intel XE#653</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@brightness-with-hdr:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_hdr@brightness-with-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_joiner@basic-ultra-joiner:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_joiner@basic-ultra-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2927">Intel XE#2927</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_joiner@invalid-modeset-force-ultra-joiner:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_joiner@invalid-modeset-force-ultra-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2925">Intel XE#2925</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_lowres@tiling-yf:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_plane_lowres@tiling-yf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2393">Intel XE#2393</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_multiple@2x-tiling-4:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-3/igt@kms_plane_multiple@2x-tiling-4.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_plane_multiple@2x-tiling-4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4596">Intel XE#4596</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_multiple@2x-tiling-y:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_plane_multiple@2x-tiling-y.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4596">Intel XE#4596</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@invalid-num-scalers:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_plane_scaling@invalid-num-scalers.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_plane_scaling@invalid-num-scalers.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4950">Intel XE#4950</a>) +16 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-b:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-b.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2763">Intel XE#2763</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-d:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2763">Intel XE#2763</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-b:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-b.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2763">Intel XE#2763</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-75@pipe-a:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-75@pipe-a.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2763">Intel XE#2763</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_lpsp@kms-lpsp:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_pm_lpsp@kms-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2499">Intel XE#2499</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-rte:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_pm_rpm@basic-rte.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4962">Intel XE#4962</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@fbc-pr-overlay-plane-update-sf-dmg-area:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_psr2_sf@fbc-pr-overlay-plane-update-sf-dmg-area.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489">Intel XE#1489</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2893">Intel XE#2893</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4608">Intel XE#4608</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf@pipe-b-edp-1:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf@pipe-b-edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4608">Intel XE#4608</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@pr-overlay-plane-update-sf-dmg-area:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_psr2_sf@pr-overlay-plane-update-sf-dmg-area.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489">Intel XE#1489</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@fbc-pr-no-drrs:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_psr@fbc-pr-no-drrs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@fbc-psr2-primary-render:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_psr@fbc-psr2-primary-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr_stress_test@flip-primary-invalidate-overlay:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_psr_stress_test@flip-primary-invalidate-overlay.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2414">Intel XE#2414</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_rotation_crc@primary-y-tiled-reflect-x-90:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_rotation_crc@primary-y-tiled-reflect-x-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3414">Intel XE#3414</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3904">Intel XE#3904</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_rotation_crc@primary-yf-tiled-reflect-x-270:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-270.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3414">Intel XE#3414</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_setmode@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_setmode@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2883">Intel XE#2883</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vrr@cmrr@pipe-a-edp-1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-2/igt@kms_vrr@cmrr@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-3/igt@kms_vrr@cmrr@pipe-a-edp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4459">Intel XE#4459</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vrr@flipline:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_vrr@flipline.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1499">Intel XE#1499</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_writeback@writeback-pixel-formats:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@kms_writeback@writeback-pixel-formats.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/756">Intel XE#756</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-bind-unbind-each-numvfs-all:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@sriov_basic@enable-vfs-bind-unbind-each-numvfs-all.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_compute_preempt@compute-threadgroup-preempt@engine-drm_xe_engine_class_compute:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_compute_preempt@compute-threadgroup-preempt@engine-drm_xe_engine_class_compute.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1280">Intel XE#1280</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_eudebug@attach-debug-metadata:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_eudebug@attach-debug-metadata.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837">Intel XE#4837</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-large-external:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@xe_evict@evict-large-external.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@many-execqueues-bindexecqueue-userptr-rebind:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_exec_basic@many-execqueues-bindexecqueue-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_exec_basic@many-execqueues-bindexecqueue-userptr-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>) +28 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-no-exec-bindexecqueue:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_exec_basic@multigpu-no-exec-bindexecqueue.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322">Intel XE#2322</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-no-exec-null-defer-bind:</p>
-<ul>
-<li>shard-dg2-set2:     <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-dg2-435/igt@xe_exec_basic@multigpu-no-exec-null-defer-bind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-432/igt@xe_exec_basic@multigpu-no-exec-null-defer-bind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1392">Intel XE#1392</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-no-exec-userptr:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@xe_exec_basic@multigpu-no-exec-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1392">Intel XE#1392</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate-race:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate-race.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +12 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_sip_eudebug@breakpoint-writesip:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_exec_sip_eudebug@breakpoint-writesip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837">Intel XE#4837</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@many-execqueues-mmap-huge-nomemset:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@xe_exec_system_allocator@many-execqueues-mmap-huge-nomemset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4943">Intel XE#4943</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@threads-many-large-execqueues-mmap-new-huge:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_exec_system_allocator@threads-many-large-execqueues-mmap-new-huge.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4943">Intel XE#4943</a>) +8 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@threads-many-stride-mmap-remap-eocheck:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_exec_system_allocator@threads-many-stride-mmap-remap-eocheck.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4915">Intel XE#4915</a>) +122 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_dma_buf:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_live_ktest@xe_dma_buf.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3099">Intel XE#3099</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_oa@non-privileged-map-oa-buffer:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@xe_oa@non-privileged-map-oa-buffer.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2541">Intel XE#2541</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3573">Intel XE#3573</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_oa@syncs-syncobj-wait-cfg:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_oa@syncs-syncobj-wait-cfg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2541">Intel XE#2541</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3573">Intel XE#3573</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4501">Intel XE#4501</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xe2:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-436/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@read:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_peer2peer@read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2427">Intel XE#2427</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm@s2idle-vm-bind-unbind-all:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-8/igt@xe_pm@s2idle-vm-bind-unbind-all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-1/igt@xe_pm@s2idle-vm-bind-unbind-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2953">Intel XE#2953</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4173">Intel XE#4173</a>) +4 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm@s3-d3cold-basic-exec:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_pm@s3-d3cold-basic-exec.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2284">Intel XE#2284</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm@s4-mocs:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-1/igt@xe_pm@s4-mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-2/igt@xe_pm@s4-mocs.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1794">Intel XE#1794</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm@vram-d3cold-threshold:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_pm@vram-d3cold-threshold.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/579">Intel XE#579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pxp@display-black-pxp-fb:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_pxp@display-black-pxp-fb.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4733">Intel XE#4733</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_query@multigpu-query-cs-cycles:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_query@multigpu-query-cs-cycles.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/944">Intel XE#944</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_query@multigpu-query-mem-usage:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_query@multigpu-query-mem-usage.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/944">Intel XE#944</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_auto_provisioning@fair-allocation:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@xe_sriov_auto_provisioning@fair-allocation.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4130">Intel XE#4130</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_auto_provisioning@selfconfig-reprovision-increase-numvfs:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@xe_sriov_auto_provisioning@selfconfig-reprovision-increase-numvfs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4130">Intel XE#4130</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_scheduling@nonpreempt-engine-resets:</p>
-<ul>
-<li>shard-dg2-set2:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_sriov_scheduling@nonpreempt-engine-resets.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4351">Intel XE#4351</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-1/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-1/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_bw@connected-linear-tiling-2-displays-1920x1080p:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_bw@connected-linear-tiling-2-displays-1920x1080p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2314">Intel XE#2314</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2894">Intel XE#2894</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_bw@connected-linear-tiling-2-displays-1920x1080p.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-size-hints:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_crc@cursor-size-hints.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320">Intel XE#2320</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5042">Intel XE#5042</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_crc@cursor-size-hints.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-suspend:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_crc@cursor-suspend.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4820">Intel XE#4820</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_cursor_crc@cursor-suspend.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-suspend@pipe-d-dp-2:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_crc@cursor-suspend@pipe-d-dp-2.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_cursor_crc@cursor-suspend@pipe-d-dp-2.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@cursora-vs-flipb-atomic-transitions-varying-size:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_cursor_legacy@cursora-vs-flipb-atomic-transitions-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2291">Intel XE#2291</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_cursor_legacy@cursora-vs-flipb-atomic-transitions-varying-size.html">PASS</a> +8 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-2/igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2953">Intel XE#2953</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4173">Intel XE#4173</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-8/igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_feature_discovery@display-2x:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_feature_discovery@display-2x.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2373">Intel XE#2373</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_feature_discovery@display-2x.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-nonexisting-fb:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_flip@2x-nonexisting-fb.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2316">Intel XE#2316</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_flip@2x-nonexisting-fb.html">PASS</a> +8 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-suspend:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_flip@flip-vs-suspend.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2049">Intel XE#2049</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2597">Intel XE#2597</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@flip-vs-suspend.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-2/igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@invalid-hdr:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_hdr@invalid-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1503">Intel XE#1503</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_hdr@invalid-hdr.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_joiner@invalid-modeset-force-big-joiner:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_joiner@invalid-modeset-force-big-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3012">Intel XE#3012</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_joiner@invalid-modeset-force-big-joiner.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_properties@connector-properties-atomic@pipe-none-hdmi-a-4:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_properties@connector-properties-atomic@pipe-none-hdmi-a-4.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3428">Intel XE#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_properties@connector-properties-atomic@pipe-none-hdmi-a-4.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-7/igt@kms_setmode@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2883">Intel XE#2883</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-7/igt@kms_setmode@basic.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@invalid-clone-single-crtc:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_setmode@invalid-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1435">Intel XE#1435</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_setmode@invalid-clone-single-crtc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-no-exec-userptr-invalidate-race:</p>
-<ul>
-<li>shard-dg2-set2:     <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-dg2-432/igt@xe_exec_basic@multigpu-no-exec-userptr-invalidate-race.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1392">Intel XE#1392</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-434/igt@xe_exec_basic@multigpu-no-exec-userptr-invalidate-race.html">PASS</a> +5 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@threads-shared-vm-many-large-execqueues-new-bo-map-nomemset:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-5/igt@xe_exec_system_allocator@threads-shared-vm-many-large-execqueues-new-bo-map-nomemset.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5018">Intel XE#5018</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-7/igt@xe_exec_system_allocator@threads-shared-vm-many-large-execqueues-new-bo-map-nomemset.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm@s4-multiple-execs:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-lnl-2/igt@xe_pm@s4-multiple-execs.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1794">Intel XE#1794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-lnl-5/igt@xe_pm@s4-multiple-execs.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@x-tiled-8bpp-rotate-270:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_big_fb@x-tiled-8bpp-rotate-270.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/316">Intel XE#316</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_big_fb@x-tiled-8bpp-rotate-270.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@y-tiled-32bpp-rotate-270:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_big_fb@y-tiled-32bpp-rotate-270.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/316">Intel XE#316</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_big_fb@y-tiled-32bpp-rotate-270.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2351">Intel XE#2351</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_bw@linear-tiling-3-displays-1920x1080p:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_bw@linear-tiling-3-displays-1920x1080p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/367">Intel XE#367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_bw@linear-tiling-3-displays-1920x1080p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4950">Intel XE#4950</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3442">Intel XE#3442</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@missing-ccs-buffer-yf-tiled-ccs:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_ccs@missing-ccs-buffer-yf-tiled-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/787">Intel XE#787</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_ccs@missing-ccs-buffer-yf-tiled-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc:</p>
-<ul>
-<li>shard-dg2-set2:     <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-dg2-433/igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727">Intel XE#1727</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3113">Intel XE#3113</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3124">Intel XE#3124</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-dg2-433/igt@kms_ccs@random-ccs-data-4-tiled-dg2-rc-ccs-cc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2705">Intel XE#2705</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4212">Intel XE#4212</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-frame-dump:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_chamelium_frames@hdmi-frame-dump.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/373">Intel XE#373</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_chamelium_frames@hdmi-frame-dump.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4950">Intel XE#4950</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@atomic:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_content_protection@atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2341">Intel XE#2341</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5042">Intel XE#5042</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_content_protection@atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2341">Intel XE#2341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@legacy:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-3/igt@kms_content_protection@legacy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1178">Intel XE#1178</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_content_protection@legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2341">Intel XE#2341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@lic-type-0:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_content_protection@lic-type-0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4862">Intel XE#4862</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_content_protection@lic-type-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2341">Intel XE#2341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@srm:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_content_protection@srm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2341">Intel XE#2341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_content_protection@srm.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1178">Intel XE#1178</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-onscreen-256x85:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_crc@cursor-onscreen-256x85.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320">Intel XE#2320</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5042">Intel XE#5042</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_crc@cursor-onscreen-256x85.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320">Intel XE#2320</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@2x-cursor-vs-flip-legacy:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_cursor_legacy@2x-cursor-vs-flip-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2291">Intel XE#2291</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5042">Intel XE#5042</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_cursor_legacy@2x-cursor-vs-flip-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2291">Intel XE#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/309">Intel XE#309</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4950">Intel XE#4950</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dither@fb-8bpc-vs-panel-6bpc:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_dither@fb-8bpc-vs-panel-6bpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4879">Intel XE#4879</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_dither@fb-8bpc-vs-panel-6bpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1340">Intel XE#1340</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-absolute-wf_vblank:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_flip@2x-absolute-wf_vblank.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/310">Intel XE#310</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_flip@2x-absolute-wf_vblank.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4950">Intel XE#4950</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-blocking-absolute-wf_vblank-interruptible:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_flip@2x-blocking-absolute-wf_vblank-interruptible.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2882">Intel XE#2882</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@2x-blocking-absolute-wf_vblank-interruptible.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2316">Intel XE#2316</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3428">Intel XE#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2316">Intel XE#2316</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-flip-vs-expired-vblank-interruptible:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2316">Intel XE#2316</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3321">Intel XE#3321</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrs-2p-primscrn-indfb-pgflip-blt:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_frontbuffer_tracking@drrs-2p-primscrn-indfb-pgflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2312">Intel XE#2312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_frontbuffer_tracking@drrs-2p-primscrn-indfb-pgflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311">Intel XE#2311</a>) +19 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrs-2p-scndscrn-pri-indfb-draw-mmap-wc:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_frontbuffer_tracking@drrs-2p-scndscrn-pri-indfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311">Intel XE#2311</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@drrs-2p-scndscrn-pri-indfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2312">Intel XE#2312</a>) +14 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrs-rgb565-draw-render:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_frontbuffer_tracking@drrs-rgb565-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/651">Intel XE#651</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_frontbuffer_tracking@drrs-rgb565-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-rte:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_frontbuffer_tracking@fbc-2p-rte.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141">Intel XE#4141</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5042">Intel XE#5042</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-2p-rte.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141">Intel XE#4141</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-mmap-wc:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/656">Intel XE#656</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2351">Intel XE#2351</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-render:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/656">Intel XE#656</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>) +8 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-move:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141">Intel XE#4141</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2312">Intel XE#2312</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-onoff:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2312">Intel XE#2312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141">Intel XE#4141</a>) +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-cur-indfb-draw-render:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-cur-indfb-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311">Intel XE#2311</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5042">Intel XE#5042</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-cur-indfb-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311">Intel XE#2311</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-pri-shrfb-draw-blt:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-pri-shrfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/651">Intel XE#651</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-pri-shrfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2351">Intel XE#2351</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcdrrs-2p-scndscrn-indfb-msflip-blt:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_frontbuffer_tracking@fbcdrrs-2p-scndscrn-indfb-msflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2312">Intel XE#2312</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5042">Intel XE#5042</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcdrrs-2p-scndscrn-indfb-msflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2312">Intel XE#2312</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/653">Intel XE#653</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-indfb-draw-render:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-2/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-indfb-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313">Intel XE#2313</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-indfb-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2312">Intel XE#2312</a>) +12 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-blt:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2312">Intel XE#2312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-2/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313">Intel XE#2313</a>) +21 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@brightness-with-hdr:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-3/igt@kms_hdr@brightness-with-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3374">Intel XE#3374</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544">Intel XE#3544</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_hdr@brightness-with-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544">Intel XE#3544</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@invalid-metadata-sizes:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_hdr@invalid-metadata-sizes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_hdr@invalid-metadata-sizes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4950">Intel XE#4950</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_multiple@2x-tiling-yf:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-1/igt@kms_plane_multiple@2x-tiling-yf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4596">Intel XE#4596</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-3/igt@kms_plane_multiple@2x-tiling-yf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5021">Intel XE#5021</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-25:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-bmg-6/igt@kms_plane_scaling@planes-downscale-factor-0-25.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2763">Intel XE#2763</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5042">Intel XE#5042</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-bmg-1/igt@kms_plane_scaling@planes-downscale-factor-0-25.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2763">Intel XE#2763</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/870">Intel XE#870</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@dc9-dpms:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-8/igt@kms_pm_dc@dc9-dpms.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3325">Intel XE#3325</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-6/igt@kms_pm_dc@dc9-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/734">Intel XE#734</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-sf:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489">Intel XE#1489</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-basic:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@kms_psr@psr-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@kms_psr@psr-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4947">Intel XE#4947</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_configfs@survivability-mode:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_configfs@survivability-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5084">Intel XE#5084</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_configfs@survivability-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_eu_stall@non-blocking-re-enable:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_eu_stall@non-blocking-re-enable.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4497">Intel XE#4497</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_eu_stall@non-blocking-re-enable.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_eudebug@basic-client-th:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_eudebug@basic-client-th.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837">Intel XE#4837</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_eudebug@basic-client-th.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-invalidate:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1392">Intel XE#1392</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@once-userptr-invalidate-prefetch:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_exec_fault_mode@once-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_exec_fault_mode@once-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_mix_modes@exec-simple-batch-store-dma-fence:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_exec_mix_modes@exec-simple-batch-store-dma-fence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2360">Intel XE#2360</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_exec_mix_modes@exec-simple-batch-store-dma-fence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@many-malloc:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_exec_system_allocator@many-malloc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4915">Intel XE#4915</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_exec_system_allocator@many-malloc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>) +47 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_oa@create-destroy-userspace-config:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_oa@create-destroy-userspace-config.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2541">Intel XE#2541</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3573">Intel XE#3573</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_oa@create-destroy-userspace-config.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm@d3cold-basic:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_pm@d3cold-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2284">Intel XE#2284</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/366">Intel XE#366</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_pm@d3cold-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_query@multigpu-query-invalid-size:</p>
-<ul>
-<li>shard-adlp:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7/shard-adlp-6/igt@xe_query@multigpu-query-invalid-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/944">Intel XE#944</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149633v2/shard-adlp-2/igt@xe_query@multigpu-query-invalid-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4945">Intel XE#4945</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7 -&gt; xe-pw-149633v2</li>
-</ul>
-<p>IGT_8384: 8384<br />
-  xe-3163-39820349458f14e376f4d49e1d77ab0805c9dfa7: 39820349458f14e376f4d49e1d77ab0805c9dfa7<br />
-  xe-pw-149633v2: 149633v2</p>
-
-</body>
-</html>
-
---===============5770143640306690996==--
