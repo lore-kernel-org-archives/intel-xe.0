@@ -4,44 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30B92C5B555
-	for <intel-xe@archiver.kernel.org>; Sun,  1 Jun 2025 23:30:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E7B1C54FB3
+	for <intel-xe@archiver.kernel.org>; Sun,  1 Jun 2025 23:31:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DED8710E3CE;
-	Sun,  1 Jun 2025 23:30:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E17810E3EE;
+	Sun,  1 Jun 2025 23:31:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="eXSGahDu";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jp+1+W15";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3444910E3CA;
- Sun,  1 Jun 2025 23:30:07 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44D1810E3E7;
+ Sun,  1 Jun 2025 23:31:33 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 174874A689;
- Sun,  1 Jun 2025 23:30:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7767FC4CEF1;
- Sun,  1 Jun 2025 23:30:05 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 81D95A4F583;
+ Sun,  1 Jun 2025 23:31:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE49CC4CEF3;
+ Sun,  1 Jun 2025 23:31:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1748820607;
- bh=wqRN2DlJTA7NV2Hi0myh9Z7vg/yTMJeDF0HN8Z9t3Fg=;
+ s=k20201202; t=1748820692;
+ bh=pFZtkKMHR9x5eIJ34bL6R0k8acs8GLqXE43rHAxAfUI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=eXSGahDuFYARyVAq1wdgb6hpPGT0fq5FNOzFEKYCFNvNqBhJI9Sk0WG7ywSwweADm
- J9Zq3P6JLXELv+hdvZ57agSgPXJeVqiAVicLAauo8YuOJfsgoCHofGduqbDptnbS0c
- IR76G2xMnqdXD98eNiaPg+GgQlbGenKZFs91NjcmH9sVsS9TOIDV6lY6zVrGJYzPi3
- Q9vecaYWFnEM/hkOjpIUYlivt1PBVQqIkTP6fnezKII0gjp4Fcf0aY5waPpB9fAbmQ
- HHFMCOrCntr4WmQS832AfYHZame7e9AsdA9whKRrGryajeywiH1vhLWAp8Z2axIh/1
- GARE9kJ+gh4Mg==
+ b=jp+1+W15P2w1kzHsZHQP37p0c4mgDJtlibkciT+xM7hjBq8/vtSqOHrNqVuXovCjS
+ R47YC8NILapJkhsDIPndZG2gifVfBiIrxLH2RoXCWgkP01DVPcSBfX6MmONCa19wfB
+ TlEyVKBa+vC7SmxO4ICeKmbh5YOmXIjkHg/SfdSEPxBgYwYp8/Hzjt+TKq8Y2fqSDc
+ Bl4MV8dpP/V8MQNht4TcW/c0WvFxKhx2agv/2jvIrwjzdk6Y7qYtnRMDFoWFRN137X
+ A8nREiGZ5OUhiK77zni2g8dS9RXsHi6NmMJl/8kVA5BIdbDvo6mNjAF3wWEtmThWwr
+ Gjzjgj2BK3sVQ==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Jeevaka Prabu Badrappan <jeevaka.badrappan@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sasha Levin <sashal@kernel.org>,
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Lukasz Laguna <lukasz.laguna@intel.com>, Sasha Levin <sashal@kernel.org>,
  lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.14 010/102] drm/xe: Fix CFI violation when accessing
- sysfs files
-Date: Sun,  1 Jun 2025 19:28:02 -0400
-Message-Id: <20250601232937.3510379-10-sashal@kernel.org>
+ rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.14 046/102] drm/xe/vf: Fix guc_info debugfs for VFs
+Date: Sun,  1 Jun 2025 19:28:38 -0400
+Message-Id: <20250601232937.3510379-46-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250601232937.3510379-1-sashal@kernel.org>
 References: <20250601232937.3510379-1-sashal@kernel.org>
@@ -65,536 +66,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Jeevaka Prabu Badrappan <jeevaka.badrappan@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-[ Upstream commit 4ea512714c42c69828b4a2647d206bf404043ad5 ]
+[ Upstream commit dba7d17d50b4488c697e991d18a0e55669d9fa59 ]
 
-When an attribute group is created with sysfs_create_group() or
-sysfs_create_files() the ->sysfs_ops() callback is set to
-kobj_sysfs_ops, which sets the ->show() callback to kobj_attr_show().
-kobj_attr_show() uses container_of() to get the ->show() callback
-from the attribute it was passed, meaning the ->show() callback needs
-to be the same type as the ->show() callback in 'struct kobj_attribute'.
+The guc_info debugfs attempts to read a bunch of registers that the VFs
+doesn't have access to, so fix it by skipping the reads.
 
-However, cur_freq_show() has the type of the ->show() callback in
-'struct device_attribute', which causes a CFI violation when opening the
-'id' sysfs node under gtidle/freq/throttle. This happens to work because
-the layout of 'struct kobj_attribute' and 'struct device_attribute' are
-the same, so the container_of() cast happens to allow the ->show()
-callback to still work.
-
-Changed the type of cur_freq_show() and few more functions to match the
-->show() callback in 'struct kobj_attributes' to resolve the CFI
-violation.
-
-CFI failure seen while accessing sysfs files under
-/sys/class/drm/card0/device/tile0/gt*/gtidle/*
-/sys/class/drm/card0/device/tile0/gt*/freq0/*
-/sys/class/drm/card0/device/tile0/gt*/freq0/throttle/*
-
-[ 2599.618075] RIP: 0010:__cfi_cur_freq_show+0xd/0x10 [xe]
-[ 2599.624452] Code: 44 c1 44 89 fa e8 03 95 39 f2 48 98 5b 41 5e 41 5f 5d c3 c9
-[ 2599.646638] RSP: 0018:ffffbe438ead7d10 EFLAGS: 00010286
-[ 2599.652823] RAX: ffff9f7d8b3845d8 RBX: ffff9f7dee8c95d8 RCX: 0000000000000000
-[ 2599.661246] RDX: ffff9f7e6f439000 RSI: ffffffffc13ada30 RDI: ffff9f7d975d4b00
-[ 2599.669669] RBP: ffffbe438ead7d18 R08: 0000000000001000 R09: ffff9f7e6f439000
-[ 2599.678092] R10: 00000000e07304a6 R11: ffffffffc1241ca0 R12: ffffffffb4836ea0
-[ 2599.688435] R13: ffff9f7e45fb1180 R14: ffff9f7d975d4b00 R15: ffff9f7e6f439000
-[ 2599.696860] FS: 000076b02b66cfc0(0000) GS:ffff9f80ef400000(0000) knlGS:00000
-[ 2599.706412] CS: 0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[ 2599.713196] CR2: 00005f80d94641a9 CR3: 00000001e44ec006 CR4: 0000000100f72ef0
-[ 2599.721618] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[ 2599.730041] DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
-[ 2599.738464] PKRU: 55555554
-[ 2599.741655] Call Trace:
-[ 2599.744541] <TASK>
-[ 2599.747017] ? __die_body+0x69/0xb0
-[ 2599.751151] ? die+0xa9/0xd0
-[ 2599.754548] ? do_trap+0x89/0x160
-[ 2599.758476] ? __cfi_cur_freq_show+0xd/0x10 [xe b37985c94829727668bd7c5b33c1]
-[ 2599.768315] ? handle_invalid_op+0x69/0x90
-[ 2599.773167] ? __cfi_cur_freq_show+0xd/0x10 [xe b37985c94829727668bd7c5b33c1]
-[ 2599.783010] ? exc_invalid_op+0x36/0x60
-[ 2599.787552] ? fred_hwexc+0x123/0x1a0
-[ 2599.791873] ? fred_entry_from_kernel+0x7b/0xd0
-[ 2599.797219] ? asm_fred_entrypoint_kernel+0x45/0x70
-[ 2599.802976] ? act_freq_show+0x70/0x70 [xe b37985c94829727668bd7c5b33c1d9998]
-[ 2599.812301] ? __cfi_cur_freq_show+0xd/0x10 [xe b37985c94829727668bd7c5b33c1]
-[ 2599.822137] ? __kmalloc_node_noprof+0x1f3/0x420
-[ 2599.827594] ? __kvmalloc_node_noprof+0xcb/0x180
-[ 2599.833045] ? kobj_attr_show+0x22/0x40
-[ 2599.837571] sysfs_kf_seq_show+0xa8/0x110
-[ 2599.842302] kernfs_seq_show+0x38/0x50
-
-Signed-off-by: Jeevaka Prabu Badrappan <jeevaka.badrappan@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Link: https://lore.kernel.org/r/20250422171852.85558-1-jeevaka.badrappan@intel.com
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4775
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Lukasz Laguna <lukasz.laguna@intel.com>
+Reviewed-by: Lukasz Laguna <lukasz.laguna@intel.com>
+Link: https://lore.kernel.org/r/20250423173908.1571412-1-daniele.ceraolospurio@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
-**YES** This commit should be backported to stable kernel trees for the
-following reasons: ## Primary Analysis **1. Important Bug Fix for
-Security Feature** The commit fixes Control Flow Integrity (CFI)
-violations in the xe driver's sysfs interface. CFI is a critical
-security feature in modern kernels that prevents function pointer
-hijacking attacks. CFI violations can cause: - System crashes when
-accessing sysfs files (as shown in the stack trace) - Potential security
-vulnerabilities if exploited - Poor user experience when monitoring GPU
-frequency/throttling through sysfs **2. Small, Contained Fix with Clear
-Impact** The changes are purely type safety fixes that: - Convert
-`struct device_attribute` callbacks to `struct kobj_attribute` callbacks
-across 3 files - Change function signatures from `(struct device *dev,
-struct device_attribute *attr, char *buf)` to `(struct kobject *kobj,
-struct kobj_attribute *attr, char *buf)` - Update attribute definitions
-from `DEVICE_ATTR_RO/RW` to `__ATTR_RO/RW` with proper kobj_attribute
-types - Add `struct device *dev = kobj_to_dev(kobj);` calls to maintain
-functionality **3. Pattern Matches Successful Backports** This commit
-follows the exact same pattern as Similar Commits #3-#5 (all marked
-"Backport Status: YES"): - ACPI platform-profile CFI fix (commit
-2e6674dfefd8) - already backported - Intel uncore-frequency CFI fix -
-ACPI bgrt CFI fix All these commits fix the same fundamental issue:
-mismatched function pointer types when sysfs groups are created with
-`sysfs_create_group()` vs `device_create_file()`. **4. Driver
-Availability and Kernel Version Context** The xe driver was introduced
-in kernel 6.10, which means: - This fix is relevant for stable trees
-6.10+ - The affected code exists in current stable kernels - Users with
-Intel discrete GPUs (Tiger Lake+) would encounter this bug **5. Low
-Risk, High Value** - **Zero functional changes** - same behavior, just
-type-safe - **No architectural changes** - purely corrective - **Self-
-contained** - only affects xe driver sysfs interface - **Clear error
-symptoms** - CFI failures with specific stack traces make issues obvious
-- **High user impact** - prevents crashes when monitoring GPU
-performance **6. Meets Stable Tree Criteria** - ✅ Fixes important bugs
-affecting users (CFI crashes) - ✅ Small and contained (type signature
-changes only) - ✅ No clear side effects beyond fixing the issue - ✅ No
-major architectural changes - ✅ Confined to xe subsystem - ✅ Minimal
-regression risk The code changes in `xe_gt_freq.c`, `xe_gt_idle.c`, and
-`xe_gt_throttle.c` are straightforward type corrections that maintain
-identical functionality while ensuring CFI compliance. This is exactly
-the type of safety/correctness fix that stable trees should include.
+**YES** This commit should be backported to stable kernel trees. Here's
+my analysis: ## Bug Fix Analysis The commit addresses a **specific
+runtime failure** in VF (Virtual Function) environments where the
+`guc_info` debugfs interface attempts to read hardware registers that
+VFs don't have access to. This is a clear bug fix that prevents crashes
+or access violations. ## Code Change Assessment The fix is **minimal and
+surgical**: ```c - fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT); -
+if (!fw_ref) - return; + if (!IS_SRIOV_VF(gt_to_xe(gt))) { + fw_ref =
+xe_force_wake_get(gt_to_fw(gt), XE_FW_GT); + if (!fw_ref) + return; ```
+The change wraps the problematic register access code in a VF check,
+only executing the register reads for non-VF environments. This is
+exactly the right approach for hardware access restrictions. ## Backport
+Suitability Criteria ✅ **Fixes user-affecting bug**: VFs attempting to
+use debugfs would fail/crash ✅ **Small and contained**: Only 4 lines
+changed, wrapping existing code in a conditional ✅ **No architectural
+changes**: Maintains existing functionality for PF, just skips for VF ✅
+**Minimal regression risk**: The conditional is well-established
+(`IS_SRIOV_VF`) and used throughout the codebase ✅ **Clear issue
+reference**: Closes GitLab issue #4775 ✅ **Debugfs-specific**: Non-
+critical path, but important for system stability ## Similar Commit
+Pattern Analysis This follows the same pattern as other VF-related fixes
+in the xe driver, where hardware access is conditional based on
+`IS_SRIOV_VF()` checks. The kernel tree shows numerous similar patterns
+where VF access restrictions are handled this way. ## Risk Assessment
+**Very Low Risk**: The change only affects the debugfs interface,
+doesn't modify core functionality, and uses an established conditional
+pattern. For VF environments, it prevents access violations; for non-VF
+environments, behavior is unchanged. This is a textbook stable backport
+candidate: it fixes a clear bug with minimal, contained changes and
+near-zero regression risk.
 
- drivers/gpu/drm/xe/xe_gt_freq.c     | 82 ++++++++++++++------------
- drivers/gpu/drm/xe/xe_gt_idle.c     | 28 +++++----
- drivers/gpu/drm/xe/xe_gt_throttle.c | 90 ++++++++++++++---------------
- 3 files changed, 107 insertions(+), 93 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 44 +++++++++++++++++++------------------
+ 1 file changed, 23 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
-index 604bdc7c81736..868a5d2c1a52f 100644
---- a/drivers/gpu/drm/xe/xe_gt_freq.c
-+++ b/drivers/gpu/drm/xe/xe_gt_freq.c
-@@ -56,9 +56,10 @@ dev_to_xe(struct device *dev)
- 	return gt_to_xe(kobj_to_gt(dev->kobj.parent));
- }
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 408365dfe4eed..2208bb528d76d 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1506,30 +1506,32 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
  
--static ssize_t act_freq_show(struct device *dev,
--			     struct device_attribute *attr, char *buf)
-+static ssize_t act_freq_show(struct kobject *kobj,
-+			     struct kobj_attribute *attr, char *buf)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_guc_pc *pc = dev_to_pc(dev);
- 	u32 freq;
+ 	xe_uc_fw_print(&guc->fw, p);
  
-@@ -68,11 +69,12 @@ static ssize_t act_freq_show(struct device *dev,
- 
- 	return sysfs_emit(buf, "%d\n", freq);
- }
--static DEVICE_ATTR_RO(act_freq);
-+static struct kobj_attribute attr_act_freq = __ATTR_RO(act_freq);
- 
--static ssize_t cur_freq_show(struct device *dev,
--			     struct device_attribute *attr, char *buf)
-+static ssize_t cur_freq_show(struct kobject *kobj,
-+			     struct kobj_attribute *attr, char *buf)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_guc_pc *pc = dev_to_pc(dev);
- 	u32 freq;
- 	ssize_t ret;
-@@ -85,11 +87,12 @@ static ssize_t cur_freq_show(struct device *dev,
- 
- 	return sysfs_emit(buf, "%d\n", freq);
- }
--static DEVICE_ATTR_RO(cur_freq);
-+static struct kobj_attribute attr_cur_freq = __ATTR_RO(cur_freq);
- 
--static ssize_t rp0_freq_show(struct device *dev,
--			     struct device_attribute *attr, char *buf)
-+static ssize_t rp0_freq_show(struct kobject *kobj,
-+			     struct kobj_attribute *attr, char *buf)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_guc_pc *pc = dev_to_pc(dev);
- 	u32 freq;
- 
-@@ -99,11 +102,12 @@ static ssize_t rp0_freq_show(struct device *dev,
- 
- 	return sysfs_emit(buf, "%d\n", freq);
- }
--static DEVICE_ATTR_RO(rp0_freq);
-+static struct kobj_attribute attr_rp0_freq = __ATTR_RO(rp0_freq);
- 
--static ssize_t rpe_freq_show(struct device *dev,
--			     struct device_attribute *attr, char *buf)
-+static ssize_t rpe_freq_show(struct kobject *kobj,
-+			     struct kobj_attribute *attr, char *buf)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_guc_pc *pc = dev_to_pc(dev);
- 	u32 freq;
- 
-@@ -113,11 +117,12 @@ static ssize_t rpe_freq_show(struct device *dev,
- 
- 	return sysfs_emit(buf, "%d\n", freq);
- }
--static DEVICE_ATTR_RO(rpe_freq);
-+static struct kobj_attribute attr_rpe_freq = __ATTR_RO(rpe_freq);
- 
--static ssize_t rpa_freq_show(struct device *dev,
--			     struct device_attribute *attr, char *buf)
-+static ssize_t rpa_freq_show(struct kobject *kobj,
-+			     struct kobj_attribute *attr, char *buf)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_guc_pc *pc = dev_to_pc(dev);
- 	u32 freq;
- 
-@@ -127,20 +132,22 @@ static ssize_t rpa_freq_show(struct device *dev,
- 
- 	return sysfs_emit(buf, "%d\n", freq);
- }
--static DEVICE_ATTR_RO(rpa_freq);
-+static struct kobj_attribute attr_rpa_freq = __ATTR_RO(rpa_freq);
- 
--static ssize_t rpn_freq_show(struct device *dev,
--			     struct device_attribute *attr, char *buf)
-+static ssize_t rpn_freq_show(struct kobject *kobj,
-+			     struct kobj_attribute *attr, char *buf)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_guc_pc *pc = dev_to_pc(dev);
- 
- 	return sysfs_emit(buf, "%d\n", xe_guc_pc_get_rpn_freq(pc));
- }
--static DEVICE_ATTR_RO(rpn_freq);
-+static struct kobj_attribute attr_rpn_freq = __ATTR_RO(rpn_freq);
- 
--static ssize_t min_freq_show(struct device *dev,
--			     struct device_attribute *attr, char *buf)
-+static ssize_t min_freq_show(struct kobject *kobj,
-+			     struct kobj_attribute *attr, char *buf)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_guc_pc *pc = dev_to_pc(dev);
- 	u32 freq;
- 	ssize_t ret;
-@@ -154,9 +161,10 @@ static ssize_t min_freq_show(struct device *dev,
- 	return sysfs_emit(buf, "%d\n", freq);
- }
- 
--static ssize_t min_freq_store(struct device *dev, struct device_attribute *attr,
--			      const char *buff, size_t count)
-+static ssize_t min_freq_store(struct kobject *kobj,
-+			      struct kobj_attribute *attr, const char *buff, size_t count)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_guc_pc *pc = dev_to_pc(dev);
- 	u32 freq;
- 	ssize_t ret;
-@@ -173,11 +181,12 @@ static ssize_t min_freq_store(struct device *dev, struct device_attribute *attr,
- 
- 	return count;
- }
--static DEVICE_ATTR_RW(min_freq);
-+static struct kobj_attribute attr_min_freq = __ATTR_RW(min_freq);
- 
--static ssize_t max_freq_show(struct device *dev,
--			     struct device_attribute *attr, char *buf)
-+static ssize_t max_freq_show(struct kobject *kobj,
-+			     struct kobj_attribute *attr, char *buf)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_guc_pc *pc = dev_to_pc(dev);
- 	u32 freq;
- 	ssize_t ret;
-@@ -191,9 +200,10 @@ static ssize_t max_freq_show(struct device *dev,
- 	return sysfs_emit(buf, "%d\n", freq);
- }
- 
--static ssize_t max_freq_store(struct device *dev, struct device_attribute *attr,
--			      const char *buff, size_t count)
-+static ssize_t max_freq_store(struct kobject *kobj,
-+			      struct kobj_attribute *attr, const char *buff, size_t count)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_guc_pc *pc = dev_to_pc(dev);
- 	u32 freq;
- 	ssize_t ret;
-@@ -210,17 +220,17 @@ static ssize_t max_freq_store(struct device *dev, struct device_attribute *attr,
- 
- 	return count;
- }
--static DEVICE_ATTR_RW(max_freq);
-+static struct kobj_attribute attr_max_freq = __ATTR_RW(max_freq);
- 
- static const struct attribute *freq_attrs[] = {
--	&dev_attr_act_freq.attr,
--	&dev_attr_cur_freq.attr,
--	&dev_attr_rp0_freq.attr,
--	&dev_attr_rpa_freq.attr,
--	&dev_attr_rpe_freq.attr,
--	&dev_attr_rpn_freq.attr,
--	&dev_attr_min_freq.attr,
--	&dev_attr_max_freq.attr,
-+	&attr_act_freq.attr,
-+	&attr_cur_freq.attr,
-+	&attr_rp0_freq.attr,
-+	&attr_rpa_freq.attr,
-+	&attr_rpe_freq.attr,
-+	&attr_rpn_freq.attr,
-+	&attr_min_freq.attr,
-+	&attr_max_freq.attr,
- 	NULL
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-index fbbace7b0b12a..c11206410a4d4 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -249,9 +249,10 @@ int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p)
- 	return 0;
- }
- 
--static ssize_t name_show(struct device *dev,
--			 struct device_attribute *attr, char *buff)
-+static ssize_t name_show(struct kobject *kobj,
-+			 struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
- 	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
- 	ssize_t ret;
-@@ -262,11 +263,12 @@ static ssize_t name_show(struct device *dev,
- 
- 	return ret;
- }
--static DEVICE_ATTR_RO(name);
-+static struct kobj_attribute name_attr = __ATTR_RO(name);
- 
--static ssize_t idle_status_show(struct device *dev,
--				struct device_attribute *attr, char *buff)
-+static ssize_t idle_status_show(struct kobject *kobj,
-+				struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
- 	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
- 	enum xe_gt_idle_state state;
-@@ -277,6 +279,7 @@ static ssize_t idle_status_show(struct device *dev,
- 
- 	return sysfs_emit(buff, "%s\n", gt_idle_state_to_string(state));
- }
-+static struct kobj_attribute idle_status_attr = __ATTR_RO(idle_status);
- 
- u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle)
- {
-@@ -291,10 +294,11 @@ u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle)
- 	return residency;
- }
- 
--static DEVICE_ATTR_RO(idle_status);
--static ssize_t idle_residency_ms_show(struct device *dev,
--				      struct device_attribute *attr, char *buff)
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	if (!fw_ref)
+-		return;
++	if (!IS_SRIOV_VF(gt_to_xe(gt))) {
++		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++		if (!fw_ref)
++			return;
 +
-+static ssize_t idle_residency_ms_show(struct kobject *kobj,
-+				      struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
- 	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
- 	u64 residency;
-@@ -305,12 +309,12 @@ static ssize_t idle_residency_ms_show(struct device *dev,
++		status = xe_mmio_read32(&gt->mmio, GUC_STATUS);
++
++		drm_printf(p, "\nGuC status 0x%08x:\n", status);
++		drm_printf(p, "\tBootrom status = 0x%x\n",
++			   REG_FIELD_GET(GS_BOOTROM_MASK, status));
++		drm_printf(p, "\tuKernel status = 0x%x\n",
++			   REG_FIELD_GET(GS_UKERNEL_MASK, status));
++		drm_printf(p, "\tMIA Core status = 0x%x\n",
++			   REG_FIELD_GET(GS_MIA_MASK, status));
++		drm_printf(p, "\tLog level = %d\n",
++			   xe_guc_log_get_level(&guc->log));
++
++		drm_puts(p, "\nScratch registers:\n");
++		for (i = 0; i < SOFT_SCRATCH_COUNT; i++) {
++			drm_printf(p, "\t%2d: \t0x%x\n",
++				   i, xe_mmio_read32(&gt->mmio, SOFT_SCRATCH(i)));
++		}
  
- 	return sysfs_emit(buff, "%llu\n", residency);
- }
--static DEVICE_ATTR_RO(idle_residency_ms);
-+static struct kobj_attribute idle_residency_attr = __ATTR_RO(idle_residency_ms);
+-	status = xe_mmio_read32(&gt->mmio, GUC_STATUS);
+-
+-	drm_printf(p, "\nGuC status 0x%08x:\n", status);
+-	drm_printf(p, "\tBootrom status = 0x%x\n",
+-		   REG_FIELD_GET(GS_BOOTROM_MASK, status));
+-	drm_printf(p, "\tuKernel status = 0x%x\n",
+-		   REG_FIELD_GET(GS_UKERNEL_MASK, status));
+-	drm_printf(p, "\tMIA Core status = 0x%x\n",
+-		   REG_FIELD_GET(GS_MIA_MASK, status));
+-	drm_printf(p, "\tLog level = %d\n",
+-		   xe_guc_log_get_level(&guc->log));
+-
+-	drm_puts(p, "\nScratch registers:\n");
+-	for (i = 0; i < SOFT_SCRATCH_COUNT; i++) {
+-		drm_printf(p, "\t%2d: \t0x%x\n",
+-			   i, xe_mmio_read32(&gt->mmio, SOFT_SCRATCH(i)));
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	}
  
- static const struct attribute *gt_idle_attrs[] = {
--	&dev_attr_name.attr,
--	&dev_attr_idle_status.attr,
--	&dev_attr_idle_residency_ms.attr,
-+	&name_attr.attr,
-+	&idle_status_attr.attr,
-+	&idle_residency_attr.attr,
- 	NULL,
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
-index 8db78d616b6f2..aa962c783cdf7 100644
---- a/drivers/gpu/drm/xe/xe_gt_throttle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
-@@ -114,115 +114,115 @@ static u32 read_reason_vr_tdc(struct xe_gt *gt)
- 	return tdc;
- }
- 
--static ssize_t status_show(struct device *dev,
--			   struct device_attribute *attr,
--			   char *buff)
-+static ssize_t status_show(struct kobject *kobj,
-+			   struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt *gt = dev_to_gt(dev);
- 	bool status = !!read_status(gt);
- 
- 	return sysfs_emit(buff, "%u\n", status);
- }
--static DEVICE_ATTR_RO(status);
-+static struct kobj_attribute attr_status = __ATTR_RO(status);
- 
--static ssize_t reason_pl1_show(struct device *dev,
--			       struct device_attribute *attr,
--			       char *buff)
-+static ssize_t reason_pl1_show(struct kobject *kobj,
-+			       struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt *gt = dev_to_gt(dev);
- 	bool pl1 = !!read_reason_pl1(gt);
- 
- 	return sysfs_emit(buff, "%u\n", pl1);
- }
--static DEVICE_ATTR_RO(reason_pl1);
-+static struct kobj_attribute attr_reason_pl1 = __ATTR_RO(reason_pl1);
- 
--static ssize_t reason_pl2_show(struct device *dev,
--			       struct device_attribute *attr,
--			       char *buff)
-+static ssize_t reason_pl2_show(struct kobject *kobj,
-+			       struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt *gt = dev_to_gt(dev);
- 	bool pl2 = !!read_reason_pl2(gt);
- 
- 	return sysfs_emit(buff, "%u\n", pl2);
- }
--static DEVICE_ATTR_RO(reason_pl2);
-+static struct kobj_attribute attr_reason_pl2 = __ATTR_RO(reason_pl2);
- 
--static ssize_t reason_pl4_show(struct device *dev,
--			       struct device_attribute *attr,
--			       char *buff)
-+static ssize_t reason_pl4_show(struct kobject *kobj,
-+			       struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt *gt = dev_to_gt(dev);
- 	bool pl4 = !!read_reason_pl4(gt);
- 
- 	return sysfs_emit(buff, "%u\n", pl4);
- }
--static DEVICE_ATTR_RO(reason_pl4);
-+static struct kobj_attribute attr_reason_pl4 = __ATTR_RO(reason_pl4);
- 
--static ssize_t reason_thermal_show(struct device *dev,
--				   struct device_attribute *attr,
--				   char *buff)
-+static ssize_t reason_thermal_show(struct kobject *kobj,
-+				   struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt *gt = dev_to_gt(dev);
- 	bool thermal = !!read_reason_thermal(gt);
- 
- 	return sysfs_emit(buff, "%u\n", thermal);
- }
--static DEVICE_ATTR_RO(reason_thermal);
-+static struct kobj_attribute attr_reason_thermal = __ATTR_RO(reason_thermal);
- 
--static ssize_t reason_prochot_show(struct device *dev,
--				   struct device_attribute *attr,
--				   char *buff)
-+static ssize_t reason_prochot_show(struct kobject *kobj,
-+				   struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt *gt = dev_to_gt(dev);
- 	bool prochot = !!read_reason_prochot(gt);
- 
- 	return sysfs_emit(buff, "%u\n", prochot);
- }
--static DEVICE_ATTR_RO(reason_prochot);
-+static struct kobj_attribute attr_reason_prochot = __ATTR_RO(reason_prochot);
- 
--static ssize_t reason_ratl_show(struct device *dev,
--				struct device_attribute *attr,
--				char *buff)
-+static ssize_t reason_ratl_show(struct kobject *kobj,
-+				struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt *gt = dev_to_gt(dev);
- 	bool ratl = !!read_reason_ratl(gt);
- 
- 	return sysfs_emit(buff, "%u\n", ratl);
- }
--static DEVICE_ATTR_RO(reason_ratl);
-+static struct kobj_attribute attr_reason_ratl = __ATTR_RO(reason_ratl);
- 
--static ssize_t reason_vr_thermalert_show(struct device *dev,
--					 struct device_attribute *attr,
--					 char *buff)
-+static ssize_t reason_vr_thermalert_show(struct kobject *kobj,
-+					 struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt *gt = dev_to_gt(dev);
- 	bool thermalert = !!read_reason_vr_thermalert(gt);
- 
- 	return sysfs_emit(buff, "%u\n", thermalert);
- }
--static DEVICE_ATTR_RO(reason_vr_thermalert);
-+static struct kobj_attribute attr_reason_vr_thermalert = __ATTR_RO(reason_vr_thermalert);
- 
--static ssize_t reason_vr_tdc_show(struct device *dev,
--				  struct device_attribute *attr,
--				  char *buff)
-+static ssize_t reason_vr_tdc_show(struct kobject *kobj,
-+				  struct kobj_attribute *attr, char *buff)
- {
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt *gt = dev_to_gt(dev);
- 	bool tdc = !!read_reason_vr_tdc(gt);
- 
- 	return sysfs_emit(buff, "%u\n", tdc);
- }
--static DEVICE_ATTR_RO(reason_vr_tdc);
-+static struct kobj_attribute attr_reason_vr_tdc = __ATTR_RO(reason_vr_tdc);
- 
- static struct attribute *throttle_attrs[] = {
--	&dev_attr_status.attr,
--	&dev_attr_reason_pl1.attr,
--	&dev_attr_reason_pl2.attr,
--	&dev_attr_reason_pl4.attr,
--	&dev_attr_reason_thermal.attr,
--	&dev_attr_reason_prochot.attr,
--	&dev_attr_reason_ratl.attr,
--	&dev_attr_reason_vr_thermalert.attr,
--	&dev_attr_reason_vr_tdc.attr,
-+	&attr_status.attr,
-+	&attr_reason_pl1.attr,
-+	&attr_reason_pl2.attr,
-+	&attr_reason_pl4.attr,
-+	&attr_reason_thermal.attr,
-+	&attr_reason_prochot.attr,
-+	&attr_reason_ratl.attr,
-+	&attr_reason_vr_thermalert.attr,
-+	&attr_reason_vr_tdc.attr,
- 	NULL
- };
+-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+-
+ 	drm_puts(p, "\n");
+ 	xe_guc_ct_print(&guc->ct, p, false);
  
 -- 
 2.39.5
