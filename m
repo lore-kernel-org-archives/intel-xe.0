@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C29EC5B559
-	for <intel-xe@archiver.kernel.org>; Sun,  1 Jun 2025 23:33:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0ECCC5B543
+	for <intel-xe@archiver.kernel.org>; Sun,  1 Jun 2025 23:36:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5066B10E401;
-	Sun,  1 Jun 2025 23:33:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71CD110E432;
+	Sun,  1 Jun 2025 23:36:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tXmrDsAS";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JwXMIZVz";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7524C10E400;
- Sun,  1 Jun 2025 23:33:01 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E09D10E432;
+ Sun,  1 Jun 2025 23:36:48 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 10F585C571B;
- Sun,  1 Jun 2025 23:30:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51D9BC4CEF1;
- Sun,  1 Jun 2025 23:32:59 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 0D55B61127;
+ Sun,  1 Jun 2025 23:36:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BE6EC4CEF1;
+ Sun,  1 Jun 2025 23:36:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1748820780;
- bh=RXLXYPf25IYAL30WtOgQao+qkK8DvqIH5LiDksgBCRc=;
+ s=k20201202; t=1748821007;
+ bh=D91YgcZxIRCfR2mOCi2luDYBQF9vJuJWNdZL5R02rts=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=tXmrDsASEWO8j/GZ0OLEsTzlyuvYtjANQq6M34+pp61TuiNq3PHq731PK5sIJoLDr
- suldEWYUoYrWwB4Wincwqm3ynk9FZQvrCVxhXprHjmtCYo15JG3hq/pDay/lXooRYw
- eYw9BI9U+gbtYpW9SYDIILRNDd968wL5+UbM498dSVXi2YA/Pxk7cq5MEb63ZZoYPk
- NN/lfuhWNkR6/hpPGirnFl8RXDtcfPIHBRq+A3OcNFjpJIBZt9f4LK+pe4n4HqGyCk
- mjJLCtcWl2vRsAJqc0H/gnNMF9MZNoa7Wvr1LwjKohdMa6fP3dwv+ueCkIrgMmXPdw
- WNlYLLWkn3N+A==
+ b=JwXMIZVzRm1+xcFGWZWttifxYe65wQ3l8BaBeZrMKHDfBwUeSoDpmqrny+vhq7Gbu
+ 0jssIWF7JMjN4bPOMCpcplHZDcgfUzm5E25EZbLgU02PZsI0OHcItm4llJPeEwmasq
+ xjqxS/RwHtGGFHJdZ5ATBOHKRUOe6FYdg3GJ7P5TAfCfrUFZ4/NiVPwaanevqoOGNz
+ lEoBJi/Q3TUKNqa8bab55FFDk2ky/m8uB7pMELOI8I5MSf6yrJ/0dBICLhEhx0jSP4
+ A9hVudq78job4eOE7aEIpUce95VAtwAN2EHdmHtyqH+8bPQBaAw8smKhGpHemTs4i/
+ V4jGGLgeDH0Ng==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
@@ -38,17 +38,16 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.14 071/102] drm/xe/uc: Remove static from loop
- variable
-Date: Sun,  1 Jun 2025 19:29:03 -0400
-Message-Id: <20250601232937.3510379-71-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.12 64/93] drm/xe/uc: Remove static from loop variable
+Date: Sun,  1 Jun 2025 19:33:31 -0400
+Message-Id: <20250601233402.3512823-64-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250601232937.3510379-1-sashal@kernel.org>
-References: <20250601232937.3510379-1-sashal@kernel.org>
+In-Reply-To: <20250601233402.3512823-1-sashal@kernel.org>
+References: <20250601233402.3512823-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.14.9
+X-stable-base: Linux 6.12.31
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -118,10 +117,10 @@ have been successfully backported.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index fb0eda3d56829..b553079ae3d64 100644
+index d431d0031185e..16649652c8151 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -222,8 +222,8 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
+@@ -221,8 +221,8 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
  		[XE_UC_FW_TYPE_HUC] = { entries_huc, ARRAY_SIZE(entries_huc) },
  		[XE_UC_FW_TYPE_GSC] = { entries_gsc, ARRAY_SIZE(entries_gsc) },
  	};
