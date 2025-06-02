@@ -4,56 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 844CEC54FB3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 15:25:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64116C54FB3
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 15:37:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99B1B10E553;
-	Mon,  2 Jun 2025 15:25:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2256510E560;
+	Mon,  2 Jun 2025 15:37:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="LYrEefRE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z8pnP35M";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F33EA10E550;
- Mon,  2 Jun 2025 15:25:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=VoX6oGPIGUVFSBK81uTmYlV8KraDjQeUpSSWdEZ11r8=; b=LYrEefRENI+GhaJ2x+Vmrzilsc
- WCGly/q9njX6lXfqPF0gaaLTiJCF8wM9ZdZG9YcDkqOzsUU+KtrZWqO2/En9TI+AdTYz8r+MPZlTZ
- I505q5SoMmJ+KhLnyppi4aAQ4v1GEsP3ydKzvS5pIPcTBppnyPHILVRzDzEPF4OUG7EU9vTzuCZWD
- XMbNtaUtq+/G5l9KGVwa84zWXT28tkKSa+6NZFIJPuHgSUGq1bPWYiG2LjGjl5t7q6yoZPIkceeje
- Q+q+K3MFRU1qMCWi9A/besgRWLzw0EL2xRcDDb27vQs3+zGPyzgJUL3ma1Z6QrrhwdQGA0G1MitgA
- EbgDBJuw==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uM727-00GKHP-Ty; Mon, 02 Jun 2025 17:25:04 +0200
-Message-ID: <d483076a-b12f-4ade-b699-ee488df298ba@igalia.com>
-Date: Mon, 2 Jun 2025 16:25:02 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9681A10E560
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Jun 2025 15:37:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748878660; x=1780414660;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=fGoKhDAtlZL2/gLFEmcXSfejzK/qXLcruYOJUDjXxQ0=;
+ b=Z8pnP35M5uHRADN/+TiYfDeB7FXbywjoCuXRioZzIKC+28emeCXmo2e/
+ ig1yzu26gWVWqpSR9cxCbG4eLs2JQzHWEI0nj7mIAjohV0CBbG+NyoOJj
+ l6uK7Vepcty5OIieoxBhCfhDQhgOfHLyu1kzEzHq7KtF5irNo8ilRIzGd
+ QYfPWTyJJN58xf2vR3SCWmYgKcJ+lxGS7IRXCUCcfNkUF4VxOquSkFdR6
+ UeVvPmFqmGj2LaWqXCEJJrBPqLnhzOB5jBLludZn6Th1xCE2meM4CYkMk
+ vaSVKPg+UZh7gInkmxeDyii15PtTq9CMT9kCPB/RRAyU4Vxgpt51y/1gF g==;
+X-CSE-ConnectionGUID: tjmOhp4UQFi1+hGh6fAV6g==
+X-CSE-MsgGUID: IOAKO8noRc6L3liMOoJZLg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="73423250"
+X-IronPort-AV: E=Sophos;i="6.16,203,1744095600"; d="scan'208";a="73423250"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2025 08:37:40 -0700
+X-CSE-ConnectionGUID: 5W0HEdT6R5KzaUK7FxLeFg==
+X-CSE-MsgGUID: VskOy7KYTvG/+QaK5yzThQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,203,1744095600"; d="scan'208";a="181740523"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.134])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2025 08:37:36 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Mon, 2 Jun 2025 18:37:33 +0300 (EEST)
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+cc: "platform-driver-x86@vger.kernel.org"
+ <platform-driver-x86@vger.kernel.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ Hans de Goede <hdegoede@redhat.com>, 
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>, 
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Subject: RE: [PATCH 03/10] platform/x86/intel/pmt: use guard(mutex)
+In-Reply-To: <IA1PR11MB64187A2A2AD7E977C579745CC162A@IA1PR11MB6418.namprd11.prod.outlook.com>
+Message-ID: <267e6423-9a3d-1c84-4feb-72ffb22c72fb@linux.intel.com>
+References: <20250530203356.190234-1-michael.j.ruhl@intel.com>
+ <20250530203356.190234-3-michael.j.ruhl@intel.com>
+ <e56d6195-6f70-d788-225a-a6438dfda10d@linux.intel.com>
+ <IA1PR11MB64187A2A2AD7E977C579745CC162A@IA1PR11MB6418.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/9] dma-fence: Use a flag for 64-bit seqnos
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, kernel-dev@igalia.com
-References: <20250515095004.28318-1-tvrtko.ursulin@igalia.com>
- <20250515095004.28318-3-tvrtko.ursulin@igalia.com>
- <c93c05be-b2c8-42a2-84d1-32b90743eb82@amd.com>
- <b59cadff-da9a-409f-a5ed-96aafdfe3f0b@igalia.com>
- <13c5edf6-ccad-4a06-85d4-dccf2afd0c62@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <13c5edf6-ccad-4a06-85d4-dccf2afd0c62@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="8323328-1382814347-1748878653=:1043"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,274 +74,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-On 02/06/2025 15:42, Christian König wrote:
-> On 6/2/25 15:05, Tvrtko Ursulin wrote:
->>
->> Hi,
->>
->> On 15/05/2025 14:15, Christian König wrote:
->>> Hey drm-misc maintainers,
->>>
->>> can you guys please backmerge drm-next into drm-misc-next?
->>>
->>> I want to push this patch here but it depends on changes which are partially in drm-next and partially in drm-misc-next.
->>
->> Looks like the backmerge is still pending?
-> 
-> Yes, @Maarten, @Maxime and @Thomas ping on this.
-> 
->> In the meantime, Christian, any chance you will have some bandwith to think about the tail end of the series? Specifically patch 6 and how that is used onward.
-> 
-> Well the RCU grace period is quite a nifty hack. I wanted to go over it again after merging the first patches from this series.
-> 
-> In general looks like a good idea to me, I just don't like that we explicitely need to expose dma_fence_access_begin() and dma_fence_access_end().
-> 
-> Especially we can't do that while calling fence->ops->release.
+--8323328-1382814347-1748878653=:1043
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-Hm why not? You think something will take offence of the rcu_read_lock()?
+On Mon, 2 Jun 2025, Ruhl, Michael J wrote:
 
-Regards,
+> >-----Original Message-----
+> >From: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
+> >Sent: Saturday, May 31, 2025 1:24 AM
+> >To: Ruhl, Michael J <michael.j.ruhl@intel.com>
+> >Cc: platform-driver-x86@vger.kernel.org; intel-xe@lists.freedesktop.org;=
+ Hans
+> >de Goede <hdegoede@redhat.com>; De Marchi, Lucas
+> ><lucas.demarchi@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> >Subject: Re: [PATCH 03/10] platform/x86/intel/pmt: use guard(mutex)
+> >
+> >On Fri, 30 May 2025, Michael J. Ruhl wrote:
+> >
+> >> Update the mutex paths to use the new guard() mechanism.
+> >>
+> >> With the removal of goto, do some minor cleanup of the current
+> >> logic path.
+> >>
+> >> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> >> ---
+> >>  drivers/platform/x86/intel/pmt/crashlog.c | 32 +++++++++++-----------=
+-
+> >>  1 file changed, 15 insertions(+), 17 deletions(-)
+> >>
+> >> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c
+> >b/drivers/platform/x86/intel/pmt/crashlog.c
+> >> index d40c8e212733..c6d8a7a61d39 100644
+> >> --- a/drivers/platform/x86/intel/pmt/crashlog.c
+> >> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
+> >> @@ -155,9 +155,9 @@ enable_store(struct device *dev, struct
+> >device_attribute *attr,
+> >>  =09if (result)
+> >>  =09=09return result;
+> >>
+> >> -=09mutex_lock(&entry->control_mutex);
+> >> +=09guard(mutex)(&entry->control_mutex);
+> >> +
+> >>  =09pmt_crashlog_set_disable(&entry->entry, !enabled);
+> >> -=09mutex_unlock(&entry->control_mutex);
+> >>
+> >>  =09return count;
+> >>  }
+> >> @@ -189,26 +189,24 @@ trigger_store(struct device *dev, struct
+> >device_attribute *attr,
+> >>  =09if (result)
+> >>  =09=09return result;
+> >>
+> >> -=09mutex_lock(&entry->control_mutex);
+> >> +=09guard(mutex)(&entry->control_mutex);
+> >>
+> >>  =09if (!trigger) {
+> >>  =09=09pmt_crashlog_set_clear(&entry->entry);
+> >> -=09} else if (pmt_crashlog_complete(&entry->entry)) {
+> >> -=09=09/* we cannot trigger a new crash if one is still pending */
+> >> -=09=09result =3D -EEXIST;
+> >> -=09=09goto err;
+> >> -=09} else if (pmt_crashlog_disabled(&entry->entry)) {
+> >> -=09=09/* if device is currently disabled, return busy */
+> >> -=09=09result =3D -EBUSY;
+> >> -=09=09goto err;
+> >> -=09} else {
+> >> -=09=09pmt_crashlog_set_execute(&entry->entry);
+> >> +=09=09return count;
+> >>  =09}
+> >>
+> >> -=09result =3D count;
+> >> -err:
+> >> -=09mutex_unlock(&entry->control_mutex);
+> >> -=09return result;
+> >> +=09/* we cannot trigger a new crash if one is still pending */
+> >> +=09if (pmt_crashlog_complete(&entry->entry))
+> >> +=09=09return -EEXIST;
+> >> +
+> >> +=09/* if device is currently disabled, return busy */
+> >> +=09if (pmt_crashlog_disabled(&entry->entry))
+> >> +=09=09return -EBUSY;
+> >> +
+> >> +=09pmt_crashlog_set_execute(&entry->entry);
+> >> +
+> >> +=09return count;
+> >>  }
+> >>  static DEVICE_ATTR_RW(trigger);
+> >
+> >Thanks, the control flow is very straightforward after this change.
+>=20
+> Checking for the disable bit after checking for the complete doesn't real=
+ly make sense to me,=20
+> but I was concerned with "changing" the user experience...
+>=20
+> Is this something that can be "updated"? (i.e. swapping the complete and =
+disabled checks),
 
-Tvrtko
+TBH, I wouldn't worry over changing the precedence of returned error=20
+codes so just go ahead with that change (but please make it in a=20
+separate patch so it would be easy to revert in the very unlikely case=20
+that somebody depends on the old behavior).
 
->>> On 5/15/25 11:49, Tvrtko Ursulin wrote:
->>>> With the goal of reducing the need for drivers to touch (and dereference)
->>>> fence->ops, we move the 64-bit seqnos flag from struct dma_fence_ops to
->>>> the fence->flags.
->>>>
->>>> Drivers which were setting this flag are changed to use new
->>>> dma_fence_init64() instead of dma_fence_init().
->>>>
->>>> v2:
->>>>    * Streamlined init and added kerneldoc.
->>>>    * Rebase for amdgpu userq which landed since.
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>> Reviewed-by: Christian König <christian.koenig@amd.com> # v1
->>>> ---
->>>>    drivers/dma-buf/dma-fence-chain.c             |  5 +-
->>>>    drivers/dma-buf/dma-fence.c                   | 69 ++++++++++++++-----
->>>>    .../drm/amd/amdgpu/amdgpu_eviction_fence.c    |  7 +-
->>>>    .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   |  5 +-
->>>>    .../gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c  |  5 +-
->>>>    include/linux/dma-fence.h                     | 14 ++--
->>>>    6 files changed, 64 insertions(+), 41 deletions(-)
->>>>
->>>> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
->>>> index 90424f23fd73..a8a90acf4f34 100644
->>>> --- a/drivers/dma-buf/dma-fence-chain.c
->>>> +++ b/drivers/dma-buf/dma-fence-chain.c
->>>> @@ -218,7 +218,6 @@ static void dma_fence_chain_set_deadline(struct dma_fence *fence,
->>>>    }
->>>>      const struct dma_fence_ops dma_fence_chain_ops = {
->>>> -    .use_64bit_seqno = true,
->>>>        .get_driver_name = dma_fence_chain_get_driver_name,
->>>>        .get_timeline_name = dma_fence_chain_get_timeline_name,
->>>>        .enable_signaling = dma_fence_chain_enable_signaling,
->>>> @@ -262,8 +261,8 @@ void dma_fence_chain_init(struct dma_fence_chain *chain,
->>>>                seqno = max(prev->seqno, seqno);
->>>>        }
->>>>    -    dma_fence_init(&chain->base, &dma_fence_chain_ops,
->>>> -               &chain->lock, context, seqno);
->>>> +    dma_fence_init64(&chain->base, &dma_fence_chain_ops, &chain->lock,
->>>> +             context, seqno);
->>>>          /*
->>>>         * Chaining dma_fence_chain container together is only allowed through
->>>> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
->>>> index f0cdd3e99d36..705b59787731 100644
->>>> --- a/drivers/dma-buf/dma-fence.c
->>>> +++ b/drivers/dma-buf/dma-fence.c
->>>> @@ -989,24 +989,9 @@ void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq)
->>>>    }
->>>>    EXPORT_SYMBOL(dma_fence_describe);
->>>>    -/**
->>>> - * dma_fence_init - Initialize a custom fence.
->>>> - * @fence: the fence to initialize
->>>> - * @ops: the dma_fence_ops for operations on this fence
->>>> - * @lock: the irqsafe spinlock to use for locking this fence
->>>> - * @context: the execution context this fence is run on
->>>> - * @seqno: a linear increasing sequence number for this context
->>>> - *
->>>> - * Initializes an allocated fence, the caller doesn't have to keep its
->>>> - * refcount after committing with this fence, but it will need to hold a
->>>> - * refcount again if &dma_fence_ops.enable_signaling gets called.
->>>> - *
->>>> - * context and seqno are used for easy comparison between fences, allowing
->>>> - * to check which fence is later by simply using dma_fence_later().
->>>> - */
->>>> -void
->>>> -dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>>> -           spinlock_t *lock, u64 context, u64 seqno)
->>>> +static void
->>>> +__dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>>> +             spinlock_t *lock, u64 context, u64 seqno, unsigned long flags)
->>>>    {
->>>>        BUG_ON(!lock);
->>>>        BUG_ON(!ops || !ops->get_driver_name || !ops->get_timeline_name);
->>>> @@ -1017,9 +1002,55 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>>>        fence->lock = lock;
->>>>        fence->context = context;
->>>>        fence->seqno = seqno;
->>>> -    fence->flags = 0UL;
->>>> +    fence->flags = flags;
->>>>        fence->error = 0;
->>>>          trace_dma_fence_init(fence);
->>>>    }
->>>> +
->>>> +/**
->>>> + * dma_fence_init - Initialize a custom fence.
->>>> + * @fence: the fence to initialize
->>>> + * @ops: the dma_fence_ops for operations on this fence
->>>> + * @lock: the irqsafe spinlock to use for locking this fence
->>>> + * @context: the execution context this fence is run on
->>>> + * @seqno: a linear increasing sequence number for this context
->>>> + *
->>>> + * Initializes an allocated fence, the caller doesn't have to keep its
->>>> + * refcount after committing with this fence, but it will need to hold a
->>>> + * refcount again if &dma_fence_ops.enable_signaling gets called.
->>>> + *
->>>> + * context and seqno are used for easy comparison between fences, allowing
->>>> + * to check which fence is later by simply using dma_fence_later().
->>>> + */
->>>> +void
->>>> +dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>>> +           spinlock_t *lock, u64 context, u64 seqno)
->>>> +{
->>>> +    __dma_fence_init(fence, ops, lock, context, seqno, 0UL);
->>>> +}
->>>>    EXPORT_SYMBOL(dma_fence_init);
->>>> +
->>>> +/**
->>>> + * dma_fence_init64 - Initialize a custom fence with 64-bit seqno support.
->>>> + * @fence: the fence to initialize
->>>> + * @ops: the dma_fence_ops for operations on this fence
->>>> + * @lock: the irqsafe spinlock to use for locking this fence
->>>> + * @context: the execution context this fence is run on
->>>> + * @seqno: a linear increasing sequence number for this context
->>>> + *
->>>> + * Initializes an allocated fence, the caller doesn't have to keep its
->>>> + * refcount after committing with this fence, but it will need to hold a
->>>> + * refcount again if &dma_fence_ops.enable_signaling gets called.
->>>> + *
->>>> + * Context and seqno are used for easy comparison between fences, allowing
->>>> + * to check which fence is later by simply using dma_fence_later().
->>>> + */
->>>> +void
->>>> +dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>>> +         spinlock_t *lock, u64 context, u64 seqno)
->>>> +{
->>>> +    __dma_fence_init(fence, ops, lock, context, seqno,
->>>> +             BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
->>>> +}
->>>> +EXPORT_SYMBOL(dma_fence_init64);
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
->>>> index 1a7469543db5..79713421bffe 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
->>>> @@ -134,7 +134,6 @@ static bool amdgpu_eviction_fence_enable_signaling(struct dma_fence *f)
->>>>    }
->>>>      static const struct dma_fence_ops amdgpu_eviction_fence_ops = {
->>>> -    .use_64bit_seqno = true,
->>>>        .get_driver_name = amdgpu_eviction_fence_get_driver_name,
->>>>        .get_timeline_name = amdgpu_eviction_fence_get_timeline_name,
->>>>        .enable_signaling = amdgpu_eviction_fence_enable_signaling,
->>>> @@ -160,9 +159,9 @@ amdgpu_eviction_fence_create(struct amdgpu_eviction_fence_mgr *evf_mgr)
->>>>        ev_fence->evf_mgr = evf_mgr;
->>>>        get_task_comm(ev_fence->timeline_name, current);
->>>>        spin_lock_init(&ev_fence->lock);
->>>> -    dma_fence_init(&ev_fence->base, &amdgpu_eviction_fence_ops,
->>>> -               &ev_fence->lock, evf_mgr->ev_fence_ctx,
->>>> -               atomic_inc_return(&evf_mgr->ev_fence_seq));
->>>> +    dma_fence_init64(&ev_fence->base, &amdgpu_eviction_fence_ops,
->>>> +             &ev_fence->lock, evf_mgr->ev_fence_ctx,
->>>> +             atomic_inc_return(&evf_mgr->ev_fence_seq));
->>>>        return ev_fence;
->>>>    }
->>>>    diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
->>>> index 029cb24c28b3..5e92d00a591f 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
->>>> @@ -239,8 +239,8 @@ static int amdgpu_userq_fence_create(struct amdgpu_usermode_queue *userq,
->>>>        fence = &userq_fence->base;
->>>>        userq_fence->fence_drv = fence_drv;
->>>>    -    dma_fence_init(fence, &amdgpu_userq_fence_ops, &userq_fence->lock,
->>>> -               fence_drv->context, seq);
->>>> +    dma_fence_init64(fence, &amdgpu_userq_fence_ops, &userq_fence->lock,
->>>> +             fence_drv->context, seq);
->>>>          amdgpu_userq_fence_driver_get(fence_drv);
->>>>        dma_fence_get(fence);
->>>> @@ -334,7 +334,6 @@ static void amdgpu_userq_fence_release(struct dma_fence *f)
->>>>    }
->>>>      static const struct dma_fence_ops amdgpu_userq_fence_ops = {
->>>> -    .use_64bit_seqno = true,
->>>>        .get_driver_name = amdgpu_userq_fence_get_driver_name,
->>>>        .get_timeline_name = amdgpu_userq_fence_get_timeline_name,
->>>>        .signaled = amdgpu_userq_fence_signaled,
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
->>>> index 51cddfa3f1e8..5d26797356a3 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
->>>> @@ -71,7 +71,6 @@ static void amdgpu_tlb_fence_work(struct work_struct *work)
->>>>    }
->>>>      static const struct dma_fence_ops amdgpu_tlb_fence_ops = {
->>>> -    .use_64bit_seqno = true,
->>>>        .get_driver_name = amdgpu_tlb_fence_get_driver_name,
->>>>        .get_timeline_name = amdgpu_tlb_fence_get_timeline_name
->>>>    };
->>>> @@ -101,8 +100,8 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct amdgpu_vm *vm
->>>>        INIT_WORK(&f->work, amdgpu_tlb_fence_work);
->>>>        spin_lock_init(&f->lock);
->>>>    -    dma_fence_init(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
->>>> -               vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
->>>> +    dma_fence_init64(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
->>>> +             vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
->>>>          /* TODO: We probably need a separate wq here */
->>>>        dma_fence_get(&f->base);
->>>> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
->>>> index 48b5202c531d..a34a0dcdc446 100644
->>>> --- a/include/linux/dma-fence.h
->>>> +++ b/include/linux/dma-fence.h
->>>> @@ -97,6 +97,7 @@ struct dma_fence {
->>>>    };
->>>>      enum dma_fence_flag_bits {
->>>> +    DMA_FENCE_FLAG_SEQNO64_BIT,
->>>>        DMA_FENCE_FLAG_SIGNALED_BIT,
->>>>        DMA_FENCE_FLAG_TIMESTAMP_BIT,
->>>>        DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
->>>> @@ -124,14 +125,6 @@ struct dma_fence_cb {
->>>>     *
->>>>     */
->>>>    struct dma_fence_ops {
->>>> -    /**
->>>> -     * @use_64bit_seqno:
->>>> -     *
->>>> -     * True if this dma_fence implementation uses 64bit seqno, false
->>>> -     * otherwise.
->>>> -     */
->>>> -    bool use_64bit_seqno;
->>>> -
->>>>        /**
->>>>         * @get_driver_name:
->>>>         *
->>>> @@ -262,6 +255,9 @@ struct dma_fence_ops {
->>>>    void dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>>>                spinlock_t *lock, u64 context, u64 seqno);
->>>>    +void dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>>> +              spinlock_t *lock, u64 context, u64 seqno);
->>>> +
->>>>    void dma_fence_release(struct kref *kref);
->>>>    void dma_fence_free(struct dma_fence *fence);
->>>>    void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq);
->>>> @@ -454,7 +450,7 @@ static inline bool __dma_fence_is_later(struct dma_fence *fence, u64 f1, u64 f2)
->>>>         * 32bit sequence numbers. Use a 64bit compare when the driver says to
->>>>         * do so.
->>>>         */
->>>> -    if (fence->ops->use_64bit_seqno)
->>>> +    if (test_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence->flags))
->>>>            return f1 > f2;
->>>>          return (int)(lower_32_bits(f1) - lower_32_bits(f2)) > 0;
->>>
->>
-> 
+> >Reviewed-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
+>=20
+> Thanks!
+>=20
+> M
+>=20
+> >
+> >
+> >--
+> > i.
+>=20
 
+--=20
+ i.
+
+--8323328-1382814347-1748878653=:1043--
