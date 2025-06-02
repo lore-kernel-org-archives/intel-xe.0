@@ -4,75 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33C00C5AD49
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 14:43:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B966DC5B549
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 14:46:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E12B010E2E1;
-	Mon,  2 Jun 2025 14:43:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47E9610E545;
+	Mon,  2 Jun 2025 14:46:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="Kp/JOzXc";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="fKsN0rbe";
 	dkim-atps=neutral
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6FDF10E2E1
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Jun 2025 14:43:40 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-442fda876a6so39231955e9.0
- for <intel-xe@lists.freedesktop.org>; Mon, 02 Jun 2025 07:43:40 -0700 (PDT)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
+ [209.85.221.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C60710E545
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Jun 2025 14:46:05 +0000 (UTC)
+Received: by mail-wr1-f42.google.com with SMTP id
+ ffacd0b85a97d-3a35c894313so4124668f8f.2
+ for <intel-xe@lists.freedesktop.org>; Mon, 02 Jun 2025 07:46:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1748875419; x=1749480219; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=BmRnOjxFQaT42NxVRt03FTSH3KzxlAbjYGkqubhhB6U=;
- b=Kp/JOzXcjUujEKt6YVl/hqlF+O8YMLFLNmtNh70tBHfZsUXpCWZsKUC23+Nopfh30t
- 8rxud6d1of92/kWd8iS/xn+Y2JAE4dbY3Q77YQUVGjkjVMgdJ0VGrunV1IrDuqJjxl3Q
- BscXo01RGAUhkmg0dDNzKhLdnFp/ycsnPtQdw=
+ d=ffwll.ch; s=google; t=1748875564; x=1749480364; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=8EMxM7tpyWA0lyd9k41Yq4Dz6TvpMgz4VTQoCcui0Wg=;
+ b=fKsN0rbegyFyFvnPIYD3nDtfeCcDzEhnJwozxZTI98pebcX2HavfTGvfPlQaCXiFSz
+ Jw1bAiY242TsBL2BoiqYrfDUG+ms2nrUA2KxDLS+7OB+sLB2pwqyW69TG9Obheep9E+8
+ UU/Vy+06RA6B7zFhVOhmJ7GwN31e8at5U4LBg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748875419; x=1749480219;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=BmRnOjxFQaT42NxVRt03FTSH3KzxlAbjYGkqubhhB6U=;
- b=DPH0VEFXvNsVTacFA/0t4qXj2ce3GRTAkj9UAKJDS8HJRB8wwselABUu0Bg6dyb9Ce
- ZbPYnTCqaldnOlsWO/95AI7EJNyrN4/k0FQ0ITklJ4JBT+PY/SfOP87H/E/v7DYAJJJt
- c5uopGBHUDQvN2HiYjuENRomd7yZxhYdAJsA7vM2CGdgJmIhbqptIpE6Dk3hDc/QVPij
- HPBDBqA933cZc8OHewH20J5EreDyHGcGX7Os66lAZ0/Uk5QiYzDp0yBujAQnVg8iqd0D
- lyT7FRzTD9gX3rLzGS4m5QeHqo45IeEGbUPZLydF+rcAavaS0qtzLXpubnO25k6FWsd9
- BiUw==
+ d=1e100.net; s=20230601; t=1748875564; x=1749480364;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=8EMxM7tpyWA0lyd9k41Yq4Dz6TvpMgz4VTQoCcui0Wg=;
+ b=g3aUSsheP0T3gx9/WKhLeOupRV3ZRs2lgm28mC4GxlHWomUkLx3byLe7hHWG7a/uyT
+ spk3XeVnbfAAgzqpT0qLlwm3XLCdfn6ozr5bEdHo/DpfzTy46UmKpN/GXzLIySydq5KN
+ T8FIaLnePtHU/vb2ntOi7xLnM71ES+iL68pFr0DIWQyJ6RH2NqMFFgcGxD+HJIoleExs
+ b6qljioH6ycaW5msuLPB97vZjz07mZT0wkDGlxPo6rJLd3Wf4ROUACOT5iA4m1LmxJUS
+ 4HP6aH7SED+K1hJ3bRkAcWqyuzzVvw5Th/cbReFU4EhNB8kKjqHHCfDV4R80t3IKwWSX
+ Nvkw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWyzBSgFzcjBxOGMl3Wb6empbFWEfnK17Wz0rLDW9jf58zPjv0ogbhPfkgloafhbNBFT+EKtldXGg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyjCpdIcmm2JgZR+Mu85TOSmm23PUxxYVkpmY6gktoo1IAUY3x9
- Lo2ItYDfJFvkkNQPbunu16Y4n+RU8EcAkSihreJwpTUM5EcYpXkvwBMHARtuRl/aUM8=
-X-Gm-Gg: ASbGnctlqUkn0emG6TiGykxUf0QYJ643wswRqOSer2KCDI2ugSfMQcMW8uUuXudh9gD
- qdZlxVCXCRsmmodLE73pmPG3v0pYqQcYYfFNzuDy/z6sBDQygieEhxU3soG0Fqwac/EIlmDOHK9
- zYQ5loVNt2Uz/3lP3EoM5gX+9UNIVOOm6OZwnBCHC7YhrDrrPJnJl7P+h63DHiRJJo2HImrXQ7u
- s7hcSimvAAjNZGWoIJcvDCaEK3DV94xS7R9t4OzvBaYZPPJN8eBeZm80ARXWQ6A15K60qasLEO8
- 1+cV5YUSndradwLlrliPpoXSlf4y5yh+hAY0F6QodRYuodxduslKTK6EdJ4nIho=
-X-Google-Smtp-Source: AGHT+IFo+Z0NR0XEqF7bGgCU/zFo04aIkuwKr4I5i9fvBh1/D97TYslci1leA382fPNo1VYX/jntFg==
-X-Received: by 2002:a05:600c:8b34:b0:442:ccfa:1461 with SMTP id
- 5b1f17b1804b1-4511ecc2a30mr78544895e9.13.1748875418792; 
- Mon, 02 Jun 2025 07:43:38 -0700 (PDT)
+ AJvYcCWMzpUUWPXAJUkiVSwmJVbRxLWpmye4dezZZoqGdpS0aMJH1Tv70CediPBGUwVWo7SI9VX+zfONeg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyWvWGWJBVdDleg5Bczc4oMNhWQ8tGOekAox6jNeuEzmfxgqrPE
+ +WkiUSqehwIYeAZRN9462P3xofiKZEacZPt5Ue+N3S14oU1TXsDQK+FwfShbaYtIJOQ=
+X-Gm-Gg: ASbGncsRHhYSS1W+feFnyKIT/WDe2vK2hwDkT/pYEMb77Kse0punYCw0Ek2EE+BwEdg
+ DwYKumWa8A2OPMQ0ZL1lv7wyBlr0tLOckxOVf5trjm+xSDbw9z6uNDZFqD+moztBBQ4tJhpKVMc
+ 50DhT4kbQcLzEEOHKM0EGZVJNiFufG62z+GxqDfmcB57GnVj4J5Qkb+2xYl0ZL+LVTeqv+UXFOk
+ gTiUpIFjCA9P485KlnIGeeS3GyUqniQxtoPQBo6xAgtYZHQI6pQw7ZWUqE/c+HZNWekriYljdeF
+ W3h+qEk+SzGN5JD14GXgr2ng5ds/IcRNIOBqeJw9YNAvidZkaZgOkVzm6LavtkhrZLFMdkk14A=
+ =
+X-Google-Smtp-Source: AGHT+IGum4W1lJaHwGIa42aYpFR40MKqv6scV6QL4i0d4+cg0ds5HiGniHEXQz5DlfGyXRuGOt4XTw==
+X-Received: by 2002:a05:6000:2081:b0:3a4:db49:94aa with SMTP id
+ ffacd0b85a97d-3a4fe17945bmr6857588f8f.21.1748875563537; 
+ Mon, 02 Jun 2025 07:46:03 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3a4f00971e4sm15380816f8f.65.2025.06.02.07.43.37
+ ffacd0b85a97d-3a4efe5b7f8sm14865216f8f.3.2025.06.02.07.46.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Jun 2025 07:43:38 -0700 (PDT)
-Date: Mon, 2 Jun 2025 16:43:35 +0200
+ Mon, 02 Jun 2025 07:46:03 -0700 (PDT)
+Date: Mon, 2 Jun 2025 16:46:01 +0200
 From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+To: =?iso-8859-1?Q?Adri=E1n?= Larumbe <adrian.larumbe@collabora.com>
 Cc: Simona Vetter <simona.vetter@ffwll.ch>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- intel-xe@lists.freedesktop.org, Carl Vanderlip <quic_carlv@quicinc.com>,
- linux-arm-msm@vger.kernel.org, Simona Vetter <simona.vetter@intel.com>
-Subject: Re: [PATCH 4/8] accel/qaic: delete qaic_bo.handle
-Message-ID: <aD24l3NoZWWwScx6@phenom.ffwll.local>
+ intel-xe@lists.freedesktop.org,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Simona Vetter <simona.vetter@intel.com>
+Subject: Re: [PATCH 3/8] drm/panthor: Fix UAF in
+ panthor_gem_create_with_handle() debugfs code
+Message-ID: <aD25KVnitkhn6blT@phenom.ffwll.local>
 References: <20250528091307.1894940-1-simona.vetter@ffwll.ch>
- <20250528091307.1894940-5-simona.vetter@ffwll.ch>
- <70ad82b5-19f3-4e05-bc7a-858dafc563ef@oss.qualcomm.com>
+ <20250528091307.1894940-4-simona.vetter@ffwll.ch>
+ <jq6d2nxsp7g6sq2uo4bknqgfod7ssdoqyvtlorpq2xij2ikgjc@6y64ebpjeq7p>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <70ad82b5-19f3-4e05-bc7a-858dafc563ef@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <jq6d2nxsp7g6sq2uo4bknqgfod7ssdoqyvtlorpq2xij2ikgjc@6y64ebpjeq7p>
 X-Operating-System: Linux phenom 6.12.25-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,43 +94,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 28, 2025 at 09:15:22AM -0600, Jeff Hugo wrote:
-> On 5/28/2025 3:13 AM, Simona Vetter wrote:
-> > Handles are per-file, not global, so this makes no sense. Plus it's
-> > set only after calling drm_gem_handle_create(), and drivers are not
-> > allowed to further intialize a bo after that function has published it
-> > already.
+On Sun, Jun 01, 2025 at 03:06:15PM +0100, Adrián Larumbe wrote:
+> Hi Simona,
 > 
-> intialize -> initialize
-> 
-> > It is also entirely unused, which helps enormously with removing it
-> > :-)
-> 
-> There is a downstream reference to it which hasn't quite made it upstream
-> yet, but tweaking that should be fine. This is clearly a problem anyways, so
-> we'll need to find a solution regardless. Thank you very much for the audit.
-> 
-> > Since we're still holding a reference to the bo nothing bad can
-> > happen, hence not cc: stable material.
-> > 
-> > Cc: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-> > Cc: Carl Vanderlip <quic_carlv@quicinc.com>
-> > Cc: linux-arm-msm@vger.kernel.org
-> > Signed-off-by: Simona Vetter <simona.vetter@ffwll.ch>
+> On 28.05.2025 11:13, Simona Vetter wrote:
+> > The object is potentially already gone after the drm_gem_object_put().
+> > In general the object should be fully constructed before calling
+> > drm_gem_handle_create(), except the debugfs tracking uses a separate
+> > lock and list and separate flag to denotate whether the object is
+> > actually initilized.
+> >
+> > Since I'm touching this all anyway simplify this by only adding the
+> > object to the debugfs when it's ready for that, which allows us to
+> > delete that separate flag. panthor_gem_debugfs_bo_rm() already checks
+> > whether we've actually been added to the list or this is some error
+> > path cleanup.
+> >
+> > Fixes: a3707f53eb3f ("drm/panthor: show device-wide list of DRM GEM objects over DebugFS")
+> > Cc: Adrián Larumbe <adrian.larumbe@collabora.com>
+> > Cc: Boris Brezillon <boris.brezillon@collabora.com>
+> > Cc: Steven Price <steven.price@arm.com>
+> > Cc: Liviu Dudau <liviu.dudau@arm.com>
 > > Signed-off-by: Simona Vetter <simona.vetter@intel.com>
+> > Signed-off-by: Simona Vetter <simona.vetter@ffwll.ch>
+> > ---
+> >  drivers/gpu/drm/panthor/panthor_gem.c | 31 +++++++++++++--------------
+> >  drivers/gpu/drm/panthor/panthor_gem.h |  3 ---
+> >  2 files changed, 15 insertions(+), 19 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/panthor/panthor_gem.c b/drivers/gpu/drm/panthor/panthor_gem.c
+> > index 7c00fd77758b..f334444cb5df 100644
+> > --- a/drivers/gpu/drm/panthor/panthor_gem.c
+> > +++ b/drivers/gpu/drm/panthor/panthor_gem.c
+> > @@ -16,9 +16,11 @@
+> >  #include "panthor_mmu.h"
+> >
+> >  #ifdef CONFIG_DEBUG_FS
+> > -static void panthor_gem_debugfs_bo_add(struct panthor_device *ptdev,
+> > -				       struct panthor_gem_object *bo)
+> > +static void panthor_gem_debugfs_bo_add(struct panthor_gem_object *bo)
+> >  {
+> > +	struct panthor_device *ptdev = container_of(bo->base.base.dev,
+> > +						    struct panthor_device, base);
+> > +
+> >  	INIT_LIST_HEAD(&bo->debugfs.node);
+> >
+> >  	bo->debugfs.creator.tgid = current->group_leader->pid;
+> > @@ -44,12 +46,10 @@ static void panthor_gem_debugfs_bo_rm(struct panthor_gem_object *bo)
+> >
+> >  static void panthor_gem_debugfs_set_usage_flags(struct panthor_gem_object *bo, u32 usage_flags)
+> >  {
+> > -	bo->debugfs.flags = usage_flags | PANTHOR_DEBUGFS_GEM_USAGE_FLAG_INITIALIZED;
+> > +	bo->debugfs.flags = usage_flags;
+> > +	panthor_gem_debugfs_bo_add(bo);
+> >  }
+> >  #else
+> > -static void panthor_gem_debugfs_bo_add(struct panthor_device *ptdev,
+> > -				       struct panthor_gem_object *bo)
+> > -{}
+> >  static void panthor_gem_debugfs_bo_rm(struct panthor_gem_object *bo) {}
+> >  static void panthor_gem_debugfs_set_usage_flags(struct panthor_gem_object *bo, u32 usage_flags) {}
+> >  #endif
+> > @@ -246,7 +246,7 @@ struct drm_gem_object *panthor_gem_create_object(struct drm_device *ddev, size_t
+> >  	drm_gem_gpuva_set_lock(&obj->base.base, &obj->gpuva_list_lock);
+> >  	mutex_init(&obj->label.lock);
+> >
+> > -	panthor_gem_debugfs_bo_add(ptdev, obj);
+> > +	INIT_LIST_HEAD(&obj->debugfs.node);
 > 
-> SOB chain seems weird to me. I got this email from @ffwll.ch, which would be
-> the author. Where is @intel.com contributing to the handoff of the patch?
+> This is going to break builds with no DebugFS support.
 
-I work for intel, so I just whack both of my emails on there for sob
-purposes. The intel email tends to be a blackhole for public mail, which
-is why I don't use it as From: for anything public.
+Oops, forgot to build-test this. Note that runtime testing would be good,
+I don't have the hw for that. Or can some CI pick this up somewhere?
 
-> Overall, looks good to me. Seems like either I can ack this, and you can
-> merge, or I can just take it forward. I have no preference.  Do you?
+> >  	return &obj->base.base;
+> >  }
+> > @@ -285,6 +285,12 @@ panthor_gem_create_with_handle(struct drm_file *file,
+> >  		bo->base.base.resv = bo->exclusive_vm_root_gem->resv;
+> >  	}
+> >
+> > +	/*
+> > +	 * No explicit flags are needed in the call below, since the
+> > +	 * function internally sets the INITIALIZED bit for us.
+> > +	 */
+> 
+> If we got rid of the INITIALIZED usage flag, then this comment should also be reworded.
 
-Whatever you like most, I'll resend the series with the wrong patches
-dropped soon anyway.
+Will also fix this for v2.
+
+> 
+> > +	panthor_gem_debugfs_set_usage_flags(bo, 0);
+> > +
+> >  	/*
+> >  	 * Allocate an id of idr table where the obj is registered
+> >  	 * and handle has the id what user can see.
+> > @@ -296,12 +302,6 @@ panthor_gem_create_with_handle(struct drm_file *file,
+> >  	/* drop reference from allocate - handle holds it now. */
+> >  	drm_gem_object_put(&shmem->base);
+> >
+> > -	/*
+> > -	 * No explicit flags are needed in the call below, since the
+> > -	 * function internally sets the INITIALIZED bit for us.
+> > -	 */
+> > -	panthor_gem_debugfs_set_usage_flags(bo, 0);
+> > -
+> >  	return ret;
+> >  }
+> >
+> > @@ -387,7 +387,7 @@ static void panthor_gem_debugfs_bo_print(struct panthor_gem_object *bo,
+> >  	unsigned int refcount = kref_read(&bo->base.base.refcount);
+> >  	char creator_info[32] = {};
+> >  	size_t resident_size;
+> > -	u32 gem_usage_flags = bo->debugfs.flags & (u32)~PANTHOR_DEBUGFS_GEM_USAGE_FLAG_INITIALIZED;
+> > +	u32 gem_usage_flags = bo->debugfs.flags;
+> >  	u32 gem_state_flags = 0;
+> >
+> >  	/* Skip BOs being destroyed. */
+> > @@ -436,8 +436,7 @@ void panthor_gem_debugfs_print_bos(struct panthor_device *ptdev,
+> >
+> >  	scoped_guard(mutex, &ptdev->gems.lock) {
+> >  		list_for_each_entry(bo, &ptdev->gems.node, debugfs.node) {
+> > -			if (bo->debugfs.flags & PANTHOR_DEBUGFS_GEM_USAGE_FLAG_INITIALIZED)
+> > -				panthor_gem_debugfs_bo_print(bo, m, &totals);
+> > +			panthor_gem_debugfs_bo_print(bo, m, &totals);
+> >  		}
+> >  	}
+> >
+> > diff --git a/drivers/gpu/drm/panthor/panthor_gem.h b/drivers/gpu/drm/panthor/panthor_gem.h
+> > index 4dd732dcd59f..8fc7215e9b90 100644
+> > --- a/drivers/gpu/drm/panthor/panthor_gem.h
+> > +++ b/drivers/gpu/drm/panthor/panthor_gem.h
+> > @@ -35,9 +35,6 @@ enum panthor_debugfs_gem_usage_flags {
+> >
+> >  	/** @PANTHOR_DEBUGFS_GEM_USAGE_FLAG_FW_MAPPED: BO is mapped on the FW VM. */
+> >  	PANTHOR_DEBUGFS_GEM_USAGE_FLAG_FW_MAPPED = BIT(PANTHOR_DEBUGFS_GEM_USAGE_FW_MAPPED_BIT),
+> > -
+> > -	/** @PANTHOR_DEBUGFS_GEM_USAGE_FLAG_INITIALIZED: BO is ready for DebugFS display. */
+> > -	PANTHOR_DEBUGFS_GEM_USAGE_FLAG_INITIALIZED = BIT(31),
+> >  };
+> >
+> >  /**
+> > --
+> > 2.49.0
+> 
+> There's a Panfrost port of the functionality this patch fixes pending merge into drm-misc,
+> so I should probably ask either Boris or Steven to hold off on merging them till I've made
+> sure there's no potential UAF in it.
+
+The important part is to do all init before the call to gem_object_put(),
+that prevents the UAF. Doing all init before handle_create() is just nice
+on top, since that aligns with the core design and avoids the need for a
+separate init flag (for which you're at least missing the right memory
+barriers here).
+
+Thanks for your comments.
 -Sima
 -- 
 Simona Vetter
