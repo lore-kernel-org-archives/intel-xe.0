@@ -4,139 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E914FC54FB3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 15:16:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55F86C5AD49
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 15:22:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A32C810E550;
-	Mon,  2 Jun 2025 15:16:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12F1510E550;
+	Mon,  2 Jun 2025 15:22:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="W/Q7jVF1";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3XPLPLW2";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="W/Q7jVF1";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3XPLPLW2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="KOLEJtcf";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4728F10E55E
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Jun 2025 15:16:02 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 5A43D1F796;
- Mon,  2 Jun 2025 15:15:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1748877359; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qtlP8eL0MrIX0LBZ8b22H0m7Pr4zNJQhTbAot7s86E4=;
- b=W/Q7jVF1xbHj3dhcFmxUYej5eNqJL3P6qAihFXR8qOyso8G4cpXb7YaZy+lwt0wl9HKyza
- ZN44hbBBKrnAwbrtRQkaQ3m2lyufg37HV3NuX6RaEX6K06VLURtQp9kXAq2rrV0jJEedTj
- xRvekpIMF69c1m6xl7Hl4LklNGSNuw8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1748877359;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qtlP8eL0MrIX0LBZ8b22H0m7Pr4zNJQhTbAot7s86E4=;
- b=3XPLPLW2wNhaXOZvxvO7lwL8+R8D2EixIk74mOU+qqaqJwhWugrBUo/AwGMaFmLuX8fndA
- oC7QrWSc5Jn8VMDw==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b="W/Q7jVF1";
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=3XPLPLW2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1748877359; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qtlP8eL0MrIX0LBZ8b22H0m7Pr4zNJQhTbAot7s86E4=;
- b=W/Q7jVF1xbHj3dhcFmxUYej5eNqJL3P6qAihFXR8qOyso8G4cpXb7YaZy+lwt0wl9HKyza
- ZN44hbBBKrnAwbrtRQkaQ3m2lyufg37HV3NuX6RaEX6K06VLURtQp9kXAq2rrV0jJEedTj
- xRvekpIMF69c1m6xl7Hl4LklNGSNuw8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1748877359;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qtlP8eL0MrIX0LBZ8b22H0m7Pr4zNJQhTbAot7s86E4=;
- b=3XPLPLW2wNhaXOZvxvO7lwL8+R8D2EixIk74mOU+qqaqJwhWugrBUo/AwGMaFmLuX8fndA
- oC7QrWSc5Jn8VMDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 05FB613A63;
- Mon,  2 Jun 2025 15:15:58 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id gjBVOy7APWgeZgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 02 Jun 2025 15:15:58 +0000
-Message-ID: <2e60074d-8efd-4880-8620-9d9572583c88@suse.de>
-Date: Mon, 2 Jun 2025 17:15:58 +0200
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B556810E550
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Jun 2025 15:22:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=J/OUQQqssgx85JdIiK62kOkbOpgftcGlGKC6A43nJwU=; b=KOLEJtcfXpju8iYDFs1iT8PDUP
+ KD0ujNNPHfYqYD03JRbbaKTbNPawg38e57WoRDfoQEfJFR5EjYiCgzap0kvd8ncAribAQP1wKuVOs
+ vXnealKN0RZsEjomeVmfotXP3hbxd9HeQfKd+C3jZeHmT0UiLnuJIGqn4yhlcGMjIYBHsqphsDlvn
+ yXfjwy7AYLPqiDls2UYLDPHOlEWBPzFFOgKq3rtm3ipx4guCCjlSpzblSz79N8Z81Hte4/ZBsbLvh
+ 7wKcMPdKm0XoDlTMTLWXl+TJBi5l4595AmfB4G5kFSTtc4x6tCe/6sfO9/NqYm1UjKpj7t/0TRv38
+ OoToDX9w==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uM6zw-00GKE7-Mh; Mon, 02 Jun 2025 17:22:48 +0200
+Message-ID: <e98414e8-a487-4164-89db-86f9a98b06b9@igalia.com>
+Date: Mon, 2 Jun 2025 16:22:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] drm/gem: Fix race in drm_gem_handle_create_tail()
-To: Simona Vetter <simona.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: intel-xe@lists.freedesktop.org,
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
- stable@vger.kernel.org, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Simona Vetter <simona.vetter@intel.com>
-References: <20250528091307.1894940-1-simona.vetter@ffwll.ch>
- <20250528091307.1894940-2-simona.vetter@ffwll.ch>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20250528091307.1894940-2-simona.vetter@ffwll.ch>
+Subject: Re: [PATCH v2 2/6] drm/xe: Use iosys_map helpers for WA BB emission
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
+ Matt Roper <matthew.d.roper@intel.com>
+References: <20250602111956.14854-1-tvrtko.ursulin@igalia.com>
+ <20250602111956.14854-3-tvrtko.ursulin@igalia.com>
+ <r2alqrhauj7b3dbtmc6oicp2jevhlniogxjgggovw4axlyxzqd@5mnufxsin23l>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <r2alqrhauj7b3dbtmc6oicp2jevhlniogxjgggovw4axlyxzqd@5mnufxsin23l>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Queue-Id: 5A43D1F796
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- RCVD_VIA_SMTP_AUTH(0.00)[]; TO_DN_SOME(0.00)[];
- RCVD_TLS_ALL(0.00)[]; MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
- RCPT_COUNT_SEVEN(0.00)[10]; MID_RHS_MATCH_FROM(0.00)[];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[lists.freedesktop.org,linux.intel.com,vger.kernel.org,kernel.org,gmail.com,ffwll.ch,intel.com];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[ffwll.ch:email,suse.de:mid,suse.de:dkim,suse.de:email,intel.com:email];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,167 +62,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
 
-Am 28.05.25 um 11:12 schrieb Simona Vetter:
-> Object creation is a careful dance where we must guarantee that the
-> object is fully constructed before it is visible to other threads, and
-> GEM buffer objects are no difference.
->
-> Final publishing happens by calling drm_gem_handle_create(). After
-> that the only allowed thing to do is call drm_gem_object_put() because
-> a concurrent call to the GEM_CLOSE ioctl with a correctly guessed id
-> (which is trivial since we have a linear allocator) can already tear
-> down the object again.
->
-> Luckily most drivers get this right, the very few exceptions I've
-> pinged the relevant maintainers for. Unfortunately we also need
-> drm_gem_handle_create() when creating additional handles for an
-> already existing object (e.g. GETFB ioctl or the various bo import
-> ioctl), and hence we cannot have a drm_gem_handle_create_and_put() as
-> the only exported function to stop these issues from happening.
->
-> Now unfortunately the implementation of drm_gem_handle_create() isn't
-> living up to standards: It does correctly finishe object
-> initialization at the global level, and hence is safe against a
-> concurrent tear down. But it also sets up the file-private aspects of
-> the handle, and that part goes wrong: We fully register the object in
-> the drm_file.object_idr before calling drm_vma_node_allow() or
-> obj->funcs->open, which opens up races against concurrent removal of
-> that handle in drm_gem_handle_delete().
->
-> Fix this with the usual two-stage approach of first reserving the
-> handle id, and then only registering the object after we've completed
-> the file-private setup.
->
-> Jacek reported this with a testcase of concurrently calling GEM_CLOSE
-> on a freshly-created object (which also destroys the object), but it
-> should be possible to hit this with just additional handles created
-> through import or GETFB without completed destroying the underlying
-> object with the concurrent GEM_CLOSE ioctl calls.
->
-> Note that the close-side of this race was fixed in f6cd7daecff5 ("drm:
-> Release driver references to handle before making it available
-> again"), which means a cool 9 years have passed until someone noticed
-> that we need to make this symmetry or there's still gaps left :-/
-> Without the 2-stage close approach we'd still have a race, therefore
-> that's an integral part of this bugfix.
->
-> More importantly, this means we can have NULL pointers behind
-> allocated id in our drm_file.object_idr. We need to check for that
-> now:
->
-> - drm_gem_handle_delete() checks for ERR_OR_NULL already
->
-> - drm_gem.c:object_lookup() also chekcs for NULL
->
-> - drm_gem_release() should never be called if there's another thread
->    still existing that could call into an IOCTL that creates a new
->    handle, so cannot race. For paranoia I added a NULL check to
->    drm_gem_object_release_handle() though.
->
-> - most drivers (etnaviv, i915, msm) are find because they use
->    idr_find, which maps both ENOENT and NULL to NULL.
->
-> - vmgfx is already broken vmw_debugfs_gem_info_show() because NULL
->    pointers might exist due to drm_gem_handle_delete(). This needs a
->    separate patch. This is because idr_for_each_entry terminates on the
->    first NULL entry and so might not iterate over everything.
->
-> - similar for amd in amdgpu_debugfs_gem_info_show() and
->    amdgpu_gem_force_release(). The latter is really questionable though
->    since it's a best effort hack and there's no way to close all the
->    races. Needs separate patches.
->
-> - xe is really broken because it not uses idr_for_each_entry() but
->    also drops the drm_file.table_lock, which can wreak the idr iterator
->    state if you're unlucky enough. Maybe another reason to look into
->    the drm fdinfo memory stats instead of hand-rolling too much.
->
-> - drm_show_memory_stats() is also broken since it uses
->    idr_for_each_entry. But since that's a preexisting bug I'll follow
->    up with a separate patch.
->
-> Reported-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
-> Cc: stable@vger.kernel.org
-> Cc: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Signed-off-by: Simona Vetter <simona.vetter@intel.com>
-> Signed-off-by: Simona Vetter <simona.vetter@ffwll.ch>
-> ---
->   drivers/gpu/drm/drm_gem.c | 10 +++++++++-
->   include/drm/drm_file.h    |  3 +++
->   2 files changed, 12 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-> index 1e659d2660f7..e4e20dda47b1 100644
-> --- a/drivers/gpu/drm/drm_gem.c
-> +++ b/drivers/gpu/drm/drm_gem.c
-> @@ -279,6 +279,9 @@ drm_gem_object_release_handle(int id, void *ptr, void *data)
->   	struct drm_file *file_priv = data;
->   	struct drm_gem_object *obj = ptr;
->   
-> +	if (WARN_ON(!data))
-> +		return 0;
+On 02/06/2025 15:56, Lucas De Marchi wrote:
+> On Mon, Jun 02, 2025 at 12:19:52PM +0100, Tvrtko Ursulin wrote:
+>> To properly support discrete GPUs on all platforms it is required to use
+>> the iosys_map helpers.
+>>
+>> To fix we emit the WA BB into an on stack buffer and copy it over using
+>> xe_map_memcpy_to().
+> 
+> For https://lore.kernel.org/intel-xe/20250523-wa-bb-cmds- 
+> v1-0-40b337f71bcd@intel.com
+> we will extend the WA BB to other things (and that is the first
+> additional user). I don't think we can keep it on stack. For my next
+> version I was adding the patch below to allocate the buffer. Let me know
+> what you think.
+
+Works for me I think.
+
+I mean I don't exactly see yet how you will make it work for multiple 
+users adding stuff to the same wa bb, like will you consider a shared 
+buffer passed down from the level up or what, but in any case I can 
+probably adapt my series quite easily.
+
+In summary, you suggest my series waits for yours to land first?
+
+Regards,
+
+Tvrtko
+
+> commit 28dbdf201133d92b0e0b0a0139eae7fe5eb9e33b
+> Author: Lucas De Marchi <lucas.demarchi@intel.com>
+> Date:   Fri May 30 16:29:51 2025 -0700
+> 
+>      drm/xe/lrc: Use a temporary buffer for WA BB
+>      In case the BO is in iomem, we can't simply take the vaddr and 
+> write to
+>      it. Instead, prepare a separate buffer that is later copied into io
+>      memory. Right now it's just a few words that could be using
+>      xe_map_write32(), but the intention is to grow the WA BB for other
+>      uses.
+>      Fixes: 82b98cadb01f ("drm/xe: Add WA BB to capture active context 
+> utilization")
+>      Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>      Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index 63d74e27f54cf..1b835d7efca2b 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -941,11 +941,18 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
+>    * store it in the PPHSWP.
+>    */
+>   #define CONTEXT_ACTIVE 1ULL
+> -static void xe_lrc_setup_utilization(struct xe_lrc *lrc)
+> +static int xe_lrc_setup_utilization(struct xe_lrc *lrc)
+>   {
+> -    u32 *cmd;
+> +    u32 *cmd, *buf = NULL;
+> 
+> -    cmd = lrc->bb_per_ctx_bo->vmap.vaddr;
+> +    if (lrc->bb_per_ctx_bo->vmap.is_iomem) {
+> +        buf = kmalloc(lrc->bb_per_ctx_bo->size, GFP_KERNEL);
+> +        if (!buf)
+> +            return -ENOMEM;
+> +        cmd = buf;
+> +    } else {
+> +        cmd = lrc->bb_per_ctx_bo->vmap.vaddr;
+> +    }
+> 
+>       *cmd++ = MI_STORE_REGISTER_MEM | MI_SRM_USE_GGTT | 
+> MI_SRM_ADD_CS_OFFSET;
+>       *cmd++ = ENGINE_ID(0).addr;
+> @@ -966,9 +973,16 @@ static void xe_lrc_setup_utilization(struct xe_lrc 
+> *lrc)
+> 
+>       *cmd++ = MI_BATCH_BUFFER_END;
+> 
+> +    if (buf) {
+> +        xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bb_per_ctx_bo->vmap, 0,
+> +                 buf, cmd - buf);
+> +        kfree(buf);
+> +    }
 > +
->   	if (obj->funcs->close)
->   		obj->funcs->close(obj, file_priv);
->   
-> @@ -399,7 +402,7 @@ drm_gem_handle_create_tail(struct drm_file *file_priv,
->   	idr_preload(GFP_KERNEL);
->   	spin_lock(&file_priv->table_lock);
->   
-> -	ret = idr_alloc(&file_priv->object_idr, obj, 1, 0, GFP_NOWAIT);
-> +	ret = idr_alloc(&file_priv->object_idr, NULL, 1, 0, GFP_NOWAIT);
->   
->   	spin_unlock(&file_priv->table_lock);
->   	idr_preload_end();
-> @@ -420,6 +423,11 @@ drm_gem_handle_create_tail(struct drm_file *file_priv,
->   			goto err_revoke;
->   	}
->   
-> +	/* mirrors drm_gem_handle_delete to avoid races */
-> +	spin_lock(&file_priv->table_lock);
-> +	obj = idr_replace(&file_priv->object_idr, obj, handle);
-> +	WARN_ON(obj != NULL);
-
-A DRM print function would be preferable. The obj here is an errno 
-pointer. Should the errno code be part of the error message?
-
-If it fails, why does the function still succeed?
-
-Best regards
-Thomas
-
-> +	spin_unlock(&file_priv->table_lock);
->   	*handlep = handle;
->   	return 0;
->   
-> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-> index 5c3b2aa3e69d..d344d41e6cfe 100644
-> --- a/include/drm/drm_file.h
-> +++ b/include/drm/drm_file.h
-> @@ -300,6 +300,9 @@ struct drm_file {
->   	 *
->   	 * Mapping of mm object handles to object pointers. Used by the GEM
->   	 * subsystem. Protected by @table_lock.
-> +	 *
-> +	 * Note that allocated entries might be NULL as a transient state when
-> +	 * creating or deleting a handle.
->   	 */
->   	struct idr object_idr;
->   
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+>       xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR,
+>                    xe_bo_ggtt_addr(lrc->bb_per_ctx_bo) | 1);
+> 
+> +    return 0;
+>   }
+> 
+>   #define PVC_CTX_ASID        (0x2e + 1)
+> @@ -1125,7 +1139,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct 
+> xe_hw_engine *hwe,
+>       map = __xe_lrc_start_seqno_map(lrc);
+>       xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+> 
+> -    xe_lrc_setup_utilization(lrc);
+> +    err = xe_lrc_setup_utilization(lrc);
+> +    if (err)
+> +        goto err_lrc_finish;
+> 
+>       return 0;
+> 
+> Lucas De Marchi
 
