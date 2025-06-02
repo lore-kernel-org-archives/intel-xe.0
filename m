@@ -4,95 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76C9FC73C66
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C7B4C7115D
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 13:59:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2757210E9C7;
-	Fri, 13 Jun 2025 13:59:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9968D10E8DE;
+	Fri, 13 Jun 2025 13:59:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="s1CohyRj";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="WXuGXTqJ";
 	dkim-atps=neutral
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2153B10E063;
- Thu, 12 Jun 2025 08:12:03 +0000 (UTC)
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
- [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 868E8D6;
- Thu, 12 Jun 2025 10:11:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1749715913;
- bh=8WwmhFtL9eosA22O6PZS8QonHwy8kOwjvtU9HLAd/Mk=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=s1CohyRjx44OEVAmWk98stT2zZMSlbEy73AVELxdX2h5KRmV+rS1QwaBu+QfSA1qN
- OhCbnI7kO8KcLMT7lrLn06Uhsf9CiF7Vs4jlCz3vlMPk6QDjNsDY5H17EEyIiwIUrs
- /1X9kTXxoJNFavlSTwvk0QOIm9p0Cnp4fXSH0SQ4=
-Message-ID: <e2545be1-583d-4ad7-8a17-b2ee157f82d7@ideasonboard.com>
-Date: Thu, 12 Jun 2025 11:11:57 +0300
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92B0C10E0B7;
+ Mon,  2 Jun 2025 07:47:57 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4b9mCr0fc6z9sp8;
+ Mon,  2 Jun 2025 09:47:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1748850472; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=hejt7sYJc8Ownw56oeoTeIt/sZiijhclsSfRWFWApL0=;
+ b=WXuGXTqJug0dj4yMg/P/Qhxpfss+b63jVyhi3fO8krVRSHKnM1VEKw1nEqeQ+pKOOvIF9T
+ s6f8ESDihH2IkD8b7DV13UNYQ+pyuJOusNj/0+tAR72zflWyFNsAtwDOcX3BA5L2DWsIw8
+ oM1YVDbbGRus4OVEqr3R3y06/uAZseBcCFey5axgvZLdieZlmcPiYxopGyh11jecTwe76j
+ N1xu9LrTB96Xs5iDuniQNwbS7Ut+AKk7JBWE5+aFisbYzdbDr++VpNAlKQ5sC4hkQLOTJ4
+ D16HPbCT0GUsHPrT4vaug/izpW2N8XSGuP8xPpNB1YnRRhZ4N7eVnYf1yCyQpQ==
+Message-ID: <ab293f2f435287d46c6fca38d554fda0790dfe3f.camel@mailbox.org>
+Subject: Re: [PATCH v2 7/8] drm/xe: Use DRM_GPU_SCHED_STAT_NO_HANG to skip
+ the reset
+From: Philipp Stanner <phasta@mailbox.org>
+To: =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Matthew Brost
+ <matthew.brost@intel.com>, Danilo Krummrich <dakr@kernel.org>, Philipp
+ Stanner <phasta@kernel.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <ckoenig.leichtzumerken@gmail.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>,  Simona Vetter <simona@ffwll.ch>, David Airlie
+ <airlied@gmail.com>, Melissa Wen <mwen@igalia.com>, Lucas Stach
+ <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>, 
+ Christian Gmeiner <christian.gmeiner@gmail.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>, Rob Herring
+ <robh@kernel.org>, Steven Price <steven.price@arm.com>, Liviu Dudau
+ <liviu.dudau@arm.com>
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Mon, 02 Jun 2025 09:47:44 +0200
+In-Reply-To: <20250530-sched-skip-reset-v2-7-c40a8d2d8daa@igalia.com>
+References: <20250530-sched-skip-reset-v2-0-c40a8d2d8daa@igalia.com>
+ <20250530-sched-skip-reset-v2-7-c40a8d2d8daa@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 01/25] drm/dumb-buffers: Sanitize output on errors
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- simona@ffwll.ch, airlied@gmail.com, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, geert@linux-m68k.org
-References: <20250311155120.442633-1-tzimmermann@suse.de>
- <20250311155120.442633-2-tzimmermann@suse.de>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20250311155120.442633-2-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 13 Jun 2025 13:59:00 +0000
+X-MBO-RS-META: 67bdxuhmgntkdgh18tykp5zn3ixomcup
+X-MBO-RS-ID: 2ce5eb5acf6937cdf73
+X-Mailman-Approved-At: Fri, 13 Jun 2025 13:59:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,85 +74,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
-
-On 11/03/2025 17:47, Thomas Zimmermann wrote:
-> The ioctls MODE_CREATE_DUMB and MODE_MAP_DUMB return results into a
-> memory buffer supplied by user space. On errors, it is possible that
-> intermediate values are being returned. The exact semantics depends
-> on the DRM driver's implementation of these ioctls. Although this is
-> most-likely not a security problem in practice, avoid any uncertainty
-> by clearing the memory to 0 on errors.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+On Fri, 2025-05-30 at 11:01 -0300, Ma=C3=ADra Canal wrote:
+> Xe can skip the reset if TDR has fired before the free job worker and
+> can
+> also re-arm the timeout timer in some scenarios. Instead of using the
+> scheduler internals to add the job to the pending list, use the
+> DRM_GPU_SCHED_STAT_NO_HANG status to skip the reset and re-arm the
+> timer.
+>=20
+> Note that, in the first case, there is no need to restart submission
+> if it
+> hasn't been stopped.
+>=20
+> Signed-off-by: Ma=C3=ADra Canal <mcanal@igalia.com>
 > ---
->  drivers/gpu/drm/drm_dumb_buffers.c | 40 ++++++++++++++++++++++--------
->  1 file changed, 29 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_dumb_buffers.c b/drivers/gpu/drm/drm_dumb_buffers.c
-> index 70032bba1c97..9916aaf5b3f2 100644
-> --- a/drivers/gpu/drm/drm_dumb_buffers.c
-> +++ b/drivers/gpu/drm/drm_dumb_buffers.c
-> @@ -99,7 +99,30 @@ int drm_mode_create_dumb(struct drm_device *dev,
->  int drm_mode_create_dumb_ioctl(struct drm_device *dev,
->  			       void *data, struct drm_file *file_priv)
->  {
-> -	return drm_mode_create_dumb(dev, data, file_priv);
-> +	struct drm_mode_create_dumb *args = data;
-> +	int err;
-> +
-> +	err = drm_mode_create_dumb(dev, args, file_priv);
-> +	if (err) {
-> +		args->handle = 0;
-> +		args->pitch = 0;
-> +		args->size = 0;
-> +	}
-> +	return err;
-> +}
-> +
-> +static int drm_mode_mmap_dumb(struct drm_device *dev, struct drm_mode_map_dumb *args,
-> +			      struct drm_file *file_priv)
-> +{
-> +	if (!dev->driver->dumb_create)
-> +		return -ENOSYS;
-> +
-> +	if (dev->driver->dumb_map_offset)
-> +		return dev->driver->dumb_map_offset(file_priv, dev, args->handle,
-> +						    &args->offset);
-> +	else
-> +		return drm_gem_dumb_map_offset(file_priv, dev, args->handle,
-> +					       &args->offset);
->  }
->  
->  /**
-> @@ -120,17 +143,12 @@ int drm_mode_mmap_dumb_ioctl(struct drm_device *dev,
->  			     void *data, struct drm_file *file_priv)
->  {
->  	struct drm_mode_map_dumb *args = data;
-> +	int err;
->  
-> -	if (!dev->driver->dumb_create)
-> -		return -ENOSYS;
+> =C2=A0drivers/gpu/drm/xe/xe_guc_submit.c | 12 +++---------
+> =C2=A01 file changed, 3 insertions(+), 9 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
+> b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index
+> 98363d688cbbf884e17e6610366202a3372f5fe0..0149c85aa1a85b2b2e739774310
+> d7b3265e33228 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1067,12 +1067,8 @@ guc_exec_queue_timedout_job(struct
+> drm_sched_job *drm_job)
+> =C2=A0	 * list so job can be freed and kick scheduler ensuring free
+> job is not
+> =C2=A0	 * lost.
+> =C2=A0	 */
+> -	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence-
+> >flags)) {
+> -		xe_sched_add_pending_job(sched, job);
+> -		xe_sched_submission_start(sched);
 > -
-> -	if (dev->driver->dumb_map_offset)
-> -		return dev->driver->dumb_map_offset(file_priv, dev,
-> -						    args->handle,
-> -						    &args->offset);
-> -	else
-> -		return drm_gem_dumb_map_offset(file_priv, dev, args->handle,
-> -					       &args->offset);
-> +	err = drm_mode_mmap_dumb(dev, args, file_priv);
-> +	if (err)
-> +		args->offset = 0;
-> +	return err;
->  }
->  
->  int drm_mode_destroy_dumb(struct drm_device *dev, u32 handle,
+> -		return DRM_GPU_SCHED_STAT_RESET;
+> -	}
+> +	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence-
+> >flags))
+> +		return DRM_GPU_SCHED_STAT_NO_HANG;
+> =C2=A0
+> =C2=A0	/* Kill the run_job entry point */
+> =C2=A0	xe_sched_submission_stop(sched);
+> @@ -1247,10 +1243,8 @@ guc_exec_queue_timedout_job(struct
+> drm_sched_job *drm_job)
+> =C2=A0	 * but there is not currently an easy way to do in DRM
+> scheduler. With
+> =C2=A0	 * some thought, do this in a follow up.
+> =C2=A0	 */
+> -	xe_sched_add_pending_job(sched, job);
+> =C2=A0	xe_sched_submission_start(sched);
+> -
+> -	return DRM_GPU_SCHED_STAT_RESET;
+> +	return DRM_GPU_SCHED_STAT_NO_HANG;
+> =C2=A0}
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+This patch removes two of three uses of xe_sched_add_pending_job().
+There's now only one left, in the same function, slightly above.
 
- Tomi
+@Matthew, can that call be removed, too? Should that be done in this
+patch or seperately?
+
+P.
+
+> =C2=A0
+> =C2=A0static void __guc_exec_queue_fini_async(struct work_struct *w)
+>=20
 
