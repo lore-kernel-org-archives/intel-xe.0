@@ -4,57 +4,171 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A24BBC5AD49
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 13:48:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5E97C5AD49
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 14:09:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56D8910E2D6;
-	Mon,  2 Jun 2025 13:48:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9104210E523;
+	Mon,  2 Jun 2025 14:09:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nU8XWT9e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gsv3zQ/8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40B2510E2D6
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Jun 2025 13:48:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D639610E533
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Jun 2025 14:09:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748872119; x=1780408119;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=t1hEg5WcmKe7vRYNCugU5sZ24WECg1bc2TVQTVGauH8=;
- b=nU8XWT9ekAHPRpy0wLQfFMuzgh4q2zcWBJT8udU/wPpQvr0P6GAIJU+f
- R94f9zaliFKYrmopeAV7ubfpXgO8LJh3/xDu3iLd4XAT7sPJHPNO8nmir
- RMTt0zrm9pyDOCJ15pLo3HTdCz5W/0fuSRD/MLiWUFP3w5b6Rshdx3ps+
- RXzM4HVhOosNiyzDGnGraFe7NVTiN25HyAG4sQcjN2hT+g15+WTS6BK5S
- n9pEjW7VnDm7i/jYhaLEW3PMI0GgPbVP+8Gg+ANL9q5aPdCnZpJDPuQIX
- eRS4xll1MkfQDxmrvizQnkWWjrN8julvPdjaODAqfD/lZoaAImQ4Kf72T Q==;
-X-CSE-ConnectionGUID: 8u05y/ZJQjeUxue8Zu5O+Q==
-X-CSE-MsgGUID: v3CVc0gJTZGl+qwxk6rPfg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="68427437"
-X-IronPort-AV: E=Sophos;i="6.16,203,1744095600"; d="scan'208";a="68427437"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2025 06:48:37 -0700
-X-CSE-ConnectionGUID: 7SQSy77HTfi+qFNi24A+iA==
-X-CSE-MsgGUID: hZr+Uzr7QU6D5OhyvtfciA==
+ t=1748873369; x=1780409369;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=G52udCoFjGUcoekG6sNXez2VKTajdVfsn6npuclFYhM=;
+ b=Gsv3zQ/8dW8i2Tkr+0g5FwPHo32dzw3UDsRU26GOxd49E4jiY3R4x1LH
+ 2U28ueZ4lISqX4w5mot6cTU0XC7VUFlEiBl6KWKhWDNQLdfCoJzB38OOz
+ 5Ic3ZCEDjZlRVwgREHUMV5VTDLIVVY9i2WanDzr17/I+xYKmjrxd8kYOl
+ rKHI8B/8HqROvFX2oVin2/BqxP2UvMwzOsy2txyv5eK+PrvqwGSiU3L/d
+ i6urca+xIJZVdUB6gMYYoggoFH2xukj5S7Ko1WC2YwrVRYgGbKHzvdIlv
+ tCzwQQiHMtaV23MAbFbt5FoSJo+JWT17Cfj2XcbhmfSKwV4FhzoZqpGaV g==;
+X-CSE-ConnectionGUID: c90zJL93T3eZCBUgk33YXw==
+X-CSE-MsgGUID: J/Ka1utERrqYK9T3dKnrXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="50798797"
+X-IronPort-AV: E=Sophos;i="6.16,203,1744095600"; d="scan'208";a="50798797"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2025 07:09:27 -0700
+X-CSE-ConnectionGUID: uO3SmbgtRlGzJJbC1raMOg==
+X-CSE-MsgGUID: vddEU0lRQ/CEzHIz9tcMJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,203,1744095600"; d="scan'208";a="148408240"
-Received: from kuha.fi.intel.com ([10.237.72.152])
- by fmviesa003.fm.intel.com with SMTP; 02 Jun 2025 06:48:35 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Mon, 02 Jun 2025 16:48:33 +0300
-Date: Mon, 2 Jun 2025 16:48:33 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com
-Subject: Re: [PATCH v1] drm/xe/pm: Wire up suspend/resume for I2C controller
-Message-ID: <aD2rsWvCNozyqqcM@kuha.fi.intel.com>
-References: <20250602070818.701834-1-raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,203,1744095600"; d="scan'208";a="144425528"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2025 07:09:27 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Mon, 2 Jun 2025 07:09:26 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Mon, 2 Jun 2025 07:09:26 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.88)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.55; Mon, 2 Jun 2025 07:09:25 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=svii5q8Nxt87vANz7nuMM3bHVSkY9frsWSQ87ju/jlkF7g/Xvoe9QLEHsLn61CfU45SLUXz/angk6LjPmgMgDRX6hQHERoRtRs9pOTLkfvezJWmfu91wuupbVvSHlUQxL6TH4ybsAxA2Wxef9aFUfzFVgXJMX3UpIXSBmPllQSAOiyRlvH3ryU5mPStABzMD4EwkLXWJ64JGD15fiJCAplfC4OkpqQysjwNaneCON/5CnPfTRFFGqTE8qTHrTWTPOCJ8FowTjcfkR/B9jC3VgdVjlTgrHHTclIwCzyciwRJ2SPGhbM90AD9bYNuIHr1Pir6+eNnfWQQ9SV++5KxIMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cghTO5jYewZE3G/I+DrFNDycf8mCEJCE0ZR4I1VEe68=;
+ b=Jna8DhDBK0L+O1xDAvv8ZN10nQNlxl1l3f0NXTkjGVxjTjiZXvzVhr5lKC/RMAgqlK5G6du4aJSLjdOiMTs/K2ahBSTYyvcPUbH9iunv1wHPiS7P93d4wIbf2pjtm1V5UMnaklVHFWJFih/GgnGwOcKRswHcWhAVlAIqWvQuBObMxde8dBeLANtsDN1IAkIKVOR0MMdfbvHAazcVB6DgilklNYZsy1JmsvtkXOwI95P+TCGLK4QqMgG38L0Z6JFqQEpip0KQBv99QD9p5AIHZ0Z9QjwQj92IgU1cJBRi9pF53xvm4eIZIsL3MZRzZ0W31j1Mxo+5pJckZ1kJTsPFmw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from LV3PR11MB8695.namprd11.prod.outlook.com (2603:10b6:408:211::15)
+ by DS7PR11MB6295.namprd11.prod.outlook.com (2603:10b6:8:95::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.37; Mon, 2 Jun
+ 2025 14:09:08 +0000
+Received: from LV3PR11MB8695.namprd11.prod.outlook.com
+ ([fe80::4858:d790:3ac6:8541]) by LV3PR11MB8695.namprd11.prod.outlook.com
+ ([fe80::4858:d790:3ac6:8541%6]) with mapi id 15.20.8769.037; Mon, 2 Jun 2025
+ 14:09:08 +0000
+From: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
+To: "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
+Subject: RE: [PATCH 3/3] drm/xe/vf: Add sanity check for GGTT configuration
+Thread-Topic: [PATCH 3/3] drm/xe/vf: Add sanity check for GGTT configuration
+Thread-Index: AQHb06nRgemrAlvK4UudOymqSTSov7Pv6E5A
+Date: Mon, 2 Jun 2025 14:09:08 +0000
+Message-ID: <LV3PR11MB8695D1D920AB67BAAB9F4B97F962A@LV3PR11MB8695.namprd11.prod.outlook.com>
+References: <20250602103325.549-1-michal.wajdeczko@intel.com>
+ <20250602103325.549-4-michal.wajdeczko@intel.com>
+In-Reply-To: <20250602103325.549-4-michal.wajdeczko@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: LV3PR11MB8695:EE_|DS7PR11MB6295:EE_
+x-ms-office365-filtering-correlation-id: 6529ce99-462b-49ff-34ba-08dda1df0a86
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|38070700018|7053199007; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?offsrv05EOnLdaphUZNQBoatMzaXrndLHM8rOz6zh16fYxxJ++DaVJEHzhtW?=
+ =?us-ascii?Q?UhhzIVkTlgfIw+HMYZjOeIJQBh9O4r0Ow9/J2VTMc2ZnAaCJTr/bh2evUfw0?=
+ =?us-ascii?Q?63OGuLqHZGF/q3h0V8iTL/ajNVVsZ5JvKxNgXqy5M7K8tm/LMYBJR/Hic6tc?=
+ =?us-ascii?Q?nzJ4i4N0KKwc+EhD3bpIb3EfesVV80kNHcjZbCvGL7G75hBtCk2ElBkZ9Rfl?=
+ =?us-ascii?Q?lBF0ilMhVw2QNG32+v/j3wz3xHqOmkTcXVMN5GfqGjG/xJX3dnrwE7XgqwE4?=
+ =?us-ascii?Q?6BXr+Y5ksOcoNXYWJp1DP0bLlN26nQr790I0wx9nqE0KGB43puAESXJ1gAob?=
+ =?us-ascii?Q?+EQVQS0wD7rt+nqNqCDj4gCSFp6AinX5bgry2gBSKdlS+XmeH6X2Usxe9tru?=
+ =?us-ascii?Q?PAWj+y/Og1M6MgsRCUW7Y24c9bEV8grPLoyd0dtjPA6w0w3dm5yyobYXoeZL?=
+ =?us-ascii?Q?sFej0kcjXDbCOsLAvgWlOfYiT6EsBGs61PUD0m8hrJBCB0D1Ga/2ZUFPqET6?=
+ =?us-ascii?Q?o5MmI9e4DredukFnA6d3ATLC0tBb44tw+NOa6o+6jra3edqB76eUKYv1CZzr?=
+ =?us-ascii?Q?1wnEeZmPt0DN1gxw3OI45/tc0sjCg9YJkfA+xGBZlGMGXOezoj8MmtLXDNru?=
+ =?us-ascii?Q?40DG0kSb5pC3M/vwtiZewmeTJFHj2TDu8dJwv7oGJB4/sE8gvMKBI+DxDjgJ?=
+ =?us-ascii?Q?jnzPCnGHy+U8ElJ4l7vd0JGKjw6nCn8HaDtpuuP2iT8TvBuaaU9B8EF70GzE?=
+ =?us-ascii?Q?aYiFcnTBZKSt11FadPMObX4/X8g7c/i6nswNkRDG9Cq+DSlYvioetBfQk41V?=
+ =?us-ascii?Q?Q5zpY6f5bNts0lkf0iVfS3FxlAaejdg1IMeikDT9kuMFUa8uJL1UEIVLklNt?=
+ =?us-ascii?Q?Kq+mt/HnKWy2tDr/eIgiTYJubWdX2lWxpd3UHCItJ025iEuKC3GY9MpUfDiJ?=
+ =?us-ascii?Q?94+7MDoGKccyLaVY0DwLvxdSjOvWRYqHs6OfJ+OEtB87Ys9jZRto3BWsH8Ov?=
+ =?us-ascii?Q?804nGZTp7SDYAAlTL6ClKcV0bpD3FERJTOmiJlMZm5BBH56f6tr0uNvq9bph?=
+ =?us-ascii?Q?q2u/bJyJGzjHLSxd+4ahE4FsZKjwFathcJv7vARDpCCm9ivz/Fi+GF2GCGux?=
+ =?us-ascii?Q?Ww9av5AG4+RKqVFnYcIj4eK++h2PkEunCsgZLRwtwACfLZeqD7TkH3yoQ32/?=
+ =?us-ascii?Q?4xnlJM8acbNBdCK9Nw0uTW9RaewuSScMT8DusA5Y9VXX6/jJHgP5QKdhMPGw?=
+ =?us-ascii?Q?gkn0QhjX6azEkBFRjQ0Kj0cd6tU8xfKQ+Q9H4Z2CJ0BezOWMAPzEIoWTOR2y?=
+ =?us-ascii?Q?VC/CCD6GVQ9DAiOB9nonxKI/tf8J1Zlf4Gtl4dA0vCCsBtIf2JyRHfh+c3DL?=
+ =?us-ascii?Q?lfkzGt/TfRAqxT9pOsISOuKRKoTg3M/LG9jSYYvmBstjblp50B0e66VfZ4Nz?=
+ =?us-ascii?Q?1TsUkxmkKmltn927hmHMv0CLUdxO3u9UBup1ym9KalJQDxVTnpikPC8R8z1m?=
+ =?us-ascii?Q?JAsyOEOeI/sNko8=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV3PR11MB8695.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700018)(7053199007); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?B3+YE2W2rv0/r8a05aSaLNw/yUgcM2AJyx8tP5ukn2Cr0EmmI7L+CPEzq757?=
+ =?us-ascii?Q?wrev3qO+dpkYVwWzPkduBUo/Mzp7Ha4Hc95X9TKCljye0arwymQeOm+nzuXw?=
+ =?us-ascii?Q?+DSNonCaKboLa9BKKmOWC1uebXl4bIZ5D3cwS+Vg/jNiGyf7nKA9iFQdEXzw?=
+ =?us-ascii?Q?mJDik8U92cjy30D6ZjqYw/dNnHagfa1R57vJsA4tkhkA1sMsU5uRNK18lVRN?=
+ =?us-ascii?Q?t6q0ib5oqcncYnxYmemU763S61onrmEnjsVFWMhnplW30FxIeJL2upyU/vhS?=
+ =?us-ascii?Q?oOnwGfabOPM9N9r1hF5JGCNPKGLn/0TGfqgt0b+k8NdNfpFe9on1R2TY+VVo?=
+ =?us-ascii?Q?a12hyFv3gfKftvWTFpuDtRBCYeau1WQH0WEfmkFzw7C/Ll1UEct/UtXem9lk?=
+ =?us-ascii?Q?eph4QVsqNW7jo4OZwLAsdIekYPYi8buCp7RRonUUwtFU7L4HYbwA+DRVtJAP?=
+ =?us-ascii?Q?v5lZ2yQRC2KPjBZG41bjvfPbFuCFFKe1x6o+02ZCWVYA5aeqX9sWkHXZY/pC?=
+ =?us-ascii?Q?9v6A9aOZt7ZTvt99BINTlXuenBrJb1AY5li04dfD0PqPLdmq59rrpBf30lNZ?=
+ =?us-ascii?Q?AcQli0u7uqqS758+XXucn7nB1OUvj1va0Dg/SXdsG02AehxuU1YDBIU3rl6f?=
+ =?us-ascii?Q?bJTlhXLfVg9qhbqENnO+hkhCTOt8req0dptUtm/PeBp2fcGtJs0Rh4yjwU2H?=
+ =?us-ascii?Q?7o3Gx2BA4/r8tNU4188T6SLgpW2JXiBeNyEul8BpcCWcWSvwZ3I9EE+TAm/S?=
+ =?us-ascii?Q?O/Xis3jCqedir7l7xwl4qRJFvSFekh0GZuNyuwY6EFowjM1m7ddPKv87UdNI?=
+ =?us-ascii?Q?zT7SFG7xBATf0LzuehzCjZCA8hOAGfTspN45AJKtIuqtZsnlRw3gjsEvqUUQ?=
+ =?us-ascii?Q?NmWwy+lo14Rlt0AI49hxBnZ+aIL3jf6M227fJ3nG0DHyFnUu1XzZH+QMKryu?=
+ =?us-ascii?Q?t94U6y3JM8BXwWmfYectPBUQKdfdwUVgwry8zLEtxAgSJytRuijw5huZP69M?=
+ =?us-ascii?Q?uhYo22ADLBtqehMWhHrpsD2BOp4+jdsNFwxMMBjuWn0rvnwkFQx8od6SOnbU?=
+ =?us-ascii?Q?rwdLu/mdSKOV7u3ROY3h5GHUjee42cYb2Ep1lQ2BZceBM5W92t/JeSBUUE+0?=
+ =?us-ascii?Q?cqjKNUdcHx/TUJkGOmcRy293IUZaTlAFiB71f7ccEZV0PfEkQnEwpigxt2Qe?=
+ =?us-ascii?Q?y5nem86jgFgtSWULlrk1pYmZqd+gjV35dE0lGzaC6a+4kigrI8I44b1QN4hP?=
+ =?us-ascii?Q?XksDS7hgZRk14o14lLcxmMHD/qWggP04nFGfMjanz+zc6uNfVVnoYiWS23Ue?=
+ =?us-ascii?Q?T1pxx1WKygESonHc70KOvRRMjhjidlT72hjDzcg8lRMUyjGHmYB4zVpRfXaL?=
+ =?us-ascii?Q?PaCrIax0E5LCKTThGPrSe4wa+U2WF8gpdJTlbR303l4AaoFLtdlE3wWERnvY?=
+ =?us-ascii?Q?W4Esabbl06UI7CIo31y7XGAZcBFhT2ZziM8ClK5s8d1Rw5GHeJcdFfF+6bsr?=
+ =?us-ascii?Q?6XaUE4U/OXlXJoceW6mTyQOqvxQq0JHPWUWqgv1wOvZH1CbuZdnDcu0KJEmo?=
+ =?us-ascii?Q?SnDg4T2DzTWqcbsn5U/aqKCPeXpNefIxFH+6/jf77olg+Gb59gXOgWb0+hQD?=
+ =?us-ascii?Q?SQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250602070818.701834-1-raag.jadav@intel.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LV3PR11MB8695.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6529ce99-462b-49ff-34ba-08dda1df0a86
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jun 2025 14:09:08.2743 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Xj6OKfh0yNmEE0asCSHoh9ccCmUD5EXj1dUSVQQnL2x+v1IQOnjiZ3FqDftHo7x6SzsNgw1JvJi2YfrLhe6G9pANiqxcxyJ3tmVxI0LzceA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6295
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,163 +183,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 02, 2025 at 12:38:18PM +0530, Raag Jadav wrote:
-> Wire up suspend/resume handles for I2C controller to match its power
-> state with SGUnit.
-> 
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Hi.
+> -----Original Message-----
+> From: Wajdeczko, Michal <Michal.Wajdeczko@intel.com>
+> Sent: Monday, June 2, 2025 4:03 PM
+> To: intel-xe@lists.freedesktop.org
+> Cc: Wajdeczko, Michal <Michal.Wajdeczko@intel.com>; K V P, Satyanarayana
+> <satyanarayana.k.v.p@intel.com>
+> Subject: [PATCH 3/3] drm/xe/vf: Add sanity check for GGTT configuration
+>=20
+> The VF GGTT configuration was prepared by the PF, which should be
+> trusted, was obtained from the GuC, which likely already did some
+> sanity checks too, but since it's a received data, we should have
+> our own sanity checks to detect early any misconfiguration.
+>=20
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 > ---
-> 
-> This depends on I2C series by Heikki on [1].
-> [1] https://lore.kernel.org/intel-xe/20250530141744.3605983-1-heikki.krogerus@linux.intel.com/
-
-If it's okay to everybody, I'll include this to my series when I
-resend after the merge window is closed.
-
-thanks,
-
->  drivers/gpu/drm/xe/regs/xe_i2c_regs.h |  5 +++++
->  drivers/gpu/drm/xe/xe_i2c.c           | 29 +++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_i2c.h           |  4 ++++
->  drivers/gpu/drm/xe/xe_pm.c            |  9 +++++++++
->  4 files changed, 47 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_i2c_regs.h b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-> index 2acb55eeef0d..fce0066e92e5 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-> @@ -2,6 +2,8 @@
->  #ifndef _XE_I2C_REGS_H_
->  #define _XE_I2C_REGS_H_
->  
-> +#include <linux/pci_regs.h>
-> +
->  #include "xe_reg_defs.h"
->  
->  #define SOC_BASE			0x280000
-> @@ -13,4 +15,7 @@
->  #define CLIENT_DISC_COOKIE		XE_REG(SOC_BASE + 0x0164)
->  #define CLIENT_DISC_ADDRESS		XE_REG(SOC_BASE + 0x0168)
->  
-> +#define I2C_CONFIG_CMD			XE_REG(I2C_CONFIG_SPACE_OFFSET + PCI_COMMAND)
-> +#define I2C_CONFIG_PMCSR		XE_REG(I2C_CONFIG_SPACE_OFFSET + 0x84)
-> +
->  #endif /* _XE_I2C_REGS_H_ */
-> diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-> index cc231368789f..6cfb04a739dd 100644
-> --- a/drivers/gpu/drm/xe/xe_i2c.c
-> +++ b/drivers/gpu/drm/xe/xe_i2c.c
-> @@ -208,6 +208,31 @@ static const struct regmap_config i2c_regmap_config = {
->  	.fast_io = true,
->  };
->  
-> +void xe_i2c_pm_suspend(struct xe_device *xe)
-> +{
-> +	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-> +
-> +	if (!xe->i2c || xe->i2c->ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
-> +		return;
-> +
-> +	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, PCI_D3hot);
-> +	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
-> +}
-> +
-> +void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
-> +{
-> +	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-> +
-> +	if (!xe->i2c || xe->i2c->ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
-> +		return;
-> +
-> +	if (d3cold)
-> +		xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_MEMORY);
-> +
-> +	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, PCI_D0);
-> +	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
-> +}
-> +
->  static void xe_i2c_remove(void *data)
->  {
->  	struct xe_i2c *i2c = data;
-> @@ -243,6 +268,10 @@ int xe_i2c_probe(struct xe_device *xe)
->  	i2c->mmio = xe_root_tile_mmio(xe);
->  	i2c->drm_dev = xe->drm.dev;
->  	i2c->ep = ep;
-> +	xe->i2c = i2c;
-> +
-> +	/* PCI PM isn't aware of this device, bring it up and match it with SGUnit state. */
-> +	xe_i2c_pm_resume(xe, true);
->  
->  	regmap = devm_regmap_init(i2c->drm_dev, NULL, i2c, &i2c_regmap_config);
->  	if (IS_ERR(regmap))
-> diff --git a/drivers/gpu/drm/xe/xe_i2c.h b/drivers/gpu/drm/xe/xe_i2c.h
-> index ab8e21630838..2a275826c4da 100644
-> --- a/drivers/gpu/drm/xe/xe_i2c.h
-> +++ b/drivers/gpu/drm/xe/xe_i2c.h
-> @@ -52,9 +52,13 @@ struct xe_i2c {
->  #if IS_ENABLED(CONFIG_I2C)
->  int xe_i2c_probe(struct xe_device *xe);
->  void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl);
-> +void xe_i2c_pm_suspend(struct xe_device *xe);
-> +void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold);
->  #else
->  static inline int xe_i2c_probe(struct xe_device *xe) { return 0; }
->  static inline void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl) { }
-> +static inline void xe_i2c_pm_suspend(struct xe_device *xe) { }
-> +static inline void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold) { }
->  #endif
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index 693866def183..dbadbb0d95a6 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -19,6 +19,7 @@
+>  drivers/gpu/drm/xe/xe_tile_sriov_vf.c | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
+> b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
+> index 88e832894432..f221dbed16f0 100644
+> --- a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
+> @@ -11,6 +11,7 @@
 >  #include "xe_ggtt.h"
->  #include "xe_gt.h"
->  #include "xe_guc.h"
-> +#include "xe_i2c.h"
->  #include "xe_irq.h"
->  #include "xe_pcode.h"
->  #include "xe_pxp.h"
-> @@ -146,6 +147,8 @@ int xe_pm_suspend(struct xe_device *xe)
->  
->  	xe_display_pm_suspend_late(xe);
->  
-> +	xe_i2c_pm_suspend(xe);
+>  #include "xe_gt_sriov_vf.h"
+>  #include "xe_sriov.h"
+> +#include "xe_sriov_printk.h"
+>  #include "xe_tile_sriov_vf.h"
+>  #include "xe_wopcm.h"
+>=20
+> @@ -44,6 +45,7 @@ int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile
+> *tile)
+>  	u64 ggtt_base =3D xe_gt_sriov_vf_ggtt_base(tile->primary_gt);
+>  	u64 ggtt_size =3D xe_gt_sriov_vf_ggtt(tile->primary_gt);
+>  	struct xe_device *xe =3D tile_to_xe(tile);
+> +	u64 wopcm =3D xe_wopcm_size(xe);
+>  	u64 start, end;
+>  	int err;
+>=20
+> @@ -66,7 +68,14 @@ int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_til=
+e
+> *tile)
+>  	 *      |<--- balloon[0] --->|<-- VF -->|<-- balloon[1] ->|
+>  	 */
+>=20
+> -	start =3D xe_wopcm_size(xe);
+> +	if (ggtt_base < wopcm || ggtt_base > GUC_GGTT_TOP ||
+> +	    ggtt_size > GUC_GGTT_TOP - ggtt_base) {
+> +		xe_sriov_err(xe, "tile%u: Invalid GGTT configuration: %#llx-
+> %#llx\n",
+> +			     tile->id, ggtt_base, ggtt_base + ggtt_size - 1);
+> +		return -ERANGE;
+> +	}
 > +
->  	drm_dbg(&xe->drm, "Device suspended\n");
->  	return 0;
->  
-> @@ -191,6 +194,8 @@ int xe_pm_resume(struct xe_device *xe)
->  	if (err)
->  		goto err;
->  
-> +	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
-> +
->  	xe_irq_resume(xe);
->  
->  	for_each_gt(gt, xe, id)
-> @@ -488,6 +493,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
->  
->  	xe_display_pm_runtime_suspend_late(xe);
->  
-> +	xe_i2c_pm_suspend(xe);
-> +
->  	xe_rpm_lockmap_release(xe);
->  	xe_pm_write_callback_task(xe, NULL);
->  	return 0;
-> @@ -535,6 +542,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->  			goto out;
->  	}
->  
-> +	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
-> +
->  	xe_irq_resume(xe);
->  
->  	for_each_gt(gt, xe, id)
-> -- 
-> 2.34.1
+> +	start =3D wopcm;
+>  	end =3D ggtt_base;
+>  	if (end !=3D start) {
+>  		err =3D xe_ggtt_node_insert_balloon_locked(tile-
+> >sriov.vf.ggtt_balloon[0],
+LGTM.
+Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> --
+> 2.47.1
 
--- 
-heikki
