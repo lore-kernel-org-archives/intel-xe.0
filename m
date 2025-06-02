@@ -4,77 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0CF6C71151
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B46CC71153
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 14:00:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82F9F10E9C9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CC1210E9BB;
 	Fri, 13 Jun 2025 14:00:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rtpVAedd";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="Lu2UMz40";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4374510E0C8;
- Fri, 13 Jun 2025 01:11:32 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 1E18749F26;
- Fri, 13 Jun 2025 01:11:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E4E2EC4CEF7;
- Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1749777091;
- bh=fYjZRivWn2Fn+oWmzNXQqN7xuN63eEwOfSVBHQpA9yc=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=rtpVAedd66sPrM+hY2oxPRDpPvlpiJObu0GevyQv0K3W7FSGgwJf3jgI8nZqCFvtn
- oP1zqeQTAbTSqS9MPDhf9sPqOKcu4RzJkIP7ONPyUw3P+Gv4RyH3rH4I4jep+dkIUS
- zsNn4uqIfj/4C/dbFOSZU74AoaSEk1d6hXgY9f9FSKJQbXDbUbXLQZDm4dqgkG9tHG
- 1Jze3d93xNlrVPXrYkr2Rbr13b/ksCl9g0MvOWHpFwuk+A1xQS/GUw7aNDDtmbxRAl
- 81EKT/BtkCE0/zEFEQ6BsfNfz9h8/XdQzkz4bpo8tenLzglELRAmLY9NvEaoNWBKP5
- 1mf0qMJJVmefg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id D92E7C71148;
- Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
-From: Mingcong Bai via B4 Relay <devnull+jeffbai.aosc.io@kernel.org>
-Date: Fri, 13 Jun 2025 09:11:33 +0800
-Subject: [PATCH v2 5/5] drm/xe/query: use PAGE_SIZE as the minimum page
- alignment
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE36D10E1C9;
+ Mon,  2 Jun 2025 07:13:47 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4b9lSS2nrpz9tX0;
+ Mon,  2 Jun 2025 09:13:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1748848424; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=dvhppmyhyICdwplZYutmaZL5qmaJdZkSh6zxnqcq8gs=;
+ b=Lu2UMz40Uaxdgu45tQWbLRfKYxXvZrc2bKkrKJq5vJbmhdsUvrQadbXZTt3qxgg/+rHr81
+ IcbZLUhua3nyev+q1fD8p6TSCphKXdilVNyNUaMFWCifROVOuCghxGO5NFMesI1zivvFSK
+ 7x9o1iMqwSNpbbjq2IHlU3JZgJ7gh24AFCpa7W2xnaHY3JrNG9+8KMIhaH0sia2kc/DeLN
+ /ZKVdbwaDNUnVrJyzXBdeDPZmvkt19Ew0/MhXr9M/4fEM7iwsRV+qFiuOtqlSKhkfHlIML
+ 6umVayUivJ0/i+51Vl+zhF0I7qNh2BDOSqGPbog9NmYbZun1Vz34+JEVbKJBVQ==
+Message-ID: <b25c1cabe52436c83cb570a5d65ede2fc548fc0b.camel@mailbox.org>
+Subject: Re: [PATCH v2 5/8] drm/v3d: Use DRM_GPU_SCHED_STAT_NO_HANG to skip
+ the reset
+From: Philipp Stanner <phasta@mailbox.org>
+To: =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Matthew Brost
+ <matthew.brost@intel.com>, Danilo Krummrich <dakr@kernel.org>, Philipp
+ Stanner <phasta@kernel.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <ckoenig.leichtzumerken@gmail.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>,  Simona Vetter <simona@ffwll.ch>, David Airlie
+ <airlied@gmail.com>, Melissa Wen <mwen@igalia.com>, Lucas Stach
+ <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>, 
+ Christian Gmeiner <christian.gmeiner@gmail.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>, Rob Herring
+ <robh@kernel.org>, Steven Price <steven.price@arm.com>, Liviu Dudau
+ <liviu.dudau@arm.com>
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Mon, 02 Jun 2025 09:13:34 +0200
+In-Reply-To: <20250530-sched-skip-reset-v2-5-c40a8d2d8daa@igalia.com>
+References: <20250530-sched-skip-reset-v2-0-c40a8d2d8daa@igalia.com>
+ <20250530-sched-skip-reset-v2-5-c40a8d2d8daa@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250613-upstream-xe-non-4k-v2-v2-5-934f82249f8a@aosc.io>
-References: <20250613-upstream-xe-non-4k-v2-v2-0-934f82249f8a@aosc.io>
-In-Reply-To: <20250613-upstream-xe-non-4k-v2-v2-0-934f82249f8a@aosc.io>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Francois Dugast <francois.dugast@intel.com>, 
- =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>, 
- =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>, 
- Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Zhanjun Dong <zhanjun.dong@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>, 
- Alan Previn <alan.previn.teres.alexis@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Mateusz Naklicki <mateusz.naklicki@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
- Kexy Biscuit <kexybiscuit@aosc.io>, Shang Yatsen <429839446@qq.com>, 
- Mingcong Bai <jeffbai@aosc.io>, Wenbin Fang <fangwenbin@vip.qq.com>, 
- Haien Liang <27873200@qq.com>, Jianfeng Liu <liujianfeng1994@gmail.com>, 
- Shirong Liu <lsr1024@qq.com>, Haofeng Wu <s2600cw2@126.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749777090; l=3034;
- i=jeffbai@aosc.io; s=20250604; h=from:subject:message-id;
- bh=gWL8RWOcZ+T5Uids7FBARXCOIx0PC8BeNHiC9X6HMCs=;
- b=Q0CPOLyStGLjhT6+x+gKKShN9k6MBkZEp9SYnxxZoRQbNmntY5WlakCsLQqecRGX4JzCl7Kmi
- swRCsXXAkwoCPO5anbatDazKDXA2TuDS/6jE0TkX9SncSqJk4cINnRb
-X-Developer-Key: i=jeffbai@aosc.io; a=ed25519;
- pk=MJdgklflDF+Xz9x2Lp+ogEnEyk8HRosMGiqLgWbFctY=
-X-Endpoint-Received: by B4 Relay for jeffbai@aosc.io/20250604 with auth_id=422
-X-Original-From: Mingcong Bai <jeffbai@aosc.io>
+X-MBO-RS-META: nwwk7zrhtdbczu8hebu1gxxgu8musq7f
+X-MBO-RS-ID: ba8a497f0f63299ba83
 X-Mailman-Approved-At: Fri, 13 Jun 2025 13:59:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,69 +75,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: jeffbai@aosc.io
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mingcong Bai <jeffbai@aosc.io>
+On Fri, 2025-05-30 at 11:01 -0300, Ma=C3=ADra Canal wrote:
+> When a CL/CSD job times out, we check if the GPU has made any
+> progress
+> since the last timeout. If so, instead of resetting the hardware, we
+> skip
+> the reset and allow the timer to be rearmed. This gives long-running
+> jobs
+> a chance to complete.
+>=20
+> Use the DRM_GPU_SCHED_STAT_NO_HANG status to skip the reset and re-
+> arm
+> the timer.
+>=20
+> Signed-off-by: Ma=C3=ADra Canal <mcanal@igalia.com>
+> ---
+> =C2=A0drivers/gpu/drm/v3d/v3d_sched.c | 4 ++--
+> =C2=A01 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/v3d/v3d_sched.c
+> b/drivers/gpu/drm/v3d/v3d_sched.c
+> index
+> e1997387831541fb053e472672004cf511c25558..fbb09a8aff3740b5cd59573b5f2
+> e26b2ee352dfb 100644
+> --- a/drivers/gpu/drm/v3d/v3d_sched.c
+> +++ b/drivers/gpu/drm/v3d/v3d_sched.c
+> @@ -761,7 +761,7 @@ v3d_cl_job_timedout(struct drm_sched_job
+> *sched_job, enum v3d_queue q,
+> =C2=A0	if (*timedout_ctca !=3D ctca || *timedout_ctra !=3D ctra) {
+> =C2=A0		*timedout_ctca =3D ctca;
+> =C2=A0		*timedout_ctra =3D ctra;
+> -		return DRM_GPU_SCHED_STAT_RESET;
+> +		return DRM_GPU_SCHED_STAT_NO_HANG;
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	return v3d_gpu_reset_for_timeout(v3d, sched_job);
+> @@ -805,7 +805,7 @@ v3d_csd_job_timedout(struct drm_sched_job
+> *sched_job)
+> =C2=A0	 */
+> =C2=A0	if (job->timedout_batches !=3D batches) {
+> =C2=A0		job->timedout_batches =3D batches;
+> -		return DRM_GPU_SCHED_STAT_RESET;
+> +		return DRM_GPU_SCHED_STAT_NO_HANG;
+> =C2=A0	}
 
-As this component hooks into userspace API, it should be assumed that it
-will play well with non-4KiB/64KiB pages.
+Wait a second, help me out here quickly. You already added workaround
+stuff where you manipulate the scheduler's pending_list, as you state
+in the cover letter. That code here [1].
 
-Use `PAGE_SIZE' as the final reference for page alignment instead.
+Don't you have to remove the very same code in this series again to
+still have correct behavior in your driver?
 
-Cc: stable@vger.kernel.org
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Fixes: 801989b08aff ("drm/xe/uapi: Make constant comments visible in kernel doc")
-Tested-by: Mingcong Bai <jeffbai@aosc.io>
-Tested-by: Wenbin Fang <fangwenbin@vip.qq.com>
-Tested-by: Haien Liang <27873200@qq.com>
-Tested-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-Tested-by: Shirong Liu <lsr1024@qq.com>
-Tested-by: Haofeng Wu <s2600cw2@126.com>
-Link: https://github.com/FanFansfan/loongson-linux/commit/22c55ab3931c32410a077b3ddb6dca3f28223360
-Link: https://t.me/c/1109254909/768552
-Co-developed-by: Shang Yatsen <429839446@qq.com>
-Signed-off-by: Shang Yatsen <429839446@qq.com>
-Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
----
- drivers/gpu/drm/xe/xe_query.c | 2 +-
- include/uapi/drm/xe_drm.h     | 7 +++++--
- 2 files changed, 6 insertions(+), 3 deletions(-)
+As I see it, all drm branches end up in Linus's tree ultimately. So I'd
+think about potential branch-races in case you didn't already.
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 2dbf4066d86ff225eee002d352e1233c8d9519b9..fe94a7781fa04fb277d5cc8b973b145293d3d066 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -346,7 +346,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
- 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
--		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
-+		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : PAGE_SIZE;
- 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
- 	config->info[DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
- 		xe_exec_queue_device_get_max_priority(xe);
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 9c08738c3b918ee387f51a68ba080057c6d5716f..f92eb8c3317a09baad4550024bb3beea02850010 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -397,8 +397,11 @@ struct drm_xe_query_mem_regions {
-  *      has low latency hint support
-  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR - Flag is set if the
-  *      device has CPU address mirroring support
-- *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
-- *    required by this device, typically SZ_4K or SZ_64K
-+ *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment required
-+ *    by this device and the CPU. The minimum page size for the device is
-+ *    usually SZ_4K or SZ_64K, while for the CPU, it is PAGE_SIZE. This value
-+ *    is calculated by max(min_gpu_page_size, PAGE_SIZE). This alignment is
-+ *    enforced on buffer object allocations and VM binds.
-  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-  *  - %DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY - Value of the highest
-  *    available exec queue priority
 
--- 
-2.49.0
+P.
 
+
+
+[1] https://lore.kernel.org/dri-devel/20250430210643.57924-1-mcanal@igalia.=
+com/T/
+
+
+
+> =C2=A0
+> =C2=A0	return v3d_gpu_reset_for_timeout(v3d, sched_job);
+>=20
 
