@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 093F7C54FB3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 05:12:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2CA8C5B549
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 05:13:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94BCB10E033;
-	Mon,  2 Jun 2025 05:12:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8079B10E114;
+	Mon,  2 Jun 2025 05:13:08 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9316510E033;
- Mon,  2 Jun 2025 05:12:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4647910E114;
+ Mon,  2 Jun 2025 05:13:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?Fix_u32_overflow_in_SNPS_PHY_HDMI_PLL_setup_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/display=3A_Fix_u?=
+ =?utf-8?q?32_overflow_in_SNPS_PHY_HDMI_PLL_setup_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Jun 2025 05:12:55 -0000
-Message-ID: <174884117559.39982.732660889077528658@1538d3639d33>
+Date: Mon, 02 Jun 2025 05:13:07 -0000
+Message-ID: <174884118728.39982.4068245360713126604@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250528064557.4172149-1-dibin.moolakadan.subrahmanian@intel.com>
 In-Reply-To: <20250528064557.4172149-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -48,9 +48,36 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 574ad1700b18 drm-tip: 2025y-06m-02d-03h-16m-54s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Fix u32 overflow in SNPS PHY HDMI PLL setup
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f297be99936fbe156d2494013fd835b718b29e61
+Author: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Date:   Wed May 28 12:15:56 2025 +0530
+
+    drm/i915/display: Fix u32 overflow in SNPS PHY HDMI PLL setup
+    
+    When configuring the HDMI PLL, calculations use DIV_ROUND_UP_ULL and
+    DIV_ROUND_DOWN_ULL macros, which internally rely on do_div. However, do_div
+    expects a 32-bit (u32) divisor, and at higher data rates, the divisor can
+    exceed this limit. This leads to incorrect division results and
+    ultimately misconfigured PLL values.
+    This fix replaces do_div calls with  div64_base64 calls where diviser
+    can exceed u32 limit.
+    
+    Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+    Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+    Fixes: 5947642004bf ("drm/i915/display: Add support for SNPS PHY HDMI PLL algorithm for DG2")
+    Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+    Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+    Cc: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 574ad1700b1819b1e762e9ab2a708ea100b4ba97 drm-intel
+f297be99936f drm/i915/display: Fix u32 overflow in SNPS PHY HDMI PLL setup
 
 
