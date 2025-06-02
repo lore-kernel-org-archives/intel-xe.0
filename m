@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0ECCC5B543
-	for <intel-xe@archiver.kernel.org>; Sun,  1 Jun 2025 23:36:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 715C7C54FB3
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 04:44:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71CD110E432;
-	Sun,  1 Jun 2025 23:36:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JwXMIZVz";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E09D10E432;
- Sun,  1 Jun 2025 23:36:48 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 0D55B61127;
- Sun,  1 Jun 2025 23:36:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BE6EC4CEF1;
- Sun,  1 Jun 2025 23:36:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1748821007;
- bh=D91YgcZxIRCfR2mOCi2luDYBQF9vJuJWNdZL5R02rts=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=JwXMIZVzRm1+xcFGWZWttifxYe65wQ3l8BaBeZrMKHDfBwUeSoDpmqrny+vhq7Gbu
- 0jssIWF7JMjN4bPOMCpcplHZDcgfUzm5E25EZbLgU02PZsI0OHcItm4llJPeEwmasq
- xjqxS/RwHtGGFHJdZ5ATBOHKRUOe6FYdg3GJ7P5TAfCfrUFZ4/NiVPwaanevqoOGNz
- lEoBJi/Q3TUKNqa8bab55FFDk2ky/m8uB7pMELOI8I5MSf6yrJ/0dBICLhEhx0jSP4
- A9hVudq78job4eOE7aEIpUce95VAtwAN2EHdmHtyqH+8bPQBaAw8smKhGpHemTs4i/
- V4jGGLgeDH0Ng==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>, Sasha Levin <sashal@kernel.org>,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.12 64/93] drm/xe/uc: Remove static from loop variable
-Date: Sun,  1 Jun 2025 19:33:31 -0400
-Message-Id: <20250601233402.3512823-64-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250601233402.3512823-1-sashal@kernel.org>
-References: <20250601233402.3512823-1-sashal@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC6D10E033;
+	Mon,  2 Jun 2025 04:44:41 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD62710E033;
+ Mon,  2 Jun 2025 04:44:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5096174169111662301=="
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.12.31
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Convert_page_faul?=
+ =?utf-8?q?t_messages_to_be_GT-oriented?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Jun 2025 04:44:39 -0000
+Message-ID: <174883947976.39982.10453637081321341645@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250530164835.461-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250530164835.461-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,75 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+--===============5096174169111662301==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-[ Upstream commit 75584c8213d341ddd5b7c72abf822e62f4b3ab27 ]
+== Series Details ==
 
-The `entries` variable is used to loop through the array - it's supposed
-to be const, but not static.
+Series: drm/xe: Convert page fault messages to be GT-oriented
+URL   : https://patchwork.freedesktop.org/series/149704/
+State : success
 
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250307-xe-per-gt-fw-v1-1-459574d76400@intel.com
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
+== Summary ==
 
-**YES** This commit should be backported to stable kernel trees. Here's
-my extensive analysis: ## Commit Analysis **Type of Issue:** This commit
-fixes an incorrect use of the `static` storage class specifier on a
-local variable that should be a simple `const` pointer. **Code
-Analysis:** - The problematic line changes `static const struct
-uc_fw_entry *entries;` to `const struct uc_fw_entry *entries;` - This
-variable is used as a loop iteration pointer in the
-`uc_fw_auto_select()` function - The variable gets assigned from
-`blobs_all[uc_fw->type].entries` and is used to iterate through firmware
-entries - The `static` keyword is incorrect here because this should be
-a local variable that gets reinitialized on each function call **Impact
-Assessment:** - **Bug severity:** This is a subtle but real bug that
-affects driver correctness - **User impact:** Could cause firmware
-selection issues in Intel Xe GPU drivers, potentially leading to
-graphics driver failures or incorrect firmware loading - **Risk:** The
-incorrect `static` storage could cause the `entries` pointer to retain
-stale values across function calls, leading to unpredictable firmware
-selection behavior **Backport Suitability Criteria:** 1. ✅ **Fixes a
-real bug:** Yes, incorrect storage class affects program correctness 2.
-✅ **Small and contained:** Single line change, minimal risk 3. ✅ **No
-side effects:** Pure bug fix with no behavioral changes beyond
-correcting the error 4. ✅ **No architectural changes:** Simple variable
-declaration fix 5. ✅ **Minimal regression risk:** Extremely low risk -
-makes the code work as originally intended 6. ✅ **Follows stable tree
-rules:** Important bugfix, minimal risk, contained change **Historical
-Precedent:** This commit is nearly identical to the i915 commit
-`5821a0bbb4c3` which was backported (marked as "YES" in the reference
-commits). Both commits: - Fix the exact same type of bug (accidental
-`static` on local variable) - Affect similar firmware selection code in
-Intel GPU drivers - Have identical risk profiles and change patterns -
-Were authored by the same team working on Intel GPU microcontroller
-firmware **Conclusion:** This is a clear candidate for backporting - it
-fixes a genuine bug that could affect system stability, has minimal risk
-of regression, and follows the established pattern of similar fixes that
-have been successfully backported.
+CI Bug Log - changes from xe-3167-52afe38ad6f8eccc238956b78e04977dded23411_BAT -> xe-pw-149704v1_BAT
+====================================================
 
- drivers/gpu/drm/xe/xe_uc_fw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index d431d0031185e..16649652c8151 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -221,8 +221,8 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
- 		[XE_UC_FW_TYPE_HUC] = { entries_huc, ARRAY_SIZE(entries_huc) },
- 		[XE_UC_FW_TYPE_GSC] = { entries_gsc, ARRAY_SIZE(entries_gsc) },
- 	};
--	static const struct uc_fw_entry *entries;
- 	enum xe_platform p = xe->info.platform;
-+	const struct uc_fw_entry *entries;
- 	u32 count;
- 	int i;
- 
--- 
-2.39.5
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3167-52afe38ad6f8eccc238956b78e04977dded23411 -> xe-pw-149704v1
+
+  IGT_8387: 8387
+  xe-3167-52afe38ad6f8eccc238956b78e04977dded23411: 52afe38ad6f8eccc238956b78e04977dded23411
+  xe-pw-149704v1: 149704v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149704v1/index.html
+
+--===============5096174169111662301==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Convert page fault messages to be GT-oriented</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149704/">https://patchwork.freedesktop.org/series/149704/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149704v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149704v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3167-52afe38ad6f8eccc238956b78e04977dded23411_BAT -&gt; xe-pw-149704v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3167-52afe38ad6f8eccc238956b78e04977dded23411 -&gt; xe-pw-149704v1</li>
+</ul>
+<p>IGT_8387: 8387<br />
+  xe-3167-52afe38ad6f8eccc238956b78e04977dded23411: 52afe38ad6f8eccc238956b78e04977dded23411<br />
+  xe-pw-149704v1: 149704v1</p>
+
+</body>
+</html>
+
+--===============5096174169111662301==--
