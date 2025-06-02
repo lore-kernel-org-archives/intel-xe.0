@@ -4,57 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BA0AC5B549
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 08:57:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1DE9C5B555
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 09:06:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2204610E1D1;
-	Mon,  2 Jun 2025 08:57:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F260310E4D8;
+	Mon,  2 Jun 2025 09:06:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LMijw0LQ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="K4Y/D8Xz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9055510E1D1
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Jun 2025 08:57:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748854672; x=1780390672;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=FRREWyYdenIfw/dSqpYQCSXyi5kaZ75kbKvoRXcSLg0=;
- b=LMijw0LQeTLrzJUk4upVVDbjKseccIs/hy+8uqgO3naiW7KPFa8KRkQy
- WfffkH9coWqdQOVFaoe1m/Nzrz/809uX+rb8TYnHopKDfz3z1XvnATYBt
- 8rwm33S/rXxy1xi1bAW4f4+p61xsUUzYHaDw3jH3XEhCo3DO7kZTk7YE5
- LESQ17m8ou94ZqGw+x5tnZSfOHEGl42t1yy0HeRrXc1M0+6nndO/SPzIx
- UYdwQZ8BzbMrmRAr9zSzewcAYYCz619h+JotFaRtJtcN7OF8A2R2EsUV/
- RR9UIN5gxXIJ2jj0NYOgJJ7MJe5vPM2vGoYH6qGUgpUJ8MDVTwmHQKXi+ w==;
-X-CSE-ConnectionGUID: CPNAmbISR2mhjSlcXTh15w==
-X-CSE-MsgGUID: VqNPXpsuR5eZFnqZiKdjUQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11450"; a="73390572"
-X-IronPort-AV: E=Sophos;i="6.16,202,1744095600"; d="scan'208";a="73390572"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2025 01:57:49 -0700
-X-CSE-ConnectionGUID: RXtwWpanRRWVVTD8by340A==
-X-CSE-MsgGUID: FDF9WD7+Shm6ywkJcM9Beg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,202,1744095600"; d="scan'208";a="149332903"
-Received: from zzombora-mobl1 (HELO [10.245.245.183]) ([10.245.245.183])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2025 01:57:48 -0700
-Message-ID: <0022fafa6c45e055d20d0a826759b2b2f778b27f.camel@linux.intel.com>
-Subject: Re: [PATCH v3] drm/xe: Make VMA tile_present, tile_invalidated
- access rules clear
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com
-Date: Mon, 02 Jun 2025 10:57:36 +0200
-In-Reply-To: <20250530061433.1819041-1-matthew.brost@intel.com>
-References: <20250530061433.1819041-1-matthew.brost@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E3FA10E4D6;
+ Mon,  2 Jun 2025 09:06:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=w5iby8XYqaEcAItEkbRF2LO0ixU/PQmrd5oCRUkNHpM=; b=K4Y/D8XzP37ZUD3jB7LriyjGLq
+ Ewsi3HETC+fFSVb4gfPWkrK+vblY/c9MZlasqoDgEunpkujgJFNBLzafQMPolvJGB5r7L5NA3V/44
+ tMwf+vTk6VuyCIqLUuNGoXWlAQLV882dnrhKKyFyYoQr0zC+XP+13xIwN6KWJEFbAPsx8oHl/Ucqg
+ hb8DaXc/rao/vWgyzXDc1SIMrr3lIb7DAu6Efu7WjJ8DuH5snfh7zH1+cqhyaKgI40nldJPs/ZkE5
+ qJPS/YUi3qnu9u2QgOLnOBakUaiGYSPIACC21TWwAaJ5kLppkEwkkoLcj4IB3eZUlMuM+n9G3zDVr
+ gzaOOBNQ==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uM17K-00GDbV-Fi; Mon, 02 Jun 2025 11:06:02 +0200
+Message-ID: <8a621f9e-0fc7-431d-925d-f6e1d0928516@igalia.com>
+Date: Mon, 2 Jun 2025 10:06:01 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/8] drm/sched: Reduce scheduler's timeout for timeout
+ tests
+To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Matthew Brost <matthew.brost@intel.com>, Danilo Krummrich <dakr@kernel.org>,
+ Philipp Stanner <phasta@kernel.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Melissa Wen <mwen@igalia.com>, Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20250530-sched-skip-reset-v2-0-c40a8d2d8daa@igalia.com>
+ <20250530-sched-skip-reset-v2-3-c40a8d2d8daa@igalia.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250530-sched-skip-reset-v2-3-c40a8d2d8daa@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,175 +75,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-05-29 at 23:14 -0700, Matthew Brost wrote:
-> Document VMA tile_invalidated access rules, use READ_ONCE /
-> WRITE_ONCE
-> for opportunistic checks of tile_present and tile_invalidated, move
-> tile_invalidated state change from page fault handler to PT code
-> under
-> the correct locks, and add lockdep asserts to TLB invalidation paths.
->=20
-> v2:
-> =C2=A0- Assert VM dma-resv lock rather than BO in zap PTEs
-> v3:
-> =C2=A0- Back to BO's dma-resv lock, adjust documentation
->=20
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+On 30/05/2025 15:01, Maíra Canal wrote:
+> As more KUnit tests are introduced to evaluate the basic capabilities of
+> the `timedout_job()` hook, the test suite will continue to increase in
+> duration. To reduce the overall running time of the test suite, decrease
+> the scheduler's timeout for the timeout tests.
+> 
+> Before this commit:
+> 
+> [15:42:26] Elapsed time: 15.637s total, 0.002s configuring, 10.387s building, 5.229s running
+> 
+> After this commit:
+> 
+> [15:45:26] Elapsed time: 9.263s total, 0.002s configuring, 5.168s building, 4.037s running
+> 
+> Signed-off-by: Maíra Canal <mcanal@igalia.com>
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_gt_pagefault.c | 11 +++++++----
-> =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 | 16 +++++++++++++---
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
-> =C2=A0drivers/gpu/drm/xe/xe_vm_types.h=C2=A0=C2=A0=C2=A0=C2=A0 | 11 +++++=
-++++--
-> =C2=A04 files changed, 30 insertions(+), 9 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> index 7a8f87709e39..05fbc83c64b7 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> @@ -68,8 +68,12 @@ static bool access_is_atomic(enum access_type
-> access_type)
-> =C2=A0
-> =C2=A0static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
-> =C2=A0{
-> -	return BIT(tile->id) & vma->tile_present &&
-> -		!(BIT(tile->id) & vma->tile_invalidated);
-> +	/*
-> +	 * Advisory only check whether the VMA currently has a valid
-> mapping,
-> +	 * READ_ONCE pairs with WRITE_ONCE in xe_pt.c
-
-There's a write also in xe_vm_invalidate_vma() that might need a
-WRITE_ONCE.
-
-Otherwise LGTM.
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-
-
-
-
-> +	 */
-> +	return BIT(tile->id) & READ_ONCE(vma->tile_present) &&
-> +		!(BIT(tile->id) & READ_ONCE(vma->tile_invalidated));
-> =C2=A0}
-> =C2=A0
-> =C2=A0
-> @@ -121,7 +125,7 @@ static int handle_vma_pagefault(struct xe_gt *gt,
-> struct xe_vma *vma,
-> =C2=A0
-> =C2=A0	trace_xe_vma_pagefault(vma);
-> =C2=A0
-> -	/* Check if VMA is valid */
-> +	/* Check if VMA is valid, opportunistic check only */
-> =C2=A0	if (vma_is_valid(tile, vma) && !atomic)
-> =C2=A0		return 0;
-> =C2=A0
-> @@ -158,7 +162,6 @@ static int handle_vma_pagefault(struct xe_gt *gt,
-> struct xe_vma *vma,
-> =C2=A0
-> =C2=A0	dma_fence_wait(fence, false);
-> =C2=A0	dma_fence_put(fence);
-> -	vma->tile_invalidated &=3D ~BIT(tile->id);
-> =C2=A0
-> =C2=A0unlock_dma_resv:
-> =C2=A0	drm_exec_fini(&exec);
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index c9c41fbe125c..f39d5cc9f411 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -907,6 +907,11 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct
-> xe_vma *vma)
-> =C2=A0	struct xe_pt *pt =3D xe_vma_vm(vma)->pt_root[tile->id];
-> =C2=A0	u8 pt_mask =3D (vma->tile_present & ~vma->tile_invalidated);
-> =C2=A0
-> +	if (xe_vma_bo(vma))
-> +		xe_bo_assert_held(xe_vma_bo(vma));
-> +	else if (xe_vma_is_userptr(vma))
-> +		lockdep_assert_held(&xe_vma_vm(vma)-
-> >userptr.notifier_lock);
+>   drivers/gpu/drm/scheduler/tests/tests_basic.c | 8 +++++---
+>   1 file changed, 5 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/scheduler/tests/tests_basic.c b/drivers/gpu/drm/scheduler/tests/tests_basic.c
+> index 7230057e0594c6246f02608f07fcb1f8d738ac75..41c648782f4548e202bd8711b45d28eead9bd0b2 100644
+> --- a/drivers/gpu/drm/scheduler/tests/tests_basic.c
+> +++ b/drivers/gpu/drm/scheduler/tests/tests_basic.c
+> @@ -5,6 +5,8 @@
+>   
+>   #include "sched_tests.h"
+>   
+> +#define MOCK_TIMEOUT (HZ / 5)
 > +
+>   /*
+>    * DRM scheduler basic tests should check the basic functional correctness of
+>    * the scheduler, including some very light smoke testing. More targeted tests,
+> @@ -28,7 +30,7 @@ static void drm_sched_basic_exit(struct kunit *test)
+>   
+>   static int drm_sched_timeout_init(struct kunit *test)
+>   {
+> -	test->priv = drm_mock_sched_new(test, HZ);
+> +	test->priv = drm_mock_sched_new(test, MOCK_TIMEOUT);
+>   
+>   	return 0;
+>   }
+> @@ -227,14 +229,14 @@ static void drm_sched_basic_timeout(struct kunit *test)
+>   	done = drm_mock_sched_job_wait_scheduled(job, HZ);
+>   	KUNIT_ASSERT_TRUE(test, done);
+>   
+> -	done = drm_mock_sched_job_wait_finished(job, HZ / 2);
+> +	done = drm_mock_sched_job_wait_finished(job, MOCK_TIMEOUT / 2);
+>   	KUNIT_ASSERT_FALSE(test, done);
+>   
+>   	KUNIT_ASSERT_EQ(test,
+>   			job->flags & DRM_MOCK_SCHED_JOB_TIMEDOUT,
+>   			0);
+>   
+> -	done = drm_mock_sched_job_wait_finished(job, HZ);
+> +	done = drm_mock_sched_job_wait_finished(job, MOCK_TIMEOUT);
+>   	KUNIT_ASSERT_FALSE(test, done);
 
+Thinking about the potential for false negatives - scheduler timeout is 
+set to 200ms and total wait is 300ms before checking if the timeout hook 
+was executed by the scheduler core. So false negative only if scheduler 
+core would be lax with the timed out work handling. Or the lax delayed 
+work mechanism. Probably fine until we learn otherwise.
 
-> =C2=A0	if (!(pt_mask & BIT(tile->id)))
-> =C2=A0		return false;
-> =C2=A0
-> @@ -2191,10 +2196,15 @@ static void bind_op_commit(struct xe_vm *vm,
-> struct xe_tile *tile,
-> =C2=A0					=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL :
-> =C2=A0					=C2=A0=C2=A0 DMA_RESV_USAGE_BOOKKEEP);
-> =C2=A0	}
-> -	vma->tile_present |=3D BIT(tile->id);
-> -	vma->tile_staged &=3D ~BIT(tile->id);
-> +	/* All WRITE_ONCE pair with READ_ONCE in xe_gt_pagefault.c
-> */
-> +	WRITE_ONCE(vma->tile_present, vma->tile_present | BIT(tile-
-> >id));
-> =C2=A0	if (invalidate_on_bind)
-> -		vma->tile_invalidated |=3D BIT(tile->id);
-> +		WRITE_ONCE(vma->tile_invalidated,
-> +			=C2=A0=C2=A0 vma->tile_invalidated | BIT(tile->id));
-> +	else
-> +		WRITE_ONCE(vma->tile_invalidated,
-> +			=C2=A0=C2=A0 vma->tile_invalidated & ~BIT(tile->id));
-> +	vma->tile_staged &=3D ~BIT(tile->id);
-> =C2=A0	if (xe_vma_is_userptr(vma)) {
-> =C2=A0		lockdep_assert_held_read(&vm-
-> >userptr.notifier_lock);
-> =C2=A0		to_userptr_vma(vma)->userptr.initial_bind =3D true;
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 7140d8856bad..e781e8138f34 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3871,6 +3871,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
-> =C2=A0	/* Check that we don't race with page-table updates */
-> =C2=A0	if (IS_ENABLED(CONFIG_PROVE_LOCKING)) {
-> =C2=A0		if (xe_vma_is_userptr(vma)) {
-> +			lockdep_assert_held_write(&xe_vma_vm(vma)-
-> >userptr.notifier_lock);
-> =C2=A0			WARN_ON_ONCE(!mmu_interval_check_retry
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 (&to_userptr_vma(vma)-
-> >userptr.notifier,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 to_userptr_vma(vma)-
-> >userptr.notifier_seq));
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> b/drivers/gpu/drm/xe/xe_vm_types.h
-> index bfc145baad49..f3fb29b4d525 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -100,14 +100,21 @@ struct xe_vma {
-> =C2=A0		struct work_struct destroy_work;
-> =C2=A0	};
-> =C2=A0
-> -	/** @tile_invalidated: VMA has been invalidated */
-> +	/**
-> +	 * @tile_invalidated: Tile mask of binding are invalidated
-> for this VMA.
-> +	 * protected by BO's resv and for userptrs, vm-
-> >userptr.notifier_lock in
-> +	 * write mode for writing or vm->userptr.notifier_lock in
-> read mode and
-> +	 * the vm->resv. For stable reading, BO's resv or useptr
-> +	 * vm->userptr.notifier_lock in read mode is required. Can
-> be
-> +	 * opportunisticly read with READ_ONCE outside of locks.
-> +	 */
-> =C2=A0	u8 tile_invalidated;
-> =C2=A0
-> =C2=A0	/** @tile_mask: Tile mask of where to create binding for
-> this VMA */
-> =C2=A0	u8 tile_mask;
-> =C2=A0
-> =C2=A0	/**
-> -	 * @tile_present: GT mask of binding are present for this
-> VMA.
-> +	 * @tile_present: Tile mask of binding are present for this
-> VMA.
-> =C2=A0	 * protected by vm->lock, vm->resv and for userptrs,
-> =C2=A0	 * vm->userptr.notifier_lock for writing. Needs either for
-> reading,
-> =C2=A0	 * but if reading is done under the vm->lock only, it needs
-> to be held
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+
+Regards,
+
+Tvrtko
+
+>   
+>   	KUNIT_ASSERT_EQ(test,
+> 
 
