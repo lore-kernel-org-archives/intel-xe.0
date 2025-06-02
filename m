@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 715C7C54FB3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 04:44:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 093F7C54FB3
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Jun 2025 05:12:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC6D10E033;
-	Mon,  2 Jun 2025 04:44:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94BCB10E033;
+	Mon,  2 Jun 2025 05:12:57 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD62710E033;
- Mon,  2 Jun 2025 04:44:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5096174169111662301=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9316510E033;
+ Mon,  2 Jun 2025 05:12:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Convert_page_faul?=
- =?utf-8?q?t_messages_to_be_GT-oriented?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?Fix_u32_overflow_in_SNPS_PHY_HDMI_PLL_setup_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Jun 2025 04:44:39 -0000
-Message-ID: <174883947976.39982.10453637081321341645@1538d3639d33>
+Date: Mon, 02 Jun 2025 05:12:55 -0000
+Message-ID: <174884117559.39982.732660889077528658@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250530164835.461-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20250530164835.461-1-michal.wajdeczko@intel.com>
+References: <20250528064557.4172149-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20250528064557.4172149-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5096174169111662301==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Convert page fault messages to be GT-oriented
-URL   : https://patchwork.freedesktop.org/series/149704/
+Series: drm/i915/display: Fix u32 overflow in SNPS PHY HDMI PLL setup (rev2)
+URL   : https://patchwork.freedesktop.org/series/149566/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3167-52afe38ad6f8eccc238956b78e04977dded23411_BAT -> xe-pw-149704v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 574ad1700b18 drm-tip: 2025y-06m-02d-03h-16m-54s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Fix u32 overflow in SNPS PHY HDMI PLL setup
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3167-52afe38ad6f8eccc238956b78e04977dded23411 -> xe-pw-149704v1
-
-  IGT_8387: 8387
-  xe-3167-52afe38ad6f8eccc238956b78e04977dded23411: 52afe38ad6f8eccc238956b78e04977dded23411
-  xe-pw-149704v1: 149704v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149704v1/index.html
-
---===============5096174169111662301==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Convert page fault messages to be GT-oriented</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149704/">https://patchwork.freedesktop.org/series/149704/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149704v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149704v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3167-52afe38ad6f8eccc238956b78e04977dded23411_BAT -&gt; xe-pw-149704v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3167-52afe38ad6f8eccc238956b78e04977dded23411 -&gt; xe-pw-149704v1</li>
-</ul>
-<p>IGT_8387: 8387<br />
-  xe-3167-52afe38ad6f8eccc238956b78e04977dded23411: 52afe38ad6f8eccc238956b78e04977dded23411<br />
-  xe-pw-149704v1: 149704v1</p>
-
-</body>
-</html>
-
---===============5096174169111662301==--
