@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E62A3C5B552
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 20:21:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C230C61CE7
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 20:21:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2D4610E729;
-	Tue,  3 Jun 2025 20:21:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F51510E919;
+	Tue,  3 Jun 2025 20:21:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XZUjJL64";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lWZb8Gmv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCB5710E911
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 20:21:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33BBC10E8F3
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 20:21:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1748982109; x=1780518109;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+qKNntqoluiSmL/stky8BRjjVsMSjz2jBMG1bArSlK4=;
- b=XZUjJL64up9jCwe6Y93CmgGUOzQ9TwHNriIxm8+q4JpjHxeLfkPE/tsv
- wxJip0xzR3CzrTXnhGXTDMv4Iltf89tpZuOnC5WKPsSrXUTjV7LBCihjs
- 8Js95eFWy7nmM/z8+qMlYuYnWevBoz9RdqpFAHB+zapPtkiP6nr5htIXk
- wjFstZHk1VST1+v7P39oC8qFkVVlIFIgcMhn0Fe6zqOo7odt2pL8lpsCo
- 7w9El2GmOPkRBRMT+IGlU5ca2+UnGjB6w5F+H4J8ZedSTyxvQDdXKEGRM
- gxK1eIi+DAM+lispx4UPFDfXXYmOa131GWR7oRKV3Xg07T4HooVX+daxl Q==;
-X-CSE-ConnectionGUID: wr1K0sWXTZeuY3OVsZjgcQ==
-X-CSE-MsgGUID: sSdNomZMTa2W6gKDholtFg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="76427536"
-X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="76427536"
+ bh=4Mb0wgbOU80pYMYPp2b2aaV5QW8BJGECdQj+5tqTd4I=;
+ b=lWZb8GmvIt5qrAslurFEm/tTO6oXIczNCjh7tR3Ju97oRSSycXP5iUOa
+ xDuKhw5dCF8Cq178by+TNth54oz5Rc/mugS3vuKV0iyfl6TjKeQVQV94W
+ jjtRd5RA2nQcRwNiAHf1R6yQSIVp9I4Y5BSpOFShMoMWTDdO+Za2ymfKF
+ +XnnOuqdzORvC/vLlWli2JMKjLeDgnhSrI8g3x5lZMONw8M3GHuHzA7D3
+ 0lYUcfrgJ9YpM6+MGzrL3YwHr3+lnP9iVsokzh2bz8W4BJGnCdx2sIlH1
+ D4uvS60iM+PGtsgiMSKSs4afRDVKu5EuBLG1F56wL6jHFkf8gfOsbACUD g==;
+X-CSE-ConnectionGUID: dUQQlEbJSfCsfdz++HN19Q==
+X-CSE-MsgGUID: s4qqKj1gRe6iObVFwXt6wQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="76427539"
+X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="76427539"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Jun 2025 13:21:49 -0700
-X-CSE-ConnectionGUID: V5KXkhV5TrK/W3FS8sh+vg==
-X-CSE-MsgGUID: tNvYNjqxTcCUO1R3mECYkQ==
+X-CSE-ConnectionGUID: Xxr9BcdUT3eSPBr3tF5ckg==
+X-CSE-MsgGUID: LUY21s/nQuSMYKvfP4Ejpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="175833204"
+X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="175833215"
 Received: from orsosgc001.jf.intel.com ([10.165.21.142])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Jun 2025 13:21:48 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 2/5] drm/xe/oa: Print hwe to OA unit mapping
-Date: Tue,  3 Jun 2025 13:21:30 -0700
-Message-ID: <20250603202133.2713863-3-ashutosh.dixit@intel.com>
+Subject: [PATCH 5/5] drm/xe/oa: Enable OAM latency measurement
+Date: Tue,  3 Jun 2025 13:21:33 -0700
+Message-ID: <20250603202133.2713863-6-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250603202133.2713863-1-ashutosh.dixit@intel.com>
 References: <20250603202133.2713863-1-ashutosh.dixit@intel.com>
@@ -66,59 +66,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Print hwe to OA unit mapping to dmesg, to help debug for current and new
-platforms.
+Enable OAM latency measurement for Xe3+ platforms.
+
+Bspec: 58840
+
+v2: Introduce DRM_XE_OA_UNIT_TYPE_OAM_SAG
 
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_oa_regs.h |  3 +++
+ drivers/gpu/drm/xe/xe_oa.c           | 11 ++++++++++-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+index a79ad2da070c2..e693a50706f84 100644
+--- a/drivers/gpu/drm/xe/regs/xe_oa_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+@@ -97,4 +97,7 @@
+ #define OAM_STATUS(base)			XE_REG((base) + OAM_STATUS_OFFSET)
+ #define OAM_MMIO_TRG(base)			XE_REG((base) + OAM_MMIO_TRG_OFFSET)
+ 
++#define OAM_COMPRESSION_T3_CONTROL		XE_REG(0x1c2e00)
++#define  OAM_LAT_MEASURE_ENABLE			REG_BIT(4)
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 0de0d5a18df74..94faa4ed2012f 100644
+index 35157424010bb..5aa68bd63b00d 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -2603,6 +2603,31 @@ static int xe_oa_init_gt(struct xe_gt *gt)
- 	return 0;
+@@ -844,6 +844,11 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 
+ 	/* Reset PMON Enable to save power. */
+ 	xe_mmio_rmw32(mmio, XELPMP_SQCNT1, sqcnt1, 0);
++
++	if ((stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAM ||
++	     stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAM_SAG) &&
++	    GRAPHICS_VER(stream->oa->xe) >= 30)
++		xe_mmio_rmw32(mmio, OAM_COMPRESSION_T3_CONTROL, OAM_LAT_MEASURE_ENABLE, 0);
  }
  
-+static void xe_oa_print_oa_units(struct xe_oa *oa)
-+{
-+	enum xe_hw_engine_id hwe_id;
-+	struct xe_hw_engine *hwe;
-+	struct xe_oa_unit *u;
-+	struct xe_gt *gt;
-+	int gt_id, i, n;
-+	char buf[256];
-+
-+	for_each_gt(gt, oa->xe, gt_id) {
-+		for (i = 0; i < gt->oa.num_oa_units; i++) {
-+			u = &gt->oa.oa_unit[i];
-+			buf[0] = '\0';
-+			n = 0;
-+
-+			for_each_hw_engine(hwe, gt, hwe_id)
-+				if (xe_oa_unit_id(hwe) == u->oa_unit_id)
-+					n += scnprintf(buf + n, sizeof(buf) - n, "%s ", hwe->name);
-+
-+			xe_gt_dbg(gt, "oa_unit %d, type %d, Engines: %s\n",
-+				  u->oa_unit_id, u->type, buf);
-+		}
-+	}
-+}
-+
- static int xe_oa_init_oa_units(struct xe_oa *oa)
- {
- 	struct xe_gt *gt;
-@@ -2619,6 +2644,8 @@ static int xe_oa_init_oa_units(struct xe_oa *oa)
- 			return ret;
- 	}
+ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
+@@ -1111,9 +1116,13 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 	 */
+ 	sqcnt1 = SQCNT1_PMON_ENABLE |
+ 		 (HAS_OA_BPC_REPORTING(stream->oa->xe) ? SQCNT1_OABPC : 0);
+-
+ 	xe_mmio_rmw32(mmio, XELPMP_SQCNT1, 0, sqcnt1);
  
-+	xe_oa_print_oa_units(oa);
++	if ((stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAM ||
++	     stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAM_SAG) &&
++	    GRAPHICS_VER(stream->oa->xe) >= 30)
++		xe_mmio_rmw32(mmio, OAM_COMPRESSION_T3_CONTROL, 0, OAM_LAT_MEASURE_ENABLE);
 +
- 	return 0;
- }
- 
+ 	/* Configure OAR/OAC */
+ 	if (stream->exec_q) {
+ 		ret = xe_oa_configure_oa_context(stream, true);
 -- 
 2.48.1
 
