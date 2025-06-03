@@ -4,82 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE7B3C5AE59
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 11:45:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D4EBC5AD49
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 11:53:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA1010E5A2;
-	Tue,  3 Jun 2025 11:45:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B581E10E5EF;
+	Tue,  3 Jun 2025 11:53:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="MB0cOGBe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BiyXegF1";
 	dkim-atps=neutral
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
- [209.85.218.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42F1010E5F4
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 11:45:58 +0000 (UTC)
-Received: by mail-ej1-f45.google.com with SMTP id
- a640c23a62f3a-adb47e0644dso557936266b.0
- for <intel-xe@lists.freedesktop.org>; Tue, 03 Jun 2025 04:45:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1748951157; x=1749555957; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=IfazfPYNHju0jH7hIPSEI9ULtmklFpa91hwq4k84SSc=;
- b=MB0cOGBefPx254YKxZn0jsthIklFwLM/dt+vzK2N80iz+GOunSVNbzDAMOWtYo+Zi+
- fHz1g4EWKrYK0g25TFZKBwaV6A58lLATuY5+qpwHHZqeeLngwJuuYKoOdj59/VQjoo15
- IrEXWJJDZ9A0LFACFDPcBxGPq5j7ENJqRDHoo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748951157; x=1749555957;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=IfazfPYNHju0jH7hIPSEI9ULtmklFpa91hwq4k84SSc=;
- b=G94WeOEcNPk+vOHCiwYuRma/0QQiELPedafZT2agLSt86u5/kQrIv34MtXuy7vOftC
- AgwDVrs9R0uRejNq+Ief/MjRKCHtOsd75fDxte82yRKCECYxh8bmmKzLVkTjhAqjqqRX
- 5K2jlmxk0/6XZFc+pgI2r4lglI9AjSVPQmmTd+7tMzxGdEAljendfzroKjBo3pV6AuGw
- xwREsPuRt3pdwoNNjixbBwKTa1jy7hzulbLsh8BAu9lk7iISMSvyYSoyx6BTDYmBsYq8
- lXv8xIjF0B6levqdvCbeIYvBOF1ocKq4Bwl+EuqJI0SFzwg5cUSwpKmO0sI/X0ZUXxcS
- +v3g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVc764sMCamqeYfvooFMLfYpJ46dHwgRtwihDgYfRj+66Dia7ycpqzahQtqP6nc/BubqHrAAtf0wA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyaVKPtHjZATtd+EdWkAdmMHA74ADmlS8Oxqv08TzzkZuB/hLZR
- p8m8ucQzZwnDdBtX9NGask1/kZIKDx0a4wTf6o5D4iX0a2fktMsbGoHexvjL4ma+94JfdygvkSI
- XprHQ
-X-Gm-Gg: ASbGncsjQ+CMsUUkt9onShSlwa0ED7tvLqBl9yxyi3qQk/wPJLod0N2jTk0dbx1jMm0
- o5Ba1Fr2U0XciJjDo3PsMlSNJEy7/i0gkFznzeM05z8UTlygsxJ0fazxD07ykuTQMmbHnz2P63A
- TOn6oP1vMNwjGGOgCbIFQVJx5XZyAJA1GJjqj817eDU34AbC7fbYgRIvFj6mQiyiBqtyGjnD9Wa
- FmILJxJqua0m3zFPnNYk+73ZcqWHIJZIKRlarwzSPOLCkE+8HSUEfPziDVNSO+SP1kPCNVVTepb
- ySkqQX9g8PdpTyWAelcUzBRsPVuvfTTgjmReckZQacTxh8s9010tiaovuSDSYB4=
-X-Google-Smtp-Source: AGHT+IG/yc1I09xXOpkrWC6fXgtwTaHTRCmhg1Bxq/oy8J2wc7t8jcYMlZLv+2Y63auTPM2uqnqVUQ==
-X-Received: by 2002:a17:907:2d0e:b0:adb:4085:fb88 with SMTP id
- a640c23a62f3a-adde5e98e24mr233475866b.1.1748951156582; 
- Tue, 03 Jun 2025 04:45:56 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-ada6ad3a6ccsm934847366b.156.2025.06.03.04.45.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Jun 2025 04:45:56 -0700 (PDT)
-Date: Tue, 3 Jun 2025 13:45:54 +0200
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- intel-xe@lists.freedesktop.org,
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
- stable@vger.kernel.org,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95D5010E24E;
+ Tue,  3 Jun 2025 11:53:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748951608; x=1780487608;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mLrPvPCoIseAvMK7yzYSe7ZQ6TqXWL+oY5ypd8T0b04=;
+ b=BiyXegF1pmTtrjeY5sI+3qs83bJpBHJUE/FgK2e/ryGXLqCyoZr9tPPZ
+ 6u2QJDLpS1xEq01JQUoFRrhGeCboUGA+yfUrLzgqgRK0lt9x8Ofy1hHwM
+ P2shAC1+54HCwLv8QO/9TaP+6OEb+1LUzVKvrf5Jl30vAFrili7hc/67B
+ qRfIOSPQ4mpbhSknRPggrLYHM6iWmOiO9jcbea114awZkpVLgNLCSSe0c
+ NAmMRkNawIULw1keJXoYdbDTcplSHuzMf3CzAbWP0NfKwaRCZkJ5ISAn2
+ U/rOP7/ezpDMZvmihQ8v/gDO7YD6ksuxe+aQ1Y0P3fUEDxDytJ+cmMy10 g==;
+X-CSE-ConnectionGUID: BoaHEZ4IRBCt48nRBtTiNg==
+X-CSE-MsgGUID: 2bByFR7RTwuHEd0oEsziEw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="53616390"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="53616390"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2025 04:53:27 -0700
+X-CSE-ConnectionGUID: o3W8DgHnTtCAJyInaGhuiA==
+X-CSE-MsgGUID: 83o5mtmjTiKeZJJVBCRYQw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="149993292"
+Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2025 04:53:21 -0700
+From: Alexander Usyskin <alexander.usyskin@intel.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Simona Vetter <simona.vetter@intel.com>
-Subject: Re: [PATCH 1/8] drm/gem: Fix race in drm_gem_handle_create_tail()
-Message-ID: <aD7gcvEaZzoDRRc1@phenom.ffwll.local>
-References: <20250528091307.1894940-1-simona.vetter@ffwll.ch>
- <20250528091307.1894940-2-simona.vetter@ffwll.ch>
- <2e60074d-8efd-4880-8620-9d9572583c88@suse.de>
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Karthik Poosa <karthik.poosa@intel.com>, Raag Jadav <raag.jadav@intel.com>
+Cc: Reuven Abliyev <reuven.abliyev@intel.com>,
+ Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Alexander Usyskin <alexander.usyskin@intel.com>
+Subject: [PATCH v12 00/10] mtd: add driver for Intel discrete graphics
+Date: Tue,  3 Jun 2025 14:39:43 +0300
+Message-ID: <20250603113953.3599816-1-alexander.usyskin@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2e60074d-8efd-4880-8620-9d9572583c88@suse.de>
-X-Operating-System: Linux phenom 6.12.25-amd64 
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,180 +79,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 02, 2025 at 05:15:58PM +0200, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 28.05.25 um 11:12 schrieb Simona Vetter:
-> > Object creation is a careful dance where we must guarantee that the
-> > object is fully constructed before it is visible to other threads, and
-> > GEM buffer objects are no difference.
-> > 
-> > Final publishing happens by calling drm_gem_handle_create(). After
-> > that the only allowed thing to do is call drm_gem_object_put() because
-> > a concurrent call to the GEM_CLOSE ioctl with a correctly guessed id
-> > (which is trivial since we have a linear allocator) can already tear
-> > down the object again.
-> > 
-> > Luckily most drivers get this right, the very few exceptions I've
-> > pinged the relevant maintainers for. Unfortunately we also need
-> > drm_gem_handle_create() when creating additional handles for an
-> > already existing object (e.g. GETFB ioctl or the various bo import
-> > ioctl), and hence we cannot have a drm_gem_handle_create_and_put() as
-> > the only exported function to stop these issues from happening.
-> > 
-> > Now unfortunately the implementation of drm_gem_handle_create() isn't
-> > living up to standards: It does correctly finishe object
-> > initialization at the global level, and hence is safe against a
-> > concurrent tear down. But it also sets up the file-private aspects of
-> > the handle, and that part goes wrong: We fully register the object in
-> > the drm_file.object_idr before calling drm_vma_node_allow() or
-> > obj->funcs->open, which opens up races against concurrent removal of
-> > that handle in drm_gem_handle_delete().
-> > 
-> > Fix this with the usual two-stage approach of first reserving the
-> > handle id, and then only registering the object after we've completed
-> > the file-private setup.
-> > 
-> > Jacek reported this with a testcase of concurrently calling GEM_CLOSE
-> > on a freshly-created object (which also destroys the object), but it
-> > should be possible to hit this with just additional handles created
-> > through import or GETFB without completed destroying the underlying
-> > object with the concurrent GEM_CLOSE ioctl calls.
-> > 
-> > Note that the close-side of this race was fixed in f6cd7daecff5 ("drm:
-> > Release driver references to handle before making it available
-> > again"), which means a cool 9 years have passed until someone noticed
-> > that we need to make this symmetry or there's still gaps left :-/
-> > Without the 2-stage close approach we'd still have a race, therefore
-> > that's an integral part of this bugfix.
-> > 
-> > More importantly, this means we can have NULL pointers behind
-> > allocated id in our drm_file.object_idr. We need to check for that
-> > now:
-> > 
-> > - drm_gem_handle_delete() checks for ERR_OR_NULL already
-> > 
-> > - drm_gem.c:object_lookup() also chekcs for NULL
-> > 
-> > - drm_gem_release() should never be called if there's another thread
-> >    still existing that could call into an IOCTL that creates a new
-> >    handle, so cannot race. For paranoia I added a NULL check to
-> >    drm_gem_object_release_handle() though.
-> > 
-> > - most drivers (etnaviv, i915, msm) are find because they use
-> >    idr_find, which maps both ENOENT and NULL to NULL.
-> > 
-> > - vmgfx is already broken vmw_debugfs_gem_info_show() because NULL
-> >    pointers might exist due to drm_gem_handle_delete(). This needs a
-> >    separate patch. This is because idr_for_each_entry terminates on the
-> >    first NULL entry and so might not iterate over everything.
-> > 
-> > - similar for amd in amdgpu_debugfs_gem_info_show() and
-> >    amdgpu_gem_force_release(). The latter is really questionable though
-> >    since it's a best effort hack and there's no way to close all the
-> >    races. Needs separate patches.
-> > 
-> > - xe is really broken because it not uses idr_for_each_entry() but
-> >    also drops the drm_file.table_lock, which can wreak the idr iterator
-> >    state if you're unlucky enough. Maybe another reason to look into
-> >    the drm fdinfo memory stats instead of hand-rolling too much.
-> > 
-> > - drm_show_memory_stats() is also broken since it uses
-> >    idr_for_each_entry. But since that's a preexisting bug I'll follow
-> >    up with a separate patch.
-> > 
-> > Reported-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
-> > Cc: stable@vger.kernel.org
-> > Cc: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: David Airlie <airlied@gmail.com>
-> > Cc: Simona Vetter <simona@ffwll.ch>
-> > Signed-off-by: Simona Vetter <simona.vetter@intel.com>
-> > Signed-off-by: Simona Vetter <simona.vetter@ffwll.ch>
-> > ---
-> >   drivers/gpu/drm/drm_gem.c | 10 +++++++++-
-> >   include/drm/drm_file.h    |  3 +++
-> >   2 files changed, 12 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-> > index 1e659d2660f7..e4e20dda47b1 100644
-> > --- a/drivers/gpu/drm/drm_gem.c
-> > +++ b/drivers/gpu/drm/drm_gem.c
-> > @@ -279,6 +279,9 @@ drm_gem_object_release_handle(int id, void *ptr, void *data)
-> >   	struct drm_file *file_priv = data;
-> >   	struct drm_gem_object *obj = ptr;
-> > +	if (WARN_ON(!data))
-> > +		return 0;
-> > +
-> >   	if (obj->funcs->close)
-> >   		obj->funcs->close(obj, file_priv);
-> > @@ -399,7 +402,7 @@ drm_gem_handle_create_tail(struct drm_file *file_priv,
-> >   	idr_preload(GFP_KERNEL);
-> >   	spin_lock(&file_priv->table_lock);
-> > -	ret = idr_alloc(&file_priv->object_idr, obj, 1, 0, GFP_NOWAIT);
-> > +	ret = idr_alloc(&file_priv->object_idr, NULL, 1, 0, GFP_NOWAIT);
-> >   	spin_unlock(&file_priv->table_lock);
-> >   	idr_preload_end();
-> > @@ -420,6 +423,11 @@ drm_gem_handle_create_tail(struct drm_file *file_priv,
-> >   			goto err_revoke;
-> >   	}
-> > +	/* mirrors drm_gem_handle_delete to avoid races */
-> > +	spin_lock(&file_priv->table_lock);
-> > +	obj = idr_replace(&file_priv->object_idr, obj, handle);
-> > +	WARN_ON(obj != NULL);
-> 
-> A DRM print function would be preferable. The obj here is an errno pointer.
-> Should the errno code be part of the error message?
-> 
-> If it fails, why does the function still succeed?
+Add driver for access to Intel discrete graphics card
+internal NVM device.
+Expose device on auxiliary bus by i915 and Xe drivers and
+provide mtd driver to register this device with MTD framework.
 
-This is an internal error that should never happen, at that point just
-bailing out is the way to go.
+This is a rewrite of "drm/i915/spi: spi access for discrete graphics"
+and "spi: add driver for Intel discrete graphics"
+series with connection to the Xe driver and splitting
+the spi driver part to separate module in mtd subsystem.
 
-Also note that the error code here is just to satisfy the function
-signature that id_for_each expects, we don't look at it ever (since if
-there's no bugs, it should never fail). I learned this because I actually
-removed the int return value and stuff didn't compile :-)
+This series intended to be pushed through drm-xe-next.
 
-I can use drm_WARN_ON if you want me to though?
+V2: Replace dev_* prints with drm_* prints in drm (xe and i915) patches.
+    Enable NVM device on Battlemage HW (xe driver patch)
+    Fix overwrite register address (xe driver patch)
+    Add Rodrigo's r-b
 
-I'll also explain this in the commit message for the next round.
--Sima
+V3: Use devm_pm_runtime_enable to simplify flow.
+    Drop print in i915 unload that was accidentally set as error.
+    Drop HAS_GSC_NVM macro in line with latest Xe changes.
+    Add more Rodrigo's r-b and Miquel's ack.
 
-> 
-> Best regards
-> Thomas
-> 
-> > +	spin_unlock(&file_priv->table_lock);
-> >   	*handlep = handle;
-> >   	return 0;
-> > diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-> > index 5c3b2aa3e69d..d344d41e6cfe 100644
-> > --- a/include/drm/drm_file.h
-> > +++ b/include/drm/drm_file.h
-> > @@ -300,6 +300,9 @@ struct drm_file {
-> >   	 *
-> >   	 * Mapping of mm object handles to object pointers. Used by the GEM
-> >   	 * subsystem. Protected by @table_lock.
-> > +	 *
-> > +	 * Note that allocated entries might be NULL as a transient state when
-> > +	 * creating or deleting a handle.
-> >   	 */
-> >   	struct idr object_idr;
-> 
-> -- 
-> --
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Frankenstrasse 146, 90461 Nuernberg, Germany
-> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-> HRB 36809 (AG Nuernberg)
-> 
+V4: Add patch that always creates mtd master device
+    and adjust mtd-intel-dg power management to use this device.
+
+V5: Fix master device creation to accomodate for devices without
+    partitions (create partitoned master in this case)
+    Rebase over latest drm-xe-next
+    Add ack's
+V6: Fix master device release (use rigth idr in release)
+    Rebase over latest drm-xe-next
+    Grammar and style fixes
+
+V7: Add patch with non-posted erase support (fix hang on BMG)
+    Rebase over latest drm-xe-next
+
+V8: Create separate partition device under master device, if requested
+    and configure parent of usual partitions to this partition.
+    Rebase over drm-tip.
+
+V9: Fix checkpatch warning on non-posted erase patch.
+    Add Rodrigo's review and ack.
+
+V10: Drop master device creation patch as it now in mtd-next.
+     Drop power-management patch, it will be merged lately after
+     master device patch is propagated.
+     Rebase over drm-tip.
+
+V11: Fix review comments.
+     Add reviewed-by.
+     Add cleanup in error path.
+     Add PADDING region that exists on some BMG devices.
+
+V12: Add Raag's r-b.
+     Rebase over drm-tip.
+
+Alexander Usyskin (9):
+  mtd: add driver for intel graphics non-volatile memory device
+  mtd: intel-dg: implement region enumeration
+  mtd: intel-dg: implement access functions
+  mtd: intel-dg: register with mtd
+  mtd: intel-dg: align 64bit read and write
+  drm/i915/nvm: add nvm device for discrete graphics
+  drm/i915/nvm: add support for access mode
+  drm/xe/nvm: add on-die non-volatile memory device
+  drm/xe/nvm: add support for access mode
+
+Reuven Abliyev (1):
+  drm/xe/nvm: add support for non-posted erase
+
+ MAINTAINERS                           |   7 +
+ drivers/gpu/drm/i915/Makefile         |   4 +
+ drivers/gpu/drm/i915/i915_driver.c    |   6 +
+ drivers/gpu/drm/i915/i915_drv.h       |   3 +
+ drivers/gpu/drm/i915/i915_reg.h       |   1 +
+ drivers/gpu/drm/i915/intel_nvm.c      | 121 ++++
+ drivers/gpu/drm/i915/intel_nvm.h      |  15 +
+ drivers/gpu/drm/xe/Makefile           |   1 +
+ drivers/gpu/drm/xe/regs/xe_gsc_regs.h |   4 +
+ drivers/gpu/drm/xe/xe_device.c        |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h  |   6 +
+ drivers/gpu/drm/xe/xe_heci_gsc.c      |   5 +-
+ drivers/gpu/drm/xe/xe_nvm.c           | 167 ++++++
+ drivers/gpu/drm/xe/xe_nvm.h           |  15 +
+ drivers/gpu/drm/xe/xe_pci.c           |   6 +
+ drivers/mtd/devices/Kconfig           |  11 +
+ drivers/mtd/devices/Makefile          |   1 +
+ drivers/mtd/devices/mtd_intel_dg.c    | 830 ++++++++++++++++++++++++++
+ include/linux/intel_dg_nvm_aux.h      |  32 +
+ 19 files changed, 1236 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/intel_nvm.c
+ create mode 100644 drivers/gpu/drm/i915/intel_nvm.h
+ create mode 100644 drivers/gpu/drm/xe/xe_nvm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_nvm.h
+ create mode 100644 drivers/mtd/devices/mtd_intel_dg.c
+ create mode 100644 include/linux/intel_dg_nvm_aux.h
 
 -- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.43.0
+
