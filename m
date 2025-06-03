@@ -4,67 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A85DC5AE59
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 11:38:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE7B3C5AE59
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 11:45:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B590510E60B;
-	Tue,  3 Jun 2025 11:38:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA1010E5A2;
+	Tue,  3 Jun 2025 11:45:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gev26shM";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="MB0cOGBe";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A941F10E60B
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 11:38:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748950732; x=1780486732;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=rvotY18B/WPFD0LCnG33kHUe2Ckc5dIBJopSdRB6GI0=;
- b=Gev26shMVlZlFAeG0chh5GYRDj9IsZWtDIa35dGuVIRi9Q/bQwfbT8vZ
- NQ99sl6OvztFrlqAgJDW89EACeNEA6Hi5VSL1Ba9DYVUqBd49eXikVfee
- sR0L89XwZ62aBuDvMKD6P/x7t51lVLxP5+YDNYe52FxtNF6st9zMtpwmb
- 9T8W9r21ChWFO1UUpK5/s+yl8nldDOab/YHqrLDGqtt6Ih+rTBWQEoc9E
- dMlCZTRiM2pk2KoOwxLr7naGEhjovVI3pLfMGm9cEaRrIustWDJewp7+7
- NOHicxBEyeagyLOWD+nv5DbslIEaz4NpCgdQGCel3lKv9F/D2scZqwkW0 w==;
-X-CSE-ConnectionGUID: X90cE+JWSOCv3ObygxvCOQ==
-X-CSE-MsgGUID: nNQUgf5tQjmckS4FmjQvew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="51129822"
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="51129822"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 04:38:52 -0700
-X-CSE-ConnectionGUID: VDdCMpBFSpyy6oKh6XuLzQ==
-X-CSE-MsgGUID: 3humCpN7Tu6UDazzjtMzwA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="144723877"
-Received: from kuha.fi.intel.com ([10.237.72.152])
- by orviesa006.jf.intel.com with SMTP; 03 Jun 2025 04:38:47 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Tue, 03 Jun 2025 14:38:45 +0300
-Date: Tue, 3 Jun 2025 14:38:45 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42F1010E5F4
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 11:45:58 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id
+ a640c23a62f3a-adb47e0644dso557936266b.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 03 Jun 2025 04:45:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1748951157; x=1749555957; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=IfazfPYNHju0jH7hIPSEI9ULtmklFpa91hwq4k84SSc=;
+ b=MB0cOGBefPx254YKxZn0jsthIklFwLM/dt+vzK2N80iz+GOunSVNbzDAMOWtYo+Zi+
+ fHz1g4EWKrYK0g25TFZKBwaV6A58lLATuY5+qpwHHZqeeLngwJuuYKoOdj59/VQjoo15
+ IrEXWJJDZ9A0LFACFDPcBxGPq5j7ENJqRDHoo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1748951157; x=1749555957;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=IfazfPYNHju0jH7hIPSEI9ULtmklFpa91hwq4k84SSc=;
+ b=G94WeOEcNPk+vOHCiwYuRma/0QQiELPedafZT2agLSt86u5/kQrIv34MtXuy7vOftC
+ AgwDVrs9R0uRejNq+Ief/MjRKCHtOsd75fDxte82yRKCECYxh8bmmKzLVkTjhAqjqqRX
+ 5K2jlmxk0/6XZFc+pgI2r4lglI9AjSVPQmmTd+7tMzxGdEAljendfzroKjBo3pV6AuGw
+ xwREsPuRt3pdwoNNjixbBwKTa1jy7hzulbLsh8BAu9lk7iISMSvyYSoyx6BTDYmBsYq8
+ lXv8xIjF0B6levqdvCbeIYvBOF1ocKq4Bwl+EuqJI0SFzwg5cUSwpKmO0sI/X0ZUXxcS
+ +v3g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVc764sMCamqeYfvooFMLfYpJ46dHwgRtwihDgYfRj+66Dia7ycpqzahQtqP6nc/BubqHrAAtf0wA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyaVKPtHjZATtd+EdWkAdmMHA74ADmlS8Oxqv08TzzkZuB/hLZR
+ p8m8ucQzZwnDdBtX9NGask1/kZIKDx0a4wTf6o5D4iX0a2fktMsbGoHexvjL4ma+94JfdygvkSI
+ XprHQ
+X-Gm-Gg: ASbGncsjQ+CMsUUkt9onShSlwa0ED7tvLqBl9yxyi3qQk/wPJLod0N2jTk0dbx1jMm0
+ o5Ba1Fr2U0XciJjDo3PsMlSNJEy7/i0gkFznzeM05z8UTlygsxJ0fazxD07ykuTQMmbHnz2P63A
+ TOn6oP1vMNwjGGOgCbIFQVJx5XZyAJA1GJjqj817eDU34AbC7fbYgRIvFj6mQiyiBqtyGjnD9Wa
+ FmILJxJqua0m3zFPnNYk+73ZcqWHIJZIKRlarwzSPOLCkE+8HSUEfPziDVNSO+SP1kPCNVVTepb
+ ySkqQX9g8PdpTyWAelcUzBRsPVuvfTTgjmReckZQacTxh8s9010tiaovuSDSYB4=
+X-Google-Smtp-Source: AGHT+IG/yc1I09xXOpkrWC6fXgtwTaHTRCmhg1Bxq/oy8J2wc7t8jcYMlZLv+2Y63auTPM2uqnqVUQ==
+X-Received: by 2002:a17:907:2d0e:b0:adb:4085:fb88 with SMTP id
+ a640c23a62f3a-adde5e98e24mr233475866b.1.1748951156582; 
+ Tue, 03 Jun 2025 04:45:56 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-ada6ad3a6ccsm934847366b.156.2025.06.03.04.45.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 03 Jun 2025 04:45:56 -0700 (PDT)
+Date: Tue, 3 Jun 2025 13:45:54 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ intel-xe@lists.freedesktop.org,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ stable@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
- Raag Jadav <raag.jadav@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>,
- "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
- intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org, "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: Re: [PATCH v1 2/2] drm/xe: Support for I2C attached MCUs
-Message-ID: <aD7exRsHZ5UIzFrr@kuha.fi.intel.com>
-References: <20250530141744.3605983-1-heikki.krogerus@linux.intel.com>
- <20250530141744.3605983-3-heikki.krogerus@linux.intel.com>
- <ixdkpl3ssri7ggv7yxhdla4ft5hbyce6a2ngvmypgkmjc5tj4a@qqbebbzhkd2b>
+ Simona Vetter <simona.vetter@intel.com>
+Subject: Re: [PATCH 1/8] drm/gem: Fix race in drm_gem_handle_create_tail()
+Message-ID: <aD7gcvEaZzoDRRc1@phenom.ffwll.local>
+References: <20250528091307.1894940-1-simona.vetter@ffwll.ch>
+ <20250528091307.1894940-2-simona.vetter@ffwll.ch>
+ <2e60074d-8efd-4880-8620-9d9572583c88@suse.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ixdkpl3ssri7ggv7yxhdla4ft5hbyce6a2ngvmypgkmjc5tj4a@qqbebbzhkd2b>
+In-Reply-To: <2e60074d-8efd-4880-8620-9d9572583c88@suse.de>
+X-Operating-System: Linux phenom 6.12.25-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,509 +94,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Lucas,
-
-Thank you for the review.
-
-On Mon, Jun 02, 2025 at 09:48:21AM -0500, Lucas De Marchi wrote:
-> On Fri, May 30, 2025 at 05:17:44PM +0300, Heikki Krogerus wrote:
-> > Adding adaption/glue layer where the I2C host adapter
-> > (Synopsys DesignWare I2C adapter) and the I2C clients (the
-> > microcontroller units) are enumerated.
-> > 
-> > The microcontroller units (MCU) that are attached to the GPU
-> > depend on the OEM. The initially supported MCU will be the
-> > Add-In Management Controller (AMC).
-> > 
-> > Originally-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> > Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+On Mon, Jun 02, 2025 at 05:15:58PM +0200, Thomas Zimmermann wrote:
+> Hi
 > 
-> Please use drm-tip as base for the patch series, otherwise we can't run
-> CI to make sure it doesn't regress:
-> https://drm.pages.freedesktop.org/maintainer-tools/repositories/drm-tip.html
-
-Got it.
-
-> We will probably also need new tests in igt.
-> 
+> Am 28.05.25 um 11:12 schrieb Simona Vetter:
+> > Object creation is a careful dance where we must guarantee that the
+> > object is fully constructed before it is visible to other threads, and
+> > GEM buffer objects are no difference.
+> > 
+> > Final publishing happens by calling drm_gem_handle_create(). After
+> > that the only allowed thing to do is call drm_gem_object_put() because
+> > a concurrent call to the GEM_CLOSE ioctl with a correctly guessed id
+> > (which is trivial since we have a linear allocator) can already tear
+> > down the object again.
+> > 
+> > Luckily most drivers get this right, the very few exceptions I've
+> > pinged the relevant maintainers for. Unfortunately we also need
+> > drm_gem_handle_create() when creating additional handles for an
+> > already existing object (e.g. GETFB ioctl or the various bo import
+> > ioctl), and hence we cannot have a drm_gem_handle_create_and_put() as
+> > the only exported function to stop these issues from happening.
+> > 
+> > Now unfortunately the implementation of drm_gem_handle_create() isn't
+> > living up to standards: It does correctly finishe object
+> > initialization at the global level, and hence is safe against a
+> > concurrent tear down. But it also sets up the file-private aspects of
+> > the handle, and that part goes wrong: We fully register the object in
+> > the drm_file.object_idr before calling drm_vma_node_allow() or
+> > obj->funcs->open, which opens up races against concurrent removal of
+> > that handle in drm_gem_handle_delete().
+> > 
+> > Fix this with the usual two-stage approach of first reserving the
+> > handle id, and then only registering the object after we've completed
+> > the file-private setup.
+> > 
+> > Jacek reported this with a testcase of concurrently calling GEM_CLOSE
+> > on a freshly-created object (which also destroys the object), but it
+> > should be possible to hit this with just additional handles created
+> > through import or GETFB without completed destroying the underlying
+> > object with the concurrent GEM_CLOSE ioctl calls.
+> > 
+> > Note that the close-side of this race was fixed in f6cd7daecff5 ("drm:
+> > Release driver references to handle before making it available
+> > again"), which means a cool 9 years have passed until someone noticed
+> > that we need to make this symmetry or there's still gaps left :-/
+> > Without the 2-stage close approach we'd still have a race, therefore
+> > that's an integral part of this bugfix.
+> > 
+> > More importantly, this means we can have NULL pointers behind
+> > allocated id in our drm_file.object_idr. We need to check for that
+> > now:
+> > 
+> > - drm_gem_handle_delete() checks for ERR_OR_NULL already
+> > 
+> > - drm_gem.c:object_lookup() also chekcs for NULL
+> > 
+> > - drm_gem_release() should never be called if there's another thread
+> >    still existing that could call into an IOCTL that creates a new
+> >    handle, so cannot race. For paranoia I added a NULL check to
+> >    drm_gem_object_release_handle() though.
+> > 
+> > - most drivers (etnaviv, i915, msm) are find because they use
+> >    idr_find, which maps both ENOENT and NULL to NULL.
+> > 
+> > - vmgfx is already broken vmw_debugfs_gem_info_show() because NULL
+> >    pointers might exist due to drm_gem_handle_delete(). This needs a
+> >    separate patch. This is because idr_for_each_entry terminates on the
+> >    first NULL entry and so might not iterate over everything.
+> > 
+> > - similar for amd in amdgpu_debugfs_gem_info_show() and
+> >    amdgpu_gem_force_release(). The latter is really questionable though
+> >    since it's a best effort hack and there's no way to close all the
+> >    races. Needs separate patches.
+> > 
+> > - xe is really broken because it not uses idr_for_each_entry() but
+> >    also drops the drm_file.table_lock, which can wreak the idr iterator
+> >    state if you're unlucky enough. Maybe another reason to look into
+> >    the drm fdinfo memory stats instead of hand-rolling too much.
+> > 
+> > - drm_show_memory_stats() is also broken since it uses
+> >    idr_for_each_entry. But since that's a preexisting bug I'll follow
+> >    up with a separate patch.
+> > 
+> > Reported-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+> > Cc: stable@vger.kernel.org
+> > Cc: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: David Airlie <airlied@gmail.com>
+> > Cc: Simona Vetter <simona@ffwll.ch>
+> > Signed-off-by: Simona Vetter <simona.vetter@intel.com>
+> > Signed-off-by: Simona Vetter <simona.vetter@ffwll.ch>
 > > ---
-> > drivers/gpu/drm/xe/Makefile           |   1 +
-> > drivers/gpu/drm/xe/regs/xe_i2c_regs.h |  16 ++
-> > drivers/gpu/drm/xe/regs/xe_irq_regs.h |   1 +
-> > drivers/gpu/drm/xe/xe_device.c        |   3 +
-> > drivers/gpu/drm/xe/xe_device_types.h  |   4 +
-> > drivers/gpu/drm/xe/xe_i2c.c           | 270 ++++++++++++++++++++++++++
-> > drivers/gpu/drm/xe/xe_i2c.h           |  60 ++++++
-> > drivers/gpu/drm/xe/xe_irq.c           |   2 +
-> > 8 files changed, 357 insertions(+)
-> > create mode 100644 drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-> > create mode 100644 drivers/gpu/drm/xe/xe_i2c.c
-> > create mode 100644 drivers/gpu/drm/xe/xe_i2c.h
+> >   drivers/gpu/drm/drm_gem.c | 10 +++++++++-
+> >   include/drm/drm_file.h    |  3 +++
+> >   2 files changed, 12 insertions(+), 1 deletion(-)
 > > 
-> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> > index e4bf484d4121..3f581e2bb564 100644
-> > --- a/drivers/gpu/drm/xe/Makefile
-> > +++ b/drivers/gpu/drm/xe/Makefile
-> > @@ -124,6 +124,7 @@ xe-y += xe_bb.o \
-> > 	xe_wait_user_fence.o \
-> > 	xe_wopcm.o
-> > 
-> > +xe-$(CONFIG_I2C)	+= xe_i2c.o
-> > xe-$(CONFIG_HMM_MIRROR) += xe_hmm.o
-> > xe-$(CONFIG_DRM_XE_GPUSVM) += xe_svm.o
-> > 
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_i2c_regs.h b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-> > new file mode 100644
-> > index 000000000000..2acb55eeef0d
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +#ifndef _XE_I2C_REGS_H_
-> > +#define _XE_I2C_REGS_H_
-> > +
-> > +#include "xe_reg_defs.h"
-> > +
-> > +#define SOC_BASE			0x280000
-> > +
-> > +#define I2C_CONFIG_SPACE_OFFSET		(SOC_BASE + 0xf6000)
-> > +#define I2C_MEM_SPACE_OFFSET		(SOC_BASE + 0xf7400)
-> > +#define I2C_BRIDGE_OFFSET		(SOC_BASE + 0xd9000)
-> > +
-> > +#define CLIENT_DISC_COOKIE		XE_REG(SOC_BASE + 0x0164)
-> > +#define CLIENT_DISC_ADDRESS		XE_REG(SOC_BASE + 0x0168)
-> > +
-> > +#endif /* _XE_I2C_REGS_H_ */
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_irq_regs.h b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> > index f0ecfcac4003..13635e4331d4 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> > @@ -19,6 +19,7 @@
-> > #define   MASTER_IRQ				REG_BIT(31)
-> > #define   GU_MISC_IRQ				REG_BIT(29)
-> > #define   DISPLAY_IRQ				REG_BIT(16)
-> > +#define   I2C_IRQ				REG_BIT(12)
-> > #define   GT_DW_IRQ(x)				REG_BIT(x)
-> > 
-> > /*
-> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> > index d4b6e623aa48..dd635101420b 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.c
-> > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > @@ -42,6 +42,7 @@
-> > #include "xe_guc.h"
-> > #include "xe_hw_engine_group.h"
-> > #include "xe_hwmon.h"
-> > +#include "xe_i2c.h"
-> > #include "xe_irq.h"
-> > #include "xe_memirq.h"
-> > #include "xe_mmio.h"
-> > @@ -929,6 +930,8 @@ int xe_device_probe(struct xe_device *xe)
-> > 
-> > 	xe_vsec_init(xe);
-> > 
-> > +	xe_i2c_probe(xe);
-> 
-> please don't ignore errors on probe, it's painful to keep fixing this up
-> later. See e.g.
-> 
-> 	35359c36356a drm/xe: Stop ignoring errors from xe_ttm_sys_mgr_init()
-> 	292b1a8a5054 drm/xe: Stop ignoring errors from xe_heci_gsc_init()
-> 	d40f275d96e8 drm/xe: Move survivability entirely to xe_pci
-> 	62fbc75b28a7 drm/xe/hwmon: Stop ignoring errors on probe
-> 	6b5506158f90 drm/xe/pmu: Fail probe if xe_pmu_register() fails
-> 	960d71044eee drm/xe/oa: Handle errors in xe_oa_register()
-> 
-> if it's failing we want to catch it in our CI rather than realizing much
-> later a subsystem integration was not really working and the driver is
-> in a semi-working state.
-
-Sure thing. I'll fix this.
-
-> > +
-> > 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
-> > 
-> > err_unregister_display:
-> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> > index 50b2bfa682ac..7011a078b9c7 100644
-> > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > @@ -36,6 +36,7 @@
-> > #endif
-> > 
-> > struct xe_ggtt;
-> > +struct xe_i2c;
-> > struct xe_pat_ops;
-> > struct xe_pxp;
-> > 
-> > @@ -572,6 +573,9 @@ struct xe_device {
-> > 	/** @pmu: performance monitoring unit */
-> > 	struct xe_pmu pmu;
-> > 
-> > +	/** @i2c: I2C host controller */
-> > +	struct xe_i2c *i2c;
-> > +
-> > 	/** @atomic_svm_timeslice_ms: Atomic SVM fault timeslice MS */
-> > 	u32 atomic_svm_timeslice_ms;
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-> > new file mode 100644
-> > index 000000000000..cc231368789f
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_i2c.c
-> > @@ -0,0 +1,270 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Intel Xe I2C attached Microcontroller Units (MCU)
-> > + *
-> > + * Copyright (C) 2025 Intel Corporation.
-> > + */
-> > +
-> > +#include <linux/array_size.h>
-> > +#include <linux/container_of.h>
-> > +#include <linux/device.h>
-> > +#include <linux/err.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/ioport.h>
-> > +#include <linux/irq.h>
-> > +#include <linux/irqdomain.h>
-> > +#include <linux/notifier.h>
-> > +#include <linux/pci.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/property.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/sprintf.h>
-> > +#include <linux/string.h>
-> > +#include <linux/types.h>
-> > +#include <linux/workqueue.h>
-> > +
-> > +#include "regs/xe_i2c_regs.h"
-> > +#include "regs/xe_irq_regs.h"
-> > +
-> > +#include "xe_device.h"
-> > +#include "xe_device_types.h"
-> > +#include "xe_i2c.h"
-> > +#include "xe_mmio.h"
-> > +#include "xe_platform_types.h"
-> > +
-> > +/* Synopsys DesignWare I2C Host Adapter */
-> > +static const char adapter_name[] = "i2c_designware";
-> > +
-> > +static const struct property_entry xe_i2c_adapter_properties[] = {
-> > +	PROPERTY_ENTRY_STRING("compatible", "intel,xe-mcu-i2c"),
-> > +	PROPERTY_ENTRY_U32("clock-frequency", I2C_MAX_FAST_MODE_PLUS_FREQ),
-> > +	{ }
-> > +};
-> > +
-> > +static inline void xe_i2c_read_endpoint(struct xe_mmio *mmio, void *ep)
-> > +{
-> > +	u32 *val = ep;
-> > +
-> > +	val[0] = xe_mmio_read32(mmio, CLIENT_DISC_COOKIE);
-> > +	val[1] = xe_mmio_read32(mmio, CLIENT_DISC_ADDRESS);
-> > +}
-> > +
-> > +static void xe_i2c_client_work(struct work_struct *work)
-> > +{
-> > +	struct xe_i2c *i2c = container_of(work, struct xe_i2c, work);
-> > +	struct i2c_board_info info = {
-> > +		.type	= "amc",
-> > +		.flags	= I2C_CLIENT_HOST_NOTIFY,
-> > +		.addr	= i2c->ep.addr[1],
-> > +	};
-> 
-> so... AMC is not a new thing. We also have it in PVC for example.
-> However the way it is exposed to the driver seems to be different
-> and what you did here here wouldn't match.
-
-The I2C was most likely hidden and taken care of in some firmware
-blob (or maybe the AMC was attached to some completely different
-interconnect), but that's no longer the case. The I2C is no longer
-taken care of by the GPU itself, but instead the I2C host adapter
-registers are now mapped to the GPU MMIO, and the operating system is
-now expected to take care of it.
-
-The AMC uses the Intelligent Platform Management Interface (IPMI), or
-at least used in the past [1] (I think IPMI is what you are referring
-to here - please let me know if I misunderstood). It should not be a
-problem to bind this I2C client device to a driver that then registers
-the IPMI (or what ever interface is used).
-
-However, right now this I2C client device is used only to let the user
-space (the XPU manager) know that the system has the AMC attached to
-it. The actual communication with the AMC happens with the i2c-dev for
-now. The client device is nevertheless already needed.
-
-The i2c-dev interface really can't be the final solution, so this
-device really has to be bind to a driver sooner or later. But this is
-the first step.
-
-[1] https://github.com/intel/xpumanager
-
-> > +
-> > +	i2c->client[0] = i2c_new_client_device(i2c->adapter, &info);
-> > +}
-> > +
-> > +static int xe_i2c_notifier(struct notifier_block *nb, unsigned long action, void *data)
-> > +{
-> > +	struct xe_i2c *i2c = container_of(nb, struct xe_i2c, bus_notifier);
-> > +	struct i2c_adapter *adapter = i2c_verify_adapter(data);
-> > +	struct device *dev = data;
-> > +
-> > +	if (action == BUS_NOTIFY_ADD_DEVICE &&
-> > +	    adapter && dev->parent == &i2c->pdev->dev) {
-> > +		i2c->adapter = adapter;
-> > +		schedule_work(&i2c->work);
-> > +		return NOTIFY_OK;
-> > +	}
-> > +
-> > +	return NOTIFY_DONE;
-> > +}
-> > +
-> > +static int xe_i2c_register_adapter(struct xe_i2c *i2c)
-> > +{
-> > +	struct pci_dev *pci = to_pci_dev(i2c->drm_dev);
-> > +	struct platform_device *pdev;
-> > +	struct fwnode_handle *fwnode;
-> > +	int ret;
-> > +
-> > +	fwnode = fwnode_create_software_node(xe_i2c_adapter_properties, NULL);
-> > +	if (!fwnode)
-> > +		return -ENOMEM;
-> > +
-> > +	/*
-> > +	 * Not using platform_device_register_full() here because we don't have
-> > +	 * a handle to the platform_device before it returns. xe_i2c_notifier()
-> > +	 * uses that handle, but it may be called before
-> > +	 * platform_device_register_full() is done.
-> > +	 */
-> > +	pdev = platform_device_alloc(adapter_name, pci_dev_id(pci));
-> > +	if (!pdev) {
-> > +		ret = -ENOMEM;
-> > +		goto err_fwnode_remove;
-> > +	}
-> > +
-> > +	if (i2c->adapter_irq) {
-> > +		struct resource	res = { };
-> > +
-> > +		res.start = i2c->adapter_irq;
-> > +		res.name = "xe_i2c";
-> > +		res.flags = IORESOURCE_IRQ;
-> > +
-> > +		ret = platform_device_add_resources(pdev, &res, 1);
-> > +		if (ret)
-> > +			goto err_pdev_put;
-> > +	}
-> > +
-> > +	pdev->dev.parent = i2c->drm_dev;
-> > +	pdev->dev.fwnode = fwnode;
-> > +	i2c->adapter_node = fwnode;
-> > +	i2c->pdev = pdev;
-> > +
-> > +	ret = platform_device_add(pdev);
-> > +	if (ret)
-> > +		goto err_pdev_put;
-> > +
-> > +	return 0;
-> > +
-> > +err_pdev_put:
-> > +	platform_device_put(pdev);
-> > +err_fwnode_remove:
-> > +	fwnode_remove_software_node(fwnode);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static void xe_i2c_unregister_adapter(struct xe_i2c *i2c)
-> > +{
-> > +	platform_device_unregister(i2c->pdev);
-> > +	fwnode_remove_software_node(i2c->adapter_node);
-> > +}
-> > +
-> > +void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
-> > +{
-> > +	if (!xe->i2c || !xe->i2c->adapter_irq)
-> > +		return;
-> > +
-> > +	if (master_ctl & I2C_IRQ)
-> > +		generic_handle_irq_safe(xe->i2c->adapter_irq);
-> > +}
-> > +
-> > +static int xe_i2c_irq_map(struct irq_domain *h, unsigned int virq,
-> > +			  irq_hw_number_t hw_irq_num)
-> > +{
-> > +	irq_set_chip_and_handler(virq, &dummy_irq_chip, handle_simple_irq);
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct irq_domain_ops xe_i2c_irq_ops = {
-> > +	.map = xe_i2c_irq_map,
-> > +};
-> > +
-> > +static int xe_i2c_create_irq(struct xe_i2c *i2c)
-> > +{
-> > +	struct irq_domain *domain;
-> > +
-> > +	if (!(i2c->ep.capabilities & XE_I2C_EP_CAP_IRQ))
+> > diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> > index 1e659d2660f7..e4e20dda47b1 100644
+> > --- a/drivers/gpu/drm/drm_gem.c
+> > +++ b/drivers/gpu/drm/drm_gem.c
+> > @@ -279,6 +279,9 @@ drm_gem_object_release_handle(int id, void *ptr, void *data)
+> >   	struct drm_file *file_priv = data;
+> >   	struct drm_gem_object *obj = ptr;
+> > +	if (WARN_ON(!data))
 > > +		return 0;
 > > +
-> > +	domain = irq_domain_create_linear(dev_fwnode(i2c->drm_dev), 1, &xe_i2c_irq_ops, NULL);
-> > +	if (!domain)
-> > +		return -ENOMEM;
-> > +
-> > +	i2c->adapter_irq = irq_create_mapping(domain, 0);
-> > +	i2c->irqdomain = domain;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void xe_i2c_remove_irq(struct xe_i2c *i2c)
-> > +{
-> > +	if (i2c->irqdomain) {
-> > +		irq_dispose_mapping(i2c->adapter_irq);
-> > +		irq_domain_remove(i2c->irqdomain);
-> > +	}
-> > +}
-> > +
-> > +static int xe_i2c_read(void *context, unsigned int reg, unsigned int *val)
-> > +{
-> > +	struct xe_i2c *i2c = context;
-> > +
-> > +	*val = xe_mmio_read32(i2c->mmio, XE_REG(reg + I2C_MEM_SPACE_OFFSET));
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int xe_i2c_write(void *context, unsigned int reg, unsigned int val)
-> > +{
-> > +	struct xe_i2c *i2c = context;
-> > +
-> > +	xe_mmio_write32(i2c->mmio, XE_REG(reg + I2C_MEM_SPACE_OFFSET), val);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct regmap_config i2c_regmap_config = {
-> > +	.reg_bits = 32,
-> > +	.val_bits = 32,
-> > +	.reg_read = xe_i2c_read,
-> > +	.reg_write = xe_i2c_write,
-> > +	.fast_io = true,
-> > +};
-> > +
-> > +static void xe_i2c_remove(void *data)
-> > +{
-> > +	struct xe_i2c *i2c = data;
-> > +	int i;
-> > +
-> > +	for (i = 0; i < XE_I2C_MAX_CLIENTS; i++)
-> > +		i2c_unregister_device(i2c->client[i]);
-> > +
-> > +	xe_i2c_unregister_adapter(i2c);
-> > +	xe_i2c_remove_irq(i2c);
-> > +	bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
+> >   	if (obj->funcs->close)
+> >   		obj->funcs->close(obj, file_priv);
+> > @@ -399,7 +402,7 @@ drm_gem_handle_create_tail(struct drm_file *file_priv,
+> >   	idr_preload(GFP_KERNEL);
+> >   	spin_lock(&file_priv->table_lock);
+> > -	ret = idr_alloc(&file_priv->object_idr, obj, 1, 0, GFP_NOWAIT);
+> > +	ret = idr_alloc(&file_priv->object_idr, NULL, 1, 0, GFP_NOWAIT);
+> >   	spin_unlock(&file_priv->table_lock);
+> >   	idr_preload_end();
+> > @@ -420,6 +423,11 @@ drm_gem_handle_create_tail(struct drm_file *file_priv,
+> >   			goto err_revoke;
+> >   	}
+> > +	/* mirrors drm_gem_handle_delete to avoid races */
+> > +	spin_lock(&file_priv->table_lock);
+> > +	obj = idr_replace(&file_priv->object_idr, obj, handle);
+> > +	WARN_ON(obj != NULL);
 > 
-> this looks racy. Shouldn't you unregister the notifier before the other
-> 2 calls?
-
-OK, I'll move it up.
-
-> > +}
-> > +
-> > +int xe_i2c_probe(struct xe_device *xe)
-> > +{
-> > +	struct xe_i2c_endpoint ep;
-> > +	struct regmap *regmap;
-> > +	struct xe_i2c *i2c;
-> > +	int ret;
-> > +
-> > +	if (xe->info.platform != XE_BATTLEMAGE)
-> > +		return 0;
+> A DRM print function would be preferable. The obj here is an errno pointer.
+> Should the errno code be part of the error message?
 > 
-> we prefer checking for IP versions but don't have a good way for the SOC
-> versioning. However bspec 54028 seems to disagree here. It
-> would probably be better to check on the GT IP + is_dgfx. Or if it's
-> safe to rely on the cookie below, just check for is_dgfx.
+> If it fails, why does the function still succeed?
 
-I'll drop this. I quite certain that the cookie should be sufficient
-for this.
+This is an internal error that should never happen, at that point just
+bailing out is the way to go.
 
-> > +
-> > +	xe_i2c_read_endpoint(xe_root_tile_mmio(xe), &ep);
-> > +	if (ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
-> > +		return 0;
-> > +
-> > +	i2c = devm_kzalloc(xe->drm.dev, sizeof(*i2c), GFP_KERNEL);
-> > +	if (!i2c)
-> > +		return -ENOMEM;
-> > +
-> > +	INIT_WORK(&i2c->work, xe_i2c_client_work);
-> > +	i2c->mmio = xe_root_tile_mmio(xe);
-> > +	i2c->drm_dev = xe->drm.dev;
-> > +	i2c->ep = ep;
-> > +
-> > +	regmap = devm_regmap_init(i2c->drm_dev, NULL, i2c, &i2c_regmap_config);
-> > +	if (IS_ERR(regmap))
-> > +		return PTR_ERR(regmap);
-> > +
-> > +	i2c->bus_notifier.notifier_call = xe_i2c_notifier;
-> > +	ret = bus_register_notifier(&i2c_bus_type, &i2c->bus_notifier);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = xe_i2c_create_irq(i2c);
-> > +	if (ret)
-> > +		goto err_unregister_notifier;
-> > +
-> > +	ret = xe_i2c_register_adapter(i2c);
-> > +	if (ret)
-> > +		goto err_unregister_notifier;
-> > +
-> > +	return devm_add_action_or_reset(i2c->drm_dev, xe_i2c_remove, i2c);
-> > +
-> > +err_unregister_notifier:
-> > +	bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
-> > +
-> > +	return ret;
-> > +}
-> > diff --git a/drivers/gpu/drm/xe/xe_i2c.h b/drivers/gpu/drm/xe/xe_i2c.h
-> > new file mode 100644
-> > index 000000000000..ab8e21630838
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_i2c.h
-> > @@ -0,0 +1,60 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +#ifndef _XE_I2C_H_
-> > +#define _XE_I2C_H_
-> > +
-> > +#include <linux/bits.h>
-> > +#include <linux/notifier.h>
-> > +#include <linux/types.h>
-> > +#include <linux/workqueue.h>
-> > +
-> > +struct device;
-> > +struct fwnode_handle;
-> > +struct i2c_adapter;
-> > +struct i2c_client;
-> > +struct irq_domain;
-> > +struct platform_device;
-> > +struct xe_device;
-> > +struct xe_mmio;
-> > +
-> > +#define XE_I2C_MAX_CLIENTS		3
-> > +
-> > +#define XE_I2C_EP_COOKIE_DEVICE		0xde
-> > +
-> > +/* Endpoint Capabilities */
-> > +#define XE_I2C_EP_CAP_IRQ		BIT(0)
-> > +#define XE_I2C_EP_CAP_MULTI_MCU		BIT(1)
-> > +#define XE_I2C_EP_CAP_SMBUS		BIT(2)
+Also note that the error code here is just to satisfy the function
+signature that id_for_each expects, we don't look at it ever (since if
+there's no bugs, it should never fail). I learned this because I actually
+removed the int return value and stuff didn't compile :-)
+
+I can use drm_WARN_ON if you want me to though?
+
+I'll also explain this in the commit message for the next round.
+-Sima
+
 > 
-> these 2 are unused?
-
-True, I'll drop them.
-
-thanks,
+> Best regards
+> Thomas
+> 
+> > +	spin_unlock(&file_priv->table_lock);
+> >   	*handlep = handle;
+> >   	return 0;
+> > diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+> > index 5c3b2aa3e69d..d344d41e6cfe 100644
+> > --- a/include/drm/drm_file.h
+> > +++ b/include/drm/drm_file.h
+> > @@ -300,6 +300,9 @@ struct drm_file {
+> >   	 *
+> >   	 * Mapping of mm object handles to object pointers. Used by the GEM
+> >   	 * subsystem. Protected by @table_lock.
+> > +	 *
+> > +	 * Note that allocated entries might be NULL as a transient state when
+> > +	 * creating or deleting a handle.
+> >   	 */
+> >   	struct idr object_idr;
+> 
+> -- 
+> --
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Frankenstrasse 146, 90461 Nuernberg, Germany
+> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+> HRB 36809 (AG Nuernberg)
+> 
 
 -- 
-heikki
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
