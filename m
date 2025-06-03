@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF322C5AE59
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 23:50:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F12C0C5AE59
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 23:50:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97D9410E15D;
-	Tue,  3 Jun 2025 23:50:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF9D410E67B;
+	Tue,  3 Jun 2025 23:50:22 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16B6A10E15D;
- Tue,  3 Jun 2025 23:50:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7597D10E67B;
+ Tue,  3 Jun 2025 23:50:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Disabl?=
- =?utf-8?q?e_ct_on_xe_micro_hardware_init_error?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/guc=3A_Disable_ct_?=
+ =?utf-8?q?on_xe_micro_hardware_init_error?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Zhanjun Dong" <zhanjun.dong@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Jun 2025 23:50:16 -0000
-Message-ID: <174899461608.45504.7953013190519582752@1538d3639d33>
+Date: Tue, 03 Jun 2025 23:50:21 -0000
+Message-ID: <174899462147.45504.11098143170264917402@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250603234510.612162-1-zhanjun.dong@intel.com>
 In-Reply-To: <20250603234510.612162-1-zhanjun.dong@intel.com>
@@ -48,9 +48,26 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2d51392d4559 drm-tip: 2025y-06m-03d-21h-58m-03s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Disable ct on xe micro hardware init error
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit eb5fb619b5616c37fdfbd5792e630fcc31b8244f
+Author: Zhanjun Dong <zhanjun.dong@intel.com>
+Date:   Tue Jun 3 19:45:10 2025 -0400
+
+    drm/xe/guc: Disable ct on xe micro hardware init error
+    
+    Disable ct if xe micro controller hardware init failed.
+    
+    Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4917
++ /mt/dim checkpatch 2d51392d455943d0356d982902ce994f91996d3e drm-intel
+eb5fb619b561 drm/xe/guc: Disable ct on xe micro hardware init error
 
 
