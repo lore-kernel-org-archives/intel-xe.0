@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B38EC5AD49
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 18:45:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9659C5AE59
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 18:45:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06AE610E032;
-	Tue,  3 Jun 2025 18:45:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7492F10E16F;
+	Tue,  3 Jun 2025 18:45:50 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56B6010E032;
- Tue,  3 Jun 2025 18:45:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6AF410E16F;
+ Tue,  3 Jun 2025 18:45:49 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enhance_SVM_stats?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enhance_SVM_stats?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Jun 2025 18:45:38 -0000
-Message-ID: <174897633835.45422.18234111060598797165@1538d3639d33>
+Date: Tue, 03 Jun 2025 18:45:49 -0000
+Message-ID: <174897634968.45422.8670899672661121489@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250603184133.2215422-1-matthew.brost@intel.com>
 In-Reply-To: <20250603184133.2215422-1-matthew.brost@intel.com>
@@ -43,14 +43,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Enhance SVM stats
 URL   : https://patchwork.freedesktop.org/series/149795/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: ba486e3b10ce drm-tip: 2025y-06m-03d-16h-48m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add clear_stats GT debugfs
-Applying: drm/xe: Add more SVM GT stats
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 43034550305936411889b70b9ff055260cec77a4
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Tue Jun 3 11:41:33 2025 -0700
+
+    drm/xe: Add more SVM GT stats
+    
+    Add more SVM GT stats which give visibility to where time is spent in
+    the SVM page fault handler. Stats include number of faults at a given
+    size, total SVM page fault time, migration time in us, copy time in us,
+    copy kb, get pages time in us, and bind time in us. Will help in tuning
+    SVM for performance.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch ba486e3b10ce5b4ee4d1ffc58aa4cc3b669c02a3 drm-intel
+8c98ed4cb23c drm/xe: Add clear_stats GT debugfs
+430345503059 drm/xe: Add more SVM GT stats
+-:319: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
+#319: FILE: drivers/gpu/drm/xe/xe_svm.c:1062:
++		goto out;;
+
+total: 0 errors, 1 warnings, 0 checks, 347 lines checked
 
 
