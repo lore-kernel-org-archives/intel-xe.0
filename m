@@ -4,62 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8F80C5AD49
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 20:23:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A780C5AD49
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 20:24:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7140D10E916;
-	Tue,  3 Jun 2025 20:23:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D10410E916;
+	Tue,  3 Jun 2025 20:24:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f9o5cYjD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HHtsv2o/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67D4610E916
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 20:23:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B478910E969
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 20:24:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748982238; x=1780518238;
+ t=1748982257; x=1780518257;
  h=message-id:date:from:subject:to:cc:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=nnNQNRptv1f3iEQaM1pqdTGse5e5RS2r5/ugyzkHmy0=;
- b=f9o5cYjDgZWjG85JMeYYN1jAHmwLu14oNhOCbSqPMjATUty/jCQUZHG2
- FGkqxwKbHJGx1b7iyTKELUqBQNrB0crSnJQXLhvg3iukwOUOC4GuAjvon
- RyfWXXmu8A1yntEwl5TKJC+hTbm4KphSRbsMbTk5LJzMgsTvSD3ddB3r/
- W8eQobRM4HklwD1JioFQQyQ7XXIN5phdauWMBVi09J6SwNs9+CYJmeIig
- HG9dTXYYPKkI6yVmJgN/S1p4sM7LxwWcuNZosGtq51Afedd42nONIVpyd
- Uc3bqCVWtHCn2UxSs34lmImATfgT1okri1AmQb2fdNXNGn/3UR/36R8cI w==;
-X-CSE-ConnectionGUID: 1Ww8Qbq8RCGlspFV/420Fg==
-X-CSE-MsgGUID: 695Un99BT2+NKmYAIjr/rw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="51040175"
-X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="51040175"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 13:23:57 -0700
-X-CSE-ConnectionGUID: LvrzG+doQaG8/U/t0BbGlA==
-X-CSE-MsgGUID: NWAW320pQL2sphuLMW3nFg==
+ in-reply-to:mime-version;
+ bh=0OHLptO/MosStPDJYQFRXE5Ea/wR8waLNg3PIvUM9MM=;
+ b=HHtsv2o/u0/4vFglVbeDzPVboz0BSGBJ1Qhi5RRoQy5QmYeG4l8DfcdH
+ Lb5b/SWSabd5xzsVzrJWCSacRjoIGpT1KC890foUwlnHWzkf1JmqHXVsn
+ BUrFnZ4MdAffWE/DiQmKlZfr7UoHLXHeZ9C7LH+56FlQkDsOxGzy68SRQ
+ 2lva6iUx0uFK1Hae2uHUt/6drUPODTFfuE4Lctwweg1QmQvcrLOCZsvOe
+ e3x4T7ma7v0p8FKgsqmgCEK3kPHvPUqNYTDysfl2UPf859UxJSYMl4BgO
+ TriTnL7YEsFRgWeXoQJj4pe0yNz57KQecO28+FCZyrYgKgEVXPHPRVdIq A==;
+X-CSE-ConnectionGUID: QkwI2TXHTSGAW01m+kol0A==
+X-CSE-MsgGUID: gjs28ETATmiMpQ5O2rUbJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="73571056"
+X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208,217";a="73571056"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2025 13:24:16 -0700
+X-CSE-ConnectionGUID: OL6ZGHW+SXCJLsUxqcBJ5w==
+X-CSE-MsgGUID: +HuUuWytR6Kkagl2nxKwQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="145939236"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 13:23:58 -0700
+X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; 
+ d="scan'208,217";a="144852017"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2025 13:24:13 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 3 Jun 2025 13:23:56 -0700
+ 15.2.1544.25; Tue, 3 Jun 2025 13:24:12 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Tue, 3 Jun 2025 13:23:56 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.80)
+ 15.2.1544.25 via Frontend Transport; Tue, 3 Jun 2025 13:24:12 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (40.107.243.56)
  by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.55; Tue, 3 Jun 2025 13:23:55 -0700
+ 15.1.2507.55; Tue, 3 Jun 2025 13:24:12 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nytFzUa7wlfs22cIX7rWhUwPQtQHc0qyX74zlKBe3eenqVWjZY/3U+fKZoAucgVP930KbAgMsSYwvLelc3g+9H5mlp9dyYCScpu2D4gY5T1C5dczA5TMXj4pLvJYHEEfW0UlMgXieFhVSgFtJ9IJFYN7HKY8YLMDqtoQOV32Bo0e0m4Er+ek3QUIVrSZJbSy11/cFEIGxuwPgwZVFuX++Qobz84wBcUCnr6lS0bS8LAaBJ6VouN7oBEXxVvDAw7S96lXrPU/Og95OtFz/g86OPITf9aHcgKk5XLsm4tuNbjjM7rWgAI9febGwkqmkrGZ2FwqW43+FXGDTHgNmdckFw==
+ b=uQ4//vxLFcmL4tawn4IB7i/XF7V3zgF2bd1Z7D6JDfPhZxLZLakDPB3PV6731XEvQvW9KNVRzAgB4PcupIzFi3wua71oWFDhXmxjShMG3T1bjw5ecCCrO1IENuF1e53njD83SxRvJAcjP92peuPIA5WIiwzcyMrnUnvNTLVGghKdHDbqLS7fHTzlVK+EaHxIauSxwo7isUBRkxcCjVi1MIWiSlzzfFOQH6l9r/quc6KLPMGjpd5HhaY8fBb6TGx/9wmgAlSJKQx55Tu1c3SDZU1hjF/aoOrFLwcbGN0lBHVAJN0hX/UY8Ub87m2Z66+bqS7c5ceeIiFS5fv5eTnCEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=i025TdE7PDzr3zvqOuuzoo3ivXciMH+DEp2vjYNqka4=;
- b=KN4X2dHP/nIILlwez9g8y9MaI6V21BAwZmypqpOw30W+bZre15buIWAuXB6b0oSebxmuT7xZ8D7D0ixBvzvHSxjUBMFmeJ+OBg9vsJMklI9p9rsI80yf+cVyfHovIYy6xQn1CZWgareTV0GCeb+pAj6OvsWQKqXV1HID4ugorv7ASbmU9/f+fdWuIj4OdTIk5hnsE88IrojZeuHQfq09O+xoIy3Z+GgLmJilN7VHw6so3AZ+FxbpB2qTudo0t1iUa9ZcmIbPumH6YJZiq1k+VENbDMkxVHAMAksF76d7fNV1DUBs+eHQPqEP30KoLBU8rZGrpS6zpvV7Y23mbe5ZoA==
+ bh=EYcXFmClo8l2fZdu8kRcJXvkxH0c5t5Yi0SJC0fguOU=;
+ b=gmlGOHLUzsExKJF8FS7yyse0pw1pz8NcxUB088v9JjvaVue8CEaD+KoHHTxmPYkQgcUJlPAYEkktVwDUw7i4yMxg2Ucjh4L8uYMysbD2S1miMDmVs6NDBeuvpOUNzKHm1nzP9wxhpzovNR9WU3Jff/JXNEgRuNGuafd0P2BhZSal5cGaJOqpX6jZU70jgJhSzjQR5LlSh4E68sDClMzFYfNwdxGjTYrNl/f2612Z1wHM9U5q1M3kik5XcH4J4lddkiA980jVfPMCZW0YYcqzI/tphAVxFtgdUEySGtog9zDFrxIOHmTs936C2pqvnrmfxuHXhMtlagU0W8ban76y4w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,16 +70,18 @@ Received: from IA3PR11MB9226.namprd11.prod.outlook.com (2603:10b6:208:574::13)
  by PH8PR11MB7071.namprd11.prod.outlook.com (2603:10b6:510:215::6)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.24; Tue, 3 Jun
- 2025 20:23:39 +0000
+ 2025 20:23:52 +0000
 Received: from IA3PR11MB9226.namprd11.prod.outlook.com
  ([fe80::8602:e97d:97d7:af09]) by IA3PR11MB9226.namprd11.prod.outlook.com
  ([fe80::8602:e97d:97d7:af09%5]) with mapi id 15.20.8769.025; Tue, 3 Jun 2025
- 20:23:39 +0000
-Message-ID: <9d4860ea-97f8-426f-a5a0-e6cc13f62221@intel.com>
-Date: Tue, 3 Jun 2025 22:23:35 +0200
+ 20:23:52 +0000
+Content-Type: multipart/alternative;
+ boundary="------------XzyaaMzYWv9i2vTQT0ASp06C"
+Message-ID: <89380a6c-74eb-475b-a856-074f191c1622@intel.com>
+Date: Tue, 3 Jun 2025 22:23:49 +0200
 User-Agent: Mozilla Thunderbird
 From: "Lis, Tomasz" <tomasz.lis@intel.com>
-Subject: Re: [PATCH v3 5/7] drm/xe/vf: Rebase HWSP of all contexts after
+Subject: Re: [PATCH v3 4/7] drm/xe: Block reset while recovering from VF
  migration
 To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, =?UTF-8?Q?Micha=C5=82_Wajdeczko?=
@@ -86,103 +89,101 @@ CC: <intel-xe@lists.freedesktop.org>, =?UTF-8?Q?Micha=C5=82_Wajdeczko?=
  <piotr.piorkowski@intel.com>, Matthew Brost <matthew.brost@intel.com>, "Lucas
  De Marchi" <lucas.demarchi@intel.com>
 References: <20250519231925.3196154-1-tomasz.lis@intel.com>
- <20250519231925.3196154-6-tomasz.lis@intel.com>
- <l3qqejzjkimx5kssccsxx7vhoc3to3jow4wisskvx2cuivumhw@vzcpwqz3xbxl>
+ <20250519231925.3196154-5-tomasz.lis@intel.com>
+ <75aq2gastxnu4l5c3izbvniqzpwyfk45ux5oedfrwg3ir4kh3h@fw5zpvvek36d>
 Content-Language: en-US
-In-Reply-To: <l3qqejzjkimx5kssccsxx7vhoc3to3jow4wisskvx2cuivumhw@vzcpwqz3xbxl>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR03CA0071.eurprd03.prod.outlook.com
- (2603:10a6:803:50::42) To IA3PR11MB9226.namprd11.prod.outlook.com
+In-Reply-To: <75aq2gastxnu4l5c3izbvniqzpwyfk45ux5oedfrwg3ir4kh3h@fw5zpvvek36d>
+X-ClientProxiedBy: VI1PR03CA0051.eurprd03.prod.outlook.com
+ (2603:10a6:803:50::22) To IA3PR11MB9226.namprd11.prod.outlook.com
  (2603:10b6:208:574::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: IA3PR11MB9226:EE_|PH8PR11MB7071:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6a0e1979-bf94-4d65-acdf-08dda2dc861c
+X-MS-Office365-Filtering-Correlation-Id: 34711bd3-e6ed-45e7-e72c-08dda2dc8e76
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ai92WWtRWnJIQXhFOXpsUi82Vk5NQVAwS2hwNUVKYktZSXVLVGpsQVhQbzJY?=
- =?utf-8?B?SDl1N1dYN0JmZk1RZ3VpODduempPVCs2MkY2WkM5NkUxZklZOHZBRkI5RE82?=
- =?utf-8?B?L1JScWNtdUsrc2phZ2dhNFdkWmpRdTcwK3lramFmTTliUzRKRW1jVFhKdlRP?=
- =?utf-8?B?VGl4VjZzMWVKUzR6NkpFcnh2VHdCVzIwREVVbkxQMGdFT1hYVUl5ekxCZ3Jo?=
- =?utf-8?B?em1VQ1M3Unl1RDRaYU9DSVNHTEtndnQ3K2ZKL3NXeGJ3UjlQS2E0bkpERjBR?=
- =?utf-8?B?V09CSXAyMkE0Q0loa3U1UHZ5bDU0MWtRUVBlYzNkemNaT3VBenRCMjV0c0Rn?=
- =?utf-8?B?eDdnYXhXYXgxU1pLbmovN1U1UC9MUzNjSTdjR1NoQ3FZc0tjN1JVRXVLZFJV?=
- =?utf-8?B?ZkRXZnpUR3FUZDk1RGVZOHViNFRpMnNwcnhzSk9YSUZ4ZVl4V1E1ZGNFVHIv?=
- =?utf-8?B?K2tya2s3Yy93YkE4L29KcHNMWi9CRUVhREpsdHZCL2ozdDdkbzZWdEdzUmsv?=
- =?utf-8?B?WnNHR0FQN2xJNkw2WXhLam9ydG5neEk0SGJwTENnMEtCdTl0eS83ZG53RTZI?=
- =?utf-8?B?NGVFZVJjT0E4MzZVdEFpRUJOUVRnNUxpR24vWmRrN3dDNlRTbE91dGw5V3FT?=
- =?utf-8?B?Q1J4ZUg0YllyYmpoZ3dRT1granBBUEtLTHRuTndwV2I0eUd4Qk0zZDh2MWZj?=
- =?utf-8?B?SmMxMW14VWoybUx3V2QrVitDV3V4MlhUNGxCS0JYbXRhZVNKWWk3c1NaRUll?=
- =?utf-8?B?bThCcHkwTDhKZFFuUndMU21VRDRIdFY2aDkyNWdkOHNuSTZjSWJoMHNrMkpN?=
- =?utf-8?B?NDN6VXlSMDFGL01uWEhGL0szaTlGaVc4WFhlTTdxZCtHNDZrTkkzbmkzWFR6?=
- =?utf-8?B?MjU3dTYzd0VhbHk5SW5PWFJKekJkTWg5d3ZjVlJkbHFNSzRsU0t3bmtSOVM3?=
- =?utf-8?B?bmFHTERPTndSTXVZNmRFREg4UWlDc0p2YjFyM2JSMDBqYTJTZmNyYmg4MTdn?=
- =?utf-8?B?eDJTT3J4R3pZbFdsdWVXQVpBNHdmZU5RYlVjWTAraURVNWxSY3VES29xUzMw?=
- =?utf-8?B?NWhwUXlKV2d3cTJBWHorbjdGckRXdVpSZEUreVl0bnB5ZmlhSFNIbEozUVI0?=
- =?utf-8?B?cyswbmtVL3c5QnhiZEFDcFo2V0MwVjVIOC9veUhmRlB5aUd6NXBGNXZPU0ZU?=
- =?utf-8?B?V1BUZC9zVDVZM3dnYVNJUElwT3dQTkd3Q1RkZWdtUDA3WnhZOTVicXZNMkZL?=
- =?utf-8?B?a2NTMkw0S1piWHUxM1p1NzFIWXFDRnZPMWN2MHFzRzdwUEpPYmkwYjFyY3hr?=
- =?utf-8?B?L2M5bG45bVNPeUQ1ZVNOai9XcWNzN2JvOTAweGpPdndHcUZ0RVZHdmx1eXhH?=
- =?utf-8?B?QUlmZlg3bDh2U0xmZ2h4S1h1SVl4NzUwNVV4WjZJbmZveUdhS3pjUDUzWGVG?=
- =?utf-8?B?SlZaQVc1bFZlQ2lBVWdXODBOUUZ1UkNMWWdKM2hsL2ZZeVlwbW9WNzlOY2t4?=
- =?utf-8?B?cXVsOVBPbTRRMldnNUY0K01qdzRXRzdWUyswS2xjNDZqNm9xMm1aSDhldCsr?=
- =?utf-8?B?bHhvYncrQUVKN0s3aDBjcTBCR3FuQzVublJ4UnYyNG41NzBFQ0syYWRQOEN5?=
- =?utf-8?B?Rzc5eWpxL3FvSHB6QmtkenJOMDB3UC9ISmREeVlic1RFWUd0dDlzM3FKODlx?=
- =?utf-8?B?ZmYzZWRNQkEyelVxZ1o5anR6LzRYSXRXWVQ4ajgxRThxYXJQTi8xTFFlM2Ur?=
- =?utf-8?B?OEhMd00yNkk4cTRWbGtTcms1VmNHSk5ENVJFYlpNNTFYSGdDOHBERnVmMzls?=
- =?utf-8?B?NnJtU1VHbHJtZmFOVVduTU9aVFhvYmdFM29JMmdENlJyanplZkQwaE9SVDNP?=
- =?utf-8?B?YkJSU3ZUQThmcTJyU2dxVEFMdVRkYWV3SDEzSFpseVhWWTFCSFhYazZoNENt?=
- =?utf-8?Q?8ODOkJst8/k=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VkpSdThqRnVGSGk4TEV2WE5FanF4eEZxWCtHeE1MbDZuY0N0UFA4aHVzY0pY?=
+ =?utf-8?B?U2Eyc2UvcnpYUldVMzU4akIyS29MVXcwZ1FoWVF5Q29rSHZuYUd6Z1V4WFY3?=
+ =?utf-8?B?VFFaK0N6NFVTWEtHT05FRGxia2xZMkRuOE50cGJ3eWtZSXRneE10V2pVWTY4?=
+ =?utf-8?B?T1d3ZFNUT0Z6WHhCM3RLQWtwWnNXVy9tZ1hJbFY3QWE2UVpiVWNGRkVkQWl5?=
+ =?utf-8?B?R1RHaStBRjdQcWlsNkhPSEhYYVFkQ0hLQ2hEUnBXS2RDWnF4UWJqOThCUnk1?=
+ =?utf-8?B?VS9ReWIxOHZZN0c3VENXdnF4QmlzQTRRTUNPQUVoRVltRHNSSGJUdXY0Z3RY?=
+ =?utf-8?B?M2xXZFlETmdDanFHRW9VemNzL2VpSXQrUURHcDJoV0dDSUJHYkM4NTNDdENF?=
+ =?utf-8?B?YkxVMjVvSzlzYy9ISk13U0JhSWJISGNlVHZoaTAySXVwOHlSTDhiVjRMSEY3?=
+ =?utf-8?B?R2o1TUJEc1FtQ0ZjVS94Mlkrd1piTERNUnpTMzJKdStvOUllYngwRm8vbjZL?=
+ =?utf-8?B?ZGI3QndoMlpHY2dobFZXeUhsenVuRmwwMEp5ejNYRXlaZ0dFRzZXU0V6RHk3?=
+ =?utf-8?B?L2Z2RnVkckdoQ3dEeUlyK2NyTkVROUxxWU44b3Nyd3g4U3hpeVEzUWJKdEVM?=
+ =?utf-8?B?NDFOVDNCd2JuZ05DRzlHUlpNM3dyQjlUeG90M3hkU3dHTG1Ncm9SUVlXQzdG?=
+ =?utf-8?B?WC9oS016U3g1Rk9neDJXc3FBK2pLbmNzQTdoSE9oRSsxZTNBbURHcUhYcERC?=
+ =?utf-8?B?aCtLSHJSS3laZ3Jmc21zdTJobHRsTHF4TFJwU1A4ekJZSHpqY0ZTZDdlcEox?=
+ =?utf-8?B?cXZxTUdqcWNTOStkRFZGN2RJenhsL0RPVGUrU0N3NUJpRHNiWHF1WllkdlVI?=
+ =?utf-8?B?bnU1NUorMmVwcEFUaFc2R3dsOXptWUkraXVwQis3ZmVPb2tUMkROQUwxVG5W?=
+ =?utf-8?B?cHZ4SndwdFBLTzRDQ0VzSXV2K3QyZDhVcUhrM0QwMmtDdTZpU1hkTDAzS3Zv?=
+ =?utf-8?B?NC8wY3RvVnBGVjhDbm96a1Q4aFplSzFsTlJIUmpNR1lGOGoyemtuOE84OThn?=
+ =?utf-8?B?bDNPUnZUYmlhRW9RNkFDWlBCQ0czd2lWZFZaTDdCd2UwZVA4VlBrVUg0eWta?=
+ =?utf-8?B?RExBSE5VbHhzRTVUY0htS0plaE1CRU12RDFreWRhTXZvK294Vjl3RnBhbnFW?=
+ =?utf-8?B?b1JvU0Vadlk3c1dMSjAycU9pTzBxV3RmMFg0M3NtYVJMNFovZlRVUmpoZm5q?=
+ =?utf-8?B?TzFUR3RHRk0rUHZZSWdpWDd1VG1VZDFjLzRsTmhkc0V3eCthMllHdjRjUDB1?=
+ =?utf-8?B?Y3JWWTgzWHl5c1lPUEk2M2Y4c3l3NThzNVFUWTlFQ3lTeHNlU29uTHRPSWRi?=
+ =?utf-8?B?VWU0aGJCOE0rY08yNUtuWXA3aVJxL21jUitvTWFHMEJtTXdTUFp2M21ranRm?=
+ =?utf-8?B?N3JrQnJUL0crbHBXV21NbCtrc2hEUFlZNXdzVUh6NnpCeExJWXlURGxDNmZR?=
+ =?utf-8?B?WUxKNWdvUW1ZbHhDNnp2aTVudmlKRlV6QlczNlA2Qjk0R2ZmWUVQaXliNDhI?=
+ =?utf-8?B?UVpiQnpPeWZEbThCcERhQmExbHU0Yld3NDFmSFZLdVM1VUlCSGZoZWM0bVlC?=
+ =?utf-8?B?bWNYZURmY0xaeWFWc21aaWs3QlYvSXAzQWlNSXhCSnkwYWVZcFBUTXJIdjJB?=
+ =?utf-8?B?Y0VmTnV3SFFXWmt6ODBYQ3ZXMWwzcENOakFDZ25PTjJzUFZBalRpY3grR0hI?=
+ =?utf-8?B?STM4amdCclN1cWJ5MVk4UkgxZFM0REZaZU81MHZxamJLSkE3aHlSZnJCa1V5?=
+ =?utf-8?B?NzM3M1JUUGJJV2I2d0VvQ3M5UlNhOCt2VERZc0h6YWYwV25SYldsYi9qS0ZU?=
+ =?utf-8?B?MkdpbmVYNlNIUER5WitjY0tJNHNsc2kzZThHMXFLRytOUko4aVlqeEJxdUpw?=
+ =?utf-8?Q?6dwLZjE3UuM=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA3PR11MB9226.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QlVXVjl3RlJjeWYzUUNEdHBVVVRIcjBuaStMSS9EYm4vNGNtQnpYeWdudFRh?=
- =?utf-8?B?M1o0UUFRd1hBWlY5S3FsWlk0NFJyb0Zoa2dBdnBiVC9QV2VYVzZYd0R2WVZR?=
- =?utf-8?B?YXpGV3VIdVMrMUtOaXRISm4yK1lxSmloaTNGeHBkVWxJQjFLc0tQS0xVOTRp?=
- =?utf-8?B?UjV1OVdQVHQySUNTeXBVbkhGWUJVSC9TV3JVUzdxb0ZsQ0dQbVdvOHB2ZFlL?=
- =?utf-8?B?dFRmUDlTVzhJeHdnYXI1N0oxZ1dJMTlMT3ZCaTJkNzFXMkVpY2FLSUV1SGxP?=
- =?utf-8?B?Unk0bS9MdTFTM3p6OWFIaCtzeEgyckRqSFdHRUYrRTluZ25UZ3NUdks3QWlp?=
- =?utf-8?B?S3hDT21rUnp6RCswRHg5UG1qdjJEWnJ3d2J3MGprZUk4MGdwbHprTlFiNzQv?=
- =?utf-8?B?L3FjeStFNlQ0VDUyNC85OVREcStNVm1IY1R3SzNsSWM4aVV5WXpDN1pWYTVF?=
- =?utf-8?B?QThqQ0NFS3hzc04rLzJQa2thQlFrSmtZdHJxWmNPelNMSDFtVlZVTFFCUlRO?=
- =?utf-8?B?cFlicVdyTDdJeno3d3pqSUtzR0k0MCtsUEF1SEVyL1VuSWlTTGVoeXNVZzBw?=
- =?utf-8?B?TDRGVW1TbWV0WHRBQm0rVCtwYWpUdmpRWWU5NVZXSXNqczFMT3J0SGlrbGdW?=
- =?utf-8?B?T3BUVU5YbGtYZEpVK3ZNSHU0UENvbVJXMWJ5bGpyZmxxR2o5OHA0SHBJNFdU?=
- =?utf-8?B?SFdTMUhlNEFjUndIWmNKMlkvcnUvdW02MGhYUGxiS3IwdkY3TVgrRFI5ZzZ1?=
- =?utf-8?B?ZytNNXBTVlBqdEwzYlVRM0gxOHU2UEdGK1J0Ry8xUUR2ZGxKOHpncUxhb3pn?=
- =?utf-8?B?YmdzSTNKYjBpZzNMczhDVTEzSGUrQ3ZqNGl5Qm5tdzJ5S0FKVVhBd1M1ZnBY?=
- =?utf-8?B?L0o2SVFmdFppZjRyajBiQUkxcjY1R1RlNDJqUVBGVUZ5NjBYcXRkZjcrcExs?=
- =?utf-8?B?RlVLQzgxOStHc2RMRTA1elJQZjdQVjY3UjZhdThWRzVvM0Y2aSt3Z0tpNzlV?=
- =?utf-8?B?VkVQWWRBWHJubHdPSDdidE5NUjV4WkpvNkFaUDJJdXUwN253eVk0WHlrMmpL?=
- =?utf-8?B?ZnFXWWl6RjRwWUxTZzErWVFTbU1iWExlK3JHR1ZIS01rdXVxN2VGVGpOUkdU?=
- =?utf-8?B?bSt0eE8wRC9jWVBIRVlYOFdJbTZXMXdQTFVhbHlPN2Q3V1YxOXRac1lQOWFW?=
- =?utf-8?B?U1VGU0N1czBMOUNVR2EzTm0xekRscXphbWlNZEJRTWlHcmZKL3JKak1hdTRW?=
- =?utf-8?B?eTc0amovSGRjK3IxZWJsQ3BzZ2Z1QjlSNDRYaWM0bmZXN1JldzZEbEpaTTF5?=
- =?utf-8?B?ck1NMFg1T2duVDE3dnM4N3FhZFdqSVlMdmVXd054UkROZHU0QkFYRG9pang5?=
- =?utf-8?B?WGFzT3RGelJnVHBLYkJwenVpOFo0amVuRXYraWNQdStNWmtMUUxlSWZXZTls?=
- =?utf-8?B?MGlzWktKRUhsVU5mSDVWTmJZTjVaRElUNFRPRHM1amJZMjFrRXlXVWlsWVJE?=
- =?utf-8?B?UmFJT1dlaTlFWFZhWFhsK0ZCWkJ3R3NnRXlETlBDNUNObUV2TllpSzdsYkQ3?=
- =?utf-8?B?dzRUOHFoQlcxQkdMamFxR2c3NlRJKzlrYmZSbEFiSFVxcnU1NDNsLzRIUkFW?=
- =?utf-8?B?eitqT2NlSmVxbG1XenFjRDNJaXgzL3dIRlZWWWZnTUR1YzFOSEhiWGpOeTFu?=
- =?utf-8?B?WFZ6SFRuZTdSYTNteml4QTN1cEVUM3k2S1NYdFJ6YmZPSjc0Y1ZjYTQ5N2Y1?=
- =?utf-8?B?QmpqV0NtaDAzVDlZVkRSK0dHdmViTlIzWG1HeWtuZkx0QTE5NnFTd1NWSVFO?=
- =?utf-8?B?UkVCNFRGMlRVb01ITDF2WVIxSXRjMXprZ0tGeGtWUmpoeDlUM25SZTYwdks2?=
- =?utf-8?B?STkwcmNiODZyN21BZGMwVCt0eFBRNU5aL28zeFl4VjFHZHhvYVZvNW11S3FG?=
- =?utf-8?B?STFIYnN4VnZnNmFzT3VMN0VtaUEwWjNZRmFrcXIvVHlIdEZsN08wcmJVdUhU?=
- =?utf-8?B?bmhnVHRtR1pNZGZSQW9YYnZNMGZVSmtZaEI2bWM4dDJNYm9Qc0hIMGFEQkJN?=
- =?utf-8?B?K2c3a0lYZ3U5SGtObmtlL1lHRnpDNGN5Y1h3MTIyRjBNZWFmdU1yRVgvTVhF?=
- =?utf-8?Q?Pcrn12kfOztczIqYgtbGOuCfO?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a0e1979-bf94-4d65-acdf-08dda2dc861c
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UlQ2QWxJVVVQZkZHY0Z4ZGZMdTJsUkhSb0J1TTJuZkdMbURFejRXRFV3Qnk5?=
+ =?utf-8?B?WmVhYkVwa1VrN2tWa1FJTkhveDJ3emNFQk5Db3M0Y1pDd2J4VmJjcUxoQlMr?=
+ =?utf-8?B?Y2NnZ1I3NEEwTElDZHZNdHh4RDI0MWJSaEdDNFMzcDY0cHlkQVJOTzlGSVpM?=
+ =?utf-8?B?MlpqUnJjcnRzU1hLTWJOWGFvNkc0QWUyQkZJY1NKMGw1MEZhUnllS0tIK0ZZ?=
+ =?utf-8?B?TWN5c2Fqa2ZveG9YNkJ3Y2NXN2FtZ2l0MjBLa1lINVV6b0t5NU1ESkROVzA1?=
+ =?utf-8?B?SzFzb3pwdHVUYXg2L05ZM3htNVJQYTc4WEdXbEVyb0NBditzaXpFV012REZJ?=
+ =?utf-8?B?ajRFbXhQMTlqeU1NVXhGWEFpcDdsMXFabnduM2JSM0lwUEt4UmpTaytvSGdP?=
+ =?utf-8?B?ckl3OEpNSTdoTkFQWURGbU9HTmw3dUVCdHFEUFVGb1VaTDB3c2xTQ0JGZ3pn?=
+ =?utf-8?B?TloyM0RUcUsraHR3QzQxZENYOTR0UmpSa3p4dFVzSEpyWEZ4RzBsSkwzSEVn?=
+ =?utf-8?B?THFMd0djaDdkV01ac24wT0tEUWcwUjFTWklPN2JlUnI0SGhzcHZmMjhDMXhX?=
+ =?utf-8?B?TTVUMUYrcEowZ2xWVlc4dlRvcVpUQUxWZE1vS3RSY2hpSWlvMHYzeVFGZGIx?=
+ =?utf-8?B?aUJLQ1hiWlcxcDNRV0hEOHhINGE2bG1NVzNyLzBRS09yd1ZNZWdSYkRRR3Y1?=
+ =?utf-8?B?SGNTQTRFb3llTWw2V1JKZ2hpNE55OVVXdWV1ZFR1akVtMGFZbjUvdkIwdkRW?=
+ =?utf-8?B?bTFudVN1Nk0xT1lHY0R4OHBwQ2FLQW5JdmJlWmx6eTBNZmZNQ3o2alJaTlRz?=
+ =?utf-8?B?cWpIeGZ6L015MzVVYlM0bmVtalIzZjd2TVpHcmt1d2dLcGt3Q3JTMWlEVUxx?=
+ =?utf-8?B?TFFNNjFuWndaZ3lmVDNqclJzN3Ixb1hYYUpaUWhmbWVhZ1BhL29nMEZpSnJE?=
+ =?utf-8?B?YzFlbHlYK3Q3aFBvS2VsOGk3TUNwUVhTem5PWGFYekNkd2QyK0JDU3RxQjBR?=
+ =?utf-8?B?OXFuYTJGVnQ0VnJ0V200THB4c2NyY1hwWG9DQjN4bktWVERUZHpyRWZZdVpX?=
+ =?utf-8?B?cllKUXZSWldIdHBMNEVkWGZkbDFwZWdYdHBqM09QVVJvQlFuOVArSVpJNUVq?=
+ =?utf-8?B?ODhvaUhXL0lmL3ZhU1NTWjJYSW1Qem41Smc4NFVkaXhHZ2N4d2Y0RnZtSzcy?=
+ =?utf-8?B?dkQvajNQVU9mK2F2Y3BkakVSUk53ZTB5OGFhRktvMG83UUs5c2lRc3kxQ05N?=
+ =?utf-8?B?OXRNNjhiRERiZXpXdHM4UUxlTHRMaDBkeW9lZGZIMFpuM3ZEZDNmVmw4QkYz?=
+ =?utf-8?B?b0ZwaFkwbk50dXdVOXh0aXFYdlNERHdkOE1UZVZMNUFaRGhzUUxSN1dDWGZM?=
+ =?utf-8?B?YVlUeGNJTk5LS01IbXprVVl3cFlIOVJNb2xhbzNUYVJwODZ5QytHdEdvUyti?=
+ =?utf-8?B?TjhIMEFLS092TjRmYk9BS2toUVNVS1FmbGZXbGp3dDVqK1hwWG1sVmZMaDNX?=
+ =?utf-8?B?TGVveVVjVERaYjJnbHAxdXBBR3lTaVh5THg2clBScEoyQitoWEFJRkJrSlI2?=
+ =?utf-8?B?OTJ2Q24rYXArVCtWV1J2c0Y4OHFHZ0ZYalNQZVBveEQ1em13U0N3UTIrNDZt?=
+ =?utf-8?B?c0Urb3FCREkxTWdZcHdQeng2NjI5UzdPZDBEKytBSXllY2dpR2R4aEJqVXl5?=
+ =?utf-8?B?Y0xUTVJGenRqRnNNcjRock9xY0JzRlFsdkkrT0JMbzc0Nkkwck1weE01Smpu?=
+ =?utf-8?B?WFpXR2tzNU00M0pseEZSN1FhYk1MKytYQllkL01ZQ2hnWHpQODJsdlIxdEVR?=
+ =?utf-8?B?U2lUMHBtUUV3NURUNUZHVHFyN0NNajZCSURLOUFVSDkxQkhSdWQzS05WRjNB?=
+ =?utf-8?B?UFZDSWtpQ2tFYXJNeW85UHRWYlZ2ZVRMZDZMSnQ0MHg5NVZUSXo3TDVNSCsx?=
+ =?utf-8?B?bmo5M2Q1eEtxOHZkL2RaVTFIaFluc3FlOHJXR1lCSHFoL1RvakF6UkRNcURl?=
+ =?utf-8?B?YnpZWUZUOG9lYXhXZ2k4dU9OR09rU2QvL3cyVFlJZ0ltdEUxZW5HVzFpVkFB?=
+ =?utf-8?B?WENuVkhnRzRnREFMOTZxYTVvMlRQTi9FWnEvSmtNMkc1ekovUEZOSU4yeU5T?=
+ =?utf-8?Q?TxJY5ZCE0orUcgbN0ClKDKGE+?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34711bd3-e6ed-45e7-e72c-08dda2dc8e76
 X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9226.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2025 20:23:38.6307 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2025 20:23:52.5618 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QI8KTkHLHFxUK/rvNMiSOEJUXXyc/1aHl3yi99fWuAbxojo+SrHESemvw/nxGaYHiwpLM17KPHRlpxhYrNaVEw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: aLiW4mZlqQPwEAgj+XzCBvTxcDs8T3cWZaEw4DdtF5U5dNBkWNRtdgBw3KpalJbMgeIHL6L04p6+wpDy2pw6VA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7071
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -199,205 +200,401 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--------------XzyaaMzYWv9i2vTQT0ASp06C
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 28.05.2025 14:49, Michał Winiarski wrote:
-> On Tue, May 20, 2025 at 01:19:23AM +0200, Tomasz Lis wrote:
->> All contexts require an update due to GGTT range shift, as that
->> affects their HWSP.
+
+On 28.05.2025 22:02, Michał Winiarski wrote:
+> On Tue, May 20, 2025 at 01:19:22AM +0200, Tomasz Lis wrote:
+>> Resetting GuC during recovery could interfere with the recovery
+>> process. Such reset might be also triggered without justification,
+>> due to migration taking time, rather than due to the workload not
+>> progressing.
 >>
->> The HW status page of a context contains GGTT references, which
->> need to be shifted to a new range (or re-computed using the
->> previously updated vma nodes). The references include ring start
->> address and indirect state address.
+>> Doing GuC reset during the recovery would cause exit of RESFIX state,
+>> and therefore continuation of GuC work while fixups are still being
+>> applied. To avoid that, reset needs to be blocked during the recovery.
 >>
->> v2: move some functions to better matched files
->> v3: Add missing kerneldocs
+>> This patch blocks the reset during recovery. Reset request in that
+>> time range will be dropped.
+>>
+>> In case a reset procedure already started while the recovery is
+>> triggered, there isn't much we can do - we cannot wait for it to
+>> finish as it involves waiting for hardware, and we can't be sure
+>> at which exact point of the reset procedure the GPU got switched.
+>> Therefore, the rare cases where migration happens while reset is
+>> in progress, are still dangerous. Resets are not a part of the
+>> standard flow, and cause unfinished workloads - that will happen
+>> during the reset interrupted by migration as well, so it doesn't
+>> diverge that much from what normally happens during such resets.
 >>
 >> Signed-off-by: Tomasz Lis<tomasz.lis@intel.com>
 >> Cc: Michal Wajdeczko<michal.wajdeczko@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_exec_queue.c | 13 +++++++++++++
->>   drivers/gpu/drm/xe/xe_exec_queue.h |  2 ++
->>   drivers/gpu/drm/xe/xe_guc_submit.c | 16 ++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_guc_submit.c | 26 ++++++++++++++++++++++++--
 >>   drivers/gpu/drm/xe/xe_guc_submit.h |  2 ++
->>   drivers/gpu/drm/xe/xe_lrc.c        | 16 ++++++++++++++++
->>   drivers/gpu/drm/xe/xe_lrc.h        |  1 +
->>   drivers/gpu/drm/xe/xe_sriov_vf.c   | 17 +++++++++++++++--
->>   7 files changed, 65 insertions(+), 2 deletions(-)
+>>   drivers/gpu/drm/xe/xe_sriov_vf.c   | 12 ++++++++++--
+>>   3 files changed, 36 insertions(+), 4 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
->> index ce78cee5dec6..d696c8410a32 100644
->> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
->> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->> @@ -1041,3 +1041,16 @@ int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
->>   
->>   	return err;
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> index 6f280333de13..69ccfb2e1cff 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> @@ -1761,7 +1761,11 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+>>   	}
 >>   }
+>>   
+>> -int xe_guc_submit_reset_prepare(struct xe_guc *guc)
+>> +/**
+>> + * xe_guc_submit_reset_block - Disallow reset calls on given GuC.
+>> + * @guc: the &xe_guc struct instance
+>> + */
+>> +int xe_guc_submit_reset_block(struct xe_guc *guc)
+>>   {
+>>   	int ret;
+>>   
+>> @@ -1774,6 +1778,24 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc)
+>>   	 */
+>>   	ret = atomic_fetch_or(1, &guc->submission_state.stopped);
+>>   	smp_wmb();
+>> +
+>> +	return ret;
+>> +}
 >> +
 >> +/**
->> + * xe_exec_queue_contexts_hwsp_rebase - Re-compute GGTT references
->> + *   within all LRCs of a queue.
-> Formatting. Extra space here. Note that similar thing happens in other
-> patches, please correct it there as well.
-will remove.
-> BTW... It doesn't look like this file is included anywhere in the
-> documentation. Or am I just missing something?
+>> + * xe_guc_submit_reset_unblock - Allow back reset calls on given GuC.
+>> + * @guc: the &xe_guc struct instance
+>> + */
+>> +void xe_guc_submit_reset_unblock(struct xe_guc *guc)
+>> +{
+>> +	atomic_dec(&guc->submission_state.stopped);
+>> +}
+>> +
+>> +int xe_guc_submit_reset_prepare(struct xe_guc *guc)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = xe_guc_submit_reset_block(guc);
+>>   	wake_up_all(&guc->ct.wq);
+>>   
+>>   	return ret;
+>> @@ -1849,7 +1871,7 @@ int xe_guc_submit_start(struct xe_guc *guc)
+>>   	xe_gt_assert(guc_to_gt(guc), xe_guc_read_stopped(guc) == 1);
+>>   
+>>   	mutex_lock(&guc->submission_state.lock);
+>> -	atomic_dec(&guc->submission_state.stopped);
+>> +	xe_guc_submit_reset_unblock(guc);
+>>   	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
+>>   		/* Prevent redundant attempts to start parallel queues */
+>>   		if (q->guc->id != index)
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+>> index f1cf271492ae..2c2d2936440d 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_submit.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+>> @@ -20,6 +20,8 @@ void xe_guc_submit_stop(struct xe_guc *guc);
+>>   int xe_guc_submit_start(struct xe_guc *guc);
+>>   void xe_guc_submit_pause(struct xe_guc *guc);
+>>   void xe_guc_submit_unpause(struct xe_guc *guc);
+>> +int xe_guc_submit_reset_block(struct xe_guc *guc);
+>> +void xe_guc_submit_reset_unblock(struct xe_guc *guc);
+>>   void xe_guc_submit_wedge(struct xe_guc *guc);
+>>   
+>>   int xe_guc_read_stopped(struct xe_guc *guc);
+>> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+>> index fcd82a0fda48..82b3dd57de73 100644
+>> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
+>> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+>> @@ -150,9 +150,15 @@ static void vf_post_migration_shutdown(struct xe_device *xe)
+>>   {
+>>   	struct xe_gt *gt;
+>>   	unsigned int id;
+>> +	int ret = 0;
+>>   
+>> -	for_each_gt(gt, xe, id)
+>> +	for_each_gt(gt, xe, id) {
+>>   		xe_guc_submit_pause(&gt->uc.guc);
+>> +		ret |= xe_guc_submit_reset_block(&gt->uc.guc);
+>> +	}
+>> +
+>> +	if (ret)
+>> +		drm_info(&xe->drm, "migration recovery encountered ongoing reset\n");
+> I'd suggest debug level, as it doesn't seem all that useful in general.
+> But I guess you want to have a trace that this happened and the handling
+> of this scenario is somewhat iffy...
 
-Do you men the Sphinx-generated docs?
+Yes, reset and post-migration recovery interfere, leading to dangerous 
+corner cases. If they meet, it's better if we know that from the log.
 
-Doesn't these only include functions which are placed somewhere in the 
-TOC tree, like by having "DOC:" chapter defined at the beginning of the 
-file?
+Reset is a rare, exceptional procedure, so we don't expect this to be 
+logged much.
+
+>>   }
+>>   
+>>   /**
+>> @@ -170,8 +176,10 @@ static void vf_post_migration_kickstart(struct xe_device *xe)
+>>   	/* make sure interrupts on the new HW are properly set */
+>>   	xe_irq_resume(xe);
+>>   
+>> -	for_each_gt(gt, xe, id)
+>> +	for_each_gt(gt, xe, id) {
+>> +		xe_guc_submit_reset_unblock(&gt->uc.guc);
+> If we were doing migration recovery during reset, we'll change the state
+> of guc->submission_state.stopped (btw... is it possible to decrement it
+> below 0 now?).
+Yes, the decrement should be fixed. Not sure why 
+xe_guc_submit_reset_block() doesn't do that by itself, maybe it was just 
+a simplification due to it being used only during reset. But - the 
+further analysis below makes it irrelevant.
+> There are "some" places where we have asserts that expect a particular
+> state, and some places where we use that state as an event (combined
+> with a waitqueue). Should we wake up the waiters at some point? And
+> perhaps synchronize with the places which depend on being in a "stopped"
+> state (if at all possible)?
+
+After getting an understanding of all the wait places, it looks to me 
+that my implementation is just wrong.
+
+We can not re-use the `xe_guc_submit_reset_block()`  here, regardless if 
+async or not, because this leads to all
+
+waits for GuC responses being terminated, usually with an error. This is 
+not acceptable as, in case of migration,
+
+related responses from GuC will come as soon as the recovery is done.
+
+Even if we won't wake up the waits within migration recovery, the check 
+may still be triggered somewhere else,
+
+or a new wait call may happen and bail out of wait immediately, leaving 
+us with detached G2H response, or maybe
+
+even freeing an object while HW still accesses it (ie. a preempted queue 
+may be sent back to HW by GuC on
+
+RESFIX_DONE before GuC reads all pending G2H commands, the context 
+becomes active but on KMD side it
+
+bailed out from waiting to be disabled and got freed).
+
+I will figure out a better way to block the reset, one which doesn't 
+mess with existing waits.
 
 -Tomasz
 
-> Other than that - LGTM.
->
+> Thanks,
 > -Michał
 >
->> + * @q: the &xe_exec_queue struct instance containing target LRCs
->> + */
->> +void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q)
->> +{
->> +	int i;
->> +
->> +	for (i = 0; i < q->width; ++i)
->> +		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
->> index 17bc50a7f05a..1d399a33c5c0 100644
->> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
->> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
->> @@ -90,4 +90,6 @@ int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
->>   				      struct xe_vm *vm);
->>   void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
->>   
->> +void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q);
->> +
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->> index 69ccfb2e1cff..990f3265c7ad 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->> @@ -2424,3 +2424,19 @@ void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p)
->>   		guc_exec_queue_print(q, p);
->>   	mutex_unlock(&guc->submission_state.lock);
->>   }
->> +
->> +/**
->> + * xe_guc_contexts_hwsp_rebase - Re-compute GGTT references within all
->> + *   exec queues registered to given GuC.
->> + * @guc: the &xe_guc struct instance
->> + */
->> +void xe_guc_contexts_hwsp_rebase(struct xe_guc *guc)
->> +{
->> +	struct xe_exec_queue *q;
->> +	unsigned long index;
->> +
->> +	mutex_lock(&guc->submission_state.lock);
->> +	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
->> +		xe_exec_queue_contexts_hwsp_rebase(q);
->> +	mutex_unlock(&guc->submission_state.lock);
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
->> index 2c2d2936440d..2cc44298465f 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_submit.h
->> +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
->> @@ -44,4 +44,6 @@ void
->>   xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapshot);
->>   void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p);
->>   
->> +void xe_guc_contexts_hwsp_rebase(struct xe_guc *guc);
->> +
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
->> index 61a2e87990a9..525565480aef 100644
->> --- a/drivers/gpu/drm/xe/xe_lrc.c
->> +++ b/drivers/gpu/drm/xe/xe_lrc.c
->> @@ -1184,6 +1184,22 @@ void xe_lrc_destroy(struct kref *ref)
->>   	kfree(lrc);
->>   }
->>   
->> +/**
->> + * xe_lrc_update_hwctx_regs_with_address - Re-compute GGTT references within given LRC.
->> + * @lrc: the &xe_lrc struct instance
->> + */
->> +void xe_lrc_update_hwctx_regs_with_address(struct xe_lrc *lrc)
->> +{
->> +	if (xe_lrc_has_indirect_ring_state(lrc)) {
->> +		xe_lrc_write_ctx_reg(lrc, CTX_INDIRECT_RING_STATE,
->> +				     __xe_lrc_indirect_ring_ggtt_addr(lrc));
->> +
->> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START,
->> +					      __xe_lrc_ring_ggtt_addr(lrc));
->> +	} else
->> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
->> +}
->> +
->>   void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail)
->>   {
->>   	if (xe_lrc_has_indirect_ring_state(lrc))
->> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
->> index eb6e8de8c939..e7a99cfd0abe 100644
->> --- a/drivers/gpu/drm/xe/xe_lrc.h
->> +++ b/drivers/gpu/drm/xe/xe_lrc.h
->> @@ -88,6 +88,7 @@ bool xe_lrc_ring_is_idle(struct xe_lrc *lrc);
->>   u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc);
->>   u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc);
->>   u32 *xe_lrc_regs(struct xe_lrc *lrc);
->> +void xe_lrc_update_hwctx_regs_with_address(struct xe_lrc *lrc);
->>   
->>   u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr);
->>   void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val);
->> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
->> index 82b3dd57de73..0f0d1a97ae1d 100644
->> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
->> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
->> @@ -7,12 +7,14 @@
->>   
->>   #include "xe_assert.h"
->>   #include "xe_device.h"
->> +#include "xe_exec_queue_types.h"
->>   #include "xe_gt.h"
->>   #include "xe_gt_sriov_printk.h"
->>   #include "xe_gt_sriov_vf.h"
->>   #include "xe_guc_ct.h"
->>   #include "xe_guc_submit.h"
->>   #include "xe_irq.h"
->> +#include "xe_lrc.h"
->>   #include "xe_pm.h"
->>   #include "xe_sriov.h"
->>   #include "xe_sriov_printk.h"
->> @@ -223,6 +225,15 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
->>   	return ret;
->>   }
->>   
->> +static void vf_post_migration_fixup_contexts(struct xe_device *xe)
->> +{
->> +	struct xe_gt *gt;
->> +	unsigned int id;
->> +
->> +	for_each_gt(gt, xe, id)
->> +		xe_guc_contexts_hwsp_rebase(&gt->uc.guc);
->> +}
->> +
->>   static void vf_post_migration_fixup_ctb(struct xe_device *xe)
->>   {
->>   	struct xe_gt *gt;
->> @@ -303,9 +314,11 @@ static void vf_post_migration_recovery(struct xe_device *xe)
->>   		goto fail;
->>   
->>   	need_fixups = vf_post_migration_fixup_ggtt_nodes(xe);
->> -	/* FIXME: add the recovery steps */
->> -	if (need_fixups)
->> +	if (need_fixups) {
->> +		vf_post_migration_fixup_contexts(xe);
->> +		/* FIXME: add the recovery steps */
->>   		vf_post_migration_fixup_ctb(xe);
+>>   		xe_guc_submit_unpause(&gt->uc.guc);
 >> +	}
+>>   }
 >>   
->>   	vf_post_migration_kickstart(xe);
->>   	vf_post_migration_notify_resfix_done(xe);
+>>   /**
 >> -- 
 >> 2.25.1
 >>
+--------------XzyaaMzYWv9i2vTQT0ASp06C
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 28.05.2025 22:02, Michał Winiarski
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:75aq2gastxnu4l5c3izbvniqzpwyfk45ux5oedfrwg3ir4kh3h@fw5zpvvek36d">
+      <pre wrap="" class="moz-quote-pre">On Tue, May 20, 2025 at 01:19:22AM +0200, Tomasz Lis wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">Resetting GuC during recovery could interfere with the recovery
+process. Such reset might be also triggered without justification,
+due to migration taking time, rather than due to the workload not
+progressing.
+
+Doing GuC reset during the recovery would cause exit of RESFIX state,
+and therefore continuation of GuC work while fixups are still being
+applied. To avoid that, reset needs to be blocked during the recovery.
+
+This patch blocks the reset during recovery. Reset request in that
+time range will be dropped.
+
+In case a reset procedure already started while the recovery is
+triggered, there isn't much we can do - we cannot wait for it to
+finish as it involves waiting for hardware, and we can't be sure
+at which exact point of the reset procedure the GPU got switched.
+Therefore, the rare cases where migration happens while reset is
+in progress, are still dangerous. Resets are not a part of the
+standard flow, and cause unfinished workloads - that will happen
+during the reset interrupted by migration as well, so it doesn't
+diverge that much from what normally happens during such resets.
+
+Signed-off-by: Tomasz Lis <a class="moz-txt-link-rfc2396E" href="mailto:tomasz.lis@intel.com">&lt;tomasz.lis@intel.com&gt;</a>
+Cc: Michal Wajdeczko <a class="moz-txt-link-rfc2396E" href="mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 26 ++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_guc_submit.h |  2 ++
+ drivers/gpu/drm/xe/xe_sriov_vf.c   | 12 ++++++++++--
+ 3 files changed, 36 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 6f280333de13..69ccfb2e1cff 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1761,7 +1761,11 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ 	}
+ }
+ 
+-int xe_guc_submit_reset_prepare(struct xe_guc *guc)
++/**
++ * xe_guc_submit_reset_block - Disallow reset calls on given GuC.
++ * @guc: the &amp;xe_guc struct instance
++ */
++int xe_guc_submit_reset_block(struct xe_guc *guc)
+ {
+ 	int ret;
+ 
+@@ -1774,6 +1778,24 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc)
+ 	 */
+ 	ret = atomic_fetch_or(1, &amp;guc-&gt;submission_state.stopped);
+ 	smp_wmb();
++
++	return ret;
++}
++
++/**
++ * xe_guc_submit_reset_unblock - Allow back reset calls on given GuC.
++ * @guc: the &amp;xe_guc struct instance
++ */
++void xe_guc_submit_reset_unblock(struct xe_guc *guc)
++{
++	atomic_dec(&amp;guc-&gt;submission_state.stopped);
++}
++
++int xe_guc_submit_reset_prepare(struct xe_guc *guc)
++{
++	int ret;
++
++	ret = xe_guc_submit_reset_block(guc);
+ 	wake_up_all(&amp;guc-&gt;ct.wq);
+ 
+ 	return ret;
+@@ -1849,7 +1871,7 @@ int xe_guc_submit_start(struct xe_guc *guc)
+ 	xe_gt_assert(guc_to_gt(guc), xe_guc_read_stopped(guc) == 1);
+ 
+ 	mutex_lock(&amp;guc-&gt;submission_state.lock);
+-	atomic_dec(&amp;guc-&gt;submission_state.stopped);
++	xe_guc_submit_reset_unblock(guc);
+ 	xa_for_each(&amp;guc-&gt;submission_state.exec_queue_lookup, index, q) {
+ 		/* Prevent redundant attempts to start parallel queues */
+ 		if (q-&gt;guc-&gt;id != index)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index f1cf271492ae..2c2d2936440d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -20,6 +20,8 @@ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
+ void xe_guc_submit_pause(struct xe_guc *guc);
+ void xe_guc_submit_unpause(struct xe_guc *guc);
++int xe_guc_submit_reset_block(struct xe_guc *guc);
++void xe_guc_submit_reset_unblock(struct xe_guc *guc);
+ void xe_guc_submit_wedge(struct xe_guc *guc);
+ 
+ int xe_guc_read_stopped(struct xe_guc *guc);
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index fcd82a0fda48..82b3dd57de73 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -150,9 +150,15 @@ static void vf_post_migration_shutdown(struct xe_device *xe)
+ {
+ 	struct xe_gt *gt;
+ 	unsigned int id;
++	int ret = 0;
+ 
+-	for_each_gt(gt, xe, id)
++	for_each_gt(gt, xe, id) {
+ 		xe_guc_submit_pause(&amp;gt-&gt;uc.guc);
++		ret |= xe_guc_submit_reset_block(&amp;gt-&gt;uc.guc);
++	}
++
++	if (ret)
++		drm_info(&amp;xe-&gt;drm, &quot;migration recovery encountered ongoing reset\n&quot;);
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">I'd suggest debug level, as it doesn't seem all that useful in general.
+But I guess you want to have a trace that this happened and the handling
+of this scenario is somewhat iffy...</pre>
+    </blockquote>
+    <p>Yes, reset and post-migration recovery interfere, leading to
+      dangerous corner cases. If they meet, it's better if we know that
+      from the log.</p>
+    <p>Reset is a rare, exceptional procedure, so we don't expect this
+      to be logged much.<br>
+    </p>
+    <blockquote type="cite" cite="mid:75aq2gastxnu4l5c3izbvniqzpwyfk45ux5oedfrwg3ir4kh3h@fw5zpvvek36d">
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre"> }
+ 
+ /**
+@@ -170,8 +176,10 @@ static void vf_post_migration_kickstart(struct xe_device *xe)
+ 	/* make sure interrupts on the new HW are properly set */
+ 	xe_irq_resume(xe);
+ 
+-	for_each_gt(gt, xe, id)
++	for_each_gt(gt, xe, id) {
++		xe_guc_submit_reset_unblock(&amp;gt-&gt;uc.guc);
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">If we were doing migration recovery during reset, we'll change the state
+of guc-&gt;submission_state.stopped (btw... is it possible to decrement it
+below 0 now?).</pre>
+    </blockquote>
+    Yes, the decrement should be fixed. Not sure why
+    xe_guc_submit_reset_block() doesn't do that by itself, maybe it was
+    just a simplification due to it being used only during reset. But -
+    the further analysis below makes it irrelevant.<br>
+    <blockquote type="cite" cite="mid:75aq2gastxnu4l5c3izbvniqzpwyfk45ux5oedfrwg3ir4kh3h@fw5zpvvek36d">
+      <pre wrap="" class="moz-quote-pre">There are &quot;some&quot; places where we have asserts that expect a particular
+state, and some places where we use that state as an event (combined
+with a waitqueue). Should we wake up the waiters at some point? And
+perhaps synchronize with the places which depend on being in a &quot;stopped&quot;
+state (if at all possible)?</pre>
+    </blockquote>
+    <p>After getting an understanding of all the wait places, it looks
+      to me that my implementation is just wrong.</p>
+    <p>We can not re-use the `xe_guc_submit_reset_block<span style="white-space: pre-wrap"><span style="white-space: normal">()`&nbsp; here, regardless if async or not, because this leads to all</span></span></p>
+    <p><span style="white-space: pre-wrap"><span style="white-space: normal">waits for GuC responses being terminated, usually with an error. This is not acceptable as, in case of migration,</span></span></p>
+    <p><span style="white-space: pre-wrap"><span style="white-space: normal">related responses from GuC will come as soon as the recovery is done.</span></span></p>
+    <p><span style="white-space: pre-wrap"><span style="white-space: normal">Even if we won't wake up the waits within migration recovery, the check may still be triggered somewhere else,</span></span></p>
+    <p><span style="white-space: pre-wrap"><span style="white-space: normal">or a new wait call may happen and bail out of wait immediately, leaving us with detached G2H response, or maybe</span></span></p>
+    <p><span style="white-space: pre-wrap"><span style="white-space: normal">even freeing an object while HW still accesses it (ie. a preempted queue may be sent back to HW by GuC on</span></span></p>
+    <p><span style="white-space: pre-wrap"><span style="white-space: normal">RESFIX_DONE before GuC reads all pending G2H commands, the context becomes active but on KMD side it</span></span></p>
+    <p><span style="white-space: pre-wrap"><span style="white-space: normal">bailed out from waiting to be disabled and got freed).
+</span></span></p>
+    <p><span style="white-space: pre-wrap"><span style="white-space: normal">I will figure out a better way to block the reset, one which doesn't mess with existing waits.</span></span></p>
+    <p><span style="white-space: pre-wrap"><span style="white-space: normal">-Tomasz
+</span></span></p>
+    <blockquote type="cite" cite="mid:75aq2gastxnu4l5c3izbvniqzpwyfk45ux5oedfrwg3ir4kh3h@fw5zpvvek36d">
+      <pre wrap="" class="moz-quote-pre">Thanks,
+-Michał
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre"> 		xe_guc_submit_unpause(&amp;gt-&gt;uc.guc);
++	}
+ }
+ 
+ /**
+-- 
+2.25.1
+
+</pre>
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
+
+--------------XzyaaMzYWv9i2vTQT0ASp06C--
