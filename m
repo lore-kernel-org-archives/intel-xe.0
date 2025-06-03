@@ -4,76 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8960C71148
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F15B6C71151
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 13:59:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EE2110E8ED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B55C710E9AE;
 	Fri, 13 Jun 2025 13:59:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IEdloHda";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zzw1Lhtt";
 	dkim-atps=neutral
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AE6210E060;
- Wed, 11 Jun 2025 05:48:57 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-43edecbfb94so75351705e9.1; 
- Tue, 10 Jun 2025 22:48:57 -0700 (PDT)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+ [209.85.221.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7CCE10E1F8;
+ Tue,  3 Jun 2025 18:04:24 +0000 (UTC)
+Received: by mail-wr1-f48.google.com with SMTP id
+ ffacd0b85a97d-3a510432236so1542065f8f.0; 
+ Tue, 03 Jun 2025 11:04:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749620935; x=1750225735; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=BxLsl1EtZ+/S92kRfUwyMhLwGpM1C0JZqmhvFyqhsOU=;
- b=IEdloHdasTIOVJZYCWvmZ+ed7BaZe8a/mAtms/AUEKdghQ0X05p2QijghthF0jaZtf
- vpTL0mMT6UyXlHkAfz2rKVlfUA5dWCWuJmn/nOpZ4oPAL8FzvWvWokwwhzxMqY4eLe6n
- xegmP1Z6uekGXHdkmQEluQ5bt/dIfgyifHMYnndq/p0z0qc07VhquOdG8U/TdJaGxajl
- qDHmVd8grFRZQj2CSo9ZSoICyeDAFBQEY1uNhPJWTgipegZeEP/eo0egnoh8S9gdEVyJ
- Iya3DfOqJ/BOE5GSButXl5QdiX+yK+t77J6En7cl0FL53Fui00ZE8k+9iX+9j23pKvPA
- DLYg==
+ d=gmail.com; s=20230601; t=1748973863; x=1749578663; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=UUV+ii5u6eXM/9z4t0zPuEnw9506tcp6lSpVIjqTuQM=;
+ b=Zzw1LhtttT33lgm4QKmKO60S5KXUn/O5jFw5ppRsIoeoKiJPmPKEh3EqE055Sb38ZZ
+ cbkUTV1VneC7Vj/BDjiVzb0NRSNJDrcAS+Z/nZK9dQ9M2jMFsns8bJiQ4eb0Du0ONUod
+ RYWS+1kWpIo3Ye4+AVHdCvkbITpkyZaJF7cEiKfGKcCwdqTZ8Y0IjU8qYqP7+IIOPc5a
+ nUM6hLbmWWFkdk27687jPnYEch3bWAPw6mtB0xpLPGunbIMCHYUlQ92DrehcfIJwQGn5
+ zZSRpz3wpfZ/hyWJk2GTNbuLOBzbLucZhLBh6bIRjm9NSLg2m6DOVTJlkExFNY6G12pM
+ PbLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749620935; x=1750225735;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=BxLsl1EtZ+/S92kRfUwyMhLwGpM1C0JZqmhvFyqhsOU=;
- b=id6wnM3XMg4nivuJbomFxDiWZP4u9JzVPEb1YeGb9e45F5XaaSVJAg946hRqAOqW3J
- f9c6m4Xua+vheYTTM/0zJz4uXGbc9p5EJxP8tGEAhBmBBPesZltjZ4RYKVzsgxyuOJte
- zENKfjIo7aDPGSfXEmbb2+vcDRIMD3+AqrkSoWUgh7E0uxUsc/18y0qkHDmXsPWjvS46
- zeivGUbyk/GqQnX3GSuPd2D5reCI39voVma69S5Dr9xqmW2aluxLe5F7Va+cLp+1z/lb
- SnG255Eo61NnGwM7qbZySthGZnPr2LMRH/GMA401ojmq/77aQ1JUeDlshPQ+LVjAERP0
- bZHw==
+ d=1e100.net; s=20230601; t=1748973863; x=1749578663;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=UUV+ii5u6eXM/9z4t0zPuEnw9506tcp6lSpVIjqTuQM=;
+ b=hK2d0jrNdpAsJgo0D9iH8Y/ngSjAnp+nfEpUmDADcB1+4cCyI3eVqQykzbvo98UsBE
+ luQG/jOWmLHmHosZSb77aWRFyU6Pyja+VJpxGGNavpXiMBTcF6qsoV59jHu4VaQayaeC
+ ARdf6oe9crdJWw6exRmrZh0gZqfQan8BSmi6wBGBbVFplFD+zrwcH/GHPr83726jj+HI
+ B6o8BfKsctVsUbfpj4LArTnD9mx4HcydkSK+0aGMdtZznZSyHw+7vMjqELsjcsAnzKGh
+ 1Iw+imxX8gU7qDQ+7GG2Ow5SZ4qNkVghpQFCCAlTVbE/4fOUKuj0j4yXgjCSvfEH7l92
+ tAwA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVKtFTgBgxEzid3cnzrSzwqbH/D/zk9Zu56sbGRpAVdiBuEaetpUsHlYGQMHeX9j+WTBmByIHNcQKQ=@lists.freedesktop.org,
- AJvYcCW5CEilFkI9NAtENxJFnNnlZlsND/En2xd8PnMmnTVbFMwX3IA9TeC/+ox4itz3rr9as21oC5tkr4g=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy8Pw4I65kPfuHpVabk+Ky6NP9wwdkRPe1y+ZCT5ESAN5kwVUZD
- tmbCKIqkfJbW/eci6z2+A5O+q6rz7ewIFEnW4AFi8FA9pMZvJ8Y7Gnc/
-X-Gm-Gg: ASbGncvlmLtbb6zSizUnPzJ6w/EgMHFHcAF7rW/8dmDanIvQh3CJr9nTFzvb9oLwb1N
- UFJKErJl2n/nQ0s+gt6zPid1sevFqW+8UzYuF2u1xAvSTOVE4ef5bNmbhPgrrzrMogR2bSzkGU0
- q0zXVZazUiVZK/YwHab2KooodRSFNkElRYoqjpLnS4e/YsrVZ/nnwlQxjzgpSuHCtvdpvs252wb
- jWYlb6y5UV589W7sBeZYuV3ca4pWSbztHZGQPE5munTGbitAPKyG94byu9Lvr+sy8rvg5ivvuhO
- h7hjPQcHsFugnZbyoPhVDmxzl0gSp65pgCnp8krV6pD37DCQNlw=
-X-Google-Smtp-Source: AGHT+IGtvTLfWgn3tSC0zbpaDKA+sRi4y6yGMt4LLOqYRwJFJ634U+zXrAaYuqs7XFm6Gu2WJkUySg==
-X-Received: by 2002:a05:600c:4f10:b0:442:f97b:87e with SMTP id
- 5b1f17b1804b1-453248796eemr13119685e9.6.1749620935177; 
- Tue, 10 Jun 2025 22:48:55 -0700 (PDT)
-Received: from pc ([165.51.67.115]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4532056486dsm23083735e9.1.2025.06.10.22.48.52
+ AJvYcCWfWCGMI5NLqbAu2c28EA7Mltas5FUJcHuiXHTpMRuHflMyB45Xa92xUlglI5IHJ5Rp3qxfApTvB9I=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzKjfokffkpTBmyoDCSbe9ZKR4cOtk5tqsyr+PyJYkYyP9LcReB
+ MQBk7R1G7Ezos+pX4mjdfAUjaybLi8ncmA+ZW5Xn/UuA05rH1+orwdK9
+X-Gm-Gg: ASbGnctbDu4kfS9X8i/UUV5BIOlEtE1hAPCHy+MMl+fRxxOWwOszq5Ssf+d8o46LtsV
+ 2vnlor0y44j8GffhTMIKHDC1gB+pquB0weeK7RB18dN1J5Pnh0GuO1KrO8TLExlR+Vkhiykhbdq
+ CL5WKOoC317u5Sjd81OXBJXl7oOSKi2tBsHBNc2HAOO9nVULvutAcsQHoFrTp8eidIMiGuYoMCV
+ 1xRS3LxttDE0oYeuZtNqrUUqkKVIzfy9joYkiq1d6d16ICWIgT/SZyXGOQDwJhhgvKasnzyY1lN
+ 0x7Yn1MZamyEhLU1+WRUkWe9UItWWepGu6AiayT4LY8kbFMH9HjpwrHPSgpIknc=
+X-Google-Smtp-Source: AGHT+IFWDRZ5DMF8AWYghMojAC19CnsoSoHQTSNpwtp6Jv2nP6IRBRnbRL5Y916DRs9zZwsULYr8uQ==
+X-Received: by 2002:a05:6000:18ad:b0:3a3:727d:10e8 with SMTP id
+ ffacd0b85a97d-3a4fe3a6ac9mr9056440f8f.50.1748973863165; 
+ Tue, 03 Jun 2025 11:04:23 -0700 (PDT)
+Received: from qasdev.Home ([2a02:c7c:6696:8300:397c:823b:f900:56d9])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3a4efe5b887sm19468210f8f.18.2025.06.03.11.04.22
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Jun 2025 22:48:54 -0700 (PDT)
-Date: Wed, 11 Jun 2025 06:48:51 +0100
-From: Salah Triki <salah.triki@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Tue, 03 Jun 2025 11:04:22 -0700 (PDT)
+From: Qasim Ijaz <qasdev00@gmail.com>
+To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Cc: salah.triki@gmail.com
-Subject: [PATCH] drm/xe: replace kmem_cache_create() with KMEM_CACHE()
-Message-ID: <aEkYwwhFQqPxyyey@pc>
+Subject: [PATCH] drm/xe/hwmon: fix uninitialised access in
+ xe_hwmon_pcode_write_power_limit
+Date: Tue,  3 Jun 2025 19:03:33 +0100
+Message-Id: <20250603180333.32117-1-qasdev00@gmail.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Fri, 13 Jun 2025 13:59:01 +0000
+Content-Type: text/plain; charset=n
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 13 Jun 2025 13:59:00 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,30 +88,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use KMEM_CACHE() instead of kmem_cache_create() to simplify the creation
-of SLAB cache.
+val0/val1 are not initialised and are passed to xe_pcode_read():
 
-Signed-off-by: Salah Triki <salah.triki@gmail.com>
+    xe_hwmon_pcode_write_power_limit()
+      └─▶ xe_pcode_read()
+            └─▶ pcode_mailbox_rw()
+                  └─▶ __pcode_mailbox_rw()
+
+If __pcode_mailbox_rw fails, val0/val1 could be left
+uninitialised leading to xe_hwmon_pcode_write_power_limit()
+to access them via drm_dbg. Or an uninitialised val0/val1
+could be dereferenced inside __pcode_mailbox_rw.
+
+To fix zero-initialise them to avoid potential UB and 
+propagate error on failure.
+
+Fixes: 7596d839f622 ("drm/xe/hwmon: Add support to manage power limits though mailbox")
+Signed-off-by: Qasim Ijaz <qasdev00@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_hw_fence.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_hwmon.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index 0b4f12be3692..b54f758a905e 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.c
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -20,9 +20,8 @@ static struct kmem_cache *xe_hw_fence_slab;
- 
- int __init xe_hw_fence_module_init(void)
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 0d32e977537c..04acb47488a0 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -179,7 +179,7 @@ static int xe_hwmon_pcode_write_power_limit(const struct xe_hwmon *hwmon, u32 at
+ 					    u32 uval)
  {
--	xe_hw_fence_slab = kmem_cache_create("xe_hw_fence",
--					     sizeof(struct xe_hw_fence), 0,
--					     SLAB_HWCACHE_ALIGN, NULL);
-+	xe_hw_fence_slab = KMEM_CACHE(xe_hw_fence, SLAB_HWCACHE_ALIGN);
-+
- 	if (!xe_hw_fence_slab)
- 		return -ENOMEM;
+ 	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
+-	u32 val0, val1;
++	u32 val0 = 0, val1 = 0;
+ 	int ret = 0;
  
+ 	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_POWER_SETUP,
+@@ -190,9 +190,11 @@ static int xe_hwmon_pcode_write_power_limit(const struct xe_hwmon *hwmon, u32 at
+ 						  READ_PL_FROM_PCODE : READ_PL_FROM_FW),
+ 						  &val0, &val1);
+ 
+-	if (ret)
++	if (ret) {
+ 		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
+ 			channel, val0, val1, ret);
++		return ret;
++	}
+ 
+ 	if (attr == PL1_HWMON_ATTR)
+ 		val0 = uval;
 -- 
-2.43.0
+2.39.5
 
