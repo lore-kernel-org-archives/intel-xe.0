@@ -4,49 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CADAEC5AE59
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 18:24:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CA70C5AD49
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 18:24:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D09510E74E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9397210E8F8;
 	Tue,  3 Jun 2025 18:24:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MVTpPGmO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="InNso9M2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 263D910E8F1
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 18:24:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63EA210E74E
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 18:24:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748975075; x=1780511075;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0jKP7ajafdkv8PjOit5ufecyfenD65rYebmq4hx1aLs=;
- b=MVTpPGmOy285LkKwSPPqlJLiC1ZnQDYVzLpZ0Dfhn9r5cLXnp4h4oj1N
- dFMpww4ZO7bFQzxJAS+6vuvjC2LdGjzgq7IeUqVwi+cX+5PhxLwCyu1Ok
- jPUETLyVw5wjGJTjqjvAAtPHKJVpCi14Oi+B2hsTiKw6Alc5Sw3eQBSpL
- Nvm7gDEp50eOHnaEQQGt8ofEov7PnlJT3Wi6w5w7LqXu7rLVjjOL4OxJ0
- Jw8PvMS2gd4ay+bHy9VVLV8XaqRE3gkMgPFNIUYKxxrmxDuTWnQRAPoP7
- 4VbeWBuPAnytV9qkiG2kF2Sob+kgulULmKSSgQZWCIP36/1g8x8yaXxnv Q==;
-X-CSE-ConnectionGUID: n3SJTO6zQ++ak/afBNPvkg==
-X-CSE-MsgGUID: nk/dQJsMQlq5U/QgSqDuHQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="54693854"
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="54693854"
+ t=1748975076; x=1780511076;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0FIC44T+FwE86sV240zNv58aKnMJ+h9qEnOnfxpbQoU=;
+ b=InNso9M2rT68YvcDUv8epVA9hUlxiUdtp6Dcm0G1jDGGCmMqu+OC9CLD
+ PmxyzF4OGWSWY5sroNKwkwyG0hhz4C7Q3BK+ndicHZzImn2jXiru/a9AL
+ nnpynJAhCdw/nLdseyGxFoOswGx4WTRqikZ60gXA1RRRRN7j0DVue9NXv
+ 1KYbNPd5qyO+azWnnhGmVY1sBUjS3jlKuMRQ5WC82/7aw5Dyage9DEeOI
+ LcZxHMAAizG9lLbyyRmFgWzupsNODLttGodPxFSC2AJjTQ6MblB56PjEn
+ eogoYfLlYEO0dkX0NrYfabeMqDYwA2X+c8BDUlLd/9uTlPD/fMbWexHMs A==;
+X-CSE-ConnectionGUID: LH9DeAbFTwyxSX4CDFUbiw==
+X-CSE-MsgGUID: eH+j6VExQBuELl0SMqsS3w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="54693857"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="54693857"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 11:24:34 -0700
-X-CSE-ConnectionGUID: NeIyzsJIRx6pY6L2J6Xk9g==
-X-CSE-MsgGUID: 3MsZ5KApSiSqEg2pTMcDIQ==
+ 03 Jun 2025 11:24:36 -0700
+X-CSE-ConnectionGUID: ELch/v0oQzSjKCq1kvlJ0g==
+X-CSE-MsgGUID: UsrQ4KAAQECAz7f3Gj/x7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="145562019"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="145562024"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa007.jf.intel.com with ESMTP; 03 Jun 2025 11:24:34 -0700
+ by orviesa007.jf.intel.com with ESMTP; 03 Jun 2025 11:24:35 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH 0/6] Add WildCat Lake support
-Date: Tue,  3 Jun 2025 23:54:24 +0530
-Message-Id: <20250603182430.1016734-1-dnyaneshwar.bhadane@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH 1/6] drm/i915/xe3lpd: Add support for display version 30.02
+Date: Tue,  3 Jun 2025 23:54:25 +0530
+Message-Id: <20250603182430.1016734-2-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250603182430.1016734-1-dnyaneshwar.bhadane@intel.com>
+References: <20250603182430.1016734-1-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,28 +66,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable Wildcat Lake by adding PCI IDs and add the initial support GT, Media
-and Display workarounds.
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Matt Atwood (2):
-  drm/i915/xe3lpd: Update bandwidth parameters for display version 30.02
-  drm/i915: Set max cdclk for display 30.02
+Display version 30.02 should be treated the same as other Xe3 IP, but
+will have a slightly different set of workarounds.
 
-Matt Roper (4):
-  drm/i915/xe3lpd: Add support for display version 30.02
-  drm/xe/xe3: Add support for graphics IP version 30.03
-  drm/xe/xe3: Add support for media IP version 30.02
-  drm/xe: Add Wildcat Lake device IDs to PTL list
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_device.c | 1 +
+ 1 file changed, 1 insertion(+)
 
- drivers/gpu/drm/i915/display/intel_bw.c          | 11 ++++++++++-
- drivers/gpu/drm/i915/display/intel_cdclk.c       |  4 +++-
- .../gpu/drm/i915/display/intel_display_device.c  |  1 +
- drivers/gpu/drm/xe/xe_pci.c                      |  2 ++
- drivers/gpu/drm/xe/xe_wa.c                       | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules               |  8 ++++++--
- include/drm/intel/pciids.h                       |  4 +++-
- 7 files changed, 41 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 90d714598664..e0db4781bdf0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -1479,6 +1479,7 @@ static const struct {
+ 	{ 14,  1, &xe2_hpd_display },
+ 	{ 20,  0, &xe2_lpd_display },
+ 	{ 30,  0, &xe2_lpd_display },
++	{ 30,  2, &xe2_lpd_display },
+ };
+ 
+ static const struct intel_display_device_info *
 -- 
 2.34.1
 
