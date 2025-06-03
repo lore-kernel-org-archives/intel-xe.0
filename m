@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 944D2C5AE59
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 18:17:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93722C5AE59
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 18:17:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48F3610E16F;
-	Tue,  3 Jun 2025 18:17:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A32B10E5DB;
+	Tue,  3 Jun 2025 18:17:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GoDJmJny";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nUdkydoa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BC8710E16F
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 18:17:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DDF210E5DB
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 18:17:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748974653; x=1780510653;
+ t=1748974656; x=1780510656;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jBwLo8YRbMtjAVsIXgoJSxO4IsNa7v6++ExPsO8n6A4=;
- b=GoDJmJnyiRkw1OBglYvqGwTLJQCBpjsoPCVtL46vnte7UEvqDfN5y7oO
- LXykw9Q+OVlkSMCxsj0bg8QRk2Z8CvOxh1mf60sKtxnx+HtZQEEtXe9Ns
- zKqDiyTkJnac/xiOTIaf39zvIpMdYa/wKm6c2T/Sl+pgdpNH8U2B7AGbE
- cwTNRVM+rWiitpbtSs/XfYoNJSz94CDj6++Lw6nPekMZmD5Ur4rKYgfOK
- Q7Wlq1678yGiLdfzHGcuoq9Gzub/gvRChQhsWxtdWdKDQLy/s4JB9kcGQ
- 57TgAqSLT65qTsbxWgAmudGf4jyWTz6470CcJkLNIsPwFvAKc6B9Iqo24 w==;
-X-CSE-ConnectionGUID: uG6ylXfbSJaME2hri5Z31g==
-X-CSE-MsgGUID: D5Iv2qlMSBOj8qQN3nkT2Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="73563218"
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="73563218"
+ bh=h3p/vQXJoP7a13A/S8VqKrkKZWNrCEJ7y1rqb9D4WiQ=;
+ b=nUdkydoarLelZ7Lj6MtO17/VKy45vSDi70Tm56ONFAwjsB4uDmGC3Wfr
+ NppbD0OXANDvpme4E/gR6Oxr6z9nm2O5IIGDxhSGI4MUay7UsxNJ5xIQH
+ SXkd+9uW0Bfc2EaRVHJ2r4+GobEZ8Ja9GJVGqhT0wt9f3taOrY5BY8BRm
+ tmDQiU14NiIzt9yERqQElEHlUL7nWXmaGPilMi0dUY0fujz1M9aulGQTe
+ 2VcrhQU6m0ofQCtqBKU2yyyzs8nmYp8t0Pq3qWfuMehUkIHGe2QCvrENh
+ lSEerYAqT8jkO59mRIht6xyTZYmKGZdC/6XbApEnmi6kVwI+3jjoGvLyx w==;
+X-CSE-ConnectionGUID: PA/l8LLQTbOr1HtVaV/2iA==
+X-CSE-MsgGUID: 6c+o6chUTWKLNWl7qhrl7A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="73563224"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="73563224"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 11:17:32 -0700
-X-CSE-ConnectionGUID: iX6YFlJuQCC4+myvYH2OFg==
-X-CSE-MsgGUID: 4tc3ocGvSA+1k/uI79UWGw==
+ 03 Jun 2025 11:17:35 -0700
+X-CSE-ConnectionGUID: jpSxlWGWREun11DgtgGm4w==
+X-CSE-MsgGUID: ZzzSQTWWR+Os4ro/IWI7nQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="145560717"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="145560731"
 Received: from psoham-nuc7i7bnh.iind.intel.com ([10.190.216.151])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 11:17:30 -0700
+ 03 Jun 2025 11:17:33 -0700
 From: Soham Purkait <soham.purkait@intel.com>
 To: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, karthik.poosa@intel.com
 Cc: lucas.demarchi@intel.com, soham.purkait@intel.com,
  ashutosh.dixit@intel.com, riana.tauro@intel.com, jani.nikula@intel.com
-Subject: [PATCH v3 1/2] drm/xe/xe_debugfs: Exposure of G-State and pcie link
- state residency counters through debugfs
-Date: Tue,  3 Jun 2025 23:42:04 +0530
-Message-Id: <20250603181205.1680363-2-soham.purkait@intel.com>
+Subject: [PATCH v3 2/2] drm/xe/regs/xe_pmt: Macros for G-State and pcie link
+ state residency offset
+Date: Tue,  3 Jun 2025 23:42:05 +0530
+Message-Id: <20250603181205.1680363-3-soham.purkait@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250603181205.1680363-1-soham.purkait@intel.com>
 References: <20250603181205.1680363-1-soham.purkait@intel.com>
@@ -69,157 +69,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-    Add two debugfs node named dgfx_pkg_residencies and dgfx_link_state_residencys
-in order to obtain the G-State residency counter values for G2, G6, G8, G10 &
-ModS and the pcie link state residency counter values for L0, L1 & L1.2
+   Add G-State residency and pcie link state residency
+offset macros for G2, G6, G8, G10, ModS and L0, L1, L1.2
 respectively.
 
 Signed-off-by: Soham Purkait <soham.purkait@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c | 99 +++++++++++++++++++++++++++++++++
- 1 file changed, 99 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_pmt.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index d83cd6ed3fa8..c339f05ce42e 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -11,16 +11,19 @@
+diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
+index b0efd9b48d1e..4e377b6eac92 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pmt.h
++++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
+@@ -21,4 +21,14 @@
+ #define SG_REMAP_INDEX1			XE_REG(SOC_BASE + 0x08)
+ #define   SG_REMAP_BITS			REG_GENMASK(31, 24)
  
- #include <drm/drm_debugfs.h>
- 
-+#include "regs/xe_pmt.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt_debugfs.h"
- #include "xe_gt_printk.h"
- #include "xe_guc_ads.h"
-+#include "xe_mmio.h"
- #include "xe_pm.h"
- #include "xe_pxp_debugfs.h"
- #include "xe_sriov.h"
- #include "xe_step.h"
-+#include "xe_vsec.h"
- 
- #ifdef CONFIG_DRM_XE_DEBUG
- #include "xe_bo_evict.h"
-@@ -185,6 +188,86 @@ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
- 	return size;
- }
- 
-+static int read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
-+				  u64 *dst, u32 offset, char *name)
-+{
-+	int ret = xe_pmt_telem_read(to_pci_dev(xe->drm.dev),
-+				xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
-+				dst, offset, sizeof(u64));
-+	if (ret != sizeof(u64))
-+		drm_warn(&xe->drm, "%s residency counter failed to read, ret %d\n", name, ret);
++#define BMG_G2_RESIDENCY_OFFSET			(0x530)
++#define BMG_G6_RESIDENCY_OFFSET			(0x538)
++#define BMG_G8_RESIDENCY_OFFSET			(0x540)
++#define BMG_G10_RESIDENCY_OFFSET		(0x548)
++#define BMG_MODS_RESIDENCY_OFFSET		(0x4D0)
 +
-+	return 0;
-+}
++#define PCIE_LINK_L0_RESIDENCY_COUNTER		(0x570)
++#define PCIE_LINK_L1_RESIDENCY_COUNTER		(0x578)
++#define PCIE_LINK_L1_2_RESIDENCY_COUNTER	(0x580)
 +
-+static ssize_t dgfx_pkg_residencies_show(struct file *f, char __user *ubuf,
-+					 size_t size, loff_t *pos)
-+{
-+	u64 g_states;
-+	char buf[256];
-+	int len = 0;
-+	struct xe_device *xe;
-+	struct xe_mmio *mmio;
-+
-+	xe = file_inode(f)->i_private;
-+	xe_pm_runtime_get(xe);
-+	mmio = xe_root_tile_mmio(xe);
-+
-+	g_states = 0;
-+	read_residency_counter(xe, mmio, &g_states, BMG_G2_RESIDENCY_OFFSET, "G2");
-+	len = scnprintf(buf, sizeof(buf), "Package G2: %llu\n", g_states);
-+
-+	g_states = 0;
-+	read_residency_counter(xe, mmio, &g_states, BMG_G6_RESIDENCY_OFFSET, "G6");
-+	len += scnprintf(buf + len, sizeof(buf) - len, "Package G6: %llu\n", g_states);
-+
-+	g_states = 0;
-+	read_residency_counter(xe, mmio, &g_states, BMG_G8_RESIDENCY_OFFSET, "G8");
-+	len += scnprintf(buf + len, sizeof(buf) - len, "Package G8: %llu\n", g_states);
-+
-+	g_states = 0;
-+	read_residency_counter(xe, mmio, &g_states, BMG_G10_RESIDENCY_OFFSET, "G10");
-+	len += scnprintf(buf + len, sizeof(buf) - len, "Package G10: %llu\n", g_states);
-+
-+	g_states = 0;
-+	read_residency_counter(xe, mmio, &g_states, BMG_MODS_RESIDENCY_OFFSET, "ModS");
-+	len += scnprintf(buf + len, sizeof(buf) - len, "Package ModS: %llu\n", g_states);
-+
-+	xe_pm_runtime_put(xe);
-+	return simple_read_from_buffer(ubuf, size, pos, buf, len);
-+}
-+
-+static ssize_t dgfx_link_state_residencys_show(struct file *f, char __user *ubuf,
-+					       size_t size, loff_t *pos)
-+{
-+	u64 link_res;
-+	char buf[256];
-+	int len = 0;
-+	struct xe_device *xe;
-+	struct xe_mmio *mmio;
-+
-+	xe = file_inode(f)->i_private;
-+	xe_pm_runtime_get(xe);
-+	mmio = xe_root_tile_mmio(xe);
-+
-+	link_res = 0;
-+	read_residency_counter(xe, mmio, &link_res, PCIE_LINK_L0_RESIDENCY_COUNTER, "PCIE LINK L0");
-+	len = scnprintf(buf, sizeof(buf), "PCIE LINK L0 RESIDENCY :  %llu\n", link_res);
-+
-+	link_res = 0;
-+	read_residency_counter(xe, mmio, &link_res, PCIE_LINK_L1_RESIDENCY_COUNTER, "PCIE LINK L1");
-+	len += scnprintf(buf + len, sizeof(buf) - len, "PCIE LINK L1 RESIDENCY : %llu\n", link_res);
-+
-+	link_res = 0;
-+	read_residency_counter(xe, mmio, &link_res,
-+			       PCIE_LINK_L1_2_RESIDENCY_COUNTER, "PCIE LINK L1.2");
-+	len += scnprintf(buf + len, sizeof(buf) - len,
-+			 "PCIE LINK L1.2 RESIDENCY : %llu\n", link_res);
-+
-+	xe_pm_runtime_put(xe);
-+	return simple_read_from_buffer(ubuf, size, pos, buf, len);
-+}
-+
- static const struct file_operations wedged_mode_fops = {
- 	.owner = THIS_MODULE,
- 	.read = wedged_mode_show,
-@@ -226,6 +309,16 @@ static const struct file_operations atomic_svm_timeslice_ms_fops = {
- 	.write = atomic_svm_timeslice_ms_set,
- };
- 
-+static const struct file_operations dgfx_pkg_residencies_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dgfx_pkg_residencies_show,
-+};
-+
-+static const struct file_operations dgfx_link_state_residencys_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dgfx_link_state_residencys_show,
-+};
-+
- void xe_debugfs_register(struct xe_device *xe)
- {
- 	struct ttm_device *bdev = &xe->ttm;
-@@ -249,6 +342,12 @@ void xe_debugfs_register(struct xe_device *xe)
- 	debugfs_create_file("atomic_svm_timeslice_ms", 0600, root, xe,
- 			    &atomic_svm_timeslice_ms_fops);
- 
-+	debugfs_create_file("dgfx_pkg_residencies", 0444, root, xe,
-+			    &dgfx_pkg_residencies_fops);
-+
-+	debugfs_create_file("dgfx_link_state_residencys", 0444, root, xe,
-+			    &dgfx_link_state_residencys_fops);
-+
- 	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
- 		man = ttm_manager_type(bdev, mem_type);
- 
+ #endif
 -- 
 2.34.1
 
