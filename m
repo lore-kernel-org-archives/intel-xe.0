@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1257BC5AE59
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 18:24:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A6A6C5B552
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 18:24:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C53CF10E908;
-	Tue,  3 Jun 2025 18:24:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03C6610E965;
+	Tue,  3 Jun 2025 18:24:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ih36iJCZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NXR17MkZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36B9110E960
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 18:24:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CCDE10E908
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 18:24:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748975079; x=1780511079;
+ t=1748975080; x=1780511080;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tXwKpcyRYK1xX3g59DVtT5ly4wLeFUiZXMLxl2qPIco=;
- b=Ih36iJCZBXC2zCubooPsI+N/SvlhfqjpRWVG8R4RxN1SZ2G9P7yc66uJ
- RfsODd2j/xQ7Tx6jpW2SYQqczyy5VyD1e1plve/riVG0j+e5iHI0gCL7o
- 97syj3QbvE7kQD1ChMNQjk3yzJbEgzCFyUw1ffr8L8Mu33CpsOG9QqCo/
- tJN9vPmCXYLotwKOASzt2Quk0C0Ont7spaoSg/GMvR7wC31iyBBikdLXf
- fhMfumvUJVLRcLe2h96y4n529Usq9CRb6b6ZO30j2dr32tomXjWhMzWyu
- XL05G/eK/P/QIvMHdhDiRELM6xROZi4vg1J7w4+bgoa3pqsQ8NbLQWVPV g==;
-X-CSE-ConnectionGUID: uRV/XD/cR1ygNfgdJF9hYg==
-X-CSE-MsgGUID: 65MKx61OQe2yk45r3C50yg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="54693863"
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="54693863"
+ bh=dWTdUudk7grE0UO/9TmVzEbBBpPsDZ79MNicuI1Gj0U=;
+ b=NXR17MkZZVGzALG/O1orOp5nYvxBjNy+5It4VEfJj+w9xOEHvNLnayFu
+ Brr3piHzIAykFjRVoc+rFwZl6+3WhRW+Fjd+pDu9HRjqC5uyFXHrh+58f
+ xoy35ZM+L68UzwObBV7LzbDzthV9X26/lbp+v7QX6uBuwkj1Ko7WLnl8D
+ 4BkJVOzzBwbcYrw7bI7B1Wl31I8omn141SMb1vne8wh3t9DUZmUXVAcy1
+ 3h8hCm0oVzHDPBDz4glAaWUS5/RBb4gI8arvgPiRXuqSgy7wWNBsOGmCj
+ /L60IWcsagMSfEw0xwgaBRg4vEwB4DVJea1HW6B5gJWfL9w5QFcuVqxBC A==;
+X-CSE-ConnectionGUID: wcOle2LER2yyqEpTNviXIA==
+X-CSE-MsgGUID: oEt2gLkKS1m1JEVuGkcamQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="54693865"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="54693865"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 11:24:39 -0700
-X-CSE-ConnectionGUID: paqAbNomSievA7nnT0LgUw==
-X-CSE-MsgGUID: cEAmEM06RYaW3bJfVCaUuA==
+ 03 Jun 2025 11:24:40 -0700
+X-CSE-ConnectionGUID: H8mcgjqDQamSREtNqOqW0Q==
+X-CSE-MsgGUID: s6NAbGnTQLGpcdni5K4dyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="145562038"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="145562046"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa007.jf.intel.com with ESMTP; 03 Jun 2025 11:24:36 -0700
+ by orviesa007.jf.intel.com with ESMTP; 03 Jun 2025 11:24:38 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
+Cc: Matt Atwood <matthew.s.atwood@intel.com>,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH 3/6] drm/xe/xe3: Add support for media IP version 30.02
-Date: Tue,  3 Jun 2025 23:54:27 +0530
-Message-Id: <20250603182430.1016734-4-dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH 4/6] drm/i915/xe3lpd: Update bandwidth parameters for display
+ version 30.02
+Date: Tue,  3 Jun 2025 23:54:28 +0530
+Message-Id: <20250603182430.1016734-5-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250603182430.1016734-1-dnyaneshwar.bhadane@intel.com>
 References: <20250603182430.1016734-1-dnyaneshwar.bhadane@intel.com>
@@ -66,67 +67,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Matt Atwood <matthew.s.atwood@intel.com>
 
-Media version 30.02 should be treated the same as other Xe3 IP, but
-will have a slightly different set of workarounds.
+Bandwidth parameters for WCL have been updated with respect to
+previous display releases. Encode them into xe3lpd_3002_sa_info and use
+that new struct.
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Bspec: 68859
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c        |  1 +
- drivers/gpu/drm/xe/xe_wa.c         | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules |  3 ++-
- 3 files changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 247cd928b933..7b84afe873f7 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -195,6 +195,7 @@ static const struct xe_ip media_ips[] = {
- 	{ 1301, "Xe2_HPM", &media_xelpmp },
- 	{ 2000, "Xe2_LPM", &media_xelpmp },
- 	{ 3000, "Xe3_LPM", &media_xelpmp },
-+	{ 3002, "Xe3_LPM", &media_xelpmp },
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index a5dd2932b852..39b5f2759617 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -418,6 +418,13 @@ static const struct intel_sa_info xe3lpd_sa_info = {
+ 	.derating = 10,
  };
  
- static const struct xe_device_desc tgl_desc = {
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 5f750054a9c4..7ff79abe23e7 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -285,6 +285,18 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), IECPUNIT_CLKGATE_DIS)),
- 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
- 	},
-+	{ XE_RTP_NAME("16021865536"),
-+	  XE_RTP_RULES(MEDIA_VERSION(3002),
-+		       ENGINE_CLASS(VIDEO_DECODE)),
-+	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), IECPUNIT_CLKGATE_DIS)),
-+	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
-+	},
-+	{ XE_RTP_NAME("16021867713"),
-+	  XE_RTP_RULES(MEDIA_VERSION(3002),
-+		       ENGINE_CLASS(VIDEO_DECODE)),
-+	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F1C(0), MFXPIPE_CLKGATE_DIS)),
-+	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
-+	},
- 	{ XE_RTP_NAME("14021486841"),
- 	  XE_RTP_RULES(MEDIA_VERSION(3000), MEDIA_STEP(A0, B0),
- 		       ENGINE_CLASS(VIDEO_DECODE)),
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 557d23c1bb9f..e46b4975ebef 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -59,6 +59,7 @@ no_media_l3	MEDIA_VERSION(3000)
- 		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
- 16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
- 		MEDIA_VERSION_RANGE(1301, 3000)
-+		MEDIA_VERSION(3002)
- 		GRAPHICS_VERSION(3003)
- 16026508708	GRAPHICS_VERSION_RANGE(1200, 3003)
--		MEDIA_VERSION_RANGE(1300, 3000)
-+		MEDIA_VERSION_RANGE(1300, 3002)
++static const struct intel_sa_info xe3lpd_3002_sa_info = {
++	.deburst = 32,
++	.deprogbwlimit = 22, /* GB/s */
++	.displayrtids = 256,
++	.derating = 10,
++};
++
+ static int icl_get_bw_info(struct intel_display *display, const struct intel_sa_info *sa)
+ {
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
+@@ -768,7 +775,9 @@ void intel_bw_init_hw(struct intel_display *display)
+ 	if (!HAS_DISPLAY(display))
+ 		return;
+ 
+-	if (DISPLAY_VER(display) >= 30)
++	if (DISPLAY_VERx100(display) >= 3002)
++		tgl_get_bw_info(display, &xe3lpd_3002_sa_info);
++	else if (DISPLAY_VER(display) >= 30)
+ 		tgl_get_bw_info(display, &xe3lpd_sa_info);
+ 	else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx &&
+ 		 dram_info->type == INTEL_DRAM_GDDR_ECC)
 -- 
 2.34.1
 
