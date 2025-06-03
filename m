@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC807C5AE59
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 10:33:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF109C5AE59
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 11:31:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8384110E6F8;
-	Tue,  3 Jun 2025 10:33:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 869CA10E6DE;
+	Tue,  3 Jun 2025 11:31:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RuGGudAG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kRKahpOj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9818110E716
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 10:33:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748946816; x=1780482816;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=KCRnPTUK3lCcMhCRQocBKQwSs+7ShjK/Sy+pKGWlCyU=;
- b=RuGGudAGY+q9SZR7on3W2mZgn7sfEp/4yvWP5XEbLNVXORzFdT+nWMWA
- it9YWR7JsuGgqtu1kNtNdEdtRtH37hcDH5kJWU4KGMNKESlKhP6sXvt4H
- t6uGsuFvHaXZNXqUff4X/uEpSwgiMK71USuFdRIwDvjs+bk/klBoI7Ulh
- 7ZYjVpoT0OEpjl+HzL/cqlc08AL7Gdf1tP0XXuitVgl0rB5ccNhA+t/GH
- Id/9q5o35gSC4Rexq0LkLkoOVG3ip9xeoKcpNvgYHeB8cGJZRU9hy7i3M
- ixW7XPmYlP9GVP+OpsWjwhItRACnIPTGL0V1114Y6bCjCvt5dJKdZAZBm g==;
-X-CSE-ConnectionGUID: xpQCTTHZTYqXdcpQBqYY9Q==
-X-CSE-MsgGUID: QesaF9+MQ+2nuPdOWzkx1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="50102648"
-X-IronPort-AV: E=Sophos;i="6.16,205,1744095600"; d="scan'208";a="50102648"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 03:33:35 -0700
-X-CSE-ConnectionGUID: SZ7Fkd5IS0GsFwDPlHDm2Q==
-X-CSE-MsgGUID: 8D291uAlTEKcjRFtsEAMaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,205,1744095600"; d="scan'208";a="150107138"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa005.jf.intel.com with ESMTP; 03 Jun 2025 03:33:32 -0700
-Received: from [10.245.253.198] (unknown [10.245.253.198])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 8EB2033BE0;
- Tue,  3 Jun 2025 11:33:31 +0100 (IST)
-Message-ID: <9e65671d-e014-4b74-a089-93004a43a578@intel.com>
-Date: Tue, 3 Jun 2025 12:33:31 +0200
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0006410E6B6;
+ Tue,  3 Jun 2025 11:31:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=i/lvSiF8dtmtmoLMiLzZk2qO/IH1nyyA12ADQtL5TA8=; b=kRKahpOjinr6jZRL89gMPYL0jp
+ uL68zdKik4/90GSunlldrKHLSl4WhkwVmsFpxaponIC7zJKjfPkYET1d/uM8QWIWUwjeutVsbOVk9
+ PkPeNv8+PvXk8+6AIwbrDxe6uj1L4eL35q0Z3V784dy/mCwyGTI1VrutdVjWf62b3hB50YSYy6a7H
+ tKgCQhweCXzhcVsDOA+FsycualEhe2YEpC7u16QjNK2OBvDXJF3yT1cxKbzyR2DkyY+y2ocCdvtmt
+ Kcc1ed9Zj2YSdnqmgX1sapsKapB0qKzQTQEZbKZtw1DjXWIpjdip9mxzL87vU9LUottm7j/1c+ffR
+ rqLGSTBA==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uMPr7-00GeKr-Qy; Tue, 03 Jun 2025 13:30:57 +0200
+Message-ID: <7598fd9c-7169-4a01-a24a-b9e666e9a915@igalia.com>
+Date: Tue, 3 Jun 2025 12:30:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/xe/vf: Move tile-related VF functions to separate
- file
-To: "Lis, Tomasz" <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
-References: <20250602103325.549-1-michal.wajdeczko@intel.com>
- <20250602103325.549-3-michal.wajdeczko@intel.com>
- <5ed24516-fe4b-4eaa-833c-ce383c2d7f85@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <5ed24516-fe4b-4eaa-833c-ce383c2d7f85@intel.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v4 2/9] dma-fence: Use a flag for 64-bit seqnos
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, kernel-dev@igalia.com
+References: <20250515095004.28318-1-tvrtko.ursulin@igalia.com>
+ <20250515095004.28318-3-tvrtko.ursulin@igalia.com>
+ <c93c05be-b2c8-42a2-84d1-32b90743eb82@amd.com>
+ <b59cadff-da9a-409f-a5ed-96aafdfe3f0b@igalia.com>
+ <13c5edf6-ccad-4a06-85d4-dccf2afd0c62@amd.com>
+ <d483076a-b12f-4ade-b699-ee488df298ba@igalia.com>
+ <2ffc513c-2d11-4b76-b9c9-c7cb7841e386@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <2ffc513c-2d11-4b76-b9c9-c7cb7841e386@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,739 +71,305 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-
-On 03.06.2025 01:32, Lis, Tomasz wrote:
-> 
-> On 02.06.2025 12:33, Michal Wajdeczko wrote:
->> Some of our VF functions, even if they take a GT pointer, work
->> only on primary GT and really are tile-related and would be better
->> to keep them separate from the rest of true GT-oriented functions.
->> Move them to a file and update to take a tile pointer instead.
+On 02/06/2025 19:00, Christian König wrote:
+> On 6/2/25 17:25, Tvrtko Ursulin wrote:
 >>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Tomasz Lis <tomasz.lis@intel.com>
-> 
-> No issues. We've switched the ballooning error from ENODATA to ENOSPC if
-> ggtt_size is zero,
-> 
-> but that was very hard to reach anyway since `vf_get_ggtt_info()`
-> returns with ENODATA earlier.
-
-yes, we are checking for zero ggtt_size in vf_get_ggtt_info() and we
-shouldn't reach any further function if we didn't get any GGTT
-
-that's why we have asserts elsewhere to enforce that
-
-> 
-> Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
-
-thanks!
-
-> 
-> -Tomasz
-> 
->> ---
->>   drivers/gpu/drm/xe/Makefile           |   3 +-
->>   drivers/gpu/drm/xe/xe_ggtt.c          |   4 +-
->>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c   | 245 --------------------------
->>   drivers/gpu/drm/xe/xe_gt_sriov_vf.h   |   4 -
->>   drivers/gpu/drm/xe/xe_sriov_vf.c      |   3 +-
->>   drivers/gpu/drm/xe/xe_tile_sriov_vf.c | 245 ++++++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_tile_sriov_vf.h |  18 ++
->>   7 files changed, 269 insertions(+), 253 deletions(-)
->>   create mode 100644 drivers/gpu/drm/xe/xe_tile_sriov_vf.c
->>   create mode 100644 drivers/gpu/drm/xe/xe_tile_sriov_vf.h
+>> On 02/06/2025 15:42, Christian König wrote:
+>>> On 6/2/25 15:05, Tvrtko Ursulin wrote:
+>>>>
+>>>> Hi,
+>>>>
+>>>> On 15/05/2025 14:15, Christian König wrote:
+>>>>> Hey drm-misc maintainers,
+>>>>>
+>>>>> can you guys please backmerge drm-next into drm-misc-next?
+>>>>>
+>>>>> I want to push this patch here but it depends on changes which are partially in drm-next and partially in drm-misc-next.
+>>>>
+>>>> Looks like the backmerge is still pending?
+>>>
+>>> Yes, @Maarten, @Maxime and @Thomas ping on this.
+>>>
+>>>> In the meantime, Christian, any chance you will have some bandwith to think about the tail end of the series? Specifically patch 6 and how that is used onward.
+>>>
+>>> Well the RCU grace period is quite a nifty hack. I wanted to go over it again after merging the first patches from this series.
+>>>
+>>> In general looks like a good idea to me, I just don't like that we explicitely need to expose dma_fence_access_begin() and dma_fence_access_end().
+>>>
+>>> Especially we can't do that while calling fence->ops->release.
 >>
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index e4bf484d4121..f5f5775acdc0 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -139,7 +139,8 @@ xe-y += \
->>       xe_guc_relay.o \
->>       xe_memirq.o \
->>       xe_sriov.o \
->> -    xe_sriov_vf.o
->> +    xe_sriov_vf.o \
->> +    xe_tile_sriov_vf.o
->>     xe-$(CONFIG_PCI_IOV) += \
->>       xe_gt_sriov_pf.o \
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->> index af8e53014b87..b9a0fd5ccaba 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.c
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
->> @@ -22,12 +22,12 @@
->>   #include "xe_device.h"
->>   #include "xe_gt.h"
->>   #include "xe_gt_printk.h"
->> -#include "xe_gt_sriov_vf.h"
->>   #include "xe_gt_tlb_invalidation.h"
->>   #include "xe_map.h"
->>   #include "xe_mmio.h"
->>   #include "xe_pm.h"
->>   #include "xe_sriov.h"
->> +#include "xe_tile_sriov_vf.h"
->>   #include "xe_wa.h"
->>   #include "xe_wopcm.h"
->>   @@ -258,7 +258,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
->>           return err;
->>         if (IS_SRIOV_VF(xe)) {
->> -        err = xe_gt_sriov_vf_prepare_ggtt(xe_tile_get_gt(ggtt->tile,
->> 0));
->> +        err = xe_tile_sriov_vf_prepare_ggtt(ggtt->tile);
->>           if (err)
->>               return err;
->>       }
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/
->> xe_gt_sriov_vf.c
->> index acfb3b1b0832..792523cfa6e6 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->> @@ -613,168 +613,6 @@ s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt)
->>       return config->ggtt_shift;
->>   }
->>   -static int vf_init_ggtt_balloons(struct xe_gt *gt)
->> -{
->> -    struct xe_tile *tile = gt_to_tile(gt);
->> -    struct xe_ggtt *ggtt = tile->mem.ggtt;
->> -
->> -    xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
->> -    xe_gt_assert(gt, !xe_gt_is_media_type(gt));
->> -
->> -    tile->sriov.vf.ggtt_balloon[0] = xe_ggtt_node_init(ggtt);
->> -    if (IS_ERR(tile->sriov.vf.ggtt_balloon[0]))
->> -        return PTR_ERR(tile->sriov.vf.ggtt_balloon[0]);
->> -
->> -    tile->sriov.vf.ggtt_balloon[1] = xe_ggtt_node_init(ggtt);
->> -    if (IS_ERR(tile->sriov.vf.ggtt_balloon[1])) {
->> -        xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[0]);
->> -        return PTR_ERR(tile->sriov.vf.ggtt_balloon[1]);
->> -    }
->> -
->> -    return 0;
->> -}
->> -
->> -/**
->> - * xe_gt_sriov_vf_balloon_ggtt_locked - Insert balloon nodes to limit
->> used GGTT address range.
->> - * @gt: the &xe_gt struct instance
->> - * Return: 0 on success or a negative error code on failure.
->> - */
->> -int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt)
->> -{
->> -    struct xe_gt_sriov_vf_selfconfig *config = &gt-
->> >sriov.vf.self_config;
->> -    struct xe_tile *tile = gt_to_tile(gt);
->> -    struct xe_device *xe = gt_to_xe(gt);
->> -    u64 start, end;
->> -    int err;
->> -
->> -    xe_gt_assert(gt, IS_SRIOV_VF(xe));
->> -    xe_gt_assert(gt, !xe_gt_is_media_type(gt));
->> -    lockdep_assert_held(&tile->mem.ggtt->lock);
->> -
->> -    if (!config->ggtt_size)
->> -        return -ENODATA;
->> -
->> -    /*
->> -     * VF can only use part of the GGTT as allocated by the PF:
->> -     *
->> -     *      WOPCM                                  GUC_GGTT_TOP
->> -     *      |<------------ Total GGTT size ------------------>|
->> -     *
->> -     *           VF GGTT base -->|<- size ->|
->> -     *
->> -     *      +--------------------+----------+-----------------+
->> -     *      |////////////////////|   block  |\\\\\\\\\\\\\\\\\|
->> -     *      +--------------------+----------+-----------------+
->> -     *
->> -     *      |<--- balloon[0] --->|<-- VF -->|<-- balloon[1] ->|
->> -     */
->> -
->> -    start = xe_wopcm_size(xe);
->> -    end = config->ggtt_base;
->> -    if (end != start) {
->> -        err = xe_ggtt_node_insert_balloon_locked(tile-
->> >sriov.vf.ggtt_balloon[0],
->> -                             start, end);
->> -        if (err)
->> -            return err;
->> -    }
->> -
->> -    start = config->ggtt_base + config->ggtt_size;
->> -    end = GUC_GGTT_TOP;
->> -    if (end != start) {
->> -        err = xe_ggtt_node_insert_balloon_locked(tile-
->> >sriov.vf.ggtt_balloon[1],
->> -                             start, end);
->> -        if (err) {
->> -            xe_ggtt_node_remove_balloon_locked(tile-
->> >sriov.vf.ggtt_balloon[0]);
->> -            return err;
->> -        }
->> -    }
->> -
->> -    return 0;
->> -}
->> -
->> -static int vf_balloon_ggtt(struct xe_gt *gt)
->> -{
->> -    struct xe_ggtt *ggtt = gt_to_tile(gt)->mem.ggtt;
->> -    int err;
->> -
->> -    mutex_lock(&ggtt->lock);
->> -    err = xe_gt_sriov_vf_balloon_ggtt_locked(gt);
->> -    mutex_unlock(&ggtt->lock);
->> -
->> -    return err;
->> -}
->> -
->> -/**
->> - * xe_gt_sriov_vf_deballoon_ggtt_locked - Remove balloon nodes.
->> - * @gt: the &xe_gt struct instance
->> - */
->> -void xe_gt_sriov_vf_deballoon_ggtt_locked(struct xe_gt *gt)
->> -{
->> -    struct xe_tile *tile = gt_to_tile(gt);
->> -
->> -    xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
->> -    xe_ggtt_node_remove_balloon_locked(tile->sriov.vf.ggtt_balloon[1]);
->> -    xe_ggtt_node_remove_balloon_locked(tile->sriov.vf.ggtt_balloon[0]);
->> -}
->> -
->> -static void vf_deballoon_ggtt(struct xe_gt *gt)
->> -{
->> -    struct xe_tile *tile = gt_to_tile(gt);
->> -
->> -    mutex_lock(&tile->mem.ggtt->lock);
->> -    xe_gt_sriov_vf_deballoon_ggtt_locked(gt);
->> -    mutex_unlock(&tile->mem.ggtt->lock);
->> -}
->> -
->> -static void vf_fini_ggtt_balloons(struct xe_gt *gt)
->> -{
->> -    struct xe_tile *tile = gt_to_tile(gt);
->> -
->> -    xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
->> -    xe_gt_assert(gt, !xe_gt_is_media_type(gt));
->> -
->> -    xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[1]);
->> -    xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[0]);
->> -}
->> -
->> -static void cleanup_ggtt(struct drm_device *drm, void *arg)
->> -{
->> -    struct xe_gt *gt = arg;
->> -
->> -    vf_deballoon_ggtt(gt);
->> -    vf_fini_ggtt_balloons(gt);
->> -}
->> -
->> -/**
->> - * xe_gt_sriov_vf_prepare_ggtt - Prepare a VF's GGTT configuration.
->> - * @gt: the &xe_gt
->> - *
->> - * This function is for VF use only.
->> - *
->> - * Return: 0 on success or a negative error code on failure.
->> - */
->> -int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt)
->> -{
->> -    struct xe_tile *tile = gt_to_tile(gt);
->> -    struct xe_device *xe = tile_to_xe(tile);
->> -    int err;
->> -
->> -    if (xe_gt_is_media_type(gt))
->> -        return 0;
->> -
->> -    err = vf_init_ggtt_balloons(gt);
->> -    if (err)
->> -        return err;
->> -
->> -    err = vf_balloon_ggtt(gt);
->> -    if (err) {
->> -        vf_fini_ggtt_balloons(gt);
->> -        return err;
->> -    }
->> -
->> -    return drmm_add_action_or_reset(&xe->drm, cleanup_ggtt, gt);
->> -}
->> -
->>   static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32
->> *minor)
->>   {
->>       u32 request[VF2PF_HANDSHAKE_REQUEST_MSG_LEN] = {
->> @@ -870,89 +708,6 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt)
->>       return err;
->>   }
->>   -/**
->> - * DOC: GGTT nodes shifting during VF post-migration recovery
->> - *
->> - * The first fixup applied to the VF KMD structures as part of post-
->> migration
->> - * recovery is shifting nodes within &xe_ggtt instance. The nodes are
->> moved
->> - * from range previously assigned to this VF, into newly provisioned
->> area.
->> - * The changes include balloons, which are resized accordingly.
->> - *
->> - * The balloon nodes are there to eliminate unavailable ranges from
->> use: one
->> - * reserves the GGTT area below the range for current VF, and another
->> one
->> - * reserves area above.
->> - *
->> - * Below is a GGTT layout of example VF, with a certain address range
->> assigned to
->> - * said VF, and inaccessible areas above and below:
->> - *
->> - * 
->> 0                                                                        4GiB
->> - *  |<--------------------------- Total GGTT size
->> ----------------------------->|
->> - *      WOPCM                                                        
->> GUC_TOP
->> - *      |<-------------- Area mappable by xe_ggtt instance
->> ---------------->|
->> - *
->> - *  +---+---------------------------------+----------
->> +----------------------+---+
->> - *  |\\\|/////////////////////////////////|  VF mem 
->> |//////////////////////|\\\|
->> - *  +---+---------------------------------+----------
->> +----------------------+---+
->> - *
->> - * Hardware enforced access rules before migration:
->> - *
->> - *  |<------- inaccessible for VF ------->|<VF owned>|<--
->> inaccessible for VF ->|
->> - *
->> - * GGTT nodes used for tracking allocations:
->> - *
->> - *      |<---------- balloon ------------>|<- nodes->|<----- balloon
->> ------>|
->> - *
->> - * After the migration, GGTT area assigned to the VF might have
->> shifted, either
->> - * to lower or to higher address. But we expect the total size and
->> extra areas to
->> - * be identical, as migration can only happen between matching
->> platforms.
->> - * Below is an example of GGTT layout of the VF after migration.
->> Content of the
->> - * GGTT for VF has been moved to a new area, and we receive its
->> address from GuC:
->> - *
->> - *  +---+----------------------+----------
->> +---------------------------------+---+
->> - *  |\\\|//////////////////////|  VF mem 
->> |/////////////////////////////////|\\\|
->> - *  +---+----------------------+----------
->> +---------------------------------+---+
->> - *
->> - * Hardware enforced access rules after migration:
->> - *
->> - *  |<- inaccessible for VF -->|<VF owned>|<------- inaccessible for
->> VF ------->|
->> - *
->> - * So the VF has a new slice of GGTT assigned, and during migration
->> process, the
->> - * memory content was copied to that new area. But the &xe_ggtt nodes
->> are still
->> - * tracking allocations using the old addresses. The nodes within VF
->> owned area
->> - * have to be shifted, and balloon nodes need to be resized to
->> properly mask out
->> - * areas not owned by the VF.
->> - *
->> - * Fixed &xe_ggtt nodes used for tracking allocations:
->> - *
->> - *     |<------ balloon ------>|<- nodes->|<----------- balloon
->> ----------->|
->> - *
->> - * Due to use of GPU profiles, we do not expect the old and new GGTT
->> ares to
->> - * overlap; but our node shifting will fix addresses properly
->> regardless.
->> - */
->> -
->> -/**
->> - * xe_gt_sriov_vf_fixup_ggtt_nodes - Shift GGTT allocations to match
->> assigned range.
->> - * @gt: the &xe_gt struct instance
->> - * @shift: the shift value
->> - *
->> - * Since Global GTT is not virtualized, each VF has an assigned range
->> - * within the global space. This range might have changed during
->> migration,
->> - * which requires all memory addresses pointing to GGTT to be shifted.
->> - */
->> -void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt, s64 shift)
->> -{
->> -    struct xe_tile *tile = gt_to_tile(gt);
->> -    struct xe_ggtt *ggtt = tile->mem.ggtt;
->> -
->> -    xe_gt_assert(gt, !xe_gt_is_media_type(gt));
->> -
->> -    mutex_lock(&ggtt->lock);
->> -    xe_gt_sriov_vf_deballoon_ggtt_locked(gt);
->> -    xe_ggtt_shift_nodes_locked(ggtt, shift);
->> -    xe_gt_sriov_vf_balloon_ggtt_locked(gt);
->> -    mutex_unlock(&ggtt->lock);
->> -}
->> -
->>   /**
->>    * xe_gt_sriov_vf_migrated_event_handler - Start a VF migration
->> recovery,
->>    *   or just mark that a GuC is ready for it.
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/
->> xe_gt_sriov_vf.h
->> index 2f96ac0c5dca..6250fe774d89 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
->> @@ -17,10 +17,6 @@ int xe_gt_sriov_vf_bootstrap(struct xe_gt *gt);
->>   int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
->>   int xe_gt_sriov_vf_connect(struct xe_gt *gt);
->>   int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
->> -int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
->> -int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt);
->> -void xe_gt_sriov_vf_deballoon_ggtt_locked(struct xe_gt *gt);
->> -void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt, s64 shift);
->>   int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
->>   void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
->>   diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/
->> xe_sriov_vf.c
->> index 46466932375c..6526fe450e55 100644
->> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
->> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
->> @@ -15,6 +15,7 @@
->>   #include "xe_sriov.h"
->>   #include "xe_sriov_printk.h"
->>   #include "xe_sriov_vf.h"
->> +#include "xe_tile_sriov_vf.h"
->>     /**
->>    * DOC: VF restore procedure in PF KMD and VF KMD
->> @@ -211,7 +212,7 @@ static bool
->> vf_post_migration_fixup_ggtt_nodes(struct xe_device *xe)
->>           shift = xe_gt_sriov_vf_ggtt_shift(gt);
->>           if (shift) {
->>               need_fixups = true;
->> -            xe_gt_sriov_vf_fixup_ggtt_nodes(gt, shift);
->> +            xe_tile_sriov_vf_fixup_ggtt_nodes(tile, shift);
->>           }
->>       }
->>       return need_fixups;
->> diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c b/drivers/gpu/drm/
->> xe/xe_tile_sriov_vf.c
->> new file mode 100644
->> index 000000000000..88e832894432
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
->> @@ -0,0 +1,245 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2025 Intel Corporation
->> + */
->> +
->> +#include <drm/drm_managed.h>
->> +
->> +#include "regs/xe_gtt_defs.h"
->> +
->> +#include "xe_assert.h"
->> +#include "xe_ggtt.h"
->> +#include "xe_gt_sriov_vf.h"
->> +#include "xe_sriov.h"
->> +#include "xe_tile_sriov_vf.h"
->> +#include "xe_wopcm.h"
->> +
->> +static int vf_init_ggtt_balloons(struct xe_tile *tile)
->> +{
->> +    struct xe_ggtt *ggtt = tile->mem.ggtt;
->> +
->> +    xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
->> +
->> +    tile->sriov.vf.ggtt_balloon[0] = xe_ggtt_node_init(ggtt);
->> +    if (IS_ERR(tile->sriov.vf.ggtt_balloon[0]))
->> +        return PTR_ERR(tile->sriov.vf.ggtt_balloon[0]);
->> +
->> +    tile->sriov.vf.ggtt_balloon[1] = xe_ggtt_node_init(ggtt);
->> +    if (IS_ERR(tile->sriov.vf.ggtt_balloon[1])) {
->> +        xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[0]);
->> +        return PTR_ERR(tile->sriov.vf.ggtt_balloon[1]);
->> +    }
->> +
->> +    return 0;
->> +}
->> +
->> +/**
->> + * xe_tile_sriov_vf_balloon_ggtt_locked - Insert balloon nodes to
->> limit used GGTT address range.
->> + * @tile: the &xe_tile struct instance
->> + *
->> + * Return: 0 on success or a negative error code on failure.
->> + */
->> +int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile)
->> +{
->> +    u64 ggtt_base = xe_gt_sriov_vf_ggtt_base(tile->primary_gt);
->> +    u64 ggtt_size = xe_gt_sriov_vf_ggtt(tile->primary_gt);
->> +    struct xe_device *xe = tile_to_xe(tile);
->> +    u64 start, end;
->> +    int err;
->> +
->> +    xe_tile_assert(tile, IS_SRIOV_VF(xe));
->> +    xe_tile_assert(tile, ggtt_size);
->> +    lockdep_assert_held(&tile->mem.ggtt->lock);
->> +
->> +    /*
->> +     * VF can only use part of the GGTT as allocated by the PF:
->> +     *
->> +     *      WOPCM                                  GUC_GGTT_TOP
->> +     *      |<------------ Total GGTT size ------------------>|
->> +     *
->> +     *           VF GGTT base -->|<- size ->|
->> +     *
->> +     *      +--------------------+----------+-----------------+
->> +     *      |////////////////////|   block  |\\\\\\\\\\\\\\\\\|
->> +     *      +--------------------+----------+-----------------+
->> +     *
->> +     *      |<--- balloon[0] --->|<-- VF -->|<-- balloon[1] ->|
->> +     */
->> +
->> +    start = xe_wopcm_size(xe);
->> +    end = ggtt_base;
->> +    if (end != start) {
->> +        err = xe_ggtt_node_insert_balloon_locked(tile-
->> >sriov.vf.ggtt_balloon[0],
->> +                             start, end);
->> +        if (err)
->> +            return err;
->> +    }
->> +
->> +    start = ggtt_base + ggtt_size;
->> +    end = GUC_GGTT_TOP;
->> +    if (end != start) {
->> +        err = xe_ggtt_node_insert_balloon_locked(tile-
->> >sriov.vf.ggtt_balloon[1],
->> +                             start, end);
->> +        if (err) {
->> +            xe_ggtt_node_remove_balloon_locked(tile-
->> >sriov.vf.ggtt_balloon[0]);
->> +            return err;
->> +        }
->> +    }
->> +
->> +    return 0;
->> +}
->> +
->> +static int vf_balloon_ggtt(struct xe_tile *tile)
->> +{
->> +    struct xe_ggtt *ggtt = tile->mem.ggtt;
->> +    int err;
->> +
->> +    mutex_lock(&ggtt->lock);
->> +    err = xe_tile_sriov_vf_balloon_ggtt_locked(tile);
->> +    mutex_unlock(&ggtt->lock);
->> +
->> +    return err;
->> +}
->> +
->> +/**
->> + * xe_tile_sriov_vf_deballoon_ggtt_locked - Remove balloon nodes.
->> + * @tile: the &xe_tile struct instance
->> + */
->> +void xe_tile_sriov_vf_deballoon_ggtt_locked(struct xe_tile *tile)
->> +{
->> +    xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
->> +
->> +    xe_ggtt_node_remove_balloon_locked(tile->sriov.vf.ggtt_balloon[1]);
->> +    xe_ggtt_node_remove_balloon_locked(tile->sriov.vf.ggtt_balloon[0]);
->> +}
->> +
->> +static void vf_deballoon_ggtt(struct xe_tile *tile)
->> +{
->> +    mutex_lock(&tile->mem.ggtt->lock);
->> +    xe_tile_sriov_vf_deballoon_ggtt_locked(tile);
->> +    mutex_unlock(&tile->mem.ggtt->lock);
->> +}
->> +
->> +static void vf_fini_ggtt_balloons(struct xe_tile *tile)
->> +{
->> +    xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
->> +
->> +    xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[1]);
->> +    xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[0]);
->> +}
->> +
->> +static void cleanup_ggtt(struct drm_device *drm, void *arg)
->> +{
->> +    struct xe_tile *tile = arg;
->> +
->> +    vf_deballoon_ggtt(tile);
->> +    vf_fini_ggtt_balloons(tile);
->> +}
->> +
->> +/**
->> + * xe_tile_sriov_vf_prepare_ggtt - Prepare a VF's GGTT configuration.
->> + * @tile: the &xe_tile
->> + *
->> + * This function is for VF use only.
->> + *
->> + * Return: 0 on success or a negative error code on failure.
->> + */
->> +int xe_tile_sriov_vf_prepare_ggtt(struct xe_tile *tile)
->> +{
->> +    struct xe_device *xe = tile_to_xe(tile);
->> +    int err;
->> +
->> +    err = vf_init_ggtt_balloons(tile);
->> +    if (err)
->> +        return err;
->> +
->> +    err = vf_balloon_ggtt(tile);
->> +    if (err) {
->> +        vf_fini_ggtt_balloons(tile);
->> +        return err;
->> +    }
->> +
->> +    return drmm_add_action_or_reset(&xe->drm, cleanup_ggtt, tile);
->> +}
->> +
->> +/**
->> + * DOC: GGTT nodes shifting during VF post-migration recovery
->> + *
->> + * The first fixup applied to the VF KMD structures as part of post-
->> migration
->> + * recovery is shifting nodes within &xe_ggtt instance. The nodes are
->> moved
->> + * from range previously assigned to this VF, into newly provisioned
->> area.
->> + * The changes include balloons, which are resized accordingly.
->> + *
->> + * The balloon nodes are there to eliminate unavailable ranges from
->> use: one
->> + * reserves the GGTT area below the range for current VF, and another
->> one
->> + * reserves area above.
->> + *
->> + * Below is a GGTT layout of example VF, with a certain address range
->> assigned to
->> + * said VF, and inaccessible areas above and below:
->> + *
->> + * 
->> 0                                                                        4GiB
->> + *  |<--------------------------- Total GGTT size
->> ----------------------------->|
->> + *      WOPCM                                                        
->> GUC_TOP
->> + *      |<-------------- Area mappable by xe_ggtt instance
->> ---------------->|
->> + *
->> + *  +---+---------------------------------+----------
->> +----------------------+---+
->> + *  |\\\|/////////////////////////////////|  VF mem 
->> |//////////////////////|\\\|
->> + *  +---+---------------------------------+----------
->> +----------------------+---+
->> + *
->> + * Hardware enforced access rules before migration:
->> + *
->> + *  |<------- inaccessible for VF ------->|<VF owned>|<--
->> inaccessible for VF ->|
->> + *
->> + * GGTT nodes used for tracking allocations:
->> + *
->> + *      |<---------- balloon ------------>|<- nodes->|<----- balloon
->> ------>|
->> + *
->> + * After the migration, GGTT area assigned to the VF might have
->> shifted, either
->> + * to lower or to higher address. But we expect the total size and
->> extra areas to
->> + * be identical, as migration can only happen between matching
->> platforms.
->> + * Below is an example of GGTT layout of the VF after migration.
->> Content of the
->> + * GGTT for VF has been moved to a new area, and we receive its
->> address from GuC:
->> + *
->> + *  +---+----------------------+----------
->> +---------------------------------+---+
->> + *  |\\\|//////////////////////|  VF mem 
->> |/////////////////////////////////|\\\|
->> + *  +---+----------------------+----------
->> +---------------------------------+---+
->> + *
->> + * Hardware enforced access rules after migration:
->> + *
->> + *  |<- inaccessible for VF -->|<VF owned>|<------- inaccessible for
->> VF ------->|
->> + *
->> + * So the VF has a new slice of GGTT assigned, and during migration
->> process, the
->> + * memory content was copied to that new area. But the &xe_ggtt nodes
->> are still
->> + * tracking allocations using the old addresses. The nodes within VF
->> owned area
->> + * have to be shifted, and balloon nodes need to be resized to
->> properly mask out
->> + * areas not owned by the VF.
->> + *
->> + * Fixed &xe_ggtt nodes used for tracking allocations:
->> + *
->> + *     |<------ balloon ------>|<- nodes->|<----------- balloon
->> ----------->|
->> + *
->> + * Due to use of GPU profiles, we do not expect the old and new GGTT
->> ares to
->> + * overlap; but our node shifting will fix addresses properly
->> regardless.
->> + */
->> +
->> +/**
->> + * xe_tile_sriov_vf_fixup_ggtt_nodes - Shift GGTT allocations to
->> match assigned range.
->> + * @tile: the &xe_tile struct instance
->> + * @shift: the shift value
->> + *
->> + * Since Global GTT is not virtualized, each VF has an assigned range
->> + * within the global space. This range might have changed during
->> migration,
->> + * which requires all memory addresses pointing to GGTT to be shifted.
->> + */
->> +void xe_tile_sriov_vf_fixup_ggtt_nodes(struct xe_tile *tile, s64 shift)
->> +{
->> +    struct xe_ggtt *ggtt = tile->mem.ggtt;
->> +
->> +    mutex_lock(&ggtt->lock);
->> +
->> +    xe_tile_sriov_vf_deballoon_ggtt_locked(tile);
->> +    xe_ggtt_shift_nodes_locked(ggtt, shift);
->> +    xe_tile_sriov_vf_balloon_ggtt_locked(tile);
->> +
->> +    mutex_unlock(&ggtt->lock);
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.h b/drivers/gpu/drm/
->> xe/xe_tile_sriov_vf.h
->> new file mode 100644
->> index 000000000000..93eb043171e8
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
->> @@ -0,0 +1,18 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2025 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_TILE_SRIOV_VF_H_
->> +#define _XE_TILE_SRIOV_VF_H_
->> +
->> +#include <linux/types.h>
->> +
->> +struct xe_tile;
->> +
->> +int xe_tile_sriov_vf_prepare_ggtt(struct xe_tile *tile);
->> +int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile);
->> +void xe_tile_sriov_vf_deballoon_ggtt_locked(struct xe_tile *tile);
->> +void xe_tile_sriov_vf_fixup_ggtt_nodes(struct xe_tile *tile, s64 shift);
->> +
->> +#endif
+>> Hm why not? You think something will take offence of the rcu_read_lock()?
+> 
+> Yes, especially it is perfectly legitimate to call synchronize_rcu() or lock semaphores/mutexes from that callback.
+> 
+> Either keep the RCU critical section only for the trace or even better come up with some different approach, e.g. copying the string under the RCU lock or something like that.
+
+Hmm but the kerneldoc explicity says callback can be called from irq 
+context:
+
+	/**
+	 * @release:
+	 *
+	 * Called on destruction of fence to release additional resources.
+	 * Can be called from irq context.  This callback is optional. If it is
+	 * NULL, then dma_fence_free() is instead called as the default
+	 * implementation.
+	 */
+	void (*release)(struct dma_fence *fence);
+
+
+Regards,
+
+Tvrtko
+
+> 
+> Regards,
+> Christian.
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>>> On 5/15/25 11:49, Tvrtko Ursulin wrote:
+>>>>>> With the goal of reducing the need for drivers to touch (and dereference)
+>>>>>> fence->ops, we move the 64-bit seqnos flag from struct dma_fence_ops to
+>>>>>> the fence->flags.
+>>>>>>
+>>>>>> Drivers which were setting this flag are changed to use new
+>>>>>> dma_fence_init64() instead of dma_fence_init().
+>>>>>>
+>>>>>> v2:
+>>>>>>     * Streamlined init and added kerneldoc.
+>>>>>>     * Rebase for amdgpu userq which landed since.
+>>>>>>
+>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>>>> Reviewed-by: Christian König <christian.koenig@amd.com> # v1
+>>>>>> ---
+>>>>>>     drivers/dma-buf/dma-fence-chain.c             |  5 +-
+>>>>>>     drivers/dma-buf/dma-fence.c                   | 69 ++++++++++++++-----
+>>>>>>     .../drm/amd/amdgpu/amdgpu_eviction_fence.c    |  7 +-
+>>>>>>     .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   |  5 +-
+>>>>>>     .../gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c  |  5 +-
+>>>>>>     include/linux/dma-fence.h                     | 14 ++--
+>>>>>>     6 files changed, 64 insertions(+), 41 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
+>>>>>> index 90424f23fd73..a8a90acf4f34 100644
+>>>>>> --- a/drivers/dma-buf/dma-fence-chain.c
+>>>>>> +++ b/drivers/dma-buf/dma-fence-chain.c
+>>>>>> @@ -218,7 +218,6 @@ static void dma_fence_chain_set_deadline(struct dma_fence *fence,
+>>>>>>     }
+>>>>>>       const struct dma_fence_ops dma_fence_chain_ops = {
+>>>>>> -    .use_64bit_seqno = true,
+>>>>>>         .get_driver_name = dma_fence_chain_get_driver_name,
+>>>>>>         .get_timeline_name = dma_fence_chain_get_timeline_name,
+>>>>>>         .enable_signaling = dma_fence_chain_enable_signaling,
+>>>>>> @@ -262,8 +261,8 @@ void dma_fence_chain_init(struct dma_fence_chain *chain,
+>>>>>>                 seqno = max(prev->seqno, seqno);
+>>>>>>         }
+>>>>>>     -    dma_fence_init(&chain->base, &dma_fence_chain_ops,
+>>>>>> -               &chain->lock, context, seqno);
+>>>>>> +    dma_fence_init64(&chain->base, &dma_fence_chain_ops, &chain->lock,
+>>>>>> +             context, seqno);
+>>>>>>           /*
+>>>>>>          * Chaining dma_fence_chain container together is only allowed through
+>>>>>> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+>>>>>> index f0cdd3e99d36..705b59787731 100644
+>>>>>> --- a/drivers/dma-buf/dma-fence.c
+>>>>>> +++ b/drivers/dma-buf/dma-fence.c
+>>>>>> @@ -989,24 +989,9 @@ void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq)
+>>>>>>     }
+>>>>>>     EXPORT_SYMBOL(dma_fence_describe);
+>>>>>>     -/**
+>>>>>> - * dma_fence_init - Initialize a custom fence.
+>>>>>> - * @fence: the fence to initialize
+>>>>>> - * @ops: the dma_fence_ops for operations on this fence
+>>>>>> - * @lock: the irqsafe spinlock to use for locking this fence
+>>>>>> - * @context: the execution context this fence is run on
+>>>>>> - * @seqno: a linear increasing sequence number for this context
+>>>>>> - *
+>>>>>> - * Initializes an allocated fence, the caller doesn't have to keep its
+>>>>>> - * refcount after committing with this fence, but it will need to hold a
+>>>>>> - * refcount again if &dma_fence_ops.enable_signaling gets called.
+>>>>>> - *
+>>>>>> - * context and seqno are used for easy comparison between fences, allowing
+>>>>>> - * to check which fence is later by simply using dma_fence_later().
+>>>>>> - */
+>>>>>> -void
+>>>>>> -dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+>>>>>> -           spinlock_t *lock, u64 context, u64 seqno)
+>>>>>> +static void
+>>>>>> +__dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+>>>>>> +             spinlock_t *lock, u64 context, u64 seqno, unsigned long flags)
+>>>>>>     {
+>>>>>>         BUG_ON(!lock);
+>>>>>>         BUG_ON(!ops || !ops->get_driver_name || !ops->get_timeline_name);
+>>>>>> @@ -1017,9 +1002,55 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+>>>>>>         fence->lock = lock;
+>>>>>>         fence->context = context;
+>>>>>>         fence->seqno = seqno;
+>>>>>> -    fence->flags = 0UL;
+>>>>>> +    fence->flags = flags;
+>>>>>>         fence->error = 0;
+>>>>>>           trace_dma_fence_init(fence);
+>>>>>>     }
+>>>>>> +
+>>>>>> +/**
+>>>>>> + * dma_fence_init - Initialize a custom fence.
+>>>>>> + * @fence: the fence to initialize
+>>>>>> + * @ops: the dma_fence_ops for operations on this fence
+>>>>>> + * @lock: the irqsafe spinlock to use for locking this fence
+>>>>>> + * @context: the execution context this fence is run on
+>>>>>> + * @seqno: a linear increasing sequence number for this context
+>>>>>> + *
+>>>>>> + * Initializes an allocated fence, the caller doesn't have to keep its
+>>>>>> + * refcount after committing with this fence, but it will need to hold a
+>>>>>> + * refcount again if &dma_fence_ops.enable_signaling gets called.
+>>>>>> + *
+>>>>>> + * context and seqno are used for easy comparison between fences, allowing
+>>>>>> + * to check which fence is later by simply using dma_fence_later().
+>>>>>> + */
+>>>>>> +void
+>>>>>> +dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+>>>>>> +           spinlock_t *lock, u64 context, u64 seqno)
+>>>>>> +{
+>>>>>> +    __dma_fence_init(fence, ops, lock, context, seqno, 0UL);
+>>>>>> +}
+>>>>>>     EXPORT_SYMBOL(dma_fence_init);
+>>>>>> +
+>>>>>> +/**
+>>>>>> + * dma_fence_init64 - Initialize a custom fence with 64-bit seqno support.
+>>>>>> + * @fence: the fence to initialize
+>>>>>> + * @ops: the dma_fence_ops for operations on this fence
+>>>>>> + * @lock: the irqsafe spinlock to use for locking this fence
+>>>>>> + * @context: the execution context this fence is run on
+>>>>>> + * @seqno: a linear increasing sequence number for this context
+>>>>>> + *
+>>>>>> + * Initializes an allocated fence, the caller doesn't have to keep its
+>>>>>> + * refcount after committing with this fence, but it will need to hold a
+>>>>>> + * refcount again if &dma_fence_ops.enable_signaling gets called.
+>>>>>> + *
+>>>>>> + * Context and seqno are used for easy comparison between fences, allowing
+>>>>>> + * to check which fence is later by simply using dma_fence_later().
+>>>>>> + */
+>>>>>> +void
+>>>>>> +dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
+>>>>>> +         spinlock_t *lock, u64 context, u64 seqno)
+>>>>>> +{
+>>>>>> +    __dma_fence_init(fence, ops, lock, context, seqno,
+>>>>>> +             BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
+>>>>>> +}
+>>>>>> +EXPORT_SYMBOL(dma_fence_init64);
+>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
+>>>>>> index 1a7469543db5..79713421bffe 100644
+>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
+>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
+>>>>>> @@ -134,7 +134,6 @@ static bool amdgpu_eviction_fence_enable_signaling(struct dma_fence *f)
+>>>>>>     }
+>>>>>>       static const struct dma_fence_ops amdgpu_eviction_fence_ops = {
+>>>>>> -    .use_64bit_seqno = true,
+>>>>>>         .get_driver_name = amdgpu_eviction_fence_get_driver_name,
+>>>>>>         .get_timeline_name = amdgpu_eviction_fence_get_timeline_name,
+>>>>>>         .enable_signaling = amdgpu_eviction_fence_enable_signaling,
+>>>>>> @@ -160,9 +159,9 @@ amdgpu_eviction_fence_create(struct amdgpu_eviction_fence_mgr *evf_mgr)
+>>>>>>         ev_fence->evf_mgr = evf_mgr;
+>>>>>>         get_task_comm(ev_fence->timeline_name, current);
+>>>>>>         spin_lock_init(&ev_fence->lock);
+>>>>>> -    dma_fence_init(&ev_fence->base, &amdgpu_eviction_fence_ops,
+>>>>>> -               &ev_fence->lock, evf_mgr->ev_fence_ctx,
+>>>>>> -               atomic_inc_return(&evf_mgr->ev_fence_seq));
+>>>>>> +    dma_fence_init64(&ev_fence->base, &amdgpu_eviction_fence_ops,
+>>>>>> +             &ev_fence->lock, evf_mgr->ev_fence_ctx,
+>>>>>> +             atomic_inc_return(&evf_mgr->ev_fence_seq));
+>>>>>>         return ev_fence;
+>>>>>>     }
+>>>>>>     diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+>>>>>> index 029cb24c28b3..5e92d00a591f 100644
+>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+>>>>>> @@ -239,8 +239,8 @@ static int amdgpu_userq_fence_create(struct amdgpu_usermode_queue *userq,
+>>>>>>         fence = &userq_fence->base;
+>>>>>>         userq_fence->fence_drv = fence_drv;
+>>>>>>     -    dma_fence_init(fence, &amdgpu_userq_fence_ops, &userq_fence->lock,
+>>>>>> -               fence_drv->context, seq);
+>>>>>> +    dma_fence_init64(fence, &amdgpu_userq_fence_ops, &userq_fence->lock,
+>>>>>> +             fence_drv->context, seq);
+>>>>>>           amdgpu_userq_fence_driver_get(fence_drv);
+>>>>>>         dma_fence_get(fence);
+>>>>>> @@ -334,7 +334,6 @@ static void amdgpu_userq_fence_release(struct dma_fence *f)
+>>>>>>     }
+>>>>>>       static const struct dma_fence_ops amdgpu_userq_fence_ops = {
+>>>>>> -    .use_64bit_seqno = true,
+>>>>>>         .get_driver_name = amdgpu_userq_fence_get_driver_name,
+>>>>>>         .get_timeline_name = amdgpu_userq_fence_get_timeline_name,
+>>>>>>         .signaled = amdgpu_userq_fence_signaled,
+>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+>>>>>> index 51cddfa3f1e8..5d26797356a3 100644
+>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+>>>>>> @@ -71,7 +71,6 @@ static void amdgpu_tlb_fence_work(struct work_struct *work)
+>>>>>>     }
+>>>>>>       static const struct dma_fence_ops amdgpu_tlb_fence_ops = {
+>>>>>> -    .use_64bit_seqno = true,
+>>>>>>         .get_driver_name = amdgpu_tlb_fence_get_driver_name,
+>>>>>>         .get_timeline_name = amdgpu_tlb_fence_get_timeline_name
+>>>>>>     };
+>>>>>> @@ -101,8 +100,8 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct amdgpu_vm *vm
+>>>>>>         INIT_WORK(&f->work, amdgpu_tlb_fence_work);
+>>>>>>         spin_lock_init(&f->lock);
+>>>>>>     -    dma_fence_init(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
+>>>>>> -               vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
+>>>>>> +    dma_fence_init64(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
+>>>>>> +             vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
+>>>>>>           /* TODO: We probably need a separate wq here */
+>>>>>>         dma_fence_get(&f->base);
+>>>>>> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+>>>>>> index 48b5202c531d..a34a0dcdc446 100644
+>>>>>> --- a/include/linux/dma-fence.h
+>>>>>> +++ b/include/linux/dma-fence.h
+>>>>>> @@ -97,6 +97,7 @@ struct dma_fence {
+>>>>>>     };
+>>>>>>       enum dma_fence_flag_bits {
+>>>>>> +    DMA_FENCE_FLAG_SEQNO64_BIT,
+>>>>>>         DMA_FENCE_FLAG_SIGNALED_BIT,
+>>>>>>         DMA_FENCE_FLAG_TIMESTAMP_BIT,
+>>>>>>         DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+>>>>>> @@ -124,14 +125,6 @@ struct dma_fence_cb {
+>>>>>>      *
+>>>>>>      */
+>>>>>>     struct dma_fence_ops {
+>>>>>> -    /**
+>>>>>> -     * @use_64bit_seqno:
+>>>>>> -     *
+>>>>>> -     * True if this dma_fence implementation uses 64bit seqno, false
+>>>>>> -     * otherwise.
+>>>>>> -     */
+>>>>>> -    bool use_64bit_seqno;
+>>>>>> -
+>>>>>>         /**
+>>>>>>          * @get_driver_name:
+>>>>>>          *
+>>>>>> @@ -262,6 +255,9 @@ struct dma_fence_ops {
+>>>>>>     void dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+>>>>>>                 spinlock_t *lock, u64 context, u64 seqno);
+>>>>>>     +void dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
+>>>>>> +              spinlock_t *lock, u64 context, u64 seqno);
+>>>>>> +
+>>>>>>     void dma_fence_release(struct kref *kref);
+>>>>>>     void dma_fence_free(struct dma_fence *fence);
+>>>>>>     void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq);
+>>>>>> @@ -454,7 +450,7 @@ static inline bool __dma_fence_is_later(struct dma_fence *fence, u64 f1, u64 f2)
+>>>>>>          * 32bit sequence numbers. Use a 64bit compare when the driver says to
+>>>>>>          * do so.
+>>>>>>          */
+>>>>>> -    if (fence->ops->use_64bit_seqno)
+>>>>>> +    if (test_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence->flags))
+>>>>>>             return f1 > f2;
+>>>>>>           return (int)(lower_32_bits(f1) - lower_32_bits(f2)) > 0;
+>>>>>
+>>>>
+>>>
+>>
+> 
 
