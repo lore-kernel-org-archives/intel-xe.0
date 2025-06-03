@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50198C5AD49
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 16:52:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21832C5AD49
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 16:54:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A22C10E087;
-	Tue,  3 Jun 2025 16:52:16 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E42610E05D;
- Tue,  3 Jun 2025 16:52:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E07F210E978;
+	Tue,  3 Jun 2025 16:53:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="nInpFzyS";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55F8210E932;
+ Tue,  3 Jun 2025 16:53:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=o00aR12jwm7c4BkPDVzJqD7kLtjvCsd4KPoJDLs9Mmo=; b=nInpFzySSgY7qAFG2beganEgry
+ gNqcbIPbPBOuqOFjxE9PNLdbbxUyrg01v1JiZE1Ie/GSY67g0iqwiOmKDeuG+IfF0jObAsZUQ9qwa
+ HSg+hjr6ja3HBSL2oYzoq+Z8K7sOOb31DxfxXYBQaNkNMQ9EmMnOsM/CWMI2YZFUzwCrVsquiglol
+ 7hdww/SKk3LapUxbS1KM3x0KngwwfkBPjdIe3mHo4GkF7Q9+agNeQlAlimTphzxWuZQN/qBSZ+Be4
+ YEGSZPkxE1osfmO32irnUfu313BYL1WUgB+VnRfENNKcfnN7/H+A0S2JZJNgbFeAnsb7t+tkEQCmG
+ LZaXJe0Q==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uMUtV-00GlU8-Lx; Tue, 03 Jun 2025 18:53:45 +0200
+Message-ID: <6aa998eb-5991-472e-8e6a-08ebf3fe9876@igalia.com>
+Date: Tue, 3 Jun 2025 17:53:44 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/xe=5Fi2c=3A_Add_support?=
- =?utf-8?q?_for_i2c_in_survivability_mode?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Jun 2025 16:52:15 -0000
-Message-ID: <174896953564.44951.2502111943058574629@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250603170958.1580894-1-riana.tauro@intel.com>
-In-Reply-To: <20250603170958.1580894-1-riana.tauro@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/9] dma-fence: Use a flag for 64-bit seqnos
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ kernel-dev@igalia.com
+References: <20250515095004.28318-1-tvrtko.ursulin@igalia.com>
+ <20250515095004.28318-3-tvrtko.ursulin@igalia.com>
+ <c93c05be-b2c8-42a2-84d1-32b90743eb82@amd.com>
+ <b59cadff-da9a-409f-a5ed-96aafdfe3f0b@igalia.com>
+ <13c5edf6-ccad-4a06-85d4-dccf2afd0c62@amd.com>
+ <20250603-outrageous-kakapo-of-felicity-6dc41a@houat>
+ <e969d68a-aff3-4560-be28-de17498d7b6e@igalia.com>
+ <d5bbe511-97ab-42aa-97c3-e669849ebc12@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <d5bbe511-97ab-42aa-97c3-e669849ebc12@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,45 +69,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/xe/xe_i2c: Add support for i2c in survivability mode
-URL   : https://patchwork.freedesktop.org/series/149787/
-State : failure
+On 03/06/2025 17:27, Christian König wrote:
+> On 6/3/25 17:00, Tvrtko Ursulin wrote:
+>>
+>> On 03/06/2025 14:13, Maxime Ripard wrote:
+>>> Hi,
+>>>
+>>> On Mon, Jun 02, 2025 at 04:42:27PM +0200, Christian König wrote:
+>>>> On 6/2/25 15:05, Tvrtko Ursulin wrote:
+>>>>> On 15/05/2025 14:15, Christian König wrote:
+>>>>>> Hey drm-misc maintainers,
+>>>>>>
+>>>>>> can you guys please backmerge drm-next into drm-misc-next?
+>>>>>>
+>>>>>> I want to push this patch here but it depends on changes which are partially in drm-next and partially in drm-misc-next.
+>>>>>
+>>>>> Looks like the backmerge is still pending?
+>>>>
+>>>> Yes, @Maarten, @Maxime and @Thomas ping on this.
+>>>
+>>> It's done
+>>
+>> Thanks Maxime!
+>>
+>> Christian, I can merge 2-5 to take some load off you if you want?
+> 
+> Sure, go ahead.
+> 
+> Then I can call it a day for today :)
 
-== Summary ==
+Pushed. Thanks for the reviews once more!
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_survivability_mode.c:17:10: fatal error: xe_i2c.h: No such file or directory
-   17 | #include "xe_i2c.h"
-      |          ^~~~~~~~~~
-compilation terminated.
-make[7]: *** [../scripts/Makefile.build:203: drivers/gpu/drm/xe/xe_survivability_mode.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:461: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:461: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:461: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2003: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+I will aim to respin the rest of the series ASAP but may be delayed a 
+few days.
 
-[16:51:41] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[16:51:46] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Regards,
 
+Tvrtko
 
