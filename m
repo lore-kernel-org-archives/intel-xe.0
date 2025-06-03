@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18350C61CE7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15314C61CE5
 	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 23:54:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D46710E6A2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A754710E706;
 	Tue,  3 Jun 2025 23:54:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CMp+wJI/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SQJtgVrL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 081F710E694
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 23:54:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFBA210E6CE
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 23:54:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748994884; x=1780530884;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=boEcqw3AhBpMu171ArqcbPs1gSurj6InCLKlexUcyjU=;
- b=CMp+wJI/sgSSeQFXZe0FoaGBorbs4zjVnsHNo1iXwgzMbtOZJJaYp3ju
- ZqYw22MPDT+WGKhOqeezg8V0EDbLiOxm0WU6Voh7U/B3z7rTDW7bTShEM
- Xpx7RrMDtls2TOFuFjGU30aDSteTNddt+DR7aK+DZXeGp/BFUk0sFJKcU
- Q91Z63F+RifQ2+RIT7oar8pn67ImTPvraburjjfnrps8d0TtKC3EEtAsU
- HqhzvPnDJ6QH/ORuKmlkKkhHhVAB5FD8+dZWHjt2YZnJxytc/hJhvkl6O
- TyJLgt+uUBWeHfyLyAzX6U0dteSlrmbZmsSc0ENB7LUK8DHteVHo7JrvK A==;
-X-CSE-ConnectionGUID: K7E5OiA5Qxqucc7udZw//A==
-X-CSE-MsgGUID: qoq4fRlZSMyHVrGcEZVUJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="50970537"
-X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="50970537"
+ t=1748994883; x=1780530883;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AcrNCiKyIKwrmNRL2Vw8dmZyY3ygMfp3Z0GXKI/g2to=;
+ b=SQJtgVrLAGfWDCZ/F7OhXR70gwIYbcjfHqfzEJv6fo9dhXcYWtmJUWbh
+ yucKIl3uN6jb26F5vd60mAuVWWUcNgzJ32COoAvafunwyA4BRyCzJHWDs
+ M21HJLplzPD93bm6W/FhqZVWgB0q5sxcvsilHL9wi554OiDzvsgojUIPE
+ hUxkPcSKw5TFe3fDZz9zpo+M7HvkGOdWHBz/RuMO4H/sOYQsqsqIxoshx
+ aW96Ow+Kp4RE0DpHv8s3xscN8wuCtIM3R7tYYKK/JNMIj2w70UXB0clde
+ EZ9jRmsfNmby273BO4vBbEuYE66UuJZqtpplc2vuwNV0UkcSRTrTdHZLN g==;
+X-CSE-ConnectionGUID: nVLnmjgeQd2whrRgx/wzyw==
+X-CSE-MsgGUID: vF3nnJCUQS+O8bsuhwZU7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="50970535"
+X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="50970535"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 16:54:43 -0700
-X-CSE-ConnectionGUID: y9/xXbYKQHu8rFqCvf3blw==
-X-CSE-MsgGUID: cj2gFp9SRK2La5iEuvT4wA==
+ 03 Jun 2025 16:54:41 -0700
+X-CSE-ConnectionGUID: X30dzjs2RXO/Bv+p7FUKzw==
+X-CSE-MsgGUID: NMc9EDMPT8O8VCRFVdq57g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="168176358"
+X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="168176350"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 16:54:43 -0700
+ 03 Jun 2025 16:54:41 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v3 2/4] drm/xe/vf: Boostrap all GTs immediately after MMIO init
-Date: Tue,  3 Jun 2025 16:54:35 -0700
-Message-ID: <20250603235432.720833-8-daniele.ceraolospurio@intel.com>
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Lukasz Laguna <lukasz.laguna@intel.com>
+Subject: [PATCH v3 0/4] Fixes for VF GuC version
+Date: Tue,  3 Jun 2025 16:54:33 -0700
+Message-ID: <20250603235432.720833-6-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250603235432.720833-6-daniele.ceraolospurio@intel.com>
-References: <20250603235432.720833-6-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,70 +66,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we perform the bootstrap for the primary GT early on during
-device init, while the media GT bootstrap happens when we try and fetch
-the hwconfig table. For consistency, move the bootstrap of the media GT
-happen at the same time as the primary GT, so that all the subsequent
-code can rely on both GTs being in the same state.
+The VF currently stores the negotiated GuC compatibility version in a
+private VF struct, so all the runtime checks using the common struct in
+guc->fw are not working as expected. We can fix this by copying the value
+over.
 
-v2: Also drop config query from min_guc_load since we now do it
-    early (Michal)
+This also fixes the guc_info debugfs, printing the correct values for
+the wanted and found versions.
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+v2: split out prep change to its own patch, bootstrap media GT early,
+remove already merged debugfs MMIO fix
+
+v3: minor cleanup and doc improvement
+
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 11 ++++++-----
- drivers/gpu/drm/xe/xe_guc.c    |  8 --------
- 2 files changed, 6 insertions(+), 13 deletions(-)
+Cc: Lukasz Laguna <lukasz.laguna@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 660b0c5126dc..7e87344943cd 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -798,18 +798,19 @@ int xe_device_probe(struct xe_device *xe)
- 		 * be performed.
- 		 */
- 		xe_gt_mmio_init(gt);
--	}
- 
--	for_each_tile(tile, xe, id) {
- 		if (IS_SRIOV_VF(xe)) {
--			xe_guc_comm_init_early(&tile->primary_gt->uc.guc);
--			err = xe_gt_sriov_vf_bootstrap(tile->primary_gt);
-+			xe_guc_comm_init_early(&gt->uc.guc);
-+			err = xe_gt_sriov_vf_bootstrap(gt);
- 			if (err)
- 				return err;
--			err = xe_gt_sriov_vf_query_config(tile->primary_gt);
-+			err = xe_gt_sriov_vf_query_config(gt);
- 			if (err)
- 				return err;
- 		}
-+	}
-+
-+	for_each_tile(tile, xe, id) {
- 		err = xe_ggtt_init_early(tile->mem.ggtt);
- 		if (err)
- 			return err;
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 52453845d1bd..209e5d53c290 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1102,14 +1102,6 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	int ret;
- 
--	ret = xe_gt_sriov_vf_bootstrap(gt);
--	if (ret)
--		return ret;
--
--	ret = xe_gt_sriov_vf_query_config(gt);
--	if (ret)
--		return ret;
--
- 	ret = xe_guc_hwconfig_init(guc);
- 	if (ret)
- 		return ret;
+Daniele Ceraolo Spurio (4):
+  drm/xe/uc: Prepare uc_fw_version for storing the VF ABI version
+  drm/xe/vf: Boostrap all GTs immediately after MMIO init
+  drm/xe/vf: Use uc_fw_version to store the negotiated GuC ABI
+  drm/xe/vf: Store the GuC FW info in guc->fw
+
+ drivers/gpu/drm/xe/xe_device.c              |  11 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         | 166 +++++++++++++-------
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h         |   4 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h   |  19 +--
+ drivers/gpu/drm/xe/xe_guc.c                 |   8 -
+ drivers/gpu/drm/xe/xe_guc_engine_activity.c |   2 +-
+ drivers/gpu/drm/xe/xe_uc_fw.c               |  37 ++++-
+ drivers/gpu/drm/xe/xe_uc_fw_types.h         |   2 +
+ 8 files changed, 151 insertions(+), 98 deletions(-)
+
 -- 
 2.43.0
 
