@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9941DC5AD49
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 20:28:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13608C5AE59
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 20:28:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EFDA10E0AB;
-	Tue,  3 Jun 2025 20:28:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D49F10E12A;
+	Tue,  3 Jun 2025 20:28:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cXbpxaIz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IApJy6nv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A385510E0AB
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 20:28:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 665DA10E12A
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 20:28:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748982516; x=1780518516;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=x/2R+Am2opDpjGLhcXN1ADHvU+qDVZp0+Eo7GbV49S0=;
- b=cXbpxaIzb7ffked2TAYGm8qj/KZFy7gaYfOZALAN2gExRJ2YWinvZqbf
- Wof8ZqgHvm7Kf7si+IDAL2Ra8pKb1wCQqs5ktAeWDtSJYQVhD/WpLZIOd
- 0HcGpvav5jHINehsighUUgTUqX1sQ478f+AJ1WSI+WDNNbfk3NYONz6m0
- kvK9jgY1wfeDNSckBsQtUnnmtv6YRN1I9rq9z/fZBU1n0UGJABbsjyoBp
- XRydZ/6AJ3/SoSAp9jNBzFonmexYQxnea/rXyZcIbL3zrBF6DJQacAgl5
- UhICiMq9S8mnGfMajHmwmXGps0PdGQgfZpfOPj0w0VMf9AXT+1DeyLx5u w==;
-X-CSE-ConnectionGUID: BZS+yaO1SFuiX+uI1L4hzQ==
-X-CSE-MsgGUID: Fxj/Rm/aTyuWMbg/rIjuhA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="62396645"
-X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="62396645"
+ t=1748982519; x=1780518519;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=K5+ltkAJux2E791vEwcvf6NZdiDDO6XU2yOWBjH9yVs=;
+ b=IApJy6nvqG28xQ27SNPP4lRcvrI9f5TNUMVT2cLztk/mJ6Kl2aKXnjbZ
+ o5Satn4qROXKpODWGuSDsP1taBG4W/KpLY06EoaioO/hXTvQcUrFThMQ7
+ ZEtJzYZeG+970rtNHz/O8so8I18P4W4HpfaR6pabyn6H9woE8jh75BNE2
+ KAaNfudtGbvtojWLJGQwUZxn4YwGnEWkQHc97mqBgSa29FlpHcIxJ1fBV
+ YtVSxY7Gxku7B8Woi85/oBQ4h/uqn9h5d2tTDK1rRQdk91iN6mOcTiaND
+ GlW+0fLo2VSwOJNQdhKA1DrCpMtbcW6KM0BHZfNAa/FSadEK1BDcJ4e+D A==;
+X-CSE-ConnectionGUID: MFX7I6kqSGmi6DLOzInRHg==
+X-CSE-MsgGUID: sOorfpFKREOe6qQaDi/VPA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="62396646"
+X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="62396646"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 13:28:36 -0700
-X-CSE-ConnectionGUID: Rknk7nk9RoSjCLeH1LLqow==
-X-CSE-MsgGUID: uT8s83SIQuWMUZAvzCh/5w==
+ 03 Jun 2025 13:28:39 -0700
+X-CSE-ConnectionGUID: b++iKScrSTmLimWJKBwSHg==
+X-CSE-MsgGUID: IHAckFmsRTGIHKtdERpOrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="145583159"
+X-IronPort-AV: E=Sophos;i="6.16,207,1744095600"; d="scan'208";a="145583166"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.253.198])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 13:28:35 -0700
+ 03 Jun 2025 13:28:36 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 0/4] Some more _types.h cleanups
-Date: Tue,  3 Jun 2025 22:28:22 +0200
-Message-Id: <20250603202826.681-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH 1/4] drm/xe: Move xe_root_tile_mmio() to xe_device.h
+Date: Tue,  3 Jun 2025 22:28:23 +0200
+Message-Id: <20250603202826.681-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20250603202826.681-1-michal.wajdeczko@intel.com>
+References: <20250603202826.681-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,25 +68,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Promote xe_mmio and xe_tile definitions to own files.
+It seems to be a better place for this helper function.
 
-Michal Wajdeczko (4):
-  drm/xe: Move xe_root_tile_mmio() to xe_device.h
-  drm/xe: Promote struct xe_mmio definition to own file
-  drm/xe: Promote struct xe_tile definition to own file
-  drm/xe: Drop unnecessary include from xe_tile.h
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h | 5 +++++
+ drivers/gpu/drm/xe/xe_mmio.h   | 5 -----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
- drivers/gpu/drm/xe/xe_device.h       |   5 +
- drivers/gpu/drm/xe/xe_device_types.h | 197 +--------------------------
- drivers/gpu/drm/xe/xe_mmio.h         |   8 +-
- drivers/gpu/drm/xe/xe_mmio_types.h   |  53 +++++++
- drivers/gpu/drm/xe/xe_tile.h         |   3 +-
- drivers/gpu/drm/xe/xe_tile_sysfs.c   |   2 +-
- drivers/gpu/drm/xe/xe_tile_types.h   | 172 +++++++++++++++++++++++
- 7 files changed, 236 insertions(+), 204 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_mmio_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_tile_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 0bc3bc8e6803..884e8e4fddbf 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -117,6 +117,11 @@ static inline struct xe_gt *xe_root_mmio_gt(struct xe_device *xe)
+ 	return xe_device_get_root_tile(xe)->primary_gt;
+ }
+ 
++static inline struct xe_mmio *xe_root_tile_mmio(struct xe_device *xe)
++{
++	return &xe->tiles[0].mmio;
++}
++
+ static inline bool xe_device_uc_enabled(struct xe_device *xe)
+ {
+ 	return !xe->info.force_execlist;
+diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+index c151ba569003..540bade24790 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.h
++++ b/drivers/gpu/drm/xe/xe_mmio.h
+@@ -37,9 +37,4 @@ static inline u32 xe_mmio_adjusted_addr(const struct xe_mmio *mmio, u32 addr)
+ 	return addr;
+ }
+ 
+-static inline struct xe_mmio *xe_root_tile_mmio(struct xe_device *xe)
+-{
+-	return &xe->tiles[0].mmio;
+-}
+-
+ #endif
 -- 
 2.47.1
 
