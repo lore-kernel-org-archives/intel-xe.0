@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6194FC5AE59
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 19:13:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2430EC5AD49
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Jun 2025 19:22:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20E7610E935;
-	Tue,  3 Jun 2025 19:13:15 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE53310E91F;
- Tue,  3 Jun 2025 19:13:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF9F310E02E;
+	Tue,  3 Jun 2025 19:22:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IH1Sx9P5";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A87FC10E02E
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Jun 2025 19:22:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748978550; x=1780514550;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0YrSZN7gSdzgPB5VzXMKCnSu0R0/noZtbP+hg7h8Ifc=;
+ b=IH1Sx9P5D7bdWRlMXLqCa4LsJMyFkwyx7sovNrBi/0XJR8j8878Bf4Ol
+ f99CN5JvIwlp2ym1NCO/y3obXAQAAQDPwV3TfaIG4dnbNNUGjh5JTEjs9
+ 0iZh4/vinHGk3FguURSzHnX+9eVGaU2lDejUPzWMqZntveVaFOk2K3Gbo
+ 3PK/oeQJZKnIyubcIWpQpH0pbFgUWdojdIsbw941hDYoxpuJ5EoeY2O4I
+ zMQf8iyLOyABi3DLHb1P0SzS0tTkAzspsBFUVx34kN/usOhPDGpLHBA7P
+ mOeQxz3YOwtE7YmZ7Dct0OAF2bf46eU2Zt9WKfz0w03/A63kA1qPN7/6L A==;
+X-CSE-ConnectionGUID: jJ+UDmN9QmGl3lHTD22xBA==
+X-CSE-MsgGUID: 0M36iaxHSICyEE7ZCuxQmg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="53662225"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="53662225"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2025 12:22:30 -0700
+X-CSE-ConnectionGUID: 04d2sIIHTLGvDHN9+EBdnQ==
+X-CSE-MsgGUID: jIDoTTwbRESvPocBokAcvQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="150001335"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.253.198])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2025 12:22:28 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH] drm/xe: Make force_reset attributes write-only
+Date: Tue,  3 Jun 2025 21:22:18 +0200
+Message-Id: <20250603192218.637-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/ttm=3A_Fix_build_wit?=
- =?utf-8?q?h_CONFIG=5FDEBUG=5FFS=3Dn?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Jun 2025 19:13:13 -0000
-Message-ID: <174897799377.45422.8255572181062889077@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250603184750.3304647-2-lucas.demarchi@intel.com>
-In-Reply-To: <20250603184750.3304647-2-lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +62,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Stop supporting triggering GT resets from readoperations, as main
+user of this feature (IGT) already switched to use write operation.
 
-Series: drm/ttm: Fix build with CONFIG_DEBUG_FS=n
-URL   : https://patchwork.freedesktop.org/series/149797/
-State : success
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_debugfs.c | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast ba486e3b10ce5b4ee4d1ffc58aa4cc3b669c02a3
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 848618acdca8..3afd0d58fa6b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -349,9 +349,6 @@ static ssize_t force_reset_write(struct file *file,
+ 
+ static int force_reset_show(struct seq_file *s, void *unused)
+ {
+-	struct xe_gt *gt = s->private;
+-
+-	force_reset(gt); /* to be deprecated! */
+ 	return 0;
+ }
+ DEFINE_SHOW_STORE_ATTRIBUTE(force_reset);
+@@ -377,9 +374,6 @@ static ssize_t force_reset_sync_write(struct file *file,
+ 
+ static int force_reset_sync_show(struct seq_file *s, void *unused)
+ {
+-	struct xe_gt *gt = s->private;
+-
+-	force_reset_sync(gt); /* to be deprecated! */
+ 	return 0;
+ }
+ DEFINE_SHOW_STORE_ATTRIBUTE(force_reset_sync);
+@@ -408,8 +402,8 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+ 	root->d_inode->i_private = gt;
+ 
+ 	/* VF safe */
+-	debugfs_create_file("force_reset", 0600, root, gt, &force_reset_fops);
+-	debugfs_create_file("force_reset_sync", 0600, root, gt, &force_reset_sync_fops);
++	debugfs_create_file("force_reset", 0200, root, gt, &force_reset_fops);
++	debugfs_create_file("force_reset_sync", 0200, root, gt, &force_reset_sync_fops);
+ 
+ 	drm_debugfs_create_files(vf_safe_debugfs_list,
+ 				 ARRAY_SIZE(vf_safe_debugfs_list),
+-- 
+2.47.1
 
