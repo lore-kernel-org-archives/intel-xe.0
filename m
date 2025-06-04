@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4496DC5B543
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 23:45:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F213C5B549
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 23:45:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3DC010E0A2;
-	Wed,  4 Jun 2025 23:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D5EA10E22B;
+	Wed,  4 Jun 2025 23:45:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZfvLxOv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U2y8Il5Z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B47E710E0A2
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 23:45:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4417410E22B
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 23:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749080735; x=1780616735;
+ t=1749080740; x=1780616740;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=axV+UsbdseteeV/3413LqVnSi/yPfKIJwy1lJPD3d4o=;
- b=KZfvLxOvcU/mC0O6YGbvily2ubzt+oWVZvMROJJYSerRQQBmTTracM10
- UeFLvbQZSrxoS9GvR+rsGcTKi+lYLa1r6pcINhsCrLiZYGdx5Sbh9aB4c
- J3pMMmp6Hc3rbgNRzBu5YH5c9Ec7SvBZ4hWRemZraZ9ES1pfiffVFcde/
- jQek03wym42WaA5q73kNCLBimXkRIMn0JC89/unpZLM5TSUeuYNerZFjU
- Vc5/2HUl+W2moYzHZQxz87PDU4+pvdCM1I2k+g3XaA9dWrwed3zJwkOvJ
- 3eBbmTXBwS4bMn25YvsN7Ga9BNePBENsITiUAMG5eOrKHV/rDejsmb2lI Q==;
-X-CSE-ConnectionGUID: 8ro6VdlQRm6nrs39mnPYWA==
-X-CSE-MsgGUID: xwBPi0gRRqOxUwmh1u5NlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="73716387"
-X-IronPort-AV: E=Sophos;i="6.16,210,1744095600"; d="scan'208";a="73716387"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2025 16:45:35 -0700
-X-CSE-ConnectionGUID: kH8/y39FQVmY0MR43UMAhg==
-X-CSE-MsgGUID: 60YoU2FYRJ2X4u+80YIxpg==
+ bh=OlXd8LOGvReC8ZPtjiiVCtbhfxw6yY21LIyuTEd2lN0=;
+ b=U2y8Il5ZTFuqVPxTE6J5DJPo6Z8IdpQwMejKkZ2Mvg7TEcaFtvn4oOXL
+ rFW40awUW75t4E3BPaJGExz/mhhMFL5FjcegNhJB4mVAnaNTi0C6YJ00r
+ MjOS2ue9Mk5wSxsqISvmQWgbV2SvlSCK0usEoFIMkLMT7XouyciSCfexB
+ NloWL3ADSJXkFP1PesOzVLI7uWn4Mc852GDKnUcrn5mHrbCIkEUM7pmTt
+ ehJvJRsWtX+o4PqlcAIxskt390z5dLrvMVdG69KA52Fepx2gJ9U5Z83AG
+ gjLiDePtj9x9MIuAz7QV+NrMz7yp9d4I4iMjWfkwncN6/H1fcF1pejAPu w==;
+X-CSE-ConnectionGUID: n3bjTzD6QFeQ1/u6fmWxNQ==
+X-CSE-MsgGUID: NRm0kXDuRwqb/f0lJfUTcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="61804267"
+X-IronPort-AV: E=Sophos;i="6.16,210,1744095600"; d="scan'208";a="61804267"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2025 16:45:40 -0700
+X-CSE-ConnectionGUID: vddR9WmbQFmp/PpRocqGmw==
+X-CSE-MsgGUID: owjpC1mMSamC5tWVXkFbPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,210,1744095600"; d="scan'208";a="145227765"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by orviesa006.jf.intel.com with ESMTP; 04 Jun 2025 16:45:34 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,210,1744095600"; d="scan'208";a="150125167"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2025 16:45:40 -0700
+From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2] drm/xe/guc: Set wedged on Xe micro hardware initialization
- error
-Date: Wed,  4 Jun 2025 19:45:32 -0400
-Message-Id: <20250604234532.1167699-1-zhanjun.dong@intel.com>
+Cc: thomas.hellstrom@linux.intel.com,
+	himal.prasad.ghimiray@intel.com
+Subject: [PATCH] drm/xe: Use WRITE_ONCE for range->tile_invalidated update
+Date: Wed,  4 Jun 2025 16:47:12 -0700
+Message-Id: <20250604234712.2441130-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -65,94 +65,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Declare wedged on Xe micro controller hardware initialization
-failed.
+Updating range->tile_invalidated should be done with WRITE_ONCE to pair
+with READ_ONCE in opportunistic checks.
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4917
-
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+ drivers/gpu/drm/xe/xe_svm.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-Change list:
-v2: Remove unnecessary jump to err-out
-    Drop disable ct, swtich to set wedge
----
- drivers/gpu/drm/xe/xe_uc.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 3a8751a8b92d..bd1d4e8fab7e 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -13,6 +13,7 @@
- #include "xe_gt_printk.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_guc.h"
-+#include "xe_guc_ct.h"
- #include "xe_guc_pc.h"
- #include "xe_guc_engine_activity.h"
- #include "xe_huc.h"
-@@ -157,19 +158,22 @@ static int vf_uc_init_hw(struct xe_uc *uc)
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 83c63fd7b481..7df0bcea65fc 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -141,7 +141,9 @@ xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct drm_gpusvm_range *r,
+ 	for_each_tile(tile, xe, id)
+ 		if (xe_pt_zap_ptes_range(tile, vm, range)) {
+ 			tile_mask |= BIT(id);
+-			range->tile_invalidated |= BIT(id);
++			/* Pairs with READ_ONCE in xe_svm_range_is_valid */
++			WRITE_ONCE(range->tile_invalidated,
++				   range->tile_invalidated | BIT(id));
+ 		}
  
- 	err = xe_guc_enable_communication(&uc->guc);
- 	if (err)
--		return err;
-+		goto err_out;
- 
- 	err = xe_gt_sriov_vf_connect(uc_to_gt(uc));
- 	if (err)
--		return err;
-+		goto err_out;
- 
- 	uc->guc.submission_state.enabled = true;
- 
- 	err = xe_gt_record_default_lrcs(uc_to_gt(uc));
- 	if (err)
--		return err;
-+		goto err_out;
- 
- 	return 0;
-+err_out:
-+	xe_device_declare_wedged(uc_to_xe(uc));
-+	return err;
- }
- 
- /*
-@@ -197,19 +201,19 @@ int xe_uc_init_hw(struct xe_uc *uc)
- 
- 	ret = xe_guc_enable_communication(&uc->guc);
- 	if (ret)
--		return ret;
-+		goto err_out;
- 
- 	ret = xe_gt_record_default_lrcs(uc_to_gt(uc));
- 	if (ret)
--		return ret;
-+		goto err_out;
- 
- 	ret = xe_guc_post_load_init(&uc->guc);
- 	if (ret)
--		return ret;
-+		goto err_out;
- 
- 	ret = xe_guc_pc_start(&uc->guc.pc);
- 	if (ret)
--		return ret;
-+		goto err_out;
- 
- 	xe_guc_engine_activity_enable_stats(&uc->guc);
- 
-@@ -221,6 +225,9 @@ int xe_uc_init_hw(struct xe_uc *uc)
- 	xe_gsc_load_start(&uc->gsc);
- 
- 	return 0;
-+err_out:
-+	xe_device_declare_wedged(uc_to_xe(uc));
-+	return ret;
- }
- 
- int xe_uc_fini_hw(struct xe_uc *uc)
+ 	return tile_mask;
+@@ -644,7 +646,8 @@ static bool xe_svm_range_is_valid(struct xe_svm_range *range,
+ {
+ 	/*
+ 	 * Advisory only check whether the range currently has a valid mapping,
+-	 * READ_ONCE pairs with WRITE_ONCE in xe_pt.c
++	 * READ_ONCE pairs with WRITE_ONCE in xe_pt.c,
++	 * xe_svm_range_notifier_event_begin
+ 	 */
+ 	return ((READ_ONCE(range->tile_present) &
+ 		 ~READ_ONCE(range->tile_invalidated)) & BIT(tile->id)) &&
 -- 
 2.34.1
 
