@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4733DC5B549
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 19:00:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5FE1C5B543
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 19:00:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFB9910E7E3;
-	Wed,  4 Jun 2025 19:00:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 647CE10E7F5;
+	Wed,  4 Jun 2025 19:00:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OlfYUq0w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f0THsGwR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E6BB10E7E3
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 19:00:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C3CD10E7E4
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 19:00:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749063634; x=1780599634;
+ t=1749063636; x=1780599636;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AqbPOCn5azwkNE8zX1P304Joqs1Cv4OBFErVcfqKXNE=;
- b=OlfYUq0wkQQjRbuhX4oCa1AXIH6h9t6l1ltCpM3WWJG1rnY1Jsk2a2QL
- kmkhWikggmqyfRu1Yxlol6UVVOu5ntPXVoEUxvvKMLJ+ChwZmKTwG+5nL
- 12PFYBes2LiWJf0c4WlKq/6ceVukowtgj4d2qj0HjNEOgC80ifBboti98
- VpDm9pUACU+t5+FWHHkV3DNlki6wB5+LMfjfPqd5okZ0REQq1Lj89GLnY
- 0DD6CDuelAjvMCBd71A65Rgd9r9p6/XAtjZ4Nb9MkP2yq5srMq98jZw1Z
- OkZsPeVqN/0B6xip90ibtPaKGys6exvtZ4XMFT9O//N1EXK9injMNaJw/ w==;
-X-CSE-ConnectionGUID: 46ltWprgRtm409BN3co4jw==
-X-CSE-MsgGUID: ugur3dufRumni32+GYzRFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="50279995"
-X-IronPort-AV: E=Sophos;i="6.16,209,1744095600"; d="scan'208";a="50279995"
+ bh=F3uC/fhwimVaVuJe1VgLed5zI3leQQCUAhuI1w/L8Hw=;
+ b=f0THsGwR7Eg1KjlXWJV2hpu+VmFfxjbh2WEjNy11snMMrNIaWeMsaxMY
+ dEuq51Vod2ktvrEgL2r8QDt2t/o2Aw2SxBYkJgelQ+Zj/7pYq4A+lnVeg
+ b+yZEg9hgrSwjiN6UCgFPmPY3BNRodEyqsgmO7eRaXVDUPBE4bSmRrg2k
+ VDNX1mIoN/la3ez4Km6GRuLUYGBz1SZa6NxGumeh2uc7HyIKhQLV2I9Fi
+ dyjIT4lhvCV8J7PnzFRpeOGb86lVs2dwXTDn3j7n5dBaaG5UP7nHgRP3K
+ OCupiijbMCB03dsZsuV5+mM0uetaPLdYfckgHigLKDErU76rgJQJ7Cual A==;
+X-CSE-ConnectionGUID: R87SjhDMSguDHvXTMgq9qw==
+X-CSE-MsgGUID: Y5Y4c5ltQkWCyuy4J+OiQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="50279996"
+X-IronPort-AV: E=Sophos;i="6.16,209,1744095600"; d="scan'208";a="50279996"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2025 12:00:34 -0700
-X-CSE-ConnectionGUID: LjiVuAUqTiylmGGqKKLdtA==
-X-CSE-MsgGUID: wu5ixSeTRYaotj+u2WJsNg==
+ 04 Jun 2025 12:00:36 -0700
+X-CSE-ConnectionGUID: p3yoH0FtSf2Y9NMOQqp4kg==
+X-CSE-MsgGUID: i3X7TVo4RGCoCPaWHMGPqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,209,1744095600"; d="scan'208";a="150066470"
+X-IronPort-AV: E=Sophos;i="6.16,209,1744095600"; d="scan'208";a="150066473"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.253.198])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2025 12:00:32 -0700
+ 04 Jun 2025 12:00:34 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 1/2] drm/xe/pf: Print runtime registers using debug printer
-Date: Wed,  4 Jun 2025 21:00:20 +0200
-Message-Id: <20250604190021.725-2-michal.wajdeczko@intel.com>
+Subject: [PATCH 2/2] drm/xe/pf: Print configuration KLVs using debug printer
+Date: Wed,  4 Jun 2025 21:00:21 +0200
+Message-Id: <20250604190021.725-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20250604190021.725-1-michal.wajdeczko@intel.com>
 References: <20250604190021.725-1-michal.wajdeczko@intel.com>
@@ -66,27 +66,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While we already print VF's runtime registers only under DEBUG_SRIOV
-config, we should be still doing it at debug level, not info.
+While we print VF's configuration KLVs only under DEBUG_SRIOV
+config, we should be doing it at debug level, not info level.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-index 821cfcc34e6b..fa74b3e1a964 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-@@ -266,7 +266,7 @@ static void pf_prepare_runtime_info(struct xe_gt *gt)
- 	read_many(gt, size, regs, values);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 3556c41c041b..3128d9adc10e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -104,13 +104,13 @@ static int pf_push_vf_buf_klvs(struct xe_gt *gt, unsigned int vfid, u32 num_klvs
+ 	}
  
  	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV)) {
 -		struct drm_printer p = xe_gt_info_printer(gt);
 +		struct drm_printer p = xe_gt_dbg_printer(gt);
+ 		void *klvs = xe_guc_buf_cpu_ptr(buf);
+ 		char name[8];
  
- 		xe_gt_sriov_pf_service_print_runtime(gt, &p);
+-		xe_gt_sriov_info(gt, "pushed %s config with %u KLV%s:\n",
+-				 xe_sriov_function_name(vfid, name, sizeof(name)),
+-				 num_klvs, str_plural(num_klvs));
++		xe_gt_sriov_dbg(gt, "pushed %s config with %u KLV%s:\n",
++				xe_sriov_function_name(vfid, name, sizeof(name)),
++				num_klvs, str_plural(num_klvs));
+ 		xe_guc_klv_print(klvs, num_dwords, &p);
  	}
+ 
 -- 
 2.47.1
 
