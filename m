@@ -4,77 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18FCDC71156
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 14:00:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A430C71148
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 14:00:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA7F710E9CC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FC8E10E9BE;
 	Fri, 13 Jun 2025 14:00:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="klBg7BHy";
+	dkim=pass (2048-bit key; unprotected) header.d=riscv-rocks.de header.i=@riscv-rocks.de header.b="PNRqdQ9r";
+	dkim=pass (1024-bit key; unprotected) header.d=amazonses.com header.i=@amazonses.com header.b="Ri+7Jbue";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE9310E250;
- Wed,  4 Jun 2025 02:58:07 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 9BFAC5C019C;
- Wed,  4 Jun 2025 02:55:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 18735C4CEF0;
- Wed,  4 Jun 2025 02:58:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1749005880;
- bh=woWKYitU+ZTuRE8At30QAD+trikncUB1NYbv7oKpxSE=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=klBg7BHyIOjOVS9rjk7kdf/fJOK6ElMm77JHCrTjHu+lqqFmMS6BOm5esWjL5wJcZ
- 3hN6Ru0d0JRSCW0VOhKkk9vRsvY+XLeDpOtqGQrHh+3/joHvt1vOhMMsLhRZxuursb
- IjMc4o2cy4r0HLt210hzZkT5/IDbpmmkENZPtejTAwZRQyykaR1LPlMQfor7Imdglo
- L508xR3DQmszhPLUZQnFwg2fAFBGr4getXc6PKTxl0Z7889cudFJaqvt5ujYO5wt4r
- zeU7ncm1PYOue1B8RY6dVl8DCZ48fIGYrWIZg9OkKpdz0l+9X/D73vbO3AVG00UI/u
- EUR+VrNiWfOBw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id F2984C61CE5;
- Wed,  4 Jun 2025 02:57:59 +0000 (UTC)
-From: Mingcong Bai via B4 Relay <devnull+jeffbai.aosc.io@kernel.org>
-Date: Wed, 04 Jun 2025 10:57:55 +0800
-Subject: [PATCH v2 1/5] drm/xe/bo: fix alignment with non-4KiB kernel page
- sizes
+X-Greylist: delayed 403 seconds by postgrey-1.36 at gabe;
+ Wed, 04 Jun 2025 07:32:41 UTC
+Received: from b224-13.smtp-out.eu-central-1.amazonses.com
+ (b224-13.smtp-out.eu-central-1.amazonses.com [69.169.224.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1597910E00A;
+ Wed,  4 Jun 2025 07:32:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=2kaovp6zxy5nzp5wqunvdq5vkiqbeqln; d=riscv-rocks.de; t=1749021944;
+ h=Date:From:To:Cc:Subject:Message-ID:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+ bh=RRjprLQpHf/JeQCUvOJ1Xn6IrSoQOpmI7jKaJYaKizI=;
+ b=PNRqdQ9rmkmvExtsjOP4MYlAiGLW0/jeiU8EZ2LmzWTsKjD/rFQBpV1pudtg+oEe
+ Eh4DnQfLewmJvEy5oswT3gaIEiBTy2I32ruR1eZrfwDx4Nug47/WjQmqPMyZL+qD4XT
+ Z4Ntq7LyMq52jsbww5/AVIaL34vXjq1mVoTUsUYhdf5aGXAE2q5PsvDPzkFRi2CR2pD
+ CF/jhu9/RVQ1v4sBnkzl4m1x5oOm+lElmroS/eLnRLWRPcGAAKioezBSeyJ42as9mw+
+ uTSI+s7eHgJWVcSmbsS7UiD0lo4vQ0MnDpqgvluc5F0hYi9H7sQf38V1eeW8Jqk595t
+ 0Bvq4n/Mbw==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=54ecsf3zk7z4mwxwwox7z7bg6e5gwjsz; d=amazonses.com; t=1749021944;
+ h=Date:From:To:Cc:Subject:Message-ID:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+ bh=RRjprLQpHf/JeQCUvOJ1Xn6IrSoQOpmI7jKaJYaKizI=;
+ b=Ri+7JbueElfFuOvosB7BLOyvi2KY4HN7qULpL+LV+6AejzaH51VzcxFSojsrzjW6
+ O1bbO3GrNKOOYS/VArN7JTMUERUSwKwIl2YYTBOlgRCKugLpGVXEjsCrKx64GBAPFhp
+ W+DVJmyxraaqMA1VyUZqt3DAyTYhyE1H8Ta6FWDY=
+Date: Wed, 4 Jun 2025 07:25:43 +0000
+From: Damian Tometzki <damian@riscv-rocks.de>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+Subject: [BUG] i915 WARN: RPM wakelock not held in fwtable_read32 on Lenovo T14
+Message-ID: <0107019739d4e899-81e90dc7-0ff9-43aa-91dc-d57ef84c64b3-000000@eu-central-1.amazonses.com>
+Mail-Followup-To: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250604-upstream-xe-non-4k-v2-v2-1-ce7905da7b08@aosc.io>
-References: <20250604-upstream-xe-non-4k-v2-v2-0-ce7905da7b08@aosc.io>
-In-Reply-To: <20250604-upstream-xe-non-4k-v2-v2-0-ce7905da7b08@aosc.io>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Francois Dugast <francois.dugast@intel.com>, 
- =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>, 
- =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>, 
- Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Zhanjun Dong <zhanjun.dong@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>, 
- Alan Previn <alan.previn.teres.alexis@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Mateusz Naklicki <mateusz.naklicki@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
- Kexy Biscuit <kexybiscuit@aosc.io>, Shang Yatsen <429839446@qq.com>, 
- Mingcong Bai <jeffbai@aosc.io>, Wenbin Fang <fangwenbin@vip.qq.com>, 
- Haien Liang <27873200@qq.com>, Jianfeng Liu <liujianfeng1994@gmail.com>, 
- Shirong Liu <lsr1024@qq.com>, Haofeng Wu <s2600cw2@126.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749005878; l=7779;
- i=jeffbai@aosc.io; s=20250604; h=from:subject:message-id;
- bh=xSGwCQGvwAiX+QXGpf7BRIVGfqz2xRhzgtsh+/oMkpM=;
- b=pnNFiHQL+8XLNDGXtfU9Q8413J/TJCL8QSUk5q0Y4mtCE65WfwA13U6Qn37SkII5iYg8grkwy
- 97XKT2kMK7eBMK58wZqWV9VHV+3Pun07gSoynE4uyQhyxyoXmVPGWTT
-X-Developer-Key: i=jeffbai@aosc.io; a=ed25519;
- pk=MJdgklflDF+Xz9x2Lp+ogEnEyk8HRosMGiqLgWbFctY=
-X-Endpoint-Received: by B4 Relay for jeffbai@aosc.io/20250604 with auth_id=422
-X-Original-From: Mingcong Bai <jeffbai@aosc.io>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Mutt
+X-Operating-System: Linux Fedora release 42 (Adams) (Kernel 6.15.0)
+Organization: Linux hacker
+Feedback-ID: ::1.eu-central-1.yMcBPu/jK26Vj3HVmCFyFk75QMsS8V3QY5HbXP/Qrys=:AmazonSES
+X-SES-Outgoing: 2025.06.04-69.169.224.13
 X-Mailman-Approved-At: Fri, 13 Jun 2025 13:59:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,143 +67,245 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: jeffbai@aosc.io
+Reply-To: Damian Tometzki <damian@riscv-rocks.de>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mingcong Bai <jeffbai@aosc.io>
+Dear Intel Graphics / Kernel maintainers,
 
-The bo/ttm interfaces with kernel memory mapping from dedicated GPU
-memory. It is not correct to assume that SZ_4K would suffice for page
-alignment as there are a few hardware platforms that commonly uses non-
-4KiB pages - for instance, 16KiB is the most commonly used kernel page
-size used on Loongson devices (of the LoongArch architecture).
+I=E2=80=99m encountering repeated WARNs in the i915 driver with kernel 6.15=
+=2E0 (since Kernel 6.13) on a Lenovo T14 (20XWCTO1WW, BIOS N32ET96W 1.72).
+The messages suggest a missing RPM wakelock when accessing hardware registe=
+rs in fwtable_read32.
 
-Per our testing, Intel Xe/Alchemist/Battlemage families of GPUs works on
-Loongson platforms so long as "Above 4G Decoding" was enabled and
-"Resizable BAR" was set to auto in the UEFI firmware settings.
+[29101.659315] wlp0s20f3: associate with b0:f2:08:dc:a3:5e (try 1/3)
+[29101.662856] wlp0s20f3: RX ReassocResp from b0:f2:08:dc:a3:5e (capab=3D0x=
+1111 status=3D0 aid=3D9)
+[29101.669115] wlp0s20f3: associated
+[29101.704089] wlp0s20f3: Limiting TX power to 20 (23 - 3) dBm as advertise=
+d by b0:f2:08:dc:a3:5e
+[29216.585535] CIFS: VFS: \\dtometzki.file.core.windows.net has not respond=
+ed in 180 seconds. Reconnecting...
+[30235.603534] perf: interrupt took too long (2503 > 2500), lowering kernel=
+=2Eperf_event_max_sample_rate to 79000
+[31782.350817] usb 3-5: USB disconnect, device number 7
+[31782.372751] ------------[ cut here ]------------
+[31782.372755] RPM raw-wakeref not held
+[31782.372805] WARNING: CPU: 5 PID: 0 at drivers/gpu/drm/i915/intel_runtime=
+_pm.h:116 fwtable_read32+0x1cf/0x2a0 [i915]
+[31782.372941] Modules linked in: uinput rfcomm snd_seq_dummy snd_hrtimer x=
+t_conntrack xt_MASQUERADE bridge stp llc xt_set xt_addrtype nls_utf8 cifs c=
+ifs_arc4 nls_ucs2_utils cifs_md4 dns_resolver netfs overlay xt_comment nft_=
+compat nf_conntrack_netbios_ns nf_conntrack_broadcast nft_fib_inet nft_fib_=
+ipv4 nft_fib_ipv6 nft_fib nft_reject_inet nf_reject_ipv4 nf_reject_ipv6 nft=
+_reject nft_ct nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_i=
+pv4 ip_set nf_tables qrtr bnep sunrpc binfmt_misc snd_soc_skl_hda_dsp snd_s=
+oc_intel_sof_board_helpers snd_sof_probes snd_soc_intel_hda_dsp_common snd_=
+soc_dmic snd_hda_codec_realtek snd_hda_codec_generic snd_hda_scodec_compone=
+nt snd_sof_pci_intel_tgl snd_sof_pci_intel_cnl snd_sof_intel_hda_generic so=
+undwire_intel snd_sof_intel_hda_sdw_bpt snd_sof_intel_hda_common snd_soc_hd=
+ac_hda snd_sof_intel_hda_mlink snd_sof_intel_hda snd_hda_codec_hdmi soundwi=
+re_cadence snd_sof_pci snd_sof_xtensa_dsp iwlmvm snd_sof snd_sof_utils snd_=
+soc_acpi_intel_match snd_soc_acpi_intel_sdca_quirks
+[31782.372985]  soundwire_generic_allocation mac80211 snd_soc_acpi crc8 sou=
+ndwire_bus snd_soc_sdca snd_soc_avs snd_soc_hda_codec libarc4 snd_hda_ext_c=
+ore snd_soc_core snd_compress ac97_bus snd_pcm_dmaengine snd_hda_intel snd_=
+intel_dspcfg snd_intel_sdw_acpi snd_hda_codec intel_uncore_frequency intel_=
+uncore_frequency_common intel_tcc_cooling snd_hda_core uvcvideo x86_pkg_tem=
+p_thermal intel_powerclamp snd_hwdep uvc spi_nor videobuf2_vmalloc processo=
+r_thermal_device_pci_legacy snd_seq videobuf2_memops processor_thermal_devi=
+ce coretemp processor_thermal_wt_hint iTCO_wdt videobuf2_v4l2 snd_seq_devic=
+e mtd platform_temperature_control mei_hdcp videobuf2_common processor_ther=
+mal_rfim mei_pxp intel_rapl_msr intel_pmc_bxt snd_pcm rapl iwlwifi think_lm=
+i videodev processor_thermal_rapl iTCO_vendor_support vfat intel_rapl_commo=
+n intel_cstate fat intel_uncore pcspkr firmware_attributes_class mc process=
+or_thermal_wt_req spi_intel_pci snd_ctl_led wmi_bmof mei_me i2c_i801 snd_ti=
+mer processor_thermal_power_floor spi_intel cfg80211
+[31782.373028]  i2c_smbus mei processor_thermal_mbox thunderbolt idma64 ige=
+n6_edac intel_soc_dts_iosf thinkpad_acpi platform_profile snd soundcore int=
+3403_thermal soc_button_array int340x_thermal_zone intel_pmc_core pmt_telem=
+etry int3400_thermal pmt_class intel_hid intel_pmc_ssram_telemetry acpi_tad=
+ acpi_pad acpi_thermal_rel sparse_keymap joydev loop nfnetlink zram lz4hc_c=
+ompress lz4_compress btusb btrtl btintel btbcm btmtk bluetooth rfkill xe dr=
+m_ttm_helper drm_suballoc_helper gpu_sched drm_gpuvm drm_exec drm_gpusvm i9=
+15 i2c_algo_bit nvme drm_buddy hid_multitouch ttm nvme_core drm_display_hel=
+per polyval_clmulni ghash_clmulni_intel video sha512_ssse3 nvme_keyring sha=
+1_ssse3 nvme_auth intel_vsec cec i2c_hid_acpi i2c_hid ucsi_acpi typec_ucsi =
+typec wmi pinctrl_tigerlake serio_raw fuse
+[31782.373074] CPU: 5 UID: 0 PID: 0 Comm: swapper/5 Tainted: G     U       =
+       6.15.0 #422 PREEMPT(lazy)=20
+[31782.373077] Tainted: [U]=3DUSER
+[31782.373078] Hardware name: LENOVO 20XWCTO1WW/20XWCTO1WW, BIOS N32ET96W (=
+1.72 ) 03/04/2025
+[31782.373080] RIP: 0010:fwtable_read32+0x1cf/0x2a0 [i915]
+[31782.373185] Code: 4c 89 ff e8 53 c9 ff ff eb 92 80 3d e6 da ee ff 00 0f =
+85 83 fe ff ff 48 c7 c7 2c e5 e9 c0 c6 05 d2 da ee ff 01 e8 31 5c 9a ec <0f=
+> 0b e9 69 fe ff ff 80 3d be da ee ff 00 0f 85 65 fe ff ff 48 c7
+[31782.373187] RSP: 0018:ffffcdd70027cee8 EFLAGS: 00010046
+[31782.373189] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000000=
+00027
+[31782.373191] RDX: ffff8c974f69ce88 RSI: 0000000000000001 RDI: ffff8c974f6=
+9ce80
+[31782.373192] RBP: 00000000000444f8 R08: 0000000000000000 R09: ffffcdd7002=
+7cd90
+[31782.373194] R10: ffffffffaf1374c8 R11: 00000000ffffdfff R12: 00000000000=
+00000
+[31782.373195] R13: 0000000000000086 R14: 0000000000000001 R15: ffff8c9410b=
+71be8
+[31782.373196] FS:  0000000000000000(0000) GS:ffff8c979f72f000(0000) knlGS:=
+0000000000000000
+[31782.373198] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[31782.373200] CR2: 00007f0233e51ba8 CR3: 000000010274e003 CR4: 0000000000f=
+70ef0
+[31782.373201] PKRU: 55555554
+[31782.373203] Call Trace:
+[31782.373206]  <IRQ>
+[31782.373209]  gen11_gu_misc_irq_ack+0x4d/0xb0 [i915]
+[31782.373351]  gen11_irq_handler+0x7a/0xd0 [i915]
+[31782.373421]  __handle_irq_event_percpu+0x47/0x1b0
+[31782.373425]  handle_irq_event+0x38/0x80
+[31782.373427]  handle_edge_irq+0x8d/0x1c0
+[31782.373429]  __common_interrupt+0x50/0xf0
+[31782.373433]  common_interrupt+0x80/0xa0
+[31782.373435]  </IRQ>
+[31782.373436]  <TASK>
+[31782.373437]  asm_common_interrupt+0x26/0x40
+[31782.373439] RIP: 0010:cpuidle_enter_state+0xcc/0x660
+[31782.373442] Code: 00 00 e8 e7 57 f8 fe e8 32 f0 ff ff 49 89 c4 0f 1f 44 =
+00 00 31 ff e8 13 e3 f6 fe 45 84 ff 0f 85 02 02 00 00 fb 0f 1f 44 00 00 <85=
+> ed 0f 88 d3 01 00 00 4c 63 f5 49 83 fe 0a 0f 83 9f 04 00 00 49
+[31782.373443] RSP: 0018:ffffcdd70015fe50 EFLAGS: 00000246
+[31782.373444] RAX: ffff8c979f72f000 RBX: ffff8c974f6c1100 RCX: 00000000000=
+00000
+[31782.373445] RDX: 00001ce7e909a68b RSI: 0000000034e8f93a RDI: 00000000000=
+00000
+[31782.373446] RBP: 0000000000000001 R08: fffffffcefd871d4 R09: ffff8c974f6=
+acae0
+[31782.373447] R10: 00001ceafcd72d46 R11: 0000000000000000 R12: 00001ce7e90=
+9a68b
+[31782.373448] R13: ffffffffaf307de0 R14: 0000000000000001 R15: 00000000000=
+00000
+[31782.373451]  cpuidle_enter+0x31/0x50
+[31782.373455]  cpuidle_idle_call+0xf5/0x160
+[31782.373457]  do_idle+0x78/0xd0
+[31782.373458]  cpu_startup_entry+0x29/0x30
+[31782.373459]  start_secondary+0x126/0x170
+[31782.373462]  common_startup_64+0x13e/0x141
+[31782.373466]  </TASK>
+[31782.373467] ---[ end trace 0000000000000000 ]---
+[31782.373468] ------------[ cut here ]------------
+[31782.373469] RPM wakelock ref not held during HW access
+[31782.373492] WARNING: CPU: 5 PID: 0 at drivers/gpu/drm/i915/intel_runtime=
+_pm.h:124 fwtable_read32+0x1f6/0x2a0 [i915]
+[31782.373578] Modules linked in: uinput rfcomm snd_seq_dummy snd_hrtimer x=
+t_conntrack xt_MASQUERADE bridge stp llc xt_set xt_addrtype nls_utf8 cifs c=
+ifs_arc4 nls_ucs2_utils cifs_md4 dns_resolver netfs overlay xt_comment nft_=
+compat nf_conntrack_netbios_ns nf_conntrack_broadcast nft_fib_inet nft_fib_=
+ipv4 nft_fib_ipv6 nft_fib nft_reject_inet nf_reject_ipv4 nf_reject_ipv6 nft=
+_reject nft_ct nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_i=
+pv4 ip_set nf_tables qrtr bnep sunrpc binfmt_misc snd_soc_skl_hda_dsp snd_s=
+oc_intel_sof_board_helpers snd_sof_probes snd_soc_intel_hda_dsp_common snd_=
+soc_dmic snd_hda_codec_realtek snd_hda_codec_generic snd_hda_scodec_compone=
+nt snd_sof_pci_intel_tgl snd_sof_pci_intel_cnl snd_sof_intel_hda_generic so=
+undwire_intel snd_sof_intel_hda_sdw_bpt snd_sof_intel_hda_common snd_soc_hd=
+ac_hda snd_sof_intel_hda_mlink snd_sof_intel_hda snd_hda_codec_hdmi soundwi=
+re_cadence snd_sof_pci snd_sof_xtensa_dsp iwlmvm snd_sof snd_sof_utils snd_=
+soc_acpi_intel_match snd_soc_acpi_intel_sdca_quirks
+[31782.373605]  soundwire_generic_allocation mac80211 snd_soc_acpi crc8 sou=
+ndwire_bus snd_soc_sdca snd_soc_avs snd_soc_hda_codec libarc4 snd_hda_ext_c=
+ore snd_soc_core snd_compress ac97_bus snd_pcm_dmaengine snd_hda_intel snd_=
+intel_dspcfg snd_intel_sdw_acpi snd_hda_codec intel_uncore_frequency intel_=
+uncore_frequency_common intel_tcc_cooling snd_hda_core uvcvideo x86_pkg_tem=
+p_thermal intel_powerclamp snd_hwdep uvc spi_nor videobuf2_vmalloc processo=
+r_thermal_device_pci_legacy snd_seq videobuf2_memops processor_thermal_devi=
+ce coretemp processor_thermal_wt_hint iTCO_wdt videobuf2_v4l2 snd_seq_devic=
+e mtd platform_temperature_control mei_hdcp videobuf2_common processor_ther=
+mal_rfim mei_pxp intel_rapl_msr intel_pmc_bxt snd_pcm rapl iwlwifi think_lm=
+i videodev processor_thermal_rapl iTCO_vendor_support vfat intel_rapl_commo=
+n intel_cstate fat intel_uncore pcspkr firmware_attributes_class mc process=
+or_thermal_wt_req spi_intel_pci snd_ctl_led wmi_bmof mei_me i2c_i801 snd_ti=
+mer processor_thermal_power_floor spi_intel cfg80211
+[31782.373632]  i2c_smbus mei processor_thermal_mbox thunderbolt idma64 ige=
+n6_edac intel_soc_dts_iosf thinkpad_acpi platform_profile snd soundcore int=
+3403_thermal soc_button_array int340x_thermal_zone intel_pmc_core pmt_telem=
+etry int3400_thermal pmt_class intel_hid intel_pmc_ssram_telemetry acpi_tad=
+ acpi_pad acpi_thermal_rel sparse_keymap joydev loop nfnetlink zram lz4hc_c=
+ompress lz4_compress btusb btrtl btintel btbcm btmtk bluetooth rfkill xe dr=
+m_ttm_helper drm_suballoc_helper gpu_sched drm_gpuvm drm_exec drm_gpusvm i9=
+15 i2c_algo_bit nvme drm_buddy hid_multitouch ttm nvme_core drm_display_hel=
+per polyval_clmulni ghash_clmulni_intel video sha512_ssse3 nvme_keyring sha=
+1_ssse3 nvme_auth intel_vsec cec i2c_hid_acpi i2c_hid ucsi_acpi typec_ucsi =
+typec wmi pinctrl_tigerlake serio_raw fuse
+[31782.373660] CPU: 5 UID: 0 PID: 0 Comm: swapper/5 Tainted: G     U  W    =
+       6.15.0 #422 PREEMPT(lazy)=20
+[31782.373662] Tainted: [U]=3DUSER, [W]=3DWARN
+[31782.373663] Hardware name: LENOVO 20XWCTO1WW/20XWCTO1WW, BIOS N32ET96W (=
+1.72 ) 03/04/2025
+[31782.373663] RIP: 0010:fwtable_read32+0x1f6/0x2a0 [i915]
+[31782.373735] Code: 5c 9a ec 0f 0b e9 69 fe ff ff 80 3d be da ee ff 00 0f =
+85 65 fe ff ff 48 c7 c7 90 95 e5 c0 c6 05 aa da ee ff 01 e8 0a 5c 9a ec <0f=
+> 0b e9 4b fe ff ff 49 8b bf 58 01 00 00 48 85 ff 0f 84 5f fe ff
+[31782.373736] RSP: 0018:ffffcdd70027cee8 EFLAGS: 00010046
+[31782.373737] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000000=
+00027
+[31782.373738] RDX: ffff8c974f69ce88 RSI: 0000000000000001 RDI: ffff8c974f6=
+9ce80
+[31782.373739] RBP: 00000000000444f8 R08: 0000000000000000 R09: ffffcdd7002=
+7cd90
+[31782.373739] R10: ffffffffaf1374c8 R11: 00000000ffffdfff R12: 00000000000=
+00000
+[31782.373740] R13: 0000000000000086 R14: 0000000000000001 R15: ffff8c9410b=
+71be8
+[31782.373741] FS:  0000000000000000(0000) GS:ffff8c979f72f000(0000) knlGS:=
+0000000000000000
+[31782.373742] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[31782.373743] CR2: 00007f0233e51ba8 CR3: 000000010274e003 CR4: 0000000000f=
+70ef0
+[31782.373744] PKRU: 55555554
+[31782.373745] Call Trace:
+[31782.373746]  <IRQ>
+[31782.373747]  gen11_gu_misc_irq_ack+0x4d/0xb0 [i915]
+[31782.373864]  gen11_irq_handler+0x7a/0xd0 [i915]
+[31782.373931]  __handle_irq_event_percpu+0x47/0x1b0
+[31782.373933]  handle_irq_event+0x38/0x80
+[31782.373935]  handle_edge_irq+0x8d/0x1c0
+[31782.373937]  __common_interrupt+0x50/0xf0
+[31782.373939]  common_interrupt+0x80/0xa0
+[31782.373941]  </IRQ>
+[31782.373941]  <TASK>
+[31782.373942]  asm_common_interrupt+0x26/0x40
+[31782.373943] RIP: 0010:cpuidle_enter_state+0xcc/0x660
+[31782.373945] Code: 00 00 e8 e7 57 f8 fe e8 32 f0 ff ff 49 89 c4 0f 1f 44 =
+00 00 31 ff e8 13 e3 f6 fe 45 84 ff 0f 85 02 02 00 00 fb 0f 1f 44 00 00 <85=
+> ed 0f 88 d3 01 00 00 4c 63 f5 49 83 fe 0a 0f 83 9f 04 00 00 49
+[31782.373946] RSP: 0018:ffffcdd70015fe50 EFLAGS: 00000246
+[31782.373948] RAX: ffff8c979f72f000 RBX: ffff8c974f6c1100 RCX: 00000000000=
+00000
+[31782.373948] RDX: 00001ce7e909a68b RSI: 0000000034e8f93a RDI: 00000000000=
+00000
+[31782.373949] RBP: 0000000000000001 R08: fffffffcefd871d4 R09: ffff8c974f6=
+acae0
+[31782.373950] R10: 00001ceafcd72d46 R11: 0000000000000000 R12: 00001ce7e90=
+9a68b
+[31782.373951] R13: ffffffffaf307de0 R14: 0000000000000001 R15: 00000000000=
+00000
+[31782.373953]  cpuidle_enter+0x31/0x50
+[31782.373955]  cpuidle_idle_call+0xf5/0x160
+[31782.373957]  do_idle+0x78/0xd0
+[31782.373958]  cpu_startup_entry+0x29/0x30
+[31782.373959]  start_secondary+0x126/0x170
+[31782.373962]  common_startup_64+0x13e/0x141
+[31782.373965]  </TASK>
+[31782.373966] ---[ end trace 0000000000000000 ]---
+[31783.108970] usb 3-5: new full-speed USB device number 9 using xhci_hcd
+[31783.497815] usb 3-5: New USB device found, idVendor=3D1050, idProduct=3D=
+0406, bcdDevice=3D 5.27
+[31783.497822] usb 3-5: New USB device strings: Mfr=3D1, Product=3D2, Seria=
+lNumber=3D0
+[31783.497824] usb 3-5: Product: YubiKey FIDO+CCID
+[31783.497826] usb 3-5: Manufacturer: Yubico
+[31783.501369]
 
-Without this fix, the kernel will hang at a kernel BUG():
-
-[    7.425445] ------------[ cut here ]------------
-[    7.430032] kernel BUG at drivers/gpu/drm/drm_gem.c:181!
-[    7.435330] Oops - BUG[#1]:
-[    7.438099] CPU: 0 UID: 0 PID: 102 Comm: kworker/0:4 Tainted: G            E      6.13.3-aosc-main-00336-g60829239b300-dirty #3
-[    7.449511] Tainted: [E]=UNSIGNED_MODULE
-[    7.453402] Hardware name: Loongson Loongson-3A6000-HV-7A2000-1w-V0.1-EVB/Loongson-3A6000-HV-7A2000-1w-EVB-V1.21, BIOS Loongson-UDK2018-V4.0.05756-prestab
-[    7.467144] Workqueue: events work_for_cpu_fn
-[    7.471472] pc 9000000001045fa4 ra ffff8000025331dc tp 90000001010c8000 sp 90000001010cb960
-[    7.479770] a0 900000012a3e8000 a1 900000010028c000 a2 000000000005d000 a3 0000000000000000
-[    7.488069] a4 0000000000000000 a5 0000000000000000 a6 0000000000000000 a7 0000000000000001
-[    7.496367] t0 0000000000001000 t1 9000000001045000 t2 0000000000000000 t3 0000000000000000
-[    7.504665] t4 0000000000000000 t5 0000000000000000 t6 0000000000000000 t7 0000000000000000
-[    7.504667] t8 0000000000000000 u0 90000000029ea7d8 s9 900000012a3e9360 s0 900000010028c000
-[    7.504668] s1 ffff800002744000 s2 0000000000000000 s3 0000000000000000 s4 0000000000000001
-[    7.504669] s5 900000012a3e8000 s6 0000000000000001 s7 0000000000022022 s8 0000000000000000
-[    7.537855]    ra: ffff8000025331dc ___xe_bo_create_locked+0x158/0x3b0 [xe]
-[    7.544893]   ERA: 9000000001045fa4 drm_gem_private_object_init+0xcc/0xd0
-[    7.551639]  CRMD: 000000b0 (PLV0 -IE -DA +PG DACF=CC DACM=CC -WE)
-[    7.557785]  PRMD: 00000004 (PPLV0 +PIE -PWE)
-[    7.562111]  EUEN: 00000000 (-FPE -SXE -ASXE -BTE)
-[    7.566870]  ECFG: 00071c1d (LIE=0,2-4,10-12 VS=7)
-[    7.571628] ESTAT: 000c0000 [BRK] (IS= ECode=12 EsubCode=0)
-[    7.577163]  PRID: 0014d000 (Loongson-64bit, Loongson-3A6000-HV)
-[    7.583128] Modules linked in: xe(E+) drm_gpuvm(E) drm_exec(E) drm_buddy(E) gpu_sched(E) drm_suballoc_helper(E) drm_display_helper(E) loongson(E) r8169(E) cec(E) rc_core(E) realtek(E) i2c_algo_bit(E) tpm_tis_spi(E) led_class(E) hid_generic(E) drm_ttm_helper(E) ttm(E) drm_client_lib(E) drm_kms_helper(E) sunrpc(E) la_ow_syscall(E) i2c_dev(E)
-[    7.613049] Process kworker/0:4 (pid: 102, threadinfo=00000000bc26ebd1, task=0000000055480707)
-[    7.621606] Stack : 0000000000000000 3030303a6963702b 000000000005d000 0000000000000000
-[    7.629563]         0000000000000001 0000000000000000 0000000000000000 8e1bfae42b2f7877
-[    7.637519]         000000000005d000 900000012a3e8000 900000012a3e9360 0000000000000000
-[    7.645475]         ffffffffffffffff 0000000000000000 0000000000022022 0000000000000000
-[    7.653431]         0000000000000001 ffff800002533660 0000000000022022 9000000000234470
-[    7.661386]         90000001010cba28 0000000000001000 0000000000000000 000000000005c300
-[    7.669342]         900000012a3e8000 0000000000000000 0000000000000001 900000012a3e8000
-[    7.677298]         ffffffffffffffff 0000000000022022 900000012a3e9498 ffff800002533a14
-[    7.685254]         0000000000022022 0000000000000000 900000000209c000 90000000010589e0
-[    7.693209]         90000001010cbab8 ffff8000027c78c0 fffffffffffff000 900000012a3e8000
-[    7.701165]         ...
-[    7.703588] Call Trace:
-[    7.703590] [<9000000001045fa4>] drm_gem_private_object_init+0xcc/0xd0
-[    7.712496] [<ffff8000025331d8>] ___xe_bo_create_locked+0x154/0x3b0 [xe]
-[    7.719268] [<ffff80000253365c>] __xe_bo_create_locked+0x228/0x304 [xe]
-[    7.725951] [<ffff800002533a10>] xe_bo_create_pin_map_at_aligned+0x70/0x1b0 [xe]
-[    7.733410] [<ffff800002533c7c>] xe_managed_bo_create_pin_map+0x34/0xcc [xe]
-[    7.740522] [<ffff800002533d58>] xe_managed_bo_create_from_data+0x44/0xb0 [xe]
-[    7.747807] [<ffff80000258d19c>] xe_uc_fw_init+0x3ec/0x904 [xe]
-[    7.753814] [<ffff80000254a478>] xe_guc_init+0x30/0x3dc [xe]
-[    7.759553] [<ffff80000258bc04>] xe_uc_init+0x20/0xf0 [xe]
-[    7.765121] [<ffff800002542abc>] xe_gt_init_hwconfig+0x5c/0xd0 [xe]
-[    7.771461] [<ffff800002537204>] xe_device_probe+0x240/0x588 [xe]
-[    7.777627] [<ffff800002575448>] xe_pci_probe+0x6c0/0xa6c [xe]
-[    7.783540] [<9000000000e9828c>] local_pci_probe+0x4c/0xb4
-[    7.788989] [<90000000002aa578>] work_for_cpu_fn+0x20/0x40
-[    7.794436] [<90000000002aeb50>] process_one_work+0x1a4/0x458
-[    7.800143] [<90000000002af5a0>] worker_thread+0x304/0x3fc
-[    7.805591] [<90000000002bacac>] kthread+0x114/0x138
-[    7.810520] [<9000000000241f64>] ret_from_kernel_thread+0x8/0xa4
-[    7.816489]
-[    7.817961] Code: 4c000020  29c3e2f9  53ff93ff <002a0001> 0015002c  03400000  02ff8063  29c04077  001500f7
-[    7.827651]
-[    7.829140] ---[ end trace 0000000000000000 ]---
-
-Revise all instances of `SZ_4K' with `PAGE_SIZE' and revise the call to
-`drm_gem_private_object_init()' in `*___xe_bo_create_locked()' (last call
-before BUG()) to use `size_t aligned_size' calculated from `PAGE_SIZE' to
-fix the above error.
-
-Cc: <stable@vger.kernel.org>
-Fixes: 4e03b584143e ("drm/xe/uapi: Reject bo creation of unaligned size")
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Tested-by: Mingcong Bai <jeffbai@aosc.io>
-Tested-by: Wenbin Fang <fangwenbin@vip.qq.com>
-Tested-by: Haien Liang <27873200@qq.com>
-Tested-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-Tested-by: Shirong Liu <lsr1024@qq.com>
-Tested-by: Haofeng Wu <s2600cw2@126.com>
-Link: https://github.com/FanFansfan/loongson-linux/commit/22c55ab3931c32410a077b3ddb6dca3f28223360
-Link: https://t.me/c/1109254909/768552
-Co-developed-by: Shang Yatsen <429839446@qq.com>
-Signed-off-by: Shang Yatsen <429839446@qq.com>
-Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
----
- drivers/gpu/drm/xe/xe_bo.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index d99d91fe8aa98a2bfc901a998c9fc78fcb146e15..0767df4aebbab18283ba74deb5e984d5d847812c 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1837,9 +1837,9 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 		flags |= XE_BO_FLAG_INTERNAL_64K;
- 		alignment = align >> PAGE_SHIFT;
- 	} else {
--		aligned_size = ALIGN(size, SZ_4K);
-+		aligned_size = ALIGN(size, PAGE_SIZE);
- 		flags &= ~XE_BO_FLAG_INTERNAL_64K;
--		alignment = SZ_4K >> PAGE_SHIFT;
-+		alignment = PAGE_SIZE >> PAGE_SHIFT;
- 	}
- 
- 	if (type == ttm_bo_type_device && aligned_size != size)
-@@ -1853,7 +1853,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 
- 	bo->ccs_cleared = false;
- 	bo->tile = tile;
--	bo->size = size;
-+	bo->size = aligned_size;
- 	bo->flags = flags;
- 	bo->cpu_caching = cpu_caching;
- 	bo->ttm.base.funcs = &xe_gem_object_funcs;
-@@ -1864,7 +1864,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- #endif
- 	INIT_LIST_HEAD(&bo->vram_userfault_link);
- 
--	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
-+	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, aligned_size);
- 
- 	if (resv) {
- 		ctx.allow_res_evict = !(flags & XE_BO_FLAG_NO_RESV_EVICT);
-
--- 
-2.49.0
-
-
+--=20
+VG
+Damian Tometzki
