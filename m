@@ -4,59 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C52DDC5B552
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 08:31:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EAF2C5B552
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 08:48:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7213F10E715;
-	Wed,  4 Jun 2025 08:31:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D617610E00A;
+	Wed,  4 Jun 2025 08:48:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hFzvk45u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ubeapa1U";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F21D10E7BF
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 08:31:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3A3A10E00A
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 08:48:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749025904; x=1780561904;
+ t=1749026931; x=1780562931;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=tZO3R/CmYPxdsCj6YmTRxxYiNAfRJXh2Fk/AFDYC9bY=;
- b=hFzvk45uNWaQixaW3H72ET/n+VQOgZVHFEGFQ1hpOjpdqF+6ozwNHg3x
- bnu0hAeji5SNSEa9ujCGg3kyMPxIZwkltkFWyjL3M+1LQwEbFWRoM3yxN
- TSQJXzkphR0Z40jdqkuZI8mzFDqK4Ex6BN0FX+Gj+kMYe30ls+wU01U0C
- TyYkcdPKYtv2mtVIH0ibkFn1SCYUpxDB7R/OqwRaqRc9TBuo3nKGJsttb
- Oyj+WSL60V5Iry3nU7D9yUYm+wDLXBb1FFVxpl0VL72kmxszpZsZFLUN/
- lLlSqrRWCvZhGDAa6m3TF3XvHGn8Zt/qQ69i4nPEgG3OVC2q5lWoibEYn Q==;
-X-CSE-ConnectionGUID: OrUukLIpTBu+B8/8WC0zBw==
-X-CSE-MsgGUID: h0l0E6sxRbee03U2iEiBSQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="50337791"
-X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="50337791"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2025 01:31:44 -0700
-X-CSE-ConnectionGUID: 5aj7uIu+TaSlFCHNrPxTtA==
-X-CSE-MsgGUID: yFKTldw5RTeKsPGydT/4Pg==
+ bh=79Pkacqu+EYBBzY2Yb6Y7ItOlZBQc+gvMApQkp/p11M=;
+ b=Ubeapa1U/41wWu9hUMnT5AvYHjrkmQjeKoxaLK5UkT12BqePh/VMTuwp
+ +N7/EdTmf9B5SPoyvMiumccYJK528kvYsEdYCidFAsaXARk869OXGvNSP
+ qI3tQV8BfvTzpkt2ig1wVX9veYz/ZbVkXqot7BEzxbkhKhm0hNuwkB8Jx
+ yona2vacEcY5Mz4Af0jd8QUAKzT4JdMLD0MkGQAy5D5LH35zXQe6r7QIf
+ 9sNhe02xCSV+ukW0xW92Hic/CzamiVznNDHV1dKsD+r7OGntHOXoOK2NQ
+ KBsLqPCBr0PX9IwP8CzysCEJy4U5GHxPHUuwT6QApd9fWDNlHyc40hJ+H Q==;
+X-CSE-ConnectionGUID: pdRiiAKRTKCf6Wb7uMnqIA==
+X-CSE-MsgGUID: u59UjAViTNWyuNiZ8uwdLw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="68648500"
+X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="68648500"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2025 01:48:51 -0700
+X-CSE-ConnectionGUID: iVUM9No3Q1yj/ld3MdFzmA==
+X-CSE-MsgGUID: 9zBulKxsQgCRDunkMh68Vw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="168289819"
+X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="145014428"
 Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa002.fm.intel.com with ESMTP; 04 Jun 2025 01:31:43 -0700
+ by orviesa006.jf.intel.com with ESMTP; 04 Jun 2025 01:48:49 -0700
 Received: from [10.245.253.198] (mwajdecz-MOBL.ger.corp.intel.com
  [10.245.253.198])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 2AA9932EB5;
- Wed,  4 Jun 2025 09:31:42 +0100 (IST)
-Message-ID: <ef23bb00-7e14-4a9a-ad82-c6abc4063890@intel.com>
-Date: Wed, 4 Jun 2025 10:31:41 +0200
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 4193E32EC9;
+ Wed,  4 Jun 2025 09:48:48 +0100 (IST)
+Message-ID: <0654b5be-3a42-4254-b057-199049429e9e@intel.com>
+Date: Wed, 4 Jun 2025 10:48:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] drm/xe/vf: Boostrap all GTs immediately after MMIO
- init
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20250603235432.720833-6-daniele.ceraolospurio@intel.com>
- <20250603235432.720833-8-daniele.ceraolospurio@intel.com>
+Subject: Re: [PATCH] drm/xe/guc: Disable ct on xe micro hardware init error
+To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-xe@lists.freedesktop.org
+References: <20250603234510.612162-1-zhanjun.dong@intel.com>
 Content-Language: en-US
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250603235432.720833-8-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20250603234510.612162-1-zhanjun.dong@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -75,72 +72,90 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 04.06.2025 01:54, Daniele Ceraolo Spurio wrote:
-> Currently we perform the bootstrap for the primary GT early on during
-> device init, while the media GT bootstrap happens when we try and fetch
-> the hwconfig table. For consistency, move the bootstrap of the media GT
-> happen at the same time as the primary GT, so that all the subsequent
-> code can rely on both GTs being in the same state.
-> 
-> v2: Also drop config query from min_guc_load since we now do it
->     early (Michal)
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+On 04.06.2025 01:45, Zhanjun Dong wrote:
+> Disable ct if xe micro controller hardware init failed.
 
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+s/ct/GuC communication
+s/xe/Xe
+s/init/initialization
 
+> 
+> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4917
 > ---
->  drivers/gpu/drm/xe/xe_device.c | 11 ++++++-----
->  drivers/gpu/drm/xe/xe_guc.c    |  8 --------
->  2 files changed, 6 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/xe/xe_uc.c | 16 ++++++++++------
+>  1 file changed, 10 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 660b0c5126dc..7e87344943cd 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -798,18 +798,19 @@ int xe_device_probe(struct xe_device *xe)
->  		 * be performed.
->  		 */
->  		xe_gt_mmio_init(gt);
-> -	}
+> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+> index 3a8751a8b92d..ba72c1b30f2f 100644
+> --- a/drivers/gpu/drm/xe/xe_uc.c
+> +++ b/drivers/gpu/drm/xe/xe_uc.c
+> @@ -13,6 +13,7 @@
+>  #include "xe_gt_printk.h"
+>  #include "xe_gt_sriov_vf.h"
+>  #include "xe_guc.h"
+> +#include "xe_guc_ct.h"
+>  #include "xe_guc_pc.h"
+>  #include "xe_guc_engine_activity.h"
+>  #include "xe_huc.h"
+> @@ -189,27 +190,27 @@ int xe_uc_init_hw(struct xe_uc *uc)
+
+while possibly it's not a problem today, can you also update
+vf_uc_init_hw() to have same logic in both variants?
+
 >  
-> -	for_each_tile(tile, xe, id) {
->  		if (IS_SRIOV_VF(xe)) {
-> -			xe_guc_comm_init_early(&tile->primary_gt->uc.guc);
-> -			err = xe_gt_sriov_vf_bootstrap(tile->primary_gt);
-> +			xe_guc_comm_init_early(&gt->uc.guc);
-> +			err = xe_gt_sriov_vf_bootstrap(gt);
->  			if (err)
->  				return err;
-> -			err = xe_gt_sriov_vf_query_config(tile->primary_gt);
-> +			err = xe_gt_sriov_vf_query_config(gt);
->  			if (err)
->  				return err;
->  		}
-> +	}
-> +
-> +	for_each_tile(tile, xe, id) {
->  		err = xe_ggtt_init_early(tile->mem.ggtt);
->  		if (err)
->  			return err;
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index 52453845d1bd..209e5d53c290 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -1102,14 +1102,6 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
->  	struct xe_gt *gt = guc_to_gt(guc);
->  	int ret;
->  
-> -	ret = xe_gt_sriov_vf_bootstrap(gt);
-> -	if (ret)
-> -		return ret;
-> -
-> -	ret = xe_gt_sriov_vf_query_config(gt);
-> -	if (ret)
-> -		return ret;
-> -
->  	ret = xe_guc_hwconfig_init(guc);
+>  	ret = xe_huc_upload(&uc->huc);
 >  	if (ret)
->  		return ret;
+> -		return ret;
+> +		goto err;
+>  
+>  	ret = xe_guc_upload(&uc->guc);
+>  	if (ret)
+> -		return ret;
+> +		goto err;
+
+before below line it doesn't make any sense to do cleanup and disable
+communication as it was not enabled yet
+
+>  
+>  	ret = xe_guc_enable_communication(&uc->guc);
+>  	if (ret)
+> -		return ret;
+> +		goto err;
+>  
+>  	ret = xe_gt_record_default_lrcs(uc_to_gt(uc));
+>  	if (ret)
+> -		return ret;
+> +		goto err;
+>  
+>  	ret = xe_guc_post_load_init(&uc->guc);
+>  	if (ret)
+> -		return ret;
+> +		goto err;
+>  
+>  	ret = xe_guc_pc_start(&uc->guc.pc);
+>  	if (ret)
+> -		return ret;
+> +		goto err;
+>  
+>  	xe_guc_engine_activity_enable_stats(&uc->guc);
+>  
+> @@ -221,6 +222,9 @@ int xe_uc_init_hw(struct xe_uc *uc)
+>  	xe_gsc_load_start(&uc->gsc);
+>  
+>  	return 0;
+> +err:
+> +	xe_guc_ct_disable(&uc->guc.ct);
+
+it's little unclear and unbalanced since above we have potentially
+larger scope xe_guc_enable_communication(), not just xe_guc_ct_enable()
+
+can you add xe_guc_disable_communication() wrapper to have right pair of
+enable/disable functions like we have elsewhere ?
+
+
+> +	return ret;
+>  }
+>  
+>  int xe_uc_fini_hw(struct xe_uc *uc)
 
