@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D45FC7115A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38480C7115B
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 13:59:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE87B10E9BC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E026510E9C0;
 	Fri, 13 Jun 2025 13:59:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="K7xmcNgG";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Xd/67w2F";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 430FE10E0C8;
- Fri, 13 Jun 2025 01:11:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FBF410E64C;
+ Wed,  4 Jun 2025 02:58:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 48F5E629D7;
- Fri, 13 Jun 2025 01:11:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D1FB5C4CEEB;
- Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 53AE5629E8;
+ Wed,  4 Jun 2025 02:58:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F2003C4CEED;
+ Wed,  4 Jun 2025 02:57:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1749777091;
- bh=22pOkiaoYKkKE9+FYGPOdRNTGjENCtQxx9n9TpcRYQw=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=K7xmcNgGJceP5Ea/EI6S4Ae9f69XPMUzhS3hCUNJGwOh8mFkn3EiLevIQVzFOJm8P
- srXqvU+UuZSAcRmxl5f7544ZFCkX4hXdB/bv2JtaUQd+sCVN/zaCwJLnrB6VTHeM7t
- AuDznSMSaBbfZyWgq1SrBQQ4qE091QSW4C9aQBJmJIM2KEJdr5tMI7PF6D7Wtr7jc0
- Gq9F/0TUtwG9JBV0LPS85JlmhIUzGmQCgYvfpTFYFDdc2/T7+1bKoCzUGl142n7mkj
- v86mwNjhTLCeERrgcx0T6opX9XOlmpHZSKVY+9IBTIWlbAZggiLspRehb5Ma93ayM5
- TuKwfgD8OPS2g==
+ s=k20201202; t=1749005880;
+ bh=+kWzTcHBzf1aWzkd8t80rJRxvNyHpEOLoaEfIgMWrfE=;
+ h=From:Subject:Date:To:Cc:Reply-To:From;
+ b=Xd/67w2FGFzhKoecDXaBGboCpchiPTFDJ160nqIuMS1Q096tGdCFiQ9RhdHIHZjaV
+ Wu/b8BFqtRLbm9fcmtGhlbNyytanKqlibllPSZOG15wWK9nZ0TtjhbXmUNKxoIyDXh
+ Hq+GobjFY5GZ42FXmyJE89ml+hWHUPRI03GA7dQet3mLAIFRFHxqGulwua6akIpyLd
+ mC6FLLHfiFO5CmP7X6F1dhwIqh3iYPP7wiSS8sqtBCACPUL9cFS9biealVkqCG+xwp
+ y6flQepgPU0ZBCiJoGNm3mPRRvA+aWuQWKV/vbF2xCQJ+yTHowY1ia8zGTlnL2gVBK
+ /zLluGj07Dsqw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
  (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id C8653C71136;
- Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
+ by smtp.lore.kernel.org (Postfix) with ESMTP id E070FC5AD49;
+ Wed,  4 Jun 2025 02:57:59 +0000 (UTC)
 From: Mingcong Bai via B4 Relay <devnull+jeffbai.aosc.io@kernel.org>
-Date: Fri, 13 Jun 2025 09:11:32 +0800
-Subject: [PATCH v2 4/5] drm/xe: use 4KiB alignment for cursor jumps
+Subject: [PATCH v2 0/5] drm/xe: enable driver usage on non-4KiB kernels
+Date: Wed, 04 Jun 2025 10:57:54 +0800
+Message-Id: <20250604-upstream-xe-non-4k-v2-v2-0-ce7905da7b08@aosc.io>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250613-upstream-xe-non-4k-v2-v2-4-934f82249f8a@aosc.io>
-References: <20250613-upstream-xe-non-4k-v2-v2-0-934f82249f8a@aosc.io>
-In-Reply-To: <20250613-upstream-xe-non-4k-v2-v2-0-934f82249f8a@aosc.io>
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIADK2P2gC/x3MTQqAIBBA4avErBuQ6QfqKtHCbKwhstCSILx70
+ vJbvPdCYC8coC9e8BwlyOEyqCzArNotjDJnAylqVKsqvM9wedY7PozucFhvGAlrbSw1lekmO0N
+ uT89Wnv87jCl9WgHjAWcAAAA=
+X-Change-ID: 20250603-upstream-xe-non-4k-v2-4acf253c9bfd
 To: Lucas De Marchi <lucas.demarchi@intel.com>, 
  =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
  Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
@@ -65,11 +67,11 @@ Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Haien Liang <27873200@qq.com>, Jianfeng Liu <liujianfeng1994@gmail.com>, 
  Shirong Liu <lsr1024@qq.com>, Haofeng Wu <s2600cw2@126.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749777090; l=7981;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749005878; l=6957;
  i=jeffbai@aosc.io; s=20250604; h=from:subject:message-id;
- bh=kV2+HI26h6dKnEaSLYBIKXKOHnIj4zNMp7DXKD0IyuY=;
- b=48LfUtXhEPCUahqI3iDktGvLSziHXj/NCM1hwuPhImZqPlmB5YP6R8E3mVMIvkAfuP1Sbe2z8
- TkRywyRsSiYAyzrBxkKRGqHhreKqY3N3LJcwC3M1EmyVP4Nhbsd3YOw
+ bh=+kWzTcHBzf1aWzkd8t80rJRxvNyHpEOLoaEfIgMWrfE=;
+ b=8vLx3q8e3BZJxJ9aZzsi7/ARRfa8W/HOCMhz7n7nEEXlakwDOZJxYlSWjxQ5WFl0/eD1i4DDJ
+ YtWI0ZZPdoOAeby8AdcKMBxTEHKgBZNySUkxLe0wHfVdPD+xatwl0RJ
 X-Developer-Key: i=jeffbai@aosc.io; a=ed25519;
  pk=MJdgklflDF+Xz9x2Lp+ogEnEyk8HRosMGiqLgWbFctY=
 X-Endpoint-Received: by B4 Relay for jeffbai@aosc.io/20250604 with auth_id=422
@@ -90,123 +92,158 @@ Reply-To: jeffbai@aosc.io
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mingcong Bai <jeffbai@aosc.io>
+This patch series attempts to enable the use of xe DRM driver on non-4KiB
+kernel page platforms. This involves fixing the ttm/bo interface, as well
+as parts of the userspace API to make use of kernel `PAGE_SIZE' for
+alignment instead of the assumed `SZ_4K', it also fixes incorrect usage of
+`PAGE_SIZE' in the GuC and ring buffer interface code to make sure all
+instructions/commands were aligned to 4KiB barriers (per the Programmer's
+Manual for the GPUs covered by this DRM driver).
 
-It appears that the xe_res_cursor also assumes 4KiB alignment.
+This issue was first discovered and reported by members of the LoongArch
+user communities, whose hardware commonly ran on 16KiB-page kernels. The
+patch series began on an unassuming branch of a downstream kernel tree
+maintained by Shang Yatsen.[^1]
 
-Current implementation uses `PAGE_SIZE' as an assumed alignment reference,
-but 4KiB kernel page sizes is by no means a guarantee. On 16KiB-paged
-kernels, this causes driver failures during boot up:
+It worked well but remained sparsely documented, a lot of the work done
+here relied on Shang Yatsen's original patch.
 
-[   23.242757] ------------[ cut here ]------------
-[   23.247363] WARNING: CPU: 0 PID: 2036 at drivers/gpu/drm/xe/xe_res_cursor.h:182 emit_pte+0x394/0x3b0 [xe]
-[   23.256962] Modules linked in: nf_conntrack_netbios_ns(E) nf_conntrack_broadcast(E) nft_fib_inet(E) nft_fib_ipv4(E) nft_fib_ipv6(E) nft_fib(E) nft_reject_inet(E) nf_reject_ipv4(E) nf_reject_ipv6(E) nft_reject(E) nft_ct(E) rfkill(E) nft_chain_nat(E) ip6table_nat(E) ip6table_mangle(E) ip6table_raw(E) ip6table_security(E) iptable_nat(E) nf_nat(E) nf_conntrack(E) nf_defrag_ipv6(E) nf_defrag_ipv4(E) iptable_mangle(E) iptable_raw(E) iptable_security(E) ip_set(E) nf_tables(E) ip6table_filter(E) ip6_tables(E) iptable_filter(E) snd_hda_codec_conexant(E) snd_hda_codec_generic(E) snd_hda_codec_hdmi(E) snd_hda_intel(E) snd_intel_dspcfg(E) snd_hda_codec(E) nls_iso8859_1(E) qrtr(E) nls_cp437(E) snd_hda_core(E) loongson3_cpufreq(E) rtc_efi(E) snd_hwdep(E) snd_pcm(E) spi_loongson_pci(E) snd_timer(E) snd(E) spi_loongson_core(E) soundcore(E) gpio_loongson_64bit(E) rtc_loongson(E) i2c_ls2x(E) mousedev(E) input_leds(E) sch_fq_codel(E) fuse(E) nfnetlink(E) dmi_sysfs(E) ip_tables(E) x_tables(E) xe(E) d
- rm_gpuvm(E) drm_buddy(E) gpu_sched(E)
-[   23.257034]  drm_exec(E) drm_suballoc_helper(E) drm_display_helper(E) cec(E) rc_core(E) hid_generic(E) tpm_tis_spi(E) r8169(E) loongson(E) i2c_algo_bit(E) realtek(E) drm_ttm_helper(E) led_class(E) ttm(E) drm_client_lib(E) drm_kms_helper(E) sunrpc(E) i2c_dev(E)
-[   23.369697] CPU: 0 UID: 1000 PID: 2036 Comm: QSGRenderThread Tainted: G            E      6.14.0-rc4-aosc-main-g7cc07e6e50b0-dirty #8
-[   23.381640] Tainted: [E]=UNSIGNED_MODULE
-[   23.385534] Hardware name: Loongson Loongson-3A6000-HV-7A2000-1w-V0.1-EVB/Loongson-3A6000-HV-7A2000-1w-EVB-V1.21, BIOS Loongson-UDK2018-V4.0.05756-prestab
-[   23.399319] pc ffff80000251efc0 ra ffff80000251eddc tp 900000011fe3c000 sp 900000011fe3f7e0
-[   23.407632] a0 0000000000000001 a1 0000000000000000 a2 0000000000000000 a3 0000000000000000
-[   23.415938] a4 0000000000000000 a5 0000000000000000 a6 0000000000060000 a7 900000010c947b00
-[   23.424240] t0 0000000000000000 t1 0000000000000000 t2 0000000000000000 t3 900000012e456230
-[   23.432543] t4 0000000000000035 t5 0000000000004000 t6 00000001fbc40403 t7 0000000000004000
-[   23.440845] t8 9000000100e688a8 u0 5cc06cee8ef0edee s9 9000000100024420 s0 0000000000000047
-[   23.449147] s1 0000000000004000 s2 0000000000000001 s3 900000012adba000 s4 ffffffffffffc000
-[   23.457450] s5 9000000108939428 s6 0000000000000000 s7 0000000000000000 s8 900000011fe3f8e0
-[   23.465851]    ra: ffff80000251eddc emit_pte+0x1b0/0x3b0 [xe]
-[   23.471761]   ERA: ffff80000251efc0 emit_pte+0x394/0x3b0 [xe]
-[   23.477557]  CRMD: 000000b0 (PLV0 -IE -DA +PG DACF=CC DACM=CC -WE)
-[   23.483732]  PRMD: 00000004 (PPLV0 +PIE -PWE)
-[   23.488068]  EUEN: 00000003 (+FPE +SXE -ASXE -BTE)
-[   23.492832]  ECFG: 00071c1d (LIE=0,2-4,10-12 VS=7)
-[   23.497594] ESTAT: 000c0000 [BRK] (IS= ECode=12 EsubCode=0)
-[   23.503133]  PRID: 0014d000 (Loongson-64bit, Loongson-3A6000-HV)
-[   23.509164] CPU: 0 UID: 1000 PID: 2036 Comm: QSGRenderThread Tainted: G            E      6.14.0-rc4-aosc-main-g7cc07e6e50b0-dirty #8
-[   23.509168] Tainted: [E]=UNSIGNED_MODULE
-[   23.509168] Hardware name: Loongson Loongson-3A6000-HV-7A2000-1w-V0.1-EVB/Loongson-3A6000-HV-7A2000-1w-EVB-V1.21, BIOS Loongson-UDK2018-V4.0.05756-prestab
-[   23.509170] Stack : ffffffffffffffff ffffffffffffffff 900000000023eb34 900000011fe3c000
-[   23.509176]         900000011fe3f440 0000000000000000 900000011fe3f448 9000000001c31c70
-[   23.509181]         0000000000000000 0000000000000000 0000000000000000 0000000000000000
-[   23.509185]         0000000000000000 5cc06cee8ef0edee 0000000000000000 0000000000000000
-[   23.509190]         0000000000000000 0000000000000000 0000000000000000 0000000000000000
-[   23.509193]         0000000000000000 0000000000000000 00000000066b4000 9000000100024420
-[   23.509197]         9000000001eb8000 0000000000000000 9000000001c31c70 0000000000000004
-[   23.509202]         0000000000000004 0000000000000000 0000000000000000 0000000000000000
-[   23.509206]         900000011fe3f8e0 9000000001c31c70 9000000000244174 00007fffac097534
-[   23.509211]         00000000000000b0 0000000000000004 0000000000000003 0000000000071c1d
-[   23.509216]         ...
-[   23.509218] Call Trace:
-[   23.509220] [<9000000000244174>] show_stack+0x3c/0x16c
-[   23.509226] [<900000000023eb30>] dump_stack_lvl+0x84/0xe0
-[   23.509230] [<9000000000288208>] __warn+0x8c/0x174
-[   23.509234] [<90000000017c1918>] report_bug+0x1c0/0x22c
-[   23.509238] [<90000000017f66e8>] do_bp+0x280/0x344
-[   23.509243] [<90000000002428a0>] handle_bp+0x120/0x1c0
-[   23.509247] [<ffff80000251efc0>] emit_pte+0x394/0x3b0 [xe]
-[   23.509295] [<ffff800002520d38>] xe_migrate_clear+0x2d8/0xa54 [xe]
-[   23.509341] [<ffff8000024e6c38>] xe_bo_move+0x324/0x930 [xe]
-[   23.509387] [<ffff800002209468>] ttm_bo_handle_move_mem+0xd0/0x194 [ttm]
-[   23.509392] [<ffff800002209ebc>] ttm_bo_validate+0xd4/0x1cc [ttm]
-[   23.509396] [<ffff80000220a138>] ttm_bo_init_reserved+0x184/0x1dc [ttm]
-[   23.509399] [<ffff8000024e7840>] ___xe_bo_create_locked+0x1e8/0x3d4 [xe]
-[   23.509445] [<ffff8000024e7cf8>] __xe_bo_create_locked+0x2cc/0x390 [xe]
-[   23.509489] [<ffff8000024e7e98>] xe_bo_create_user+0x34/0xe4 [xe]
-[   23.509533] [<ffff8000024e875c>] xe_gem_create_ioctl+0x154/0x4d8 [xe]
-[   23.509578] [<9000000001062784>] drm_ioctl_kernel+0xe0/0x14c
-[   23.509582] [<9000000001062c10>] drm_ioctl+0x420/0x5f4
-[   23.509585] [<ffff8000024ea778>] xe_drm_ioctl+0x64/0xac [xe]
-[   23.509630] [<9000000000653504>] sys_ioctl+0x2b8/0xf98
-[   23.509634] [<90000000017f684c>] do_syscall+0xa0/0x140
-[   23.509637] [<9000000000241e38>] handle_syscall+0xb8/0x158
-[   23.509640]
-[   23.509644] ---[ end trace 0000000000000000 ]---
+AOSC OS then picked it up[^2] to provide Intel Xe/Arc support for users of
+its LoongArch port, for which I worked extensively on. After months of
+positive user feedback and from encouragement from Kexy Biscuit, my
+colleague at the community, I decided to examine its potential for
+upstreaming, cross-reference kernel and Intel documentation to better
+document and revise this patch.
 
-Revise calls to `xe_res_dma()' and `xe_res_cursor()' to use
-`XE_PTE_MASK' (12) and `SZ_4K' to fix this potentially confused use of
-`PAGE_SIZE' in relevant code.
+Now that this series has been tested good (for boot up, OpenGL, and
+playback of a standardised set of video samples[^3] on the following
+platforms (motherboard + GPU model):
 
-Cc: stable@vger.kernel.org
-Fixes: e89b384cde62 ("drm/xe/migrate: Update emit_pte to cope with a size level than 4k")
-Tested-by: Mingcong Bai <jeffbai@aosc.io>
-Tested-by: Wenbin Fang <fangwenbin@vip.qq.com>
-Tested-by: Haien Liang <27873200@qq.com>
-Tested-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-Tested-by: Shirong Liu <lsr1024@qq.com>
-Tested-by: Haofeng Wu <s2600cw2@126.com>
-Link: https://github.com/FanFansfan/loongson-linux/commit/22c55ab3931c32410a077b3ddb6dca3f28223360
-Link: https://t.me/c/1109254909/768552
+- x86-64, 4KiB kernel page:
+    - MS-7D42 + Intel Arc A580
+    - COLORFIRE B760M-MEOW WIFI D5 + Intel Arc B580
+- LoongArch, 16KiB kernel page:
+    - XA61200 + GUNNIR DG1 Blue Halberd (Intel DG1)
+    - XA61200 + GUNNIR Iris Xe Index 4 (Intel DG1)
+    - XA61200 + GUNNIR Intel Iris Xe Max Index V2 (Intel DG1)
+    - XA61200 + GUNNIR Intel Arc A380 Index 6G (Intel Arc A380)
+    - XA61200 + ASRock Arc A380 Challenger ITX OC (Intel Arc A380)
+    - XA61200 + Intel Arc A580
+    - XA61200 + GUNNIR Intel Arc A750 Photon 8G OC (Intel Arc A750)
+    - XA61200 + Intel Arc B580
+    - XB612B0 + GUNNIR Intel Iris Xe Max Index V2 (Intel DG1)
+    - XB612B0 + GUNNIR Intel Arc A380 Index 6G (Intel Arc A380)
+    - ASUS XC-LS3A6M + GUNNIR Intel Arc B580 INDEX 12G (Intel Arc B580)
+
+On these platforms, basic functionalities tested good but the driver was
+unstable with occasional resets (I do suspect however, that this platform
+suffers from PCIe coherence issues, as instability only occurs under heavy
+VRAM I/O load):
+
+- AArch64, 4KiB/64KiB kernel pages:
+    - ERUN-FD3000 (Phytium D3000) + GUNNIR Intel Iris Xe Max Index V2
+      (Intel DG1)
+    - ERUN-FD3000 (Phytium D3000) + GUNNIR Intel Arc A380 Index 6G
+      (Intel Arc A380)
+    - ERUN-FD3000 (Phytium D3000) + GUNNIR Intel Arc A750 Photon 8G OC
+      (Intel Arc A750)
+
+I think that this patch series is now ready for your comment and review.
+Please forgive me if I made any simple mistake or used wrong terminologies,
+but I have never worked on a patch for the DRM subsystem and my experience
+is still quite thin.
+
+But anyway, just letting you all know that Intel Xe/Arc works on non-4KiB
+kernel page platforms (and honestly, it's great to use, especially for
+games and media playback)!
+
+[^1]: https://github.com/FanFansfan/loongson-linux/tree/loongarch-xe
+[^2]: We maintained Shang Yatsen's patch until our v6.13.3 tree, until
+      we decided to test and send this series upstream,
+      https://github.com/AOSC-Tracking/linux/tree/aosc/v6.13.3
+[^3]: Delicious hot pot!
+      https://repo.aosc.io/ahvl/sample-videos-20250223.tar.zst
+
+---
+Matthew(s), Lucas, and Francois:
+
+Thanks again for your patience and review.
+
+I recently had a job change and it put me off this series for months, but
+I'm back (and should be a lot more responsive now) - sorry! Let's get this
+ball rolling again.
+
+I was unfortunately unable to revise 1/5 from v1 as you requested, neither
+of your suggestions to allow allocation of VRAM smaller than page size
+worked... So I kept that part as is.
+
+As for the your comment in 5/5, I'm not sure about what the right approach
+to implement a SZ_64K >= PAGE_SIZE assert was, as there are many other
+instances of similar ternary conditional operators in the xe code. Correct
+me if I'm wrong but I felt that it might be better handled in a separate
+patch series?
+
+---
+Changes in v2:
+
+- Define `GUC_ALIGN' and use them in GuC code to improve clarity.
+- Update documentation on `DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT'.
+- Rebase, and other minor changes.
+- Link to v1:
+  https://lore.kernel.org/all/20250226-xe-non-4k-fix-v1-0-80f23b5ee40e@aosc.io/
+
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: José Roberto de Souza <jose.souza@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+To: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: Zhanjun Dong <zhanjun.dong@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+To: Mateusz Naklicki <mateusz.naklicki@intel.com>
+Cc: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+Cc: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Suggested-by: Kexy Biscuit <kexybiscuit@aosc.io>
 Co-developed-by: Shang Yatsen <429839446@qq.com>
 Signed-off-by: Shang Yatsen <429839446@qq.com>
 Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
+
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Mingcong Bai (5):
+      drm/xe/bo: fix alignment with non-4KiB kernel page sizes
+      drm/xe/guc: use GUC_SIZE (SZ_4K) for alignment
+      drm/xe/regs: fix RING_CTL_SIZE(size) calculation
+      drm/xe: use 4KiB alignment for cursor jumps
+      drm/xe/query: use PAGE_SIZE as the minimum page alignment
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 8f8e9fdfb2a813dfc7619f626f919c3f70441527..74b887ec4edccccd65b8923b8c170477ca28ed43 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -592,7 +592,7 @@ static void emit_pte(struct xe_migrate *m,
- 			u64 addr, flags = 0;
- 			bool devmem = false;
- 
--			addr = xe_res_dma(cur) & PAGE_MASK;
-+			addr = xe_res_dma(cur) & ~XE_PTE_MASK;
- 			if (is_vram) {
- 				if (vm->flags & XE_VM_FLAG_64K) {
- 					u64 va = cur_ofs * XE_PAGE_SIZE / 8;
-@@ -613,7 +613,7 @@ static void emit_pte(struct xe_migrate *m,
- 			bb->cs[bb->len++] = lower_32_bits(addr);
- 			bb->cs[bb->len++] = upper_32_bits(addr);
- 
--			xe_res_next(cur, min_t(u32, size, PAGE_SIZE));
-+			xe_res_next(cur, min_t(u32, size, XE_PAGE_SIZE));
- 			cur_ofs += 8;
- 		}
- 	}
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c               |  8 ++++----
+ drivers/gpu/drm/xe/xe_guc.c              |  4 ++--
+ drivers/gpu/drm/xe/xe_guc.h              |  3 +++
+ drivers/gpu/drm/xe/xe_guc_ads.c          | 32 ++++++++++++++++----------------
+ drivers/gpu/drm/xe/xe_guc_capture.c      |  8 ++++----
+ drivers/gpu/drm/xe/xe_guc_ct.c           |  2 +-
+ drivers/gpu/drm/xe/xe_guc_log.c          |  5 +++--
+ drivers/gpu/drm/xe/xe_guc_pc.c           |  4 ++--
+ drivers/gpu/drm/xe/xe_migrate.c          |  4 ++--
+ drivers/gpu/drm/xe/xe_query.c            |  2 +-
+ include/uapi/drm/xe_drm.h                |  7 +++++--
+ 12 files changed, 44 insertions(+), 37 deletions(-)
+---
+base-commit: 546b1c9e93c2bb8cf5ed24e0be1c86bb089b3253
+change-id: 20250603-upstream-xe-non-4k-v2-4acf253c9bfd
 
+Best regards,
 -- 
-2.49.0
+Mingcong Bai <jeffbai@aosc.io>
 
 
