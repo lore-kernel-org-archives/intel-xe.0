@@ -4,77 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3E07C5B543
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 14:54:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6949C5B549
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 14:58:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A359810E0D2;
-	Wed,  4 Jun 2025 14:54:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="TvVOBx2N";
-	dkim-atps=neutral
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 405E810E0D2
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 14:54:47 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-43edecbfb46so53364505e9.0
- for <intel-xe@lists.freedesktop.org>; Wed, 04 Jun 2025 07:54:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1749048886; x=1749653686; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=Tdv6Fi59T9iqwRoeTP31kVO0+FdiS7SFPAkxgfgd9hI=;
- b=TvVOBx2NIVbxW6Tnv+orPUOe3a7sbd5oUUi0U+Yx5r0IL4lQa61IvoC8I+H7wToKJZ
- oO0hvsuAYxgk3Tso+IfspUAJjQPah+9dWgmfs2Q85N08N/rjy6mqezanyUJbo6Elg6qW
- mnqyzvlVBcfTYEnYAX/6XtqTOjckmEajWpm3k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749048886; x=1749653686;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Tdv6Fi59T9iqwRoeTP31kVO0+FdiS7SFPAkxgfgd9hI=;
- b=tKLck0y2EaBW/Ys7BmseMw8Q2nR4G7z5vsPSbVrcvF7N+TupFu5Pdrj+2PvQfkAqsj
- oSKojLMpNp3cRJOtBe7CrpGPYAQSrxS71egBdkS0tmRHWTBw1pwSSTn1hG5+m7v6KB8H
- dQLWfL6tYGRz8LXPS5qoXDwkYcarv00uWdy48aWA2nYrQnlUZpeKIjZ3ZBT16kZ3gCZI
- +xHIQM57dGI6f7gM161Ni85OAVxl/waXdIOd5M2Sncrz0eeGYYgZOFw3wmUFdMLzhZUV
- dcOEb+6Qgkw6wLek8vNl83N/rY/wN08NvR5AP/FQ7xUhPKAqeGgqYGOkOVDpZCwUdQA9
- 2Y3g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWr+3JnHmBa4ySzjP+TpGUb2Rt06Pn00jcDHLl/C5ef71sBv7pSBuVQ9QGKQBGJjTGO888mBXf1Xg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzw1PwoGPdqUMpU54Bi8lNsTxdsQkqrs6YxNqPFr8FyRVW12KFR
- XS7CAtMQgnXjUcvV4xGAhQpMwN3zJHMMAq8m5KmCeQQwWJo4tqXTxh+mh6tX9aqU5kQ=
-X-Gm-Gg: ASbGncs4jXVXnk+qwOvn5R2Py3ZgrG/u81Oj/lhgReIFs18tmZa/LWCEMWIsb3gabQ8
- C9VkoDVPUs5FEmRmxULa5MVWZT2hhgL/z8c5CoJ12zsqOVVHLjSLDkrZis5Ye6ls65a68ISnWjI
- Xm43MEIqdHHqvHZ+pnNtmiGh8+DvqXvWpkiFmhWdZ2dOJ+FGQONgeBDplm7JJ798hz87KqR3JfO
- /mQPuf0mayIhPCFShZPf1HjReyTOQoAXDnfTGYsVNX4moVN0gR8Fmi3uxqVoUPYa0sVXFvhfIax
- MRv/cmrDoubjr4rSHMzJ/XBK7AhGqDsiq23nuCQGkq+VVZgpjNufH4NXvPmqvCc=
-X-Google-Smtp-Source: AGHT+IHLaPWNEw+aHsZjBlSgJC+s4+YxFWBu1S0hmI+wTByKY7MvL82hzwIhAvnsOgiOUFtFVeOI6Q==
-X-Received: by 2002:a05:600c:3106:b0:441:b3eb:570a with SMTP id
- 5b1f17b1804b1-451f0a6a94bmr29895765e9.2.1749048885659; 
- Wed, 04 Jun 2025 07:54:45 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-450d7f90c40sm204727155e9.2.2025.06.04.07.54.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 04 Jun 2025 07:54:45 -0700 (PDT)
-Date: Wed, 4 Jun 2025 16:54:43 +0200
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- Dan Carpenter <dan.carpenter@linaro.org>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [bug report] drm/xe/svm: Implement prefetch support for SVM ranges
-Message-ID: <aEBeM1sWuSNWNij6@phenom.ffwll.local>
-References: <aDSDfusiM8QGQwFS@stanley.mountain>
- <0183ca8d-4347-48d9-a783-361c6543db14@intel.com>
- <20250603222952.GD407166@ziepe.ca>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 894A010E74E;
+	Wed,  4 Jun 2025 14:58:49 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2C1410E762;
+ Wed,  4 Jun 2025 14:58:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0664495859621915782=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250603222952.GD407166@ziepe.ca>
-X-Operating-System: Linux phenom 6.12.25-amd64 
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/i915/flipq=3A_Rough_fl?=
+ =?utf-8?q?ip_queue_implementation_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Jun 2025 14:58:47 -0000
+Message-ID: <174904912765.48761.18220544840352959546@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250603140836.21432-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250603140836.21432-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,44 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 03, 2025 at 07:29:52PM -0300, Jason Gunthorpe wrote:
-> On Mon, May 26, 2025 at 10:15:17PM +0530, Ghimiray, Himal Prasad wrote:
-> > 
-> > 
-> > On 26-05-2025 20:36, Dan Carpenter wrote:
-> > > Hello Himal Prasad Ghimiray,
-> > > 
-> > > Commit 09ba0a8f06cd ("drm/xe/svm: Implement prefetch support for SVM
-> > > ranges") from May 13, 2025 (linux-next), leads to the following
-> > > Smatch static checker warning:
-> > > 
-> > > 	drivers/gpu/drm/xe/xe_vm.c:2922 prefetch_ranges()
-> > > 	warn: passing positive error code 's32min-(-96),(-94)-(-15),(-13)-(-12),(-10)-(-2),1' to 'ERR_PTR'
-> > 
-> > Hi Dan,
-> > 
-> > Thanks for pointing this out. I see there's a gap in how hmm_range_fault()
-> > adheres to its documented behavior. I believe the function should sanitize
-> > positive return values from walk_page_range() to ensure consistency.
-> > 
-> > Jason can comment further on same.
-> 
-> Yeah, I don't think it should return positive error code, whatever is
-> doing that should be fixed. Can you send a patch?
+--===============0664495859621915782==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Not sure that's what's going on, from the comment and reading the code
-(albeit non-exhaustively) I think you can only get positive error return
-values from walk_page_range if the ops you provide do so. The hmm ones
-don't, so I think this should be ok without any code changes?
+== Series Details ==
 
-Maybe a WARN_ON and patching that up for paranoia, but I don't see how
-this can happen.
+Series: drm/i915/flipq: Rough flip queue implementation (rev4)
+URL   : https://patchwork.freedesktop.org/series/149109/
+State : failure
 
-Cheers, Sima
--- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+== Summary ==
+
+ERROR: The runconfig 'xe-3185-bea2a0d35dc29d6ae8a4e44506af9b563f012211_FULL' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149109v4/index.html
+
+--===============0664495859621915782==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/flipq: Rough flip queue implementation (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149109/">https://patchwork.freedesktop.org/series/149109/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149109v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149109v4/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-3185-bea2a0d35dc29d6ae8a4e44506af9b563f012211_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============0664495859621915782==--
