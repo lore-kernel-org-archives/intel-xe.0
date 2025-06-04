@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D9E6C5AD49
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 00:33:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BF4EC5AE59
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 00:33:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D7AA10E966;
-	Wed,  4 Jun 2025 00:33:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E546610E980;
+	Wed,  4 Jun 2025 00:33:17 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D838B10E961;
- Wed,  4 Jun 2025 00:33:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB06310E99A;
+ Wed,  4 Jun 2025 00:33:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_GuC_opt-in_fe?=
- =?utf-8?q?atures?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enable_GuC_opt-in_feature?=
+ =?utf-8?q?s?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Jun 2025 00:33:03 -0000
-Message-ID: <174899718388.46838.4397467329453087866@1538d3639d33>
+Date: Wed, 04 Jun 2025 00:33:16 -0000
+Message-ID: <174899719676.46839.8062855118809485539@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250604002454.743404-4-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20250604002454.743404-4-daniele.ceraolospurio@intel.com>
@@ -44,14 +44,58 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Enable GuC opt-in features
 URL   : https://patchwork.freedesktop.org/series/149815/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2d51392d4559 drm-tip: 2025y-06m-03d-21h-58m-03s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Enable extended CAT error reporting
-Applying: drm/xe/guc: Enable the Dynamic Inhibit Context Switch optimization
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2b9d89c114783fac8d868b9e6b61416d2538eadf
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Tue Jun 3 17:24:57 2025 -0700
+
+    drm/xe/guc: Enable the Dynamic Inhibit Context Switch optimization
+    
+    The Dynamic Inhibit Context Switch is an optimization aimed at reducing
+    the amount of time the HW is stuck waiting on an unsatisfied semaphore.
+    When this optimization is enabled, the GuC will dynamically modify the
+    CTX_CTRL_INHIBIT_SYN_CTX_SWITCH in the CTX_CONTEXT_CONTROL register of
+    LRCs to enable immediate switching out on an unsatisfied semaphore wait
+    when multiple contexts are competing for time on the same engine.
+    
+    This feature is available on recent HW from GuC 70.40.1 onwards and it
+    is enabled via a per-VF feature opt-in.
+    
+    v2: rebase
+    v3: switch to using guc_buf_cache instead of dedicated alloc
+    v4: add helper to check for feature availability (Michal), don't enable
+    if multi-lrc is possible.
+    
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: John Harrison <John.C.Harrison@Intel.com>
+    Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 2d51392d455943d0356d982902ce994f91996d3e drm-intel
+167021a5a563 drm/xe/guc: Enable extended CAT error reporting
+-:120: WARNING:LINE_SPACING: Missing a blank line after declarations
+#120: FILE: drivers/gpu/drm/xe/xe_guc.c:590:
++	struct xe_device *xe = guc_to_xe(guc);
++	CLASS(xe_guc_buf, buf)(&guc->buf, OPT_IN_MAX_DWORDS);
+
+total: 0 errors, 1 warnings, 0 checks, 165 lines checked
+2b9d89c11478 drm/xe/guc: Enable the Dynamic Inhibit Context Switch optimization
+-:97: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#97: FILE: drivers/gpu/drm/xe/xe_guc.c:636:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 66 lines checked
 
 
