@@ -4,48 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F859C5B543
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 07:21:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2989C5B552
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 08:21:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEE0410E72C;
-	Wed,  4 Jun 2025 07:21:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EBAF10E635;
+	Wed,  4 Jun 2025 08:21:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="eHA6kM9S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bXkv9MG1";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0675710E767;
- Wed,  4 Jun 2025 07:20:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=bgRyunu03kM1wSbo8lg2xiEr3S0OMbyJR04D6HO5uVs=; b=eHA6kM9SzkmUkdQT8UvcgDOEcX
- xGigOp9OcTLEjVZs0D7N3327UNZYwbsegddwAX8UzfquWjvw727AaE9rc9W8sLzMY6/Ev+1SG9hs4
- kAZn+UU5QrZLMLS778d4lF6Z2dXrk9Hc8xcKIXQvVYDi/8ZTg0GOnCdj3fM0rtiG4iOMSIimNp5RF
- rsjZT3bZcU0+DEyMVpBq0Ye+2IhwIWB+Nx1yK+iUpxRYzA19CEeyrVbynsrB2TZNmvqgVc5PgnNCy
- j2mVvNq5D/sOioHnIHPiTaKLg1lUwCy9OTrNqCGmEqN70uI1VWL6xMJsamTze29amzfrmCpQUnx54
- E7g03HYQ==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uMiQg-00GzNT-JM; Wed, 04 Jun 2025 09:20:54 +0200
-Message-ID: <23ccc7be-641c-460d-94bf-4df31aacc40c@igalia.com>
-Date: Wed, 4 Jun 2025 08:20:53 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9453210E71A
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 08:21:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749025274; x=1780561274;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=iJ9bGsRNpmRshUGwtNe9AkAld+uFgbj1E8p59P03tmw=;
+ b=bXkv9MG1XAjgIuPp8Zjk+L9yyuUh7bc0wBde1I0wSz0Tnh6V2mAJl+pV
+ 64sDofsXSNU3vYXpf4AuFTfkMNSPdIoC18ggBRSSGXRcdMiQmJQR2iYtx
+ /xBhXNGmyxxPFBBHHMemQiZfwEN4nI0Z2rAEZtSBAIr9v0iZBhHrwd+I5
+ DEa7edX24gCa2RuqQjtH8n7xsHV0Em7FOiur2izlpmGGcEIsJGT7i+xUI
+ Fi/J6MrKnx+shJQUSkZJ37tY/HGk2BY/umNSBBRplXb7vfKOHTvm4/nyH
+ 0qaPxujDAVIKpp/Tb+D0Y48QmbBJsEyrUHnJ/w4rpHw44J7sGFdswd10E Q==;
+X-CSE-ConnectionGUID: XeEqDwteQ3GlcEsyExw3Nw==
+X-CSE-MsgGUID: Q9ML1qS9QIWShowjGlH4LA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="62484252"
+X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="62484252"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2025 01:21:11 -0700
+X-CSE-ConnectionGUID: b5vA9ZD/T2CutEivZwyukA==
+X-CSE-MsgGUID: 1V/2BxIHT1OJIIVtEJzRng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="145721329"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.101])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2025 01:21:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "De
+ Marchi, Lucas" <lucas.demarchi@intel.com>
+Subject: RE: [PATCH] drm/xe/bmg: Fix NULL-ptr deref during probe on SKUs
+ with no display
+In-Reply-To: <IA0PR11MB7185E199BA1AC3599471432FF86CA@IA0PR11MB7185.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250602221118.306395-1-vivek.kasireddy@intel.com>
+ <20250602224801.GE6239@mdroper-desk1.amr.corp.intel.com>
+ <IA0PR11MB7185A38AE8BC13D4B6CAEBA7F86DA@IA0PR11MB7185.namprd11.prod.outlook.com>
+ <13b240abd3144e1830bf18d133cfabeca3261653@intel.com>
+ <IA0PR11MB7185E199BA1AC3599471432FF86CA@IA0PR11MB7185.namprd11.prod.outlook.com>
+Date: Wed, 04 Jun 2025 11:21:07 +0300
+Message-ID: <60a9f7937cbbd953db5e6b1dacd8d0f7e6d1e775@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/ttm: Fix build with CONFIG_DEBUG_FS=n
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-References: <20250603184750.3304647-2-lucas.demarchi@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250603184750.3304647-2-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,56 +74,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, 04 Jun 2025, "Kasireddy, Vivek" <vivek.kasireddy@intel.com> wrote:
+> I guess we need a short-term solution to address this problem, at-least
+> for Xe. So, do you prefer the revert option or the minimal, safer Xe fix
+> you shared above?
 
-On 03/06/2025 19:47, Lucas De Marchi wrote:
-> Move the define outside the ifdef for CONFIG_DEBUG_FS to fix the build.
-> This currently breaks drm kunit tests:
-> 
-> 	$ ./tools/testing/kunit/kunit.py run --kunitconfig drivers/gpu/drm/ttm/tests/.kunitconfig
-> 	ERROR:root:../drivers/gpu/drm/ttm/ttm_pool.c: In function ‘ttm_pool_mgr_init’:
-> 	../drivers/gpu/drm/ttm/ttm_pool.c:1335:30: error: ‘TTM_SHRINKER_BATCH’ undeclared (first use in this function)
-> 	 1335 |         mm_shrinker->batch = TTM_SHRINKER_BATCH;
-> 
-> Fixes: 22b929b25293 ("drm/ttm: Increase pool shrinker batch target")
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->   drivers/gpu/drm/ttm/ttm_pool.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-> index e671812789ea7..2dead28a6c1c0 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -1132,6 +1132,9 @@ void ttm_pool_fini(struct ttm_pool *pool)
->   }
->   EXPORT_SYMBOL(ttm_pool_fini);
->   
-> +/* Free average pool number of pages.  */
-> +#define TTM_SHRINKER_BATCH ((1 << (MAX_PAGE_ORDER / 2)) * NR_PAGE_ORDERS)
-> +
->   static unsigned long ttm_pool_shrinker_scan(struct shrinker *shrink,
->   					    struct shrink_control *sc)
->   {
-> @@ -1265,9 +1268,6 @@ int ttm_pool_debugfs(struct ttm_pool *pool, struct seq_file *m)
->   }
->   EXPORT_SYMBOL(ttm_pool_debugfs);
->   
-> -/* Free average pool number of pages.  */
-> -#define TTM_SHRINKER_BATCH ((1 << (MAX_PAGE_ORDER / 2)) * NR_PAGE_ORDERS)
-> -
->   /* Test the shrinker functions and dump the result */
->   static int ttm_pool_debugfs_shrink_show(struct seq_file *m, void *data)
->   {
+Yeah, let's go with the revert. Would you care to post it, please?
 
-Ah sorry!
+Thanks, and sorry for the trouble.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+BR,
+Jani.
 
-I'll merge it straight away.
 
-Regards,
-
-Tvrtko
-
+-- 
+Jani Nikula, Intel
