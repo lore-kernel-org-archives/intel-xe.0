@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDA46C71153
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 13:59:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECA38C71136
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 13:59:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C36210E9B2;
-	Fri, 13 Jun 2025 13:59:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9959D10E1EE;
+	Fri, 13 Jun 2025 13:59:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HTix3quG";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="B0+PVPRz";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 436F410E004;
- Fri, 13 Jun 2025 01:11:32 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44AF710E6C9;
+ Wed,  4 Jun 2025 02:58:07 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 055BE49B29;
- Fri, 13 Jun 2025 01:11:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C113DC4CEF4;
- Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 98095A4FF9C;
+ Wed,  4 Jun 2025 02:58:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3A862C4CEF4;
+ Wed,  4 Jun 2025 02:58:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1749777091;
+ s=k20201202; t=1749005880;
  bh=+NYye4MNUBzt+8gl9CH+0mAJaYkWbn1vnUcsS4wSDTY=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=HTix3quG9jysMHH/ardx70hcNXVKzPW5rAo2n53Zo5gcttooUXwhpBWAgRzVEpqc8
- 33j6imvtD49t7cl5UNIHG2wuSS8S1DTtRDnvyYNWq62HmkhuWER4LWGckRkZ8lZzlo
- nrLKftaHnOxPf6at6z+EUfMh7wcoR82sJccIGhNEA+16kjR6YrYq3ezMSRz9F5I9Dg
- jtIwb2FBlVT+6CWIK/RHgiAlQMq9px285CKIeo80SxTyqITl1//aMzOMlSUeMluIIX
- 5qOCAYGgT30L95eGDcpV/5cZyXNAaS0qeM2aGUQKToypEQOS2z7qzD7U5+ZWEUmNUe
- ZVtU9rGu4W4Nw==
+ b=B0+PVPRzldeq/68ql4hEZ43POvCkfaYUfpfmaYpFBQCN/xKy3Qa+OJAGPPbjkNpLw
+ PNm96Yds3d6GQ8m5UTww89D4w+AbdmY+tVXlSPBe0FmPUJ+FDramFef3a+DRVV08KQ
+ j26FBPmMitoWZHoegiMxykuuz4d+J+Ssolh5tyPSgvXdIxWM6y0EIxffTAYb6qE2rh
+ BctwRtX1xdaGMgT1CrolDL6xyegd+hGTWC2EGVsNS0Vw/WWZc0g962nXAPVRhkTVaE
+ lv+p18kJbfefZk/TdsVRU8T0FGhjEtyotyDBwL+fFjmb332YEJbMDUblSm494zOYz3
+ NseJ49kautuyA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
  (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id B67AAC7114C;
- Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
+ by smtp.lore.kernel.org (Postfix) with ESMTP id 2C073C5AE59;
+ Wed,  4 Jun 2025 02:58:00 +0000 (UTC)
 From: Mingcong Bai via B4 Relay <devnull+jeffbai.aosc.io@kernel.org>
-Date: Fri, 13 Jun 2025 09:11:31 +0800
+Date: Wed, 04 Jun 2025 10:57:57 +0800
 Subject: [PATCH v2 3/5] drm/xe/regs: fix RING_CTL_SIZE(size) calculation
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250613-upstream-xe-non-4k-v2-v2-3-934f82249f8a@aosc.io>
-References: <20250613-upstream-xe-non-4k-v2-v2-0-934f82249f8a@aosc.io>
-In-Reply-To: <20250613-upstream-xe-non-4k-v2-v2-0-934f82249f8a@aosc.io>
+Message-Id: <20250604-upstream-xe-non-4k-v2-v2-3-ce7905da7b08@aosc.io>
+References: <20250604-upstream-xe-non-4k-v2-v2-0-ce7905da7b08@aosc.io>
+In-Reply-To: <20250604-upstream-xe-non-4k-v2-v2-0-ce7905da7b08@aosc.io>
 To: Lucas De Marchi <lucas.demarchi@intel.com>, 
  =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
  Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
@@ -65,11 +65,11 @@ Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Haien Liang <27873200@qq.com>, Jianfeng Liu <liujianfeng1994@gmail.com>, 
  Shirong Liu <lsr1024@qq.com>, Haofeng Wu <s2600cw2@126.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749777090; l=6855;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749005878; l=6855;
  i=jeffbai@aosc.io; s=20250604; h=from:subject:message-id;
  bh=3xAgeSx/kQOKvU32cZAgSjMp+7iADD0ecjGV9IQ2UqA=;
- b=T2CI7xLa2+GyufMpZGOBEUr5PG/VRusl/QURmgjEkWfSVErjRUXfYoofFNSvv27T1+7ypecOL
- 3UJUBsTTLk8Akiwo6cLwSIWOffAIqIF+PDE4McTNUJHUkmCPqfNhd9+
+ b=dxBzhzyzbA/bKkCANKA2006LiFMPOphyIoEFx6IWdYC+Weps+AKw4I0NL/halARuiU/oSiCrK
+ q7sZWzqBdWtDun00O86jIdboGh4zgl/aRznJFKSAWPswL57bQFg+BaM
 X-Developer-Key: i=jeffbai@aosc.io; a=ed25519;
  pk=MJdgklflDF+Xz9x2Lp+ogEnEyk8HRosMGiqLgWbFctY=
 X-Endpoint-Received: by B4 Relay for jeffbai@aosc.io/20250604 with auth_id=422
