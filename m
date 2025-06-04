@@ -4,57 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20DC5C5B549
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 14:52:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3E07C5B543
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 14:54:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C958E10E143;
-	Wed,  4 Jun 2025 14:52:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A359810E0D2;
+	Wed,  4 Jun 2025 14:54:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YT5G4GN4";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="TvVOBx2N";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96D9810E143
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 14:52:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749048764; x=1780584764;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=4Cin8Ws7tDpKX+E14q0TLIjqjPTtguSp0NlG01Ou8+Y=;
- b=YT5G4GN4mAYhMFVlIlbctLd9f98wzext5N5IuSOEKonERG/HL5OrToCr
- U6U9UpSGA9AaC8Z/x6qvcNxXhxS/kAI3sBjN3WKjSOFUpfSOnqiLph1TW
- 8yKmeC1c/koiLO8fP2VKGboUQG5d/NDaCRlCfatwGsOoZrmX0VFHl/dty
- UZ5Holfna9Hz96iI+ekt1AbFxbbqWoLVcXwJy+rzbFQv3mhySIqlZLVJB
- f7rja+eM4s2SKhNvNQrWQV5TcNZ0Wy9CP+MNHaHhF6mLnxOpidbEV00SJ
- UPpC4JfyIJHwlWUNEujXnZ/drJdTFC6GDtFVrwlWvgr6cLwNNL9kemMZu w==;
-X-CSE-ConnectionGUID: QQPpYAMpS2uvUgAG3CUi8Q==
-X-CSE-MsgGUID: 9lEjG79qSI6Xy0C7sOWrog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="51228684"
-X-IronPort-AV: E=Sophos;i="6.16,209,1744095600"; d="scan'208";a="51228684"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2025 07:52:44 -0700
-X-CSE-ConnectionGUID: nyqHcw9yQauYJtgQ1ucVzw==
-X-CSE-MsgGUID: DoBwuPyoScqr6XzHB4fuWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,209,1744095600"; d="scan'208";a="150004770"
-Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa003.jf.intel.com with ESMTP; 04 Jun 2025 07:52:43 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>,
- James Ausmus <james.ausmus@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 3/3] drm/xe/xe2_hpg: Define additional Xe2_HPG GMD_ID
-Date: Wed,  4 Jun 2025 20:22:36 +0530
-Message-Id: <20250604145236.1143122-4-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250604145236.1143122-1-dnyaneshwar.bhadane@intel.com>
-References: <20250604145236.1143122-1-dnyaneshwar.bhadane@intel.com>
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 405E810E0D2
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 14:54:47 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-43edecbfb46so53364505e9.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 04 Jun 2025 07:54:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1749048886; x=1749653686; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Tdv6Fi59T9iqwRoeTP31kVO0+FdiS7SFPAkxgfgd9hI=;
+ b=TvVOBx2NIVbxW6Tnv+orPUOe3a7sbd5oUUi0U+Yx5r0IL4lQa61IvoC8I+H7wToKJZ
+ oO0hvsuAYxgk3Tso+IfspUAJjQPah+9dWgmfs2Q85N08N/rjy6mqezanyUJbo6Elg6qW
+ mnqyzvlVBcfTYEnYAX/6XtqTOjckmEajWpm3k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1749048886; x=1749653686;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Tdv6Fi59T9iqwRoeTP31kVO0+FdiS7SFPAkxgfgd9hI=;
+ b=tKLck0y2EaBW/Ys7BmseMw8Q2nR4G7z5vsPSbVrcvF7N+TupFu5Pdrj+2PvQfkAqsj
+ oSKojLMpNp3cRJOtBe7CrpGPYAQSrxS71egBdkS0tmRHWTBw1pwSSTn1hG5+m7v6KB8H
+ dQLWfL6tYGRz8LXPS5qoXDwkYcarv00uWdy48aWA2nYrQnlUZpeKIjZ3ZBT16kZ3gCZI
+ +xHIQM57dGI6f7gM161Ni85OAVxl/waXdIOd5M2Sncrz0eeGYYgZOFw3wmUFdMLzhZUV
+ dcOEb+6Qgkw6wLek8vNl83N/rY/wN08NvR5AP/FQ7xUhPKAqeGgqYGOkOVDpZCwUdQA9
+ 2Y3g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWr+3JnHmBa4ySzjP+TpGUb2Rt06Pn00jcDHLl/C5ef71sBv7pSBuVQ9QGKQBGJjTGO888mBXf1Xg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzw1PwoGPdqUMpU54Bi8lNsTxdsQkqrs6YxNqPFr8FyRVW12KFR
+ XS7CAtMQgnXjUcvV4xGAhQpMwN3zJHMMAq8m5KmCeQQwWJo4tqXTxh+mh6tX9aqU5kQ=
+X-Gm-Gg: ASbGncs4jXVXnk+qwOvn5R2Py3ZgrG/u81Oj/lhgReIFs18tmZa/LWCEMWIsb3gabQ8
+ C9VkoDVPUs5FEmRmxULa5MVWZT2hhgL/z8c5CoJ12zsqOVVHLjSLDkrZis5Ye6ls65a68ISnWjI
+ Xm43MEIqdHHqvHZ+pnNtmiGh8+DvqXvWpkiFmhWdZ2dOJ+FGQONgeBDplm7JJ798hz87KqR3JfO
+ /mQPuf0mayIhPCFShZPf1HjReyTOQoAXDnfTGYsVNX4moVN0gR8Fmi3uxqVoUPYa0sVXFvhfIax
+ MRv/cmrDoubjr4rSHMzJ/XBK7AhGqDsiq23nuCQGkq+VVZgpjNufH4NXvPmqvCc=
+X-Google-Smtp-Source: AGHT+IHLaPWNEw+aHsZjBlSgJC+s4+YxFWBu1S0hmI+wTByKY7MvL82hzwIhAvnsOgiOUFtFVeOI6Q==
+X-Received: by 2002:a05:600c:3106:b0:441:b3eb:570a with SMTP id
+ 5b1f17b1804b1-451f0a6a94bmr29895765e9.2.1749048885659; 
+ Wed, 04 Jun 2025 07:54:45 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-450d7f90c40sm204727155e9.2.2025.06.04.07.54.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 04 Jun 2025 07:54:45 -0700 (PDT)
+Date: Wed, 4 Jun 2025 16:54:43 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
+ Dan Carpenter <dan.carpenter@linaro.org>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [bug report] drm/xe/svm: Implement prefetch support for SVM ranges
+Message-ID: <aEBeM1sWuSNWNij6@phenom.ffwll.local>
+References: <aDSDfusiM8QGQwFS@stanley.mountain>
+ <0183ca8d-4347-48d9-a783-361c6543db14@intel.com>
+ <20250603222952.GD407166@ziepe.ca>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250603222952.GD407166@ziepe.ca>
+X-Operating-System: Linux phenom 6.12.25-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,31 +89,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Shekhar Chauhan <shekhar.chauhan@intel.com>
+On Tue, Jun 03, 2025 at 07:29:52PM -0300, Jason Gunthorpe wrote:
+> On Mon, May 26, 2025 at 10:15:17PM +0530, Ghimiray, Himal Prasad wrote:
+> > 
+> > 
+> > On 26-05-2025 20:36, Dan Carpenter wrote:
+> > > Hello Himal Prasad Ghimiray,
+> > > 
+> > > Commit 09ba0a8f06cd ("drm/xe/svm: Implement prefetch support for SVM
+> > > ranges") from May 13, 2025 (linux-next), leads to the following
+> > > Smatch static checker warning:
+> > > 
+> > > 	drivers/gpu/drm/xe/xe_vm.c:2922 prefetch_ranges()
+> > > 	warn: passing positive error code 's32min-(-96),(-94)-(-15),(-13)-(-12),(-10)-(-2),1' to 'ERR_PTR'
+> > 
+> > Hi Dan,
+> > 
+> > Thanks for pointing this out. I see there's a gap in how hmm_range_fault()
+> > adheres to its documented behavior. I believe the function should sanitize
+> > positive return values from walk_page_range() to ensure consistency.
+> > 
+> > Jason can comment further on same.
+> 
+> Yeah, I don't think it should return positive error code, whatever is
+> doing that should be fixed. Can you send a patch?
 
-Add another GMD_ID for Xe2_HPG
+Not sure that's what's going on, from the comment and reading the code
+(albeit non-exhaustively) I think you can only get positive error return
+values from walk_page_range if the ops you provide do so. The hmm ones
+don't, so I think this should be ok without any code changes?
 
-Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
-Signed-off-by: James Ausmus <james.ausmus@intel.com>
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_pci.c | 1 +
- 1 file changed, 1 insertion(+)
+Maybe a WARN_ON and patching that up for paranoia, but I don't see how
+this can happen.
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index b68c90910d82..83f0a76a81a5 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -179,6 +179,7 @@ static const struct xe_ip graphics_ips[] = {
- 	{ 1271, "Xe_LPG", &graphics_xelpg },
- 	{ 1274, "Xe_LPG+", &graphics_xelpg },
- 	{ 2001, "Xe2_HPG", &graphics_xe2 },
-+	{ 2002, "Xe2_HPG", &graphics_xe2 },
- 	{ 2004, "Xe2_LPG", &graphics_xe2 },
- 	{ 3000, "Xe3_LPG", &graphics_xe2 },
- 	{ 3001, "Xe3_LPG", &graphics_xe2 },
+Cheers, Sima
 -- 
-2.34.1
-
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
