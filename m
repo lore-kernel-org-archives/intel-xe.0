@@ -4,52 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D768C5B552
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 07:19:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F859C5B543
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 07:21:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AAA510E683;
-	Wed,  4 Jun 2025 07:19:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEE0410E72C;
+	Wed,  4 Jun 2025 07:21:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dFP6tY82";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="eHA6kM9S";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94EAC10E69D
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 07:19:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749021564; x=1780557564;
- h=date:from:to:cc:subject:message-id;
- bh=C/EpXCoyKpCXAmZ1NfljXBH79GhQbxo1/H8NWJwv5QY=;
- b=dFP6tY82SOoEgnETRLUjDwKSrbiMLuRmcXNJeh7Z/w/UzLbih4JxSdOR
- olKEtpBrx7M8NU0JzsrAPqEjrWzvc+/SNYJs+nnwXnAEcrbh0WNdtc8MU
- zQzaY5iA1dtqK/lT/HzGmt/LxXcYv6wrlHOuUxN4kgwF5781UP8LCFtlM
- n+vIVm13HhM+zPLIWnzRhcbtEqCpX+wa0ODm+nWzEWLQb04btFTzaiY21
- A4GNzZZueGKNM7QvBIMhnIa9pY9c4TNg7s/76zZD8fE/B1rVc9N0ngzkO
- V6xzRtgyyp761ikqVeQ4fRXuipgP5QvnX//OoKTYIyCQT3tGuOMCPriRf w==;
-X-CSE-ConnectionGUID: Myui9MBMT6OWx4Wl5wyFRw==
-X-CSE-MsgGUID: Akk3I97PTbiEnVcobBSFyQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="51159410"
-X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="51159410"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2025 00:19:24 -0700
-X-CSE-ConnectionGUID: s/01SLilRAm86dNtxRMusA==
-X-CSE-MsgGUID: z8Lu2dd6RsGTBzBoZNZwWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="146076122"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
- by orviesa008.jf.intel.com with ESMTP; 04 Jun 2025 00:19:23 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uMiPA-0002x3-0q;
- Wed, 04 Jun 2025 07:19:20 +0000
-Date: Wed, 04 Jun 2025 15:19:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- c12c729e97508f4cd073a7cd5150d7512fa84f34
-Message-ID: <202506041500.uK3y9yMa-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0675710E767;
+ Wed,  4 Jun 2025 07:20:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=bgRyunu03kM1wSbo8lg2xiEr3S0OMbyJR04D6HO5uVs=; b=eHA6kM9SzkmUkdQT8UvcgDOEcX
+ xGigOp9OcTLEjVZs0D7N3327UNZYwbsegddwAX8UzfquWjvw727AaE9rc9W8sLzMY6/Ev+1SG9hs4
+ kAZn+UU5QrZLMLS778d4lF6Z2dXrk9Hc8xcKIXQvVYDi/8ZTg0GOnCdj3fM0rtiG4iOMSIimNp5RF
+ rsjZT3bZcU0+DEyMVpBq0Ye+2IhwIWB+Nx1yK+iUpxRYzA19CEeyrVbynsrB2TZNmvqgVc5PgnNCy
+ j2mVvNq5D/sOioHnIHPiTaKLg1lUwCy9OTrNqCGmEqN70uI1VWL6xMJsamTze29amzfrmCpQUnx54
+ E7g03HYQ==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uMiQg-00GzNT-JM; Wed, 04 Jun 2025 09:20:54 +0200
+Message-ID: <23ccc7be-641c-460d-94bf-4df31aacc40c@igalia.com>
+Date: Wed, 4 Jun 2025 08:20:53 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/ttm: Fix build with CONFIG_DEBUG_FS=n
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <20250603184750.3304647-2-lucas.demarchi@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250603184750.3304647-2-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,54 +60,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: c12c729e97508f4cd073a7cd5150d7512fa84f34  drm/xe/vf: Add sanity check for GGTT configuration
 
-elapsed time: 1224m
+On 03/06/2025 19:47, Lucas De Marchi wrote:
+> Move the define outside the ifdef for CONFIG_DEBUG_FS to fix the build.
+> This currently breaks drm kunit tests:
+> 
+> 	$ ./tools/testing/kunit/kunit.py run --kunitconfig drivers/gpu/drm/ttm/tests/.kunitconfig
+> 	ERROR:root:../drivers/gpu/drm/ttm/ttm_pool.c: In function ‘ttm_pool_mgr_init’:
+> 	../drivers/gpu/drm/ttm/ttm_pool.c:1335:30: error: ‘TTM_SHRINKER_BATCH’ undeclared (first use in this function)
+> 	 1335 |         mm_shrinker->batch = TTM_SHRINKER_BATCH;
+> 
+> Fixes: 22b929b25293 ("drm/ttm: Increase pool shrinker batch target")
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>   drivers/gpu/drm/ttm/ttm_pool.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index e671812789ea7..2dead28a6c1c0 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -1132,6 +1132,9 @@ void ttm_pool_fini(struct ttm_pool *pool)
+>   }
+>   EXPORT_SYMBOL(ttm_pool_fini);
+>   
+> +/* Free average pool number of pages.  */
+> +#define TTM_SHRINKER_BATCH ((1 << (MAX_PAGE_ORDER / 2)) * NR_PAGE_ORDERS)
+> +
+>   static unsigned long ttm_pool_shrinker_scan(struct shrinker *shrink,
+>   					    struct shrink_control *sc)
+>   {
+> @@ -1265,9 +1268,6 @@ int ttm_pool_debugfs(struct ttm_pool *pool, struct seq_file *m)
+>   }
+>   EXPORT_SYMBOL(ttm_pool_debugfs);
+>   
+> -/* Free average pool number of pages.  */
+> -#define TTM_SHRINKER_BATCH ((1 << (MAX_PAGE_ORDER / 2)) * NR_PAGE_ORDERS)
+> -
+>   /* Test the shrinker functions and dump the result */
+>   static int ttm_pool_debugfs_shrink_show(struct seq_file *m, void *data)
+>   {
 
-configs tested: 35
-configs skipped: 1
+Ah sorry!
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-tested configs:
-alpha        allyesconfig    gcc-15.1.0
-arc          allmodconfig    gcc-15.1.0
-arc          allyesconfig    gcc-15.1.0
-arm          allmodconfig    gcc-15.1.0
-arm          allyesconfig    gcc-15.1.0
-arm64        allmodconfig    clang-19
-hexagon      allmodconfig    clang-17
-hexagon      allyesconfig    clang-21
-i386         allmodconfig    gcc-12
-i386          allnoconfig    gcc-12
-i386         allyesconfig    gcc-12
-i386            defconfig    clang-20
-loongarch    allmodconfig    gcc-15.1.0
-m68k         allmodconfig    gcc-15.1.0
-m68k         allyesconfig    gcc-15.1.0
-microblaze   allmodconfig    gcc-15.1.0
-microblaze   allyesconfig    gcc-15.1.0
-openrisc     allyesconfig    gcc-15.1.0
-parisc       allmodconfig    gcc-15.1.0
-parisc       allyesconfig    gcc-15.1.0
-powerpc      allmodconfig    gcc-15.1.0
-powerpc      allyesconfig    clang-21
-riscv        allmodconfig    clang-21
-riscv        allyesconfig    clang-16
-s390         allmodconfig    clang-18
-s390         allyesconfig    gcc-15.1.0
-sh           allmodconfig    gcc-15.1.0
-sh           allyesconfig    gcc-15.1.0
-sparc        allmodconfig    gcc-15.1.0
-um           allmodconfig    clang-19
-um           allyesconfig    gcc-12
-x86_64        allnoconfig    clang-20
-x86_64       allyesconfig    clang-20
-x86_64          defconfig    gcc-11
-x86_64      rhel-9.4-rust    clang-18
+I'll merge it straight away.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+
+Tvrtko
+
