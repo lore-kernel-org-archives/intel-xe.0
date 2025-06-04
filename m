@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 590A6C5B543
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 12:11:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9158BC5B549
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 12:21:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17DC510E5F7;
-	Wed,  4 Jun 2025 12:11:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4888B10E849;
+	Wed,  4 Jun 2025 12:21:47 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A65710E5F7;
- Wed,  4 Jun 2025 12:11:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75A6C10E849;
+ Wed,  4 Jun 2025 12:21:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_drm/i915=3A_split_out_display_?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915=3A_split_out_display_?=
  =?utf-8?q?register_macros_to_a_separate_file?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Jun 2025 12:11:07 -0000
-Message-ID: <174903906723.48081.2209593760572466955@1538d3639d33>
+Date: Wed, 04 Jun 2025 12:21:46 -0000
+Message-ID: <174903970635.48081.2501944251613352335@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250604110225.993638-1-jani.nikula@intel.com>
 In-Reply-To: <20250604110225.993638-1-jani.nikula@intel.com>
@@ -48,1173 +48,2133 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[12:09:59] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[12:10:03] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-[12:10:30] Starting KUnit Kernel (1/1)...
-[12:10:30] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[12:10:30] ================== guc_buf (11 subtests) ===================
-[12:10:30] [PASSED] test_smallest
-[12:10:30] [PASSED] test_largest
-[12:10:30] [PASSED] test_granular
-[12:10:30] [PASSED] test_unique
-[12:10:30] [PASSED] test_overlap
-[12:10:30] [PASSED] test_reusable
-[12:10:30] [PASSED] test_too_big
-[12:10:30] [PASSED] test_flush
-[12:10:30] [PASSED] test_lookup
-[12:10:30] [PASSED] test_data
-[12:10:30] [PASSED] test_class
-[12:10:30] ===================== [PASSED] guc_buf =====================
-[12:10:30] =================== guc_dbm (7 subtests) ===================
-[12:10:30] [PASSED] test_empty
-[12:10:30] [PASSED] test_default
-[12:10:30] ======================== test_size  ========================
-[12:10:30] [PASSED] 4
-[12:10:30] [PASSED] 8
-[12:10:30] [PASSED] 32
-[12:10:30] [PASSED] 256
-[12:10:30] ==================== [PASSED] test_size ====================
-[12:10:30] ======================= test_reuse  ========================
-[12:10:30] [PASSED] 4
-[12:10:30] [PASSED] 8
-[12:10:30] [PASSED] 32
-[12:10:30] [PASSED] 256
-[12:10:30] =================== [PASSED] test_reuse ====================
-[12:10:30] =================== test_range_overlap  ====================
-[12:10:30] [PASSED] 4
-[12:10:30] [PASSED] 8
-[12:10:30] [PASSED] 32
-[12:10:30] [PASSED] 256
-[12:10:30] =============== [PASSED] test_range_overlap ================
-[12:10:30] =================== test_range_compact  ====================
-[12:10:30] [PASSED] 4
-[12:10:30] [PASSED] 8
-[12:10:30] [PASSED] 32
-[12:10:30] [PASSED] 256
-[12:10:30] =============== [PASSED] test_range_compact ================
-[12:10:30] ==================== test_range_spare  =====================
-[12:10:30] [PASSED] 4
-[12:10:30] [PASSED] 8
-[12:10:30] [PASSED] 32
-[12:10:30] [PASSED] 256
-[12:10:30] ================ [PASSED] test_range_spare =================
-[12:10:30] ===================== [PASSED] guc_dbm =====================
-[12:10:30] =================== guc_idm (6 subtests) ===================
-[12:10:30] [PASSED] bad_init
-[12:10:30] [PASSED] no_init
-[12:10:30] [PASSED] init_fini
-[12:10:30] [PASSED] check_used
-[12:10:30] [PASSED] check_quota
-[12:10:30] [PASSED] check_all
-[12:10:30] ===================== [PASSED] guc_idm =====================
-[12:10:30] ================== no_relay (3 subtests) ===================
-[12:10:30] [PASSED] xe_drops_guc2pf_if_not_ready
-[12:10:30] [PASSED] xe_drops_guc2vf_if_not_ready
-[12:10:30] [PASSED] xe_rejects_send_if_not_ready
-[12:10:30] ==================== [PASSED] no_relay =====================
-[12:10:30] ================== pf_relay (14 subtests) ==================
-[12:10:30] [PASSED] pf_rejects_guc2pf_too_short
-[12:10:30] [PASSED] pf_rejects_guc2pf_too_long
-[12:10:30] [PASSED] pf_rejects_guc2pf_no_payload
-[12:10:30] [PASSED] pf_fails_no_payload
-[12:10:30] [PASSED] pf_fails_bad_origin
-[12:10:30] [PASSED] pf_fails_bad_type
-[12:10:30] [PASSED] pf_txn_reports_error
-[12:10:30] [PASSED] pf_txn_sends_pf2guc
-[12:10:30] [PASSED] pf_sends_pf2guc
-[12:10:30] [SKIPPED] pf_loopback_nop
-[12:10:30] [SKIPPED] pf_loopback_echo
-[12:10:30] [SKIPPED] pf_loopback_fail
-[12:10:30] [SKIPPED] pf_loopback_busy
-[12:10:30] [SKIPPED] pf_loopback_retry
-[12:10:30] ==================== [PASSED] pf_relay =====================
-[12:10:30] ================== vf_relay (3 subtests) ===================
-[12:10:30] [PASSED] vf_rejects_guc2vf_too_short
-[12:10:30] [PASSED] vf_rejects_guc2vf_too_long
-[12:10:30] [PASSED] vf_rejects_guc2vf_no_payload
-[12:10:30] ==================== [PASSED] vf_relay =====================
-[12:10:30] ================= pf_service (11 subtests) =================
-[12:10:30] [PASSED] pf_negotiate_any
-[12:10:30] [PASSED] pf_negotiate_base_match
-[12:10:30] [PASSED] pf_negotiate_base_newer
-[12:10:30] [PASSED] pf_negotiate_base_next
-[12:10:30] [SKIPPED] pf_negotiate_base_older
-[12:10:30] [PASSED] pf_negotiate_base_prev
-[12:10:30] [PASSED] pf_negotiate_latest_match
-[12:10:30] [PASSED] pf_negotiate_latest_newer
-[12:10:30] [PASSED] pf_negotiate_latest_next
-[12:10:30] [SKIPPED] pf_negotiate_latest_older
-[12:10:30] [SKIPPED] pf_negotiate_latest_prev
-[12:10:30] =================== [PASSED] pf_service ====================
-[12:10:30] ===================== lmtt (1 subtest) =====================
-[12:10:30] ======================== test_ops  =========================
-[12:10:30] [PASSED] 2-level
-[12:10:30] [PASSED] multi-level
-[12:10:30] ==================== [PASSED] test_ops =====================
-[12:10:30] ====================== [PASSED] lmtt =======================
-[12:10:30] =================== xe_mocs (2 subtests) ===================
-[12:10:30] ================ xe_live_mocs_kernel_kunit  ================
-[12:10:30] =========== [SKIPPED] xe_live_mocs_kernel_kunit ============
-[12:10:30] ================ xe_live_mocs_reset_kunit  =================
-[12:10:30] ============ [SKIPPED] xe_live_mocs_reset_kunit ============
-[12:10:30] ==================== [SKIPPED] xe_mocs =====================
-[12:10:30] ================= xe_migrate (2 subtests) ==================
-[12:10:30] ================= xe_migrate_sanity_kunit  =================
-[12:10:30] ============ [SKIPPED] xe_migrate_sanity_kunit =============
-[12:10:30] ================== xe_validate_ccs_kunit  ==================
-[12:10:30] ============= [SKIPPED] xe_validate_ccs_kunit ==============
-[12:10:30] =================== [SKIPPED] xe_migrate ===================
-[12:10:30] ================== xe_dma_buf (1 subtest) ==================
-[12:10:30] ==================== xe_dma_buf_kunit  =====================
-[12:10:30] ================ [SKIPPED] xe_dma_buf_kunit ================
-[12:10:30] =================== [SKIPPED] xe_dma_buf ===================
-[12:10:30] ================= xe_bo_shrink (1 subtest) =================
-[12:10:30] =================== xe_bo_shrink_kunit  ====================
-[12:10:30] =============== [SKIPPED] xe_bo_shrink_kunit ===============
-[12:10:30] ================== [SKIPPED] xe_bo_shrink ==================
-[12:10:30] ==================== xe_bo (2 subtests) ====================
-[12:10:30] ================== xe_ccs_migrate_kunit  ===================
-[12:10:30] ============== [SKIPPED] xe_ccs_migrate_kunit ==============
-[12:10:30] ==================== xe_bo_evict_kunit  ====================
-[12:10:30] =============== [SKIPPED] xe_bo_evict_kunit ================
-[12:10:30] ===================== [SKIPPED] xe_bo ======================
-[12:10:30] ==================== args (11 subtests) ====================
-[12:10:30] [PASSED] count_args_test
-[12:10:30] [PASSED] call_args_example
-[12:10:30] [PASSED] call_args_test
-[12:10:30] [PASSED] drop_first_arg_example
-[12:10:30] [PASSED] drop_first_arg_test
-[12:10:30] [PASSED] first_arg_example
-[12:10:30] [PASSED] first_arg_test
-[12:10:30] [PASSED] last_arg_example
-[12:10:30] [PASSED] last_arg_test
-[12:10:30] [PASSED] pick_arg_example
-[12:10:30] [PASSED] sep_comma_example
-[12:10:30] ====================== [PASSED] args =======================
-[12:10:30] =================== xe_pci (2 subtests) ====================
-[12:10:30] [PASSED] xe_gmdid_graphics_ip
-[12:10:30] [PASSED] xe_gmdid_media_ip
-[12:10:30] ===================== [PASSED] xe_pci ======================
-[12:10:30] =================== xe_rtp (2 subtests) ====================
-[12:10:30] =============== xe_rtp_process_to_sr_tests  ================
-[12:10:30] [PASSED] coalesce-same-reg
-[12:10:30] [PASSED] no-match-no-add
-[12:10:30] [PASSED] match-or
-[12:10:30] [PASSED] match-or-xfail
-[12:10:30] [PASSED] no-match-no-add-multiple-rules
-[12:10:30] [PASSED] two-regs-two-entries
-[12:10:30] [PASSED] clr-one-set-other
-[12:10:30] [PASSED] set-field
-[12:10:30] [PASSED] conflict-duplicate
-[12:10:30] [PASSED] conflict-not-disjoint
-stty: 'standard input': Inappropriate ioctl for device
-[12:10:30] [PASSED] conflict-reg-type
-[12:10:30] =========== [PASSED] xe_rtp_process_to_sr_tests ============
-[12:10:30] ================== xe_rtp_process_tests  ===================
-[12:10:30] [PASSED] active1
-[12:10:30] [PASSED] active2
-[12:10:30] [PASSED] active-inactive
-[12:10:30] [PASSED] inactive-active
-[12:10:30] [PASSED] inactive-1st_or_active-inactive
-[12:10:30] [PASSED] inactive-2nd_or_active-inactive
-[12:10:30] [PASSED] inactive-last_or_active-inactive
-[12:10:30] [PASSED] inactive-no_or_active-inactive
-[12:10:30] ============== [PASSED] xe_rtp_process_tests ===============
-[12:10:30] ===================== [PASSED] xe_rtp ======================
-[12:10:30] ==================== xe_wa (1 subtest) =====================
-[12:10:30] ======================== xe_wa_gt  =========================
-[12:10:30] [PASSED] TIGERLAKE (B0)
-[12:10:30] [PASSED] DG1 (A0)
-[12:10:30] [PASSED] DG1 (B0)
-[12:10:30] [PASSED] ALDERLAKE_S (A0)
-[12:10:30] [PASSED] ALDERLAKE_S (B0)
-[12:10:30] [PASSED] ALDERLAKE_S (C0)
-[12:10:30] [PASSED] ALDERLAKE_S (D0)
-[12:10:30] [PASSED] ALDERLAKE_P (A0)
-[12:10:30] [PASSED] ALDERLAKE_P (B0)
-[12:10:30] [PASSED] ALDERLAKE_P (C0)
-[12:10:30] [PASSED] ALDERLAKE_S_RPLS (D0)
-[12:10:30] [PASSED] ALDERLAKE_P_RPLU (E0)
-[12:10:30] [PASSED] DG2_G10 (C0)
-[12:10:30] [PASSED] DG2_G11 (B1)
-[12:10:30] [PASSED] DG2_G12 (A1)
-[12:10:30] [PASSED] METEORLAKE (g:A0, m:A0)
-[12:10:30] [PASSED] METEORLAKE (g:A0, m:A0)
-[12:10:30] [PASSED] METEORLAKE (g:A0, m:A0)
-[12:10:30] [PASSED] LUNARLAKE (g:A0, m:A0)
-[12:10:30] [PASSED] LUNARLAKE (g:B0, m:A0)
-[12:10:30] [PASSED] BATTLEMAGE (g:A0, m:A1)
-[12:10:30] ==================== [PASSED] xe_wa_gt =====================
-[12:10:30] ====================== [PASSED] xe_wa ======================
-[12:10:30] ============================================================
-[12:10:30] Testing complete. Ran 133 tests: passed: 117, skipped: 16
-[12:10:30] Elapsed time: 31.056s total, 4.175s configuring, 26.565s building, 0.303s running
-
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[12:10:30] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[12:10:32] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-[12:10:53] Starting KUnit Kernel (1/1)...
-[12:10:53] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[12:10:54] == drm_test_atomic_get_connector_for_encoder (1 subtest) ===
-[12:10:54] [PASSED] drm_test_drm_atomic_get_connector_for_encoder
-[12:10:54] ==== [PASSED] drm_test_atomic_get_connector_for_encoder ====
-[12:10:54] =========== drm_validate_clone_mode (2 subtests) ===========
-[12:10:54] ============== drm_test_check_in_clone_mode  ===============
-[12:10:54] [PASSED] in_clone_mode
-[12:10:54] [PASSED] not_in_clone_mode
-[12:10:54] ========== [PASSED] drm_test_check_in_clone_mode ===========
-[12:10:54] =============== drm_test_check_valid_clones  ===============
-[12:10:54] [PASSED] not_in_clone_mode
-[12:10:54] [PASSED] valid_clone
-[12:10:54] [PASSED] invalid_clone
-[12:10:54] =========== [PASSED] drm_test_check_valid_clones ===========
-[12:10:54] ============= [PASSED] drm_validate_clone_mode =============
-[12:10:54] ============= drm_validate_modeset (1 subtest) =============
-[12:10:54] [PASSED] drm_test_check_connector_changed_modeset
-[12:10:54] ============== [PASSED] drm_validate_modeset ===============
-[12:10:54] ====== drm_test_bridge_get_current_state (2 subtests) ======
-[12:10:54] [PASSED] drm_test_drm_bridge_get_current_state_atomic
-[12:10:54] [PASSED] drm_test_drm_bridge_get_current_state_legacy
-[12:10:54] ======== [PASSED] drm_test_bridge_get_current_state ========
-[12:10:54] ====== drm_test_bridge_helper_reset_crtc (3 subtests) ======
-[12:10:54] [PASSED] drm_test_drm_bridge_helper_reset_crtc_atomic
-[12:10:54] [PASSED] drm_test_drm_bridge_helper_reset_crtc_atomic_disabled
-[12:10:54] [PASSED] drm_test_drm_bridge_helper_reset_crtc_legacy
-[12:10:54] ======== [PASSED] drm_test_bridge_helper_reset_crtc ========
-[12:10:54] ================== drm_buddy (7 subtests) ==================
-[12:10:54] [PASSED] drm_test_buddy_alloc_limit
-[12:10:54] [PASSED] drm_test_buddy_alloc_optimistic
-[12:10:54] [PASSED] drm_test_buddy_alloc_pessimistic
-[12:10:54] [PASSED] drm_test_buddy_alloc_pathological
-[12:10:54] [PASSED] drm_test_buddy_alloc_contiguous
-[12:10:54] [PASSED] drm_test_buddy_alloc_clear
-[12:10:54] [PASSED] drm_test_buddy_alloc_range_bias
-[12:10:54] ==================== [PASSED] drm_buddy ====================
-[12:10:54] ============= drm_cmdline_parser (40 subtests) =============
-[12:10:54] [PASSED] drm_test_cmdline_force_d_only
-[12:10:54] [PASSED] drm_test_cmdline_force_D_only_dvi
-[12:10:54] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[12:10:54] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[12:10:54] [PASSED] drm_test_cmdline_force_e_only
-[12:10:54] [PASSED] drm_test_cmdline_res
-[12:10:54] [PASSED] drm_test_cmdline_res_vesa
-[12:10:54] [PASSED] drm_test_cmdline_res_vesa_rblank
-[12:10:54] [PASSED] drm_test_cmdline_res_rblank
-[12:10:54] [PASSED] drm_test_cmdline_res_bpp
-[12:10:54] [PASSED] drm_test_cmdline_res_refresh
-[12:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh
-[12:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[12:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[12:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[12:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[12:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[12:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[12:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[12:10:54] [PASSED] drm_test_cmdline_res_margins_force_on
-[12:10:54] [PASSED] drm_test_cmdline_res_vesa_margins
-[12:10:54] [PASSED] drm_test_cmdline_name
-[12:10:54] [PASSED] drm_test_cmdline_name_bpp
-[12:10:54] [PASSED] drm_test_cmdline_name_option
-[12:10:54] [PASSED] drm_test_cmdline_name_bpp_option
-[12:10:54] [PASSED] drm_test_cmdline_rotate_0
-[12:10:54] [PASSED] drm_test_cmdline_rotate_90
-[12:10:54] [PASSED] drm_test_cmdline_rotate_180
-[12:10:54] [PASSED] drm_test_cmdline_rotate_270
-[12:10:54] [PASSED] drm_test_cmdline_hmirror
-[12:10:54] [PASSED] drm_test_cmdline_vmirror
-[12:10:54] [PASSED] drm_test_cmdline_margin_options
-[12:10:54] [PASSED] drm_test_cmdline_multiple_options
-[12:10:54] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[12:10:54] [PASSED] drm_test_cmdline_extra_and_option
-[12:10:54] [PASSED] drm_test_cmdline_freestanding_options
-[12:10:54] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[12:10:54] [PASSED] drm_test_cmdline_panel_orientation
-[12:10:54] ================ drm_test_cmdline_invalid  =================
-[12:10:54] [PASSED] margin_only
-[12:10:54] [PASSED] interlace_only
-[12:10:54] [PASSED] res_missing_x
-[12:10:54] [PASSED] res_missing_y
-[12:10:54] [PASSED] res_bad_y
-[12:10:54] [PASSED] res_missing_y_bpp
-[12:10:54] [PASSED] res_bad_bpp
-[12:10:54] [PASSED] res_bad_refresh
-[12:10:54] [PASSED] res_bpp_refresh_force_on_off
-[12:10:54] [PASSED] res_invalid_mode
-[12:10:54] [PASSED] res_bpp_wrong_place_mode
-[12:10:54] [PASSED] name_bpp_refresh
-[12:10:54] [PASSED] name_refresh
-[12:10:54] [PASSED] name_refresh_wrong_mode
-[12:10:54] [PASSED] name_refresh_invalid_mode
-[12:10:54] [PASSED] rotate_multiple
-[12:10:54] [PASSED] rotate_invalid_val
-[12:10:54] [PASSED] rotate_truncated
-[12:10:54] [PASSED] invalid_option
-[12:10:54] [PASSED] invalid_tv_option
-[12:10:54] [PASSED] truncated_tv_option
-[12:10:54] ============ [PASSED] drm_test_cmdline_invalid =============
-[12:10:54] =============== drm_test_cmdline_tv_options  ===============
-[12:10:54] [PASSED] NTSC
-[12:10:54] [PASSED] NTSC_443
-[12:10:54] [PASSED] NTSC_J
-[12:10:54] [PASSED] PAL
-[12:10:54] [PASSED] PAL_M
-[12:10:54] [PASSED] PAL_N
-[12:10:54] [PASSED] SECAM
-[12:10:54] [PASSED] MONO_525
-[12:10:54] [PASSED] MONO_625
-[12:10:54] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[12:10:54] =============== [PASSED] drm_cmdline_parser ================
-[12:10:54] ========== drmm_connector_hdmi_init (20 subtests) ==========
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_valid
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_bpc_8
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_bpc_10
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_bpc_12
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_bpc_invalid
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_bpc_null
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_formats_empty
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_formats_no_rgb
-[12:10:54] === drm_test_connector_hdmi_init_formats_yuv420_allowed  ===
-[12:10:54] [PASSED] supported_formats=0x9 yuv420_allowed=1
-[12:10:54] [PASSED] supported_formats=0x9 yuv420_allowed=0
-[12:10:54] [PASSED] supported_formats=0x3 yuv420_allowed=1
-[12:10:54] [PASSED] supported_formats=0x3 yuv420_allowed=0
-[12:10:54] === [PASSED] drm_test_connector_hdmi_init_formats_yuv420_allowed ===
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_null_ddc
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_null_product
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_null_vendor
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_product_length_exact
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_product_length_too_long
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_product_valid
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_vendor_length_exact
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_vendor_length_too_long
-[12:10:54] [PASSED] drm_test_connector_hdmi_init_vendor_valid
-[12:10:54] ========= drm_test_connector_hdmi_init_type_valid  =========
-[12:10:54] [PASSED] HDMI-A
-[12:10:54] [PASSED] HDMI-B
-[12:10:54] ===== [PASSED] drm_test_connector_hdmi_init_type_valid =====
-[12:10:54] ======== drm_test_connector_hdmi_init_type_invalid  ========
-[12:10:54] [PASSED] Unknown
-[12:10:54] [PASSED] VGA
-[12:10:54] [PASSED] DVI-I
-[12:10:54] [PASSED] DVI-D
-[12:10:54] [PASSED] DVI-A
-[12:10:54] [PASSED] Composite
-[12:10:54] [PASSED] SVIDEO
-[12:10:54] [PASSED] LVDS
-[12:10:54] [PASSED] Component
-[12:10:54] [PASSED] DIN
-[12:10:54] [PASSED] DP
-[12:10:54] [PASSED] TV
-[12:10:54] [PASSED] eDP
-[12:10:54] [PASSED] Virtual
-[12:10:54] [PASSED] DSI
-[12:10:54] [PASSED] DPI
-[12:10:54] [PASSED] Writeback
-[12:10:54] [PASSED] SPI
-[12:10:54] [PASSED] USB
-[12:10:54] ==== [PASSED] drm_test_connector_hdmi_init_type_invalid ====
-[12:10:54] ============ [PASSED] drmm_connector_hdmi_init =============
-[12:10:54] ============= drmm_connector_init (3 subtests) =============
-[12:10:54] [PASSED] drm_test_drmm_connector_init
-[12:10:54] [PASSED] drm_test_drmm_connector_init_null_ddc
-[12:10:54] ========= drm_test_drmm_connector_init_type_valid  =========
-[12:10:54] [PASSED] Unknown
-[12:10:54] [PASSED] VGA
-[12:10:54] [PASSED] DVI-I
-[12:10:54] [PASSED] DVI-D
-[12:10:54] [PASSED] DVI-A
-[12:10:54] [PASSED] Composite
-[12:10:54] [PASSED] SVIDEO
-[12:10:54] [PASSED] LVDS
-[12:10:54] [PASSED] Component
-[12:10:54] [PASSED] DIN
-[12:10:54] [PASSED] DP
-[12:10:54] [PASSED] HDMI-A
-[12:10:54] [PASSED] HDMI-B
-[12:10:54] [PASSED] TV
-[12:10:54] [PASSED] eDP
-[12:10:54] [PASSED] Virtual
-[12:10:54] [PASSED] DSI
-[12:10:54] [PASSED] DPI
-[12:10:54] [PASSED] Writeback
-[12:10:54] [PASSED] SPI
-[12:10:54] [PASSED] USB
-[12:10:54] ===== [PASSED] drm_test_drmm_connector_init_type_valid =====
-[12:10:54] =============== [PASSED] drmm_connector_init ===============
-[12:10:54] ========= drm_connector_dynamic_init (6 subtests) ==========
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_init
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_init_null_ddc
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_init_not_added
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_init_properties
-[12:10:54] ===== drm_test_drm_connector_dynamic_init_type_valid  ======
-[12:10:54] [PASSED] Unknown
-[12:10:54] [PASSED] VGA
-[12:10:54] [PASSED] DVI-I
-[12:10:54] [PASSED] DVI-D
-[12:10:54] [PASSED] DVI-A
-[12:10:54] [PASSED] Composite
-[12:10:54] [PASSED] SVIDEO
-[12:10:54] [PASSED] LVDS
-[12:10:54] [PASSED] Component
-[12:10:54] [PASSED] DIN
-[12:10:54] [PASSED] DP
-[12:10:54] [PASSED] HDMI-A
-[12:10:54] [PASSED] HDMI-B
-[12:10:54] [PASSED] TV
-[12:10:54] [PASSED] eDP
-[12:10:54] [PASSED] Virtual
-[12:10:54] [PASSED] DSI
-[12:10:54] [PASSED] DPI
-[12:10:54] [PASSED] Writeback
-[12:10:54] [PASSED] SPI
-[12:10:54] [PASSED] USB
-[12:10:54] = [PASSED] drm_test_drm_connector_dynamic_init_type_valid ==
-[12:10:54] ======== drm_test_drm_connector_dynamic_init_name  =========
-[12:10:54] [PASSED] Unknown
-[12:10:54] [PASSED] VGA
-[12:10:54] [PASSED] DVI-I
-[12:10:54] [PASSED] DVI-D
-[12:10:54] [PASSED] DVI-A
-[12:10:54] [PASSED] Composite
-[12:10:54] [PASSED] SVIDEO
-[12:10:54] [PASSED] LVDS
-[12:10:54] [PASSED] Component
-[12:10:54] [PASSED] DIN
-[12:10:54] [PASSED] DP
-[12:10:54] [PASSED] HDMI-A
-[12:10:54] [PASSED] HDMI-B
-[12:10:54] [PASSED] TV
-[12:10:54] [PASSED] eDP
-[12:10:54] [PASSED] Virtual
-[12:10:54] [PASSED] DSI
-[12:10:54] [PASSED] DPI
-[12:10:54] [PASSED] Writeback
-[12:10:54] [PASSED] SPI
-[12:10:54] [PASSED] USB
-[12:10:54] ==== [PASSED] drm_test_drm_connector_dynamic_init_name =====
-[12:10:54] =========== [PASSED] drm_connector_dynamic_init ============
-[12:10:54] ==== drm_connector_dynamic_register_early (4 subtests) =====
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_early_on_list
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_early_defer
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_early_no_init
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_early_no_mode_object
-[12:10:54] ====== [PASSED] drm_connector_dynamic_register_early =======
-[12:10:54] ======= drm_connector_dynamic_register (7 subtests) ========
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_on_list
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_no_defer
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_no_init
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_mode_object
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_sysfs
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_sysfs_name
-[12:10:54] [PASSED] drm_test_drm_connector_dynamic_register_debugfs
-[12:10:54] ========= [PASSED] drm_connector_dynamic_register ==========
-[12:10:54] = drm_connector_attach_broadcast_rgb_property (2 subtests) =
-[12:10:54] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property
-[12:10:54] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property_hdmi_connector
-[12:10:54] === [PASSED] drm_connector_attach_broadcast_rgb_property ===
-[12:10:54] ========== drm_get_tv_mode_from_name (2 subtests) ==========
-[12:10:54] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[12:10:54] [PASSED] NTSC
-[12:10:54] [PASSED] NTSC-443
-[12:10:54] [PASSED] NTSC-J
-[12:10:54] [PASSED] PAL
-[12:10:54] [PASSED] PAL-M
-[12:10:54] [PASSED] PAL-N
-[12:10:54] [PASSED] SECAM
-[12:10:54] [PASSED] Mono
-[12:10:54] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[12:10:54] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[12:10:54] ============ [PASSED] drm_get_tv_mode_from_name ============
-[12:10:54] = drm_test_connector_hdmi_compute_mode_clock (12 subtests) =
-[12:10:54] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb
-[12:10:54] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc
-[12:10:54] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc_vic_1
-[12:10:54] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc
-[12:10:54] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc_vic_1
-[12:10:54] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_double
-[12:10:54] = drm_test_connector_hdmi_compute_mode_clock_yuv420_valid  =
-[12:10:54] [PASSED] VIC 96
-[12:10:54] [PASSED] VIC 97
-[12:10:54] [PASSED] VIC 101
-[12:10:54] [PASSED] VIC 102
-[12:10:54] [PASSED] VIC 106
-[12:10:54] [PASSED] VIC 107
-[12:10:54] === [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_valid ===
-[12:10:54] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_10_bpc
-[12:10:54] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_12_bpc
-[12:10:54] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_8_bpc
-[12:10:54] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_10_bpc
-[12:10:54] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_12_bpc
-[12:10:54] === [PASSED] drm_test_connector_hdmi_compute_mode_clock ====
-[12:10:54] == drm_hdmi_connector_get_broadcast_rgb_name (2 subtests) ==
-[12:10:54] === drm_test_drm_hdmi_connector_get_broadcast_rgb_name  ====
-[12:10:54] [PASSED] Automatic
-[12:10:54] [PASSED] Full
-[12:10:54] [PASSED] Limited 16:235
-[12:10:54] === [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name ===
-[12:10:54] [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name_invalid
-[12:10:54] ==== [PASSED] drm_hdmi_connector_get_broadcast_rgb_name ====
-[12:10:54] == drm_hdmi_connector_get_output_format_name (2 subtests) ==
-[12:10:54] === drm_test_drm_hdmi_connector_get_output_format_name  ====
-[12:10:54] [PASSED] RGB
-[12:10:54] [PASSED] YUV 4:2:0
-[12:10:54] [PASSED] YUV 4:2:2
-[12:10:54] [PASSED] YUV 4:4:4
-[12:10:54] === [PASSED] drm_test_drm_hdmi_connector_get_output_format_name ===
-[12:10:54] [PASSED] drm_test_drm_hdmi_connector_get_output_format_name_invalid
-[12:10:54] ==== [PASSED] drm_hdmi_connector_get_output_format_name ====
-[12:10:54] ============= drm_damage_helper (21 subtests) ==============
-[12:10:54] [PASSED] drm_test_damage_iter_no_damage
-[12:10:54] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[12:10:54] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[12:10:54] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[12:10:54] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[12:10:54] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[12:10:54] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[12:10:54] [PASSED] drm_test_damage_iter_simple_damage
-[12:10:54] [PASSED] drm_test_damage_iter_single_damage
-[12:10:54] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[12:10:54] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[12:10:54] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[12:10:54] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[12:10:54] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[12:10:54] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[12:10:54] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[12:10:54] [PASSED] drm_test_damage_iter_damage
-[12:10:54] [PASSED] drm_test_damage_iter_damage_one_intersect
-[12:10:54] [PASSED] drm_test_damage_iter_damage_one_outside
-[12:10:54] [PASSED] drm_test_damage_iter_damage_src_moved
-[12:10:54] [PASSED] drm_test_damage_iter_damage_not_visible
-[12:10:54] ================ [PASSED] drm_damage_helper ================
-[12:10:54] ============== drm_dp_mst_helper (3 subtests) ==============
-[12:10:54] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[12:10:54] [PASSED] Clock 154000 BPP 30 DSC disabled
-[12:10:54] [PASSED] Clock 234000 BPP 30 DSC disabled
-[12:10:54] [PASSED] Clock 297000 BPP 24 DSC disabled
-[12:10:54] [PASSED] Clock 332880 BPP 24 DSC enabled
-[12:10:54] [PASSED] Clock 324540 BPP 24 DSC enabled
-[12:10:54] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[12:10:54] ============== drm_test_dp_mst_calc_pbn_div  ===============
-[12:10:54] [PASSED] Link rate 2000000 lane count 4
-[12:10:54] [PASSED] Link rate 2000000 lane count 2
-[12:10:54] [PASSED] Link rate 2000000 lane count 1
-[12:10:54] [PASSED] Link rate 1350000 lane count 4
-[12:10:54] [PASSED] Link rate 1350000 lane count 2
-[12:10:54] [PASSED] Link rate 1350000 lane count 1
-[12:10:54] [PASSED] Link rate 1000000 lane count 4
-[12:10:54] [PASSED] Link rate 1000000 lane count 2
-[12:10:54] [PASSED] Link rate 1000000 lane count 1
-[12:10:54] [PASSED] Link rate 810000 lane count 4
-[12:10:54] [PASSED] Link rate 810000 lane count 2
-[12:10:54] [PASSED] Link rate 810000 lane count 1
-[12:10:54] [PASSED] Link rate 540000 lane count 4
-[12:10:54] [PASSED] Link rate 540000 lane count 2
-[12:10:54] [PASSED] Link rate 540000 lane count 1
-[12:10:54] [PASSED] Link rate 270000 lane count 4
-[12:10:54] [PASSED] Link rate 270000 lane count 2
-[12:10:54] [PASSED] Link rate 270000 lane count 1
-[12:10:54] [PASSED] Link rate 162000 lane count 4
-[12:10:54] [PASSED] Link rate 162000 lane count 2
-[12:10:54] [PASSED] Link rate 162000 lane count 1
-[12:10:54] ========== [PASSED] drm_test_dp_mst_calc_pbn_div ===========
-[12:10:54] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[12:10:54] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[12:10:54] [PASSED] DP_POWER_UP_PHY with port number
-[12:10:54] [PASSED] DP_POWER_DOWN_PHY with port number
-[12:10:54] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[12:10:54] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[12:10:54] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[12:10:54] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[12:10:54] [PASSED] DP_QUERY_PAYLOAD with port number
-[12:10:54] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[12:10:54] [PASSED] DP_REMOTE_DPCD_READ with port number
-[12:10:54] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[12:10:54] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[12:10:54] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[12:10:54] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[12:10:54] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[12:10:54] [PASSED] DP_REMOTE_I2C_READ with port number
-[12:10:54] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[12:10:54] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[12:10:54] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[12:10:54] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[12:10:54] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[12:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[12:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[12:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[12:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[12:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[12:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[12:10:54] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[12:10:54] ================ [PASSED] drm_dp_mst_helper ================
-[12:10:54] ================== drm_exec (7 subtests) ===================
-[12:10:54] [PASSED] sanitycheck
-[12:10:54] [PASSED] test_lock
-[12:10:54] [PASSED] test_lock_unlock
-[12:10:54] [PASSED] test_duplicates
-[12:10:54] [PASSED] test_prepare
-[12:10:54] [PASSED] test_prepare_array
-[12:10:54] [PASSED] test_multiple_loops
-[12:10:54] ==================== [PASSED] drm_exec =====================
-[12:10:54] =========== drm_format_helper_test (18 subtests) ===========
-[12:10:54] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[12:10:54] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[12:10:54] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[12:10:54] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[12:10:54] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[12:10:54] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[12:10:54] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[12:10:54] ============= drm_test_fb_xrgb8888_to_bgr888  ==============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ========= [PASSED] drm_test_fb_xrgb8888_to_bgr888 ==========
-[12:10:54] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[12:10:54] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[12:10:54] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[12:10:54] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[12:10:54] ==================== drm_test_fb_swab  =====================
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ================ [PASSED] drm_test_fb_swab =================
-[12:10:54] ============ drm_test_fb_xrgb8888_to_xbgr8888  =============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_xbgr8888 =========
-[12:10:54] ============ drm_test_fb_xrgb8888_to_abgr8888  =============
-[12:10:54] [PASSED] single_pixel_source_buffer
-[12:10:54] [PASSED] single_pixel_clip_rectangle
-[12:10:54] [PASSED] well_known_colors
-[12:10:54] [PASSED] destination_pitch
-[12:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_abgr8888 =========
-[12:10:54] ================= drm_test_fb_clip_offset  =================
-[12:10:54] [PASSED] pass through
-[12:10:54] [PASSED] horizontal offset
-[12:10:54] [PASSED] vertical offset
-[12:10:54] [PASSED] horizontal and vertical offset
-[12:10:54] [PASSED] horizontal offset (custom pitch)
-[12:10:54] [PASSED] vertical offset (custom pitch)
-[12:10:54] [PASSED] horizontal and vertical offset (custom pitch)
-[12:10:54] ============= [PASSED] drm_test_fb_clip_offset =============
-[12:10:54] ============== drm_test_fb_build_fourcc_list  ==============
-[12:10:54] [PASSED] no native formats
-[12:10:54] [PASSED] XRGB8888 as native format
-[12:10:54] [PASSED] remove duplicates
-[12:10:54] [PASSED] convert alpha formats
-[12:10:54] [PASSED] random formats
-[12:10:54] ========== [PASSED] drm_test_fb_build_fourcc_list ==========
-[12:10:54] =================== drm_test_fb_memcpy  ====================
-[12:10:54] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
-[12:10:54] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
-[12:10:54] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
-[12:10:54] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
-[12:10:54] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
-[12:10:54] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
-[12:10:54] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
-[12:10:54] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
-[12:10:54] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
-[12:10:54] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
-[12:10:54] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
-[12:10:54] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
-[12:10:54] =============== [PASSED] drm_test_fb_memcpy ================
-[12:10:54] ============= [PASSED] drm_format_helper_test ==============
-[12:10:54] ================= drm_format (18 subtests) =================
-[12:10:54] [PASSED] drm_test_format_block_width_invalid
-[12:10:54] [PASSED] drm_test_format_block_width_one_plane
-[12:10:54] [PASSED] drm_test_format_block_width_two_plane
-[12:10:54] [PASSED] drm_test_format_block_width_three_plane
-[12:10:54] [PASSED] drm_test_format_block_width_tiled
-[12:10:54] [PASSED] drm_test_format_block_height_invalid
-[12:10:54] [PASSED] drm_test_format_block_height_one_plane
-[12:10:54] [PASSED] drm_test_format_block_height_two_plane
-[12:10:54] [PASSED] drm_test_format_block_height_three_plane
-[12:10:54] [PASSED] drm_test_format_block_height_tiled
-[12:10:54] [PASSED] drm_test_format_min_pitch_invalid
-[12:10:54] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[12:10:54] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[12:10:54] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[12:10:54] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[12:10:54] [PASSED] drm_test_format_min_pitch_two_plane
-[12:10:54] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[12:10:54] [PASSED] drm_test_format_min_pitch_tiled
-[12:10:54] =================== [PASSED] drm_format ====================
-[12:10:54] ============== drm_framebuffer (10 subtests) ===============
-[12:10:54] ========== drm_test_framebuffer_check_src_coords  ==========
-[12:10:54] [PASSED] Success: source fits into fb
-[12:10:54] [PASSED] Fail: overflowing fb with x-axis coordinate
-[12:10:54] [PASSED] Fail: overflowing fb with y-axis coordinate
-[12:10:54] [PASSED] Fail: overflowing fb with source width
-[12:10:54] [PASSED] Fail: overflowing fb with source height
-[12:10:54] ====== [PASSED] drm_test_framebuffer_check_src_coords ======
-[12:10:54] [PASSED] drm_test_framebuffer_cleanup
-[12:10:54] =============== drm_test_framebuffer_create  ===============
-[12:10:54] [PASSED] ABGR8888 normal sizes
-[12:10:54] [PASSED] ABGR8888 max sizes
-[12:10:54] [PASSED] ABGR8888 pitch greater than min required
-[12:10:54] [PASSED] ABGR8888 pitch less than min required
-[12:10:54] [PASSED] ABGR8888 Invalid width
-[12:10:54] [PASSED] ABGR8888 Invalid buffer handle
-[12:10:54] [PASSED] No pixel format
-[12:10:54] [PASSED] ABGR8888 Width 0
-[12:10:54] [PASSED] ABGR8888 Height 0
-[12:10:54] [PASSED] ABGR8888 Out of bound height * pitch combination
-[12:10:54] [PASSED] ABGR8888 Large buffer offset
-[12:10:54] [PASSED] ABGR8888 Buffer offset for inexistent plane
-[12:10:54] [PASSED] ABGR8888 Invalid flag
-[12:10:54] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[12:10:54] [PASSED] ABGR8888 Valid buffer modifier
-[12:10:54] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[12:10:54] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[12:10:54] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[12:10:54] [PASSED] NV12 Normal sizes
-[12:10:54] [PASSED] NV12 Max sizes
-[12:10:54] [PASSED] NV12 Invalid pitch
-[12:10:54] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[12:10:54] [PASSED] NV12 different  modifier per-plane
-[12:10:54] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[12:10:54] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[12:10:54] [PASSED] NV12 Modifier for inexistent plane
-[12:10:54] [PASSED] NV12 Handle for inexistent plane
-[12:10:54] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[12:10:54] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[12:10:54] [PASSED] YVU420 Normal sizes
-[12:10:54] [PASSED] YVU420 Max sizes
-[12:10:54] [PASSED] YVU420 Invalid pitch
-[12:10:54] [PASSED] YVU420 Different pitches
-[12:10:54] [PASSED] YVU420 Different buffer offsets/pitches
-[12:10:54] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[12:10:54] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[12:10:54] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[12:10:54] [PASSED] YVU420 Valid modifier
-[12:10:54] [PASSED] YVU420 Different modifiers per plane
-[12:10:54] [PASSED] YVU420 Modifier for inexistent plane
-[12:10:54] [PASSED] YUV420_10BIT Invalid modifier(DRM_FORMAT_MOD_LINEAR)
-[12:10:54] [PASSED] X0L2 Normal sizes
-[12:10:54] [PASSED] X0L2 Max sizes
-[12:10:54] [PASSED] X0L2 Invalid pitch
-[12:10:54] [PASSED] X0L2 Pitch greater than minimum required
-[12:10:54] [PASSED] X0L2 Handle for inexistent plane
-[12:10:54] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[12:10:54] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[12:10:54] [PASSED] X0L2 Valid modifier
-[12:10:54] [PASSED] X0L2 Modifier for inexistent plane
-[12:10:54] =========== [PASSED] drm_test_framebuffer_create ===========
-[12:10:54] [PASSED] drm_test_framebuffer_free
-[12:10:54] [PASSED] drm_test_framebuffer_init
-[12:10:54] [PASSED] drm_test_framebuffer_init_bad_format
-[12:10:54] [PASSED] drm_test_framebuffer_init_dev_mismatch
-[12:10:54] [PASSED] drm_test_framebuffer_lookup
-[12:10:54] [PASSED] drm_test_framebuffer_lookup_inexistent
-[12:10:54] [PASSED] drm_test_framebuffer_modifiers_not_supported
-[12:10:54] ================= [PASSED] drm_framebuffer =================
-[12:10:54] ================ drm_gem_shmem (8 subtests) ================
-[12:10:54] [PASSED] drm_gem_shmem_test_obj_create
-[12:10:54] [PASSED] drm_gem_shmem_test_obj_create_private
-[12:10:54] [PASSED] drm_gem_shmem_test_pin_pages
-[12:10:54] [PASSED] drm_gem_shmem_test_vmap
-[12:10:54] [PASSED] drm_gem_shmem_test_get_pages_sgt
-[12:10:54] [PASSED] drm_gem_shmem_test_get_sg_table
-[12:10:54] [PASSED] drm_gem_shmem_test_madvise
-[12:10:54] [PASSED] drm_gem_shmem_test_purge
-[12:10:54] ================== [PASSED] drm_gem_shmem ==================
-[12:10:54] === drm_atomic_helper_connector_hdmi_check (27 subtests) ===
-[12:10:54] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode
-[12:10:54] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode_vic_1
-[12:10:54] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode
-[12:10:54] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode_vic_1
-[12:10:54] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode
-[12:10:54] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode_vic_1
-[12:10:54] ====== drm_test_check_broadcast_rgb_cea_mode_yuv420  =======
-[12:10:54] [PASSED] Automatic
-[12:10:54] [PASSED] Full
-[12:10:54] [PASSED] Limited 16:235
-[12:10:54] == [PASSED] drm_test_check_broadcast_rgb_cea_mode_yuv420 ===
-[12:10:54] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_changed
-[12:10:54] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_not_changed
-[12:10:54] [PASSED] drm_test_check_disable_connector
-[12:10:54] [PASSED] drm_test_check_hdmi_funcs_reject_rate
-[12:10:54] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_rgb
-[12:10:54] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_yuv420
-[12:10:54] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_ignore_yuv422
-[12:10:54] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_ignore_yuv420
-[12:10:54] [PASSED] drm_test_check_driver_unsupported_fallback_yuv420
-[12:10:54] [PASSED] drm_test_check_output_bpc_crtc_mode_changed
-[12:10:54] [PASSED] drm_test_check_output_bpc_crtc_mode_not_changed
-[12:10:54] [PASSED] drm_test_check_output_bpc_dvi
-[12:10:54] [PASSED] drm_test_check_output_bpc_format_vic_1
-[12:10:54] [PASSED] drm_test_check_output_bpc_format_display_8bpc_only
-[12:10:54] [PASSED] drm_test_check_output_bpc_format_display_rgb_only
-[12:10:54] [PASSED] drm_test_check_output_bpc_format_driver_8bpc_only
-[12:10:54] [PASSED] drm_test_check_output_bpc_format_driver_rgb_only
-[12:10:54] [PASSED] drm_test_check_tmds_char_rate_rgb_8bpc
-[12:10:54] [PASSED] drm_test_check_tmds_char_rate_rgb_10bpc
-[12:10:54] [PASSED] drm_test_check_tmds_char_rate_rgb_12bpc
-[12:10:54] ===== [PASSED] drm_atomic_helper_connector_hdmi_check ======
-[12:10:54] === drm_atomic_helper_connector_hdmi_reset (6 subtests) ====
-[12:10:54] [PASSED] drm_test_check_broadcast_rgb_value
-[12:10:54] [PASSED] drm_test_check_bpc_8_value
-[12:10:54] [PASSED] drm_test_check_bpc_10_value
-[12:10:54] [PASSED] drm_test_check_bpc_12_value
-[12:10:54] [PASSED] drm_test_check_format_value
-[12:10:54] [PASSED] drm_test_check_tmds_char_value
-[12:10:54] ===== [PASSED] drm_atomic_helper_connector_hdmi_reset ======
-[12:10:54] = drm_atomic_helper_connector_hdmi_mode_valid (4 subtests) =
-[12:10:54] [PASSED] drm_test_check_mode_valid
-[12:10:54] [PASSED] drm_test_check_mode_valid_reject
-[12:10:54] [PASSED] drm_test_check_mode_valid_reject_rate
-[12:10:54] [PASSED] drm_test_check_mode_valid_reject_max_clock
-[12:10:54] === [PASSED] drm_atomic_helper_connector_hdmi_mode_valid ===
-[12:10:54] ================= drm_managed (2 subtests) =================
-[12:10:54] [PASSED] drm_test_managed_release_action
-[12:10:54] [PASSED] drm_test_managed_run_action
-[12:10:54] =================== [PASSED] drm_managed ===================
-[12:10:54] =================== drm_mm (6 subtests) ====================
-[12:10:54] [PASSED] drm_test_mm_init
-[12:10:54] [PASSED] drm_test_mm_debug
-[12:10:54] [PASSED] drm_test_mm_align32
-[12:10:54] [PASSED] drm_test_mm_align64
-[12:10:54] [PASSED] drm_test_mm_lowest
-[12:10:54] [PASSED] drm_test_mm_highest
-[12:10:54] ===================== [PASSED] drm_mm ======================
-[12:10:54] ============= drm_modes_analog_tv (5 subtests) =============
-[12:10:54] [PASSED] drm_test_modes_analog_tv_mono_576i
-[12:10:54] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[12:10:54] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[12:10:54] [PASSED] drm_test_modes_analog_tv_pal_576i
-[12:10:54] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[12:10:54] =============== [PASSED] drm_modes_analog_tv ===============
-[12:10:54] ============== drm_plane_helper (2 subtests) ===============
-[12:10:54] =============== drm_test_check_plane_state  ================
-[12:10:54] [PASSED] clipping_simple
-[12:10:54] [PASSED] clipping_rotate_reflect
-[12:10:54] [PASSED] positioning_simple
-[12:10:54] [PASSED] upscaling
-[12:10:54] [PASSED] downscaling
-[12:10:54] [PASSED] rounding1
-[12:10:54] [PASSED] rounding2
-[12:10:54] [PASSED] rounding3
-[12:10:54] [PASSED] rounding4
-[12:10:54] =========== [PASSED] drm_test_check_plane_state ============
-[12:10:54] =========== drm_test_check_invalid_plane_state  ============
-[12:10:54] [PASSED] positioning_invalid
-[12:10:54] [PASSED] upscaling_invalid
-[12:10:54] [PASSED] downscaling_invalid
-[12:10:54] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[12:10:54] ================ [PASSED] drm_plane_helper =================
-[12:10:54] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
-[12:10:54] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[12:10:54] [PASSED] None
-[12:10:54] [PASSED] PAL
-[12:10:54] [PASSED] NTSC
-[12:10:54] [PASSED] Both, NTSC Default
-[12:10:54] [PASSED] Both, PAL Default
-[12:10:54] [PASSED] Both, NTSC Default, with PAL on command-line
-[12:10:54] [PASSED] Both, PAL Default, with NTSC on command-line
-[12:10:54] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[12:10:54] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[12:10:54] ================== drm_rect (9 subtests) ===================
-[12:10:54] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[12:10:54] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[12:10:54] [PASSED] drm_test_rect_clip_scaled_clipped
-[12:10:54] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-[12:10:54] ================= drm_test_rect_intersect  =================
-[12:10:54] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
-[12:10:54] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
-[12:10:54] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
-[12:10:54] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
-[12:10:54] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
-[12:10:54] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
-[12:10:54] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
-[12:10:54] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
-[12:10:54] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
-[12:10:54] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
-[12:10:54] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
-[12:10:54] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
-[12:10:54] [PASSED] far away: 1x1+0+0 x 1x1+3+6
-[12:10:54] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
-[12:10:54] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
-[12:10:54] ============= [PASSED] drm_test_rect_intersect =============
-[12:10:54] ================ drm_test_rect_calc_hscale  ================
-[12:10:54] [PASSED] normal use
-[12:10:54] [PASSED] out of max range
-[12:10:54] [PASSED] out of min range
-[12:10:54] [PASSED] zero dst
-[12:10:54] [PASSED] negative src
-[12:10:54] [PASSED] negative dst
-[12:10:54] ============ [PASSED] drm_test_rect_calc_hscale ============
-[12:10:54] ================ drm_test_rect_calc_vscale  ================
-[12:10:54] [PASSED] normal use
-[12:10:54] [PASSED] out of max range
-[12:10:54] [PASSED] out of min range
-[12:10:54] [PASSED] zero dst
-[12:10:54] [PASSED] negative src
-[12:10:54] [PASSED] negative dst
-[12:10:54] ============ [PASSED] drm_test_rect_calc_vscale ============
-[12:10:54] ================== drm_test_rect_rotate  ===================
-[12:10:54] [PASSED] reflect-x
-[12:10:54] [PASSED] reflect-y
-[12:10:54] [PASSED] rotate-0
-[12:10:54] [PASSED] rotate-90
-[12:10:54] [PASSED] rotate-180
-stty: 'standard input': Inappropriate ioctl for device
-[12:10:54] [PASSED] rotate-270
-[12:10:54] ============== [PASSED] drm_test_rect_rotate ===============
-[12:10:54] ================ drm_test_rect_rotate_inv  =================
-[12:10:54] [PASSED] reflect-x
-[12:10:54] [PASSED] reflect-y
-[12:10:54] [PASSED] rotate-0
-[12:10:54] [PASSED] rotate-90
-[12:10:54] [PASSED] rotate-180
-[12:10:54] [PASSED] rotate-270
-[12:10:54] ============ [PASSED] drm_test_rect_rotate_inv =============
-[12:10:54] ==================== [PASSED] drm_rect =====================
-[12:10:54] ============================================================
-[12:10:54] Testing complete. Ran 614 tests: passed: 614
-[12:10:54] Elapsed time: 23.285s total, 1.683s configuring, 21.435s building, 0.145s running
-
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/ttm/tests/.kunitconfig
-[12:10:54] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[12:10:55] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-[12:11:03] Starting KUnit Kernel (1/1)...
-[12:11:03] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[12:11:03] ================= ttm_device (5 subtests) ==================
-[12:11:03] [PASSED] ttm_device_init_basic
-[12:11:03] [PASSED] ttm_device_init_multiple
-[12:11:03] [PASSED] ttm_device_fini_basic
-[12:11:03] [PASSED] ttm_device_init_no_vma_man
-[12:11:03] ================== ttm_device_init_pools  ==================
-[12:11:03] [PASSED] No DMA allocations, no DMA32 required
-[12:11:03] [PASSED] DMA allocations, DMA32 required
-[12:11:03] [PASSED] No DMA allocations, DMA32 required
-[12:11:03] [PASSED] DMA allocations, no DMA32 required
-[12:11:03] ============== [PASSED] ttm_device_init_pools ==============
-[12:11:03] =================== [PASSED] ttm_device ====================
-[12:11:03] ================== ttm_pool (8 subtests) ===================
-[12:11:03] ================== ttm_pool_alloc_basic  ===================
-[12:11:03] [PASSED] One page
-[12:11:03] [PASSED] More than one page
-[12:11:03] [PASSED] Above the allocation limit
-[12:11:03] [PASSED] One page, with coherent DMA mappings enabled
-[12:11:03] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
-[12:11:03] ============== [PASSED] ttm_pool_alloc_basic ===============
-[12:11:03] ============== ttm_pool_alloc_basic_dma_addr  ==============
-[12:11:03] [PASSED] One page
-[12:11:03] [PASSED] More than one page
-[12:11:03] [PASSED] Above the allocation limit
-[12:11:03] [PASSED] One page, with coherent DMA mappings enabled
-[12:11:03] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
-[12:11:03] ========== [PASSED] ttm_pool_alloc_basic_dma_addr ==========
-[12:11:03] [PASSED] ttm_pool_alloc_order_caching_match
-[12:11:03] [PASSED] ttm_pool_alloc_caching_mismatch
-[12:11:03] [PASSED] ttm_pool_alloc_order_mismatch
-[12:11:03] [PASSED] ttm_pool_free_dma_alloc
-[12:11:03] [PASSED] ttm_pool_free_no_dma_alloc
-[12:11:03] [PASSED] ttm_pool_fini_basic
-[12:11:03] ==================== [PASSED] ttm_pool =====================
-[12:11:03] ================ ttm_resource (8 subtests) =================
-[12:11:03] ================= ttm_resource_init_basic  =================
-[12:11:03] [PASSED] Init resource in TTM_PL_SYSTEM
-[12:11:03] [PASSED] Init resource in TTM_PL_VRAM
-[12:11:03] [PASSED] Init resource in a private placement
-[12:11:03] [PASSED] Init resource in TTM_PL_SYSTEM, set placement flags
-[12:11:03] ============= [PASSED] ttm_resource_init_basic =============
-[12:11:03] [PASSED] ttm_resource_init_pinned
-[12:11:03] [PASSED] ttm_resource_fini_basic
-[12:11:03] [PASSED] ttm_resource_manager_init_basic
-[12:11:03] [PASSED] ttm_resource_manager_usage_basic
-[12:11:03] [PASSED] ttm_resource_manager_set_used_basic
-[12:11:03] [PASSED] ttm_sys_man_alloc_basic
-[12:11:03] [PASSED] ttm_sys_man_free_basic
-[12:11:03] ================== [PASSED] ttm_resource ===================
-[12:11:03] =================== ttm_tt (15 subtests) ===================
-[12:11:03] ==================== ttm_tt_init_basic  ====================
-[12:11:03] [PASSED] Page-aligned size
-[12:11:03] [PASSED] Extra pages requested
-[12:11:03] ================ [PASSED] ttm_tt_init_basic ================
-[12:11:03] [PASSED] ttm_tt_init_misaligned
-[12:11:03] [PASSED] ttm_tt_fini_basic
-[12:11:03] [PASSED] ttm_tt_fini_sg
-[12:11:03] [PASSED] ttm_tt_fini_shmem
-[12:11:03] [PASSED] ttm_tt_create_basic
-[12:11:03] [PASSED] ttm_tt_create_invalid_bo_type
-[12:11:03] [PASSED] ttm_tt_create_ttm_exists
-[12:11:03] [PASSED] ttm_tt_create_failed
-[12:11:03] [PASSED] ttm_tt_destroy_basic
-[12:11:03] [PASSED] ttm_tt_populate_null_ttm
-[12:11:03] [PASSED] ttm_tt_populate_populated_ttm
-[12:11:03] [PASSED] ttm_tt_unpopulate_basic
-[12:11:03] [PASSED] ttm_tt_unpopulate_empty_ttm
-[12:11:03] [PASSED] ttm_tt_swapin_basic
-[12:11:03] ===================== [PASSED] ttm_tt ======================
-[12:11:03] =================== ttm_bo (14 subtests) ===================
-[12:11:03] =========== ttm_bo_reserve_optimistic_no_ticket  ===========
-[12:11:03] [PASSED] Cannot be interrupted and sleeps
-[12:11:03] [PASSED] Cannot be interrupted, locks straight away
-[12:11:03] [PASSED] Can be interrupted, sleeps
-[12:11:03] ======= [PASSED] ttm_bo_reserve_optimistic_no_ticket =======
-[12:11:03] [PASSED] ttm_bo_reserve_locked_no_sleep
-[12:11:03] [PASSED] ttm_bo_reserve_no_wait_ticket
-[12:11:03] [PASSED] ttm_bo_reserve_double_resv
-[12:11:03] [PASSED] ttm_bo_reserve_interrupted
-[12:11:03] [PASSED] ttm_bo_reserve_deadlock
-[12:11:03] [PASSED] ttm_bo_unreserve_basic
-[12:11:03] [PASSED] ttm_bo_unreserve_pinned
-[12:11:03] [PASSED] ttm_bo_unreserve_bulk
-[12:11:03] [PASSED] ttm_bo_put_basic
-[12:11:03] [PASSED] ttm_bo_put_shared_resv
-[12:11:03] [PASSED] ttm_bo_pin_basic
-[12:11:03] [PASSED] ttm_bo_pin_unpin_resource
-[12:11:03] [PASSED] ttm_bo_multiple_pin_one_unpin
-[12:11:03] ===================== [PASSED] ttm_bo ======================
-[12:11:03] ============== ttm_bo_validate (22 subtests) ===============
-[12:11:03] ============== ttm_bo_init_reserved_sys_man  ===============
-[12:11:03] [PASSED] Buffer object for userspace
-[12:11:03] [PASSED] Kernel buffer object
-[12:11:03] [PASSED] Shared buffer object
-[12:11:03] ========== [PASSED] ttm_bo_init_reserved_sys_man ===========
-[12:11:03] ============== ttm_bo_init_reserved_mock_man  ==============
-[12:11:03] [PASSED] Buffer object for userspace
-[12:11:03] [PASSED] Kernel buffer object
-[12:11:03] [PASSED] Shared buffer object
-[12:11:03] ========== [PASSED] ttm_bo_init_reserved_mock_man ==========
-[12:11:03] [PASSED] ttm_bo_init_reserved_resv
-[12:11:03] ================== ttm_bo_validate_basic  ==================
-[12:11:03] [PASSED] Buffer object for userspace
-[12:11:03] [PASSED] Kernel buffer object
-[12:11:03] [PASSED] Shared buffer object
-[12:11:03] ============== [PASSED] ttm_bo_validate_basic ==============
-[12:11:03] [PASSED] ttm_bo_validate_invalid_placement
-[12:11:03] ============= ttm_bo_validate_same_placement  ==============
-[12:11:03] [PASSED] System manager
-[12:11:03] [PASSED] VRAM manager
-[12:11:03] ========= [PASSED] ttm_bo_validate_same_placement ==========
-[12:11:03] [PASSED] ttm_bo_validate_failed_alloc
-[12:11:03] [PASSED] ttm_bo_validate_pinned
-[12:11:03] [PASSED] ttm_bo_validate_busy_placement
-[12:11:03] ================ ttm_bo_validate_multihop  =================
-[12:11:03] [PASSED] Buffer object for userspace
-[12:11:03] [PASSED] Kernel buffer object
-[12:11:03] [PASSED] Shared buffer object
-[12:11:03] ============ [PASSED] ttm_bo_validate_multihop =============
-[12:11:03] ========== ttm_bo_validate_no_placement_signaled  ==========
-[12:11:03] [PASSED] Buffer object in system domain, no page vector
-[12:11:03] [PASSED] Buffer object in system domain with an existing page vector
-[12:11:03] ====== [PASSED] ttm_bo_validate_no_placement_signaled ======
-[12:11:03] ======== ttm_bo_validate_no_placement_not_signaled  ========
-[12:11:03] [PASSED] Buffer object for userspace
-[12:11:03] [PASSED] Kernel buffer object
-[12:11:03] [PASSED] Shared buffer object
-[12:11:03] ==== [PASSED] ttm_bo_validate_no_placement_not_signaled ====
-[12:11:03] [PASSED] ttm_bo_validate_move_fence_signaled
-[12:11:03] ========= ttm_bo_validate_move_fence_not_signaled  =========
-[12:11:03] [PASSED] Waits for GPU
-[12:11:03] [PASSED] Tries to lock straight away
-[12:11:04] ===== [PASSED] ttm_bo_validate_move_fence_not_signaled =====
-[12:11:04] [PASSED] ttm_bo_validate_swapout
-[12:11:04] [PASSED] ttm_bo_validate_happy_evict
-[12:11:04] [PASSED] ttm_bo_validate_all_pinned_evict
-[12:11:04] [PASSED] ttm_bo_validate_allowed_only_evict
-[12:11:04] [PASSED] ttm_bo_validate_deleted_evict
-[12:11:04] [PASSED] ttm_bo_validate_busy_domain_evict
-[12:11:04] [PASSED] ttm_bo_validate_evict_gutting
-[12:11:04] [PASSED] ttm_bo_validate_recrusive_evict
-stty: 'standard input': Inappropriate ioctl for device
-[12:11:04] ================= [PASSED] ttm_bo_validate =================
-[12:11:04] ============================================================
-[12:11:04] Testing complete. Ran 102 tests: passed: 102
-[12:11:04] Elapsed time: 10.059s total, 1.693s configuring, 7.749s building, 0.530s running
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-rx6110.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-rx8025.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-rx8111.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-rx8010.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-rx8581.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-rx8025.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-s35390a.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-rx8111.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-sd3078.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-rx8581.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-stk17ta8.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-s35390a.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-tps6586x.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-sd3078.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-tps6594.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-stk17ta8.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-tps65910.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-tps6586x.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-wilco-ec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-tps6594.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-wm831x.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-tps65910.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-wm8350.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-wilco-ec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-x1205.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-wm831x.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/algos/i2c-algo-bit.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-wm8350.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/algos/i2c-algo-pca.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/rtc/rtc-x1205.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-scmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/algos/i2c-algo-bit.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ccgx-ucsi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ali1535.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/algos/i2c-algo-pca.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-scmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ali1563.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ccgx-ucsi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ali1535.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ali15x3.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-amd756.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ali1563.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-amd8111.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-cht-wc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ali15x3.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-amd756.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-i801.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-amd8111.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-cht-wc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-isch.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ismt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-nforce2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-i801.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-nvidia-gpu.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-isch.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ismt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-nforce2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-piix4.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-sis5595.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-nvidia-gpu.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-sis630.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-sis96x.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-piix4.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-sis5595.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-sis630.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-via.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-sis96x.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-viapro.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-viai2c-zhaoxin.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-viai2c-common.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-amd-mp2-pci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-via.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-viapro.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-viai2c-zhaoxin.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-viai2c-common.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-amd-mp2-pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-amd-mp2-plat.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-cbus-gpio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-designware-pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-gpio.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-amd-mp2-plat.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-cbus-gpio.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-designware-pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-kempld.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-gpio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ocores.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-pca-platform.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-simtec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-xiic.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-kempld.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ocores.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-pca-platform.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-simtec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-xiic.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-diolan-u2c.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-dln2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ljca.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-cp2615.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-diolan-u2c.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-dln2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-ljca.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-cp2615.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-parport.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-mchp-pci1xxxx.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-robotfuzz-osif.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-taos-evm.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-tiny-usb.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-parport.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-mchp-pci1xxxx.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-robotfuzz-osif.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-taos-evm.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-tiny-usb.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-viperboard.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-cros-ec-tunnel.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-mlxcpld.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-viperboard.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-cros-ec-tunnel.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-mlxcpld.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-virtio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-gpio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-ltc4306.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-mlxcpld.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-pca9541.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/busses/i2c-virtio.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-gpio.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-ltc4306.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-mlxcpld.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-pca954x.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-pca9541.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-reg.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/i2c-smbus.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/i2c-mux.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-pca954x.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/muxes/i2c-mux-reg.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/i2c-smbus.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/i2c-mux.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/i2c-stub.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i3c/i3c.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i3c/master/i3c-master-cdns.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i3c/master/dw-i3c-master.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i3c/master/svc-i3c-master.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i2c/i2c-stub.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i3c/i3c.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i3c/master/i3c-master-cdns.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i3c/master/dw-i3c-master.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i3c/master/mipi-i3c-hci/mipi-i3c-hci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i3c/master/svc-i3c-master.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-adstech-dvb-t-pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-alink-dtu-m.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-anysee.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-apac-viewcomp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/i3c/master/mipi-i3c-hci/mipi-i3c-hci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-adstech-dvb-t-pci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-alink-dtu-m.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-anysee.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-apac-viewcomp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-astrometa-t2hybrid.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-asus-pc39.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-asus-ps3-100.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-ati-tv-wonder-hd-600.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-astrometa-t2hybrid.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-asus-pc39.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-asus-ps3-100.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-ati-tv-wonder-hd-600.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-ati-x10.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-a16d.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-cardbus.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-dvbt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-m135a.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-ati-x10.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-a16d.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-cardbus.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-dvbt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-m135a.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-m733a-rm-k6.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-rm-ks.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avertv-303.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-m733a-rm-k6.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avermedia-rm-ks.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-avertv-303.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-azurewave-ad-tu700.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-beelink-gs1.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-beelink-mxiii.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-behold-columbus.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-azurewave-ad-tu700.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-beelink-gs1.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-beelink-mxiii.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-behold.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-behold-columbus.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-budget-ci-old.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-cinergy-1400.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-cinergy.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-behold.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-budget-ci-old.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-ct-90405.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-cinergy-1400.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-cinergy.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-d680-dmb.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-delock-61959.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-ct-90405.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dib0700-nec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dib0700-rc5.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-d680-dmb.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-delock-61959.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-digitalnow-tinytwin.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dib0700-nec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dib0700-rc5.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-digittrade.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dm1105-nec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvb-t.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-digitalnow-tinytwin.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvbt-pro.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-digittrade.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dm1105-nec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvb-t.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dreambox.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvbt-pro.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dtt200u.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dvbsky.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dreambox.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dvico-mce.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dtt200u.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dvbsky.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dvico-portable.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-em-terratec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dvico-mce.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-encore-enltv2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-encore-enltv-fm53.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-dvico-portable.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-em-terratec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-encore-enltv2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-encore-enltv.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-encore-enltv-fm53.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-evga-indtube.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-eztv.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-flydvb.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-encore-enltv.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-evga-indtube.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-eztv.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-flydvb.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-flyvideo.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-fusionhdtv-mce.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-gadmei-rm008z.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-geekbox.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-flyvideo.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-fusionhdtv-mce.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-gadmei-rm008z.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-geekbox.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-genius-tvgo-a11mce.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-gotview7135.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-hauppauge.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-hisi-poplar.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-genius-tvgo-a11mce.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-gotview7135.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-hauppauge.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-hisi-tv-demo.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-hisi-poplar.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-imon-mce.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-imon-pad.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-imon-rsc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-hisi-tv-demo.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-iodata-bctv7e.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-imon-mce.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-imon-pad.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-imon-rsc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-it913x-v1.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-it913x-v2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-iodata-bctv7e.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-kaiomy.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-khadas.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-it913x-v1.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-it913x-v2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-khamsin.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-kaiomy.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-khadas.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-kworld-315u.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-kworld-pc150u.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-kworld-plus-tv-analog.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-khamsin.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-leadtek-y04g0051.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-kworld-315u.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-kworld-pc150u.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-kworld-plus-tv-analog.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-lme2510.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-leadtek-y04g0051.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-manli.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-mecool-kiii-pro.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-lme2510.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-mecool-kii-pro.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-manli.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-mecool-kiii-pro.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-medion-x10-digitainer.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-medion-x10.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-medion-x10-or2x.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-mecool-kii-pro.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-minix-neo.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-medion-x10-digitainer.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-medion-x10.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-medion-x10-or2x.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-msi-digivox-iii.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-minix-neo.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-msi-digivox-ii.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere-plus.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-msi-digivox-iii.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-msi-digivox-ii.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere-plus.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-mygica-utv3.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-nebula.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-nec-terratec-cinergy-xs.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-norwood.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-mygica-utv3.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-nebula.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-nec-terratec-cinergy-xs.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-npgtech.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-norwood.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-odroid.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pctv-sedna.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pine64.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-npgtech.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-odroid.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pctv-sedna.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pinnacle-color.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pine64.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pinnacle-grey.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pixelview-002t.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pinnacle-color.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pinnacle-grey.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pixelview-002t.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pixelview-mk12.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pixelview-new.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pixelview.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-powercolor-real-angel.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pixelview-mk12.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pixelview-new.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pixelview.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-powercolor-real-angel.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-proteus-2309.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-purpletv.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pv951.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-rc6-mce.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-proteus-2309.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-purpletv.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-pv951.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-real-audio-220-32-keys.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-rc6-mce.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-reddo.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-siemens-gigaset-rc20.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-snapstream-firefly.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-real-audio-220-32-keys.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-reddo.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-streamzap.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-siemens-gigaset-rc20.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-snapstream-firefly.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-su3000.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tanix-tx3mini.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-streamzap.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tanix-tx5max.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-su3000.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tanix-tx3mini.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tbs-nec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-technisat-ts35.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tanix-tx5max.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-technisat-usb2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tbs-nec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-technisat-ts35.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-c-pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-s2-hd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-technisat-usb2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-xs.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-terratec-slim-2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-c-pci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-s2-hd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-terratec-slim.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-xs.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-terratec-slim-2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tevii-nec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tivo.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-terratec-slim.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand-02.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tevii-nec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tivo.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-trekstor.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand-02.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tt-1500.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-twinhan1027.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-trekstor.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-tt-1500.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-twinhan1027.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-vega-s9x.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-videomate-m1f.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-videomate-s350.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-vega-s9x.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-videomate-m1f.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-videomate-tv-pvr.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/kallsyms
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-videostrong-kii-pro.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/sorttable
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-videomate-s350.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/asn1_compiler
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-wetek-hub.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-wetek-play2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-videomate-tv-pvr.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-videostrong-kii-pro.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-winfast.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-wetek-hub.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-wetek-play2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-winfast-usbii-deluxe.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-x96max.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-winfast.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/basic/fixdep
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-xbox-360.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/genksyms/genksyms.o
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-xbox-dvd.ko
+  YACC    debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/genksyms/parse.tab.[ch]
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-winfast-usbii-deluxe.ko
+  LEX     debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/genksyms/lex.lex.c
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-x96max.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-zx-irdec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-xbox-360.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-xbox-dvd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/rc-core.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-imon-decoder.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-jvc-decoder.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/keymaps/rc-zx-irdec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-mce_kbd-decoder.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/rc-core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-imon-decoder.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/selinux/mdp/mdp
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-jvc-decoder.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-nec-decoder.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-mce_kbd-decoder.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-rc5-decoder.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-rc6-decoder.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-rcmm-decoder.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-nec-decoder.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-rc5-decoder.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-rc6-decoder.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-rcmm-decoder.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/sign-file
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-sanyo-decoder.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-sharp-decoder.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/insert-sys-cert
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-sony-decoder.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/mod/modpost.o
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-xmp-decoder.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/mod/file2alias.o
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/mod/sumversion.o
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-sanyo-decoder.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-sharp-decoder.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/mod/symsearch.o
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-sony-decoder.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ene_ir.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir-xmp-decoder.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/fintek-cir.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/igorplugusb.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/iguanair.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ene_ir.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/fintek-cir.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/igorplugusb.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/iguanair.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/imon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/imon_raw.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ite-cir.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/mceusb.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/imon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/imon_raw.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ite-cir.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/nuvoton-cir.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/mceusb.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/redrat3.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/serial_ir.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/streamzap.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir_toy.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/nuvoton-cir.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/redrat3.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/serial_ir.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/streamzap.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ir_toy.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ttusbir.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/winbond-cir.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ati_remote.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/rc-loopback.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ttusbir.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/winbond-cir.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/ati_remote.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/rc-loopback.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/xbox_remote.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/core/cec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/i2c/ch7322.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/i2c/tda9950.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/platform/cros-ec/cros-ec-cec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/rc/xbox_remote.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/core/cec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/i2c/ch7322.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/i2c/tda9950.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/platform/cec-gpio/cec-gpio.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/platform/cros-ec/cros-ec-cec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/platform/seco/seco-cec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/usb/pulse8/pulse8-cec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/usb/rainshadow/rainshadow-cec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/platform/cec-gpio/cec-gpio.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/platform/seco/seco-cec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/usb/pulse8/pulse8-cec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/media/cec/usb/rainshadow/rainshadow-cec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/pps/clients/pps-ldisc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/pps/clients/pps_parport.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/pps/clients/pps-gpio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_ines.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/pps/clients/pps-ldisc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/pps/clients/pps_parport.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/pps/clients/pps-gpio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_kvm.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_ines.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_vmclock.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_clockmatrix.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_fc3.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_kvm.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_vmclock.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_clockmatrix.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_fc3.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_idt82p33.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_mock.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_vmw.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_ocp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/reset/atc260x-poweroff.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_idt82p33.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_mock.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_vmw.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ptp/ptp_ocp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/reset/atc260x-poweroff.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ip5xxx_power.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max8925_power.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/wm831x_backup.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/wm831x_power.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ip5xxx_power.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max8925_power.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/wm831x_backup.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/wm831x_power.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/wm8350_power.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/test_power.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/88pm860x_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/wm8350_power.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/test_power.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/adp5061.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/88pm860x_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/cw2015_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ds2760_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ds2780_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ds2781_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ds2782_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/adp5061.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/cw2015_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ds2760_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ds2781_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ds2780_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ds2782_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ltc2941-battery-gauge.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/goldfish_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/sbs-battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/sbs-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ltc2941-battery-gauge.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/goldfish_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/sbs-battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/sbs-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/sbs-manager.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq27xxx_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq27xxx_battery_i2c.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq27xxx_battery_hdq.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/sbs-manager.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq27xxx_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq27xxx_battery_i2c.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq27xxx_battery_hdq.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/da9030_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/da9052-battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/da9150-fg.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/da9030_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/da9052-battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/da9150-fg.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max17042_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max1720x_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max1721x_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/rt5033_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max17042_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max1720x_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max1721x_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/rt5033_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/rt9455_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/rt5033_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/rt9467-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/rt9471.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/rt5033_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/rt9455_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/rt9467-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/rt9471.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/88pm860x_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/isp1704_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max8903_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/88pm860x_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/isp1704_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/lp8727_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max8903_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/gpio-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/lt3651-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ltc4162-l-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/lp8727_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/gpio-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/lt3651-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ltc4162-l-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max14577_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max77693_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max77976_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max14577_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max77693_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max8997_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max77976_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max8998_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/mt6360_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max8997_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq2415x_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/max8998_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/mt6360_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq24190_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq24257_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq2415x_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq24735-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq24190_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq24257_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq2515x_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq24735-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq25890_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq25980_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq256xx_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq2515x_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/smb347-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq25890_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq25980_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bq256xx_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/tps65090-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/axp288_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/smb347-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/cros_charge-control.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/cros_usbpd-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/tps65090-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/axp288_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/cros_peripheral_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/cros_charge-control.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/cros_usbpd-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bd99954-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/wilco-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/cros_peripheral_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/surface_battery.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/bd99954-charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/wilco-charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/surface_charger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ug3105_battery.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/genksyms/parse.tab.o
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/surface_battery.ko
+  HOSTCC  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/genksyms/lex.lex.o
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/mm8013.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/sequencing/pwrseq-core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/surface_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/ug3105_battery.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/hwmon-vid.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/supply/mm8013.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/power/sequencing/pwrseq-core.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/acpi_power_meter.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asus_atk0110.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/hwmon-vid.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asus-ec-sensors.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/acpi_power_meter.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asus_atk0110.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asus_wmi_sensors.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asus-ec-sensors.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/hp-wmi-sensors.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asb100.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asus_wmi_sensors.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83627hf.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/hp-wmi-sensors.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asb100.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83773g.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83792d.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83627hf.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83793.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83773g.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83792d.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83795.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83781d.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83793.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83791d.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83795.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/abituguru.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83781d.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83791d.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/abituguru3.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ad7314.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/abituguru.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ad7414.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ad7418.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/abituguru3.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ad7314.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adc128d818.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ad7414.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ad7418.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adcxx.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm1025.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adc128d818.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm1026.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adcxx.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm1029.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm1025.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm1031.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm1026.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm1177.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm1029.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm9240.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm1031.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ads7828.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm1177.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ads7871.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7x10.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adm9240.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ads7828.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7310.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ads7871.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7x10.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7410.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7411.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7462.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7310.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7470.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7410.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7411.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7462.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7475.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/aht10.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7470.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/applesmc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/aquacomputer_d5next.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/adt7475.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/aht10.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/as370-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/applesmc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/aquacomputer_d5next.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asc7621.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asus_rog_ryujin.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/atxp1.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/as370-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/axi-fan-control.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asc7621.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/asus_rog_ryujin.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/atxp1.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/chipcap2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/axi-fan-control.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/coretemp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/corsair-cpro.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/corsair-psu.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/chipcap2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/cros_ec_hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/coretemp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/corsair-cpro.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/corsair-psu.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/da9052-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/da9055-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/cros_ec_hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/dell-smm-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/dme1737.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/da9052-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/da9055-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/drivetemp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/dell-smm-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/dme1737.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ds620.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ds1621.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/emc1403.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/drivetemp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/emc2103.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ds620.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ds1621.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/emc1403.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/emc2305.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/emc2103.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/emc6w201.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/f71805f.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/emc2305.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/f71882fg.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/emc6w201.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/f75375s.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/f71805f.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/fam15h_power.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/fschmd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/f71882fg.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ftsteutates.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/f75375s.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/g760a.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/fam15h_power.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/fschmd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/g762.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ftsteutates.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/gigabyte_waterforce.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/g760a.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/gl518sm.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/g762.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/gl520sm.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/gigabyte_waterforce.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/gl518sm.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/hih6130.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/gl520sm.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/hs3001.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/i5500_temp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/hih6130.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/i5k_amb.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/hs3001.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ibmaem.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/i5500_temp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/i5k_amb.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ibmpex.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ina209.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ibmaem.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ina2xx.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ina238.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ibmpex.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ina209.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ina3221.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ina2xx.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ina238.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/intel-m10-bmc-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/it87.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/jc42.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ina3221.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/k8temp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/intel-m10-bmc-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/it87.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/jc42.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/k10temp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/k8temp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lenovo-ec-sensors.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lineage-pem.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm63.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/k10temp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lenovo-ec-sensors.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lineage-pem.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm70.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm63.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm73.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm75.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm77.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm70.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm73.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm75.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm78.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm77.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm80.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm83.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm85.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm78.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm87.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm80.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm83.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm90.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm85.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm87.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm92.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm93.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm95234.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm90.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm95241.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm92.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm93.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm95234.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm95245.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2945.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm95241.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2947-core.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2947-i2c.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/lm95245.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2945.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2947-spi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2947-core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2947-i2c.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2990.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2991.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2947-spi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2992.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4151.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2990.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2991.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4215.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc2992.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4151.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4222.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4245.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4260.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4215.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4261.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4222.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4245.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4260.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4282.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max1111.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4261.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max127.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max16065.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/ltc4282.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max1111.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max1619.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max127.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max16065.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max1668.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max197.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max31722.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max1619.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max31730.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max1668.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max197.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max31722.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max31760.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max31730.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max6620.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max6621.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max31760.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max6639.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max6620.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max6621.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max6650.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max6697.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max6639.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max31790.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max31827.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max6650.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max6697.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/mc13783-adc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max31790.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/max31827.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/mc34vr500.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/mcp3021.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/mc13783-adc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tc654.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tps23861.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/mc34vr500.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/mcp3021.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/mlxreg-fan.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tc654.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tps23861.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/menf21bmc_hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/mr75203.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct6683.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/mlxreg-fan.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/menf21bmc_hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct6775-core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/mr75203.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct6683.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct6775.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct6775-i2c.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct6775-core.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct7802.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct6775.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct6775-i2c.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct7904.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/npcm750-pwm-fan.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nzxt-kraken2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct7802.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nzxt-kraken3.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nct7904.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/npcm750-pwm-fan.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nzxt-kraken2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nzxt-smart2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nzxt-kraken3.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/oxp-sensors.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pc87360.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pc87427.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/nzxt-smart2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/oxp-sensors.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pc87360.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pcf8591.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pc87427.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/powerz.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/powr1220.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pt5161l.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pcf8591.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pwm-fan.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/powerz.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/powr1220.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pt5161l.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sbtsi_temp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pwm-fan.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sbrmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sch56xx-common.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sch5627.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sbtsi_temp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sbrmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sch56xx-common.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sch5636.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sch5627.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sht15.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sht21.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sht3x.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sch5636.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sht4x.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sht15.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sht21.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sht3x.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/shtc1.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sis5595.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sht4x.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/smpro-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/smsc47b397.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/shtc1.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sis5595.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/smsc47m1.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/smpro-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/smsc47b397.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/smsc47m192.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/stts751.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/smsc47m1.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/surface_fan.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/smsc47m192.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sy7636a-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/stts751.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/amc6821.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/surface_fan.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tc74.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/sy7636a-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/thmc50.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/amc6821.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tc74.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/thmc50.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp102.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp103.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp108.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp401.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp102.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp103.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp421.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp108.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp401.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp464.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp513.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/via-cputemp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp421.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp464.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/via686a.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/tmp513.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/via-cputemp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/vt1211.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/vt8231.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/via686a.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83627ehf.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83l785ts.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/vt1211.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/vt8231.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83l786ng.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83627ehf.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83l785ts.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/wm831x-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/wm8350-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/xgene-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/w83l786ng.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/occ/occ-hwmon-common.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/wm831x-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/wm8350-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/xgene-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/occ/occ-p8-hwmon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/peci/peci-cputemp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/occ/occ-hwmon-common.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/peci/peci-dimmtemp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pmbus_core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/occ/occ-p8-hwmon.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/peci/peci-cputemp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pmbus.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/peci/peci-dimmtemp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pmbus_core.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/acbel-fsg032.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/adm1266.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/adm1275.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pmbus.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/adp1050.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/acbel-fsg032.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/adm1266.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/adm1275.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/bel-pfe.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/bpa-rs600.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/adp1050.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/delta-ahe50dc-fan.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/fsp-3y.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/bel-pfe.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/bpa-rs600.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/delta-ahe50dc-fan.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ibm-cffps.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/fsp-3y.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/dps920ab.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/inspur-ipsps.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ir35221.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ibm-cffps.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ir36021.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/dps920ab.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/inspur-ipsps.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ir35221.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ir38064.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/irps5401.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ir36021.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/isl68137.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/lm25066.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ir38064.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/irps5401.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/isl68137.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/lm25066.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/lt7182s.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ltc2978.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ltc3815.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max15301.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max16064.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/lt7182s.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ltc2978.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ltc3815.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max15301.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max16601.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max16064.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max20730.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max20751.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max31785.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max16601.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max20730.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max20751.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max31785.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max34440.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max8688.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp2856.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp2888.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max34440.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/max8688.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp2856.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp2891.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp2888.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp2975.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp2993.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp5023.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp5920.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp2891.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp2975.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp2993.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp5023.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp5920.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp5990.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp9941.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mpq7932.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mpq8785.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp5990.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mp9941.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mpq7932.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pli1209bc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/mpq8785.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pm6764tr.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pxe1610.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/q54sj108a2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/stpddc60.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pli1209bc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pm6764tr.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pxe1610.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/q54sj108a2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/stpddc60.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/tda38640.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/tps40422.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/tps53679.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/tps546d24.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/tda38640.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/tps40422.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/tps53679.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ucd9000.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/tps546d24.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ucd9200.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/xdp710.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/xdpe12284.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/xdpe152c4.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ucd9000.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/ucd9200.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/xdp710.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/xdpe12284.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/xdpe152c4.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/zl6100.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pim4328.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_powerclamp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/x86_pkg_temp_thermal.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/zl6100.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hwmon/pmbus/pim4328.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_powerclamp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/x86_pkg_temp_thermal.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_soc_dts_iosf.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_soc_dts_thermal.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int3400_thermal.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int3402_thermal.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_soc_dts_iosf.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_soc_dts_thermal.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int3400_thermal.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int3402_thermal.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int3403_thermal.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int3401_thermal.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci_legacy.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int3403_thermal.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int3401_thermal.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci_legacy.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rapl.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rfim.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_mbox.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rapl.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_req.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rfim.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_mbox.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_hint.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_power_floor.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int3406_thermal.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/acpi_thermal_rel.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_req.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_hint.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_power_floor.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/int3406_thermal.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/int340x_thermal/acpi_thermal_rel.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_bxt_pmic_thermal.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_pch_thermal.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_tcc_cooling.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_bxt_pmic_thermal.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_pch_thermal.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/pretimeout_panic.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/pcwd_pci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/thermal/intel/intel_tcc_cooling.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/wdt_pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/pcwd_usb.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/cadence_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/pretimeout_panic.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/pcwd_pci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/wdt_pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/twl4030_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/pcwd_usb.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/cadence_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/dw_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/retu_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/twl4030_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/acquirewdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/advantechwdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/dw_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/retu_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/advantech_ec_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/acquirewdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/advantechwdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/alim1535_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/alim7101_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ebc-c384_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/advantech_ec_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/exar_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/alim1535_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/alim7101_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ebc-c384_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/f71808e_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sp5100_tco.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/exar_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sbc_fitpc2_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/eurotechwdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/f71808e_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sp5100_tco.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ib700wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sbc_fitpc2_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/eurotechwdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ibmasr.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/wafer5823wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/i6300esb.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ib700wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ie6xx_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ibmasr.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/wafer5823wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/i6300esb.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/iTCO_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/lenovo_se10_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ie6xx_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/iTCO_vendor_support.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/it8712f_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/iTCO_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/lenovo_se10_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/it87_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/iTCO_vendor_support.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/it8712f_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/hpwdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/kempld_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sc1200wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/it87_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/pc87413_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/hpwdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/kempld_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sc1200wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/nv_tco.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sbc60xxwdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/pc87413_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sch311x_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/smsc37b787_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/nv_tco.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sbc60xxwdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/tqmx86_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sch311x_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/smsc37b787_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/via_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/w83627hf_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/tqmx86_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/w83877f_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/w83977f_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/via_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/w83627hf_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/machzwd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/w83877f_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/w83977f_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sbc_epx_c3.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/mei_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ni903x_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/machzwd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/nic7018_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/sbc_epx_c3.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/mei_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ni903x_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/mlx_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/nic7018_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/simatic-ipc-wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/of_xilinx_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/mlx_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/mena21_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/simatic-ipc-wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/of_xilinx_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/xen_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/cros_ec_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/da9052_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/mena21_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/da9055_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/xen_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/cros_ec_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/da9052_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/da9062_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/da9063_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/da9055_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/wdat_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/wm831x_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/da9062_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/da9063_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/wm8350_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/wdat_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/wm831x_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/max63xx_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ziirave_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/menf21bmc_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/wm8350_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/menz69_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/max63xx_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/ziirave_wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/menf21bmc_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/rave-sp-wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/menz69_wdt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/raid0.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/raid1.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/raid10.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/watchdog/rave-sp-wdt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/raid0.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/raid456.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/raid1.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/bcache/bcache.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/raid10.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-unstripe.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-bufio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-bio-prison.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/raid456.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-unstripe.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-crypt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-bufio.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/bcache/bcache.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-bio-prison.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-delay.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-flakey.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-crypt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-multipath.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-round-robin.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-queue-length.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-delay.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-flakey.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-service-time.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-multipath.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-round-robin.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-queue-length.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-historical-service-time.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-service-time.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-io-affinity.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-switch.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-historical-service-time.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-io-affinity.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-switch.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-snapshot.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/persistent-data/dm-persistent-data.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-mirror.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-log.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-region-hash.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-snapshot.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/persistent-data/dm-persistent-data.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-mirror.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-log.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-log-userspace.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-zero.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-region-hash.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-raid.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-thin-pool.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-verity.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-log-userspace.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-zero.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-raid.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-thin-pool.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-verity.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-vdo/dm-vdo.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-cache.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-cache-smq.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-ebs.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-era.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-cache.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-cache-smq.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-ebs.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-clone.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-log-writes.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-vdo/dm-vdo.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-era.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-integrity.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-zoned.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-clone.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-log-writes.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-writecache.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-integrity.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/edac_mce_amd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-zoned.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i5100_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i5400_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/md/dm-writecache.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/edac_mce_amd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i7300_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i5100_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i7core_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i5400_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/sb_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/pnd2_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i7300_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i7core_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/sb_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/pnd2_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/igen6_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/e752x_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i82975x_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i3000_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/igen6_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/e752x_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i82975x_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i3200_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i3000_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/ie31200_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/x38_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/amd64_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/skx_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i3200_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/ie31200_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/x38_edac.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/amd64_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/skx_edac_common.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/skx_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i10nm_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/cpufreq/speedstep-lib.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/cpufreq/p4-clockmod.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/skx_edac_common.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/edac/i10nm_edac.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/cpufreq/amd_freq_sensitivity.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/cpufreq/speedstep-lib.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/cpufreq/p4-clockmod.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/cpuidle/cpuidle-haltpoll.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/core/mmc_block.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/core/sdio_uart.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/cpufreq/amd_freq_sensitivity.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/sdhci_f_sdh30.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/cpuidle/cpuidle-haltpoll.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/core/mmc_block.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/core/sdio_uart.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/wbsd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/sdhci_f_sdh30.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/alcor.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/mtk-sd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/tifm_sd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/wbsd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/alcor.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/mtk-sd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/mmc_spi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/tifm_sd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/of_mmc_spi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/cb710-mmc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/via-sdmmc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/mmc_spi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/vub300.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/of_mmc_spi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/cb710-mmc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/via-sdmmc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/ushc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/usdhi6rol0.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/vub300.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/toshsd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/rtsx_pci_sdmmc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/ushc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/usdhi6rol0.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/rtsx_usb_sdmmc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/toshsd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/mmc_hsq.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/rtsx_pci_sdmmc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/sdhci-xenon-driver.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/rtsx_usb_sdmmc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/core/ufshcd-core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/mmc_hsq.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/tc-dwc-g210-pci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/mmc/host/sdhci-xenon-driver.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/ufshcd-dwc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/tc-dwc-g210.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/cdns-pltfrm.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/core/ufshcd-core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/tc-dwc-g210-pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/ufshcd-pci.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/ufshcd-dwc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/tc-dwc-g210.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/cdns-pltfrm.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/ufshcd-pltfrm.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/cirrus/cs_dsp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/ufshcd-pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/efi/efi-pstore.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/efi/efibc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/ufs/host/ufshcd-pltfrm.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/cirrus/cs_dsp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/efi/test/efi_test.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/efi/efi-pstore.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/efi/efibc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/efi/capsule-loader.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/iscsi_ibft.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/efi/test/efi_test.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/qemu_fw_cfg.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/efi/capsule-loader.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/iscsi_ibft.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/ccp/ccp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/ccp/ccp-crypto.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/firmware/qemu_fw_cfg.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/inside-secure/crypto_safexcel.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_common/intel_qat.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_dh895xcc/qat_dh895xcc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/ccp/ccp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/ccp/ccp-crypto.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_c3xxx/qat_c3xxx.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/inside-secure/crypto_safexcel.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_c62x/qat_c62x.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_dh895xcc/qat_dh895xcc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_4xxx/qat_4xxx.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_420xx/qat_420xx.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_c3xxx/qat_c3xxx.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_common/intel_qat.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_c62x/qat_c62x.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_dh895xccvf/qat_dh895xccvf.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_4xxx/qat_4xxx.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_420xx/qat_420xx.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_c3xxxvf/qat_c3xxxvf.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_dh895xccvf/qat_dh895xccvf.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_c62xvf/qat_c62xvf.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/iaa/iaa_crypto.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/atmel-i2c.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_c3xxxvf/qat_c3xxxvf.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/atmel-ecc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/qat/qat_c62xvf/qat_c62xvf.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/intel/iaa/iaa_crypto.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/atmel-i2c.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/atmel-sha204a.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/cavium/nitrox/n5pf.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/atmel-ecc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/padlock-aes.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/atmel-sha204a.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/padlock-sha.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/cavium/nitrox/n5pf.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/padlock-aes.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/virtio/virtio_crypto.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/padlock-sha.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/amlogic/amlogic-gxl-crypto.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/uhid.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-generic.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/virtio/virtio_crypto.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/crypto/amlogic/amlogic-gxl-crypto.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-a4tech.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/uhid.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-generic.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-accutouch.ko
+  HOSTLD  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/genksyms/genksyms
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-alps.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-apple.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-a4tech.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-asus.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-accutouch.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-alps.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-apple.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-belkin.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-cherry.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-asus.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-chicony.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-belkin.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-cherry.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-corsair.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-corsair-void.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-chicony.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-cougar.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-cp2112.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-corsair.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-corsair-void.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-cypress.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-elan.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-cougar.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-cp2112.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-elecom.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-elo.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-cypress.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-elan.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-ft260.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-elecom.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-elo.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-glorious.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-vivaldi-common.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-ft260.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-google-hammer.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-glorious.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-vivaldi-common.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-vivaldi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-holtek-kbd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-google-hammer.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-holtek-mouse.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-holtekff.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-vivaldi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-holtek-kbd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-ite.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-holtek-mouse.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-holtekff.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-jabra.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-kensington.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-ite.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-keytouch.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-jabra.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-kensington.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-lenovo.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-logitech.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-keytouch.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-lg-g15.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-logitech-dj.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-lenovo.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-logitech.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-logitech-hidpp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-lg-g15.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-logitech-dj.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-magicmouse.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-mcp2200.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-mcp2221.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-logitech-hidpp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-microsoft.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-magicmouse.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-mcp2200.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-mcp2221.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-monterey.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-microsoft.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-multitouch.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-ntrig.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-penmount.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-monterey.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-multitouch.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-ntrig.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-penmount.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-plantronics.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-primax.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-razer.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-redragon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-plantronics.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-primax.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-razer.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-redragon.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-common.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-arvo.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-isku.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-kone.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-common.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-arvo.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-isku.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-kone.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-koneplus.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-konepure.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-kovaplus.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-lua.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-koneplus.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-konepure.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-kovaplus.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-pyra.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-lua.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-ryos.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-savu.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-rmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-pyra.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-saitek.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-ryos.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-roccat-savu.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-rmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-samsung.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-semitek.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-saitek.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-sigmamicro.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-steam.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-samsung.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-semitek.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-sigmamicro.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-topre.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-steam.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-xiaomi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-sensor-hub.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-sensor-custom.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-topre.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-xiaomi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/usbhid/usbhid.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-sensor-hub.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/hid-sensor-custom.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/usbhid/usbkbd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/usbhid/usbmouse.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/i2c-hid/i2c-hid.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/usbhid/usbhid.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/i2c-hid/i2c-hid-acpi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/usbhid/usbkbd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/usbhid/usbmouse.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/i2c-hid/i2c-hid.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/i2c-hid/i2c-hid-of.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/i2c-hid/i2c-hid-acpi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/intel-ish-hid/intel-ishtp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/intel-ish-hid/intel-ish-ipc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/intel-ish-hid/intel-ishtp-hid.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/i2c-hid/i2c-hid-of.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/intel-ish-hid/intel-ishtp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/intel-ish-hid/intel-ish-ipc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/intel-ish-hid/intel-ishtp-hid.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/intel-ish-hid/intel-ishtp-loader.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/amd-sfh-hid/amd_sfh.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/surface-hid/surface_hid_core.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/surface-hid/surface_kbd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/vme_user/vme_user.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/intel-ish-hid/intel-ishtp-loader.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/vme_user/vme_tsi148.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/amd-sfh-hid/amd_sfh.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/surface-hid/surface_hid_core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/hid/surface-hid/surface_kbd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/vme_user/vme_user.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/vme_user/vme_fake.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/vme_user/vme_tsi148.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fbtft.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_agm1264k-fl.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_bd663474.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/vme_user/vme_fake.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fbtft.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_agm1264k-fl.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_bd663474.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_hx8340bn.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_hx8347d.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_hx8353d.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_hx8357d.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9163.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_hx8340bn.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_hx8347d.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_hx8353d.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_hx8357d.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9163.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9320.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9325.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9340.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9341.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9320.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9325.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9340.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9341.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9481.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9486.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_pcd8544.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ra8875.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9481.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ili9486.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_pcd8544.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_s6d02a1.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ra8875.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_s6d1121.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_seps525.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_sh1106.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1289.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_s6d02a1.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_s6d1121.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_seps525.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_sh1106.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1289.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1305.ko
+dpkg-deb: building package 'linux-libc-dev' in '../linux-libc-dev_6.15.0-gb8495a85b25a-2_amd64.deb'.
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1306.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1325.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1331.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1305.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1306.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1325.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1331.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1351.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_st7735r.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_st7789v.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_tinylcd.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_tls8204.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_ssd1351.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_st7735r.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_st7789v.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_tinylcd.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_tls8204.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_uc1611.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_uc1701.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_upd161704.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/most/net/most_net.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_uc1611.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_uc1701.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/fbtft/fb_upd161704.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/most/net/most_net.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/most/i2c/most_i2c.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/amd/pmc/amd-pmc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/amd/pmf/amd-pmf.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/alienware-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dcdbas.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/staging/most/i2c/most_i2c.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/amd/pmc/amd-pmc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/amd/pmf/amd-pmf.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/alienware-wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dcdbas.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-laptop.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell_rbu.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-pc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-smbios.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-smo8800.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell_rbu.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-pc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-smbios.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-smo8800.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-lis3lv02d.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi-aio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi-descriptor.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi-ddv.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-lis3lv02d.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi-aio.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi-descriptor.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi-ddv.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi-led.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi-sysman/dell-wmi-sysman.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/hp/hp_accel.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/hp/hp-wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi-led.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/dell/dell-wmi-sysman/dell-wmi-sysman.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/hp/hp_accel.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/hp/hp-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/hp/hp-bioscfg/hp-bioscfg.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_led.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_pm.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/wmi/intel-wmi-sbl-fw-update.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/hp/hp-bioscfg/hp-bioscfg.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_led.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_pm.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/wmi/intel-wmi-sbl-fw-update.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/wmi/intel-wmi-thunderbolt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/ifs/intel_ifs.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/int1092/intel_sar.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_discrete.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_tps68470.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/wmi/intel-wmi-thunderbolt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/ifs/intel_ifs.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/int1092/intel_sar.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_discrete.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_tps68470.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_common.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core_pltdrv.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/pmt/pmt_class.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_common.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core_pltdrv.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/pmt/pmt_class.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/pmt/pmt_telemetry.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/pmt/pmt_crashlog.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_common.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mmio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_pci.ko
+  HOSTLD  debian/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/usr/src/linux-headers-6.15.0-lgci-xe-gb8495a85b25a/scripts/mod/modpost
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/pmt/pmt_telemetry.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/pmt/pmt_crashlog.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_common.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mmio.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_pci.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_msr.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi_core.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_msr.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi_core.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_core.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_pltdrv.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_debugfs.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-common.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_pltdrv.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_debugfs.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-common.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-tpmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-hid.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-vbtn.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-int0002_vgpio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-ishtp_eclite.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-tpmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-hid.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-vbtn.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-int0002_vgpio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-sdsi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-ishtp_eclite.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-vsec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-bytcrc_pwrsrc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-bxtwc_tmu.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-sdsi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-vsec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-chtdc_ti_pwrbtn.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-bytcrc_pwrsrc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-bxtwc_tmu.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-chtwc_int33fe.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-crystal_cove_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-chtdc_ti_pwrbtn.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-mrfld_pwrbtn.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-punit_ipc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-chtwc_int33fe.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-crystal_cove_charger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-mrfld_pwrbtn.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-plr_tpmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-punit_ipc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-tpmi_power_domains.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-vsec_tpmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-smartconnect.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-plr_tpmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-tpmi_power_domains.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-vsec_tpmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel/intel-smartconnect.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/wmi-bmof.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/huawei-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/mxm-wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/wmi-bmof.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/huawei-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/nvidia-wmi-ec-backlight.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/mxm-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/xiaomi-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/gigabyte-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/acerhdf.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/nvidia-wmi-ec-backlight.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/xiaomi-wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/gigabyte-wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/acerhdf.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/acer-wireless.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/acer-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/adv_swbutton.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/apple-gmux.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/acer-wireless.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/acer-wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/adv_swbutton.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/asus-laptop.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/asus-wireless.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/apple-gmux.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/asus-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/asus-nb-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/asus-tf103c-dock.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/asus-laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/asus-wireless.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/asus-wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/asus-nb-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/eeepc-laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/asus-tf103c-dock.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/eeepc-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/meraki-mx100.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/fujitsu-laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/eeepc-laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/eeepc-wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/meraki-mx100.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/fujitsu-tablet.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/fujitsu-laptop.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/gpd-pocket-fan.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/uv_sysfs.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/ibm_rtl.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/fujitsu-tablet.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/gpd-pocket-fan.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/uv_sysfs.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/ibm_rtl.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/hdaps.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/thinkpad_acpi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/think-lmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/lenovo-yogabook.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/hdaps.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/lenovo-yoga-tab2-pro-1380-fastcharger.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/thinkpad_acpi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/think-lmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/lenovo-yogabook.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/lenovo-wmi-camera.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/quickstart.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/meegopad_anx7428.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/lenovo-yoga-tab2-pro-1380-fastcharger.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/msi-ec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/msi-wmi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/lenovo-wmi-camera.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/quickstart.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/meegopad_anx7428.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/msi-wmi-platform.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/msi-ec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/msi-wmi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/pcengines-apuv2.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/msi-wmi-platform.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/barco-p50-gpio.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/samsung-laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/pcengines-apuv2.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/samsung-q10.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/toshiba_bluetooth.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/barco-p50-gpio.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/samsung-laptop.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/toshiba_haps.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/samsung-q10.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/toshiba_bluetooth.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/inspur_platform_profile.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/classmate-laptop.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/lg-laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/toshiba_haps.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/panasonic-laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/inspur_platform_profile.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/classmate-laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/lg-laptop.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/system76_acpi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/topstar-laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/panasonic-laptop.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/firmware_attributes_class.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/serial-multi-instantiate.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/system76_acpi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/topstar-laptop.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/wireless-hotkey.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/firmware_attributes_class.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/serial-multi-instantiate.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/x86-android-tablets/vexia_atla10_ec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/x86-android-tablets/x86-android-tablets.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel_ips.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/wireless-hotkey.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel_scu_pltdrv.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/x86-android-tablets/vexia_atla10_ec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/x86-android-tablets/x86-android-tablets.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel_ips.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel_scu_ipcutil.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel_scu_pltdrv.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/siemens/simatic-ipc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/siemens/simatic-ipc-batt.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-apollolake.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/intel_scu_ipcutil.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/siemens/simatic-ipc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/siemens/simatic-ipc-batt.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-apollolake.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-elkhartlake.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-f7188x.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/silicom-platform.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/winmate-fm07-keys.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-elkhartlake.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/siemens/simatic-ipc-batt-f7188x.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/sel3350-platform.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/silicom-platform.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/winmate-fm07-keys.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/mellanox/mlx-platform.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/mellanox/mlxreg-hotplug.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/mellanox/mlxreg-io.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/mellanox/mlxreg-lc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/x86/sel3350-platform.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/mellanox/mlx-platform.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/mellanox/mlxreg-hotplug.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/mellanox/mlxreg-io.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/mellanox/mlxreg-lc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/mellanox/nvsw-sn2201.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/chromeos_acpi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/chromeos_laptop.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/chromeos_privacy_screen.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/mellanox/nvsw-sn2201.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/chromeos_acpi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/chromeos_laptop.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/chromeos_privacy_screen.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/chromeos_pstore.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/chromeos_tbmc.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec_i2c.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/chromeos_pstore.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/chromeos_tbmc.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec_i2c.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec_ishtp.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_typec_switch.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec_spi.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec_uart.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros-ec-typec.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec_ishtp.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_typec_switch.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec_spi.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec_uart.ko
+  INSTALL debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/chrome/cros_ec_lpcs.ko
+  STRIP   debian/linux-image-6.15.0-lgci-xe-gb8495a85b25a/lib/modules/6.15.0-lgci-xe-gb8495a85b25a/kernel/drivers/platform/
 
 
