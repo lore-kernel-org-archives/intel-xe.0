@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94050C5B549
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 17:45:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9AD2C5B549
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 17:50:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C20D710E7AE;
-	Wed,  4 Jun 2025 17:45:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54E0A10E225;
+	Wed,  4 Jun 2025 17:50:31 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D6A010E7A7;
- Wed,  4 Jun 2025 17:45:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5627132455992083168=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42D3010E225;
+ Wed,  4 Jun 2025 17:50:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_and_prepare_W?=
- =?utf-8?q?A_BB_for_more_users?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Some_more_=5Ftypes?=
+ =?utf-8?q?=2Eh_cleanups_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Jun 2025 17:45:45 -0000
-Message-ID: <174905914531.49223.14537466051838217138@1538d3639d33>
+Date: Wed, 04 Jun 2025 17:50:30 -0000
+Message-ID: <174905943026.49243.13484839797503735259@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250604-wa-bb-fix-v1-0-0dfc5dafcef0@intel.com>
-In-Reply-To: <20250604-wa-bb-fix-v1-0-0dfc5dafcef0@intel.com>
+References: <20250603202826.681-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250603202826.681-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,26 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5627132455992083168==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix and prepare WA BB for more users
-URL   : https://patchwork.freedesktop.org/series/149839/
-State : success
+Series: Some more _types.h cleanups (rev2)
+URL   : https://patchwork.freedesktop.org/series/149807/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-3193-0fb25f8ab7f91fbfe0bc7e9a3388d424c86a56dc_BAT -> xe-pw-149839v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 573b98ac3ff9 drm-tip: 2025y-06m-04d-16h-13m-39s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_device_types.h:25
+error: drivers/gpu/drm/xe/xe_device_types.h: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/xe: Move xe_root_tile_mmio() to xe_device.h
+Applying: drm/xe: Promote struct xe_mmio definition to own file
+Applying: drm/xe: Promote struct xe_tile definition to own file
+Patch failed at 0003 drm/xe: Promote struct xe_tile definition to own file
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3193-0fb25f8ab7f91fbfe0bc7e9a3388d424c86a56dc -> xe-pw-149839v1
-
-  IGT_8395: 73e85a0142d086bc2af1a3c6a9dac3e069bde38f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3193-0fb25f8ab7f91fbfe0bc7e9a3388d424c86a56dc: 0fb25f8ab7f91fbfe0bc7e9a3388d424c86a56dc
-  xe-pw-149839v1: 149839v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149839v1/index.html
-
---===============5627132455992083168==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix and prepare WA BB for more users</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149839/">https://patchwork.freedesktop.org/series/149839/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149839v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149839v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3193-0fb25f8ab7f91fbfe0bc7e9a3388d424c86a56dc_BAT -&gt; xe-pw-149839v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3193-0fb25f8ab7f91fbfe0bc7e9a3388d424c86a56dc -&gt; xe-pw-149839v1</li>
-</ul>
-<p>IGT_8395: 73e85a0142d086bc2af1a3c6a9dac3e069bde38f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3193-0fb25f8ab7f91fbfe0bc7e9a3388d424c86a56dc: 0fb25f8ab7f91fbfe0bc7e9a3388d424c86a56dc<br />
-  xe-pw-149839v1: 149839v1</p>
-
-</body>
-</html>
-
---===============5627132455992083168==--
