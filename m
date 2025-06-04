@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01AB1C5B549
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 12:09:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E43ADC5B543
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Jun 2025 12:10:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A82410E5F7;
-	Wed,  4 Jun 2025 12:09:59 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9D7010E5F7;
- Wed,  4 Jun 2025 12:09:58 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BA3010E5F7;
+	Wed,  4 Jun 2025 12:10:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oGsLgZjM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 279C410E5F7
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Jun 2025 12:10:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749039026; x=1780575026;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=c+cu7ldrB2LVrav6KD2S98ImdT54ONnm7E+w8DcyP6Q=;
+ b=oGsLgZjMBNVLQJs+oJ6N5BalrjVWx+hoROEDxOebb9NbNqAmBQjZeG3o
+ 9epjlnY8ZlijSdJ2fuMLsViJyGAsyqdUppRo7IhTFTL5oXd51U5uSJl0f
+ A4mEmkt2iZ7Psx7ZqdAOsK9eJmS+Tc/F9HEJVZoDlUnnpOE5MtylAxGMF
+ YhKJOjkL8k7NOEynTyUlRXugbsha4DHw2UTpC8q4z6yQZVXcREgUAyhLz
+ Bz9rlG2UlcPlP/L83XhpJsW/ke7cpYNBWD7AgeJ2l4qTwlfy86rvoeiAG
+ n7vlm+e2UDOW4WyYroZ1vtSbeB0/vlbvndr6B+yyQ9aO+PyBwvAKH0XqS A==;
+X-CSE-ConnectionGUID: SoW/87JtQCe7kvc/q8Uowg==
+X-CSE-MsgGUID: 4XlVnJBEScuSUq2G3cPApQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="51263320"
+X-IronPort-AV: E=Sophos;i="6.16,209,1744095600"; d="scan'208";a="51263320"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2025 05:10:26 -0700
+X-CSE-ConnectionGUID: 3jF3lTChTKm+2hH9iBIDkA==
+X-CSE-MsgGUID: rsx1P2GtTHabzKKbvGw2yA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,209,1744095600"; d="scan'208";a="150212853"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa004.jf.intel.com with ESMTP; 04 Jun 2025 05:10:22 -0700
+Received: from [10.245.253.198] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.253.198])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id CA57533BF1;
+ Wed,  4 Jun 2025 13:10:20 +0100 (IST)
+Message-ID: <2edc09f0-715a-4a30-8e73-9b0d2e228242@intel.com>
+Date: Wed, 4 Jun 2025 14:10:20 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_split_out_dis?=
- =?utf-8?q?play_register_macros_to_a_separate_file?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Jun 2025 12:09:58 -0000
-Message-ID: <174903899867.48081.15797449196878366548@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250604110225.993638-1-jani.nikula@intel.com>
-In-Reply-To: <20250604110225.993638-1-jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/xe/vf: Introduce helpers to access GGTT
+ configuration
+To: Maarten Lankhorst <maarten@lankhorst.se>, intel-xe@lists.freedesktop.org
+Cc: Tomasz Lis <tomasz.lis@intel.com>
+References: <20250602103325.549-1-michal.wajdeczko@intel.com>
+ <20250602103325.549-2-michal.wajdeczko@intel.com>
+ <d499803a-8b64-40fa-adb4-ed42d91e011f@lankhorst.se>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <d499803a-8b64-40fa-adb4-ed42d91e011f@lankhorst.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,392 +71,445 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: split out display register macros to a separate file
-URL   : https://patchwork.freedesktop.org/series/149831/
-State : warning
-
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-202708c00696422fd217223bb679a353a5936e23
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit b8495a85b25af4cbca7e2eb9cbbecc5d25e898e5
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Wed Jun 4 14:02:25 2025 +0300
-
-    drm/i915: split out display register macros to a separate file
-    
-    This is a scripted split of the display related register macros from
-    i915_reg.h to display/intel_display_regs.h. As a starting point, move
-    all the macros that are only used in display code (or GVT). If there are
-    users in core i915 code or soc/, or no users anywhere, keep the macros
-    in i915_reg.h. This is done in groups of macros separated by blank
-    lines, moving the comments along with the groups.
-    
-    Some manually picked macro groups are kept/moved regardless of the
-    heuristics above.
-    
-    This is obviously a very crude approach. It's not perfect. But there are
-    4.2k lines in i915_reg.h, and its refactoring has ground to a halt. This
-    is the big hammer that splits the file to two, and enables further
-    cleanup.
-    
-    Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com> # v2
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch 6517275da428d10d60b2762385ca7daa3a382754 drm-intel
-b8495a85b25a drm/i915: split out display register macros to a separate file
--:339: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#339: 
-new file mode 100644
-
--:523: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#523: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:180:
-+#define   PHY_STATUS_SPLINE_LDO(phy, ch, spline)        (1 << (8 - (6 * (phy) + 3 * (ch) + (spline))))
-
--:842: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#842: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:499:
-+ * The same register may be used for SDVO or HDMI */
-
--:923: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#923: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:580:
-+ * of the infoframe structure specified by CEA-861. */
-
--:1080: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
-#1080: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:737:
-+#define   TRANSCONF_FRAME_START_DELAY(x)		REG_FIELD_PREP(TRANSCONF_FRAME_START_DELAY_MASK, (x)) /* pre-hsw: 0-3 */
-
--:1087: WARNING:LONG_LINE_COMMENT: line length of 110 exceeds 100 columns
-#1087: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:744:
-+#define   TRANSCONF_GAMMA_MODE_12BIT		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, 2) /* ilk-ivb */
-
--:1088: WARNING:LONG_LINE_COMMENT: line length of 106 exceeds 100 columns
-#1088: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:745:
-+#define   TRANSCONF_GAMMA_MODE_SPLIT		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, 3) /* ivb */
-
--:1089: WARNING:LONG_LINE_COMMENT: line length of 130 exceeds 100 columns
-#1089: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:746:
-+#define   TRANSCONF_GAMMA_MODE(x)		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, (x)) /* pass in GAMMA_MODE_MODE_* */
-
--:1092: WARNING:LONG_LINE_COMMENT: line length of 115 exceeds 100 columns
-#1092: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:749:
-+#define   TRANSCONF_INTERLACE_W_SYNC_SHIFT_PANEL	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 4) /* gen4 only */
-
--:1093: WARNING:LONG_LINE_COMMENT: line length of 107 exceeds 100 columns
-#1093: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:750:
-+#define   TRANSCONF_INTERLACE_W_SYNC_SHIFT	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 5) /* gen4 only */
-
--:1095: WARNING:LONG_LINE_COMMENT: line length of 107 exceeds 100 columns
-#1095: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:752:
-+#define   TRANSCONF_INTERLACE_FIELD_0_ONLY	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 7) /* gen3 only */
-
--:1105: WARNING:LONG_LINE_COMMENT: line length of 114 exceeds 100 columns
-#1105: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:762:
-+#define   TRANSCONF_INTERLACE_IF_ID_DBL_ILK	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 4) /* ilk/snb only */
-
--:1106: WARNING:LONG_LINE_COMMENT: line length of 114 exceeds 100 columns
-#1106: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:763:
-+#define   TRANSCONF_INTERLACE_PF_ID_DBL_ILK	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 5) /* ilk/snb only */
-
--:1115: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
-#1115: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:772:
-+#define   TRANSCONF_OUTPUT_COLORSPACE_RGB	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 0) /* ilk-ivb */
-
--:1116: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
-#1116: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:773:
-+#define   TRANSCONF_OUTPUT_COLORSPACE_YUV601	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 1) /* ilk-ivb */
-
--:1117: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
-#1117: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:774:
-+#define   TRANSCONF_OUTPUT_COLORSPACE_YUV709	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 2) /* ilk-ivb */
-
--:1226: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
-#1226: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:883:
-+#define   PIPE_MISC2_FLIP_INFO_PLANE_SEL(plane_id)	REG_FIELD_PREP(PIPE_MISC2_FLIP_INFO_PLANE_SEL_MASK, (plane_id))
-
--:1392: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1392: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1049:
-+#define SKL_PS_CTRL(pipe, id) _MMIO_PIPE(pipe,        \
-+			_ID(id, _PS_1A_CTRL, _PS_2A_CTRL),       \
-+			_ID(id, _PS_1B_CTRL, _PS_2B_CTRL))
-
--:1419: WARNING:LONG_LINE_COMMENT: line length of 107 exceeds 100 columns
-#1419: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1076:
-+#define   PS_PIPE_SCALER_LOC_AFTER_OUTPUT_CSC	REG_FIELD_PREP(PS_SCALER_LOCATION_MASK, 0) /* non-linear */
-
--:1420: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
-#1420: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1077:
-+#define   PS_PIPE_SCALER_LOC_AFTER_CSC		REG_FIELD_PREP(PS_SCALER_LOCATION_MASK, 1) /* linear */
-
--:1447: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1447: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1104:
-+#define SKL_PS_PWR_GATE(pipe, id) _MMIO_PIPE(pipe,    \
-+			_ID(id, _PS_PWR_GATE_1A, _PS_PWR_GATE_2A), \
-+			_ID(id, _PS_PWR_GATE_1B, _PS_PWR_GATE_2B))
-
--:1467: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1467: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1124:
-+#define SKL_PS_WIN_POS(pipe, id) _MMIO_PIPE(pipe,     \
-+			_ID(id, _PS_WIN_POS_1A, _PS_WIN_POS_2A), \
-+			_ID(id, _PS_WIN_POS_1B, _PS_WIN_POS_2B))
-
--:1480: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1480: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1137:
-+#define SKL_PS_WIN_SZ(pipe, id)  _MMIO_PIPE(pipe,     \
-+			_ID(id, _PS_WIN_SZ_1A, _PS_WIN_SZ_2A),   \
-+			_ID(id, _PS_WIN_SZ_1B, _PS_WIN_SZ_2B))
-
--:1493: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1493: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1150:
-+#define SKL_PS_VSCALE(pipe, id)  _MMIO_PIPE(pipe,     \
-+			_ID(id, _PS_VSCALE_1A, _PS_VSCALE_2A),   \
-+			_ID(id, _PS_VSCALE_1B, _PS_VSCALE_2B))
-
--:1502: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1502: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1159:
-+#define SKL_PS_HSCALE(pipe, id)  _MMIO_PIPE(pipe,     \
-+			_ID(id, _PS_HSCALE_1A, _PS_HSCALE_2A),   \
-+			_ID(id, _PS_HSCALE_1B, _PS_HSCALE_2B))
-
--:1511: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1511: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1168:
-+#define SKL_PS_VPHASE(pipe, id)  _MMIO_PIPE(pipe,     \
-+			_ID(id, _PS_VPHASE_1A, _PS_VPHASE_2A),   \
-+			_ID(id, _PS_VPHASE_1B, _PS_VPHASE_2B))
-
--:1526: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1526: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1183:
-+#define SKL_PS_HPHASE(pipe, id)  _MMIO_PIPE(pipe,     \
-+			_ID(id, _PS_HPHASE_1A, _PS_HPHASE_2A),   \
-+			_ID(id, _PS_HPHASE_1B, _PS_HPHASE_2B))
-
--:1535: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1535: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1192:
-+#define SKL_PS_ECC_STAT(pipe, id)  _MMIO_PIPE(pipe,     \
-+			_ID(id, _PS_ECC_STAT_1A, _PS_ECC_STAT_2A),   \
-+			_ID(id, _PS_ECC_STAT_1B, _PS_ECC_STAT_2B))
-
--:1543: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1543: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1200:
-+#define GLK_PS_COEF_INDEX_SET(pipe, id, set)  _MMIO_PIPE(pipe,    \
-+			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A) + (set) * 8, \
-+			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B) + (set) * 8)
-
--:1543: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'set' - possible side-effects?
-#1543: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1200:
-+#define GLK_PS_COEF_INDEX_SET(pipe, id, set)  _MMIO_PIPE(pipe,    \
-+			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A) + (set) * 8, \
-+			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B) + (set) * 8)
-
--:1552: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#1552: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1209:
-+#define GLK_PS_COEF_DATA_SET(pipe, id, set)  _MMIO_PIPE(pipe,     \
-+			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A) + (set) * 8, \
-+			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B) + (set) * 8)
-
--:1552: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'set' - possible side-effects?
-#1552: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1209:
-+#define GLK_PS_COEF_DATA_SET(pipe, id, set)  _MMIO_PIPE(pipe,     \
-+			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A) + (set) * 8, \
-+			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B) + (set) * 8)
-
--:1615: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'plane_id' - possible side-effects?
-#1615: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1272:
-+#define  GEN9_PIPE_PLANE_FLIP_DONE(plane_id) \
-+	REG_BIT(((plane_id) >= PLANE_5 ? 16 - PLANE_5 : 3 - PLANE_1) + (plane_id)) /* skl+ */
-
--:1621: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#1621: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1278:
-+#define GEN8_DE_PIPE_IRQ_REGS(pipe)	I915_IRQ_REGS(GEN8_DE_PIPE_IMR(pipe), \
-+						      GEN8_DE_PIPE_IER(pipe), \
-+						      GEN8_DE_PIPE_IIR(pipe))
-
--:1812: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#1812: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1469:
-+#define CHICKEN_TRANS(display, trans)	(DISPLAY_VER(display) >= 14 ? _MTL_CHICKEN_TRANS(trans) : _CHICKEN_TRANS(trans))
-
--:1812: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'trans' - possible side-effects?
-#1812: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1469:
-+#define CHICKEN_TRANS(display, trans)	(DISPLAY_VER(display) >= 14 ? _MTL_CHICKEN_TRANS(trans) : _CHICKEN_TRANS(trans))
-
--:2153: WARNING:MACRO_ARG_UNUSED: Argument 'pipe' is not used in function-like macro
-#2153: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1810:
-+#define	 TRANS_DPLLA_SEL(pipe)		0
-
--:2195: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#2195: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1852:
-+#define PCH_TRANS_VSYNCSHIFT(pipe)	_MMIO_PIPE(pipe, _PCH_TRANS_VSYNCSHIFT_A, _PCH_TRANS_VSYNCSHIFT_B)
-
--:2273: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#2273: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1930:
-+#define HSW_TVIDEO_DIP_CTL(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_CTL_A)
-
--:2277: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#2277: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1934:
-+#define HSW_TVIDEO_DIP_AVI_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_AVI_DATA_A + (i) * 4)
-
--:2281: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
-#2281: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1938:
-+#define HSW_TVIDEO_DIP_VS_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VS_DATA_A + (i) * 4)
-
--:2285: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#2285: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1942:
-+#define HSW_TVIDEO_DIP_SPD_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_SPD_DATA_A + (i) * 4)
-
--:2289: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#2289: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1946:
-+#define HSW_TVIDEO_DIP_GMP_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GMP_DATA_A + (i) * 4)
-
--:2293: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#2293: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1950:
-+#define HSW_TVIDEO_DIP_VSC_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VSC_DATA_A + (i) * 4)
-
--:2303: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#2303: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1960:
-+#define GLK_TVIDEO_DIP_DRM_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _GLK_VIDEO_DIP_DRM_DATA_A + (i) * 4)
-
--:2318: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#2318: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1975:
-+#define HSW_TVIDEO_DIP_GCP(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GCP_A)
-
--:2322: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#2322: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1979:
-+#define ICL_VIDEO_DIP_PPS_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _ICL_VIDEO_DIP_PPS_DATA_A + (i) * 4)
-
--:2326: WARNING:LONG_LINE: line length of 129 exceeds 100 columns
-#2326: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1983:
-+#define ICL_VIDEO_DIP_PPS_ECC(dev_priv, trans, i)		_MMIO_TRANS2(dev_priv, trans, _ICL_VIDEO_DIP_PPS_ECC_A + (i) * 4)
-
--:2340: WARNING:LONG_LINE_COMMENT: line length of 104 exceeds 100 columns
-#2340: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1997:
-+#define  TRANS_FRAME_START_DELAY(x)	REG_FIELD_PREP(TRANS_FRAME_START_DELAY_MASK, (x)) /* ibx: 0-3 */
-
--:2378: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#2378: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2035:
-+#define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans, _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
-
--:2387: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
-#2387: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2044:
-+#define TRANS_DP2_VFREQHIGH(trans)		_MMIO_TRANS(trans, _TRANS_DP2_VFREQHIGH_A, _TRANS_DP2_VFREQHIGH_B)
-
--:2389: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#2389: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2046:
-+#define  TRANS_DP2_VFREQ_PIXEL_CLOCK(clk_hz)	REG_FIELD_PREP(TRANS_DP2_VFREQ_PIXEL_CLOCK_MASK, (clk_hz))
-
--:2395: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#2395: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2052:
-+#define TRANS_DP2_VFREQLOW(trans)		_MMIO_TRANS(trans, _TRANS_DP2_VFREQLOW_A, _TRANS_DP2_VFREQLOW_B)
-
--:2399: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#2399: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2056:
-+#define DP_MIN_HBLANK_CTL(trans)		_MMIO_TRANS(trans, _DP_MIN_HBLANK_CTL_A, _DP_MIN_HBLANK_CTL_B)
-
--:2587: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#2587: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2244:
-+#define  TRANS_DDI_PORT_SYNC_MASTER_SELECT(x)	REG_FIELD_PREP(TRANS_DDI_PORT_SYNC_MASTER_SELECT_MASK, (x))
-
--:2626: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#2626: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2283:
-+#define  PORT_SYNC_MODE_MASTER_SELECT(x)	REG_FIELD_PREP(PORT_SYNC_MODE_MASTER_SELECT_MASK, (x))
-
--:2668: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
-#2668: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2325:
-+#define   DP_TP_STATUS_STREAMS_ENABLED_MASK	REG_GENMASK(18, 16) /* 17:16 on hsw but bit 18 mbz */
-
--:2698: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'width' - possible side-effects?
-#2698: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2355:
-+#define  DDI_PORT_WIDTH(width)			REG_FIELD_PREP(DDI_PORT_WIDTH_MASK, \
-+							       ((width) == 3 ? 4 : (width) - 1))
-
--:2706: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#2706: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2363:
-+#define DDI_BUF_TRANS_LO(port, i)	_MMIO(_PORT(port, _DDI_BUF_TRANS_A, _DDI_BUF_TRANS_B) + (i) * 8)
-
--:2708: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#2708: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2365:
-+#define DDI_BUF_TRANS_HI(port, i)	_MMIO(_PORT(port, _DDI_BUF_TRANS_A, _DDI_BUF_TRANS_B) + (i) * 8 + 4)
-
--:2713: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#2713: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2370:
-+#define DDI_DP_COMP_CTL(pipe)			_MMIO_PIPE(pipe, _DDI_DP_COMP_CTL_A, _DDI_DP_COMP_CTL_B)
-
--:2726: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#2726: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2383:
-+#define DDI_DP_COMP_PAT(pipe, i)		_MMIO(_PIPE(pipe, _DDI_DP_COMP_PAT_A, _DDI_DP_COMP_PAT_B) + (i) * 4)
-
--:2839: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#2839: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2496:
-+#define TRANS_SET_CONTEXT_LATENCY(dev_priv, tran)		_MMIO_TRANS2(dev_priv, tran, _TRANS_A_SET_CONTEXT_LATENCY)
-
--:2967: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'tc_port' - possible side-effects?
-#2967: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2624:
-+#define  ICL_DPCLKA_CFGCR0_TC_CLK_OFF(tc_port)	(1 << ((tc_port) < TC_PORT_4 ? \
-+						       (tc_port) + 12 : \
-+						       (tc_port) - TC_PORT_4 + 21))
-
--:2971: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#2971: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2628:
-+#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	(3 << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
-
--:2972: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#2972: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2629:
-+#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	((pll) << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
-
--:2994: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
-#2994: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2651:
-+#define   DG1_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	(_DG1_DPCLKA_PLL_IDX(pll) << DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
-
--:2995: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#2995: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2652:
-+#define   DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	(0x3 << DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
-
--:3117: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#3117: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2774:
-+#define TGL_DPLL0_DIV0(pll)				_MMIO_PLL(pll, _TGL_DPLL0_DIV0, _TGL_DPLL1_DIV0)
-
--:3119: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#3119: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2776:
-+#define   TGL_DPLL0_DIV0_AFC_STARTUP(val)		REG_FIELD_PREP(TGL_DPLL0_DIV0_AFC_STARTUP_MASK, (val))
-
--:3239: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
-#3239: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2896:
-+#define DG2_PHY_MISC(port)	((port) == PHY_E ? _MMIO(_DG2_PHY_MISC_TC1) : \
-+				 ICL_PHY_MISC(port))
-
--:3282: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
-#3282: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2939:
-+#define MTL_CLKGATE_DIS_TRANS(dev_priv, trans)			_MMIO_TRANS2(dev_priv, trans, _MTL_CLKGATE_DIS_TRANS_A)
-
--:3287: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#3287: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2944:
-+#define MTL_PIPE_CLKGATE_DIS2(pipe)		_MMIO_PIPE(pipe, _MTL_PIPE_CLKGATE_DIS2_A, _MTL_PIPE_CLKGATE_DIS2_B)
-
--:3291: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#3291: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2948:
-+#define MTL_MEM_SS_INFO_QGV_POINT_LOW(point)	_MMIO(MTL_MEM_SS_INFO_QGV_POINT_OFFSET + (point) * 8)
-
--:3296: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#3296: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2953:
-+#define MTL_MEM_SS_INFO_QGV_POINT_HIGH(point)	_MMIO(MTL_MEM_SS_INFO_QGV_POINT_OFFSET + (point) * 8 + 4)
-
--:3300: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#3300: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2957:
-+
-+
-
-total: 0 errors, 56 warnings, 20 checks, 6712 lines checked
 
+
+On 04.06.2025 11:36, Maarten Lankhorst wrote:
+> Hey,
+> 
+> I'm trying for a different direction for this path series. I want to move all ggtt handling to xe_ggtt.c again,
+> so I had to remove all the code that pokes around into xe_ggtt internals.
+> 
+> Can you test the patch I attached below instead?
+
+oops, this series is already merged
+
+> It might require the rest of my GGTT cleanup series, I will resubmit those if they don't apply.
+> 
+> On 2025-06-02 12:33, Michal Wajdeczko wrote:
+
+...
+
+> ----8<----
+> 
+> commit 40985bb758b283beba80d92e71e360aa2cc80783
+> Author: Maarten Lankhorst <dev@lankhorst.se>
+> Date:   Mon May 26 14:52:21 2025 +0200
+> 
+>     drm/xe: Make xe_ggtt_shift_nodes shift balloons as well
+>     
+>     Do not manipulate xe_ggtt from xe_gt_sriov_vf, instead give
+>     xe_ggtt_shift_nodes() the ability to resize and move the balloon
+>     nodes as well.
+>     
+>     Empty balloons do not get re-added. I'm not sure if this corner
+>     case happens in practice though.
+>     
+>     This removes the need for ggtt->lock from xe_gt_sriov_vf, and
+>     leaves the GGTT modification logic entirely in xe_ggtt.c
+>     
+>     Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+>     Cc: Tomasz Lis <tomasz.lis@intel.com>
+>     Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index c32803b31bada..1e5f8901bf513 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -462,22 +462,21 @@ static void xe_ggtt_dump_node(struct xe_ggtt *ggtt,
+>  }
+>  
+>  /**
+> - * xe_ggtt_node_insert_balloon_locked - prevent allocation of specified GGTT addresses
+> + * xe_ggtt_node_insert_balloon - prevent allocation of specified GGTT addresses
+>   * @node: the &xe_ggtt_node to hold reserved GGTT node
+>   * @start: the starting GGTT address of the reserved region
+>   * @end: then end GGTT address of the reserved region
+>   *
+> - * To be used in cases where ggtt->lock is already taken.
+> - * Use xe_ggtt_node_remove_balloon_locked() to release a reserved GGTT node.
+> + * Use xe_ggtt_node_remove_balloon() to release a reserved GGTT node.
+>   *
+>   * Return: 0 on success or a negative error code on failure.
+>   */
+> -int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node, u64 start, u64 end)
+> +int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node, u64 start, u64 end)
+>  {
+>  	struct xe_ggtt *ggtt = node->ggtt;
+>  	int err;
+>  
+> -	xe_tile_assert(ggtt->tile, start < end);
+> +	xe_tile_assert(ggtt->tile, start <= end);
+>  	xe_tile_assert(ggtt->tile, IS_ALIGNED(start, XE_PAGE_SIZE));
+>  	xe_tile_assert(ggtt->tile, IS_ALIGNED(end, XE_PAGE_SIZE));
+>  	xe_tile_assert(ggtt->tile, !drm_mm_node_allocated(&node->base));
+> @@ -487,26 +486,41 @@ int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node, u64 start, u64
+>  	node->base.start = start;
+>  	node->base.size = end - start;
+>  
+> -	err = drm_mm_reserve_node(&ggtt->mm, &node->base);
+> +	if (node->base.size)
+> +		err = drm_mm_reserve_node(&ggtt->mm, &node->base);
+> +	else
+> +		err = 0;
+>  
+>  	if (xe_gt_WARN(ggtt->tile->primary_gt, err,
+>  		       "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
+>  		       node->base.start, node->base.start + node->base.size, ERR_PTR(err)))
+>  		return err;
+>  
+> +	if (start == xe_wopcm_size(tile_to_xe(ggtt->tile)))
+> +		ggtt->balloon_start = &node->base;
+> +	else if (end == ggtt->size)
+> +		ggtt->balloon_end = &node->base;
+> +
+>  	xe_ggtt_dump_node(ggtt, &node->base, "balloon");
+>  	return 0;
+>  }
+>  
+>  /**
+> - * xe_ggtt_node_remove_balloon_locked - release a reserved GGTT region
+> + * xe_ggtt_node_remove_balloon - release a reserved GGTT region
+>   * @node: the &xe_ggtt_node with reserved GGTT region
+>   *
+> - * To be used in cases where ggtt->lock is already taken.
+> - * See xe_ggtt_node_insert_balloon_locked() for details.
+> + * See xe_ggtt_node_insert_balloon() for details.
+>   */
+> -void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node)
+> +void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node)
+>  {
+> +	struct xe_ggtt *ggtt = node->ggtt;
+> +
+> +	if (ggtt && &node->base == ggtt->balloon_start)
+> +		ggtt->balloon_start = NULL;
+> +
+> +	if (ggtt && &node->base == ggtt->balloon_end)
+> +		ggtt->balloon_end = NULL;
+> +
+>  	if (!xe_ggtt_node_allocated(node))
+>  		return;
+>  
+> @@ -517,18 +531,8 @@ void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node)
+>  	drm_mm_remove_node(&node->base);
+>  }
+>  
+> -static void xe_ggtt_assert_fit(struct xe_ggtt *ggtt, u64 start, u64 size)
+> -{
+> -	struct xe_tile *tile = ggtt->tile;
+> -	struct xe_device *xe = tile_to_xe(tile);
+> -	u64 __maybe_unused wopcm = xe_wopcm_size(xe);
+> -
+> -	xe_tile_assert(tile, start >= wopcm);
+> -	xe_tile_assert(tile, start + size < ggtt->size - wopcm);
+> -}
+> -
+>  /**
+> - * xe_ggtt_shift_nodes_locked - Shift GGTT nodes to adjust for a change in usable address range.
+> + * xe_ggtt_shift_nodes - Shift GGTT nodes to adjust for a change in usable address range.
+>   * @ggtt: the &xe_ggtt struct instance
+>   * @shift: change to the location of area provisioned for current VF
+>   *
+> @@ -542,29 +546,73 @@ static void xe_ggtt_assert_fit(struct xe_ggtt *ggtt, u64 start, u64 size)
+>   * the list of nodes was either already damaged, or that the shift brings the address range
+>   * outside of valid bounds. Both cases justify an assert rather than error code.
+>   */
+> -void xe_ggtt_shift_nodes_locked(struct xe_ggtt *ggtt, s64 shift)
+> +void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, s64 shift)
+>  {
+>  	struct xe_tile *tile __maybe_unused = ggtt->tile;
+>  	struct drm_mm_node *node, *tmpn;
+> +	u64 ggtt_start __maybe_unused = xe_wopcm_size(tile_to_xe(ggtt->tile));
+>  	LIST_HEAD(temp_list_head);
+>  
+> -	lockdep_assert_held(&ggtt->lock);
+> +	mutex_lock(&ggtt->lock);
+>  
+> +	if (ggtt->balloon_start) {
+> +		/*
+> +		 * Balloon at the beginning, only end is adjusted,
+> +		 * ensure it's possible with size >= 0)
+> +		 */
+> +		node = ggtt->balloon_start;
+> +		xe_tile_assert(tile, node->start + shift + node->size < ggtt->size);
+> +		xe_tile_assert(tile, node->start + shift + node->size > ggtt_start);
+> +
+> +		if (drm_mm_node_allocated(node))
+> +			drm_mm_remove_node(node);
+> +
+> +		node->size += shift;
+> +		if (node->size)
+> +			list_add_tail(&node->node_list, &temp_list_head);
+> +	}
+> +
+> +	if (ggtt->balloon_end) {
+> +		/*
+> +		 * Balloon at the end, only start is adjusted,
+> +		 * ensure it's possible with (size >= 0)
+> +		 */
+> +		node = ggtt->balloon_end;
+> +		xe_tile_assert(tile, node->start + shift >= ggtt_start);
+> +		xe_tile_assert(tile, node->start + shift < ggtt->size);
+> +
+> +		if (drm_mm_node_allocated(node))
+> +			drm_mm_remove_node(node);
+> +
+> +		node->start += shift;
+> +		node->size -= shift;
+> +		if (node->size)
+> +			list_add_tail(&node->node_list, &temp_list_head);
+> +	}
+> +
+> +	/* Remaining, actual nodes */
+>  	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG))
+> -		drm_mm_for_each_node_safe(node, tmpn, &ggtt->mm)
+> -			xe_ggtt_assert_fit(ggtt, node->start + shift, node->size);
+> +		drm_mm_for_each_node_safe(node, tmpn, &ggtt->mm) {
+> +			xe_tile_assert(tile, node->start + shift >= ggtt_start);
+> +			xe_tile_assert(tile, node->start + shift + node->size <= ggtt->size);
+> +		}
+>  
+>  	drm_mm_for_each_node_safe(node, tmpn, &ggtt->mm) {
+>  		drm_mm_remove_node(node);
+> -		list_add(&node->node_list, &temp_list_head);
+> +
+> +		node->start += shift;
+> +		list_add_tail(&node->node_list, &temp_list_head);
+>  	}
+>  
+> +	/* Finally, insert balloons and nodes into their new locations */
+>  	list_for_each_entry_safe(node, tmpn, &temp_list_head, node_list) {
+>  		list_del(&node->node_list);
+> -		node->start += shift;
+> +
+>  		drm_mm_reserve_node(&ggtt->mm, node);
+>  		xe_tile_assert(tile, drm_mm_node_allocated(node));
+>  	}
+> +
+> +	mutex_unlock(&ggtt->lock);
+>  }
+>  
+>  static int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+> @@ -608,7 +656,7 @@ int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align)
+>   * or xe_ggtt_node_remove_balloon().
+>   * Having %xe_ggtt_node struct allocated doesn't mean that the node is already allocated
+>   * in GGTT. Only the xe_ggtt_node_insert(), xe_ggtt_node_insert_transform(),
+> - * xe_ggtt_node_insert_balloon_locked() will ensure the node is inserted or reserved in GGTT.
+> + * xe_ggtt_node_insert_balloon() will ensure the node is inserted or reserved in GGTT.
+>   *
+>   * Return: A pointer to %xe_ggtt_node struct on success. An ERR_PTR otherwise.
+>   **/
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+> index 3951d9af97aa8..48f96267a7891 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
+> @@ -18,10 +18,10 @@ int xe_ggtt_init(struct xe_ggtt *ggtt);
+>  
+>  struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt);
+>  void xe_ggtt_node_fini(struct xe_ggtt_node *node);
+> -int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node,
+> +int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node,
+>  				       u64 start, u64 size);
+> -void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node);
+> -void xe_ggtt_shift_nodes_locked(struct xe_ggtt *ggtt, s64 shift);
+> +void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node);
+> +void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, s64 shift);
+>  
+>  int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
+>  struct xe_ggtt_node *
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+> index 18b5466ae8e6f..3454a3c7686d1 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+> @@ -12,6 +12,7 @@
+>  
+>  struct xe_bo;
+>  struct xe_gt;
+> +struct xe_ggtt_node;
+>  
+>  /**
+>   * struct xe_ggtt - Main GGTT struct
+> @@ -49,6 +50,10 @@ struct xe_ggtt {
+>  	unsigned int access_count;
+>  	/** @wq: Dedicated unordered work queue to process node removals */
+>  	struct workqueue_struct *wq;
+> +	/** @balloon_start: Optional balloon at the beginning of GGTT, may be zero-sized */
+> +	struct drm_mm_node *balloon_start;
+> +	/** @balloon_end: Optional balloon at the end of GGTT, may be zero-sized */
+> +	struct drm_mm_node *balloon_end;
+
+ha, it's similar what I was trying back in 2020, see [1]
+
+[1] https://patchwork.freedesktop.org/patch/383138/?series=80177&rev=1
+
+>  };
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> index 4ff7ae1a5f16c..8b8604bdedb48 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> @@ -600,12 +600,7 @@ static int vf_init_ggtt_balloons(struct xe_gt *gt)
+>  	return 0;
+>  }
+>  
+> -/**
+> - * xe_gt_sriov_vf_balloon_ggtt_locked - Insert balloon nodes to limit used GGTT address range.
+> - * @gt: the &xe_gt struct instance
+> - * Return: 0 on success or a negative error code on failure.
+> - */
+> -int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt)
+> +static int vf_balloon_ggtt(struct xe_gt *gt)
+>  {
+>  	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
+>  	struct xe_tile *tile = gt_to_tile(gt);
+> @@ -615,7 +610,6 @@ int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt)
+>  
+>  	xe_gt_assert(gt, IS_SRIOV_VF(xe));
+>  	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
+> -	lockdep_assert_held(&tile->mem.ggtt->lock);
+>  
+>  	if (!config->ggtt_size)
+>  		return -ENODATA;
+> @@ -638,7 +632,7 @@ int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt)
+>  	start = xe_wopcm_size(xe);
+>  	end = config->ggtt_base;
+>  	if (end != start) {
+> -		err = xe_ggtt_node_insert_balloon_locked(tile->sriov.vf.ggtt_balloon[0],
+> +		err = xe_ggtt_node_insert_balloon(tile->sriov.vf.ggtt_balloon[0],
+>  							 start, end);
+>  		if (err)
+>  			return err;
+> @@ -647,10 +641,11 @@ int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt)
+>  	start = config->ggtt_base + config->ggtt_size;
+>  	end = GUC_GGTT_TOP;
+>  	if (end != start) {
+> -		err = xe_ggtt_node_insert_balloon_locked(tile->sriov.vf.ggtt_balloon[1],
+> +		err = xe_ggtt_node_insert_balloon(tile->sriov.vf.ggtt_balloon[1],
+>  							 start, end);
+>  		if (err) {
+> -			xe_ggtt_node_remove_balloon_locked(tile->sriov.vf.ggtt_balloon[0]);
+> +			xe_ggtt_node_remove_balloon(tile->sriov.vf.ggtt_balloon[0]);
+> +			tile->sriov.vf.ggtt_balloon[0] = NULL;
+>  			return err;
+>  		}
+>  	}
+> @@ -658,38 +653,13 @@ int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt)
+>  	return 0;
+>  }
+>  
+> -static int vf_balloon_ggtt(struct xe_gt *gt)
+> -{
+> -	struct xe_ggtt *ggtt = gt_to_tile(gt)->mem.ggtt;
+> -	int err;
+> -
+> -	mutex_lock(&ggtt->lock);
+> -	err = xe_gt_sriov_vf_balloon_ggtt_locked(gt);
+> -	mutex_unlock(&ggtt->lock);
+> -
+> -	return err;
+> -}
+> -
+> -/**
+> - * xe_gt_sriov_vf_deballoon_ggtt_locked - Remove balloon nodes.
+> - * @gt: the &xe_gt struct instance
+> - */
+> -void xe_gt_sriov_vf_deballoon_ggtt_locked(struct xe_gt *gt)
+> -{
+> -	struct xe_tile *tile = gt_to_tile(gt);
+> -
+> -	xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
+> -	xe_ggtt_node_remove_balloon_locked(tile->sriov.vf.ggtt_balloon[1]);
+> -	xe_ggtt_node_remove_balloon_locked(tile->sriov.vf.ggtt_balloon[0]);
+> -}
+> -
+>  static void vf_deballoon_ggtt(struct xe_gt *gt)
+>  {
+>  	struct xe_tile *tile = gt_to_tile(gt);
+>  
+> -	mutex_lock(&tile->mem.ggtt->lock);
+> -	xe_gt_sriov_vf_deballoon_ggtt_locked(gt);
+> -	mutex_unlock(&tile->mem.ggtt->lock);
+> +	xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
+> +	xe_ggtt_node_remove_balloon(tile->sriov.vf.ggtt_balloon[1]);
+> +	xe_ggtt_node_remove_balloon(tile->sriov.vf.ggtt_balloon[0]);
+
+as xe_ggtt would now understand balloons, do we (VF) still need to
+maintain tile->sriov.vf.ggtt_balloon separately from the xe_ggtt?
+
+or maybe we should go one more step and don't keep absolute GGTT
+addresses in the drm_mm_node but just a relative offset from the start
+point that would be also maintained in the xe_ggtt
+
+then for the native/PF this start point would be WOPCM and for the VF
+the ggtt_base config received from the GuC
+
+the bonus will be that actual "shift" operation will be limited just to
+touching the start point, and maybe there would be no need for balloons?
+
+something like this:
+
+int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+{
+...
+ 	if (VF) {
+		ggtt->begin = primary_gt->sriov.vf.config.ggtt_base;
+		ggtt->size = primary_gt->sriov.vf.config.ggtt_size;
+	} else {
+		ggtt->begin = wopcm_size;
+		ggtt->size = GUC_GGTT_TOP - ggtt->begin;
+	}
+	xe_tile_assert(..., ggtt->begin >= wopcm_size);
+	xe_tile_assert(..., ggtt->begin + ggtt->size <= GUC_GGTT_TOP);
+
+	drm_mm_init(&ggtt->mm, 0, ggtt->size);
+...
+}
+
+u64 xe_ggtt_node_address(struct xe_ggtt_node *node)
+{
+	return xe_ggtt_node_allocated(node) ?
+		node->ggtt->begin + node->base.start : 0;
+}
+
+void xe_ggtt_shift(struct xe_ggtt *ggtt, s64 shift)
+{
+	ggtt->begin += shift;
+
+	xe_tile_assert(..., ggtt->begin >= wopcm_size);
+	xe_tile_assert(..., ggtt->begin + ggtt->size <= GUC_GGTT_TOP);
+}
+
+>  }
+>  
+>  static void vf_fini_ggtt_balloons(struct xe_gt *gt)
+> @@ -912,11 +882,7 @@ void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt, s64 shift)
+>  
+>  	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
+>  
+> -	mutex_lock(&ggtt->lock);
+> -	xe_gt_sriov_vf_deballoon_ggtt_locked(gt);
+> -	xe_ggtt_shift_nodes_locked(ggtt, shift);
+> -	xe_gt_sriov_vf_balloon_ggtt_locked(gt);
+> -	mutex_unlock(&ggtt->lock);
+> +	xe_ggtt_shift_nodes(ggtt, shift);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> index 9db41afddd5a8..8956fed594996 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> @@ -18,8 +18,6 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
+> -int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt);
+> -void xe_gt_sriov_vf_deballoon_ggtt_locked(struct xe_gt *gt);
+>  s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt);
+>  void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt, s64 shift);
+>  int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
+> 
 
