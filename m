@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B0E3C5B543
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 08:35:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6482DC5B559
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 09:03:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2457610E889;
-	Thu,  5 Jun 2025 08:35:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VfbmwSP8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE92C10E7F6;
- Thu,  5 Jun 2025 08:35:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749112545; x=1780648545;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=uNLs9uZ+gMnvyD3C9QJZaD+YbfDky0m1IAgrw7SEAoI=;
- b=VfbmwSP8/6GVdTLLfpnD9LufR+MAOLEtjbqftLn305nk0uYdGBnGZ4AF
- xR4aYZdBNe0Kb/u1CO16sUlrsSAbxpWJBwDLwkLrm+pNKzb/BpoXnb35C
- 0ZcrSQ67rj2e+eLGajXoiJdzDQwoxp8ALkSZOqTXO0u7N7EgloYWt0G8E
- CkdU/kL50v8X2xSBkK9BhkmEPkRh7LM70QAAxcZ49/3rQB4ZB3g5FrSmL
- eMurjdQ2HpysGUiwmD5+W6KWC8IEwo0TFI++/r8BE8D+D2bqKqrqFJI3Y
- z6FmAe4J3Pj8SAfTYrG2UobHHUqoCaM4V2cptaZObOILCeE2FgQUF35SU Q==;
-X-CSE-ConnectionGUID: XRXpm4DnQU6bOTm+I1MvGA==
-X-CSE-MsgGUID: mJwPfPpiQUa0wef+Gu8z+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="61888116"
-X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; d="scan'208";a="61888116"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 01:35:43 -0700
-X-CSE-ConnectionGUID: hhcmw9EDSwyHpG1AFCfvgQ==
-X-CSE-MsgGUID: Pp9oXDMcQW6ab1q5L65QAQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; d="scan'208";a="145407823"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.244.19])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 01:35:39 -0700
-Date: Thu, 5 Jun 2025 11:35:35 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next-fixes
-Message-ID: <aEFW1wGnt1kTVNGF@jlahtine-mobl>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EA8510E94E;
+	Thu,  5 Jun 2025 09:03:50 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12C8F10E919;
+ Thu,  5 Jun 2025 09:03:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3413143382345712786=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Revert_=22drm/xe/display=3A?=
+ =?utf-8?q?_use_xe-=3Edisplay_to_decide_whether_to_do_anything=22?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Jun 2025 09:03:49 -0000
+Message-ID: <174911422906.51388.12095381889814946410@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250605054247.386633-1-vivek.kasireddy@intel.com>
+In-Reply-To: <20250605054247.386633-1-vivek.kasireddy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,56 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+--===============3413143382345712786==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Here goes the final drm-intel-next-fixes PR towards 6.16-rc1.
+== Series Details ==
 
-One fix for PSR ALPM reg definitions and three integer under/overflow fixes.
+Series: Revert "drm/xe/display: use xe->display to decide whether to do anything"
+URL   : https://patchwork.freedesktop.org/series/149863/
+State : success
 
-Regards, Joonas
+== Summary ==
 
-***
+CI Bug Log - changes from xe-3196-d527f1a12f1a9cb4fbc43288c4e41a6f3c7c08cd_BAT -> xe-pw-149863v1_BAT
+====================================================
 
-drm-intel-next-fixes-2025-06-05:
+Summary
+-------
 
-- Fix PSR register definitions for ALPM
-- Fix u32 overflow in SNPS PHY HDMI PLL setup
-- Fix GuC pending message underflow when submit fails
-- Fix GuC wakeref underflow race during reset
+  **SUCCESS**
 
-The following changes since commit ed5915cfce2abb9a553c3737badebd4a11d6c9c7:
+  No regressions found.
 
-  Revert "drm/i915/gem: Allow EXEC_CAPTURE on recoverable contexts on DG1" (2025-05-27 16:40:55 +0300)
+  
 
-are available in the Git repository at:
+Participating hosts (8 -> 6)
+------------------------------
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2025-06-05
+  Missing    (2): bat-adlp-vm bat-atsm-2 
 
-for you to fetch changes up to 791d76005de0ab556b590473eb4cbfede727fce0:
 
-  drm/i915/display: Fix u32 overflow in SNPS PHY HDMI PLL setup (2025-06-04 17:30:53 +0300)
+Changes
+-------
 
-----------------------------------------------------------------
-- Fix PSR register definitions for ALPM
-- Fix u32 overflow in SNPS PHY HDMI PLL setup
-- Fix GuC pending message underflow when submit fails
-- Fix GuC wakeref underflow race during reset
+  No changes found
 
-----------------------------------------------------------------
-Dibin Moolakadan Subrahmanian (1):
-      drm/i915/display: Fix u32 overflow in SNPS PHY HDMI PLL setup
 
-Jesus Narvaez (2):
-      drm/i915/guc: Check if expecting reply before decrementing outstanding_submission_g2h
-      drm/i915/guc: Handle race condition where wakeref count drops below 0
+Build changes
+-------------
 
-Jouni Högander (1):
-      drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
+  * Linux: xe-3196-d527f1a12f1a9cb4fbc43288c4e41a6f3c7c08cd -> xe-pw-149863v1
 
- drivers/gpu/drm/i915/display/intel_psr_regs.h      |  4 ++--
- drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c | 16 ++++++++--------
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  | 19 +++++++++++++++----
- 3 files changed, 25 insertions(+), 14 deletions(-)
+  IGT_8396: 8396
+  xe-3196-d527f1a12f1a9cb4fbc43288c4e41a6f3c7c08cd: d527f1a12f1a9cb4fbc43288c4e41a6f3c7c08cd
+  xe-pw-149863v1: 149863v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149863v1/index.html
+
+--===============3413143382345712786==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Revert &quot;drm/xe/display: use xe-&gt;display to decide whether to do anything&quot;</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149863/">https://patchwork.freedesktop.org/series/149863/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149863v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149863v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3196-d527f1a12f1a9cb4fbc43288c4e41a6f3c7c08cd_BAT -&gt; xe-pw-149863v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 6)</h2>
+<p>Missing    (2): bat-adlp-vm bat-atsm-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3196-d527f1a12f1a9cb4fbc43288c4e41a6f3c7c08cd -&gt; xe-pw-149863v1</li>
+</ul>
+<p>IGT_8396: 8396<br />
+  xe-3196-d527f1a12f1a9cb4fbc43288c4e41a6f3c7c08cd: d527f1a12f1a9cb4fbc43288c4e41a6f3c7c08cd<br />
+  xe-pw-149863v1: 149863v1</p>
+
+</body>
+</html>
+
+--===============3413143382345712786==--
