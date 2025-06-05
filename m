@@ -4,54 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38F23C5B543
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 07:32:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64B54C61CE7
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 07:38:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E57D510E246;
-	Thu,  5 Jun 2025 07:32:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1024510E22A;
+	Thu,  5 Jun 2025 07:38:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DMqdjX3s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UqSF2GMj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26E6610E246
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 07:32:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A92C10E0FD;
+ Thu,  5 Jun 2025 07:38:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749108775; x=1780644775;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=mzCAyNKV95RqVp6CyZrodmOCQn4ZDmD/cfoKbOT+ATw=;
- b=DMqdjX3sPmeH0c6rDgj/6gF31cp543JCMVVj1SRD65J0SwjG2m3BADQj
- Z9Zw4/R+GTqzVlwg03b5gWxCyDuzJoN3cNqlm7dBS2s0e2zgooHMcuimX
- ELz2W1V4aAVHwWny4zQchLz/f4eDL1Iy5rrB6BwjbeAjzxSrFCqYixDKZ
- 7utLuQ8ZL+r1TkF1sT+fuJUbZ899dNbZz+KeGnZgsLlnGXekixLbVrvip
- VvVsVC5+FA94vvq40+N8pCCG1AJ9o6qfdpxzZW1es2uhwCrcaOlQALHrf
- ucTSa/qU8zlXBkMl7hMLkm7yBbsOrg7DhoOTIlKtCW9Z/IRAJXI8qDi7a g==;
-X-CSE-ConnectionGUID: yOA8r3L0QKeFhmJMm83tew==
-X-CSE-MsgGUID: Cz3FnzeFT5WiM5EQopnZ7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="50329457"
-X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; d="scan'208";a="50329457"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 00:32:55 -0700
-X-CSE-ConnectionGUID: 00lR4u17RlWxkUtzDBxPCw==
-X-CSE-MsgGUID: f+5h8XB3SOSUW+1IUmdNiA==
+ t=1749109084; x=1780645084;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=JmxMPQ5woK8yFfT8i8X9Tzjkm1xtH4VfRVAkhddIShc=;
+ b=UqSF2GMjM7sMc4xxeveCnXv1ED5btN4jHE4nklW/3lNhKskqE+LMGyzy
+ 7czkExkc7+5Os6wS6Tw3CTwwRtXUH9IBoEMzOuniKZz2rhTRoTGHracIM
+ nZinSzfsaOLrBJOxdsrPNzCFKxQhFvVRxhbLytgkOaC7WbLgDpmvbVVSq
+ 3a12JVQuTBV4VPwq4VHY8pbOuA5GUhXctWdq3G+xz1XLqiyNO5W8i81R3
+ 1q4Lk3/XyA4QkYjl0gXdRm8okjrDIm1KSYlETFJ8M6QRxqMSRr/NQm2rt
+ Q/rzBrbtGGwI98UXyREUezfOqpAm8jiVsEGx58sw/b35et05Bt3XSTW+U w==;
+X-CSE-ConnectionGUID: AMcWeziFT8yI7U4iFZhsrQ==
+X-CSE-MsgGUID: ek+2Pp9nSEGvkcNKHYN4iw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="61481649"
+X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; d="scan'208";a="61481649"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2025 00:38:04 -0700
+X-CSE-ConnectionGUID: 56i9D3IxS/ajTGXGsDlQ3A==
+X-CSE-MsgGUID: CmDppgNASzSE/xAPWnA9mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; d="scan'208";a="176383239"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 00:32:54 -0700
-Date: Thu, 5 Jun 2025 10:32:50 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [bug report] drm/xe/hwmon: expose fan speed
-Message-ID: <aEFIIukIcd2Od9sv@black.fi.intel.com>
-References: <aEE3C2DpYkmbTPMA@stanley.mountain>
+X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; d="scan'208";a="145382338"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.244.59])
+ ([10.245.244.59])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2025 00:38:00 -0700
+Message-ID: <6a6ff315e4072fbe13dce62bfc8f2e2bb13f1c53.camel@linux.intel.com>
+Subject: Re: [PATCH v2 3/3] drm/xe: Implement and use the drm_pagemap
+ populate_mm op
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
+ Simona Vetter <simona.vetter@ffwll.ch>, felix.kuehling@amd.com, Christian
+ =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, dakr@kernel.org,
+ "Mrozek, Michal"	 <michal.mrozek@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>
+Date: Thu, 05 Jun 2025 09:37:59 +0200
+In-Reply-To: <aEBgizJ52ZjvGluf@lstrano-desk.jf.intel.com>
+References: <20250604093536.95982-1-thomas.hellstrom@linux.intel.com>
+ <20250604093536.95982-4-thomas.hellstrom@linux.intel.com>
+ <aEBgizJ52ZjvGluf@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aEE3C2DpYkmbTPMA@stanley.mountain>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,49 +77,388 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 05, 2025 at 09:19:55AM +0300, Dan Carpenter wrote:
-> Hello Raag Jadav,
-> 
-> Commit 28f79ac609de ("drm/xe/hwmon: expose fan speed") from Mar 12,
-> 2025 (linux-next), leads to the following Smatch static checker
-> warning:
-> 
-> 	drivers/gpu/drm/xe/xe_hwmon.c:1008 xe_hwmon_fan_is_visible()
-> 	error: uninitialized symbol 'uval'.
-> 
-> drivers/gpu/drm/xe/xe_hwmon.c
->     995 static umode_t
->     996 xe_hwmon_fan_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->     997 {
->     998         u32 uval;
->     999 
->     1000         if (!hwmon->xe->info.has_fan_control)
->     1001                 return 0;
->     1002 
->     1003         switch (attr) {
->     1004         case hwmon_fan_input:
->     1005                 if (xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_NUM_FANS, &uval))
->     1006                         return 0;
->     1007 
-> --> 1008                 return channel < uval ? 0444 : 0;
->     1009         default:
->     1010                 return 0;
->     1011         }
->     1012 }
-> 
-> The problem is in pcode_mailbox_rw() where we return success without
-> writing to *uval.
-> 
->     89  static int pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *data1,
->     90                              unsigned int timeout_ms, bool return_data,
->     91                              bool atomic)
->     92  {
->     93          if (tile_to_xe(tile)->info.skip_pcode)
->     94                  return 0;
->                         ^^^^^^^^^
-> data0 is *uval.
+On Wed, 2025-06-04 at 08:04 -0700, Matthew Brost wrote:
+> On Wed, Jun 04, 2025 at 11:35:36AM +0200, Thomas Hellstr=C3=B6m wrote:
+> > Add runtime PM since we might call populate_mm on a foreign device.
+>=20
+> I think taking a runtime PM will fix hard to hit splat [1] too.
+>=20
+> [1]
+> https://patchwork.freedesktop.org/patch/648954/?series=3D147849&rev=3D1
+>=20
+> > Also create the VRAM bos as ttm_bo_type_kernel. This avoids the
+> > initial clearing and the creation of an mmap handle.
+> >=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/drm_pagemap.c |=C2=A0=C2=A0 1 +
+> > =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0 | 104 +++++++++++++++++++=
++----------
+> > ----
+> > =C2=A0drivers/gpu/drm/xe/xe_svm.h=C2=A0=C2=A0 |=C2=A0 10 ++--
+> > =C2=A0drivers/gpu/drm/xe/xe_tile.h=C2=A0 |=C2=A0 11 ++++
+> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> > =C2=A05 files changed, 78 insertions(+), 50 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/drm_pagemap.c
+> > b/drivers/gpu/drm/drm_pagemap.c
+> > index 25395685a9b8..94619be00d2a 100644
+> > --- a/drivers/gpu/drm/drm_pagemap.c
+> > +++ b/drivers/gpu/drm/drm_pagemap.c
+> > @@ -843,3 +843,4 @@ int drm_pagemap_populate_mm(struct drm_pagemap
+> > *dpagemap,
+> > =C2=A0
+> > =C2=A0	return err;
+> > =C2=A0}
+> > +EXPORT_SYMBOL(drm_pagemap_populate_mm);
+> > diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> > b/drivers/gpu/drm/xe/xe_svm.c
+> > index e161ce3e67a1..a10aab3768d8 100644
+> > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > @@ -3,13 +3,17 @@
+> > =C2=A0 * Copyright =C2=A9 2024 Intel Corporation
+> > =C2=A0 */
+> > =C2=A0
+> > +#include <drm/drm_drv.h>
+> > +
+> > =C2=A0#include "xe_bo.h"
+> > =C2=A0#include "xe_gt_stats.h"
+> > =C2=A0#include "xe_gt_tlb_invalidation.h"
+> > =C2=A0#include "xe_migrate.h"
+> > =C2=A0#include "xe_module.h"
+> > +#include "xe_pm.h"
+> > =C2=A0#include "xe_pt.h"
+> > =C2=A0#include "xe_svm.h"
+> > +#include "xe_tile.h"
+> > =C2=A0#include "xe_ttm_vram_mgr.h"
+> > =C2=A0#include "xe_vm.h"
+> > =C2=A0#include "xe_vm_types.h"
+> > @@ -525,8 +529,10 @@ static struct xe_bo *to_xe_bo(struct
+> > drm_pagemap_devmem *devmem_allocation)
+> > =C2=A0static void xe_svm_devmem_release(struct drm_pagemap_devmem
+> > *devmem_allocation)
+> > =C2=A0{
+> > =C2=A0	struct xe_bo *bo =3D to_xe_bo(devmem_allocation);
+> > +	struct xe_device *xe =3D xe_bo_device(bo);
+> > =C2=A0
+> > =C2=A0	xe_bo_put_async(bo);
+> > +	xe_pm_runtime_put(xe);
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0static u64 block_offset_to_pfn(struct xe_vram_region *vr, u64
+> > offset)
+> > @@ -720,76 +726,63 @@ static struct xe_vram_region
+> > *tile_to_vr(struct xe_tile *tile)
+> > =C2=A0	return &tile->mem.vram;
+> > =C2=A0}
+> > =C2=A0
+> > -/**
+> > - * xe_svm_alloc_vram()- Allocate device memory pages for range,
+> > - * migrating existing data.
+> > - * @vm: The VM.
+> > - * @tile: tile to allocate vram from
+> > - * @range: SVM range
+> > - * @ctx: DRM GPU SVM context
+> > - *
+> > - * Return: 0 on success, error code on failure.
+> > - */
+> > -int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+> > -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range,
+> > -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct drm_gpusvm_ctx *ctx)
+> > +static int xe_drm_pagemap_populate_mm(struct drm_pagemap
+> > *dpagemap,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long start,
+> > unsigned long end,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct mm_struct *mm,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long timeslice_ms)
+> > =C2=A0{
+> > -	struct mm_struct *mm =3D vm->svm.gpusvm.mm;
+> > +	struct xe_tile *tile =3D container_of(dpagemap,
+> > typeof(*tile), mem.vram.dpagemap);
+>=20
+> I think this is going to chnage here [2] making mem.vram a pointer.
+> Maybe a helper to go from dpagemap -> tile to future proof a little.
+> I
+> think once [2] lands, we will need to pick the root tile here.=20
+>=20
+> [2] https://patchwork.freedesktop.org/series/149503/
 
-Thanks for the report. IIUC xe->info.skip_pcode is set for IS_SRIOV_VF(xe)
-cases and we don't register hwmon interface in that case.
+OK, Yes I think such a helper is part of later patches in the
+multidevice series not posted yet pending madvise.
 
-Raag
+In any case we probably need to associate a dpagemap with a vram region
+and then figure out what to use for migration.
+
+>=20
+> > +	struct xe_device *xe =3D tile_to_xe(tile);
+> > +	struct device *dev =3D xe->drm.dev;
+> > =C2=A0	struct xe_vram_region *vr =3D tile_to_vr(tile);
+> > =C2=A0	struct drm_buddy_block *block;
+> > =C2=A0	struct list_head *blocks;
+> > =C2=A0	struct xe_bo *bo;
+> > -	ktime_t end =3D 0;
+> > -	int err;
+> > -
+> > -	if (!range->base.flags.migrate_devmem)
+> > -		return -EINVAL;
+> > +	ktime_t time_end =3D 0;
+> > +	int err, idx;
+> > =C2=A0
+> > -	range_debug(range, "ALLOCATE VRAM");
+> > +	if (!drm_dev_enter(&xe->drm, &idx))
+> > +		return -ENODEV;
+> > =C2=A0
+> > -	if (!mmget_not_zero(mm))
+> > -		return -EFAULT;
+> > -	mmap_read_lock(mm);
+> > +	xe_pm_runtime_get(xe);
+>=20
+> A forgien device might not be awake so is that why you are using
+> xe_pm_runtime_get rather than xe_pm_runtime_get_noresume?
+
+Yes exactly.
+
+>  We only have
+> the MMAP lock here so assuming that is safe with our runtime PM flow.
+
+It should. We use the same in the CPU fault handle.
+
+>=20
+> > =C2=A0
+> > -retry:
+> > -	bo =3D xe_bo_create_locked(tile_to_xe(tile), NULL, NULL,
+> > -				 xe_svm_range_size(range),
+> > -				 ttm_bo_type_device,
+> > + retry:
+> > +	bo =3D xe_bo_create_locked(tile_to_xe(tile), NULL, NULL, end
+> > - start,
+> > +				 ttm_bo_type_kernel,
+> > =C2=A0				 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+> > =C2=A0				 XE_BO_FLAG_CPU_ADDR_MIRROR);
+> > =C2=A0	if (IS_ERR(bo)) {
+> > =C2=A0		err =3D PTR_ERR(bo);
+> > -		if (xe_vm_validate_should_retry(NULL, err, &end))
+> > +		if (xe_vm_validate_should_retry(NULL, err,
+> > &time_end))
+> > =C2=A0			goto retry;
+> > -		goto unlock;
+> > +		goto out_pm_put;
+> > =C2=A0	}
+> > =C2=A0
+> > -	drm_pagemap_devmem_init(&bo->devmem_allocation,
+> > -				vm->xe->drm.dev, mm,
+> > +	drm_pagemap_devmem_init(&bo->devmem_allocation, dev, mm,
+> > =C2=A0				&dpagemap_devmem_ops,
+> > =C2=A0				&tile->mem.vram.dpagemap,
+> > -				xe_svm_range_size(range));
+> > +				end - start);
+> > =C2=A0
+> > =C2=A0	blocks =3D &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)-
+> > >blocks;
+> > =C2=A0	list_for_each_entry(block, blocks, link)
+> > =C2=A0		block->private =3D vr;
+> > =C2=A0
+> > =C2=A0	xe_bo_get(bo);
+> > -	err =3D drm_pagemap_migrate_to_devmem(&bo-
+> > >devmem_allocation,
+> > -					=C2=A0=C2=A0=C2=A0 mm,
+> > -					=C2=A0=C2=A0=C2=A0
+> > xe_svm_range_start(range),
+> > -					=C2=A0=C2=A0=C2=A0
+> > xe_svm_range_end(range),
+> > -					=C2=A0=C2=A0=C2=A0 ctx->timeslice_ms,
+> > -					=C2=A0=C2=A0=C2=A0 xe_svm_devm_owner(vm-
+> > >xe));
+> > +
+> > +	/* Ensure the device has a pm ref while there are device
+> > pages active. */
+> > +	xe_pm_runtime_get_noresume(xe);
+> > +	err =3D drm_pagemap_migrate_to_devmem(&bo-
+> > >devmem_allocation, mm,
+> > +					=C2=A0=C2=A0=C2=A0 start, end,
+> > timeslice_ms,
+> > +					=C2=A0=C2=A0=C2=A0
+> > xe_svm_devm_owner(xe));
+> > =C2=A0	if (err)
+> > =C2=A0		xe_svm_devmem_release(&bo->devmem_allocation);
+> > =C2=A0
+> > =C2=A0	xe_bo_unlock(bo);
+> > =C2=A0	xe_bo_put(bo);
+> > =C2=A0
+> > -unlock:
+> > -	mmap_read_unlock(mm);
+> > -	mmput(mm);
+> > +out_pm_put:
+> > +	xe_pm_runtime_put(xe);
+> > +	drm_dev_exit(idx);
+> > =C2=A0
+> > =C2=A0	return err;
+> > =C2=A0}
+> > @@ -898,7 +891,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> > struct xe_vma *vma,
+> > =C2=A0
+> > =C2=A0	if (--migrate_try_count >=3D 0 &&
+> > =C2=A0	=C2=A0=C2=A0=C2=A0 xe_svm_range_needs_migrate_to_vram(range, vma=
+,
+> > IS_DGFX(vm->xe))) {
+> > -		err =3D xe_svm_alloc_vram(vm, tile, range, &ctx);
+> > +		err =3D xe_svm_alloc_vram(tile, range, &ctx);
+> > =C2=A0		ctx.timeslice_ms <<=3D 1;	/* Double
+> > timeslice if we have to retry */
+> > =C2=A0		if (err) {
+> > =C2=A0			if (migrate_try_count || !ctx.devmem_only)
+> > {
+> > @@ -1054,6 +1047,30 @@ int xe_svm_range_get_pages(struct xe_vm *vm,
+> > struct xe_svm_range *range,
+> > =C2=A0
+> > =C2=A0#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+> > =C2=A0
+> > +/**
+> > + * xe_svm_alloc_vram()- Allocate device memory pages for range,
+> > + * migrating existing data.
+> > + * @vm: The VM.
+> > + * @tile: tile to allocate vram from
+> > + * @range: SVM range
+> > + * @ctx: DRM GPU SVM context
+> > + *
+> > + * Return: 0 on success, error code on failure.
+> > + */
+> > +int xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range
+> > *range,
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct drm_gpusvm_ctx *ctx)
+> > +{
+> > +	struct drm_pagemap *dpagemap;
+> > +
+> > +	range_debug(range, "ALLOCATE VRAM");
+> > +
+>=20
+> 	if (!range->base.flags.migrate_devmem)
+> 		return -EINVAL;
+>=20
+> Or I guess an assert would work too as caller should have check this
+> field.
+
+Sure. Will fix.
+/Thomas
+
+
+>=20
+> Matt
+>=20
+> > +	dpagemap =3D xe_tile_local_pagemap(tile);
+> > +	return drm_pagemap_populate_mm(dpagemap,
+> > xe_svm_range_start(range),
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_svm_range_end(range),
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 range->base.gpusvm->mm,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->timeslice_ms);
+> > +}
+> > +
+> > =C2=A0static struct drm_pagemap_device_addr
+> > =C2=A0xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
+> > =C2=A0			=C2=A0 struct device *dev,
+> > @@ -1078,6 +1095,7 @@ xe_drm_pagemap_device_map(struct drm_pagemap
+> > *dpagemap,
+> > =C2=A0
+> > =C2=A0static const struct drm_pagemap_ops xe_drm_pagemap_ops =3D {
+> > =C2=A0	.device_map =3D xe_drm_pagemap_device_map,
+> > +	.populate_mm =3D xe_drm_pagemap_populate_mm,
+> > =C2=A0};
+> > =C2=A0
+> > =C2=A0/**
+> > @@ -1130,7 +1148,7 @@ int xe_devm_add(struct xe_tile *tile, struct
+> > xe_vram_region *vr)
+> > =C2=A0	return 0;
+> > =C2=A0}
+> > =C2=A0#else
+> > -int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+> > +int xe_svm_alloc_vram(struct xe_tile *tile,
+> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range,
+> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct drm_gpusvm_ctx *ctx=
+)
+> > =C2=A0{
+> > diff --git a/drivers/gpu/drm/xe/xe_svm.h
+> > b/drivers/gpu/drm/xe/xe_svm.h
+> > index 19ce4f2754a7..da9a69ea0bb1 100644
+> > --- a/drivers/gpu/drm/xe/xe_svm.h
+> > +++ b/drivers/gpu/drm/xe/xe_svm.h
+> > @@ -70,8 +70,7 @@ int xe_svm_bo_evict(struct xe_bo *bo);
+> > =C2=A0
+> > =C2=A0void xe_svm_range_debug(struct xe_svm_range *range, const char
+> > *operation);
+> > =C2=A0
+> > -int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+> > -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range,
+> > +int xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range
+> > *range,
+> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct drm_gpusvm_ctx *ctx=
+);
+> > =C2=A0
+> > =C2=A0struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm=
+,
+> > u64 addr,
+> > @@ -237,10 +236,9 @@ void xe_svm_range_debug(struct xe_svm_range
+> > *range, const char *operation)
+> > =C2=A0{
+> > =C2=A0}
+> > =C2=A0
+> > -static inline
+> > -int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+> > -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range,
+> > -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct drm_gpusvm_ctx *ctx)
+> > +static inline int
+> > +xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range
+> > *range,
+> > +		=C2=A0 const struct drm_gpusvm_ctx *ctx)
+> > =C2=A0{
+> > =C2=A0	return -EOPNOTSUPP;
+> > =C2=A0}
+> > diff --git a/drivers/gpu/drm/xe/xe_tile.h
+> > b/drivers/gpu/drm/xe/xe_tile.h
+> > index eb939316d55b..066a3d0cea79 100644
+> > --- a/drivers/gpu/drm/xe/xe_tile.h
+> > +++ b/drivers/gpu/drm/xe/xe_tile.h
+> > @@ -16,4 +16,15 @@ int xe_tile_init(struct xe_tile *tile);
+> > =C2=A0
+> > =C2=A0void xe_tile_migrate_wait(struct xe_tile *tile);
+> > =C2=A0
+> > +#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+> > +static inline struct drm_pagemap *xe_tile_local_pagemap(struct
+> > xe_tile *tile)
+> > +{
+> > +	return &tile->mem.vram.dpagemap;
+> > +}
+> > +#else
+> > +static inline struct drm_pagemap *xe_tile_local_pagemap(struct
+> > xe_tile *tile)
+> > +{
+> > +	return NULL;
+> > +}
+> > +#endif
+> > =C2=A0#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c
+> > b/drivers/gpu/drm/xe/xe_vm.c
+> > index 7140d8856bad..def493acb4d7 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -2911,7 +2911,7 @@ static int prefetch_ranges(struct xe_vm *vm,
+> > struct xe_vma_op *op)
+> > =C2=A0
+> > =C2=A0		if (xe_svm_range_needs_migrate_to_vram(svm_range,
+> > vma, region)) {
+> > =C2=A0			tile =3D &vm->xe-
+> > >tiles[region_to_mem_type[region] - XE_PL_VRAM0];
+> > -			err =3D xe_svm_alloc_vram(vm, tile,
+> > svm_range, &ctx);
+> > +			err =3D xe_svm_alloc_vram(tile, svm_range,
+> > &ctx);
+> > =C2=A0			if (err) {
+> > =C2=A0				drm_dbg(&vm->xe->drm, "VRAM
+> > allocation failed, retry from userspace, asid=3D%u, gpusvm=3D%p,
+> > errno=3D%pe\n",
+> > =C2=A0					vm->usm.asid, &vm-
+> > >svm.gpusvm, ERR_PTR(err));
+> > --=20
+> > 2.49.0
+> >=20
+
