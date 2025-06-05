@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B83D4C61DB8
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 15:30:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FA28C5AE59
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 15:30:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DEA210E954;
-	Thu,  5 Jun 2025 15:30:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1844410E944;
+	Thu,  5 Jun 2025 15:30:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXyNbaNG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MWyF8HRA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3087710E92F
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 15:30:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99D8C10E8AB
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 15:30:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749137455; x=1780673455;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5Ieeg18kHtFnJbhd4VZwZLAbdUTjwz29RwVAXSbZtP0=;
- b=kXyNbaNGczHHd4u/cJI/WRGpTIHXHhPhotndJClXNinp79P9a7QLlVnx
- 9rdjSqwf5/ZCPq2ulvnQNuGC6zllNz8tAC7a2ht8PuD+IwxpX4dvsmBoB
- JbhQ56opn179K3fQg6RaI4WXrTHhpCs9+8hfSo9pZVbCyQRBkUf2bBj4e
- qepFZk1z60KIg5U0cuCQX+TSmTvlGJmeO1A2rjKGERsJXGwI9onK4BC4J
- ZDMme1Foj0yduCrk09RE/jROSswILq9uY1Q3xul/G94Sk1bhLSIcelRHm
- fqJZimlKBst/ZbCLZlAhA9/1OJYMFa3Jg0Po/OZzyccBPwZngXwT10jg8 Q==;
-X-CSE-ConnectionGUID: I4x46yxOTkqi22bW+LO2bQ==
-X-CSE-MsgGUID: +5BAOQWETcKn4BJmSb1FNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="61529494"
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="61529494"
+ t=1749137452; x=1780673452;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=h0vXpwom4JIMJxv2Nx+eapXUwKV2D84/xAzNmXscLak=;
+ b=MWyF8HRAkhv4fj50niKsSkdOE9qBKMz3y0ixWNqRtXvEtRKnArAsyBDZ
+ dyNEN52jp9dvvCyLcXW7e3OANuRqDrp1Dxnf0uMI0aL6kKbyozW3yy3l6
+ u9AO0TZoQs5YKQcrSeL/m/nH4iVWypd549ZifLIBZQ2Io1wNxsPXgmTp7
+ c39j2nbtgW9FsW/Igw9VanTtBCawXJwqFHTwPVRKxYkmJXUFqU271dWm5
+ Q3tVJ8cZLM+n1R2q+sDiXfqQCdbtec5r6K075Rv4r+ZDV4rxlPFTawbYR
+ I3AMas3qU9Dr9hdXRku3sTPsuiN1jmDX3WHcqzvbAPn6syohH5VqOghWP g==;
+X-CSE-ConnectionGUID: lY9QG6TNRrGXlBWIcJdcrw==
+X-CSE-MsgGUID: SaxFYAwhSr+cTlfiKanViQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="61529482"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="61529482"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 08:30:52 -0700
-X-CSE-ConnectionGUID: v3Bhkg6WTVKadvDucPZ9IA==
-X-CSE-MsgGUID: +AdexAe1RNu6XjgKwsoBdw==
+ 05 Jun 2025 08:30:51 -0700
+X-CSE-ConnectionGUID: ZSR7nphJR5GSQGjslzOq1A==
+X-CSE-MsgGUID: qcTpiGnXQm+EZ3rGYsiMHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="176502819"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="176502788"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Jun 2025 08:30:52 -0700
@@ -45,13 +45,12 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: francois.dugast@intel.com, thomas.hellstrom@linux.intel.com,
  himal.prasad.ghimiray@intel.com
-Subject: [PATCH 10/15] drm/xe: Add ULLS migration job support to ring ops
-Date: Thu,  5 Jun 2025 08:32:18 -0700
-Message-Id: <20250605153223.2789122-11-matthew.brost@intel.com>
+Subject: [PATCH 00/15] CPU binds and ULLS on migration queue 
+Date: Thu,  5 Jun 2025 08:32:08 -0700
+Message-Id: <20250605153223.2789122-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250605153223.2789122-1-matthew.brost@intel.com>
-References: <20250605153223.2789122-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,77 +66,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add preamble and postamble for ULLS migrations jobs. Preamble clears
-current semaphore for reuse. Postamble waits on next semaphore which is
-set upon next job submission. The last ULLS migration job skips BB
-submission and postamble (clear current semaphore, write seqno, exit
-ULLS).
+We now have data to back up the need for CPU binds and ULLS on the
+migration queue, as generated from [1].
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_ring_ops.c | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+On BMG, it is shown that when the GPU is consistently processing faults,
+copy jobs run approximately 40–65µs faster (depending on the test case)
+with ULLS compared to traditional GuC submission with SLPC enabled on
+the migration queue (not upstream, but last patch in series can enable
+this). Without SLPC enabled (upstream), ULLS is approximately 100–200µs
+faster. Startup from a cold GPU shows an even larger speedup. Given the
+critical nature of fault performance, ULLS appears to be a worthwhile
+feature.
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index bc1689db4cd7..8f63c97b749d 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -394,11 +394,37 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
- }
- 
-+static int emit_ulls_preamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
-+{
-+	u32 addr = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno);
-+
-+	return emit_store_imm_ggtt(addr, 0, dw, i);
-+}
-+
-+static int emit_ulls_postamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
-+{
-+	dw[i++] = MI_SEMAPHORE_WAIT |
-+		MI_SEMAPHORE_GLOBAL_GTT |
-+		MI_SEMAPHORE_POLL |
-+		MI_SEMAPHORE_SAD_EQ_SDD;
-+	dw[i++] = 1;
-+	dw[i++] = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno + 1);
-+	dw[i++] = 0;
-+
-+	return i;
-+}
-+
- static void emit_migration_job_gen12(struct xe_sched_job *job,
- 				     struct xe_lrc *lrc, u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 
-+	if (job->is_ulls) {
-+		i = emit_ulls_preamble(lrc, dw, i, seqno);
-+		if (job->is_ulls_last)
-+			goto seqno_write;
-+	}
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
-@@ -417,6 +443,7 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
- 
-+seqno_write:
- 	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
- 		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
- 	dw[i++] = xe_lrc_seqno_ggtt_addr(lrc) | MI_FLUSH_DW_USE_GTT;
-@@ -425,6 +452,9 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	i = emit_user_interrupt(dw, i);
- 
-+	if (job->is_ulls && !job->is_ulls_last)
-+		i = emit_ulls_postamble(lrc, dw, i, seqno);
-+
- 	xe_gt_assert(job->q->gt, i <= MAX_JOB_SIZE_DW);
- 
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+ULLS will consume more power (not yet measured) due to a continuously
+running batch on the paging engine. However, compute UMDs already do
+this on engines exposed to users. Again, this seems like a worthwhile
+tradeoff.
+
+CPU binds are required for ULLS to function, as the migration queue
+needs exclusive access to the paging hardware engine. Thus, CPU binds
+are included here. Beyond being a requirement for ULLS, CPU binds
+should also reduce VM bind latency and decouple kernel binds from
+unrelated copy/clear jobs—this is especially beneficial when faults are
+serviced in parallel. Average bind time in a parallel faulting test case
+was reduced by approximately 15µs-in the worst case, 2M copy time (~140µs)
+* (number of page fault threads - 1) latency would be added to single
+fault.
+
+This series could be merged in phases: first CPU binds, then ULLS on the
+migration execution queue.
+
+Last couple of patches in series add modparams for quick performance /
+power experiments.
+
+Matt
+
+[1] https://patchwork.freedesktop.org/series/149811/
+
+Matthew Brost (15):
+  drm/xe: Drop struct xe_migrate_pt_update argument from populate /
+    clear vfuns
+  drm/xe: Add __xe_migrate_update_pgtables_cpu helper
+  drm/xe: CPU binds for jobs
+  drm/xe: Remove unused arguments from xe_migrate_pt_update_ops
+  drm/xe: Don't use migrate exec queue for page fault binds
+  drm/xe: Add xe_hw_engine_write_ring_tail
+  drm/xe: Add ULLS support to LRC
+  drm/xe: Add ULLS migration job support to migration layer
+  drm/xe: Add MI_SEMAPHORE_WAIT instruction defs
+  drm/xe: Add ULLS migration job support to ring ops
+  drm/xe: Add ULLS migration job support to GuC submission
+  drm/xe: Enable ULLS migration jobs when opening LR VM
+  drm/xe: Set slpc freq to max on ULLS jobs
+  drm/xe: Add modparam to enable / disable ULLS on migrate queue
+  drm/xe: Add modparam to enable / disable high SLPC on migrate queue
+
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+ drivers/gpu/drm/xe/xe_bo.c                    |   7 +-
+ drivers/gpu/drm/xe/xe_bo.h                    |   9 +-
+ drivers/gpu/drm/xe/xe_bo_types.h              |   2 -
+ drivers/gpu/drm/xe/xe_debugfs.c               |   3 +
+ drivers/gpu/drm/xe/xe_device.c                |   3 +
+ drivers/gpu/drm/xe/xe_device_types.h          |  10 +
+ drivers/gpu/drm/xe/xe_drm_client.c            |   3 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c            |  86 +++-
+ drivers/gpu/drm/xe/xe_hw_engine.c             |  10 +
+ drivers/gpu/drm/xe/xe_hw_engine.h             |   1 +
+ drivers/gpu/drm/xe/xe_lrc.c                   |  51 +-
+ drivers/gpu/drm/xe/xe_lrc.h                   |   3 +
+ drivers/gpu/drm/xe/xe_lrc_types.h             |   2 +
+ drivers/gpu/drm/xe/xe_migrate.c               | 442 ++++++++----------
+ drivers/gpu/drm/xe/xe_migrate.h               |  27 +-
+ drivers/gpu/drm/xe/xe_module.c                |   7 +
+ drivers/gpu/drm/xe/xe_module.h                |   2 +
+ drivers/gpu/drm/xe/xe_pt.c                    | 221 ++++++---
+ drivers/gpu/drm/xe/xe_pt.h                    |   5 +-
+ drivers/gpu/drm/xe/xe_pt_types.h              |  29 +-
+ drivers/gpu/drm/xe/xe_ring_ops.c              |  30 ++
+ drivers/gpu/drm/xe/xe_sched_job.c             |  78 ++--
+ drivers/gpu/drm/xe/xe_sched_job_types.h       |  37 +-
+ drivers/gpu/drm/xe/xe_vm.c                    |  73 +--
+ 25 files changed, 730 insertions(+), 417 deletions(-)
+
 -- 
 2.34.1
 
