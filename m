@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B511EC5B543
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 18:45:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98462C5AE59
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 18:45:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75D9910E8F2;
-	Thu,  5 Jun 2025 18:45:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59AA910E314;
+	Thu,  5 Jun 2025 18:45:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ki5PgncY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e7sFa5s1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F37210E89F
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 18:45:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2974910E314
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 18:45:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749149126; x=1780685126;
+ t=1749149129; x=1780685129;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AfLD4UZeGCsNhY+2Apa7Y073l276eY/6AvTiQqohL88=;
- b=Ki5PgncYWy4MNop0zFmU+B2a4sxzJFAwnvhyk/OAv4lo0zZ9vr2pRTDA
- 09B+nyHxdJ4w3RaGJqETBaLTgfgRv5Ha5TXVmxAbnYsGTF8+bL3IrDAW3
- +Z9h4AsQWmltxbdWCMsEW868PtkILXdlZaS8rjlw6pThpNRaj8SEHLJkG
- +M4eyqXu8KCnCiLDGwpu5tO4Hb1wqVAiQCvEJxw8XgC5NLTHK+SRq1Tfo
- 1TPq9QIu8/ce9CNR1M97o+EPlG9jsI5TF507i8sXnuCfNZ40UGbm03JLv
- D7QWn6oEGbNN73Q63lL5U+a3rOI5Jcz3K4tTcew71wB5eVPim41yhJMAa Q==;
-X-CSE-ConnectionGUID: 8p9HxGooRomzxVlo/uhQKw==
-X-CSE-MsgGUID: JaGk1yetTkum1sGmDthGrw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="38916628"
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="38916628"
+ bh=FJibVV89j3IoLIINMMRaA7ZYqa/0m/aVsDLVVuSIIfc=;
+ b=e7sFa5s1eAq+qZma1x/u8Yh3QFHzPmOj4NRKzW3bWx/FOtkk40Pes8bR
+ TI3MCqL9pLaEhJFrCnICwT+iN0dP1pqGRwtkD65BzKZl7wOuMSFq7GncH
+ B6SQI/eQY+zrUixBRZNAk8QlRhkkJkceZ8FE79yb71P/h+HmhM7tH2gT3
+ DGvoKswaGOAfQCt8im2UZgWpWFan+pouL8U6d4YBOyfJY1115KNuSkhb5
+ nDILGsRUs6OisMzqpVFi4mIM+lG265js9VtXIkfCnhVsKvPbeRFcBQrZV
+ M6GX2Et5J8/2Ne6/FC58fAwd4QfNKsPlnnJIrgixK/C9eSsgy56HNTDtx g==;
+X-CSE-ConnectionGUID: 8VuP5vk3QFKf/MZ/JCVwTg==
+X-CSE-MsgGUID: lIpb9CflSq2nYKXQPJvJ8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="38916634"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="38916634"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 11:45:26 -0700
-X-CSE-ConnectionGUID: 9Y2Coh5GSmWJE23dp2c/BA==
-X-CSE-MsgGUID: KyjG5RfBR5ydTnFXqZqXhg==
+ 05 Jun 2025 11:45:29 -0700
+X-CSE-ConnectionGUID: qg8H0BShSeqRWp9BIpDjFQ==
+X-CSE-MsgGUID: QCShn9jaTISXJHm3jncg1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="182782472"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="182782485"
 Received: from mjruhl-desk.amr.corp.intel.com (HELO mjruhl-desk.intel.com)
  ([10.124.222.42])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 11:45:24 -0700
+ 05 Jun 2025 11:45:27 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hdegoede@redhat.com, ilpo.jarvinen@linux.intel.com,
@@ -49,9 +49,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
  david.e.box@linux.intel.com
 Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: [PATCH v3 04/11] platform/x86/intel/pmt: white space cleanup
-Date: Thu,  5 Jun 2025 14:44:37 -0400
-Message-ID: <20250605184444.515556-5-michael.j.ruhl@intel.com>
+Subject: [PATCH v3 05/11] platform/x86/intel/pmt: use guard(mutex)
+Date: Thu,  5 Jun 2025 14:44:38 -0400
+Message-ID: <20250605184444.515556-6-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250605184444.515556-1-michael.j.ruhl@intel.com>
 References: <20250605184444.515556-1-michael.j.ruhl@intel.com>
@@ -72,36 +72,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Noticed two white space issues; cleaned them.
+Update the mutex paths to use the new guard() mechanism.
+
+With the removal of goto, do some minor cleanup of the current logic
+path.
 
 Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/platform/x86/intel/pmt/crashlog.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/platform/x86/intel/pmt/crashlog.c | 32 +++++++++++------------
+ 1 file changed, 15 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-index 74ce199e59f0..e997fc48b9ce 100644
+index e997fc48b9ce..94858bfb52f8 100644
 --- a/drivers/platform/x86/intel/pmt/crashlog.c
 +++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -143,7 +143,7 @@ enable_show(struct device *dev, struct device_attribute *attr, char *buf)
+@@ -155,9 +155,9 @@ enable_store(struct device *dev, struct device_attribute *attr,
+ 	if (result)
+ 		return result;
  
- static ssize_t
- enable_store(struct device *dev, struct device_attribute *attr,
--	    const char *buf, size_t count)
-+	     const char *buf, size_t count)
- {
- 	struct crashlog_entry *entry;
- 	bool enabled;
-@@ -177,7 +177,7 @@ trigger_show(struct device *dev, struct device_attribute *attr, char *buf)
+-	mutex_lock(&entry->control_mutex);
++	guard(mutex)(&entry->control_mutex);
++
+ 	pmt_crashlog_set_disable(&entry->entry, !enabled);
+-	mutex_unlock(&entry->control_mutex);
  
- static ssize_t
- trigger_store(struct device *dev, struct device_attribute *attr,
--	    const char *buf, size_t count)
-+	      const char *buf, size_t count)
- {
- 	struct crashlog_entry *entry;
- 	bool trigger;
+ 	return count;
+ }
+@@ -189,26 +189,24 @@ trigger_store(struct device *dev, struct device_attribute *attr,
+ 	if (result)
+ 		return result;
+ 
+-	mutex_lock(&entry->control_mutex);
++	guard(mutex)(&entry->control_mutex);
+ 
+ 	if (!trigger) {
+ 		pmt_crashlog_set_clear(&entry->entry);
+-	} else if (pmt_crashlog_complete(&entry->entry)) {
+-		/* we cannot trigger a new crash if one is still pending */
+-		result = -EEXIST;
+-		goto err;
+-	} else if (pmt_crashlog_disabled(&entry->entry)) {
+-		/* if device is currently disabled, return busy */
+-		result = -EBUSY;
+-		goto err;
+-	} else {
+-		pmt_crashlog_set_execute(&entry->entry);
++		return count;
+ 	}
+ 
+-	result = count;
+-err:
+-	mutex_unlock(&entry->control_mutex);
+-	return result;
++	/* we cannot trigger a new crash if one is still pending */
++	if (pmt_crashlog_complete(&entry->entry))
++		return -EEXIST;
++
++	/* if device is currently disabled, return busy */
++	if (pmt_crashlog_disabled(&entry->entry))
++		return -EBUSY;
++
++	pmt_crashlog_set_execute(&entry->entry);
++
++	return count;
+ }
+ static DEVICE_ATTR_RW(trigger);
+ 
 -- 
 2.49.0
 
