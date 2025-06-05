@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D838FC5AE59
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 10:31:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D999C5AE59
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 10:36:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 942A210EA06;
-	Thu,  5 Jun 2025 10:31:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5A1410E860;
+	Thu,  5 Jun 2025 10:36:41 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5D710E9ED;
- Thu,  5 Jun 2025 10:31:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C54A610E860;
+ Thu,  5 Jun 2025 10:36:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_Remove_IOS?=
- =?utf-8?q?F=5FMBI_select=2E?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/dp=3A_Limit_the_?=
+ =?utf-8?q?DPCD_probe_quirk_to_the_affected_monitor_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
+To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Jun 2025 10:31:52 -0000
-Message-ID: <174911951204.51759.2080703216406889117@1538d3639d33>
+Date: Thu, 05 Jun 2025 10:36:40 -0000
+Message-ID: <174911980080.51760.5468603581574832409@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250605074644.71036-1-dev@lankhorst.se>
-In-Reply-To: <20250605074644.71036-1-dev@lankhorst.se>
+References: <20250605082850.65136-1-imre.deak@intel.com>
+In-Reply-To: <20250605082850.65136-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,22 +42,19 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Remove IOSF_MBI select.
-URL   : https://patchwork.freedesktop.org/series/149868/
-State : failure
+Series: drm/dp: Limit the DPCD probe quirk to the affected monitor (rev4)
+URL   : https://patchwork.freedesktop.org/series/149773/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 8a08b8454eec drm-tip: 2025y-06m-05d-06h-59m-45s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/Kconfig:30
-error: drivers/gpu/drm/xe/Kconfig: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe: Remove IOSF_MBI select.
-Patch failed at 0001 drm/xe: Remove IOSF_MBI select.
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/dp: Change AUX DPCD probe address from DPCD_REV to LANE0_1_STATUS
+Applying: drm/edid: Define the quirks in an enum list
+Applying: drm/edid: Add support for quirks visible to DRM core and drivers
+Applying: drm/dp: Add an EDID quirk for the DPCD register access probe
+Applying: drm/i915/dp: Disable the AUX DPCD probe quirk if it's not required
 
 
