@@ -4,25 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12011C5AE59
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 13:06:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BD59C5B543
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 13:06:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDC4610E9AF;
-	Thu,  5 Jun 2025 13:06:05 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D5FE10E9B5
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 13:06:03 +0000 (UTC)
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH] drm/xe: Remove IOSF_MBI select.
-Date: Thu,  5 Jun 2025 15:05:51 +0200
-Message-ID: <20250605130551.28383-1-dev@lankhorst.se>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250605074644.71036-1-dev@lankhorst.se>
-References: <20250605074644.71036-1-dev@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0683910E9B1;
+	Thu,  5 Jun 2025 13:06:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L2pI3C2I";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21B6210E998;
+ Thu,  5 Jun 2025 13:06:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749128794; x=1780664794;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=cfYbvRU+LUNssok2ACE1jD36mdawH+Pv04X8EAQrdVg=;
+ b=L2pI3C2IYCDG07Cg7lHvjS6llWaECi2nZE9SZMJsZYB2RAuN0m52lbnf
+ 0qJPTNp6A6IGXHrQUMj2nssiJbNox/wZv4lg+bCwbD+EUiVzI9gTKNm2x
+ sHc6iHgP/t7oNykr8YkgZ5TK1WsS9e9hOtUhnMlBFr+EUUhtMddi/Qe4a
+ DEnviDIk1SDpyyFp4YxbzlhMK2Q+mvILjiSOvutSyuLioGbvd0JEPiMQp
+ rB3oeBnSMrmG8HpKCJQarg+EMulX1JSYbL3fwBPwvscEF/xvsbjpq2Qxd
+ i5WXrDhDaXABrsF+IMrVahyjTd/zIodfx177x161VlyMfiIAcrZq8xy3p Q==;
+X-CSE-ConnectionGUID: r7CblO3vTRCFoZ41K9mUQg==
+X-CSE-MsgGUID: fl0uKWBdSsGI5VDAIujnIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="51391654"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="51391654"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2025 06:06:34 -0700
+X-CSE-ConnectionGUID: p8pSwFgtRkyYnXdXU+BOTg==
+X-CSE-MsgGUID: rXZZk8mATVi4ndUZfEHRXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="150659448"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.67])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2025 06:06:31 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 2/5] drm/edid: Define the quirks in an enum list
+In-Reply-To: <20250605082850.65136-3-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250605082850.65136-1-imre.deak@intel.com>
+ <20250605082850.65136-3-imre.deak@intel.com>
+Date: Thu, 05 Jun 2025 16:06:30 +0300
+Message-ID: <a2c150380f827d4a4a6ebb6b9a71d0280293d7dd@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,27 +67,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-IOSF_MBI was only useful for some gen8 platforms, which were never
-supported by Xe. Presumably needed for display at one point, but display
-is fixed to put stubs in compat-i915-headers/vlv_sideban.h.
+On Thu, 05 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
+> +static bool drm_edid_has_internal_quirk(struct drm_connector *connector,
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/Kconfig | 1 -
- 1 file changed, 1 deletion(-)
+Nitpick, this could've been const. No big deal.
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 98b46c5342787..93de829621720 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -31,7 +31,6 @@ config DRM_XE
- 	select ACPI_VIDEO if X86 && ACPI
- 	select ACPI_WMI if X86 && ACPI
- 	select SYNC_FILE
--	select IOSF_MBI
- 	select CRC32
- 	select SND_HDA_I915 if SND_HDA_CORE
- 	select CEC_CORE if CEC_NOTIFIER
+> +					enum drm_edid_internal_quirk quirk)
+> +{
+> +	return connector->display_info.quirks & BIT(quirk);
+> +}
+> +
+
 -- 
-2.45.2
-
+Jani Nikula, Intel
