@@ -4,64 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24191C5B555
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 19:07:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C6B8C5AE59
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 19:08:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9FCC10E327;
-	Thu,  5 Jun 2025 19:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58C7D10E045;
+	Thu,  5 Jun 2025 19:08:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lBuaDEEq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WgYez6/w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1884410E2DC;
- Thu,  5 Jun 2025 19:07:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E859910E045
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 19:08:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749150449; x=1780686449;
- h=date:from:to:cc:subject:message-id:mime-version:
+ t=1749150488; x=1780686488;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=C/XhCzNvGRMw8779oAUL0VkITURez1r6nZ1DhVNYE6I=;
- b=lBuaDEEq6bywA0xAgTzTWZzn3Dpu38U/cZGN0lLYRDN5FwRWp7JeqDMO
- ZKxjDyZSATLFLPJy+ElNsPTt24tm/Pg2MKbfzHWD+RZxfcXdbMFI+QHqb
- 0tePRIq81KToSOneDJoJKUOEBkCupx5+cZ4RJxl0uoz+t3el2UlJLGd2O
- g8kuoW8r9T2e92I78URmvd1/eYE/i3UiE/VHvBBfHZ68WSGvOd1MwJP2b
- mvgbdo9NripLTvoWonPS/BlDG1tAwezQtI3s5jK1BewGacB8AY7g3vJSS
- MkOt3YtjiLndansFIjRpJAGmWRm5jUCYhCxrND4wrwtIl6E3D4WGhKryq g==;
-X-CSE-ConnectionGUID: kmPtGtd/QBGO5CVUpNpDBg==
-X-CSE-MsgGUID: HggPSvfHSWWWdlIwEYJPCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="38919376"
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="38919376"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 12:07:28 -0700
-X-CSE-ConnectionGUID: GrC4chEyQ3qeeacC8p+QEg==
-X-CSE-MsgGUID: bpy3oorHTruEV22QO8mP9w==
+ bh=KcC6dtKNd/1yZ00Wqs2NJdE1KYCF8YIGmeYtAtOSiEI=;
+ b=WgYez6/wX8fZ85b6Arca5MPKYVdMwmVeu3lyFT3SfNXtVACJnb9+4Bzf
+ ISHgj46gQk74dwhK7iVN5nF5Ssb7dGHcwOARUtGTv0+Fg+mQl7Ql/9Hoa
+ 6g1Vez3H0jc7g2y6EseoD5kwcA08CxRxi8GYmZRxft2vkJFz8mpSGU0wo
+ iyZimlfLkOi2x3/9FGZ5e9DQPKe4OSdHk0SQTyxwr6v/8IFmrzZK0Ovfr
+ XMqDerfxLv895MhoKkGmj1qf/NHxCoJhADjurnEY26bxdEWLSSf/HDYYt
+ O7BtECMylArfwfTnqTYJXwt9a5Yi3fTe5NqbyPhQxQYzpZST6ugJuAh/S Q==;
+X-CSE-ConnectionGUID: r23KWAXTSLKfbkmtHcnUbw==
+X-CSE-MsgGUID: U5TX9zqCT2SnrqGbIa8kHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="51432754"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="51432754"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2025 12:08:08 -0700
+X-CSE-ConnectionGUID: J0mss/WSRKqtj5xe9VMTYA==
+X-CSE-MsgGUID: SHZ2D3MiSI67lVow109Ltw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="149451753"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO fedora)
- ([10.245.244.59])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 12:07:26 -0700
-Date: Thu, 5 Jun 2025 21:07:15 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next-fixes
-Message-ID: <aEHq44uIAZwfK-mG@fedora>
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="168761530"
+Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
+ by fmviesa002.fm.intel.com with ESMTP; 05 Jun 2025 12:08:07 -0700
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v3 0/3] drm/xe/bmg: Update PCI Id's and Workarounds
+Date: Fri,  6 Jun 2025 00:38:01 +0530
+Message-Id: <20250605190804.1287289-1-dnyaneshwar.bhadane@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,103 +63,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Dave, Simona
-This week's drm-xe-next-fixes pull. Quite a few this week.
+Added new PCI ID's and workaround for xe2hpd/xe2hpg.
 
-One thing to be aware of is a conflict in "Create LRC bo without VM",
-Looks like a commit got pulled into drm-xe-fixes that is not in drm-xe-next-fixes,
-and pulling this branch will likely conflict with that once Linus merges.
+Shekhar Chauhan (3):
+  drm/xe/xe2_hpg: Add PCI IDs for xe2_hpg
+  drm/xe/xe2_hpg: Add set of workarounds
+  drm/xe/xe2_hpg: Define additional Xe2_HPG GMD_ID
 
-Thanks,
-Thomas
+ drivers/gpu/drm/xe/xe_pci.c        |  1 +
+ drivers/gpu/drm/xe/xe_wa.c         | 46 ++++++++++++++++++------------
+ drivers/gpu/drm/xe/xe_wa_oob.rules |  4 +--
+ include/drm/intel/pciids.h         |  7 +++--
+ 4 files changed, 35 insertions(+), 23 deletions(-)
 
-drm-xe-next-fixes-2025-06-05:
-Driver Changes:
-- A couple of vm init fixes (Matt Auld)
-- Hwmon fixes (Karthik)
-- Drop reduntant conversion to bool (Raag)
-- Fix CONFIG_INTEL_VSEC dependency (Arnd)
-- Rework eviction rejection of bound external bos (Thomas)
-- Stop re-submitting signalled jobs (Matt Auld)
-- A couple of pxp fixes (Daniele)
-- Add back a fix that got lost in a merge (Matt Auld)
-- Create LRC bo without VM (Niranjana)
-- Fix for the above fix (Maciej)
+-- 
+2.34.1
 
-The following changes since commit 40493d97b329f8185c0f04dc0ef2b9ffc58e7f3b:
-
-  drm/xe: Add missing documentation of rpa_freq (2025-05-28 17:23:13 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2025-06-05
-
-for you to fetch changes up to 7c7c5cb5b5bf9d8ccc6a51b28687c9e7ff7f1890:
-
-  drm/xe: remove unmatched xe_vm_unlock() from __xe_exec_queue_init() (2025-06-05 18:55:46 +0200)
-
-----------------------------------------------------------------
-Driver Changes:
-- A couple of vm init fixes (Matt Auld)
-- Hwmon fixes (Karthik)
-- Drop reduntant conversion to bool (Raag)
-- Fix CONFIG_INTEL_VSEC dependency (Arnd)
-- Rework eviction rejection of bound external bos (Thomas)
-- Stop re-submitting signalled jobs (Matt Auld)
-- A couple of pxp fixes (Daniele)
-- Add back a fix that got lost in a merge (Matt Auld)
-- Create LRC bo without VM (Niranjana)
-- Fix for the above fix (Maciej)
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/xe/vsec: fix CONFIG_INTEL_VSEC dependency
-
-Daniele Ceraolo Spurio (2):
-      drm/xe/pxp: Use the correct define in the set_property_funcs array
-      drm/xe/pxp: Clarify PXP queue creation behavior if PXP is not ready
-
-Karthik Poosa (2):
-      drm/xe/hwmon: Add support to manage power limits though mailbox
-      drm/xe/hwmon: Move card reactive critical power under channel card
-
-Maciej Patelczyk (1):
-      drm/xe: remove unmatched xe_vm_unlock() from __xe_exec_queue_init()
-
-Matthew Auld (4):
-      drm/xe/vm: move rebind_work init earlier
-      drm/xe/vm: move xe_svm_init() earlier
-      drm/xe/sched: stop re-submitting signalled jobs
-      drm/xe/guc_submit: add back fix
-
-Niranjana Vishwanathapura (1):
-      drm/xe: Create LRC BO without VM
-
-Raag Jadav (1):
-      drm/xe: drop redundant conversion to bool
-
-Thomas Hellström (1):
-      drm/xe: Rework eviction rejection of bound external bos
-
- .../ABI/testing/sysfs-driver-intel-xe-hwmon        |  20 +-
- drivers/gpu/drm/xe/Kconfig                         |   3 +-
- drivers/gpu/drm/xe/regs/xe_mchbar_regs.h           |  10 +-
- drivers/gpu/drm/xe/regs/xe_pcode_regs.h            |   4 -
- drivers/gpu/drm/xe/xe_bo.c                         |  48 ++-
- drivers/gpu/drm/xe/xe_device_sysfs.c               |   2 +-
- drivers/gpu/drm/xe/xe_device_types.h               |   4 +
- drivers/gpu/drm/xe/xe_exec_queue.c                 |  15 +-
- drivers/gpu/drm/xe/xe_gpu_scheduler.h              |  10 +-
- drivers/gpu/drm/xe/xe_guc_submit.c                 |  11 +
- drivers/gpu/drm/xe/xe_hwmon.c                      | 388 +++++++++++++++------
- drivers/gpu/drm/xe/xe_lrc.c                        |  23 +-
- drivers/gpu/drm/xe/xe_pci.c                        |   5 +
- drivers/gpu/drm/xe/xe_pcode.c                      |  11 +
- drivers/gpu/drm/xe/xe_pcode.h                      |   3 +
- drivers/gpu/drm/xe/xe_pcode_api.h                  |   7 +
- drivers/gpu/drm/xe/xe_pxp.c                        |   8 +-
- drivers/gpu/drm/xe/xe_vm.c                         |  27 +-
- drivers/gpu/drm/xe/xe_vm.h                         |  69 ++++
- drivers/gpu/drm/xe/xe_vm_types.h                   |   8 +
- include/uapi/drm/xe_drm.h                          |   5 +
- 21 files changed, 493 insertions(+), 188 deletions(-)
