@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F605C5AE59
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC5CDC5B552
 	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 15:31:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38FFA10E985;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68DF210E98A;
 	Thu,  5 Jun 2025 15:31:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aosZoZzT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GQiqFNie";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D62F210E8A8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFD7010E933
  for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 15:30:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1749137455; x=1780673455;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4xzk8I8R6qtMVvnjf3IxNGbs6LwU4OBxwMmYirIeUYU=;
- b=aosZoZzTD8+0M/5+0Es/7meHVZhlC65o9vo19vHlcwt5O4HXBUSZbPeZ
- 9b93QyWaXc7+dGf2hEsHbrVEPSedhRc1HUBJ/kC5finrj/3GqBlQnnbs6
- QnP5+CIekGxep6/7JVDAm+NXp2m9q369zsp8IDJgjx+70AxYclAEBJraB
- SlHG9cdB4HUms2Ma4AXUdGoF7zrRdRYj+KSlt2wNIn4BIb2OV3HzZhqyR
- Ga4sL6KkCY/zMB5/fKCYYuwP5MI+riOhRej08PNMnbiiLewwvs+3SAXR7
- 671U/FTB2eMU/upO6GLp2sp1o9lPyb6QMaDTx9+25DwGbF6bsh0pRulHF w==;
-X-CSE-ConnectionGUID: bz0kZvmqSc6oG4FkMJUFQQ==
-X-CSE-MsgGUID: e/Z/8lu6Q8qklcHP2pr9DQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="61529488"
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="61529488"
+ bh=lfFsQCS3hzSDV2j+RkEzSz6aaVTVGQcu52Icus2nKFc=;
+ b=GQiqFNie1HMFc7yrIXIprHCYWidnF2rrc91aYNsdT1kZ5THqShfraWW7
+ 27h98G4IPfqWz6YLWOa453K9RuPXgPJBwje1zZr3GFbwE/POSjc0JF/jo
+ 75LOrLKx4oZVVehItbhx0eLwTl+wZxYZ1M//C8N+Y3aeNTe48uu4TUw70
+ bAgjVvRxfGEXI1r2XunBlcNpESBapk4hjcHzvFuzUXJX6Hrog4pXOXFaJ
+ DCbpetajfLC0Sjpl58Zn1nH271Dyib2gHowBpjF4RMKYD3USfcOTuONBg
+ HYS2BoQkR5kUxnLVOPlkPtFpRb5BnoQd5ppmls59V7/5Ox7WQyRXu4/LR Q==;
+X-CSE-ConnectionGUID: lFzPNTstRI6roBqom0ZKCg==
+X-CSE-MsgGUID: 8tBG/wlvQ6Sy0o8MAJ7LyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="61529490"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="61529490"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 08:30:51 -0700
-X-CSE-ConnectionGUID: y6JoaqEfQMeKMeRun8rnSg==
-X-CSE-MsgGUID: KJIfP/yqSR+pUY+HJy/0tw==
+ 05 Jun 2025 08:30:52 -0700
+X-CSE-ConnectionGUID: i2GPAcu6TLe617Bp7KKxRQ==
+X-CSE-MsgGUID: LL5hkrJTQkaFOkT1vVGG3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="176502804"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="176502810"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Jun 2025 08:30:52 -0700
@@ -45,10 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: francois.dugast@intel.com, thomas.hellstrom@linux.intel.com,
  himal.prasad.ghimiray@intel.com
-Subject: [PATCH 05/15] drm/xe: Don't use migrate exec queue for page fault
- binds
-Date: Thu,  5 Jun 2025 08:32:13 -0700
-Message-Id: <20250605153223.2789122-6-matthew.brost@intel.com>
+Subject: [PATCH 07/15] drm/xe: Add ULLS support to LRC
+Date: Thu,  5 Jun 2025 08:32:15 -0700
+Message-Id: <20250605153223.2789122-8-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250605153223.2789122-1-matthew.brost@intel.com>
 References: <20250605153223.2789122-1-matthew.brost@intel.com>
@@ -68,164 +67,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that the CPU is always used for binds even in jobs, CPU bind jobs
-can pass GPU jobs in the same exec queue resulting dma-fences signaling
-out-of-order. Use a dedicated exec queue for binds issued from page
-faults to avoid ordering issues and avoid blocking kernel binds on
-unrelated copies / clears.
+Define memory layout for ULLS semaphores stored in LRC memory. Add
+support functions to return GGTT address and set semaphore based on a
+job's seqno.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 27 +++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_migrate.h |  2 +-
- drivers/gpu/drm/xe/xe_vm.c      | 17 +++++++++++------
- 3 files changed, 33 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.h |  1 +
+ drivers/gpu/drm/xe/xe_lrc.c       | 51 ++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_lrc.h       |  3 ++
+ drivers/gpu/drm/xe/xe_lrc_types.h |  2 ++
+ 4 files changed, 56 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 9b17feb8bae6..6b6dff9d4aaa 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -41,6 +41,8 @@
- struct xe_migrate {
- 	/** @q: Default exec queue used for migration */
- 	struct xe_exec_queue *q;
-+	/** @bind_q: Default exec queue used for binds */
-+	struct xe_exec_queue *bind_q;
- 	/** @tile: Backpointer to the tile this struct xe_migrate belongs to. */
- 	struct xe_tile *tile;
- 	/** @job_mutex: Timeline mutex for @eng. */
-@@ -79,16 +81,16 @@ struct xe_migrate {
- #define MAX_PTE_PER_SDI 0x1FE
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index 6b5f9fa2a594..b93c3eabca06 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -78,5 +78,6 @@ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe);
  
- /**
-- * xe_tile_migrate_exec_queue() - Get this tile's migrate exec queue.
-+ * xe_tile_migrate_bind_exec_queue() - Get this tile's migrate bind exec queue.
-  * @tile: The tile.
-  *
-- * Returns the default migrate exec queue of this tile.
-+ * Returns the default migrate bind exec queue of this tile.
-  *
-- * Return: The default migrate exec queue
-+ * Return: The default migrate bind exec queue
-  */
--struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile)
-+struct xe_exec_queue *xe_tile_migrate_bind_exec_queue(struct xe_tile *tile)
- {
--	return tile->migrate->q;
-+	return tile->migrate->bind_q;
- }
+ void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg, u32 val);
+ u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg);
++void xe_hw_engine_write_ring_tail(struct xe_hw_engine *hwe, u32 val);
  
- static void xe_migrate_fini(void *arg)
-@@ -104,6 +106,8 @@ static void xe_migrate_fini(void *arg)
- 	mutex_destroy(&m->job_mutex);
- 	xe_vm_close_and_put(m->q->vm);
- 	xe_exec_queue_put(m->q);
-+	if (m->bind_q)
-+		xe_exec_queue_put(m->bind_q);
- }
- 
- static u64 xe_migrate_vm_addr(u64 slot, u32 level)
-@@ -410,6 +414,15 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
- 		if (!hwe || !logical_mask)
- 			return ERR_PTR(-EINVAL);
- 
-+		m->bind_q = xe_exec_queue_create(xe, vm, logical_mask, 1, hwe,
-+						 EXEC_QUEUE_FLAG_KERNEL |
-+						 EXEC_QUEUE_FLAG_PERMANENT |
-+						 EXEC_QUEUE_FLAG_HIGH_PRIORITY, 0);
-+		if (IS_ERR(m->bind_q)) {
-+			xe_vm_close_and_put(vm);
-+			return ERR_CAST(m->bind_q);
-+		}
-+
- 		/*
- 		 * XXX: Currently only reserving 1 (likely slow) BCS instance on
- 		 * PVC, may want to revisit if performance is needed.
-@@ -425,6 +438,8 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
- 						  EXEC_QUEUE_FLAG_PERMANENT, 0);
- 	}
- 	if (IS_ERR(m->q)) {
-+		if (m->bind_q)
-+			xe_exec_queue_put(m->bind_q);
- 		xe_vm_close_and_put(vm);
- 		return ERR_CAST(m->q);
- 	}
-@@ -1270,7 +1285,7 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
- 	struct xe_tile *tile = m->tile;
- 	struct xe_sched_job *job;
- 	struct dma_fence *fence;
--	bool is_migrate = pt_update_ops->q == m->q;
-+	bool is_migrate = pt_update_ops->q == m->bind_q;
- 	int err;
- 
- 	job = xe_sched_job_create(pt_update_ops->q, NULL);
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index b78bdd11d496..3131875341c9 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -134,5 +134,5 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- 
- void xe_migrate_wait(struct xe_migrate *m);
- 
--struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile);
-+struct xe_exec_queue *xe_tile_migrate_bind_exec_queue(struct xe_tile *tile);
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 6fc01fdd7286..0285938a4bb2 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -895,7 +895,9 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- 	struct xe_vma *vma, *next;
- 	struct xe_vma_ops vops;
- 	struct xe_vma_op *op, *next_op;
--	int err, i;
-+	struct xe_tile *tile;
-+	u8 id;
-+	int err;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 63d74e27f54c..75344b89fe4a 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -654,8 +654,9 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
+ #define LRC_SEQNO_PPHWSP_OFFSET 512
+ #define LRC_START_SEQNO_PPHWSP_OFFSET (LRC_SEQNO_PPHWSP_OFFSET + 8)
+ #define LRC_CTX_JOB_TIMESTAMP_OFFSET (LRC_START_SEQNO_PPHWSP_OFFSET + 8)
++#define LRC_ENGINE_ID_PPHWSP_OFFSET 1984
+ #define LRC_PARALLEL_PPHWSP_OFFSET 2048
+-#define LRC_ENGINE_ID_PPHWSP_OFFSET 2096
++#define LRC_ULLS_PPHWSP_OFFSET 2048	/* Mutual exclusive with parallel */
  
- 	lockdep_assert_held(&vm->lock);
- 	if ((xe_vm_in_lr_mode(vm) && !rebind_worker) ||
-@@ -903,8 +905,11 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- 		return 0;
+ u32 xe_lrc_regs_offset(struct xe_lrc *lrc)
+ {
+@@ -704,6 +705,12 @@ static inline u32 __xe_lrc_engine_id_offset(struct xe_lrc *lrc)
+ 	return xe_lrc_pphwsp_offset(lrc) + LRC_ENGINE_ID_PPHWSP_OFFSET;
+ }
  
- 	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
--	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
--		vops.pt_update_ops[i].wait_vm_bookkeep = true;
-+	for_each_tile(tile, vm->xe, id) {
-+		vops.pt_update_ops[id].wait_vm_bookkeep = true;
-+		vops.pt_update_ops[id].q =
-+			xe_tile_migrate_bind_exec_queue(tile);
-+	}
++static inline u32 __xe_lrc_ulls_offset(struct xe_lrc *lrc)
++{
++	/* The ulls is stored in the driver-defined portion of PPHWSP */
++	return xe_lrc_pphwsp_offset(lrc) + LRC_ULLS_PPHWSP_OFFSET;
++}
++
+ static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
+ {
+ 	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP * sizeof(u32);
+@@ -743,6 +750,7 @@ DECL_MAP_ADDR_HELPERS(ctx_job_timestamp)
+ DECL_MAP_ADDR_HELPERS(ctx_timestamp)
+ DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw)
+ DECL_MAP_ADDR_HELPERS(parallel)
++DECL_MAP_ADDR_HELPERS(ulls)
+ DECL_MAP_ADDR_HELPERS(indirect_ring)
+ DECL_MAP_ADDR_HELPERS(engine_id)
  
- 	xe_vm_assert_held(vm);
- 	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
-@@ -961,7 +966,7 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_ma
- 	for_each_tile(tile, vm->xe, id) {
- 		vops.pt_update_ops[id].wait_vm_bookkeep = true;
- 		vops.pt_update_ops[tile->id].q =
--			xe_tile_migrate_exec_queue(tile);
-+			xe_tile_migrate_bind_exec_queue(tile);
- 	}
+@@ -1361,6 +1369,47 @@ static u32 xe_lrc_engine_id(struct xe_lrc *lrc)
+ 	return xe_map_read32(xe, &map);
+ }
  
- 	err = xe_vm_ops_add_rebind(&vops, vma, tile_mask);
-@@ -1051,7 +1056,7 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm *vm,
- 	for_each_tile(tile, vm->xe, id) {
- 		vops.pt_update_ops[id].wait_vm_bookkeep = true;
- 		vops.pt_update_ops[tile->id].q =
--			xe_tile_migrate_exec_queue(tile);
-+			xe_tile_migrate_bind_exec_queue(tile);
- 	}
++#define semaphore_offset(seqno) \
++	(sizeof(u32) * ((seqno) % LRC_MIGRATION_ULLS_SEMAPORE_COUNT))
++
++/**
++ * xe_lrc_ulls_semaphore_ggtt_addr() - ULLS semaphore GGTT address
++ * @lrc: Pointer to the lrc.
++ * @seqno: seqno of current job.
++ *
++ * Calculate ULLS semaphore GGTT address based on input seqno
++ *
++ * Returns: ULLS semaphore GGTT address
++ */
++u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno)
++{
++	xe_assert(lrc_to_xe(lrc), semaphore_offset(seqno) <
++		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
++
++	return __xe_lrc_ulls_ggtt_addr(lrc) + semaphore_offset(seqno);
++}
++
++/**
++ * xe_lrc_set_ulls_semaphore() - Set ULLS semaphore
++ * @lrc: Pointer to the lrc.
++ * @seqno: seqno of current job.
++ *
++ * Set ULLS semaphore based on input seqno
++ */
++void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno)
++{
++	struct xe_device *xe = lrc_to_xe(lrc);
++	struct iosys_map map = __xe_lrc_ulls_map(lrc);
++
++	xe_assert(xe, semaphore_offset(seqno) <
++		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
++
++	xe_device_wmb(xe);	/* Ensure everything before in code is ordered */
++
++	iosys_map_incr(&map, semaphore_offset(seqno));
++	xe_map_write32(xe, &map, 1);
++}
++
+ static int instr_dw(u32 cmd_header)
+ {
+ 	/* GFXPIPE "SINGLE_DW" opcodes are a single dword */
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index eb6e8de8c939..1ded2de34eb2 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -89,6 +89,9 @@ u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc);
+ u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc);
+ u32 *xe_lrc_regs(struct xe_lrc *lrc);
  
- 	err = xe_vm_ops_add_range_rebind(&vops, vma, range, tile_mask);
-@@ -1134,7 +1139,7 @@ struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
- 	for_each_tile(tile, vm->xe, id) {
- 		vops.pt_update_ops[id].wait_vm_bookkeep = true;
- 		vops.pt_update_ops[tile->id].q =
--			xe_tile_migrate_exec_queue(tile);
-+			xe_tile_migrate_bind_exec_queue(tile);
- 	}
++u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno);
++void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno);
++
+ u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr);
+ void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val);
  
- 	err = xe_vm_ops_add_range_unbind(&vops, range);
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index ae24cf6f8dd9..96a0f545ba60 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -12,6 +12,8 @@
+ 
+ struct xe_bo;
+ 
++#define LRC_MIGRATION_ULLS_SEMAPORE_COUNT	64	/* Must be pow2 */
++
+ /**
+  * struct xe_lrc - Logical ring context (LRC) and submission ring object
+  */
 -- 
 2.34.1
 
