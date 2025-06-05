@@ -4,28 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96FE3C5AE59
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 16:57:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43598C5AE59
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 17:02:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5177710E336;
-	Thu,  5 Jun 2025 16:57:42 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A28B210E8E0
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 16:57:38 +0000 (UTC)
-Message-ID: <6a477105-eafd-42e1-a465-4a5916c2af33@lankhorst.se>
-Date: Thu, 5 Jun 2025 18:57:30 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id B769710E336;
+	Thu,  5 Jun 2025 17:02:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DOB5lUmS";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE10910E134;
+ Thu,  5 Jun 2025 17:02:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749142964; x=1780678964;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=yjO+rl+hMJQpjrsEwT2wZSb6PfHcGK0YScayDZMCJsw=;
+ b=DOB5lUmS6XsADij2KDR+5KGdOeKA2WOPWfBc46ouIJlPfT47dNixvF/m
+ 6hUcuHv6ORH93jfZLReJVCENKa5M7HlqDdp9pDbk/Amo2NLxyBnjeFP/C
+ OkivY3FLz3VU/nGxmm9ypI4v11QE8XsPc7OCs5lTZPOvXVNt06nkVWFdW
+ KqU/4Ok1ZMNhuuBkEuNz3oH8zsgNyy0VkuMe0mYfWlsVZa/EHawmkKnZy
+ MmjJ/z5BGDElOvNxEJX5rWZ5iesrBauLLqxgWWzLq1qY4wIlEvMGhzvWg
+ NWZyuSG+zVxuj80i9fmx6+Q5psdozHDcNDoX9/ExpJyYCyjeaQ3jsrMa7 A==;
+X-CSE-ConnectionGUID: S+Y9tWKDT5Gf2BcjZ762cQ==
+X-CSE-MsgGUID: Vfe3ou2EQMObbTdc1+ErTw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="53904562"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="53904562"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2025 10:02:43 -0700
+X-CSE-ConnectionGUID: y8YZ9KCXQPWDV6VvyYqIfQ==
+X-CSE-MsgGUID: clOBw9/0RF+Sd4EHiI1hSg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="146548021"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.244.183])
+ ([10.245.244.183])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2025 10:02:40 -0700
+Message-ID: <14c2eff8-701d-4699-b187-08862715e1ac@linux.intel.com>
+Date: Thu, 5 Jun 2025 19:02:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/10] drm/xe/ggtt: Seperate flags and address in PTE
- encoding
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20250505121924.921544-1-dev@lankhorst.se>
- <20250505121924.921544-6-dev@lankhorst.se>
- <aEGzfGJlIM3W43YW@lstrano-desk.jf.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-next-fixes
 Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <aEGzfGJlIM3W43YW@lstrano-desk.jf.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -42,243 +76,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+Hi Dave, Simona,
 
-On 2025-06-05 17:10, Matthew Brost wrote:
-> On Mon, May 05, 2025 at 02:19:18PM +0200, Maarten Lankhorst wrote:
->> Pinning large linear display framebuffers is becoming a bottleneck.
->> My plan of attack is doing a custom walk over the BO, this allows for
->> easier optimization of consecutive entries.
->>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>  drivers/gpu/drm/xe/xe_ggtt.c       | 85 +++++++++++++++++++++---------
->>  drivers/gpu/drm/xe/xe_ggtt.h       |  2 +
->>  drivers/gpu/drm/xe/xe_ggtt_types.h |  5 +-
->>  3 files changed, 65 insertions(+), 27 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->> index bdda9302ae294..7526739034ea0 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.c
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
->> @@ -27,6 +27,7 @@
->>  #include "xe_map.h"
->>  #include "xe_mmio.h"
->>  #include "xe_pm.h"
->> +#include "xe_res_cursor.h"
->>  #include "xe_sriov.h"
->>  #include "xe_wa.h"
->>  #include "xe_wopcm.h"
->> @@ -64,13 +65,9 @@
->>   * give us the correct placement for free.
->>   */
->>  
->> -static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
->> -				   u16 pat_index)
->> +static u64 xelp_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
->>  {
->> -	u64 pte;
->> -
->> -	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
->> -	pte |= XE_PAGE_PRESENT;
->> +	u64 pte = XE_PAGE_PRESENT;
->>  
->>  	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
->>  		pte |= XE_GGTT_PTE_DM;
->> @@ -78,13 +75,17 @@ static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
->>  	return pte;
->>  }
->>  
->> -static u64 xelpg_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
->> -				    u16 pat_index)
->> +static u64 xelp_ggtt_encode_bo(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
->> +{
->> +	return xelp_ggtt_pte_flags(bo, pat_index) | xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
->> +}
->> +
->> +static u64 xelpg_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
->>  {
->>  	struct xe_device *xe = xe_bo_device(bo);
->>  	u64 pte;
->>  
->> -	pte = xelp_ggtt_pte_encode_bo(bo, bo_offset, pat_index);
->> +	pte = xelp_ggtt_pte_flags(bo, pat_index);
->>  
->>  	xe_assert(xe, pat_index <= 3);
->>  
->> @@ -97,6 +98,12 @@ static u64 xelpg_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
->>  	return pte;
->>  }
->>  
->> +static u64 xelpg_ggtt_encode_bo(struct xe_bo *bo, u64 bo_offset,
->> +				u16 pat_index)
->> +{
->> +	return xelpg_ggtt_pte_flags(bo, pat_index) | xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
->> +}
->> +
->>  static unsigned int probe_gsm_size(struct pci_dev *pdev)
->>  {
->>  	u16 gmch_ctl, ggms;
->> @@ -149,8 +156,9 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
->>  	xe_tile_assert(ggtt->tile, start < end);
->>  
->>  	if (ggtt->scratch)
->> -		scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0,
->> -							  pat_index);
->> +		scratch_pte = xe_bo_addr(ggtt->scratch, 0, XE_PAGE_SIZE) |
->> +			      ggtt->pt_ops->pte_encode_flags(ggtt->scratch,
->> +							     pat_index);
-> 
-> Why this change? Does the vfunc not return bo_addr | flags?
-> 
->>  	else
->>  		scratch_pte = 0;
->>  
->> @@ -210,17 +218,20 @@ static void primelockdep(struct xe_ggtt *ggtt)
->>  }
->>  
->>  static const struct xe_ggtt_pt_ops xelp_pt_ops = {
->> -	.pte_encode_bo = xelp_ggtt_pte_encode_bo,
->> +	.pte_encode_bo = xelp_ggtt_encode_bo,
->> +	.pte_encode_flags = xelp_ggtt_pte_flags,
->>  	.ggtt_set_pte = xe_ggtt_set_pte,
->>  };
->>  
->>  static const struct xe_ggtt_pt_ops xelpg_pt_ops = {
->> -	.pte_encode_bo = xelpg_ggtt_pte_encode_bo,
->> +	.pte_encode_bo = xelpg_ggtt_encode_bo,
->> +	.pte_encode_flags = xelpg_ggtt_pte_flags,
->>  	.ggtt_set_pte = xe_ggtt_set_pte,
->>  };
->>  
->>  static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
->> -	.pte_encode_bo = xelpg_ggtt_pte_encode_bo,
->> +	.pte_encode_bo = xelpg_ggtt_encode_bo,
->> +	.pte_encode_flags = xelpg_ggtt_pte_flags,
->>  	.ggtt_set_pte = xe_ggtt_set_pte_and_flush,
->>  };
->>  
->> @@ -612,23 +623,39 @@ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
->>  /**
->>   * xe_ggtt_map_bo - Map the BO into GGTT
->>   * @ggtt: the &xe_ggtt where node will be mapped
->> + * @node: the &xe_ggtt_node where this BO is mapped
->>   * @bo: the &xe_bo to be mapped
->> + * @pat_index: Which pat_index to use.
->>   */
->> -static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
->> +void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
->> +		    struct xe_bo *bo, u16 pat_index)
->>  {
->> -	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
->> -	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
->> -	u64 start;
->> -	u64 offset, pte;
->>  
->> -	if (XE_WARN_ON(!bo->ggtt_node[ggtt->tile->id]))
->> +	u64 start, pte, end;
->> +	struct xe_res_cursor cur;
->> +
->> +	if (XE_WARN_ON(!node))
->>  		return;
->>  
->> -	start = bo->ggtt_node[ggtt->tile->id]->base.start;
->> +	start = node->base.start;
->> +	end = start + bo->size;
->> +
->> +	pte = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
->> +	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
->> +		xe_assert(xe_bo_device(bo), bo->ttm.ttm);
->> +
->> +		for (xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &cur);
->> +		     cur.remaining; xe_res_next(&cur, XE_PAGE_SIZE))
->> +			ggtt->pt_ops->ggtt_set_pte(ggtt, end - cur.remaining,
->> +						   pte | xe_res_dma(&cur));
->> +	} else {
->> +		/* Prepend GPU offset */
->> +		pte |= vram_region_gpu_offset(bo->ttm.resource);
-> 
-> Does this actually help vs pte_encode_bo? I not entirely convinced it
-> would. Any data on the speedup? I can't say I love open coded nature of
-> this vs just calling a vfunc.
+Small list of fixes for v6.16-rc1!
 
-This is similar to what we already do for VM_BIND.
-We construct default_vram_pte and default_system_pte there, append some VMA specific flags and then append the BO address later.
-
-I felt doing the same for display FB pinning makes a lot of sense, especially since DPT is essentially a flat LUT that uses the same encoding as GGTT, but doesn't need to use any other GGTT function, other than the DPT itself being mapped into GGTT.
-
-Kind regards,
+Best regards!
 ~Maarten
 
-> Matt
-> 
->>  
->> -	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
->> -		pte = ggtt->pt_ops->pte_encode_bo(bo, offset, pat_index);
->> -		ggtt->pt_ops->ggtt_set_pte(ggtt, start + offset, pte);
->> +		for (xe_res_first(bo->ttm.resource, 0, bo->size, &cur);
->> +		     cur.remaining; xe_res_next(&cur, XE_PAGE_SIZE))
->> +			ggtt->pt_ops->ggtt_set_pte(ggtt, end - cur.remaining,
->> +						   pte + cur.start);
->>  	}
->>  }
->>  
->> @@ -641,8 +668,11 @@ static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
->>   */
->>  void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo)
->>  {
->> +	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
->> +	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
->> +
->>  	mutex_lock(&ggtt->lock);
->> -	xe_ggtt_map_bo(ggtt, bo);
->> +	xe_ggtt_map_bo(ggtt, bo->ggtt_node[ggtt->tile->id], bo, pat_index);
->>  	mutex_unlock(&ggtt->lock);
->>  }
->>  
->> @@ -682,7 +712,10 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
->>  		xe_ggtt_node_fini(bo->ggtt_node[tile_id]);
->>  		bo->ggtt_node[tile_id] = NULL;
->>  	} else {
->> -		xe_ggtt_map_bo(ggtt, bo);
->> +		u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
->> +		u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
->> +
->> +		xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pat_index);
->>  	}
->>  	mutex_unlock(&ggtt->lock);
->>  
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
->> index 0bab1fd7cc817..c48da99908848 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.h
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
->> @@ -26,6 +26,8 @@ int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
->>  			       u32 size, u32 align, u32 mm_flags);
->>  void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
->>  bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
->> +void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
->> +		    struct xe_bo *bo, u16 pat_index);
->>  void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
->>  int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
->>  int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
->> index cb02b7994a9ac..06b1a602dd8d1 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
->> +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
->> @@ -74,8 +74,11 @@ struct xe_ggtt_node {
->>   * Which can vary from platform to platform.
->>   */
->>  struct xe_ggtt_pt_ops {
->> -	/** @pte_encode_bo: Encode PTE address for a given BO */
->> +	/** @pte_encode_bo: Encode PTE flags for a given BO */
->>  	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
->> +
->> +	/** @pte_encode_flags: Encode PTE flags for a given BO */
->> +	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
->>  	/** @ggtt_set_pte: Directly write into GGTT's PTE */
->>  	void (*ggtt_set_pte)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
->>  };
->> -- 
->> 2.45.2
->>
+drm-misc-next-fixes-2025-06-05:
+drm-misc-fixes for v6.16-rc1:
+- Fixes for nt37801 panel
+- Fix null deref in HDMI audio helper.
+- Fixes for analogix_dp.
+The following changes since commit 7c1a9408ce5f34ded5a85db81cf80e0975901685:
 
+  Merge tag 'drm-msm-next-2025-05-16' of https://gitlab.freedesktop.org/drm/msm into drm-next (2025-05-19 11:05:58 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-06-05
+
+for you to fetch changes up to fd03f82a026cc03cb8051a8c6487c99f96c9029f:
+
+  drm/bridge: analogix_dp: Fix clk-disable removal (2025-05-28 16:53:31 +0300)
+
+----------------------------------------------------------------
+drm-misc-fixes for v6.16-rc1:
+- Fixes for nt37801 panel
+- Fix null deref in HDMI audio helper.
+- Fixes for analogix_dp.
+
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      drm/panel: nt37801: select CONFIG_DRM_DISPLAY_DSC_HELPER
+
+Damon Ding (1):
+      drm/bridge: analogix_dp: Remove the unnecessary calls to clk_disable_unprepare() during probing
+
+Dan Carpenter (1):
+      drm/panel: nt37801: Fix IS_ERR() vs NULL check in probe()
+
+Heiko Stuebner (1):
+      drm/bridge: analogix_dp: Fix clk-disable removal
+
+Nicolas Frattaroli (1):
+      drm/connector: only call HDMI audio helper plugged cb if non-null
+
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 20 ++++++--------------
+ drivers/gpu/drm/display/drm_hdmi_audio_helper.c    |  3 ++-
+ drivers/gpu/drm/panel/Kconfig                      |  2 ++
+ drivers/gpu/drm/panel/panel-novatek-nt37801.c      |  4 ++--
+ 4 files changed, 12 insertions(+), 17 deletions(-)
