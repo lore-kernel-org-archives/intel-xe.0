@@ -4,49 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4A67C5B543
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 12:13:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DC8BC5AE59
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 12:13:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FF8E10E0B5;
-	Thu,  5 Jun 2025 12:13:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C892E10E0B5;
+	Thu,  5 Jun 2025 12:13:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TrL6389H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UXKaQQl8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1044F10E0B5
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 12:13:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0540A10E806
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 12:13:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749125616; x=1780661616;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ogmkx/CGCmnqTkUW4b3shZInnb9Bq2yQ8sRP5ktvz/M=;
- b=TrL6389H5+s82KBJBO25o2fdNtFYrw0yd1vm9eA/XcTRj5P+puUigxkj
- l6fXaZOA8geEi5/JdxOtL+QOe2IiE08sb8BK0xKCUO4hUJQ9ueiT2G7gA
- vul7JWwJn8AGUESr8mFs55nriAneyhpqdr9PxIS95u2128u2+GwcBwCtI
- xgDT/i5RSshKJyERTz7+hXOcDc4kvluR33tSAOr70LtidUyELNP35VmBw
- hFl1rC67DpDQKXVA4s6YPyapPLvtaFxl0PbnbriU6cpSNyO47pHgQ99/4
- uRT40gIg8KFeUitsR6ngSY/k/ySRgw4T/VDKCpMX+ojzh8Zd4hnOMvFtw A==;
-X-CSE-ConnectionGUID: zcxl9TQFSsqjoS8uuas21Q==
-X-CSE-MsgGUID: /YywYh/9R6yB+iWxB7PEuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="51155885"
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="51155885"
+ t=1749125633; x=1780661633;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=H0RwFrceykS5z1xccjD8+tte8uN8RrKWJPqHqNYeVHM=;
+ b=UXKaQQl8ny/5wSc8XGBSfb9oXcIRP3lV0jb1LQ4/674SJ9ojuh1AC5Bl
+ pU67DqzALD4plJki/XaGUZFlFdNvfYp5o6ZwpjmXz4QEDWDW6QaG8EedC
+ 5PrbcAoc/A0ixVpU5eku46/6ecxP7SibVDhFzlsivNTYNshYjeEYsUOOq
+ t+UR93MZuRJEBbuYKE8OmnnDQfDu6THhbD5pRi/yjXRzKSMrDz3DPh3HM
+ 44Z3RJqYeEvpjDbQD18lcewQBgLP+PztCZsqKkv3PvT7d3qA02GuIL6sU
+ pWdybrIoPbPPfWNsvfRYWZL2KVyug/QdUGu7VL954kdkvQyqZxqJl1tZc Q==;
+X-CSE-ConnectionGUID: VCRdRh3EQbu6+xfJbI7F4g==
+X-CSE-MsgGUID: grtoHooAQLiaDIygoREQGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="51155912"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="51155912"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 05:13:36 -0700
-X-CSE-ConnectionGUID: Foo8AzdFQFGtGgSeYhVcHQ==
-X-CSE-MsgGUID: Oja+Tlm4Q82jxHjzQ77XwQ==
+ 05 Jun 2025 05:13:48 -0700
+X-CSE-ConnectionGUID: 8KA7i9mFSu2Jxjk8q5pNYQ==
+X-CSE-MsgGUID: Wcmw7E+iR/yJoVyz54IhRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="145370509"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="145370568"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa006.fm.intel.com with ESMTP; 05 Jun 2025 05:13:34 -0700
+ by fmviesa006.fm.intel.com with ESMTP; 05 Jun 2025 05:13:43 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH v5 0/3] CCS save restore for IGPU
-Date: Thu,  5 Jun 2025 17:59:53 +0530
-Message-ID: <20250605122956.10685-1-satyanarayana.k.v.p@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Tomasz Lis <tomasz.lis@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v5 3/3] drm/xe/vf: Register CCS read/write contexts with Guc
+Date: Thu,  5 Jun 2025 17:59:56 +0530
+Message-ID: <20250605122956.10685-4-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250605122956.10685-1-satyanarayana.k.v.p@intel.com>
+References: <20250605122956.10685-1-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -64,76 +71,342 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prior IGPU design had compression supported in GPU VA domain. For
-Virtualization, this makes compression Meta data save/restore for VF as
-not necessary (i.e. Compression Meta data space is automatically
-save/restore with normal guest/VM memory).
+Register read write contexts with newly added flags with GUC and
+enable the context immediately after registration.
+Re-register the context with Guc when resuming from runtime suspend as
+soft reset is applied to Guc during xe_pm_runtime_resume().
+Make Ring head=tail while unbinding device to avoid issues with VF pause
+after device is unbinded.
 
-With latest Xe2 architecture, compression is supported by Flat, physical
-domain. Meta data/compression control surface (Aka CCS) and association
-is in physical domain and data is located in BIOS/firmware-reserved CCS
-pool. In virtualization/SRIOV when VF save/restore now have to account for
-save/restore VF associated CCS. Without this feature any restore of
-compressed resource in IGPU VF domain will have corruption as Meta data
-will not be restore correctly as a part of VF save/restore flow. Making it
-must have/functional feature if we are supporting compression and
-Save/restore of VF on IGPU platform.
-
-This is the first in series which adds support for CCS save/restore for
-IGPU.
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+---
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Tomasz Lis <tomasz.lis@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
 V4 -> V5:
-- Modified read/write contexts to enums from #defines (Matthew Brost).
-- The CCS BB pool size is calculated based on the system memory size (Michal
-  Wajdeczko & Matthew Brost).
-- Fixed review comments (Matthew Brost & Matthew Auld)
-- Create a list of BBs for the given BO and fixed memory leak while
-  detaching BOs. (Matthew Brost).
-- Yet to cleanup xe_migrate_ccs_rw_copy() function.
+- Fixed review comments (Matthew Brost).
 
 V3 -> V4:
 - Fixed issues reported by patchworks.
 
 V2 -> V3:
-- Added new variable which denotes the initialization of contexts.
-- Attach and detach functions check for IS_VF_CCS_READY().
 - Made xe_migrate structure private as per review comments.
 - Created new xe_migrate functions to get lrc and exec_queue.
 
 V1 -> V2:
 - Fixed review comments.
+---
+ drivers/gpu/drm/xe/xe_guc_fwif.h     |  5 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c   | 37 +++++++++++-
+ drivers/gpu/drm/xe/xe_guc_submit.h   |  1 +
+ drivers/gpu/drm/xe/xe_migrate.c      | 22 +++++++
+ drivers/gpu/drm/xe/xe_migrate.h      |  3 +
+ drivers/gpu/drm/xe/xe_pm.c           |  4 ++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 89 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  1 +
+ 8 files changed, 160 insertions(+), 2 deletions(-)
 
-Satyanarayana K V P (3):
-  drm/xe/vf: Create contexts for CCS read write
-  drm/xe/vf: Attach and detach CCS copy commands with BO
-  drm/xe/vf: Register CCS read/write contexts with Guc
-
- drivers/gpu/drm/xe/Makefile                |   1 +
- drivers/gpu/drm/xe/xe_bb.c                 |  34 ++
- drivers/gpu/drm/xe/xe_bb.h                 |   3 +
- drivers/gpu/drm/xe/xe_bb_types.h           |   1 +
- drivers/gpu/drm/xe/xe_bo.c                 |  19 ++
- drivers/gpu/drm/xe/xe_bo_types.h           |   3 +
- drivers/gpu/drm/xe/xe_device.c             |   4 +
- drivers/gpu/drm/xe/xe_device_types.h       |   4 +
- drivers/gpu/drm/xe/xe_gt_debugfs.c         |  36 +++
- drivers/gpu/drm/xe/xe_guc_fwif.h           |   5 +
- drivers/gpu/drm/xe/xe_guc_submit.c         |  37 ++-
- drivers/gpu/drm/xe/xe_guc_submit.h         |   1 +
- drivers/gpu/drm/xe/xe_migrate.c            | 187 +++++++++++
- drivers/gpu/drm/xe/xe_migrate.h            |  11 +
- drivers/gpu/drm/xe/xe_pm.c                 |   4 +
- drivers/gpu/drm/xe/xe_sriov.c              |  19 ++
- drivers/gpu/drm/xe/xe_sriov.h              |   1 +
- drivers/gpu/drm/xe/xe_sriov_types.h        |   5 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       | 353 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.h       |  17 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |  52 +++
- 21 files changed, 795 insertions(+), 2 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index 6f57578b07cb..71a5208d0316 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -45,6 +45,11 @@
+ #define GUC_MAX_ENGINE_CLASSES		16
+ #define GUC_MAX_INSTANCES_PER_CLASS	32
+ 
++#define GUC_CONTEXT_NORMAL			0
++#define GUC_CONTEXT_COMPRESSION_SAVE		1
++#define GUC_CONTEXT_COMPRESSION_RESTORE	2
++#define GUC_CONTEXT_MAX_TYPES			(GUC_CONTEXT_COMPRESSION_RESTORE + 1)
++
+ /* Helper for context registration H2G */
+ struct guc_ctxt_registration_info {
+ 	u32 flags;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 80f748baad3f..4e1423b0f07c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -531,7 +531,7 @@ static void __register_exec_queue(struct xe_guc *guc,
+ 	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+ }
+ 
+-static void register_exec_queue(struct xe_exec_queue *q)
++static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+ {
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	struct xe_device *xe = guc_to_xe(guc);
+@@ -539,6 +539,7 @@ static void register_exec_queue(struct xe_exec_queue *q)
+ 	struct guc_ctxt_registration_info info;
+ 
+ 	xe_gt_assert(guc_to_gt(guc), !exec_queue_registered(q));
++	xe_gt_assert(guc_to_gt(guc), ctx_type < GUC_CONTEXT_MAX_TYPES);
+ 
+ 	memset(&info, 0, sizeof(info));
+ 	info.context_idx = q->guc->id;
+@@ -548,6 +549,9 @@ static void register_exec_queue(struct xe_exec_queue *q)
+ 	info.hwlrca_hi = upper_32_bits(xe_lrc_descriptor(lrc));
+ 	info.flags = CONTEXT_REGISTRATION_FLAG_KMD;
+ 
++	if (ctx_type != GUC_CONTEXT_NORMAL)
++		info.flags |= BIT(ctx_type);
++
+ 	if (xe_exec_queue_is_parallel(q)) {
+ 		u64 ggtt_addr = xe_lrc_parallel_ggtt_addr(lrc);
+ 		struct iosys_map map = xe_lrc_parallel_map(lrc);
+@@ -750,7 +754,7 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ 
+ 	if (!exec_queue_killed_or_banned_or_wedged(q) && !xe_sched_job_is_error(job)) {
+ 		if (!exec_queue_registered(q))
+-			register_exec_queue(q);
++			register_exec_queue(q, GUC_CONTEXT_NORMAL);
+ 		if (!lr)	/* LR jobs are emitted in the exec IOCTL */
+ 			q->ring_ops->emit_job(job);
+ 		submit_exec_queue(q);
+@@ -2347,6 +2351,35 @@ static void guc_exec_queue_print(struct xe_exec_queue *q, struct drm_printer *p)
+ 	xe_guc_exec_queue_snapshot_free(snapshot);
+ }
+ 
++/**
++ * xe_guc_register_exec_queue - Register exec queue for a given context type.
++ * @q - Execution queue
++ * @ctx_type - Type of the context
++ *
++ * This function registers the execution queue with the guc. Special context
++ * types like GUC_CONTEXT_COMPRESSION_SAVE and GUC_CONTEXT_COMPRESSION_RESTORE
++ * are only applicable for IGPU and in the VF.
++ * Submits the execution queue to GUC after registering it.
++ *
++ * Returns - Success or asserts.
++ */
++int xe_guc_register_exec_queue(struct xe_exec_queue *q, int ctx_type)
++{
++	struct xe_guc *guc = exec_queue_to_guc(q);
++	struct xe_device *xe = guc_to_xe(guc);
++
++	if (ctx_type != GUC_CONTEXT_NORMAL) {
++		xe_assert(xe, IS_SRIOV_VF(xe) || !IS_DGFX(xe));
++		xe_assert(xe, (ctx_type > GUC_CONTEXT_NORMAL &&
++			       ctx_type < GUC_CONTEXT_MAX_TYPES));
++	}
++
++	register_exec_queue(q, ctx_type);
++	enable_scheduling(q);
++
++	return 0;
++}
++
+ /**
+  * xe_guc_submit_print - GuC Submit Print.
+  * @guc: GuC.
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index 9b71a986c6ca..f1a26d498339 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -39,5 +39,6 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ void
+ xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapshot);
+ void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p);
++int xe_guc_register_exec_queue(struct xe_exec_queue *q, int ctx_type);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 1a3216b3cb78..b29a953942b9 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1105,6 +1105,28 @@ int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
+ 	return err;
+ }
+ 
++/**
++ * xe_get_migrate_lrc() - Get the LRC from migrate context.
++ * @migrate: Migrate context.
++ *
++ * Return: Pointer to LRC on success, error on failure
++ */
++struct xe_lrc *xe_migrate_get_lrc(struct xe_migrate *migrate)
++{
++	return migrate->q->lrc[0];
++}
++
++/**
++ * xe_get_migrate_exec_queue() - Get the execution queue from migrate context.
++ * @migrate: Migrate context.
++ *
++ * Return: Pointer to execution queue on success, error on failure
++ */
++struct xe_exec_queue *xe_migrate_get_exec_queue(struct xe_migrate *migrate)
++{
++	return migrate->q;
++}
++
+ static void emit_clear_link_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+ 				 u32 size, u32 pitch)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 634d5be29264..3666364b0578 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -120,6 +120,9 @@ int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
+ 			   bool copy_only_ccs,
+ 			   int read_write);
+ 
++struct xe_lrc *xe_migrate_get_lrc(struct xe_migrate *migrate);
++struct xe_exec_queue *xe_migrate_get_exec_queue(struct xe_migrate *migrate);
++
+ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+ 			     unsigned long offset, void *buf, int len,
+ 			     int write);
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index f64ebd7b854a..a47539ce98eb 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -22,6 +22,7 @@
+ #include "xe_irq.h"
+ #include "xe_pcode.h"
+ #include "xe_pxp.h"
++#include "xe_sriov_vf_ccs.h"
+ #include "xe_trace.h"
+ #include "xe_wa.h"
+ 
+@@ -546,6 +547,9 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 
+ 	xe_pxp_pm_resume(xe->pxp);
+ 
++	if (IS_SRIOV_VF(xe))
++		xe_sriov_vf_ccs_register_context(xe);
++
+ out:
+ 	xe_rpm_lockmap_release(xe);
+ 	xe_pm_write_callback_task(xe, NULL);
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index bab180c2054a..1a49a444eec6 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -8,6 +8,9 @@
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
++#include "xe_exec_queue_types.h"
++#include "xe_guc_submit.h"
++#include "xe_lrc.h"
+ #include "xe_migrate.h"
+ #include "xe_sa.h"
+ #include "xe_sriov_printk.h"
+@@ -140,6 +143,82 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_tile_vf_ccs *ctx)
+ 	return 0;
+ }
+ 
++static void ccs_rw_update_ring(struct xe_tile_vf_ccs *ctx)
++{
++	struct xe_lrc *lrc = xe_migrate_get_lrc(ctx->migrate);
++	u32 addr = ctx->mem.ccs_bb_pool->gpu_addr;
++	u32 dw[10], i = 0;
++
++	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE;
++	dw[i++] = MI_BATCH_BUFFER_START | XE_INSTR_NUM_DW(3);
++	dw[i++] = addr;
++	dw[i++] = 0;
++	dw[i++] = MI_NOOP;
++
++	xe_lrc_write_ring(lrc, dw, i * sizeof(u32));
++}
++
++static int register_save_restore_context(struct xe_migrate *m, int ctx_id)
++{
++	int err = -EINVAL;
++	int ctx_type;
++
++	switch (ctx_id) {
++	case XE_SRIOV_VF_CCS_READ_CTX:
++		ctx_type = GUC_CONTEXT_COMPRESSION_SAVE;
++		break;
++	case XE_SRIOV_VF_CCS_WRITE_CTX:
++		ctx_type = GUC_CONTEXT_COMPRESSION_RESTORE;
++		break;
++	default:
++		return err;
++	}
++
++	err = xe_guc_register_exec_queue(xe_migrate_get_exec_queue(m), ctx_type);
++	return err;
++}
++
++/**
++ * xe_sriov_vf_ccs_register_context - Register read/write contexts with guc.
++ * @xe: the &xe_device to register contexts on.
++ *
++ * This function registers read and write contexts with Guc. Re-registration
++ * is needed whenever resuming from pm runtime suspend.
++ *
++ * Return: 0 on success. Negative error code on failure.
++ */
++int xe_sriov_vf_ccs_register_context(struct xe_device *xe)
++{
++	struct xe_tile_vf_ccs *ctx;
++	struct xe_tile *tile;
++	int tile_id, ctx_id;
++	int err;
++
++	if (!IS_VF_CCS_READY(xe))
++		return 0;
++
++	for_each_tile(tile, xe, tile_id) {
++		for_each_ccs_rw_ctx(ctx_id) {
++			ctx = &tile->sriov.vf.ccs[ctx_id];
++			err = register_save_restore_context(ctx->migrate, ctx_id);
++		}
++	}
++
++	return err;
++}
++
++static void xe_sriov_vf_ccs_fini(void *arg)
++{
++	struct xe_tile_vf_ccs *ctx = arg;
++	struct xe_lrc *lrc = xe_migrate_get_lrc(ctx->migrate);
++
++	/*
++	 * Make TAIL = HEAD in the ring so that no issues are seen if Guc
++	 * submits this context to HW on VF pause after unbinding device.
++	 */
++	xe_lrc_set_ring_tail(lrc, xe_lrc_ring_head(lrc));
++}
++
+ /**
+  * xe_sriov_vf_ccs_init - Setup LRCA for save & restore.
+  * @xe: the &xe_device to start recovery on
+@@ -173,6 +252,16 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
+ 			err = alloc_bb_pool(tile, ctx);
+ 			if (err)
+ 				goto err_ret;
++
++			ccs_rw_update_ring(ctx);
++
++			err = register_save_restore_context(migrate, ctx_id);
++			if (err)
++				goto err_ret;
++
++			err = devm_add_action_or_reset(xe->drm.dev,
++						       xe_sriov_vf_ccs_fini,
++						       ctx);
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+index 5d5e4bd25904..1f1baf685fec 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+@@ -12,5 +12,6 @@ struct xe_bo;
+ int xe_sriov_vf_ccs_init(struct xe_device *xe);
+ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
++int xe_sriov_vf_ccs_register_context(struct xe_device *xe);
+ 
+ #endif
 -- 
 2.43.0
 
