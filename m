@@ -4,49 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C6B8C5AE59
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 19:08:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03FC7C5B543
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Jun 2025 19:08:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58C7D10E045;
-	Thu,  5 Jun 2025 19:08:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7F2610E307;
+	Thu,  5 Jun 2025 19:08:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WgYez6/w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G8TEA1yg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E859910E045
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 19:08:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82CBD10E307
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Jun 2025 19:08:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749150488; x=1780686488;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KcC6dtKNd/1yZ00Wqs2NJdE1KYCF8YIGmeYtAtOSiEI=;
- b=WgYez6/wX8fZ85b6Arca5MPKYVdMwmVeu3lyFT3SfNXtVACJnb9+4Bzf
- ISHgj46gQk74dwhK7iVN5nF5Ssb7dGHcwOARUtGTv0+Fg+mQl7Ql/9Hoa
- 6g1Vez3H0jc7g2y6EseoD5kwcA08CxRxi8GYmZRxft2vkJFz8mpSGU0wo
- iyZimlfLkOi2x3/9FGZ5e9DQPKe4OSdHk0SQTyxwr6v/8IFmrzZK0Ovfr
- XMqDerfxLv895MhoKkGmj1qf/NHxCoJhADjurnEY26bxdEWLSSf/HDYYt
- O7BtECMylArfwfTnqTYJXwt9a5Yi3fTe5NqbyPhQxQYzpZST6ugJuAh/S Q==;
-X-CSE-ConnectionGUID: r23KWAXTSLKfbkmtHcnUbw==
-X-CSE-MsgGUID: U5TX9zqCT2SnrqGbIa8kHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="51432754"
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="51432754"
+ t=1749150489; x=1780686489;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=5G6vwVJeErvP1jyySj47u33h2dgorLOTbD7xEM4l/Xk=;
+ b=G8TEA1yg25yUMMXfTqbU+kwqeM4mSAcFFR6OyZlGWWLDXXcxrdQDaQL6
+ 4s0Dd6qkZu9UY2XyhdKBhsbjD9w9U9a0Uf4qCZG/q2cYdOuJZNe4YJ5sv
+ K+XpflwjPwLyME+wBxLLlWMnQOWTlfw7NwCXwQ8M8n0rHDv/ZqZqtmDOQ
+ YC0bKUkVvol9XjDRl2ofFy79cVIiVqz/VkF81ZT8a2b0agazgyxr9Va/2
+ hZzsygQwsjszM1c4nrFobmyQLLSHipl5AMVYgQwvlYCS/V48wlf0f037M
+ hpMrrhGsBOT+d+Nx6iOj7517K/jawmVLQHa6YI3bKzStjJk1Mma5CDFVy w==;
+X-CSE-ConnectionGUID: 7JjNaOFWRmSyphAbOH3p2w==
+X-CSE-MsgGUID: zPS/ttZkQ/Oj27li2kwAmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="51432755"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="51432755"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 12:08:08 -0700
-X-CSE-ConnectionGUID: J0mss/WSRKqtj5xe9VMTYA==
-X-CSE-MsgGUID: SHZ2D3MiSI67lVow109Ltw==
+ 05 Jun 2025 12:08:09 -0700
+X-CSE-ConnectionGUID: 1ix9VJltRVuHDMhAWi6bkA==
+X-CSE-MsgGUID: Abfn/KxeS3mwBy+izZ03zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="168761530"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="168761536"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa002.fm.intel.com with ESMTP; 05 Jun 2025 12:08:07 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 05 Jun 2025 12:08:08 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v3 0/3] drm/xe/bmg: Update PCI Id's and Workarounds
-Date: Fri,  6 Jun 2025 00:38:01 +0530
-Message-Id: <20250605190804.1287289-1-dnyaneshwar.bhadane@intel.com>
+Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH 1/3] drm/xe/xe2_hpg: Add PCI IDs for xe2_hpg
+Date: Fri,  6 Jun 2025 00:38:02 +0530
+Message-Id: <20250605190804.1287289-2-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250605190804.1287289-1-dnyaneshwar.bhadane@intel.com>
+References: <20250605190804.1287289-1-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,19 +68,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Added new PCI ID's and workaround for xe2hpd/xe2hpg.
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
-Shekhar Chauhan (3):
-  drm/xe/xe2_hpg: Add PCI IDs for xe2_hpg
-  drm/xe/xe2_hpg: Add set of workarounds
-  drm/xe/xe2_hpg: Define additional Xe2_HPG GMD_ID
+As per updated Bspec, Sync PCI IDs for BMG.
 
- drivers/gpu/drm/xe/xe_pci.c        |  1 +
- drivers/gpu/drm/xe/xe_wa.c         | 46 ++++++++++++++++++------------
- drivers/gpu/drm/xe/xe_wa_oob.rules |  4 +--
- include/drm/intel/pciids.h         |  7 +++--
- 4 files changed, 35 insertions(+), 23 deletions(-)
+Bspec: 68090
+Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ include/drm/intel/pciids.h | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
+diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+index a7ce9523c50d..129c3172aa5f 100644
+--- a/include/drm/intel/pciids.h
++++ b/include/drm/intel/pciids.h
+@@ -852,8 +852,11 @@
+ 	MACRO__(0xE210, ## __VA_ARGS__), \
+ 	MACRO__(0xE211, ## __VA_ARGS__), \
+ 	MACRO__(0xE212, ## __VA_ARGS__), \
+-	MACRO__(0xE215, ## __VA_ARGS__), \
+-	MACRO__(0xE216, ## __VA_ARGS__)
++	MACRO__(0xE216, ## __VA_ARGS__), \
++	MACRO__(0xE220, ## __VA_ARGS__), \
++	MACRO__(0xE221, ## __VA_ARGS__), \
++	MACRO__(0xE222, ## __VA_ARGS__), \
++	MACRO__(0xE223, ## __VA_ARGS__)
+ 
+ /* PTL */
+ #define INTEL_PTL_IDS(MACRO__, ...) \
 -- 
 2.34.1
 
