@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CAB1C5B555
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 14:04:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E3BAC5AD49
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 14:12:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A911210EABA;
-	Fri,  6 Jun 2025 14:04:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nVuVvGwN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8778F10EAB5;
- Fri,  6 Jun 2025 14:04:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749218683; x=1780754683;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=EIrgIvx+QSqp4L9RsL6B6rFQ4JnJyHzbr6rusPZ1tpM=;
- b=nVuVvGwN/42LKn7x6K7LOxY8YqnfPhU/ypL5aPZXymqWCuZW25nYaX+A
- HZ7uRK1cDEL2DItO3dwlJT1rFsvpbrAUiN3IeVfvAL2FCK44tG351Y5DF
- DQx8Soip6Y+MOclvLApXDBxEO1PNtm90evpMKCsvlCLUp6Z276TSUvSXD
- 2BccJekuVaC9si4Vn7PxzyOm6xQcVA9MmwlAqAiy70VHHAZ5+SNsrF+H2
- +x67wFZs9l5WF7EJkgVCPvOzCQDfQr2c483Z9nqP4b957uwrOqw+2eYxu
- E/ekUNl2W7a/qTHyHgsvmPLYaSVfKFXBsPau2KGdJw1FddcAL5p8h/sOQ A==;
-X-CSE-ConnectionGUID: wBfVwurZTUqW9GkvJrcAgA==
-X-CSE-MsgGUID: M67lrOXZQieIwbFt/fny5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="51514645"
-X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="51514645"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 07:04:42 -0700
-X-CSE-ConnectionGUID: XunZeZddQxuJDVAMcKKclA==
-X-CSE-MsgGUID: N+9btQMGRD69MomEITy2hw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="176705418"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.33])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 07:04:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: imre.deak@intel.com, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ville
- =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v3 5/5] drm/i915/dp: Disable the AUX DPCD probe quirk if
- it's not required
-In-Reply-To: <aELzaxIUjxANMLH9@ideak-desk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250605082850.65136-1-imre.deak@intel.com>
- <20250605082850.65136-6-imre.deak@intel.com>
- <99b831c92a446eb5e33d8d9536f6750d4a6e3ae8@intel.com>
- <aELyC0YxLiIgxIj5@ideak-desk> <aELzaxIUjxANMLH9@ideak-desk>
-Date: Fri, 06 Jun 2025 17:04:36 +0300
-Message-ID: <635d15f850ce955b6e009bc0a5358dc4ebcdcc18@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE0A10EAC3;
+	Fri,  6 Jun 2025 14:12:05 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFEB10EAC2;
+ Fri,  6 Jun 2025 14:12:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5400318103169682412=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_Add_drm=5Fpanic?=
+ =?utf-8?q?_support_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jocelyn Falempe" <jfalempe@redhat.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Jun 2025 14:12:04 -0000
+Message-ID: <174921912423.56227.16222989703308716337@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250606120519.753928-1-jfalempe@redhat.com>
+In-Reply-To: <20250606120519.753928-1-jfalempe@redhat.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,160 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 06 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Fri, Jun 06, 2025 at 04:50:03PM +0300, Imre Deak wrote:
->> On Fri, Jun 06, 2025 at 04:44:37PM +0300, Jani Nikula wrote:
->> > On Thu, 05 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
->> > > Reading DPCD registers has side-effects and some of these can cause a
->> > > problem for instance during link training. Based on this it's better=
- to
->> > > avoid the probing quirk done before each DPCD register read, limiting
->> > > this to the monitor which requires it. The only known problematic
->> > > monitor is an external SST sink, so keep the quirk disabled always f=
-or
->> > > eDP and MST sinks. Reenable the quirk after a hotplug event and after
->> > > resuming from a power state without hotplug support, until the
->> > > subsequent EDID based detection.
->> > >
->> > > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
->> > > ---
->> > >  drivers/gpu/drm/i915/display/intel_dp.c      | 11 +++++++++--
->> > >  drivers/gpu/drm/i915/display/intel_dp_aux.c  |  2 ++
->> > >  drivers/gpu/drm/i915/display/intel_hotplug.c | 10 ++++++++++
->> > >  3 files changed, 21 insertions(+), 2 deletions(-)
->> > >
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/d=
-rm/i915/display/intel_dp.c
->> > > index 208a953b04a2f..d65a18fc1aeb9 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> > > @@ -5747,6 +5747,11 @@ intel_dp_set_edid(struct intel_dp *intel_dp)
->> > >  	/* Below we depend on display info having been updated */
->> > >  	drm_edid_connector_update(&connector->base, drm_edid);
->> > >=20=20
->> > > +	if (!intel_dp_is_edp(intel_dp))
->> >=20
->> > Why does this depend on !edp?
->> >=20
->> > Feels like unnecessary optimization based on your knowledge of that one
->> > specific display.
->>=20
->> The detection itself requires probing before each DPCD access. I want to
->> avoid it whenever possible and since the quirk is relevant only the
->> particular HP external display, we can avoid the probing on eDP
->> completely.
->
-> Ok, the eDP check here can be removed, as the panel's EDID panel ID
-> should not match the quirk's panel ID. Will remove it.
+--===============5400318103169682412==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I'm wondering if we should add a local "do the quirk" helper that checks
-for eDP and mst and the actual quirk. Not sure if it would make this
-more readable.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915: Add drm_panic support (rev8)
+URL   : https://patchwork.freedesktop.org/series/141937/
+State : success
 
->
->> > > +		drm_dp_dpcd_set_probe_quirk(&intel_dp->aux,
->> > > +					    drm_edid_has_quirk(&connector->base,
->> > > +							       DRM_EDID_QUIRK_DP_DPCD_PROBE));
->> > > +
->> > >  	vrr_capable =3D intel_vrr_is_capable(connector);
->> > >  	drm_dbg_kms(display->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
->> > >  		    connector->base.base.id, connector->base.name, str_yes_no(vrr=
-_capable));
->> > > @@ -5881,6 +5886,7 @@ intel_dp_detect(struct drm_connector *_connect=
-or,
->> > >  	intel_dp_print_rates(intel_dp);
->> > >=20=20
->> > >  	if (intel_dp->is_mst) {
->> > > +		drm_dp_dpcd_set_probe_quirk(&intel_dp->aux, false);
->> >=20
->> > Isn't this excessive? Haven't we already set the quirk state?
->>=20
->> No, this is the MST root connector's detection and we don't read the EDID
->> for it (we read it for MST non-root connectors, but those are not
->> relavant in any case). So this should be set here explicitly, with the
->> same justification as above for eDP (on MST the probing is never needed,
->> so we can avoid it on such links completely).
->>=20
->> >=20
->> > >  		/*
->> > >  		 * If we are in MST mode then this connector
->> > >  		 * won't appear connected or have anything
->> > > @@ -6321,10 +6327,11 @@ intel_dp_hpd_pulse(struct intel_digital_port=
- *dig_port, bool long_hpd)
->> > >  	 * complete the DP tunnel BW request for the latter connector/enco=
-der
->> > >  	 * waiting for this encoder's DPRX read, perform a dummy read here.
->> > >  	 */
->> > > -	if (long_hpd)
->> > > +	if (long_hpd) {
->> > > +		drm_dp_dpcd_set_probe_quirk(&intel_dp->aux, true);
->> > > +
->> > >  		intel_dp_read_dprx_caps(intel_dp, dpcd);
->> > >=20=20
->> > > -	if (long_hpd) {
->> > >  		intel_dp->reset_link_params =3D true;
->> > >  		intel_dp_invalidate_source_oui(intel_dp);
->> > >=20=20
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/g=
-pu/drm/i915/display/intel_dp_aux.c
->> > > index bf8e8e0cc19c9..410252ba6fd16 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> > > @@ -835,6 +835,8 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
->> > >=20=20
->> > >  	intel_dp->aux.transfer =3D intel_dp_aux_transfer;
->> > >  	cpu_latency_qos_add_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALU=
-E);
->> > > +
->> > > +	drm_dp_dpcd_set_probe_quirk(&intel_dp->aux, !intel_dp_is_edp(intel=
-_dp));
->> > >  }
->> > >=20=20
->> > >  static enum aux_ch default_aux_ch(struct intel_encoder *encoder)
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/=
-gpu/drm/i915/display/intel_hotplug.c
->> > > index 74fe398663d63..1093c6c3714c0 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
->> > > @@ -33,6 +33,7 @@
->> > >  #include "intel_display_core.h"
->> > >  #include "intel_display_rpm.h"
->> > >  #include "intel_display_types.h"
->> > > +#include "intel_dp.h"
->> > >  #include "intel_hdcp.h"
->> > >  #include "intel_hotplug.h"
->> > >  #include "intel_hotplug_irq.h"
->> > > @@ -906,9 +907,18 @@ void intel_hpd_poll_enable(struct intel_display=
- *display)
->> > >   */
->> > >  void intel_hpd_poll_disable(struct intel_display *display)
->> > >  {
->> > > +	struct intel_encoder *encoder;
->> > > +
->> > >  	if (!HAS_DISPLAY(display))
->> > >  		return;
->> > >=20=20
->> > > +	for_each_intel_dp(display->drm, encoder) {
->> > > +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->> > > +
->> > > +		if (!intel_dp_is_edp(intel_dp))
->> > > +			drm_dp_dpcd_set_probe_quirk(&intel_dp->aux, true);
->> > > +	}
->> > > +
->> > >  	WRITE_ONCE(display->hotplug.poll_enabled, false);
->> > >=20=20
->> > >  	spin_lock_irq(&display->irq.lock);
->> >=20
->> > --=20
->> > Jani Nikula, Intel
+== Summary ==
 
---=20
-Jani Nikula, Intel
+CI Bug Log - changes from xe-3208-170e9c2094942ba18f0839ad32048f29ea79cfcf_BAT -> xe-pw-141937v8_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3208-170e9c2094942ba18f0839ad32048f29ea79cfcf -> xe-pw-141937v8
+
+  IGT_8400: 90a23a10be60c805ab0da456e846d1ec45799f9d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3208-170e9c2094942ba18f0839ad32048f29ea79cfcf: 170e9c2094942ba18f0839ad32048f29ea79cfcf
+  xe-pw-141937v8: 141937v8
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141937v8/index.html
+
+--===============5400318103169682412==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add drm_panic support (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141937/">https://patchwork.freedesktop.org/series/141937/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141937v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141937v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3208-170e9c2094942ba18f0839ad32048f29ea79cfcf_BAT -&gt; xe-pw-141937v8_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3208-170e9c2094942ba18f0839ad32048f29ea79cfcf -&gt; xe-pw-141937v8</li>
+</ul>
+<p>IGT_8400: 90a23a10be60c805ab0da456e846d1ec45799f9d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3208-170e9c2094942ba18f0839ad32048f29ea79cfcf: 170e9c2094942ba18f0839ad32048f29ea79cfcf<br />
+  xe-pw-141937v8: 141937v8</p>
+
+</body>
+</html>
+
+--===============5400318103169682412==--
