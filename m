@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C0FDC61CE7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4FADC677C4
 	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 19:26:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62A7210EBED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68FD210EBFA;
 	Fri,  6 Jun 2025 19:26:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gb/D/Xne";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XoJBXM00";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09B6810EBEE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2287110EBF0
  for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 19:26:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1749237982; x=1780773982;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=vDcyD7JtVtLgy9cc3O3K68cgpUchVqGIQp2osWEbE7M=;
- b=gb/D/Xnexb3F8yKDHApEA8VrnVcFtomcAIyE16Jet5zqbZ1hVdJPAAMk
- hcdL5gtURSoAFzes0M/J8SsqqmEt5sA8WokWC7rMBgn+aXwh4kTR7eo7R
- 6L1BG8QhwhXHlQqUg0jl+97pFKkvXngC+5Ls1kwrYFsSyv6Hn95yanFi2
- XpM/DY6uR9/qhdBMPCPB/z8ECceY0YLvPEyKzr7fiFaa5DFbR6ACpHXD7
- W4yCrvtqmMJs48UTPwf2HytySdcX2MQMgzDnyg/tWIzM7JShe1asLjAp4
- gyHEIwwWCh15tfUY1IgKlgud616Hyu8t+3CByhYsOI6KSnftbL6fDJXY2 w==;
-X-CSE-ConnectionGUID: 0hOQUfx7So6s2JhBcySiBA==
-X-CSE-MsgGUID: ixyQ8/qXRxGz+nvBCDvNag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="61663146"
-X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="61663146"
+ bh=20ZbVaWNjTwNd+5HOi5LwujitQR+pixrvkapfZaX0B0=;
+ b=XoJBXM00xv0OD5BlSceTC8RUQ3EUi25FzeUO6zOJL4a3wFBLKdc2cxND
+ /PpZ31Wq1gxvmw27KGY8kJAwlWYC+N4m2rHoW2Dko5tuHeftHyaa8K1/g
+ O8O6kh4xlPpn3nrkUafMYZ04sJMIH7ebYERslZoitxyTFkY/E1W+yu+it
+ 9ZLfhCeexBMNnJtMrRQTo3ohSC8+HWw9WssYfaIDo2T1P8wohfQ8q77XH
+ SMfWmvIKarTCBqB8BpMcLuKUh/7CBLveCO7eapxAOlI3h1mkuX6Qa3GD8
+ i1XpkLY3oYmmA/aztsMh53h1Usrm5USfefIWiFI/EMkoyhyhIYzomngAL w==;
+X-CSE-ConnectionGUID: pHGQ/LKeTvGi7fH48rZeNA==
+X-CSE-MsgGUID: SPpDO8MLRgaldQ3slDc6jQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="61663147"
+X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="61663147"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Jun 2025 12:26:21 -0700
-X-CSE-ConnectionGUID: m82kJzCyQby/E5AL3WaUew==
-X-CSE-MsgGUID: b6PMvI5ZTbKX6AyVW2zkCw==
+X-CSE-ConnectionGUID: hhBhH2EkT/e1JRzUAg6yMQ==
+X-CSE-MsgGUID: SjM6vKjPSM+83EDT5KGI3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="150742752"
+X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="150742753"
 Received: from orsosgc001.jf.intel.com ([10.165.21.142])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Jun 2025 12:26:21 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 4/5] drm/xe/oa: Assign hwe for OAM_SAG
-Date: Fri,  6 Jun 2025 12:26:16 -0700
-Message-ID: <20250606192618.4133817-5-ashutosh.dixit@intel.com>
+Subject: [PATCH 5/5] drm/xe/oa: Enable OAM latency measurement
+Date: Fri,  6 Jun 2025 12:26:17 -0700
+Message-ID: <20250606192618.4133817-6-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250606192618.4133817-1-ashutosh.dixit@intel.com>
 References: <20250606192618.4133817-1-ashutosh.dixit@intel.com>
@@ -65,117 +65,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Because OAM_SAG doesn't have an attached hwe, assign another hwe belonging
-to the same gt (and different OAM unit) to OAM_SAG. A hwe is needed for
-batch submissions to program OA HW.
+Enable OAM latency measurement for Xe3+ platforms.
 
-v2: Assign an engine with a valid OA unit for OAM_SAG (Umesh)
+Bspec: 58840
+
+v2: Introduce DRM_XE_OA_UNIT_TYPE_OAM_SAG
 
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c       | 57 ++++++++++++++++++++------------
- drivers/gpu/drm/xe/xe_oa_types.h |  3 ++
- 2 files changed, 38 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_oa_regs.h |  3 +++
+ drivers/gpu/drm/xe/xe_oa.c           | 11 ++++++++++-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+index a79ad2da070c2..e693a50706f84 100644
+--- a/drivers/gpu/drm/xe/regs/xe_oa_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+@@ -97,4 +97,7 @@
+ #define OAM_STATUS(base)			XE_REG((base) + OAM_STATUS_OFFSET)
+ #define OAM_MMIO_TRG(base)			XE_REG((base) + OAM_MMIO_TRG_OFFSET)
+ 
++#define OAM_COMPRESSION_T3_CONTROL		XE_REG(0x1c2e00)
++#define  OAM_LAT_MEASURE_ENABLE			REG_BIT(4)
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 19529c861523b..f41dac107e4a3 100644
+index f41dac107e4a3..679ee69502530 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1923,37 +1923,48 @@ u16 xe_oa_unit_id(struct xe_hw_engine *hwe)
- 		hwe->oa_unit->oa_unit_id : U16_MAX;
+@@ -844,6 +844,11 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 
+ 	/* Reset PMON Enable to save power. */
+ 	xe_mmio_rmw32(mmio, XELPMP_SQCNT1, sqcnt1, 0);
++
++	if ((stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAM ||
++	     stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAM_SAG) &&
++	    GRAPHICS_VER(stream->oa->xe) >= 30)
++		xe_mmio_rmw32(mmio, OAM_COMPRESSION_T3_CONTROL, OAM_LAT_MEASURE_ENABLE, 0);
  }
  
-+/* A hwe must be assigned to stream/oa_unit for batch submissions */
- static int xe_oa_assign_hwe(struct xe_oa *oa, struct xe_oa_open_param *param)
- {
--	struct xe_gt *gt;
--	int i, ret = 0;
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
-+	int ret = 0;
-+
-+	/* If not provided, OA unit defaults to OA unit 0 as per uapi */
-+	if (!param->oa_unit)
-+		param->oa_unit = &xe_device_get_gt(oa->xe, 0)->oa.oa_unit[0];
- 
-+	/* When we have an exec_q, get hwe from the exec_q */
- 	if (param->exec_q) {
--		/* When we have an exec_q, get hwe from the exec_q */
- 		param->hwe = xe_gt_hw_engine(param->exec_q->gt, param->exec_q->class,
- 					     param->engine_instance, true);
--	} else {
--		struct xe_hw_engine *hwe;
--		enum xe_hw_engine_id id;
+ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
+@@ -1111,9 +1116,13 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 	 */
+ 	sqcnt1 = SQCNT1_PMON_ENABLE |
+ 		 (HAS_OA_BPC_REPORTING(stream->oa->xe) ? SQCNT1_OABPC : 0);
 -
--		/* Else just get the first hwe attached to the oa unit */
--		for_each_gt(gt, oa->xe, i) {
--			for_each_hw_engine(hwe, gt, id) {
--				if (hwe->oa_unit == param->oa_unit) {
--					param->hwe = hwe;
--					goto out;
--				}
--			}
--		}
-+		if (!param->hwe || param->hwe->oa_unit != param->oa_unit)
-+			goto err;
-+		goto out;
- 	}
--out:
--	if (!param->hwe || param->hwe->oa_unit != param->oa_unit) {
--		drm_dbg(&oa->xe->drm, "Unable to find hwe (%d, %d) for OA unit ID %d\n",
--			param->exec_q ? param->exec_q->class : -1,
--			param->engine_instance, param->oa_unit->oa_unit_id);
--		ret = -EINVAL;
+ 	xe_mmio_rmw32(mmio, XELPMP_SQCNT1, 0, sqcnt1);
+ 
++	if ((stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAM ||
++	     stream->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAM_SAG) &&
++	    GRAPHICS_VER(stream->oa->xe) >= 30)
++		xe_mmio_rmw32(mmio, OAM_COMPRESSION_T3_CONTROL, 0, OAM_LAT_MEASURE_ENABLE);
 +
-+	/* Else just get the first hwe attached to the oa unit */
-+	for_each_hw_engine(hwe, param->oa_unit->gt, id) {
-+		if (hwe->oa_unit == param->oa_unit) {
-+			param->hwe = hwe;
-+			goto out;
-+		}
- 	}
- 
-+	/* If we still didn't find a hwe, just get one with a valid oa_unit from the same gt */
-+	for_each_hw_engine(hwe, param->oa_unit->gt, id) {
-+		if (!hwe->oa_unit)
-+			continue;
-+
-+		param->hwe = hwe;
-+		goto out;
-+	}
-+err:
-+	drm_dbg(&oa->xe->drm, "Unable to find hwe (%d, %d) for OA unit ID %d\n",
-+		param->exec_q ? param->exec_q->class : -1,
-+		param->engine_instance, param->oa_unit->oa_unit_id);
-+	ret = -EINVAL;
-+out:
- 	return ret;
- }
- 
-@@ -2578,6 +2589,8 @@ static void __xe_oa_init_oa_units(struct xe_gt *gt)
- 				DRM_XE_OA_UNIT_TYPE_OAM_SAG : DRM_XE_OA_UNIT_TYPE_OAM;
- 		}
- 
-+		u->gt = gt;
-+
- 		xe_mmio_write32(&gt->mmio, u->regs.oa_ctrl, 0);
- 
- 		/* Ensure MMIO trigger remains disabled till there is a stream */
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index a01c85931e2a5..2628f78c4e8dc 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -95,6 +95,9 @@ struct xe_oa_unit {
- 	/** @oa_unit_id: identifier for the OA unit */
- 	u16 oa_unit_id;
- 
-+	/** @gt: gt associated with the OA unit */
-+	struct xe_gt *gt;
-+
- 	/** @type: Type of OA unit - OAM, OAG etc. */
- 	enum drm_xe_oa_unit_type type;
- 
+ 	/* Configure OAR/OAC */
+ 	if (stream->exec_q) {
+ 		ret = xe_oa_configure_oa_context(stream, true);
 -- 
 2.48.1
 
