@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69AB2C5AD49
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 19:54:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE91AC61CE7
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 20:13:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EF4D10E061;
-	Fri,  6 Jun 2025 19:54:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m1GcmQ1c";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7828610E061
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 19:54:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749239692; x=1780775692;
- h=message-id:subject:from:reply-to:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=M2U7m45XzX5ma0cIa1VZzGqbw8q13+6NTCkBPcrGIf0=;
- b=m1GcmQ1cdGyeZWNTWnYqqZ2/6BG8ncqglfUYYhbnAMHxMf/XmrQLEjY0
- 6/RMRcNru7AtBgt1n2VZUUwWmrLSIRaBnkzzgs2DzJr4o9+EhiTAYMT1i
- +Br9gP1piQsRXs0XPmj/CyhEcit6fEaOu8wPaU8o0unNeg2Kjn3+qqkP7
- EINbH/owxXAU977h1U8YIdWLMb0e3q40LTh0oDAX/8d5ew2ANJcMhznLf
- pSlUMDGZcyF3JU7u/xOwQxNksfZbDXoP61ZBEAeP20WwCVKza9HELhrWs
- 6gweSEXqXtaTSjxiEy8dmA+xgrq7w+ba+t/nMJM9zU0Qd3xZn22gu0Br5 A==;
-X-CSE-ConnectionGUID: FoGr0hJTSfKZZ9w4Z/cvYw==
-X-CSE-MsgGUID: NT7B8LnaSaaRgfv1YCOPYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="50510228"
-X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="50510228"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 12:54:51 -0700
-X-CSE-ConnectionGUID: ZYCPfifOQXyBmXDLu+48CQ==
-X-CSE-MsgGUID: G8XK7oUiQQqSuBsF/p3fVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="150747948"
-Received: from aschofie-mobl2.amr.corp.intel.com ([10.124.222.251])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 12:54:50 -0700
-Message-ID: <b98363d420ec1862ce5a30b49d4d094bebd847b1.camel@linux.intel.com>
-Subject: Re: [PATCH v3 02/11] platform/x86/intel/pmt: crashlog binary file
- endpoint
-From: "David E. Box" <david.e.box@linux.intel.com>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>, 
- platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- hdegoede@redhat.com, ilpo.jarvinen@linux.intel.com,
- lucas.demarchi@intel.com,  rodrigo.vivi@intel.com,
- thomas.hellstrom@linux.intel.com, airlied@gmail.com,  simona@ffwll.ch
-Cc: stable@vger.kernel.org
-Date: Fri, 06 Jun 2025 12:54:49 -0700
-In-Reply-To: <20250605184444.515556-3-michael.j.ruhl@intel.com>
-References: <20250605184444.515556-1-michael.j.ruhl@intel.com>
- <20250605184444.515556-3-michael.j.ruhl@intel.com>
-Organization: David E. Box
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3-0ubuntu1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E47310E112;
+	Fri,  6 Jun 2025 20:13:29 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A8D310E112;
+ Fri,  6 Jun 2025 20:13:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4212380208403888840=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/dp=3A_Limit_the_DPCD_p?=
+ =?utf-8?q?robe_quirk_to_the_affected_monitor_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Jun 2025 20:13:28 -0000
+Message-ID: <174924080862.57358.11078336247219785069@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250605082850.65136-1-imre.deak@intel.com>
+In-Reply-To: <20250605082850.65136-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,80 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: david.e.box@linux.intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-06-05 at 14:44 -0400, Michael J. Ruhl wrote:
-> Usage of the intel_pmt_read() for binary sysfs, requires an allocated
-> endpoint struct. The crashlog driver does not allocate the endpoint.
->=20
-> Without the ep, the crashlog usage causes the following NULL pointer
-> exception:
->=20
-> BUG: kernel NULL pointer dereference, address: 0000000000000000
+--===============4212380208403888840==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Okay, there it is. I'll still review the rest to see if the endpoint is eve=
-n
-needed, but if not then you could drop this patch too.
+== Series Details ==
 
-David
+Series: drm/dp: Limit the DPCD probe quirk to the affected monitor (rev4)
+URL   : https://patchwork.freedesktop.org/series/149773/
+State : failure
 
-> Oops: Oops: 0000 [#1] SMP NOPTI
-> RIP: 0010:intel_pmt_read+0x3b/0x70 [pmt_class]
-> Code:
-> Call Trace:
-> =C2=A0<TASK>
-> =C2=A0? sysfs_kf_bin_read+0xc0/0xe0
-> =C2=A0kernfs_fop_read_iter+0xac/0x1a0
-> =C2=A0vfs_read+0x26d/0x350
-> =C2=A0ksys_read+0x6b/0xe0
-> =C2=A0__x64_sys_read+0x1d/0x30
-> =C2=A0x64_sys_call+0x1bc8/0x1d70
-> =C2=A0do_syscall_64+0x6d/0x110
->=20
-> Add the endpoint information to the crashlog driver to avoid the NULL
-> pointer exception.
->=20
-> Fixes: 416eeb2e1fc7 ("platform/x86/intel/pmt: telemetry: Export API to re=
-ad
-> telemetry")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> ---
-> =C2=A0drivers/platform/x86/intel/pmt/crashlog.c | 9 +++++++--
-> =C2=A01 file changed, 7 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c
-> b/drivers/platform/x86/intel/pmt/crashlog.c
-> index 6a9eb3c4b313..74ce199e59f0 100644
-> --- a/drivers/platform/x86/intel/pmt/crashlog.c
-> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
-> @@ -252,6 +252,7 @@ static struct intel_pmt_namespace pmt_crashlog_ns =3D=
- {
-> =C2=A0	.xa =3D &crashlog_array,
-> =C2=A0	.attr_grp =3D &pmt_crashlog_group,
-> =C2=A0	.pmt_header_decode =3D pmt_crashlog_header_decode,
-> +	.pmt_add_endpoint =3D intel_pmt_add_endpoint,
-> =C2=A0};
-> =C2=A0
-> =C2=A0/*
-> @@ -262,8 +263,12 @@ static void pmt_crashlog_remove(struct auxiliary_dev=
-ice
-> *auxdev)
-> =C2=A0	struct pmt_crashlog_priv *priv =3D auxiliary_get_drvdata(auxdev);
-> =C2=A0	int i;
-> =C2=A0
-> -	for (i =3D 0; i < priv->num_entries; i++)
-> -		intel_pmt_dev_destroy(&priv->entry[i].entry,
-> &pmt_crashlog_ns);
-> +	for (i =3D 0; i < priv->num_entries; i++) {
-> +		struct intel_pmt_entry *entry =3D &priv->entry[i].entry;
-> +
-> +		intel_pmt_release_endpoint(entry->ep);
-> +		intel_pmt_dev_destroy(entry, &pmt_crashlog_ns);
-> +	}
-> =C2=A0}
-> =C2=A0
-> =C2=A0static int pmt_crashlog_probe(struct auxiliary_device *auxdev,
+== Summary ==
 
+ERROR: The runconfig 'xe-3197-8a08b8454eecd8f3abaf032d8fb0906b56fa7c6a_FULL' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149773v4/index.html
+
+--===============4212380208403888840==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/dp: Limit the DPCD probe quirk to the affected monitor (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149773/">https://patchwork.freedesktop.org/series/149773/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149773v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149773v4/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-3197-8a08b8454eecd8f3abaf032d8fb0906b56fa7c6a_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============4212380208403888840==--
