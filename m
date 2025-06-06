@@ -4,57 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16722C5AD49
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 11:02:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBD83C61CE8
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 11:28:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFC4710EA4D;
-	Fri,  6 Jun 2025 11:02:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A842310E0A1;
+	Fri,  6 Jun 2025 11:28:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h/iQ6LCr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lVTD/zRR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 795AB10E2BD
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 11:02:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 937D310E0A1
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 11:28:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749207732; x=1780743732;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=MCTlROZcKDBEu3kxhaYQWlMyzWs+bQRmdKiwppJB36k=;
- b=h/iQ6LCrsJQcge9xBUlUOQfjG7/bML7xSo9c7ctLRuNKmgBSQFQEb77F
- Hfj9SRUba3Ec/ZmoKxj+9DzzRVo6A3vxIGJWLnqqnQMpSjLRg3tLfw/OZ
- knOcK7snzq3T8tC9PbfQcpEEOcqSoVIjFRfCrD5Fh4Uti2ERCiDJP7zEw
- nIVCkQx/YuFWNdD5+2ak2CHWmg1vFd7UE0iaRlBmxYNL/OG4BizBeaX8r
- yTxNz8rRvicFIi89BS8rRFBw0qBYfqgQBk4rMT7uWLaTi6090k5KvTSA/
- FNbBf0wrrwVqaJom3OWzWI2NX7C0MkXtF4Y5glvardLKBXjSbwmhHU3hv w==;
-X-CSE-ConnectionGUID: J50cPGSET/in3QfIA2V/IA==
-X-CSE-MsgGUID: m7WyMwopTeeAv3sfbHRQ6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="68913676"
-X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="68913676"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 04:02:08 -0700
-X-CSE-ConnectionGUID: paMLDV53QmWcr/EP0wF9eQ==
-X-CSE-MsgGUID: rrz48pMJR2Oz50WhIsA0eA==
+ t=1749209313; x=1780745313;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=DtFK5ntKMEALrzQWYhRC0IWxybREtrqJzzoC0C7hIMY=;
+ b=lVTD/zRRYq1MknI8ysz5E1ytjTAZk7ItHxl3Mz2g1fjgxGrPxzgYscVM
+ Zd9n/Zv2g/VRalXpByHDB1Gnz8LQPFPq/apM8g7wJvRjYLV5p1uGy/X8s
+ m8i6/ejtqor1uSboai2WQ+GafUBqeeYiRKuUpElwIb+lxjLcxG2+bToEX
+ mFxGIf9c5FBRLcZPhBiWw8L5MbomDpY5+k7j3W2PfsOT8kpA+pxV2qJoJ
+ bZ/ROgU7yFknjmD+BXDjlInhmmOft6kOe7HnOaJuTfJDMpCGNZMQVbNFo
+ i+2LoknLhcdJ5S7WtlBlLt+LkWehUIeJrhE+ybCN7UR4Xru/y15KKPIxS g==;
+X-CSE-ConnectionGUID: vXCe0utSTPimjmRDq+FTFw==
+X-CSE-MsgGUID: hWTT0OuqTXiZ3vgFMAXf/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="61623254"
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="61623254"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 04:28:33 -0700
+X-CSE-ConnectionGUID: mK7iyTD3Rhqgc9ob27PU4w==
+X-CSE-MsgGUID: 2SCbEDX6TpeUqcEamVTvdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="145693172"
-Received: from kuha.fi.intel.com ([10.237.72.152])
- by orviesa006.jf.intel.com with SMTP; 06 Jun 2025 04:02:06 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Fri, 06 Jun 2025 14:02:04 +0300
-Date: Fri, 6 Jun 2025 14:02:04 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
- aravind.iddamsetty@linux.intel.com, raag.jadav@intel.com
-Subject: Re: [PATCH] drm/xe/xe_i2c: Add support for i2c in survivability mode
-Message-ID: <aELKrBOBaDRv4P3I@kuha.fi.intel.com>
-References: <20250603170958.1580894-1-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="176674094"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.52])
+ ([10.245.245.52])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 04:28:31 -0700
+Message-ID: <6fd6d5cc-9f89-4949-82d4-0f3a55f687af@intel.com>
+Date: Fri, 6 Jun 2025 12:28:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250603170958.1580894-1-riana.tauro@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/bmg: fix compressed VRAM handling
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Jahagirdar, Akshata" <akshata.jahagirdar@intel.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+References: <20250604181511.1629551-2-matthew.auld@intel.com>
+ <CH0PR11MB5444A5B91EBE395713970E41E56CA@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <CH0PR11MB5444A5B91EBE395713970E41E56CA@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,76 +74,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 03, 2025 at 10:39:58PM +0530, Riana Tauro wrote:
-> Initialize i2c in survivability mode to allow firmware
-> update of Add-In Management Controller (AMC) in survivability mode
+On 04/06/2025 19:21, Cavitt, Jonathan wrote:
+> -----Original Message-----
+> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthew Auld
+> Sent: Wednesday, June 4, 2025 11:15 AM
+> To: intel-xe@lists.freedesktop.org
+> Cc: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>; Thomas Hellström <thomas.hellstrom@linux.intel.com>; Jahagirdar, Akshata <akshata.jahagirdar@intel.com>; stable@vger.kernel.org
+> Subject: [PATCH] drm/xe/bmg: fix compressed VRAM handling
+>>
+>> There looks to be an issue in our compression handling when the BO pages
+>> are very fragmented, where we choose to skip the identity map and
+>> instead fall back to emitting the PTEs by hand when migrating memory,
+>> such that we can hopefully do more work per blit operation. However in
+>> such a case we need to ensure the src PTEs are correctly tagged with a
+>> compression enabled PAT index on dgpu xe2+, otherwise the copy will
+>> simply treat the src memory as uncompressed, leading to corruption if
+>> the memory was compressed by the user.
+>>
+>> To fix this it looks like we can pass use_comp_pat into emit_pte() on
+>> the src side.
 > 
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> ---
+> It would be better if we had more confidence here beyond "it looks like"
+> (maybe just drop that part) and "There looks to be" (maybe "There is" instead),
+> but if we're not comfortable making definitive statements about our compression
+> handling, then I won't block this on some minor passive voice issues.
+
+Yeah, this was only really based on code inspection, so unclear if this 
+was even a real issue, or whether this is even related to the user 
+report. But once more certain of either, will update the commit message.
+
+> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+
+Thanks.
+
+> -Jonathan Cavitt
 > 
-> This depends on I2C series by Heikki on [1].
-> [1] https://lore.kernel.org/intel-xe/20250530141744.3605983-1-heikki.krogerus@linux.intel.com/
+>>
+>> There are reports of VRAM corruption in some heavy user workloads, which
+>> might be related: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4495
+>>
+>> Fixes: 523f191cc0c7 ("drm/xe/xe_migrate: Handle migration logic for xe2+ dgfx")
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Cc: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+>> Cc: <stable@vger.kernel.org> # v6.12+
+>> ---
+>>   drivers/gpu/drm/xe/xe_migrate.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+>> index 8f8e9fdfb2a8..16788ecf924a 100644
+>> --- a/drivers/gpu/drm/xe/xe_migrate.c
+>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+>> @@ -863,7 +863,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>>   		if (src_is_vram && xe_migrate_allow_identity(src_L0, &src_it))
+>>   			xe_res_next(&src_it, src_L0);
+>>   		else
+>> -			emit_pte(m, bb, src_L0_pt, src_is_vram, copy_system_ccs,
+>> +			emit_pte(m, bb, src_L0_pt, src_is_vram, copy_system_ccs || use_comp_pat,
+>>   				 &src_it, src_L0, src);
+>>   
+>>   		if (dst_is_vram && xe_migrate_allow_identity(src_L0, &dst_it))
+>> -- 
+>> 2.49.0
+>>
+>>
 
-Thanks Riana. I'll include this to my series in v2. This is now
-avilable in my internal amc branch:
-
-https://github.com/intel-sandbox/hkrogeru-linux/commit/83ead82b0adf307b28cc794e9567c3e622ab7daf
-
-cheers,
-
->
->  drivers/gpu/drm/xe/xe_survivability_mode.c | 23 ++++++++++++++--------
->  1 file changed, 15 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-> index 1f710b3fc599..3800cc855c22 100644
-> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-> @@ -14,6 +14,7 @@
->  #include "xe_device.h"
->  #include "xe_gt.h"
->  #include "xe_heci_gsc.h"
-> +#include "xe_i2c.h"
->  #include "xe_mmio.h"
->  #include "xe_pcode_api.h"
->  #include "xe_vsec.h"
-> @@ -173,20 +174,26 @@ static int enable_survivability_mode(struct pci_dev *pdev)
->  	survivability->mode = true;
->  
->  	ret = xe_heci_gsc_init(xe);
-> -	if (ret) {
-> -		/*
-> -		 * But if it fails, device can't enter survivability
-> -		 * so move it back for correct error handling
-> -		 */
-> -		survivability->mode = false;
-> -		return ret;
-> -	}
-> +	if (ret)
-> +		goto err;
->  
->  	xe_vsec_init(xe);
->  
-> +	ret = xe_i2c_probe(xe);
-> +	if (ret)
-> +		goto err;
-> +
->  	dev_err(dev, "In Survivability Mode\n");
->  
->  	return 0;
-> +
-> +err:
-> +	/*
-> +	 * But if it fails, device can't enter survivability
-> +	 * so move it back for correct error handling
-> +	 */
-> +	survivability->mode = false;
-> +	return ret;
->  }
->  
->  /**
-> -- 
-> 2.47.1
-
--- 
-heikki
