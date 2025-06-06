@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A75DC5B543
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 00:18:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40C1FC5B555
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 00:18:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEB2010E9AF;
-	Fri,  6 Jun 2025 00:18:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF7F810EA20;
+	Fri,  6 Jun 2025 00:18:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gZJ2DLjk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a9bUJrsT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F1AC10E910
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 00:18:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9845510EA20
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 00:18:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749169113; x=1780705113;
+ t=1749169115; x=1780705115;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9+8PEEgwi6+VVRWdiDej0mRZjnxx1m2zskPdBL4y9b0=;
- b=gZJ2DLjkLzkBrl07EngB//2ng9OxB66P9NTONpsUHRSnMjTvjdyoGT/J
- uq17wATFDBHNNEEt8lcLhpfq3QCT22VTXwp8Yp1GfFphquDr5+aWe473o
- r8tgX86SxK8O4v/MlG9pL88+GC+svtjsJhjRAG9146FWjTcAVxFCvLqqP
- eTmHRGevB9Os9hTMdBIxkCvp33ZwQh7UT3o1wtG4+s5VDGC8KTZzRIwYq
- lVgZMWgVq0RPoL/6jcVq9aincMBV7iYa6JP8D+qTyGl4E63C5tLaJc6As
- WJhLrE1/Exh4P2W1ewrh2uU1XKcyoZuvremttmdFpV57eEdCtKAYsRg88 Q==;
-X-CSE-ConnectionGUID: yxWNqp4eShehJFTbd1gxpA==
-X-CSE-MsgGUID: qB8GT6xqT26kwAitRFDGXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="61973478"
-X-IronPort-AV: E=Sophos;i="6.16,213,1744095600"; d="scan'208";a="61973478"
+ bh=uNkWKDtuEcFYGkiuTa/4FRPXu9kMGTuUV39VS2r7RhU=;
+ b=a9bUJrsTc2mQLxG92a1eDb+49j1jrXcwe/6lOkwC34pVuf5DL2D3yG7U
+ O9P3GcvCfLtTHCRl2P9D//2gyslwwnt9mQod+PKhGJF/dn3kau6SjiBY/
+ 76HAN56mJ/YOLWe4E7+NFiZYYbXKENaCE4LFUOb5UBzTDwIj7EPeIo6+p
+ ebNub2tF1Q+LIsX3gsTO5FwT5wZaGjpG3zjtHn1zF5GCoQlOu/XEKQCDH
+ 3VQ0UvdFk0Hd674Q5tIg0fX98lAf78oFWkqVfd46Cu9Z0ROfIxE35Qdhs
+ ZKST5/DIp7Xf9RyTm6M3miE4lbJ0q9fD0XvStBEKHsuvLswqX4MoCAO+9 w==;
+X-CSE-ConnectionGUID: 3+vm8n7ORcW5m/xaI1X9fg==
+X-CSE-MsgGUID: 8IsWNlAuR5yBBPJCBT8uxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="61973480"
+X-IronPort-AV: E=Sophos;i="6.16,213,1744095600"; d="scan'208";a="61973480"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 17:18:33 -0700
-X-CSE-ConnectionGUID: tqgO4lK6Sbu4/9wypJyMuA==
-X-CSE-MsgGUID: JmqZL9HCRoW9IJ9nEqXg0g==
+ 05 Jun 2025 17:18:35 -0700
+X-CSE-ConnectionGUID: /uQ8WAWvTNa8qJOEO1n7EA==
+X-CSE-MsgGUID: XnPkb/VATHG+HrUzDoiB4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,213,1744095600"; d="scan'208";a="149507883"
+X-IronPort-AV: E=Sophos;i="6.16,213,1744095600"; d="scan'208";a="149507888"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by fmviesa003.fm.intel.com with ESMTP; 05 Jun 2025 17:18:32 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 05 Jun 2025 17:18:34 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 4/8] drm/xe: Block reset while recovering from VF migration
-Date: Fri,  6 Jun 2025 02:18:19 +0200
-Message-Id: <20250606001823.1010994-5-tomasz.lis@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v4 5/8] drm/xe/vf: Rebase HWSP of all contexts after migration
+Date: Fri,  6 Jun 2025 02:18:20 +0200
+Message-Id: <20250606001823.1010994-6-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250606001823.1010994-1-tomasz.lis@intel.com>
 References: <20250606001823.1010994-1-tomasz.lis@intel.com>
@@ -69,189 +70,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Resetting GuC during recovery could interfere with the recovery
-process. Such reset might be also triggered without justification,
-due to migration taking time, rather than due to the workload not
-progressing.
+All contexts require an update due to GGTT range shift, as that
+affects their HWSP.
 
-Doing GuC reset during the recovery would cause exit of RESFIX state,
-and therefore continuation of GuC work while fixups are still being
-applied. To avoid that, reset needs to be blocked during the recovery.
+The HW status page of a context contains GGTT references, which
+need to be shifted to a new range (or re-computed using the
+previously updated vma nodes). The references include ring start
+address and indirect state address.
 
-This patch blocks the reset during recovery. Reset request in that
-time range will be stalled, and unblocked only after GuC goes out
-of RESFIX state.
-
-In case a reset procedure already started while the recovery is
-triggered, there isn't much we can do - we cannot wait for it to
-finish as it involves waiting for hardware, and we can't be sure
-at which exact point of the reset procedure the GPU got switched.
-Therefore, the rare cases where migration happens while reset is
-in progress, are still dangerous. Resets are not a part of the
-standard flow, and cause unfinished workloads - that will happen
-during the reset interrupted by migration as well, so it doesn't
-diverge that much from what normally happens during such resets.
-
-v2: Introduce a new atomic for reset blocking, as we cannot reuse
-  `stopped` atomic (that could lead to losing a workload).
+v2: move some functions to better matched files
+v3: Add missing kerneldocs
 
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Michal Winiarski <michal.winiarski@intel.com>
+Acked-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c         | 10 +++++++++
- drivers/gpu/drm/xe/xe_guc_submit.c | 36 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h |  3 +++
- drivers/gpu/drm/xe/xe_guc_types.h  |  6 +++++
- drivers/gpu/drm/xe/xe_sriov_vf.c   | 12 ++++++++--
- 5 files changed, 65 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 13 +++++++++++++
+ drivers/gpu/drm/xe/xe_exec_queue.h |  2 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c | 16 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h |  2 ++
+ drivers/gpu/drm/xe/xe_lrc.c        | 16 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h        |  1 +
+ drivers/gpu/drm/xe/xe_sriov_vf.c   | 17 +++++++++++++++--
+ 7 files changed, 65 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 858b5398c01b..96647c5801cc 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -41,6 +41,7 @@
- #include "xe_gt_topology.h"
- #include "xe_guc_exec_queue_types.h"
- #include "xe_guc_pc.h"
-+#include "xe_guc_submit.h"
- #include "xe_hw_fence.h"
- #include "xe_hw_engine_class_sysfs.h"
- #include "xe_irq.h"
-@@ -810,6 +811,11 @@ static int do_gt_restart(struct xe_gt *gt)
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index fee22358cc09..c44a523ba906 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -1028,3 +1028,16 @@ int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
+ 
+ 	return err;
  }
- 
-+static int gt_wait_reset_unblock(struct xe_gt *gt)
++
++/**
++ * xe_exec_queue_contexts_hwsp_rebase - Re-compute GGTT references
++ * within all LRCs of a queue.
++ * @q: the &xe_exec_queue struct instance containing target LRCs
++ */
++void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q)
 +{
-+	return xe_guc_wait_reset_unblock(&gt->uc.guc);
++	int i;
++
++	for (i = 0; i < q->width; ++i)
++		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
 +}
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+index 17bc50a7f05a..1d399a33c5c0 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+@@ -90,4 +90,6 @@ int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
+ 				      struct xe_vm *vm);
+ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
+ 
++void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q);
 +
- static int gt_reset(struct xe_gt *gt)
- {
- 	unsigned int fw_ref;
-@@ -824,6 +830,10 @@ static int gt_reset(struct xe_gt *gt)
- 
- 	xe_gt_info(gt, "reset started\n");
- 
-+	err = gt_wait_reset_unblock(gt);
-+	if (!err)
-+		xe_gt_warn(gt, "reset block failed to get lifted");
-+
- 	xe_pm_runtime_get(gt_to_xe(gt));
- 
- 	if (xe_fault_inject_gt_reset()) {
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 61a1aac7a976..0d6d9e07fc48 100644
+index 0d6d9e07fc48..89b4c09e733a 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1772,6 +1772,42 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 	}
+@@ -2449,3 +2449,19 @@ void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p)
+ 		guc_exec_queue_print(q, p);
+ 	mutex_unlock(&guc->submission_state.lock);
  }
- 
-+/**
-+ * xe_guc_submit_reset_block - Disallow reset calls on given GuC.
-+ * @guc: the &xe_guc struct instance
-+ */
-+int xe_guc_submit_reset_block(struct xe_guc *guc)
-+{
-+	return atomic_fetch_or(1, &guc->submission_state.reset_blocked);
-+}
 +
 +/**
-+ * xe_guc_submit_reset_unblock - Allow back reset calls on given GuC.
++ * xe_guc_contexts_hwsp_rebase - Re-compute GGTT references within all
++ * exec queues registered to given GuC.
 + * @guc: the &xe_guc struct instance
 + */
-+void xe_guc_submit_reset_unblock(struct xe_guc *guc)
++void xe_guc_contexts_hwsp_rebase(struct xe_guc *guc)
 +{
-+	atomic_and(0, &guc->submission_state.reset_blocked);
-+	/* we are going to wake workers, make sure they all see the value */
-+	smp_wmb();
-+	wake_up_all(&guc->ct.wq);
-+}
++	struct xe_exec_queue *q;
++	unsigned long index;
 +
-+static int guc_submit_reset_is_blocked(struct xe_guc *guc)
-+{
-+	return atomic_read(&guc->submission_state.reset_blocked);
++	mutex_lock(&guc->submission_state.lock);
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
++		xe_exec_queue_contexts_hwsp_rebase(q);
++	mutex_unlock(&guc->submission_state.lock);
 +}
-+
-+/**
-+ * xe_guc_wait_reset_unblock - Wait until reset blocking flag is lifted, or timeout.
-+ * @guc: the &xe_guc struct instance
-+ */
-+int xe_guc_wait_reset_unblock(struct xe_guc *guc)
-+{
-+	return wait_event_timeout(guc->ct.wq,
-+				  !guc_submit_reset_is_blocked(guc), HZ * 5);
-+}
-+
- int xe_guc_submit_reset_prepare(struct xe_guc *guc)
- {
- 	int ret;
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index f1cf271492ae..45b978b047c9 100644
+index 45b978b047c9..5b43e6639f52 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.h
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -20,6 +20,9 @@ void xe_guc_submit_stop(struct xe_guc *guc);
- int xe_guc_submit_start(struct xe_guc *guc);
- void xe_guc_submit_pause(struct xe_guc *guc);
- void xe_guc_submit_unpause(struct xe_guc *guc);
-+int xe_guc_submit_reset_block(struct xe_guc *guc);
-+void xe_guc_submit_reset_unblock(struct xe_guc *guc);
-+int xe_guc_wait_reset_unblock(struct xe_guc *guc);
- void xe_guc_submit_wedge(struct xe_guc *guc);
+@@ -45,4 +45,6 @@ void
+ xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapshot);
+ void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p);
  
- int xe_guc_read_stopped(struct xe_guc *guc);
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index 1fde7614fcc5..c7b9642b41ba 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -85,6 +85,12 @@ struct xe_guc {
- 		struct xarray exec_queue_lookup;
- 		/** @submission_state.stopped: submissions are stopped */
- 		atomic_t stopped;
-+		/**
-+		 * @submission_state.reset_blocked: reset attempts are blocked;
-+		 * blocking reset in order to delay it may be required if running
-+		 * an operation which is sensitive to resets.
-+		 */
-+		atomic_t reset_blocked;
- 		/** @submission_state.lock: protects submission state */
- 		struct mutex lock;
- 		/** @submission_state.enabled: submission is enabled */
++void xe_guc_contexts_hwsp_rebase(struct xe_guc *guc);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 63d74e27f54c..72690f71289c 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1181,6 +1181,22 @@ void xe_lrc_destroy(struct kref *ref)
+ 	kfree(lrc);
+ }
+ 
++/**
++ * xe_lrc_update_hwctx_regs_with_address - Re-compute GGTT references within given LRC.
++ * @lrc: the &xe_lrc struct instance
++ */
++void xe_lrc_update_hwctx_regs_with_address(struct xe_lrc *lrc)
++{
++	if (xe_lrc_has_indirect_ring_state(lrc)) {
++		xe_lrc_write_ctx_reg(lrc, CTX_INDIRECT_RING_STATE,
++				     __xe_lrc_indirect_ring_ggtt_addr(lrc));
++
++		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START,
++					      __xe_lrc_ring_ggtt_addr(lrc));
++	} else
++		xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
++}
++
+ void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail)
+ {
+ 	if (xe_lrc_has_indirect_ring_state(lrc))
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index eb6e8de8c939..e7a99cfd0abe 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -88,6 +88,7 @@ bool xe_lrc_ring_is_idle(struct xe_lrc *lrc);
+ u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc);
+ u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc);
+ u32 *xe_lrc_regs(struct xe_lrc *lrc);
++void xe_lrc_update_hwctx_regs_with_address(struct xe_lrc *lrc);
+ 
+ u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr);
+ void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val);
 diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index b72542953004..29f3082c8fa5 100644
+index 29f3082c8fa5..d54048bc4576 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -163,9 +163,15 @@ static void vf_post_migration_shutdown(struct xe_device *xe)
+@@ -7,12 +7,14 @@
+ 
+ #include "xe_assert.h"
+ #include "xe_device.h"
++#include "xe_exec_queue_types.h"
+ #include "xe_gt.h"
+ #include "xe_gt_sriov_printk.h"
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_submit.h"
+ #include "xe_irq.h"
++#include "xe_lrc.h"
+ #include "xe_pm.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_printk.h"
+@@ -240,6 +242,15 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
+ 	return ret;
+ }
+ 
++static void vf_post_migration_fixup_contexts(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++
++	for_each_gt(gt, xe, id)
++		xe_guc_contexts_hwsp_rebase(&gt->uc.guc);
++}
++
+ static void vf_post_migration_fixup_ctb(struct xe_device *xe)
  {
  	struct xe_gt *gt;
- 	unsigned int id;
-+	int ret = 0;
+@@ -325,9 +336,11 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+ 	}
  
--	for_each_gt(gt, xe, id)
-+	for_each_gt(gt, xe, id) {
- 		xe_guc_submit_pause(&gt->uc.guc);
-+		ret |= xe_guc_submit_reset_block(&gt->uc.guc);
+ 	need_fixups = vf_post_migration_fixup_ggtt_nodes(xe);
+-	/* FIXME: add the recovery steps */
+-	if (need_fixups)
++	if (need_fixups) {
++		vf_post_migration_fixup_contexts(xe);
++		/* FIXME: add the recovery steps */
+ 		vf_post_migration_fixup_ctb(xe);
 +	}
-+
-+	if (ret)
-+		drm_info(&xe->drm, "migration recovery encountered ongoing reset\n");
- }
  
- /**
-@@ -187,8 +193,10 @@ static void vf_post_migration_kickstart(struct xe_device *xe)
- 	 */
- 	xe_irq_resume(xe);
- 
--	for_each_gt(gt, xe, id)
-+	for_each_gt(gt, xe, id) {
-+		xe_guc_submit_reset_unblock(&gt->uc.guc);
- 		xe_guc_submit_unpause(&gt->uc.guc);
-+	}
- }
- 
- /**
+ 	vf_post_migration_kickstart(xe);
+ 	vf_post_migration_notify_resfix_done(xe);
 -- 
 2.25.1
 
