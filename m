@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A21D0C5AD49
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 12:05:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72DB6C61CE8
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 12:06:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61AA010EA8A;
-	Fri,  6 Jun 2025 12:05:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31AD110EA36;
+	Fri,  6 Jun 2025 12:06:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="JyuhHxxV";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="e/GMYyPj";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77CF410EA84
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 12:05:57 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18CAF10EA36
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 12:06:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1749211556;
+ s=mimecast20190719; t=1749211565;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=7zgUFcNjP45KVFN7fvEt+xKxva7ecAlvU3lfLilVE+Q=;
- b=JyuhHxxVgfwL9HrmUlilMKbntDKJjy23w8qAfWEQxhsCl/lDZj3gOqm+RiLziz8g/9UtFR
- IGziMX71FISMoLHUUVmQGB0/5+iiMoh6Q85fQpCEeq4rI+0t9lrf6ci7NwwDuzz4LhFkNn
- 4jj0orqzKvXy7XAyi4smua1U/U8qiiE=
+ bh=SE4yLfs+tmSJMV3+0jxUQ5+2HoU5En7sT23L/AjgM7I=;
+ b=e/GMYyPjv1T0BEM7XRwTkuxjQ31n+aQAfgY/ZT6XvNPQWJftWldUU8m+PwXCc9UQLhbTnx
+ rwqsqMxCXmpmPQgxto4p+u0lspgsgIBz9b9ZsmMyKRjdtJXAEAUbun9ODNasgEwYrhAZy7
+ iS1yhOB0n4B9oQFH89HX1LlFh8tItKk=
 Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-399-P-GhgdoFNSuMb05AmqCiKA-1; Fri,
- 06 Jun 2025 08:05:52 -0400
-X-MC-Unique: P-GhgdoFNSuMb05AmqCiKA-1
-X-Mimecast-MFC-AGG-ID: P-GhgdoFNSuMb05AmqCiKA_1749211549
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-486-svAeglVxMNelhOsnVVuV8g-1; Fri,
+ 06 Jun 2025 08:05:59 -0400
+X-MC-Unique: svAeglVxMNelhOsnVVuV8g-1
+X-Mimecast-MFC-AGG-ID: svAeglVxMNelhOsnVVuV8g_1749211556
 Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
  by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 3B3B6180045B; Fri,  6 Jun 2025 12:05:49 +0000 (UTC)
+ id 6FE4A1800773; Fri,  6 Jun 2025 12:05:56 +0000 (UTC)
 Received: from hydra.redhat.com (unknown [10.44.33.65])
  by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id BA96A18003FD; Fri,  6 Jun 2025 12:05:40 +0000 (UTC)
+ id 358D918002A5; Fri,  6 Jun 2025 12:05:49 +0000 (UTC)
 From: Jocelyn Falempe <jfalempe@redhat.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
@@ -58,12 +58,14 @@ To: Jani Nikula <jani.nikula@linux.intel.com>,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
 Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Subject: [PATCH v8 1/9] drm/i915/fbdev: Add intel_fbdev_get_map()
-Date: Fri,  6 Jun 2025 13:48:05 +0200
-Message-ID: <20250606120519.753928-2-jfalempe@redhat.com>
+Subject: [PATCH v8 2/9] drm/i915/display/i9xx: Add a disable_tiling() for i9xx
+ planes
+Date: Fri,  6 Jun 2025 13:48:06 +0200
+Message-ID: <20250606120519.753928-3-jfalempe@redhat.com>
 In-Reply-To: <20250606120519.753928-1-jfalempe@redhat.com>
 References: <20250606120519.753928-1-jfalempe@redhat.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -80,134 +82,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The vaddr of the fbdev framebuffer is private to the struct
-intel_fbdev, so this function is needed to access it for drm_panic.
-Also the struct i915_vma is different between i915 and xe, so it
-requires a few functions to access fbdev->vma->iomap.
+drm_panic draws in linear framebuffer, so it's easier to re-use the
+current framebuffer, and disable tiling in the panic handler, to show
+the panic screen.
+This assumes that the alignment restriction is always smaller in
+linear than in tiled.
+It also assumes that the linear framebuffer size is always smaller
+than the tiled.
 
 Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
 ---
 
-v2:
- * Add intel_fb_get_vaddr() and i915_vma_get_iomap() to build with Xe driver.
+v7:
+ * Reword commit message about alignment/size when disabling tiling (Ville Syrjälä)
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     | 23 +++++++++++++++++++
+ .../drm/i915/display/intel_display_types.h    |  2 ++
+ 2 files changed, 25 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+index a2a6d52be0a5..b183270bf934 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_plane.c
++++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+@@ -903,6 +903,27 @@ static const struct drm_plane_funcs i8xx_plane_funcs = {
+ 	.format_mod_supported_async = intel_plane_format_mod_supported_async,
+ };
  
-v4:
- * rename to get_map(), and return the struct iosys_map mapping.
- * implement the Xe variant.
-
- drivers/gpu/drm/i915/display/intel_fb_pin.c | 5 +++++
- drivers/gpu/drm/i915/display/intel_fb_pin.h | 2 ++
- drivers/gpu/drm/i915/display/intel_fbdev.c  | 5 +++++
- drivers/gpu/drm/i915/display/intel_fbdev.h  | 6 +++++-
- drivers/gpu/drm/i915/i915_vma.h             | 5 +++++
- drivers/gpu/drm/xe/display/xe_fb_pin.c      | 5 +++++
- 6 files changed, 27 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index 98a61a7b0b93..b792e9b062d8 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -334,3 +334,8 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
- 			intel_dpt_unpin_from_ggtt(fb->dpt_vm);
++static void i9xx_disable_tiling(struct intel_plane *plane)
++{
++	struct intel_display *display = to_intel_display(plane);
++	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
++	u32 dspcntr;
++	u32 reg;
++
++	dspcntr = intel_de_read_fw(display, DSPCNTR(display, i9xx_plane));
++	dspcntr &= ~DISP_TILED;
++	intel_de_write_fw(display, DSPCNTR(display, i9xx_plane), dspcntr);
++
++	if (DISPLAY_VER(display) >= 4) {
++		reg = intel_de_read_fw(display, DSPSURF(display, i9xx_plane));
++		intel_de_write_fw(display, DSPSURF(display, i9xx_plane), reg);
++
++	} else {
++		reg = intel_de_read_fw(display, DSPADDR(display, i9xx_plane));
++		intel_de_write_fw(display, DSPADDR(display, i9xx_plane), reg);
++	}
++}
++
+ struct intel_plane *
+ intel_primary_plane_create(struct intel_display *display, enum pipe pipe)
+ {
+@@ -1045,6 +1066,8 @@ intel_primary_plane_create(struct intel_display *display, enum pipe pipe)
+ 		}
  	}
- }
+ 
++	plane->disable_tiling = i9xx_disable_tiling;
 +
-+void intel_fb_get_map(struct i915_vma *vma, struct iosys_map *map)
-+{
-+	iosys_map_set_vaddr_iomem(map, i915_vma_get_iomap(vma));
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-index 01770dbba2e0..81ab79da1af7 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-@@ -12,6 +12,7 @@ struct drm_framebuffer;
- struct i915_vma;
- struct intel_plane_state;
- struct i915_gtt_view;
-+struct iosys_map;
+ 	modifiers = intel_fb_plane_get_modifiers(display, INTEL_PLANE_CAP_TILING_X);
  
- struct i915_vma *
- intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
-@@ -27,5 +28,6 @@ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags);
- int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 		       const struct intel_plane_state *old_plane_state);
- void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
-+void intel_fb_get_map(struct i915_vma *vma, struct iosys_map *map);
+ 	if (DISPLAY_VER(display) >= 5 || display->platform.g4x)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index ed4d743fc7c5..3654d88e9c5f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1517,6 +1517,8 @@ struct intel_plane {
+ 			   bool async_flip);
+ 	void (*enable_flip_done)(struct intel_plane *plane);
+ 	void (*disable_flip_done)(struct intel_plane *plane);
++	/* For drm_panic */
++	void (*disable_tiling)(struct intel_plane *plane);
+ };
  
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 2dc4029d71ed..7c4709d58aa3 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -512,3 +512,8 @@ struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
- {
- 	return fbdev ? fbdev->vma : NULL;
- }
-+
-+void intel_fbdev_get_map(struct intel_fbdev *fbdev, struct iosys_map *map)
-+{
-+	intel_fb_get_map(fbdev->vma, map);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index a15e3e222a0c..150cc5f45bb3 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -13,6 +13,7 @@ struct drm_fb_helper_surface_size;
- struct intel_display;
- struct intel_fbdev;
- struct intel_framebuffer;
-+struct iosys_map;
- 
- #ifdef CONFIG_DRM_FBDEV_EMULATION
- int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
-@@ -22,7 +23,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- void intel_fbdev_setup(struct intel_display *display);
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
- struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
--
-+void intel_fbdev_get_map(struct intel_fbdev *fbdev, struct iosys_map *map);
- #else
- #define INTEL_FBDEV_DRIVER_OPS \
- 	.fbdev_probe = NULL
-@@ -39,6 +40,9 @@ static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev
- 	return NULL;
- }
- 
-+static inline void intel_fbdev_get_map(struct intel_fbdev *fbdev, struct iosys_map *map)
-+{
-+}
- #endif
- 
- #endif /* __INTEL_FBDEV_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 6a6be8048aa8..4ae610927fa7 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -353,6 +353,11 @@ static inline bool i915_node_color_differs(const struct drm_mm_node *node,
- 	return drm_mm_node_allocated(node) && node->color != color;
- }
- 
-+static inline void __iomem *i915_vma_get_iomap(struct i915_vma *vma)
-+{
-+	return READ_ONCE(vma->iomap);
-+}
-+
- /**
-  * i915_vma_pin_iomap - calls ioremap_wc to map the GGTT VMA via the aperture
-  * @vma: VMA to iomap
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 461ecdfdb742..ac9a5ba363b2 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -465,3 +465,8 @@ u64 intel_dpt_offset(struct i915_vma *dpt_vma)
- {
- 	return 0;
- }
-+
-+void intel_fb_get_map(struct i915_vma *vma, struct iosys_map *map)
-+{
-+	*map = vma->bo->vmap;
-+}
+ #define to_intel_atomic_state(x) container_of(x, struct intel_atomic_state, base)
 -- 
 2.49.0
 
