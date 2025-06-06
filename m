@@ -4,111 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA735C5AD49
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 16:25:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A9B9C61CE7
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 16:42:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9742610E089;
-	Fri,  6 Jun 2025 16:25:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D95CB10E135;
+	Fri,  6 Jun 2025 16:42:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="S6NAfD7H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RSynn/ZB";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E50710E374
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 16:25:50 +0000 (UTC)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 556F9I9t018552
- for <intel-xe@lists.freedesktop.org>; Fri, 6 Jun 2025 16:25:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- zfn1QVQKiLHUIdJ2K7+OnM+Hl764UqzsTlMn1/g/KYQ=; b=S6NAfD7H6C9Upz4z
- RNcyE5eEnPxff/4v2v7cXL5+iiHXDLG5eumGcPeSMpXSJD/KYBm9jeoKzQ4YV5tS
- Qa1raFYpBD7IKF36d5fB1MMeyYZJgzc+UF2d1aILh7bLIXMc06hJj212cgnj4ujC
- 53Xq+Ke2VEuaz1HNE4siV3/RTEVzbNBHee9M8/H4gSsCZPAcD3L4QW4VRsRVcBPJ
- tctFiUDTF/UtLxLf1j1ZcUSOJAxvuh14pCFbRqeXpsq0mR5Qb0+Fe746Yhk9Un5z
- qXAqgcremyD+LCUANLA9ND5eTBBMODF45wwCP7Vnzma+vV5EC1QkuAlllEZrw4wo
- zQ3K7g==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com
- [209.85.215.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8nw61f-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Fri, 06 Jun 2025 16:25:46 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id
- 41be03b00d2f7-b1ffc678adfso1493686a12.0
- for <intel-xe@lists.freedesktop.org>; Fri, 06 Jun 2025 09:25:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749227145; x=1749831945;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=zfn1QVQKiLHUIdJ2K7+OnM+Hl764UqzsTlMn1/g/KYQ=;
- b=Ijr9IjPPdevbiSl6j+3e2VF2QvLK01eTU1zqwTUiwe/X9Dq7Ib03HvvZE+FhsruK98
- 4Yq2S0mK3WxCpwtERGVnew0UbAl0UHsxsxCmUdE9Pw/qPoyFsFk789lGcBOhGpr74j/1
- s12uVedTegYyg7R3hpYLuBT40OzowUdSFqdcH6KPeJvbQRJ5OAj3xAIDEB/YPvfOO6vg
- sHZLHvo4jK6n/qIcpkolSeeUuUOtbZAQCeTyJoIjyRAnOlQnZ0N/nIeqlD5hTu/39m0b
- O7GIkn54tOzY7Lcy/SyUPaOpLjGNSSbmUB5AcmoSRJpn7DrLLc9njT/28ZE/BXfvq7/I
- L2LQ==
-X-Gm-Message-State: AOJu0YyukjgjmNi41vfreEN458xengzcaAIPMwWpkaJXV5oAjqE6oI6x
- BYQ9sggpYQTY7U+6cu0Swnw5ZgLX20kfQfFfZvuGM8WgzVUgDlm+y7jWWrcTsXUZ2BOFwqrdN1C
- vPURftHRJR4E5dDTAWI5Yx2SQ3GfuiEuNbdXjMVeeIatkSCdUZgPzlREXF2kKjCikfsU053bAGD
- GY4w==
-X-Gm-Gg: ASbGnctYuEiGEdxSPtRrRIdxz1FjuYOwgR7eizRxnzDzZ5ex17Gr/7lJthUGQkR6HgI
- p5TgVroUNERCFtLuTV9fobMuaopIa22sBxdH7hGD/kkHQqubKcEP87m7vvcNRNbrO6zQ1zn0f7n
- hexkUc0GIr4kRJfrZGHaaYcBTNWdfRTlQW//5CZGyj/ozCuMW0qCtBsw0proHUasBgrvYlQQbV8
- kVfPElRwcdTzJIuppcw72FCGE/l8GBf39zUuZt4IigHYhTf6twJoACpBF4OeQE6pT8xWPaqq90e
- BfgSbjhPAg00JlKaauZRjJj5M7tsVl7GRzZcVXJJ5QH/x+oXajM6iT2c1iQjgw==
-X-Received: by 2002:a17:90b:380b:b0:311:ffe8:20ee with SMTP id
- 98e67ed59e1d1-31346b29b0emr5977873a91.11.1749227145021; 
- Fri, 06 Jun 2025 09:25:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHp5/TnYlvyb4M14Pmzr8iKZ1ci5qsNHCWuKvIK0rgVK6v7M1LCvE2hfrlqwqQfHjtlm+gAmw==
-X-Received: by 2002:a17:90b:380b:b0:311:ffe8:20ee with SMTP id
- 98e67ed59e1d1-31346b29b0emr5977844a91.11.1749227144596; 
- Fri, 06 Jun 2025 09:25:44 -0700 (PDT)
-Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23603504efasm14229585ad.221.2025.06.06.09.25.43
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 06 Jun 2025 09:25:44 -0700 (PDT)
-Message-ID: <577fc3b0-6e0e-48df-8f4c-7ac2e160080a@oss.qualcomm.com>
-Date: Fri, 6 Jun 2025 10:25:43 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] accel/qaic: delete qaic_bo.handle
-To: Simona Vetter <simona.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: intel-xe@lists.freedesktop.org, Carl Vanderlip <quic_carlv@quicinc.com>,
- linux-arm-msm@vger.kernel.org, Simona Vetter <simona.vetter@intel.com>
-References: <20250528091307.1894940-1-simona.vetter@ffwll.ch>
- <20250528091307.1894940-5-simona.vetter@ffwll.ch>
-Content-Language: en-US
-From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-In-Reply-To: <20250528091307.1894940-5-simona.vetter@ffwll.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 54QIo8dcCDRpDCnqPWIkMVUu7bS0T_98
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA2MDE0MyBTYWx0ZWRfX++466cDA+2nh
- MV5rNObkE4G0+n1pOE6hy6ww8+C3E3Jv6OreNL7mdCSWbi4XwPImtIKV3Na5nEQ6xOFi6GQvJEa
- ALMF2sMcC/AqkpGtwtDNosd3rc3ul2O7GeQtaPM7F28NuzML7lh4QZgGsTjBeiBJoyIQuCq88bb
- 6UgnPsQgqInUCiY13ouF4jPHAOBBbkxJtYZ37p7iHAX2ySHrIrCE+ehSm78AwcqjPDP+ZW80+Md
- 5NXGXhstTJAuWqHXqQIxajKz9Z0K2EhrjOQmWh03HVNskEEhtVggicof1fT2VeqbGvzcanDN7gA
- l3Qd1FrE9vBKk5kXknFqiANU+/viceZxmc3FlXuyN2bIdE7XFj8QOvDJ9snR9vg30m6T3LzUWAU
- tDpfgRdEXP4fCEVnrzIg52r7CFMBpznzfr80YHBzCq6Mwft0K5cvl5vcsgy4tl4kxX8DFcgj
-X-Proofpoint-ORIG-GUID: 54QIo8dcCDRpDCnqPWIkMVUu7bS0T_98
-X-Authority-Analysis: v=2.4 cv=UphjN/wB c=1 sm=1 tr=0 ts=6843168a cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
- a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8 a=-sWgwtkE3efGhls0agMA:9 a=QEXdDO2ut3YA:10
- a=x9snwWr2DeNwDh03kgHS:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-06_06,2025-06-05_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 impostorscore=0 lowpriorityscore=0
- phishscore=0 mlxlogscore=968 clxscore=1015 malwarescore=0 adultscore=0
- bulkscore=0 mlxscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506060143
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C475610E135
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 16:42:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749228167; x=1780764167;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=G1g0B8UdUWaisLrilAxsZLmIjVzwrtlrutaZwNu2mso=;
+ b=RSynn/ZBpTxoChZCgSR/5Ao7824Tp90sW2mn8Z0N9sk1fcLuLxNDPvpv
+ nMWVZOhgZQPL2WWXwwHHwEIMnGvnZojeVun/HRIHmmHjIgKSdjBInuMWM
+ DIeVYQh/UELuvQQeulVO9h92Z8nYCz/5cQL0XK6F6F894axMEBKGZOqQ9
+ ZS1xZAf9ju8hdFyNEzQoDbugm7/5EmO4fE4F84vaRGgIynnE8wop3jjb4
+ Vcg+m5CO8C0p/MSkEkGDlSyGRbbpiMdl5tRrALvz2v9KdADqoCg2svC/m
+ CESrUuhzwWxMqa1JXNNbZBf23AHuRaira8wEDlQTGPNitJb0nZp3nI5iv A==;
+X-CSE-ConnectionGUID: y0UGGqDrQOelItH4Sq324w==
+X-CSE-MsgGUID: 1sEAC/ifS5SslMaagPGGEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="54011847"
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="54011847"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 09:42:44 -0700
+X-CSE-ConnectionGUID: dvSL0KE+Sa6/egb/oDsUAg==
+X-CSE-MsgGUID: IPtvhvirS+mzCwLBfRuJnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="146839553"
+Received: from kcgill-mobl.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.48.241])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 09:42:41 -0700
+Date: Fri, 06 Jun 2025 09:42:40 -0700
+Message-ID: <87v7p8u8hr.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/5] drm/xe/oa/uapi: Expose media OA units
+In-Reply-To: <87zfemt53o.wl-ashutosh.dixit@intel.com>
+References: <20250603202133.2713863-1-ashutosh.dixit@intel.com>
+ <20250603202133.2713863-2-ashutosh.dixit@intel.com>
+ <aEDZzLVdL92GpeB3@unerlige-desk.amr.corp.intel.com>
+ <87zfemt53o.wl-ashutosh.dixit@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,24 +72,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 5/28/2025 3:13 AM, Simona Vetter wrote:
-> Handles are per-file, not global, so this makes no sense. Plus it's
-> set only after calling drm_gem_handle_create(), and drivers are not
-> allowed to further intialize a bo after that function has published it
-> already.
-> 
-> It is also entirely unused, which helps enormously with removing it
-> :-)
-> 
-> Since we're still holding a reference to the bo nothing bad can
-> happen, hence not cc: stable material.
-> 
-> Cc: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-> Cc: Carl Vanderlip <quic_carlv@quicinc.com>
-> Cc: linux-arm-msm@vger.kernel.org
-> Signed-off-by: Simona Vetter <simona.vetter@ffwll.ch>
-> Signed-off-by: Simona Vetter <simona.vetter@intel.com>
+On Thu, 05 Jun 2025 11:28:59 -0700, Dixit, Ashutosh wrote:
+>
+> On Wed, 04 Jun 2025 16:42:04 -0700, Umesh Nerlige Ramappa wrote:
+> >
 
-Pushed to drm-misc-next
+Hi Umesh,
 
--Jeff
+> > On Tue, Jun 03, 2025 at 01:21:29PM -0700, Ashutosh Dixit wrote:
+> > > On Xe2+ platforms, media engines are attached to "SCMI" OA media (OAM)
+> > > units. One or more SCMI OAM units might be present on a platform. In
+> > > addition there is another OAM unit for global events, called
+> > > OAM-SAG. Performance metrics for media workloads can be obtained from these
+> > > OAM units, similar to OAG.
+> > >
+> > > Expose these OAM units for userspace to use. OAM-SAG is exposed as an OA
+> > > unit without any attached engines.
+> > >
+> > > Bspec: 70819, 67103, 63844, 72572, 74476, 61284
+> > >
+> > > v2: Fix xe_gt_WARN_ON in __hwe_oam_unit for < 12.7 platforms
+> > > v3: Return XE_OA_UNIT_INVALID for < 12.7 to indicate no OAM units
+> > > v4: Move xe_oa_print_oa_units() to separate patch
+> > > v5: Introduce DRM_XE_OA_UNIT_TYPE_OAM_SAG
+> > >
+> > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > > ---
+> > > drivers/gpu/drm/xe/xe_oa.c | 68 ++++++++++++++++++++++++++++----------
+> > > include/uapi/drm/xe_drm.h  |  3 ++
+> > > 2 files changed, 54 insertions(+), 17 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > > index fb842fa0552e5..0de0d5a18df74 100644
+> > > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > > @@ -43,6 +43,12 @@
+> > > #define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
+> > > #define XE_OA_UNIT_INVALID U32_MAX
+> > >
+> > > +enum xe_oam_unit_type {
+> > > +	XE_OAM_UNIT_SAG,
+> > > +	XE_OAM_UNIT_SCMI_0,
+> > > +	XE_OAM_UNIT_SCMI_1,
+> > > +};
+> > > +
+> > > enum xe_oa_submit_deps {
+> > >	XE_OA_SUBMIT_NO_DEPS,
+> > >	XE_OA_SUBMIT_ADD_DEPS,
+> > > @@ -1881,6 +1887,7 @@ static bool engine_supports_oa_format(const struct xe_hw_engine *hwe, int type)
+> > >		return type == DRM_XE_OA_FMT_TYPE_OAG || type == DRM_XE_OA_FMT_TYPE_OAR ||
+> > >			type == DRM_XE_OA_FMT_TYPE_OAC || type == DRM_XE_OA_FMT_TYPE_PEC;
+> > >	case DRM_XE_OA_UNIT_TYPE_OAM:
+> > > +	case DRM_XE_OA_UNIT_TYPE_OAM_SAG:
+> > >		return type == DRM_XE_OA_FMT_TYPE_OAM || type == DRM_XE_OA_FMT_TYPE_OAM_MPEC;
+> > >	default:
+> > >		return false;
+> > > @@ -2448,20 +2455,38 @@ int xe_oa_register(struct xe_device *xe)
+> > >
+> > > static u32 num_oa_units_per_gt(struct xe_gt *gt)
+> > > {
+> > > -	return 1;
+> > > +	if (!xe_gt_is_media_type(gt) || GRAPHICS_VER(gt_to_xe(gt)) < 20)
+> > > +		return 1;
+> > > +	else if (!IS_DGFX(gt_to_xe(gt)))
+> > > +		return XE_OAM_UNIT_SCMI_0 + 1; /* SAG + SCMI_0 */
+> > > +	else
+> > > +		return XE_OAM_UNIT_SCMI_1 + 1; /* SAG + SCMI_0 + SCMI_1 */
+> > > }
+> > >
+> > > static u32 __hwe_oam_unit(struct xe_hw_engine *hwe)
+> > > {
+> > > -	if (GRAPHICS_VERx100(gt_to_xe(hwe->gt)) >= 1270) {
+> > > -		/*
+> > > -		 * There's 1 SAMEDIA gt and 1 OAM per SAMEDIA gt. All media slices
+> > > -		 * within the gt use the same OAM. All MTL/LNL SKUs list 1 SA MEDIA
+> > > -		 */
+> > > -		xe_gt_WARN_ON(hwe->gt, hwe->gt->info.type != XE_GT_TYPE_MEDIA);
+> > > +	if (GRAPHICS_VERx100(gt_to_xe(hwe->gt)) < 1270)
+> > > +		return XE_OA_UNIT_INVALID;
+> > >
+> > > +	xe_gt_WARN_ON(hwe->gt, !xe_gt_is_media_type(hwe->gt));
+> > > +
+> > > +	if (GRAPHICS_VER(gt_to_xe(hwe->gt)) < 20)
+> > >		return 0;
+> > > -	}
+> > > +	/*
+> > > +	 * XE_OAM_UNIT_SAG has only GSCCS attached to it, but only on some platforms. Also
+> > > +	 * GSCCS cannot be used to submit batches to program the OAM unit. Therefore we don't
+> > > +	 * assign an OA unit to GSCCS. This means that XE_OAM_UNIT_SAG is exposed as an OA
+> > > +	 * unit without attached engines. Fused off engines can also result in oa_unit's with
+> > > +	 * num_engines == 0. OA streams can be opened on all OA units.
+> > > +	 */
+> > > +	else if (hwe->engine_id == XE_HW_ENGINE_GSCCS0)
+> >
+> > You could just drop the case XE_ENGINE_CLASS_OTHER in caller
+> > (__hwe_oa_unit()) and then you dont need the XE_HW_ENGINE_GSCCS0 check
+> > here.
+>
+> Yes, I was doing that initially. But then I changed to this to make it
+> *explicit* that even when GSC is attached to OAM-SAG, it is not assigned to
+> any OA unit. Because it is really an exception, as the comment above
+> explains.
+>
+> If you are asking why XE_ENGINE_CLASS_OTHER calls __hwe_oam_unit(), that is
+> because GSC is present on media GT and is used for HuC authentication
+> etc. (also related to media).
+>
+> If you insist I can change it, but I think it is better to leave as
+> is. This way it is part of the code, the other way it will be in a comment
+> (and would be implicit and later people might wonder if it is missed). Let
+> me know.
+>
+> >
+> > > +		return XE_OA_UNIT_INVALID;
+> > > +	else if (!IS_DGFX(gt_to_xe(hwe->gt)))
+> > > +		return XE_OAM_UNIT_SCMI_0;
+> > > +	else if (hwe->class == XE_ENGINE_CLASS_VIDEO_DECODE)
+> > > +		return (hwe->instance / 2 & 0x1) + 1;
+> >
+> > should be same as (hwe->instance / 2) + 1;
+>
+> To map any possible VCS (VCS0 - VCS7) to OAM-SCMI-0 or OAM-SCMI-1 we need
+> the '& 0x1'.
+>
+> >
+> > > +	else if (hwe->class == XE_ENGINE_CLASS_VIDEO_ENHANCE)
+> > > +		return (hwe->instance & 0x1) + 1;
+> >
+> > same here, should be same as (hwe->instance + 1)
+>
+> Similarly, to map any possible VECS (VECS0 - VECS3) to OAM-SCMI-0 or 1 we
+> need the '& 0x1'.
+
+So I ended up not making any changes to this patch. Anyway please take
+another look and let me know what you think.
+
+Thanks.
+--
+Ashutosh
