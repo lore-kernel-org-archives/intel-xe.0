@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3E61C5AD49
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 20:23:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 145EDC5AD49
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 20:27:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5E1610EB71;
-	Fri,  6 Jun 2025 20:23:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB4C110E363;
+	Fri,  6 Jun 2025 20:27:57 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91E9710EB0D;
- Fri,  6 Jun 2025 20:23:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1514842120846555401=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95B7210E1D5;
+ Fri,  6 Jun 2025 20:27:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enable_media_OA?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_WildCat_Lake_sup?=
+ =?utf-8?q?port_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
+To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Jun 2025 20:23:11 -0000
-Message-ID: <174924139158.57358.2862196709748622373@1538d3639d33>
+Date: Fri, 06 Jun 2025 20:27:56 -0000
+Message-ID: <174924167660.57344.17469580042697207624@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250606192618.4133817-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20250606192618.4133817-1-ashutosh.dixit@intel.com>
+References: <20250606195104.1771715-1-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20250606195104.1771715-1-dnyaneshwar.bhadane@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,102 +40,25 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1514842120846555401==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Enable media OA
-URL   : https://patchwork.freedesktop.org/series/149953/
+Series: Add WildCat Lake support (rev3)
+URL   : https://patchwork.freedesktop.org/series/149794/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3213-16851de7bfa7920ffdc16679920dc1af73e835ec_BAT -> xe-pw-149953v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: b8f759deb9ab drm-tip: 2025y-06m-06d-18h-48m-25s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/xe3lpd: Add support for display version 30.02
+Applying: drm/xe/xe3: Add support for graphics IP version 30.03
+Applying: drm/xe/xe3: Add support for media IP version 30.02
+Applying: drm/i915/xe3lpd: Update bandwidth parameters for display version 30.02
+Applying: drm/i915: Set max cdclk for display 30.02
+Applying: drm/xe: Add Wildcat Lake device IDs to PTL list
+Applying: drm/i915/xe3lpd: Extend DMC path for display version 30.02
+Applying: drm/i915/wcl: C10 phy connected to port A and B
+Applying: drm/i915/xe3lpd: Extend WA 16023981245 for display 30.02
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3213-16851de7bfa7920ffdc16679920dc1af73e835ec -> xe-pw-149953v1
-
-  IGT_8401: 8401
-  xe-3213-16851de7bfa7920ffdc16679920dc1af73e835ec: 16851de7bfa7920ffdc16679920dc1af73e835ec
-  xe-pw-149953v1: 149953v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149953v1/index.html
-
---===============1514842120846555401==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable media OA</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149953/">https://patchwork.freedesktop.org/series/149953/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149953v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149953v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3213-16851de7bfa7920ffdc16679920dc1af73e835ec_BAT -&gt; xe-pw-149953v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3213-16851de7bfa7920ffdc16679920dc1af73e835ec -&gt; xe-pw-149953v1</li>
-</ul>
-<p>IGT_8401: 8401<br />
-  xe-3213-16851de7bfa7920ffdc16679920dc1af73e835ec: 16851de7bfa7920ffdc16679920dc1af73e835ec<br />
-  xe-pw-149953v1: 149953v1</p>
-
-</body>
-</html>
-
---===============1514842120846555401==--
