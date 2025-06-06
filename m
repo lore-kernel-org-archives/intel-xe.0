@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF49CC5B555
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 15:19:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD882C5B555
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 15:29:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3F1910E38E;
-	Fri,  6 Jun 2025 15:19:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEA2710E38E;
+	Fri,  6 Jun 2025 15:29:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jPIza6dL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lNcOfSmW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA9BF10E38E
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 15:19:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74E4410E38E
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 15:29:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749223149; x=1780759149;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=HGVGnAi0B7LJ0pZobzS+bnJFwUkPfXV+b8qyKxRXktA=;
- b=jPIza6dLlLYB0zLtxAVjiFntpp4fpMEmfc3hfnjNu+boHhzW4pNkwv4t
- dBOj+D8lfXyYDja1QTokrR/u9lChpnom45GGmXUvayPPEDmJt/Ve6edUg
- Phh0yWwzljO441tDC45IPLJn0WnCiVzZfZzWyVgdVEyyTtsN1p9yqUzzq
- zhC9y67KZyMydXVJY2iqJdtH+0EzXS1TaMSBWtz6NfYLNHZUeAKn4wzC1
- Ll/abDi2bLDJh2gy1e0E7wZ5NuSzJpFOZ4Zab3R1HuRdFThbWJJea25SH
- BULSUxj/v92E2dPDfsUJh6xNBE3eNUrVfRTaENr07Vdy51M9jgxhT3Ei2 w==;
-X-CSE-ConnectionGUID: SxLByHMJStGqBrLTqjNLxA==
-X-CSE-MsgGUID: cv+1qEuHQTCi4isBZ+uVNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="50605808"
-X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="50605808"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 08:19:08 -0700
-X-CSE-ConnectionGUID: 7KQDcNuXTHuqp8DsJZKenw==
-X-CSE-MsgGUID: NjME5DUTSW22oE1l4PzNgA==
+ t=1749223775; x=1780759775;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=5H50Oumiex+kblI2l1xydB6nAtsXqXGIp30ZCU+Rwdk=;
+ b=lNcOfSmWkacxdmVHZqaGFEwJwVwybgCm7MS0d3y6y/rdI5L77JPhl7ZU
+ OyeInMzzla8ifRYozmKKnkR+IekacUFyH2F/to41C8ETUST4rKutv1GUC
+ oQzApWbP0JQBprr0WTRUkymTsoFJwO5ETfuKtdRhVQFKQLRHHLT1/G/Dn
+ t3uP4G2ZEvHuERumckQQ1aNRaes35tiRJont7q+SV4kFqFlEuIF0D+7TS
+ Xh8WKGaT8RyfHTNw+n7bsfC7uviAaSL65VSzVOUuO4F324+nmSNnSMoGm
+ ngG5o3ojOA8IXH8tdp4McMq2Lj+0OUI2Lamr3IcRlXHLXW0jZS+zvqhEH w==;
+X-CSE-ConnectionGUID: MZHYQ3bjQDuob1ZoUFnpZg==
+X-CSE-MsgGUID: vVaoR6Y0R8yYOitM3mw/7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="51454511"
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="51454511"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 08:29:34 -0700
+X-CSE-ConnectionGUID: Ejc93LrvTGW9pszRibxpLw==
+X-CSE-MsgGUID: VUlKhYx6RiOKymvXqcsf+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="150862704"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.52])
- ([10.245.245.52])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 08:19:07 -0700
-Message-ID: <097aa0d8-6bc1-4616-8f8f-805b7fc5e886@intel.com>
-Date: Fri, 6 Jun 2025 16:19:04 +0100
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="149691258"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 08:29:31 -0700
+Date: Fri, 6 Jun 2025 18:29:28 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com
+Subject: Re: [PATCH v1] drm/xe/pm: Wire up suspend/resume for I2C controller
+Message-ID: <aEMJWGj-iwaFSzJx@black.fi.intel.com>
+References: <20250602070818.701834-1-raag.jadav@intel.com>
+ <aD2rsWvCNozyqqcM@kuha.fi.intel.com>
+ <aD8z2oY6dPAUZupz@black.fi.intel.com>
+ <sjqgy6d2lvsxvtmeu56r3rcwgkco22n3s6ct4vh2qbmpk5566r@caoxdrcf3nof>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe: Move DSB l2 flush to a more sensible place
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- stable@vger.kernel.org
-References: <20250606104546.1996818-3-matthew.auld@intel.com>
-Content-Language: en-GB
-In-Reply-To: <20250606104546.1996818-3-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <sjqgy6d2lvsxvtmeu56r3rcwgkco22n3s6ct4vh2qbmpk5566r@caoxdrcf3nof>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,65 +71,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 06/06/2025 11:45, Matthew Auld wrote:
-> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+On Fri, Jun 06, 2025 at 08:50:11AM -0500, Lucas De Marchi wrote:
+> On Tue, Jun 03, 2025 at 08:41:46PM +0300, Raag Jadav wrote:
+> > On Mon, Jun 02, 2025 at 04:48:33PM +0300, Heikki Krogerus wrote:
+> > > On Mon, Jun 02, 2025 at 12:38:18PM +0530, Raag Jadav wrote:
+> > > > Wire up suspend/resume handles for I2C controller to match its power
+> > > > state with SGUnit.
+> > > >
+> > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > > ---
+> > > >
+> > > > This depends on I2C series by Heikki on [1].
+> > > > [1] https://lore.kernel.org/intel-xe/20250530141744.3605983-1-heikki.krogerus@linux.intel.com/
+> > > 
+> > > If it's okay to everybody, I'll include this to my series when I
+> > > resend after the merge window is closed.
+> > 
+> > Let's give it a few days in case of any comments. If not, perhaps you can
+> > include it.
 > 
-> Flushing l2 is only needed after all data has been written.
-> 
-> Fixes: 01570b446939 ("drm/xe/bmg: implement Wa_16023588340")
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.12+
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> It has to be included there as there's no way we can run CI otherwise.
+> For proper CI run you can also send the dependent patch series as a
+> squashed "FOR CI" first patch.
 
-Tested this locally and noticed a pretty big improvement just playing 
-around in the desktop environment, where stuff feels way smoother.
+Sure. Now that it is reviewed, would be safe to include.
 
-> ---
->   drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 11 ++++-------
->   1 file changed, 4 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> index f95375451e2f..9f941fc2e36b 100644
-> --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> @@ -17,10 +17,7 @@ u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
->   
->   void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val)
->   {
-> -	struct xe_device *xe = dsb_buf->vma->bo->tile->xe;
-> -
->   	iosys_map_wr(&dsb_buf->vma->bo->vmap, idx * 4, u32, val);
-> -	xe_device_l2_flush(xe);
->   }
->   
->   u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
-> @@ -30,12 +27,9 @@ u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
->   
->   void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val, size_t size)
->   {
-> -	struct xe_device *xe = dsb_buf->vma->bo->tile->xe;
-> -
->   	WARN_ON(idx > (dsb_buf->buf_size - size) / sizeof(*dsb_buf->cmd_buf));
->   
->   	iosys_map_memset(&dsb_buf->vma->bo->vmap, idx * 4, val, size);
-> -	xe_device_l2_flush(xe);
->   }
->   
->   bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *dsb_buf, size_t size)
-> @@ -74,9 +68,12 @@ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
->   
->   void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
->   {
-> +	struct xe_device *xe = dsb_buf->vma->bo->tile->xe;
-> +
->   	/*
->   	 * The memory barrier here is to ensure coherency of DSB vs MMIO,
->   	 * both for weak ordering archs and discrete cards.
->   	 */
-> -	xe_device_wmb(dsb_buf->vma->bo->tile->xe);
-> +	xe_device_wmb(xe);
-> +	xe_device_l2_flush(xe);
->   }
-
+Raag
