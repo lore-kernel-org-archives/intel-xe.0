@@ -4,53 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17980C61CE7
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 19:51:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69AB2C5AD49
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 19:54:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFBC110ECA5;
-	Fri,  6 Jun 2025 19:51:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EF4D10E061;
+	Fri,  6 Jun 2025 19:54:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H7QmK31u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m1GcmQ1c";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68E0B10ECAA
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 19:51:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7828610E061
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 19:54:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749239479; x=1780775479;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wiiV/EG7qPMGSJnDv3rlg5tSgPAZi49+Pmz/QHDLmns=;
- b=H7QmK31ui+H1TpdLDu9Fg/yxHyleItkU+zXWq4g6pgUSDr4it2Zl9sN1
- 1urFdjYc/HBEaUp9VHSmfn/pZqRhqykv4L5W5xs0IOR52kS6mieMow5MT
- 0eEb1HN7pp4uoKpXu7UQ1yQ7jB0qoQvYgojQ6nymESuARvo0Od1iOrFRo
- Ai6+7+z738r9zI1ApowAFJKESCrZplPZ/j3er9LdesuCzJB/+McMhN7a7
- q6npyuX5bFO4ux5MugKNNNpBV+pn669B98eRBIF8mplekip0CKdYUH9O3
- Jfr1rrq+qkb26ypUZe1vWZFmN2tHJTKs1EUasrNFZsUZqGyAwbuFRcfpU Q==;
-X-CSE-ConnectionGUID: ptVYy/TMTn6OWxinkBGyyA==
-X-CSE-MsgGUID: qu6TZsoBTxK3QhUYzzGAAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="51277302"
-X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="51277302"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 12:51:19 -0700
-X-CSE-ConnectionGUID: VtjVxWpmRhqY2mF9av5p1A==
-X-CSE-MsgGUID: 2+m29IRRSySKq7RKD8OMCg==
+ t=1749239692; x=1780775692;
+ h=message-id:subject:from:reply-to:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=M2U7m45XzX5ma0cIa1VZzGqbw8q13+6NTCkBPcrGIf0=;
+ b=m1GcmQ1cdGyeZWNTWnYqqZ2/6BG8ncqglfUYYhbnAMHxMf/XmrQLEjY0
+ 6/RMRcNru7AtBgt1n2VZUUwWmrLSIRaBnkzzgs2DzJr4o9+EhiTAYMT1i
+ +Br9gP1piQsRXs0XPmj/CyhEcit6fEaOu8wPaU8o0unNeg2Kjn3+qqkP7
+ EINbH/owxXAU977h1U8YIdWLMb0e3q40LTh0oDAX/8d5ew2ANJcMhznLf
+ pSlUMDGZcyF3JU7u/xOwQxNksfZbDXoP61ZBEAeP20WwCVKza9HELhrWs
+ 6gweSEXqXtaTSjxiEy8dmA+xgrq7w+ba+t/nMJM9zU0Qd3xZn22gu0Br5 A==;
+X-CSE-ConnectionGUID: FoGr0hJTSfKZZ9w4Z/cvYw==
+X-CSE-MsgGUID: NT7B8LnaSaaRgfv1YCOPYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="50510228"
+X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="50510228"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 12:54:51 -0700
+X-CSE-ConnectionGUID: ZYCPfifOQXyBmXDLu+48CQ==
+X-CSE-MsgGUID: G8XK7oUiQQqSuBsF/p3fVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="145796090"
-Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa006.fm.intel.com with ESMTP; 06 Jun 2025 12:51:18 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH 9/9] drm/i915/xe3lpd: Extend WA 16023981245 for display 30.02
-Date: Sat,  7 Jun 2025 01:21:04 +0530
-Message-Id: <20250606195104.1771715-10-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250606195104.1771715-1-dnyaneshwar.bhadane@intel.com>
-References: <20250606195104.1771715-1-dnyaneshwar.bhadane@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="150747948"
+Received: from aschofie-mobl2.amr.corp.intel.com ([10.124.222.251])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 12:54:50 -0700
+Message-ID: <b98363d420ec1862ce5a30b49d4d094bebd847b1.camel@linux.intel.com>
+Subject: Re: [PATCH v3 02/11] platform/x86/intel/pmt: crashlog binary file
+ endpoint
+From: "David E. Box" <david.e.box@linux.intel.com>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>, 
+ platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ hdegoede@redhat.com, ilpo.jarvinen@linux.intel.com,
+ lucas.demarchi@intel.com,  rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, airlied@gmail.com,  simona@ffwll.ch
+Cc: stable@vger.kernel.org
+Date: Fri, 06 Jun 2025 12:54:49 -0700
+In-Reply-To: <20250605184444.515556-3-michael.j.ruhl@intel.com>
+References: <20250605184444.515556-1-michael.j.ruhl@intel.com>
+ <20250605184444.515556-3-michael.j.ruhl@intel.com>
+Organization: David E. Box
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3-0ubuntu1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,30 +71,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: david.e.box@linux.intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-wa_16023981245 need to be exteded for display version 30.02
+On Thu, 2025-06-05 at 14:44 -0400, Michael J. Ruhl wrote:
+> Usage of the intel_pmt_read() for binary sysfs, requires an allocated
+> endpoint struct. The crashlog driver does not allocate the endpoint.
+>=20
+> Without the ep, the crashlog usage causes the following NULL pointer
+> exception:
+>=20
+> BUG: kernel NULL pointer dereference, address: 0000000000000000
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
----
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Okay, there it is. I'll still review the rest to see if the endpoint is eve=
+n
+needed, but if not then you could drop this patch too.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 15ede7678636..e0336c79c294 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1085,7 +1085,8 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- 
- 		/* Wa_16023981245 */
- 		if ((DISPLAY_VERx100(display) == 2000 ||
--		     DISPLAY_VERx100(display) == 3000) &&
-+		     DISPLAY_VERx100(display) == 3000 ||
-+		     DISPLAY_VERx100(display) == 3002) &&
- 		     src_x % 2 != 0)
- 			hsub = 2;
- 	} else {
--- 
-2.34.1
+David
+
+> Oops: Oops: 0000 [#1] SMP NOPTI
+> RIP: 0010:intel_pmt_read+0x3b/0x70 [pmt_class]
+> Code:
+> Call Trace:
+> =C2=A0<TASK>
+> =C2=A0? sysfs_kf_bin_read+0xc0/0xe0
+> =C2=A0kernfs_fop_read_iter+0xac/0x1a0
+> =C2=A0vfs_read+0x26d/0x350
+> =C2=A0ksys_read+0x6b/0xe0
+> =C2=A0__x64_sys_read+0x1d/0x30
+> =C2=A0x64_sys_call+0x1bc8/0x1d70
+> =C2=A0do_syscall_64+0x6d/0x110
+>=20
+> Add the endpoint information to the crashlog driver to avoid the NULL
+> pointer exception.
+>=20
+> Fixes: 416eeb2e1fc7 ("platform/x86/intel/pmt: telemetry: Export API to re=
+ad
+> telemetry")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> ---
+> =C2=A0drivers/platform/x86/intel/pmt/crashlog.c | 9 +++++++--
+> =C2=A01 file changed, 7 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c
+> b/drivers/platform/x86/intel/pmt/crashlog.c
+> index 6a9eb3c4b313..74ce199e59f0 100644
+> --- a/drivers/platform/x86/intel/pmt/crashlog.c
+> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
+> @@ -252,6 +252,7 @@ static struct intel_pmt_namespace pmt_crashlog_ns =3D=
+ {
+> =C2=A0	.xa =3D &crashlog_array,
+> =C2=A0	.attr_grp =3D &pmt_crashlog_group,
+> =C2=A0	.pmt_header_decode =3D pmt_crashlog_header_decode,
+> +	.pmt_add_endpoint =3D intel_pmt_add_endpoint,
+> =C2=A0};
+> =C2=A0
+> =C2=A0/*
+> @@ -262,8 +263,12 @@ static void pmt_crashlog_remove(struct auxiliary_dev=
+ice
+> *auxdev)
+> =C2=A0	struct pmt_crashlog_priv *priv =3D auxiliary_get_drvdata(auxdev);
+> =C2=A0	int i;
+> =C2=A0
+> -	for (i =3D 0; i < priv->num_entries; i++)
+> -		intel_pmt_dev_destroy(&priv->entry[i].entry,
+> &pmt_crashlog_ns);
+> +	for (i =3D 0; i < priv->num_entries; i++) {
+> +		struct intel_pmt_entry *entry =3D &priv->entry[i].entry;
+> +
+> +		intel_pmt_release_endpoint(entry->ep);
+> +		intel_pmt_dev_destroy(entry, &pmt_crashlog_ns);
+> +	}
+> =C2=A0}
+> =C2=A0
+> =C2=A0static int pmt_crashlog_probe(struct auxiliary_device *auxdev,
 
