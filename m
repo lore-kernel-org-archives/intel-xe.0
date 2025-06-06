@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CECEDC5B559
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 09:55:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BC36C5B559
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 09:59:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 924AA10EA21;
-	Fri,  6 Jun 2025 09:55:53 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4489410EA21;
- Fri,  6 Jun 2025 09:55:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1485099171739311875=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6637010EA21;
+	Fri,  6 Jun 2025 09:59:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VPr71tmu";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D52D110EA21;
+ Fri,  6 Jun 2025 09:59:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749203982; x=1780739982;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=wbQxvGSva47yTqwssv/nZWM+Ng3vaQjOK1PiTA74m8I=;
+ b=VPr71tmuCw/E2t7zRpbVNk6HGf02jGOJTTKpznn0Pu6pCDZ1+KN8g7yc
+ z2UgPTInRrUVFV0g+rUkaeuMwWGEBdW/DTdJ9fNaQbwOKWPRDU63e4c4G
+ 61NPNd/p89c8IAsBb8aXytv/2/UJMh4N9RKSX8f429xeDGJCYdOXE+1lk
+ /Gyod48wgsUwbFDGIDv32J0vnfA4YQei0i3yD8i1J8BGIKGsZ/aAm8rf9
+ 0T8QAQDiPnnxhs9E8Vj2gl9bKD8sO//o/ByqeyqPePEzvTNcr/u4gXEc7
+ naCHCyN9fsDgoJVQ9bjOEFJVl8JjIn381ytf8ZcHhjOPxtfBGs5bfmMvJ Q==;
+X-CSE-ConnectionGUID: y5uh4B09SEG81UhuL/IdxQ==
+X-CSE-MsgGUID: 89UoRweMQk+34XeY++Ay5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="38984739"
+X-IronPort-AV: E=Sophos;i="6.16,214,1744095600"; d="scan'208";a="38984739"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 02:59:41 -0700
+X-CSE-ConnectionGUID: KjUbqsCDRouvX/alzwBNUQ==
+X-CSE-MsgGUID: 8hYleBpeS+mRZPIxiq6Awg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,214,1744095600"; d="scan'208";a="146300505"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.33])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 02:59:40 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Suraj
+ Kandpal <suraj.kandpal@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v3] drm/i915: split out display register macros to a
+ separate file
+In-Reply-To: <ipmzkkad7742bmgeessnbwz5or43wup5j73y7j6bwvxbgst2k5@pgu2bxyol2so>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250604110225.993638-1-jani.nikula@intel.com>
+ <ipmzkkad7742bmgeessnbwz5or43wup5j73y7j6bwvxbgst2k5@pgu2bxyol2so>
+Date: Fri, 06 Jun 2025 12:59:37 +0300
+Message-ID: <c3e3c1e35d933b4bec911e78ec1af494e5aa3c40@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/panel=2C_drm/i915=3A_AC?=
- =?utf-8?q?PI_support_for_panel_follower?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Jun 2025 09:55:52 -0000
-Message-ID: <174920375227.55366.13673519805639394106@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <cover.1749199013.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1749199013.git.jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +68,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1485099171739311875==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 05 Jun 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Wed, Jun 04, 2025 at 02:02:25PM +0300, Jani Nikula wrote:
+>>This is a scripted split of the display related register macros from
+>>i915_reg.h to display/intel_display_regs.h. As a starting point, move
+>>all the macros that are only used in display code (or GVT). If there are
+>>users in core i915 code or soc/, or no users anywhere, keep the macros
+>>in i915_reg.h. This is done in groups of macros separated by blank
+>>lines, moving the comments along with the groups.
+>
+> I wonder if with this we couldn't end up moving wrong registers.
+> Maybe we should double check the address range too?
 
-== Series Details ==
+I think at this point aiming for perfection in the split is already
+blocking progress.
 
-Series: drm/panel, drm/i915: ACPI support for panel follower
-URL   : https://patchwork.freedesktop.org/series/149923/
-State : success
+It's been almost four months since I posted this first, and I've mostly
+just been polishing the 300+ lines of python/bash scripts to do
+this. And that's all for a one time change, after which the scripts are
+useless.
 
-== Summary ==
+We could've merged the first version, fixed the issues in the following
+months, and we would be ahead.
 
-CI Bug Log - changes from xe-3206-498331d4698599e1fe4f1ec5ac6b1ab49f79c186_BAT -> xe-pw-149923v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+IMO just getting the first split done is the most important part,
+because 4k lines is impossible to navigate manually.
 
 
-Changes
--------
-
-  No changes found
+BR,
+Jani.
 
 
-Build changes
--------------
-
-  * Linux: xe-3206-498331d4698599e1fe4f1ec5ac6b1ab49f79c186 -> xe-pw-149923v1
-
-  IGT_8400: 90a23a10be60c805ab0da456e846d1ec45799f9d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3206-498331d4698599e1fe4f1ec5ac6b1ab49f79c186: 498331d4698599e1fe4f1ec5ac6b1ab49f79c186
-  xe-pw-149923v1: 149923v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149923v1/index.html
-
---===============1485099171739311875==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/panel, drm/i915: ACPI support for panel follower</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149923/">https://patchwork.freedesktop.org/series/149923/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149923v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149923v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3206-498331d4698599e1fe4f1ec5ac6b1ab49f79c186_BAT -&gt; xe-pw-149923v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3206-498331d4698599e1fe4f1ec5ac6b1ab49f79c186 -&gt; xe-pw-149923v1</li>
-</ul>
-<p>IGT_8400: 90a23a10be60c805ab0da456e846d1ec45799f9d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3206-498331d4698599e1fe4f1ec5ac6b1ab49f79c186: 498331d4698599e1fe4f1ec5ac6b1ab49f79c186<br />
-  xe-pw-149923v1: 149923v1</p>
-
-</body>
-</html>
-
---===============1485099171739311875==--
+-- 
+Jani Nikula, Intel
