@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E3FCC61CE7
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 16:05:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1960C61CE7
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 16:07:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2318410EAEC;
-	Fri,  6 Jun 2025 16:05:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 707B210E3CC;
+	Fri,  6 Jun 2025 16:07:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b3NZXFZL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="icI8lLky";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8F7610EAEC
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 16:05:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44ED910EAEC
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 16:07:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749225919; x=1780761919;
+ t=1749226032; x=1780762032;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=n6wChvFrYx4QrJS4GXuIGITZgYUFagVCqZ7Zyyeonjw=;
- b=b3NZXFZL+L4ftyhCLtdjMZCFYLo+8Eqnc1iZpeEyv9x7Rg7sA1FGrtfn
- VLDiBkI0khkL3A+/a44yviTf6VoZU0PgFTOMQ3eGGL58yXFW5ilVHFzAh
- O+dxLE8hEKaPWVfJrmyN7TOQP17aBsbqNTRk85wwmbUNxr4V2k2Yq2cDr
- 8NqzQauihKfE2UcFV4jsQ2l1lxopen8yp8fFLW9c654DwvODN3/lRSIxb
- e4l6OVPtZsViFWrjGzkeXNBpTR0z+30Gg6tyi5qNmuUXVSpo4PY+17J5K
- CGTRtkDMYXuQdfQvjBLV6wQTV6K2p9vWMggvCgEXkDVLL/Gp73I/2rgF+ Q==;
-X-CSE-ConnectionGUID: I4PNnEy1QhO+UgOxhMjlEg==
-X-CSE-MsgGUID: T36/ieQTRQK0RRGgjg+i3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="62002757"
-X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="62002757"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 09:05:18 -0700
-X-CSE-ConnectionGUID: S/0fZNW5T5GtXuXrqxfw7w==
-X-CSE-MsgGUID: +fLsAIhhS2muhOu+agf8UA==
+ bh=RlLpeCQMlN2sA7TL2zRI2y9s4l7OHCMf7qVnc3w7uPg=;
+ b=icI8lLkypMzASCRggB9sssf9b7OcBdwXGcpy9iCjsdemm+DCVRdhH4Ws
+ 1bcrnFXOo8HtDbxKl1zRwDhwjR6M9YGaWJJLq2QyT39EjffHmR+LMNbll
+ MhTILET1Hu01nDsVeFG6yfxnABuDcVkQVxRgwazxRKtY+TJ0gv5W0mjzw
+ mZFIvXG8NQ7VafDPsSW3Y4KzD1tumx8tLICqLRUWT6jS+e00kJHwb22Uj
+ rVbaV7TyktJIMbX8qWrYMCz/yZNuybDlkk5l91wrblMGpRL4aE+nGkW9T
+ CcedJCAbvFb3Ubf0kWbZvN1m3TBfsZ6ZtYTqgcviOGz0U/fsZ/63fVgUN g==;
+X-CSE-ConnectionGUID: SLjjeeqlRgmq3/6zXJAolw==
+X-CSE-MsgGUID: t/M6MNvdS36B5YLhmh2Flw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="51526905"
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="51526905"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 09:07:12 -0700
+X-CSE-ConnectionGUID: HJGPZzzcRuGS/dFOPXP6BQ==
+X-CSE-MsgGUID: 0YXyCoxeR0eybsSjelbtyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="146815065"
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="151022138"
 Received: from kcgill-mobl.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
  ([10.125.48.241])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 09:05:18 -0700
-Date: Fri, 06 Jun 2025 09:05:17 -0700
-Message-ID: <87y0u4ua82.wl-ashutosh.dixit@intel.com>
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 09:07:10 -0700
+Date: Fri, 06 Jun 2025 09:07:10 -0700
+Message-ID: <87wm9oua4x.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Cc: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/5] drm/xe/oa: Print hwe to OA unit mapping
-In-Reply-To: <aEDbdycz-I9vVzje@unerlige-desk.amr.corp.intel.com>
-References: <20250603202133.2713863-1-ashutosh.dixit@intel.com>	<20250603202133.2713863-3-ashutosh.dixit@intel.com>	<aEDbdycz-I9vVzje@unerlige-desk.amr.corp.intel.com>
+Subject: Re: [PATCH 4/5] drm/xe/oa: Assign hwe for OAM_SAG
+In-Reply-To: <aEDhcKBvXUlVumAW@unerlige-desk.amr.corp.intel.com>
+References: <20250603202133.2713863-1-ashutosh.dixit@intel.com>	<20250603202133.2713863-5-ashutosh.dixit@intel.com>	<aEDhcKBvXUlVumAW@unerlige-desk.amr.corp.intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -69,78 +69,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 04 Jun 2025 16:49:11 -0700, Umesh Nerlige Ramappa wrote:
+On Wed, 04 Jun 2025 17:14:40 -0700, Umesh Nerlige Ramappa wrote:
 >
-> On Tue, Jun 03, 2025 at 01:21:30PM -0700, Ashutosh Dixit wrote:
-> > Print hwe to OA unit mapping to dmesg, to help debug for current and new
-> > platforms.
+> On Tue, Jun 03, 2025 at 01:21:32PM -0700, Ashutosh Dixit wrote:
+> > Because OAM_SAG doesn't have an attached hwe, assign another hwe belonging
+> > to the same gt (and different OAM unit) to OAM_SAG. A hwe is needed for
+> > batch submissions to program OA HW.
 > >
 > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > > ---
-> > drivers/gpu/drm/xe/xe_oa.c | 27 +++++++++++++++++++++++++++
-> > 1 file changed, 27 insertions(+)
+> > drivers/gpu/drm/xe/xe_oa.c       | 54 +++++++++++++++++++-------------
+> > drivers/gpu/drm/xe/xe_oa_types.h |  3 ++
+> > 2 files changed, 35 insertions(+), 22 deletions(-)
 > >
 > > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> > index 0de0d5a18df74..94faa4ed2012f 100644
+> > index 4d6d9f0189a83..35157424010bb 100644
 > > --- a/drivers/gpu/drm/xe/xe_oa.c
 > > +++ b/drivers/gpu/drm/xe/xe_oa.c
-> > @@ -2603,6 +2603,31 @@ static int xe_oa_init_gt(struct xe_gt *gt)
-> >	return 0;
+> > @@ -1923,37 +1923,45 @@ u16 xe_oa_unit_id(struct xe_hw_engine *hwe)
+> >		hwe->oa_unit->oa_unit_id : U16_MAX;
 > > }
 > >
-> > +static void xe_oa_print_oa_units(struct xe_oa *oa)
-> > +{
-> > +	enum xe_hw_engine_id hwe_id;
+> > +/* A hwe must be assigned to stream/oa_unit for batch submissions */
+> > static int xe_oa_assign_hwe(struct xe_oa *oa, struct xe_oa_open_param *param)
+> > {
+> > -	struct xe_gt *gt;
+> > -	int i, ret = 0;
 > > +	struct xe_hw_engine *hwe;
-> > +	struct xe_oa_unit *u;
-> > +	struct xe_gt *gt;
-> > +	int gt_id, i, n;
-> > +	char buf[256];
+> > +	enum xe_hw_engine_id id;
+> > +	int ret = 0;
 > > +
-> > +	for_each_gt(gt, oa->xe, gt_id) {
-> > +		for (i = 0; i < gt->oa.num_oa_units; i++) {
-> > +			u = &gt->oa.oa_unit[i];
-> > +			buf[0] = '\0';
-> > +			n = 0;
+> > +	/* If not provided, OA unit defaults to OA unit 0 as per uapi */
+> > +	if (!param->oa_unit)
+> > +		param->oa_unit = &xe_device_get_gt(oa->xe, 0)->oa.oa_unit[0];
+> >
+> > +	/* When we have an exec_q, get hwe from the exec_q */
+> >	if (param->exec_q) {
+> > -		/* When we have an exec_q, get hwe from the exec_q */
+> >		param->hwe = xe_gt_hw_engine(param->exec_q->gt, param->exec_q->class,
+> >					     param->engine_instance, true);
+> > -	} else {
+> > -		struct xe_hw_engine *hwe;
+> > -		enum xe_hw_engine_id id;
+> > -
+> > -		/* Else just get the first hwe attached to the oa unit */
+> > -		for_each_gt(gt, oa->xe, i) {
+> > -			for_each_hw_engine(hwe, gt, id) {
+> > -				if (hwe->oa_unit == param->oa_unit) {
+> > -					param->hwe = hwe;
+> > -					goto out;
+> > -				}
+> > -			}
+> > -		}
+> > +		if (!param->hwe || param->hwe->oa_unit != param->oa_unit)
+> > +			goto err;
+> > +		goto out;
+> >	}
+> > -out:
+> > -	if (!param->hwe || param->hwe->oa_unit != param->oa_unit) {
+> > -		drm_dbg(&oa->xe->drm, "Unable to find hwe (%d, %d) for OA unit ID %d\n",
+> > -			param->exec_q ? param->exec_q->class : -1,
+> > -			param->engine_instance, param->oa_unit->oa_unit_id);
+> > -		ret = -EINVAL;
 > > +
-> > +			for_each_hw_engine(hwe, gt, hwe_id)
-> > +				if (xe_oa_unit_id(hwe) == u->oa_unit_id)
-> > +					n += scnprintf(buf + n, sizeof(buf) - n, "%s ", hwe->name);
-> > +
-> > +			xe_gt_dbg(gt, "oa_unit %d, type %d, Engines: %s\n",
-> > +				  u->oa_unit_id, u->type, buf);
+> > +	/* Else just get the first hwe attached to the oa unit */
+> > +	for_each_hw_engine(hwe, param->oa_unit->gt, id) {
+> > +		if (hwe->oa_unit == param->oa_unit) {
+> > +			param->hwe = hwe;
+> > +			goto out;
 > > +		}
-> > +	}
-> > +}
-> > +
+> >	}
+> >
+> > +	/* If we still didn't find a hwe, just get one from the same gt */
+> > +	for_each_hw_engine(hwe, param->oa_unit->gt, id) {
 >
-> nit: I would at least move one of the inner for loops outside to a separate
-> helper.
+> Not sure if for_each_hw_engine omits reserved engines.
 
-Separated out the first inner loop into xe_oa_print_gt_oa_units().
+It does not, they have to be omitted separately.
 
->
-> otherwise, LGTM
->
-> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> If we should not use reserved engines, we should check for that here
+> using xe_hw_engine_is_reserved().
+
+Reserved means those engines are not available for user space. I think it
+is ok for the kernel to use them, at least in some cases reserved means
+reserved for the kernel. Reserved engines are different from fused off
+engines and for_each_hw_engine() skips fused off engines (via
+xe_hw_engine_is_valid()).
+
+I was looking at OA code and looks like in OA we have assumed (mostly
+without realizing it :/) that reserved engines can be used by OA internally
+and reserved engines are attached to OA units. But we don't expose reserved
+engines to userspace in the OA query.
+
+So along those lines, I have skipped checking for reserved engines here. If
+we really need to skip reserved engines, that should be done globally in OA
+code (don't attach reserved engines to OA units itself), otherwise it will
+unnecessarily mess up the code. So for now I am assuming OA code reserved
+engine usage is ok.
+
+> Also, maybe we should only try to submit the batch on engine classes
+> supported by OA. Submitting the batch from other engines (like bcs) is
+> not really tested.
+
+I have added this check now, good catch:
+
+	if (!hwe->oa_unit)
+		continue;
 
 Thanks.
 --
 Ashutosh
 
-
 >
-> > static int xe_oa_init_oa_units(struct xe_oa *oa)
-> > {
-> >	struct xe_gt *gt;
-> > @@ -2619,6 +2644,8 @@ static int xe_oa_init_oa_units(struct xe_oa *oa)
-> >			return ret;
-> >	}
-> >
-> > +	xe_oa_print_oa_units(oa);
-> > +
-> >	return 0;
+> > +		param->hwe = hwe;
+> > +		goto out;
+> > +	}
+> > +err:
+> > +	drm_dbg(&oa->xe->drm, "Unable to find hwe (%d, %d) for OA unit ID %d\n",
+> > +		param->exec_q ? param->exec_q->class : -1,
+> > +		param->engine_instance, param->oa_unit->oa_unit_id);
+> > +	ret = -EINVAL;
+> > +out:
+> >	return ret;
 > > }
+> >
+> > @@ -2578,6 +2586,8 @@ static void __xe_oa_init_oa_units(struct xe_gt *gt)
+> >				DRM_XE_OA_UNIT_TYPE_OAM_SAG : DRM_XE_OA_UNIT_TYPE_OAM;
+> >		}
+> >
+> > +		u->gt = gt;
+> > +
+> >		xe_mmio_write32(&gt->mmio, u->regs.oa_ctrl, 0);
+> >
+> >		/* Ensure MMIO trigger remains disabled till there is a stream */
+> > diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+> > index a01c85931e2a5..2628f78c4e8dc 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_oa_types.h
+> > @@ -95,6 +95,9 @@ struct xe_oa_unit {
+> >	/** @oa_unit_id: identifier for the OA unit */
+> >	u16 oa_unit_id;
+> >
+> > +	/** @gt: gt associated with the OA unit */
+> > +	struct xe_gt *gt;
+> > +
+> >	/** @type: Type of OA unit - OAM, OAG etc. */
+> >	enum drm_xe_oa_unit_type type;
 > >
 > > --
 > > 2.48.1
