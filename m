@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36C19C5B555
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 00:18:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4546C5B543
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 01:02:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBB7810EA86;
-	Fri,  6 Jun 2025 00:18:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ofbtmlt6";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DFCD10E910
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 00:18:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749169121; x=1780705121;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=IIxEes6Uv9mRhxW/nwF1qQFO0u53LRV70CdYwI8t0eU=;
- b=Ofbtmlt6096ncYu5uUG7n2wKzuNi48rNv9r4R9oKeMxqcUVcyD+k35vR
- r1/T+TcrULsWs/s/GfrjXjPCKEscd/WDJ2wE5IIOgeK1ddzjZoJnvi5dT
- UKZHFbhsyb5Vm1dml1chUqXw19GNdjTYSPaz3GFlivg64z17OQuobVUjo
- YnClTnlRatOJtixeD0LKjPyHtQ6gIVx6O0j2qxfEbwy4OLiMGQLOXibrY
- ACf41ZyWXwo7OROhMgUXzt7B4OyIfKQvzpePtNPI8YYqm0ko3VODOpvLO
- O/MY2RX7GS8uY6XFMPxgpU8q0yahdccjpeK/oZKOmnzXMsqByrMyK9I9f A==;
-X-CSE-ConnectionGUID: WBJaeGbnS3OYxPsGNzf7Yw==
-X-CSE-MsgGUID: BJ2TtttJQVKupZDXfFFdOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="61973486"
-X-IronPort-AV: E=Sophos;i="6.16,213,1744095600"; d="scan'208";a="61973486"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 17:18:41 -0700
-X-CSE-ConnectionGUID: MCiXHzScQ/eQemEV7wqYSA==
-X-CSE-MsgGUID: mj13EyphRj63f/oaU7Laig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,213,1744095600"; d="scan'208";a="149507906"
-Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by fmviesa003.fm.intel.com with ESMTP; 05 Jun 2025 17:18:39 -0700
-From: Tomasz Lis <tomasz.lis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 8/8] drm/xe/vf: Refresh utilization buffer during migration
- recovery
-Date: Fri,  6 Jun 2025 02:18:23 +0200
-Message-Id: <20250606001823.1010994-9-tomasz.lis@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250606001823.1010994-1-tomasz.lis@intel.com>
-References: <20250606001823.1010994-1-tomasz.lis@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE19010E2FA;
+	Fri,  6 Jun 2025 01:02:01 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4666410E2FA;
+ Fri,  6 Jun 2025 01:02:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8731722493027588339=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/bmg=3A_Update_PCI_Id?=
+ =?utf-8?q?=27s_and_Workarounds_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Jun 2025 01:02:00 -0000
+Message-ID: <174917172022.54219.13957283784545398353@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250605190804.1287289-1-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20250605190804.1287289-1-dnyaneshwar.bhadane@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,71 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The WA buffer we use to capture context utilization contains GGTT
-references. This means its instructions have to be either fixed or
-re-emitted during VF post-migration recovery.
+--===============8731722493027588339==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This patch adds re-emitting content of the utilization WA BB during
-the recovery.
+== Series Details ==
 
-Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Michal Winiarski <michal.winiarski@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c | 1 +
- drivers/gpu/drm/xe/xe_lrc.c        | 4 ++--
- drivers/gpu/drm/xe/xe_lrc.h        | 1 +
- 3 files changed, 4 insertions(+), 2 deletions(-)
+Series: drm/xe/bmg: Update PCI Id's and Workarounds (rev4)
+URL   : https://patchwork.freedesktop.org/series/149641/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index d5ffb550bde7..63190aab0a1f 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -1041,6 +1041,7 @@ void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q)
- 	for (i = 0; i < q->width; ++i) {
- 		xe_lrc_update_memirq_regs_with_address(q->lrc[i], q->hwe);
- 		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
-+		xe_lrc_setup_utilization(q->lrc[i]);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index c74856f3974a..21cc99935ebe 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -951,7 +951,7 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
- 	xe_bo_unpin_map_no_vm(lrc->bb_per_ctx_bo);
- }
- 
--/*
-+/**
-  * xe_lrc_setup_utilization() - Setup wa bb to assist in calculating active
-  * context run ticks.
-  * @lrc: Pointer to the lrc.
-@@ -979,7 +979,7 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
-  * store it in the PPHSWP.
-  */
- #define CONTEXT_ACTIVE 1ULL
--static void xe_lrc_setup_utilization(struct xe_lrc *lrc)
-+void xe_lrc_setup_utilization(struct xe_lrc *lrc)
- {
- 	u32 *cmd;
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 801a6b943f6e..681b859f57e9 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -127,6 +127,7 @@ u32 xe_lrc_ctx_timestamp_udw_ggtt_addr(struct xe_lrc *lrc);
- u64 xe_lrc_ctx_timestamp(struct xe_lrc *lrc);
- u32 xe_lrc_ctx_job_timestamp_ggtt_addr(struct xe_lrc *lrc);
- u32 xe_lrc_ctx_job_timestamp(struct xe_lrc *lrc);
-+void xe_lrc_setup_utilization(struct xe_lrc *lrc);
- 
- /**
-  * xe_lrc_update_timestamp - readout LRC timestamp and update cached value
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from xe-3203-308a53b9affc92eca9eaa6117dd62c79d5419ce7_BAT -> xe-pw-149641v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3203-308a53b9affc92eca9eaa6117dd62c79d5419ce7 -> xe-pw-149641v4
+
+  IGT_8398: 82be96b2ac16dd680618f1fd3d3ed073b88da3ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3203-308a53b9affc92eca9eaa6117dd62c79d5419ce7: 308a53b9affc92eca9eaa6117dd62c79d5419ce7
+  xe-pw-149641v4: 149641v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149641v4/index.html
+
+--===============8731722493027588339==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/bmg: Update PCI Id&#x27;s and Workarounds (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149641/">https://patchwork.freedesktop.org/series/149641/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149641v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149641v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3203-308a53b9affc92eca9eaa6117dd62c79d5419ce7_BAT -&gt; xe-pw-149641v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3203-308a53b9affc92eca9eaa6117dd62c79d5419ce7 -&gt; xe-pw-149641v4</li>
+</ul>
+<p>IGT_8398: 82be96b2ac16dd680618f1fd3d3ed073b88da3ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3203-308a53b9affc92eca9eaa6117dd62c79d5419ce7: 308a53b9affc92eca9eaa6117dd62c79d5419ce7<br />
+  xe-pw-149641v4: 149641v4</p>
+
+</body>
+</html>
+
+--===============8731722493027588339==--
