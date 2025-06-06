@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C430C67861
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 19:51:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33810C678DF
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Jun 2025 19:51:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9182610EC19;
-	Fri,  6 Jun 2025 19:51:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE8B710ECAC;
+	Fri,  6 Jun 2025 19:51:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rxxe09vq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GGhJY3Jq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6AD010ECA6
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 19:51:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D28BB10ECAA
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Jun 2025 19:51:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749239469; x=1780775469;
+ t=1749239475; x=1780775475;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X/DC0ODQZbYWI2xCIi25zn3DQsXdyoY5i5/uByMIKSA=;
- b=Rxxe09vqfgprzraeQEOSm44tgim9I35LMxn1NzbwUA4Zwk+GzzKxDtnr
- pJdlAlTM8pFP+sii50cVdO7kufffbaIcK/qm+6J/49zhKHf5LLnBygzOa
- nKYDy7ZahT8mqWtHyRrpkdJpHRt99HrBD+HdVDwippQz2oFLXzi7T1zFL
- 0t/dceNKWhpyXkFviE5eBP9BKDddqluWem9ZLtAagA92KLi16xYKVBRRj
- 3lon+ihfqYy0ZKseI8F8fEy8d93ionnJsaoT9N+VY/mg7+cD5VUkSYCcQ
- iFOopO99LX3GJ0NfmVdJQTYIPZWb7FIcRolmgvgTyYJnNW7zeCo3Z40Z6 Q==;
-X-CSE-ConnectionGUID: 83M7zwJeSVylSwhu+Jn8UA==
-X-CSE-MsgGUID: Vp4xdcbhSliNeGXLLSWAxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="51277287"
-X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="51277287"
+ bh=742l3EQouN9/vNL96ed6VgyLIUYfjpn0RvfkuKw7HBQ=;
+ b=GGhJY3JqCxS0+flzXV28TQeBZbr/PiNGFDkhjTKxYNAwSRfQ5jhvVsv5
+ ee3mPsjnsVch7+mYnkjCvc4uQ/KbLrnpaTJIcjq66628uCAbC1jH209lk
+ Tlo+Mr/ErkMbgd+zU1Zv1l/4cMlcOeHtiAAiJlMr8++5s1U3Cl0TVfq1a
+ TR6q4BCvqp4UipXIYorro4eqyamAzqfg2oV6jXyr5t8saZDuwxV+4YBPr
+ G281efRI00xbikQARX3+LBbOGBkb0gaNA8Wv1pw0B+P1UoOT1P7s77req
+ +Q/qzsqIHiuFQK+4tP8JlnRMJufowyMgF2wZoUOw7qbFzOm/XsjaLcggg w==;
+X-CSE-ConnectionGUID: 9a0b8WXtQz2tKgiq9RJvng==
+X-CSE-MsgGUID: DxMyPhssTv2o7vI6tS0dCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="51277293"
+X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="51277293"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 12:51:09 -0700
-X-CSE-ConnectionGUID: 60+uR5PfSvSZKhGna6l2kg==
-X-CSE-MsgGUID: MTzClVlrSeOi77MrQs/bfQ==
+ 06 Jun 2025 12:51:15 -0700
+X-CSE-ConnectionGUID: Szq4z3OfRIOR3L0LGzYWbA==
+X-CSE-MsgGUID: j5V6TU6JTdqijMJ26O2XZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="145796024"
+X-IronPort-AV: E=Sophos;i="6.16,216,1744095600"; d="scan'208";a="145796058"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa006.fm.intel.com with ESMTP; 06 Jun 2025 12:51:08 -0700
+ by fmviesa006.fm.intel.com with ESMTP; 06 Jun 2025 12:51:14 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH 2/9] drm/xe/xe3: Add support for graphics IP version 30.03
-Date: Sat,  7 Jun 2025 01:20:57 +0530
-Message-Id: <20250606195104.1771715-3-dnyaneshwar.bhadane@intel.com>
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH 6/9] drm/xe: Add Wildcat Lake device IDs to PTL list
+Date: Sat,  7 Jun 2025 01:21:01 +0530
+Message-Id: <20250606195104.1771715-7-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250606195104.1771715-1-dnyaneshwar.bhadane@intel.com>
 References: <20250606195104.1771715-1-dnyaneshwar.bhadane@intel.com>
@@ -68,68 +69,33 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-Graphics version 30.03 should be treated the same as other Xe3 IP, but
-will have a slightly different set of workarounds.
+Introduce wildcat lake device Id.
+Wildcat Lake uses slightly different graphics and media IP versions
+than Panther Lake, but can still be treated as PTL for general driver
+flows.
 
+Bspec: 73951
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c        | 1 +
- drivers/gpu/drm/xe/xe_wa.c         | 4 ++++
- drivers/gpu/drm/xe/xe_wa_oob.rules | 5 ++++-
- 3 files changed, 9 insertions(+), 1 deletion(-)
+ include/drm/intel/pciids.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index b5559800db7a..8824a8016b1c 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -183,6 +183,7 @@ static const struct xe_ip graphics_ips[] = {
- 	{ 2004, "Xe2_LPG", &graphics_xe2 },
- 	{ 3000, "Xe3_LPG", &graphics_xe2 },
- 	{ 3001, "Xe3_LPG", &graphics_xe2 },
-+	{ 3003, "Xe3_LPG", &graphics_xe2 },
- };
+diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+index a7ce9523c50d..258273e8b794 100644
+--- a/include/drm/intel/pciids.h
++++ b/include/drm/intel/pciids.h
+@@ -868,6 +868,8 @@
+ 	MACRO__(0xB08F, ## __VA_ARGS__), \
+ 	MACRO__(0xB090, ## __VA_ARGS__), \
+ 	MACRO__(0xB0A0, ## __VA_ARGS__), \
+-	MACRO__(0xB0B0, ## __VA_ARGS__)
++	MACRO__(0xB0B0, ## __VA_ARGS__), \
++	MACRO__(0xFD80, ## __VA_ARGS__), \
++	MACRO__(0xFD81, ## __VA_ARGS__)
  
- /* Pre-GMDID Media IPs */
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 67196baa4249..5f750054a9c4 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -640,6 +640,10 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(0), RC_SEMA_IDLE_MSG_DISABLE,
- 			     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
- 	},
-+	{ XE_RTP_NAME("14021402888"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(3003), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7, CLEAR_OPTIMIZATION_DISABLE))
-+	},
- };
- 
- static const struct xe_rtp_entry_sr lrc_was[] = {
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 9efc5accd43d..557d23c1bb9f 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -33,9 +33,11 @@
- 14022293748	GRAPHICS_VERSION(2001)
- 		GRAPHICS_VERSION(2004)
- 		GRAPHICS_VERSION_RANGE(3000, 3001)
-+		GRAPHICS_VERSION(3003)
- 22019794406	GRAPHICS_VERSION(2001)
- 		GRAPHICS_VERSION(2004)
- 		GRAPHICS_VERSION_RANGE(3000, 3001)
-+		GRAPHICS_VERSION(3003)
- 22019338487	MEDIA_VERSION(2000)
- 		GRAPHICS_VERSION(2001)
- 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_not_sriov_vf)
-@@ -57,5 +59,6 @@ no_media_l3	MEDIA_VERSION(3000)
- 		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
- 16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
- 		MEDIA_VERSION_RANGE(1301, 3000)
--16026508708	GRAPHICS_VERSION_RANGE(1200, 3001)
-+		GRAPHICS_VERSION(3003)
-+16026508708	GRAPHICS_VERSION_RANGE(1200, 3003)
- 		MEDIA_VERSION_RANGE(1300, 3000)
+ #endif /* __PCIIDS_H__ */
 -- 
 2.34.1
 
