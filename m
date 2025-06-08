@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FE59C5B543
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Jun 2025 22:15:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78D30C5B543
+	for <intel-xe@archiver.kernel.org>; Sun,  8 Jun 2025 01:14:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B84C110E3CF;
-	Sat,  7 Jun 2025 22:15:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5045110E0E1;
+	Sun,  8 Jun 2025 01:14:14 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33BFD10E3AB;
- Sat,  7 Jun 2025 22:15:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4549810E0E1;
+ Sun,  8 Jun 2025 01:14:13 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============7103963316653239595=="
+ boundary="===============8097442319652639151=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe=3A_Remove_IOSF=5FMB?=
- =?utf-8?q?I_select=2E_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe=3A_Enable_ATS_if_en?=
+ =?utf-8?q?abled_on_the_PCI_side?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
+To: "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 07 Jun 2025 22:15:01 -0000
-Message-ID: <174933450119.57933.13484874497976326059@1538d3639d33>
+Date: Sun, 08 Jun 2025 01:14:13 -0000
+Message-ID: <174934525323.57945.9070300618445706387@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250605074644.71036-1-dev@lankhorst.se>
-In-Reply-To: <20250605074644.71036-1-dev@lankhorst.se>
+References: <20250605145838.31942-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250605145838.31942-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,15 +40,15 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7103963316653239595==
+--===============8097442319652639151==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe: Remove IOSF_MBI select. (rev2)
-URL   : https://patchwork.freedesktop.org/series/149868/
+Series: drm/xe: Enable ATS if enabled on the PCI side
+URL   : https://patchwork.freedesktop.org/series/149886/
 State : failure
 
 == Summary ==
@@ -57,9 +57,9 @@ ERROR: The runconfig 'xe-3200-d5a5fd842902e24da80b61d64ce337ecee6b0c41_FULL' doe
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149868v2/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149886v1/index.html
 
---===============7103963316653239595==
+--===============8097442319652639151==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,11 +79,11 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe: Remove IOSF_MBI select. (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149868/">https://patchwork.freedesktop.org/series/149868/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe: Enable ATS if enabled on the PCI side</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149886/">https://patchwork.freedesktop.org/series/149886/</a></td></tr>
 <tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149868v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149868v2/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149886v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149886v1/index.html</a></td></tr>
 
 </table>
 
@@ -93,4 +93,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============7103963316653239595==--
+--===============8097442319652639151==--
