@@ -4,64 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C003C61CE8
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 11:15:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F554C5B552
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 11:33:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53D7710E0BB;
-	Mon,  9 Jun 2025 11:15:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C02DC10E052;
+	Mon,  9 Jun 2025 11:33:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="egjqRrTN";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lEvHUZCX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB47610E0BB
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Jun 2025 11:15:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749467747; x=1781003747;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=01M60qDx0/9WZ7fqepvzs34Gn33qQOtmOLmBFJ938U4=;
- b=egjqRrTNnRyvS/4qHcRSCqh2BjOpbHGzmY1HdKL6vHOWZt8vMW0TJ0/t
- Y/HKWQYBSq5UWShbiVnTaT7ctjMEvKQLjkAbeedX6EI3d8sJwYcVe7Q1v
- D2Y3pAwLqgpp62Fj4SKz+cf23KMw1USdecZt7fqu8hTDmJ+8M+edKv7/I
- t5KPwmYfJ+koN7NcFT25fNNAr3M+h+C4IfRoQ+0bKPJ/NXWjFKfjV2KIo
- G/jm6Ga4wx+yKJepUVZVQjxVw/uTLmgE7sIFUxxtpdnzCghW8Lgp7jaQM
- JCmXq5VpDkiu92lGtPqYQMSYxZ8F9zoGpwNOP7StWz7aQU6IjSn1GZJ7L A==;
-X-CSE-ConnectionGUID: AJwGNpzjS9GtgwZDznKFzw==
-X-CSE-MsgGUID: ro6btwb5T+mTL0FEwjaoPw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11458"; a="62895630"
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="62895630"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 04:15:46 -0700
-X-CSE-ConnectionGUID: 1DPEj6cFShSEZ8B/Apu7tw==
-X-CSE-MsgGUID: LP0326qgQ2qzrLX42BTVgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="146401426"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa007.fm.intel.com with ESMTP; 09 Jun 2025 04:15:44 -0700
-Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 70F8333BE8;
- Mon,  9 Jun 2025 12:15:42 +0100 (IST)
-Message-ID: <a61cdf2b-9314-4a67-b66a-80e3a39b77be@intel.com>
-Date: Mon, 9 Jun 2025 13:15:41 +0200
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E696C10E052;
+ Mon,  9 Jun 2025 11:33:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=DoZJ2N2MZYMV1DRnvYZSipfrLzVkQ6dYWSEOtY+yn5M=; b=lEvHUZCX0gDOWMnVUJLKXGSK0h
+ LKJWaWPcUC7rAejZXbeiJ7KDspiwO6Knkqx1YswdlhSy3pV/fazVuLeMNEioSoKD/ZL7cfVePTHqJ
+ lgQAc3YAzENWFOoYzoudz4K2enPtwmqfWTCjKuvxBBbIxPX97kBoLQ67U8WWFUgTakHZfZ8gtgJgb
+ E2uJlTN6XC7N+5twVTlAdylvt5r7xX9tOLt9H3s492Mfppd7BW26p+uvCPWZylJSr4D7Vhvo/w8KE
+ 4anzIeLIiabxht76lauBm4zGb2daaEjUkMYqAYUX+f7/KHnenDJuBA0XO07ZTjxSTuwzKZkxc36CN
+ np/O8ZSA==;
+Received: from [81.79.92.254] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uOakq-001OdR-Vz; Mon, 09 Jun 2025 13:33:29 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
+Subject: [PATCH v3.1 0/7] A few drm_syncobj optimisations
+Date: Mon,  9 Jun 2025 12:33:06 +0100
+Message-ID: <20250609113313.75395-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/8] drm/xe/vf: Rebase MEMIRQ structures for all
- contexts after migration
-To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-References: <20250606001823.1010994-1-tomasz.lis@intel.com>
- <20250606001823.1010994-7-tomasz.lis@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250606001823.1010994-7-tomasz.lis@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,177 +58,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+[All reviewed, sending for more acks.]
 
+A small set of drm_syncobj optimisations which should make things a tiny bit
+more efficient on the CPU side of things.
 
-On 06.06.2025 02:18, Tomasz Lis wrote:
-> All contexts require an update of state data, as the data includes
-> GGTT references to memirq-related buffers.
-> 
-> Default contexts need these references updated as well, because they
-> are not refreshed when a new context is created from them.
-> 
-> v2: Update addresses by xe_lrc_write_ctx_reg() rather than
->   set_memory_based_intr()
-> v3: Renamed parameter, reordered parameters in some functs
-> v4: Check if have MEMIRQ, move `xe_gt*` funct to proper file
-> 
-> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Michal Winiarski <michal.winiarski@intel.com>
-> Acked-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_exec_queue.c  |  4 ++-
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 14 +++++++++++
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.h |  1 +
->  drivers/gpu/drm/xe/xe_lrc.c         | 38 +++++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_lrc.h         |  2 ++
->  drivers/gpu/drm/xe/xe_sriov_vf.c    |  4 ++-
->  6 files changed, 61 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index c44a523ba906..86b2f9034902 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -1038,6 +1038,8 @@ void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q)
->  {
->  	int i;
->  
-> -	for (i = 0; i < q->width; ++i)
-> +	for (i = 0; i < q->width; ++i) {
-> +		xe_lrc_update_memirq_regs_with_address(q->lrc[i], q->hwe);
->  		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
-> +	}
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> index 8fa210c0ef1a..0a5f78cf0490 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -26,6 +26,7 @@
->  #include "xe_guc_ct.h"
->  #include "xe_guc_hxg_helpers.h"
->  #include "xe_guc_relay.h"
-> +#include "xe_lrc.h"
->  #include "xe_mmio.h"
->  #include "xe_sriov.h"
->  #include "xe_sriov_vf.h"
-> @@ -709,6 +710,19 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt)
->  	return err;
->  }
->  
-> +/**
-> + * xe_gt_sriov_vf_default_lrcs_hwsp_rebase - Update GGTT references in HWSP of default LRCs.
-> + * @gt: the &xe_gt struct instance
-> + */
-> +void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt)
-> +{
-> +	struct xe_hw_engine *hwe;
-> +	enum xe_hw_engine_id id;
-> +
-> +	for_each_hw_engine(hwe, gt, id)
-> +		xe_default_lrc_update_memirq_regs_with_address(hwe);
-> +}
+Improvement seems to be around 1.5%* more FPS if observed with "vkgears
+-present-mailbox" on a Steam Deck Plasma desktop, but I am reluctant to make a
+definitive claim on the numbers since there is some run to run variance. But, as
+suggested by Michel Dänzer, I did do a five ~100 second runs on the each kernel
+to be able to show the ministat analysis.
 
-this function is not very specific to the data maintained by the VF
+x before
++ after
++------------------------------------------------------------+
+|                          x         +                       |
+|                   x      x         +                       |
+|                   x      xx      ++++                      |
+|                 x x      xx x    ++++                      |
+|                 x xx   x xx x+   ++++                      |
+|                xxxxx   xxxxxx+   ++++ + +                  |
+|                xxxxxxx xxxxxx+x  ++++ +++                  |
+|              x xxxxxxxxxxx*xx+* x++++++++   ++             |
+|        x x   xxxxxxxxxxxx**x*+*+*++++++++ ++++ +           |
+|       xx x   xxxxxxxxxx*x****+***+**+++++ ++++++           |
+|x     xxx x   xxxxx*x****x***********+*++**+++++++   +  +  +|
+|               |_______A______|                             |
+|                             |______A_______|               |
++------------------------------------------------------------+
+    N           Min           Max        Median           Avg        Stddev
+x 135      21697.58     22809.467     22321.396     22307.707     198.75011
++ 118     22200.746      23277.09       22661.4     22671.442     192.10609
+Difference at 95.0% confidence
+    363.735 +/- 48.3345
+    1.63054% +/- 0.216672%
+    (Student's t, pooled s = 195.681)
 
-likely a better fit would be in xe_lrc.c or xe_hw_engine.c as
+Or when tested on Intel Alderlake, KDE Wayland:
 
-	xe_hw_engines_update_default_lrc(gt)
-or
-	xe_lrc_update_defaults(gt)
+x base
++ syncobj
++--------------------------------------------------------------+
+|                                                       +      |
+|                                                       +   +  |
+|                                                       +   +  |
+|                                                       +  ++  |
+|                                                       ++ ++  |
+|                                       x               ++ ++  |
+|                       x               x             + ++ ++  |
+|                       x          xx   xx x x        +++++++  |
+|                       x   x   xx xxx xxxx*xxx      +++++++++ |
+|x       xx x  x    x  xx xxxxxxxxxx*xxx****xxx  +x+ ++++++++++|
+|                      |__________A_M_______|     |____A_M___| |
++--------------------------------------------------------------+
+    N           Min           Max        Median           Avg        Stddev
+x  55      7158.232      8058.753      7803.506     7754.5195     191.69526
++  55       7801.23      8272.271      8172.435     8150.6303     105.84085
+Difference at 95.0% confidence
+    396.111 +/- 57.8717
+    5.10813% +/- 0.746296%
+    (Student's t, pooled s = 154.838)
 
+Scores may seem low but I had to fix to conservative CPU freq to avoid some
+pretty strong thermal throttling causing wild swings within a run. Nevertheless
+the improvement is clearly shown here as well.
 
-> +
->  /**
->   * xe_gt_sriov_vf_migrated_event_handler - Start a VF migration recovery,
->   *   or just mark that a GuC is ready for it.
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> index 6250fe774d89..5ab25a3c24ea 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> @@ -17,6 +17,7 @@ int xe_gt_sriov_vf_bootstrap(struct xe_gt *gt);
->  int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
->  int xe_gt_sriov_vf_connect(struct xe_gt *gt);
->  int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
-> +void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt);
->  int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
->  void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 72690f71289c..c74856f3974a 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -898,6 +898,44 @@ static void *empty_lrc_data(struct xe_hw_engine *hwe)
->  	return data;
->  }
->  
-> +/**
-> + * xe_default_lrc_update_memirq_regs_with_address - Re-compute GGTT references in default LRC
-> + * of given engine.
-> + * @hwe: the &xe_hw_engine struct instance
-> + */
-> +void xe_default_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe)
-> +{
-> +	struct xe_gt *gt = hwe->gt;
-> +	u32 *regs;
-> +
-> +	if (!gt->default_lrc[hwe->class])
-> +		return;
-> +
-> +	regs = gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE;
-> +	set_memory_based_intr(regs, hwe);
-> +}
-> +
-> +/**
-> + * xe_lrc_update_memirq_regs_with_address - Re-compute GGTT references in mem interrupt data
-> + * for given LRC.
-> + * @lrc: the &xe_lrc struct instance
-> + * @hwe: the &xe_hw_engine struct instance
-> + */
-> +void xe_lrc_update_memirq_regs_with_address(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
-> +{
-> +	struct xe_memirq *memirq = &gt_to_tile(hwe->gt)->memirq;
-> +
-> +	if (!xe_device_uses_memirq(gt_to_xe(hwe->gt)))
-> +		return;
-> +
-> +	xe_lrc_write_ctx_reg(lrc, CTX_INT_MASK_ENABLE_PTR,
-> +			     xe_memirq_enable_ptr(memirq));
-> +	xe_lrc_write_ctx_reg(lrc, CTX_INT_STATUS_REPORT_PTR,
-> +			     xe_memirq_status_ptr(memirq, hwe));
-> +	xe_lrc_write_ctx_reg(lrc, CTX_INT_SRC_REPORT_PTR,
-> +			     xe_memirq_source_ptr(memirq, hwe));
-> +}
-> +
->  static void xe_lrc_set_ppgtt(struct xe_lrc *lrc, struct xe_vm *vm)
->  {
->  	u64 desc = xe_vm_pdp4_descriptor(vm, gt_to_tile(lrc->gt));
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-> index e7a99cfd0abe..801a6b943f6e 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.h
-> +++ b/drivers/gpu/drm/xe/xe_lrc.h
-> @@ -89,6 +89,8 @@ u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc);
->  u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc);
->  u32 *xe_lrc_regs(struct xe_lrc *lrc);
->  void xe_lrc_update_hwctx_regs_with_address(struct xe_lrc *lrc);
-> +void xe_default_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe);
-> +void xe_lrc_update_memirq_regs_with_address(struct xe_lrc *lrc, struct xe_hw_engine *hwe);
->  
->  u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr);
->  void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val);
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> index d54048bc4576..cf07d037a83a 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> @@ -247,8 +247,10 @@ static void vf_post_migration_fixup_contexts(struct xe_device *xe)
->  	struct xe_gt *gt;
->  	unsigned int id;
->  
-> -	for_each_gt(gt, xe, id)
-> +	for_each_gt(gt, xe, id) {
-> +		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
->  		xe_guc_contexts_hwsp_rebase(&gt->uc.guc);
-> +	}
->  }
->  
->  static void vf_post_migration_fixup_ctb(struct xe_device *xe)
+v2:
+ * Implemented review feedback - see patch change logs.
+
+v3:
+ * Moved #define DRM_SYNCOBJ_FAST_PATH_ENTRIES one patch earlier for less churn.
+
+ v3.1:
+ * Consolidated testing results.
+
+Cc: Maíra Canal <mcanal@igalia.com>
+
+Tvrtko Ursulin (7):
+  drm/syncobj: Remove unhelpful helper
+  drm/syncobj: Do not allocate an array to store zeros when waiting
+  drm/syncobj: Avoid one temporary allocation in drm_syncobj_array_find
+  drm/syncobj: Use put_user in drm_syncobj_query_ioctl
+  drm/syncobj: Avoid temporary allocation in
+    drm_syncobj_timeline_signal_ioctl
+  drm/syncobj: Add a fast path to drm_syncobj_array_wait_timeout
+  drm/syncobj: Add a fast path to drm_syncobj_array_find
+
+ drivers/gpu/drm/drm_syncobj.c | 286 ++++++++++++++++++----------------
+ 1 file changed, 154 insertions(+), 132 deletions(-)
+
+-- 
+2.48.0
 
