@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA73AC61CE8
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 16:31:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D25F7C61CE8
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 16:46:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB1A110E14C;
-	Mon,  9 Jun 2025 16:31:08 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E213310E14C;
- Mon,  9 Jun 2025 16:31:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 788B310E147;
+	Mon,  9 Jun 2025 16:46:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lLdVW9LV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12B8710E0CA;
+ Mon,  9 Jun 2025 16:46:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749487568; x=1781023568;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aKRSxqyNjKOTssFE15Yop5C20vukujRXMoJyguo0eYQ=;
+ b=lLdVW9LVLa+uMrxq6P+wdwcRLBKbyfhN0zZtorG2CHrvfxTN0/5Hxbjz
+ XS1J6z9FqS6uIqUwVN5J0HBU6cp1UzrR5PD8LoXmx4nqrvyLep61K9WZ/
+ dcLigGl91OPqQYa+12WjMw0CboAgyqPwL5hA8PZXyYAP8QR7x42K6O67S
+ ksYeSjSin+9UAPDihSF4FjCHSqeVWlF6sKsZtxBh5aFFq7kwWPUCu47Ki
+ 2PcXVnBm1cSGIO8TRHdoqoPK49oTJ947OBToGzoe4YFr+UbayVoB24UfW
+ xo4qTbkAMsFlHoR29k4LYftf0ySpf+5/3wVb4bCdBFWT4Y2Umcf+EJdcM w==;
+X-CSE-ConnectionGUID: oX7N7XJoR4CDWcbeLiFV0A==
+X-CSE-MsgGUID: O0MIpSwEQdGVbbjkGprVIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55363259"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55363259"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2025 09:46:07 -0700
+X-CSE-ConnectionGUID: 0I+Wd1RERGCO4ZtrcMFkCA==
+X-CSE-MsgGUID: 5hokvZLySB2tiEYjMsLqog==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="177470087"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa001.fm.intel.com with ESMTP; 09 Jun 2025 09:46:06 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/xe3lpd: Prune modes for YUV420
+Date: Mon,  9 Jun 2025 22:15:48 +0530
+Message-Id: <20250609164548.2878908-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_regi?=
- =?utf-8?q?ster_include_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Jun 2025 16:31:06 -0000
-Message-ID: <174948666691.61372.16926310653513351840@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <cover.1749469962.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1749469962.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,43 +62,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+We only support resolution up to 4k for single pipe when using
+YUV420 format so we prune these modes and restrict the plane size
+at src. This is because pipe scaling will not support YUV420 scaling
+for hwidth > 4096.
 
-Series: drm/i915/display: register include cleanups
-URL   : https://patchwork.freedesktop.org/series/149986/
-State : warning
+--v2
+-Use output format to check [Ville]
+-Add Bspec references
+-Modify commit messge to point to why this is needed
 
-== Summary ==
+Bspec: 49247, 50441
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast b953dfbbea657951ca55ac86511c7988586f280c
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1991:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1991:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1991:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2004:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index d04609460e8c..2691eeb50a26 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1419,6 +1419,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	struct intel_display *display = to_intel_display(_connector->dev);
+ 	struct intel_connector *connector = to_intel_connector(_connector);
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
++	enum intel_output_format sink_format, output_format;
+ 	const struct drm_display_mode *fixed_mode;
+ 	int target_clock = mode->clock;
+ 	int max_rate, mode_rate, max_lanes, max_link_clock;
+@@ -1452,6 +1453,14 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 						     mode->hdisplay, target_clock);
+ 	max_dotclk *= num_joined_pipes;
+ 
++	sink_format = intel_dp_sink_format(connector, mode);
++	output_format = intel_dp_output_format(connector, sink_format);
++	if (num_joined_pipes == 1) {
++		if (output_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
++		    mode->hdisplay > 4096)
++			return MODE_NO_420;
++	}
++
+ 	if (target_clock > max_dotclk)
+ 		return MODE_CLOCK_HIGH;
+ 
+@@ -1467,11 +1476,8 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 					   intel_dp_mode_min_output_bpp(connector, mode));
+ 
+ 	if (intel_dp_has_dsc(connector)) {
+-		enum intel_output_format sink_format, output_format;
+ 		int pipe_bpp;
+ 
+-		sink_format = intel_dp_sink_format(connector, mode);
+-		output_format = intel_dp_output_format(connector, sink_format);
+ 		/*
+ 		 * TBD pass the connector BPC,
+ 		 * for now U8_MAX so that max BPC on that platform would be picked
+-- 
+2.34.1
 
