@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74E7EC61CE8
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 18:22:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51EE2C61CE8
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 18:27:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13E6210E3E3;
-	Mon,  9 Jun 2025 18:22:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4063D10E430;
+	Mon,  9 Jun 2025 18:27:04 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E49F910E3E3;
- Mon,  9 Jun 2025 18:22:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 167F110E433;
+ Mon,  9 Jun 2025 18:27:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Enable_ATS_if_enable?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EHooks=3A_success_for_drm/xe=3A_Enable_ATS_if_enable?=
  =?utf-8?q?d_on_the_PCI_side_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Jun 2025 18:22:26 -0000
-Message-ID: <174949334693.61511.5324694367006060661@1538d3639d33>
+Date: Mon, 09 Jun 2025 18:27:03 -0000
+Message-ID: <174949362309.61762.3143725623716608197@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250609135408.102001-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20250609135408.102001-1-thomas.hellstrom@linux.intel.com>
@@ -48,1696 +48,4828 @@ State : success
 
 == Summary ==
 
-INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rv3032.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rv3028.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rv8803.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rv3029c2.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx4581.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rv3032.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx6110.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx8010.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rv8803.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx4581.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx8025.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx6110.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx8010.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx8111.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx8581.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx8025.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-s35390a.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx8111.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-rx8581.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-sd3078.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-stk17ta8.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-s35390a.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-tps6586x.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-tps6594.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-sd3078.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-stk17ta8.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-tps65910.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-tps6586x.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-tps6594.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-wilco-ec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-wm831x.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-wm8350.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-tps65910.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-wilco-ec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-wm831x.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-x1205.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-wm8350.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/algos/i2c-algo-bit.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/algos/i2c-algo-pca.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-scmi.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/rtc/rtc-x1205.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/algos/i2c-algo-bit.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/algos/i2c-algo-pca.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ccgx-ucsi.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ali1535.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-scmi.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ali1563.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ali15x3.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ccgx-ucsi.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ali1535.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ali1563.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-amd756.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ali15x3.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-amd8111.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-cht-wc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-i801.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-amd756.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-amd8111.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-isch.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-cht-wc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-i801.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ismt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-nforce2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-isch.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-nvidia-gpu.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-piix4.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ismt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-nforce2.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-sis5595.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-nvidia-gpu.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-piix4.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-sis630.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-sis96x.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-via.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-sis5595.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-viapro.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-sis630.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-sis96x.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-via.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-viai2c-zhaoxin.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-viapro.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-viai2c-common.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-amd-mp2-pci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-viai2c-zhaoxin.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-amd-mp2-plat.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-viai2c-common.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-amd-mp2-pci.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-cbus-gpio.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-designware-pci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-amd-mp2-plat.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-gpio.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-kempld.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-cbus-gpio.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-designware-pci.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ocores.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-gpio.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-kempld.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-pca-platform.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-simtec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-xiic.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ocores.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-diolan-u2c.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-pca-platform.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-simtec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-xiic.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-dln2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-diolan-u2c.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ljca.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-cp2615.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-parport.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-dln2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-ljca.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-cp2615.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-mchp-pci1xxxx.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-parport.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-robotfuzz-osif.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-taos-evm.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-tiny-usb.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-mchp-pci1xxxx.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-robotfuzz-osif.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-taos-evm.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-viperboard.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-tiny-usb.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-cros-ec-tunnel.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-mlxcpld.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-virtio.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-viperboard.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-cros-ec-tunnel.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-mlxcpld.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/busses/i2c-virtio.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-gpio.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-ltc4306.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-mlxcpld.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-pca9541.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-gpio.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-ltc4306.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-mlxcpld.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-pca954x.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-pca9541.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-reg.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/i2c-smbus.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/i2c-mux.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-pca954x.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/muxes/i2c-mux-reg.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/i2c-smbus.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/i2c-stub.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/i2c-mux.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i3c/i3c.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i3c/master/i3c-master-cdns.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i3c/master/dw-i3c-master.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i2c/i2c-stub.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i3c/master/svc-i3c-master.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i3c/i3c.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i3c/master/i3c-master-cdns.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i3c/master/dw-i3c-master.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i3c/master/mipi-i3c-hci/mipi-i3c-hci.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-adstech-dvb-t-pci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i3c/master/svc-i3c-master.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-alink-dtu-m.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-anysee.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-apac-viewcomp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/i3c/master/mipi-i3c-hci/mipi-i3c-hci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-adstech-dvb-t-pci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-alink-dtu-m.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-anysee.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-apac-viewcomp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-astrometa-t2hybrid.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-asus-pc39.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-asus-ps3-100.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-ati-tv-wonder-hd-600.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-astrometa-t2hybrid.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-asus-pc39.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-asus-ps3-100.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-ati-tv-wonder-hd-600.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-ati-x10.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-a16d.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-cardbus.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-dvbt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-ati-x10.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-a16d.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-cardbus.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-dvbt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-m135a.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-m733a-rm-k6.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-rm-ks.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-m135a.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-m733a-rm-k6.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avermedia-rm-ks.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avertv-303.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-azurewave-ad-tu700.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-beelink-gs1.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-beelink-mxiii.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-avertv-303.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-azurewave-ad-tu700.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-beelink-gs1.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-beelink-mxiii.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-behold-columbus.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-behold.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-budget-ci-old.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-cinergy-1400.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-behold-columbus.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-behold.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-budget-ci-old.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-cinergy-1400.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-cinergy.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-ct-90405.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-d680-dmb.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-delock-61959.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-cinergy.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-ct-90405.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-d680-dmb.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-delock-61959.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dib0700-nec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dib0700-rc5.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-digitalnow-tinytwin.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-digittrade.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dib0700-nec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dib0700-rc5.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-digitalnow-tinytwin.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dm1105-nec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-digittrade.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvb-t.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvbt-pro.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dreambox.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dm1105-nec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvb-t.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvbt-pro.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dreambox.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dtt200u.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dvbsky.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dvico-mce.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dvico-portable.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dtt200u.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dvbsky.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dvico-mce.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-dvico-portable.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-em-terratec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-encore-enltv2.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-encore-enltv-fm53.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-encore-enltv.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-em-terratec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-encore-enltv2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-encore-enltv-fm53.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-encore-enltv.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-evga-indtube.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-eztv.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-flydvb.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-flyvideo.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-evga-indtube.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-eztv.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-flydvb.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-flyvideo.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-fusionhdtv-mce.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-gadmei-rm008z.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-geekbox.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-genius-tvgo-a11mce.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-fusionhdtv-mce.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-gadmei-rm008z.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-geekbox.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-genius-tvgo-a11mce.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-gotview7135.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-hauppauge.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-hisi-poplar.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-gotview7135.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-hauppauge.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-hisi-poplar.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-hisi-tv-demo.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-imon-mce.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-imon-pad.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-imon-rsc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-iodata-bctv7e.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-hisi-tv-demo.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-imon-mce.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-imon-pad.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-imon-rsc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-it913x-v1.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-iodata-bctv7e.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-it913x-v2.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-kaiomy.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-khadas.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-it913x-v1.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-it913x-v2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-kaiomy.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-khamsin.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-khadas.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-kworld-315u.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-kworld-pc150u.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-kworld-plus-tv-analog.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-khamsin.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-kworld-315u.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-kworld-pc150u.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-leadtek-y04g0051.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-kworld-plus-tv-analog.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-lme2510.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-manli.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-mecool-kiii-pro.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-leadtek-y04g0051.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-lme2510.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-manli.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-mecool-kiii-pro.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-mecool-kii-pro.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-medion-x10-digitainer.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-medion-x10.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-medion-x10-or2x.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-mecool-kii-pro.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-medion-x10-digitainer.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-medion-x10.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-medion-x10-or2x.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-minix-neo.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-msi-digivox-iii.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-msi-digivox-ii.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere-plus.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-minix-neo.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-msi-digivox-iii.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-msi-digivox-ii.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere-plus.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-mygica-utv3.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-nebula.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-nec-terratec-cinergy-xs.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-mygica-utv3.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-nebula.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-norwood.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-nec-terratec-cinergy-xs.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-npgtech.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-odroid.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pctv-sedna.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-norwood.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pine64.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-npgtech.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-odroid.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pctv-sedna.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pinnacle-color.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pinnacle-grey.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pine64.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pinnacle-color.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pinnacle-grey.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pixelview-002t.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pixelview-mk12.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pixelview-new.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pixelview.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pixelview-002t.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pixelview-mk12.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pixelview-new.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pixelview.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-powercolor-real-angel.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-proteus-2309.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-purpletv.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pv951.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-powercolor-real-angel.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-proteus-2309.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-purpletv.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-pv951.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-rc6-mce.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-real-audio-220-32-keys.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-reddo.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-siemens-gigaset-rc20.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-rc6-mce.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-real-audio-220-32-keys.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-reddo.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-siemens-gigaset-rc20.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-snapstream-firefly.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-streamzap.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-su3000.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-snapstream-firefly.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-streamzap.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tanix-tx3mini.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-su3000.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tanix-tx5max.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tbs-nec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-technisat-ts35.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-technisat-usb2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tanix-tx3mini.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tanix-tx5max.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tbs-nec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-technisat-ts35.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-technisat-usb2.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/kallsyms
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-c-pci.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/sorttable
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-s2-hd.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/asn1_compiler
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-xs.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-c-pci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-s2-hd.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-xs.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-terratec-slim-2.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-terratec-slim.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tevii-nec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tivo.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/basic/fixdep
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/genksyms/genksyms.o
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-terratec-slim-2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-terratec-slim.ko
-  YACC    debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/genksyms/parse.tab.[ch]
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tevii-nec.ko
-  LEX     debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/genksyms/lex.lex.c
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand-02.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tivo.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-trekstor.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tt-1500.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand-02.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-trekstor.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-tt-1500.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-twinhan1027.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-vega-s9x.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/selinux/mdp/mdp
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-videomate-m1f.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-twinhan1027.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-vega-s9x.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-videomate-m1f.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-videomate-s350.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-videomate-tv-pvr.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-videostrong-kii-pro.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-wetek-hub.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/sign-file
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-videomate-s350.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/insert-sys-cert
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-videomate-tv-pvr.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-videostrong-kii-pro.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/mod/modpost.o
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-wetek-hub.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/mod/file2alias.o
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-wetek-play2.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/mod/sumversion.o
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-winfast.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-winfast-usbii-deluxe.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/mod/symsearch.o
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-x96max.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-wetek-play2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-winfast.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-winfast-usbii-deluxe.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-x96max.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-xbox-360.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-xbox-dvd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-zx-irdec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/rc-core.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-xbox-360.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-xbox-dvd.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/keymaps/rc-zx-irdec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-imon-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/rc-core.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-jvc-decoder.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-mce_kbd-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-imon-decoder.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-nec-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-jvc-decoder.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-rc5-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-mce_kbd-decoder.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-rc6-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-nec-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-rc5-decoder.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-rcmm-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-rc6-decoder.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-sanyo-decoder.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-sharp-decoder.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-sony-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-rcmm-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-sanyo-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-sharp-decoder.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-xmp-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-sony-decoder.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ene_ir.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/fintek-cir.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/igorplugusb.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir-xmp-decoder.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ene_ir.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/fintek-cir.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/iguanair.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/igorplugusb.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/imon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/imon_raw.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ite-cir.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/iguanair.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/imon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/imon_raw.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/mceusb.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/nuvoton-cir.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ite-cir.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/redrat3.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/serial_ir.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/streamzap.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/mceusb.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/nuvoton-cir.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/redrat3.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/serial_ir.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/streamzap.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir_toy.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ttusbir.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/winbond-cir.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ati_remote.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ir_toy.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ttusbir.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/winbond-cir.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/ati_remote.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/rc-loopback.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/xbox_remote.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/core/cec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/rc-loopback.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/rc/xbox_remote.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/i2c/ch7322.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/core/cec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/i2c/tda9950.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/platform/cros-ec/cros-ec-cec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/i2c/ch7322.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/platform/cec-gpio/cec-gpio.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/i2c/tda9950.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/platform/cros-ec/cros-ec-cec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/platform/seco/seco-cec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/usb/pulse8/pulse8-cec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/platform/cec-gpio/cec-gpio.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/usb/rainshadow/rainshadow-cec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/platform/seco/seco-cec.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/usb/pulse8/pulse8-cec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/pps/clients/pps-ldisc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/media/cec/usb/rainshadow/rainshadow-cec.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/pps/clients/pps_parport.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/pps/clients/pps-gpio.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_ines.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/pps/clients/pps-ldisc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_kvm.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/pps/clients/pps_parport.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/pps/clients/pps-gpio.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_ines.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_vmclock.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_kvm.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_clockmatrix.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_vmclock.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_fc3.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_clockmatrix.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_idt82p33.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_mock.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_fc3.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_vmw.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_ocp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_idt82p33.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_mock.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/reset/atc260x-poweroff.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_vmw.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ptp/ptp_ocp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ip5xxx_power.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max8925_power.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/reset/atc260x-poweroff.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ip5xxx_power.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/wm831x_backup.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max8925_power.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/wm831x_power.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/wm8350_power.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/wm831x_backup.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/test_power.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/wm831x_power.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/wm8350_power.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/88pm860x_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/adp5061.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/test_power.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/cw2015_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ds2760_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/88pm860x_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/adp5061.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ds2780_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/cw2015_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ds2781_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ds2760_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ds2782_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ds2780_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ds2781_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ltc2941-battery-gauge.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ds2782_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/goldfish_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ltc2941-battery-gauge.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/sbs-battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/sbs-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/goldfish_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/sbs-manager.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/sbs-battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/sbs-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq27xxx_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq27xxx_battery_i2c.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/sbs-manager.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq27xxx_battery_hdq.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/da9030_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq27xxx_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq27xxx_battery_i2c.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq27xxx_battery_hdq.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/da9030_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/da9052-battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/da9150-fg.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max17042_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/da9052-battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/da9150-fg.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max17042_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max1720x_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max1721x_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/rt5033_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/rt5033_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max1720x_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max1721x_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/rt5033_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/rt5033_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/rt9455_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/rt9467-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/rt9471.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/rt9455_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/rt9467-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/rt9471.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/88pm860x_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/isp1704_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max8903_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/lp8727_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/88pm860x_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/isp1704_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max8903_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/lp8727_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/gpio-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/lt3651-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ltc4162-l-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max14577_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/gpio-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/lt3651-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ltc4162-l-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max14577_charger.ko
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/genksyms/parse.tab.o
-  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/genksyms/lex.lex.o
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max77693_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max77976_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max8997_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max77693_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max77976_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max8997_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max8998_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/mt6360_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq2415x_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq24190_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/max8998_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/mt6360_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq2415x_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq24257_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq24735-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq24190_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq2515x_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq25890_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq24257_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq24735-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq25980_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq2515x_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq25890_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq256xx_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/smb347-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq25980_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/tps65090-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bq256xx_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/smb347-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/axp288_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/tps65090-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/cros_charge-control.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/cros_usbpd-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/axp288_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/cros_peripheral_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/cros_charge-control.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/cros_usbpd-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bd99954-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/wilco-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/cros_peripheral_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/surface_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/bd99954-charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/wilco-charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/surface_charger.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ug3105_battery.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/surface_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/mm8013.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/surface_charger.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/ug3105_battery.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/sequencing/pwrseq-core.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/supply/mm8013.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/hwmon-vid.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/acpi_power_meter.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/power/sequencing/pwrseq-core.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asus_atk0110.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/hwmon-vid.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/acpi_power_meter.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asus-ec-sensors.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asus_wmi_sensors.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asus_atk0110.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/hp-wmi-sensors.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asus-ec-sensors.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asus_wmi_sensors.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asb100.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83627hf.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/hp-wmi-sensors.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83773g.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83792d.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asb100.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83627hf.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83793.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83773g.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83795.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83792d.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83781d.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83791d.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83793.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/abituguru.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83795.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83781d.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83791d.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/abituguru3.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/abituguru.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ad7314.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ad7414.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/abituguru3.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ad7418.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ad7314.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ad7414.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adc128d818.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ad7418.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adcxx.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm1025.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adc128d818.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm1026.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adcxx.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm1025.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm1029.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm1031.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm1026.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm1177.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm1029.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm1031.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm9240.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm1177.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ads7828.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ads7871.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adm9240.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7x10.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ads7828.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ads7871.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7310.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7x10.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7410.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7411.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7310.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7462.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7410.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7411.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7470.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7475.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7462.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/aht10.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7470.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/adt7475.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/applesmc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/aht10.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/aquacomputer_d5next.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/as370-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/applesmc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asc7621.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/aquacomputer_d5next.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/as370-hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asus_rog_ryujin.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asc7621.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/atxp1.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/axi-fan-control.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/asus_rog_ryujin.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/chipcap2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/atxp1.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/axi-fan-control.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/coretemp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/chipcap2.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/corsair-cpro.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/corsair-psu.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/coretemp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/cros_ec_hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/corsair-cpro.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/da9052-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/corsair-psu.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/da9055-hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/dell-smm-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/cros_ec_hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/dme1737.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/da9052-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/da9055-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/dell-smm-hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/drivetemp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/dme1737.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ds620.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/drivetemp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ds1621.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ds620.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/emc1403.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/emc2103.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ds1621.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/emc2305.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/emc6w201.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/emc1403.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/emc2103.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/f71805f.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/f71882fg.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/emc2305.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/emc6w201.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/f75375s.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/fam15h_power.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/f71805f.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/f71882fg.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/fschmd.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/f75375s.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/fam15h_power.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ftsteutates.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/fschmd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/g760a.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/g762.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ftsteutates.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/gigabyte_waterforce.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/g760a.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/g762.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/gl518sm.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/gl520sm.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/gigabyte_waterforce.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/hih6130.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/hs3001.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/gl518sm.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/gl520sm.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/i5500_temp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/hih6130.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/i5k_amb.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/hs3001.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ibmaem.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ibmpex.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/i5500_temp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/i5k_amb.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ibmaem.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ibmpex.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ina209.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ina2xx.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ina238.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ina3221.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ina209.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ina2xx.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ina238.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/intel-m10-bmc-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ina3221.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/it87.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/jc42.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/k8temp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/intel-m10-bmc-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/it87.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/jc42.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/k8temp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/k10temp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lenovo-ec-sensors.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lineage-pem.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm63.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm70.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/k10temp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lenovo-ec-sensors.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lineage-pem.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm63.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm73.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm70.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm75.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm77.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm78.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm73.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm75.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm77.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm80.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm78.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm83.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm85.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm87.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm80.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm83.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm90.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm85.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm87.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm92.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm93.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm95234.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm90.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm95241.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm92.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm95245.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm93.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm95234.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2945.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm95241.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/lm95245.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2947-core.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2947-i2c.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2945.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2947-spi.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2947-core.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2947-i2c.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2990.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2947-spi.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2991.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2992.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4151.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2990.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4215.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2991.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc2992.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4151.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4222.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4245.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4215.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4260.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4222.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4245.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4261.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4260.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4282.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max1111.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max127.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4261.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max16065.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/ltc4282.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max1111.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max127.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max1619.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max1668.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max16065.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max197.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max31722.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max1619.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max1668.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max31730.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max197.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max31722.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max31760.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max31730.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max6620.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max6621.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max31760.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max6639.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max6620.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max6621.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max6650.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max6697.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max6639.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max31790.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max31827.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max6650.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max6697.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/mc13783-adc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max31790.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/max31827.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/mc34vr500.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/mcp3021.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/mc13783-adc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tc654.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/mc34vr500.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/mcp3021.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tps23861.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/mlxreg-fan.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tc654.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/menf21bmc_hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tps23861.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/mr75203.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/mlxreg-fan.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct6683.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/menf21bmc_hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct6775-core.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/mr75203.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct6775.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct6683.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct6775-i2c.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct6775-core.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct7802.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct6775.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct7904.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct6775-i2c.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/npcm750-pwm-fan.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct7802.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nzxt-kraken2.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nzxt-kraken3.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nct7904.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/npcm750-pwm-fan.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nzxt-smart2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nzxt-kraken2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nzxt-kraken3.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pc87360.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pc87427.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/nzxt-smart2.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pcf8591.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pc87360.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pc87427.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/powerz.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/powr1220.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pcf8591.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pt5161l.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pwm-fan.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/powerz.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sbtsi_temp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/powr1220.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pt5161l.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pwm-fan.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sch56xx-common.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sbtsi_temp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sch5627.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sch5636.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sch56xx-common.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sht15.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sch5627.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sch5636.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sht21.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sht3x.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sht4x.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sht15.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/shtc1.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sht21.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sht3x.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sht4x.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sis5595.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/shtc1.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/smpro-hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/smsc47b397.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/smsc47m1.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sis5595.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/smpro-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/smsc47b397.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/smsc47m192.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/smsc47m1.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/stts751.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/surface_fan.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sy7636a-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/smsc47m192.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/stts751.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/amc6821.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/surface_fan.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/sy7636a-hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tc74.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/thmc50.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp102.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/amc6821.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tc74.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp103.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/thmc50.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp102.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp108.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp401.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp103.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp421.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp464.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp108.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp401.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp513.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp421.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp464.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/via-cputemp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/via686a.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/vt1211.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/tmp513.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/vt8231.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/via-cputemp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/via686a.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/vt1211.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83627ehf.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83l785ts.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/vt8231.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83l786ng.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/wm831x-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83627ehf.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83l785ts.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/wm8350-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/w83l786ng.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/wm831x-hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/xgene-hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/occ/occ-hwmon-common.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/occ/occ-p8-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/wm8350-hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/peci/peci-cputemp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/xgene-hwmon.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/occ/occ-hwmon-common.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/occ/occ-p8-hwmon.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/peci/peci-dimmtemp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/peci/peci-cputemp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pmbus_core.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pmbus.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/acbel-fsg032.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/peci/peci-dimmtemp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/adm1266.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pmbus_core.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pmbus.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/acbel-fsg032.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/adm1275.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/adp1050.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/adm1266.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/bel-pfe.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/bpa-rs600.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/adm1275.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/adp1050.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/bel-pfe.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/bpa-rs600.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/delta-ahe50dc-fan.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/fsp-3y.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ibm-cffps.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/dps920ab.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/delta-ahe50dc-fan.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/fsp-3y.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ibm-cffps.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/dps920ab.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/inspur-ipsps.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ir35221.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ir36021.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ir38064.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/irps5401.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/inspur-ipsps.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ir35221.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ir36021.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ir38064.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/irps5401.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/isl68137.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/lm25066.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/lt7182s.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ltc2978.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/isl68137.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/lm25066.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/lt7182s.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ltc2978.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ltc3815.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max15301.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max16064.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max16601.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ltc3815.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max15301.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max16064.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max16601.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max20730.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max20751.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max31785.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max34440.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max20730.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max20751.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max31785.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max8688.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max34440.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp2856.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp2888.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp2891.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/max8688.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp2856.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp2888.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp2975.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp2891.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp2993.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp5023.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp5920.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp2975.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp5990.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp2993.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp5023.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp5920.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp9941.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp5990.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mpq7932.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mpq8785.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pli1209bc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mp9941.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mpq7932.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/mpq8785.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pm6764tr.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pli1209bc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pxe1610.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/q54sj108a2.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/stpddc60.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pm6764tr.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pxe1610.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/tda38640.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/q54sj108a2.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/stpddc60.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/tps40422.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/tps53679.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/tps546d24.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/tda38640.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/tps40422.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/tps53679.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/tps546d24.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ucd9000.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ucd9200.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/xdp710.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/xdpe12284.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ucd9000.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/ucd9200.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/xdp710.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/xdpe152c4.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/xdpe12284.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/zl6100.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pim4328.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_powerclamp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/xdpe152c4.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/zl6100.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hwmon/pmbus/pim4328.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_powerclamp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/x86_pkg_temp_thermal.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_soc_dts_iosf.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_soc_dts_thermal.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int3400_thermal.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/x86_pkg_temp_thermal.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_soc_dts_iosf.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_soc_dts_thermal.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int3400_thermal.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int3402_thermal.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int3403_thermal.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int3402_thermal.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int3403_thermal.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int3401_thermal.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci_legacy.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rapl.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int3401_thermal.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci_legacy.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rfim.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rapl.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/platform_temperature_control.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_mbox.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rfim.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_req.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_hint.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/platform_temperature_control.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_mbox.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_power_floor.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_req.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_hint.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int3406_thermal.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/acpi_thermal_rel.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_bxt_pmic_thermal.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_power_floor.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/int3406_thermal.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/int340x_thermal/acpi_thermal_rel.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_bxt_pmic_thermal.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_pch_thermal.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_tcc_cooling.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/pretimeout_panic.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/pcwd_pci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_pch_thermal.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/thermal/intel/intel_tcc_cooling.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/pretimeout_panic.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/wdt_pci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/pcwd_pci.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/pcwd_usb.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/cadence_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/twl4030_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/wdt_pci.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/dw_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/pcwd_usb.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/cadence_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/twl4030_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/retu_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/acquirewdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/dw_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/advantechwdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/advantech_ec_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/retu_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/acquirewdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/alim1535_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/advantechwdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/advantech_ec_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/alim7101_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ebc-c384_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/alim1535_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/exar_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/f71808e_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/alim7101_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ebc-c384_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sp5100_tco.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/exar_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/f71808e_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sbc_fitpc2_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/eurotechwdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ib700wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sp5100_tco.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sbc_fitpc2_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/eurotechwdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ibmasr.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ib700wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/wafer5823wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/i6300esb.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ie6xx_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ibmasr.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/wafer5823wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/i6300esb.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/iTCO_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ie6xx_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/lenovo_se10_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/iTCO_vendor_support.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/it8712f_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/it87_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/iTCO_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/lenovo_se10_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/iTCO_vendor_support.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/it8712f_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/it87_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/hpwdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/kempld_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sc1200wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/pc87413_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/hpwdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/kempld_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sc1200wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/pc87413_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/nv_tco.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sbc60xxwdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sch311x_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/smsc37b787_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/tqmx86_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/nv_tco.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sbc60xxwdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sch311x_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/smsc37b787_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/tqmx86_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/via_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/w83627hf_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/w83877f_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/w83977f_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/via_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/w83627hf_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/w83877f_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/w83977f_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/machzwd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sbc_epx_c3.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/mei_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ni903x_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/machzwd.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/sbc_epx_c3.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/mei_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/nic7018_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ni903x_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/mlx_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/simatic-ipc-wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/of_xilinx_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/nic7018_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/mlx_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/mena21_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/simatic-ipc-wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/of_xilinx_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/xen_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/cros_ec_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/mena21_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/da9052_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/xen_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/cros_ec_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/da9055_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/da9062_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/da9052_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/da9063_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/da9055_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/da9062_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/wdat_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/wm831x_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/da9063_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/wm8350_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/max63xx_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/wdat_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/wm831x_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ziirave_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/wm8350_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/max63xx_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/menf21bmc_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/menz69_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/rave-sp-wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/ziirave_wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/raid0.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/menf21bmc_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/menz69_wdt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/watchdog/rave-sp-wdt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/raid1.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/raid0.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/raid10.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/raid456.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/raid1.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/bcache/bcache.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/raid10.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-unstripe.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-bufio.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/raid456.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-bio-prison.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-crypt.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-delay.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-unstripe.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-bufio.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/bcache/bcache.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-bio-prison.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-flakey.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-crypt.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-delay.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-multipath.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-round-robin.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-flakey.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-queue-length.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-multipath.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-round-robin.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-service-time.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-historical-service-time.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-queue-length.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-io-affinity.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-switch.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-service-time.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-historical-service-time.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-snapshot.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-io-affinity.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-switch.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/persistent-data/dm-persistent-data.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-mirror.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-snapshot.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-log.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-region-hash.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/persistent-data/dm-persistent-data.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-mirror.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-log-userspace.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-log.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-region-hash.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-zero.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-raid.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-thin-pool.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-log-userspace.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-zero.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-raid.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-verity.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-thin-pool.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-vdo/dm-vdo.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-cache.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-cache-smq.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-verity.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-ebs.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-era.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-clone.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-cache.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-cache-smq.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-log-writes.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-ebs.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-vdo/dm-vdo.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-era.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-clone.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-integrity.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-zoned.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-log-writes.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-writecache.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/edac_mce_amd.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-integrity.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-zoned.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/md/dm-writecache.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i5100_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/edac_mce_amd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i5400_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i7300_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i7core_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/sb_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i5100_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i5400_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i7300_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i7core_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/sb_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/pnd2_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/igen6_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/e752x_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i82975x_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/pnd2_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/igen6_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/e752x_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i3000_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i82975x_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i3200_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/ie31200_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/x38_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/amd64_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i3000_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i3200_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/ie31200_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/x38_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/amd64_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/skx_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/skx_edac_common.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i10nm_edac.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/cpufreq/speedstep-lib.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/skx_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/skx_edac_common.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/edac/i10nm_edac.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/cpufreq/speedstep-lib.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/cpufreq/p4-clockmod.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/cpufreq/amd_freq_sensitivity.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/cpuidle/cpuidle-haltpoll.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/core/mmc_block.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/core/sdio_uart.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/cpufreq/p4-clockmod.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/cpufreq/amd_freq_sensitivity.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/cpuidle/cpuidle-haltpoll.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/core/mmc_block.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/core/sdio_uart.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/sdhci_f_sdh30.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/wbsd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/alcor.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/mtk-sd.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/sdhci_f_sdh30.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/wbsd.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/alcor.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/mtk-sd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/tifm_sd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/mmc_spi.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/of_mmc_spi.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/cb710-mmc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/via-sdmmc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/tifm_sd.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/mmc_spi.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/of_mmc_spi.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/cb710-mmc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/vub300.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/via-sdmmc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/ushc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/usdhi6rol0.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/vub300.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/toshsd.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/ushc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/usdhi6rol0.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/rtsx_pci_sdmmc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/rtsx_usb_sdmmc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/mmc_hsq.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/toshsd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/sdhci-xenon-driver.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/core/ufshcd-core.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/rtsx_pci_sdmmc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/rtsx_usb_sdmmc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/mmc_hsq.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/mmc/host/sdhci-xenon-driver.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/tc-dwc-g210-pci.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/ufshcd-dwc.ko
-  HOSTLD  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/scripts/genksyms/genksyms
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/tc-dwc-g210.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/cdns-pltfrm.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/core/ufshcd-core.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/tc-dwc-g210-pci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/ufshcd-dwc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/tc-dwc-g210.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/cdns-pltfrm.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/ufshcd-pci.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/ufshcd-pltfrm.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/cirrus/cs_dsp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/efi/efi-pstore.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/ufshcd-pci.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/ufs/host/ufshcd-pltfrm.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/cirrus/cs_dsp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/efi/efi-pstore.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/efi/efibc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/efi/test/efi_test.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/efi/capsule-loader.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/iscsi_ibft.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/efi/efibc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/efi/test/efi_test.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/efi/capsule-loader.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/qemu_fw_cfg.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/iscsi_ibft.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/ccp/ccp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/ccp/ccp-crypto.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/inside-secure/crypto_safexcel.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_common/intel_qat.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/firmware/qemu_fw_cfg.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/ccp/ccp-crypto.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/ccp/ccp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_dh895xcc/qat_dh895xcc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/inside-secure/crypto_safexcel.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_c3xxx/qat_c3xxx.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_c62x/qat_c62x.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_4xxx/qat_4xxx.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_common/intel_qat.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_dh895xcc/qat_dh895xcc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_c3xxx/qat_c3xxx.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_420xx/qat_420xx.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_c62x/qat_c62x.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_dh895xccvf/qat_dh895xccvf.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_4xxx/qat_4xxx.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_c3xxxvf/qat_c3xxxvf.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_420xx/qat_420xx.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_dh895xccvf/qat_dh895xccvf.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_c62xvf/qat_c62xvf.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_c3xxxvf/qat_c3xxxvf.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/iaa/iaa_crypto.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/cavium/nitrox/n5pf.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/atmel-i2c.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/qat/qat_c62xvf/qat_c62xvf.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/intel/iaa/iaa_crypto.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/atmel-ecc.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/cavium/nitrox/n5pf.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/atmel-i2c.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/atmel-sha204a.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/padlock-aes.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/atmel-ecc.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/padlock-sha.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/atmel-sha204a.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/padlock-aes.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/virtio/virtio_crypto.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/padlock-sha.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/amlogic/amlogic-gxl-crypto.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/uhid.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/virtio/virtio_crypto.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-generic.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/crypto/amlogic/amlogic-gxl-crypto.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-a4tech.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/uhid.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-accutouch.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-generic.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-alps.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-a4tech.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-apple.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-accutouch.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-asus.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-alps.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-belkin.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-apple.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-cherry.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-asus.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-belkin.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-chicony.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-corsair.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-cherry.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-corsair-void.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-cougar.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-chicony.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-corsair.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-cp2112.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-corsair-void.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-cougar.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-cypress.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-elan.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-elecom.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-cp2112.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-elo.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-cypress.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-elan.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-elecom.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-ft260.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-glorious.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-elo.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-vivaldi-common.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-google-hammer.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-ft260.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-glorious.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-vivaldi-common.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-vivaldi.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-google-hammer.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-holtek-kbd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-holtek-mouse.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-holtekff.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-vivaldi.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-holtek-kbd.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-ite.ko
-dpkg-deb: building package 'linux-libc-dev' in '../linux-libc-dev_6.16.0~rc1-g488bdbab7520-2_amd64.deb'.
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-holtek-mouse.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-holtekff.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-jabra.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-kensington.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-keytouch.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-ite.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-lenovo.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-jabra.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-kensington.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-keytouch.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-logitech.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-lg-g15.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-lenovo.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-logitech-dj.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-logitech-hidpp.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-logitech.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-lg-g15.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-magicmouse.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-logitech-dj.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-logitech-hidpp.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-mcp2200.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-mcp2221.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-microsoft.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-magicmouse.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-mcp2200.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-monterey.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-mcp2221.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-microsoft.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-multitouch.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-ntrig.ko
-  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hid/hid-monterey.ko
-  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-149886v3-g488bdbab7520/kernel/drivers/hi
+run-parts: executing /workspace/ci/hooks/00-showenv
++ export
++ grep -Ei '(^|\W)CI_'
+declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-debug"
+declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
+declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
+declare -x CI_WORKSPACE_DIR="/workspace"
+run-parts: executing /workspace/ci/hooks/10-build-W1
++ SRC_DIR=/workspace/kernel
++ RESTORE_DISPLAY_CONFIG=0
++ '[' -n /workspace/kernel/build64-debug ']'
++ BUILD_DIR=/workspace/kernel/build64-debug
++ cd /workspace/kernel
+++ nproc
++ make -j48 O=/workspace/kernel/build64-debug modules_prepare
+make[1]: Entering directory '/workspace/kernel/build64-debug'
+  GEN     Makefile
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC      /workspace/kernel/build64-debug/tools/objtool/libsubcmd/exec-cmd.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/libsubcmd/help.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/libsubcmd/pager.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/libsubcmd/parse-options.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/libsubcmd/run-command.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/libsubcmd/subcmd-config.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/libsubcmd/sigchain.o
+  LD      /workspace/kernel/build64-debug/tools/objtool/libsubcmd/libsubcmd-in.o
+  AR      /workspace/kernel/build64-debug/tools/objtool/libsubcmd/libsubcmd.a
+  CC      /workspace/kernel/build64-debug/tools/objtool/weak.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/check.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/special.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/arch/x86/special.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/arch/x86/decode.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/arch/x86/orc.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/elf.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/builtin-check.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/objtool.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/orc_gen.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/orc_dump.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/libstring.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/libctype.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/str_error_r.o
+  CC      /workspace/kernel/build64-debug/tools/objtool/librbtree.o
+  LD      /workspace/kernel/build64-debug/tools/objtool/arch/x86/objtool-in.o
+  LD      /workspace/kernel/build64-debug/tools/objtool/objtool-in.o
+  LINK    /workspace/kernel/build64-debug/tools/objtool/objtool
+  CALL    ../scripts/checksyscalls.sh
+make[1]: Leaving directory '/workspace/kernel/build64-debug'
+++ nproc
++ make -j48 O=/workspace/kernel/build64-debug W=1 drivers/gpu/drm/xe
+make[1]: Entering directory '/workspace/kernel/build64-debug'
+make[2]: Nothing to be done for 'drivers/gpu/drm/xe'.
+make[1]: Leaving directory '/workspace/kernel/build64-debug'
+run-parts: executing /workspace/ci/hooks/11-build-32b
++++ realpath /workspace/ci/hooks/11-build-32b
+++ dirname /workspace/ci/hooks/11-build-32b
++ THIS_SCRIPT_DIR=/workspace/ci/hooks
++ SRC_DIR=/workspace/kernel
++ TOOLS_SRC_DIR=/workspace/ci
++ '[' -n /workspace/kernel/build64-debug ']'
++ BUILD_DIR=/workspace/kernel/build64-debug
++ BUILD_DIR=/workspace/kernel/build64-debug/build32
++ cd /workspace/kernel
++ mkdir -p /workspace/kernel/build64-debug/build32
+++ nproc
++ make -j48 ARCH=i386 O=/workspace/kernel/build64-debug/build32 defconfig
+make[1]: Entering directory '/workspace/kernel/build64-debug/build32'
+  GEN     Makefile
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/confdata.o
+  HOSTCC  scripts/kconfig/expr.o
+  LEX     scripts/kconfig/lexer.lex.c
+  YACC    scripts/kconfig/parser.tab.[ch]
+  HOSTCC  scripts/kconfig/menu.o
+  HOSTCC  scripts/kconfig/preprocess.o
+  HOSTCC  scripts/kconfig/util.o
+  HOSTCC  scripts/kconfig/symbol.o
+  HOSTCC  scripts/kconfig/lexer.lex.o
+  HOSTCC  scripts/kconfig/parser.tab.o
+  HOSTLD  scripts/kconfig/conf
+*** Default configuration is based on 'i386_defconfig'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/workspace/kernel/build64-debug/build32'
++ cd /workspace/kernel/build64-debug/build32
++ /workspace/kernel/scripts/kconfig/merge_config.sh .config /workspace/ci/kernel/fragments/10-xe.fragment
+Using .config as base
+Merging /workspace/ci/kernel/fragments/10-xe.fragment
+Value of CONFIG_DRM_XE is redefined by fragment /workspace/ci/kernel/fragments/10-xe.fragment:
+Previous value: # CONFIG_DRM_XE is not set
+New value: CONFIG_DRM_XE=m
+
+  GEN     Makefile
+#
+# configuration written to .config
+#
+Value requested for CONFIG_HAVE_UID16 not in final .config
+Requested value:  CONFIG_HAVE_UID16=y
+Actual value:     
+
+Value requested for CONFIG_UID16 not in final .config
+Requested value:  CONFIG_UID16=y
+Actual value:     
+
+Value requested for CONFIG_X86_32 not in final .config
+Requested value:  CONFIG_X86_32=y
+Actual value:     
+
+Value requested for CONFIG_OUTPUT_FORMAT not in final .config
+Requested value:  CONFIG_OUTPUT_FORMAT="elf32-i386"
+Actual value:     CONFIG_OUTPUT_FORMAT="elf64-x86-64"
+
+Value requested for CONFIG_ARCH_MMAP_RND_BITS_MIN not in final .config
+Requested value:  CONFIG_ARCH_MMAP_RND_BITS_MIN=8
+Actual value:     CONFIG_ARCH_MMAP_RND_BITS_MIN=28
+
+Value requested for CONFIG_ARCH_MMAP_RND_BITS_MAX not in final .config
+Requested value:  CONFIG_ARCH_MMAP_RND_BITS_MAX=16
+Actual value:     CONFIG_ARCH_MMAP_RND_BITS_MAX=32
+
+Value requested for CONFIG_PGTABLE_LEVELS not in final .config
+Requested value:  CONFIG_PGTABLE_LEVELS=2
+Actual value:     CONFIG_PGTABLE_LEVELS=5
+
+Value requested for CONFIG_X86_INTEL_QUARK not in final .config
+Requested value:  # CONFIG_X86_INTEL_QUARK is not set
+Actual value:     
+
+Value requested for CONFIG_X86_RDC321X not in final .config
+Requested value:  # CONFIG_X86_RDC321X is not set
+Actual value:     
+
+Value requested for CONFIG_X86_32_IRIS not in final .config
+Requested value:  # CONFIG_X86_32_IRIS is not set
+Actual value:     
+
+Value requested for CONFIG_M486SX not in final .config
+Requested value:  # CONFIG_M486SX is not set
+Actual value:     
+
+Value requested for CONFIG_M486 not in final .config
+Requested value:  # CONFIG_M486 is not set
+Actual value:     
+
+Value requested for CONFIG_M586 not in final .config
+Requested value:  # CONFIG_M586 is not set
+Actual value:     
+
+Value requested for CONFIG_M586TSC not in final .config
+Requested value:  # CONFIG_M586TSC is not set
+Actual value:     
+
+Value requested for CONFIG_M586MMX not in final .config
+Requested value:  # CONFIG_M586MMX is not set
+Actual value:     
+
+Value requested for CONFIG_M686 not in final .config
+Requested value:  CONFIG_M686=y
+Actual value:     
+
+Value requested for CONFIG_MPENTIUMII not in final .config
+Requested value:  # CONFIG_MPENTIUMII is not set
+Actual value:     
+
+Value requested for CONFIG_MPENTIUMIII not in final .config
+Requested value:  # CONFIG_MPENTIUMIII is not set
+Actual value:     
+
+Value requested for CONFIG_MPENTIUMM not in final .config
+Requested value:  # CONFIG_MPENTIUMM is not set
+Actual value:     
+
+Value requested for CONFIG_MPENTIUM4 not in final .config
+Requested value:  # CONFIG_MPENTIUM4 is not set
+Actual value:     
+
+Value requested for CONFIG_MK6 not in final .config
+Requested value:  # CONFIG_MK6 is not set
+Actual value:     
+
+Value requested for CONFIG_MK7 not in final .config
+Requested value:  # CONFIG_MK7 is not set
+Actual value:     
+
+Value requested for CONFIG_MCRUSOE not in final .config
+Requested value:  # CONFIG_MCRUSOE is not set
+Actual value:     
+
+Value requested for CONFIG_MEFFICEON not in final .config
+Requested value:  # CONFIG_MEFFICEON is not set
+Actual value:     
+
+Value requested for CONFIG_MWINCHIPC6 not in final .config
+Requested value:  # CONFIG_MWINCHIPC6 is not set
+Actual value:     
+
+Value requested for CONFIG_MWINCHIP3D not in final .config
+Requested value:  # CONFIG_MWINCHIP3D is not set
+Actual value:     
+
+Value requested for CONFIG_MELAN not in final .config
+Requested value:  # CONFIG_MELAN is not set
+Actual value:     
+
+Value requested for CONFIG_MGEODEGX1 not in final .config
+Requested value:  # CONFIG_MGEODEGX1 is not set
+Actual value:     
+
+Value requested for CONFIG_MGEODE_LX not in final .config
+Requested value:  # CONFIG_MGEODE_LX is not set
+Actual value:     
+
+Value requested for CONFIG_MCYRIXIII not in final .config
+Requested value:  # CONFIG_MCYRIXIII is not set
+Actual value:     
+
+Value requested for CONFIG_MVIAC3_2 not in final .config
+Requested value:  # CONFIG_MVIAC3_2 is not set
+Actual value:     
+
+Value requested for CONFIG_MVIAC7 not in final .config
+Requested value:  # CONFIG_MVIAC7 is not set
+Actual value:     
+
+Value requested for CONFIG_MATOM not in final .config
+Requested value:  # CONFIG_MATOM is not set
+Actual value:     
+
+Value requested for CONFIG_X86_GENERIC not in final .config
+Requested value:  # CONFIG_X86_GENERIC is not set
+Actual value:     
+
+Value requested for CONFIG_X86_INTERNODE_CACHE_SHIFT not in final .config
+Requested value:  CONFIG_X86_INTERNODE_CACHE_SHIFT=5
+Actual value:     CONFIG_X86_INTERNODE_CACHE_SHIFT=6
+
+Value requested for CONFIG_X86_L1_CACHE_SHIFT not in final .config
+Requested value:  CONFIG_X86_L1_CACHE_SHIFT=5
+Actual value:     CONFIG_X86_L1_CACHE_SHIFT=6
+
+Value requested for CONFIG_X86_USE_PPRO_CHECKSUM not in final .config
+Requested value:  CONFIG_X86_USE_PPRO_CHECKSUM=y
+Actual value:     
+
+Value requested for CONFIG_X86_MINIMUM_CPU_FAMILY not in final .config
+Requested value:  CONFIG_X86_MINIMUM_CPU_FAMILY=6
+Actual value:     CONFIG_X86_MINIMUM_CPU_FAMILY=64
+
+Value requested for CONFIG_CPU_SUP_TRANSMETA_32 not in final .config
+Requested value:  CONFIG_CPU_SUP_TRANSMETA_32=y
+Actual value:     
+
+Value requested for CONFIG_CPU_SUP_VORTEX_32 not in final .config
+Requested value:  CONFIG_CPU_SUP_VORTEX_32=y
+Actual value:     
+
+Value requested for CONFIG_HPET_TIMER not in final .config
+Requested value:  # CONFIG_HPET_TIMER is not set
+Actual value:     CONFIG_HPET_TIMER=y
+
+Value requested for CONFIG_NR_CPUS_RANGE_END not in final .config
+Requested value:  CONFIG_NR_CPUS_RANGE_END=8
+Actual value:     CONFIG_NR_CPUS_RANGE_END=512
+
+Value requested for CONFIG_NR_CPUS_DEFAULT not in final .config
+Requested value:  CONFIG_NR_CPUS_DEFAULT=8
+Actual value:     CONFIG_NR_CPUS_DEFAULT=64
+
+Value requested for CONFIG_X86_ANCIENT_MCE not in final .config
+Requested value:  # CONFIG_X86_ANCIENT_MCE is not set
+Actual value:     
+
+Value requested for CONFIG_X86_LEGACY_VM86 not in final .config
+Requested value:  # CONFIG_X86_LEGACY_VM86 is not set
+Actual value:     
+
+Value requested for CONFIG_X86_ESPFIX32 not in final .config
+Requested value:  CONFIG_X86_ESPFIX32=y
+Actual value:     
+
+Value requested for CONFIG_TOSHIBA not in final .config
+Requested value:  # CONFIG_TOSHIBA is not set
+Actual value:     
+
+Value requested for CONFIG_X86_REBOOTFIXUPS not in final .config
+Requested value:  # CONFIG_X86_REBOOTFIXUPS is not set
+Actual value:     
+
+Value requested for CONFIG_MICROCODE_INITRD32 not in final .config
+Requested value:  CONFIG_MICROCODE_INITRD32=y
+Actual value:     
+
+Value requested for CONFIG_HIGHMEM4G not in final .config
+Requested value:  # CONFIG_HIGHMEM4G is not set
+Actual value:     
+
+Value requested for CONFIG_VMSPLIT_3G not in final .config
+Requested value:  CONFIG_VMSPLIT_3G=y
+Actual value:     
+
+Value requested for CONFIG_VMSPLIT_3G_OPT not in final .config
+Requested value:  # CONFIG_VMSPLIT_3G_OPT is not set
+Actual value:     
+
+Value requested for CONFIG_VMSPLIT_2G not in final .config
+Requested value:  # CONFIG_VMSPLIT_2G is not set
+Actual value:     
+
+Value requested for CONFIG_VMSPLIT_2G_OPT not in final .config
+Requested value:  # CONFIG_VMSPLIT_2G_OPT is not set
+Actual value:     
+
+Value requested for CONFIG_VMSPLIT_1G not in final .config
+Requested value:  # CONFIG_VMSPLIT_1G is not set
+Actual value:     
+
+Value requested for CONFIG_PAGE_OFFSET not in final .config
+Requested value:  CONFIG_PAGE_OFFSET=0xC0000000
+Actual value:     
+
+Value requested for CONFIG_X86_PAE not in final .config
+Requested value:  # CONFIG_X86_PAE is not set
+Actual value:     
+
+Value requested for CONFIG_ARCH_FLATMEM_ENABLE not in final .config
+Requested value:  CONFIG_ARCH_FLATMEM_ENABLE=y
+Actual value:     
+
+Value requested for CONFIG_ARCH_SELECT_MEMORY_MODEL not in final .config
+Requested value:  CONFIG_ARCH_SELECT_MEMORY_MODEL=y
+Actual value:     
+
+Value requested for CONFIG_ILLEGAL_POINTER_VALUE not in final .config
+Requested value:  CONFIG_ILLEGAL_POINTER_VALUE=0
+Actual value:     CONFIG_ILLEGAL_POINTER_VALUE=0xdead000000000000
+
+Value requested for CONFIG_COMPAT_VDSO not in final .config
+Requested value:  # CONFIG_COMPAT_VDSO is not set
+Actual value:     
+
+Value requested for CONFIG_FUNCTION_PADDING_CFI not in final .config
+Requested value:  CONFIG_FUNCTION_PADDING_CFI=0
+Actual value:     CONFIG_FUNCTION_PADDING_CFI=11
+
+Value requested for CONFIG_FUNCTION_PADDING_BYTES not in final .config
+Requested value:  CONFIG_FUNCTION_PADDING_BYTES=4
+Actual value:     CONFIG_FUNCTION_PADDING_BYTES=16
+
+Value requested for CONFIG_APM not in final .config
+Requested value:  # CONFIG_APM is not set
+Actual value:     
+
+Value requested for CONFIG_X86_POWERNOW_K6 not in final .config
+Requested value:  # CONFIG_X86_POWERNOW_K6 is not set
+Actual value:     
+
+Value requested for CONFIG_X86_POWERNOW_K7 not in final .config
+Requested value:  # CONFIG_X86_POWERNOW_K7 is not set
+Actual value:     
+
+Value requested for CONFIG_X86_GX_SUSPMOD not in final .config
+Requested value:  # CONFIG_X86_GX_SUSPMOD is not set
+Actual value:     
+
+Value requested for CONFIG_X86_SPEEDSTEP_ICH not in final .config
+Requested value:  # CONFIG_X86_SPEEDSTEP_ICH is not set
+Actual value:     
+
+Value requested for CONFIG_X86_SPEEDSTEP_SMI not in final .config
+Requested value:  # CONFIG_X86_SPEEDSTEP_SMI is not set
+Actual value:     
+
+Value requested for CONFIG_X86_CPUFREQ_NFORCE2 not in final .config
+Requested value:  # CONFIG_X86_CPUFREQ_NFORCE2 is not set
+Actual value:     
+
+Value requested for CONFIG_X86_LONGRUN not in final .config
+Requested value:  # CONFIG_X86_LONGRUN is not set
+Actual value:     
+
+Value requested for CONFIG_X86_LONGHAUL not in final .config
+Requested value:  # CONFIG_X86_LONGHAUL is not set
+Actual value:     
+
+Value requested for CONFIG_X86_E_POWERSAVER not in final .config
+Requested value:  # CONFIG_X86_E_POWERSAVER is not set
+Actual value:     
+
+Value requested for CONFIG_PCI_GOBIOS not in final .config
+Requested value:  # CONFIG_PCI_GOBIOS is not set
+Actual value:     
+
+Value requested for CONFIG_PCI_GOMMCONFIG not in final .config
+Requested value:  # CONFIG_PCI_GOMMCONFIG is not set
+Actual value:     
+
+Value requested for CONFIG_PCI_GODIRECT not in final .config
+Requested value:  # CONFIG_PCI_GODIRECT is not set
+Actual value:     
+
+Value requested for CONFIG_PCI_GOANY not in final .config
+Requested value:  CONFIG_PCI_GOANY=y
+Actual value:     
+
+Value requested for CONFIG_PCI_BIOS not in final .config
+Requested value:  CONFIG_PCI_BIOS=y
+Actual value:     
+
+Value requested for CONFIG_ISA not in final .config
+Requested value:  # CONFIG_ISA is not set
+Actual value:     
+
+Value requested for CONFIG_SCx200 not in final .config
+Requested value:  # CONFIG_SCx200 is not set
+Actual value:     
+
+Value requested for CONFIG_OLPC not in final .config
+Requested value:  # CONFIG_OLPC is not set
+Actual value:     
+
+Value requested for CONFIG_ALIX not in final .config
+Requested value:  # CONFIG_ALIX is not set
+Actual value:     
+
+Value requested for CONFIG_NET5501 not in final .config
+Requested value:  # CONFIG_NET5501 is not set
+Actual value:     
+
+Value requested for CONFIG_GEOS not in final .config
+Requested value:  # CONFIG_GEOS is not set
+Actual value:     
+
+Value requested for CONFIG_COMPAT_32 not in final .config
+Requested value:  CONFIG_COMPAT_32=y
+Actual value:     
+
+Value requested for CONFIG_HAVE_ATOMIC_IOMAP not in final .config
+Requested value:  CONFIG_HAVE_ATOMIC_IOMAP=y
+Actual value:     
+
+Value requested for CONFIG_X86_DISABLED_FEATURE_PCID not in final .config
+Requested value:  CONFIG_X86_DISABLED_FEATURE_PCID=y
+Actual value:     
+
+Value requested for CONFIG_X86_DISABLED_FEATURE_PKU not in final .config
+Requested value:  CONFIG_X86_DISABLED_FEATURE_PKU=y
+Actual value:     
+
+Value requested for CONFIG_X86_DISABLED_FEATURE_OSPKE not in final .config
+Requested value:  CONFIG_X86_DISABLED_FEATURE_OSPKE=y
+Actual value:     
+
+Value requested for CONFIG_X86_DISABLED_FEATURE_PTI not in final .config
+Requested value:  CONFIG_X86_DISABLED_FEATURE_PTI=y
+Actual value:     
+
+Value requested for CONFIG_X86_DISABLED_FEATURE_IBT not in final .config
+Requested value:  CONFIG_X86_DISABLED_FEATURE_IBT=y
+Actual value:     
+
+Value requested for CONFIG_X86_DISABLED_FEATURE_INVLPGB not in final .config
+Requested value:  CONFIG_X86_DISABLED_FEATURE_INVLPGB=y
+Actual value:     
+
+Value requested for CONFIG_ARCH_32BIT_OFF_T not in final .config
+Requested value:  CONFIG_ARCH_32BIT_OFF_T=y
+Actual value:     
+
+Value requested for CONFIG_ARCH_WANT_IPC_PARSE_VERSION not in final .config
+Requested value:  CONFIG_ARCH_WANT_IPC_PARSE_VERSION=y
+Actual value:     
+
+Value requested for CONFIG_MODULES_USE_ELF_REL not in final .config
+Requested value:  CONFIG_MODULES_USE_ELF_REL=y
+Actual value:     
+
+Value requested for CONFIG_ARCH_MMAP_RND_BITS not in final .config
+Requested value:  CONFIG_ARCH_MMAP_RND_BITS=8
+Actual value:     CONFIG_ARCH_MMAP_RND_BITS=28
+
+Value requested for CONFIG_CLONE_BACKWARDS not in final .config
+Requested value:  CONFIG_CLONE_BACKWARDS=y
+Actual value:     
+
+Value requested for CONFIG_OLD_SIGSUSPEND3 not in final .config
+Requested value:  CONFIG_OLD_SIGSUSPEND3=y
+Actual value:     
+
+Value requested for CONFIG_OLD_SIGACTION not in final .config
+Requested value:  CONFIG_OLD_SIGACTION=y
+Actual value:     
+
+Value requested for CONFIG_ARCH_SPLIT_ARG64 not in final .config
+Requested value:  CONFIG_ARCH_SPLIT_ARG64=y
+Actual value:     
+
+Value requested for CONFIG_FUNCTION_ALIGNMENT not in final .config
+Requested value:  CONFIG_FUNCTION_ALIGNMENT=4
+Actual value:     CONFIG_FUNCTION_ALIGNMENT=16
+
+Value requested for CONFIG_SELECT_MEMORY_MODEL not in final .config
+Requested value:  CONFIG_SELECT_MEMORY_MODEL=y
+Actual value:     
+
+Value requested for CONFIG_FLATMEM_MANUAL not in final .config
+Requested value:  CONFIG_FLATMEM_MANUAL=y
+Actual value:     
+
+Value requested for CONFIG_SPARSEMEM_MANUAL not in final .config
+Requested value:  # CONFIG_SPARSEMEM_MANUAL is not set
+Actual value:     
+
+Value requested for CONFIG_FLATMEM not in final .config
+Requested value:  CONFIG_FLATMEM=y
+Actual value:     
+
+Value requested for CONFIG_SPARSEMEM_STATIC not in final .config
+Requested value:  CONFIG_SPARSEMEM_STATIC=y
+Actual value:     
+
+Value requested for CONFIG_KMAP_LOCAL not in final .config
+Requested value:  CONFIG_KMAP_LOCAL=y
+Actual value:     
+
+Value requested for CONFIG_HAVE_EISA not in final .config
+Requested value:  CONFIG_HAVE_EISA=y
+Actual value:     
+
+Value requested for CONFIG_EISA not in final .config
+Requested value:  # CONFIG_EISA is not set
+Actual value:     
+
+Value requested for CONFIG_HOTPLUG_PCI_COMPAQ not in final .config
+Requested value:  # CONFIG_HOTPLUG_PCI_COMPAQ is not set
+Actual value:     
+
+Value requested for CONFIG_HOTPLUG_PCI_IBM not in final .config
+Requested value:  # CONFIG_HOTPLUG_PCI_IBM is not set
+Actual value:     
+
+Value requested for CONFIG_EFI_CAPSULE_QUIRK_QUARK_CSH not in final .config
+Requested value:  CONFIG_EFI_CAPSULE_QUIRK_QUARK_CSH=y
+Actual value:     
+
+Value requested for CONFIG_PCH_PHUB not in final .config
+Requested value:  # CONFIG_PCH_PHUB is not set
+Actual value:     
+
+Value requested for CONFIG_SCSI_NSP32 not in final .config
+Requested value:  # CONFIG_SCSI_NSP32 is not set
+Actual value:     
+
+Value requested for CONFIG_PATA_CS5520 not in final .config
+Requested value:  # CONFIG_PATA_CS5520 is not set
+Actual value:     
+
+Value requested for CONFIG_PATA_CS5530 not in final .config
+Requested value:  # CONFIG_PATA_CS5530 is not set
+Actual value:     
+
+Value requested for CONFIG_PATA_CS5535 not in final .config
+Requested value:  # CONFIG_PATA_CS5535 is not set
+Actual value:     
+
+Value requested for CONFIG_PATA_CS5536 not in final .config
+Requested value:  # CONFIG_PATA_CS5536 is not set
+Actual value:     
+
+Value requested for CONFIG_PATA_SC1200 not in final .config
+Requested value:  # CONFIG_PATA_SC1200 is not set
+Actual value:     
+
+Value requested for CONFIG_PCH_GBE not in final .config
+Requested value:  # CONFIG_PCH_GBE is not set
+Actual value:     
+
+Value requested for CONFIG_INPUT_WISTRON_BTNS not in final .config
+Requested value:  # CONFIG_INPUT_WISTRON_BTNS is not set
+Actual value:     
+
+Value requested for CONFIG_SERIAL_TIMBERDALE not in final .config
+Requested value:  # CONFIG_SERIAL_TIMBERDALE is not set
+Actual value:     
+
+Value requested for CONFIG_SERIAL_PCH_UART not in final .config
+Requested value:  # CONFIG_SERIAL_PCH_UART is not set
+Actual value:     
+
+Value requested for CONFIG_HW_RANDOM_GEODE not in final .config
+Requested value:  CONFIG_HW_RANDOM_GEODE=y
+Actual value:     
+
+Value requested for CONFIG_SONYPI not in final .config
+Requested value:  # CONFIG_SONYPI is not set
+Actual value:     
+
+Value requested for CONFIG_PC8736x_GPIO not in final .config
+Requested value:  # CONFIG_PC8736x_GPIO is not set
+Actual value:     
+
+Value requested for CONFIG_NSC_GPIO not in final .config
+Requested value:  # CONFIG_NSC_GPIO is not set
+Actual value:     
+
+Value requested for CONFIG_I2C_EG20T not in final .config
+Requested value:  # CONFIG_I2C_EG20T is not set
+Actual value:     
+
+Value requested for CONFIG_SCx200_ACB not in final .config
+Requested value:  # CONFIG_SCx200_ACB is not set
+Actual value:     
+
+Value requested for CONFIG_PTP_1588_CLOCK_PCH not in final .config
+Requested value:  # CONFIG_PTP_1588_CLOCK_PCH is not set
+Actual value:     
+
+Value requested for CONFIG_SBC8360_WDT not in final .config
+Requested value:  # CONFIG_SBC8360_WDT is not set
+Actual value:     
+
+Value requested for CONFIG_SBC7240_WDT not in final .config
+Requested value:  # CONFIG_SBC7240_WDT is not set
+Actual value:     
+
+Value requested for CONFIG_MFD_CS5535 not in final .config
+Requested value:  # CONFIG_MFD_CS5535 is not set
+Actual value:     
+
+Value requested for CONFIG_AGP_ALI not in final .config
+Requested value:  # CONFIG_AGP_ALI is not set
+Actual value:     
+
+Value requested for CONFIG_AGP_ATI not in final .config
+Requested value:  # CONFIG_AGP_ATI is not set
+Actual value:     
+
+Value requested for CONFIG_AGP_AMD not in final .config
+Requested value:  # CONFIG_AGP_AMD is not set
+Actual value:     
+
+Value requested for CONFIG_AGP_NVIDIA not in final .config
+Requested value:  # CONFIG_AGP_NVIDIA is not set
+Actual value:     
+
+Value requested for CONFIG_AGP_SWORKS not in final .config
+Requested value:  # CONFIG_AGP_SWORKS is not set
+Actual value:     
+
+Value requested for CONFIG_AGP_EFFICEON not in final .config
+Requested value:  # CONFIG_AGP_EFFICEON is not set
+Actual value:     
+
+Value requested for CONFIG_SND_CS5530 not in final .config
+Requested value:  # CONFIG_SND_CS5530 is not set
+Actual value:     
+
+Value requested for CONFIG_SND_CS5535AUDIO not in final .config
+Requested value:  # CONFIG_SND_CS5535AUDIO is not set
+Actual value:     
+
+Value requested for CONFIG_SND_SIS7019 not in final .config
+Requested value:  # CONFIG_SND_SIS7019 is not set
+Actual value:     
+
+Value requested for CONFIG_LEDS_OT200 not in final .config
+Requested value:  # CONFIG_LEDS_OT200 is not set
+Actual value:     
+
+Value requested for CONFIG_PCH_DMA not in final .config
+Requested value:  # CONFIG_PCH_DMA is not set
+Actual value:     
+
+Value requested for CONFIG_CLKSRC_I8253 not in final .config
+Requested value:  CONFIG_CLKSRC_I8253=y
+Actual value:     
+
+Value requested for CONFIG_MAILBOX not in final .config
+Requested value:  # CONFIG_MAILBOX is not set
+Actual value:     CONFIG_MAILBOX=y
+
+Value requested for CONFIG_CRYPTO_SERPENT_SSE2_586 not in final .config
+Requested value:  # CONFIG_CRYPTO_SERPENT_SSE2_586 is not set
+Actual value:     
+
+Value requested for CONFIG_CRYPTO_TWOFISH_586 not in final .config
+Requested value:  # CONFIG_CRYPTO_TWOFISH_586 is not set
+Actual value:     
+
+Value requested for CONFIG_CRYPTO_DEV_GEODE not in final .config
+Requested value:  # CONFIG_CRYPTO_DEV_GEODE is not set
+Actual value:     
+
+Value requested for CONFIG_CRYPTO_DEV_HIFN_795X not in final .config
+Requested value:  # CONFIG_CRYPTO_DEV_HIFN_795X is not set
+Actual value:     
+
+Value requested for CONFIG_CRYPTO_LIB_POLY1305_RSIZE not in final .config
+Requested value:  CONFIG_CRYPTO_LIB_POLY1305_RSIZE=1
+Actual value:     CONFIG_CRYPTO_LIB_POLY1305_RSIZE=11
+
+Value requested for CONFIG_AUDIT_GENERIC not in final .config
+Requested value:  CONFIG_AUDIT_GENERIC=y
+Actual value:     
+
+Value requested for CONFIG_GENERIC_VDSO_32 not in final .config
+Requested value:  CONFIG_GENERIC_VDSO_32=y
+Actual value:     
+
+Value requested for CONFIG_DEBUG_KMAP_LOCAL not in final .config
+Requested value:  # CONFIG_DEBUG_KMAP_LOCAL is not set
+Actual value:     
+
+Value requested for CONFIG_HAVE_DEBUG_STACKOVERFLOW not in final .config
+Requested value:  CONFIG_HAVE_DEBUG_STACKOVERFLOW=y
+Actual value:     
+
+Value requested for CONFIG_DEBUG_STACKOVERFLOW not in final .config
+Requested value:  # CONFIG_DEBUG_STACKOVERFLOW is not set
+Actual value:     
+
+Value requested for CONFIG_HAVE_FUNCTION_GRAPH_TRACER not in final .config
+Requested value:  CONFIG_HAVE_FUNCTION_GRAPH_TRACER=y
+Actual value:     
+
+Value requested for CONFIG_HAVE_FUNCTION_GRAPH_FREGS not in final .config
+Requested value:  CONFIG_HAVE_FUNCTION_GRAPH_FREGS=y
+Actual value:     
+
+Value requested for CONFIG_HAVE_FTRACE_GRAPH_FUNC not in final .config
+Requested value:  CONFIG_HAVE_FTRACE_GRAPH_FUNC=y
+Actual value:     
+
+Value requested for CONFIG_DRM_KUNIT_TEST not in final .config
+Requested value:  CONFIG_DRM_KUNIT_TEST=m
+Actual value:     
+
+Value requested for CONFIG_DRM_XE_WERROR not in final .config
+Requested value:  CONFIG_DRM_XE_WERROR=y
+Actual value:     
+
+Value requested for CONFIG_DRM_XE_DEBUG not in final .config
+Requested value:  CONFIG_DRM_XE_DEBUG=y
+Actual value:     
+
+Value requested for CONFIG_DRM_XE_DEBUG_MEM not in final .config
+Requested value:  CONFIG_DRM_XE_DEBUG_MEM=y
+Actual value:     
+
+Value requested for CONFIG_DRM_XE_KUNIT_TEST not in final .config
+Requested value:  CONFIG_DRM_XE_KUNIT_TEST=m
+Actual value:     
+
+++ nproc
++ make -j48 ARCH=i386 olddefconfig
+  GEN     Makefile
+#
+# configuration written to .config
+#
+++ nproc
++ make -j48 ARCH=i386
+  SYNC    include/config/auto.conf.cmd
+  GEN     Makefile
+  GEN     Makefile
+  WRAP    arch/x86/include/generated/uapi/asm/bpf_perf_event.h
+  WRAP    arch/x86/include/generated/uapi/asm/errno.h
+  WRAP    arch/x86/include/generated/uapi/asm/fcntl.h
+  WRAP    arch/x86/include/generated/uapi/asm/ioctls.h
+  WRAP    arch/x86/include/generated/uapi/asm/ioctl.h
+  WRAP    arch/x86/include/generated/uapi/asm/ipcbuf.h
+  UPD     include/generated/uapi/linux/version.h
+  WRAP    arch/x86/include/generated/uapi/asm/param.h
+  SYSHDR  arch/x86/include/generated/uapi/asm/unistd_32.h
+  WRAP    arch/x86/include/generated/uapi/asm/poll.h
+  SYSHDR  arch/x86/include/generated/uapi/asm/unistd_64.h
+  WRAP    arch/x86/include/generated/uapi/asm/resource.h
+  WRAP    arch/x86/include/generated/uapi/asm/socket.h
+  UPD     arch/x86/include/generated/asm/cpufeaturemasks.h
+  SYSHDR  arch/x86/include/generated/uapi/asm/unistd_x32.h
+  WRAP    arch/x86/include/generated/uapi/asm/sockios.h
+  SYSTBL  arch/x86/include/generated/asm/syscalls_32.h
+  WRAP    arch/x86/include/generated/uapi/asm/termbits.h
+  WRAP    arch/x86/include/generated/uapi/asm/termios.h
+  WRAP    arch/x86/include/generated/uapi/asm/types.h
+  HOSTCC  arch/x86/tools/relocs_32.o
+  UPD     include/generated/compile.h
+  WRAP    arch/x86/include/generated/asm/early_ioremap.h
+  HOSTCC  arch/x86/tools/relocs_64.o
+  WRAP    arch/x86/include/generated/asm/fprobe.h
+  WRAP    arch/x86/include/generated/asm/mcs_spinlock.h
+  HOSTCC  arch/x86/tools/relocs_common.o
+  WRAP    arch/x86/include/generated/asm/mmzone.h
+  WRAP    arch/x86/include/generated/asm/irq_regs.h
+  WRAP    arch/x86/include/generated/asm/kmap_size.h
+  WRAP    arch/x86/include/generated/asm/local64.h
+  WRAP    arch/x86/include/generated/asm/mmiowb.h
+  WRAP    arch/x86/include/generated/asm/module.lds.h
+  WRAP    arch/x86/include/generated/asm/rwonce.h
+  HOSTCC  scripts/kallsyms
+  HOSTCC  scripts/sorttable
+  HOSTCC  scripts/asn1_compiler
+  HOSTCC  scripts/selinux/mdp/mdp
+  HOSTLD  arch/x86/tools/relocs
+  UPD     include/config/kernel.release
+  UPD     include/generated/utsrelease.h
+  CC      scripts/mod/empty.o
+  HOSTCC  scripts/mod/mk_elfconfig
+  CC      scripts/mod/devicetable-offsets.s
+  UPD     scripts/mod/devicetable-offsets.h
+  MKELF   scripts/mod/elfconfig.h
+  HOSTCC  scripts/mod/modpost.o
+  HOSTCC  scripts/mod/file2alias.o
+  HOSTCC  scripts/mod/sumversion.o
+  HOSTCC  scripts/mod/symsearch.o
+  HOSTLD  scripts/mod/modpost
+  CC      kernel/bounds.s
+  CHKSHA1 /workspace/kernel/include/linux/atomic/atomic-arch-fallback.h
+  CHKSHA1 /workspace/kernel/include/linux/atomic/atomic-instrumented.h
+  CHKSHA1 /workspace/kernel/include/linux/atomic/atomic-long.h
+  UPD     include/generated/timeconst.h
+  UPD     include/generated/bounds.h
+  CC      arch/x86/kernel/asm-offsets.s
+  UPD     include/generated/asm-offsets.h
+  CALL    /workspace/kernel/scripts/checksyscalls.sh
+  LDS     scripts/module.lds
+  CC      init/main.o
+  HOSTCC  usr/gen_init_cpio
+  AR      arch/x86/boot/startup/lib.a
+  AR      arch/x86/boot/startup/built-in.a
+  CC      init/do_mounts.o
+  CC      certs/system_keyring.o
+  UPD     init/utsversion-tmp.h
+  CC      init/do_mounts_initrd.o
+  CC      ipc/util.o
+  CC      ipc/msgutil.o
+  CC      init/initramfs.o
+  CC      ipc/msg.o
+  CC      security/commoncap.o
+  CC      ipc/sem.o
+  CC      init/calibrate.o
+  CC      io_uring/io_uring.o
+  CC      security/lsm_syscalls.o
+  AS      arch/x86/lib/atomic64_cx8_32.o
+  CC      arch/x86/realmode/init.o
+  CC      init/init_task.o
+  CC      block/bdev.o
+  CC      ipc/shm.o
+  AR      arch/x86/crypto/built-in.a
+  CC      arch/x86/video/video-common.o
+  CC      arch/x86/pci/i386.o
+  CC      arch/x86/power/cpu.o
+  AR      arch/x86/net/built-in.a
+  CC      security/keys/gc.o
+  AR      arch/x86/lib/crypto/built-in.a
+  HOSTCC  security/selinux/genheaders
+  CC      block/partitions/core.o
+  CC      security/integrity/iint.o
+  CC      fs/nfs_common/nfsacl.o
+  AR      virt/lib/built-in.a
+  CC      mm/damon/core.o
+  CC      arch/x86/events/amd/core.o
+  AR      arch/x86/platform/atom/built-in.a
+  CC      arch/x86/mm/pat/set_memory.o
+  CC      arch/x86/events/intel/core.o
+  CC      arch/x86/kernel/fpu/init.o
+  CC      fs/notify/dnotify/dnotify.o
+  AR      sound/i2c/other/built-in.a
+  CC      net/core/sock.o
+  AR      sound/drivers/opl3/built-in.a
+  CC      arch/x86/virt/svm/cmdline.o
+  AR      lib/math/tests/built-in.a
+  CC      sound/core/seq/seq.o
+  CC      block/fops.o
+  AR      virt/built-in.a
+  AR      drivers/cache/built-in.a
+  AR      arch/x86/platform/ce4100/built-in.a
+  CC      arch/x86/platform/efi/memmap.o
+  AR      sound/i2c/built-in.a
+  CC      lib/math/div64.o
+  CC      arch/x86/platform/efi/quirks.o
+  AS      arch/x86/lib/checksum_32.o
+  CC      io_uring/opdef.o
+  CC      lib/crypto/mpi/generic_mpih-lshift.o
+  AR      sound/drivers/opl4/built-in.a
+  CC      arch/x86/entry/vdso/vma.o
+  AR      drivers/irqchip/built-in.a
+  CC      arch/x86/events/zhaoxin/core.o
+  AR      sound/drivers/mpu401/built-in.a
+  CC      kernel/sched/core.o
+  CC      arch/x86/lib/cmdline.o
+  AR      drivers/bus/mhi/built-in.a
+  AR      sound/drivers/vx/built-in.a
+  AR      drivers/bus/built-in.a
+  CC      crypto/asymmetric_keys/asymmetric_type.o
+  AR      sound/drivers/pcsp/built-in.a
+  AR      sound/drivers/built-in.a
+  AR      drivers/pwm/built-in.a
+  CC      arch/x86/mm/pat/memtype.o
+  AR      drivers/leds/trigger/built-in.a
+  AR      arch/x86/virt/svm/built-in.a
+  AR      drivers/leds/blink/built-in.a
+  AR      arch/x86/virt/vmx/built-in.a
+  AR      drivers/leds/simatic/built-in.a
+  AR      arch/x86/virt/built-in.a
+  CC      drivers/leds/led-core.o
+  CC      security/integrity/integrity_audit.o
+  AS      arch/x86/lib/cmpxchg8b_emu.o
+  CC      lib/math/gcd.o
+  GEN     security/selinux/flask.h security/selinux/av_permissions.h
+  CC      security/selinux/avc.o
+  CC      arch/x86/lib/cpu.o
+  CC      lib/math/lcm.o
+  CC      security/keys/key.o
+  CC      lib/math/int_log.o
+  GEN     usr/initramfs_data.cpio
+  COPY    usr/initramfs_inc_data
+  AS      usr/initramfs_data.o
+  AR      usr/built-in.a
+  CC      arch/x86/kernel/fpu/bugs.o
+  CC      lib/crypto/mpi/generic_mpih-mul1.o
+  HOSTCC  certs/extract-cert
+  CC      lib/math/int_pow.o
+  CC      lib/math/int_sqrt.o
+  CC      arch/x86/kernel/fpu/core.o
+  CC      lib/math/reciprocal_div.o
+  CC      sound/core/seq/seq_lock.o
+  CC      arch/x86/lib/delay.o
+  CC      ipc/syscall.o
+  AS      arch/x86/realmode/rm/header.o
+  AR      arch/x86/video/built-in.a
+  CC      lib/math/rational.o
+  AS      arch/x86/realmode/rm/trampoline_32.o
+  AS      arch/x86/realmode/rm/stack.o
+  CC      arch/x86/events/core.o
+  AS      arch/x86/realmode/rm/reboot.o
+  AS      arch/x86/realmode/rm/wakeup_asm.o
+  CERT    certs/x509_certificate_list
+  CC      security/min_addr.o
+  CERT    certs/signing_key.x509
+  AS      certs/system_certificates.o
+  CC      arch/x86/realmode/rm/wakemain.o
+  CC      kernel/locking/mutex.o
+  CC      io_uring/kbuf.o
+  AR      certs/built-in.a
+  CC      fs/nfs_common/grace.o
+  CC      io_uring/rsrc.o
+  CC      drivers/leds/led-class.o
+  CC      io_uring/notif.o
+  CC      arch/x86/pci/init.o
+  CC      fs/notify/inotify/inotify_fsnotify.o
+  CC      crypto/asymmetric_keys/restrict.o
+  CC      arch/x86/entry/vdso/extable.o
+  CC      block/bio.o
+  AR      fs/notify/dnotify/built-in.a
+  CC      arch/x86/realmode/rm/video-mode.o
+  CC      block/elevator.o
+  CC      block/blk-core.o
+  CC      arch/x86/power/hibernate_32.o
+  CC      block/partitions/msdos.o
+  AS      arch/x86/lib/getuser.o
+  AR      arch/x86/entry/vsyscall/built-in.a
+  CC      drivers/leds/led-triggers.o
+  AR      security/integrity/built-in.a
+  GEN     arch/x86/lib/inat-tables.c
+  CC      arch/x86/events/amd/lbr.o
+  AS      arch/x86/realmode/rm/copy.o
+  CC      arch/x86/lib/insn-eval.o
+  AS      arch/x86/realmode/rm/bioscall.o
+  AR      arch/x86/events/zhaoxin/built-in.a
+  CC      lib/crypto/mpi/generic_mpih-mul2.o
+  CC      arch/x86/platform/efi/efi.o
+  CC      ipc/ipc_sysctl.o
+  CC      arch/x86/realmode/rm/regs.o
+  CC      sound/core/seq/seq_clientmgr.o
+  CC      arch/x86/kernel/cpu/mce/core.o
+  CC      arch/x86/realmode/rm/video-vga.o
+  AR      lib/math/built-in.a
+  CC      arch/x86/platform/efi/efi_32.o
+  CC      arch/x86/kernel/cpu/mtrr/mtrr.o
+  CC      ipc/mqueue.o
+  LDS     arch/x86/entry/vdso/vdso32/vdso32.lds
+  CC      arch/x86/realmode/rm/video-vesa.o
+  CC      arch/x86/lib/insn.o
+  AR      fs/notify/fanotify/built-in.a
+  CC      arch/x86/pci/pcbios.o
+  CC      arch/x86/realmode/rm/video-bios.o
+  CC      security/keys/keyring.o
+  AR      arch/x86/platform/geode/built-in.a
+  CC      arch/x86/events/amd/ibs.o
+  CC      crypto/asymmetric_keys/signature.o
+  CC      sound/core/sound.o
+  AS      arch/x86/power/hibernate_asm_32.o
+  CC      mm/filemap.o
+  PASYMS  arch/x86/realmode/rm/pasyms.h
+  CC      arch/x86/mm/pat/memtype_interval.o
+  CC      fs/notify/inotify/inotify_user.o
+  AR      sound/isa/ad1816a/built-in.a
+  LDS     arch/x86/realmode/rm/realmode.lds
+  AR      sound/isa/ad1848/built-in.a
+  LD      arch/x86/realmode/rm/realmode.elf
+  CC      ipc/namespace.o
+  AR      sound/isa/cs423x/built-in.a
+  RELOCS  arch/x86/realmode/rm/realmode.relocs
+  OBJCOPY arch/x86/realmode/rm/realmode.bin
+  AS      arch/x86/realmode/rmpiggy.o
+  AR      sound/isa/es1688/built-in.a
+  AR      sound/isa/galaxy/built-in.a
+  AR      arch/x86/realmode/built-in.a
+  CC      init/version.o
+  AR      sound/isa/gus/built-in.a
+  CC      mm/damon/ops-common.o
+  CC      sound/core/seq/seq_memory.o
+  AR      sound/isa/msnd/built-in.a
+  CC      arch/x86/lib/kaslr.o
+  AR      sound/isa/opti9xx/built-in.a
+  AR      sound/isa/sb/built-in.a
+  CC      crypto/asymmetric_keys/public_key.o
+  AR      sound/isa/wavefront/built-in.a
+  AS      arch/x86/entry/entry.o
+  CC      arch/x86/events/amd/uncore.o
+  AR      sound/isa/wss/built-in.a
+  AR      sound/isa/built-in.a
+  CC      fs/nfs_common/common.o
+  CC      sound/core/seq/seq_queue.o
+  CC      net/core/request_sock.o
+  CC      net/ethernet/eth.o
+  CC      lib/crypto/mpi/generic_mpih-mul3.o
+  AS      arch/x86/entry/vdso/vdso32/note.o
+  AR      init/built-in.a
+  AS      arch/x86/entry/vdso/vdso32/system_call.o
+  CC      arch/x86/lib/memcpy_32.o
+  CC      arch/x86/power/hibernate.o
+  AS      arch/x86/entry/vdso/vdso32/sigreturn.o
+  CC      arch/x86/kernel/cpu/mtrr/if.o
+  CC      arch/x86/entry/vdso/vdso32/vclock_gettime.o
+  AR      net/802/built-in.a
+  ASN.1   crypto/asymmetric_keys/x509.asn1.[ch]
+  CC      arch/x86/entry/vdso/vdso32/vgetcpu.o
+  CC      arch/x86/kernel/fpu/regset.o
+  AR      drivers/leds/built-in.a
+  CC      drivers/pci/msi/pcidev_msi.o
+  CC      block/partitions/efi.o
+  CC      kernel/locking/semaphore.o
+  CC      kernel/locking/rwsem.o
+  CC      arch/x86/mm/init.o
+  CC      drivers/pci/msi/api.o
+  CC      security/selinux/hooks.o
+  AS      arch/x86/lib/memmove_32.o
+  CC      kernel/power/qos.o
+  CC      arch/x86/events/probe.o
+  CC      kernel/sched/fair.o
+  CC      arch/x86/lib/misc.o
+  CC      arch/x86/pci/mmconfig_32.o
+  CC      kernel/power/main.o
+  CC      arch/x86/lib/pc-conf-reg.o
+  CC      net/core/skbuff.o
+  AR      arch/x86/mm/pat/built-in.a
+  ASN.1   crypto/asymmetric_keys/x509_akid.asn1.[ch]
+  CC      drivers/pci/msi/msi.o
+  AS      arch/x86/platform/efi/efi_stub_32.o
+  CC      drivers/video/console/dummycon.o
+  CC      arch/x86/platform/efi/runtime-map.o
+  CC      arch/x86/kernel/cpu/mtrr/generic.o
+  CC      net/sched/sch_generic.o
+  CC      fs/iomap/trace.o
+  AS      arch/x86/lib/putuser.o
+  CC      crypto/asymmetric_keys/x509_loader.o
+  AS      arch/x86/lib/retpoline.o
+  CC      mm/damon/vaddr.o
+  CC      arch/x86/lib/string_32.o
+  CC      lib/crypto/mpi/generic_mpih-rshift.o
+  AR      fs/nfs_common/built-in.a
+  CC      arch/x86/lib/strstr_32.o
+  HOSTCC  arch/x86/entry/vdso/vdso2c
+  CC      net/netlink/af_netlink.o
+  CC      arch/x86/entry/vdso/vdso32-setup.o
+  AR      net/bpf/built-in.a
+  CC      arch/x86/lib/usercopy.o
+  AR      arch/x86/platform/iris/built-in.a
+  CC      arch/x86/platform/intel/iosf_mbi.o
+  AR      fs/notify/inotify/built-in.a
+  CC      drivers/pci/pcie/portdrv.o
+  CC      sound/core/seq/seq_fifo.o
+  CC      fs/notify/fsnotify.o
+  CC      net/netlink/genetlink.o
+  AR      arch/x86/power/built-in.a
+  CC      net/netlink/policy.o
+  CC      net/sched/sch_mq.o
+  CC      crypto/asymmetric_keys/x509_public_key.o
+  CC      net/sched/sch_frag.o
+  CC      arch/x86/kernel/fpu/signal.o
+  CC      security/keys/keyctl.o
+  CC      arch/x86/kernel/cpu/mtrr/cleanup.o
+  CC      block/blk-sysfs.o
+  CC      security/security.o
+  CC      mm/damon/paddr.o
+  CC      arch/x86/events/utils.o
+  CC      arch/x86/pci/direct.o
+  CC      fs/iomap/iter.o
+  CC      arch/x86/lib/usercopy_32.o
+  CC      drivers/video/console/vgacon.o
+  CC      kernel/locking/percpu-rwsem.o
+  AR      block/partitions/built-in.a
+  CC      arch/x86/kernel/acpi/boot.o
+  VDSO    arch/x86/entry/vdso/vdso32.so.dbg
+  OBJCOPY arch/x86/entry/vdso/vdso32.so
+  VDSO2C  arch/x86/entry/vdso/vdso-image-32.c
+  AR      arch/x86/events/amd/built-in.a
+  CC      arch/x86/entry/vdso/vdso-image-32.o
+  AR      sound/pci/ac97/built-in.a
+  CC      ipc/mq_sysctl.o
+  AR      sound/pci/ali5451/built-in.a
+  AR      sound/pci/asihpi/built-in.a
+  AR      sound/pci/au88x0/built-in.a
+  AR      sound/pci/aw2/built-in.a
+  AR      sound/pci/ctxfi/built-in.a
+  AR      sound/pci/ca0106/built-in.a
+  CC      lib/crypto/mpi/generic_mpih-sub1.o
+  AR      arch/x86/platform/efi/built-in.a
+  AR      sound/pci/cs46xx/built-in.a
+  CC      arch/x86/mm/init_32.o
+  AR      sound/ppc/built-in.a
+  AR      sound/pci/cs5535audio/built-in.a
+  AR      sound/pci/lola/built-in.a
+  CC      arch/x86/kernel/apic/apic.o
+  AR      drivers/idle/built-in.a
+  AR      sound/pci/lx6464es/built-in.a
+  CC      kernel/power/console.o
+  AR      drivers/char/ipmi/built-in.a
+  AR      sound/pci/echoaudio/built-in.a
+  CC      arch/x86/kernel/cpu/mce/severity.o
+  AR      sound/pci/emu10k1/built-in.a
+  AR      sound/arm/built-in.a
+  AR      drivers/pci/pwrctrl/built-in.a
+  CC      sound/pci/hda/hda_bind.o
+  CC      sound/pci/hda/hda_codec.o
+  AR      net/ethernet/built-in.a
+  CC      lib/crypto/mpi/generic_mpih-add1.o
+  CC      arch/x86/lib/msr-smp.o
+  AR      arch/x86/entry/vdso/built-in.a
+  CC      security/selinux/selinuxfs.o
+  CC      sound/core/seq/seq_prioq.o
+  AS      arch/x86/entry/entry_32.o
+  CC      drivers/pci/msi/irqdomain.o
+  CC      arch/x86/entry/syscall_32.o
+  ASN.1   crypto/asymmetric_keys/pkcs7.asn1.[ch]
+  CC      crypto/asymmetric_keys/pkcs7_trust.o
+  CC      sound/pci/hda/hda_jack.o
+  CC      drivers/pci/hotplug/pci_hotplug_core.o
+  AR      arch/x86/platform/intel/built-in.a
+  AR      arch/x86/platform/intel-mid/built-in.a
+  AR      arch/x86/platform/intel-quark/built-in.a
+  CC      block/blk-flush.o
+  AR      arch/x86/platform/olpc/built-in.a
+  AR      arch/x86/platform/scx200/built-in.a
+  AR      ipc/built-in.a
+  CC      drivers/pci/pcie/rcec.o
+  CC      security/keys/permission.o
+  AR      arch/x86/platform/ts5500/built-in.a
+  AR      arch/x86/platform/uv/built-in.a
+  AR      arch/x86/platform/built-in.a
+  CC      arch/x86/kernel/acpi/sleep.o
+  CC      io_uring/tctx.o
+  CC      arch/x86/lib/cache-smp.o
+  CC      arch/x86/kernel/cpu/mtrr/amd.o
+  CC      kernel/locking/spinlock.o
+  CC      fs/notify/notification.o
+  CC      arch/x86/pci/mmconfig-shared.o
+  CC      arch/x86/kernel/fpu/xstate.o
+  CC      kernel/locking/osq_lock.o
+  AS      arch/x86/entry/thunk.o
+  AR      sound/sh/built-in.a
+  CC      lib/crypto/memneq.o
+  CC      drivers/pci/pcie/bwctrl.o
+  CC      fs/quota/dquot.o
+  CC      crypto/asymmetric_keys/pkcs7_verify.o
+  CC      fs/iomap/buffered-io.o
+  CC      arch/x86/lib/crc32.o
+  CC      kernel/power/process.o
+  CC      lib/crypto/mpi/mpicoder.o
+  CC      sound/pci/hda/hda_auto_parser.o
+  CC      mm/damon/sysfs-common.o
+  CC      arch/x86/mm/fault.o
+  CC      io_uring/filetable.o
+  CC      sound/core/seq/seq_timer.o
+  CC      arch/x86/kernel/kprobes/core.o
+  CC      kernel/locking/qspinlock.o
+  CC      drivers/acpi/acpica/dsargs.o
+  CC      drivers/acpi/acpica/dscontrol.o
+  AR      drivers/video/console/built-in.a
+  CC      drivers/video/backlight/backlight.o
+  CC      sound/core/init.o
+  CC      arch/x86/kernel/cpu/mce/genpool.o
+  CC      security/selinux/netlink.o
+  CC      arch/x86/events/intel/bts.o
+  CC      drivers/pci/hotplug/acpi_pcihp.o
+  AR      drivers/pci/msi/built-in.a
+  CC      kernel/locking/rtmutex_api.o
+  CC      drivers/pnp/pnpacpi/core.o
+  CC      arch/x86/kernel/cpu/mtrr/cyrix.o
+  CC      security/keys/process_keys.o
+  CC      kernel/locking/qrwlock.o
+  AS      arch/x86/kernel/acpi/wakeup_32.o
+  CC      arch/x86/kernel/acpi/cstate.o
+  AS      arch/x86/lib/crc32-pclmul.o
+  CC      fs/notify/group.o
+  CC      arch/x86/lib/msr.o
+  CC      block/blk-settings.o
+  AS      arch/x86/kernel/head_32.o
+  CC      drivers/pnp/pnpacpi/rsparser.o
+  AR      drivers/acpi/pmic/built-in.a
+  CC      block/blk-ioc.o
+  CC      kernel/printk/printk.o
+  CC      net/sched/sch_api.o
+  CC      drivers/pnp/core.o
+  CC      crypto/asymmetric_keys/x509.asn1.o
+  CC      arch/x86/kernel/cpu/microcode/core.o
+  CC      drivers/pci/pcie/aspm.o
+  CC      drivers/acpi/acpica/dsdebug.o
+  CC      crypto/asymmetric_keys/x509_akid.asn1.o
+  CC      arch/x86/kernel/cpu/cacheinfo.o
+  CC      crypto/asymmetric_keys/x509_cert_parser.o
+  CC      mm/damon/sysfs-schemes.o
+  CC      lib/crypto/mpi/mpi-add.o
+  AR      arch/x86/entry/built-in.a
+  CC      arch/x86/pci/fixup.o
+  AR      drivers/pci/controller/dwc/built-in.a
+  AR      drivers/pci/controller/mobiveil/built-in.a
+  AR      drivers/pci/controller/plda/built-in.a
+  AR      drivers/pci/controller/built-in.a
+  CC      drivers/pci/pcie/pme.o
+  AR      drivers/video/fbdev/core/built-in.a
+  AR      drivers/video/fbdev/omap/built-in.a
+  AR      drivers/video/fbdev/omap2/omapfb/dss/built-in.a
+  CC      sound/core/seq/seq_system.o
+  AR      drivers/video/fbdev/omap2/omapfb/displays/built-in.a
+  AR      drivers/video/fbdev/omap2/omapfb/built-in.a
+  AR      drivers/video/fbdev/omap2/built-in.a
+  AR      drivers/video/fbdev/built-in.a
+  CC      arch/x86/kernel/cpu/mce/intel.o
+  AR      arch/x86/kernel/acpi/built-in.a
+  CC      crypto/asymmetric_keys/pkcs7.asn1.o
+  CC      arch/x86/kernel/cpu/mtrr/centaur.o
+  CC      fs/proc/task_mmu.o
+  AR      arch/x86/kernel/fpu/built-in.a
+  CC      arch/x86/kernel/cpu/mtrr/legacy.o
+  CC      fs/quota/quota_v2.o
+  CC      block/blk-map.o
+  CC      fs/iomap/direct-io.o
+  CC      io_uring/rw.o
+  CC      drivers/acpi/acpica/dsfield.o
+  AR      drivers/pci/hotplug/built-in.a
+  CC      arch/x86/kernel/apic/apic_common.o
+  CC      fs/iomap/ioend.o
+  CC      kernel/power/suspend.o
+  AR      drivers/video/backlight/built-in.a
+  CC      drivers/video/aperture.o
+  CC      security/lsm_audit.o
+  CC      fs/notify/mark.o
+  CC      fs/notify/fdinfo.o
+  CC      arch/x86/kernel/kprobes/opt.o
+  AR      net/netlink/built-in.a
+  CC      block/blk-merge.o
+  CC      kernel/sched/build_policy.o
+  CC      crypto/asymmetric_keys/pkcs7_parser.o
+  CC      arch/x86/events/intel/ds.o
+  AR      sound/pci/ice1712/built-in.a
+  CC      drivers/acpi/dptf/int340x_thermal.o
+  CC      lib/crypto/utils.o
+  CC      arch/x86/kernel/cpu/microcode/intel.o
+  CC      arch/x86/kernel/cpu/microcode/amd.o
+  AR      kernel/locking/built-in.a
+  AS      arch/x86/lib/msr-reg.o
+  CC      drivers/pnp/card.o
+  AR      drivers/pci/switch/built-in.a
+  CC      arch/x86/lib/msr-reg-export.o
+  AS      arch/x86/lib/hweight.o
+  CC      arch/x86/mm/ioremap.o
+  CC      kernel/printk/printk_safe.o
+  CC      lib/crypto/mpi/mpi-bit.o
+  CC      net/core/datagram.o
+  CC      security/keys/request_key.o
+  CC      sound/core/seq/seq_ports.o
+  CC      drivers/acpi/acpica/dsinit.o
+  CC      arch/x86/kernel/apic/apic_noop.o
+  AR      drivers/pnp/pnpacpi/built-in.a
+  CC      drivers/acpi/acpica/dsmethod.o
+  AR      arch/x86/kernel/cpu/mtrr/built-in.a
+  CC      security/keys/request_key_auth.o
+  CC      arch/x86/kernel/cpu/mce/amd.o
+  CC      fs/iomap/fiemap.o
+  CC      fs/iomap/seek.o
+  CC      arch/x86/lib/iomem.o
+  CC      sound/pci/hda/hda_sysfs.o
+  CC      lib/crypto/chacha.o
+  CC      arch/x86/pci/acpi.o
+  CC      net/ethtool/ioctl.o
+  AR      drivers/acpi/dptf/built-in.a
+  CC      lib/crypto/mpi/mpi-cmp.o
+  CC      drivers/video/cmdline.o
+  CC      kernel/printk/nbcon.o
+  CC      kernel/power/hibernate.o
+  AR      crypto/asymmetric_keys/built-in.a
+  CC      crypto/api.o
+  CC      drivers/pci/access.o
+  CC      block/blk-timeout.o
+  AR      lib/tests/built-in.a
+  CC      kernel/power/snapshot.o
+  CC      lib/crypto/mpi/mpi-sub-ui.o
+  CC      mm/damon/sysfs.o
+  CC      arch/x86/kernel/apic/ipi.o
+  AR      drivers/pci/pcie/built-in.a
+  CC      net/ethtool/common.o
+  CC      drivers/acpi/acpica/dsmthdat.o
+  CC      arch/x86/mm/extable.o
+  CC      fs/proc/inode.o
+  CC      arch/x86/lib/atomic64_32.o
+  CC      kernel/irq/irqdesc.o
+  CC      fs/quota/quota_tree.o
+  CC      net/ethtool/netlink.o
+  CC      arch/x86/lib/inat.o
+  AR      arch/x86/kernel/kprobes/built-in.a
+  CC      io_uring/poll.o
+  CC      drivers/pnp/driver.o
+  AR      fs/notify/built-in.a
+  CC      net/core/stream.o
+  CC      security/selinux/nlmsgtab.o
+  CC      arch/x86/events/intel/knc.o
+  CC      kernel/sched/build_utility.o
+  AR      arch/x86/lib/built-in.a
+  CC      lib/crypto/mpi/mpi-div.o
+  AR      arch/x86/lib/lib.a
+  CC      drivers/pci/bus.o
+  CC      security/device_cgroup.o
+  CC      sound/core/memory.o
+  CC      sound/core/seq/seq_info.o
+  CC      fs/iomap/swapfile.o
+  CC      security/keys/user_defined.o
+  CC      sound/pci/hda/hda_controller.o
+  AR      arch/x86/kernel/cpu/microcode/built-in.a
+  CC      kernel/power/swap.o
+  CC      fs/proc/root.o
+  CC      fs/proc/base.o
+  CC      drivers/acpi/acpica/dsobject.o
+  CC      arch/x86/pci/legacy.o
+  CC      drivers/pci/probe.o
+  CC      arch/x86/kernel/apic/vector.o
+  CC      drivers/video/nomodeset.o
+  CC      lib/vdso/datastore.o
+  CC      net/sched/sch_blackhole.o
+  CC      fs/quota/quota.o
+  CC      arch/x86/pci/irq.o
+  CC      crypto/cipher.o
+  CC      block/blk-lib.o
+  CC      kernel/power/user.o
+  CC      drivers/pnp/resource.o
+  CC      kernel/rcu/update.o
+  CC      kernel/irq/handle.o
+  AR      kernel/livepatch/built-in.a
+  CC      arch/x86/kernel/head32.o
+  AR      sound/pci/korg1212/built-in.a
+  CC      lib/crypto/aes.o
+  CC      drivers/acpi/acpica/dsopcode.o
+  CC      sound/core/seq/seq_dummy.o
+  CC      lib/crypto/mpi/mpi-mod.o
+  CC      drivers/video/hdmi.o
+  CC      lib/zlib_inflate/inffast.o
+  CC      kernel/printk/printk_ringbuffer.o
+  CC      security/keys/proc.o
+  CC      drivers/pnp/manager.o
+  CC      kernel/printk/sysctl.o
+  CC      arch/x86/kernel/cpu/mce/threshold.o
+  CC      arch/x86/mm/mmap.o
+  AR      mm/damon/built-in.a
+  CC      mm/mempool.o
+  AR      fs/iomap/built-in.a
+  CC      drivers/pnp/support.o
+  CC      sound/core/control.o
+  CC      sound/core/misc.o
+  CC      lib/zlib_inflate/inflate.o
+  CC      arch/x86/kernel/cpu/scattered.o
+  CC      security/selinux/netif.o
+  CC      lib/zlib_deflate/deflate.o
+  AR      lib/vdso/built-in.a
+  CC      sound/pci/hda/hda_proc.o
+  CC      kernel/dma/mapping.o
+  CC      kernel/dma/direct.o
+  CC      kernel/rcu/sync.o
+  CC      io_uring/eventfd.o
+  CC      crypto/algapi.o
+  CC      arch/x86/events/intel/lbr.o
+  CC      kernel/irq/manage.o
+  CC      drivers/acpi/acpica/dspkginit.o
+  CC      kernel/irq/spurious.o
+  CC      sound/pci/hda/hda_hwdep.o
+  CC      sound/pci/hda/hda_intel.o
+  CC      net/netfilter/core.o
+  CC      arch/x86/mm/pgtable.o
+  CC      fs/quota/kqid.o
+  CC      lib/crypto/mpi/mpi-mul.o
+  CC      net/sched/cls_api.o
+  AR      sound/core/seq/built-in.a
+  CC      block/blk-mq.o
+  CC      block/blk-mq-tag.o
+  CC      block/blk-mq-dma.o
+  CC      net/ipv4/netfilter/nf_defrag_ipv4.o
+  CC      arch/x86/events/rapl.o
+  CC      net/xfrm/xfrm_policy.o
+  AR      sound/pci/mixart/built-in.a
+  CC      mm/oom_kill.o
+  CC      mm/fadvise.o
+  CC      security/keys/sysctl.o
+  CC      net/core/scm.o
+  AR      kernel/printk/built-in.a
+  AR      drivers/video/built-in.a
+  CC      net/ipv4/route.o
+  CC      net/sched/act_api.o
+  CC      kernel/power/poweroff.o
+  CC      net/ipv4/netfilter/nf_reject_ipv4.o
+  CC      lib/zlib_inflate/infutil.o
+  CC      block/blk-stat.o
+  CC      drivers/pnp/interface.o
+  CC      drivers/acpi/acpica/dsutils.o
+  CC      arch/x86/pci/common.o
+  CC      fs/kernfs/mount.o
+  CC      drivers/acpi/x86/apple.o
+  CC      lib/zlib_deflate/deftree.o
+  CC      lib/zlib_deflate/deflate_syms.o
+  CC      io_uring/uring_cmd.o
+  CC      fs/quota/netlink.o
+  AR      kernel/power/built-in.a
+  CC      arch/x86/pci/early.o
+  CC      arch/x86/kernel/apic/init.o
+  CC      arch/x86/kernel/apic/hw_nmi.o
+  CC      lib/crypto/mpi/mpih-cmp.o
+  AR      arch/x86/kernel/cpu/mce/built-in.a
+  CC      arch/x86/kernel/cpu/topology_common.o
+  CC      lib/zlib_inflate/inftrees.o
+  CC      drivers/acpi/tables.o
+  CC      net/ipv4/inetpeer.o
+  CC      drivers/pci/host-bridge.o
+  CC      security/selinux/netnode.o
+  CC      arch/x86/mm/physaddr.o
+  CC      security/keys/keyctl_pkey.o
+  CC      drivers/acpi/acpica/dswexec.o
+  CC      lib/zlib_inflate/inflate_syms.o
+  CC      sound/core/device.o
+  CC      crypto/scatterwalk.o
+  CC      drivers/acpi/x86/cmos_rtc.o
+  CC      lib/lzo/lzo1x_compress.o
+  CC      net/ethtool/bitset.o
+  CC      fs/proc/generic.o
+  CC      drivers/pnp/quirks.o
+  CC      lib/lzo/lzo1x_compress_safe.o
+  AR      lib/zlib_deflate/built-in.a
+  CC      net/core/gen_stats.o
+  CC      drivers/acpi/x86/lpss.o
+  CC      crypto/proc.o
+  CC      net/netfilter/nf_log.o
+  CC      net/core/gen_estimator.o
+  CC      net/ipv4/protocol.o
+  CC      arch/x86/kernel/cpu/topology_ext.o
+  CC      security/selinux/netport.o
+  CC      arch/x86/kernel/apic/io_apic.o
+  AR      lib/zlib_inflate/built-in.a
+  CC      fs/proc/array.o
+  CC      lib/crypto/mpi/mpih-div.o
+  CC      arch/x86/events/intel/p4.o
+  CC      fs/kernfs/inode.o
+  CC      arch/x86/events/msr.o
+  CC      arch/x86/pci/bus_numa.o
+  CC      net/unix/af_unix.o
+  CC      drivers/acpi/acpica/dswload.o
+  CC      kernel/irq/resend.o
+  CC      arch/x86/mm/tlb.o
+  CC      sound/core/info.o
+  AR      fs/quota/built-in.a
+  CC      net/unix/garbage.o
+  CC      drivers/pci/remove.o
+  AR      security/keys/built-in.a
+  CC      kernel/entry/common.o
+  CC      arch/x86/events/intel/p6.o
+  CC      io_uring/openclose.o
+  CC      arch/x86/events/intel/pt.o
+  CC      lib/lz4/lz4_decompress.o
+  AR      sound/pci/hda/built-in.a
+  AR      sound/pci/nm256/built-in.a
+  AR      sound/pci/oxygen/built-in.a
+  AR      sound/pci/pcxhr/built-in.a
+  CC      drivers/pnp/system.o
+  AR      sound/pci/riptide/built-in.a
+  AR      sound/pci/rme9652/built-in.a
+  CC      arch/x86/kernel/cpu/topology_amd.o
+  CC      fs/kernfs/dir.o
+  CC      lib/lzo/lzo1x_decompress_safe.o
+  AR      sound/pci/trident/built-in.a
+  AR      sound/pci/ymfpci/built-in.a
+  AR      sound/pci/vx222/built-in.a
+  AR      sound/pci/built-in.a
+  CC      mm/maccess.o
+  CC      lib/zstd/zstd_decompress_module.o
+  CC      drivers/acpi/acpica/dswload2.o
+  CC      net/ipv4/netfilter/ip_tables.o
+  CC      crypto/aead.o
+  CC      drivers/acpi/x86/s2idle.o
+  CC      kernel/irq/chip.o
+  CC      net/unix/sysctl_net_unix.o
+  CC      kernel/rcu/srcutree.o
+  CC      net/core/net_namespace.o
+  CC      kernel/rcu/tree.o
+  CC      kernel/rcu/rcu_segcblist.o
+  CC      net/ethtool/strset.o
+  CC      arch/x86/pci/amd_bus.o
+  CC      net/netfilter/nf_queue.o
+  CC      kernel/dma/ops_helpers.o
+  CC      arch/x86/kernel/cpu/common.o
+  CC      lib/zstd/decompress/huf_decompress.o
+  AR      drivers/pnp/built-in.a
+  CC      kernel/module/main.o
+  CC      kernel/dma/remap.o
+  AR      sound/synth/emux/built-in.a
+  AR      lib/lzo/built-in.a
+  AR      sound/synth/built-in.a
+  CC      lib/crypto/mpi/mpih-mul.o
+  CC      sound/core/isadma.o
+  CC      io_uring/sqpoll.o
+  CC      fs/proc/fd.o
+  CC      drivers/pci/pci.o
+  CC      net/ethtool/linkinfo.o
+  CC      drivers/acpi/acpica/dswscope.o
+  CC      kernel/module/strict_rwx.o
+  CC      block/blk-mq-sysfs.o
+  CC      io_uring/xattr.o
+  CC      kernel/irq/dummychip.o
+  CC      arch/x86/kernel/ebda.o
+  CC      net/ipv4/ip_input.o
+  CC      drivers/acpi/acpica/dswstate.o
+  CC      security/selinux/status.o
+  CC      mm/page-writeback.o
+  CC      arch/x86/kernel/apic/msi.o
+  CC      net/sched/sch_fifo.o
+  CC      drivers/acpi/acpica/evevent.o
+  CC      block/blk-mq-cpumap.o
+  CC      kernel/entry/syscall_user_dispatch.o
+  CC      arch/x86/mm/cpu_entry_area.o
+  CC      sound/core/vmaster.o
+  CC      drivers/acpi/acpica/evgpe.o
+  CC      crypto/geniv.o
+  CC      drivers/acpi/x86/utils.o
+  CC      arch/x86/mm/maccess.o
+  CC      arch/x86/mm/pgprot.o
+  CC      drivers/acpi/acpica/evgpeblk.o
+  AR      kernel/dma/built-in.a
+  CC      drivers/acpi/acpica/evgpeinit.o
+  CC      net/xfrm/xfrm_state.o
+  AR      arch/x86/pci/built-in.a
+  CC      net/xfrm/xfrm_hash.o
+  CC      io_uring/nop.o
+  CC      kernel/irq/devres.o
+  CC      net/sched/cls_cgroup.o
+  CC      arch/x86/events/intel/uncore.o
+  CC      net/xfrm/xfrm_input.o
+  AR      lib/lz4/built-in.a
+  CC      crypto/lskcipher.o
+  CC      arch/x86/mm/pgtable_32.o
+  CC      fs/kernfs/file.o
+  CC      net/core/secure_seq.o
+  CC      lib/crypto/mpi/mpi-pow.o
+  CC      net/ipv4/ip_fragment.o
+  CC      fs/proc/proc_tty.o
+  CC      net/ethtool/linkmodes.o
+  CC      net/ipv6/netfilter/ip6_tables.o
+  CC      mm/folio-compat.o
+  CC      net/netfilter/nf_sockopt.o
+  CC      net/ethtool/rss.o
+  CC      arch/x86/kernel/apic/probe_32.o
+  CC      net/ethtool/linkstate.o
+  CC      fs/proc/cmdline.o
+  AR      kernel/entry/built-in.a
+  CC      net/netfilter/utils.o
+  CC      drivers/acpi/acpica/evgpeutil.o
+  CC      sound/core/ctljack.o
+  AR      sound/usb/misc/built-in.a
+  AR      sound/firewire/built-in.a
+  CC      lib/crypto/mpi/mpiutil.o
+  AR      sound/usb/usx2y/built-in.a
+  AR      sound/sparc/built-in.a
+  CC      net/ipv6/netfilter/ip6table_filter.o
+  AR      sound/usb/caiaq/built-in.a
+  AR      sound/usb/6fire/built-in.a
+  CC      net/ipv6/netfilter/ip6table_mangle.o
+  AR      sound/usb/hiface/built-in.a
+  AR      sound/usb/bcd2000/built-in.a
+  AR      sound/usb/qcom/built-in.a
+  AR      sound/usb/built-in.a
+  CC      kernel/irq/kexec.o
+  CC      net/xfrm/xfrm_output.o
+  CC      kernel/time/time.o
+  AR      drivers/amba/built-in.a
+  CC      lib/crypto/arc4.o
+  CC      block/blk-mq-sched.o
+  CC      drivers/acpi/x86/blacklist.o
+  CC      net/ipv4/netfilter/iptable_filter.o
+  CC      security/selinux/ss/ebitmap.o
+  CC      lib/xz/xz_dec_syms.o
+  CC      fs/kernfs/symlink.o
+  CC      lib/zstd/decompress/zstd_ddict.o
+  CC      net/ipv6/af_inet6.o
+  CC      drivers/acpi/acpica/evglock.o
+  CC      sound/core/jack.o
+  AR      arch/x86/kernel/apic/built-in.a
+  CC      sound/core/hwdep.o
+  CC      arch/x86/mm/iomap_32.o
+  CC      arch/x86/kernel/cpu/rdrand.o
+  CC      mm/readahead.o
+  AR      net/unix/built-in.a
+  CC      net/ipv4/netfilter/iptable_mangle.o
+  CC      kernel/futex/core.o
+  CC      drivers/acpi/acpica/evhandler.o
+  CC      drivers/acpi/acpica/evmisc.o
+  CC      io_uring/fs.o
+  CC      kernel/time/timer.o
+  CC      fs/proc/consoles.o
+  CC      arch/x86/kernel/cpu/match.o
+  CC      security/selinux/ss/hashtab.o
+  CC      kernel/irq/autoprobe.o
+  CC      lib/xz/xz_dec_stream.o
+  AR      drivers/acpi/x86/built-in.a
+  CC      drivers/acpi/osi.o
+  CC      kernel/irq/irqdomain.o
+  AR      lib/crypto/mpi/built-in.a
+  CC      lib/crypto/gf128mul.o
+  CC      crypto/skcipher.o
+  CC      net/sched/ematch.o
+  CC      drivers/acpi/osl.o
+  CC      net/ipv4/netfilter/ipt_REJECT.o
+  CC      kernel/time/hrtimer.o
+  CC      arch/x86/events/intel/uncore_nhmex.o
+  CC      drivers/acpi/acpica/evregion.o
+  CC      arch/x86/events/intel/uncore_snb.o
+  AR      kernel/sched/built-in.a
+  CC      net/ipv4/ip_forward.o
+  CC      arch/x86/kernel/cpu/bugs.o
+  CC      lib/xz/xz_dec_lzma2.o
+  CC      arch/x86/mm/hugetlbpage.o
+  CC      kernel/futex/syscalls.o
+  CC      net/core/flow_dissector.o
+  CC      net/ethtool/debug.o
+  CC      drivers/pci/pci-driver.o
+  CC      kernel/module/kmod.o
+  CC      fs/proc/cpuinfo.o
+  AR      fs/kernfs/built-in.a
+  CC      block/ioctl.o
+  CC      sound/core/timer.o
+  CC      arch/x86/events/intel/uncore_snbep.o
+  CC      kernel/irq/proc.o
+  CC      arch/x86/kernel/cpu/aperfmperf.o
+  CC      net/ethtool/wol.o
+  CC      arch/x86/kernel/cpu/cpuid-deps.o
+  CC      arch/x86/events/intel/uncore_discovery.o
+  CC      net/packet/af_packet.o
+  CC      sound/core/hrtimer.o
+  CC      lib/crypto/blake2s.o
+  AR      net/dsa/built-in.a
+  CC      net/ethtool/features.o
+  CC      net/netfilter/nfnetlink.o
+  CC      arch/x86/kernel/platform-quirks.o
+  CC      lib/dim/dim.o
+  CC      fs/proc/devices.o
+  CC      lib/zstd/decompress/zstd_decompress.o
+  CC      io_uring/splice.o
+  CC      drivers/acpi/acpica/evrgnini.o
+  CC      security/selinux/ss/symtab.o
+  CC      mm/swap.o
+  CC      io_uring/sync.o
+  CC      io_uring/msg_ring.o
+  CC      net/ipv6/netfilter/nf_defrag_ipv6_hooks.o
+  CC      lib/zstd/decompress/zstd_decompress_block.o
+  CC      kernel/module/tree_lookup.o
+  CC      lib/crypto/blake2s-generic.o
+  CC      net/ipv4/ip_options.o
+  CC      security/selinux/ss/sidtab.o
+  AR      arch/x86/mm/built-in.a
+  CC      sound/core/pcm.o
+  CC      mm/truncate.o
+  CC      lib/dim/net_dim.o
+  CC      lib/xz/xz_dec_bcj.o
+  CC      crypto/seqiv.o
+  CC      crypto/echainiv.o
+  CC      kernel/time/sleep_timeout.o
+  CC      drivers/acpi/acpica/evsci.o
+  CC      net/core/sysctl_net_core.o
+  CC      kernel/futex/pi.o
+  AR      net/sched/built-in.a
+  CC      kernel/irq/migration.o
+  AR      drivers/clk/actions/built-in.a
+  CC      sound/core/pcm_native.o
+  AR      drivers/clk/analogbits/built-in.a
+  AR      drivers/clk/bcm/built-in.a
+  CC [M]  net/ipv4/netfilter/iptable_nat.o
+  AR      drivers/clk/imgtec/built-in.a
+  AR      drivers/clk/imx/built-in.a
+  AR      drivers/clk/ingenic/built-in.a
+  CC      net/netfilter/nfnetlink_log.o
+  AR      drivers/clk/mediatek/built-in.a
+  AR      drivers/clk/microchip/built-in.a
+  CC      net/ipv6/anycast.o
+  AR      drivers/clk/mstar/built-in.a
+  CC      fs/proc/interrupts.o
+  AR      drivers/clk/mvebu/built-in.a
+  AR      drivers/clk/ralink/built-in.a
+  CC      arch/x86/kernel/cpu/cpuid_0x2_table.o
+  AR      drivers/clk/renesas/built-in.a
+  CC      arch/x86/events/intel/cstate.o
+  AR      drivers/clk/socfpga/built-in.a
+  AR      drivers/clk/sophgo/built-in.a
+  AR      drivers/clk/spacemit/built-in.a
+  AR      drivers/clk/sprd/built-in.a
+  CC      io_uring/advise.o
+  AR      drivers/clk/starfive/built-in.a
+  CC      block/genhd.o
+  AR      drivers/clk/sunxi-ng/built-in.a
+  CC      lib/crypto/sha1.o
+  AR      drivers/clk/ti/built-in.a
+  AR      drivers/clk/versatile/built-in.a
+  CC      net/xfrm/xfrm_sysctl.o
+  AR      drivers/clk/xilinx/built-in.a
+  CC      net/ipv4/ip_output.o
+  AR      drivers/clk/built-in.a
+  CC      drivers/acpi/acpica/evxface.o
+  CC      mm/vmscan.o
+  CC      fs/proc/loadavg.o
+  CC      arch/x86/kernel/cpu/umwait.o
+  CC      kernel/module/kallsyms.o
+  AR      lib/xz/built-in.a
+  CC      net/xfrm/xfrm_replay.o
+  CC      arch/x86/kernel/process_32.o
+  CC      lib/dim/rdma_dim.o
+  CC      net/ethtool/privflags.o
+  CC      drivers/pci/search.o
+  CC      kernel/time/timekeeping.o
+  AR      sound/spi/built-in.a
+  CC      kernel/irq/cpuhotplug.o
+  CC      kernel/irq/pm.o
+  CC      net/core/dev.o
+  CC      block/ioprio.o
+  CC      kernel/module/procfs.o
+  AR      kernel/rcu/built-in.a
+  CC      drivers/pci/rom.o
+  CC      net/ipv6/ip6_output.o
+  CC      crypto/ahash.o
+  CC      drivers/acpi/acpica/evxfevnt.o
+  CC      lib/fonts/fonts.o
+  CC      net/sunrpc/auth_gss/auth_gss.o
+  CC      lib/crypto/sha256.o
+  CC      sound/core/pcm_lib.o
+  CC      mm/shrinker.o
+  CC      kernel/futex/requeue.o
+  CC      block/badblocks.o
+  CC      fs/sysfs/file.o
+  CC      fs/proc/meminfo.o
+  AR      lib/dim/built-in.a
+  CC      crypto/shash.o
+  CC      drivers/acpi/utils.o
+  CC      fs/sysfs/dir.o
+  CC      net/ipv6/netfilter/nf_conntrack_reasm.o
+  CC      drivers/acpi/acpica/evxfgpe.o
+  CC      io_uring/statx.o
+  CC      lib/fonts/font_8x16.o
+  CC      security/selinux/ss/avtab.o
+  CC      net/core/dev_api.o
+  MKCAP   arch/x86/kernel/cpu/capflags.c
+  CC      net/ipv4/ip_sockglue.o
+  AR      net/wireless/tests/built-in.a
+  CC      drivers/dma/dw/core.o
+  CC      net/wireless/core.o
+  CC      kernel/module/sysfs.o
+  CC      lib/crypto/sha256-generic.o
+  AR      net/ipv4/netfilter/built-in.a
+  AR      drivers/soc/apple/built-in.a
+  CC      net/sunrpc/clnt.o
+  AR      drivers/soc/aspeed/built-in.a
+  CC      net/sunrpc/auth_gss/gss_mech_switch.o
+  AR      drivers/soc/bcm/built-in.a
+  AR      drivers/soc/fsl/built-in.a
+  CC      kernel/irq/msi.o
+  CC      net/sunrpc/auth_gss/svcauth_gss.o
+  AR      drivers/soc/fujitsu/built-in.a
+  CC      kernel/time/ntp.o
+  AR      drivers/soc/hisilicon/built-in.a
+  AR      drivers/soc/imx/built-in.a
+  CC      kernel/time/clocksource.o
+  AR      drivers/soc/ixp4xx/built-in.a
+  AR      drivers/soc/loongson/built-in.a
+  CC      fs/devpts/inode.o
+  AR      drivers/soc/mediatek/built-in.a
+  CC      drivers/pci/setup-res.o
+  AR      drivers/soc/microchip/built-in.a
+  CC      mm/shmem.o
+  AR      drivers/soc/nuvoton/built-in.a
+  AR      drivers/soc/pxa/built-in.a
+  AR      drivers/soc/amlogic/built-in.a
+  AR      drivers/soc/qcom/built-in.a
+  AR      lib/fonts/built-in.a
+  AR      drivers/soc/renesas/built-in.a
+  CC      net/sunrpc/xprt.o
+  AR      drivers/soc/rockchip/built-in.a
+  CC      kernel/irq/affinity.o
+  CC      net/wireless/sysfs.o
+  AR      drivers/soc/sophgo/built-in.a
+  AR      arch/x86/events/intel/built-in.a
+  AR      arch/x86/events/built-in.a
+  AR      drivers/soc/sunxi/built-in.a
+  CC      drivers/dma/hsu/hsu.o
+  AR      drivers/soc/ti/built-in.a
+  AR      drivers/soc/versatile/built-in.a
+  CC      kernel/cgroup/cgroup.o
+  AR      drivers/soc/vt8500/built-in.a
+  CC      fs/netfs/buffered_read.o
+  AR      drivers/soc/xilinx/built-in.a
+  AR      drivers/soc/built-in.a
+  CC      drivers/acpi/acpica/evxfregn.o
+  CC      net/ethtool/rings.o
+  CC      kernel/futex/waitwake.o
+  CC      net/netfilter/nf_conntrack_core.o
+  CC      kernel/cgroup/rstat.o
+  CC      fs/sysfs/symlink.o
+  CC      drivers/dma/dw/dw.o
+  CC      fs/proc/stat.o
+  CC      block/blk-rq-qos.o
+  CC      block/disk-events.o
+  CC      net/xfrm/xfrm_device.o
+  AR      lib/crypto/built-in.a
+  CC      fs/netfs/buffered_write.o
+  CC      net/ethtool/channels.o
+  CC      io_uring/timeout.o
+  CC      crypto/akcipher.o
+  CC      drivers/acpi/acpica/exconcat.o
+  CC      drivers/acpi/acpica/exconfig.o
+  AR      kernel/module/built-in.a
+  CC      net/ethtool/coalesce.o
+  AR      drivers/dma/idxd/built-in.a
+  AR      drivers/dma/amd/built-in.a
+  CC      kernel/time/jiffies.o
+  CC      kernel/time/timer_list.o
+  CC      net/sunrpc/socklib.o
+  CC      drivers/pci/irq.o
+  AR      fs/devpts/built-in.a
+  CC      crypto/sig.o
+  CC      net/xfrm/xfrm_nat_keepalive.o
+  CC      security/selinux/ss/policydb.o
+  CC      kernel/trace/trace_clock.o
+  CC      fs/proc/uptime.o
+  CC      drivers/dma/dw/idma32.o
+  AR      drivers/dma/hsu/built-in.a
+  CC      fs/sysfs/mount.o
+  CC      io_uring/cancel.o
+  AR      kernel/futex/built-in.a
+  CC      drivers/pci/vpd.o
+  CC      net/sunrpc/auth_gss/gss_rpc_upcall.o
+  CC      drivers/acpi/acpica/exconvrt.o
+  CC      net/sunrpc/xprtsock.o
+  CC      sound/core/pcm_misc.o
+  CC      net/wireless/radiotap.o
+  CC      kernel/irq/matrix.o
+  CC      net/ipv6/netfilter/nf_reject_ipv6.o
+  CC      block/blk-ia-ranges.o
+  CC      net/ipv6/netfilter/ip6t_ipv6header.o
+  CC      net/ipv6/ip6_input.o
+  AR      net/packet/built-in.a
+  CC      security/selinux/ss/services.o
+  CC      net/netfilter/nf_conntrack_standalone.o
+  CC      crypto/kpp.o
+  CC      block/early-lookup.o
+  CC      net/wireless/util.o
+  CC      kernel/trace/ring_buffer.o
+  CC      fs/sysfs/group.o
+  CC      kernel/time/timeconv.o
+  CC      sound/core/pcm_memory.o
+  CC      net/ipv6/netfilter/ip6t_REJECT.o
+  CC      drivers/acpi/acpica/excreate.o
+  CC      net/sunrpc/sched.o
+  CC      fs/proc/util.o
+  CC      fs/netfs/direct_read.o
+  CC      lib/argv_split.o
+  CC      drivers/acpi/acpica/exdebug.o
+  CC      drivers/dma/dw/acpi.o
+  CC      drivers/acpi/reboot.o
+  CC      net/ipv4/inet_hashtables.o
+  CC      drivers/acpi/nvs.o
+  CC      net/ethtool/pause.o
+  CC      net/wireless/reg.o
+  CC      kernel/time/timecounter.o
+  CC      net/sunrpc/auth_gss/gss_rpc_xdr.o
+  CC      block/bsg.o
+  CC      drivers/acpi/acpica/exdump.o
+  CC      io_uring/waitid.o
+  CC      drivers/pci/setup-bus.o
+  CC      drivers/pci/vc.o
+  CC      kernel/time/alarmtimer.o
+  AR      sound/parisc/built-in.a
+  CC      net/xfrm/xfrm_algo.o
+  AR      sound/pcmcia/vx/built-in.a
+  AR      sound/pcmcia/pdaudiocf/built-in.a
+  AR      sound/pcmcia/built-in.a
+  CC      lib/bug.o
+  CC      fs/ext4/balloc.o
+  CC      fs/proc/version.o
+  CC      fs/jbd2/transaction.o
+  ASN.1   crypto/rsapubkey.asn1.[ch]
+  ASN.1   crypto/rsaprivkey.asn1.[ch]
+  CC      crypto/rsa.o
+  CC      fs/ramfs/inode.o
+  AR      fs/sysfs/built-in.a
+  CC      lib/buildid.o
+  CC      arch/x86/kernel/cpu/powerflags.o
+  CC      security/selinux/ss/conditional.o
+  CC      lib/clz_tab.o
+  CC      arch/x86/kernel/signal.o
+  CC      kernel/bpf/core.o
+  CC      block/blk-cgroup.o
+  CC      drivers/acpi/acpica/exfield.o
+  CC      sound/core/memalloc.o
+  CC      lib/zstd/zstd_common_module.o
+  CC      block/blk-ioprio.o
+  AR      kernel/irq/built-in.a
+  AR      drivers/dma/dw/built-in.a
+  CC      net/ipv6/addrconf.o
+  CC      fs/ext4/bitmap.o
+  AR      drivers/dma/mediatek/built-in.a
+  AR      drivers/dma/qcom/built-in.a
+  AR      drivers/dma/stm32/built-in.a
+  AR      drivers/dma/ti/built-in.a
+  CC      drivers/pci/mmap.o
+  AR      drivers/dma/xilinx/built-in.a
+  CC      drivers/dma/dmaengine.o
+  CC      fs/netfs/direct_write.o
+  CC      net/netfilter/nf_conntrack_expect.o
+  CC      net/ipv6/addrlabel.o
+  CC      net/ipv6/route.o
+  CC      net/ipv6/ip6_fib.o
+  CC      net/ipv4/inet_timewait_sock.o
+  CC      fs/proc/softirqs.o
+  CC      net/sunrpc/auth.o
+  CC      fs/jbd2/commit.o
+  CC      drivers/acpi/acpica/exfldio.o
+  CC      lib/zstd/common/debug.o
+  CC      lib/zstd/common/entropy_common.o
+  CC      mm/util.o
+  AR      net/mac80211/tests/built-in.a
+  CC      net/mac80211/main.o
+  AR      net/ipv6/netfilter/built-in.a
+  CC      lib/zstd/common/error_private.o
+  AR      sound/mips/built-in.a
+  CC      crypto/rsa_helper.o
+  CC      kernel/trace/trace.o
+  CC      block/blk-iolatency.o
+  CC      io_uring/register.o
+  CC      block/blk-iocost.o
+  CC      net/ethtool/eee.o
+  CC      drivers/virtio/virtio.o
+  CC      fs/ramfs/file-mmu.o
+  CC      lib/zstd/common/fse_decompress.o
+  CC      net/ipv4/inet_connection_sock.o
+  CC      net/wireless/scan.o
+  CC      net/wireless/nl80211.o
+  CC      io_uring/truncate.o
+  CC      crypto/rsa-pkcs1pad.o
+  CC      kernel/time/posix-timers.o
+  CC      net/xfrm/xfrm_user.o
+  CC      net/sunrpc/auth_gss/trace.o
+  CC      fs/proc/namespaces.o
+  CC      sound/core/pcm_timer.o
+  CC      drivers/acpi/acpica/exmisc.o
+  CC      fs/netfs/iterator.o
+  CC      security/selinux/ss/mls.o
+  CC      drivers/dma/virt-dma.o
+  CC      arch/x86/kernel/signal_32.o
+  AR      fs/ramfs/built-in.a
+  CC      drivers/virtio/virtio_ring.o
+  CC      lib/zstd/common/zstd_common.o
+  CC      drivers/acpi/acpica/exmutex.o
+  CC      kernel/time/posix-cpu-timers.o
+  CC      drivers/pci/devres.o
+  AR      lib/zstd/built-in.a
+  CC      net/mac80211/status.o
+  CC      sound/core/seq_device.o
+  CC      lib/cmdline.o
+  CC      fs/ext4/block_validity.o
+  CC      fs/hugetlbfs/inode.o
+  CC      net/core/dev_addr_lists.o
+  CC      fs/jbd2/recovery.o
+  CC      mm/mmzone.o
+  CC      net/ethtool/tsinfo.o
+  CC      net/mac80211/driver-ops.o
+  CC      lib/cpumask.o
+  CC      crypto/rsassa-pkcs1.o
+  CC      drivers/tty/vt/vt_ioctl.o
+  CC      net/netfilter/nf_conntrack_helper.o
+  CC      kernel/events/core.o
+  CC      fs/ext4/dir.o
+  CC      fs/proc/self.o
+  CC      drivers/tty/vt/vc_screen.o
+  CC      fs/jbd2/checkpoint.o
+  CC      drivers/acpi/acpica/exnames.o
+  CC      net/wireless/mlme.o
+  CC      fs/netfs/locking.o
+  CC      drivers/dma/acpi-dma.o
+  AR      sound/core/built-in.a
+  AR      sound/soc/built-in.a
+  CC      kernel/cgroup/namespace.o
+  AR      sound/atmel/built-in.a
+  CC      sound/hda/hda_bus_type.o
+  CC      mm/vmstat.o
+  CC      io_uring/memmap.o
+  AR      sound/x86/built-in.a
+  CC      arch/x86/kernel/traps.o
+  CC      lib/ctype.o
+  CC      drivers/pci/proc.o
+  CC      lib/dec_and_lock.o
+  CC      drivers/acpi/acpica/exoparg1.o
+  CC      drivers/acpi/acpica/exoparg2.o
+  CC      kernel/events/ring_buffer.o
+  CC      arch/x86/kernel/cpu/topology.o
+  CC      fs/proc/thread_self.o
+  CC      net/sunrpc/auth_gss/gss_krb5_mech.o
+  CC      crypto/acompress.o
+  CC      fs/jbd2/revoke.o
+  CC      security/selinux/ss/context.o
+  CC      lib/decompress.o
+  CC      lib/decompress_bunzip2.o
+  CC      fs/fat/cache.o
+  CC      drivers/tty/hvc/hvc_console.o
+  CC      kernel/time/posix-clock.o
+  CC      net/netlabel/netlabel_user.o
+  AR      kernel/bpf/built-in.a
+  CC      drivers/tty/vt/selection.o
+  CC      net/netlabel/netlabel_kapi.o
+  CC      crypto/scompress.o
+  CC      fs/ext4/ext4_jbd2.o
+  CC      kernel/time/itimer.o
+  CC      drivers/acpi/acpica/exoparg3.o
+  CC      sound/hda/hdac_bus.o
+  AR      drivers/dma/built-in.a
+  CC      fs/netfs/main.o
+  CC      net/ethtool/cabletest.o
+  CC      fs/isofs/namei.o
+  CC      drivers/tty/serial/8250/8250_core.o
+  CC      kernel/cgroup/cgroup-v1.o
+  CC      net/ipv4/tcp.o
+  CC      fs/proc/proc_sysctl.o
+  CC      io_uring/alloc_cache.o
+  CC      arch/x86/kernel/cpu/proc.o
+  CC      net/netfilter/nf_conntrack_proto.o
+  AR      fs/hugetlbfs/built-in.a
+  CC      drivers/pci/pci-sysfs.o
+  CC      drivers/pci/slot.o
+  CC      drivers/acpi/acpica/exoparg6.o
+  CC      drivers/tty/serial/8250/8250_platform.o
+  CC      block/mq-deadline.o
+  CC      drivers/tty/serial/serial_core.o
+  AR      drivers/tty/ipwireless/built-in.a
+  CC      fs/jbd2/journal.o
+  CC      drivers/virtio/virtio_anchor.o
+  CC      lib/decompress_inflate.o
+  CC      crypto/algboss.o
+  CC      security/selinux/netlabel.o
+  CC      net/ipv6/ipv6_sockglue.o
+  AR      drivers/tty/hvc/built-in.a
+  CC      block/kyber-iosched.o
+  CC      sound/hda/hdac_device.o
+  CC      io_uring/io-wq.o
+  CC      fs/fat/dir.o
+  CC      drivers/acpi/wakeup.o
+  CC      net/sunrpc/auth_gss/gss_krb5_seal.o
+  AR      net/xfrm/built-in.a
+  CC      drivers/tty/tty_io.o
+  CC      drivers/acpi/acpica/exprep.o
+  CC      drivers/tty/vt/keyboard.o
+  CC      fs/isofs/inode.o
+  CC      fs/isofs/dir.o
+  CC      net/ipv6/ndisc.o
+  CC      mm/backing-dev.o
+  CC      arch/x86/kernel/cpu/feat_ctl.o
+  CC      net/ethtool/tunnels.o
+  CC      net/mac80211/sta_info.o
+  CC      kernel/time/clockevents.o
+  CC      drivers/virtio/virtio_pci_modern_dev.o
+  CC      kernel/time/tick-common.o
+  CC      lib/decompress_unlz4.o
+  AR      sound/xen/built-in.a
+  CC      kernel/cgroup/freezer.o
+  CC      kernel/trace/trace_output.o
+  CC      drivers/acpi/acpica/exregion.o
+  CC      block/blk-mq-debugfs.o
+  CC      drivers/tty/serial/8250/8250_pnp.o
+  CC      fs/nfs/client.o
+  CC      net/netlabel/netlabel_domainhash.o
+  CC      arch/x86/kernel/idt.o
+  CC      arch/x86/kernel/cpu/intel.o
+  CC      fs/ext4/extents.o
+  CC      drivers/virtio/virtio_pci_legacy_dev.o
+  CC      net/ipv4/tcp_input.o
+  CC      fs/fat/fatent.o
+  CC      crypto/testmgr.o
+  CC      drivers/acpi/acpica/exresnte.o
+  CC      lib/decompress_unlzma.o
+  CC      drivers/pci/pci-acpi.o
+  CC      net/rfkill/core.o
+  CC      fs/netfs/misc.o
+  CC      drivers/tty/vt/vt.o
+  CC      fs/proc/proc_net.o
+  CC      sound/hda/hdac_sysfs.o
+  CC      net/core/dst.o
+  CC      net/netfilter/nf_conntrack_proto_generic.o
+  CC      net/rfkill/input.o
+  CC      net/sunrpc/auth_gss/gss_krb5_unseal.o
+  CC      kernel/fork.o
+  CC      drivers/char/hw_random/core.o
+  CC      drivers/tty/serial/8250/8250_rsa.o
+  CC      arch/x86/kernel/cpu/tsx.o
+  CC      drivers/acpi/acpica/exresolv.o
+  AR      security/selinux/built-in.a
+  AR      security/built-in.a
+  AR      drivers/iommu/arm/arm-smmu/built-in.a
+  AR      drivers/iommu/arm/arm-smmu-v3/built-in.a
+  AR      drivers/iommu/iommufd/built-in.a
+  AR      drivers/iommu/arm/built-in.a
+  CC      fs/isofs/util.o
+  CC      kernel/cgroup/legacy_freezer.o
+  CC      mm/mm_init.o
+  CC      fs/isofs/rock.o
+  CC      drivers/iommu/iommu.o
+  CC      block/blk-pm.o
+  CC      io_uring/futex.o
+  CC      kernel/time/tick-broadcast.o
+  CC      net/ethtool/fec.o
+  CC      net/netlabel/netlabel_addrlist.o
+  CC      kernel/time/tick-broadcast-hrtimer.o
+  CC      drivers/virtio/virtio_pci_modern.o
+  CC      crypto/cmac.o
+  CC      drivers/char/hw_random/intel-rng.o
+  CC      arch/x86/kernel/irq.o
+  CC      lib/decompress_unlzo.o
+  CC      drivers/acpi/acpica/exresop.o
+  CC      drivers/tty/n_tty.o
+  CC      arch/x86/kernel/cpu/intel_epb.o
+  CC      drivers/tty/serial/serial_base_bus.o
+  CC      fs/ext4/extents_status.o
+  CC      net/netlabel/netlabel_mgmt.o
+  CC      fs/proc/kcore.o
+  CC      sound/hda/hdac_regmap.o
+  CC      drivers/pci/iomap.o
+  AR      net/rfkill/built-in.a
+  CC      net/9p/mod.o
+  CC      fs/exportfs/expfs.o
+  CC      drivers/tty/serial/8250/8250_port.o
+  CC      io_uring/epoll.o
+  CC      net/netfilter/nf_conntrack_proto_tcp.o
+  CC      net/wireless/ibss.o
+  CC      net/sunrpc/auth_gss/gss_krb5_wrap.o
+  CC      fs/fat/file.o
+  CC      kernel/trace/trace_seq.o
+  CC      fs/netfs/objects.o
+  CC      block/holder.o
+  CC      kernel/cgroup/pids.o
+  CC      lib/decompress_unxz.o
+  CC      crypto/hmac.o
+  CC      kernel/time/tick-oneshot.o
+  CC      net/mac80211/wep.o
+  CC      fs/proc/kmsg.o
+  CC      drivers/acpi/acpica/exserial.o
+  CC      drivers/char/hw_random/amd-rng.o
+  CC      arch/x86/kernel/cpu/amd.o
+  AR      fs/jbd2/built-in.a
+  CC      arch/x86/kernel/cpu/amd_cache_disable.o
+  CC      fs/nfs/dir.o
+  CC      fs/isofs/export.o
+  CC      net/ipv6/udp.o
+  CC      drivers/tty/tty_ioctl.o
+  CC      net/core/netevent.o
+  CC      drivers/virtio/virtio_pci_common.o
+  CC      fs/proc/page.o
+  AR      drivers/gpu/host1x/built-in.a
+  CC      net/9p/client.o
+  CC      net/ethtool/eeprom.o
+  CC      drivers/pci/quirks.o
+  CC      net/netfilter/nf_conntrack_proto_udp.o
+  CC      drivers/acpi/acpica/exstore.o
+  AR      drivers/gpu/drm/tests/built-in.a
+  AR      drivers/gpu/drm/arm/built-in.a
+  CC      kernel/time/tick-sched.o
+  AR      drivers/gpu/drm/clients/built-in.a
+  AR      fs/exportfs/built-in.a
+  CC      arch/x86/kernel/irq_32.o
+  CC      kernel/trace/trace_stat.o
+  CC      drivers/gpu/drm/display/drm_display_helper_mod.o
+  CC      lib/decompress_unzstd.o
+  CC      mm/percpu.o
+  CC      kernel/trace/trace_printk.o
+  CC      sound/hda/hdac_controller.o
+  CC      kernel/cgroup/rdma.o
+  AR      block/built-in.a
+  CC      drivers/gpu/drm/display/drm_dp_dual_mode_helper.o
+  CC      arch/x86/kernel/cpu/hygon.o
+  CC      io_uring/napi.o
+  CC      drivers/char/hw_random/geode-rng.o
+  CC      crypto/md5.o
+  CC      io_uring/net.o
+  CC      fs/isofs/joliet.o
+  CC      drivers/acpi/acpica/exstoren.o
+  AR      sound/virtio/built-in.a
+  CC      fs/netfs/read_collect.o
+  CC      drivers/gpu/drm/ttm/ttm_tt.o
+  CC      net/netlabel/netlabel_unlabeled.o
+  CC      net/sunrpc/auth_gss/gss_krb5_crypto.o
+  CC      fs/fat/inode.o
+  AR      fs/proc/built-in.a
+  CC      net/mac80211/aead_api.o
+  COPY    drivers/tty/vt/defkeymap.c
+  CC      kernel/exec_domain.o
+  CC      net/ethtool/stats.o
+  CC      net/ipv4/tcp_output.o
+  CC      lib/dump_stack.o
+  CC      net/core/neighbour.o
+  CC      arch/x86/kernel/cpu/centaur.o
+  CC      arch/x86/kernel/dumpstack_32.o
+  AR      drivers/gpu/vga/built-in.a
+  CC      drivers/virtio/virtio_pci_legacy.o
+  CC      drivers/iommu/iommu-pages.o
+  CC      net/mac80211/wpa.o
+  CC      drivers/tty/serial/8250/8250_dma.o
+  CC      fs/fat/misc.o
+  CC      drivers/acpi/acpica/exstorob.o
+  CC      kernel/cgroup/cpuset.o
+  CC      drivers/tty/vt/consolemap.o
+  HOSTCC  drivers/tty/vt/conmakehash
+  CC      sound/sound_core.o
+  CC      drivers/char/hw_random/via-rng.o
+  CC      net/netfilter/nf_conntrack_proto_icmp.o
+  CC      sound/hda/hdac_stream.o
+  CC      kernel/trace/pid_list.o
+  CC      drivers/gpu/drm/display/drm_dp_helper.o
+  CC      fs/isofs/compress.o
+  CC      crypto/sha256.o
+  CC      kernel/time/timer_migration.o
+  CC      arch/x86/kernel/cpu/transmeta.o
+  COPY    drivers/tty/vt/ucs_width_table.h
+  CC      kernel/events/callchain.o
+  CC      drivers/acpi/acpica/exsystem.o
+  CC      drivers/tty/tty_ldisc.o
+  CC      drivers/char/agp/backend.o
+  CC      drivers/gpu/drm/i915/i915_config.o
+  CC      fs/fat/nfs.o
+  CC      drivers/tty/tty_buffer.o
+  CC      drivers/iommu/iommu-traces.o
+  CC      drivers/virtio/virtio_pci_admin_legacy_io.o
+  CC      lib/earlycpio.o
+  AR      drivers/char/hw_random/built-in.a
+  CC      fs/netfs/read_pgpriv2.o
+  CC      drivers/pci/pci-label.o
+  CC      drivers/gpu/drm/i915/i915_driver.o
+  CC      net/dns_resolver/dns_key.o
+  CC      drivers/gpu/drm/ttm/ttm_bo.o
+  CC      mm/slab_common.o
+  CC      lib/extable.o
+  CC      net/dns_resolver/dns_query.o
+  CC      drivers/tty/serial/8250/8250_dwlib.o
+  CC      drivers/acpi/acpica/extrace.o
+  CC      net/netlabel/netlabel_cipso_v4.o
+  CC      drivers/acpi/sleep.o
+  CC      drivers/gpu/drm/display/drm_dp_mst_topology.o
+  CC      net/ethtool/phc_vclocks.o
+  CC      net/9p/error.o
+  CC      arch/x86/kernel/cpu/zhaoxin.o
+  COPY    drivers/tty/vt/ucs_recompose_table.h
+  COPY    drivers/tty/vt/ucs_fallback_table.h
+  CC      drivers/tty/vt/defkeymap.o
+  CC      crypto/sha512_generic.o
+  CC      arch/x86/kernel/cpu/vortex.o
+  CC      lib/flex_proportions.o
+  CC      kernel/trace/trace_sched_switch.o
+  CC      net/sunrpc/auth_gss/gss_krb5_keys.o
+  AR      fs/isofs/built-in.a
+  CC      arch/x86/kernel/cpu/perfctr-watchdog.o
+  CC      fs/ext4/file.o
+  CC      drivers/acpi/acpica/exutils.o
+  CC      net/9p/protocol.o
+  CC      sound/hda/array.o
+  CONMK   drivers/tty/vt/consolemap_deftbl.c
+  CC      drivers/char/agp/generic.o
+  CC      kernel/time/vsyscall.o
+  CC      drivers/tty/vt/ucs.o
+  CC      drivers/pci/vgaarb.o
+  CC      net/ipv4/tcp_timer.o
+  CC      drivers/virtio/virtio_input.o
+  CC      drivers/acpi/device_sysfs.o
+  CC      drivers/iommu/iommu-sysfs.o
+  CC      drivers/iommu/dma-iommu.o
+  CC      fs/fat/namei_vfat.o
+  CC      kernel/cgroup/misc.o
+  CC      drivers/tty/vt/consolemap_deftbl.o
+  AR      drivers/tty/vt/built-in.a
+  CC      drivers/char/agp/isoch.o
+  CC      net/ipv6/udplite.o
+  CC      arch/x86/kernel/cpu/vmware.o
+  CC      fs/ext4/fsmap.o
+  CC      net/netfilter/nf_conntrack_extend.o
+  CC      sound/last.o
+  CC      fs/netfs/read_retry.o
+  CC      io_uring/cmd_net.o
+  CC      lib/idr.o
+  AR      net/dns_resolver/built-in.a
+  CC      net/ipv4/tcp_ipv4.o
+  CC      drivers/tty/serial/8250/8250_pcilib.o
+  CC      net/ipv4/tcp_minisocks.o
+  CC      net/mac80211/scan.o
+  CC      drivers/acpi/acpica/hwacpi.o
+  CC      drivers/gpu/drm/ttm/ttm_bo_util.o
+  CC      drivers/gpu/drm/ttm/ttm_bo_vm.o
+  CC      net/ipv6/raw.o
+  CC      kernel/events/hw_breakpoint.o
+  CC      fs/fat/namei_msdos.o
+  CC      crypto/sha3_generic.o
+  CC      net/core/rtnetlink.o
+  CC      sound/hda/hdmi_chmap.o
+  CC      net/mac80211/offchannel.o
+  CC      drivers/char/mem.o
+  CC      drivers/gpu/drm/display/drm_dsc_helper.o
+  CC      drivers/tty/serial/serial_ctrl.o
+  CC      net/ethtool/mm.o
+  CC      drivers/acpi/acpica/hwesleep.o
+  CC      lib/iomem_copy.o
+  CC      net/9p/trans_common.o
+  CC      kernel/time/timekeeping_debug.o
+  CC      drivers/virtio/virtio_dma_buf.o
+  CC      net/netlabel/netlabel_calipso.o
+  CC      fs/nfs/file.o
+  CC      net/handshake/alert.o
+  CC      kernel/cgroup/debug.o
+  CC      net/wireless/sme.o
+  CC      drivers/gpu/drm/i915/i915_drm_client.o
+  CC      lib/irq_regs.o
+  AR      drivers/gpu/drm/renesas/rcar-du/built-in.a
+  CC      arch/x86/kernel/cpu/hypervisor.o
+  AR      drivers/gpu/drm/renesas/rz-du/built-in.a
+  AR      drivers/gpu/drm/renesas/built-in.a
+  CC      drivers/char/agp/amd64-agp.o
+  CC      drivers/char/agp/intel-agp.o
+  AR      net/sunrpc/auth_gss/built-in.a
+  CC      drivers/tty/serial/8250/8250_early.o
+  CC      net/sunrpc/auth_null.o
+  CC      arch/x86/kernel/cpu/mshyperv.o
+  CC      kernel/trace/trace_nop.o
+  AR      drivers/pci/built-in.a
+  CC      net/netfilter/nf_conntrack_acct.o
+  CC      drivers/acpi/acpica/hwgpe.o
+  CC      fs/netfs/read_single.o
+  CC      lib/is_single_threaded.o
+  CC      drivers/gpu/drm/i915/i915_getparam.o
+  CC      net/wireless/chan.o
+  CC      io_uring/fdinfo.o
+  CC      drivers/iommu/iova.o
+  CC      crypto/ecb.o
+  CC      drivers/char/random.o
+  CC      net/core/utils.o
+  CC      net/mac80211/ht.o
+  CC      net/9p/trans_fd.o
+  CC      drivers/gpu/drm/ttm/ttm_module.o
+  AR      drivers/virtio/built-in.a
+  CC      kernel/panic.o
+  CC      arch/x86/kernel/time.o
+  CC      fs/nfs/getroot.o
+  AR      fs/fat/built-in.a
+  CC      drivers/acpi/acpica/hwregs.o
+  CC      lib/klist.o
+  CC      sound/hda/trace.o
+  CC      kernel/time/namespace.o
+  CC      fs/nfs/inode.o
+  CC      drivers/gpu/drm/ttm/ttm_execbuf_util.o
+  CC      fs/netfs/rolling_buffer.o
+  CC      net/wireless/ethtool.o
+  CC      mm/compaction.o
+  CC      drivers/tty/serial/8250/8250_exar.o
+  CC      kernel/events/uprobes.o
+  AR      kernel/cgroup/built-in.a
+  CC      drivers/tty/tty_port.o
+  CC      fs/ext4/fsync.o
+  CC      net/9p/trans_virtio.o
+  CC      kernel/trace/blktrace.o
+  CC      drivers/char/agp/intel-gtt.o
+  CC      lib/kobject.o
+  CC      kernel/trace/trace_events.o
+  AR      net/netlabel/built-in.a
+  CC      net/ethtool/module.o
+  CC      net/ethtool/cmis_fw_update.o
+  CC      drivers/connector/cn_queue.o
+  CC      net/mac80211/agg-tx.o
+  CC      crypto/cbc.o
+  CC      crypto/ctr.o
+  AR      drivers/gpu/drm/omapdrm/built-in.a
+  CC      net/wireless/mesh.o
+  CC      arch/x86/kernel/cpu/debugfs.o
+  CC      drivers/acpi/acpica/hwsleep.o
+  CC      net/sunrpc/auth_tls.o
+  AR      io_uring/built-in.a
+  CC      fs/lockd/clntlock.o
+  CC      net/core/link_watch.o
+  CC      drivers/gpu/drm/i915/i915_ioctl.o
+  AR      drivers/iommu/built-in.a
+  CC      net/ipv6/icmp.o
+  CC      net/netfilter/nf_conntrack_seqadj.o
+  CC      net/handshake/genl.o
+  CC      drivers/gpu/drm/ttm/ttm_range_manager.o
+  CC      drivers/acpi/device_pm.o
+  CC      drivers/gpu/drm/display/drm_hdcp_helper.o
+  AR      kernel/time/built-in.a
+  CC      drivers/tty/tty_mutex.o
+  CC      drivers/acpi/acpica/hwvalid.o
+  CC      lib/kobject_uevent.o
+  CC      drivers/connector/connector.o
+  CC      crypto/gcm.o
+  CC      sound/hda/hdac_component.o
+  CC      arch/x86/kernel/cpu/bus_lock.o
+  CC      net/ipv4/tcp_cong.o
+  CC      fs/netfs/write_collect.o
+  CC      net/devres.o
+  CC      drivers/acpi/proc.o
+  CC      net/core/filter.o
+  CC      drivers/tty/serial/8250/8250_lpss.o
+  CC      drivers/char/misc.o
+  CC      drivers/gpu/drm/i915/i915_irq.o
+  CC      fs/ext4/hash.o
+  CC      drivers/acpi/acpica/hwxface.o
+  AR      drivers/gpu/drm/tilcdc/built-in.a
+  AR      drivers/char/agp/built-in.a
+  CC      drivers/gpu/drm/virtio/virtgpu_drv.o
+  CC      drivers/acpi/acpica/hwxfsleep.o
+  CC      fs/nfs/super.o
+  CC      drivers/acpi/bus.o
+  CC      net/handshake/netlink.o
+  CC      drivers/gpu/drm/ttm/ttm_resource.o
+  CC      net/socket.o
+  CC      fs/lockd/clntproc.o
+  CC      net/ethtool/cmis_cdb.o
+  CC      lib/logic_pio.o
+  AR      net/9p/built-in.a
+  CC      drivers/base/power/sysfs.o
+  CC      drivers/gpu/drm/display/drm_hdmi_helper.o
+  CC      fs/nls/nls_base.o
+  CC      net/sunrpc/auth_unix.o
+  CC      drivers/base/firmware_loader/builtin/main.o
+  CC      drivers/base/firmware_loader/main.o
+  CC      lib/maple_tree.o
+  CC      drivers/acpi/acpica/hwpci.o
+  CC      kernel/trace/trace_export.o
+  CC      sound/hda/hdac_i915.o
+  CC      drivers/char/virtio_console.o
+  CC      arch/x86/kernel/ioport.o
+  CC      drivers/tty/serial/8250/8250_mid.o
+  CC      net/netfilter/nf_conntrack_proto_icmpv6.o
+  CC      drivers/tty/serial/serial_port.o
+  AR      kernel/events/built-in.a
+  CC      drivers/gpu/drm/display/drm_scdc_helper.o
+  CC      drivers/block/loop.o
+  CC      arch/x86/kernel/dumpstack.o
+  AR      drivers/base/firmware_loader/builtin/built-in.a
+  CC      lib/memcat_p.o
+  CC      drivers/connector/cn_proc.o
+  CC      fs/netfs/write_issue.o
+  CC      arch/x86/kernel/cpu/capflags.o
+  CC      fs/ext4/ialloc.o
+  AR      arch/x86/kernel/cpu/built-in.a
+  CC      crypto/ccm.o
+  CC      arch/x86/kernel/nmi.o
+  CC      drivers/acpi/glue.o
+  CC      fs/nls/nls_cp437.o
+  CC      drivers/tty/tty_ldsem.o
+  CC      drivers/gpu/drm/virtio/virtgpu_kms.o
+  CC      drivers/acpi/acpica/nsaccess.o
+  CC      drivers/base/power/generic_ops.o
+  CC      arch/x86/kernel/ldt.o
+  CC      drivers/gpu/drm/virtio/virtgpu_gem.o
+  CC      drivers/block/virtio_blk.o
+  CC      drivers/tty/tty_baudrate.o
+  CC      net/ipv6/mcast.o
+  CC      kernel/cpu.o
+  CC      drivers/tty/serial/8250/8250_pci.o
+  CC      sound/hda/intel-dsp-config.o
+  CC      drivers/gpu/drm/ttm/ttm_pool.o
+  CC      drivers/base/power/common.o
+  CC      fs/nls/nls_ascii.o
+  CC      drivers/gpu/drm/i915/i915_mitigations.o
+  CC      net/mac80211/agg-rx.o
+  CC      fs/ext4/indirect.o
+  CC      net/ipv4/tcp_metrics.o
+  CC      drivers/acpi/acpica/nsalloc.o
+  CC      net/handshake/request.o
+  CC      net/ethtool/pse-pd.o
+  CC      arch/x86/kernel/setup.o
+  CC      net/netfilter/nf_conntrack_netlink.o
+  CC      mm/show_mem.o
+  CC      drivers/gpu/drm/i915/i915_module.o
+  CC      net/core/sock_diag.o
+  CC      fs/lockd/clntxdr.o
+  CC      kernel/trace/trace_event_perf.o
+  AR      drivers/base/firmware_loader/built-in.a
+  CC      fs/netfs/write_retry.o
+  CC      drivers/char/hpet.o
+  CC      net/sunrpc/svc.o
+  CC      drivers/tty/serial/8250/8250_pericom.o
+  AR      drivers/gpu/drm/display/built-in.a
+  CC      fs/lockd/host.o
+  CC      mm/interval_tree.o
+  AR      fs/unicode/built-in.a
+  CC      fs/nls/nls_iso8859-1.o
+  CC      fs/nls/nls_utf8.o
+  CC      net/mac80211/vht.o
+  CC      drivers/misc/eeprom/eeprom_93cx6.o
+  AR      drivers/mfd/built-in.a
+  CC      fs/nfs/io.o
+  CC      sound/hda/intel-nhlt.o
+  CC      drivers/gpu/drm/virtio/virtgpu_vram.o
+  CC      net/handshake/tlshd.o
+  CC      drivers/acpi/acpica/nsarguments.o
+  CC      drivers/base/power/qos.o
+  CC      crypto/aes_generic.o
+  CC      fs/autofs/init.o
+  AR      drivers/connector/built-in.a
+  CC      drivers/base/power/runtime.o
+  CC      net/sunrpc/svcsock.o
+  AR      drivers/misc/cb710/built-in.a
+  AR      drivers/gpu/drm/imx/built-in.a
+  AR      drivers/nfc/built-in.a
+  CC      net/sysctl_net.o
+  CC      fs/lockd/svc.o
+  CC      drivers/acpi/scan.o
+  AR      fs/nls/built-in.a
+  CC      lib/nmi_backtrace.o
+  CC      drivers/gpu/drm/virtio/virtgpu_display.o
+  CC      drivers/base/power/wakeirq.o
+  AR      drivers/misc/eeprom/built-in.a
+  AR      drivers/misc/lis3lv02d/built-in.a
+  AR      drivers/misc/cardreader/built-in.a
+  AR      drivers/misc/keba/built-in.a
+  CC      drivers/base/power/main.o
+  CC      drivers/acpi/acpica/nsconvert.o
+  AR      drivers/gpu/drm/panel/built-in.a
+  AR      drivers/misc/amd-sbi/built-in.a
+  CC      drivers/base/power/wakeup.o
+  AR      drivers/misc/built-in.a
+  AR      drivers/block/built-in.a
+  CC      drivers/base/power/wakeup_stats.o
+  CC      drivers/gpu/drm/virtio/virtgpu_vq.o
+  CC      crypto/authenc.o
+  CC      sound/hda/intel-sdw-acpi.o
+  CC      net/core/dev_ioctl.o
+  CC      kernel/trace/trace_events_filter.o
+  CC      net/ethtool/plca.o
+  CC      mm/list_lru.o
+  AR      fs/netfs/built-in.a
+  CC      drivers/gpu/drm/virtio/virtgpu_fence.o
+  CC      drivers/gpu/drm/ttm/ttm_device.o
+  CC      drivers/gpu/drm/i915/i915_params.o
+  CC      arch/x86/kernel/x86_init.o
+  CC      drivers/char/nvram.o
+  CC      arch/x86/kernel/i8259.o
+  AR      drivers/tty/serial/8250/built-in.a
+  CC      drivers/tty/serial/earlycon.o
+  CC      fs/autofs/inode.o
+  CC      drivers/acpi/mipi-disco-img.o
+  CC      drivers/gpu/drm/ttm/ttm_sys_manager.o
+  CC      drivers/tty/tty_jobctrl.o
+  CC      drivers/acpi/acpica/nsdump.o
+  AR      drivers/gpu/drm/bridge/analogix/built-in.a
+  CC      net/ipv6/reassembly.o
+  AR      drivers/gpu/drm/bridge/cadence/built-in.a
+  CC      net/sunrpc/svcauth.o
+  AR      drivers/gpu/drm/bridge/imx/built-in.a
+  AR      drivers/gpu/drm/bridge/synopsys/built-in.a
+  CC      net/core/tso.o
+  AR      drivers/gpu/drm/bridge/built-in.a
+  CC      lib/objpool.o
+  CC      fs/lockd/svclock.o
+  CC      fs/nfs/direct.o
+  AR      sound/hda/built-in.a
+  AR      sound/built-in.a
+  CC      fs/autofs/root.o
+  CC      net/handshake/trace.o
+  AR      drivers/gpu/drm/hisilicon/built-in.a
+  CC      net/netfilter/nf_conntrack_ftp.o
+  AR      drivers/dax/hmem/built-in.a
+  CC      drivers/acpi/acpica/nseval.o
+  AR      drivers/dax/built-in.a
+  CC      drivers/tty/n_null.o
+  CC      kernel/exit.o
+  CC      net/ipv4/tcp_fastopen.o
+  CC      net/ipv4/tcp_rate.o
+  CC      fs/autofs/symlink.o
+  CC      arch/x86/kernel/irqinit.o
+  CC      net/ipv6/tcp_ipv6.o
+  CC      lib/plist.o
+  CC      fs/ext4/inline.o
+  CC      lib/radix-tree.o
+  CC      drivers/acpi/acpica/nsinit.o
+  CC      drivers/gpu/drm/ttm/ttm_backup.o
+  AR      drivers/gpu/drm/mxsfb/built-in.a
+  CC      net/wireless/ap.o
+  CC      mm/workingset.o
+  CC      net/ipv4/tcp_recovery.o
+  AR      drivers/tty/serial/built-in.a
+  CC      arch/x86/kernel/jump_label.o
+  CC      fs/autofs/waitq.o
+  CC      net/mac80211/he.o
+  CC      kernel/trace/trace_events_trigger.o
+  CC      drivers/base/power/trace.o
+  AR      drivers/char/built-in.a
+  CC      drivers/acpi/resource.o
+  CC      net/sunrpc/svcauth_unix.o
+  CC      drivers/gpu/drm/virtio/virtgpu_object.o
+  CC      net/sunrpc/addr.o
+  CC      crypto/authencesn.o
+  CC      mm/debug.o
+  CC      drivers/gpu/drm/i915/i915_pci.o
+  CC      drivers/tty/pty.o
+  CC      drivers/gpu/drm/ttm/ttm_agp_backend.o
+  CC      drivers/acpi/acpi_processor.o
+  CC      net/ethtool/phy.o
+  AR      drivers/gpu/drm/sysfb/built-in.a
+  CC      fs/nfs/pagelist.o
+  CC      drivers/base/regmap/regmap.o
+  CC      drivers/acpi/acpica/nsload.o
+  CC      drivers/base/regmap/regcache.o
+  CC      drivers/dma-buf/dma-buf.o
+  CC      crypto/lzo.o
+  CC      net/mac80211/s1g.o
+  CC      crypto/lzo-rle.o
+  CC      net/ipv6/ping.o
+  CC      net/wireless/trace.o
+  CC      kernel/softirq.o
+  CC      arch/x86/kernel/irq_work.o
+  CC      arch/x86/kernel/probe_roms.o
+  CC      drivers/acpi/acpica/nsnames.o
+  AR      drivers/gpu/drm/tiny/built-in.a
+  CC      net/sunrpc/rpcb_clnt.o
+  CC      mm/gup.o
+  CC      fs/nfs/read.o
+  AR      drivers/base/power/built-in.a
+  CC      drivers/gpu/drm/i915/i915_scatterlist.o
+  CC      drivers/gpu/drm/virtio/virtgpu_debugfs.o
+  CC      net/sunrpc/timer.o
+  CC      fs/autofs/expire.o
+  CC      fs/lockd/svcshare.o
+  CC      fs/9p/vfs_super.o
+  AR      drivers/gpu/drm/ttm/built-in.a
+  CC      arch/x86/kernel/sys_ia32.o
+  CC      drivers/base/regmap/regcache-rbtree.o
+  CC      lib/ratelimit.o
+  CC      drivers/tty/tty_audit.o
+  CC      kernel/resource.o
+  AR      net/handshake/built-in.a
+  CC      fs/ext4/inode.o
+  CC      drivers/acpi/processor_core.o
+  CC      drivers/acpi/processor_pdc.o
+  CC      net/sunrpc/xdr.o
+  CC      net/netfilter/nf_conntrack_irc.o
+  AR      drivers/cxl/core/built-in.a
+  CC      net/ethtool/tsconfig.o
+  CC      net/netfilter/nf_conntrack_sip.o
+  AR      drivers/cxl/built-in.a
+  CC      net/sunrpc/sunrpc_syms.o
+  CC      drivers/acpi/acpica/nsobject.o
+  CC      lib/rbtree.o
+  CC      crypto/rng.o
+  CC      mm/mmap_lock.o
+  CC      net/ipv4/tcp_ulp.o
+  CC      net/netfilter/nf_nat_core.o
+  CC      kernel/sysctl.o
+  CC      kernel/trace/trace_eprobe.o
+  CC      net/ipv6/exthdrs.o
+  AR      drivers/gpu/drm/xlnx/built-in.a
+  CC      mm/vma_init.o
+  CC      drivers/gpu/drm/virtio/virtgpu_plane.o
+  CC      fs/9p/vfs_inode.o
+  CC      net/netfilter/nf_nat_proto.o
+  CC      fs/nfs/symlink.o
+  CC      net/netfilter/nf_nat_helper.o
+  CC      drivers/gpu/drm/i915/i915_switcheroo.o
+  CC      net/sunrpc/cache.o
+  CC      drivers/acpi/acpica/nsparse.o
+  CC      fs/lockd/svcproc.o
+  CC      drivers/dma-buf/dma-fence.o
+  CC      fs/ext4/ioctl.o
+  CC      drivers/gpu/drm/virtio/virtgpu_ioctl.o
+  CC      fs/autofs/dev-ioctl.o
+  CC      arch/x86/kernel/ksysfs.o
+  CC      drivers/tty/sysrq.o
+  CC      kernel/trace/trace_kprobe.o
+  CC      fs/nfs/unlink.o
+  AR      drivers/gpu/drm/gud/built-in.a
+  CC      net/wireless/ocb.o
+  CC      crypto/drbg.o
+  AR      drivers/base/test/built-in.a
+  CC      net/netfilter/nf_nat_masquerade.o
+  CC      drivers/macintosh/mac_hid.o
+  CC      drivers/acpi/acpica/nspredef.o
+  CC      fs/lockd/svcsubs.o
+  CC      net/ipv6/datagram.o
+  CC      drivers/dma-buf/dma-fence-array.o
+  CC      drivers/base/regmap/regcache-flat.o
+  AR      drivers/scsi/pcmcia/built-in.a
+  CC      drivers/scsi/scsi.o
+  AR      net/ethtool/built-in.a
+  CC      net/wireless/pmsr.o
+  GEN     net/wireless/shipped-certs.c
+  CC      drivers/scsi/hosts.o
+  CC      net/core/sock_reuseport.o
+  CC      net/core/fib_notifier.o
+  CC      fs/lockd/mon.o
+  CC      net/core/xdp.o
+  AR      drivers/gpu/drm/sitronix/built-in.a
+  CC      arch/x86/kernel/bootflag.o
+  AR      drivers/nvme/common/built-in.a
+  AR      drivers/nvme/host/built-in.a
+  AR      drivers/nvme/target/built-in.a
+  AR      drivers/nvme/built-in.a
+  AR      fs/hostfs/built-in.a
+  CC      drivers/scsi/scsi_ioctl.o
+  CC      drivers/acpi/acpica/nsprepkg.o
+  CC      net/ipv4/tcp_offload.o
+  AR      drivers/macintosh/built-in.a
+  CC      net/sunrpc/rpc_pipe.o
+  CC      drivers/gpu/drm/virtio/virtgpu_prime.o
+  CC      lib/seq_buf.o
+  CC      net/mac80211/ibss.o
+  CC      drivers/gpu/drm/i915/i915_sysfs.o
+  AR      fs/autofs/built-in.a
+  CC      fs/9p/vfs_inode_dotl.o
+  CC      fs/ext4/mballoc.o
+  CC      net/ipv6/ip6_flowlabel.o
+  CC      fs/9p/vfs_addr.o
+  CC      net/ipv4/tcp_plb.o
+  CC      drivers/base/regmap/regcache-maple.o
+  CC      mm/highmem.o
+  AR      drivers/tty/built-in.a
+  CC      drivers/scsi/scsicam.o
+  CC      drivers/dma-buf/dma-fence-chain.o
+  CC      crypto/jitterentropy.o
+  CC      crypto/jitterentropy-kcapi.o
+  CC      drivers/base/component.o
+  CC      drivers/acpi/acpica/nsrepair.o
+  CC      drivers/scsi/scsi_error.o
+  CC      drivers/acpi/acpica/nsrepair2.o
+  CC      fs/lockd/trace.o
+  CC      kernel/trace/error_report-traces.o
+  CC      drivers/dma-buf/dma-fence-unwrap.o
+  CC      arch/x86/kernel/e820.o
+  CC      drivers/gpu/drm/i915/i915_utils.o
+  CC      lib/siphash.o
+  CC      fs/ext4/migrate.o
+  CC      mm/memory.o
+  CC      drivers/scsi/scsi_lib.o
+  AR      drivers/gpu/drm/solomon/built-in.a
+  CC      fs/debugfs/inode.o
+  CC      drivers/base/regmap/regmap-debugfs.o
+  CC      net/mac80211/iface.o
+  CC      net/ipv4/datagram.o
+  CC      net/netfilter/nf_nat_ftp.o
+  CC      drivers/gpu/drm/virtio/virtgpu_trace_points.o
+  CC      fs/debugfs/file.o
+  CC      net/sunrpc/sysfs.o
+  CC      drivers/acpi/acpica/nssearch.o
+  CC      kernel/capability.o
+  CC      net/core/flow_offload.o
+  CC      net/core/gro.o
+  CC      drivers/gpu/drm/i915/intel_clock_gating.o
+  CC      crypto/ghash-generic.o
+  CC      fs/nfs/write.o
+  CC      lib/string.o
+  CC      fs/tracefs/inode.o
+  CC      drivers/dma-buf/dma-resv.o
+  CC [M]  fs/efivarfs/inode.o
+  CC      fs/lockd/xdr.o
+  CC      mm/mincore.o
+  CC      fs/9p/vfs_file.o
+  CC      fs/nfs/namespace.o
+  CC      lib/timerqueue.o
+  CC      crypto/hash_info.o
+  CC      drivers/ata/libata-core.o
+  CC      fs/tracefs/event_inode.o
+  CC      drivers/acpi/acpica/nsutils.o
+  CC      net/wireless/shipped-certs.o
+  CC      drivers/ata/libata-scsi.o
+  CC      kernel/trace/power-traces.o
+  CC [M]  drivers/gpu/drm/scheduler/sched_main.o
+  CC      lib/union_find.o
+  CC      net/ipv6/inet6_connection_sock.o
+  CC [M]  fs/efivarfs/file.o
+  CC      drivers/scsi/constants.o
+  CC      lib/vsprintf.o
+  CC      net/mac80211/link.o
+  CC      net/sunrpc/svc_xprt.o
+  CC      fs/open.o
+  AR      drivers/base/regmap/built-in.a
+  CC      drivers/base/core.o
+  AR      drivers/net/pse-pd/built-in.a
+  AR      drivers/net/phy/mediatek/built-in.a
+  CC      fs/nfs/mount_clnt.o
+  AR      drivers/net/phy/qcom/built-in.a
+  CC      crypto/rsapubkey.asn1.o
+  CC      drivers/net/mdio/acpi_mdio.o
+  CC      drivers/net/phy/realtek/realtek_main.o
+  CC      drivers/acpi/acpica/nswalk.o
+  CC      crypto/rsaprivkey.asn1.o
+  AR      crypto/built-in.a
+  CC      drivers/firewire/init_ohci1394_dma.o
+  CC      drivers/cdrom/cdrom.o
+  CC      arch/x86/kernel/pci-dma.o
+  AR      drivers/auxdisplay/built-in.a
+  CC      drivers/net/mdio/fwnode_mdio.o
+  CC      drivers/gpu/drm/virtio/virtgpu_submit.o
+  CC      net/core/netdev-genl.o
+  CC [M]  drivers/gpu/drm/scheduler/sched_fence.o
+  CC      drivers/gpu/drm/i915/intel_cpu_info.o
+  CC      fs/9p/vfs_dir.o
+  CC      drivers/dma-buf/sync_file.o
+  CC      drivers/net/phy/stubs.o
+  CC      net/ipv4/raw.o
+  CC      fs/read_write.o
+  CC [M]  fs/efivarfs/super.o
+  CC      net/netfilter/nf_nat_irc.o
+  CC      fs/lockd/netlink.o
+  CC      drivers/acpi/acpica/nsxfeval.o
+  AR      fs/debugfs/built-in.a
+  AR      drivers/net/pcs/built-in.a
+  CC      fs/ext4/mmp.o
+  CC      arch/x86/kernel/quirks.o
+  CC      drivers/pcmcia/cs.o
+  CC      drivers/acpi/ec.o
+  CC      fs/9p/vfs_dentry.o
+  CC      drivers/gpu/drm/i915/intel_device_info.o
+  AR      fs/tracefs/built-in.a
+  CC      drivers/base/bus.o
+  CC [M]  fs/efivarfs/vars.o
+  CC      kernel/ptrace.o
+  CC      drivers/pcmcia/socket_sysfs.o
+  CC      lib/win_minmax.o
+  AR      drivers/firewire/built-in.a
+  CC      kernel/trace/rpm-traces.o
+  CC      drivers/scsi/scsi_lib_dma.o
+  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
+  CC      drivers/acpi/acpica/nsxfname.o
+  AR      drivers/dma-buf/built-in.a
+  CC      net/ipv6/udp_offload.o
+  CC      net/core/netdev-genl-gen.o
+  CC      drivers/acpi/acpica/nsxfobj.o
+  CC      net/core/gso.o
+  CC      drivers/pcmcia/cardbus.o
+  AR      drivers/gpu/drm/virtio/built-in.a
+  CC      drivers/acpi/dock.o
+  CC      fs/nfs/nfstrace.o
+  GEN     xe_wa_oob.c xe_wa_oob.h
+  CC [M]  drivers/gpu/drm/xe/xe_bb.o
+  AR      drivers/net/mdio/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_bo.o
+  CC      drivers/base/dd.o
+  CC      fs/9p/v9fs.o
+  CC      mm/mlock.o
+  CC      fs/lockd/clnt4xdr.o
+  CC [M]  drivers/gpu/drm/scheduler/sched_entity.o
+  CC      drivers/acpi/pci_root.o
+  CC      drivers/gpu/drm/drm_atomic.o
+  CC      arch/x86/kernel/kdebugfs.o
+  CC      net/core/net-sysfs.o
+  CC      net/core/hotdata.o
+  CC      fs/file_table.o
+  CC      drivers/net/phy/mdio-boardinfo.o
+  AR      drivers/net/phy/realtek/built-in.a
+  CC      drivers/scsi/scsi_scan.o
+  CC      net/netfilter/nf_nat_sip.o
+  CC      drivers/acpi/acpica/psargs.o
+  CC      net/sunrpc/xprtmultipath.o
+  GEN     drivers/scsi/scsi_devinfo_tbl.c
+  CC      drivers/acpi/acpica/psloop.o
+  LD [M]  fs/efivarfs/efivarfs.o
+  CC      mm/mmap.o
+  CC      net/sunrpc/stats.o
+  CC      net/core/netdev_rx_queue.o
+  CC      kernel/user.o
+  CC      drivers/gpu/drm/drm_atomic_uapi.o
+  CC      drivers/pcmcia/ds.o
+  CC      drivers/gpu/drm/i915/intel_memory_region.o
+  CC      kernel/trace/trace_dynevent.o
+  CC      fs/9p/fid.o
+  CC      drivers/acpi/acpica/psobject.o
+  CC      arch/x86/kernel/alternative.o
+  CC      net/mac80211/rate.o
+  CC      net/ipv4/udp.o
+  AR      drivers/cdrom/built-in.a
+  AR      drivers/net/ethernet/3com/built-in.a
+  CC      net/sunrpc/sysctl.o
+  CC      mm/mmu_gather.o
+  CC      drivers/net/ethernet/8390/ne2k-pci.o
+  CC      net/ipv4/udplite.o
+  CC      net/ipv4/udp_offload.o
+  CC      net/ipv4/arp.o
+  CC      drivers/net/phy/mdio_bus.o
+  CC      drivers/acpi/acpica/psopcode.o
+  LD [M]  drivers/gpu/drm/scheduler/gpu-sched.o
+  CC      drivers/gpu/drm/drm_auth.o
+  CC      drivers/acpi/pci_link.o
+  CC      drivers/net/ethernet/8390/8390.o
+  CC      drivers/scsi/scsi_devinfo.o
+  CC      kernel/trace/trace_probe.o
+  CC      drivers/gpu/drm/i915/intel_pcode.o
+  CC      fs/lockd/xdr4.o
+  CC      net/ipv6/seg6.o
+  AR      drivers/net/wireless/admtek/built-in.a
+  AR      drivers/net/wireless/ath/built-in.a
+  AR      drivers/net/wireless/atmel/built-in.a
+  CC      fs/nfs/export.o
+  AR      drivers/net/wireless/broadcom/built-in.a
+  CC      drivers/acpi/acpica/psopinfo.o
+  AR      drivers/net/wireless/intel/built-in.a
+  CC      fs/super.o
+  AR      drivers/net/wireless/intersil/built-in.a
+  AR      drivers/net/wireless/marvell/built-in.a
+  CC      drivers/ata/libata-eh.o
+  AR      drivers/net/wireless/mediatek/built-in.a
+  AR      drivers/net/wireless/microchip/built-in.a
+  CC      drivers/gpu/drm/i915/intel_region_ttm.o
+  CC      drivers/gpu/drm/i915/intel_runtime_pm.o
+  AR      drivers/net/wireless/purelifi/built-in.a
+  AR      drivers/net/wireless/quantenna/built-in.a
+  AR      drivers/net/wireless/ralink/built-in.a
+  AR      drivers/net/wireless/realtek/built-in.a
+  CC      drivers/ata/libata-transport.o
+  AR      drivers/net/wireless/rsi/built-in.a
+  AR      drivers/net/wireless/silabs/built-in.a
+  AR      drivers/net/wireless/st/built-in.a
+  AR      drivers/net/wireless/ti/built-in.a
+  AR      drivers/net/wireless/zydas/built-in.a
+  AR      drivers/net/wireless/virtual/built-in.a
+  AR      drivers/net/wireless/built-in.a
+  CC      fs/9p/xattr.o
+  CC      net/core/net-procfs.o
+  CC      lib/xarray.o
+  CC      drivers/base/syscore.o
+  CC      fs/nfs/sysfs.o
+  CC      arch/x86/kernel/i8253.o
+  CC      net/netfilter/x_tables.o
+  CC      fs/lockd/svc4proc.o
+  CC      drivers/gpu/drm/drm_blend.o
+  CC      arch/x86/kernel/hw_breakpoint.o
+  CC      drivers/acpi/acpica/psparse.o
+  CC      drivers/base/driver.o
+  CC      net/ipv4/icmp.o
+  CC      drivers/pcmcia/pcmcia_resource.o
+  CC      net/ipv6/fib6_notifier.o
+  CC      fs/char_dev.o
+  CC      fs/lockd/procfs.o
+  CC      drivers/scsi/scsi_sysctl.o
+  CC      fs/ext4/move_extent.o
+  CC      drivers/acpi/acpica/psscope.o
+  CC      drivers/net/phy/mdio_device.o
+  CC      drivers/scsi/scsi_proc.o
+  CC      fs/nfs/fs_context.o
+  CC      net/mac80211/michael.o
+  CC      mm/mprotect.o
+  CC      net/core/netpoll.o
+  CC      net/netfilter/xt_tcpudp.o
+  CC      drivers/base/class.o
+  CC      net/mac80211/tkip.o
+  CC      drivers/net/phy/phy.o
+  AR      drivers/net/ethernet/8390/built-in.a
+  AR      drivers/net/ethernet/adaptec/built-in.a
+  AR      drivers/net/ethernet/agere/built-in.a
+  AR      fs/9p/built-in.a
+  CC      drivers/gpu/drm/drm_bridge.o
+  AR      drivers/net/ethernet/alacritech/built-in.a
+  AR      drivers/net/ethernet/alteon/built-in.a
+  AR      drivers/net/ethernet/amazon/built-in.a
+  CC      drivers/acpi/acpica/pstree.o
+  AR      drivers/net/ethernet/amd/built-in.a
+  CC      drivers/ata/libata-trace.o
+  CC      lib/lockref.o
+  AR      drivers/net/ethernet/aquantia/built-in.a
+  AR      drivers/net/ethernet/arc/built-in.a
+  AR      net/sunrpc/built-in.a
+  CC      net/netfilter/xt_CONNSECMARK.o
+  AR      drivers/net/ethernet/asix/built-in.a
+  CC      net/core/fib_rules.o
+  AR      drivers/net/ethernet/atheros/built-in.a
+  AR      drivers/net/ethernet/cadence/built-in.a
+  CC      drivers/net/ethernet/broadcom/bnx2.o
+  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
+  CC      kernel/trace/trace_uprobe.o
+  CC      drivers/acpi/acpica/psutils.o
+  CC      drivers/scsi/scsi_debugfs.o
+  CC      drivers/gpu/drm/drm_cache.o
+  CC      drivers/gpu/drm/i915/intel_step.o
+  CC      mm/mremap.o
+  CC      net/mac80211/aes_cmac.o
+  CC      drivers/base/platform.o
+  CC      arch/x86/kernel/tsc.o
+  CC      mm/msync.o
+  AR      drivers/net/ethernet/brocade/built-in.a
+  CC      net/core/net-traces.o
+  CC      fs/stat.o
+  CC      drivers/acpi/acpica/pswalk.o
+  CC      drivers/net/phy/phy-c45.o
+  CC      net/netfilter/xt_NFLOG.o
+  AR      drivers/net/usb/built-in.a
+  CC      drivers/net/mii.o
+  CC      fs/nfs/nfsroot.o
+  CC      drivers/net/phy/phy-core.o
+  CC      net/ipv6/rpl.o
+  CC      drivers/net/loopback.o
+  CC      fs/exec.o
+  CC      drivers/base/cpu.o
+  AR      fs/lockd/built-in.a
+  CC      mm/page_vma_mapped.o
+  CC      net/ipv4/devinet.o
+  CC      drivers/pcmcia/cistpl.o
+  CC      fs/pipe.o
+  CC      lib/bcd.o
+  CC      lib/sort.o
+  CC      drivers/gpu/drm/drm_color_mgmt.o
+  CC      fs/ext4/namei.o
+  CC      drivers/scsi/scsi_trace.o
+  CC      drivers/acpi/acpica/psxface.o
+  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
+  CC      drivers/gpu/drm/i915/intel_uncore.o
+  CC      fs/namei.o
+  CC      drivers/net/netconsole.o
+  CC      drivers/ata/libata-sata.o
+  CC      lib/parser.o
+  CC      net/core/selftests.o
+  CC      fs/nfs/sysctl.o
+  CC      net/netfilter/xt_SECMARK.o
+  CC      drivers/acpi/acpica/rsaddr.o
+  CC      drivers/net/ethernet/broadcom/tg3.o
+  CC      net/ipv6/ioam6.o
+  CC      kernel/trace/rethook.o
+  CC      drivers/acpi/pci_irq.o
+  CC      fs/ext4/page-io.o
+  CC      drivers/net/phy/phy_device.o
+  CC      net/ipv4/af_inet.o
+  CC      drivers/base/firmware.o
+  CC      fs/fcntl.o
+  CC      lib/debug_locks.o
+  CC      lib/random32.o
+  CC      arch/x86/kernel/tsc_msr.o
+  CC      mm/pagewalk.o
+  CC      net/ipv6/sysctl_net_ipv6.o
+  CC      drivers/gpu/drm/i915/intel_uncore_trace.o
+  CC      drivers/ata/libata-sff.o
+  CC      drivers/scsi/scsi_logging.o
+  CC      fs/nfs/nfs3super.o
+  CC      drivers/acpi/acpica/rscalc.o
+  CC      fs/ext4/readpage.o
+  CC      drivers/pcmcia/pcmcia_cis.o
+  CC      fs/ioctl.o
+  CC      drivers/acpi/acpica/rscreate.o
+  CC      net/netfilter/xt_TCPMSS.o
+  CC      drivers/acpi/acpi_apd.o
+  CC      arch/x86/kernel/io_delay.o
+  CC      fs/ext4/resize.o
+  CC      drivers/base/init.o
+  CC [M]  drivers/gpu/drm/xe/xe_device.o
+  CC [M]  drivers/gpu/drm/xe/xe_device_sysfs.o
+  CC      drivers/scsi/scsi_pm.o
+  CC      lib/bust_spinlocks.o
+  CC      drivers/pcmcia/rsrc_mgr.o
+  CC      drivers/usb/common/common.o
+  CC      drivers/usb/core/usb.o
+  CC      net/mac80211/aes_gmac.o
+  AR      drivers/usb/phy/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
+  CC      drivers/net/phy/linkmode.o
+  AR      kernel/trace/built-in.a
+  AR      drivers/net/ethernet/cavium/common/built-in.a
+  CC      kernel/signal.o
+  CC      kernel/sys.o
+  AR      drivers/net/ethernet/cavium/thunder/built-in.a
+  CC      drivers/acpi/acpica/rsdumpinfo.o
+  CC      arch/x86/kernel/rtc.o
+  CC      fs/readdir.o
+  AR      drivers/net/ethernet/cavium/liquidio/built-in.a
+  AR      drivers/net/ethernet/cavium/octeon/built-in.a
+  AR      drivers/net/ethernet/cavium/built-in.a
+  CC      drivers/usb/common/debug.o
+  CC      drivers/scsi/scsi_bsg.o
+  CC      net/ipv6/xfrm6_policy.o
+  AR      drivers/net/ethernet/chelsio/built-in.a
+  CC      drivers/input/serio/serio.o
+  AR      drivers/net/ethernet/cisco/built-in.a
+  CC      drivers/input/keyboard/atkbd.o
+  CC      lib/kasprintf.o
+  CC      arch/x86/kernel/resource.o
+  CC      drivers/input/serio/i8042.o
+  CC      drivers/net/phy/phy_link_topology.o
+  CC      mm/pgtable-generic.o
+  CC      drivers/base/map.o
+  CC      drivers/acpi/acpica/rsinfo.o
+  CC      fs/ext4/super.o
+  CC      net/mac80211/fils_aead.o
+  CC      drivers/net/phy/phy_package.o
+  CC      net/ipv4/igmp.o
+  CC      fs/nfs/nfs3client.o
+  CC      drivers/ata/libata-pmp.o
+  CC      drivers/acpi/acpi_platform.o
+  AR      drivers/net/ethernet/cortina/built-in.a
+  CC      lib/bitmap.o
+  CC      drivers/gpu/drm/i915/intel_wakeref.o
+  CC      drivers/scsi/scsi_common.o
+  AR      drivers/net/ethernet/dec/tulip/built-in.a
+  AR      drivers/net/ethernet/dec/built-in.a
+  CC      drivers/pcmcia/rsrc_nonstatic.o
+  CC      drivers/gpu/drm/drm_connector.o
+  CC      mm/rmap.o
+  CC      drivers/net/phy/phy_caps.o
+  AR      drivers/usb/common/built-in.a
+  CC      drivers/gpu/drm/drm_crtc.o
+  AS      arch/x86/kernel/irqflags.o
+  CC      drivers/gpu/drm/drm_displayid.o
+  CC      arch/x86/kernel/static_call.o
+  CC      drivers/rtc/lib.o
+  CC      drivers/acpi/acpica/rsio.o
+  CC      drivers/i2c/algos/i2c-algo-bit.o
+  CC      drivers/base/devres.o
+  AR      drivers/i3c/built-in.a
+  CC      drivers/gpu/drm/i915/vlv_iosf_sb.o
+  CC      drivers/acpi/acpi_pnp.o
+  CC      drivers/rtc/class.o
+  CC      drivers/usb/core/hub.o
+  CC      drivers/gpu/drm/drm_drv.o
+  CC      net/netfilter/xt_conntrack.o
+  CC      mm/vmalloc.o
+  CC [M]  drivers/gpu/drm/xe/xe_drm_client.o
+  CC      drivers/scsi/scsi_transport_spi.o
+  CC      drivers/scsi/virtio_scsi.o
+  AR      drivers/net/ethernet/dlink/built-in.a
+  CC      fs/nfs/nfs3proc.o
+  CC      drivers/acpi/acpica/rsirq.o
+  CC      arch/x86/kernel/process.o
+  CC      drivers/acpi/power.o
+  AR      drivers/input/keyboard/built-in.a
+  CC      drivers/gpu/drm/i915/vlv_suspend.o
+  CC      drivers/input/mouse/psmouse-base.o
+  AR      drivers/input/joystick/built-in.a
+  AR      drivers/input/tablet/built-in.a
+  CC      drivers/net/virtio_net.o
+  CC      drivers/net/phy/mdio_bus_provider.o
+  CC      drivers/usb/core/hcd.o
+  CC      net/ipv6/xfrm6_state.o
+  CC      lib/scatterlist.o
+  CC      fs/ext4/symlink.o
+  CC      mm/vma.o
+  CC      drivers/gpu/drm/i915/soc/intel_dram.o
+  CC      drivers/pcmcia/yenta_socket.o
+  CC [M]  drivers/gpu/drm/xe/xe_eu_stall.o
+  CC      drivers/acpi/acpica/rslist.o
+  CC      drivers/ata/libata-acpi.o
+  AR      drivers/media/i2c/built-in.a
+  AR      drivers/media/tuners/built-in.a
+  CC      drivers/rtc/interface.o
+  AR      drivers/media/rc/keymaps/built-in.a
+  AR      drivers/media/rc/built-in.a
+  AR      drivers/net/ethernet/emulex/built-in.a
+  CC      fs/nfs/nfs3xdr.o
+  CC      drivers/ata/libata-pata-timings.o
+  CC      drivers/input/serio/serport.o
+  AR      drivers/media/common/b2c2/built-in.a
+  AR      drivers/media/common/saa7146/built-in.a
+  AR      drivers/pps/clients/built-in.a
+  CC      drivers/pps/pps.o
+  AR      drivers/media/common/siano/built-in.a
+  AR      drivers/media/common/v4l2-tpg/built-in.a
+  CC      mm/vma_exec.o
+  CC      net/mac80211/cfg.o
+  CC      kernel/umh.o
+  CC      drivers/base/attribute_container.o
+  AR      drivers/media/common/videobuf2/built-in.a
+  AR      drivers/media/common/built-in.a
+  AR      drivers/media/platform/allegro-dvt/built-in.a
+  AR      net/wireless/built-in.a
+  CC      drivers/pps/kapi.o
+  AR      drivers/i2c/algos/built-in.a
+  AR      drivers/media/platform/amlogic/c3/isp/built-in.a
+  CC      net/ipv6/xfrm6_input.o
+  CC      drivers/i2c/busses/i2c-i801.o
+  AR      drivers/media/platform/amlogic/c3/mipi-adapter/built-in.a
+  AR      drivers/media/platform/amlogic/c3/mipi-csi2/built-in.a
+  AR      drivers/media/platform/amlogic/c3/built-in.a
+  AR      drivers/media/platform/amlogic/meson-ge2d/built-in.a
+  AR      drivers/media/platform/amlogic/built-in.a
+  AR      drivers/media/platform/amphion/built-in.a
+  AR      drivers/media/platform/aspeed/built-in.a
+  AR      drivers/media/platform/atmel/built-in.a
+  CC      arch/x86/kernel/ptrace.o
+  AR      drivers/media/platform/broadcom/built-in.a
+  AR      drivers/media/platform/cadence/built-in.a
+  CC      drivers/acpi/acpica/rsmemory.o
+  AR      drivers/input/touchscreen/built-in.a
+  AR      drivers/media/platform/chips-media/coda/built-in.a
+  CC      fs/ext4/sysfs.o
+  AR      drivers/media/platform/chips-media/wave5/built-in.a
+  AR      drivers/media/platform/chips-media/built-in.a
+  CC      drivers/input/serio/libps2.o
+  AR      drivers/media/platform/imagination/built-in.a
+  AR      drivers/media/platform/intel/built-in.a
+  AR      drivers/media/platform/marvell/built-in.a
+  AR      drivers/media/platform/mediatek/jpeg/built-in.a
+  AR      drivers/media/platform/mediatek/mdp/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_exec.o
+  CC      fs/nfs/nfs3acl.o
+  AR      drivers/media/platform/mediatek/vcodec/common/built-in.a
+  AR      drivers/media/platform/mediatek/vcodec/encoder/built-in.a
+  AR      drivers/media/platform/mediatek/vcodec/decoder/built-in.a
+  AR      drivers/media/platform/mediatek/vcodec/built-in.a
+  AR      drivers/media/platform/mediatek/vpu/built-in.a
+  CC      drivers/usb/core/urb.o
+  AR      drivers/media/platform/mediatek/mdp3/built-in.a
+  AR      drivers/media/platform/mediatek/built-in.a
+  AR      drivers/input/misc/built-in.a
+  CC      kernel/workqueue.o
+  AR      drivers/media/platform/microchip/built-in.a
+  AR      drivers/media/platform/nuvoton/built-in.a
+  CC      drivers/rtc/nvmem.o
+  AR      drivers/media/platform/nvidia/tegra-vde/built-in.a
+  AR      drivers/media/platform/nvidia/built-in.a
+  CC      net/netfilter/xt_policy.o
+  AR      drivers/media/platform/nxp/dw100/built-in.a
+  AR      drivers/media/platform/nxp/imx-jpeg/built-in.a
+  AR      drivers/media/platform/nxp/imx8-isi/built-in.a
+  CC      drivers/base/transport_class.o
+  AR      drivers/media/platform/nxp/built-in.a
+  AR      drivers/media/platform/qcom/camss/built-in.a
+  AR      drivers/media/platform/qcom/iris/built-in.a
+  CC      drivers/acpi/acpica/rsmisc.o
+  AR      drivers/media/platform/qcom/venus/built-in.a
+  AR      drivers/media/platform/qcom/built-in.a
+  AR      drivers/media/platform/raspberrypi/pisp_be/built-in.a
+  CC      net/mac80211/ethtool.o
+  AR      drivers/media/platform/raspberrypi/rp1-cfe/built-in.a
+  AR      drivers/media/platform/raspberrypi/built-in.a
+  CC      drivers/pps/sysfs.o
+  AR      drivers/media/pci/ttpci/built-in.a
+  AR      drivers/media/platform/renesas/rcar-isp/built-in.a
+  AR      drivers/media/pci/b2c2/built-in.a
+  AR      drivers/media/platform/renesas/rcar-vin/built-in.a
+  CC      drivers/net/phy/swphy.o
+  AR      drivers/media/pci/pluto2/built-in.a
+  AR      drivers/media/platform/renesas/vsp1/built-in.a
+  AR      drivers/media/platform/renesas/rzg2l-cru/built-in.a
+  CC      drivers/input/mouse/synaptics.o
+  CC      drivers/scsi/sd.o
+  AR      drivers/media/pci/dm1105/built-in.a
+  CC      fs/nfs/nfs4proc.o
+  AR      drivers/media/platform/renesas/built-in.a
+  AR      drivers/media/pci/pt1/built-in.a
+  CC      fs/ext4/xattr.o
+  AR      drivers/media/platform/rockchip/rga/built-in.a
+  AR      drivers/media/pci/pt3/built-in.a
+  AR      drivers/media/platform/rockchip/rkisp1/built-in.a
+  AR      drivers/media/platform/rockchip/built-in.a
+  AR      drivers/media/pci/mantis/built-in.a
+  AR      drivers/media/platform/samsung/exynos-gsc/built-in.a
+  AR      drivers/media/pci/ngene/built-in.a
+  AR      drivers/media/pci/ddbridge/built-in.a
+  AR      drivers/media/platform/samsung/exynos4-is/built-in.a
+  CC      fs/nfs/nfs4xdr.o
+  AR      drivers/media/platform/samsung/s3c-camif/built-in.a
+  CC      fs/nfs/nfs4state.o
+  CC      lib/list_sort.o
+  AR      drivers/media/pci/saa7146/built-in.a
+  AR      drivers/media/platform/samsung/s5p-g2d/built-in.a
+  AR      drivers/media/platform/samsung/s5p-jpeg/built-in.a
+  AR      drivers/media/pci/smipcie/built-in.a
+  CC      fs/nfs/nfs4renewd.o
+  CC [M]  drivers/gpu/drm/xe/xe_exec_queue.o
+  AR      drivers/media/platform/samsung/s5p-mfc/built-in.a
+  AR      drivers/media/pci/netup_unidvb/built-in.a
+  AR      drivers/media/platform/samsung/built-in.a
+  AR      drivers/media/pci/intel/ipu3/built-in.a
+  CC      drivers/ata/ahci.o
+  CC      lib/uuid.o
+  AR      drivers/media/platform/st/sti/bdisp/built-in.a
+  AR      drivers/media/pci/intel/ivsc/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
+  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
+  AR      drivers/media/pci/intel/built-in.a
+  AR      drivers/media/platform/st/sti/c8sectpfe/built-in.a
+  CC      net/ipv4/fib_frontend.o
+  AR      drivers/media/pci/built-in.a
+  AR      drivers/media/platform/st/sti/delta/built-in.a
+  CC      drivers/gpu/drm/i915/soc/intel_gmch.o
+  AR      drivers/media/platform/st/sti/hva/built-in.a
+  CC      net/ipv6/xfrm6_output.o
+  AR      drivers/media/platform/st/stm32/built-in.a
+  CC      drivers/base/topology.o
+  AR      drivers/media/platform/st/built-in.a
+  CC      net/ipv4/fib_semantics.o
+  CC      lib/iov_iter.o
+  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
+  AR      drivers/input/serio/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_gpu_scheduler.o
+  AR      drivers/media/platform/sunxi/sun4i-csi/built-in.a
+  CC      drivers/gpu/drm/drm_dumb_buffers.o
+  AR      drivers/pcmcia/built-in.a
+  AR      drivers/media/platform/sunxi/sun6i-csi/built-in.a
+  CC      drivers/acpi/acpica/rsserial.o
+  AR      drivers/media/platform/sunxi/sun6i-mipi-csi2/built-in.a
+  AR      drivers/pps/built-in.a
+  CC      drivers/gpu/drm/drm_edid.o
+  AR      drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/built-in.a
+  CC      mm/process_vm_access.o
+  AR      drivers/media/platform/sunxi/sun8i-di/built-in.a
+  CC      drivers/scsi/sr.o
+  AR      drivers/media/platform/sunxi/sun8i-rotate/built-in.a
+  AR      drivers/media/platform/sunxi/built-in.a
+  CC      net/core/ptp_classifier.o
+  AR      drivers/media/platform/synopsys/hdmirx/built-in.a
+  AR      drivers/media/platform/synopsys/built-in.a
+  AR      drivers/media/platform/ti/am437x/built-in.a
+  AR      drivers/media/platform/ti/cal/built-in.a
+  CC      arch/x86/kernel/tls.o
+  AR      drivers/i2c/busses/built-in.a
+  AR      drivers/media/platform/ti/vpe/built-in.a
+  AR      drivers/media/platform/ti/davinci/built-in.a
+  AR      drivers/i2c/muxes/built-in.a
+  CC      drivers/i2c/i2c-boardinfo.o
+  AR      drivers/media/platform/ti/j721e-csi2rx/built-in.a
+  CC      net/ipv4/fib_trie.o
+  CC      drivers/rtc/dev.o
+  AR      drivers/net/ethernet/engleder/built-in.a
+  CC      arch/x86/kernel/step.o
+  CC      drivers/acpi/acpica/rsutils.o
+  AR      drivers/media/platform/ti/omap/built-in.a
+  CC      net/core/netprio_cgroup.o
+  CC [M]  drivers/gpu/drm/xe/xe_gsc.o
+  AR      drivers/media/platform/ti/omap3isp/built-in.a
+  AR      drivers/media/platform/ti/built-in.a
+  CC      lib/clz_ctz.o
+  CC      lib/bsearch.o
+  CC      lib/find_bit.o
+  AR      drivers/media/platform/verisilicon/built-in.a
+  AR      drivers/media/platform/via/built-in.a
+  AR      drivers/media/platform/xilinx/built-in.a
+  AR      drivers/media/platform/built-in.a
+  CC      mm/page_alloc.o
+  CC      drivers/rtc/proc.o
+  CC      drivers/net/phy/mdio_devres.o
+  AR      drivers/media/usb/b2c2/built-in.a
+  CC      drivers/input/input.o
+  AR      drivers/media/usb/dvb-usb/built-in.a
+  AR      drivers/media/usb/dvb-usb-v2/built-in.a
+  CC      net/netfilter/xt_state.o
+  AR      drivers/media/usb/s2255/built-in.a
+  AR      drivers/media/usb/siano/built-in.a
+  CC      net/ipv4/fib_notifier.o
+  CC      drivers/base/container.o
+  AR      drivers/media/usb/ttusb-budget/built-in.a
+  AR      drivers/media/usb/ttusb-dec/built-in.a
+  AR      drivers/media/usb/built-in.a
+  AR      drivers/media/mmc/siano/built-in.a
+  AR      drivers/media/mmc/built-in.a
+  AR      drivers/net/ethernet/ezchip/built-in.a
+  CC      fs/ext4/xattr_hurd.o
+  AR      drivers/media/firewire/built-in.a
+  AR      drivers/media/spi/built-in.a
+  CC      drivers/acpi/acpica/rsxface.o
+  AR      drivers/media/test-drivers/built-in.a
+  AR      drivers/media/built-in.a
+  CC      drivers/acpi/acpica/tbdata.o
+  CC      drivers/acpi/acpica/tbfadt.o
+  CC      arch/x86/kernel/i8237.o
+  CC      drivers/net/phy/fixed_phy.o
+  CC      drivers/scsi/sr_ioctl.o
+  CC      drivers/rtc/sysfs.o
+  CC      drivers/gpu/drm/i915/soc/intel_rom.o
+  CC      drivers/acpi/event.o
+  CC      kernel/pid.o
+  CC      drivers/gpu/drm/drm_eld.o
+  CC      drivers/input/mouse/focaltech.o
+  CC      drivers/ata/libahci.o
+  CC      drivers/usb/core/message.o
+  CC      drivers/i2c/i2c-core-base.o
+  CC      drivers/base/property.o
+  CC      drivers/i2c/i2c-core-smbus.o
+  CC      drivers/scsi/sr_vendor.o
+  CC      drivers/base/cacheinfo.o
+  CC      drivers/usb/mon/mon_main.o
+  CC      drivers/scsi/sg.o
+  CC      net/ipv6/xfrm6_protocol.o
+  CC      lib/llist.o
+  CC      arch/x86/kernel/stacktrace.o
+  CC      fs/ext4/xattr_trusted.o
+  CC      drivers/rtc/rtc-mc146818-lib.o
+  CC      drivers/gpu/drm/drm_encoder.o
+  CC      net/core/netclassid_cgroup.o
+  CC      fs/nfs/nfs4super.o
+  CC      drivers/acpi/acpica/tbfind.o
+  CC      drivers/ptp/ptp_clock.o
+  CC      drivers/ptp/ptp_chardev.o
+  CC      kernel/task_work.o
+  CC [M]  drivers/gpu/drm/xe/xe_gsc_debugfs.o
+  CC      drivers/usb/core/driver.o
+  CC      fs/nfs/nfs4file.o
+  CC      drivers/i2c/i2c-core-acpi.o
+  CC      drivers/input/mouse/alps.o
+  CC      drivers/acpi/acpica/tbinstal.o
+  CC [M]  net/netfilter/nf_log_syslog.o
+  CC      drivers/i2c/i2c-smbus.o
+  CC      drivers/acpi/acpica/tbprint.o
+  CC      drivers/acpi/acpica/tbutils.o
+  CC      drivers/usb/mon/mon_stat.o
+  CC      drivers/ptp/ptp_sysfs.o
+  CC      arch/x86/kernel/reboot.o
+  CC      kernel/extable.o
+  CC      lib/lwq.o
+  AR      drivers/net/phy/built-in.a
+  CC      drivers/gpu/drm/i915/i915_memcpy.o
+  CC      drivers/input/input-compat.o
+  CC      fs/select.o
+  CC      drivers/rtc/rtc-cmos.o
+  CC      drivers/usb/core/config.o
+  CC      drivers/gpu/drm/i915/i915_mm.o
+  CC      arch/x86/kernel/msr.o
+  CC [M]  drivers/gpu/drm/xe/xe_gsc_proxy.o
+  CC [M]  net/netfilter/xt_mark.o
+  CC      drivers/ata/ata_piix.o
+  AR      drivers/net/ethernet/fujitsu/built-in.a
+  CC      drivers/usb/mon/mon_text.o
+  CC      drivers/input/mouse/byd.o
+  CC      kernel/params.o
+  CC      net/ipv4/inet_fragment.o
+  CC      drivers/acpi/acpica/tbxface.o
+  CC      lib/memweight.o
+  CC      net/core/dst_cache.o
+  CC      lib/kfifo.o
+  CC      drivers/base/swnode.o
+  CC      mm/page_frag_cache.o
+  CC      drivers/power/supply/power_supply_core.o
+  CC      net/ipv6/netfilter.o
+  CC      fs/nfs/delegation.o
+  CC      fs/ext4/xattr_user.o
+  CC      drivers/acpi/acpica/tbxfload.o
+  CC      fs/dcache.o
+  CC      drivers/ata/pata_amd.o
+  CC      arch/x86/kernel/cpuid.o
+  CC      arch/x86/kernel/early-quirks.o
+  CC      net/ipv6/proc.o
+  CC      net/ipv6/syncookies.o
+  AR      drivers/net/ethernet/fungible/built-in.a
+  CC      fs/nfs/nfs4idmap.o
+  CC      drivers/power/supply/power_supply_sysfs.o
+  CC      net/mac80211/rx.o
+  CC      lib/percpu-refcount.o
+  AR      drivers/net/ethernet/google/built-in.a
+  CC      drivers/hwmon/hwmon.o
+  CC      drivers/ptp/ptp_vclock.o
+  AR      drivers/thermal/broadcom/built-in.a
+  CC      drivers/scsi/scsi_sysfs.o
+  AR      drivers/thermal/renesas/built-in.a
+  AR      drivers/thermal/samsung/built-in.a
+  CC      drivers/thermal/intel/intel_tcc.o
+  CC      net/core/gro_cells.o
+  AR      drivers/thermal/st/built-in.a
+  CC      drivers/ata/pata_oldpiix.o
+  CC      drivers/acpi/acpica/tbxfroot.o
+  CC      drivers/thermal/intel/therm_throt.o
+  CC      lib/rhashtable.o
+  CC      net/ipv6/calipso.o
+  AR      drivers/i2c/built-in.a
+  CC      fs/nfs/callback.o
+  CC      drivers/gpu/drm/i915/i915_sw_fence.o
+  AR      drivers/rtc/built-in.a
+  CC      drivers/input/mouse/logips2pp.o
+  CC      drivers/usb/mon/mon_bin.o
+  CC      drivers/usb/host/pci-quirks.o
+  CC [M]  drivers/gpu/drm/xe/xe_gsc_submit.o
+  CC      drivers/gpu/drm/i915/i915_sw_fence_work.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_ccs_mode.o
+  CC      drivers/usb/class/usblp.o
+  CC [M]  drivers/thermal/intel/x86_pkg_temp_thermal.o
+  CC      drivers/usb/storage/scsiglue.o
+  CC      drivers/usb/host/ehci-hcd.o
+  CC      drivers/usb/host/ehci-pci.o
+  CC      drivers/usb/core/file.o
+  CC [M]  net/netfilter/xt_nat.o
+  CC      kernel/kthread.o
+  CC      drivers/acpi/acpica/utaddress.o
+  CC      drivers/base/faux.o
+  CC      net/ipv6/ah6.o
+  CC      drivers/power/supply/power_supply_leds.o
+  CC      drivers/gpu/drm/drm_file.o
+  CC      fs/nfs/callback_xdr.o
+  CC      drivers/ptp/ptp_kvm_x86.o
+  CC      arch/x86/kernel/smp.o
+  CC      net/ipv4/ping.o
+  CC      drivers/acpi/acpica/utalloc.o
+  CC      drivers/net/net_failover.o
+  CC      drivers/ata/pata_sch.o
+  CC      drivers/gpu/drm/i915/i915_syncmap.o
+  CC      drivers/usb/host/ohci-hcd.o
+  CC      drivers/power/supply/power_supply_hwmon.o
+  CC      drivers/input/mouse/lifebook.o
+  CC      drivers/input/mouse/trackpoint.o
+  CC      drivers/base/auxiliary.o
+  CC      drivers/acpi/evged.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
+  CC      mm/init-mm.o
+  CC      mm/memblock.o
+  CC      drivers/acpi/acpica/utascii.o
+  CC      drivers/usb/core/buffer.o
+  CC      net/core/failover.o
+  CC      drivers/gpu/drm/drm_fourcc.o
+  CC      mm/slub.o
+  CC      drivers/usb/core/sysfs.o
+  CC      drivers/input/input-mt.o
+  AR      drivers/thermal/intel/built-in.a
+  AR      drivers/thermal/qcom/built-in.a
+  AR      drivers/thermal/tegra/built-in.a
+  AR      drivers/thermal/mediatek/built-in.a
+  CC      drivers/thermal/thermal_core.o
+  AR      drivers/scsi/built-in.a
+  CC      lib/base64.o
+  CC      drivers/acpi/sysfs.o
+  CC      net/ipv6/esp6.o
+  CC      drivers/ata/pata_mpiix.o
+  CC      drivers/base/devtmpfs.o
+  CC      drivers/usb/storage/protocol.o
+  CC      drivers/gpu/drm/i915/i915_user_extensions.o
+  CC      drivers/input/mouse/cypress_ps2.o
+  AR      drivers/hwmon/built-in.a
+  CC      mm/madvise.o
+  AR      drivers/usb/mon/built-in.a
+  CC      drivers/acpi/acpica/utbuffer.o
+  AR      drivers/power/supply/built-in.a
+  CC      drivers/gpu/drm/drm_framebuffer.o
+  AR      drivers/power/built-in.a
+  CC      drivers/ptp/ptp_kvm_common.o
+  CC      lib/once.o
+  CC      kernel/sys_ni.o
+  AR      drivers/usb/class/built-in.a
+  CC      drivers/base/module.o
+  CC      fs/ext4/fast_commit.o
+  CC      fs/inode.o
+  CC      net/ipv4/ip_tunnel_core.o
+  CC      drivers/input/input-poller.o
+  CC      arch/x86/kernel/smpboot.o
+  CC      net/ipv6/sit.o
+  CC      net/ipv6/addrconf_core.o
+  CC [M]  net/netfilter/xt_LOG.o
+  CC      arch/x86/kernel/tsc_sync.o
+  CC      drivers/base/auxiliary_sysfs.o
+  CC      drivers/thermal/thermal_sysfs.o
+  CC      net/ipv4/gre_offload.o
+  CC      fs/ext4/orphan.o
+  CC      drivers/acpi/property.o
+  CC      drivers/gpu/drm/i915/i915_debugfs.o
+  CC      drivers/acpi/acpica/utcksum.o
+  CC      lib/refcount.o
+  CC      lib/rcuref.o
+  CC      fs/nfs/callback_proc.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_freq.o
+  CC      drivers/gpu/drm/i915/i915_debugfs_params.o
+  AR      drivers/net/ethernet/hisilicon/built-in.a
+  CC      drivers/gpu/drm/i915/i915_pmu.o
+  CC      fs/nfs/nfs4namespace.o
+  CC      kernel/nsproxy.o
+  CC      arch/x86/kernel/setup_percpu.o
+  CC      fs/attr.o
+  CC      fs/ext4/acl.o
+  CC      mm/page_io.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_idle.o
+  CC      drivers/usb/storage/transport.o
+  CC      lib/usercopy.o
+  CC      fs/bad_inode.o
+  CC      drivers/input/mouse/psmouse-smbus.o
+  AR      drivers/ptp/built-in.a
+  CC      drivers/ata/ata_generic.o
+  AR      drivers/watchdog/built-in.a
+  AR      net/core/built-in.a
+  AR      drivers/usb/misc/built-in.a
+  CC      drivers/base/devcoredump.o
+  CC      fs/ext4/xattr_security.o
+  CC      fs/nfs/nfs4getroot.o
+  CC      drivers/usb/storage/usb.o
+  CC      drivers/usb/core/endpoint.o
+  CC      drivers/acpi/acpica/utcopy.o
+  CC      net/ipv6/exthdrs_core.o
+  CC      drivers/usb/storage/initializers.o
+  CC      drivers/usb/storage/sierra_ms.o
+  CC      drivers/acpi/debugfs.o
+  CC      lib/errseq.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
+  CC      lib/bucket_locks.o
+  CC      fs/file.o
+  CC      drivers/md/md.o
+  CC      drivers/usb/early/ehci-dbgp.o
+  CC      drivers/acpi/acpica/utexcep.o
+  CC      drivers/md/md-bitmap.o
+  CC      drivers/acpi/acpica/utdebug.o
+  CC      drivers/usb/core/devio.o
+  CC      mm/swap_state.o
+  CC      drivers/gpu/drm/drm_gem.o
+  AR      drivers/net/ethernet/huawei/built-in.a
+  CC      lib/generic-radix-tree.o
+  CC      drivers/md/md-autodetect.o
+  AR      drivers/net/ethernet/broadcom/built-in.a
+  CC      drivers/base/platform-msi.o
+  CC      drivers/input/ff-core.o
+  CC      arch/x86/kernel/mpparse.o
+  CC      drivers/net/ethernet/intel/e1000/e1000_main.o
+  CC      drivers/thermal/thermal_trip.o
+  CC [M]  net/netfilter/xt_MASQUERADE.o
+  AR      drivers/ata/built-in.a
+  CC      net/ipv6/ip6_checksum.o
+  CC      drivers/net/ethernet/intel/e1000/e1000_hw.o
+  CC      lib/bitmap-str.o
+  CC      drivers/net/ethernet/intel/e1000e/82571.o
+  CC      kernel/notifier.o
+  CC      drivers/usb/core/notify.o
+  CC      drivers/gpu/drm/drm_ioctl.o
+  AR      drivers/input/mouse/built-in.a
+  CC      drivers/input/touchscreen.o
+  CC      drivers/usb/host/ohci-pci.o
+  CC      drivers/usb/core/generic.o
+  CC      drivers/usb/core/quirks.o
+  CC      net/ipv4/metrics.o
+  CC      net/ipv4/netlink.o
+  AR      drivers/net/ethernet/i825xx/built-in.a
+  CC [M]  net/netfilter/xt_addrtype.o
+  CC      fs/filesystems.o
+  CC      drivers/acpi/acpica/utdecode.o
+  CC      drivers/net/ethernet/intel/e1000/e1000_ethtool.o
+  CC      drivers/usb/host/uhci-hcd.o
+  CC      net/mac80211/spectmgmt.o
+  CC      drivers/cpufreq/cpufreq.o
+  CC      drivers/usb/storage/option_ms.o
+  CC      drivers/net/ethernet/intel/e1000e/ich8lan.o
+  CC      drivers/thermal/thermal_helpers.o
+  CC      fs/nfs/nfs4client.o
+  CC      drivers/gpu/drm/i915/gt/gen2_engine_cs.o
+  CC      drivers/usb/core/devices.o
+  CC      drivers/acpi/acpica/utdelete.o
+  CC      drivers/base/physical_location.o
+  CC      mm/swapfile.o
+  CC      drivers/usb/host/xhci.o
+  CC      kernel/ksysfs.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
+  CC      net/ipv6/ip6_icmp.o
+  AR      drivers/usb/early/built-in.a
+  CC      fs/namespace.o
+  CC      drivers/input/ff-memless.o
+  CC      fs/nfs/nfs4session.o
+  CC      lib/string_helpers.o
+  CC      drivers/net/ethernet/intel/e1000e/80003es2lan.o
+  AR      fs/ext4/built-in.a
+  CC      drivers/usb/core/phy.o
+  CC      drivers/base/trace.o
+  CC      drivers/net/ethernet/intel/e100.o
+  CC      drivers/cpufreq/freq_table.o
+  CC      drivers/usb/storage/usual-tables.o
+  CC      drivers/thermal/thermal_thresholds.o
+  CC      mm/dmapool.o
+  CC      drivers/acpi/acpica/uterror.o
+  CC      drivers/gpu/drm/drm_lease.o
+  CC      drivers/net/ethernet/intel/e1000/e1000_param.o
+  CC      drivers/input/sparse-keymap.o
+  CC      net/ipv6/output_core.o
+  CC      net/ipv6/protocol.o
+  CC      arch/x86/kernel/trace_clock.o
+  CC      drivers/acpi/acpica/uteval.o
+  CC      fs/nfs/dns_resolve.o
+  CC      drivers/usb/host/xhci-mem.o
+  CC      drivers/net/ethernet/intel/e1000e/mac.o
+  CC      drivers/acpi/acpi_lpat.o
+  CC      arch/x86/kernel/trace.o
+  CC      lib/hexdump.o
+  CC      drivers/cpufreq/cpufreq_performance.o
+  CC      kernel/cred.o
+  CC      fs/nfs/nfs4trace.o
+  CC      net/ipv6/ip6_offload.o
+  CC      drivers/thermal/thermal_netlink.o
+  CC      net/ipv4/nexthop.o
+  AR      drivers/usb/storage/built-in.a
+  CC      net/ipv4/udp_tunnel_stub.o
+  CC      drivers/gpu/drm/i915/gt/gen6_engine_cs.o
+  CC      net/ipv4/ip_tunnel.o
+  CC      net/ipv6/tcpv6_offload.o
+  CC      drivers/cpuidle/governors/menu.o
+  CC      drivers/gpu/drm/drm_managed.o
+  AR      net/netfilter/built-in.a
+  CC      net/mac80211/tx.o
+  CC      drivers/acpi/acpica/utglobal.o
+  CC      drivers/usb/host/xhci-ext-caps.o
+  CC      drivers/usb/host/xhci-ring.o
+  CC      net/ipv6/exthdrs_offload.o
+  AR      drivers/base/built-in.a
+  CC      drivers/input/vivaldi-fmap.o
+  CC      lib/kstrtox.o
+  CC      kernel/reboot.o
+  CC      drivers/cpuidle/cpuidle.o
+  CC      drivers/usb/host/xhci-hub.o
+  CC      lib/iomap.o
+  CC      arch/x86/kernel/rethook.o
+  CC      mm/hugetlb.o
+  CC      net/ipv4/sysctl_net_ipv4.o
+  CC      drivers/usb/core/port.o
+  CC      drivers/cpuidle/governors/haltpoll.o
+  CC      drivers/acpi/acpica/uthex.o
+  CC      kernel/async.o
+  AR      drivers/mmc/built-in.a
+  CC      fs/seq_file.o
+  CC      fs/xattr.o
+  CC      drivers/input/input-leds.o
+  CC      drivers/cpufreq/cpufreq_userspace.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
+  CC      drivers/gpu/drm/i915/gt/gen6_ppgtt.o
+  CC      drivers/thermal/thermal_hwmon.o
+  CC      kernel/range.o
+  AR      drivers/net/ethernet/microsoft/built-in.a
+  CC      fs/nfs/nfs4sysctl.o
+  CC      net/mac80211/key.o
+  CC      kernel/smpboot.o
+  CC      drivers/thermal/gov_step_wise.o
+  CC      drivers/acpi/acpi_pcc.o
+  CC      kernel/ucount.o
+  CC      arch/x86/kernel/vmcore_info_32.o
+  CC      arch/x86/kernel/machine_kexec_32.o
+  CC      drivers/acpi/acpica/utids.o
+  CC      net/ipv4/proc.o
+  CC      drivers/usb/core/hcd-pci.o
+  AR      drivers/net/ethernet/litex/built-in.a
+  CC      drivers/gpu/drm/i915/gt/gen7_renderclear.o
+  CC      net/mac80211/util.o
+  CC      drivers/cpufreq/cpufreq_ondemand.o
+  CC      net/ipv6/inet6_hashtables.o
+  CC      drivers/cpuidle/driver.o
+  CC      lib/iomap_copy.o
+  CC      drivers/md/dm.o
+  CC      drivers/cpufreq/cpufreq_governor.o
+  CC      drivers/input/evdev.o
+  CC      drivers/md/dm-table.o
+  AR      drivers/ufs/built-in.a
+  CC      mm/mmu_notifier.o
+  CC      drivers/cpuidle/governor.o
+  CC      lib/devres.o
+  CC      drivers/md/dm-target.o
+  CC      drivers/usb/host/xhci-dbg.o
+  AR      drivers/thermal/built-in.a
+  CC      drivers/acpi/acpica/utinit.o
+  CC      drivers/gpu/drm/i915/gt/gen8_engine_cs.o
+  CC      kernel/regset.o
+  CC      drivers/gpu/drm/drm_mm.o
+  CC      drivers/cpuidle/sysfs.o
+  AR      drivers/cpuidle/governors/built-in.a
+  CC      lib/check_signature.o
+  AS      arch/x86/kernel/relocate_kernel_32.o
+  AR      drivers/firmware/arm_ffa/built-in.a
+  CC      net/mac80211/parse.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_throttle.o
+  CC      drivers/cpufreq/cpufreq_governor_attr_set.o
+  AR      drivers/firmware/arm_scmi/built-in.a
+  CC      net/ipv6/mcast_snoop.o
+  AR      drivers/firmware/broadcom/built-in.a
+  CC      drivers/net/ethernet/intel/e1000e/manage.o
+  AR      drivers/firmware/cirrus/test/built-in.a
+  AR      drivers/firmware/cirrus/built-in.a
+  CC      mm/migrate.o
+  AR      drivers/firmware/meson/built-in.a
+  AR      drivers/firmware/microchip/built-in.a
+  CC      arch/x86/kernel/module.o
+  CC      mm/page_counter.o
+  CC      kernel/ksyms_common.o
+  AR      drivers/crypto/stm32/built-in.a
+  CC      drivers/firmware/efi/libstub/alignedmem.o
+  AR      drivers/crypto/inside-secure/eip93/built-in.a
+  AR      drivers/crypto/inside-secure/built-in.a
+  AR      drivers/crypto/xilinx/built-in.a
+  AR      drivers/crypto/hisilicon/built-in.a
+  AR      drivers/crypto/intel/keembay/built-in.a
+  AR      drivers/crypto/intel/ixp4xx/built-in.a
+  CC      drivers/acpi/acpica/utlock.o
+  AR      drivers/crypto/intel/built-in.a
+  CC      drivers/firmware/efi/efi-bgrt.o
+  AR      drivers/crypto/starfive/built-in.a
+  AR      drivers/crypto/cavium/built-in.a
+  AR      drivers/crypto/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
+  CC      fs/libfs.o
+  AR      drivers/net/ethernet/intel/e1000/built-in.a
+  CC      lib/interval_tree.o
+  CC      drivers/clocksource/acpi_pm.o
+  CC      drivers/firmware/efi/efi.o
+  CC      drivers/gpu/drm/drm_mode_config.o
+  CC      drivers/usb/core/usb-acpi.o
+  CC      kernel/groups.o
+  CC      kernel/kcmp.o
+  CC      fs/fs-writeback.o
+  CC      net/mac80211/wme.o
+  CC      net/ipv4/fib_rules.o
+  CC      net/ipv4/ipmr.o
+  CC      drivers/cpuidle/poll_state.o
+  CC      drivers/cpufreq/acpi-cpufreq.o
+  CC      kernel/freezer.o
+  CC      drivers/acpi/acpica/utmath.o
+  CC      drivers/gpu/drm/i915/gt/gen8_ppgtt.o
+  CC      mm/hugetlb_cgroup.o
+  CC      lib/assoc_array.o
+  CC      drivers/acpi/ac.o
+  CC      drivers/net/ethernet/intel/e1000e/nvm.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
+  CC      arch/x86/kernel/doublefault_32.o
+  CC      drivers/cpuidle/cpuidle-haltpoll.o
+  AR      drivers/net/ethernet/marvell/octeon_ep/built-in.a
+  AR      drivers/net/ethernet/marvell/octeon_ep_vf/built-in.a
+  CC      drivers/firmware/efi/libstub/efi-stub-helper.o
+  AR      drivers/net/ethernet/marvell/octeontx2/built-in.a
+  AR      drivers/input/built-in.a
+  AR      drivers/net/ethernet/marvell/prestera/built-in.a
+  CC      drivers/net/ethernet/marvell/sky2.o
+  CC      drivers/net/ethernet/intel/e1000e/phy.o
+  CC      drivers/net/ethernet/intel/e1000e/param.o
+  CC      drivers/cpufreq/amd-pstate.o
+  CC      lib/bitrev.o
+  CC      drivers/md/dm-linear.o
+  CC      drivers/acpi/acpica/utmisc.o
+  CC      drivers/gpu/drm/i915/gt/intel_breadcrumbs.o
+  CC      drivers/clocksource/i8253.o
+  CC      drivers/usb/host/xhci-trace.o
+  AR      drivers/firmware/imx/built-in.a
+  CC      drivers/firmware/efi/libstub/file.o
+  AR      drivers/usb/core/built-in.a
+  CC      drivers/firmware/efi/libstub/gop.o
+  AR      net/ipv6/built-in.a
+  CC      net/ipv4/ipmr_base.o
+  CC      fs/pnode.o
+  CC      net/mac80211/chan.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc.o
+  CC      drivers/firmware/efi/libstub/lib-cmdline.o
+  CC      drivers/net/ethernet/intel/e1000e/ethtool.o
+  AR      drivers/net/ethernet/mellanox/built-in.a
+  CC      drivers/acpi/button.o
+  CC      fs/splice.o
+  AR      drivers/cpuidle/built-in.a
+  CC      drivers/gpu/drm/drm_mode_object.o
+  CC      mm/early_ioremap.o
+  CC      kernel/profile.o
+  CC      drivers/acpi/acpica/utmutex.o
+  CC      mm/page_ext.o
+  CC      drivers/hid/usbhid/hid-core.o
+  CC      drivers/cpufreq/amd-pstate-trace.o
+  CC      kernel/stacktrace.o
+  CC      lib/crc-ccitt.o
+  AR      drivers/clocksource/built-in.a
+  CC      drivers/firmware/efi/libstub/lib-ctype.o
+  CC      drivers/hid/usbhid/hiddev.o
+  CC      drivers/acpi/acpica/utnonansi.o
+  CC      drivers/acpi/fan_core.o
+  CC      drivers/gpu/drm/i915/gt/intel_context.o
+  CC      drivers/cpufreq/intel_pstate.o
+  CC      drivers/usb/host/xhci-debugfs.o
+  CC      drivers/net/ethernet/intel/e1000e/netdev.o
+  AR      drivers/firmware/psci/built-in.a
+  CC      arch/x86/kernel/early_printk.o
+  AR      fs/nfs/built-in.a
+  AR      drivers/net/ethernet/meta/built-in.a
+  CC      drivers/hid/usbhid/hid-pidff.o
+  CC      drivers/mailbox/mailbox.o
+  AR      drivers/platform/x86/amd/built-in.a
+  AR      drivers/perf/built-in.a
+  AR      drivers/platform/x86/intel/built-in.a
+  CC      drivers/firmware/efi/vars.o
+  CC      drivers/md/dm-stripe.o
+  AR      drivers/platform/x86/tuxedo/nb04/built-in.a
+  AR      drivers/platform/x86/tuxedo/built-in.a
+  AR      drivers/platform/surface/built-in.a
+  CC      net/mac80211/trace.o
+  CC      drivers/platform/x86/wmi.o
+  CC      drivers/md/dm-ioctl.o
+  CC      drivers/platform/x86/wmi-bmof.o
+  CC      lib/crc16.o
+  CC      drivers/platform/x86/eeepc-laptop.o
+  CC      drivers/platform/x86/p2sb.o
+  CC      drivers/acpi/acpica/utobject.o
+  CC      drivers/firmware/efi/libstub/mem.o
+  CC      fs/sync.o
+  CC      drivers/gpu/drm/drm_modes.o
+  CC      drivers/acpi/fan_attr.o
+  CC      mm/secretmem.o
+  CC      kernel/dma.o
+  AR      drivers/hwtracing/intel_th/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
+  CC      drivers/hid/hid-core.o
+  CC      drivers/md/dm-io.o
+  AR      drivers/net/ethernet/micrel/built-in.a
+  AR      drivers/firmware/qcom/built-in.a
+  CC      net/ipv4/syncookies.o
+  CC      mm/hmm.o
+  CC      fs/utimes.o
+  CC      drivers/mailbox/pcc.o
+  HOSTCC  lib/gen_crc32table
+  CC      drivers/net/ethernet/intel/e1000e/ptp.o
+  CC      drivers/gpu/drm/drm_modeset_lock.o
+  CC      lib/xxhash.o
+  CC      drivers/firmware/efi/libstub/pci.o
+  CC      kernel/smp.o
+  CC      drivers/acpi/acpica/utosi.o
+  CC      drivers/acpi/fan_hwmon.o
+  AR      drivers/net/ethernet/microchip/built-in.a
+  CC      drivers/usb/host/xhci-pci.o
+  CC      drivers/acpi/acpica/utownerid.o
+  CC      arch/x86/kernel/hpet.o
+  CC      drivers/gpu/drm/i915/gt/intel_context_sseu.o
+  CC      lib/genalloc.o
+  CC      drivers/hid/hid-input.o
+  CC      fs/d_path.o
+  CC      net/mac80211/mlme.o
+  CC      drivers/firmware/efi/reboot.o
+  CC      drivers/firmware/efi/libstub/printk.o
+  CC      drivers/acpi/acpica/utpredef.o
+  CC      arch/x86/kernel/amd_nb.o
+  CC      mm/memfd.o
+  CC      drivers/hid/hid-quirks.o
+  CC      lib/percpu_counter.o
+  AR      drivers/mailbox/built-in.a
+  CC      drivers/gpu/drm/i915/gt/intel_engine_cs.o
+  CC      fs/stack.o
+  CC      kernel/uid16.o
+  CC      lib/audit.o
+  CC      mm/execmem.o
+  AR      drivers/net/ethernet/mscc/built-in.a
+  CC      lib/syscall.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc_buf.o
+  AR      drivers/hid/usbhid/built-in.a
+  CC      drivers/hid/hid-debug.o
+  CC      drivers/gpu/drm/i915/gt/intel_engine_heartbeat.o
+  CC      drivers/acpi/acpi_video.o
+  AR      drivers/android/built-in.a
+  CC      net/ipv4/tunnel4.o
+  AR      drivers/nvmem/layouts/built-in.a
+  CC      drivers/acpi/acpica/utresdecode.o
+  CC      drivers/nvmem/core.o
+  AR      drivers/platform/x86/built-in.a
+  AR      drivers/platform/built-in.a
+  CC      lib/errname.o
+  AR      drivers/firmware/samsung/built-in.a
+  CC      drivers/firmware/efi/memattr.o
+  CC      kernel/kallsyms.o
+  AR      drivers/firmware/smccc/built-in.a
+  CC      drivers/firmware/efi/libstub/random.o
+  CC      arch/x86/kernel/amd_node.o
+  CC      drivers/acpi/acpica/utresrc.o
+  CC      drivers/acpi/video_detect.o
+  CC      net/ipv4/ipconfig.o
+  CC      drivers/gpu/drm/i915/gt/intel_engine_pm.o
+  CC      fs/fs_struct.o
+  CC      kernel/acct.o
+  CC      drivers/hid/hidraw.o
+  CC      drivers/acpi/processor_driver.o
+  CC      drivers/acpi/acpica/utstate.o
+  AR      drivers/firmware/tegra/built-in.a
+  CC      drivers/firmware/efi/tpm.o
+  CC      drivers/acpi/acpica/utstring.o
+  CC      drivers/md/dm-kcopyd.o
+  CC      drivers/hid/hid-generic.o
+  CC      net/mac80211/tdls.o
+  CC      kernel/vmcore_info.o
+  AR      drivers/net/ethernet/myricom/built-in.a
+  CC      lib/nlattr.o
+  CC      drivers/firmware/efi/libstub/randomalloc.o
+  AR      drivers/firmware/xilinx/built-in.a
+  CC      drivers/hid/hid-a4tech.o
+  CC      arch/x86/kernel/kvm.o
+  CC      kernel/elfcorehdr.o
+  CC      lib/cpu_rmap.o
+  CC      net/ipv4/netfilter.o
+  CC      drivers/firmware/efi/memmap.o
+  AR      drivers/net/ethernet/natsemi/built-in.a
+  CC      lib/dynamic_queue_limits.o
+  CC      drivers/acpi/processor_thermal.o
+  CC      drivers/gpu/drm/drm_plane.o
+  CC      drivers/firmware/efi/capsule.o
+  AR      mm/built-in.a
+  AR      drivers/cpufreq/built-in.a
+  CC      drivers/acpi/acpica/utstrsuppt.o
+  CC      drivers/acpi/acpica/utstrtoul64.o
+  CC      drivers/firmware/dmi_scan.o
+  CC      drivers/acpi/processor_idle.o
+  AR      drivers/net/ethernet/neterion/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_guc_capture.o
+  CC      drivers/firmware/efi/libstub/relocate.o
+  CC      drivers/gpu/drm/i915/gt/intel_engine_user.o
+  CC      fs/statfs.o
+  CC      drivers/md/dm-sysfs.o
+  CC      drivers/firmware/dmi-id.o
+  CC      arch/x86/kernel/kvmclock.o
+  AR      drivers/usb/host/built-in.a
+  AR      drivers/usb/built-in.a
+  AR      drivers/net/ethernet/marvell/built-in.a
+  CC      net/ipv4/tcp_cubic.o
+  CC      lib/glob.o
+  CC      drivers/acpi/acpica/utxface.o
+  CC      net/mac80211/ocb.o
+  CC      drivers/hid/hid-apple.o
+  CC      drivers/firmware/efi/esrt.o
+  CC      drivers/firmware/efi/libstub/secureboot.o
+  CC      fs/fs_pin.o
+  CC      kernel/kexec_core.o
+  CC      drivers/gpu/drm/i915/gt/intel_execlists_submission.o
+  AR      drivers/nvmem/built-in.a
+  CC      arch/x86/kernel/paravirt.o
+  CC      lib/strncpy_from_user.o
+  CC      drivers/hid/hid-belkin.o
+  CC      drivers/acpi/processor_throttling.o
+  CC      net/ipv4/tcp_sigpool.o
+  CC      drivers/acpi/acpica/utxfinit.o
+  CC      drivers/acpi/processor_perflib.o
+  CC      fs/nsfs.o
+  CC      lib/strnlen_user.o
+  CC      net/ipv4/cipso_ipv4.o
+  CC      drivers/firmware/efi/runtime-wrappers.o
+  CC      fs/fs_types.o
+  CC      drivers/md/dm-stats.o
+  CC      net/mac80211/airtime.o
+  CC      drivers/gpu/drm/i915/gt/intel_ggtt.o
+  CC      lib/net_utils.o
+  CC      net/ipv4/xfrm4_policy.o
+  CC      net/ipv4/xfrm4_state.o
+  CC      net/ipv4/xfrm4_input.o
+  CC      arch/x86/kernel/pvclock.o
+  CC      drivers/hid/hid-cherry.o
+  CC      kernel/kexec.o
+  CC      drivers/firmware/memmap.o
+  CC      drivers/acpi/acpica/utxferror.o
+  CC      fs/fs_context.o
+  CC      drivers/gpu/drm/drm_prime.o
+  CC      fs/fs_parser.o
+  CC      drivers/firmware/efi/libstub/skip_spaces.o
+  CC      drivers/acpi/acpica/utxfmutex.o
+  CC      drivers/firmware/efi/capsule-loader.o
+  CC      drivers/firmware/efi/libstub/smbios.o
+  CC      net/ipv4/xfrm4_output.o
+  CC      fs/fsopen.o
+  CC      lib/sg_pool.o
+  CC      drivers/firmware/efi/earlycon.o
+  CC      drivers/firmware/efi/libstub/tpm.o
+  AR      drivers/net/ethernet/netronome/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
+  CC      drivers/md/dm-rq.o
+  CC      lib/stackdepot.o
+  CC      kernel/utsname.o
+  AR      drivers/net/ethernet/ni/built-in.a
+  CC      drivers/gpu/drm/i915/gt/intel_ggtt_fencing.o
+  CC      fs/init.o
+  CC      drivers/firmware/efi/libstub/vsprintf.o
+  CC      drivers/acpi/container.o
+  CC      kernel/pid_namespace.o
+  CC      lib/asn1_decoder.o
+  CC      drivers/hid/hid-chicony.o
+  CC      drivers/net/ethernet/nvidia/forcedeth.o
+  CC      kernel/stop_machine.o
+  CC      drivers/firmware/efi/libstub/x86-stub.o
+  AR      drivers/acpi/acpica/built-in.a
+  CC      kernel/audit.o
+  CC      arch/x86/kernel/pcspeaker.o
+  AR      drivers/net/ethernet/oki-semi/built-in.a
+  CC      net/mac80211/eht.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc_db_mgr.o
+  CC      net/ipv4/xfrm4_protocol.o
+  CC      drivers/gpu/drm/drm_print.o
+  CC      drivers/hid/hid-cypress.o
+  CC      fs/kernel_read_file.o
+  CC      drivers/gpu/drm/i915/gt/intel_gt.o
+  CC      kernel/auditfilter.o
+  GEN     lib/oid_registry_data.c
+  CC      arch/x86/kernel/check.o
+  CC      lib/ucs2_string.o
+  CC      drivers/acpi/thermal_lib.o
+  AR      drivers/net/ethernet/packetengines/built-in.a
+  AR      drivers/net/ethernet/qlogic/built-in.a
+  CC      drivers/gpu/drm/drm_property.o
+  CC      kernel/auditsc.o
+  CC      kernel/audit_watch.o
+  CC      drivers/hid/hid-ezkey.o
+  CC      drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.o
+  CC      fs/mnt_idmapping.o
+  CC      drivers/md/dm-io-rewind.o
+  CC      lib/sbitmap.o
+  CC      drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.o
+  CC      drivers/hid/hid-gyration.o
+  AR      drivers/net/ethernet/qualcomm/emac/built-in.a
+  AR      drivers/net/ethernet/qualcomm/built-in.a
+  CC      net/mac80211/led.o
+  CC      drivers/md/dm-builtin.o
+  STUBCPY drivers/firmware/efi/libstub/alignedmem.stub.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc_engine_activity.o
+  AR      drivers/firmware/efi/built-in.a
+  CC      drivers/gpu/drm/drm_rect.o
+  CC      fs/remap_range.o
+  CC      kernel/audit_fsnotify.o
+  CC      drivers/acpi/thermal.o
+  CC      arch/x86/kernel/uprobes.o
+  STUBCPY drivers/firmware/efi/libstub/efi-stub-helper.stub.o
+  CC      drivers/gpu/drm/i915/gt/intel_gt_clock_utils.o
+  CC      drivers/hid/hid-ite.o
+  CC      fs/pidfs.o
+  CC      net/mac80211/pm.o
+  CC      drivers/net/ethernet/realtek/8139too.o
+  CC      drivers/acpi/nhlt.o
+  CC      drivers/gpu/drm/i915/gt/intel_gt_debugfs.o
+  CC      arch/x86/kernel/perf_regs.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
+  CC      drivers/md/dm-raid1.o
+  CC      arch/x86/kernel/itmt.o
+  STUBCPY drivers/firmware/efi/libstub/file.stub.o
+  STUBCPY drivers/firmware/efi/libstub/gop.stub.o
+  STUBCPY drivers/firmware/efi/libstub/lib-cmdline.stub.o
+  CC      drivers/gpu/drm/drm_syncobj.o
+  STUBCPY drivers/firmware/efi/libstub/lib-ctype.stub.o
+  STUBCPY drivers/firmware/efi/libstub/mem.stub.o
+  STUBCPY drivers/firmware/efi/libstub/pci.stub.o
+  CC      kernel/audit_tree.o
+  STUBCPY drivers/firmware/efi/libstub/printk.stub.o
+  STUBCPY drivers/firmware/efi/libstub/random.stub.o
+  STUBCPY drivers/firmware/efi/libstub/randomalloc.stub.o
+  CC      lib/group_cpus.o
+  STUBCPY drivers/firmware/efi/libstub/relocate.stub.o
+  CC      arch/x86/kernel/umip.o
+  CC      drivers/hid/hid-kensington.o
+  STUBCPY drivers/firmware/efi/libstub/secureboot.stub.o
+  STUBCPY drivers/firmware/efi/libstub/skip_spaces.stub.o
+  STUBCPY drivers/firmware/efi/libstub/smbios.stub.o
+  AR      drivers/net/ethernet/renesas/built-in.a
+  CC      arch/x86/kernel/unwind_frame.o
+  STUBCPY drivers/firmware/efi/libstub/tpm.stub.o
+  AR      drivers/net/ethernet/rdc/built-in.a
+  STUBCPY drivers/firmware/efi/libstub/vsprintf.stub.o
+  CC      kernel/kprobes.o
+  STUBCPY drivers/firmware/efi/libstub/x86-stub.stub.o
+  CC      drivers/net/ethernet/realtek/r8169_main.o
+  AR      drivers/firmware/efi/libstub/lib.a
+  AR      drivers/firmware/built-in.a
+  CC      drivers/acpi/acpi_memhotplug.o
+  CC      drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.o
+  CC      drivers/md/dm-log.o
+  CC      lib/fw_table.o
+  AR      drivers/net/ethernet/intel/e1000e/built-in.a
+  AR      net/ipv4/built-in.a
+  AR      drivers/net/ethernet/intel/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_guc_id_mgr.o
+  AR      drivers/net/ethernet/rocker/built-in.a
+  LDS     arch/x86/kernel/vmlinux.lds
+  CC      drivers/md/dm-region-hash.o
+  CC      fs/buffer.o
+  AR      drivers/net/ethernet/samsung/built-in.a
+  CC      drivers/gpu/drm/i915/gt/intel_gt_irq.o
+  CC      drivers/md/dm-zero.o
+  CC      kernel/seccomp.o
+  CC      net/mac80211/rc80211_minstrel_ht.o
+  CC      drivers/acpi/ioapic.o
+  CC      drivers/net/ethernet/realtek/r8169_firmware.o
+  CC      drivers/acpi/battery.o
+  AR      lib/lib.a
+  GEN     lib/crc32table.h
+  CC      drivers/gpu/drm/i915/gt/intel_gt_mcr.o
+  CC      drivers/gpu/drm/drm_sysfs.o
+  CC      drivers/hid/hid-microsoft.o
+  CC      net/mac80211/wbrf.o
+  AR      drivers/net/ethernet/seeq/built-in.a
+  CC      fs/mpage.o
+  CC      kernel/relay.o
+  CC      drivers/gpu/drm/drm_trace_points.o
+  CC      drivers/gpu/drm/i915/gt/intel_gt_pm.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc_klv_helpers.o
+  CC      drivers/net/ethernet/realtek/r8169_phy_config.o
+  CC      drivers/hid/hid-monterey.o
+  CC      fs/proc_namespace.o
+  CC      drivers/hid/hid-ntrig.o
+  CC      lib/oid_registry.o
+  AR      drivers/net/ethernet/silan/built-in.a
+  CC      drivers/gpu/drm/drm_vblank.o
+  AR      drivers/net/ethernet/sis/built-in.a
+  CC      drivers/gpu/drm/drm_vblank_work.o
+  CC      fs/direct-io.o
+  AR      drivers/net/ethernet/sfc/built-in.a
+  CC      drivers/hid/hid-pl.o
+  CC      drivers/hid/hid-petalynx.o
+  CC      drivers/gpu/drm/drm_vma_manager.o
+  AR      drivers/net/ethernet/smsc/built-in.a
+  CC      drivers/hid/hid-redragon.o
+  CC      kernel/utsname_sysctl.o
+  AR      arch/x86/kernel/built-in.a
+  AR      arch/x86/built-in.a
+  CC      drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
+  CC      drivers/gpu/drm/drm_writeback.o
+  CC      lib/crc32.o
+  AR      drivers/net/ethernet/socionext/built-in.a
+  CC      drivers/hid/hid-samsung.o
+  CC      drivers/acpi/bgrt.o
+  CC      drivers/gpu/drm/drm_panel.o
+  CC      fs/eventpoll.o
+  CC      kernel/delayacct.o
+  CC      drivers/hid/hid-sony.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
+  AR      drivers/md/built-in.a
+  CC      drivers/gpu/drm/i915/gt/intel_gt_pm_irq.o
+  CC      drivers/gpu/drm/i915/gt/intel_gt_requests.o
+  CC      kernel/taskstats.o
+  CC      drivers/hid/hid-sunplus.o
+  CC      drivers/gpu/drm/drm_pci.o
+  AR      drivers/net/ethernet/stmicro/built-in.a
+  CC      drivers/gpu/drm/drm_debugfs.o
+  AR      drivers/net/ethernet/sun/built-in.a
+  CC      kernel/tsacct.o
+  CC      drivers/acpi/spcr.o
+  CC      drivers/gpu/drm/drm_debugfs_crc.o
+  AR      lib/built-in.a
+  CC      kernel/tracepoint.o
+  CC [M]  drivers/gpu/drm/xe/xe_heci_gsc.o
+  CC      kernel/irq_work.o
+  CC      drivers/hid/hid-topseed.o
+  CC      fs/anon_inodes.o
+  CC      drivers/gpu/drm/i915/gt/intel_gt_sysfs.o
+  CC      fs/signalfd.o
+  CC [M]  drivers/gpu/drm/xe/xe_huc.o
+  AR      drivers/net/ethernet/tehuti/built-in.a
+  CC      drivers/gpu/drm/drm_panel_orientation_quirks.o
+  CC      kernel/static_call.o
+  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
+  CC      kernel/padata.o
+  AR      drivers/net/ethernet/ti/built-in.a
+  CC      fs/timerfd.o
+  AR      drivers/net/ethernet/vertexcom/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.o
+  CC      drivers/gpu/drm/drm_buddy.o
+  CC      fs/eventfd.o
+  AR      drivers/net/ethernet/via/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_hw_engine_group.o
+  CC      kernel/jump_label.o
+  CC      fs/aio.o
+  CC      drivers/gpu/drm/drm_gem_shmem_helper.o
+  CC      drivers/gpu/drm/drm_atomic_helper.o
+  CC      drivers/gpu/drm/drm_atomic_state_helper.o
+  CC      fs/locks.o
+  CC      kernel/context_tracking.o
+  CC      drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.o
+  AR      drivers/acpi/built-in.a
+  CC      kernel/iomem.o
+  CC      kernel/rseq.o
+  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
+  AR      drivers/net/ethernet/wangxun/built-in.a
+  CC      fs/binfmt_misc.o
+  AR      drivers/net/ethernet/wiznet/built-in.a
+  CC      drivers/gpu/drm/drm_bridge_helper.o
+  AR      drivers/net/ethernet/xilinx/built-in.a
+  AR      drivers/net/ethernet/nvidia/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_irq.o
+  CC      fs/binfmt_script.o
+  CC      drivers/gpu/drm/drm_crtc_helper.o
+  CC      drivers/gpu/drm/i915/gt/intel_gtt.o
+  CC      drivers/gpu/drm/i915/gt/intel_llc.o
+  CC      fs/binfmt_elf.o
+  AR      drivers/net/ethernet/xircom/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
+  CC      drivers/gpu/drm/drm_damage_helper.o
+  CC      fs/mbcache.o
+  CC      drivers/gpu/drm/i915/gt/intel_lrc.o
+  CC      fs/posix_acl.o
+  AR      drivers/net/ethernet/synopsys/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
+  AR      drivers/net/ethernet/pensando/built-in.a
+  CC      drivers/gpu/drm/i915/gt/intel_migrate.o
+  CC      fs/coredump.o
+  CC      drivers/gpu/drm/i915/gt/intel_mocs.o
+  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
+  CC      fs/drop_caches.o
+  AR      drivers/hid/built-in.a
+  CC      drivers/gpu/drm/i915/gt/intel_ppgtt.o
+  CC      drivers/gpu/drm/drm_flip_work.o
+  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
+  CC      drivers/gpu/drm/i915/gt/intel_rc6.o
+  CC      drivers/gpu/drm/drm_format_helper.o
+  CC      fs/sysctls.o
+  CC      fs/fhandle.o
+  CC [M]  drivers/gpu/drm/xe/xe_module.o
+  CC      drivers/gpu/drm/i915/gt/intel_region_lmem.o
+  CC [M]  drivers/gpu/drm/xe/xe_oa.o
+  CC      drivers/gpu/drm/drm_gem_atomic_helper.o
+  CC      drivers/gpu/drm/i915/gt/intel_renderstate.o
+  CC [M]  drivers/gpu/drm/xe/xe_observation.o
+  CC [M]  drivers/gpu/drm/xe/xe_pat.o
+  CC      drivers/gpu/drm/drm_gem_framebuffer_helper.o
+  CC      drivers/gpu/drm/drm_kms_helper_common.o
+  CC      drivers/gpu/drm/i915/gt/intel_reset.o
+  CC      drivers/gpu/drm/drm_modeset_helper.o
+  CC [M]  drivers/gpu/drm/xe/xe_pci.o
+  CC      drivers/gpu/drm/i915/gt/intel_ring.o
+  CC      drivers/gpu/drm/drm_plane_helper.o
+  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
+  CC      drivers/gpu/drm/i915/gt/intel_ring_submission.o
+  AR      kernel/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_pm.o
+  CC      drivers/gpu/drm/drm_probe_helper.o
+  CC      drivers/gpu/drm/i915/gt/intel_rps.o
+  CC      drivers/gpu/drm/drm_self_refresh_helper.o
+  CC      drivers/gpu/drm/i915/gt/intel_sa_media.o
+  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
+  CC [M]  drivers/gpu/drm/xe/xe_pt.o
+  AR      drivers/net/ethernet/realtek/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
+  AR      drivers/net/ethernet/built-in.a
+  CC      drivers/gpu/drm/drm_simple_kms_helper.o
+  CC      drivers/gpu/drm/i915/gt/intel_sseu.o
+  CC      drivers/gpu/drm/bridge/panel.o
+  CC      drivers/gpu/drm/i915/gt/intel_sseu_debugfs.o
+  CC      drivers/gpu/drm/i915/gt/intel_timeline.o
+  AR      drivers/net/built-in.a
+  CC      drivers/gpu/drm/i915/gt/intel_tlb.o
+  CC      drivers/gpu/drm/drm_mipi_dsi.o
+  CC [M]  drivers/gpu/drm/xe/xe_pxp.o
+  CC [M]  drivers/gpu/drm/xe/xe_pxp_debugfs.o
+  CC      drivers/gpu/drm/i915/gt/intel_wopcm.o
+  CC [M]  drivers/gpu/drm/drm_exec.o
+  CC      drivers/gpu/drm/i915/gt/intel_workarounds.o
+  CC [M]  drivers/gpu/drm/drm_gpuvm.o
+  CC [M]  drivers/gpu/drm/xe/xe_pxp_submit.o
+  CC [M]  drivers/gpu/drm/xe/xe_query.o
+  CC      drivers/gpu/drm/i915/gt/shmem_utils.o
+  CC [M]  drivers/gpu/drm/xe/xe_range_fence.o
+  CC      drivers/gpu/drm/i915/gt/sysfs_engines.o
+  CC [M]  drivers/gpu/drm/drm_suballoc.o
+  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
+  CC      drivers/gpu/drm/i915/gt/intel_ggtt_gmch.o
+  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
+  CC      drivers/gpu/drm/i915/gt/gen6_renderstate.o
+  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
+  CC      drivers/gpu/drm/i915/gt/gen7_renderstate.o
+  CC [M]  drivers/gpu/drm/drm_gem_ttm_helper.o
+  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
+  CC      drivers/gpu/drm/i915/gt/gen8_renderstate.o
+  CC [M]  drivers/gpu/drm/xe/xe_sa.o
+  CC      drivers/gpu/drm/i915/gt/gen9_renderstate.o
+  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
+  CC [M]  drivers/gpu/drm/xe/xe_shrinker.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_busy.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_clflush.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_context.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_create.o
+  CC [M]  drivers/gpu/drm/xe/xe_step.o
+  CC [M]  drivers/gpu/drm/xe/xe_survivability_mode.o
+  AR      net/mac80211/built-in.a
+  CC      drivers/gpu/drm/i915/gem/i915_gem_dmabuf.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_domain.o
+  AR      net/built-in.a
+  CC [M]  drivers/gpu/drm/xe/xe_sync.o
+  CC [M]  drivers/gpu/drm/xe/xe_tile.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_execbuffer.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_internal.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_lmem.o
+  CC [M]  drivers/gpu/drm/xe/xe_tile_sysfs.o
+  AR      fs/built-in.a
+  CC      drivers/gpu/drm/i915/gem/i915_gem_mman.o
+  LD [M]  drivers/gpu/drm/drm_suballoc_helper.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_object.o
+  CC [M]  drivers/gpu/drm/xe/xe_trace.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_pages.o
+  CC [M]  drivers/gpu/drm/xe/xe_trace_bo.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_phys.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_pm.o
+  CC [M]  drivers/gpu/drm/xe/xe_trace_guc.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_region.o
+  CC [M]  drivers/gpu/drm/xe/xe_trace_lrc.o
+  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_shmem.o
+  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_shrinker.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_stolen.o
+  LD [M]  drivers/gpu/drm/drm_ttm_helper.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_throttle.o
+  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_tiling.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_ttm.o
+  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
+  CC [M]  drivers/gpu/drm/xe/xe_uc.o
+  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
+  CC [M]  drivers/gpu/drm/xe/xe_vm.o
+  CC [M]  drivers/gpu/drm/xe/xe_vram.o
+  CC [M]  drivers/gpu/drm/xe/xe_vram_freq.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_ttm_move.o
+  CC [M]  drivers/gpu/drm/xe/xe_vsec.o
+  CC [M]  drivers/gpu/drm/xe/xe_wa.o
+  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.o
+  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_userptr.o
+  CC [M]  drivers/gpu/drm/xe/xe_hmm.o
+  CC      drivers/gpu/drm/i915/gem/i915_gem_wait.o
+  CC      drivers/gpu/drm/i915/gem/i915_gemfs.o
+  CC      drivers/gpu/drm/i915/i915_active.o
+  CC      drivers/gpu/drm/i915/i915_cmd_parser.o
+  CC      drivers/gpu/drm/i915/i915_deps.o
+  CC      drivers/gpu/drm/i915/i915_gem.o
+  CC [M]  drivers/gpu/drm/xe/xe_hwmon.o
+  CC      drivers/gpu/drm/i915/i915_gem_evict.o
+  CC [M]  drivers/gpu/drm/xe/xe_pmu.o
+  CC      drivers/gpu/drm/i915/i915_gem_gtt.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_sriov_vf.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc_relay.o
+  CC [M]  drivers/gpu/drm/xe/xe_memirq.o
+  CC      drivers/gpu/drm/i915/i915_gem_ww.o
+  CC      drivers/gpu/drm/i915/i915_query.o
+  CC [M]  drivers/gpu/drm/xe/xe_sriov.o
+  CC [M]  drivers/gpu/drm/xe/xe_sriov_vf.o
+  CC      drivers/gpu/drm/i915/i915_request.o
+  CC [M]  drivers/gpu/drm/xe/xe_tile_sriov_vf.o
+  CC      drivers/gpu/drm/i915/i915_scheduler.o
+  CC [M]  drivers/gpu/drm/xe/display/ext/i915_irq.o
+  CC      drivers/gpu/drm/i915/i915_trace_points.o
+  CC [M]  drivers/gpu/drm/xe/display/ext/i915_utils.o
+  CC      drivers/gpu/drm/i915/i915_ttm_buddy_manager.o
+  CC [M]  drivers/gpu/drm/xe/display/intel_bo.o
+  CC      drivers/gpu/drm/i915/i915_vma.o
+  CC [M]  drivers/gpu/drm/xe/display/intel_fb_bo.o
+  CC [M]  drivers/gpu/drm/xe/display/intel_fbdev_fb.o
+  CC [M]  drivers/gpu/drm/xe/display/xe_display.o
+  CC      drivers/gpu/drm/i915/i915_vma_resource.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.o
+  CC [M]  drivers/gpu/drm/xe/display/xe_display_misc.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.o
+  CC [M]  drivers/gpu/drm/xe/display/xe_display_rpm.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.o
+  CC [M]  drivers/gpu/drm/xe/display/xe_display_wa.o
+  CC [M]  drivers/gpu/drm/xe/display/xe_dsb_buffer.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.o
+  CC [M]  drivers/gpu/drm/xe/display/xe_fb_pin.o
+  CC [M]  drivers/gpu/drm/xe/display/xe_hdcp_gsc.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc.o
+  CC [M]  drivers/gpu/drm/xe/display/xe_plane_initial.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_ads.o
+  CC [M]  drivers/gpu/drm/xe/display/xe_tdf.o
+  CC [M]  drivers/gpu/drm/xe/i915-soc/intel_dram.o
+  CC [M]  drivers/gpu/drm/xe/i915-soc/intel_rom.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_capture.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/icl_dsi.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_ct.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_alpm.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_fw.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic_plane.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_audio.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_log.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_backlight.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bios.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_rc.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bw.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_submission.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cdclk.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_huc.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cmtg.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_huc_fw.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_color.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_combo_phy.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_uc.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_connector.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.o
+  CC      drivers/gpu/drm/i915/gt/uc/intel_uc_fw.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc.o
+  CC      drivers/gpu/drm/i915/gt/intel_gsc.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc_state_dump.o
+  CC      drivers/gpu/drm/i915/i915_hwmon.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cursor.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cx0_phy.o
+  CC      drivers/gpu/drm/i915/display/hsw_ips.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi.o
+  CC      drivers/gpu/drm/i915/display/i9xx_plane.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi_buf_trans.o
+  CC      drivers/gpu/drm/i915/display/i9xx_display_sr.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display.o
+  CC      drivers/gpu/drm/i915/display/i9xx_wm.o
+  CC      drivers/gpu/drm/i915/display/intel_alpm.o
+  CC      drivers/gpu/drm/i915/display/intel_atomic.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_conversion.o
+  CC      drivers/gpu/drm/i915/display/intel_atomic_plane.o
+  CC      drivers/gpu/drm/i915/display/intel_audio.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_device.o
+  CC      drivers/gpu/drm/i915/display/intel_bios.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_driver.o
+  CC      drivers/gpu/drm/i915/display/intel_bo.o
+  CC      drivers/gpu/drm/i915/display/intel_bw.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_irq.o
+  CC      drivers/gpu/drm/i915/display/intel_cdclk.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_params.o
+  CC      drivers/gpu/drm/i915/display/intel_cmtg.o
+  CC      drivers/gpu/drm/i915/display/intel_color.o
+  CC      drivers/gpu/drm/i915/display/intel_combo_phy.o
+  CC      drivers/gpu/drm/i915/display/intel_connector.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power.o
+  CC      drivers/gpu/drm/i915/display/intel_crtc.o
+  CC      drivers/gpu/drm/i915/display/intel_crtc_state_dump.o
+  CC      drivers/gpu/drm/i915/display/intel_cursor.o
+  CC      drivers/gpu/drm/i915/display/intel_display.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_map.o
+  CC      drivers/gpu/drm/i915/display/intel_display_conversion.o
+  CC      drivers/gpu/drm/i915/display/intel_display_driver.o
+  CC      drivers/gpu/drm/i915/display/intel_display_irq.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_well.o
+  CC      drivers/gpu/drm/i915/display/intel_display_params.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_trace.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_wa.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dkl_phy.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dmc.o
+  CC      drivers/gpu/drm/i915/display/intel_display_power.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dmc_wl.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp.o
+  CC      drivers/gpu/drm/i915/display/intel_display_power_map.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux.o
+  CC      drivers/gpu/drm/i915/display/intel_display_power_well.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux_backlight.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_hdcp.o
+  CC      drivers/gpu/drm/i915/display/intel_display_reset.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_link_training.o
+  CC      drivers/gpu/drm/i915/display/intel_display_rpm.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_mst.o
+  CC      drivers/gpu/drm/i915/display/intel_display_rps.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_test.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll.o
+  CC      drivers/gpu/drm/i915/display/intel_display_snapshot.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll_mgr.o
+  CC      drivers/gpu/drm/i915/display/intel_display_wa.o
+  CC      drivers/gpu/drm/i915/display/intel_dmc.o
+  CC      drivers/gpu/drm/i915/display/intel_dmc_wl.o
+  CC      drivers/gpu/drm/i915/display/intel_dpio_phy.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpt_common.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_drrs.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsb.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi.o
+  CC      drivers/gpu/drm/i915/display/intel_dpll.o
+  CC      drivers/gpu/drm/i915/display/intel_dpll_mgr.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_dcs_backlight.o
+  CC      drivers/gpu/drm/i915/display/intel_dpt.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_vbt.o
+  CC      drivers/gpu/drm/i915/display/intel_dpt_common.o
+  CC      drivers/gpu/drm/i915/display/intel_drrs.o
+  CC      drivers/gpu/drm/i915/display/intel_dsb.o
+  CC      drivers/gpu/drm/i915/display/intel_dsb_buffer.o
+  CC      drivers/gpu/drm/i915/display/intel_fb.o
+  CC      drivers/gpu/drm/i915/display/intel_fb_bo.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_encoder.o
+  CC      drivers/gpu/drm/i915/display/intel_fb_pin.o
+  CC      drivers/gpu/drm/i915/display/intel_fbc.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fb.o
+  CC      drivers/gpu/drm/i915/display/intel_fdi.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbc.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fdi.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fifo_underrun.o
+  CC      drivers/gpu/drm/i915/display/intel_fifo_underrun.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_frontbuffer.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_global_state.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_gmbus.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdcp.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdcp_gsc_message.o
+  CC      drivers/gpu/drm/i915/display/intel_frontbuffer.o
+  CC      drivers/gpu/drm/i915/display/intel_global_state.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdmi.o
+  CC      drivers/gpu/drm/i915/display/intel_hdcp.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug_irq.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hti.o
+  CC      drivers/gpu/drm/i915/display/intel_hdcp_gsc.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_link_bw.o
+  CC      drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.o
+  CC      drivers/gpu/drm/i915/display/intel_hotplug.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_lspcon.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_lock.o
+  CC      drivers/gpu/drm/i915/display/intel_hotplug_irq.o
+  CC      drivers/gpu/drm/i915/display/intel_hti.o
+  CC      drivers/gpu/drm/i915/display/intel_link_bw.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_setup.o
+  CC      drivers/gpu/drm/i915/display/intel_load_detect.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_verify.o
+  CC      drivers/gpu/drm/i915/display/intel_lpe_audio.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_panel.o
+  CC      drivers/gpu/drm/i915/display/intel_modeset_lock.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pfit.o
+  CC      drivers/gpu/drm/i915/display/intel_modeset_setup.o
+  CC      drivers/gpu/drm/i915/display/intel_modeset_verify.o
+  CC      drivers/gpu/drm/i915/display/intel_overlay.o
+  CC      drivers/gpu/drm/i915/display/intel_pch.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pmdemand.o
+  CC      drivers/gpu/drm/i915/display/intel_pch_display.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pch.o
+  CC      drivers/gpu/drm/i915/display/intel_pch_refclk.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pps.o
+  CC      drivers/gpu/drm/i915/display/intel_plane_initial.o
+  CC      drivers/gpu/drm/i915/display/intel_pmdemand.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_psr.o
+  CC      drivers/gpu/drm/i915/display/intel_psr.o
+  CC      drivers/gpu/drm/i915/display/intel_quirks.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_qp_tables.o
+  CC      drivers/gpu/drm/i915/display/intel_sbi.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_quirks.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_snps_hdmi_pll.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_snps_phy.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_tc.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vblank.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vdsc.o
+  CC      drivers/gpu/drm/i915/display/intel_sprite.o
+  CC      drivers/gpu/drm/i915/display/intel_sprite_uapi.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vga.o
+  CC      drivers/gpu/drm/i915/display/intel_tc.o
+  CC      drivers/gpu/drm/i915/display/intel_vblank.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vrr.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_wm.o
+  CC      drivers/gpu/drm/i915/display/intel_vga.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/skl_scaler.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/skl_universal_plane.o
+  CC      drivers/gpu/drm/i915/display/intel_wm.o
+  CC      drivers/gpu/drm/i915/display/skl_scaler.o
+  CC      drivers/gpu/drm/i915/display/skl_universal_plane.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/skl_watermark.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_acpi.o
+  CC      drivers/gpu/drm/i915/display/skl_watermark.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_opregion.o
+  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
+  CC      drivers/gpu/drm/i915/display/vlv_sideband.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.o
+  CC [M]  drivers/gpu/drm/xe/xe_gt_stats.o
+  CC      drivers/gpu/drm/i915/display/intel_acpi.o
+  CC      drivers/gpu/drm/i915/display/intel_opregion.o
+  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
+  CC      drivers/gpu/drm/i915/display/intel_display_debugfs.o
+  CC      drivers/gpu/drm/i915/display/intel_display_debugfs_params.o
+  CC      drivers/gpu/drm/i915/display/intel_pipe_crc.o
+  CC      drivers/gpu/drm/i915/display/dvo_ch7017.o
+  CC      drivers/gpu/drm/i915/display/dvo_ch7xxx.o
+  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
+  CC      drivers/gpu/drm/i915/display/dvo_ivch.o
+  CC      drivers/gpu/drm/i915/display/dvo_ns2501.o
+  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs.o
+  CC      drivers/gpu/drm/i915/display/dvo_sil164.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs_params.o
+  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pipe_crc.o
+  CC      drivers/gpu/drm/i915/display/dvo_tfp410.o
+  CC      drivers/gpu/drm/i915/display/g4x_dp.o
+  CC      drivers/gpu/drm/i915/display/g4x_hdmi.o
+  CC      drivers/gpu/drm/i915/display/icl_dsi.o
+  CC      drivers/gpu/drm/i915/display/intel_backlight.o
+  CC      drivers/gpu/drm/i915/display/intel_crt.o
+  CC      drivers/gpu/drm/i915/display/intel_cx0_phy.o
+  CC      drivers/gpu/drm/i915/display/intel_ddi.o
+  CC      drivers/gpu/drm/i915/display/intel_ddi_buf_trans.o
+  CC      drivers/gpu/drm/i915/display/intel_display_device.o
+  CC      drivers/gpu/drm/i915/display/intel_display_trace.o
+  CC      drivers/gpu/drm/i915/display/intel_dkl_phy.o
+  CC      drivers/gpu/drm/i915/display/intel_dp.o
+  CC      drivers/gpu/drm/i915/display/intel_dp_aux.o
+  CC      drivers/gpu/drm/i915/display/intel_dp_aux_backlight.o
+  CC      drivers/gpu/drm/i915/display/intel_dp_hdcp.o
+  CC      drivers/gpu/drm/i915/display/intel_dp_link_training.o
+  CC      drivers/gpu/drm/i915/display/intel_dp_mst.o
+  CC      drivers/gpu/drm/i915/display/intel_dp_test.o
+  CC      drivers/gpu/drm/i915/display/intel_dsi.o
+  CC      drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.o
+  CC      drivers/gpu/drm/i915/display/intel_dsi_vbt.o
+  CC      drivers/gpu/drm/i915/display/intel_dvo.o
+  CC      drivers/gpu/drm/i915/display/intel_encoder.o
+  CC      drivers/gpu/drm/i915/display/intel_gmbus.o
+  CC      drivers/gpu/drm/i915/display/intel_hdmi.o
+  CC      drivers/gpu/drm/i915/display/intel_lspcon.o
+  CC      drivers/gpu/drm/i915/display/intel_lvds.o
+  CC      drivers/gpu/drm/i915/display/intel_panel.o
+  CC      drivers/gpu/drm/i915/display/intel_pfit.o
+  CC      drivers/gpu/drm/i915/display/intel_pps.o
+  CC      drivers/gpu/drm/i915/display/intel_qp_tables.o
+  CC      drivers/gpu/drm/i915/display/intel_sdvo.o
+  CC      drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.o
+  CC      drivers/gpu/drm/i915/display/intel_snps_phy.o
+  CC      drivers/gpu/drm/i915/display/intel_tv.o
+  CC      drivers/gpu/drm/i915/display/intel_vdsc.o
+  CC      drivers/gpu/drm/i915/display/intel_vrr.o
+  CC      drivers/gpu/drm/i915/display/vlv_dsi.o
+  CC      drivers/gpu/drm/i915/display/vlv_dsi_pll.o
+  CC      drivers/gpu/drm/i915/i915_perf.o
+  CC      drivers/gpu/drm/i915/pxp/intel_pxp.o
+  CC      drivers/gpu/drm/i915/pxp/intel_pxp_huc.o
+  CC      drivers/gpu/drm/i915/pxp/intel_pxp_tee.o
+  CC      drivers/gpu/drm/i915/i915_gpu_error.o
+  CC      drivers/gpu/drm/i915/i915_vgpu.o
+  LD [M]  drivers/gpu/drm/xe/xe.o
+  AR      drivers/gpu/drm/i915/built-in.a
+  AR      drivers/gpu/drm/built-in.a
+  AR      drivers/gpu/built-in.a
+  AR      drivers/built-in.a
+  AR      built-in.a
+  AR      vmlinux.a
+  LD      vmlinux.o
+  OBJCOPY modules.builtin.modinfo
+  GEN     modules.builtin
+  MODPOST Module.symvers
+  CC      .vmlinux.export.o
+  CC [M]  fs/efivarfs/efivarfs.mod.o
+  CC [M]  .module-common.o
+  CC [M]  drivers/gpu/drm/drm_exec.mod.o
+  CC [M]  drivers/gpu/drm/drm_gpuvm.mod.o
+  CC [M]  drivers/gpu/drm/drm_suballoc_helper.mod.o
+  CC [M]  drivers/gpu/drm/drm_ttm_helper.mod.o
+  CC [M]  drivers/gpu/drm/scheduler/gpu-sched.mod.o
+  CC [M]  drivers/gpu/drm/xe/xe.mod.o
+  CC [M]  drivers/thermal/intel/x86_pkg_temp_thermal.mod.o
+  CC [M]  net/netfilter/nf_log_syslog.mod.o
+  CC [M]  net/netfilter/xt_mark.mod.o
+  CC [M]  net/netfilter/xt_nat.mod.o
+  CC [M]  net/netfilter/xt_LOG.mod.o
+  CC [M]  net/netfilter/xt_MASQUERADE.mod.o
+  CC [M]  net/netfilter/xt_addrtype.mod.o
+  CC [M]  net/ipv4/netfilter/iptable_nat.mod.o
+  LD [M]  net/netfilter/nf_log_syslog.ko
+  LD [M]  drivers/gpu/drm/drm_exec.ko
+  LD [M]  net/netfilter/xt_nat.ko
+  LD [M]  fs/efivarfs/efivarfs.ko
+  LD [M]  drivers/gpu/drm/scheduler/gpu-sched.ko
+  LD [M]  net/netfilter/xt_mark.ko
+  LD [M]  net/netfilter/xt_addrtype.ko
+  LD [M]  net/netfilter/xt_MASQUERADE.ko
+  LD [M]  net/ipv4/netfilter/iptable_nat.ko
+  LD [M]  drivers/gpu/drm/drm_suballoc_helper.ko
+  LD [M]  drivers/thermal/intel/x86_pkg_temp_thermal.ko
+  LD [M]  net/netfilter/xt_LOG.ko
+  LD [M]  drivers/gpu/drm/xe/xe.ko
+  LD [M]  drivers/gpu/drm/drm_gpuvm.ko
+  LD [M]  drivers/gpu/drm/drm_ttm_helper.ko
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  RSTRIP  vmlinux
+  CC      arch/x86/boot/a20.o
+  AS      arch/x86/boot/bioscall.o
+  CC      arch/x86/boot/cmdline.o
+  AS      arch/x86/boot/copy.o
+  HOSTCC  arch/x86/boot/mkcpustr
+  CC      arch/x86/boot/cpuflags.o
+  CC      arch/x86/boot/cpucheck.o
+  CC      arch/x86/boot/early_serial_console.o
+  CC      arch/x86/boot/edd.o
+  CC      arch/x86/boot/main.o
+  CC      arch/x86/boot/memory.o
+  CC      arch/x86/boot/pm.o
+  AS      arch/x86/boot/pmjump.o
+  CC      arch/x86/boot/printf.o
+  CC      arch/x86/boot/regs.o
+  CC      arch/x86/boot/string.o
+  CC      arch/x86/boot/tty.o
+  CC      arch/x86/boot/video.o
+  CC      arch/x86/boot/video-mode.o
+  CC      arch/x86/boot/version.o
+  CC      arch/x86/boot/video-vga.o
+  CC      arch/x86/boot/video-vesa.o
+  CC      arch/x86/boot/video-bios.o
+  LDS     arch/x86/boot/compressed/vmlinux.lds
+  AS      arch/x86/boot/compressed/kernel_info.o
+  AS      arch/x86/boot/compressed/head_32.o
+  VOFFSET arch/x86/boot/compressed/../voffset.h
+  CC      arch/x86/boot/compressed/string.o
+  CC      arch/x86/boot/compressed/cmdline.o
+  CC      arch/x86/boot/compressed/error.o
+  OBJCOPY arch/x86/boot/compressed/vmlinux.bin
+  RELOCS  arch/x86/boot/compressed/vmlinux.relocs
+  HOSTCC  arch/x86/boot/compressed/mkpiggy
+  CC      arch/x86/boot/compressed/cpuflags.o
+  CC      arch/x86/boot/compressed/early_serial_console.o
+  CC      arch/x86/boot/compressed/kaslr.o
+  CC      arch/x86/boot/compressed/acpi.o
+  CPUSTR  arch/x86/boot/cpustr.h
+  CC      arch/x86/boot/compressed/efi.o
+  CC      arch/x86/boot/cpu.o
+  GZIP    arch/x86/boot/compressed/vmlinux.bin.gz
+  CC      arch/x86/boot/compressed/misc.o
+  MKPIGGY arch/x86/boot/compressed/piggy.S
+  AS      arch/x86/boot/compressed/piggy.o
+  LD      arch/x86/boot/compressed/vmlinux
+  ZOFFSET arch/x86/boot/zoffset.h
+  OBJCOPY arch/x86/boot/vmlinux.bin
+  AS      arch/x86/boot/header.o
+  LD      arch/x86/boot/setup.elf
+  OBJCOPY arch/x86/boot/setup.bin
+  BUILD   arch/x86/boot/bzImage
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+run-parts: executing /workspace/ci/hooks/20-kernel-doc
++ SRC_DIR=/workspace/kernel
++ cd /workspace/kernel
++ find drivers/gpu/drm/xe/ -name '*.[ch]' -not -path 'drivers/gpu/drm/xe/display/*'
++ xargs ./scripts/kernel-doc -Werror -none include/uapi/drm/xe_drm.h
+All hooks done
 
 
