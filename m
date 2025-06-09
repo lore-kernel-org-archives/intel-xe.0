@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCC6BC5B552
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 17:59:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0DF5C5B552
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 18:05:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B054C10E41E;
-	Mon,  9 Jun 2025 17:59:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JMpdBqZN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0C0B10E41E;
- Mon,  9 Jun 2025 17:59:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749491989; x=1781027989;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=6BfvE1E35OnGWZEQT1llWkkElS7k+eUJ10fFBh+L4JY=;
- b=JMpdBqZNqu5Q4lausGNqrNM+Kbtg1m9BiJCb84pK1D36gVG6tFaWqZqr
- 4jliwe8SuttQ2leRNw/bMDea1/D3R4iJyyILaHz7H7Lbh83n2S1HJcNFJ
- d7wubAYM3KVEsS/kVksWFdOAX1/7IOF9mTXGC+6s+wHKXXOc3SY+jOP49
- huWbZDlvhC7KkBehcBppA+ZEzdTLyKUadKT6AIN3BTSKN9hPI/aFwsIuP
- CHCvvaYlqPTsdRP63goMLQZfXZY0GNX/BSsCQt9V1RHk6mHlMG5dgt2ee
- cI82h4NYi+7SxV1Jz5v4/rpZS4+QQsggDOOm8LYjAcqUqcrhrAMMHlXMg Q==;
-X-CSE-ConnectionGUID: zq63e5koQ3Sii40eoNwSmg==
-X-CSE-MsgGUID: JiwAWJVNQOWNXMElYEFDrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="51459027"
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="51459027"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 10:59:48 -0700
-X-CSE-ConnectionGUID: 7H9khdDnTBG4SLmyojpEfQ==
-X-CSE-MsgGUID: fh3o+5KiQRiE1C8CtBH3bA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151835303"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.99])
- by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 10:59:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 09 Jun 2025 20:59:45 +0300
-Date: Mon, 9 Jun 2025 20:59:45 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- ankit.k.nautiyal@intel.com
-Subject: Re: [PATCH] drm/i915/xe3lpd: Prune modes for YUV420
-Message-ID: <aEchEa8p0bIKXMJa@intel.com>
-References: <20250609164548.2878908-1-suraj.kandpal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A448E10E3E3;
+	Mon,  9 Jun 2025 18:05:08 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 269FC10E427;
+ Mon,  9 Jun 2025 18:05:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1382571176741725167=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250609164548.2878908-1-suraj.kandpal@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/dp=3A_Limit_the_DPCD_pr?=
+ =?utf-8?q?obe_quirk_to_the_affected_monitor_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 09 Jun 2025 18:05:07 -0000
+Message-ID: <174949230713.61511.4548976133061445787@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250605082850.65136-1-imre.deak@intel.com>
+In-Reply-To: <20250605082850.65136-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,74 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 09, 2025 at 10:15:48PM +0530, Suraj Kandpal wrote:
-> We only support resolution up to 4k for single pipe when using
-> YUV420 format so we prune these modes and restrict the plane size
-> at src. This is because pipe scaling will not support YUV420 scaling
-> for hwidth > 4096.
-> 
-> --v2
-> -Use output format to check [Ville]
-> -Add Bspec references
-> -Modify commit messge to point to why this is needed
-> 
-> Bspec: 49247, 50441
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index d04609460e8c..2691eeb50a26 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1419,6 +1419,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
->  	struct intel_display *display = to_intel_display(_connector->dev);
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> +	enum intel_output_format sink_format, output_format;
->  	const struct drm_display_mode *fixed_mode;
->  	int target_clock = mode->clock;
->  	int max_rate, mode_rate, max_lanes, max_link_clock;
-> @@ -1452,6 +1453,14 @@ intel_dp_mode_valid(struct drm_connector *_connector,
->  						     mode->hdisplay, target_clock);
->  	max_dotclk *= num_joined_pipes;
->  
-> +	sink_format = intel_dp_sink_format(connector, mode);
-> +	output_format = intel_dp_output_format(connector, sink_format);
-> +	if (num_joined_pipes == 1) {
-> +		if (output_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
-> +		    mode->hdisplay > 4096)
+--===============1382571176741725167==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Sprinkling random hw limits all over the codebase isn't a very good
-approach. I think we want some kind of skl_scaler_mode_valid() for this.
-And that should probably be routed via a intel_pfit_mode_valid() to keep
-the level of abstraction similar to intel_pfit_compute_config().
+== Series Details ==
 
-> +			return MODE_NO_420;
-> +	}
-> +
->  	if (target_clock > max_dotclk)
->  		return MODE_CLOCK_HIGH;
->  
-> @@ -1467,11 +1476,8 @@ intel_dp_mode_valid(struct drm_connector *_connector,
->  					   intel_dp_mode_min_output_bpp(connector, mode));
->  
->  	if (intel_dp_has_dsc(connector)) {
-> -		enum intel_output_format sink_format, output_format;
->  		int pipe_bpp;
->  
-> -		sink_format = intel_dp_sink_format(connector, mode);
-> -		output_format = intel_dp_output_format(connector, sink_format);
->  		/*
->  		 * TBD pass the connector BPC,
->  		 * for now U8_MAX so that max BPC on that platform would be picked
-> -- 
-> 2.34.1
+Series: drm/dp: Limit the DPCD probe quirk to the affected monitor (rev6)
+URL   : https://patchwork.freedesktop.org/series/149773/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-3223-68c755d83de7d3232b950f12edeafb45d8a736cd_BAT -> xe-pw-149773v6_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3223-68c755d83de7d3232b950f12edeafb45d8a736cd -> xe-pw-149773v6
+
+  IGT_8401: 8401
+  xe-3223-68c755d83de7d3232b950f12edeafb45d8a736cd: 68c755d83de7d3232b950f12edeafb45d8a736cd
+  xe-pw-149773v6: 149773v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149773v6/index.html
+
+--===============1382571176741725167==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/dp: Limit the DPCD probe quirk to the affected monitor (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149773/">https://patchwork.freedesktop.org/series/149773/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149773v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149773v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3223-68c755d83de7d3232b950f12edeafb45d8a736cd_BAT -&gt; xe-pw-149773v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3223-68c755d83de7d3232b950f12edeafb45d8a736cd -&gt; xe-pw-149773v6</li>
+</ul>
+<p>IGT_8401: 8401<br />
+  xe-3223-68c755d83de7d3232b950f12edeafb45d8a736cd: 68c755d83de7d3232b950f12edeafb45d8a736cd<br />
+  xe-pw-149773v6: 149773v6</p>
+
+</body>
+</html>
+
+--===============1382571176741725167==--
