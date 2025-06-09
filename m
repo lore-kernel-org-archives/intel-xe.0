@@ -4,54 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14492C5B552
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 13:54:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB473C5B552
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 14:01:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC59210E3A2;
-	Mon,  9 Jun 2025 13:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8987C10E38B;
+	Mon,  9 Jun 2025 14:01:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eJ7Ivv4G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RsNqMxnW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C820510E3A2
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Jun 2025 13:54:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC3CD10E38B
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Jun 2025 14:01:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749477264; x=1781013264;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=eWizBVnz9K/1HyruqKqvRGekcLNVvY5ZeM5fXPG7YYc=;
- b=eJ7Ivv4Gg6F2NqRpXajOm7CoWZhq3NmZMLnLcpRp8wqFq2SjepnAhuPm
- oaErop2wjdxXPfHGDeUUkrJjcvQj2HmGIBoNc8B+67PaQ3kfJU3vErq3G
- 9iZWeIR8S2smIckaRJ+iZpKLw226zCNiKR+jR3BPCzx+JzqY6Z3Mfl3qm
- lrvF7nZO0N3Ne+EYFyeNgX3ZUhO7fgiEufHxHWUb+DR82wuFhKc4qqrTx
- iydyIq3mIghtx3lsnIdEkkDvO+HEdxCPCNf2mMRAn0nA8a3g3dUJpOltT
- IGy4e3DwK84fvhyqBPAfpa85Vup0WqBU5WLvZ7MArNyqWo3Z8trw5I/M8 g==;
-X-CSE-ConnectionGUID: nM8Kz3jUTCenPDpSZfntTw==
-X-CSE-MsgGUID: IwnpZczbSeWhiK9e+I8gdw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="51433593"
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="51433593"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 06:54:24 -0700
-X-CSE-ConnectionGUID: rybnGPvcTYCox2Pi17i+qw==
-X-CSE-MsgGUID: mP3iAjKSSweC4ZTaa8eM8w==
+ t=1749477686; x=1781013686;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=mf+pBbKR752kyiqDWDR2hwV4vYWWAKqSn5YZjz1yhkQ=;
+ b=RsNqMxnW3DOFNJRwIWVMlKx0I62qflO68OWSESQ/+Z/1EqTqj+eTocSx
+ ci4aDbS1bxhX9FrWAN1M6zCX3sfWJ509866e/nERqMYNt4aOETFucVnHq
+ n8U7ZWK4F2l7nBCwe1Faf7FGJn1sYPmupZ9xYGCPf3j8XH3k4GxSCqusC
+ rQqSh75Rfj+BVkOKqol1786taew4viEhuAsqgGfaEE64UYWsRS3/GO9ir
+ pmuRoMzAO/ZR0RsPBE1xoTS/VCVdi4liCaHY4YgFtBfA2ouwST6kaMs98
+ shy9HLqQDwg3rCL6psZVMO4a8WF2rGksa1HlbcoT6B4ntP8YrPD6n5Ll2 Q==;
+X-CSE-ConnectionGUID: NCNfhmnMTIO+HHXDnCsj+w==
+X-CSE-MsgGUID: +iU5QTZwSWmmZkbAk+KARQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="61820790"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="61820790"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2025 07:01:26 -0700
+X-CSE-ConnectionGUID: bJS8dINCSryn5dSNFlohRg==
+X-CSE-MsgGUID: penuoHdUSSK0r5kkWY9j+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151333491"
-Received: from agladkov-desk.ger.corp.intel.com (HELO fedora..)
- ([10.245.244.70])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 06:54:23 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v3] drm/xe: Enable ATS if enabled on the PCI side
-Date: Mon,  9 Jun 2025 15:54:08 +0200
-Message-ID: <20250609135408.102001-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="146440071"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa007.fm.intel.com with ESMTP; 09 Jun 2025 07:01:24 -0700
+Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 917B333EAC
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Jun 2025 15:01:23 +0100 (IST)
+Message-ID: <c7cdda93-37ee-43cc-b593-6d2f59da8d54@intel.com>
+Date: Mon, 9 Jun 2025 16:01:22 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GdWxsOiBmYWlsdXJlIGZvciBkcm0veGUvdWM6?=
+ =?UTF-8?Q?_Use_GT-oriented_firmware_messages?=
+To: intel-xe@lists.freedesktop.org
+References: <20250606204311.813-1-michal.wajdeczko@intel.com>
+ <174944906793.58860.15374213662392696453@1538d3639d33>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <174944906793.58860.15374213662392696453@1538d3639d33>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,123 +71,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If IOMMU and device supports ATS, enable it in an effort to offload
-IOMMU TLB.
 
-v2:
-- Set the FORCE_FAULT PTE flag when clearing a PTE for faulting VM. (CI)
-v3:
-- More instances of FORCE_FAULT flag. (CI)
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gtt_defs.h |  1 +
- drivers/gpu/drm/xe/xe_lrc.c           |  5 ++++
- drivers/gpu/drm/xe/xe_pt.c            | 36 +++++++++++++++------------
- 3 files changed, 26 insertions(+), 16 deletions(-)
+On 09.06.2025 08:04, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/xe/uc: Use GT-oriented firmware messages
+> URL   : https://patchwork.freedesktop.org/series/149956/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f_FULL -> xe-pw-149956v1_FULL
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **WARNING**
+> 
+>   Minor unknown changes coming with xe-pw-149956v1_FULL need to be verified
+>   manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-149956v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (4 -> 4)
+> ------------------------------
+> 
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in xe-pw-149956v1_FULL:
+> 
+> ### IGT changes ###
+> 
+> #### Warnings ####
+> 
+>   * igt@xe_exec_system_allocator@threads-shared-vm-many-large-mmap-new-race-nomemset:
+>     - shard-adlp:         [SKIP][1] ([Intel XE#4915]) -> [INCOMPLETE][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f/shard-adlp-1/igt@xe_exec_system_allocator@threads-shared-vm-many-large-mmap-new-race-nomemset.html
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149956v1/shard-adlp-3/igt@xe_exec_system_allocator@threads-shared-vm-many-large-mmap-new-race-nomemset.html
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gtt_defs.h b/drivers/gpu/drm/xe/regs/xe_gtt_defs.h
-index 4389e5a76f89..c6b32516b008 100644
---- a/drivers/gpu/drm/xe/regs/xe_gtt_defs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gtt_defs.h
-@@ -33,5 +33,6 @@
- 
- #define XE_PAGE_PRESENT			BIT_ULL(0)
- #define XE_PAGE_RW			BIT_ULL(1)
-+#define XE_PAGE_FORCE_FAULT             BIT_ULL(2)
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 61a2e87990a9..085f7e0568e9 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -976,6 +976,7 @@ static void xe_lrc_setup_utilization(struct xe_lrc *lrc)
- 
- #define PVC_CTX_ASID		(0x2e + 1)
- #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
-+#define XE_CTX_PASID            (0x2c + 1)
- 
- static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 		       struct xe_vm *vm, u32 ring_size, u16 msix_vec,
-@@ -1104,6 +1105,10 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	if (xe->info.has_asid && vm)
- 		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ASID, vm->usm.asid);
- 
-+	/* If possible, enable ATS to offload the IOMMU TLB */
-+	if (to_pci_dev(xe->drm.dev)->ats_enabled)
-+		xe_lrc_write_ctx_reg(lrc, XE_CTX_PASID, (1 << 31));
-+
- 	lrc->desc = LRC_VALID;
- 	lrc->desc |= FIELD_PREP(LRC_ADDRESSING_MODE, LRC_LEGACY_64B_CONTEXT);
- 	/* TODO: Priority */
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index c9c41fbe125c..6227ea238b1b 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -65,7 +65,7 @@ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
- 	u8 id = tile->id;
- 
- 	if (!xe_vm_has_scratch(vm))
--		return 0;
-+		return XE_PAGE_FORCE_FAULT;
- 
- 	if (level > MAX_HUGEPTE_LEVEL)
- 		return vm->pt_ops->pde_encode_bo(vm->scratch_pt[id][level - 1]->bo,
-@@ -163,17 +163,9 @@ void xe_pt_populate_empty(struct xe_tile *tile, struct xe_vm *vm,
- 	u64 empty;
- 	int i;
- 
--	if (!xe_vm_has_scratch(vm)) {
--		/*
--		 * FIXME: Some memory is allocated already allocated to zero?
--		 * Find out which memory that is and avoid this memset...
--		 */
--		xe_map_memset(vm->xe, map, 0, 0, SZ_4K);
--	} else {
--		empty = __xe_pt_empty_pte(tile, vm, pt->level);
--		for (i = 0; i < XE_PDES; i++)
--			xe_pt_write(vm->xe, map, i, empty);
--	}
-+	empty = __xe_pt_empty_pte(tile, vm, pt->level);
-+	for (i = 0; i < XE_PDES; i++)
-+		xe_pt_write(vm->xe, map, i, empty);
- }
- 
- /**
-@@ -535,7 +527,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 		XE_WARN_ON(xe_walk->va_curs_start != addr);
- 
- 		if (xe_walk->clear_pt) {
--			pte = 0;
-+			pte = XE_PAGE_FORCE_FAULT;
- 		} else {
- 			pte = vm->pt_ops->pte_encode_vma(is_null ? 0 :
- 							 xe_res_dma(curs) +
-@@ -865,9 +857,21 @@ static int xe_pt_zap_ptes_entry(struct xe_ptw *parent, pgoff_t offset,
- 	 */
- 	if (xe_pt_nonshared_offsets(addr, next, --level, walk, action, &offset,
- 				    &end_offset)) {
--		xe_map_memset(tile_to_xe(xe_walk->tile), &xe_child->bo->vmap,
--			      offset * sizeof(u64), 0,
--			      (end_offset - offset) * sizeof(u64));
-+		struct iosys_map *map = &xe_child->bo->vmap;
-+		struct xe_device *xe = tile_to_xe(xe_walk->tile);
-+
-+		/*
-+		 * Write only the low dword in 32-bit case to avoid potential
-+		 * issues with the high dword being non-atomically written first
-+		 * resulting in an out-of-bounds address with the present
-+		 * bit set.
-+		 */
-+		for (; offset < end_offset; offset++) {
-+			if (IS_ENABLED(CONFIG_64BIT))
-+				xe_map_wr(xe, map, offset * sizeof(u64), u64, XE_PAGE_FORCE_FAULT);
-+			else
-+				xe_map_wr(xe, map, offset * sizeof(u64), u32, XE_PAGE_FORCE_FAULT);
-+		}
- 		xe_walk->needs_invalidate = true;
- 	}
- 
--- 
-2.49.0
+hard to tell without logs that we can trust, but unlikely to be related
+to this series, as new logs seem to be working:
+
+<6>[  501.450289] xe 0000:00:02.0: [drm] GT0: Using GuC firmware from
+i915/adlp_guc_70.bin version 70.44.1
+
+<6>[  501.453687] xe 0000:00:02.0: [drm] GT0: Using HuC firmware from
+i915/tgl_huc.bin version 7.9.3
+
+and test app was started several times:
+
+<7>[  523.761833] [IGT] xe_exec_system_allocator: executing
+..
+<7>[  523.764697] [IGT] xe_exec_system_allocator: exiting, ret=77
+
 
