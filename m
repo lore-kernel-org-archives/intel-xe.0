@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05E06C61CE8
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 10:27:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B288C5B552
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 10:48:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACA5410E067;
-	Mon,  9 Jun 2025 10:27:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="la56NMqX";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA6FC10E067;
- Mon,  9 Jun 2025 10:27:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749464822; x=1781000822;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=4S7zpdpM/cZLi/1DLbeXqhDJDhqDnp4EcChy9gpoEPM=;
- b=la56NMqXTBHnpNqrnXmvEKYoEevKwI1DMqz84QQidwyW4vSOgVf0diay
- UBcZpCme5aK7dIV3aG3d5qEvGfBgRzqV/NtgYRNuxy290ON2wFPRqjD8g
- 3DeZscucQl0XViZ87KmIN4SnoZU3ALeuzPa4VufYuNuPTekfPslk+Qd9G
- wCAmMzoxXHokbxSgP1+m+MYF7lMaO9uU22yc+2WgCR6T2WljkD65yJ5ot
- 79FRAxyN/a7w6Lrq4QGKuYy6wCi7D9AbCx+71PyAQxsk9NkPHwynHc1cJ
- R+KJIgWvUU622TCcPDsjbLu6PxPxt8+9ajhw94v7j0LLMAFpx6CKBBbZi A==;
-X-CSE-ConnectionGUID: h7bpM+nVS1avaX5EfzhFmA==
-X-CSE-MsgGUID: LwQRgbYpQeKeLF2SQfWbZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11458"; a="50761198"
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="50761198"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 03:27:00 -0700
-X-CSE-ConnectionGUID: kr+7wSDsT9SBHKhxruj1bw==
-X-CSE-MsgGUID: hWGTm7HeRKmrdGHXyFKgqQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="177410945"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.154])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 03:26:58 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Suraj
- Kandpal <suraj.kandpal@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v4] drm/i915: split out display register macros to a
- separate file
-In-Reply-To: <cqww6aekcmcy7h3mlttlp6v3udmxw2yh6hlzbhz2dnpmanbkda@lbuwmw2i7bcg>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250606102256.2080073-1-jani.nikula@intel.com>
- <cqww6aekcmcy7h3mlttlp6v3udmxw2yh6hlzbhz2dnpmanbkda@lbuwmw2i7bcg>
-Date: Mon, 09 Jun 2025 13:26:55 +0300
-Message-ID: <ce5c6405b693f85edc17cdf6ae93e1c2e72fd9f9@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA3010E040;
+	Mon,  9 Jun 2025 10:48:33 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D66A10E040;
+ Mon,  9 Jun 2025 10:48:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8562263131353676076=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Support_for_mmap-?=
+ =?utf-8?q?ing_mmio_regions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ilia Levi" <ilia.levi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 09 Jun 2025 10:48:32 -0000
+Message-ID: <174946611244.59183.14199140570238293621@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250609092047.7668-1-ilia.levi@intel.com>
+In-Reply-To: <20250609092047.7668-1-ilia.levi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,48 +36,165 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 06 Jun 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Fri, Jun 06, 2025 at 01:22:56PM +0300, Jani Nikula wrote:
->>This is a scripted split of the display related register macros from
->>i915_reg.h to display/intel_display_regs.h. As a starting point, move
->>all the macros that are only used in display code (or GVT). If there are
->>users in core i915 code or soc/, or no users anywhere, keep the macros
->>in i915_reg.h. This is done in groups of macros separated by blank
->>lines, moving the comments along with the groups.
->>
->>Some manually picked macro groups are kept/moved regardless of the
->>heuristics above.
->>
->>This is obviously a very crude approach. It's not perfect. But there are
->>4.2k lines in i915_reg.h, and its refactoring has ground to a halt. This
->>is the big hammer that splits the file to two, and enables further
->>cleanup.
->>
->>Cc: Suraj Kandpal <suraj.kandpal@intel.com>
->>Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> I skimmed over the registers and didn't spot non-display related ones.
-> For the code move, there are a few unrelated changes due to sorting the
-> includes, but that should be fine as it's easier to just sort the block.
->
-> Changes in drivers/gpu/drm/i915/display/intel_display_regs.h indeed come
-> verbatim from the other file, as colored by git show --color-moved.
->
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
-> Let's get this in before it conflicts again.
+--===============8562263131353676076==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for the review. It's not perfect, but I think it's good enough to
-make forward progress. Pushed to din.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/xe: Support for mmap-ing mmio regions
+URL   : https://patchwork.freedesktop.org/series/149977/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f_BAT -> xe-pw-149977v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-149977v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-149977v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 7)
+------------------------------
+
+  Missing    (2): bat-adlp-vf bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-149977v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on:
+    - bat-adlp-7:         [PASS][1] -> [ABORT][2] +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
+    - bat-atsm-2:         [PASS][3] -> [ABORT][4] +1 other test abort
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-149977v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@runner@aborted:
+    - bat-bmg-2:          NOTRUN -> [FAIL][5] ([Intel XE#5080])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/bat-bmg-2/igt@runner@aborted.html
+    - bat-bmg-1:          NOTRUN -> [FAIL][6] ([Intel XE#5080])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/bat-bmg-1/igt@runner@aborted.html
+
+  
+  [Intel XE#5080]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5080
 
 
---=20
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * Linux: xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f -> xe-pw-149977v1
+
+  IGT_8401: 8401
+  xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f: b8f759deb9abbafcb01468baecf33aee93ace35f
+  xe-pw-149977v1: 149977v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/index.html
+
+--===============8562263131353676076==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Support for mmap-ing mmio regions</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149977/">https://patchwork.freedesktop.org/series/149977/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f_BAT -&gt; xe-pw-149977v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-149977v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-149977v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 7)</h2>
+<p>Missing    (2): bat-adlp-vf bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-149977v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@sriov_basic@enable-vfs-autoprobe-on:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-149977v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/bat-bmg-2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5080">Intel XE#5080</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149977v1/bat-bmg-1/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5080">Intel XE#5080</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f -&gt; xe-pw-149977v1</li>
+</ul>
+<p>IGT_8401: 8401<br />
+  xe-3214-b8f759deb9abbafcb01468baecf33aee93ace35f: b8f759deb9abbafcb01468baecf33aee93ace35f<br />
+  xe-pw-149977v1: 149977v1</p>
+
+</body>
+</html>
+
+--===============8562263131353676076==--
