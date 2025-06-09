@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2E96C61CE8
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 14:05:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C048C677C4
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 14:10:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD1DB10E3A4;
-	Mon,  9 Jun 2025 14:05:40 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A50B610E3A8;
- Mon,  9 Jun 2025 14:05:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1754011582536025940=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fixing_some_dma-fence_use-a?=
- =?utf-8?q?fter-free?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EAC810E3AE;
+	Mon,  9 Jun 2025 14:10:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hIFrjSvw";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B85C10E3A4;
+ Mon,  9 Jun 2025 14:10:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749478251; x=1781014251;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rzDH8xirSg+nFVfuGUV5LEAfWJG4TGxoU/NCeY1Rv1E=;
+ b=hIFrjSvwgU27wVTav6bgEgUzW6DCXuzX2kW0TmLIz83zs3esyflZRmOj
+ 3AGVwjYzxH0MDY6fIfezS3Dwy1q3oDDhgozwcsVQB+HCDbHtL8iOHqJQZ
+ GgThXZ30My2S4D0MPJqhrjaIlbapqknQj+k8di/nPm8BSWSU7lmuzIBj7
+ tbNMExd3g+HT/ZVyr2/hZFItl3SEbrsz3UMc05MqmZarxx7P3Q+89gslq
+ GDK+eAjUIvDextR9P2rhBeJelbvbel7s0VFlcyBm1pTxy7GQacQuLNRay
+ dC89vXZaHOkW6K5JpjYhaQiF5CR9f8HDBqjUeVBH2+yQ4HK/ktmcXTU8V A==;
+X-CSE-ConnectionGUID: pJjisKNFTkyqoDuFN9Tlcw==
+X-CSE-MsgGUID: 3v2tIpO+SrCJb+Qz3VlIHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55360709"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55360709"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2025 07:10:50 -0700
+X-CSE-ConnectionGUID: qPlwh40/SymKeIo7VjtbnA==
+X-CSE-MsgGUID: zQwMq6bfRJKqvklz6PGT8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151765387"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.244.99])
+ by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 07:10:47 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 09 Jun 2025 17:10:46 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Jun 2025 14:05:38 -0000
-Message-ID: <174947793866.59982.8907453643896526540@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250609110330.74705-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250609110330.74705-1-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v4 00/21] drm/i915/flipq: Rough flip queue implementation
+Date: Mon,  9 Jun 2025 17:10:25 +0300
+Message-ID: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1754011582536025940==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Initial stab at implementing the PIPEDMC based flip queue.
+Briefly smoke tested on LNL, not much more.
 
-Series: Fixing some dma-fence use-after-free
-URL   : https://patchwork.freedesktop.org/series/149982/
-State : success
+Still has quite a few warts..
 
-== Summary ==
+v2: cleaned up a few of the warts at least
+    should work on PTL now
+v3: Rebase due to DSB GOSUB stuff getting merged
+    Try to fix PKG_C_LATENCY
+    Ignore INT_VECTOR when opther PIPEDMC interrupt are present
+v4: Fix up some DSB issues
+    Limit DMC clock gating w/as
+    Reload pipe C/D PIPEDMC MMIOs on PTL
+    Disable PSR in order to get a bit more CI coverage
 
-CI Bug Log - changes from xe-3221-36e403828da1c008ec882e90d76d706ceff20fde_BAT -> xe-pw-149982v1_BAT
-====================================================
+Ville Syrjälä (21):
+  drm/i915/dsb: Use intel_dsb_ins_align() in intel_dsb_align_tail()
+  drm/i915/dsb: Provide intel_dsb_head() and intel_dsb_size()
+  drm/i915/dsb: Introduce intel_dsb_exec_time_us()
+  drm/i915/dsb: Garbage collect the MMIO DEwake stuff
+  drm/i915/dsb: Move the DSB_PMCTRL* reset out of intel_dsb_finish()
+  drm/i915/dsb: Disable the GOSUB interrupt
+  drm/i915/dmc: Limit PIPEDMC clock gating w/a to just ADL/DG2/MTL
+  drm/i915/dmc: Parametrize MTL_PIPEDMC_GATING_DIS
+  drm/i915: Set PKG_C_LATENCY.added_wake_time to 0
+  drm/i915: Try to program PKG_C_LATENCY more correctly
+  drm/i915/dmc: Shuffle code around
+  drm/i915/dmc: Reload PIPEDMC MMIO registers for pipe C/D on PTL+
+  drm/i915/dmc: Assert DMC is loaded harder
+  drm/i915/dmc: Define flip queue related PIPEDMC registers
+  drm/i915/flipq: Provide the nuts and bolts code for flip queue
+  drm/i915/flipq: Implement flip queue based commit path
+  drm/i915/flipq: Implement Wa_18034343758
+  drm/i915/flipq: Implement Wa_16018781658 for LNL-A0
+  drm/i915/flipq: Add intel_flipq_dump()
+  drm/i915/flipq: Enable flipq by default for testing
+  drm/i915/flipq: Disable PSR for extra flip queue coverage
 
-Summary
--------
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  57 ++-
+ .../gpu/drm/i915/display/intel_display_core.h |   6 +
+ .../drm/i915/display/intel_display_driver.c   |   3 +
+ .../drm/i915/display/intel_display_params.c   |   3 +
+ .../drm/i915/display/intel_display_params.h   |   3 +-
+ .../i915/display/intel_display_power_well.c   |   4 +-
+ .../drm/i915/display/intel_display_types.h    |  20 +
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 319 ++++++++----
+ drivers/gpu/drm/i915/display/intel_dmc.h      |  13 +-
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h | 192 ++++++-
+ drivers/gpu/drm/i915/display/intel_dsb.c      | 120 ++---
+ drivers/gpu/drm/i915/display/intel_dsb.h      |   6 +-
+ drivers/gpu/drm/i915/display/intel_flipq.c    | 473 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_flipq.h    |  37 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 108 ++--
+ drivers/gpu/drm/i915/i915_reg.h               |   3 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 18 files changed, 1141 insertions(+), 228 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_flipq.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_flipq.h
 
-  **SUCCESS**
+-- 
+2.49.0
 
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3221-36e403828da1c008ec882e90d76d706ceff20fde -> xe-pw-149982v1
-
-  IGT_8401: 8401
-  xe-3221-36e403828da1c008ec882e90d76d706ceff20fde: 36e403828da1c008ec882e90d76d706ceff20fde
-  xe-pw-149982v1: 149982v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149982v1/index.html
-
---===============1754011582536025940==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fixing some dma-fence use-after-free</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149982/">https://patchwork.freedesktop.org/series/149982/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149982v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149982v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3221-36e403828da1c008ec882e90d76d706ceff20fde_BAT -&gt; xe-pw-149982v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3221-36e403828da1c008ec882e90d76d706ceff20fde -&gt; xe-pw-149982v1</li>
-</ul>
-<p>IGT_8401: 8401<br />
-  xe-3221-36e403828da1c008ec882e90d76d706ceff20fde: 36e403828da1c008ec882e90d76d706ceff20fde<br />
-  xe-pw-149982v1: 149982v1</p>
-
-</body>
-</html>
-
---===============1754011582536025940==--
