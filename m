@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D610C5B552
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 14:52:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0BFCC5B552
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 14:59:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB7CB10E3ED;
-	Mon,  9 Jun 2025 14:52:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F9BD10E405;
+	Mon,  9 Jun 2025 14:59:41 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE21C89CC4;
- Mon,  9 Jun 2025 14:52:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4862313714341552037=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE52310E406;
+ Mon,  9 Jun 2025 14:59:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_xe=3A_Recommend_GUC_v70=2E4?=
- =?utf-8?q?5=2E2_for_BMG=2C_LNL=2C_DG2_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_A_few_drm=5Fsyncobj_?=
+ =?utf-8?q?optimisations?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Jun 2025 14:52:00 -0000
-Message-ID: <174948072096.60680.16693955229749143200@1538d3639d33>
+Date: Mon, 09 Jun 2025 14:59:39 -0000
+Message-ID: <174948117990.61033.2290600698680889372@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250604212420.557712-2-julia.filipchuk@intel.com>
-In-Reply-To: <20250604212420.557712-2-julia.filipchuk@intel.com>
+References: <20250609113313.75395-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250609113313.75395-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,23 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4862313714341552037==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: xe: Recommend GUC v70.45.2 for BMG, LNL, DG2 (rev2)
-URL   : https://patchwork.freedesktop.org/series/149854/
+Series: A few drm_syncobj optimisations
+URL   : https://patchwork.freedesktop.org/series/149983/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3221-36e403828da1c008ec882e90d76d706ceff20fde_BAT -> xe-pw-149854v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 40c78d0f4b5d drm-tip: 2025y-06m-09d-14h-19m-32s UTC integration manifest
+=== git am output follows ===
+Applying: drm/syncobj: Remove unhelpful helper
+Applying: drm/syncobj: Do not allocate an array to store zeros when waiting
+Applying: drm/syncobj: Avoid one temporary allocation in drm_syncobj_array_find
+Applying: drm/syncobj: Use put_user in drm_syncobj_query_ioctl
+Applying: drm/syncobj: Avoid temporary allocation in drm_syncobj_timeline_signal_ioctl
+Applying: drm/syncobj: Add a fast path to drm_syncobj_array_wait_timeout
+Applying: drm/syncobj: Add a fast path to drm_syncobj_array_find
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3221-36e403828da1c008ec882e90d76d706ceff20fde -> xe-pw-149854v2
-
-  IGT_8401: 8401
-  xe-3221-36e403828da1c008ec882e90d76d706ceff20fde: 36e403828da1c008ec882e90d76d706ceff20fde
-  xe-pw-149854v2: 149854v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149854v2/index.html
-
---===============4862313714341552037==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>xe: Recommend GUC v70.45.2 for BMG, LNL, DG2 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149854/">https://patchwork.freedesktop.org/series/149854/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149854v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149854v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3221-36e403828da1c008ec882e90d76d706ceff20fde_BAT -&gt; xe-pw-149854v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3221-36e403828da1c008ec882e90d76d706ceff20fde -&gt; xe-pw-149854v2</li>
-</ul>
-<p>IGT_8401: 8401<br />
-  xe-3221-36e403828da1c008ec882e90d76d706ceff20fde: 36e403828da1c008ec882e90d76d706ceff20fde<br />
-  xe-pw-149854v2: 149854v2</p>
-
-</body>
-</html>
-
---===============4862313714341552037==--
