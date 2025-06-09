@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5502C61CE8
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 14:11:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C17A6C61CE8
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Jun 2025 14:11:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA04010E3C8;
-	Mon,  9 Jun 2025 14:11:16 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4BD610E3C8;
- Mon,  9 Jun 2025 14:11:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_xe=3A_Recommend_GUC_v70?=
- =?utf-8?q?=2E45=2E2_for_BMG=2C_LNL=2C_DG2_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 815E710E3CE;
+	Mon,  9 Jun 2025 14:11:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F81hv9WX";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE5A810E3CB;
+ Mon,  9 Jun 2025 14:11:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749478277; x=1781014277;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=5w0kBfbotiPD34igE1fsZwgEQBLbQEvDPDLaAA3ojfY=;
+ b=F81hv9WXs2Jq2yzSl018qKhEvLhjlDXIrzdc/J8og9kYGefu3g4/8HEa
+ oRM9D0WUs8X298qUZ4/FshUK7RCzDemru8mdpPYaA9J11B9E3SzINjlSz
+ kuXnck1bkdRWKO0wadjbW0JTX9SrkxHcHzx4buoIDk4G5HzzY0SBGhqtx
+ f2JwX6Fk2/o1gqKVSF/yYSI5I96jRgMQc8UBWL/euyc5KizFEXuoCDJ4o
+ PA5GIfBfeWdS0wpMdPYSBA8anQnlhKcQnFgkFYNAAYo9GUcgkN3LR83lv
+ zv7R+Dy2FSABlPXUMdzETSyoh/xsXtRjl2aYISB94dVwB3da0dn+Zr95+ g==;
+X-CSE-ConnectionGUID: CghqLm7NRQKeu3p6R+Zkpg==
+X-CSE-MsgGUID: FS3yJ4XCQTGXk17p0sKuXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55360764"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55360764"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2025 07:11:17 -0700
+X-CSE-ConnectionGUID: zQdAbgPQRwqhqgX35RWCzw==
+X-CSE-MsgGUID: jXr1daimQEuoeka45m+P6Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151765699"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.244.99])
+ by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 07:11:14 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 09 Jun 2025 17:11:13 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Jun 2025 14:11:13 -0000
-Message-ID: <174947827386.59982.6912508361480011427@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250604212420.557712-2-julia.filipchuk@intel.com>
-In-Reply-To: <20250604212420.557712-2-julia.filipchuk@intel.com>
+Subject: [PATCH v4 08/21] drm/i915/dmc: Parametrize MTL_PIPEDMC_GATING_DIS
+Date: Mon,  9 Jun 2025 17:10:33 +0300
+Message-ID: <20250609141046.6244-9-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
+References: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +66,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: xe: Recommend GUC v70.45.2 for BMG, LNL, DG2 (rev2)
-URL   : https://patchwork.freedesktop.org/series/149854/
-State : success
+The MTL+ PIPEDMC clock gating bits can be parametrized.
+Make it so.
 
-== Summary ==
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 3 ++-
+ drivers/gpu/drm/i915/i915_reg.h          | 3 +--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-202708c00696422fd217223bb679a353a5936e23
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit d8a2856b5687079df50c2cd9b4142660f9870407
-Author: Julia Filipchuk <julia.filipchuk@intel.com>
-Date:   Wed Jun 4 14:24:21 2025 -0700
-
-    xe: Recommend GUC v70.45.2 for BMG, LNL, DG2
-    
-    UAPI compatibility version 1.21.2
-    
-    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
-+ /mt/dim checkpatch d6087456aa5fc1eef7d6e8355255e077b8a5455c drm-intel
-d8a2856b5687 xe: Recommend GUC v70.45.2 for BMG, LNL, DG2
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index b6ac480f391c..6392fa928e08 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -482,7 +482,8 @@ static void mtl_pipedmc_clock_gating_wa(struct intel_display *display)
+ 	 * for pipe A and B.
+ 	 */
+ 	intel_de_rmw(display, GEN9_CLKGATE_DIS_0, 0,
+-		     MTL_PIPEDMC_GATING_DIS_A | MTL_PIPEDMC_GATING_DIS_B);
++		     MTL_PIPEDMC_GATING_DIS(PIPE_A) |
++		     MTL_PIPEDMC_GATING_DIS(PIPE_B));
+ }
+ 
+ static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 52a902532e6f..04fb40867cc0 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -763,8 +763,7 @@
+  */
+ #define GEN9_CLKGATE_DIS_0		_MMIO(0x46530)
+ #define   DARBF_GATING_DIS		REG_BIT(27)
+-#define   MTL_PIPEDMC_GATING_DIS_A	REG_BIT(15)
+-#define   MTL_PIPEDMC_GATING_DIS_B	REG_BIT(14)
++#define   MTL_PIPEDMC_GATING_DIS(pipe)	REG_BIT(15 - (pipe))
+ #define   PWM2_GATING_DIS		REG_BIT(14)
+ #define   PWM1_GATING_DIS		REG_BIT(13)
+ 
+-- 
+2.49.0
 
