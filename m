@@ -4,79 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 771FEC61DB2
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 21:01:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8939EC71130
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 21:12:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3638010E2EE;
-	Tue, 10 Jun 2025 21:01:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03D2310E341;
+	Tue, 10 Jun 2025 21:12:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="O3Vg5fEQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RLaDSr+5";
 	dkim-atps=neutral
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
- [209.85.210.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BC3310E2EC
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Jun 2025 21:01:53 +0000 (UTC)
-Received: by mail-pf1-f176.google.com with SMTP id
- d2e1a72fcca58-73c17c770a7so6561825b3a.2
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Jun 2025 14:01:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1749589313; x=1750194113;
- darn=lists.freedesktop.org; 
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
- :date:message-id:reply-to;
- bh=SLsD9FpGSfW1PBdSs7vQhWKQkn2hq58OiVhHjSXvtcM=;
- b=O3Vg5fEQ5vFcbfYtlE0xiEIqXKmJN078kNhE0Nn8UZI4Yl8J3kwNq/tjrXZrJ83HyC
- BlkZNMG6INA4lrB4nAVBTHIAWnpZdHIc9tWHpb6KNbnRo3ts1cJBq79dEcOYekj/u0hK
- N7Khb0/lzDFPxjsAsb5+d7ffxXdODisXpEIfA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749589313; x=1750194113;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=SLsD9FpGSfW1PBdSs7vQhWKQkn2hq58OiVhHjSXvtcM=;
- b=BDvJyHo5zPFh4FgVJ8k9idODzIeDenYS2k1qX1J5nNcHLmAFko92G3IFtrXXeOcvYD
- HdyD5841rOHBHUso7C1my3Si9C65LKXZrjnEWKxkMYDHDHXCXjjsm7eoZ2x+7KxGKZiB
- 6r1xQW0Jbnp1btDhS+Q19OsEhojdAP4rt1j/MaU+MahV/mQ3B24kmKLxvuys+/Hp/80j
- BF2rrrQvkuLKJAHs+Zd72XQPJvbZQH/SB3KCekj8KQDP2EU/tgjDNzn13jE5LWPqHcLj
- xGUzyCkrkq5gOeY8TJbP3IRaK9lI5swa36amiBigRfG9wPDXCj2f17Pp6eAr3FXYgpWR
- dTeg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVYy59RnNk3p+cP3Zh25HoIME1EWk8nbx5/JJRAtYgw6IZcWhyKN1QsdvDgFUluv9/e2dsSYAmN8w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyLcy6NNz6EnXPTQDkDvi96g4f4BID73oMIdZzJ8QnhZYR3LVwn
- DX6+R7zbHjuCZ507P9Us9jR36dPLZ0tBKgP5Cf0ZPNYK3DHmEpZisgt9rotBdNLNtQ==
-X-Gm-Gg: ASbGncvTDOW665176uW0/A3ElRWuxPK3s1tkln2OQVLgOgTPiFQ/DYTn8bNKSOdK65s
- vjqCjrVzlMDR0LnRIexVkU/xK0qUb1E+7VTaMSr3j74c1bbKH6nDXsZRWqFJ2lkOWLtnmWuyk68
- 3RYXc10nXYzQHWThekt+YxM+vn/BlFCOHzJNXfjxeoG/aO0XQpETELmjmvnpM3gaC30foHwZT8/
- T5BjdiLHFzilVNBAGyLTyJUYwFdIXVgT3/t52yTVEJa7IxHRtcxLSP4bIKs2UNbKMouW+FDufu7
- rLEflZfxYZ2fTxzAmnt2NqsF5/0NJ23ndOFroQAnXD8U19v8DCfue6J6MInSgP7jPMbf5zkJyfs
- d+oMTuDu8NuHtG3qaX9QpGmczuBoq+V3VuRG2jdiBHAbVNQ==
-X-Google-Smtp-Source: AGHT+IESC0q36ODhiNUkgJTI1jkAx8awaTnKzSt3R1ze2tzRuhK+ez9tPqEEjz5tFZnXWt4jMzFvyA==
-X-Received: by 2002:a05:6a20:244a:b0:204:4573:d854 with SMTP id
- adf61e73a8af0-21f865ff8e9mr1361046637.9.1749589313137; 
- Tue, 10 Jun 2025 14:01:53 -0700 (PDT)
-Received: from justonli3.c.googlers.com
- (11.103.168.34.bc.googleusercontent.com. [34.168.103.11])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7482b0ea2b2sm7842756b3a.161.2025.06.10.14.01.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Jun 2025 14:01:52 -0700 (PDT)
-Message-ID: <cc0c79742348a5dd7be0fb21b81627b16e3e55cf.camel@chromium.org>
-Subject: Re: [PATCH v3 1/2] gpu/trace: make TRACE_GPU_MEM configurable
-From: Juston Li <justonli@chromium.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>, Yiwei Zhang <zzyiwei@google.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-Date: Tue, 10 Jun 2025 14:01:52 -0700
-In-Reply-To: <7e8a86d4-447f-4e50-a745-0f6f5771d1fa@igalia.com>
-References: <20250603225123.2535767-1-justonli@chromium.org>
- <7e8a86d4-447f-4e50-a745-0f6f5771d1fa@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.55.3-1 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7B8410E33C
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Jun 2025 21:12:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749589960; x=1781125960;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kwEHHm7zFRCrwj7rWWQ34/8yUWTPvbFGYiZ3ig5tFMk=;
+ b=RLaDSr+51T+i/DDeSq+Ume3DZGFVgfymhf66JNydGHE/Lbe7EaiwKauP
+ jFS+Vw/N+VTBsnPgw0Y/QqFuHArETyNWfqhg/wyA63Ngo5Ac6eO1aCaBM
+ DQ4uCZAJx6fY6BBEKacvjdbz3Gdl+AGj811jFH3VcRDda58ForZv8LF4f
+ EPpsU5MXApUMxCVGB1l3v/ML/yFHnXqVVcBbRfgexu2VcVVfI6gfwbthd
+ 8FYltXqab0N5mIQMbiyg2ADWRWbCoTIsiTaDuYMZyOrqhlGeFs07xZe2S
+ b1N9Hd+meaeFTW3ezeI0J3237sng4qEJ7GqEI61FxJ6HLCpo2OvPf0XWr A==;
+X-CSE-ConnectionGUID: qX1gtG4eS/ODg17Vt4LIkQ==
+X-CSE-MsgGUID: XyfSdhZKRKaLA5jaJb6ciA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="51816882"
+X-IronPort-AV: E=Sophos;i="6.16,226,1744095600"; d="scan'208";a="51816882"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2025 14:12:40 -0700
+X-CSE-ConnectionGUID: c1M1rLqrQ2KxrfjeXOOmeg==
+X-CSE-MsgGUID: 9DiTFwpCSCiMazVfq2TDug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,226,1744095600"; d="scan'208";a="146939674"
+Received: from mjruhl-desk.amr.corp.intel.com (HELO mjruhl-desk.intel.com)
+ ([10.124.220.88])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2025 14:12:37 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ hdegoede@redhat.com, ilpo.jarvinen@linux.intel.com,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
+ david.e.box@linux.intel.com
+Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+	stable@vger.kernel.org
+Subject: [PATCH v4 01/10] platform/x86/intel/pmt: fix a crashlog NULL pointer
+ access
+Date: Tue, 10 Jun 2025 17:12:16 -0400
+Message-ID: <20250610211225.1085901-2-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250610211225.1085901-1-michael.j.ruhl@intel.com>
+References: <20250610211225.1085901-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,75 +73,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-06-09 at 13:36 +0100, Tvrtko Ursulin wrote:
->=20
-> On 03/06/2025 23:50, Juston Li wrote:
-> > v3:
-> > =C2=A0 - Patch introduced to replace per-driver config (Lucas)
-> >=20
-> > Signed-off-by: Juston Li <justonli@chromium.org>
-> > ---
-> > =C2=A0 drivers/gpu/trace/Kconfig | 11 ++++++++++-
-> > =C2=A0 1 file changed, 10 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/trace/Kconfig b/drivers/gpu/trace/Kconfig
-> > index c24e9edd022e6..cd3d19c4a201c 100644
-> > --- a/drivers/gpu/trace/Kconfig
-> > +++ b/drivers/gpu/trace/Kconfig
-> > @@ -1,4 +1,13 @@
-> > =C2=A0 # SPDX-License-Identifier: GPL-2.0-only
-> > =C2=A0=20
-> > =C2=A0 config TRACE_GPU_MEM
-> > -	bool
-> > +	bool "Enable GPU memory usage tracepoints"
-> > +	default n
-> > +	help
-> > +	=C2=A0 Choose this option to enable tracepoints for tracking
-> > +	=C2=A0 global and per-process GPU memory usage. Intended for
-> > +	=C2=A0 performance profiling and required for Android.
-> > +
-> > +	=C2=A0 Tracepoint availability varies by GPU driver.
-> > +
-> > +	=C2=A0 If in doubt, say "N".
->=20
-> Maybe it is a bit sub-optimal that the item shows up under the top
-> level=20
-> drivers group. Which is already pretty busy. Maybe on top something
-> like:
->=20
-> diff --git a/drivers/Kconfig b/drivers/Kconfig
-> index 7c556c5ac4fd..c5edbd2288a1 100644
-> --- a/drivers/Kconfig
-> +++ b/drivers/Kconfig
-> @@ -209,8 +209,6 @@ source "drivers/thunderbolt/Kconfig"
->=20
-> =C2=A0 source "drivers/android/Kconfig"
->=20
-> -source "drivers/gpu/trace/Kconfig"
-> -
-> =C2=A0 source "drivers/nvdimm/Kconfig"
->=20
-> =C2=A0 source "drivers/dax/Kconfig"
-> diff --git a/drivers/video/Kconfig b/drivers/video/Kconfig
-> index 5df981920a94..96adceab2df0 100644
-> --- a/drivers/video/Kconfig
-> +++ b/drivers/video/Kconfig
-> @@ -70,5 +70,6 @@ if FB_CORE || SGI_NEWPORT_CONSOLE
->=20
-> =C2=A0 endif
->=20
-> +source "drivers/gpu/trace/Kconfig"
->=20
-> =C2=A0 endmenu
->=20
->=20
-> To move it under Device Drivers -> Graphics support? Give or take the
-> exact positioning.
+Usage of the intel_pmt_read() for binary sysfs, requires a pcidev.  The
+current use of the endpoint value is only valid for telemetry endpoint
+usage.
 
-SGTM, thanks!
+Without the ep, the crashlog usage causes the following NULL pointer
+exception:
 
-Juston
+BUG: kernel NULL pointer dereference, address: 0000000000000000
+Oops: Oops: 0000 [#1] SMP NOPTI
+RIP: 0010:intel_pmt_read+0x3b/0x70 [pmt_class]
+Code:
+Call Trace:
+ <TASK>
+ ? sysfs_kf_bin_read+0xc0/0xe0
+ kernfs_fop_read_iter+0xac/0x1a0
+ vfs_read+0x26d/0x350
+ ksys_read+0x6b/0xe0
+ __x64_sys_read+0x1d/0x30
+ x64_sys_call+0x1bc8/0x1d70
+ do_syscall_64+0x6d/0x110
 
-> Regards,
->=20
-> Tvrtko
+Augment the inte_pmt_entry to include the pcidev to allow for access to
+the pcidev and avoid the NULL pointer exception.
+
+Fixes: 416eeb2e1fc7 ("platform/x86/intel/pmt: telemetry: Export API to read telemetry")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+---
+ drivers/platform/x86/intel/pmt/class.c | 3 ++-
+ drivers/platform/x86/intel/pmt/class.h | 1 +
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
+index 7233b654bbad..d046e8752173 100644
+--- a/drivers/platform/x86/intel/pmt/class.c
++++ b/drivers/platform/x86/intel/pmt/class.c
+@@ -97,7 +97,7 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
+ 	if (count > entry->size - off)
+ 		count = entry->size - off;
+ 
+-	count = pmt_telem_read_mmio(entry->ep->pcidev, entry->cb, entry->header.guid, buf,
++	count = pmt_telem_read_mmio(entry->pcidev, entry->cb, entry->header.guid, buf,
+ 				    entry->base, off, count);
+ 
+ 	return count;
+@@ -252,6 +252,7 @@ static int intel_pmt_populate_entry(struct intel_pmt_entry *entry,
+ 		return -EINVAL;
+ 	}
+ 
++	entry->pcidev = pci_dev;
+ 	entry->guid = header->guid;
+ 	entry->size = header->size;
+ 	entry->cb = ivdev->priv_data;
+diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
+index b2006d57779d..f6ce80c4e051 100644
+--- a/drivers/platform/x86/intel/pmt/class.h
++++ b/drivers/platform/x86/intel/pmt/class.h
+@@ -39,6 +39,7 @@ struct intel_pmt_header {
+ 
+ struct intel_pmt_entry {
+ 	struct telem_endpoint	*ep;
++	struct pci_dev		*pcidev;
+ 	struct intel_pmt_header	header;
+ 	struct bin_attribute	pmt_bin_attr;
+ 	struct kobject		*kobj;
+-- 
+2.49.0
+
