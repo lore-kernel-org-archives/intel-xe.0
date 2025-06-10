@@ -4,63 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD5A3C61DB2
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 09:41:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF98C5B543
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 10:03:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 787F810E4D2;
-	Tue, 10 Jun 2025 09:41:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E43410E4E4;
+	Tue, 10 Jun 2025 10:03:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GQPvB65X";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F7YgoP1N";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84FF310E4CE;
- Tue, 10 Jun 2025 09:41:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E6C410E4E4
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Jun 2025 10:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749548501; x=1781084501;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=oYcNccTBZO1tr731LePJjxtby07GN8B0aReD7WSsoiw=;
- b=GQPvB65Xm5B8RzxxfgTYuqwJAYtNLKsJsNcK2B3t/2A6VgZ7oyDfcgN6
- v0Rn0eLpUFU6xH+PbiMgO1JeURM6BGBPpgdIIpptEikqU8VZMpQeZj35A
- EIXbmQALcDG4d6ZfVpFUstdFK5+ebm2hRJhuDgZ/X2Uv7NXWE4xTiabHc
- HjcpwVnVDIL05QtPMdfKrtdHarlPXfRbqIcT0M0xCRCEDWsdyHeuj5whx
- NcFtEl3K13ydLp14D+3e+Jebn4ZNd16CPNJPK4nZnw9PBFj8cifXjcgk2
- jNXjEOuWc7sxgrUrXZxAEAZpMf0p6y32QscFu9fyXp1KI0mTXooLuX+dy Q==;
-X-CSE-ConnectionGUID: CsFfgft3Q5SVsE5mdxUHFA==
-X-CSE-MsgGUID: g5xfevspR2K0TDGrU8P6ng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55443651"
-X-IronPort-AV: E=Sophos;i="6.16,224,1744095600"; d="scan'208";a="55443651"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2025 02:41:41 -0700
-X-CSE-ConnectionGUID: LsGn8wT1RyarhApQkruqlw==
-X-CSE-MsgGUID: Py6RmqENRZeWJVcJNvBHpg==
+ t=1749549797; x=1781085797;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HAvFHEOvispX8DPp6QtygWA8UYJ0ghJPEtONhp225LE=;
+ b=F7YgoP1N4GiFC9bLaWxImg83AabzOaJ2+nmQxluhzaZa0UWHV0JQwxCM
+ fd/dTKDPQ8stcuK2h312yTASZncUBUz4vVBoXB/0Aeq04ZTo8vNhRKoxZ
+ rf78+0uvqnmeaug2kmUhi64dK92q8dDRuoQQ+zVrOWMoDl5j8GiNheZoc
+ uApH1n1QGkCoBwINr3EHyJjPheyibgA0nHchjPYCm1pBZy6J/anGQP4CJ
+ Qsve5uQ5zXgvPt3zRLYgzUKzwxGPGk0si3Y8BHvKgv1LHIHOJbWCOajB5
+ Eso+Klpwq6LhWc0yd2KEydyT4vVpRG3x4S/ko89O3kovMTzzn3H8SUxWm A==;
+X-CSE-ConnectionGUID: vAhHB+YdQliboPG1DNJ2Dw==
+X-CSE-MsgGUID: 54GKYf0+SU+4MuuQdHOTXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="69094506"
+X-IronPort-AV: E=Sophos;i="6.16,224,1744095600"; d="scan'208";a="69094506"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2025 03:03:16 -0700
+X-CSE-ConnectionGUID: FTkkf9a7QRCvoGx9uHvArw==
+X-CSE-MsgGUID: QROu3LpsR8KY0r0eyt2ypQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,224,1744095600"; d="scan'208";a="146695119"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.174])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2025 02:41:37 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
-	dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Wysocki Rafael J <rafael.j.wysocki@intel.com>,
- Lee Shawn C <shawn.c.lee@intel.com>, simon1.yang@intel.com,
- Doug Anderson <dianders@chromium.org>, Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH v2] drm/panel: use fwnode based lookups for panel followers
-Date: Tue, 10 Jun 2025 12:41:32 +0300
-Message-Id: <20250610094132.3240567-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <1ed7cfca02f8cf14347dadfe027197dc15791383.1749199013.git.jani.nikula@intel.com>
-References: <1ed7cfca02f8cf14347dadfe027197dc15791383.1749199013.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,224,1744095600"; d="scan'208";a="147295260"
+Received: from black.fi.intel.com (HELO black.fi.intel.com.) ([10.237.72.28])
+ by fmviesa010.fm.intel.com with ESMTP; 10 Jun 2025 03:03:12 -0700
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jarkko Nikula <jarkko.nikula@linux.intel.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
+ Raag Jadav <raag.jadav@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>,
+ "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] drm/xe: i2c support
+Date: Tue, 10 Jun 2025 13:03:06 +0300
+Message-ID: <20250610100311.2245871-1-heikki.krogerus@linux.intel.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,122 +74,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use firmware node based lookups for panel followers, to make the code
-independent of OF and device tree, and make it work also for ACPI with
-an appropriate _DSD.
+Hi,
 
-ASL example:
+Changed since v1:
+- Now rebased on top of drm-tip.
+- No longer ignoring errors from xe_i2c_probe().
+- Cleanups pointed out by Lucas.
 
-	Package (0x02)
-	{
-		"panel", \_SB.PCI0.GFX0.LCD0
-	}
+I've also included followup patches from Raag and Riana to this
+series.
 
-v2:
-- Update comments (Doug, Arun)
-- s/IS_ERR_OR_NULL/IS_ERR/ (Doug)
+Original cover letter:
 
-Suggested-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Doug Anderson <dianders@chromium.org>
-Cc: Lee Shawn C <shawn.c.lee@intel.com>
-Tested-by: Lee Shawn C <shawn.c.lee@intel.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Tested-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_panel.c | 42 ++++++++++++++++++++++++++++---------
- 1 file changed, 32 insertions(+), 10 deletions(-)
+Some of the future GPUs will provide access to the on-board Synopsys
+DesignWare I2C host adapter. The i2c is used to connect various
+microcontrollers. The initially supported microcontroller unit is
+called Add-In Management Controller (AMC).
 
-diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
-index fee65dc65979..805b4151ccef 100644
---- a/drivers/gpu/drm/drm_panel.c
-+++ b/drivers/gpu/drm/drm_panel.c
-@@ -473,17 +473,40 @@ int of_drm_get_panel_orientation(const struct device_node *np,
- EXPORT_SYMBOL(of_drm_get_panel_orientation);
- #endif
- 
--static struct drm_panel *of_find_panel(struct device *follower_dev)
-+/* Find panel by fwnode. This should be identical to of_drm_find_panel(). */
-+static struct drm_panel *find_panel_by_fwnode(const struct fwnode_handle *fwnode)
- {
--	struct device_node *panel_np;
- 	struct drm_panel *panel;
- 
--	panel_np = of_parse_phandle(follower_dev->of_node, "panel", 0);
--	if (!panel_np)
-+	if (!fwnode_device_is_available(fwnode))
- 		return ERR_PTR(-ENODEV);
- 
--	panel = of_drm_find_panel(panel_np);
--	of_node_put(panel_np);
-+	mutex_lock(&panel_lock);
-+
-+	list_for_each_entry(panel, &panel_list, list) {
-+		if (dev_fwnode(panel->dev) == fwnode) {
-+			mutex_unlock(&panel_lock);
-+			return panel;
-+		}
-+	}
-+
-+	mutex_unlock(&panel_lock);
-+
-+	return ERR_PTR(-EPROBE_DEFER);
-+}
-+
-+/* Find panel by follower device */
-+static struct drm_panel *find_panel_by_dev(struct device *follower_dev)
-+{
-+	struct fwnode_handle *fwnode;
-+	struct drm_panel *panel;
-+
-+	fwnode = fwnode_find_reference(dev_fwnode(follower_dev), "panel", 0);
-+	if (IS_ERR(fwnode))
-+		return ERR_PTR(-ENODEV);
-+
-+	panel = find_panel_by_fwnode(fwnode);
-+	fwnode_handle_put(fwnode);
- 
- 	return panel;
- }
-@@ -494,7 +517,7 @@ static struct drm_panel *of_find_panel(struct device *follower_dev)
-  *
-  * This checks to see if a device needs to be power sequenced together with
-  * a panel using the panel follower API.
-- * At the moment panels can only be followed on device tree enabled systems.
-+ *
-  * The "panel" property of the follower points to the panel to be followed.
-  *
-  * Return: true if we should be power sequenced with a panel; false otherwise.
-@@ -506,7 +529,7 @@ bool drm_is_panel_follower(struct device *dev)
- 	 * don't bother trying to parse it here. We just need to know if the
- 	 * property is there.
- 	 */
--	return of_property_present(dev->of_node, "panel");
-+	return device_property_present(dev, "panel");
- }
- EXPORT_SYMBOL(drm_is_panel_follower);
- 
-@@ -523,7 +546,6 @@ EXPORT_SYMBOL(drm_is_panel_follower);
-  * If a follower is added to a panel that's already been turned on, the
-  * follower's prepare callback is called right away.
-  *
-- * At the moment panels can only be followed on device tree enabled systems.
-  * The "panel" property of the follower points to the panel to be followed.
-  *
-  * Return: 0 or an error code. Note that -ENODEV means that we detected that
-@@ -536,7 +558,7 @@ int drm_panel_add_follower(struct device *follower_dev,
- 	struct drm_panel *panel;
- 	int ret;
- 
--	panel = of_find_panel(follower_dev);
-+	panel = find_panel_by_dev(follower_dev);
- 	if (IS_ERR(panel))
- 		return PTR_ERR(panel);
- 
+Thanks,
+
+Heikki Krogerus (2):
+  i2c: designware: Add quirk for Intel Xe
+  drm/xe: Support for I2C attached MCUs
+
+Raag Jadav (1):
+  drm/xe/pm: Wire up suspend/resume for I2C controller
+
+Riana Tauro (1):
+  drm/xe/xe_i2c: Add support for i2c in survivability mode
+
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/regs/xe_i2c_regs.h       |  20 ++
+ drivers/gpu/drm/xe/regs/xe_irq_regs.h       |   1 +
+ drivers/gpu/drm/xe/regs/xe_pmt.h            |   2 +-
+ drivers/gpu/drm/xe/regs/xe_regs.h           |   2 +
+ drivers/gpu/drm/xe/xe_device.c              |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   4 +
+ drivers/gpu/drm/xe/xe_i2c.c                 | 299 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_i2c.h                 |  62 ++++
+ drivers/gpu/drm/xe/xe_irq.c                 |   2 +
+ drivers/gpu/drm/xe/xe_pm.c                  |   9 +
+ drivers/gpu/drm/xe/xe_survivability_mode.c  |  23 +-
+ drivers/i2c/busses/i2c-designware-platdrv.c |  18 +-
+ 13 files changed, 433 insertions(+), 15 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_i2c_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_i2c.c
+ create mode 100644 drivers/gpu/drm/xe/xe_i2c.h
+
 -- 
-2.39.5
+2.47.2
 
