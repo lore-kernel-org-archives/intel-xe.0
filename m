@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1E79C5B552
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 12:15:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77B36C5B543
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 12:15:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98D0110E51B;
-	Tue, 10 Jun 2025 12:15:29 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AAF510E51B;
- Tue, 10 Jun 2025 12:15:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7548948372912475476=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_kernel_param_to_limit_t?=
- =?utf-8?q?he_eDP_rate_to_HBR2?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Jun 2025 12:15:29 -0000
-Message-ID: <174955772903.63316.12440126538716169932@1538d3639d33>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 400A610E51B;
+	Tue, 10 Jun 2025 12:15:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ium4FjNJ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BA8610E51B;
+ Tue, 10 Jun 2025 12:15:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749557744; x=1781093744;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=zuziHAvuy2JvB+f09AvA8FAb5tUO9RGzvENnPICgq1g=;
+ b=Ium4FjNJmd8eAHA44yJpe3s+Z98Wc3yvX8VmX2B2wxq6uJ+IdKg8aRfO
+ pmpaKuwdq8MzhBPxZVlb3u75R1qg9NGmPPbYiFfiJXGdzQIa7uKF3+/uj
+ tFf25k5BOVN40wfM2uxla73QT3IqscEO82BTR3EkKlGz5syXLhZ/fY3ub
+ aHQSHooJfI4jX3D3wb+5xKIrhLkGHbDaYEHh/YGuI8EDltQTgfBauSZrv
+ tMC6rWtw7jExgw9maCEOQIGADjLvDhcWQylU0O76c+FmJ8wSFNKBogRrm
+ eGSypu5m2A+3X/NZxL397RYfOsBXl/3zWMlgActKV4rV/bd2VKigait3l w==;
+X-CSE-ConnectionGUID: mrYHucoKQgCD3NjdeBdTgQ==
+X-CSE-MsgGUID: tsXooxRFQ2W1UxTk5vPbeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="63065113"
+X-IronPort-AV: E=Sophos;i="6.16,225,1744095600"; d="scan'208";a="63065113"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2025 05:15:44 -0700
+X-CSE-ConnectionGUID: 96pBNPl5Sui/T+7ADtBENw==
+X-CSE-MsgGUID: ad2dPlbUSp6Q3BI6EqPD2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,225,1744095600"; d="scan'208";a="151964957"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.174])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2025 05:15:41 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 1/2] Revert "drm/i915/dp: Reject HBR3 when sink doesn't
+ support TPS4"
+In-Reply-To: <20250610100449.185927-2-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250610100449.185927-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250610100449.185927-1-ankit.k.nautiyal@intel.com>
+ <20250610100449.185927-2-ankit.k.nautiyal@intel.com>
+Date: Tue, 10 Jun 2025 15:15:38 +0300
+Message-ID: <bb0ef3558c2bd367db180ceabbdaec6ccd31e6a3@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +67,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7548948372912475476==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 10 Jun 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> This reverts commit 584cf613c24a4250d9be4819efc841aa2624d5b6.
+> Commit 584cf613c24a ("drm/i915/dp: Reject HBR3 when sink doesn't support
+> TPS4") introduced a blanket rejection of HBR3 link rate when the sink does
+> not support TPS4. While this was intended to address instability observed
+> on certain eDP panels [1], the TPS4 requirement is only mandated for DPRX
+> and not for eDPRX.
+>
+> This change inadvertently causes blank screens on some eDP panels that do
+> not advertise TPS4 support, and require HBR3 to operate at their fixed
+> native resolution.
+>
+> Revert the commit to restore functionality for such panels.
+>
+> [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-== Series Details ==
+On the revert,
 
-Series: Add kernel param to limit the eDP rate to HBR2
-URL   : https://patchwork.freedesktop.org/series/150031/
-State : success
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 49 ++++---------------------
+>  1 file changed, 7 insertions(+), 42 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 208a953b04a2..2a0b76ae33cd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -174,28 +174,10 @@ int intel_dp_link_symbol_clock(int rate)
+>  
+>  static int max_dprx_rate(struct intel_dp *intel_dp)
+>  {
+> -	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+> -	int max_rate;
+> -
+>  	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
+> -		max_rate = drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+> -	else
+> -		max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+> +		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+>  
+> -	/*
+> -	 * Some broken eDP sinks illegally declare support for
+> -	 * HBR3 without TPS4, and are unable to produce a stable
+> -	 * output. Reject HBR3 when TPS4 is not available.
+> -	 */
+> -	if (max_rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
+> -		drm_dbg_kms(display->drm,
+> -			    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
+> -			    encoder->base.base.id, encoder->base.name);
+> -		max_rate = 540000;
+> -	}
+> -
+> -	return max_rate;
+> +	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+>  }
+>  
+>  static int max_dprx_lane_count(struct intel_dp *intel_dp)
+> @@ -4271,9 +4253,6 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
+>  static void
+>  intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  {
+> -	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+> -
+>  	intel_dp->num_sink_rates = 0;
+>  
+>  	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
+> @@ -4284,7 +4263,10 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  				 sink_rates, sizeof(sink_rates));
+>  
+>  		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
+> -			int rate;
+> +			int val = le16_to_cpu(sink_rates[i]);
+> +
+> +			if (val == 0)
+> +				break;
+>  
+>  			/* Value read multiplied by 200kHz gives the per-lane
+>  			 * link rate in kHz. The source rates are, however,
+> @@ -4292,24 +4274,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  			 * back to symbols is
+>  			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
+>  			 */
+> -			rate = le16_to_cpu(sink_rates[i]) * 200 / 10;
+> -
+> -			if (rate == 0)
+> -				break;
+> -
+> -			/*
+> -			 * Some broken eDP sinks illegally declare support for
+> -			 * HBR3 without TPS4, and are unable to produce a stable
+> -			 * output. Reject HBR3 when TPS4 is not available.
+> -			 */
+> -			if (rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
+> -				drm_dbg_kms(display->drm,
+> -					    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
+> -					    encoder->base.base.id, encoder->base.name);
+> -				break;
+> -			}
+> -
+> -			intel_dp->sink_rates[i] = rate;
+> +			intel_dp->sink_rates[i] = (val * 200) / 10;
+>  		}
+>  		intel_dp->num_sink_rates = i;
+>  	}
 
-CI Bug Log - changes from xe-3225-52ecbb6a68785860c776b29f58792d9807243979_BAT -> xe-pw-150031v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8401 -> IGT_8402
-  * Linux: xe-3225-52ecbb6a68785860c776b29f58792d9807243979 -> xe-pw-150031v1
-
-  IGT_8401: 8401
-  IGT_8402: ad7a9182bc87a1fe9875de9956b620f9d25485df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3225-52ecbb6a68785860c776b29f58792d9807243979: 52ecbb6a68785860c776b29f58792d9807243979
-  xe-pw-150031v1: 150031v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150031v1/index.html
-
---===============7548948372912475476==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add kernel param to limit the eDP rate to HBR2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150031/">https://patchwork.freedesktop.org/series/150031/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150031v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150031v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3225-52ecbb6a68785860c776b29f58792d9807243979_BAT -&gt; xe-pw-150031v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8401 -&gt; IGT_8402</li>
-<li>Linux: xe-3225-52ecbb6a68785860c776b29f58792d9807243979 -&gt; xe-pw-150031v1</li>
-</ul>
-<p>IGT_8401: 8401<br />
-  IGT_8402: ad7a9182bc87a1fe9875de9956b620f9d25485df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3225-52ecbb6a68785860c776b29f58792d9807243979: 52ecbb6a68785860c776b29f58792d9807243979<br />
-  xe-pw-150031v1: 150031v1</p>
-
-</body>
-</html>
-
---===============7548948372912475476==--
+-- 
+Jani Nikula, Intel
