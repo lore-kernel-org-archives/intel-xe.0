@@ -4,66 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AA80C7115C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 765D9C71151
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 13:59:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0B510E9B1;
-	Fri, 13 Jun 2025 13:59:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2717210E9C6;
+	Fri, 13 Jun 2025 13:59:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="KQFZPL5A";
+	dkim=permerror (0-bit key) header.d=ljones.dev header.i=@ljones.dev header.b="g5UsHtnC";
+	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="LmxloUtJ";
 	dkim-atps=neutral
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B525710E4F3;
- Mon,  2 Jun 2025 11:59:28 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4b9sp36k08z9stJ;
- Mon,  2 Jun 2025 13:59:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1748865564; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Cr5FKF36S3+2Th+8GFTmA1trzr0M2dkIElzTIDA6r4o=;
- b=KQFZPL5AqZPYTvxrNmE8PkyZC75LT7hZBYTRlWqdInwkBcBbBLh3yY4kqe9TOqgOCnKoVn
- JRDEwuOulepy/ZzHSf0BPWGqmRToC9tOEr8m5dKOzwHBchQTtH40JyH9WAsEQG9Aho5JhU
- wsdbgI0TtKxEuU3+zjh56cq9A/BPNq0j2ffh6XLD+RF79m3GlOzCYvhOhEH9iX5CBzO9Ka
- VSeefj8XHc6l4tMg7JM5zOZnUl1dj6LTTWn5iOOUfL/iRrVsKDd2rqdhcjlq6ck3rJiyuS
- JcfEkJJPQBRGd15K1VWPIeJxf15Z68XCqwLHsGOeuGZf6CbfwDVn8GtLWiXr/A==
-Message-ID: <bcc0ed477f8a6f3bb06665b1756bcb98fb7af871.camel@mailbox.org>
-Subject: Re: [PATCH v2 6/8] drm/etnaviv: Use DRM_GPU_SCHED_STAT_NO_HANG to
- skip the reset
-From: Philipp Stanner <phasta@mailbox.org>
-To: =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, phasta@kernel.org, 
- Matthew Brost <matthew.brost@intel.com>, Danilo Krummrich
- <dakr@kernel.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>, Simona Vetter <simona@ffwll.ch>, David Airlie
- <airlied@gmail.com>, Melissa Wen <mwen@igalia.com>,  Lucas Stach
- <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>,  Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Boris Brezillon <boris.brezillon@collabora.com>, Rob Herring
- <robh@kernel.org>, Steven Price <steven.price@arm.com>,  Liviu Dudau
- <liviu.dudau@arm.com>
-Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Mon, 02 Jun 2025 13:59:14 +0200
-In-Reply-To: <177ea4e7-b05d-4ee0-8b5e-e3dfd67491a0@igalia.com>
-References: <20250530-sched-skip-reset-v2-0-c40a8d2d8daa@igalia.com>
- <20250530-sched-skip-reset-v2-6-c40a8d2d8daa@igalia.com>
- <964e59ba1539083ef29b06d3c78f5e2e9b138ab8.camel@mailbox.org>
- <177ea4e7-b05d-4ee0-8b5e-e3dfd67491a0@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 329 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Jun 2025 00:36:10 UTC
+Received: from fhigh-a6-smtp.messagingengine.com
+ (fhigh-a6-smtp.messagingengine.com [103.168.172.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B159F10E04A;
+ Tue, 10 Jun 2025 00:36:10 +0000 (UTC)
+Received: from phl-compute-06.internal (phl-compute-06.phl.internal
+ [10.202.2.46])
+ by mailfhigh.phl.internal (Postfix) with ESMTP id 1DE6511402E4;
+ Mon,  9 Jun 2025 20:30:40 -0400 (EDT)
+Received: from phl-imap-15 ([10.202.2.104])
+ by phl-compute-06.internal (MEProxy); Mon, 09 Jun 2025 20:30:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ljones.dev; h=cc
+ :cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm2; t=1749515440;
+ x=1749601840; bh=u3Lnolb/bkfH724TgvdoxKe0DiPi9kBQBwvy0d2oehw=; b=
+ g5UsHtnCnCg/cgT+JsNUZScyOKzP+upfC5oNdhNBVOBYwggedDExwNNBorLj19GZ
+ H6NmtVj81v1PZnzCZCd9hZ/4h2JG5NEUaBpghiepTJyoOsa/AB7Rmhh5J/3WHg2u
+ X7+PkV6XH3agErMtbLPcbbGgpO7EAJChT82djq9tvxt6RvmlpJK7kEFQDnPtLlc3
+ qbp1C+XPyKJ2E7cdal9lEqcQ9Pc/mc1yiFB2XjDQ6GV6OqB9TlS97eHik0bp21En
+ 8AfyTS7vRMiMFJx/fGmIyii92LwKlPoCe4HuaEO+E41nG/WopgCmWgnkZYHNIWhN
+ 5I5OtsnKkqVsPHvOBg9Hbg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1749515440; x=
+ 1749601840; bh=u3Lnolb/bkfH724TgvdoxKe0DiPi9kBQBwvy0d2oehw=; b=L
+ mxloUtJ2rAHVeJJmbtxwD/nDSscbm/TccSotyBfABIt8ibqUuV8wFcMaAGeEzpos
+ hhX/AO4OH20IZhR9IfzRTfx3E2WgPpWRsRRelrp0l3niaC+ClXdacsMWTglMnvf9
+ eiUKOC0zs+PVGEwERc+GNg/u0gpQjugUjQSOr7cCQZBk8xhJwWot3R9ADB5QhqsW
+ x2Mhe6O6BthFgIb4LwvcjVpJBf7PZfzk6JOFbpSupNpULg6nqwLdNjjio2wyWaIb
+ W2PBU5DFwK3lpaRgGYwVsX8haTrpcwq+vw9uG/2t3j3+J2yb3Q6NQSrMOXFvcIva
+ 9CituQfyGpmd2/XKuTNDg==
+X-ME-Sender: <xms:r3xHaJ7XNybG2OGFZCzFXhGkKeYkCoQZq_Sr6jUfWM8uuV7WPrPE7Q>
+ <xme:r3xHaG7eHIPIg5kWoiuqSeHoMwGd2K1wVympZuz0CitcoNvD-xmDaOwnSoe0budtd
+ bzwj_ClVI3ygblPBX4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddutddtudcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+ uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+ hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthhqredtredt
+ jeenucfhrhhomhepfdfnuhhkvgculfhonhgvshdfuceolhhukhgvsehljhhonhgvshdrug
+ gvvheqnecuggftrfgrthhtvghrnhepvdehudevieelvdejvdejkefhfeekfeeijedujeff
+ tddtveekhefgudefgefgvddunecuffhomhgrihhnpehlkhhmlhdrohhrghdpkhgvrhhnvg
+ hlrdhorhhgpddtuddrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
+ mhgrihhlfhhrohhmpehluhhkvgeslhhjohhnvghsrdguvghvpdhnsggprhgtphhtthhope
+ dutddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepkhhuuhhrthgssehgmhgrihhl
+ rdgtohhmpdhrtghpthhtoheptghhrghithgrnhihrgdrkhhumhgrrhdrsghorhgrhhesih
+ hnthgvlhdrtghomhdprhgtphhtthhopehjrghnihdrnhhikhhulhgrsehinhhtvghlrdgt
+ ohhmpdhrtghpthhtohepjhgrnhhirdhsrggrrhhinhgvnhesihhnthgvlhdrtghomhdprh
+ gtphhtthhopehluhgtrghsrdguvghmrghrtghhihesihhnthgvlhdrtghomhdprhgtphht
+ thhopehsuhhrvghshhdrkhhumhgrrhdrkhhurhhmihesihhnthgvlhdrtghomhdprhgtph
+ htthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+ pdhrtghpthhtohepihhnthgvlhdqgigvsehlihhsthhsrdhfrhgvvgguvghskhhtohhprd
+ horhhgpdhrtghpthhtoheplhhinhhugidqihhnphhuthesvhhgvghrrdhkvghrnhgvlhdr
+ ohhrgh
+X-ME-Proxy: <xmx:r3xHaAfh6Su4wFHDKGfkJ9V-BC_UWgOn4ZqWtxWaJSivNhWOz-46xQ>
+ <xmx:r3xHaCKGGJwMhy-aeLr80VEjrm7YcF_ZVF50XOdQgPUUvwLcL2QFvg>
+ <xmx:r3xHaNJsj94Pgxy07Z6PTCp9zkhwHzvejotJnUdsa_2cK-Sf0zK30w>
+ <xmx:r3xHaLydVI3uSp8y6mnFIyof4OvYk79GU6mXa1HclBd-D_cAoCdQnw>
+ <xmx:sHxHaOcpL7ytAftgUQe7g5nKZock0iv81eQeBLFFASTLA4-I6gbHoQX8>
+Feedback-ID: i5ec1447f:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+ id BFA25780075; Mon,  9 Jun 2025 20:30:39 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-X-MBO-RS-ID: 847683725d56782a08d
-X-MBO-RS-META: 1tywnm68gw7sdztpoqqewbfthx99axqd
+X-ThreadId: T4bdae7bed362e7f1
+Date: Tue, 10 Jun 2025 12:30:18 +1200
+From: "Luke Jones" <luke@ljones.dev>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>,
+ "Kurt Borja" <kuurtb@gmail.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Jani Saarinen" <jani.saarinen@intel.com>,
+ "Suresh Kumar Kurmi" <suresh.kumar.kurmi@intel.com>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "Jani Nikula" <jani.nikula@intel.com>,
+ "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>
+Message-Id: <b2feef03-ffaf-4172-9d00-09e3e37310ed@app.fastmail.com>
+In-Reply-To: <SJ1PR11MB612904F9F3109473838EE36BB96BA@SJ1PR11MB6129.namprd11.prod.outlook.com>
+References: <SJ1PR11MB6129F730EEDCD051DAD8A5DCB967A@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <0325a50d-8499-4602-aa8c-67445b626587@app.fastmail.com>
+ <DA7WOJH0HZDH.36EH3U8BQJ0JF@gmail.com>
+ <SJ1PR11MB612904F9F3109473838EE36BB96BA@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Subject: Re: [REGRESSION] on linux-next (next-20250509)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Fri, 13 Jun 2025 13:59:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,128 +115,207 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-06-02 at 08:36 -0300, Ma=C3=ADra Canal wrote:
-> Hi Philipp,
->=20
-> On 02/06/25 04:28, Philipp Stanner wrote:
-> > On Fri, 2025-05-30 at 11:01 -0300, Ma=C3=ADra Canal wrote:
->=20
-> [...]
->=20
-> > > diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> > > b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> > > index
-> > > 7146069a98492f5fab2a49d96e2054f649e1fe3d..46f5391e84a12232b247886
-> > > cf13
-> > > 11f8e09f42f04 100644
-> > > --- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> > > +++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> > > @@ -40,11 +40,11 @@ static enum drm_gpu_sched_stat
-> > > etnaviv_sched_timedout_job(struct drm_sched_job
-> > > =C2=A0=C2=A0	int change;
-> > > =C2=A0=20
-> > > =C2=A0=C2=A0	/*
-> > > -	 * If the GPU managed to complete this jobs fence, the
-> > > timout is
-> > > -	 * spurious. Bail out.
-> > > +	 * If the GPU managed to complete this jobs fence, the
-> > > timeout has
-> > > +	 * fired before free-job worker. The timeout is
-> > > spurious, so
-> > > bail out.
-> > > =C2=A0=C2=A0	 */
-> > > =C2=A0=C2=A0	if (dma_fence_is_signaled(submit->out_fence))
-> > > -		goto out_no_timeout;
-> > > +		return DRM_GPU_SCHED_STAT_NO_HANG;
-> > > =C2=A0=20
-> > > =C2=A0=C2=A0	/*
-> > > =C2=A0=C2=A0	 * If the GPU is still making forward progress on the
-> > > front-
-> > > end (which
-> > > @@ -70,7 +70,7 @@ static enum drm_gpu_sched_stat
-> > > etnaviv_sched_timedout_job(struct drm_sched_job
-> > > =C2=A0=C2=A0		gpu->hangcheck_dma_addr =3D dma_addr;
-> > > =C2=A0=C2=A0		gpu->hangcheck_primid =3D primid;
-> > > =C2=A0=C2=A0		gpu->hangcheck_fence =3D gpu->completed_fence;
-> > > -		goto out_no_timeout;
-> > > +		return DRM_GPU_SCHED_STAT_NO_HANG;
-> > > =C2=A0=C2=A0	}
-> > > =C2=A0=20
-> > > =C2=A0=C2=A0	/* block scheduler */
-> > > @@ -86,10 +86,7 @@ static enum drm_gpu_sched_stat
-> > > etnaviv_sched_timedout_job(struct drm_sched_job
-> > > =C2=A0=C2=A0	drm_sched_resubmit_jobs(&gpu->sched);
-> > > =C2=A0=20
-> > > =C2=A0=C2=A0	drm_sched_start(&gpu->sched, 0);
-> > > -	return DRM_GPU_SCHED_STAT_RESET;
-> > > =C2=A0=20
-> > > -out_no_timeout:
-> > > -	list_add(&sched_job->list, &sched_job->sched-
-> > > >pending_list);
-> >=20
-> > Here you actually remove the manipulation of the scheduler
-> > internals,
-> > but you didn't in v3d. Just to point that out.
-> >=20
-> >=20
-> > And BTW I'm just seeing that the pending_list gets manipulated here
-> > with the scheduler's workqueues running and no locks being hold.
-> >=20
-> > Oh man :(
-> >=20
-> > That is most certainly a bug, and I recommend that the etnaviv
-> > maintainers at least add the appropriate lock here and backport
-> > that
-> > since it can race any time.
-> >=20
-> >=20
-> > But thx for working on that, Ma=C3=ADra. Good that we can remove the
-> > stuff
-> > this way.
-> >=20
-> > Thinking about it, this patch even fixes a bug. So could contain a
-> > Fixes: tag. But I'm not sure if it's worth it to mark the entire
-> > series
-> > for Stable. Opinions?
->=20
-> I believe the best way to fix this bug would be doing something
-> similar
-> to what I did to v3d: send a temporary fix adding the locks, which
-> will
-> be backported to stable. I'll send a fix to Etnaviv today.
+On Mon, 9 Jun 2025, at 11:06 PM, Borah, Chaitanya Kumar wrote:
+> Hi Luke,
+>
+>
+>> -----Original Message-----
+>> From: Kurt Borja <kuurtb@gmail.com>
+>> Sent: Wednesday, May 28, 2025 9:11 PM
+>> To: Luke Jones <luke@ljones.dev>; Borah, Chaitanya Kumar
+>> <chaitanya.kumar.borah@intel.com>
+>> Cc: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; =
+Saarinen,
+>> Jani <jani.saarinen@intel.com>; Kurmi, Suresh Kumar
+>> <suresh.kumar.kurmi@intel.com>; De Marchi, Lucas
+>> <lucas.demarchi@intel.com>; Nikula, Jani <jani.nikula@intel.com>; lin=
+ux-
+>> input@vger.kernel.org; platform-driver-x86@vger.kernel.org
+>> Subject: Re: [REGRESSSION] on linux-next (next-20250509)
+>>=20
+>> Hi Luke,
+>>=20
+>> On Wed May 28, 2025 at 10:07 AM -03, Luke Jones wrote:
+>> > On Wed, 28 May 2025, at 12:08 PM, Borah, Chaitanya Kumar wrote:
+>> >> Hello Luke,
+>> >>
+>> >> Hope you are doing well. I am Chaitanya from the linux graphics te=
+am in
+>> Intel.
+>> >>
+>> >> This mail is regarding a regression we are seeing in our CI runs[1]
+>> >> on linux-next repository.
+>> >
+>> > Can you tell me if the fix here was included?
+>> > https://lkml.org/lkml/2025/5/24/152
+>> >
+>> > I could change to:
+>> > static void asus_s2idle_check_register(void) {
+>> >     // Only register for Ally devices
+>> >     if (dmi_check_system(asus_rog_ally_device)) {
+>> >         if (acpi_register_lps0_dev(&asus_ally_s2idle_dev_ops))
+>> >             pr_warn("failed to register LPS0 sleep handler in asus-=
+wmi\n");
+>> >     }
+>> > }
+>> >
+>> > but I don't really understand what is happening here. The inner lps0
+>> functions won't run unless use_ally_mcu_hack is set.
+>>=20
+>> The RIP is caused by a "list_add double add" warning.
+>>=20
+>> After reading the log, I believe this is happening because
+>> asus_wmi_register_driver() is called a second time by eeepc_wmi after
+>> asus_nb_wmi, which implies
+>>=20
+>> 	asus_wmi_probe()
+>> 	  -> acpi_register_lps0_dev(&asus_ally_s2idle_dev_ops)
+>>=20
+>> is called twice and the warning is triggered.
+>>=20
+>> Line [1] makes me think this could be a race condition, as
+>> asus_wmi_register_driver() may be called concurrently.
+>>=20
+>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-dr=
+ivers-
+>> x86.git/tree/drivers/platform/x86/asus-wmi.c?h=3Dfor-next#n5101
+>>=20
+>
+> Any update on this? It has now hit  6.16-rc1
+>
+> https://intel-gfx-ci.01.org/tree/drm-tip/igt@runner@aborted.html
 
-Having the locking is significantly better than not having it, and
-adding it gets my blessing, but it still doesn't solve all issues.
+I will send a patch asap. Haven't been able to do so with work and 3 day=
+s of flights.
 
-As Matt pointed out and as you address in your patch =E2=84=962, a job coul=
-d
-still leak if no one makes sure that free_job_work gets kicked off. And
-exposing yet another scheduler function publicly is obviously
-unacceptable, so it's either live with the potential leak, or use the
-new status code.
-
-
-P.
-
->=20
-> Thanks for the review, Phillip!
->=20
-> Best Regards,
-> - Ma=C3=ADra
->=20
-> >=20
-> >=20
-> > P.
-> >=20
-> >=20
-> > > =C2=A0=C2=A0	return DRM_GPU_SCHED_STAT_RESET;
-> > > =C2=A0=C2=A0}
-> > > =C2=A0=20
-> > >=20
-> >=20
->=20
-
+> Regards
+>
+> Chaitanya
+>
+>> >
+>> > I will do my best to fix but I need to understand what happened a b=
+it better.
+>> >
+>> > regards,
+>> > Luke.
+>> >
+>> >> Since the version next-20250509 [2], we are seeing the following
+>> >> regression
+>> >>
+>> >> ``````````````````````````````````````````````````````````````````=
+```````````````
+>> >> <4>[    5.400826] ------------[ cut here ]------------
+>> >> <4>[    5.400832] list_add double add: new=3Dffffffffa07c0ca0,
+>> >> prev=3Dffffffff837e9a60, next=3Dffffffffa07c0ca0.
+>> >> <4>[    5.400845] WARNING: CPU: 0 PID: 379 at lib/list_debug.c:35
+>> >> __list_add_valid_or_report+0xdc/0xf0
+>> >> <4>[    5.400850] Modules linked in: cmdlinepart(+) eeepc_wmi(+)
+>> >> asus_nb_wmi(+) asus_wmi spi_nor(+) sparse_keymap mei_pxp mtd
+>> >> platform_profile kvm_intel(+) mei_hdcp wmi_bmof kvm irqbypass
+>> >> polyval_clmulni usbhid ghash_clmulni_intel snd_hda_intel hid
+>> >> sha1_ssse3
+>> >> r8152(+) binfmt_misc aesni_intel snd_intel_dspcfg mii r8169
+>> >> snd_hda_codec rapl video snd_hda_core intel_cstate snd_hwdep realt=
+ek
+>> >> snd_pcm snd_timer mei_me snd i2c_i801 i2c_mux spi_intel_pci idma64
+>> >> soundcore spi_intel i2c_smbus mei intel_pmc_core nls_iso8859_1
+>> >> pmt_telemetry pmt_class intel_pmc_ssram_telemetry pinctrl_alderlake
+>> >> intel_vsec acpi_tad wmi acpi_pad dm_multipath msr nvme_fabrics fuse
+>> >> efi_pstore nfnetlink ip_tables x_tables autofs4
+>> >> <4>[    5.400904] CPU: 0 UID: 0 PID: 379 Comm: (udev-worker) Taint=
+ed: G
+>> >> S
+>> >> 6.15.0-rc7-next-20250526-next-20250526-g3be1a7a31fbd+ #1
+>> >> PREEMPT(voluntary)
+>> >> <4>[    5.400907] Tainted: [S]=3DCPU_OUT_OF_SPEC
+>> >> <4>[    5.400908] Hardware name: ASUS System Product Name/PRIME
+>> Z790-P
+>> >> WIFI, BIOS 0812 02/24/2023
+>> >> <4>[    5.400909] RIP: 0010:__list_add_valid_or_report+0xdc/0xf0
+>> >> <4>[    5.400912] Code: 16 48 89 f1 4c 89 e6 e8 a2 c5 5f ff 0f 0b =
+31 c0
+>> >> e9 72 ff ff ff 48 89 f2 4c 89 e1 48 89 fe 48 c7 c7 68 ba 0f 83 e8 =
+84
+>> >> c5 5f ff <0f> 0b 31 c0 e9 54 ff ff ff 66 66 2e 0f 1f 84 00 00 00 00
+>> >> 00 90
+>> >> 90
+>> >> <4>[    5.400914] RSP: 0018:ffffc90002763588 EFLAGS: 00010246
+>> >> <4>[    5.400916] RAX: 0000000000000000 RBX: ffffffffa07c0ca0 RCX:
+>> >> 0000000000000000
+>> >> <4>[    5.400918] RDX: 0000000000000000 RSI: 0000000000000000 RDI:
+>> >> 0000000000000000
+>> >> <4>[    5.400919] RBP: ffffc90002763598 R08: 0000000000000000 R09:
+>> >> 0000000000000000
+>> >> <4>[    5.400920] R10: 0000000000000000 R11: 0000000000000000 R12:
+>> >> ffffffffa07c0ca0
+>> >> <4>[    5.400921] R13: ffffffffa07c0ca0 R14: 0000000000000000 R15:
+>> >> ffff8881212d6da0
+>> >> <4>[    5.400923] FS:  0000778637b418c0(0000) GS:ffff8888dad0c000(=
+0000)
+>> >> knlGS:0000000000000000
+>> >> <4>[    5.400926] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+>> >> <4>[    5.400928] CR2: 00007786373b80b2 CR3: 0000000116faa000 CR4:
+>> >> 0000000000f50ef0
+>> >> <4>[    5.400931] PKRU: 55555554
+>> >> <4>[    5.400933] Call Trace:
+>> >> <4>[    5.400935]  <TASK>
+>> >> <4>[    5.400937]  ? lock_system_sleep+0x2b/0x40
+>> >> <4>[    5.400942]  acpi_register_lps0_dev+0x58/0xb0
+>> >> <4>[    5.400949]  asus_wmi_probe+0x7f/0x1930 [asus_wmi]
+>> >> <4>[    5.400956]  ? kernfs_create_link+0x69/0xe0
+>> >> ``````````````````````````````````````````````````````````````````=
+```
+>> >> ````````````
+>> >> Detailed log can be found in [3].
+>> >>
+>> >> After bisecting the tree, the following patch [4] seems to be the =
+first "bad"
+>> >> commit
+>> >>
+>> >> ``````````````````````````````````````````````````````````````````=
+```
+>> >> ````````````````````````````````````
+>> >> commit feea7bd6b02d43a794e3f065650d89cf8d8e8e59
+>> >> Author: Luke D. Jones mailto:luke@ljones.dev
+>> >> Date:=C2=A0=C2=A0 Sun Mar 23 15:34:21 2025 +1300
+>> >>
+>> >> =C2=A0=C2=A0=C2=A0 platform/x86: asus-wmi: Refactor Ally suspend/r=
+esume
+>> >> ``````````````````````````````````````````````````````````````````=
+```
+>> >> ````````````````````````````````````
+>> >>
+>> >> We could not revert the patch because of merge conflict but resett=
+ing
+>> >> to the parent of the commit seems to fix the issue
+>> >>
+>> >> Could you please check why the patch causes this regression and
+>> >> provide a fix if necessary?
+>> >>
+>> >> Thank you.
+>> >>
+>> >> Regards
+>> >>
+>> >> Chaitanya
+>> >>
+>> >> [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
+>> >> [2]
+>> >> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.gi=
+t/c
+>> >> ommit/?h=3Dnext-20250509
+>> >> [3]
+>> >> https://intel-gfx-ci.01.org/tree/linux-next/next-20250526/bat-rpls=
+-4/
+>> >> boot0.txt
+>> >> [4]
+>> >> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.gi=
+t/c
+>> >> ommit/?h=3Dnext-
+>> 20250509&id=3Dfeea7bd6b02d43a794e3f065650d89cf8d8e8e59
+>>=20
+>>=20
+>> --
+>>  ~ Kurt
