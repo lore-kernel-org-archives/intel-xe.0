@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6221DC71132
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 08:30:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74EE5C5B543
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 08:30:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA9C10E4B9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3C8910E4AB;
 	Tue, 10 Jun 2025 08:30:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ZzcTax39";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lDrKsGMW";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF2DB10E4A5;
- Tue, 10 Jun 2025 08:30:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61A0810E264;
+ Tue, 10 Jun 2025 08:30:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,16 +22,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=jTRqu2nBqb2YSUrOmF9WrDm+XPMI1HMWSoD3LnIUbn0=; b=ZzcTax39cDUA02yPUxwVU/VXcZ
- +Is9fiORdj36Cbj3owm3QVUTVkb34VAHcBkisFGkyT1uCwmdtyNGPflOdTorD0fQJFFQMC4FiMb4S
- B13Swm8LyEBjm8NNtgl5EEKqhlQlVd2JBe0zLVVRT9qGpjDtUd9MfxqtgC5uoFfyZhlDyvEYUN7/m
- 3UtPRCHzwluITLCXw0bo1PNXISwW7QxOPkWIa76mYaBBI8Wlb5zvJ2BsnQZzoBzHjm9oNaJGnmIOY
- ERssGu7Aex4wakTbFq/xIlTXL/Y8w7uRjizG4GOMuz8H0EWmKa6vstSKSZ64OoAz6HtnWVlScIQZO
- 6FMkFfIA==;
+ bh=YOjqMe/tuuD75cYyDJpqDWi3JSyTU2QIgA+7utXEbb8=; b=lDrKsGMW4vFegfMhil/z3M8V1o
+ lqVC21QxOcZKBRND6vxmHpN4mYyEF5U0+K9RDQeAtOOLavBYbQuFneBCZHmvR9evtr5bFXDMz9JBe
+ T+bljFqIvaw2San0Ukva0lWpSMhOGuk6vCExAquDamlvaFKyq9lcWXqGM/1XCLD20xZ67nI27gmLm
+ 2tLLt+mQOcq4EmX4HHk3dhiCE7wLXUOhdvG936A7cq0iCglDjXbRFdp0KW0z+MRlNAy7kLmsm81dx
+ 2IPjWhtPBQz4aW9PK8AEnIsQ/HB+kxnrWUip2sW2Cvdcky3sBIUnkqoz4BUCVTBH0uo5nwChsEJcW
+ DsvO1jKA==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uOuMx-001jms-1L; Tue, 10 Jun 2025 10:30:07 +0200
+ id 1uOuMv-001jmk-Kh; Tue, 10 Jun 2025 10:30:05 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: dri-devel@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
@@ -39,10 +39,10 @@ Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
  =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
-Subject: [PATCH v4 4/6] drm/syncobj: Avoid temporary allocation in
- drm_syncobj_timeline_signal_ioctl
-Date: Tue, 10 Jun 2025 09:29:59 +0100
-Message-ID: <20250610083001.4120-5-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v4 2/6] drm/syncobj: Do not allocate an array to store zeros
+ when waiting
+Date: Tue, 10 Jun 2025 09:29:57 +0100
+Message-ID: <20250610083001.4120-3-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250610083001.4120-1-tvrtko.ursulin@igalia.com>
 References: <20250610083001.4120-1-tvrtko.ursulin@igalia.com>
@@ -63,106 +63,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We can avoid one of the two temporary allocations if we read the userspace
-supplied timeline points as we go along.
+When waiting on syncobjs the current code allocates a temporary array only
+to fill it up with all zeros.
 
-The only new complication is to unwind unused fence chains on the error
-path, but even that code was already present in the function.
+We can avoid that by relying on the allocated entry array already being
+zero allocated.
+
+For the timeline mode we can fetch the timeline point values as we
+populate the entries array so also do not need this additional temporary
+allocation.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Maíra Canal <mcanal@igalia.com> #v1
+Reviewed-by: Maíra Canal <mcanal@igalia.com> # v1
 ---
 v2:
  * Change back to copy_from_user due 32-bit ARM not implementing 64-bit
    get_user.
 ---
- drivers/gpu/drm/drm_syncobj.c | 43 ++++++++++++++---------------------
- 1 file changed, 17 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/drm_syncobj.c | 38 ++++++++++++-----------------------
+ 1 file changed, 13 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
-index 3aa5edaebdf9..53bd9b6de518 100644
+index e2d97dd6e45b..67efdd22f9bc 100644
 --- a/drivers/gpu/drm/drm_syncobj.c
 +++ b/drivers/gpu/drm/drm_syncobj.c
-@@ -1579,10 +1579,10 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
- 				  struct drm_file *file_private)
+@@ -1055,7 +1055,7 @@ static void syncobj_wait_syncobj_func(struct drm_syncobj *syncobj,
+ }
+ 
+ static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
+-						  void __user *user_points,
++						  u64 __user *user_points,
+ 						  uint32_t count,
+ 						  uint32_t flags,
+ 						  signed long timeout,
+@@ -1063,9 +1063,8 @@ static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
+ 						  ktime_t *deadline)
  {
- 	struct drm_syncobj_timeline_array *args = data;
-+	uint64_t __user *points = u64_to_user_ptr(args->points);
-+	uint32_t i, j, count = args->count_handles;
- 	struct drm_syncobj **syncobjs;
- 	struct dma_fence_chain **chains;
+ 	struct syncobj_wait_entry *entries;
+-	struct dma_fence *fence;
 -	uint64_t *points;
--	uint32_t i, j;
- 	int ret;
+ 	uint32_t signaled_count, i;
++	struct dma_fence *fence;
  
- 	if (!drm_core_check_feature(dev, DRIVER_SYNCOBJ_TIMELINE))
-@@ -1596,31 +1596,17 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+ 	if (flags & (DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
+ 		     DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE)) {
+@@ -1073,24 +1072,10 @@ static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
+ 		lockdep_assert_none_held_once();
+ 	}
  
- 	ret = drm_syncobj_array_find(file_private,
- 				     u64_to_user_ptr(args->handles),
--				     args->count_handles,
-+				     count,
- 				     &syncobjs);
- 	if (ret < 0)
- 		return ret;
- 
--	points = kmalloc_array(args->count_handles, sizeof(*points),
--			       GFP_KERNEL);
--	if (!points) {
--		ret = -ENOMEM;
--		goto out;
--	}
--	if (!u64_to_user_ptr(args->points)) {
--		memset(points, 0, args->count_handles * sizeof(uint64_t));
--	} else if (copy_from_user(points, u64_to_user_ptr(args->points),
--				  sizeof(uint64_t) * args->count_handles)) {
--		ret = -EFAULT;
--		goto err_points;
+-	points = kmalloc_array(count, sizeof(*points), GFP_KERNEL);
+-	if (points == NULL)
+-		return -ENOMEM;
+-
+-	if (!user_points) {
+-		memset(points, 0, count * sizeof(uint64_t));
+-
+-	} else if (copy_from_user(points, user_points,
+-				  sizeof(uint64_t) * count)) {
+-		timeout = -EFAULT;
+-		goto err_free_points;
 -	}
 -
--	chains = kmalloc_array(args->count_handles, sizeof(void *), GFP_KERNEL);
-+	chains = kmalloc_array(count, sizeof(void *), GFP_KERNEL);
- 	if (!chains) {
- 		ret = -ENOMEM;
--		goto err_points;
-+		goto out;
- 	}
--	for (i = 0; i < args->count_handles; i++) {
-+	for (i = 0; i < count; i++) {
- 		chains[i] = dma_fence_chain_alloc();
- 		if (!chains[i]) {
- 			for (j = 0; j < i; j++)
-@@ -1630,19 +1616,24 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
- 		}
- 	}
- 
--	for (i = 0; i < args->count_handles; i++) {
-+	for (i = 0; i < count; i++) {
- 		struct dma_fence *fence = dma_fence_get_stub();
-+		u64 point = 0;
- 
--		drm_syncobj_add_point(syncobjs[i], chains[i],
--				      fence, points[i]);
-+		if (points && copy_from_user(points++, &point, sizeof(point))) {
-+			ret =  -EFAULT;
-+			for (j = i; j < count; j++)
-+				dma_fence_chain_free(chains[j]);
-+			goto err_chains;
-+		}
+ 	entries = kcalloc(count, sizeof(*entries), GFP_KERNEL);
+-	if (!entries) {
+-		timeout = -ENOMEM;
+-		goto err_free_points;
+-	}
++	if (!entries)
++		return -ENOMEM;
 +
-+		drm_syncobj_add_point(syncobjs[i], chains[i], fence, point);
- 		dma_fence_put(fence);
- 	}
- err_chains:
- 	kfree(chains);
--err_points:
--	kfree(points);
- out:
--	drm_syncobj_array_free(syncobjs, args->count_handles);
-+	drm_syncobj_array_free(syncobjs, count);
+ 	/* Walk the list of sync objects and initialize entries.  We do
+ 	 * this up-front so that we can properly return -EINVAL if there is
+ 	 * a syncobj with a missing fence and then never have the chance of
+@@ -1101,9 +1086,15 @@ static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
+ 		struct dma_fence *fence;
  
- 	return ret;
+ 		entries[i].task = current;
+-		entries[i].point = points[i];
++		if (user_points &&
++		    copy_from_user(user_points++, &entries[i].point,
++				   sizeof(*user_points))) {
++			timeout = -EFAULT;
++			goto cleanup_entries;
++		}
+ 		fence = drm_syncobj_fence_get(syncobjs[i]);
+-		if (!fence || dma_fence_chain_find_seqno(&fence, points[i])) {
++		if (!fence ||
++		    dma_fence_chain_find_seqno(&fence, entries[i].point)) {
+ 			dma_fence_put(fence);
+ 			if (flags & (DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
+ 				     DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE)) {
+@@ -1209,9 +1200,6 @@ static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
+ 	}
+ 	kfree(entries);
+ 
+-err_free_points:
+-	kfree(points);
+-
+ 	return timeout;
  }
+ 
 -- 
 2.48.0
 
