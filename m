@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D5D6C71136
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 08:30:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C8D5C71132
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 08:30:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26D1F10E4BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6137B10E4BE;
 	Tue, 10 Jun 2025 08:30:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="aJ9Gg+Z9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RHvix/P3";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BD4810E4B7;
- Tue, 10 Jun 2025 08:30:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4687E10E4A8;
+ Tue, 10 Jun 2025 08:30:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=WP5Q62L9bd0NFMZSbmJImhy1XHd14aKpY7d1ho9XWjc=; b=aJ9Gg+Z9TCZABjsy5lgkdCeEPd
- fv8gPf3UxWL+zBH0W+Grn1sAVsaEf9hcwq8uUsVTnZq3XMRPZsZ7ErpPJCu79/fM9Zc87tyv+1Ch7
- eLrQbL3zh21LR0aNs9ZcYt8Vwo5RqPkHa1V+ipTAgDa0EzOiBJfAryWGC4YvXJeQAwDauN9vhkL22
- OMdeIz8cBrZCSrHkyN4ftObedn0OguuEIYsKBaNvnWEGv4sSHO6A6TMdqEEi2nDKo4vZDD4ASrmpl
- P2TKk7wolQSpy1NwJ44sZgSOUv3mmrOg1gyaXxkImecLijhRAbPSWLF7o2U+bKcwyR8lyNGmNVxTk
- tBfvlyjg==;
+ bh=GJSHTce66Jea0KOnPaRkOM+/PJBsn9bgNyoRl97BpDM=; b=RHvix/P3be4KcTxh05xCf3Zbsg
+ RqLoJNjsjbQB5NPXuou+Jqv/x9EeE7yI2E04cYOTyHGpMJm/oS6McZ1K7nJwvhydmKpG8A48gCQQ7
+ bRTQKWmdn9opmpvunQ+UgWu0HxNp1HLdY3OlGD99UuDFlcmW88bODr2mzlZxouWruIczjsJFrK05P
+ 6BXvEbUhdXdkjaIGb+WN13sMUdSP4Z4aTbRNtvdOGZYdCzF7zDUDS7zC8/qJZysESA7PsR6kMy/zK
+ K6qnXdY858EJn2pqoOAJk/f1w/B39ZrvdkQjQk+cvPrYkXtLbCA5fsVOlBZjZ0ftnC8nSSZUyng2X
+ AgTbEdCQ==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uOuMw-001jmo-B7; Tue, 10 Jun 2025 10:30:06 +0200
+ id 1uOuMu-001jmb-7Z; Tue, 10 Jun 2025 10:30:04 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: dri-devel@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
@@ -39,13 +39,10 @@ Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
  =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
-Subject: [PATCH v4 3/6] drm/syncobj: Avoid one temporary allocation in
- drm_syncobj_array_find
-Date: Tue, 10 Jun 2025 09:29:58 +0100
-Message-ID: <20250610083001.4120-4-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v4 0/6] A few drm_syncobj optimisations
+Date: Tue, 10 Jun 2025 09:29:55 +0100
+Message-ID: <20250610083001.4120-1-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250610083001.4120-1-tvrtko.ursulin@igalia.com>
-References: <20250610083001.4120-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -63,90 +60,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Drm_syncobj_array_find() helper is used from many userspace ioctl entry
-points with the task of looking up userspace handles to internal objects.
+A small set of drm_syncobj optimisations which should make things a tiny bit
+more efficient on the CPU side of things.
 
-We can easily avoid one temporary allocation by making it read the handles
-as it is looking them up.
+Improvement seems to be around 1.5%* more FPS if observed with "vkgears
+-present-mailbox" on a Steam Deck Plasma desktop, but I am reluctant to make a
+definitive claim on the numbers since there is some run to run variance. But, as
+suggested by Michel Dänzer, I did do a five ~100 second runs on the each kernel
+to be able to show the ministat analysis.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Maíra Canal <mcanal@igalia.com>
----
+x before
++ after
++------------------------------------------------------------+
+|                          x         +                       |
+|                   x      x         +                       |
+|                   x      xx      ++++                      |
+|                 x x      xx x    ++++                      |
+|                 x xx   x xx x+   ++++                      |
+|                xxxxx   xxxxxx+   ++++ + +                  |
+|                xxxxxxx xxxxxx+x  ++++ +++                  |
+|              x xxxxxxxxxxx*xx+* x++++++++   ++             |
+|        x x   xxxxxxxxxxxx**x*+*+*++++++++ ++++ +           |
+|       xx x   xxxxxxxxxx*x****+***+**+++++ ++++++           |
+|x     xxx x   xxxxx*x****x***********+*++**+++++++   +  +  +|
+|               |_______A______|                             |
+|                             |______A_______|               |
++------------------------------------------------------------+
+    N           Min           Max        Median           Avg        Stddev
+x 135      21697.58     22809.467     22321.396     22307.707     198.75011
++ 118     22200.746      23277.09       22661.4     22671.442     192.10609
+Difference at 95.0% confidence
+    363.735 +/- 48.3345
+    1.63054% +/- 0.216672%
+    (Student's t, pooled s = 195.681)
+
+Or when tested on Intel Alderlake, KDE Wayland:
+
+x base
++ syncobj
++--------------------------------------------------------------+
+|                                                       +      |
+|                                                       +   +  |
+|                                                       +   +  |
+|                                                       +  ++  |
+|                                                       ++ ++  |
+|                                       x               ++ ++  |
+|                       x               x             + ++ ++  |
+|                       x          xx   xx x x        +++++++  |
+|                       x   x   xx xxx xxxx*xxx      +++++++++ |
+|x       xx x  x    x  xx xxxxxxxxxx*xxx****xxx  +x+ ++++++++++|
+|                      |__________A_M_______|     |____A_M___| |
++--------------------------------------------------------------+
+    N           Min           Max        Median           Avg        Stddev
+x  55      7158.232      8058.753      7803.506     7754.5195     191.69526
++  55       7801.23      8272.271      8172.435     8150.6303     105.84085
+Difference at 95.0% confidence
+    396.111 +/- 57.8717
+    5.10813% +/- 0.746296%
+    (Student's t, pooled s = 154.838)
+
+Scores may seem low but I had to fix to conservative CPU freq to avoid some
+pretty strong thermal throttling causing wild swings within a run. Nevertheless
+the improvement is clearly shown here as well.
+
 v2:
- * Fix handle type.
- * Undo pointless unwind change.
----
- drivers/gpu/drm/drm_syncobj.c | 36 +++++++++++++++--------------------
- 1 file changed, 15 insertions(+), 21 deletions(-)
+ * Implemented review feedback - see patch change logs.
 
-diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
-index 67efdd22f9bc..3aa5edaebdf9 100644
---- a/drivers/gpu/drm/drm_syncobj.c
-+++ b/drivers/gpu/drm/drm_syncobj.c
-@@ -1237,39 +1237,35 @@ signed long drm_timeout_abs_to_jiffies(int64_t timeout_nsec)
- EXPORT_SYMBOL(drm_timeout_abs_to_jiffies);
- 
- static int drm_syncobj_array_find(struct drm_file *file_private,
--				  void __user *user_handles,
--				  uint32_t count_handles,
-+				  u32 __user *handles,
-+				  uint32_t count,
- 				  struct drm_syncobj ***syncobjs_out)
- {
--	uint32_t i, *handles;
- 	struct drm_syncobj **syncobjs;
-+	uint32_t i;
- 	int ret;
- 
--	handles = kmalloc_array(count_handles, sizeof(*handles), GFP_KERNEL);
--	if (handles == NULL)
-+	if (!access_ok(handles, count * sizeof(*handles)))
-+		return -EFAULT;
-+
-+	syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
-+	if (!syncobjs)
- 		return -ENOMEM;
- 
--	if (copy_from_user(handles, user_handles,
--			   sizeof(uint32_t) * count_handles)) {
--		ret = -EFAULT;
--		goto err_free_handles;
--	}
-+	for (i = 0; i < count; i++) {
-+		u32 handle;
- 
--	syncobjs = kmalloc_array(count_handles, sizeof(*syncobjs), GFP_KERNEL);
--	if (syncobjs == NULL) {
--		ret = -ENOMEM;
--		goto err_free_handles;
--	}
--
--	for (i = 0; i < count_handles; i++) {
--		syncobjs[i] = drm_syncobj_find(file_private, handles[i]);
-+		if (__get_user(handle, handles++)) {
-+			ret = -EFAULT;
-+			goto err_put_syncobjs;
-+		}
-+		syncobjs[i] = drm_syncobj_find(file_private, handle);
- 		if (!syncobjs[i]) {
- 			ret = -ENOENT;
- 			goto err_put_syncobjs;
- 		}
- 	}
- 
--	kfree(handles);
- 	*syncobjs_out = syncobjs;
- 	return 0;
- 
-@@ -1277,8 +1273,6 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
- 	while (i-- > 0)
- 		drm_syncobj_put(syncobjs[i]);
- 	kfree(syncobjs);
--err_free_handles:
--	kfree(handles);
- 
- 	return ret;
- }
+v3:
+ * Moved #define DRM_SYNCOBJ_FAST_PATH_ENTRIES one patch earlier for less churn.
+
+ v3.1:
+ * Consolidated testing results.
+
+v4:
+ * Kernel test robot reports 32-bit ARM does not implement 64-bit get/put_user.
+   Switch to copy_to/from_user in relevant places.
+
+Cc: Maíra Canal <mcanal@igalia.com>
+
+Tvrtko Ursulin (6):
+  drm/syncobj: Remove unhelpful helper
+  drm/syncobj: Do not allocate an array to store zeros when waiting
+  drm/syncobj: Avoid one temporary allocation in drm_syncobj_array_find
+  drm/syncobj: Avoid temporary allocation in
+    drm_syncobj_timeline_signal_ioctl
+  drm/syncobj: Add a fast path to drm_syncobj_array_wait_timeout
+  drm/syncobj: Add a fast path to drm_syncobj_array_find
+
+ drivers/gpu/drm/drm_syncobj.c | 277 ++++++++++++++++++----------------
+ 1 file changed, 147 insertions(+), 130 deletions(-)
+
 -- 
 2.48.0
 
