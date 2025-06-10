@@ -4,184 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A9DFC5B552
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 13:20:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35548C5B552
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 13:27:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C98110E558;
-	Tue, 10 Jun 2025 13:20:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBFA510E54A;
+	Tue, 10 Jun 2025 13:27:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RYNFCHGv";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2naHksbD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D5F510E558;
- Tue, 10 Jun 2025 13:20:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749561627; x=1781097627;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=/7RQRnkh+pZRKSAZyFOrnecDUTUE6JfaHSw5UeE2Wik=;
- b=RYNFCHGvCqbXSJ2kcZpJ/lGHZS5TxNUnHi68EdMqkgY2ctivPXneaNiR
- L5svm8CZsjtmQfyscZQ005UezFt4hwYJfSpb8hQaEpgCyF3vKP5jMa5Em
- 4nVml8keSFHczlCdhAGcdEtLQUs6tO7PGkCQxlEuo2mMbTLz8BHYjVdqD
- GBWWIEEBpjnzbv57LK+B5EpD03H1WcwtsBA/cwsJJZ9Fq2RfreWn25jAt
- z7nrMQTJ67By1Op7/3FxmL2kzW4XlGsjtwF2sAkWHlnj4tjJyVEjNy8a9
- v6cUo/dXLjOOxJrkPyoVdQrCO47NsdV4k3J13sRf72jWI8fOs65l072aS g==;
-X-CSE-ConnectionGUID: U6JZcL3tRm6NYG/eXz9/mQ==
-X-CSE-MsgGUID: ChKx8lDRQfSBT/QKwmM7iA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="39288292"
-X-IronPort-AV: E=Sophos;i="6.16,225,1744095600"; d="scan'208";a="39288292"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2025 06:20:27 -0700
-X-CSE-ConnectionGUID: Q6gjGZf/Q+qfQ7OOI0Yw+g==
-X-CSE-MsgGUID: 4DvMkDCjQbSj6RgFDh2Bmg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,225,1744095600"; d="scan'208";a="150674463"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2025 06:20:26 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 10 Jun 2025 06:20:26 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Tue, 10 Jun 2025 06:20:26 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.68) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.55; Tue, 10 Jun 2025 06:20:23 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2083.outbound.protection.outlook.com [40.107.93.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 104BE10E558;
+ Tue, 10 Jun 2025 13:27:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EfydxF9Xs6sHL2aJVcfpMsOKa8N2ieiuZGYOrfZfGWDeIg/z54eeu4GiN7iL9rqhHsLBl1x57Yfew7oDlwHf7bpBmmDj35GYOqI5dv1su3pEAZU4YXjTaAz7AT4RIikoRlb0JF8mIVoBOtpc6FQZl3t5IqIFq9FKYcBjrxCMMnVgj1sHPBJEYRIaoUB0b2ArL4chRJY6pmaUEc8D7i3x5aJQwUPG7vABs11du7cO043S3e+GOwWHfpDNKRIu4i0GU8GrdjQ6dj2x+2H1KSMO8WxXY7eHGkEVzmaSxSNeL5cztd/ijGm1aQjexkeNHkEMc9pOTVuMUxcJGyJw/97bdA==
+ b=cno49nr+IzDmyAD9ANPThtRfKG1qbwc77dXttraX45v9Kt7RH6d8TNMJt4xUZD4aIrogbCyNUiLt5sC9tcVXmWr2+1Rg9nXLChKjwmnCLBj9XD65nhBEcMXFWOgR1xCg8hndiYDuC4ip/4er9Ca/cDlK5qNeRRY2ZmH5w37kTbukNgbSfFBEgdIbkV4KR2ccdsWVq0ZFd1kFWfoJBbFNKbQ2mxOgLsGRrAD3UAUSflDajxtW2p3BB1F5SnJHN3ZBGpXqP3IoUMBraMtKtuwu+AQmc48DXWVZklo+v/wd9D9XdlD7Dkz76l2xO2q2SzFq7aFL3Lyh73PEZKh/CV9XcA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nyddEqf4SpLL63X2y50OEjbN9jcJ6c3V7/SZcY5KpNw=;
- b=fO3W1goILhv5Dq3fIEcCq+foEU/BG9xShv7ENoMUP/szURo8ir8iTWbWdaqSOn43rOOJSJdRWiJqCMtJuDfiW43Vm7TYgOwxZMBHfgHVg9Fw5oGJTxUEXKxmUYNbdsIfX8jOQqYlKblBk+KY0qZr0NhT3mnG1tSqiNpJpIc13KiC8cBZtIIUQDh/9CHdjR5FADPz1BDMw4dfFzE2UnLzFiOxx990od+HqtHn3gSTEUAavse+T8t2hsepUpCfq8cWTvczoJgXxRHFX2r9VrP91ui1l5/MzgRYFhP0ldz647MsuZxfQQWPTG4D/y2VTMH3muAcxK9Cs0g0N4f5jzHGOQ==
+ bh=m3HsAzFRPiwRiQG8GjJGlZEhZ7xF/5ZkKz0b0dHG0uc=;
+ b=bbbucOLvMjc8gWE28qwsv6bKz29c71khQz6mhK2N8c6Yvm1tX8sTj93yhw1gWJDMKt0d78Yhhsc3uaBpEk1Z0PavTcsmneos8qfdNEpjtYqnj0ZTzYQOFngXy/03Leis/zoZdB2A/RN6j4VGpSM0/rsYPL5KbEeXKyOuWs6AvnihczBGf8V2dQ0wNuvdAjeAn0lh6DgwAU6T24xq9TNxzUhA0Cc38J0plUfbf2901qW1pSDIFDFDzCybiMGIiLNjCSB4jHpD4imCg4XmUJhrSXszHm4QJzAMYt5vD3r9ot6I7aFxzyle50R+8KywtDDpfdKiSgE+xNA5dKY9zduyVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=m3HsAzFRPiwRiQG8GjJGlZEhZ7xF/5ZkKz0b0dHG0uc=;
+ b=2naHksbDaGpI7hXWu3rFnEy+GuJ3qPMUOgRSOxL1BrfmehVAf/hJcnZrILnLxVNkIUp0tGWJr0Us5sg023+/0/wN3/xgv1N2wVapJzseU+qjwJZ29diCAJdsicNLra4sL70126TMzYCy98W08WeTh8s2jCxlXF5BWJwgoups0E0=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by SA2PR11MB4876.namprd11.prod.outlook.com (2603:10b6:806:119::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.29; Tue, 10 Jun
- 2025 13:19:39 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%3]) with mapi id 15.20.8813.021; Tue, 10 Jun 2025
- 13:19:39 +0000
-Message-ID: <7997df81-b3ee-4aa0-b278-a5b7f9b88023@intel.com>
-Date: Tue, 10 Jun 2025 18:49:32 +0530
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by IA1PR12MB8555.namprd12.prod.outlook.com (2603:10b6:208:44f::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Tue, 10 Jun
+ 2025 13:27:18 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%7]) with mapi id 15.20.8722.031; Tue, 10 Jun 2025
+ 13:27:18 +0000
+Message-ID: <3664bf87-2805-4c77-89f7-cbd1e6645bfd@amd.com>
+Date: Tue, 10 Jun 2025 15:27:12 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/i915/dp: Add kernel param to limit eDP rate to
- HBR2"
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: <ville.syrjala@linux.intel.com>
-References: <20250610100449.185927-1-ankit.k.nautiyal@intel.com>
- <20250610100449.185927-3-ankit.k.nautiyal@intel.com>
- <826e4afa3d3827e40628e69ccecfcb21201c2faa@intel.com>
+Subject: Re: [PATCH v5 1/4] dma-fence: Add safe access helpers and document
+ the rules
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Rob Clark <robdclark@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+References: <20250609110330.74705-1-tvrtko.ursulin@igalia.com>
+ <20250609110330.74705-2-tvrtko.ursulin@igalia.com>
 Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <826e4afa3d3827e40628e69ccecfcb21201c2faa@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20250609110330.74705-2-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0104.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:af::10) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-ClientProxiedBy: FR2P281CA0012.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a::22) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SA2PR11MB4876:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6fad2e06-22a2-480b-9719-08dda8217430
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA1PR12MB8555:EE_
+X-MS-Office365-Filtering-Correlation-Id: fcbc1e5a-032f-4ef8-0f31-08dda822858a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RkRrQWs1VUJlRk5Na1U4TWR6VWhmU0NSRms4eVhGUUJ6aHV1OXpudXd0dDFk?=
- =?utf-8?B?bEVGTkRhK1RmcW1HMnZWTFlWZW9ubDVTRzBveUgrcEp5NmFHZ012MlN5QTAz?=
- =?utf-8?B?eUVuVUtoOFpyeGpVcU9qT0wyclN0VVdzVFFZWTY1dzZLSjlXY2UxM0ZVVVVQ?=
- =?utf-8?B?cFcxQlZPOEJxdFA4dUJQY2tkMHkxRElEUExnZk9MVDlvTnZySVRSdTBmVTlw?=
- =?utf-8?B?Zi8wMTJ5dE9odkxhVmljVFNLeTJURThpTXVVdnQ2VTZJekVkUHBzWU9HdW1Y?=
- =?utf-8?B?cHhFYWNtbGJWYzluQlRZbDl4aEZKMkxSdEJKcktMWkJNZTluRHJ1Z2EzWWx1?=
- =?utf-8?B?R0dleGpGK0FlU084eTJ2WkY1KytvOVlFNnhHaW9vZ1NvMnFyM0hYRlhhS1pa?=
- =?utf-8?B?WlpudklzQTJJTC8rVkFGSllNeURFRGNkbS9vdUJ4ZkhqeGpvbUZkYUZ4V0lT?=
- =?utf-8?B?RFVGcDRaNGJ2REVhM0FzUUgrcnNoTGMxUzdUTXF6RWFtSW9UbGJVQzB3ZWVK?=
- =?utf-8?B?eEg4T2NRTkJGcDdkbXlmVlQ0Tm1jdWZ0V1MrTjlsZHY0Tk9qQ1hualV0bkxR?=
- =?utf-8?B?bTB3RVo0NEN0bGhhKzFSSEJVSzRmT2F2aFdQcmoxMHlRRzZVR3NHZVFwd1hK?=
- =?utf-8?B?OWl6SDFkVythUU02U0ttRENUVjQrY3QydmgzRWRRaUhwa3F6WHpBazM0RDNo?=
- =?utf-8?B?VjJFOGhWRWs3TGNFbXIwaWh3MzVCMSswdmpPLzhoclJBbHpORmxKOWxCbU45?=
- =?utf-8?B?dGw1RHNVWitlS1cybFlUdVlkQlJoZk1hQmhlL0VWclBmNE0zWTBHRzlFeTFJ?=
- =?utf-8?B?dkMxZm5QMXd3N1hOdGxYSlBreGp4aVloQ1BudkpBdG5IaDRMR3N5dDVtU2lq?=
- =?utf-8?B?MVYxMmxsRXFDUnRoekYrbU5BRURFVlNaT0V1b3dSQUlieUtJL2NENHhWd3p3?=
- =?utf-8?B?N2Q1N05nRWpTbHlMNHB0S25qMWpLb0NhVnNpYTJrK3ZwcVY1UXBjdTl1YXU4?=
- =?utf-8?B?cHFKelhLcUhDL29sL21BSWlMUDNiak1ERTFwWGtJY0h6dlpDVFBLRmdFM3Fy?=
- =?utf-8?B?SWpOMEE4R1JyN01CWFphL0V1eUhTWVVWZGVxSjEvUjhQTUlxMUxiZk5uenpG?=
- =?utf-8?B?NVYyV1pTcU82Q1NDbk0vcWhieWZNSzJaV1ZVYVAzZ2FKUmtKbGEvcWs1aFc1?=
- =?utf-8?B?czhZVVQ4QlZNb291bkh6K01tVjNrcndFNlZRV1FYemhLUnFRRXpWS1NnK2pS?=
- =?utf-8?B?SlFBV2pqOVMyc05LRHRNbFdtU29ldzUzRUFWbmRjY3hwNGpHbE5mRUkyankw?=
- =?utf-8?B?c0ZESVBzMmVldDRPemdOQTEwNFMvUWx5SDZMMEh1ZDRuQ0Q1blBJREFzT2lE?=
- =?utf-8?B?Q29oK3Q5R09sd0JUOURabXREMThpMkFVZU9nL1QxWE9BT09BRkNFQUREWUxh?=
- =?utf-8?B?WkN1OHcwR003eENCNy9kalZTam4zSUticmlxVkpuR3dSVHVnR1hzZUtCSGto?=
- =?utf-8?B?WjdnN3g4Q242NmswKzdZZVgrL3BkRFhCNkdWdkVtL2MxdzlCQUp1YnJQeUtN?=
- =?utf-8?B?UE5pbitvOWkyRkQrcitmQjhZRFBCeCtYaERRYVAydHlqeHZ3YzZwalZkeUM2?=
- =?utf-8?B?VVZ3aXF1eGl0SWJ3Ky8wbjR5ZGF4S1g5ak0wSWs2N00rdDRTRUlONXppaTJK?=
- =?utf-8?B?N09STlZ1TXVTdzRXejc1aVNjNm9YL2NwUmFKV0tReU8wcEhYcHE2Ynd0MGxE?=
- =?utf-8?B?cVpLYXlwU3pheHJCZTZIQTg0YjVXVFd5OFVOeXlCTG1KamM3cE9tRXNuUlFy?=
- =?utf-8?Q?63DZcSFbdgJ87YGW+Mam2IHGcbktaCn1qxqJ4=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?QzB5Yi9tMTlXVGI4ZzhvbW1QNVJJNm1vdEJBSHBES1lSYzBsWDJ5aEpPcE9z?=
+ =?utf-8?B?MVk5eTlnUFFwc0h4eVJkdnZVSzI2UUtxbkRUc2srOGNxdTd3RVFSb0dFcGps?=
+ =?utf-8?B?dDNpWXBlNXpZTCs5QTNBdHRydUwrWUQ3NU1JREdCVkdFSWlDOElEeDRpZG1X?=
+ =?utf-8?B?b24yOERVRGN5Z1FibHFiNit0VjlvenhyUlVYRlhxNXdXYXFPcFVHUnFwcUdm?=
+ =?utf-8?B?dVQydGR2dm1mMFZmd2pGcDlFZkVsZ2JHOHpURndMMDVOQVV3Rm1tYkhjMHp4?=
+ =?utf-8?B?UFlOS1BZTEczQVpIbXV6NzVMNGtnNytTOVdnNU5WSmdObGJQNVJVWk9DQ3Zr?=
+ =?utf-8?B?NlQveHhTTFZhM3ZiVTZndDFaeW5iZVM3Wjh3QlZzVXd5aDR1U0RGd2FPVWdP?=
+ =?utf-8?B?WXhDbFpNbDNnaDVKc1pZbkNGMlJhajR3d0RyekxJMEpGZUlGc0NYVGZtcEwr?=
+ =?utf-8?B?aktTWnRoUEp0RWlhVEF5WTl0QzVJYjhSL0t5NkdNOGJMa1VtR0ZjK3pLWnpL?=
+ =?utf-8?B?Tm1nNVR4UnhjZ1FDazQwZmdWUTVDV3F3NjZpN3NkUjNsZVFVMDh6RXdzeW5v?=
+ =?utf-8?B?OWFpaEJlaWQ0c3o3MEhGUFZFeFZDWGNuM3pXTjNpU2Q5Vi9ObVBaZE11RUZj?=
+ =?utf-8?B?ekpTdWpUQkJhaHBJZGhQNGZQVDMvUjdqQy9hT3E3MENSYVR5ZTRWcjFEaWpq?=
+ =?utf-8?B?OW1rNVRpMDE2YzBWUmxiYTNSVGYwUEtjN0lUUHp1TW9NblRCVlN2RWRvMHBx?=
+ =?utf-8?B?dEFpOVpQM3FZQmJVak52YWYvaGJJQlRHQUpDcEUvSFZaNytHV3U5T1gyOFlz?=
+ =?utf-8?B?SS93V0N0NzVNWUR3MHcrTTM0ZmtqSWcrUmdCVEZBVmNUYTV1b1h0NzVxN3hj?=
+ =?utf-8?B?cGhMY1F2SGN0RmtIS1EyVmplWDRpUlB4TWZnQStuZzl4ZFgwSTZWU2thSHhu?=
+ =?utf-8?B?bHVlTnptQkIxL3dJdmc0a1J5OWVzcU0yWk9MRGJKYkpuQlZNYVBFb0lrTmhj?=
+ =?utf-8?B?NFZ5TVZGL0E0MTRHY2JFUjE2R0JVVGoxZWd2dlYzV016dXdrY3dYdGZRSTRH?=
+ =?utf-8?B?MEVlaEhpaUN1aXdmb0tvS1Vic2ZoTlNkQmNvS3BaSGVkS2F6NEE0L1pvcGxm?=
+ =?utf-8?B?OWJObEpGL29qRmRCVkw5Ylc3K0hpa1VaQlNGK09uMTVuOWVRUjFOMUpyVG91?=
+ =?utf-8?B?WEVNaHAxVEJUdWRBZ25mczRXQWJpUDNqem1WZ013SjJtU0lCMFhpZllka0dC?=
+ =?utf-8?B?eVNDbytBbWpSUHhjNE9wNG1qcW55RmFwRVdObXZyNmY3TTgyRkJCTmNsK3VK?=
+ =?utf-8?B?dWxVWVJDSTRnaDVPUVBaTnNPcmxYYXFpc3dsQ3BtVzJVeitHT1ZRQ25udjhT?=
+ =?utf-8?B?ZnZFVHY4SDNVcmZEdDgxbVBtL2hyenZ6UE8wd2Nzd3NGTHl3Q2FIVENBSFNF?=
+ =?utf-8?B?TVpvc0o0WkROTS9tWVNYS2djMk93djd3Z3lKOHNxbk5zM1ovZjcvL25mT2Ji?=
+ =?utf-8?B?V3BEM0kraVEzQ1BMSklQU0ExZmlwQlRoTGJ5RjdYbDQrZm9IVW9xZkY1UkRY?=
+ =?utf-8?B?UHZmNldTU3dKRWsva05PMytpQWRXR2NmSkJwNUlrWDNrYmJIRnZNck1PbXRJ?=
+ =?utf-8?B?cnBBMmo5dkxtT2NtblRRblJ1ZjJNSlhEdExNQm8xNmtqeFpoRTVJOXpsZXVw?=
+ =?utf-8?B?NW90ZzhIQjFRakxoeHJtd0xLZENDT29zQUIyUHhXdVlYaFZSS2VFMis2QThR?=
+ =?utf-8?B?NGlCZFdOQmY5ZFZBbVNRU09Fa1RKWlNxZFJLbkU5REpCUFJiTVdYcEllNm5Q?=
+ =?utf-8?B?QmNNWTlkNTlZT0VwSjU1aGNweGtvUFkvM1FrY0w1L2FweTVtMHRlTXNDcEFz?=
+ =?utf-8?B?OGNiV3lRSHM0NkZqV2svMVJPUkVOQWV4SUZGYWJzVnJKT3A4K0NhOU0zcXFD?=
+ =?utf-8?Q?yeD/1CGW9Qc=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZEhpVFMrS0VFTHE0UW1HNE93dGxVai9XdmhCb1MzNFlwTjRhcy94enNobkZB?=
- =?utf-8?B?RWp0ZUsyNnBqcjZucGFaU3JCZktLbzczNHhRZThYZ3RhU09aMW1kNVZKVjgv?=
- =?utf-8?B?T3E0MHlGY0ZIRTdpVXJxNTFtenFqZ1ROTC9kK3NoaW4xSkQxVjNzOG13UUpm?=
- =?utf-8?B?dHlCM1c2VG9iNGk3a1p2MXdIa2lWUGsyWURtQ0pTdWZEazExWHZsUjNubEhU?=
- =?utf-8?B?cmt0R0UycGZTM2cvVU9rVW1WY3pMd3E3MDBRaEl4MnloSkUvRE9NTmJGbTA0?=
- =?utf-8?B?cThQRWFEMk4zeG5IY1lJQklMZG4vMVp0cHdaYWlZaEdJZytvV3EzcWRvSDRC?=
- =?utf-8?B?dE9TMVF0eXYraXQ5VnRqYjY4WHFubURpOUJLV2R6SlhqdkE2SzAyZFM1K3h0?=
- =?utf-8?B?Ny9pRUNtRndMM1ZXcndQV05MOTVoSitOMzBjWTFJMm9PUnZLUVA5RVIvTDhS?=
- =?utf-8?B?ZCtHMmZmWjd2WGl4VzZOM1graTUzUXNtOUVYeU0rZk9VN3FnR1pOQ2k2NlVp?=
- =?utf-8?B?T0Z1SXhIaEpRNUlHSXA4cnRHNlg1bW9TQXBBckI2M2E3NThxRkg5SmpzQk14?=
- =?utf-8?B?MG5YWnAzNjFVNFkyS3c0VGZIakVQMzdRVUNYWmhSeXdocHRWVnIxZjVFdXVS?=
- =?utf-8?B?SVVtY0tiRzZlQmw3N3dmQ1pRMUpsL3lBYUFqTDYzY2xVaXhoT1pVeU1wM01O?=
- =?utf-8?B?MzdUYXNVNnp3MWNuaXFuNjBxTTJIMDhoY29mY0txSXYyaGxBSTlYRExCNExU?=
- =?utf-8?B?akNPZHhjQkV3VDlXZVZvcWlKcjZEdjYxVFB2bDB1dlNzT2N0eEFlb2Rwc2RY?=
- =?utf-8?B?MU5USW0yWTlKSHh2Tk0rVDlyUUZidTFGcUZKSVJhQmNzR25mSGd3QlNRbVJP?=
- =?utf-8?B?QkdjMHd3LzhXOEJnV2xPWW9YQUdINlFDQmtwSk95VTkxZlNQM2VnVzAxaEFI?=
- =?utf-8?B?NlpyYUQ0SE55Q1pGemdkNnp4MjhGRFNtTHdEZnNqMGszZzEwNjh2SXZ2MUd0?=
- =?utf-8?B?bGhzSUJRMFVEQkNTR0k5RWJOY2hEUEdFMEp5SzYxaFVMVlFoaitTTWZ1cGNF?=
- =?utf-8?B?K2U4NVN6d3JTU09hMzF1SER6M0lBY0RyWm16NENiOVMxWUIvbGVpZEdQWkts?=
- =?utf-8?B?b3EwaG1GVm1ubW95eE9KN3FOU3psV2ZNMEtRM2JTRUdPQ3FhckdRcWlUeVVj?=
- =?utf-8?B?UWkyakU5emhzR3IwM2dqMk04VDJSMFNEZUVVWGI5cjJkYkFUOUp4TG8xTjFU?=
- =?utf-8?B?SEJnK0YvTkhZbXd2VDFROFcvOWhENHY0cXdMOS8rYUpwbS9tanZ0NkgySXFT?=
- =?utf-8?B?V3Z6NCtZR1VNS0xXbENqUFZCZFhDL3Y5ajBsdEFvMWY4VDI2ZktZM1V4OHFW?=
- =?utf-8?B?M0g5OWU3QWFJNTZRc0lMb3ROVUFORXZleFk3d1gzZldVQVdOd2lCUklSMkwx?=
- =?utf-8?B?WTN4d0VIbDQvQWQxSVk2elBxQncwZXFiNnhONkZGWG5VbkZTNmZJQUpWYzhU?=
- =?utf-8?B?eEFQVGJ3MHUzaVJGV01iS251MGQ1R1JPWlBERkR3b2Z0Zno1TnpPdWdIQWpG?=
- =?utf-8?B?SjJDMHQ4TWJYS1g2enNERjRrc3gveHpVWmJwcG40ZUZZOXZkMmt4OWNmL2Zz?=
- =?utf-8?B?cTZIb2pkUUNkUURCUXg2U2ZHaEhRT1dTZWsvQUw4dlMySFNnQzB1UjJqRDJn?=
- =?utf-8?B?c2JSVWdKRzhBN0NGZmxhRU9OWm0vcFQxc0w4b2dUS2prU212Sk1CWE42SGQ0?=
- =?utf-8?B?UU1uOXpjdTdKWmtBdFF2VGRsMmkzWEVRT2dRaEp3dGJJVjl3RjNWbTUxZUJX?=
- =?utf-8?B?UmFONmJlOGFOZzBsRW1LV2Q5NFZNMDdvblNiNzEvTHlpbFdUWHVsNTZZWG1J?=
- =?utf-8?B?cnhMU09sL3FacGpBSjNZRVZIcm1pa0QrSHFtLzgxNmhUTXE1ejFEeExDVUtl?=
- =?utf-8?B?MktPRHR4VGhXUEZUeXV2TkRYZGRCd3VxaEU4S2JTOUV4MlhiR0pwTFZXYVJH?=
- =?utf-8?B?NnBDNXZyTDZpZU94Ymx4NDFRUG05OCs4ZkpUek5WZHNTUWZPVlNXV0IvaW5T?=
- =?utf-8?B?ZVhlMDBydGptalpwQ3BiS1hzODd3OW9WVVZJQ1REZkxFdC9DdlBOS2RIS2xm?=
- =?utf-8?B?ZWUwbE1pQ0NmSVVPK1NrSEtVYTJ6ZGNYNm93VXRQeVFhVTlDYnRIeU1xRVho?=
- =?utf-8?B?MHc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6fad2e06-22a2-480b-9719-08dda8217430
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OXFJM0VZSFVVWVRpdW1FdmlCdEkyN0ZiMmF2MzhFeUljRnc4Q2lmRnB4MGl1?=
+ =?utf-8?B?SnYxMjMyQW9qVFUraVl2YVBJcC9pdmdzb1NPcHIvOFJCa0pmbUV5Z3FXZkdm?=
+ =?utf-8?B?M29XaFJwRGJYYVFWQWJGUTdYRW9qNE4xT3RRUHVEOS9mYVJ4TmdxYnFIZU9s?=
+ =?utf-8?B?bTRPOVgxSHlHaWFXUi9sd3BQL3p1SGlXYjNlSnBLb1JuUE54Y3lEU2tQSjVR?=
+ =?utf-8?B?cUM4R1RIdVpWeC80bldwdnJaNTRuWFdBRDAxWnBHRHpVdTlxOHJlUFlCU2tj?=
+ =?utf-8?B?VjR0czJCMkQ5Q0JVcitQdmVkRHJjWmlPa3dQTnE5ZHZDNHU3UlNaZ3Fpd1Zv?=
+ =?utf-8?B?OFFUbnUzb3dMYWEvdjhnOVc2TXY1Q0MxU3FSb014QXNCWnpEVHlFVFJ0Rzhr?=
+ =?utf-8?B?ZHVmSUo3dzlvMWdGTmJBVFBveXNETGJQOUp5bDY4dnIxVFRyRnVhMDVLaTRK?=
+ =?utf-8?B?cnl0ckl5bGZiNWhsNWtqL2NTNnpjRDVtRHJ1aiszaHVQZ21iTmkrUC9BanBm?=
+ =?utf-8?B?bmd2QTNaSDMvRDlBQnVuQXZTaFJHRG5LWTJwV3NUZnRJMGdqKy9qbUo2cElV?=
+ =?utf-8?B?b0xKM0NOdkFtazUwWWpIK2Q5WVdqWUFBbFcvN0FXNUdmYThUNHJ3SUsxb0V0?=
+ =?utf-8?B?Ylo0L1luS0d0K1pXcjVYV3RxWU1aVnZVSU9LK294QzVUby8vdi9sL1E1NzFO?=
+ =?utf-8?B?aEM4b1ArdVJEd3V0a0IwcmNYQUJTZ0h1VzBLVmxjWk1DNG5FSEY0bWk1S1BU?=
+ =?utf-8?B?ZEtBUDA0VUlBRDJ4Wmh1ZlVqbUx6NVo1eGY4bUQvR2FhTDdWVVdLVEs2SFhr?=
+ =?utf-8?B?bXo4UXVtTWVNR0hzTllCb3Q5SDlUbWJMK1U0Tk1ZVjV1U0N6L25mV3E2bnQ0?=
+ =?utf-8?B?cHVIMnlEdGE0SUNLR1N2dUtyOXpjd1hMSEVaUUFHMlZIcnl6b2k2THhxN3hW?=
+ =?utf-8?B?Y1FXUmVuaHFObWxrbzdENndEMFVvQy9XaE5ENmsvUTZMck1VeXpzVVNRMlY0?=
+ =?utf-8?B?Z3JRRDk0OTdzb1Fvb0FkWUdNdVpKU3BvaVc5eC9hdHRrR3preUl3V20zeGtO?=
+ =?utf-8?B?WFFJVVZDRE9Jczd6TGZVZTRlRCsvdzhCZGpkdlZ5WGpRdVFkZm9WcWQvUXdn?=
+ =?utf-8?B?MURYYko4MnZ1SmVScXZBNmxPQ3dBcHhoMXRPcVJwTXhNRGR2VUJlY0NpdjVp?=
+ =?utf-8?B?ZlgwS0Q0VmZRTVdoMzNsZXYwMDJRQXBpcm0xNUU2czhaWk94WUxkcW1Sejdy?=
+ =?utf-8?B?UnppdG4zem9YcmNQbzZCUDVaRmRlRlZ2OVE5Y3FQN3VhaUpyVHlxVmpJQkNP?=
+ =?utf-8?B?SWpxTnQvTitlaVRpblZCVmR3Vk5jQnFoRm90VmNzeEg5SlpQaFJPeDNhMWlY?=
+ =?utf-8?B?UzhWQndDMDRUQzRQbkdwMlFsL0YrQmlzTzVGVG9LYnZ2ZFFLc0lxSHVta1Zx?=
+ =?utf-8?B?anQ4UVkydnBFRnpxMXdtcGpoYXBOUmYwSFB4Uk83Z1Q1K0xLeTB5UHhXZVZD?=
+ =?utf-8?B?YXgrWUl1bEhvYWx2TUlkWXE2VExuWFBveWJ5UmxiUVRYdTY0aWJEQWFIeGl3?=
+ =?utf-8?B?Ry9kbm9keVNRS3FQNzkwVkNPRGRSU0FGRklDUmRaL3c4N2FJbE1VZHJKU2tp?=
+ =?utf-8?B?ak80YndjYmkyZFQ3YUhTbkZLSnNhN3F3dThsamRrNkNVbDkzQWxML3pmNDN5?=
+ =?utf-8?B?aXVkbG9VRkhIK0hVbUcydExtdmtiZWpudDg1VSszUlowY3d4VGZJZy81SXp6?=
+ =?utf-8?B?UTNLSUpVaVI1ZUtOV3V3d1B4VHNUYTZQYnpkY3U2MWdETkUwejhZM3NFdFFW?=
+ =?utf-8?B?OHZTMmRWVjlkV0czK3hiZGRmdjV5Y2M4M0VrOVQrcXhMZXlieDVCTHR3d0Nm?=
+ =?utf-8?B?MlN3WVFXN2o3MEc2bmFkT2FPUXVKMmNRaUFjNkNkT09IZkZPdFpsN0hiYkg1?=
+ =?utf-8?B?RGdrdGZLd3M0d3VtNW55RFVPUnJ3RUd2SFlEUG81Qm5ORG8rWG9rN2tRVnda?=
+ =?utf-8?B?OVJjdjNCcTVkRmdQZm54WWJndVp3aGdKd0YvRVB5QXBZR1NzQUdIV0JDWERq?=
+ =?utf-8?B?TUNSMG42akFmQk00L0s3SkNuYmhxM0xmc3BWb1RDVzFjL0orQytISjBMdjVS?=
+ =?utf-8?Q?uWd2zb8VoFThSvuRkUdERMiXv?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fcbc1e5a-032f-4ef8-0f31-08dda822858a
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2025 13:19:39.6895 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2025 13:27:18.2008 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +QUvFly6z4u4a2Y9EVI89AHL2+xFyNF3kdgMkaScqFqH9KzZCU3UMxGwMJI3qNv59IgAGKQVvLDdkB6ov5BZ6YwUytVwmtoFSYFGsUf08A0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4876
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: HxLrEUlw+Y7QOI8qppZ1Iz//h/v8GtFrEGUGaXg0vNVfrEI8Q/bNYmYUdkoHch1I
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8555
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,182 +169,314 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 6/10/2025 5:52 PM, Jani Nikula wrote:
-> On Tue, 10 Jun 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->> Some ICL/TGL platforms with combo PHY ports can theoretically support HBR3,
->> but in practice, signal integrity issues may prevent stable operation.
->> While some systems include a Parade PS8461 mux chip to mitigate jitter and
->> enable HBR3, there is no reliable way to detect its presence.
->> Additionally, many systems have broken or missing VBT entries, making it
->> unsafe to rely on VBT for link rate limits.
->>
->> To address this, introduce a new kernel parameter `limit_edp_hbr2`.
->> When set, this parameter forces the eDP link rate to be capped at
->> HBR2 (540000 kHz), overriding any higher advertised rates from the sink or
->> DPCD. By default, the higher rates will be allowed, i.e. the parameter
->> will be set to false.
->>
->> This provides a manual override for users and OEMs to limit the rate to
->> HBR2, where output with HBR3 is unstable.
-> I'm afraid a module parameter is not an acceptable solution.
->
-> Have I missed a discussion why a quirk is not possible?
 
-The problem I was facing was that the OUI details are available from the 
-logs in gitlab issue 5969 [1], but the DEVICE_ID field was blank so I 
-had used DEVICE_ID_ANY.
+On 6/9/25 13:03, Tvrtko Ursulin wrote:
+> Dma-fence objects currently suffer from a potential use after free problem
+> where fences exported to userspace and other drivers can outlive the
+> exporting driver, or the associated data structures.
+> 
+> The discussion on how to address this concluded that adding reference
+> counting to all the involved objects is not desirable, since it would need
+> to be very wide reaching and could cause unloadable drivers if another
+> entity would be holding onto a signaled fence reference potentially
+> indefinitely.
+> 
+> This patch enables the safe access by introducing and documenting a
+> contract between fence exporters and users. It documents a set of
+> contraints and adds helpers which a) drivers with potential to suffer from
+> the use after free must use and b) users of the dma-fence API must use as
+> well.
+> 
+> Premise of the design has multiple sides:
+> 
+> 1. Drivers (fence exporters) MUST ensure a RCU grace period between
+> signalling a fence and freeing the driver private data associated with it.
+> 
+> The grace period does not have to follow the signalling immediately but
+> HAS to happen before data is freed.
+> 
+> 2. Users of the dma-fence API marked with such requirement MUST contain
+> the complete access to the data within a single code block guarded by the
+> new dma_fence_access_begin() and dma_fence_access_end() helpers.
+> 
+> The combination of the two ensures that whoever sees the
+> DMA_FENCE_FLAG_SIGNALED_BIT not set is guaranteed to have access to a
+> valid fence->lock and valid data potentially accessed by the fence->ops
+> virtual functions, until the call to dma_fence_access_end().
+> 
+> 3. Module unload (fence->ops) disappearing is for now explicitly not
+> handled. That would required a more complex protection, possibly needing
+> SRCU instead of RCU to handle callers such as dma_fence_release() and
+> dma_fence_wait_timeout(), where race between
+> dma_fence_enable_sw_signaling, signalling, and dereference of
+> fence->ops->wait() would need a sleeping SRCU context.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> ---
+>  drivers/dma-buf/dma-fence.c      | 82 +++++++++++++++++++++++++++++++-
+>  include/linux/dma-fence.h        | 32 +++++++++----
+>  include/trace/events/dma_fence.h | 38 +++++++++++++--
+>  3 files changed, 138 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+> index 74f9e4b665e3..36604d68bdc8 100644
+> --- a/drivers/dma-buf/dma-fence.c
+> +++ b/drivers/dma-buf/dma-fence.c
+> @@ -511,12 +511,20 @@ dma_fence_wait_timeout(struct dma_fence *fence, bool intr, signed long timeout)
+>  
+>  	dma_fence_enable_sw_signaling(fence);
+>  
+> -	trace_dma_fence_wait_start(fence);
+> +	if (trace_dma_fence_wait_start_enabled()) {
+> +		dma_fence_access_begin();
+> +		trace_dma_fence_wait_start(fence);
+> +		dma_fence_access_end();
+> +	}
+>  	if (fence->ops->wait)
+>  		ret = fence->ops->wait(fence, intr, timeout);
+>  	else
+>  		ret = dma_fence_default_wait(fence, intr, timeout);
+> -	trace_dma_fence_wait_end(fence);
+> +	if (trace_dma_fence_wait_end_enabled()) {
+> +		dma_fence_access_begin();
+> +		trace_dma_fence_wait_end(fence);
+> +		dma_fence_access_end();
+> +	}
+>  	return ret;
+>  }
+>  EXPORT_SYMBOL(dma_fence_wait_timeout);
+> @@ -533,6 +541,7 @@ void dma_fence_release(struct kref *kref)
+>  	struct dma_fence *fence =
+>  		container_of(kref, struct dma_fence, refcount);
+>  
+> +	dma_fence_access_begin();
+>  	trace_dma_fence_destroy(fence);
+>  
+>  	if (WARN(!list_empty(&fence->cb_list) &&
+> @@ -556,10 +565,13 @@ void dma_fence_release(struct kref *kref)
+>  		spin_unlock_irqrestore(fence->lock, flags);
+>  	}
+>  
+> +	dma_fence_access_end();
+> +
+>  	if (fence->ops->release)
+>  		fence->ops->release(fence);
+>  	else
+>  		dma_fence_free(fence);
+> +
+>  }
+>  EXPORT_SYMBOL(dma_fence_release);
+>  
+> @@ -982,11 +994,13 @@ EXPORT_SYMBOL(dma_fence_set_deadline);
+>   */
+>  void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq)
+>  {
+> +	dma_fence_access_begin();
+>  	seq_printf(seq, "%s %s seq %llu %ssignalled\n",
+>  		   dma_fence_driver_name(fence),
+>  		   dma_fence_timeline_name(fence),
+>  		   fence->seqno,
+>  		   dma_fence_is_signaled(fence) ? "" : "un");
+> +	dma_fence_access_end();
+>  }
+>  EXPORT_SYMBOL(dma_fence_describe);
+>  
+> @@ -1055,3 +1069,67 @@ dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
+>  			 BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
+>  }
+>  EXPORT_SYMBOL(dma_fence_init64);
+> +
+> +/**
+> + * dma_fence_driver_name - Access the driver name
+> + * @fence: the fence to query
+> + *
+> + * Returns a driver name backing the dma-fence implementation.
+> + *
+> + * IMPORTANT CONSIDERATION:
+> + * Dma-fence contract stipulates that access to driver provided data (data not
+> + * directly embedded into the object itself), such as the &dma_fence.lock and
+> + * memory potentially accessed by the &dma_fence.ops functions, is forbidden
+> + * after the fence has been signalled. Drivers are allowed to free that data,
+> + * and some do.
+> + *
+> + * To allow safe access drivers are mandated to guarantee a RCU grace period
+> + * between signalling the fence and freeing said data.
+> + *
+> + * As such access to the driver name is only valid inside a RCU locked section.
+> + * The pointer MUST be both queried and USED ONLY WITHIN a SINGLE block guarded
+> + * by the &dma_fence_access_being and &dma_fence_access_end pair.
+> + */
+> +const char *dma_fence_driver_name(struct dma_fence *fence)
+> +{
+> +	RCU_LOCKDEP_WARN(!rcu_read_lock_held(),
+> +			 "dma_fence_access_begin/end() are required for safe access to returned string");
+> +
+> +	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+> +		return fence->ops->get_driver_name(fence);
+> +	else
+> +		return "detached-driver";
+> +}
+> +EXPORT_SYMBOL(dma_fence_driver_name);
+> +
+> +/**
+> + * dma_fence_timeline_name - Access the timeline name
+> + * @fence: the fence to query
+> + *
+> + * Returns a timeline name provided by the dma-fence implementation.
+> + *
+> + * IMPORTANT CONSIDERATION:
+> + * Dma-fence contract stipulates that access to driver provided data (data not
+> + * directly embedded into the object itself), such as the &dma_fence.lock and
+> + * memory potentially accessed by the &dma_fence.ops functions, is forbidden
+> + * after the fence has been signalled. Drivers are allowed to free that data,
+> + * and some do.
+> + *
+> + * To allow safe access drivers are mandated to guarantee a RCU grace period
+> + * between signalling the fence and freeing said data.
+> + *
+> + * As such access to the driver name is only valid inside a RCU locked section.
+> + * The pointer MUST be both queried and USED ONLY WITHIN a SINGLE block guarded
+> + * by the &dma_fence_access_being and &dma_fence_access_end pair.
+> + */
+> +const char *dma_fence_timeline_name(struct dma_fence *fence)
+> +{
+> +	RCU_LOCKDEP_WARN(!rcu_read_lock_held(),
+> +			 "dma_fence_access_begin/end() are required for safe access to returned string");
+> +
+> +	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+> +		return fence->ops->get_driver_name(fence);
+> +	else
+> +		return "signaled-timeline";
+> +}
+> +EXPORT_SYMBOL(dma_fence_timeline_name);
+> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+> index 10a849cb2d3f..366da956fb85 100644
+> --- a/include/linux/dma-fence.h
+> +++ b/include/linux/dma-fence.h
+> @@ -378,15 +378,31 @@ bool dma_fence_remove_callback(struct dma_fence *fence,
+>  			       struct dma_fence_cb *cb);
+>  void dma_fence_enable_sw_signaling(struct dma_fence *fence);
+>  
+> -static inline const char *dma_fence_driver_name(struct dma_fence *fence)
+> -{
+> -	return fence->ops->get_driver_name(fence);
+> -}
+> +/**
+> + * DOC: Safe external access to driver provided object members
+> + *
+> + * All data not stored directly in the dma-fence object, such as the
+> + * &dma_fence.lock and memory potentially accessed by functions in the
+> + * &dma_fence.ops table, MUST NOT be accessed after the fence has been signalled
+> + * because after that point drivers are allowed to free it.
+> + *
+> + * All code accessing that data via the dma-fence API (or directly, which is
+> + * discouraged), MUST make sure to contain the complete access within a
+> + * &dma_fence_access_begin and &dma_fence_access_end pair.
+> + *
+> + * Some dma-fence API handles this automatically, while other, as for example
+> + * &dma_fence_driver_name and &dma_fence_timeline_name, leave that
+> + * responsibility to the caller.
+> + *
+> + * To enable this scheme to work drivers MUST ensure a RCU grace period elapses
+> + * between signalling the fence and freeing the said data.
+> + *
+> + */
+> +#define dma_fence_access_begin	rcu_read_lock
+> +#define dma_fence_access_end	rcu_read_unlock
 
-+	/* Novatek panel */
-+	{ OUI(0x38, 0xEC, 0x11), DEVICE_ID_ANY, false, BIT(DP_DPCD_QUIRK_HBR3) },
+Please drop those in a favor of another change and use rcu_read_lock/unlock in the code directly.
 
-But with this, the HBR3 rate might get removed for many panels with same 
-OUI, as I had mentioned in [3].
+But see below.
 
-Also I feel the issue might not be specific to the panel but perhaps to 
-few skus with low voltage combo phy ports.
+>  
+> -static inline const char *dma_fence_timeline_name(struct dma_fence *fence)
+> -{
+> -	return fence->ops->get_timeline_name(fence);
+> -}
+> +const char *dma_fence_driver_name(struct dma_fence *fence);
+> +const char *dma_fence_timeline_name(struct dma_fence *fence);
 
-But we cannot rely on the low voltage sku check as OEMs are expected to 
-limit the rate via VBTs. It seems VBTs are also sometimes not correct.
+Please declare those as:
 
-You have briefly highlighted the problem in comments in gitlab issue 
-5969 [2].
+const char __rcu *dma_fence_driver_name(struct dma_fence *fence);
+const char __rcu *dma_fence_timeline_name(struct dma_fence *fence);
 
-So I was thinking if we can give a knob to limit the rate.
+And then use rcu_dereference() on the return value when calling those functions.
 
-Can we add a quirk for machine/model/vendor to limit the rate for 
-specific machines?
-
-
-[1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
-
-[2] 
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969#note_2309988
-
-[3] https://patchwork.freedesktop.org/patch/654704/?series=149227&rev=1
-
+This allows the automated checker to complain when the functions/return value isn't used correctly.
 
 Regards,
+Christian.
 
-Ankit
+>  
+>  /**
+>   * dma_fence_is_signaled_locked - Return an indication if the fence
+> diff --git a/include/trace/events/dma_fence.h b/include/trace/events/dma_fence.h
+> index 84c83074ee81..4814a65b68dc 100644
+> --- a/include/trace/events/dma_fence.h
+> +++ b/include/trace/events/dma_fence.h
+> @@ -34,14 +34,44 @@ DECLARE_EVENT_CLASS(dma_fence,
+>  		  __entry->seqno)
+>  );
+>  
+> -DEFINE_EVENT(dma_fence, dma_fence_emit,
+> +/*
+> + * Safe only for call sites which are guaranteed to not race with fence
+> + * signaling,holding the fence->lock and having checked for not signaled, or the
+> + * signaling path itself.
+> + */
+> +DECLARE_EVENT_CLASS(dma_fence_unsignaled,
+> +
+> +	TP_PROTO(struct dma_fence *fence),
+> +
+> +	TP_ARGS(fence),
+> +
+> +	TP_STRUCT__entry(
+> +		__string(driver, fence->ops->get_driver_name(fence))
+> +		__string(timeline, fence->ops->get_timeline_name(fence))
+> +		__field(unsigned int, context)
+> +		__field(unsigned int, seqno)
+> +	),
+> +
+> +	TP_fast_assign(
+> +		__assign_str(driver);
+> +		__assign_str(timeline);
+> +		__entry->context = fence->context;
+> +		__entry->seqno = fence->seqno;
+> +	),
+> +
+> +	TP_printk("driver=%s timeline=%s context=%u seqno=%u",
+> +		  __get_str(driver), __get_str(timeline), __entry->context,
+> +		  __entry->seqno)
+> +);
+> +
+> +DEFINE_EVENT(dma_fence_unsignaled, dma_fence_emit,
+>  
+>  	TP_PROTO(struct dma_fence *fence),
+>  
+>  	TP_ARGS(fence)
+>  );
+>  
+> -DEFINE_EVENT(dma_fence, dma_fence_init,
+> +DEFINE_EVENT(dma_fence_unsignaled, dma_fence_init,
+>  
+>  	TP_PROTO(struct dma_fence *fence),
+>  
+> @@ -55,14 +85,14 @@ DEFINE_EVENT(dma_fence, dma_fence_destroy,
+>  	TP_ARGS(fence)
+>  );
+>  
+> -DEFINE_EVENT(dma_fence, dma_fence_enable_signal,
+> +DEFINE_EVENT(dma_fence_unsignaled, dma_fence_enable_signal,
+>  
+>  	TP_PROTO(struct dma_fence *fence),
+>  
+>  	TP_ARGS(fence)
+>  );
+>  
+> -DEFINE_EVENT(dma_fence, dma_fence_signaled,
+> +DEFINE_EVENT(dma_fence_unsignaled, dma_fence_signaled,
+>  
+>  	TP_PROTO(struct dma_fence *fence),
+>  
 
->
->
-> BR,
-> Jani.
->
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>   .../drm/i915/display/intel_display_params.c   |  2 +
->>   .../drm/i915/display/intel_display_params.h   |  1 +
->>   drivers/gpu/drm/i915/display/intel_dp.c       | 50 ++++++++++++++++---
->>   3 files changed, 46 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
->> index c4f1ab43fc0c..84f36104f5ca 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
->> @@ -133,6 +133,8 @@ intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
->>   	"(-1=use per-chip default, 0=disabled, 1=enabled, 2=match any register, 3=always locked) "
->>   	"Default: -1");
->>   
->> +intel_display_param_named(limit_edp_hbr2, bool, 0400, "Limit EDP link rate to HBR2 (default: false)");
->> +
->>   __maybe_unused
->>   static void _param_print_bool(struct drm_printer *p, const char *driver_name,
->>   			      const char *name, bool val)
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
->> index 5317138e6044..f7ba9805f97f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
->> @@ -48,6 +48,7 @@ struct drm_printer;
->>   	param(bool, psr_safest_params, false, 0400) \
->>   	param(bool, enable_psr2_sel_fetch, true, 0400) \
->>   	param(int, enable_dmc_wl, -1, 0400) \
->> +	param(bool, limit_edp_hbr2, false, 0400) \
->>   
->>   #define MEMBER(T, member, ...) T member;
->>   struct intel_display_params {
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 2a0b76ae33cd..85022e5e64f4 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -174,10 +174,29 @@ int intel_dp_link_symbol_clock(int rate)
->>   
->>   static int max_dprx_rate(struct intel_dp *intel_dp)
->>   {
->> +	struct intel_display *display = to_intel_display(intel_dp);
->> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->> +	int max_rate;
->> +
->>   	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
->> -		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
->> +		max_rate = drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
->> +	else
->> +		max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
->>   
->> -	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
->> +	/*
->> +	 * Some platforms with combo PHY ports may not reliably support HBR3
->> +	 * due to signal integrity limitations, despite advertising it.
->> +	 * If the kernel parameter `limit_edp_hbr2` is set, cap the link
->> +	 * rate to HBR2 to avoid unstable configurations.
->> +	 */
->> +	if (max_rate >= 810000 && display->params.limit_edp_hbr2) {
->> +		drm_dbg_kms(display->drm,
->> +			    "[ENCODER:%d:%s] Forcing max link rate to HBR2 due to limit_edp_hbr2 set\n",
->> +			    encoder->base.base.id, encoder->base.name);
->> +		max_rate = 540000;
->> +	}
->> +
->> +	return max_rate;
->>   }
->>   
->>   static int max_dprx_lane_count(struct intel_dp *intel_dp)
->> @@ -4253,6 +4272,9 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
->>   static void
->>   intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->>   {
->> +	struct intel_display *display = to_intel_display(intel_dp);
->> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->> +
->>   	intel_dp->num_sink_rates = 0;
->>   
->>   	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
->> @@ -4263,10 +4285,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->>   				 sink_rates, sizeof(sink_rates));
->>   
->>   		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
->> -			int val = le16_to_cpu(sink_rates[i]);
->> -
->> -			if (val == 0)
->> -				break;
->> +			int rate;
->>   
->>   			/* Value read multiplied by 200kHz gives the per-lane
->>   			 * link rate in kHz. The source rates are, however,
->> @@ -4274,7 +4293,24 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->>   			 * back to symbols is
->>   			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
->>   			 */
->> -			intel_dp->sink_rates[i] = (val * 200) / 10;
->> +			rate = le16_to_cpu(sink_rates[i]) * 200 / 10;
->> +
->> +			if (rate == 0)
->> +				break;
->> +
->> +			/*
->> +			 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
->> +			 * even if the sink advertises support. If kernel parameter `limit_edp_hbr2`
->> +			 * is set, reject any sink rates above HBR2 to ensure stable operation.
->> +			 */
->> +			if (rate >= 810000 && display->params.limit_edp_hbr2) {
->> +				drm_dbg_kms(display->drm,
->> +					    "[ENCODER:%d:%s] Limit the rate to HBR2 due to limit_edp_hbr2 param\n",
->> +					    encoder->base.base.id, encoder->base.name);
->> +				break;
->> +			}
->> +
->> +			intel_dp->sink_rates[i] = rate;
->>   		}
->>   		intel_dp->num_sink_rates = i;
->>   	}
