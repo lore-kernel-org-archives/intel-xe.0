@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43990C61DB2
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 21:55:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 660F3C61DB2
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Jun 2025 22:01:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0922010E5BF;
-	Tue, 10 Jun 2025 21:55:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dlAmTVuh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A23E810E5BF
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Jun 2025 21:55:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749592541; x=1781128541;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yZuCAH0nRp3ypcHgbKa4IRmmM8FQQrOAO6X85T/IuMs=;
- b=dlAmTVuhV6PbCO6RsJChrVaWF/QdJalj9zLHAskay78jF/IsFsEqMR6d
- YIB9txmd9fVPX32QZ5N5HfclmHNR3rHsRziSjJa0vqQB3MIRYfIEJ7rIj
- 1VIGplF/VB/XeJqr8G7V0N5ZmezBEW1WkYhrWpfz0eLUbpDitimKwVWCy
- 6jTCyXaY5sfDx3gBhbc/KorJ4hlpOe1FY6LFPS+sKs1M9IP1EbrDdeeFR
- Kzie4nYYyiiF9I2X3Dbs7MEcF99BL+F7Q8df/DuVGz5/t+MXk5MqnYTuO
- DQbP+jDB8Hi972GE/HXZjhmUwyZhCp8Y+xVUEtZ4k2yLgoZp5nWgx4PkH g==;
-X-CSE-ConnectionGUID: WxYc+Oy1TNSzUJR63eRdWw==
-X-CSE-MsgGUID: Zydv9w0WSPimkXo5OkmEww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="51821320"
-X-IronPort-AV: E=Sophos;i="6.16,226,1744095600"; d="scan'208";a="51821320"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2025 14:55:41 -0700
-X-CSE-ConnectionGUID: Y9jpQwKTQ9iXpgmIgqsPmw==
-X-CSE-MsgGUID: s1Z5uH/MSIKAUBPLOvzy4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,226,1744095600"; d="scan'208";a="177876582"
-Received: from bfilipch-desk.jf.intel.com ([10.165.21.204])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2025 14:55:42 -0700
-From: Julia Filipchuk <julia.filipchuk@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: John Harrison <John.C.Harrison@intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [topic/xe-for-CI] fixup! drm/xe/ptl: Add GuC firmware definition
-Date: Tue, 10 Jun 2025 14:55:23 -0700
-Message-ID: <20250610215523.645368-1-julia.filipchuk@intel.com>
-X-Mailer: git-send-email 2.49.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6F710E5BF;
+	Tue, 10 Jun 2025 22:01:53 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0D9C10E5BF;
+ Tue, 10 Jun 2025 22:01:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2345597789493452025=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Crashlog_Type1_Version2_sup?=
+ =?utf-8?q?port_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 10 Jun 2025 22:01:51 -0000
+Message-ID: <174959291163.65653.1060531450264750230@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250610211225.1085901-1-michael.j.ruhl@intel.com>
+In-Reply-To: <20250610211225.1085901-1-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,29 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update PTL GuC to load firmware v70.46.2 with Compatibility UAPI 1.22.2
+--===============2345597789493452025==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
----
- drivers/gpu/drm/xe/xe_uc_fw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 7b2d01d39b86..a22178b1f9ab 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -114,7 +114,7 @@ struct fw_blobs_by_type {
- #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
- 
- #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
--	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	ptl,	70, 44, 1))	\
-+	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	ptl,	70, 46, 2))	\
- 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 44, 1))	\
- 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 44, 1))	\
- 	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	mtl,	70, 44, 1))	\
--- 
-2.49.0
+Series: Crashlog Type1 Version2 support (rev4)
+URL   : https://patchwork.freedesktop.org/series/149120/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60_BAT -> xe-pw-149120v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8403 -> IGT_8404
+  * Linux: xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60 -> xe-pw-149120v4
+
+  IGT_8403: f2e82612b44bf8c30bfd0c523b69e424dc5f8d7a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8404: dad4b2bb9e5a2c87ae0275efbf9f0df00a67ef46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60: 7bc153635620254b73cfe8714ce42768b2bf6d60
+  xe-pw-149120v4: 149120v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v4/index.html
+
+--===============2345597789493452025==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Crashlog Type1 Version2 support (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149120/">https://patchwork.freedesktop.org/series/149120/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60_BAT -&gt; xe-pw-149120v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8403 -&gt; IGT_8404</li>
+<li>Linux: xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60 -&gt; xe-pw-149120v4</li>
+</ul>
+<p>IGT_8403: f2e82612b44bf8c30bfd0c523b69e424dc5f8d7a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8404: dad4b2bb9e5a2c87ae0275efbf9f0df00a67ef46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60: 7bc153635620254b73cfe8714ce42768b2bf6d60<br />
+  xe-pw-149120v4: 149120v4</p>
+
+</body>
+</html>
+
+--===============2345597789493452025==--
