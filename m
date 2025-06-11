@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24DF7C71135
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 21:05:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C1E0C71135
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 21:05:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA71610E080;
-	Wed, 11 Jun 2025 21:05:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DB0B10E733;
+	Wed, 11 Jun 2025 21:05:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aCC+VMN2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y8eGUVj1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44DA310E080
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2009110E736
  for <Intel-Xe@lists.freedesktop.org>; Wed, 11 Jun 2025 21:05:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1749675955; x=1781211955;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=y6LwwldsiL7hq1dVFIXWncpcF1YKGw2GvC4PijOoHcc=;
- b=aCC+VMN2NL3/CG52VnC6gwQssalbD+6JI1FJh2Ynq1OU2mG+L6O5k0EP
- ynA5ffPjWHhuNhoXSQFbwGyGv4epl2hsTldbt1io8frtb+SzoJwxp6DuO
- Ao4Zi0U1bQEfz5yX9C2z5K3GNJHiywKGlnkCwBTNgx7ivBm9XotVpMEKw
- Y4KfwMrdhNzlwzj9ckSBtU0iVvtbQhFgjIVkInRwyB6Lt/WxB8sPghCoB
- 2bFBC3iQ2K2P+QDcEAHNZrnTJMqxVdsB3NticeP8/TKdZQzDEJmAWHLye
- VBZvEBLtdjYu9VROQP7EnjcGjSGWLBKpb1Mr1XaTbI/xbLwycw6BeHLEk g==;
-X-CSE-ConnectionGUID: EA++ERqvTNyakR0GflYWBQ==
-X-CSE-MsgGUID: Bt6ZkiR8Rqmkhqbc0hb4Aw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="54462481"
-X-IronPort-AV: E=Sophos;i="6.16,229,1744095600"; d="scan'208";a="54462481"
+ bh=SfDrtFlxRL/aoypMfSyd2S8GCYgiANpYYRWOnAJlKyY=;
+ b=Y8eGUVj1uf//K1/RlKjrGhWNx4BjIwT59m0WlIXOtsesFMXJ6WqEFYEu
+ zfcd8yKX6KkXcJngts1bkYkr37wbX/L8Ddd96Bs764Th9JzDyw+De3pKd
+ fUnRfp64MZmZYC81I+75kBgpuHRyEVAx6O+dVnme6CZhvL5G/6LPKBgYX
+ bw7ySYaGBKkmZgL3LCEURLsRR0z6PuJNBdAqqFl9cgYpSu4Yo02hbOO/g
+ KWu84fbxlsDjhWjkKE1u5sj44tWdBjCed8jN8q4b/OzEZqWbT2U9EGBlj
+ gozxB66uLPnVAg7NDI1R9U4Lyx/VT8EYY+vnJ09PjFS5aKxtrL3bWipbT A==;
+X-CSE-ConnectionGUID: 99gWatVcQ1u+oNG1SiMZTw==
+X-CSE-MsgGUID: rB8Fi52WTJmqHo5Qul1ZiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="54462480"
+X-IronPort-AV: E=Sophos;i="6.16,229,1744095600"; d="scan'208";a="54462480"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2025 14:05:54 -0700
-X-CSE-ConnectionGUID: +4fwckcETHWRP+Wel8lXTw==
-X-CSE-MsgGUID: V0wb0r9FRCSLq96qlnpDzg==
+X-CSE-ConnectionGUID: ryYBSWg6RtOuqgSxlRTMgQ==
+X-CSE-MsgGUID: 7fxXsx/lQDuEk+MulmHINw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,229,1744095600"; d="scan'208";a="152198742"
+X-IronPort-AV: E=Sophos;i="6.16,229,1744095600"; d="scan'208";a="152198739"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by fmviesa005.fm.intel.com with ESMTP; 11 Jun 2025 14:05:53 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH 2/2] drm/xe/guc: Add support for NPK as a GuC log target
-Date: Wed, 11 Jun 2025 14:05:53 -0700
-Message-ID: <20250611210553.3756700-3-John.C.Harrison@Intel.com>
+Subject: [PATCH 1/2] drm/xe/guc: Clean up of GuC 'CTL' defines
+Date: Wed, 11 Jun 2025 14:05:52 -0700
+Message-ID: <20250611210553.3756700-2-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250611210553.3756700-1-John.C.Harrison@Intel.com>
 References: <20250611210553.3756700-1-John.C.Harrison@Intel.com>
@@ -69,75 +69,120 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-The GuC has an option to write log data via NPK. This is basically a
-magic IO address that GuC writes arbitrary data to and which can be
-logged by a suitable hardware logger. This can allow retrieval of the
-GuC log in hardware debug environments even when the system as a whole
-dies horribly.
+All the field generation for the CTL defines (used for GuC init data)
+were hand-rolled rather than using FIELD_PREP/REG_GENMASK/BIT macros.
+
+Also, there were a bunch of macros defined for verbosity settings that
+were never used - it's just a number from 0 to 3, why do we need a define
+for each level!?
+
+So fix that all up.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c    | 4 ++++
- drivers/gpu/drm/xe/xe_module.c | 4 ++++
- drivers/gpu/drm/xe/xe_module.h | 1 +
- 3 files changed, 9 insertions(+)
+ drivers/gpu/drm/xe/xe_guc.c      | 21 ++++++---------------
+ drivers/gpu/drm/xe/xe_guc_fwif.h | 28 +++++++++-------------------
+ 2 files changed, 15 insertions(+), 34 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index e16d19b44bcc..9c0e3113f7d5 100644
+index 0fcdf389711a..e16d19b44bcc 100644
 --- a/drivers/gpu/drm/xe/xe_guc.c
 +++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -35,6 +35,7 @@
- #include "xe_guc_submit.h"
- #include "xe_memirq.h"
- #include "xe_mmio.h"
-+#include "xe_module.h"
- #include "xe_platform_types.h"
- #include "xe_sriov.h"
- #include "xe_uc.h"
-@@ -74,6 +75,9 @@ static u32 guc_ctl_debug_flags(struct xe_guc *guc)
+@@ -72,8 +72,7 @@ static u32 guc_ctl_debug_flags(struct xe_guc *guc)
+ 	if (!GUC_LOG_LEVEL_IS_VERBOSE(level))
+ 		flags |= GUC_LOG_DISABLED;
  	else
- 		flags |= FIELD_PREP(GUC_LOG_VERBOSITY, GUC_LOG_LEVEL_TO_VERBOSITY(level));
+-		flags |= GUC_LOG_LEVEL_TO_VERBOSITY(level) <<
+-			 GUC_LOG_VERBOSITY_SHIFT;
++		flags |= FIELD_PREP(GUC_LOG_VERBOSITY, GUC_LOG_LEVEL_TO_VERBOSITY(level));
  
-+	if (xe_modparam.guc_log_target)
-+		flags |= FIELD_PREP(GUC_LOG_DESTINATION, xe_modparam.guc_log_target);
-+
  	return flags;
  }
+@@ -116,22 +115,14 @@ static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
+ 	BUILD_BUG_ON(!CAPTURE_BUFFER_SIZE);
+ 	BUILD_BUG_ON(!IS_ALIGNED(CAPTURE_BUFFER_SIZE, CAPTURE_UNIT));
  
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 1c4dfafbcd0b..fc8c681819b9 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -21,6 +21,7 @@
- struct xe_modparam xe_modparam = {
- 	.probe_display = true,
- 	.guc_log_level = 3,
-+	.guc_log_target = 0,
- 	.force_probe = CONFIG_DRM_XE_FORCE_PROBE,
- #ifdef CONFIG_PCI_IOV
- 	.max_vfs = IS_ENABLED(CONFIG_DRM_XE_DEBUG) ? ~0 : 0,
-@@ -45,6 +46,9 @@ MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size (in MiB) - <0=disable-res
- module_param_named(guc_log_level, xe_modparam.guc_log_level, int, 0600);
- MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=disable, 1..5=enable with verbosity min..max)");
+-	BUILD_BUG_ON((CRASH_BUFFER_SIZE / LOG_UNIT - 1) >
+-			(GUC_LOG_CRASH_MASK >> GUC_LOG_CRASH_SHIFT));
+-	BUILD_BUG_ON((DEBUG_BUFFER_SIZE / LOG_UNIT - 1) >
+-			(GUC_LOG_DEBUG_MASK >> GUC_LOG_DEBUG_SHIFT));
+-	BUILD_BUG_ON((CAPTURE_BUFFER_SIZE / CAPTURE_UNIT - 1) >
+-			(GUC_LOG_CAPTURE_MASK >> GUC_LOG_CAPTURE_SHIFT));
+-
+ 	flags = GUC_LOG_VALID |
+ 		GUC_LOG_NOTIFY_ON_HALF_FULL |
+ 		CAPTURE_FLAG |
+ 		LOG_FLAG |
+-		((CRASH_BUFFER_SIZE / LOG_UNIT - 1) << GUC_LOG_CRASH_SHIFT) |
+-		((DEBUG_BUFFER_SIZE / LOG_UNIT - 1) << GUC_LOG_DEBUG_SHIFT) |
+-		((CAPTURE_BUFFER_SIZE / CAPTURE_UNIT - 1) <<
+-		 GUC_LOG_CAPTURE_SHIFT) |
+-		(offset << GUC_LOG_BUF_ADDR_SHIFT);
++		FIELD_PREP(GUC_LOG_CRASH, CRASH_BUFFER_SIZE / LOG_UNIT - 1) |
++		FIELD_PREP(GUC_LOG_DEBUG, DEBUG_BUFFER_SIZE / LOG_UNIT - 1) |
++		FIELD_PREP(GUC_LOG_CAPTURE, CAPTURE_BUFFER_SIZE / CAPTURE_UNIT - 1) |
++		FIELD_PREP(GUC_LOG_BUF_ADDR, offset);
  
-+module_param_named(guc_log_target, xe_modparam.guc_log_target, int, 0600);
-+MODULE_PARM_DESC(guc_log_target, "GuC firmware logging target (0=memory [default], 1 = NPK, 2 = memory + NPK)");
-+
- module_param_named_unsafe(guc_firmware_path, xe_modparam.guc_firmware_path, charp, 0400);
- MODULE_PARM_DESC(guc_firmware_path,
- 		 "GuC firmware path to use instead of the default one");
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 5a3bfea8b7b4..4d978f6f26b6 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -14,6 +14,7 @@ struct xe_modparam {
- 	bool probe_display;
- 	u32 force_vram_bar_size;
- 	int guc_log_level;
-+	int guc_log_target;
- 	char *guc_firmware_path;
- 	char *huc_firmware_path;
- 	char *gsc_firmware_path;
+ 	#undef LOG_UNIT
+ 	#undef LOG_FLAG
+@@ -144,7 +135,7 @@ static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
+ static u32 guc_ctl_ads_flags(struct xe_guc *guc)
+ {
+ 	u32 ads = guc_bo_ggtt_addr(guc, guc->ads.bo) >> PAGE_SHIFT;
+-	u32 flags = ads << GUC_ADS_ADDR_SHIFT;
++	u32 flags = FIELD_PREP(GUC_ADS_ADDR, ads);
+ 
+ 	return flags;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index 6f57578b07cb..b05646cb4fb1 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -84,13 +84,10 @@ struct guc_update_exec_queue_policy {
+ #define   GUC_LOG_NOTIFY_ON_HALF_FULL	BIT(1)
+ #define   GUC_LOG_CAPTURE_ALLOC_UNITS	BIT(2)
+ #define   GUC_LOG_LOG_ALLOC_UNITS	BIT(3)
+-#define   GUC_LOG_CRASH_SHIFT		4
+-#define   GUC_LOG_CRASH_MASK		(0x3 << GUC_LOG_CRASH_SHIFT)
+-#define   GUC_LOG_DEBUG_SHIFT		6
+-#define   GUC_LOG_DEBUG_MASK	        (0xF << GUC_LOG_DEBUG_SHIFT)
+-#define   GUC_LOG_CAPTURE_SHIFT		10
+-#define   GUC_LOG_CAPTURE_MASK	        (0x3 << GUC_LOG_CAPTURE_SHIFT)
+-#define   GUC_LOG_BUF_ADDR_SHIFT	12
++#define   GUC_LOG_CRASH			REG_GENMASK(5, 4)
++#define   GUC_LOG_DEBUG			REG_GENMASK(9, 6)
++#define   GUC_LOG_CAPTURE		REG_GENMASK(11, 10)
++#define   GUC_LOG_BUF_ADDR		REG_GENMASK(31, 12)
+ 
+ #define GUC_CTL_WA			1
+ #define   GUC_WA_GAM_CREDITS		BIT(10)
+@@ -110,21 +107,14 @@ struct guc_update_exec_queue_policy {
+ #define   GUC_CTL_DISABLE_SCHEDULER	BIT(14)
+ 
+ #define GUC_CTL_DEBUG			3
+-#define   GUC_LOG_VERBOSITY_SHIFT	0
+-#define   GUC_LOG_VERBOSITY_LOW		(0 << GUC_LOG_VERBOSITY_SHIFT)
+-#define   GUC_LOG_VERBOSITY_MED		(1 << GUC_LOG_VERBOSITY_SHIFT)
+-#define   GUC_LOG_VERBOSITY_HIGH	(2 << GUC_LOG_VERBOSITY_SHIFT)
+-#define   GUC_LOG_VERBOSITY_ULTRA	(3 << GUC_LOG_VERBOSITY_SHIFT)
+-#define	  GUC_LOG_VERBOSITY_MIN		0
++#define   GUC_LOG_VERBOSITY		REG_GENMASK(1, 0)
+ #define	  GUC_LOG_VERBOSITY_MAX		3
+-#define	  GUC_LOG_VERBOSITY_MASK	0x0000000f
+-#define	  GUC_LOG_DESTINATION_MASK	(3 << 4)
+-#define   GUC_LOG_DISABLED		(1 << 6)
+-#define   GUC_PROFILE_ENABLED		(1 << 7)
++#define	  GUC_LOG_DESTINATION		REG_GENMASK(5, 4)
++#define   GUC_LOG_DISABLED		BIT(6)
++#define   GUC_PROFILE_ENABLED		BIT(7)
+ 
+ #define GUC_CTL_ADS			4
+-#define   GUC_ADS_ADDR_SHIFT		1
+-#define   GUC_ADS_ADDR_MASK		(0xFFFFF << GUC_ADS_ADDR_SHIFT)
++#define   GUC_ADS_ADDR			REG_GENMASK(21, 1)
+ 
+ #define GUC_CTL_DEVID			5
+ 
 -- 
 2.49.0
 
