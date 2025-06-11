@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EDF4C71133
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 15:29:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6635C71133
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 15:33:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6B2710E6AB;
-	Wed, 11 Jun 2025 15:29:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="cHbbKNhr";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C7A110E6A9;
- Wed, 11 Jun 2025 15:29:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=0r5SdQ/0L/7BLhNXEpm/mv03XglIjWInycPNIZEV/90=; b=cHbbKNhrFvgV6lZV4yqX1KM5kA
- 1U+7WDR0aBf8vm9kUUr6EkKs3DqXzzQxXY8bzA3ckASSTj5ZMMznLasIIkA5j6+a5AKqqJQT70Kax
- THXNrNF0PbIG3POp3pn26rCdbiMoh9rVnn/+/t/mYBsf/rk8rsa4zQpR5RI/IWns2q0hKSbwfF5+w
- 57B87DiLHz2wIHpAKcy6d+AeV1hSEeL+rHeCrmA4LTGsJ4Gk2fevn0kr+jenX4jsA85M7wljYZ+zD
- i78BaWk2CkqPMhHbHm1l3fd1XHcLroMM/RKAZ+w8lPVVh7IlTy9smXZAUCThseKMcrqbh5DkmlFLC
- KJftCSXA==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uPNO7-002Fxu-7b; Wed, 11 Jun 2025 17:29:15 +0200
-Message-ID: <10e83252-e565-4cb4-9bc2-ae238528df92@igalia.com>
-Date: Wed, 11 Jun 2025 16:29:14 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64D8E10E6AB;
+	Wed, 11 Jun 2025 15:33:50 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9073310E0ED;
+ Wed, 11 Jun 2025 15:33:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8224013327902185533=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/6] drm/syncobj: Add a fast path to
- drm_syncobj_array_find
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, =?UTF-8?Q?Michel_D=C3=A4nzer?=
- <michel.daenzer@mailbox.org>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
- <mcanal@igalia.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_A_few_drm=5Fsyncobj_optimis?=
+ =?utf-8?q?ations_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 11 Jun 2025 15:33:49 -0000
+Message-ID: <174965602960.68249.9729403137708974091@1538d3639d33>
+X-Patchwork-Hint: ignore
 References: <20250611140057.27259-1-tvrtko.ursulin@igalia.com>
- <20250611140057.27259-7-tvrtko.ursulin@igalia.com>
- <b57b6549-7dbe-45fe-ab8e-4232041ec1a5@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <b57b6549-7dbe-45fe-ab8e-4232041ec1a5@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250611140057.27259-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,265 +36,293 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8224013327902185533==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 11/06/2025 15:21, Christian König wrote:
-> On 6/11/25 16:00, Tvrtko Ursulin wrote:
->> Running the Cyberpunk 2077 benchmark we can observe that the lookup helper
->> is relatively hot, but the 97% of the calls are for a single object. (~3%
->> for two points, and never more than three points. While a more trivial
->> workload like vkmark under Plasma is even more skewed to single point
->> lookups.)
->>
->> Therefore lets add a fast path to bypass the kmalloc_array/kfree and use a
->> pre-allocated stack array for those cases.
-> 
-> Have you considered using memdup_user()? That's using a separate bucket IIRC and might give similar performance.
+== Series Details ==
 
-I haven't but I can try it. I would be surprised if it made a (positive) 
-difference though.
+Series: A few drm_syncobj optimisations (rev3)
+URL   : https://patchwork.freedesktop.org/series/149983/
+State : success
 
-And I realised I need to repeat the benchmarks anyway, since in v4 I had 
-to stop doing access_ok+__get_user, after kernel test robot let me know 
-64-bit get_user is a not a thing on all platforms. I thought the gains 
-are from avoiding allocations but, as you say, now I need to see if 
-copy_from_user doesn't nullify them..
+== Summary ==
 
-> If that is still not sufficient I'm really wondering if we shouldn't have a macro for doing this. It's a really common use case as far as I can see.
+CI Bug Log - changes from xe-3228-75a3db419dd3fe2571233423d5ca01c34d7ee75a_BAT -> xe-pw-149983v3_BAT
+====================================================
 
-Hmm macro for what exactly?
+Summary
+-------
 
-Regards,
+  **SUCCESS**
 
-Tvrtko
+  No regressions found.
 
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Reviewed-by: Maíra Canal <mcanal@igalia.com>
->> ---
->> v2:
->>   * Added comments describing how the fast path arrays were sized.
->>   * Make container freeing criteria clearer by using a boolean.
->> ---
->>   drivers/gpu/drm/drm_syncobj.c | 56 +++++++++++++++++++++++++++--------
->>   1 file changed, 44 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
->> index be5905dca87f..65c301852f0d 100644
->> --- a/drivers/gpu/drm/drm_syncobj.c
->> +++ b/drivers/gpu/drm/drm_syncobj.c
->> @@ -1259,6 +1259,8 @@ EXPORT_SYMBOL(drm_timeout_abs_to_jiffies);
->>   static int drm_syncobj_array_find(struct drm_file *file_private,
->>   				  u32 __user *handles,
->>   				  uint32_t count,
->> +				  struct drm_syncobj **stack_syncobjs,
->> +				  u32 stack_count,
->>   				  struct drm_syncobj ***syncobjs_out)
->>   {
->>   	struct drm_syncobj **syncobjs;
->> @@ -1268,9 +1270,13 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
->>   	if (!access_ok(handles, count * sizeof(*handles)))
->>   		return -EFAULT;
->>   
->> -	syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
->> -	if (!syncobjs)
->> -		return -ENOMEM;
->> +	if (count > stack_count) {
->> +		syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
->> +		if (!syncobjs)
->> +			return -ENOMEM;
->> +	} else {
->> +		syncobjs = stack_syncobjs;
->> +	}
->>   
->>   	for (i = 0; i < count; i++) {
->>   		u32 handle;
->> @@ -1292,25 +1298,31 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
->>   err_put_syncobjs:
->>   	while (i-- > 0)
->>   		drm_syncobj_put(syncobjs[i]);
->> -	kfree(syncobjs);
->> +
->> +	if (syncobjs != stack_syncobjs)
->> +		kfree(syncobjs);
->>   
->>   	return ret;
->>   }
->>   
->>   static void drm_syncobj_array_free(struct drm_syncobj **syncobjs,
->> -				   uint32_t count)
->> +				   uint32_t count,
->> +				   bool free_container)
->>   {
->>   	uint32_t i;
->>   
->>   	for (i = 0; i < count; i++)
->>   		drm_syncobj_put(syncobjs[i]);
->> -	kfree(syncobjs);
->> +
->> +	if (free_container)
->> +		kfree(syncobjs);
->>   }
->>   
->>   int
->>   drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
->>   		       struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_wait *args = data;
->>   	ktime_t deadline, *pdeadline = NULL;
->>   	u32 count = args->count_handles;
->> @@ -1336,6 +1348,8 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     count,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1354,7 +1368,7 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
->>   						 &first,
->>   						 pdeadline);
->>   
->> -	drm_syncobj_array_free(syncobjs, count);
->> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
->>   
->>   	if (timeout < 0)
->>   		return timeout;
->> @@ -1368,6 +1382,7 @@ int
->>   drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
->>   				struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_timeline_wait *args = data;
->>   	ktime_t deadline, *pdeadline = NULL;
->>   	u32 count = args->count_handles;
->> @@ -1394,6 +1409,8 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     count,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1412,7 +1429,7 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
->>   						 &first,
->>   						 pdeadline);
->>   
->> -	drm_syncobj_array_free(syncobjs, count);
->> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
->>   
->>   	if (timeout < 0)
->>   		return timeout;
->> @@ -1529,6 +1546,7 @@ int
->>   drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
->>   			struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_array *args = data;
->>   	struct drm_syncobj **syncobjs;
->>   	uint32_t i;
->> @@ -1546,6 +1564,8 @@ drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     args->count_handles,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1553,7 +1573,8 @@ drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
->>   	for (i = 0; i < args->count_handles; i++)
->>   		drm_syncobj_replace_fence(syncobjs[i], NULL);
->>   
->> -	drm_syncobj_array_free(syncobjs, args->count_handles);
->> +	drm_syncobj_array_free(syncobjs, args->count_handles,
->> +			       syncobjs != stack_syncobjs);
->>   
->>   	return 0;
->>   }
->> @@ -1562,6 +1583,7 @@ int
->>   drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
->>   			 struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_array *args = data;
->>   	struct drm_syncobj **syncobjs;
->>   	uint32_t i;
->> @@ -1579,6 +1601,8 @@ drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     args->count_handles,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1589,7 +1613,8 @@ drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
->>   			break;
->>   	}
->>   
->> -	drm_syncobj_array_free(syncobjs, args->count_handles);
->> +	drm_syncobj_array_free(syncobjs, args->count_handles,
->> +			       syncobjs != stack_syncobjs);
->>   
->>   	return ret;
->>   }
->> @@ -1598,6 +1623,7 @@ int
->>   drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
->>   				  struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_timeline_array *args = data;
->>   	uint64_t __user *points = u64_to_user_ptr(args->points);
->>   	uint32_t i, j, count = args->count_handles;
->> @@ -1617,6 +1643,8 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     count,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1653,7 +1681,7 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
->>   err_chains:
->>   	kfree(chains);
->>   out:
->> -	drm_syncobj_array_free(syncobjs, count);
->> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
->>   
->>   	return ret;
->>   }
->> @@ -1661,6 +1689,7 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
->>   int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
->>   			    struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_timeline_array *args = data;
->>   	struct drm_syncobj **syncobjs;
->>   	uint64_t __user *points = u64_to_user_ptr(args->points);
->> @@ -1679,6 +1708,8 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     args->count_handles,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1722,7 +1753,8 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
->>   		if (ret)
->>   			break;
->>   	}
->> -	drm_syncobj_array_free(syncobjs, args->count_handles);
->> +	drm_syncobj_array_free(syncobjs, args->count_handles,
->> +			       syncobjs != stack_syncobjs);
->>   
->>   	return ret;
->>   }
-> 
+  
 
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-149983v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@nullptr:
+    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@fbdev@nullptr.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#2233])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-bmg-1:          NOTRUN -> [SKIP][5] ([Intel XE#2244])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2482]) +3 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#2434] / [Intel XE#2548])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@psr-primary-page-flip:
+    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@kms_psr@psr-primary-page-flip.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-1:          NOTRUN -> [SKIP][9] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-off:
+    - bat-bmg-1:          NOTRUN -> [SKIP][10] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-off.html
+    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-2:          NOTRUN -> [SKIP][12] ([Intel XE#2229])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][13] ([Intel XE#2229])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-2:          NOTRUN -> [SKIP][14] ([Intel XE#1420])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][15] ([Intel XE#1420])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-2:          NOTRUN -> [SKIP][16] ([Intel XE#2245])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][17] ([Intel XE#2245])
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-2:          NOTRUN -> [SKIP][18] ([Intel XE#2236])
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][19] ([Intel XE#2236])
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-bmg-1:          NOTRUN -> [SKIP][20] ([Intel XE#3342])
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@xe_sriov_flr@flr-vf1-clear.html
+    - bat-bmg-2:          NOTRUN -> [SKIP][21] ([Intel XE#3342])
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@xe_sriov_flr@flr-vf1-clear.html
+
+  
+  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
+  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
+
+
+Build changes
+-------------
+
+  * Linux: xe-3228-75a3db419dd3fe2571233423d5ca01c34d7ee75a -> xe-pw-149983v3
+
+  IGT_8404: dad4b2bb9e5a2c87ae0275efbf9f0df00a67ef46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3228-75a3db419dd3fe2571233423d5ca01c34d7ee75a: 75a3db419dd3fe2571233423d5ca01c34d7ee75a
+  xe-pw-149983v3: 149983v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/index.html
+
+--===============8224013327902185533==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>A few drm_syncobj optimisations (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149983/">https://patchwork.freedesktop.org/series/149983/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3228-75a3db419dd3fe2571233423d5ca01c34d7ee75a_BAT -&gt; xe-pw-149983v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-149983v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@nullptr:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@fbdev@nullptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-1/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149983v3/bat-bmg-2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3228-75a3db419dd3fe2571233423d5ca01c34d7ee75a -&gt; xe-pw-149983v3</li>
+</ul>
+<p>IGT_8404: dad4b2bb9e5a2c87ae0275efbf9f0df00a67ef46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3228-75a3db419dd3fe2571233423d5ca01c34d7ee75a: 75a3db419dd3fe2571233423d5ca01c34d7ee75a<br />
+  xe-pw-149983v3: 149983v3</p>
+
+</body>
+</html>
+
+--===============8224013327902185533==--
