@@ -4,153 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 356BEC678DC
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 14:15:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65B21C677C4
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 14:21:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2E1710E692;
-	Wed, 11 Jun 2025 14:15:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D94D110E693;
+	Wed, 11 Jun 2025 14:21:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iKb6xpen";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="s9UumqlB";
 	dkim-atps=neutral
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2053.outbound.protection.outlook.com [40.107.93.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8351410E671;
- Wed, 11 Jun 2025 14:15:15 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2055.outbound.protection.outlook.com [40.107.223.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1024510E672;
+ Wed, 11 Jun 2025 14:21:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pNClBtWDOhbvLuercXCP89+AE0tg71sHGGjaIV3nO5DE/leU7RqrL8DIPvq1W77kt4NqoUW2spw1DRKFCEugDcCk/yoq4wQrv0SqlXHuVgNxUlJcex8S0PnNBN6xFPnFxIHf8JTK4wDCZ8QO3VmW3ZZpfcH3ELDkE/tiQj3Z+r9jBTGISNdw/0Y9CLWUskz5WfKYPYEeywHltHs/fa2TwcPQkQXsVUmXUKvsg+5kwvSK0MiN388mYcmR6vzpoSZ41O3WIZcrXOhjgHN4PdZykPeEW2QkrEdqsawlpMGu8pTeRhrNbG33bjQap6GtUYWdyRxasqADHJi0zKflEskeEw==
+ b=k2Ro94p2ndPziFX74OhkgFeGywues5A9AiQzepzaSRQuIvoV5LhaSRS/YnSMRkZrHb/YBN8dzZ4YhOYFZaEU6vLDYYxI9X9oj1fXzaD4cyBZ3OdCwWtua2hv1OeTYiPsq4xSYxMxH4YqBfxQM25Szb7jWt8xEpJThE2IlQibZCz6kqmcYHkWUdIcUbLrU2bJJzUKwKRpvu9SQ4OETPbxD9mJ2GrdrreTYyYCNsL6VeBJRLiT2zaSc1Bs3KV0a4dFw9TIz7R086Wn4ZIbjE4Jd9LbFbEuu1MMDNtMIOHkPfqm32UqQSRp/U4lHtUASBR8oqKGaf7BsRlbb3zAqWzLpg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3N45NfTHF6DLZ8GphBLZxwR5SS75flgfFrvVajX9xbg=;
- b=iJRZF0ipPlfD8rIMeKmypMwHXLFqMYQjZTh2PmpshifL1tH9KW+Ysgmyt/H7v2qCYSf9dLmZHs+UIB/Y4v3nWdKdxXWSrnygv/9b8pGn6iiq3M0VNfvb/WgNEJ7/iiLcM7AVPBWzpNhiPSpTiczAtGHuGlnAHgzqg7KG2VClZEUdBrjTIKB1BfOiCv3tUBdMKjplbPaZ1imS0UBzaqsXMZeKGrmeJwiL4yAg8RgX4x7YJDlKlisytIBArC2EVFi154LWM/sIbAGsIIp6Xiqz2Y1fDlT7GOk8UPB/t2y2eSe5jYTb7Oee57n3YiyB6ym0BiR2LEdKwfosW/vkVPiPtA==
+ bh=oIw2NCRIqzuy2p72AgmpBRZLLuzcO57hWDo4ifr68Kk=;
+ b=nWAu20VgyXliZX45IsHUnSG4ubgCDCGWs4DNY7rPp9jc94EcgPE92bAJbXdXwYBWz0QkFsKgGuXKI5+pqa5BBV+oZ0YeP3SpkkE75LTo8g2jdJuuQHnAk5EBL92FXj+S3WqBX00RJ/NP6bwodEv8gYqrRiYuw9qMmS6FZhQWTrzBL4VNTey+hU82vJcmbkgEJzqLR4zskhSH3Hwm5x55HX12Nu8GKJ2wofk0YBW37R4M5xGTv47DAD9qjmSydPZPxoU7lT6f1fmZFFRwYhxD1Ru0kx5PYE71HAJQzdD2H2WCZUe1j83PAlERiCGKnzV0cT0lc6Ya/3JRa2XrL8g93g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3N45NfTHF6DLZ8GphBLZxwR5SS75flgfFrvVajX9xbg=;
- b=iKb6xpenPuHW92O7ijf7KJGSuNk8vnwxw4pWr4VO2g619sT6++ITKc0cw3EW0oMUxeZg5n6A43FTn6f8J6lL6luy8tIZFJ4C5keDo532Wag/6meBUXumwehe/3A9oALhHOcakXkycuzcK6K+uMiCDFeRyELZHMj36R1w2zNPxFM=
+ bh=oIw2NCRIqzuy2p72AgmpBRZLLuzcO57hWDo4ifr68Kk=;
+ b=s9UumqlBgmVj71xtipt5JxBRFLWiIUBRe39q2tR198KTgTs/OuM5OMGIdjiYiPwewTRE5yBhSgEp2tUkIG92UdrPw1NQO6DqtGKZJkz/koMWyKqYuKHvD3wKt9NoQO5rTPMSh0vWBfy2ox7SVlz5tF9rcxgbNvGUks/5zGr215w=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH7PR12MB7282.namprd12.prod.outlook.com (2603:10b6:510:209::7)
+ by LV3PR12MB9167.namprd12.prod.outlook.com (2603:10b6:408:196::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.41; Wed, 11 Jun
- 2025 14:15:11 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.22; Wed, 11 Jun
+ 2025 14:21:47 +0000
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::46fb:96f2:7667:7ca5%7]) with mapi id 15.20.8722.031; Wed, 11 Jun 2025
- 14:15:11 +0000
-Message-ID: <4211da66-9bed-41ee-a596-046bbc0906e0@amd.com>
-Date: Wed, 11 Jun 2025 16:15:07 +0200
+ 14:21:44 +0000
+Message-ID: <b57b6549-7dbe-45fe-ab8e-4232041ec1a5@amd.com>
+Date: Wed, 11 Jun 2025 16:21:39 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/6] drm/syncobj: Avoid temporary allocation in
- drm_syncobj_timeline_signal_ioctl
+Subject: Re: [PATCH v5 6/6] drm/syncobj: Add a fast path to
+ drm_syncobj_array_find
 To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, dri-devel@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, =?UTF-8?Q?Michel_D=C3=A4nzer?=
  <michel.daenzer@mailbox.org>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
  <mcanal@igalia.com>
 References: <20250611140057.27259-1-tvrtko.ursulin@igalia.com>
- <20250611140057.27259-5-tvrtko.ursulin@igalia.com>
+ <20250611140057.27259-7-tvrtko.ursulin@igalia.com>
 Content-Language: en-US
 From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20250611140057.27259-5-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250611140057.27259-7-tvrtko.ursulin@igalia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BLAPR03CA0096.namprd03.prod.outlook.com
- (2603:10b6:208:32a::11) To PH7PR12MB5685.namprd12.prod.outlook.com
+X-ClientProxiedBy: MN2PR10CA0032.namprd10.prod.outlook.com
+ (2603:10b6:208:120::45) To PH7PR12MB5685.namprd12.prod.outlook.com
  (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB7282:EE_
-X-MS-Office365-Filtering-Correlation-Id: 44099f8d-0a19-4dc2-cad3-08dda8f2609d
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|LV3PR12MB9167:EE_
+X-MS-Office365-Filtering-Correlation-Id: 86da0afa-f9e2-4cc2-95a8-08dda8f34ab6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?c2xBdVNzTjc2Mlk4UmxZOVlLK1Q0eXVXTDQ3cWlxUTBER2I4VGw5dzF1dTUy?=
- =?utf-8?B?ZXh0cG9SZWRSVXVNaGg2elc4amJIdnJscEptK1IvSW10OXJOR2NDa2owR29Y?=
- =?utf-8?B?OW5VaWY0a2xHSzViT0ZXU3dMZkVtZUVKYTN5VFJSOUMxckprS2hGckFvbWVh?=
- =?utf-8?B?SGRlZVZTc0VxNXBoQUFRS1ltZHdMdWZ2QmhFZmk5b2htZ2NTSGQxVDNzYmNq?=
- =?utf-8?B?d2NTODlTWHdueDEwMzlHbUpWZnNBTmNuZlVpL0RwMVNTcC9sR2s0aENoVEhF?=
- =?utf-8?B?MGtVendhTVRJTU1LRTZON25rTDh6OThLd2tvWXRRano5VTF4ZVFwOU0yaWV6?=
- =?utf-8?B?Q3dRejlndnFKL002bXVhZ2xoYTRicENFcUpYUVZLSHNsZHYydmErN1NLSlVR?=
- =?utf-8?B?RzNMMTUyWGdYaWROdnlmcTYvL09ZeER6Ui8yVW9lNjlkVlFFRENsS3ZqM1dt?=
- =?utf-8?B?bHFUVW9BMmQwNGdKMGVHQk1aY1lvbTR3cWh6N2pKUGpnUkdyQTVqeXRHb21J?=
- =?utf-8?B?cjQ1VVphakh4cWhpazB4SysvQjYvOG9sMVdpWTNZOG9vSVZWRlNKRnNIWmxv?=
- =?utf-8?B?di9nZVhSVXdmMVVFSEFqMm9kNkVMckJYZU1zYjQyQ09nWHBpWlA4MjFVV3Zr?=
- =?utf-8?B?SGdDaGV4b1JqeEhPeHc5dDRULzdhaFpDbjhiT0Q1WVlvZ3dVU3c1T1p6N2tD?=
- =?utf-8?B?M2puUy8zNTE1MXhVbWtNQUxGNkpqdXJZdWd5RjM3NERFTTFtZXFvS2c2TWZP?=
- =?utf-8?B?SVBRYk1kYzByVmh3N1FzamV6UEVoWVliU3NyaXFzUHBwRitmc1ZwaS9Kc2xN?=
- =?utf-8?B?d3p4eGlaMlJHdEtTaGMwMFJ2Qk5Kc09ud3NFMGpHbXYxUnZRSXpDa2c2d0Qw?=
- =?utf-8?B?UzlHZUNqbldrS3JwTVpKUHYvcmRSNkxMK2ZCY1liQVBrNndKSXRwby9aQWcy?=
- =?utf-8?B?SGtORlNqUVo0Sm5CUEJFNFcwSHNDQU1LYmxzYU0xbnM3LzdnZ1hCVG5qczRM?=
- =?utf-8?B?ZE9EU0xpRkVvdzk2WnExTDZWYXpIK05HT1RRa0F6RE1rYmYxZ1RiU1phZWhx?=
- =?utf-8?B?bmg1MEUrdjl5cUFEZnNlaFo0NmNWaXYwR04xU3VpR0JiakU5ZTJxYW1iUXJr?=
- =?utf-8?B?bGsxSjkxYVhGcWtRM1BsMHdsMVNLZCttMkM5VXRuZ0s5alU2TEJRL2p0eWRw?=
- =?utf-8?B?QUF4Vk5LV2pVMlJxSDgzUlJjeFNWWW43R0NkQWk4TzQ5MUV6Q1NQbFk3STJi?=
- =?utf-8?B?RmwwYlR5eWZyc0FCOTVuVFZ0SnFlUE1hTEU0blpTOVY5RXBDYXp5c2FuemtB?=
- =?utf-8?B?T0NacWNDRzJ4OElWL0QvR1JuMng0TWtnQ3hUSFJtSk9kZjc1TmJMRXFJU3N1?=
- =?utf-8?B?RUxEZ25CT2VRbjUrSVZHSHo4YlRtK1RPWWFQMHpEeTlzampvQjV2MHRVNzU1?=
- =?utf-8?B?UjBZaU15TytHOWZQQXhnQmZPa1VnelVTbDVLa0tidkhDY2pyM0pXZGtuaDMy?=
- =?utf-8?B?Mks2WlVmc0NVU2M1RkluVmsvZGZobzZ3aGlaOE13SjlmbmhnSGxtN2pjVUhG?=
- =?utf-8?B?VENUVW1DTDRWd1puWFp3a0Jpdk81ZUt5aXNqTXBzVWsyZHZLWG03Qm9ETUh2?=
- =?utf-8?B?YzE5aktVLzFtL3RES1RqYmZpd1dpalpXY05HMEtHOGNSL3oxeUcreXNjQzZv?=
- =?utf-8?B?MlErRnlOWW93NlpURnREOXo2bzNFYU1ZalAvYnhJeHd2M0kxaHg2ODFxem50?=
- =?utf-8?B?U0lkMHNmSVd4V1pJMEczbjlJWnJiazRlQ3FIOWZLUHBlLzFidWxkM0k0QWRL?=
- =?utf-8?B?YlNXMmNlL2ZnQU1RZVU3MTN0a3N5L3N1aC93WVFDZTdIUVp6bERlSWRqbmIw?=
- =?utf-8?B?Wmh5eGdzOVBrWHlyTkkya0tia21aSFl6YVV2Snh0WmtQaE1rRktoOStHZGdI?=
- =?utf-8?Q?GzTzKgYBCQE=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NkpQWDBSRWVHb1RyRG9IOHVxeXNOQ0FPZXNoLzhPQjhqOWJUK1l5eEhjRjRC?=
+ =?utf-8?B?ZklFZDRCZTBYR0xoWUIreVlDSjBBdDlvanZHeG5Jb3EvbC9JMDNvazVRQ2ZF?=
+ =?utf-8?B?SitSOGxycTA5ZnYzc2FkZGRhZzRvK0YxWmlZaW1QMFBna1pneG5OOUp0T3RT?=
+ =?utf-8?B?YlhxSVU3bDNPeGovWkdZZ0h3OXczazQrVktYSDlBd0ZnTnpHMURMeTlVaU5p?=
+ =?utf-8?B?RmtSbXZlY2RBR21vTkxlM1ZJRTFzYmJlVFpCRTZxUUIwa28wa25xSjdPK090?=
+ =?utf-8?B?VnFMR2xaQWNiaG1FZ2UxRkNXMlpvOWUyU01tTGJJdWVWblJwRVVGLzFWWG5K?=
+ =?utf-8?B?YVJYbk5IL1FNUWRHMHBla1dVOHRpMzVKN2pTQmF6RmZoNThBajh2aHpVZFl6?=
+ =?utf-8?B?ZFprNDh6RXFzTjZaVXBmdGl3VG1sVURyTWRsMENWdXByREZpdFZuTUdkV2px?=
+ =?utf-8?B?NTZHVlBLZnBKb2FOQWN5c0lmSXRvQ2dmU2txZVRJUUVTemt3eDJEMTc2Sjdn?=
+ =?utf-8?B?eFRyU2VHalRIR1ZPUVVFbTlPY21YNEhNMVp0UHhVWVhwWE9UdGFBMkN2Tjg0?=
+ =?utf-8?B?RDNQYkt2S3YvZXBQb29PdG1wRUt1UWU0bU9La2NSK0loUVlTQVM4b2F3bnZD?=
+ =?utf-8?B?WUJrdkhjZ3ZFT0x2Y0toelpZNmZrTzk0WnJ5NEQzYXlZMlNTemtVanRpYyt3?=
+ =?utf-8?B?Z3VRcjhJa3VmY25qVWhQNHZMMzRoQmVhWkYvUjZmeWNnVjVaMUdaRTRHZUJj?=
+ =?utf-8?B?RUZFbEZ1QlpqM3pGQ3lzVXEwZm5ZL1FqRVl0OXdIcEp1N0RZMFlud2xDMW5r?=
+ =?utf-8?B?NFptMERrVmM2TnNFeXFzNXVnSGhnNFU4Z1g5K1BBcGg5N2orbndLd1lzRUJW?=
+ =?utf-8?B?UzF6Z1UxbWxWMDM4a1ZuYzJ1YzQ1MWlsK3c2NGxtYzhoUjhsNVEyK1hjZVQ4?=
+ =?utf-8?B?L1Zhc3RoaWtYS1dYb2hqSi9WK3VWS1NGSG15Qjc0NUJoeFMvMExGUVQ3MEYy?=
+ =?utf-8?B?OTFZSjVYc3hzb2YxbDRRcEJJZlNxaHZRdHF1dXBWdGNRS1lxenE3RHRkR3NY?=
+ =?utf-8?B?SFRmcUs2YTFjQVlIamo1dTJWYllWZG05Y2l4VUZNUFY2cU9oNWUzSnNSclBJ?=
+ =?utf-8?B?MDFmNEsrL2ZKWjEzb1J6TGxxT2F1THo4RUxvOENES2J2TC9LTmVKb1JFZklq?=
+ =?utf-8?B?YkN2U2hGWnh5WkVkU1RrUUl5Y2x0NlU5a1YyV0NqYmQxeTRIVk9scTF4VS9p?=
+ =?utf-8?B?YnorWmlEc3Jnczc3aFNOQUlFN040ZzVQKzNncXU5S0JlWldTMktncXNibDl1?=
+ =?utf-8?B?NCtRWGR4TzZLcHoxdHVhTWVvME1LREFIOHdOTEprWTFuamdHakZ2ZWV6YXBv?=
+ =?utf-8?B?Tk93aytIQnU5WVBmMG1xMzFBc3hZeWExa1JxaFg2R2Uxc2dLVUhHU2xUSnZM?=
+ =?utf-8?B?VUJ0ZGplMFRvbFlHRWRjb3M0cExOZlNKcmtuUFRPZUhkQ2pYYjkvQlNZSm53?=
+ =?utf-8?B?akJoeS9ydzd2SHFuR25Md0xyUjJ1RTF4aGF1RUZCSnl1YThuTy92V0NrcGRC?=
+ =?utf-8?B?NDdqR3pZU1kzNTJqMFIxUEYvckUwS3F5MnVBRFZVNjhyUjg4c3lLVFY5d3dx?=
+ =?utf-8?B?TG4xQTNoZnd6eXJoUG9WM2V4OGdEVCtrUEFkQ0NSVFJJNnBhOHIyZE9veXFJ?=
+ =?utf-8?B?TTJNNXM4T1BDaERjZlBqMi9ubHlZR1o4Yk9YVktuRlhkNVZWRGtPT2d0R2pM?=
+ =?utf-8?B?NGIxR1V0Ty9RNlNzQWRpZ0o2OVMrS0dmNk9nZmxqTDF2UnY2elBLNm5OZC9P?=
+ =?utf-8?B?b09YTGdzV0pEaFhMaFhya1MydlVpNzJrOG1URjBEcWlWZmxCMUdycFV2OXdw?=
+ =?utf-8?B?ZVZid3FmekNNeTk4RmgyL2Z4Skcremt4NFRIWC8zeUtITzF4YmRiSndmNUxy?=
+ =?utf-8?Q?AcGPfW2NyxE=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UWhqYzhUTTV6RGFJN25GWEloK3FvZENSa2ZFWVRIV28yR1NpajdTN0tmUDdF?=
- =?utf-8?B?eG1xSFpvMjFwZFpKWjZqZ1BGbGxUakdqcXFvMExRM05OV0p5MFpmVHFOMkd0?=
- =?utf-8?B?ZUU4K2J1WVZ4WjltdUNWa3ludDJoTWVhQkwvZmhBTVNlZ3FCOVBYZUE5aWMx?=
- =?utf-8?B?VFlyb2tKaVVGUzYrZVB5OTBBTkpNbnlMOFp2OXhrSGt0cXJmUnQzTk40cHdT?=
- =?utf-8?B?OStET1pMVGliRW5SNGR3MnFEMy9vYmhKTi9iRkI3NmZabHI4MG1JaEU1NkZV?=
- =?utf-8?B?WXlNYmoyTkhaMEhkc2YrdXlDa08vd2RRUEphOHYxYzgzK2xDOEhtK051N0ZT?=
- =?utf-8?B?SkNJTnZVclIvbVR6TXp0TjNXWjR3MmI1eHp4WExRSXdkMDl5V3FGaTVqSklC?=
- =?utf-8?B?bkRiNWdiWHNCTUMyMU5qM0NPSjM4cDRpNkNteDFNNzAxbldHM1YzeGVqSC9Q?=
- =?utf-8?B?VkpVSGE1eUVZSHJwdGZha0k1eTcrS0RsRHN3S1hoY0FNRHpGSXFkRytCWnBL?=
- =?utf-8?B?MU4vZ05QOEpPSlZoZktHbXh3ZE5ZMUswTzcvbWNWZVlnM29sNnVZbGhyQmpw?=
- =?utf-8?B?WDZGdVU1K1FqMzFRTlZmSDZqalpVRTF5bmRuSWJBSndJRkRRV0RVbEp1d0Vl?=
- =?utf-8?B?bnM3ZDdpUm1Zb2JBNEhwcEZ6K1pIWnBYT09uTXV4b0tncWV0c2szbzFSNkJV?=
- =?utf-8?B?Rm1RUmd5TEFxaEV0QXRRTmVhcVJCZHlFWFh5NGo3UHRvVVNGVWNPamtOcVh5?=
- =?utf-8?B?a0w1RU02VllNL1h0NjRDM2JrS01oa1M0bENVZGY3eW5hMS9WS1lvdHpIaDRX?=
- =?utf-8?B?dkRRSTNnVm9xTXZJRmFrY2x3aGNLZUNTYW9ML2JmUEVhUFpBemJDRWlvM25D?=
- =?utf-8?B?VnUza294SkdQNW4rS1NXVUxjeEhHVGg0YzI1TVlTZnB4Z0NnaTVoSW1ZU0du?=
- =?utf-8?B?RERCL2RsWHZSSXZyNDJFa2h6V3dZRGZnNHIvOSt1Y0FZTUtvS2FBMDFFemhy?=
- =?utf-8?B?WEV6L0ZCaml0dHdVQnhnMnNSU0k4dWhPTVcrMndtR3VXT0xPVTlNT0lrY09V?=
- =?utf-8?B?N2diaVRJNWJzNjJmL201OTA5bmdVS0ZwTmJYYlY0ay9WMlJmSnBIb3hDYmxR?=
- =?utf-8?B?MEJMeXZxd3BObW02OGhFV3htWHVTQXJkcmFma2NBWHN0WnIxU0hLRjJVcHh6?=
- =?utf-8?B?YjFFVjNVM3YyWm93WExDdmt0VEtSb3lNdFVDRllDU1N3aFNjL09YOGpkdUFy?=
- =?utf-8?B?ZkdWNUc1YTZDcGsyTXAvSjNyV042dUpJdVBIQTVRQnJaSFlLbmpsSlVSRXVR?=
- =?utf-8?B?ejZ0aWpjWE9lTUJsZ3RReGMwKzcrTWZHSHFMVEE3WTJJWFBkSHE4enV6c1lB?=
- =?utf-8?B?VWZaZzN1OWRCTW1icTFMc2g3amZkWTJWczRGclkyQitiVitxRjd0a0UrWWRP?=
- =?utf-8?B?TG1XL1ZaWTM1SFpEb3FHblFGa3NWZTUvZUl1eFZMT2JhTUZDNHhWQkZHdnds?=
- =?utf-8?B?Zmxtd0FyaDB3L05kb0JCL2xMTlJ5MTVFRnFXbXd4L2xmWmtNVDBBaWk5ZEZ3?=
- =?utf-8?B?bUJzR1pHenVINzBGYzdDczhRQk1YUE80NUhlSmNUSVNsMC9KVnVyelRiTUhN?=
- =?utf-8?B?SGpOYWg3aTBpalNqbVd5RnljbG00aTVBRkZqckxXcUllQ3dZSGVQeWdMU29V?=
- =?utf-8?B?aHp1a0hZRUpMaUtTTjBZTXo3ZjBNbHRjRVh1d2g3ZGxQTnhsMGVyNHFGU2pn?=
- =?utf-8?B?VWF2dEJiUUZzUUV4Y1VoTXpMSFNiUGNGTWdoRG40ZytaVHkvcUU4NGwyb256?=
- =?utf-8?B?cW8wbGQ3TTZaVVkyYzlUb1FPTTdVR2VXWWFCN0Fkc3BzL3JGbnF2YkxxcG9I?=
- =?utf-8?B?VzQ0dldxMm02VDA2L0VvQ0tCSVl5U252a0F6RkdqREJLa3Irbmhqa2lHNjVZ?=
- =?utf-8?B?ODJYKzIxQ2Q4MXhYVFZGS3Z5SG1Qd2REeVlJNys2WUV4V1pTdWlQSWJUTWFk?=
- =?utf-8?B?M3Y3MjllSk9OMzZrUHY1cTlDcTB0a3hhMllaaWE1dWl6S0JzdFA5QnNhdW56?=
- =?utf-8?B?YXZOMFlFUElWcWFpUWtMRU1RZmNVWkhNeVNJY3FEQXVjcllsUDlFNmhEbW1T?=
- =?utf-8?Q?lKnomuMySEskbO0lu/sl1evhx?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?and3eTcrb0VQNGsxMlpmNlh1TlliQnZnaEs4azFTQlJoaEFtY05QT0NPbmV2?=
+ =?utf-8?B?VThHZm1zQTNQR1VCQVBMNm5yMUtkdzA1WXhCblRxQUt0OXVQeW1pTzAvMnFW?=
+ =?utf-8?B?SkxOQW5IVVlENENFd1NXMDE0Y0pFbFlHenZxbGlyQi9PcHU2N0svV3d6NllB?=
+ =?utf-8?B?ZDlFNmRtL1h1QnF4WlJsRkFobkd3NCtPblB5RUMxQTMxZnU1U3d3WUYrbzlZ?=
+ =?utf-8?B?UzFuVTI0U1VnU0dwNEZEZjBFc0F6bUtZOHk1NG5JUllZS2hiNUdJSjYvejZS?=
+ =?utf-8?B?VDVFUXAwUkZOSC9JVW5PeWZpWHA2bVN2YlNOWEM2VWZqamZSU1hEdWtaSXVV?=
+ =?utf-8?B?MjJKaDRYQTh5bW1FK2lZNW1sTXAwWGZvMXBaZS8xUzRtVUtHVkJsWXdKR0p1?=
+ =?utf-8?B?VjdKSHNabE1VVUdHOGdEV010NFAwLzhhQ05qK1JuMm5QZ1hVZG9HTGlRMU0v?=
+ =?utf-8?B?T2Ztb3dBZThGejdXK3BQVGpuNnc0YkQvOGIyeng2VlZrYzVQelJySDllcWZR?=
+ =?utf-8?B?NWgrYTZqU29ONHRscW1lMXFrcGp6MkkwQUVuRktFeVVVMVllS25Qbmhkelha?=
+ =?utf-8?B?RTJzNGE0ZDZWWFFxRENCNXdCSkRHQ290RTlHVzN1Qkw2cnV3MGdYKzN6MlVF?=
+ =?utf-8?B?a0JSZ052WUx5Y3YyeWxSY3NSR1duRU12RFhnaE9jd3FReHBVR1UzN2xFNGdD?=
+ =?utf-8?B?V1U4Q2tSUUROTlJSdmUyRGxWdEZtcWUxa1M0SzF4OWVJQVJvODViVG9QYUht?=
+ =?utf-8?B?MmRSMi9ZWEFsMjNBc2xpYUFkNTlnUWxDOUp5bjJ1L2YzeDkvL3hnZktqNmhK?=
+ =?utf-8?B?SzdPeDFpRThXY0RLT1VxQ3kvc1F6Y1BLcEVuNEZaUUViZGxhQ0NXZUVjOSsy?=
+ =?utf-8?B?WVJ3RzBkTkpYN1QrZWlvTHlIMFNlRGJobHVNSWEwSXM4bHFNNGthVlNBdW1k?=
+ =?utf-8?B?VGFmY1hidmh2M0VSREJQZU1NS1ozenA5NllWWnhab01vaGFxYWxEeVdHSkE4?=
+ =?utf-8?B?UTh2b1RsWUFJaEttMTVEZ2NCYU5BMnIvV3JwSlFUZVFMRXd3amdEQk9rWk5x?=
+ =?utf-8?B?RGhJRHMram9NNGNsd3pjS2dIS0V6Y2VXRDRzNWJnV3krOVBUWXBIcVFmWERr?=
+ =?utf-8?B?NXN3UkdyNi9pQWVBQnJmbUl6UlV5Q0lYd2J4SmU1eVFkb3ViRGF1VFRjUWNo?=
+ =?utf-8?B?Wk0wTUg0NXJPQU16WHBZTDNSVUxZa1VIQzRRWTEvUjlEa2hlSTRiR0JlTjZU?=
+ =?utf-8?B?dE8vNmYyVU1PNUt2Ynk2N0Ntdnh3TzBBQ0NXeEdjc2lJendXWmY4c0pVRHVP?=
+ =?utf-8?B?UG1hQVQ0cEh5UUhYUU4waUM0NVRGZjJYRHUwbTV3NCt6MVdHUXFoOWd2djJo?=
+ =?utf-8?B?T3RhR0kvOTBLNmUybjNWZGUxMFhSUWZ5bVhaTlJMYngyTXBHWGFnRWxPVjht?=
+ =?utf-8?B?RE5tUFVrVmhUbG5naTRJQndhcHlTMlNtK1FTTWRhazBmdkkrWUlJN2ppR2dJ?=
+ =?utf-8?B?azd3UFlKaG1TdzhwdWwzenBZNnN1ZG9wUDNaZzduMEZ1ckxGSHFQcWZ1bHhi?=
+ =?utf-8?B?Sks0cmp0aHVkRERMWXpEeENmT1FnL2dqSkNubElyU3laVXdxQkFoeTlJMXQ3?=
+ =?utf-8?B?QUJHdW14N2pKc1c1SEZiWExhR0JQZTRmY1JsWmtzR1dzQzhNZzlwRWpZR2tq?=
+ =?utf-8?B?dnVwbExzZmhKWHNUYTJGc1FOeG1BYUpSeTZxWDR6SitNWURic0JXSjBDNWFR?=
+ =?utf-8?B?b1U1WjdUYmIrVllIRTZocTFCR1hEMEkrU3JzdGdMWGNRYm94RXhQZ0c5aUVl?=
+ =?utf-8?B?UHY1R1pMb1BwQ2g2ZHFKMmpHYU5YellOTy9kK3BCdG9mY29ScCtDY2FJb2xx?=
+ =?utf-8?B?RWdPUFhid3pCTmsxbHN0a2ozeTYvL0tMTzluSDQ4Q3EvMnZaOVdPMTc4RHEw?=
+ =?utf-8?B?WXNjcXZncEZnYnZ3NGd6SG9zdGRIWmlrSzN5aXlRc1dxVDhWNjNBaGRvdUtK?=
+ =?utf-8?B?WS9QVzBWWG9HWHRpcGtiZzJpZzNqUjQySnJXeVA3Vkg1cStweWFmbldvTkgr?=
+ =?utf-8?B?MG5ENmlBTlJranZJZm1rN0FQendFU0UzRWcyZ2huT29oWWU0L0krTDRTL1Nu?=
+ =?utf-8?Q?8Y/Zx9u0XaInIztjEs8/0zrxU?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44099f8d-0a19-4dc2-cad3-08dda8f2609d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86da0afa-f9e2-4cc2-95a8-08dda8f34ab6
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2025 14:15:11.7368 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2025 14:21:44.3596 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Q+FiFBlGF0ufBbgkueH3cz7hkAIA3sjDowlnhg/Tr8TtAOAqonh4fEr8UPCCdVIq
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7282
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4xoeE3Wwvsa7jAx/xMbsYRjMkzIxsL69AgbyKcOUvHRcDwDk78NTQmw6ZhUt220n
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9167
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,116 +166,246 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 6/11/25 16:00, Tvrtko Ursulin wrote:
-> We can avoid one of the two temporary allocations if we read the userspace
-> supplied timeline points as we go along.
+> Running the Cyberpunk 2077 benchmark we can observe that the lookup helper
+> is relatively hot, but the 97% of the calls are for a single object. (~3%
+> for two points, and never more than three points. While a more trivial
+> workload like vkmark under Plasma is even more skewed to single point
+> lookups.)
+> 
+> Therefore lets add a fast path to bypass the kmalloc_array/kfree and use a
+> pre-allocated stack array for those cases.
 
-The problem with that is that calling copy_from_user multiple times is really inefficient.
+Have you considered using memdup_user()? That's using a separate bucket IIRC and might give similar performance.
 
-So that improves performance with few entries and decreases performance with many entries.
-
-Not sure if having many entries is really a valid use case here.
+If that is still not sufficient I'm really wondering if we shouldn't have a macro for doing this. It's a really common use case as far as I can see.
 
 Regards,
 Christian.
 
 > 
-> The only new complication is to unwind unused fence chains on the error
-> path, but even that code was already present in the function.
-> 
 > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Reviewed-by: Maíra Canal <mcanal@igalia.com> #v1
+> Reviewed-by: Maíra Canal <mcanal@igalia.com>
 > ---
 > v2:
->  * Change back to copy_from_user due 32-bit ARM not implementing 64-bit
->    get_user.
-> 
-> v3:
-> * Fix argument order mixup.
+>  * Added comments describing how the fast path arrays were sized.
+>  * Make container freeing criteria clearer by using a boolean.
 > ---
->  drivers/gpu/drm/drm_syncobj.c | 43 ++++++++++++++---------------------
->  1 file changed, 17 insertions(+), 26 deletions(-)
+>  drivers/gpu/drm/drm_syncobj.c | 56 +++++++++++++++++++++++++++--------
+>  1 file changed, 44 insertions(+), 12 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
-> index 497009fc66f8..9968d9429d90 100644
+> index be5905dca87f..65c301852f0d 100644
 > --- a/drivers/gpu/drm/drm_syncobj.c
 > +++ b/drivers/gpu/drm/drm_syncobj.c
-> @@ -1579,10 +1579,10 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
->  				  struct drm_file *file_private)
+> @@ -1259,6 +1259,8 @@ EXPORT_SYMBOL(drm_timeout_abs_to_jiffies);
+>  static int drm_syncobj_array_find(struct drm_file *file_private,
+>  				  u32 __user *handles,
+>  				  uint32_t count,
+> +				  struct drm_syncobj **stack_syncobjs,
+> +				  u32 stack_count,
+>  				  struct drm_syncobj ***syncobjs_out)
 >  {
->  	struct drm_syncobj_timeline_array *args = data;
-> +	uint64_t __user *points = u64_to_user_ptr(args->points);
-> +	uint32_t i, j, count = args->count_handles;
 >  	struct drm_syncobj **syncobjs;
->  	struct dma_fence_chain **chains;
-> -	uint64_t *points;
-> -	uint32_t i, j;
->  	int ret;
+> @@ -1268,9 +1270,13 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
+>  	if (!access_ok(handles, count * sizeof(*handles)))
+>  		return -EFAULT;
 >  
->  	if (!drm_core_check_feature(dev, DRIVER_SYNCOBJ_TIMELINE))
-> @@ -1596,31 +1596,17 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+> -	syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
+> -	if (!syncobjs)
+> -		return -ENOMEM;
+> +	if (count > stack_count) {
+> +		syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
+> +		if (!syncobjs)
+> +			return -ENOMEM;
+> +	} else {
+> +		syncobjs = stack_syncobjs;
+> +	}
 >  
+>  	for (i = 0; i < count; i++) {
+>  		u32 handle;
+> @@ -1292,25 +1298,31 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
+>  err_put_syncobjs:
+>  	while (i-- > 0)
+>  		drm_syncobj_put(syncobjs[i]);
+> -	kfree(syncobjs);
+> +
+> +	if (syncobjs != stack_syncobjs)
+> +		kfree(syncobjs);
+>  
+>  	return ret;
+>  }
+>  
+>  static void drm_syncobj_array_free(struct drm_syncobj **syncobjs,
+> -				   uint32_t count)
+> +				   uint32_t count,
+> +				   bool free_container)
+>  {
+>  	uint32_t i;
+>  
+>  	for (i = 0; i < count; i++)
+>  		drm_syncobj_put(syncobjs[i]);
+> -	kfree(syncobjs);
+> +
+> +	if (free_container)
+> +		kfree(syncobjs);
+>  }
+>  
+>  int
+>  drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
+>  		       struct drm_file *file_private)
+>  {
+> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>  	struct drm_syncobj_wait *args = data;
+>  	ktime_t deadline, *pdeadline = NULL;
+>  	u32 count = args->count_handles;
+> @@ -1336,6 +1348,8 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
 >  	ret = drm_syncobj_array_find(file_private,
 >  				     u64_to_user_ptr(args->handles),
-> -				     args->count_handles,
-> +				     count,
+>  				     count,
+> +				     stack_syncobjs,
+> +				     ARRAY_SIZE(stack_syncobjs),
 >  				     &syncobjs);
 >  	if (ret < 0)
 >  		return ret;
+> @@ -1354,7 +1368,7 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
+>  						 &first,
+>  						 pdeadline);
 >  
-> -	points = kmalloc_array(args->count_handles, sizeof(*points),
-> -			       GFP_KERNEL);
-> -	if (!points) {
-> -		ret = -ENOMEM;
-> -		goto out;
-> -	}
-> -	if (!u64_to_user_ptr(args->points)) {
-> -		memset(points, 0, args->count_handles * sizeof(uint64_t));
-> -	} else if (copy_from_user(points, u64_to_user_ptr(args->points),
-> -				  sizeof(uint64_t) * args->count_handles)) {
-> -		ret = -EFAULT;
-> -		goto err_points;
-> -	}
-> -
-> -	chains = kmalloc_array(args->count_handles, sizeof(void *), GFP_KERNEL);
-> +	chains = kmalloc_array(count, sizeof(void *), GFP_KERNEL);
->  	if (!chains) {
->  		ret = -ENOMEM;
-> -		goto err_points;
-> +		goto out;
->  	}
-> -	for (i = 0; i < args->count_handles; i++) {
-> +	for (i = 0; i < count; i++) {
->  		chains[i] = dma_fence_chain_alloc();
->  		if (!chains[i]) {
->  			for (j = 0; j < i; j++)
-> @@ -1630,19 +1616,24 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
->  		}
+> -	drm_syncobj_array_free(syncobjs, count);
+> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
+>  
+>  	if (timeout < 0)
+>  		return timeout;
+> @@ -1368,6 +1382,7 @@ int
+>  drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
+>  				struct drm_file *file_private)
+>  {
+> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>  	struct drm_syncobj_timeline_wait *args = data;
+>  	ktime_t deadline, *pdeadline = NULL;
+>  	u32 count = args->count_handles;
+> @@ -1394,6 +1409,8 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
+>  	ret = drm_syncobj_array_find(file_private,
+>  				     u64_to_user_ptr(args->handles),
+>  				     count,
+> +				     stack_syncobjs,
+> +				     ARRAY_SIZE(stack_syncobjs),
+>  				     &syncobjs);
+>  	if (ret < 0)
+>  		return ret;
+> @@ -1412,7 +1429,7 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
+>  						 &first,
+>  						 pdeadline);
+>  
+> -	drm_syncobj_array_free(syncobjs, count);
+> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
+>  
+>  	if (timeout < 0)
+>  		return timeout;
+> @@ -1529,6 +1546,7 @@ int
+>  drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
+>  			struct drm_file *file_private)
+>  {
+> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>  	struct drm_syncobj_array *args = data;
+>  	struct drm_syncobj **syncobjs;
+>  	uint32_t i;
+> @@ -1546,6 +1564,8 @@ drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
+>  	ret = drm_syncobj_array_find(file_private,
+>  				     u64_to_user_ptr(args->handles),
+>  				     args->count_handles,
+> +				     stack_syncobjs,
+> +				     ARRAY_SIZE(stack_syncobjs),
+>  				     &syncobjs);
+>  	if (ret < 0)
+>  		return ret;
+> @@ -1553,7 +1573,8 @@ drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
+>  	for (i = 0; i < args->count_handles; i++)
+>  		drm_syncobj_replace_fence(syncobjs[i], NULL);
+>  
+> -	drm_syncobj_array_free(syncobjs, args->count_handles);
+> +	drm_syncobj_array_free(syncobjs, args->count_handles,
+> +			       syncobjs != stack_syncobjs);
+>  
+>  	return 0;
+>  }
+> @@ -1562,6 +1583,7 @@ int
+>  drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
+>  			 struct drm_file *file_private)
+>  {
+> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>  	struct drm_syncobj_array *args = data;
+>  	struct drm_syncobj **syncobjs;
+>  	uint32_t i;
+> @@ -1579,6 +1601,8 @@ drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
+>  	ret = drm_syncobj_array_find(file_private,
+>  				     u64_to_user_ptr(args->handles),
+>  				     args->count_handles,
+> +				     stack_syncobjs,
+> +				     ARRAY_SIZE(stack_syncobjs),
+>  				     &syncobjs);
+>  	if (ret < 0)
+>  		return ret;
+> @@ -1589,7 +1613,8 @@ drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
+>  			break;
 >  	}
 >  
-> -	for (i = 0; i < args->count_handles; i++) {
-> +	for (i = 0; i < count; i++) {
->  		struct dma_fence *fence = dma_fence_get_stub();
-> +		u64 point = 0;
+> -	drm_syncobj_array_free(syncobjs, args->count_handles);
+> +	drm_syncobj_array_free(syncobjs, args->count_handles,
+> +			       syncobjs != stack_syncobjs);
 >  
-> -		drm_syncobj_add_point(syncobjs[i], chains[i],
-> -				      fence, points[i]);
-> +		if (points && copy_from_user(&point, points++, sizeof(point))) {
-> +			ret =  -EFAULT;
-> +			for (j = i; j < count; j++)
-> +				dma_fence_chain_free(chains[j]);
-> +			goto err_chains;
-> +		}
-> +
-> +		drm_syncobj_add_point(syncobjs[i], chains[i], fence, point);
->  		dma_fence_put(fence);
->  	}
+>  	return ret;
+>  }
+> @@ -1598,6 +1623,7 @@ int
+>  drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>  				  struct drm_file *file_private)
+>  {
+> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>  	struct drm_syncobj_timeline_array *args = data;
+>  	uint64_t __user *points = u64_to_user_ptr(args->points);
+>  	uint32_t i, j, count = args->count_handles;
+> @@ -1617,6 +1643,8 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>  	ret = drm_syncobj_array_find(file_private,
+>  				     u64_to_user_ptr(args->handles),
+>  				     count,
+> +				     stack_syncobjs,
+> +				     ARRAY_SIZE(stack_syncobjs),
+>  				     &syncobjs);
+>  	if (ret < 0)
+>  		return ret;
+> @@ -1653,7 +1681,7 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
 >  err_chains:
 >  	kfree(chains);
-> -err_points:
-> -	kfree(points);
 >  out:
+> -	drm_syncobj_array_free(syncobjs, count);
+> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
+>  
+>  	return ret;
+>  }
+> @@ -1661,6 +1689,7 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>  int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+>  			    struct drm_file *file_private)
+>  {
+> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>  	struct drm_syncobj_timeline_array *args = data;
+>  	struct drm_syncobj **syncobjs;
+>  	uint64_t __user *points = u64_to_user_ptr(args->points);
+> @@ -1679,6 +1708,8 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+>  	ret = drm_syncobj_array_find(file_private,
+>  				     u64_to_user_ptr(args->handles),
+>  				     args->count_handles,
+> +				     stack_syncobjs,
+> +				     ARRAY_SIZE(stack_syncobjs),
+>  				     &syncobjs);
+>  	if (ret < 0)
+>  		return ret;
+> @@ -1722,7 +1753,8 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+>  		if (ret)
+>  			break;
+>  	}
 > -	drm_syncobj_array_free(syncobjs, args->count_handles);
-> +	drm_syncobj_array_free(syncobjs, count);
+> +	drm_syncobj_array_free(syncobjs, args->count_handles,
+> +			       syncobjs != stack_syncobjs);
 >  
 >  	return ret;
 >  }
