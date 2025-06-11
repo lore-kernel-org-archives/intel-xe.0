@@ -4,175 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9853C71136
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 19:02:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D40FC71136
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 19:08:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F18210E704;
-	Wed, 11 Jun 2025 19:02:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D770010E718;
+	Wed, 11 Jun 2025 19:08:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i/s1a7YB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y27hpD+8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7073110E707
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 19:02:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A741810E719
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 19:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749668543; x=1781204543;
+ t=1749668907; x=1781204907;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=1OMGcBGKSOoPytiVRMwmiwMKxBY+wKNzh3vpNVWaWIA=;
- b=i/s1a7YBUZbjGFcyKGtw6Tt/RftCcuRIox4PoIHkOkclpUgH+JeUS7Dc
- foiXrJUnKe415+walxY+mbw2fC4K5PFc0HJ0M6d4X5gYqTmOr+JveVnCp
- VOpFeP3NCg7V0L+LP4+SuuLOy9EGv3w/dfD87ueOPMHHwWifQwJ0i/u6T
- BENgBbU7gwepJu96Un2VwrxGsHrik68lgWpSdji9VZTH6eixvysOOXVCu
- /P+fCkrVhS8eBQMlXRrWPuGD7cHnD731LYMSIZXgRpfrN0PfGFx0CLmuh
- dvCWBwW+k97bzAeBaDZQau3hHrGNSpHkwsza25a4ieHbmRcpQrN75uUId A==;
-X-CSE-ConnectionGUID: peHIdUIUQTi7XpXPXQRg/Q==
-X-CSE-MsgGUID: MT32IWCESb2R6HLpnhf1mw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="55620101"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="55620101"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 12:02:23 -0700
-X-CSE-ConnectionGUID: 5ovfUbcqTcKukvD1egJTqA==
-X-CSE-MsgGUID: YYf74d0aTU6HrTWLvaJOlg==
+ bh=v9HFFW2jDOWayoY/y8KIlYw8oI71ZAizfK1VPOXPR34=;
+ b=Y27hpD+80FritNbTOsEs9Hbig795AcW6yfDGmgkgOdrn3/wHbPMk+/+/
+ SynNAhtDVJvAVF0fgfWrljclk4DIjAAYkkKVKAYTYUYtulQQNg9k4D8Rs
+ JhBu2FibZva8RxNf8MmyuyF3ssTJ7eQE4agvUsg/rYLTHdDg/7EZ7lFKK
+ Q4NMFvOtlxBOOVqF4GK45/cimNj00GUTIPS79TOu5yQnFNhTQbOf+7Cw0
+ 5rR48X3JIXW3LRp4AXI2t3tsTPBXMSgjrDFxj6V+TiiVoRY8c9gg/8o1u
+ EwABkfwkYlsjs/YX/XGdfrBdmM0LCR6W6n06kiloWA4w1Bxwn4g0EVlCK Q==;
+X-CSE-ConnectionGUID: NNQKloFiQCCFjtm71smpaw==
+X-CSE-MsgGUID: 1fdNP0uFTX60O8hjj/VcfQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62479576"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62479576"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 12:08:27 -0700
+X-CSE-ConnectionGUID: kYHDEqaMTYOmFojFZjMmcA==
+X-CSE-MsgGUID: jKdJWHjERqKqsXDPYG0xNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="147769361"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 12:02:23 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 11 Jun 2025 12:02:22 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="178194900"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 12:08:25 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Wed, 11 Jun 2025 12:02:22 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.67)
+ 15.2.1544.25; Wed, 11 Jun 2025 12:08:23 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Wed, 11 Jun 2025 12:08:23 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.81)
  by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 11 Jun 2025 12:02:19 -0700
+ 15.2.1544.25; Wed, 11 Jun 2025 12:08:22 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dqzml+PRfcpQ7EUA1O3lUF5DJR4Qc0cui8Ob5lfXel+s1+1CLlI4Vu0HrGLCCd2wLkX3a0KpusVZs1EQts7hky8VIAjhZILk8I1vyklxFYMDBZClXsNTzkl1zldnDTl6Z6UbmDdaTTCvrQuL/5KUEsaaJGm0xDcTUiGnrrLXy9nSWpqkVPUb2ZWIO65v57Dj8xJIRPiLKBHMhw8v4lx9c83cFxiBs5/RnbEHVLyPrlfqT6y2JPlgJXP/bUS1qTAHIqKV7HI6DqHrbkA8hUY6s4XiBJRv5lJHJ0vsNeTuCDR4S5sxXtQ2zqUhriXm057FtgadAipF3gm+GmQOuDDBUA==
+ b=rQekkI4cByN4W6D/HanTHCWSl2LB0q+RIhE2lOoU77Q/BlqBGtgGSvnOMyNG4VA03R+4dCwVybEykKFLvm08NdoC6TS436TFqjzD9T/slN4ORY07cB7CwYRN024unRVdvhboTmeLbMFOollqImnqfkOzdoCsfCCkUG3ngeMGVcfC1SWnQXwRFpyljW5Jo+al17SKoG49/+pZLsARMv1X9ghP1DAGzpq/5gKfVyCIZqeW18BJozb+kGjSPODBhs36mhyoltyA7ZC0VnGrBBA3LZuyDySMV5y0ncdd433hHOeqbj8KekA17vAFUlCzWu922qtNPuOUdevcXbeHAWxnzQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EXtvXXghoLmtPKey0P5QdxhLdPbVvg3zsRgiUZ8kLH8=;
- b=usU/P3ebUJE6JHIeJ5lV2uS94ACjINzx0hCh3tdRzws7pYtfPeI6WC/4q07lqB8bkZcTeBaMqEeagxLiEdj9oFHs8cI62mS1W4dBDuvZLK/DTCALEbyJgaUzCJkEwM9LuecQnXL7Fw8rf3vrdsoC69tgVDrXOxLXVcGVkSX/kDJWri7BN4zGk3eScXaX7ooKa60a+Q3q86T8VOH6Q7LeHaM0ZKJLbo++7y7eRR2vDpRYASJWY5Lb24fC0P7dyY4iBknFcgJy/cGYOs36QaWoJ+k3bkDeXhc2hmMLdALVgE3SSJuwtKDaenN4//Pcn3kcuhizNM/54+JnOawERwWC9A==
+ bh=y1906FyI6EtFvPM9odv5DknXRmJNw+ZCbOI+169SBEo=;
+ b=nQZFQWso9Dq83jkzfK6ZBK95fEqT5IDs/j5Blm7lqCW8URmUkLVRVHrA+sWN2r/fvWSPDKrxDLpR07yIGc6xYI1OQU0QnFqxIInHdMosPBQrBW04tLH4VUSp47Fk9noSQb/E678XZl7fGpiCwZq/0Vd04C2g8/HzwVPCmZYJRYwDBGaXiL1bIghP5t+sN1QV9Y0socN8VVvCHR5e2nl2RKyIQkS0EpXbBWA4EwV0oFatwXy4Hqk4YOlXdJTf21yM5twGNrri6ex6X2M4mLz98HjyyJ71Rv/CHIbzfWotxHM5n5amp69FVDyi9k5fRLiQ51hSDQ3mYV3sNlqVJoomnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA0PR11MB7329.namprd11.prod.outlook.com (2603:10b6:208:437::20)
+ by MW4PR11MB6665.namprd11.prod.outlook.com (2603:10b6:303:1ec::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.33; Wed, 11 Jun
- 2025 19:02:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.29; Wed, 11 Jun
+ 2025 19:08:14 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.8835.018; Wed, 11 Jun 2025
- 19:02:17 +0000
-Date: Wed, 11 Jun 2025 12:03:51 -0700
+ 19:08:14 +0000
+Date: Wed, 11 Jun 2025 12:09:50 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: "Summers, Stuart" <stuart.summers@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Auld, 
- Matthew" <matthew.auld@intel.com>, "thomas.hellstrom@linux.intel.com"
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Implement clear VRAM on free
-Message-ID: <aEnTF6zsZXYsARNI@lstrano-desk.jf.intel.com>
-References: <20250611054235.3540936-1-matthew.brost@intel.com>
- <0c909f7376ab30f8260d83a74b3a908a4e6eb764.camel@intel.com>
- <aEmy8yBp0Ghssyuq@lstrano-desk.jf.intel.com>
- <7ede4886131931de5f9a672fd823d8bac3f374af.camel@intel.com>
- <aEnDbmfEVUEzmk0A@lstrano-desk.jf.intel.com>
- <c99af8b540ab40381b2bc44f78bfc634c27043b6.camel@intel.com>
- <aEnI7t5DTbcfYibp@lstrano-desk.jf.intel.com>
- <bfad428658219de07f8defb4c46b234bdd34c2dc.camel@intel.com>
- <aEnSdmCa64X1OFBP@lstrano-desk.jf.intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+Subject: Re: [PATCH v3] drm/xe/vm: Add a helper
+ xe_vm_range_tilemask_tlb_invalidation()
+Message-ID: <aEnUfsBrPnVejB65@lstrano-desk.jf.intel.com>
+References: <20250609041616.1723636-1-himal.prasad.ghimiray@intel.com>
+ <7c4a125a758c00a506927cb3549736c1eb9d3886.camel@intel.com>
+ <aEnKG6LYzYE7f3eK@lstrano-desk.jf.intel.com>
+ <dabadd3dd43fa70ce9a13f5f507bc6b421673d8a.camel@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aEnSdmCa64X1OFBP@lstrano-desk.jf.intel.com>
-X-ClientProxiedBy: DS0PR17CA0001.namprd17.prod.outlook.com
- (2603:10b6:8:191::19) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <dabadd3dd43fa70ce9a13f5f507bc6b421673d8a.camel@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0117.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::32) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA0PR11MB7329:EE_
-X-MS-Office365-Filtering-Correlation-Id: ae9a60e7-3807-4e47-6a56-08dda91a7be7
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW4PR11MB6665:EE_
+X-MS-Office365-Filtering-Correlation-Id: 84c44337-a022-4e5b-3341-08dda91b50dc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?78Dg3C+WCxy9eKxrFDvHxQ+cgvpufA6HmEaiOv6o5fYwfa18ok2lQTD7/g?=
- =?iso-8859-1?Q?gc9Gw4lbnBINUREmBMJYgX4BpiTSgHYBuijuEcBCtc7Z177ac+VIg3Via/?=
- =?iso-8859-1?Q?sgQnkog2lFKOaidOoVjNzZ9WEqOHE8An1nvnwM7ynAUShUVt4h+hrX7axN?=
- =?iso-8859-1?Q?n2fIWe6GNoFTtfw1T15DJUXxgNju8QiP/xwIEOncGtU3taFBHEvGm834NN?=
- =?iso-8859-1?Q?ZMuZunTUafZllsSB+Ek0ZvPhNy8mRCauvwlt5/WnKqtaFqrbZL88woFW3D?=
- =?iso-8859-1?Q?PCmv7WtzuDO0bdbcT1Xoww6vxP+K/NHL8gFAjTQhDkCOP4IiG5wTviwRVU?=
- =?iso-8859-1?Q?LjKdIL0w+lKP7ID84kx4KamihcF8xESwfr9a2pO7ha2TdOwhq1KWp3x93X?=
- =?iso-8859-1?Q?xmWjyW+4WlxpXwrgV3RQfv4UenS+z9OgFpbA6dalhD2lYGjvcw7PS1Ld+U?=
- =?iso-8859-1?Q?5aJatM6a/KSHnR1z+rBn+sSidDVfhgthGDZVkqdZSU1ZfOrbRBHTr040W8?=
- =?iso-8859-1?Q?fJk90gNzpjJ4cV/UNLtQTn1XCEnn3Mnt6SkhhKkAe9GIU4B7yCxu7MrHJ2?=
- =?iso-8859-1?Q?MiIFc4ecgR3GZ16xi9S3r9t0bDVd0YWIZhbAtYQRc0Xo7mR12AB8PaiDPp?=
- =?iso-8859-1?Q?vOIF9RWPznRnFrjXVd5ljrqG2Qla0dS2fzzxQWnK1+/jMvtwTUcYsD9FJ3?=
- =?iso-8859-1?Q?ftbJTJDDGFvE8r8bmYYMhE3g2FMnX6QI1PXkq5S8xip8IhZXD1SQ2ixhi+?=
- =?iso-8859-1?Q?goDgaEMjBxz1M7kl+1IwVCjfC3FKgh3gCRII/716OrMqGNmK6aehukhK5p?=
- =?iso-8859-1?Q?SuIhmgTQOCP2vLe5b+OamaxT9cN2jP3J0FPFXG3OxV6w5XnabDBiBg3sUr?=
- =?iso-8859-1?Q?zjUaWckJR6tLmBRiNBp/eylxoortMUfWlaH30aIU5HAgzPZgnkpSPaArbW?=
- =?iso-8859-1?Q?nc4JtpI1VhtxM3NL0YOtP3x8giox8BlC1aR50vULBrO2QjlpqsM/ljULs9?=
- =?iso-8859-1?Q?g87mLm+HZybAAAn1PDTEfRxTECOKsvrPNFUxPXGU2crRsTM7haxwJT+5FM?=
- =?iso-8859-1?Q?Yt0S4AjwP32cssm9wbpprw5BGROs+femja2nBPXphPhXp3btFZnh5Yh6R9?=
- =?iso-8859-1?Q?R7TaqqkQ+WrMJNCc/FiJveCLKwj0AFOKZX7qmwKp2HwT6qGT5L+iWQJ1Jz?=
- =?iso-8859-1?Q?FQVKP9ShSorgbtb775I9lkRgpRXejBcn2o54cuprw2SCr6w6OqfRsR09G+?=
- =?iso-8859-1?Q?rjtIO+eL4IU9l2vmizQ28jT8UFrfRVTbjFQLInMy3RmCo1gAw3AjW09Euo?=
- =?iso-8859-1?Q?IfJdKoPlCEH8hRByO1WkGG33ddqkZ5ivpY5BLAEi/cOWj39SJ7Qclg2wrW?=
- =?iso-8859-1?Q?QfiWrgf0ThXjNWRpFJ5L6EWzLd6g4i/phvQZQTSDqBNRnOtrwx0Nk8pbAh?=
- =?iso-8859-1?Q?IIhyb9ap0PTDBcxua7aduL09pX6MOhvYByceq/NxwJ/kuUl66W9OdHlsUa?=
- =?iso-8859-1?Q?E=3D?=
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?uRzva40kIPZRpkgTD9ZdNwkVeZ/eLHxkNdkOEnZlpS6DJ+yhSMi+/bBkXB?=
+ =?iso-8859-1?Q?FObWbPP60YuUnQ95fxQxBctQ9zHVcXkV3nGjCVqNem31w8kUt/pHsFZKpw?=
+ =?iso-8859-1?Q?6qECz/NV9hlFyyK0GU5bcpJUxkb2iIkO5+PXhvcTmIAYavuwb2FXo9Wm9b?=
+ =?iso-8859-1?Q?kZiASrkBvrL+01ANCTjaE5bp3B2MFvHXGj+2MxAj6vT00rXIp7465Otdca?=
+ =?iso-8859-1?Q?CAcQGni0ZC8A7nLpJRzgfo+L8b3S4paYBMrlRP95rr0VpuAgieKrzmCb5P?=
+ =?iso-8859-1?Q?y+TSsOnQ5pGGabrt3FH0RhoB2dAUnglR4Nv15UFrnZRnmDhhdkDAYb5ZcV?=
+ =?iso-8859-1?Q?nzLU0+2euqRPWzthtaT6kdjzhDhLkkYJIVSGrFfXz8jbafn4X5ehDslWv6?=
+ =?iso-8859-1?Q?KpKVJeFxPbsLpwrxof4KP0EXm/JXJ+qXtM9hxtJGLOkGGp4sWJCDsmwoz0?=
+ =?iso-8859-1?Q?V+i/w8ESYWFpiL/2WtRQRAdJmuLIlFXJsB7N3/Nj3elY6xKVWTP0HWoskn?=
+ =?iso-8859-1?Q?s7KusKgggMM/ozG/pURGM4Ca31hcJeLEa9Fi0eDwPcwByQLBmeIIhx3Ywk?=
+ =?iso-8859-1?Q?ItcEco0N57YOmFqP7DB5IDIGwm85SVrNthhSIgjAogAha99+RfOY1deMf8?=
+ =?iso-8859-1?Q?OemmzjeEWAarcN3RKRgJxSQQspQB8N8V6CthgGu35HxQuqo81eWnAECTc4?=
+ =?iso-8859-1?Q?rQiJ/Mj90Dm/bOsbUqF4JMAOOZQFlHL7/w5yoghWVahk7TavphZ/um5MM2?=
+ =?iso-8859-1?Q?S4vPvSswJ7x+Kg98/GSUXj5xXSjTUZQz970eKhweqCTII8L/bxFwo/6l1z?=
+ =?iso-8859-1?Q?yaDIXVqAukA14WfFDZlfLNC86yQi7+JXBm2XS8MlAJN6amMdmDyvi+7NP7?=
+ =?iso-8859-1?Q?U8CCg7joFnaFfMUYoI59ILjo8EH5zVO9PTQJVnwb/r7VNBglgmOPzU9dag?=
+ =?iso-8859-1?Q?oK3R0Yk3KnMfBR0dv33I5UHzRp9L2S5+HwUekyB4FU5jDJi9Q6nY9aWzg0?=
+ =?iso-8859-1?Q?6MOk5uPyKPZ3wXe8nyWzZTGHd9nXD2QWinGedlTPRDgGmtgQGO8gG+F4Mh?=
+ =?iso-8859-1?Q?fQmTz4432wo4koFsdPJqSI+IlxSwqfix/zhUFKmqPwhCZBJkCCjNEoTUWD?=
+ =?iso-8859-1?Q?3NQa8GFvayJR7VvXmyCorRGn0YnIyPj2v55T4y70/8n7Pu0OjJfop1zV9k?=
+ =?iso-8859-1?Q?z2teoLMqXic1irTYs5q4Vof8chzTKhYlh5SVcuhg9Ai7Ay6i5J7Be0Gdw6?=
+ =?iso-8859-1?Q?KBstwl/535DvZx42ESemyRVS2S/ncwpEJKHMYPR5LU8YsGMCApgpp9SEx1?=
+ =?iso-8859-1?Q?VK4+kcRypjJLUlszXSlNxeRlVb34TAruFyz/H1fDx2JX92OTsK/965tmNT?=
+ =?iso-8859-1?Q?WaKDjHYVvc4+mPIbnrXB/CGji8e3ieE2pCSToGi84J2u36GoHTHJJmlN/n?=
+ =?iso-8859-1?Q?XmgpvZYZbR9g1ZsODV0xYafwX9Ow+8ahGEbuX5SC4HwfkbaFIEy5qxyTUH?=
+ =?iso-8859-1?Q?I=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?mAO3SrpOkDDrpARDTZe+Wv53txhwlKevRbFPyktjXh18evjapKe+yTd2zE?=
- =?iso-8859-1?Q?9BZY1XOljMt4gtFW3c1RsQAyRyP4HYlHWv0PDXnTVH6Ei+4Xu4TzbjLQ/f?=
- =?iso-8859-1?Q?MCG+NiY7D4E1IZpIZGAk4/XYT01icRUJcC0SKCPlKWAZH2loFls+vRfj3o?=
- =?iso-8859-1?Q?Fts/70fjM64D2TQE+kUTKmF1seRuDzIQqHWLW0Is/+sexQBIba7ppPdD60?=
- =?iso-8859-1?Q?2ZeoI33QOK5iaTtc+Cc/1uApGG3l4sW1QrGYS62KdNDro341OVrTiPfV6P?=
- =?iso-8859-1?Q?CZB+Yj/2eEcxeL2janqEphAvi+BwulUEyyiY06pU6/tflsEdYWLQ8TmhtR?=
- =?iso-8859-1?Q?P54jF+hYzjV9JI8teAcsiXH/1mFQtGm5yGvCesd2yvpqM3HziExpEtH0w1?=
- =?iso-8859-1?Q?udNYl1CXcr8ygRoB/Bm0SDM3jCuAhOGh621l3AbVXOiULzIuLlXqjAPwfW?=
- =?iso-8859-1?Q?GYQKFi5/aeRnLvQxj6AuVGix6xidcyxVDi/r/cVdsGgHg+LUH0ln+bqPfi?=
- =?iso-8859-1?Q?UhnIfGCOUU2xLgF6E1DvC9jZfb9v6BKTkrLglXSjS3s3yDM0CBQSWMF8F4?=
- =?iso-8859-1?Q?oGjSNtVTUnHsTL4F0ghMH5P+DO/enE/6lD6rMcQpm4qwnbYFItdLLbDCZS?=
- =?iso-8859-1?Q?HNwYqjK9MkAa8+nRRLeRgWQwWje1h/1jTOKembn9cW1yY3qg+zdBywv/2P?=
- =?iso-8859-1?Q?q9XSVnnPvjav0fW1TTvwJuQ9JpLKZIppRZdvRVYLSxPaPfQ0LbjQ56bLU8?=
- =?iso-8859-1?Q?gVcrMJDTR1ACQu2+EEiflWc750BKcJxwnIPsJXHQiK3mZW4Ha5pmVsF+vr?=
- =?iso-8859-1?Q?YGro4xq//E4cgysG6FY7uQllLrnl+SeuBc6oIOit4c84jIN10UqBAAPyOj?=
- =?iso-8859-1?Q?Rc3ZNTEkZS05t7o/gpelEIWJoH0ptore74m1MJHgAZyHn+uQASvNt+wjO3?=
- =?iso-8859-1?Q?WcDZX+H+LKonfJYOkXW0+RGe87d1Q+tWReYrIvChPaISpmbA0eFUFx+Fni?=
- =?iso-8859-1?Q?wRiH95mzTL9bNa5WeblmKXFH38gNM4VLnxwerbScYOg43GDI8Vc+MV0Xli?=
- =?iso-8859-1?Q?/RssRdH1KGghV1cvMyS7dcwR4oL9Ql+oiOaBT99iotiigPoVCz4j05kfMF?=
- =?iso-8859-1?Q?PS+xd+QmfPcneycQYnGrUWQ2VWcn1eYlSiQA2nUc3gWyYJc6RWAHgQvE9q?=
- =?iso-8859-1?Q?8fUv6l81lPNHOSD+nrdkO/1ryxf1wLGX7EZtxn4P4NbBcdvMpf+iXfOeQ5?=
- =?iso-8859-1?Q?D01KRhLfETNGuVmKb3peAsOYglwdcVlpz1ys9a0XeB81OwRtWZFZYlsGSh?=
- =?iso-8859-1?Q?PH2XYWUxEllTROxHG6YAwsLsNoRhScv3nYW67Yh1uYPBdRLF18ifLOs85E?=
- =?iso-8859-1?Q?zRuMiya/9kNfEMdSuLKX3TkYBVQlQI4c/P92T2DGyyDimwWoSe67VyCSZE?=
- =?iso-8859-1?Q?tgNoa6QpMoubFDUzHe6pnRLn4pKig7p1kTF7723rBXrtCHDA8YAgLLlSCd?=
- =?iso-8859-1?Q?rDdIVWrJW9Jz3IcY3uU3NAsEd2dsE1UYVTTOhCNQLgR3C5ntMmLTzpTL25?=
- =?iso-8859-1?Q?Wknn/SyS8BAzLnNOZelbf4aIdAb+hU2aDV0hH5SUlyyW+uv/8SzzVF054A?=
- =?iso-8859-1?Q?8v764asI9SFU+zX6pk1JBatVhLZss8cEPgBiVRtrYbfcrnB/yxa9uaOA?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?FLEgP34ro3sxRsiDQKvw2redsfVqRTB3RLre+qwNdKfcVPQYrGbNoKTL99?=
+ =?iso-8859-1?Q?MVo1QprjeA5ZMRTtGYrWR2XdVKWTWyXi54JMOfDawVjD7GdWyPJFpwTLQg?=
+ =?iso-8859-1?Q?ETzT1mQk2JNt4tJ2A0ImrFtGdGVjY9DvG4BS0saOnYAerPcXZCAdLg30UP?=
+ =?iso-8859-1?Q?QYBgAPPfOmxlWYKgpFXTh0t0lAwmt120LpMv0ptPLDp8HbfeFRxXf5XCsr?=
+ =?iso-8859-1?Q?ho/+3NTj3b94JAUd3CxbqcXE4Z34PB+O3M3J1eFA6c35V68T9rOBBJCByx?=
+ =?iso-8859-1?Q?hzSTryr9Ef0b45KN4UP67fJOpNRucuuolsmqjDrCOlRwb+Kauyky5bQcPA?=
+ =?iso-8859-1?Q?beF5JZ2RUrkX8roffwIxteVwxCBB0lghFw7XkfmdhzwRKMwnnrEdjw7meo?=
+ =?iso-8859-1?Q?s+FfGQQ0gnATFjh8RvZK9k6N8to9IzfR3QXheuUr3NpVjPszhYsXyP1t8h?=
+ =?iso-8859-1?Q?3uosqPw62U0cYXEcrMoCoMHmyzEe1YvyiXPh+U9zTjDj7hQYdeLS+kavWp?=
+ =?iso-8859-1?Q?a42ixMYFHjpdZaZWsPIIuv0HVeZJMoMQ2vnJe7cZ1DIgE35FXk3/sdWu7W?=
+ =?iso-8859-1?Q?hpyymCb+he8wScRHSwNjdc9TJwOQdimjjK7Sa/9L+aCACBePZRaAIO07Cp?=
+ =?iso-8859-1?Q?mZDegD1+fG6EZMh6B3fF+h8qbgHLIrh2wBhcsB/wPtLtz6vOzBIt21/CD8?=
+ =?iso-8859-1?Q?3+waZuKIAuoTm2xQvJI88dPpd1PKAff7v01QfImv533kJTrfcdLCLqWV/A?=
+ =?iso-8859-1?Q?84Wmb7Y3CZzzHKOitzpimZ5yTJ64hUxYbsLBWCjKTMvYe3euvF5lK94Ssu?=
+ =?iso-8859-1?Q?RpADpm8zBWrPbYq/PNCZzjx95RreRCBLFNXtJrymfisJ8ZkDehouSOXWrC?=
+ =?iso-8859-1?Q?OW2lDufVDyeOKg5retwx+1sFL82RRS7WsNiI9fE5n7YNRAe/2oFNPNS/Uj?=
+ =?iso-8859-1?Q?f8Ucw0gA/KZ2L5ciJ569KgTFIhzKTrt1EjOkUeAB69QCzgv5FEWDRpwCz6?=
+ =?iso-8859-1?Q?VTmObB5CSVyJI2ycb0Snr90/+yM/TEOrL4IztqivsqtjZO5sRqsiCluyiG?=
+ =?iso-8859-1?Q?YYZDH36j2vSTFbxcdFvYtrrv8kf/bBM2FFg+QBrwTZDgtOOVv8kdWEfUQQ?=
+ =?iso-8859-1?Q?KU5dYgQvqU5K4olw52pMzosTwSIeaOReikEaaQhl6jLhbWznzJNKMlJk63?=
+ =?iso-8859-1?Q?UIKZ2V2J94cUL2grQevc5e7y0l4CP5NljLY39d83BhPusEgIQ5/d7kwIWH?=
+ =?iso-8859-1?Q?9eYdydoYspKTC0rjwnTCfDqCtLOAww6W0r8LAkSZqRg+9ak9fsnwDxnCXs?=
+ =?iso-8859-1?Q?IHzSmJjjCQ1N+vklCqH1oC48COzyKiQPfg50dXK0Z1nQq1fRLpSMrhKkCJ?=
+ =?iso-8859-1?Q?srR3FGCdjNZ4iCLLB8QATY/gIX+IAXOsu1riNHziwaSyiLjjy5hTusZlL9?=
+ =?iso-8859-1?Q?rkfLFKSmwzCWNTVPedr9Hkbyu67/UGFPpIKYy3Wm6KjJ12A44pVFOO+hBa?=
+ =?iso-8859-1?Q?sBErdiFjUVIhkLu3EOF1KRVsZsL5q+nExztIc+DGYgssrngA3NwBstSECR?=
+ =?iso-8859-1?Q?VwL3iLPQMX76/1jYIHDgSFHTYfvgZvzGcGV2jIo+2w+ZxAGVugZnU+Q0bV?=
+ =?iso-8859-1?Q?X44BjctUYQ12tAZjeXqpOTVzTPz5uB1Wm0OMG1HvvOhWl/8VsEXwCi3Q?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae9a60e7-3807-4e47-6a56-08dda91a7be7
+X-MS-Exchange-CrossTenant-Network-Message-Id: 84c44337-a022-4e5b-3341-08dda91b50dc
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2025 19:02:17.1478 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2025 19:08:14.4176 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ln7afkBS1lq79VTreacC0JJBcAPtyEI8rPZW9Q0M98AOzWxZhvth4YLc7prgVorgiKaIJYf82ujbLHLMyWscRA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7329
+X-MS-Exchange-CrossTenant-UserPrincipalName: BDeiKDYoSI5zfW3tBYmqsOcADPrWGszkx45uKS0MQk+amJLurADw088E7SQqnxbhDwWmDBKd8QWS7aQ5LsARlA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6665
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -188,636 +183,447 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 11, 2025 at 12:01:10PM -0700, Matthew Brost wrote:
-
-One correction...
-
-> On Wed, Jun 11, 2025 at 12:23:13PM -0600, Summers, Stuart wrote:
-> > On Wed, 2025-06-11 at 11:20 -0700, Matthew Brost wrote:
-> > > On Wed, Jun 11, 2025 at 12:05:36PM -0600, Summers, Stuart wrote:
-> > > > On Wed, 2025-06-11 at 10:57 -0700, Matthew Brost wrote:
-> > > > > On Wed, Jun 11, 2025 at 11:04:06AM -0600, Summers, Stuart wrote:
-> > > > > > On Wed, 2025-06-11 at 09:46 -0700, Matthew Brost wrote:
-> > > > > > > On Wed, Jun 11, 2025 at 10:26:44AM -0600, Summers, Stuart
-> > > > > > > wrote:
-> > > > > > > > On Tue, 2025-06-10 at 22:42 -0700, Matthew Brost wrote:
-> > > > > > > > > Clearing on free should hide latency of BO clears on new
-> > > > > > > > > user
-> > > > > > > > > BO
-> > > > > > > > > allocations.
-> > > > > > > > 
-> > > > > > > > Do you have any test results showing the latency
-> > > > > > > > improvement
-> > > > > > > > here
-> > > > > > > > on
-> > > > > > > > high volume submission tests? Also how does this impact at
-> > > > > > > > very
-> > > > > > > > large
-> > > > > > > 
-> > > > > > > No performance data yet available. Something we definitely
-> > > > > > > should
-> > > > > > > look
-> > > > > > > into and would be curious about the results. FWIW, AMDGPU
-> > > > > > > implements
-> > > > > > > clear on free in a very similar way to this series. 
+On Wed, Jun 11, 2025 at 12:27:09PM -0600, Summers, Stuart wrote:
+> On Wed, 2025-06-11 at 11:25 -0700, Matthew Brost wrote:
+> > On Wed, Jun 11, 2025 at 11:56:25AM -0600, Summers, Stuart wrote:
+> > > On Mon, 2025-06-09 at 09:46 +0530, Himal Prasad Ghimiray wrote:
+> > > > Introduce xe_vm_range_tilemask_tlb_invalidation(), which issues a
+> > > > TLB
+> > > > invalidation for a specified address range across GTs indicated
+> > > > by a
+> > > > tilemask.
+> > > > 
+> > > > v2 (Matthew Brost)
+> > > > - Move WARN_ON_ONCE to svm caller
+> > > > - Remove xe_gt_tlb_invalidation_vma
+> > > > - s/XE_WARN_ON/WARN_ON_ONCE
+> > > > 
+> > > > v3
+> > > > - Rebase
+> > > > 
+> > > > Suggested-by: Matthew Brost <matthew.brost@intel.com>
+> > > > Signed-off-by: Himal Prasad Ghimiray
+> > > > <himal.prasad.ghimiray@intel.com>
+> > > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  24 -----
+> > > >  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |   3 -
+> > > >  drivers/gpu/drm/xe/xe_svm.c                 |  43 +-------
+> > > >  drivers/gpu/drm/xe/xe_vm.c                  | 103 +++++++++++++-
+> > > > ----
+> > > > --
+> > > >  drivers/gpu/drm/xe/xe_vm.h                  |   3 +
+> > > >  5 files changed, 75 insertions(+), 101 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> > > > b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> > > > index 084cbdeba8ea..0111ee59b81d 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> > > > @@ -440,30 +440,6 @@ void xe_gt_tlb_invalidation_vm(struct xe_gt
+> > > > *gt,
+> > > > struct xe_vm *vm)
+> > > >         xe_gt_tlb_invalidation_fence_wait(&fence);
+> > > >  }
+> > > >  
+> > > > -/**
+> > > > - * xe_gt_tlb_invalidation_vma - Issue a TLB invalidation on this
+> > > > GT
+> > > > for a VMA
+> > > > - * @gt: GT structure
+> > > > - * @fence: invalidation fence which will be signal on TLB
+> > > > invalidation
+> > > > - * completion, can be NULL
+> > > > - * @vma: VMA to invalidate
+> > > > - *
+> > > > - * Issue a range based TLB invalidation if supported, if not
+> > > > fallback to a full
+> > > > - * TLB invalidation. Completion of TLB is asynchronous and
+> > > > caller
+> > > > can use
+> > > > - * the invalidation fence to wait for completion.
+> > > > - *
+> > > > - * Return: Negative error code on error, 0 on success
+> > > > - */
+> > > > -int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+> > > > -                              struct
+> > > > xe_gt_tlb_invalidation_fence
+> > > > *fence,
+> > > > -                              struct xe_vma *vma)
+> > > > -{
+> > > > -       xe_gt_assert(gt, vma);
+> > > > -
+> > > > -       return xe_gt_tlb_invalidation_range(gt, fence,
+> > > > xe_vma_start(vma),
+> > > > -                                           xe_vma_end(vma),
+> > > > -                                           xe_vma_vm(vma)-
+> > > > > usm.asid);
+> > > > -}
+> > > > -
+> > > >  /**
+> > > >   * xe_guc_tlb_invalidation_done_handler - TLB invalidation done
+> > > > handler
+> > > >   * @guc: guc
+> > > > diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+> > > > b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+> > > > index abe9b03d543e..31072dbcad8e 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+> > > > +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+> > > > @@ -19,9 +19,6 @@ int xe_gt_tlb_invalidation_init_early(struct
+> > > > xe_gt
+> > > > *gt);
+> > > >  
+> > > >  void xe_gt_tlb_invalidation_reset(struct xe_gt *gt);
+> > > >  int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
+> > > > -int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+> > > > -                              struct
+> > > > xe_gt_tlb_invalidation_fence
+> > > > *fence,
+> > > > -                              struct xe_vma *vma);
+> > > >  void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm
+> > > > *vm);
+> > > >  int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+> > > >                                  struct
+> > > > xe_gt_tlb_invalidation_fence
+> > > > *fence,
+> > > > diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> > > > b/drivers/gpu/drm/xe/xe_svm.c
+> > > > index 83c63fd7b481..3fd2d63c73a2 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > > > @@ -167,14 +167,9 @@ static void xe_svm_invalidate(struct
+> > > > drm_gpusvm
+> > > > *gpusvm,
+> > > >  {
+> > > >         struct xe_vm *vm = gpusvm_to_vm(gpusvm);
+> > > >         struct xe_device *xe = vm->xe;
+> > > > -       struct xe_tile *tile;
+> > > >         struct drm_gpusvm_range *r, *first;
+> > > > -       struct xe_gt_tlb_invalidation_fence
+> > > > -               fence[XE_MAX_TILES_PER_DEVICE *
+> > > > XE_MAX_GT_PER_TILE];
+> > > >         u64 adj_start = mmu_range->start, adj_end = mmu_range-
+> > > > >end;
+> > > >         u8 tile_mask = 0;
+> > > > -       u8 id;
+> > > > -       u32 fence_id = 0;
+> > > >         long err;
+> > > >  
+> > > >         xe_svm_assert_in_notifier(vm);
+> > > > @@ -220,42 +215,8 @@ static void xe_svm_invalidate(struct
+> > > > drm_gpusvm
+> > > > *gpusvm,
+> > > >  
+> > > >         xe_device_wmb(xe);
+> > > >  
+> > > > -       for_each_tile(tile, xe, id) {
+> > > > -               if (tile_mask & BIT(id)) {
+> > > > -                       int err;
+> > > > -
+> > > > -                       xe_gt_tlb_invalidation_fence_init(tile-
+> > > > > primary_gt,
+> > > > -                                                        
+> > > > &fence[fence_id], true);
+> > > > -
+> > > > -                       err = xe_gt_tlb_invalidation_range(tile-
+> > > > > primary_gt,
+> > > > -                                                         
+> > > > &fence[fence_id],
+> > > > -                                                         
+> > > > adj_start,
+> > > > -                                                         
+> > > > adj_end,
+> > > > -                                                          vm-
+> > > > > usm.asid);
+> > > > -                       if (WARN_ON_ONCE(err < 0))
+> > > > -                               goto wait;
+> > > > -                       ++fence_id;
+> > > > -
+> > > > -                       if (!tile->media_gt)
+> > > > -                               continue;
+> > > > -
+> > > > -                       xe_gt_tlb_invalidation_fence_init(tile-
+> > > > > media_gt,
+> > > > -                                                        
+> > > > &fence[fence_id], true);
+> > > > -
+> > > > -                       err = xe_gt_tlb_invalidation_range(tile-
+> > > > > media_gt,
+> > > > -                                                         
+> > > > &fence[fence_id],
+> > > > -                                                         
+> > > > adj_start,
+> > > > -                                                         
+> > > > adj_end,
+> > > > -                                                          vm-
+> > > > > usm.asid);
+> > > > -                       if (WARN_ON_ONCE(err < 0))
+> > > > -                               goto wait;
+> > > > -                       ++fence_id;
+> > > > -               }
+> > > > -       }
+> > > > -
+> > > > -wait:
+> > > > -       for (id = 0; id < fence_id; ++id)
+> > > > -               xe_gt_tlb_invalidation_fence_wait(&fence[id]);
+> > > > +       err = xe_vm_range_tilemask_tlb_invalidation(vm,
+> > > > adj_start,
+> > > > adj_end, tile_mask);
+> > > > +       WARN_ON_ONCE(err);
+> > > >  
+> > > >  range_notifier_event_end:
+> > > >         r = first;
+> > > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
+> > > > b/drivers/gpu/drm/xe/xe_vm.c
+> > > > index 18f967ce1f1a..a0c70698265a 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > > > @@ -3842,6 +3842,68 @@ void xe_vm_unlock(struct xe_vm *vm)
+> > > >         dma_resv_unlock(xe_vm_resv(vm));
+> > > >  }
+> > > >  
+> > > > +/**
+> > > > + * xe_vm_range_tilemask_tlb_invalidation - Issue a TLB
+> > > > invalidation
+> > > > on this tilemask for an
+> > > > + * address range
+> > > > + * @vm: The VM
+> > > > + * @start: start address
+> > > > + * @end: end address
+> > > > + * @tile_mask: mask for which gt's issue tlb invalidation
+> > > > + *
+> > > > + * Issue a range based TLB invalidation for gt's in tilemask
+> > > > + *
+> > > > + * Returns 0 for success, negative error code otherwise.
+> > > > + */
+> > > > +int xe_vm_range_tilemask_tlb_invalidation(struct xe_vm *vm, u64
+> > > > start,
+> > > > +                                         u64 end, u8 tile_mask)
+> > > > +{
+> > > > +       struct xe_gt_tlb_invalidation_fence
+> > > > fence[XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE];
+> > > > +       struct xe_tile *tile;
+> > > > +       u32 fence_id = 0;
+> > > > +       u8 id;
+> > > > +       int err;
+> > > > +
+> > > > +       if (!tile_mask)
+> > > > +               return 0;
+> > > > +
+> > > > +       for_each_tile(tile, vm->xe, id) {
+> > > > +               if (tile_mask & BIT(id)) {
+> > > > +                       xe_gt_tlb_invalidation_fence_init(tile-
+> > > > > primary_gt,
+> > > > +                                                        
+> > > > &fence[fence_id], true);
+> > > > +
+> > > > +                       err = xe_gt_tlb_invalidation_range(tile-
+> > > > > primary_gt,
+> > > > +                                                         
+> > > > &fence[fence_id],
+> > > > +                                                          start,
+> > > > +                                                          end,
+> > > > +                                                          vm-
+> > > > > usm.asid);
+> > > 
+> > > Since we're already doing the refactoring of the svm and non-svm
+> > > cases
+> > > here, can you also refactor this so we have something like:
+> > > invalidate_tiles(tile_mask)
+> > > 
+> > > void invalidate_tiles(tile_mask)
+> > > {
+> > >     for_each_tile(tile, tile_mask)
+> > >         invalidate_tile(tile)
+> > > }
+> > > 
+> > > void invalidate_tile(tile)
+> > > {
+> > >     fence[i] = invalidate_gt(primary)
+> > >     fence[i++] = invalidate_gt(media)
+> > > 
+> > >     for_each_i(i)
+> > >         wait_for_invalidation(i)
 > > 
-> > So back to this one, what is the motivation for this change if we don't
-> > have data?
-> > 
+> > You'd lose a level pipeline with this suggestion. The can write is
+> > quite
+> > intentional - issue all TLB invalidations to hardware, then wait on
+> > all
+> > invalidtaions. What you suggest would issue TLB invalidations to each
+> > tile and wait invalidations from that tile - if you have multiple
+> > tiles
+> > you delay issuing the invalidations until the prior tile completes
+> > its
+> > invalidations. This could be cleaned up with helpers but regardless
+> > we
+> > want the pipeling in place.
 > 
-> It is the assumption that in typical cases (no memory pressure) the
-> buddy allocator pool can find a clean VRAM upon allocation resulting in
-> immediate use of the BO rather than issuing a clear which could delay a
-> bind IOCTL, an exec IOCTL, or even mmaping the BO (dma-resv enforces
-> this ordering btw).
+> Ok makes sense. Then we can just pull the wait_for_invalidation() out
+> to the invalidate_tiles() piece:
 > 
-> Even if there is memory pressure, it is fairly easy to reason that
-> clear-on-free creates a pipeline in which the clear is started earlier
-> than it would be upon allocation thus reducing the overall delay of the
-> BO usage after allocation.
+> void invalidate_tiles(tile_mask)
+>     for_each_tile(tile, tile_mask)
+>         fence[i++] = invalidate_tile(tile)
 > 
-> Yes, there might be odd corner of large clear-on-free followed by small
-> allocation where it might be slightly worse, but overall it seems to be
-> an easy win - both AMD / Intel have done work to make clear-on-free
-> possible.
-> 
-> > > > > > 
-> > > > > > I had a few other comments towards the end of the patch.
-> > > > > > Basically
-> > > > > > I
-> > > > > 
-> > > > > I should slow down and read... Repling to all comments here.
-> > > > > 
-> > > > > > think it would be nice to be able to configure this. There was
-> > > > > > significant testing done here for Aurora in i915 and the
-> > > > > > performance
-> > > > > > benefits were potentially different based on the types of
-> > > > > > workloads
-> > > > > > being used. Having user hints for instance might allow us to
-> > > > > > take
-> > > > > > advantage of those workload specific use cases.
-> > > > > > 
-> > > > > 
-> > > > > We can wire this mode to the uAPI for BO creation if needed -
-> > > > > this
-> > > > > patch
-> > > > > does clear-on-free blindly for any user BO. Ofc with uAPI we need
-> > > > > a
-> > > > > UMD
-> > > > > user to upstream. We may just want to start with this patch and
-> > > > > do
-> > > > > that
-> > > > > in a follow up if needed as it a minor tweak from a code PoV.
-> > > > 
-> > > > Actually it would be great if you can add exactly this to the
-> > > > commit
-> > > > message. Basically we are intentionally doing clear on free here
-> > > > blindly because we don't currently have a user for some kind of
-> > > > more
-> > > > complicated (from the user perspective) hint system. (just kind of
-> > > > repeating what you said)
-> > > > 
-> > > > This way we have some documentation of why we chose this route
-> > > > other
-> > > > than just because amd is doing that.
-> > > > 
-> > > 
-> > > Sure.
-> > > 
-> > > > > 
-> > > > > > > 
-> > > > > > > > buffer size submissions and mix of large and small buffer
-> > > > > > > > submissions
-> > > > > > > > with eviction between different processes?
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > Eviction somewhat orthogonal to this. If an eviction occurs
-> > > > > > > and
-> > > > > > > it is
-> > > > > > > a
-> > > > > > > new allocation a clear would still have be issued ahead
-> > > > > > > handing
-> > > > > > > the
-> > > > > > > memory over to the new BO, if eviction occurs and paged in BO
-> > > > > > > has
-> > > > > > > backing store (it was previously evicted) we'd just copy the
-> > > > > > > contents
-> > > > > > > into the allocated memory.
-> > > > > > 
-> > > > > > Good point. I still think we should consider the scenarios of
-> > > > > > having a
-> > > > > > large buffer workload running and then clearing, then we have a
-> > > > > > small
-> > > > > > buffer workload coming in which now needs to wait on the clear
-> > > > > > from
-> > > > > > that large workload. Whereas on clear-on-alloc for the small
-> > > > > > workload,
-> > > > > > we can get that submission in quickly and not wait for that
-> > > > > > larger
-> > > > > > one.
-> > > > > > 
-> > > > > 
-> > > > > The buddy allocator tries to allocate cleared VRAM first, then
-> > > > > falls
-> > > > > back to dirty VRAM. Dirty VRAM will still be cleared upon
-> > > > > allocation
-> > > > > in
-> > > > > this patch.
-> > > > > 
-> > > > > The senerio you describe could result in eviction actually. If a
-> > > > > large
-> > > > > BO has pending clear - it won't be in either buddy allocator pool
-> > > > > -
-> > > > > it
-> > > > > will be TTM as ghost object (pending free). If the buddy
-> > > > > allocator
-> > > > > fails
-> > > > > an allocation, eviction is triggered with the ghost objects in
-> > > > > TTM
-> > > > > being
-> > > > > tried to allocate first (I think, if I'm misstaing TTM internals
-> > > > > my
-> > > > > bad). This would as you suggest result in the BO allocation
-> > > > > waiting
-> > > > > on
-> > > > > potentially a large clear to finish even though the allocation is
-> > > > > small
-> > > > > in size.
-> > > > 
-> > > > So we have had customers in the past who have wanted explicit
-> > > > disabling
-> > > > of eviction. I agree in the current implementation that might be
-> > > > the
-> > > 
-> > > Explicitly disabling eviction is not an upstream option, downstream
-> > > in
-> > > i915 you can do whatever you want as there are no rules. We have
-> > > discussed a pin accounting controler vis cgroups or something
-> > > upstream
-> > > which may be acceptable. Different discussion though.
-> > > 
-> > > > case, but in the future we might want such a capability, so there
-> > > > is
-> > > > still a chance of blocking. But again, maybe this can be a future
-> > > > enhancement as you said.
-> > > > 
-> > > > > 
-> > > > > > I don't think there is necessarily a one-size-fits-all solution
-> > > > > > here
-> > > > > > which is why I think the hints are important.
-> > > > > > 
-> > > > > 
-> > > > > Jumping to new uAPI + hints immediately might not be the best
-> > > > > approach,
-> > > > > but as I stated this is minor thing to add if needed.
-> > > > > 
-> > > > > > Thanks,
-> > > > > > Stuart
-> > > > > > 
-> > > > > > > 
-> > > > > > > Matt
-> > > > > > > 
-> > > > > > > > > 
-> > > > > > > > > Implemented via calling xe_migrate_clear in release
-> > > > > > > > > notify
-> > > > > > > > > and
-> > > > > > > > > updating
-> > > > > > > > > iterator in xe_migrate_clear to skip cleared buddy
-> > > > > > > > > blocks.
-> > > > > > > > > Only
-> > > > > > > > > user
-> > > > > > > > > BOs
-> > > > > > > > > cleared in release notify as kernel BOs could still be in
-> > > > > > > > > use
-> > > > > > > > > (e.g.,
-> > > > > > > > > PT
-> > > > > > > > > BOs need to wait for dma-resv to be idle).
-> > > > > > > > > 
-> > > > > > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > > > > > ---
-> > > > > > > > >  drivers/gpu/drm/xe/xe_bo.c           | 47
-> > > > > > > > > ++++++++++++++++++++++++++++
-> > > > > > > > >  drivers/gpu/drm/xe/xe_migrate.c      | 14 ++++++---
-> > > > > > > > >  drivers/gpu/drm/xe/xe_migrate.h      |  1 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_res_cursor.h   | 26
-> > > > > > > > > +++++++++++++++
-> > > > > > > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  5 ++-
-> > > > > > > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  6 ++++
-> > > > > > > > >  6 files changed, 94 insertions(+), 5 deletions(-)
-> > > > > > > > > 
-> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > index 4e39188a021a..74470f4d418d 100644
-> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > @@ -1434,6 +1434,51 @@ static bool
-> > > > > > > > > xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object
-> > > > > > > > > *ttm_bo)
-> > > > > > > > >         return locked;
-> > > > > > > > >  }
-> > > > > > > > >  
-> > > > > > > > > +static void xe_ttm_bo_release_clear(struct
-> > > > > > > > > ttm_buffer_object
-> > > > > > > > > *ttm_bo)
-> > > > > > > > > +{
-> > > > > > > > > +       struct xe_device *xe = ttm_to_xe_device(ttm_bo-
-> > > > > > > > > > bdev);
-> > > > > > > > > +       struct dma_fence *fence;
-> > > > > > > > > +       int err, idx;
-> > > > > > > > > +
-> > > > > > > > > +       xe_bo_assert_held(ttm_to_xe_bo(ttm_bo));
-> > > > > > > > > +
-> > > > > > > > > +       if (ttm_bo->type != ttm_bo_type_device)
-> > > > > > > > > +               return;
-> > > > > > > > > +
-> > > > > > > > > +       if (xe_device_wedged(xe))
-> > > > > > > > > +               return;
-> > > > > > > > > +
-> > > > > > > > > +       if (!ttm_bo->resource ||
-> > > > > > > > > !mem_type_is_vram(ttm_bo-
-> > > > > > > > > > resource-
-> > > > > > > > > > mem_type))
-> > > > > > > > > +               return;
-> > > > > > > > > +
-> > > > > > > > > +       if (!drm_dev_enter(&xe->drm, &idx))
-> > > > > > > > > +               return;
-> > > > > > > > > +
-> > > > > > > > > +       if (!xe_pm_runtime_get_if_active(xe))
-> > > > > > > > > +               goto unbind;
-> > > > > > > > > +
-> > > > > > > > > +       err = dma_resv_reserve_fences(&ttm_bo-
-> > > > > > > > > >base._resv,
-> > > > > > > > > 1);
-> > > > > > > > > +       if (err)
-> > > > > > > > > +               goto put_pm;
-> > > > > > > > > +
-> > > > > > > > > +       fence = xe_migrate_clear(mem_type_to_migrate(xe,
-> > > > > > > > > ttm_bo-
-> > > > > > > > > > resource->mem_type),
-> > > > > > > > > +                                ttm_to_xe_bo(ttm_bo),
-> > > > > > > > > ttm_bo-
-> > > > > > > > > > resource,
-> > > > > > > > > +                               
-> > > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL |
-> > > > > > > > > +                               
-> > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY);
-> > > > > > > > > +       if (XE_WARN_ON(IS_ERR(fence)))
-> > > > > > > > > +               goto put_pm;
-> > > > > > > > > +
-> > > > > > > > > +       xe_ttm_vram_mgr_resource_set_cleared(ttm_bo-
-> > > > > > > > > > resource);
-> > > > > > > > > +       dma_resv_add_fence(&ttm_bo->base._resv, fence,
-> > > > > > > > > +                          DMA_RESV_USAGE_KERNEL);
-> > > > > > > > > +       dma_fence_put(fence);
-> > > > > > > > > +
-> > > > > > > > > +put_pm:
-> > > > > > > > > +       xe_pm_runtime_put(xe);
-> > > > > > > > > +unbind:
-> > > > > > > > > +       drm_dev_exit(idx);
-> > > > > > > > > +}
-> > > > > > > > > +
-> > > > > > > > >  static void xe_ttm_bo_release_notify(struct
-> > > > > > > > > ttm_buffer_object
-> > > > > > > > > *ttm_bo)
-> > > > > > > > >  {
-> > > > > > > > >         struct dma_resv_iter cursor;
-> > > > > > > > > @@ -1478,6 +1523,8 @@ static void
-> > > > > > > > > xe_ttm_bo_release_notify(struct
-> > > > > > > > > ttm_buffer_object *ttm_bo)
-> > > > > > > > >         }
-> > > > > > > > >         dma_fence_put(replacement);
-> > > > > > > > >  
-> > > > > > > > > +       xe_ttm_bo_release_clear(ttm_bo);
-> > > > > > > > > +
-> > > > > > > > >         dma_resv_unlock(ttm_bo->base.resv);
-> > > > > > > > >  }
-> > > > > > > > >  
-> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > index 8f8e9fdfb2a8..39d7200cb366 100644
-> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > @@ -1063,7 +1063,7 @@ struct dma_fence
-> > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > xe_migrate *m,
-> > > > > > > > >         struct xe_gt *gt = m->tile->primary_gt;
-> > > > > > > > >         struct xe_device *xe = gt_to_xe(gt);
-> > > > > > > > >         bool clear_only_system_ccs = false;
-> > > > > > > > > -       struct dma_fence *fence = NULL;
-> > > > > > > > > +       struct dma_fence *fence = dma_fence_get_stub();
-> > > > > > > > >         u64 size = bo->size;
-> > > > > > > > >         struct xe_res_cursor src_it;
-> > > > > > > > >         struct ttm_resource *src = dst;
-> > > > > > > > > @@ -1075,10 +1075,13 @@ struct dma_fence
-> > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > xe_migrate *m,
-> > > > > > > > >         if (!clear_bo_data && clear_ccs && !IS_DGFX(xe))
-> > > > > > > > >                 clear_only_system_ccs = true;
-> > > > > > > > >  
-> > > > > > > > > -       if (!clear_vram)
-> > > > > > > > > +       if (!clear_vram) {
-> > > > > > > > >                 xe_res_first_sg(xe_bo_sg(bo), 0, bo-
-> > > > > > > > > >size,
-> > > > > > > > > &src_it);
-> > > > > > > > > -       else
-> > > > > > > > > +       } else {
-> > > > > > > > >                 xe_res_first(src, 0, bo->size, &src_it);
-> > > > > > > > > +               if (!(clear_flags &
-> > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
-> > > > > > > > > +                       size -=
-> > > > > > > > > xe_res_next_dirty(&src_it);
-> > > > > > > > > +       }
-> > > > > > > > >  
-> > > > > > > > >         while (size) {
-> > > > > > > > >                 u64 clear_L0_ofs;
-> > > > > > > > > @@ -1125,6 +1128,9 @@ struct dma_fence
-> > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > xe_migrate *m,
-> > > > > > > > >                         emit_pte(m, bb, clear_L0_pt,
-> > > > > > > > > clear_vram,
-> > > > > > > > > clear_only_system_ccs,
-> > > > > > > > >                                  &src_it, clear_L0, dst);
-> > > > > > > > >  
-> > > > > > > > > +               if (clear_vram && !(clear_flags &
-> > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
-> > > > > > > > > +                       size -=
-> > > > > > > > > xe_res_next_dirty(&src_it);
-> > > > > > > > > +
-> > > > > > > > >                 bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
-> > > > > > > > >                 update_idx = bb->len;
-> > > > > > > > >  
-> > > > > > > > > @@ -1146,7 +1152,7 @@ struct dma_fence
-> > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > xe_migrate *m,
-> > > > > > > > >                 }
-> > > > > > > > >  
-> > > > > > > > >                 xe_sched_job_add_migrate_flush(job,
-> > > > > > > > > flush_flags);
-> > > > > > > > > -               if (!fence) {
-> > > > > > > > > +               if (fence == dma_fence_get_stub()) {
-> > > > > > > > >                         /*
-> > > > > > > > >                          * There can't be anything
-> > > > > > > > > userspace
-> > > > > > > > > related
-> > > > > > > > > at this
-> > > > > > > > >                          * point, so we just need to
-> > > > > > > > > respect
-> > > > > > > > > any
-> > > > > > > > > potential move
-> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > index fb9839c1bae0..58a7b747ef11 100644
-> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > @@ -118,6 +118,7 @@ int xe_migrate_access_memory(struct
-> > > > > > > > > xe_migrate
-> > > > > > > > > *m, struct xe_bo *bo,
-> > > > > > > > >  
-> > > > > > > > >  #define XE_MIGRATE_CLEAR_FLAG_BO_DATA          BIT(0)
-> > > > > > > > >  #define XE_MIGRATE_CLEAR_FLAG_CCS_DATA         BIT(1)
-> > > > > > > > > +#define XE_MIGRATE_CLEAR_NON_DIRTY             BIT(2)
-> > > > > > > > >  #define
-> > > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL     (XE_MIGRATE_CLEAR_FLAG_BO_
-> > > > > > > > > DATA
-> > > > > > > > > > \
-> > > > > > > > >                                         XE_MIGRATE_CLEAR_
-> > > > > > > > > FLAG
-> > > > > > > > > _CCS
-> > > > > > > > > _DAT
-> > > > > > > > > A)
-> > > > > > > > >  struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
-> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > b/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > index d1a403cfb628..630082e809ba 100644
-> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > @@ -315,6 +315,32 @@ static inline void
-> > > > > > > > > xe_res_next(struct
-> > > > > > > > > xe_res_cursor *cur, u64 size)
-> > > > > > > > >         }
-> > > > > > > > >  }
-> > > > > > > > >  
-> > > > > > > > > +/**
-> > > > > > > > > + * xe_res_next_dirty - advance the cursor to next dirty
-> > > > > > > > > buddy
-> > > > > > > > > block
-> > > > > > > > > + *
-> > > > > > > > > + * @cur: the cursor to advance
-> > > > > > > > > + *
-> > > > > > > > > + * Move the cursor until dirty buddy block is found.
-> > > > > > > > > + *
-> > > > > > > > > + * Return: Number of bytes cursor has been advanced
-> > > > > > > > > + */
-> > > > > > > > > +static inline u64 xe_res_next_dirty(struct xe_res_cursor
-> > > > > > > > > *cur)
-> > > > > > > > > +{
-> > > > > > > > > +       struct drm_buddy_block *block = cur->node;
-> > > > > > > > > +       u64 bytes = 0;
-> > > > > > > > > +
-> > > > > > > > > +       XE_WARN_ON(cur->mem_type != XE_PL_VRAM0 &&
-> > > > > > > > > +                  cur->mem_type != XE_PL_VRAM1);
-> > > > > > > > 
-> > > > > > > > What if we have more than just these two? Maybe check
-> > > > > > > > against
-> > > > > > > > the
-> > > > > > > > mask
-> > > > > > > > instead.
-> > > > > 
-> > > > > Sure. I think we do this test in a couple of other places in the
-> > > > > driver too
-> > > > > and clean this up in seperate patch first.
-> > > > 
-> > > > No problem, just wanted to call it out. We can do this later..
-> > > > 
-> > > > > 
-> > > > > > > > 
-> > > > > > > > > +
-> > > > > > > > > +       while (cur->remaining &&
-> > > > > > > > > drm_buddy_block_is_clear(block))
-> > > > > > > > > {
-> > > > > > > > > +               bytes += cur->size;
-> > > > > > > > > +               xe_res_next(cur, cur->size);
-> > > > > > > > > +               block = cur->node;
-> > > > > > > > > +       }
-> > > > > > > > > +
-> > > > > > > > > +       return bytes;
-> > > > > > > > > +}
-> > > > > > > > > +
-> > > > > > > > >  /**
-> > > > > > > > >   * xe_res_dma - return dma address of cursor at current
-> > > > > > > > > position
-> > > > > > > > >   *
-> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > index 9e375a40aee9..120046941c1e 100644
-> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > @@ -84,6 +84,9 @@ static int xe_ttm_vram_mgr_new(struct
-> > > > > > > > > ttm_resource_manager *man,
-> > > > > > > > >         if (place->fpfn || lpfn != man->size >>
-> > > > > > > > > PAGE_SHIFT)
-> > > > > > > > >                 vres->flags |=
-> > > > > > > > > DRM_BUDDY_RANGE_ALLOCATION;
-> > > > > > > > >  
-> > > > > > > > > +       if (tbo->type == ttm_bo_type_device)
-> > > > > > > > > +               vres->flags |=
-> > > > > > > > > DRM_BUDDY_CLEAR_ALLOCATION;
-> > > > > > > > > +
-> > > > > > > > >         if (WARN_ON(!vres->base.size)) {
-> > > > > > > > >                 err = -EINVAL;
-> > > > > > > > >                 goto error_fini;
-> > > > > > > > > @@ -187,7 +190,7 @@ static void
-> > > > > > > > > xe_ttm_vram_mgr_del(struct
-> > > > > > > > > ttm_resource_manager *man,
-> > > > > > > > >         struct drm_buddy *mm = &mgr->mm;
-> > > > > > > > >  
-> > > > > > > > >         mutex_lock(&mgr->lock);
-> > > > > > > > > -       drm_buddy_free_list(mm, &vres->blocks, 0);
-> > > > > > > > > +       drm_buddy_free_list(mm, &vres->blocks, vres-
-> > > > > > > > > >flags);
-> > > > > > > > >         mgr->visible_avail += vres->used_visible_size;
-> > > > > > > > >         mutex_unlock(&mgr->lock);
-> > > > > > > > >  
-> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > index cc76050e376d..dfc0e6890b3c 100644
-> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > @@ -36,6 +36,12 @@ to_xe_ttm_vram_mgr_resource(struct
-> > > > > > > > > ttm_resource
-> > > > > > > > > *res)
-> > > > > > > > >         return container_of(res, struct
-> > > > > > > > > xe_ttm_vram_mgr_resource,
-> > > > > > > > > base);
-> > > > > > > > >  }
-> > > > > > > > >  
-> > > > > > > > > +static inline void
-> > > > > > > > > +xe_ttm_vram_mgr_resource_set_cleared(struct ttm_resource
-> > > > > > > > > *res)
-> > > > > > > > > +{
-> > > > > > > > > +       to_xe_ttm_vram_mgr_resource(res)->flags |=
-> > > > > > > > > DRM_BUDDY_CLEARED;
-> > > > > > > > 
-> > > > > > > > I see the amd driver is doing the same thing here. Maybe we
-> > > > > > > > can
-> > > > > > > > pull
-> > > > > > > > this in based on the flags given at the resource
-> > > > > > > > initialization
-> > > > > > > > so
-> > > > > > > > we
-> > > > > > > > can potentially tweak this for different scenarios (when to
-> > > > > > > > free)
-> > > > > > > > and
-> > > > > > > > converge what we're doing here and what amd is doing into
-> > > > > > > > the
-> > > > > > > > common
-> > > > > > > > code.
-> > > > > > > > 
-> > > > > 
-> > > > > AMD has a flag, which is the same test in this series as 'type ==
-> > > > > ttm_bo_type_device'. AMD blindly sets this flag on user BO
-> > > > > creation
-> > > > > but
-> > > > > as I stated above we could wire this to uAPI if needed.
-> > > > > 
-> > > > > Also I think there are some kernel BOs which clear-on-free is
-> > > > > safe
-> > > > > too
-> > > > > (e.g., I think only PT BOs need contents to stick around after
-> > > > > final
-> > > > > put
-> > > > > until dma-resv is clean of fences). Would have to fully to test
-> > > > > for
-> > > > > definitive answer though.
-> > > > 
-> > > > In most cases the kernel operations are going to be lower priority
-> > > > than
-> > > 
-> > > It is the inverse of that - kernel operations are a always higher
-> > > priority as without them a user app can't function (think any page
-> > > table
-> > > memory allocation or memory allocation for a LRC). This is one of
-> > > reasons we just pin kernel memory in Xe compared evictable kernel
-> > > memory
-> > > in the i915 (also evicting kernel memory is a huge pain as we have
-> > > idle
-> > > the GuC state which could use that memory).
-> > 
-> > We're talking about kernel operations attached to different processes
-> > though. The incoming kernel work would be for a new user process
-> > (prepping the buffer for submission). The existing user process IMO
-> > should have higher priority.
-> > 
-> 
-> You still have to wait on the user operation complete in dma-resv mode
-> before stealing memory.
-> 
-> In LR preempt fence mode, we'd wait until LR VM is preempted off the
-> hardware.
-> 
-> In LR fault mode, we can steal the memory immediately.
+>     for_each_i(i)
+>         wait_for_invalidation(i)
 > 
 
-s/immediately/after TLB invalidation completes
+That still doesn't work as each tile can generate multiple fences if it
+has a media GT. Yes, we could have helper which takes a fence index by
+reference by ROI on this low IMO - this is not some crazy a couple 100
+line function which is hard to follow.
 
 Matt
 
-> There is no difference though if we are trying to get kernel memory or
-> user memory - this is just how eviction works.
 > 
-> Also if we are in LR mode, we have no idea how long the user processes
-> which we stealing memory from will take to complete (e.g., we do not
-> install fences in dma-resv attached to jobs as the fences could run
-> forever breaking the rules of fence or in other word breaking reclaim).
+> Thanks,
+> Stuart
 > 
-> This is where pinning of user memory could come in play /w some
-> accounting controler, likely cgroups. LR mode could pin some memory to
-> ensure fast forward progress or buffers it really doesn't want to be
-> moved around (e.g., buffers exported over a fast network interconnect).
-> 
-> Matt
-> 
-> > Thanks,
-> > Stuart
 > > 
-> > > 
-> > > > the user operations (with the exception of maybe page faults). We
-> > > > had
-> > > > looked at things in i915 like preempting kernel operations when a
-> > > > user
-> > > > op comes in (the user clear-on-alloc preempts the kernel clear-on-
-> > > > free/alloc). This probably falls in the same optimization category
-> > > > you
-> > > 
-> > > We definitely won't do that as this would require multiple migration
-> > > queues and preemption via the GuC is so expensive I'd doubt you'd
-> > > ever
-> > > win. I guess we could have a convolved algorithm in the migration
-> > > queue
-> > > to jump to higher priortiy jobs but would need some really strong
-> > > data
-> > > indicating this is needed. Also with dma-resv basically the migration
-> > > queue needs to be idle before anything from the user can run.
-> > > 
-> > > Matt
-> > > 
-> > > > mentioned, although it doesn't necessarily need a user hint.
-> > > > 
-> > > > Thanks,
-> > > > Stuart
-> > > > 
-> > > > > 
-> > > > > Matt
-> > > > > 
-> > > > > > > > Thanks,
-> > > > > > > > Stuart
-> > > > > > > > 
-> > > > > > > > > +}
-> > > > > > > > > +
-> > > > > > > > >  static inline struct xe_ttm_vram_mgr *
-> > > > > > > > >  to_xe_ttm_vram_mgr(struct ttm_resource_manager *man)
-> > > > > > > > >  {
-> > > > > > > > 
-> > > > > > 
-> > > > 
+> > Matt 
 > > 
+> > > }
+> > > 
+> > > invalidate_gt(gt_type)
+> > > {
+> > >     invalidation_fence_init(gt_type)
+> > >     fence = invalidation_fence_range(gt_type)
+> > > 
+> > >     return fence
+> > > }
+> > > 
+> > > Thanks,
+> > > Stuart
+> > > 
+> > > > +                       if (err)
+> > > > +                               goto wait;
+> > > > +                       ++fence_id;
+> > > > +
+> > > > +                       if (!tile->media_gt)
+> > > > +                               continue;
+> > > > +
+> > > > +                       xe_gt_tlb_invalidation_fence_init(tile-
+> > > > > media_gt,
+> > > > +                                                        
+> > > > &fence[fence_id], true);
+> > > > +
+> > > > +                       err = xe_gt_tlb_invalidation_range(tile-
+> > > > > media_gt,
+> > > > +                                                         
+> > > > &fence[fence_id],
+> > > > +                                                          start,
+> > > > +                                                          end,
+> > > > +                                                          vm-
+> > > > > usm.asid);
+> > > > +                       if (err)
+> > > > +                               goto wait;
+> > > > +                       ++fence_id;
+> > > > +               }
+> > > > +       }
+> > > > +
+> > > > +wait:
+> > > > +       for (id = 0; id < fence_id; ++id)
+> > > > +               xe_gt_tlb_invalidation_fence_wait(&fence[id]);
+> > > > +
+> > > > +       return err;
+> > > > +}
+> > > > +
+> > > >  /**
+> > > >   * xe_vm_invalidate_vma - invalidate GPU mappings for VMA
+> > > > without a
+> > > > lock
+> > > >   * @vma: VMA to invalidate
+> > > > @@ -3857,11 +3919,9 @@ int xe_vm_invalidate_vma(struct xe_vma
+> > > > *vma)
+> > > >         struct xe_device *xe = xe_vma_vm(vma)->xe;
+> > > >         struct xe_vm *vm = xe_vma_vm(vma);
+> > > >         struct xe_tile *tile;
+> > > > -       struct xe_gt_tlb_invalidation_fence
+> > > > -               fence[XE_MAX_TILES_PER_DEVICE *
+> > > > XE_MAX_GT_PER_TILE];
+> > > > -       u8 id;
+> > > > -       u32 fence_id = 0;
+> > > > +       u8 tile_mask = 0;
+> > > >         int ret = 0;
+> > > > +       u8 id;
+> > > >  
+> > > >         xe_assert(xe, !xe_vma_is_null(vma));
+> > > >         xe_assert(xe, !xe_vma_is_cpu_addr_mirror(vma));
+> > > > @@ -3892,37 +3952,14 @@ int xe_vm_invalidate_vma(struct xe_vma
+> > > > *vma)
+> > > >                 }
+> > > >         }
+> > > >  
+> > > > -       for_each_tile(tile, xe, id) {
+> > > > -               if (xe_pt_zap_ptes(tile, vma)) {
+> > > > -                       xe_device_wmb(xe);
+> > > > -                       xe_gt_tlb_invalidation_fence_init(tile-
+> > > > > primary_gt,
+> > > > -                                                        
+> > > > &fence[fence_id],
+> > > > -                                                         true);
+> > > > -
+> > > > -                       ret = xe_gt_tlb_invalidation_vma(tile-
+> > > > > primary_gt,
+> > > > -                                                       
+> > > > &fence[fence_id], vma);
+> > > > -                       if (ret)
+> > > > -                               goto wait;
+> > > > -                       ++fence_id;
+> > > > -
+> > > > -                       if (!tile->media_gt)
+> > > > -                               continue;
+> > > > -
+> > > > -                       xe_gt_tlb_invalidation_fence_init(tile-
+> > > > > media_gt,
+> > > > -                                                        
+> > > > &fence[fence_id],
+> > > > -                                                         true);
+> > > > +       for_each_tile(tile, xe, id)
+> > > > +               if (xe_pt_zap_ptes(tile, vma))
+> > > > +                       tile_mask |= BIT(id);
+> > > >  
+> > > > -                       ret = xe_gt_tlb_invalidation_vma(tile-
+> > > > > media_gt,
+> > > > -                                                       
+> > > > &fence[fence_id], vma);
+> > > > -                       if (ret)
+> > > > -                               goto wait;
+> > > > -                       ++fence_id;
+> > > > -               }
+> > > > -       }
+> > > > +       xe_device_wmb(xe);
+> > > >  
+> > > > -wait:
+> > > > -       for (id = 0; id < fence_id; ++id)
+> > > > -               xe_gt_tlb_invalidation_fence_wait(&fence[id]);
+> > > > +       ret =
+> > > > xe_vm_range_tilemask_tlb_invalidation(xe_vma_vm(vma),
+> > > > xe_vma_start(vma),
+> > > > +                                                  
+> > > > xe_vma_end(vma),
+> > > > tile_mask);
+> > > >  
+> > > >         /* WRITE_ONCE pair with READ_ONCE in xe_gt_pagefault.c */
+> > > >         WRITE_ONCE(vma->tile_invalidated, vma->tile_mask);
+> > > > diff --git a/drivers/gpu/drm/xe/xe_vm.h
+> > > > b/drivers/gpu/drm/xe/xe_vm.h
+> > > > index 88d6c0ef89c7..acd3fd6c605b 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_vm.h
+> > > > +++ b/drivers/gpu/drm/xe/xe_vm.h
+> > > > @@ -228,6 +228,9 @@ struct dma_fence *xe_vm_range_rebind(struct
+> > > > xe_vm
+> > > > *vm,
+> > > >  struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
+> > > >                                      struct xe_svm_range *range);
+> > > >  
+> > > > +int xe_vm_range_tilemask_tlb_invalidation(struct xe_vm *vm, u64
+> > > > start,
+> > > > +                                         u64 end, u8 tile_mask);
+> > > > +
+> > > >  int xe_vm_invalidate_vma(struct xe_vma *vma);
+> > > >  
+> > > >  int xe_vm_validate_protected(struct xe_vm *vm);
+> > > 
+> 
