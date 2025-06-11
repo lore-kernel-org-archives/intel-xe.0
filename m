@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37B2EC71137
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 13:44:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 337F6C71131
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 13:44:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E717210E675;
-	Wed, 11 Jun 2025 13:44:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0CC810E670;
+	Wed, 11 Jun 2025 13:44:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CUs0T6xj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V6ZjJYex";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62D6E10E670;
- Wed, 11 Jun 2025 13:44:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1B9A10E66C;
+ Wed, 11 Jun 2025 13:44:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749649484; x=1781185484;
+ t=1749649481; x=1781185481;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EIElUrKFkDwdELXFYGaGoOXmRj25eCe35unOEGEe7No=;
- b=CUs0T6xjY53H7JhiyR88qOIaqkMKfodlMdrtbdy1HH0bV6Om1EaIC1e3
- jshA3x72JT2f5cdHfpy0dHzcMEHp4g5o+CDlxgMVaopw3HdHR7jJ2MCTr
- io6ASsmxHQmgq0FUpxYYqsqoECckQocdei6TXWSM3NQa8qK247lfRqskc
- a9F6i/cGPerPGakg16TYe5xFvPN9wSW5OjaUHG+uuPsIOizkG/psrv7Hu
- G91sjpk5AYa6fsQtlIZViqR+KFpP0IEgmbmScLF+YCcufUwZjqVGQJ5ZV
- XLdGmU+g9R/NHApngh29wVLB/48rXjLTToIadQaPlMXywFvUHuGeAk43t w==;
-X-CSE-ConnectionGUID: 4a/mqfaQQFa8jgQ5anbu6g==
-X-CSE-MsgGUID: 0wGEy7xSSfmkXiOyzrnXAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51505817"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="51505817"
+ bh=YdvHn3HIwMhPhgJtkcxOvNsqgC62QyhHSOkasP2zrxs=;
+ b=V6ZjJYexIhdt4kd9ti/9UwY6uXIvFg1vlaXTkVXIR12vuPdphalISRl8
+ apF9+K+rtgO8qqL542/rotF67eUzzF6g5VAeEZcuVBd3GKMkNd8zwNcO/
+ XURU2ka7dbgyfzsuZ3jGKAwhJH+WBoRfoKpuX7bQuJoftzyzXZox7V19h
+ c5qvkP6iYpp4NDMDeA9i6gVM2roOl+ASwcw9ae9odDwRPM/OHc2pkm9Ix
+ 18v1+unzCE5PUlnAMh2xGFNdiJANLLlbgFsHcweKkKWSslvZ9u6bMuKp6
+ dtxGr1GgChkxHBuS3flvvTrMn3uec44NDZ22VVUYzS8jE8HXhSF365/J1 g==;
+X-CSE-ConnectionGUID: jl2YObEGQTW59WisYYNA6w==
+X-CSE-MsgGUID: dDtlLk0LTg+M3MuwRU1ZLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51505814"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="51505814"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 06:44:44 -0700
-X-CSE-ConnectionGUID: rFV9QsA0SR6nULuOAsahGQ==
-X-CSE-MsgGUID: wZYZHK2qTfKi0joEfgBbAA==
+ 11 Jun 2025 06:44:40 -0700
+X-CSE-ConnectionGUID: M7Yz0ObyTsCAs8vWt4J1NQ==
+X-CSE-MsgGUID: ZgANMLmYQiq4LWYfU4kSKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152360329"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152360308"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa004.fm.intel.com with ESMTP; 11 Jun 2025 06:44:41 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 11 Jun 2025 06:44:38 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Matt Atwood <matthew.s.atwood@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v4 5/9] drm/i915: Set max cdclk for display 30.02
-Date: Wed, 11 Jun 2025 19:14:27 +0530
-Message-Id: <20250611134431.2761487-6-dnyaneshwar.bhadane@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v4 3/9] drm/xe/xe3: Add support for media IP version 30.02
+Date: Wed, 11 Jun 2025 19:14:25 +0530
+Message-Id: <20250611134431.2761487-4-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250611134431.2761487-1-dnyaneshwar.bhadane@intel.com>
 References: <20250611134431.2761487-1-dnyaneshwar.bhadane@intel.com>
@@ -67,33 +66,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Atwood <matthew.s.atwood@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Display version 30.02 has a lower max cdclk rate than 30.00.
+Media version 30.02 should be treated the same as other Xe3 IP, but
+will have a slightly different set of workarounds.
 
-Bspec: 68861
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+-v2: Extend the range in existing WA entry (Bala)
+
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pci.c        | 1 +
+ drivers/gpu/drm/xe/xe_wa.c         | 4 ++--
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 4 ++--
+ 3 files changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 38b3094b37d7..1cbb1d526fe8 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3386,7 +3386,9 @@ static int intel_compute_max_dotclk(struct intel_display *display)
-  */
- void intel_update_max_cdclk(struct intel_display *display)
- {
--	if (DISPLAY_VER(display) >= 30) {
-+	if (DISPLAY_VERx100(display) >= 3002) {
-+		display->cdclk.max_cdclk_freq = 480000;
-+	} else if (DISPLAY_VER(display) >= 30) {
- 		display->cdclk.max_cdclk_freq = 691200;
- 	} else if (display->platform.jasperlake || display->platform.elkhartlake) {
- 		if (display->cdclk.hw.ref == 24000)
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 8824a8016b1c..46d4d9af0ed0 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -196,6 +196,7 @@ static const struct xe_ip media_ips[] = {
+ 	{ 1301, "Xe2_HPM", &media_xelpmp },
+ 	{ 2000, "Xe2_LPM", &media_xelpmp },
+ 	{ 3000, "Xe3_LPM", &media_xelpmp },
++	{ 3002, "Xe3_LPM", &media_xelpmp },
+ };
+ 
+ static const struct xe_device_desc tgl_desc = {
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 8693d098aa9b..8097b5e2a6f7 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -274,13 +274,13 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 	/* Xe3_LPM */
+ 
+ 	{ XE_RTP_NAME("16021867713"),
+-	  XE_RTP_RULES(MEDIA_VERSION(3000),
++	  XE_RTP_RULES(MEDIA_VERSION_RANGE(3000, 3002),
+ 		       ENGINE_CLASS(VIDEO_DECODE)),
+ 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F1C(0), MFXPIPE_CLKGATE_DIS)),
+ 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
+ 	},
+ 	{ XE_RTP_NAME("16021865536"),
+-	  XE_RTP_RULES(MEDIA_VERSION(3000),
++	  XE_RTP_RULES(MEDIA_VERSION_RANGE(3000, 3002),
+ 		       ENGINE_CLASS(VIDEO_DECODE)),
+ 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), IECPUNIT_CLKGATE_DIS)),
+ 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 5c0d8b720946..45d0cd917f6b 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -56,7 +56,7 @@ no_media_l3	MEDIA_VERSION(3000)
+ 1508761755	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
+ 16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
+-		MEDIA_VERSION_RANGE(1301, 3000)
++		MEDIA_VERSION_RANGE(1301, 3002)
+ 		GRAPHICS_VERSION(3003)
+ 16026508708	GRAPHICS_VERSION_RANGE(1200, 3003)
+-		MEDIA_VERSION_RANGE(1300, 3000)
++		MEDIA_VERSION_RANGE(1300, 3002)
 -- 
 2.34.1
 
