@@ -4,186 +4,174 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 678AEC71141
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 18:55:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71187C71141
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 18:59:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC0210E707;
-	Wed, 11 Jun 2025 18:55:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 326BB10E706;
+	Wed, 11 Jun 2025 18:59:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EJHNavJa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eCAvbZxf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E8DD10E707
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 18:55:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2A3510E706
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 18:59:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749668118; x=1781204118;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=BphP0fX1FBvUmJCA4S4vNX5UemtcZG136lM/Xr2n4XY=;
- b=EJHNavJa82nf4pG1iVN7vIea6SAMK0FujBMs2zsd3bpNhRloDe+eWSeN
- vUb2alWk+PzZvYH+QF3U5Vp60JFNJDyehPexHiZPGKRyNhCZG/mz4DHnu
- gCLjsihRSqSZwX0nGcUbryx7ycbKXe7ASkg4Yww1f5Sy0dYYhfDcMtS/i
- /ITExutGvznGLXDM91KeJjhL5R4VSW5NFRIpUXLPEdMwib38rIUS4WpuE
- 6zxuQ0azfV/uFrNGQ2XQYS9ZWtth1dZslyWj94Gbn1B31R7l+Qf71CEDw
- 5oAhYFj9Rnl1GzwVzY5xNqKgTzEQLunFHPt1Tg1JdzFyYmj/lx0NWzou5 w==;
-X-CSE-ConnectionGUID: WRpA1T4iQa+Mu/OXJbAyYQ==
-X-CSE-MsgGUID: RY+djpVfQtCnW1fGd3IJqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="55619239"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="55619239"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 11:55:18 -0700
-X-CSE-ConnectionGUID: mx9bgdhRT1yP21sgt4tWyw==
-X-CSE-MsgGUID: r7MABtUfTA6jkzLvFTYgVw==
+ t=1749668394; x=1781204394;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=wuyyhJFRXqmGMUw6fEYqZ1hX3nYGBrA9cR1oeiArAec=;
+ b=eCAvbZxfSaxYBU8hSQfPZzAudcTutmkCx7I56RttLZH/GZZoS7mn4YCI
+ J/avFlc8a4PtuS5ePUZbRgnuioWVdmh+dmFr95Iid3BU5vA8o1Y7yuII5
+ 4hOS0x+YddlVl3B/8shaVAhDB1SoF6GItCa8hX9gXHf6WBs6rAY1cw6Gz
+ A7qhkKz3G09gcQcrc2cygkU8KmxX3RwGPmXZVMORJERImYbR0sek1vI4c
+ QLCNVaiovdPZlCqCgs5fG5V1U7uLaYAJB9r+eGDrAOfFy4I6a1x6EEjRC
+ s0qPWzUE6RzjTiU9WysEIQzNYfooASt6ElciLo5I4Oib+Y1da9PySyGXB A==;
+X-CSE-ConnectionGUID: Qb10kQh6Tu2R+XSsqOwigA==
+X-CSE-MsgGUID: cn5sW+CoRUGnvaFbY6Mlmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62437339"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62437339"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 11:59:54 -0700
+X-CSE-ConnectionGUID: wkX63EZFQQi/PyVo5bfouw==
+X-CSE-MsgGUID: tXhFNCElSgWBxWspIDWqig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="151078160"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 11:55:17 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 11 Jun 2025 11:55:17 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="170449176"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 11:59:53 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Wed, 11 Jun 2025 11:55:17 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.59)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.1544.25; Wed, 11 Jun 2025 11:59:52 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 11 Jun 2025 11:55:16 -0700
+ 15.2.1544.25 via Frontend Transport; Wed, 11 Jun 2025 11:59:52 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.71) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Wed, 11 Jun 2025 11:59:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N+1zxKqNIXAEOyqC9lLO0PyVaRA+lAdfbNCmwXIeJrtU/a9qIxzB/uZxyMpZcacW/qSykQmW3d/2ywqSzIVMjlx6esd6orSkNvlWpevBDnAal2UAmftL/ekBT8bO5ITpQBmXcHQNqxw9IXdHcBEXjDMelHdQIwXugIY3EIbYopXkmhjMmCG/m7wxx6UUC8pxXx0CfHbbNIcnRAS7XNTmS55Ycn7Z8ACJtFwW/IkfKgCbjS/CQKFhZl4PbWzfbe+E3G0OPKYkuQtqrct6R6/gDFdwo6qKp7gJ1Og2B28KlibwkigDRKdIBVtBCI1L6+7M8bBViNLc2REFuRxkh9N32Q==
+ b=qG2dDoaHDSoMT2YQLWajUa51dQoyBFIooSaJOXoXKz+2e38vv/AnYayXD2jwloKpWriwvrImKtiaywflGa6/NxuJ4GYAYf4sczqNFpqykl9Opx2TzS9626E3aOEQFB2IcZukaPgDZ00sDGhE/aSWPJBK2AaQ7jsZ1swGkEaa3Y+wsSUHu2IRIV4y+v/tdnvImXq0sgarferSaitcJikBKenbzy0WqY6WiTDTaRdCYlIU8/H0j6QuTs4Ji3OE0GnndSwt72yU+vEVX73TDLn9tD8mPbCtZUn8XJIHj1wVsu8FMuVPeGznIa+q7wx2kH4Woul3F8Qt9Xj5lXkkPjMcyg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BphP0fX1FBvUmJCA4S4vNX5UemtcZG136lM/Xr2n4XY=;
- b=VbwZpKBLe/X2k8SoqQu2Ny2czlTM21M8242pj81s7JxhSmZxp2kza7xQW/meBt903VxU+eBw7oHHIfB4xMR9J0u11sTrU6PT8qpNtjlhtIlN4ewpeHvaBiSGyz9XldvLVlE4myPqm/rgXAcQErGqQNoXbzQCyPbw/VWoLq5a4VbQWNAO8AwfdG9YK7j60QbvwHISnUuWhAnhy+d2fvoqzoFvlIEMdPs4BZ/IaWojya5Z+A2orj4OPrcvpqFQzXF1Mkcspe5ZNOBRHxyvnOisW8C8tamrCIamjJ17B2lqOCA0l/fVBL4We/ny5ybvu08yp6LGMLMY03S1zmAxDF5geg==
+ bh=Eu9hzzBSJhYOIrNdHoS8bJedZ9Xom3aUwpcUswe4sks=;
+ b=s1j6IhdQBe1jl/3qwV3vj5Zf4KDSmzqS/NcLVtd58/LFBo6DN+pux3AsgPwhpTL5dngxtOTIDcpG2l2E4jVkmMrnamTdkd2sekmdFxi85ubVp2fnxi0RBsi1QCKTF90HN8aqS3hR4s57wC2oeE5aBtCfLHJ6qVWyKtwwkwKqjAVEhEllAMyR2XwaSnwMJkAYTGGf9L4crzVbN2sTXru86x4xa6w8v0ZoHMLftnret+1MXqiU5nlhMaxznDdycTGQaaOseBBeUBfhiXqcNXGZYSuu7+qP6hxefesNp1Ab9cnS6L4fwiC577mCK4I8xgT9ds9iZZZArZwqjFL81Py1Zg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5573.namprd11.prod.outlook.com (2603:10b6:8:3b::7) by
- IA1PR11MB7271.namprd11.prod.outlook.com (2603:10b6:208:429::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.22; Wed, 11 Jun
- 2025 18:54:47 +0000
-Received: from DM8PR11MB5573.namprd11.prod.outlook.com
- ([fe80::3f64:5280:3eb4:775b]) by DM8PR11MB5573.namprd11.prod.outlook.com
- ([fe80::3f64:5280:3eb4:775b%5]) with mapi id 15.20.8835.018; Wed, 11 Jun 2025
- 18:54:46 +0000
-From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Brost, 
- Matthew" <matthew.brost@intel.com>
-CC: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH] drm/xe: Reorder 'Get pages failed' message
-Thread-Topic: [PATCH] drm/xe: Reorder 'Get pages failed' message
-Thread-Index: AQHb2cPoc0s/PSLmZEOlYi7UL+tYMLP+URCA
-Date: Wed, 11 Jun 2025 18:54:46 +0000
-Message-ID: <54752013e63df693c82e4964303c7c6c2dd36c0b.camel@intel.com>
-References: <20250610045649.3149801-1-matthew.brost@intel.com>
-In-Reply-To: <20250610045649.3149801-1-matthew.brost@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu2 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5573:EE_|IA1PR11MB7271:EE_
-x-ms-office365-filtering-correlation-id: 529bfb5c-6c5f-43e0-7507-08dda9196fa7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?enJXNTkwd2RteTZjQXlvZVlPcTRISUE0eHlESXNTeXpja1RRMldwYzBjRk9Y?=
- =?utf-8?B?bk91bWprVzVHVisrVHR2a1poVldvKzNkakdKSkw2b2Mxd3BWQmQyNlF2Rno5?=
- =?utf-8?B?Wk9jcmEvdStXbW11T0RVaWNtVzBWbHkyb1R1bjJqNjJ2ajNPVSs3Y0lZREZF?=
- =?utf-8?B?c3FBdGgxdlNiekJjTTVnZit5T0FETmY5cmJIZVZOMDZXUEZ0WjVXMThXY0ls?=
- =?utf-8?B?ZkFSOGp0cE9EOEpnWE9sNXZjYXFuRkZoUTJYWHg1Lzg4RlpXbUVtU1JtaEhO?=
- =?utf-8?B?dW1XZXB0cUR4UjJVdnVnNEdZUjVUT1FIQVVTMHkrNEx6VEJzRHluUTBnSFho?=
- =?utf-8?B?dlhHZFlwZ0FQbUhnclBsQXU3MnNhUldJYzViVXRlT1htZG95aFVFMHg2aTk1?=
- =?utf-8?B?NFUzajQ3dGJxQ0Z3UXY1TkxwMVVuV3cwa1NzZGI4c00zRFhYb2RnOTVEK1RH?=
- =?utf-8?B?MGhucXpzMURoektVeVpXbG5leXZ5SjV0OFJiNW1xeFROaUhEWDFOby9EQ0Ra?=
- =?utf-8?B?OGtZNzh5RGUrRnlHMDgvRkZNNFU0NXY3M0Zpb1Z2Q1E5RVdZNHV3MkFNVEZI?=
- =?utf-8?B?a0tYcm5DU2tsbisvVlAzOGduMmRZQXN4ZmV2cVl2TEkwWjgrVnZDZHRkSDhB?=
- =?utf-8?B?OXJXSXlOWlhXdnpxZUk0YTJhUG4yOTNlUDh3RGtKTXk5cW5Tc1crMEw1bmh4?=
- =?utf-8?B?THppN3lreEhSc3JmTi9KSnJDYzdoaUJzMm4rRGtaM3FEYWxtOWtZV3hYZ0FK?=
- =?utf-8?B?b0s4TG1LYndVRmhZS3ZaSzcxVlJCR2NpeVZCMlRSVnloZjQ2Z202WGtZdWFN?=
- =?utf-8?B?c1lHY2gzYlhXalVoRmUzWDhUSElnamFUdlc0TTNsRDU3TWRTVjN2Ukl0RER6?=
- =?utf-8?B?OXdJQ002U0Jrdnl3RXhsY211UjJneVpNVXp0K29LbTB5ZFVTRC94N3VDTyto?=
- =?utf-8?B?dWlhNm9JbUVnUWllbG5xSlhxaElmYVZHWWw0bkc3VUEzbzlpejdrbk1pem5Q?=
- =?utf-8?B?K3JXRkZQTFNXN1Q3VzcvRThaWW5QSkF5WVpXSFRIcjBnT25BN0xoOTVGQ0t3?=
- =?utf-8?B?d0xidUE3RFRsOWthMzV1ZWNXMncrc0lobHVoUHpJYURBY3JlakRpdktTVUpL?=
- =?utf-8?B?YnNmbVhIbHNyaDBTUDFOWFdUUW1DVDBSNEpBTmVURkE4dXVJNVZYOHlhcHVm?=
- =?utf-8?B?WVpjZHc2T2drMDJxN0VQcWZhK3UxVWQ5WEFqQ3pJRUY4cDlWTncxeW1DaU1l?=
- =?utf-8?B?YUVVM0RZN3VXMk5PbzFNQVQ1RHBBdGNjOWc0RURSaWNPVlJqN0tlT0VjaUNl?=
- =?utf-8?B?cGJCSk1kbGg5YkdwMVlPTWE4Rk9QamxSWngzVHlvWERERkZJSElOTHl0SWNr?=
- =?utf-8?B?Yk1jMjU4NVVjam9scW1kcGdrb04rUGN2a2lCNjFWMXA1L1VMcXhaN2k4cURi?=
- =?utf-8?B?THNGcjVjUVh1UUMwWGNlc1QwbkxqWGxFN0RaZWJ1TkplcFdLeFpUQ01BLzly?=
- =?utf-8?B?WU01SXJScElLc2h4a3EvUXdKTVZnR25iY0k0UjBPdHpxWkhBSlQ0QnQ3a2c2?=
- =?utf-8?B?NEJLNVpXZVQ3SVYwS3g0OS9DbjZOS1Q3QldnNmVSbFdBcWtEK0pvcWZZVzJV?=
- =?utf-8?B?QldHYksrM3Nvdm5qbEhvNkd0eVBnOWhhenRJZ0FBeHJzVVJoVCtNcDlyaWNO?=
- =?utf-8?B?UitKZ1BsWnQwTXNKc0RKMEM5YVNqR2hQbVp2RGpBU1NBdE42VHJjblg2WVlE?=
- =?utf-8?B?UU81eWVpZEE5ZG9CR1VvbGd6eWhxRFRXMWVVNkliUk41RTdqWXB1bkJUaXlW?=
- =?utf-8?B?M3grMngvNnNZUzNGdCtZZlhPMVlJUnp2L3B3REU0NWt6QUgzRHd4R1Nqemdi?=
- =?utf-8?B?SVJ4ODhHL1Z3NWxlU1h3b2VNdDIreHNQVjhqWlB3Sjl0Vk9MelovNEFEU3pH?=
- =?utf-8?B?TnM3U0VIYnM3Q0kvZ0RTY2hGaGRDQlhaampKQS9GT096bzUwZmlKKzlBVVE3?=
- =?utf-8?Q?ehrMtbjW1oGaRJ+m+r668uVQuqx/dk=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5573.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?d1IwaHh5Nk1hV2k5cG5PeFV2M3lybWtJQkdTMHd3cGphVEVFaGxZbkVJOGpJ?=
- =?utf-8?B?YmFVcnNZajlmZ2RJQm9IK0JvMElLMG1qZXpFeVRjM2x5LytRZmNTMlFrdHdn?=
- =?utf-8?B?cnRWY3pQWU82Q3hYSk9MczMvcU9lRmJuNDIxa3kyK0J0Sm1YNUJuaDl3WmE3?=
- =?utf-8?B?c0lSRjU2N3o0U1lTYWlCbmpLbVVEWW9HWWlHVUYwSWZIWWF5SiszSEs4NzZO?=
- =?utf-8?B?cEdkbTVRVW01UDVJREVHb0JKUVRvRTh3Q3Y0Qi9YcEh1SCtWdCtCWUw0QkY0?=
- =?utf-8?B?MVZpWGZ4MGZ4eGhjZEg2Tk1FU0lNYnJqc0VjUDJlMHUzRTNXL3VIQ1NjV3dJ?=
- =?utf-8?B?QktWUmZYeFV3cUI0a1l4ZDVJR1V5SEoxRnJoUCt2b0hpMkwyWmN4WTNTamNM?=
- =?utf-8?B?VUFKb2JVYU5UMDBKTXNIdCtWV2Y1cnVURlhyN1JjUFVQU1k0NDFnamFuNVN2?=
- =?utf-8?B?bDlxUW1INkxsTUtqdDJTcEY2ajdkZEFPc0VyWmhVVzRmZzlGcWRna20rN2xS?=
- =?utf-8?B?YWdXc1ZSRzVxek9XdFNhVXpBSzRNNmdJL0hReTFRSnUxamtFbHJLS09TeFVM?=
- =?utf-8?B?VE0wMUlRY3F0YmhHY050cytvdENjZXN0dmVCbVFTSTlCVk1XdUlYWjg5dVdo?=
- =?utf-8?B?b3RqeXNjbjMzdkVoZXVpVVBscjdIb04xWjJOU1NEdk5tS1VlTTBFSUpUZVNI?=
- =?utf-8?B?TzBjTkpqVkpoSER5YzFSSWY1SlNWSFZobU0wOFp6L1ZWUXM3cmNkMnZUdGQ4?=
- =?utf-8?B?K00rdkJwWC9jZ3RDNWI3MnZidTVKWG9iZjUzTHd3VHp0S3N2YisvdHpxWk5N?=
- =?utf-8?B?dTBhN1V4OFV6VDM0ZXU3Zm9xbEtrQU1HMUd3MVkzUWdPU0NoVFIzQ01tZXpx?=
- =?utf-8?B?ZXBmRnY1TzZxNEdDVFlDR1BwNk1aZ0RueEdxT2N5Z3k0Z09FTFdycGVNWW01?=
- =?utf-8?B?YnNFY2REVWxWQzlkbEMyT1NqTmFSb0tlWmwveDNXRjdUZlh0c21FZDJ1UWh2?=
- =?utf-8?B?bnYvdmtlK3hGWUZ1VnFhK09QRURzM1FUNDVvVkNtbU5FRXpwQVk4TW9uVFhG?=
- =?utf-8?B?UEVoSDJhUnMvR2llS0N4NWdsTlVNekVHYlZlUVFZd3FsVEloQkFTTUFnd1Yr?=
- =?utf-8?B?cUp5NUdUVUYxbHI5ZzlvcU1JNEZvS1gxU3JyNjZVNkRIT3VHaGorb1V2SXJt?=
- =?utf-8?B?RGR3dmpsZzJoWkJrVjVwdWVXMXFLSWhKSW4yL1RzKzVKTFk1aXRSTG16UVlG?=
- =?utf-8?B?S2U0UndmbDJKZjc2aUFjRGZhUXZDOHYxbW1JUkZadHVFR0RqQVZCWitXYUdr?=
- =?utf-8?B?V3p6cjZ2Vmp6RDFVWWhaWTBNYlRSSWlibkUvKzA0aWNXRkw3UG00TXlsMFhw?=
- =?utf-8?B?SzJZbHpxL0k2bHNybXJaRXdsN1ZrVFNFMjJyR1pXVU1oNTRIUmpwTFFsMlRR?=
- =?utf-8?B?K3BrL1BlWEpJR2NWcEx5d2VmRkVlVEVPb3pMV0JtNzZvSWxzTGtVNDhGYitI?=
- =?utf-8?B?M0pxekIxck00NXpWeVI2bnJ2YWRZOGdSNEthaHBwN3dsVC9rVlN1RFdoSURP?=
- =?utf-8?B?WnBZTmFncGd1TmM2djkzN0VLSGJxY2J6azVtTnBKWVFYRFpuaUc0dmFEYzZR?=
- =?utf-8?B?RU5EWkl4dkhhWVRtOVVmNTgxZkVZekY1TUdmYVlxZHBBSEh0VXhyMlNSQ0Fv?=
- =?utf-8?B?Szcrejh0VTgxeVJUdm9oZlA3ZzFNMzRvejdaU0dQVlcxNkFNajc2NlppTEY0?=
- =?utf-8?B?R2ZCYkVySTJYNFVsNUtPOEp2R1ovdytUa1hLcVRBSG5vaFc2djJ1SW43RXVM?=
- =?utf-8?B?VCtPakdYdE9jRnRYVXVhTXQ2alc0Ly9nQW83eUNiZXZZeXV1VG1ublBEL21q?=
- =?utf-8?B?L3J1Zk83dS9ORzFUOWV6S2l0c0dPVTFlWkR4N1k4ckhRM3h1OWdwQVdtdWR3?=
- =?utf-8?B?a1U4b2pFUGQxNEtDN1F0S29ROTF2T0Q4K1JRdWtjc0pLYU95ZWU4MGVYcEtB?=
- =?utf-8?B?Zk84NjZlSWJYZGdaUVE3ZHRUdSt0TVAvbzNOK00zV0x4amQxd2lBTzBoZy9v?=
- =?utf-8?B?cU5TbFN2cHdhZ1N4Z0F2WDVEb1E5emVTcTg2bG9LZUU0aFJ2MGpkb1VIMisw?=
- =?utf-8?B?dENWQytvUXlrWk5ub25IVVJ0dm1ZbW1FVC96b0hudnFGL2hEaGZ4T2JhdkdT?=
- =?utf-8?B?UEE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <802D16C954A1C8499866E993F5E53D4B@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by PH7PR11MB8454.namprd11.prod.outlook.com (2603:10b6:510:30c::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.26; Wed, 11 Jun
+ 2025 18:59:35 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.8835.018; Wed, 11 Jun 2025
+ 18:59:35 +0000
+Date: Wed, 11 Jun 2025 12:01:10 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Summers, Stuart" <stuart.summers@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Auld, 
+ Matthew" <matthew.auld@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Implement clear VRAM on free
+Message-ID: <aEnSdmCa64X1OFBP@lstrano-desk.jf.intel.com>
+References: <20250611054235.3540936-1-matthew.brost@intel.com>
+ <0c909f7376ab30f8260d83a74b3a908a4e6eb764.camel@intel.com>
+ <aEmy8yBp0Ghssyuq@lstrano-desk.jf.intel.com>
+ <7ede4886131931de5f9a672fd823d8bac3f374af.camel@intel.com>
+ <aEnDbmfEVUEzmk0A@lstrano-desk.jf.intel.com>
+ <c99af8b540ab40381b2bc44f78bfc634c27043b6.camel@intel.com>
+ <aEnI7t5DTbcfYibp@lstrano-desk.jf.intel.com>
+ <bfad428658219de07f8defb4c46b234bdd34c2dc.camel@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bfad428658219de07f8defb4c46b234bdd34c2dc.camel@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0117.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::32) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB8454:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8040b423-8acc-4895-6000-08dda91a1b53
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?d9j4YgjV4bLESGkykYtyEGnE8fFWqxpYPkhfc9qWE8LHj/Bztjx3iSkGXl?=
+ =?iso-8859-1?Q?NEUh7C8QypQ54TaTE1mEvxuFdrQ9UcuH6crxD59/p8NbAi5rzn1+2XWotG?=
+ =?iso-8859-1?Q?5Y1FAZl5+Vg/gp1AGJBuOVY6kDght6GHzU2zwpqUxtMAKiKJIdEh3lecb/?=
+ =?iso-8859-1?Q?fAoHOyWpzf7ZLhPmSxGW/3a83mw1yxZalOLzjHJ/rPc0FBvk1UnNeRwxnC?=
+ =?iso-8859-1?Q?RI2aEDCeuheIJWbjS7xvXClomlLDEtI6g8QcA/XKFIcN5eV4PGUUHSFz45?=
+ =?iso-8859-1?Q?6awIZrevKkTH2ouPti0SYiiknYpK4+s5YJUka8S2dHuu/hM/aknw34RRvR?=
+ =?iso-8859-1?Q?t0tkxwrZ2t05SR7bRZM1ytoUCweOZQNpzQq+DfhkEsQnNnVvqgEzT6nebe?=
+ =?iso-8859-1?Q?jAs5rdg/rYqetKO6Augt6ZpS5ZDqSgLOSHsQ3WDn3vqrBQuGUVn84Uzqb+?=
+ =?iso-8859-1?Q?Tmdmmk1/S1PBdCbt9Jscmcm25deDzwLa42BZ/HnAX31VxBO2zUCti3OLKJ?=
+ =?iso-8859-1?Q?VyWj5/6+JhzYImLXlFZbKlJKXlgDx4ZcD9+S8Dl+QGE7ypsoDZKRrlRXaj?=
+ =?iso-8859-1?Q?DHKRz035cNbuUbQbr/8jdfDyVEw6s8Uqoz8+88kvNiagcTyNAF9HJgAUHv?=
+ =?iso-8859-1?Q?NIvk0YOG3VUHPIVdo4l6a42te0yTQKuRlE1fDovkkxR30ZJ7tqPPr3GoGb?=
+ =?iso-8859-1?Q?Wqg76qrGb4bC7OWMF1WSRjYBgnDlLegFz/7LA2UgtqUum+1UmC0AwoWBah?=
+ =?iso-8859-1?Q?sE0sPXfmKkQYZKis6rKBHEvB0NK87T2V+2JqoXfwRUQnXaPc8/Jz6K2JMU?=
+ =?iso-8859-1?Q?FcVCAqXS1uEpHOivxvznYJjNJ8ahreF7J3LHZmGgLWRGvNIZ+lMTLVZDkj?=
+ =?iso-8859-1?Q?534SVWkQAVnfw/OgzZaPU9kd+tCdXQdoujsbCTxr4bYSMtp2EkM+ExHF5g?=
+ =?iso-8859-1?Q?IFFHzoWh8RDGb4oXZQTHNUyf5OYPAvLSYlHbQwBRoa6dryOwadzOVhPWtr?=
+ =?iso-8859-1?Q?uedqmLsGr99Fj5Txh2/bJg5jNU/97FYXHUj3zOAJJRd7bDw34Mk5LOzTd9?=
+ =?iso-8859-1?Q?7JvZ3jLyqxcMTbbI30uIi2cJkuXOOWnc6hctuCjN+3n9aWhaVVxsYjZ7v5?=
+ =?iso-8859-1?Q?ejj58oeWdKSRGjf1v1OQywAbNeu5Qpd7UFzsn45nl4mwR+MumNiCey8fC6?=
+ =?iso-8859-1?Q?sBTUY92LbKAFhN5J+jO/T8H//Cdsjti3muXez+xX9mgrOutTvc7b1aVd6a?=
+ =?iso-8859-1?Q?BqG3O6hM3Bq/hV9G3SXvCiff4UVJLcgjdPnlzxtzl12d2GuujtH6nj54v8?=
+ =?iso-8859-1?Q?PA1cArUPBZtPWzyaMQpDB3RFDdRWtjBrBIMzXj0XYJy9bxksYARQ38Z8kb?=
+ =?iso-8859-1?Q?R1NA0km3mXqH4VlTNusYRpRQenH8w9ny5wBuF1KyVFVwNKRtnSw2vDFOLG?=
+ =?iso-8859-1?Q?k8KzjWEi6d4qSFWxB7YWTc0nLdAcR2YyenwFU3afWRAsQdEjowcca7Xre3?=
+ =?iso-8859-1?Q?8=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?oZhN0RwaSIgq7Ww/GyIDE6Jaf8+wY9Ax6Jxj9u5vxOT7oJfAEGtbhucUnu?=
+ =?iso-8859-1?Q?5BHcaPLyB/YD1Pxad2IoRxMmKnIezQ3eIilCecc6lDFpZ4uuHxAMLE9uyW?=
+ =?iso-8859-1?Q?51EX6umDLZ/wVJM7tzhzhVocYupzaPWRPodkzdmQDRPTKLp29Q7jSRtx+T?=
+ =?iso-8859-1?Q?G0VUVgs4oTOZrymn0jzyO7zqBWpJmOvFQVWGkXv3SsMmC04VwOViLldo9S?=
+ =?iso-8859-1?Q?iBEn35Jn0eeU1lNAMGAaWeMsaG3pKvjd8bIPRWlzs/j/SQ6xRx7HlHfyOa?=
+ =?iso-8859-1?Q?QmlEg5llcLyNetHfdsUYaWxL64db9C+CRUAcbIeW64VKyCmfwThNG0ecYx?=
+ =?iso-8859-1?Q?DPCoXCCyhAoX2ArFFErwII6jM22d4m/B6hSAo/YIfpnRlZCIfbH00a+HEI?=
+ =?iso-8859-1?Q?1zWfohN0OVa0ZR/OJnnZO8+GVReiRz3DNqz7EfTo2gWoEYV9rcWg48xDrx?=
+ =?iso-8859-1?Q?0Sgg36UWUkbTJNFiEdGjEtRFrj/6eGUd40OMbI2M+NAWmj0s7H3fWnywNM?=
+ =?iso-8859-1?Q?B2iMQPDdpY+K37/5gEn5DLlysK4dh7BDAPlv5mfStIrr0IggUQmr0Q4QWZ?=
+ =?iso-8859-1?Q?I2DX/L+No7EvURfL9Qwqx3fhUE/T0Ct70ZC7dHEx0sR8CTfB3SeHq8q3iq?=
+ =?iso-8859-1?Q?VL+xjKZuuLgHWlRFz7lKt2QJQvzwx7dvI1AG669hV8Fwe8uR35FkgXobM4?=
+ =?iso-8859-1?Q?U43avEUrrgEKcK2Qiu+78Zdu5F3TLaro+jDdMPlQyHFflsjTLKttpl8kLo?=
+ =?iso-8859-1?Q?uCG4vVubw++a8twx6h6ugRj41WGR5VGxF8NHWL1pkIyQO48npvikUrgaFU?=
+ =?iso-8859-1?Q?eh5FhzpEdxbQlcvfA6B25KtJCKpdRno3b/YdDeyHdXg7gP/MWPjzRibipk?=
+ =?iso-8859-1?Q?OUCwyP317noClWV7kvePTfFgr7Z0geHApo/M485oJtRK2r5tDBUCqiMSxd?=
+ =?iso-8859-1?Q?7cCo2JzziKMlmmqk8OWTaTLMjR57XTAmj1h/iWiJ8prpMshU0NLisWDwnd?=
+ =?iso-8859-1?Q?FPr843BEwYX89ffa5rRrSrlyQf87GL7MmkVQUbccWmBtpM/s3Xd78VY++/?=
+ =?iso-8859-1?Q?q1Aj3SUXQEiXaGdcuLRI7toBigQo277f9VKkrdaOIbbNF4M2QsPmkeNZ3/?=
+ =?iso-8859-1?Q?nkU0K2E8anhR7JV9OGHQp9zacdF2l9Lmme+yXAfX9nzriz2X+EW1SLtJpE?=
+ =?iso-8859-1?Q?GbF+FMX1QvnhWB5IJW7kG6C/bTex7WPbSSh+8+lrzGTkyiKHeIgzZw4s4U?=
+ =?iso-8859-1?Q?qNHIa8mQVXimNSLQ7C30Fo4D4iRnT5R9tJhWNX4MNc/Cy0i9JVeasm0fra?=
+ =?iso-8859-1?Q?nLHVm0uAO8x9p6cT3Vo+GZKgstAEmJ4HM82dr4WINBw5yNXUz40HW0eypj?=
+ =?iso-8859-1?Q?hjGjIkiwQ0YUVhCys4qzRYbEWsGevCN+yrQE4eLdi+Tc7s6DI+e6yZN+DL?=
+ =?iso-8859-1?Q?qx0t07t7sEZ7SuB043qJWpjKdGV/rIcCPxhFmpQ79CAB1lvS2SOFSWBVzC?=
+ =?iso-8859-1?Q?TXJgjRS0HOHn8h2F/K+CDsmlTiMTclh08UtusG+W2+tw+L/vemxi/V6pQV?=
+ =?iso-8859-1?Q?2+OzneqInQliqzmFVkWr7jPZHmdN0GI9uD0rCt4Ddf+mcxGsynUxI5Ql2A?=
+ =?iso-8859-1?Q?bUtK6aHUhB+mhk/bI/9HKQuc3D0+dQqnhD5uptme+YY3d9UVu1RxzZkQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8040b423-8acc-4895-6000-08dda91a1b53
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5573.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 529bfb5c-6c5f-43e0-7507-08dda9196fa7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2025 18:54:46.8766 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TWyaV284I06q7KBtRoBMTQXp0DwVr+ZpiLsj2HIj12+rR0i89IpC3bz0oQgMujoXvtoxGvk1eJj4pmGWUT11A5MoEOjxY/mjHsamftD7xNE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7271
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2025 18:59:35.0540 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yoYk62Za7QQx1QC6wdk/QxwM4faTP06tifV+rG8uh4anSi5V0m03pNSr5SbSjeN5DnRdxbjMs02W9PU6OxRmlg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8454
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -199,31 +187,627 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDI1LTA2LTA5IGF0IDIxOjU2IC0wNzAwLCBNYXR0aGV3IEJyb3N0IHdyb3RlOgo+
-IFByaW50IHRoZSBlcnJvciBmcm9tIGdldCBwYWdlcyBmYWlsaW5nLCBub3QgdGhlIGNhc3QgdG8g
-LUVOT0RBVEEuCj4gCj4gU2lnbmVkLW9mZi1ieTogTWF0dGhldyBCcm9zdCA8bWF0dGhldy5icm9z
-dEBpbnRlbC5jb20+CgpNYWtlcyBzZW5zZS4KClJldmlld2VkLWJ5OiBTdHVhcnQgU3VtbWVycyA8
-c3R1YXJ0LnN1bW1lcnNAaW50ZWwuY29tPgoKPiAtLS0KPiDCoGRyaXZlcnMvZ3B1L2RybS94ZS94
-ZV92bS5jIHwgNCArKy0tCj4gwqAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRl
-bGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfdm0uYyBi
-L2RyaXZlcnMvZ3B1L2RybS94ZS94ZV92bS5jCj4gaW5kZXggMThmOTY3Y2UxZjFhLi5kMTg4MDdi
-OTJiMTggMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3ZtLmMKPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0veGUveGVfdm0uYwo+IEBAIC0yOTI0LDEwICsyOTI0LDEwIEBAIHN0YXRp
-YyBpbnQgcHJlZmV0Y2hfcmFuZ2VzKHN0cnVjdCB4ZV92bSAqdm0sCj4gc3RydWN0IHhlX3ZtYV9v
-cCAqb3ApCj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGVyciA9IHhlX3N2
-bV9yYW5nZV9nZXRfcGFnZXModm0sIHN2bV9yYW5nZSwgJmN0eCk7Cj4gwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBpZiAoZXJyKSB7Cj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAoZXJyID09IC1FT1BOT1RTVVBQIHx8IGVyciA9PSAtRUZB
-VUxUIHx8Cj4gZXJyID09IC1FUEVSTSkKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBlcnIgPSAtRU5PREFUQTsKPiDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkcm1fZGJnKCZ2bS0+eGUt
-PmRybSwgIkdldCBwYWdlcyBmYWlsZWQsCj4gYXNpZD0ldSwgZ3B1c3ZtPSVwLCBlcnJubz0lcGVc
-biIsCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoHZtLT51c20uYXNpZCwgJnZtLT5zdm0uZ3B1c3ZtLAo+IEVSUl9QVFIoZXJy
-KSk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAo
-ZXJyID09IC1FT1BOT1RTVVBQIHx8IGVyciA9PSAtRUZBVUxUIHx8Cj4gZXJyID09IC1FUEVSTSkK
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqBlcnIgPSAtRU5PREFUQTsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gZXJyOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgfQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgeGVfc3ZtX3JhbmdlX2Rl
-YnVnKHN2bV9yYW5nZSwgIlBSRUZFVENIIC0gUkFOR0UgR0VUCj4gUEFHRVMgRE9ORSIpOwoK
+On Wed, Jun 11, 2025 at 12:23:13PM -0600, Summers, Stuart wrote:
+> On Wed, 2025-06-11 at 11:20 -0700, Matthew Brost wrote:
+> > On Wed, Jun 11, 2025 at 12:05:36PM -0600, Summers, Stuart wrote:
+> > > On Wed, 2025-06-11 at 10:57 -0700, Matthew Brost wrote:
+> > > > On Wed, Jun 11, 2025 at 11:04:06AM -0600, Summers, Stuart wrote:
+> > > > > On Wed, 2025-06-11 at 09:46 -0700, Matthew Brost wrote:
+> > > > > > On Wed, Jun 11, 2025 at 10:26:44AM -0600, Summers, Stuart
+> > > > > > wrote:
+> > > > > > > On Tue, 2025-06-10 at 22:42 -0700, Matthew Brost wrote:
+> > > > > > > > Clearing on free should hide latency of BO clears on new
+> > > > > > > > user
+> > > > > > > > BO
+> > > > > > > > allocations.
+> > > > > > > 
+> > > > > > > Do you have any test results showing the latency
+> > > > > > > improvement
+> > > > > > > here
+> > > > > > > on
+> > > > > > > high volume submission tests? Also how does this impact at
+> > > > > > > very
+> > > > > > > large
+> > > > > > 
+> > > > > > No performance data yet available. Something we definitely
+> > > > > > should
+> > > > > > look
+> > > > > > into and would be curious about the results. FWIW, AMDGPU
+> > > > > > implements
+> > > > > > clear on free in a very similar way to this series. 
+> 
+> So back to this one, what is the motivation for this change if we don't
+> have data?
+> 
+
+It is the assumption that in typical cases (no memory pressure) the
+buddy allocator pool can find a clean VRAM upon allocation resulting in
+immediate use of the BO rather than issuing a clear which could delay a
+bind IOCTL, an exec IOCTL, or even mmaping the BO (dma-resv enforces
+this ordering btw).
+
+Even if there is memory pressure, it is fairly easy to reason that
+clear-on-free creates a pipeline in which the clear is started earlier
+than it would be upon allocation thus reducing the overall delay of the
+BO usage after allocation.
+
+Yes, there might be odd corner of large clear-on-free followed by small
+allocation where it might be slightly worse, but overall it seems to be
+an easy win - both AMD / Intel have done work to make clear-on-free
+possible.
+
+> > > > > 
+> > > > > I had a few other comments towards the end of the patch.
+> > > > > Basically
+> > > > > I
+> > > > 
+> > > > I should slow down and read... Repling to all comments here.
+> > > > 
+> > > > > think it would be nice to be able to configure this. There was
+> > > > > significant testing done here for Aurora in i915 and the
+> > > > > performance
+> > > > > benefits were potentially different based on the types of
+> > > > > workloads
+> > > > > being used. Having user hints for instance might allow us to
+> > > > > take
+> > > > > advantage of those workload specific use cases.
+> > > > > 
+> > > > 
+> > > > We can wire this mode to the uAPI for BO creation if needed -
+> > > > this
+> > > > patch
+> > > > does clear-on-free blindly for any user BO. Ofc with uAPI we need
+> > > > a
+> > > > UMD
+> > > > user to upstream. We may just want to start with this patch and
+> > > > do
+> > > > that
+> > > > in a follow up if needed as it a minor tweak from a code PoV.
+> > > 
+> > > Actually it would be great if you can add exactly this to the
+> > > commit
+> > > message. Basically we are intentionally doing clear on free here
+> > > blindly because we don't currently have a user for some kind of
+> > > more
+> > > complicated (from the user perspective) hint system. (just kind of
+> > > repeating what you said)
+> > > 
+> > > This way we have some documentation of why we chose this route
+> > > other
+> > > than just because amd is doing that.
+> > > 
+> > 
+> > Sure.
+> > 
+> > > > 
+> > > > > > 
+> > > > > > > buffer size submissions and mix of large and small buffer
+> > > > > > > submissions
+> > > > > > > with eviction between different processes?
+> > > > > > > 
+> > > > > > 
+> > > > > > Eviction somewhat orthogonal to this. If an eviction occurs
+> > > > > > and
+> > > > > > it is
+> > > > > > a
+> > > > > > new allocation a clear would still have be issued ahead
+> > > > > > handing
+> > > > > > the
+> > > > > > memory over to the new BO, if eviction occurs and paged in BO
+> > > > > > has
+> > > > > > backing store (it was previously evicted) we'd just copy the
+> > > > > > contents
+> > > > > > into the allocated memory.
+> > > > > 
+> > > > > Good point. I still think we should consider the scenarios of
+> > > > > having a
+> > > > > large buffer workload running and then clearing, then we have a
+> > > > > small
+> > > > > buffer workload coming in which now needs to wait on the clear
+> > > > > from
+> > > > > that large workload. Whereas on clear-on-alloc for the small
+> > > > > workload,
+> > > > > we can get that submission in quickly and not wait for that
+> > > > > larger
+> > > > > one.
+> > > > > 
+> > > > 
+> > > > The buddy allocator tries to allocate cleared VRAM first, then
+> > > > falls
+> > > > back to dirty VRAM. Dirty VRAM will still be cleared upon
+> > > > allocation
+> > > > in
+> > > > this patch.
+> > > > 
+> > > > The senerio you describe could result in eviction actually. If a
+> > > > large
+> > > > BO has pending clear - it won't be in either buddy allocator pool
+> > > > -
+> > > > it
+> > > > will be TTM as ghost object (pending free). If the buddy
+> > > > allocator
+> > > > fails
+> > > > an allocation, eviction is triggered with the ghost objects in
+> > > > TTM
+> > > > being
+> > > > tried to allocate first (I think, if I'm misstaing TTM internals
+> > > > my
+> > > > bad). This would as you suggest result in the BO allocation
+> > > > waiting
+> > > > on
+> > > > potentially a large clear to finish even though the allocation is
+> > > > small
+> > > > in size.
+> > > 
+> > > So we have had customers in the past who have wanted explicit
+> > > disabling
+> > > of eviction. I agree in the current implementation that might be
+> > > the
+> > 
+> > Explicitly disabling eviction is not an upstream option, downstream
+> > in
+> > i915 you can do whatever you want as there are no rules. We have
+> > discussed a pin accounting controler vis cgroups or something
+> > upstream
+> > which may be acceptable. Different discussion though.
+> > 
+> > > case, but in the future we might want such a capability, so there
+> > > is
+> > > still a chance of blocking. But again, maybe this can be a future
+> > > enhancement as you said.
+> > > 
+> > > > 
+> > > > > I don't think there is necessarily a one-size-fits-all solution
+> > > > > here
+> > > > > which is why I think the hints are important.
+> > > > > 
+> > > > 
+> > > > Jumping to new uAPI + hints immediately might not be the best
+> > > > approach,
+> > > > but as I stated this is minor thing to add if needed.
+> > > > 
+> > > > > Thanks,
+> > > > > Stuart
+> > > > > 
+> > > > > > 
+> > > > > > Matt
+> > > > > > 
+> > > > > > > > 
+> > > > > > > > Implemented via calling xe_migrate_clear in release
+> > > > > > > > notify
+> > > > > > > > and
+> > > > > > > > updating
+> > > > > > > > iterator in xe_migrate_clear to skip cleared buddy
+> > > > > > > > blocks.
+> > > > > > > > Only
+> > > > > > > > user
+> > > > > > > > BOs
+> > > > > > > > cleared in release notify as kernel BOs could still be in
+> > > > > > > > use
+> > > > > > > > (e.g.,
+> > > > > > > > PT
+> > > > > > > > BOs need to wait for dma-resv to be idle).
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > > > > > ---
+> > > > > > > >  drivers/gpu/drm/xe/xe_bo.c           | 47
+> > > > > > > > ++++++++++++++++++++++++++++
+> > > > > > > >  drivers/gpu/drm/xe/xe_migrate.c      | 14 ++++++---
+> > > > > > > >  drivers/gpu/drm/xe/xe_migrate.h      |  1 +
+> > > > > > > >  drivers/gpu/drm/xe/xe_res_cursor.h   | 26
+> > > > > > > > +++++++++++++++
+> > > > > > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  5 ++-
+> > > > > > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  6 ++++
+> > > > > > > >  6 files changed, 94 insertions(+), 5 deletions(-)
+> > > > > > > > 
+> > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > b/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > index 4e39188a021a..74470f4d418d 100644
+> > > > > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > @@ -1434,6 +1434,51 @@ static bool
+> > > > > > > > xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object
+> > > > > > > > *ttm_bo)
+> > > > > > > >         return locked;
+> > > > > > > >  }
+> > > > > > > >  
+> > > > > > > > +static void xe_ttm_bo_release_clear(struct
+> > > > > > > > ttm_buffer_object
+> > > > > > > > *ttm_bo)
+> > > > > > > > +{
+> > > > > > > > +       struct xe_device *xe = ttm_to_xe_device(ttm_bo-
+> > > > > > > > > bdev);
+> > > > > > > > +       struct dma_fence *fence;
+> > > > > > > > +       int err, idx;
+> > > > > > > > +
+> > > > > > > > +       xe_bo_assert_held(ttm_to_xe_bo(ttm_bo));
+> > > > > > > > +
+> > > > > > > > +       if (ttm_bo->type != ttm_bo_type_device)
+> > > > > > > > +               return;
+> > > > > > > > +
+> > > > > > > > +       if (xe_device_wedged(xe))
+> > > > > > > > +               return;
+> > > > > > > > +
+> > > > > > > > +       if (!ttm_bo->resource ||
+> > > > > > > > !mem_type_is_vram(ttm_bo-
+> > > > > > > > > resource-
+> > > > > > > > > mem_type))
+> > > > > > > > +               return;
+> > > > > > > > +
+> > > > > > > > +       if (!drm_dev_enter(&xe->drm, &idx))
+> > > > > > > > +               return;
+> > > > > > > > +
+> > > > > > > > +       if (!xe_pm_runtime_get_if_active(xe))
+> > > > > > > > +               goto unbind;
+> > > > > > > > +
+> > > > > > > > +       err = dma_resv_reserve_fences(&ttm_bo-
+> > > > > > > > >base._resv,
+> > > > > > > > 1);
+> > > > > > > > +       if (err)
+> > > > > > > > +               goto put_pm;
+> > > > > > > > +
+> > > > > > > > +       fence = xe_migrate_clear(mem_type_to_migrate(xe,
+> > > > > > > > ttm_bo-
+> > > > > > > > > resource->mem_type),
+> > > > > > > > +                                ttm_to_xe_bo(ttm_bo),
+> > > > > > > > ttm_bo-
+> > > > > > > > > resource,
+> > > > > > > > +                               
+> > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL |
+> > > > > > > > +                               
+> > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY);
+> > > > > > > > +       if (XE_WARN_ON(IS_ERR(fence)))
+> > > > > > > > +               goto put_pm;
+> > > > > > > > +
+> > > > > > > > +       xe_ttm_vram_mgr_resource_set_cleared(ttm_bo-
+> > > > > > > > > resource);
+> > > > > > > > +       dma_resv_add_fence(&ttm_bo->base._resv, fence,
+> > > > > > > > +                          DMA_RESV_USAGE_KERNEL);
+> > > > > > > > +       dma_fence_put(fence);
+> > > > > > > > +
+> > > > > > > > +put_pm:
+> > > > > > > > +       xe_pm_runtime_put(xe);
+> > > > > > > > +unbind:
+> > > > > > > > +       drm_dev_exit(idx);
+> > > > > > > > +}
+> > > > > > > > +
+> > > > > > > >  static void xe_ttm_bo_release_notify(struct
+> > > > > > > > ttm_buffer_object
+> > > > > > > > *ttm_bo)
+> > > > > > > >  {
+> > > > > > > >         struct dma_resv_iter cursor;
+> > > > > > > > @@ -1478,6 +1523,8 @@ static void
+> > > > > > > > xe_ttm_bo_release_notify(struct
+> > > > > > > > ttm_buffer_object *ttm_bo)
+> > > > > > > >         }
+> > > > > > > >         dma_fence_put(replacement);
+> > > > > > > >  
+> > > > > > > > +       xe_ttm_bo_release_clear(ttm_bo);
+> > > > > > > > +
+> > > > > > > >         dma_resv_unlock(ttm_bo->base.resv);
+> > > > > > > >  }
+> > > > > > > >  
+> > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > index 8f8e9fdfb2a8..39d7200cb366 100644
+> > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > @@ -1063,7 +1063,7 @@ struct dma_fence
+> > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > xe_migrate *m,
+> > > > > > > >         struct xe_gt *gt = m->tile->primary_gt;
+> > > > > > > >         struct xe_device *xe = gt_to_xe(gt);
+> > > > > > > >         bool clear_only_system_ccs = false;
+> > > > > > > > -       struct dma_fence *fence = NULL;
+> > > > > > > > +       struct dma_fence *fence = dma_fence_get_stub();
+> > > > > > > >         u64 size = bo->size;
+> > > > > > > >         struct xe_res_cursor src_it;
+> > > > > > > >         struct ttm_resource *src = dst;
+> > > > > > > > @@ -1075,10 +1075,13 @@ struct dma_fence
+> > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > xe_migrate *m,
+> > > > > > > >         if (!clear_bo_data && clear_ccs && !IS_DGFX(xe))
+> > > > > > > >                 clear_only_system_ccs = true;
+> > > > > > > >  
+> > > > > > > > -       if (!clear_vram)
+> > > > > > > > +       if (!clear_vram) {
+> > > > > > > >                 xe_res_first_sg(xe_bo_sg(bo), 0, bo-
+> > > > > > > > >size,
+> > > > > > > > &src_it);
+> > > > > > > > -       else
+> > > > > > > > +       } else {
+> > > > > > > >                 xe_res_first(src, 0, bo->size, &src_it);
+> > > > > > > > +               if (!(clear_flags &
+> > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
+> > > > > > > > +                       size -=
+> > > > > > > > xe_res_next_dirty(&src_it);
+> > > > > > > > +       }
+> > > > > > > >  
+> > > > > > > >         while (size) {
+> > > > > > > >                 u64 clear_L0_ofs;
+> > > > > > > > @@ -1125,6 +1128,9 @@ struct dma_fence
+> > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > xe_migrate *m,
+> > > > > > > >                         emit_pte(m, bb, clear_L0_pt,
+> > > > > > > > clear_vram,
+> > > > > > > > clear_only_system_ccs,
+> > > > > > > >                                  &src_it, clear_L0, dst);
+> > > > > > > >  
+> > > > > > > > +               if (clear_vram && !(clear_flags &
+> > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
+> > > > > > > > +                       size -=
+> > > > > > > > xe_res_next_dirty(&src_it);
+> > > > > > > > +
+> > > > > > > >                 bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+> > > > > > > >                 update_idx = bb->len;
+> > > > > > > >  
+> > > > > > > > @@ -1146,7 +1152,7 @@ struct dma_fence
+> > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > xe_migrate *m,
+> > > > > > > >                 }
+> > > > > > > >  
+> > > > > > > >                 xe_sched_job_add_migrate_flush(job,
+> > > > > > > > flush_flags);
+> > > > > > > > -               if (!fence) {
+> > > > > > > > +               if (fence == dma_fence_get_stub()) {
+> > > > > > > >                         /*
+> > > > > > > >                          * There can't be anything
+> > > > > > > > userspace
+> > > > > > > > related
+> > > > > > > > at this
+> > > > > > > >                          * point, so we just need to
+> > > > > > > > respect
+> > > > > > > > any
+> > > > > > > > potential move
+> > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > index fb9839c1bae0..58a7b747ef11 100644
+> > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > @@ -118,6 +118,7 @@ int xe_migrate_access_memory(struct
+> > > > > > > > xe_migrate
+> > > > > > > > *m, struct xe_bo *bo,
+> > > > > > > >  
+> > > > > > > >  #define XE_MIGRATE_CLEAR_FLAG_BO_DATA          BIT(0)
+> > > > > > > >  #define XE_MIGRATE_CLEAR_FLAG_CCS_DATA         BIT(1)
+> > > > > > > > +#define XE_MIGRATE_CLEAR_NON_DIRTY             BIT(2)
+> > > > > > > >  #define
+> > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL     (XE_MIGRATE_CLEAR_FLAG_BO_
+> > > > > > > > DATA
+> > > > > > > > > \
+> > > > > > > >                                         XE_MIGRATE_CLEAR_
+> > > > > > > > FLAG
+> > > > > > > > _CCS
+> > > > > > > > _DAT
+> > > > > > > > A)
+> > > > > > > >  struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+> > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > b/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > index d1a403cfb628..630082e809ba 100644
+> > > > > > > > --- a/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > +++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > @@ -315,6 +315,32 @@ static inline void
+> > > > > > > > xe_res_next(struct
+> > > > > > > > xe_res_cursor *cur, u64 size)
+> > > > > > > >         }
+> > > > > > > >  }
+> > > > > > > >  
+> > > > > > > > +/**
+> > > > > > > > + * xe_res_next_dirty - advance the cursor to next dirty
+> > > > > > > > buddy
+> > > > > > > > block
+> > > > > > > > + *
+> > > > > > > > + * @cur: the cursor to advance
+> > > > > > > > + *
+> > > > > > > > + * Move the cursor until dirty buddy block is found.
+> > > > > > > > + *
+> > > > > > > > + * Return: Number of bytes cursor has been advanced
+> > > > > > > > + */
+> > > > > > > > +static inline u64 xe_res_next_dirty(struct xe_res_cursor
+> > > > > > > > *cur)
+> > > > > > > > +{
+> > > > > > > > +       struct drm_buddy_block *block = cur->node;
+> > > > > > > > +       u64 bytes = 0;
+> > > > > > > > +
+> > > > > > > > +       XE_WARN_ON(cur->mem_type != XE_PL_VRAM0 &&
+> > > > > > > > +                  cur->mem_type != XE_PL_VRAM1);
+> > > > > > > 
+> > > > > > > What if we have more than just these two? Maybe check
+> > > > > > > against
+> > > > > > > the
+> > > > > > > mask
+> > > > > > > instead.
+> > > > 
+> > > > Sure. I think we do this test in a couple of other places in the
+> > > > driver too
+> > > > and clean this up in seperate patch first.
+> > > 
+> > > No problem, just wanted to call it out. We can do this later..
+> > > 
+> > > > 
+> > > > > > > 
+> > > > > > > > +
+> > > > > > > > +       while (cur->remaining &&
+> > > > > > > > drm_buddy_block_is_clear(block))
+> > > > > > > > {
+> > > > > > > > +               bytes += cur->size;
+> > > > > > > > +               xe_res_next(cur, cur->size);
+> > > > > > > > +               block = cur->node;
+> > > > > > > > +       }
+> > > > > > > > +
+> > > > > > > > +       return bytes;
+> > > > > > > > +}
+> > > > > > > > +
+> > > > > > > >  /**
+> > > > > > > >   * xe_res_dma - return dma address of cursor at current
+> > > > > > > > position
+> > > > > > > >   *
+> > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > index 9e375a40aee9..120046941c1e 100644
+> > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > @@ -84,6 +84,9 @@ static int xe_ttm_vram_mgr_new(struct
+> > > > > > > > ttm_resource_manager *man,
+> > > > > > > >         if (place->fpfn || lpfn != man->size >>
+> > > > > > > > PAGE_SHIFT)
+> > > > > > > >                 vres->flags |=
+> > > > > > > > DRM_BUDDY_RANGE_ALLOCATION;
+> > > > > > > >  
+> > > > > > > > +       if (tbo->type == ttm_bo_type_device)
+> > > > > > > > +               vres->flags |=
+> > > > > > > > DRM_BUDDY_CLEAR_ALLOCATION;
+> > > > > > > > +
+> > > > > > > >         if (WARN_ON(!vres->base.size)) {
+> > > > > > > >                 err = -EINVAL;
+> > > > > > > >                 goto error_fini;
+> > > > > > > > @@ -187,7 +190,7 @@ static void
+> > > > > > > > xe_ttm_vram_mgr_del(struct
+> > > > > > > > ttm_resource_manager *man,
+> > > > > > > >         struct drm_buddy *mm = &mgr->mm;
+> > > > > > > >  
+> > > > > > > >         mutex_lock(&mgr->lock);
+> > > > > > > > -       drm_buddy_free_list(mm, &vres->blocks, 0);
+> > > > > > > > +       drm_buddy_free_list(mm, &vres->blocks, vres-
+> > > > > > > > >flags);
+> > > > > > > >         mgr->visible_avail += vres->used_visible_size;
+> > > > > > > >         mutex_unlock(&mgr->lock);
+> > > > > > > >  
+> > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > index cc76050e376d..dfc0e6890b3c 100644
+> > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > @@ -36,6 +36,12 @@ to_xe_ttm_vram_mgr_resource(struct
+> > > > > > > > ttm_resource
+> > > > > > > > *res)
+> > > > > > > >         return container_of(res, struct
+> > > > > > > > xe_ttm_vram_mgr_resource,
+> > > > > > > > base);
+> > > > > > > >  }
+> > > > > > > >  
+> > > > > > > > +static inline void
+> > > > > > > > +xe_ttm_vram_mgr_resource_set_cleared(struct ttm_resource
+> > > > > > > > *res)
+> > > > > > > > +{
+> > > > > > > > +       to_xe_ttm_vram_mgr_resource(res)->flags |=
+> > > > > > > > DRM_BUDDY_CLEARED;
+> > > > > > > 
+> > > > > > > I see the amd driver is doing the same thing here. Maybe we
+> > > > > > > can
+> > > > > > > pull
+> > > > > > > this in based on the flags given at the resource
+> > > > > > > initialization
+> > > > > > > so
+> > > > > > > we
+> > > > > > > can potentially tweak this for different scenarios (when to
+> > > > > > > free)
+> > > > > > > and
+> > > > > > > converge what we're doing here and what amd is doing into
+> > > > > > > the
+> > > > > > > common
+> > > > > > > code.
+> > > > > > > 
+> > > > 
+> > > > AMD has a flag, which is the same test in this series as 'type ==
+> > > > ttm_bo_type_device'. AMD blindly sets this flag on user BO
+> > > > creation
+> > > > but
+> > > > as I stated above we could wire this to uAPI if needed.
+> > > > 
+> > > > Also I think there are some kernel BOs which clear-on-free is
+> > > > safe
+> > > > too
+> > > > (e.g., I think only PT BOs need contents to stick around after
+> > > > final
+> > > > put
+> > > > until dma-resv is clean of fences). Would have to fully to test
+> > > > for
+> > > > definitive answer though.
+> > > 
+> > > In most cases the kernel operations are going to be lower priority
+> > > than
+> > 
+> > It is the inverse of that - kernel operations are a always higher
+> > priority as without them a user app can't function (think any page
+> > table
+> > memory allocation or memory allocation for a LRC). This is one of
+> > reasons we just pin kernel memory in Xe compared evictable kernel
+> > memory
+> > in the i915 (also evicting kernel memory is a huge pain as we have
+> > idle
+> > the GuC state which could use that memory).
+> 
+> We're talking about kernel operations attached to different processes
+> though. The incoming kernel work would be for a new user process
+> (prepping the buffer for submission). The existing user process IMO
+> should have higher priority.
+> 
+
+You still have to wait on the user operation complete in dma-resv mode
+before stealing memory.
+
+In LR preempt fence mode, we'd wait until LR VM is preempted off the
+hardware.
+
+In LR fault mode, we can steal the memory immediately.
+
+There is no difference though if we are trying to get kernel memory or
+user memory - this is just how eviction works.
+
+Also if we are in LR mode, we have no idea how long the user processes
+which we stealing memory from will take to complete (e.g., we do not
+install fences in dma-resv attached to jobs as the fences could run
+forever breaking the rules of fence or in other word breaking reclaim).
+
+This is where pinning of user memory could come in play /w some
+accounting controler, likely cgroups. LR mode could pin some memory to
+ensure fast forward progress or buffers it really doesn't want to be
+moved around (e.g., buffers exported over a fast network interconnect).
+
+Matt
+
+> Thanks,
+> Stuart
+> 
+> > 
+> > > the user operations (with the exception of maybe page faults). We
+> > > had
+> > > looked at things in i915 like preempting kernel operations when a
+> > > user
+> > > op comes in (the user clear-on-alloc preempts the kernel clear-on-
+> > > free/alloc). This probably falls in the same optimization category
+> > > you
+> > 
+> > We definitely won't do that as this would require multiple migration
+> > queues and preemption via the GuC is so expensive I'd doubt you'd
+> > ever
+> > win. I guess we could have a convolved algorithm in the migration
+> > queue
+> > to jump to higher priortiy jobs but would need some really strong
+> > data
+> > indicating this is needed. Also with dma-resv basically the migration
+> > queue needs to be idle before anything from the user can run.
+> > 
+> > Matt
+> > 
+> > > mentioned, although it doesn't necessarily need a user hint.
+> > > 
+> > > Thanks,
+> > > Stuart
+> > > 
+> > > > 
+> > > > Matt
+> > > > 
+> > > > > > > Thanks,
+> > > > > > > Stuart
+> > > > > > > 
+> > > > > > > > +}
+> > > > > > > > +
+> > > > > > > >  static inline struct xe_ttm_vram_mgr *
+> > > > > > > >  to_xe_ttm_vram_mgr(struct ttm_resource_manager *man)
+> > > > > > > >  {
+> > > > > > > 
+> > > > > 
+> > > 
+> 
