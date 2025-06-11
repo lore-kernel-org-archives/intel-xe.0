@@ -4,60 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34753C677C4
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 15:28:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EDF4C71133
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 15:29:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA75310E6A3;
-	Wed, 11 Jun 2025 15:28:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6B2710E6AB;
+	Wed, 11 Jun 2025 15:29:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QOqtp5Bj";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="cHbbKNhr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2484810E6AB;
- Wed, 11 Jun 2025 15:28:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749655728; x=1781191728;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=KxdvxLlNCAsSGTFGXVOF3IKvpbDWDLYX69ZREtu1/2c=;
- b=QOqtp5BjKF4FfJhK+IKSEYaGYcfafYWg3gyQkQFx998vP/TdBJlUzRY8
- JWraTXOCZTHq9keEI76pXVDLZ8hUltDXhle1zPpopTMm5AunUMveEylS+
- EIp88ZvqW+1BLJwC1L4jyuQ8Tma+8nAjyrcsOcuCdrM3izIAobuJ/3q0Q
- f9X4Vh3LdbVTPLEMDxn02592cfgCUgFpUwOLuTDhunbjWtCq8e4WPZqpy
- ahHMy5i4bVw6KmLfscEY7P1au40Ca7NlX01lKEIIDs8G4quHZIqzMylfU
- Bt+jtVbp7ZUv0aXVowLMbFAMlWmwrZEk4ijY2dotJuiV8kONo883201RD A==;
-X-CSE-ConnectionGUID: iav6dOY2Q7uio0YBVopHuQ==
-X-CSE-MsgGUID: jQ4PXJPbQDCbTVJwWyl/rw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="55599473"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="55599473"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 08:28:47 -0700
-X-CSE-ConnectionGUID: q6b0Oor1TImDMCMCfDQRpA==
-X-CSE-MsgGUID: TXyolTxrSsW7kz16zFGZBw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="147117844"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.209])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 08:28:46 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 2/2] drm/i915/dp: Add kernel param to limit eDP rate to
- HBR2"
-In-Reply-To: <7997df81-b3ee-4aa0-b278-a5b7f9b88023@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250610100449.185927-1-ankit.k.nautiyal@intel.com>
- <20250610100449.185927-3-ankit.k.nautiyal@intel.com>
- <826e4afa3d3827e40628e69ccecfcb21201c2faa@intel.com>
- <7997df81-b3ee-4aa0-b278-a5b7f9b88023@intel.com>
-Date: Wed, 11 Jun 2025 18:28:42 +0300
-Message-ID: <1cd154a09823abf6d34221ae9e02f9cd342cc3a3@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C7A110E6A9;
+ Wed, 11 Jun 2025 15:29:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=0r5SdQ/0L/7BLhNXEpm/mv03XglIjWInycPNIZEV/90=; b=cHbbKNhrFvgV6lZV4yqX1KM5kA
+ 1U+7WDR0aBf8vm9kUUr6EkKs3DqXzzQxXY8bzA3ckASSTj5ZMMznLasIIkA5j6+a5AKqqJQT70Kax
+ THXNrNF0PbIG3POp3pn26rCdbiMoh9rVnn/+/t/mYBsf/rk8rsa4zQpR5RI/IWns2q0hKSbwfF5+w
+ 57B87DiLHz2wIHpAKcy6d+AeV1hSEeL+rHeCrmA4LTGsJ4Gk2fevn0kr+jenX4jsA85M7wljYZ+zD
+ i78BaWk2CkqPMhHbHm1l3fd1XHcLroMM/RKAZ+w8lPVVh7IlTy9smXZAUCThseKMcrqbh5DkmlFLC
+ KJftCSXA==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uPNO7-002Fxu-7b; Wed, 11 Jun 2025 17:29:15 +0200
+Message-ID: <10e83252-e565-4cb4-9bc2-ae238528df92@igalia.com>
+Date: Wed, 11 Jun 2025 16:29:14 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 6/6] drm/syncobj: Add a fast path to
+ drm_syncobj_array_find
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, =?UTF-8?Q?Michel_D=C3=A4nzer?=
+ <michel.daenzer@mailbox.org>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
+ <mcanal@igalia.com>
+References: <20250611140057.27259-1-tvrtko.ursulin@igalia.com>
+ <20250611140057.27259-7-tvrtko.ursulin@igalia.com>
+ <b57b6549-7dbe-45fe-ab8e-4232041ec1a5@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <b57b6549-7dbe-45fe-ab8e-4232041ec1a5@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,198 +66,262 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 10 Jun 2025, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 6/10/2025 5:52 PM, Jani Nikula wrote:
->> On Tue, 10 Jun 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->>> Some ICL/TGL platforms with combo PHY ports can theoretically support HBR3,
->>> but in practice, signal integrity issues may prevent stable operation.
->>> While some systems include a Parade PS8461 mux chip to mitigate jitter and
->>> enable HBR3, there is no reliable way to detect its presence.
->>> Additionally, many systems have broken or missing VBT entries, making it
->>> unsafe to rely on VBT for link rate limits.
->>>
->>> To address this, introduce a new kernel parameter `limit_edp_hbr2`.
->>> When set, this parameter forces the eDP link rate to be capped at
->>> HBR2 (540000 kHz), overriding any higher advertised rates from the sink or
->>> DPCD. By default, the higher rates will be allowed, i.e. the parameter
->>> will be set to false.
->>>
->>> This provides a manual override for users and OEMs to limit the rate to
->>> HBR2, where output with HBR3 is unstable.
->> I'm afraid a module parameter is not an acceptable solution.
+
+On 11/06/2025 15:21, Christian König wrote:
+> On 6/11/25 16:00, Tvrtko Ursulin wrote:
+>> Running the Cyberpunk 2077 benchmark we can observe that the lookup helper
+>> is relatively hot, but the 97% of the calls are for a single object. (~3%
+>> for two points, and never more than three points. While a more trivial
+>> workload like vkmark under Plasma is even more skewed to single point
+>> lookups.)
 >>
->> Have I missed a discussion why a quirk is not possible?
->
-> The problem I was facing was that the OUI details are available from the 
-> logs in gitlab issue 5969 [1], but the DEVICE_ID field was blank so I 
-> had used DEVICE_ID_ANY.
->
-> +	/* Novatek panel */
-> +	{ OUI(0x38, 0xEC, 0x11), DEVICE_ID_ANY, false, BIT(DP_DPCD_QUIRK_HBR3) },
->
-> But with this, the HBR3 rate might get removed for many panels with same 
-> OUI, as I had mentioned in [3].
->
-> Also I feel the issue might not be specific to the panel but perhaps to 
-> few skus with low voltage combo phy ports.
->
-> But we cannot rely on the low voltage sku check as OEMs are expected to 
-> limit the rate via VBTs. It seems VBTs are also sometimes not correct.
->
-> You have briefly highlighted the problem in comments in gitlab issue 
-> 5969 [2].
->
-> So I was thinking if we can give a knob to limit the rate.
+>> Therefore lets add a fast path to bypass the kmalloc_array/kfree and use a
+>> pre-allocated stack array for those cases.
+> 
+> Have you considered using memdup_user()? That's using a separate bucket IIRC and might give similar performance.
 
-It has to work out of the box. Module parameters might be handy for us,
-but not the users.
+I haven't but I can try it. I would be surprised if it made a (positive) 
+difference though.
 
-> Can we add a quirk for machine/model/vendor to limit the rate for 
-> specific machines?
+And I realised I need to repeat the benchmarks anyway, since in v4 I had 
+to stop doing access_ok+__get_user, after kernel test robot let me know 
+64-bit get_user is a not a thing on all platforms. I thought the gains 
+are from avoiding allocations but, as you say, now I need to see if 
+copy_from_user doesn't nullify them..
 
-Yes, if that's the common denominator.
+> If that is still not sufficient I'm really wondering if we shouldn't have a macro for doing this. It's a really common use case as far as I can see.
 
+Hmm macro for what exactly?
 
-BR,
-Jani.
+Regards,
 
+Tvrtko
 
-
->
->
-> [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
->
-> [2] 
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969#note_2309988
->
-> [3] https://patchwork.freedesktop.org/patch/654704/?series=149227&rev=1
->
->
-> Regards,
->
-> Ankit
->
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Reviewed-by: Maíra Canal <mcanal@igalia.com>
+>> ---
+>> v2:
+>>   * Added comments describing how the fast path arrays were sized.
+>>   * Make container freeing criteria clearer by using a boolean.
+>> ---
+>>   drivers/gpu/drm/drm_syncobj.c | 56 +++++++++++++++++++++++++++--------
+>>   1 file changed, 44 insertions(+), 12 deletions(-)
 >>
->>
->> BR,
->> Jani.
->>
->>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>> ---
->>>   .../drm/i915/display/intel_display_params.c   |  2 +
->>>   .../drm/i915/display/intel_display_params.h   |  1 +
->>>   drivers/gpu/drm/i915/display/intel_dp.c       | 50 ++++++++++++++++---
->>>   3 files changed, 46 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
->>> index c4f1ab43fc0c..84f36104f5ca 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
->>> @@ -133,6 +133,8 @@ intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
->>>   	"(-1=use per-chip default, 0=disabled, 1=enabled, 2=match any register, 3=always locked) "
->>>   	"Default: -1");
->>>   
->>> +intel_display_param_named(limit_edp_hbr2, bool, 0400, "Limit EDP link rate to HBR2 (default: false)");
->>> +
->>>   __maybe_unused
->>>   static void _param_print_bool(struct drm_printer *p, const char *driver_name,
->>>   			      const char *name, bool val)
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
->>> index 5317138e6044..f7ba9805f97f 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
->>> @@ -48,6 +48,7 @@ struct drm_printer;
->>>   	param(bool, psr_safest_params, false, 0400) \
->>>   	param(bool, enable_psr2_sel_fetch, true, 0400) \
->>>   	param(int, enable_dmc_wl, -1, 0400) \
->>> +	param(bool, limit_edp_hbr2, false, 0400) \
->>>   
->>>   #define MEMBER(T, member, ...) T member;
->>>   struct intel_display_params {
->>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->>> index 2a0b76ae33cd..85022e5e64f4 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>> @@ -174,10 +174,29 @@ int intel_dp_link_symbol_clock(int rate)
->>>   
->>>   static int max_dprx_rate(struct intel_dp *intel_dp)
->>>   {
->>> +	struct intel_display *display = to_intel_display(intel_dp);
->>> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->>> +	int max_rate;
->>> +
->>>   	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
->>> -		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
->>> +		max_rate = drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
->>> +	else
->>> +		max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
->>>   
->>> -	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
->>> +	/*
->>> +	 * Some platforms with combo PHY ports may not reliably support HBR3
->>> +	 * due to signal integrity limitations, despite advertising it.
->>> +	 * If the kernel parameter `limit_edp_hbr2` is set, cap the link
->>> +	 * rate to HBR2 to avoid unstable configurations.
->>> +	 */
->>> +	if (max_rate >= 810000 && display->params.limit_edp_hbr2) {
->>> +		drm_dbg_kms(display->drm,
->>> +			    "[ENCODER:%d:%s] Forcing max link rate to HBR2 due to limit_edp_hbr2 set\n",
->>> +			    encoder->base.base.id, encoder->base.name);
->>> +		max_rate = 540000;
->>> +	}
->>> +
->>> +	return max_rate;
->>>   }
->>>   
->>>   static int max_dprx_lane_count(struct intel_dp *intel_dp)
->>> @@ -4253,6 +4272,9 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
->>>   static void
->>>   intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->>>   {
->>> +	struct intel_display *display = to_intel_display(intel_dp);
->>> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->>> +
->>>   	intel_dp->num_sink_rates = 0;
->>>   
->>>   	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
->>> @@ -4263,10 +4285,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->>>   				 sink_rates, sizeof(sink_rates));
->>>   
->>>   		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
->>> -			int val = le16_to_cpu(sink_rates[i]);
->>> -
->>> -			if (val == 0)
->>> -				break;
->>> +			int rate;
->>>   
->>>   			/* Value read multiplied by 200kHz gives the per-lane
->>>   			 * link rate in kHz. The source rates are, however,
->>> @@ -4274,7 +4293,24 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->>>   			 * back to symbols is
->>>   			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
->>>   			 */
->>> -			intel_dp->sink_rates[i] = (val * 200) / 10;
->>> +			rate = le16_to_cpu(sink_rates[i]) * 200 / 10;
->>> +
->>> +			if (rate == 0)
->>> +				break;
->>> +
->>> +			/*
->>> +			 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
->>> +			 * even if the sink advertises support. If kernel parameter `limit_edp_hbr2`
->>> +			 * is set, reject any sink rates above HBR2 to ensure stable operation.
->>> +			 */
->>> +			if (rate >= 810000 && display->params.limit_edp_hbr2) {
->>> +				drm_dbg_kms(display->drm,
->>> +					    "[ENCODER:%d:%s] Limit the rate to HBR2 due to limit_edp_hbr2 param\n",
->>> +					    encoder->base.base.id, encoder->base.name);
->>> +				break;
->>> +			}
->>> +
->>> +			intel_dp->sink_rates[i] = rate;
->>>   		}
->>>   		intel_dp->num_sink_rates = i;
->>>   	}
+>> diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
+>> index be5905dca87f..65c301852f0d 100644
+>> --- a/drivers/gpu/drm/drm_syncobj.c
+>> +++ b/drivers/gpu/drm/drm_syncobj.c
+>> @@ -1259,6 +1259,8 @@ EXPORT_SYMBOL(drm_timeout_abs_to_jiffies);
+>>   static int drm_syncobj_array_find(struct drm_file *file_private,
+>>   				  u32 __user *handles,
+>>   				  uint32_t count,
+>> +				  struct drm_syncobj **stack_syncobjs,
+>> +				  u32 stack_count,
+>>   				  struct drm_syncobj ***syncobjs_out)
+>>   {
+>>   	struct drm_syncobj **syncobjs;
+>> @@ -1268,9 +1270,13 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
+>>   	if (!access_ok(handles, count * sizeof(*handles)))
+>>   		return -EFAULT;
+>>   
+>> -	syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
+>> -	if (!syncobjs)
+>> -		return -ENOMEM;
+>> +	if (count > stack_count) {
+>> +		syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
+>> +		if (!syncobjs)
+>> +			return -ENOMEM;
+>> +	} else {
+>> +		syncobjs = stack_syncobjs;
+>> +	}
+>>   
+>>   	for (i = 0; i < count; i++) {
+>>   		u32 handle;
+>> @@ -1292,25 +1298,31 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
+>>   err_put_syncobjs:
+>>   	while (i-- > 0)
+>>   		drm_syncobj_put(syncobjs[i]);
+>> -	kfree(syncobjs);
+>> +
+>> +	if (syncobjs != stack_syncobjs)
+>> +		kfree(syncobjs);
+>>   
+>>   	return ret;
+>>   }
+>>   
+>>   static void drm_syncobj_array_free(struct drm_syncobj **syncobjs,
+>> -				   uint32_t count)
+>> +				   uint32_t count,
+>> +				   bool free_container)
+>>   {
+>>   	uint32_t i;
+>>   
+>>   	for (i = 0; i < count; i++)
+>>   		drm_syncobj_put(syncobjs[i]);
+>> -	kfree(syncobjs);
+>> +
+>> +	if (free_container)
+>> +		kfree(syncobjs);
+>>   }
+>>   
+>>   int
+>>   drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
+>>   		       struct drm_file *file_private)
+>>   {
+>> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>   	struct drm_syncobj_wait *args = data;
+>>   	ktime_t deadline, *pdeadline = NULL;
+>>   	u32 count = args->count_handles;
+>> @@ -1336,6 +1348,8 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
+>>   	ret = drm_syncobj_array_find(file_private,
+>>   				     u64_to_user_ptr(args->handles),
+>>   				     count,
+>> +				     stack_syncobjs,
+>> +				     ARRAY_SIZE(stack_syncobjs),
+>>   				     &syncobjs);
+>>   	if (ret < 0)
+>>   		return ret;
+>> @@ -1354,7 +1368,7 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
+>>   						 &first,
+>>   						 pdeadline);
+>>   
+>> -	drm_syncobj_array_free(syncobjs, count);
+>> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
+>>   
+>>   	if (timeout < 0)
+>>   		return timeout;
+>> @@ -1368,6 +1382,7 @@ int
+>>   drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
+>>   				struct drm_file *file_private)
+>>   {
+>> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>   	struct drm_syncobj_timeline_wait *args = data;
+>>   	ktime_t deadline, *pdeadline = NULL;
+>>   	u32 count = args->count_handles;
+>> @@ -1394,6 +1409,8 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
+>>   	ret = drm_syncobj_array_find(file_private,
+>>   				     u64_to_user_ptr(args->handles),
+>>   				     count,
+>> +				     stack_syncobjs,
+>> +				     ARRAY_SIZE(stack_syncobjs),
+>>   				     &syncobjs);
+>>   	if (ret < 0)
+>>   		return ret;
+>> @@ -1412,7 +1429,7 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
+>>   						 &first,
+>>   						 pdeadline);
+>>   
+>> -	drm_syncobj_array_free(syncobjs, count);
+>> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
+>>   
+>>   	if (timeout < 0)
+>>   		return timeout;
+>> @@ -1529,6 +1546,7 @@ int
+>>   drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
+>>   			struct drm_file *file_private)
+>>   {
+>> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>   	struct drm_syncobj_array *args = data;
+>>   	struct drm_syncobj **syncobjs;
+>>   	uint32_t i;
+>> @@ -1546,6 +1564,8 @@ drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
+>>   	ret = drm_syncobj_array_find(file_private,
+>>   				     u64_to_user_ptr(args->handles),
+>>   				     args->count_handles,
+>> +				     stack_syncobjs,
+>> +				     ARRAY_SIZE(stack_syncobjs),
+>>   				     &syncobjs);
+>>   	if (ret < 0)
+>>   		return ret;
+>> @@ -1553,7 +1573,8 @@ drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
+>>   	for (i = 0; i < args->count_handles; i++)
+>>   		drm_syncobj_replace_fence(syncobjs[i], NULL);
+>>   
+>> -	drm_syncobj_array_free(syncobjs, args->count_handles);
+>> +	drm_syncobj_array_free(syncobjs, args->count_handles,
+>> +			       syncobjs != stack_syncobjs);
+>>   
+>>   	return 0;
+>>   }
+>> @@ -1562,6 +1583,7 @@ int
+>>   drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
+>>   			 struct drm_file *file_private)
+>>   {
+>> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>   	struct drm_syncobj_array *args = data;
+>>   	struct drm_syncobj **syncobjs;
+>>   	uint32_t i;
+>> @@ -1579,6 +1601,8 @@ drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
+>>   	ret = drm_syncobj_array_find(file_private,
+>>   				     u64_to_user_ptr(args->handles),
+>>   				     args->count_handles,
+>> +				     stack_syncobjs,
+>> +				     ARRAY_SIZE(stack_syncobjs),
+>>   				     &syncobjs);
+>>   	if (ret < 0)
+>>   		return ret;
+>> @@ -1589,7 +1613,8 @@ drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
+>>   			break;
+>>   	}
+>>   
+>> -	drm_syncobj_array_free(syncobjs, args->count_handles);
+>> +	drm_syncobj_array_free(syncobjs, args->count_handles,
+>> +			       syncobjs != stack_syncobjs);
+>>   
+>>   	return ret;
+>>   }
+>> @@ -1598,6 +1623,7 @@ int
+>>   drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>>   				  struct drm_file *file_private)
+>>   {
+>> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>   	struct drm_syncobj_timeline_array *args = data;
+>>   	uint64_t __user *points = u64_to_user_ptr(args->points);
+>>   	uint32_t i, j, count = args->count_handles;
+>> @@ -1617,6 +1643,8 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>>   	ret = drm_syncobj_array_find(file_private,
+>>   				     u64_to_user_ptr(args->handles),
+>>   				     count,
+>> +				     stack_syncobjs,
+>> +				     ARRAY_SIZE(stack_syncobjs),
+>>   				     &syncobjs);
+>>   	if (ret < 0)
+>>   		return ret;
+>> @@ -1653,7 +1681,7 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>>   err_chains:
+>>   	kfree(chains);
+>>   out:
+>> -	drm_syncobj_array_free(syncobjs, count);
+>> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
+>>   
+>>   	return ret;
+>>   }
+>> @@ -1661,6 +1689,7 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>>   int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+>>   			    struct drm_file *file_private)
+>>   {
+>> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>   	struct drm_syncobj_timeline_array *args = data;
+>>   	struct drm_syncobj **syncobjs;
+>>   	uint64_t __user *points = u64_to_user_ptr(args->points);
+>> @@ -1679,6 +1708,8 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+>>   	ret = drm_syncobj_array_find(file_private,
+>>   				     u64_to_user_ptr(args->handles),
+>>   				     args->count_handles,
+>> +				     stack_syncobjs,
+>> +				     ARRAY_SIZE(stack_syncobjs),
+>>   				     &syncobjs);
+>>   	if (ret < 0)
+>>   		return ret;
+>> @@ -1722,7 +1753,8 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+>>   		if (ret)
+>>   			break;
+>>   	}
+>> -	drm_syncobj_array_free(syncobjs, args->count_handles);
+>> +	drm_syncobj_array_free(syncobjs, args->count_handles,
+>> +			       syncobjs != stack_syncobjs);
+>>   
+>>   	return ret;
+>>   }
+> 
 
--- 
-Jani Nikula, Intel
