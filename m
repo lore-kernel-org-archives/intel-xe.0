@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12E75C71134
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 05:41:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CC43C61CE7
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 05:47:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A32010E350;
-	Wed, 11 Jun 2025 05:41:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uye74xx1";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96C7310E342;
- Wed, 11 Jun 2025 05:41:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749620491; x=1781156491;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZvqoQYQ07OOR4mUqscoY9oba9IfcbvToKIq4RMvc29I=;
- b=Uye74xx19gtEWVj2VYvzNV06RVtcMTQOWDzpR0CnVCpr5B0CFpeYTdca
- +n20CoX9mIjG4ebr9FCRlYgfoa89VjeWM7dGNZDlO6ZmZ3BvPszQJePg+
- ji97FrEubAJjYzh1qtJAuBYKhVmfbqyfXCz5EjY3tNQchw1IFHrRZzAdy
- hNMmt6kt/gD084utme60FzUXXORuPfZVWZ/ekskNl6QwFD4zTX/GHvQrW
- Vpgfxcq3t1JKlFDDleX5TYVrpQzLjf2FCC5DncaSR9yqbrdLg/ugMi3vD
- rAaxhOmSqCJjk4vxENWZ/cgI0zcALrKNcdrGwXWuElI+Hp6zNsNP2R+xJ w==;
-X-CSE-ConnectionGUID: lmS/j+UzThiHV/QmpfUjCg==
-X-CSE-MsgGUID: nh5OhstlSMahmreMUTgBug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="63160409"
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="63160409"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2025 22:41:30 -0700
-X-CSE-ConnectionGUID: eY/a4FVyTnaJAk91auyWgw==
-X-CSE-MsgGUID: A1NsdXFORcSR0dWPxGgJCQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="151864185"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2025 22:41:29 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com
-Subject: [PATCH] drm/i915/display: Fix macro HAS_ULTRAJOINER
-Date: Wed, 11 Jun 2025 11:00:39 +0530
-Message-ID: <20250611053039.377695-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04A7810E060;
+	Wed, 11 Jun 2025 05:47:11 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75F0210E060;
+ Wed, 11 Jun 2025 05:47:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Implement_?=
+ =?utf-8?q?clear_VRAM_on_free?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 11 Jun 2025 05:47:09 -0000
+Message-ID: <174962082946.66341.7524972315431995242@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250611054235.3540936-1-matthew.brost@intel.com>
+In-Reply-To: <20250611054235.3540936-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,36 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently, Ultrajoiner is supported only on Xe2_HPD.
-Update the HAS_ULTRAJOINER macro to reflect the same.
+== Series Details ==
 
-v2: Clarify the commit message to specify platform. (Jani)
+Series: drm/xe: Implement clear VRAM on free
+URL   : https://patchwork.freedesktop.org/series/150074/
+State : success
 
-Bspec: 69556
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_device.h | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 0ac5484c0043..4308822f0415 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -192,9 +192,8 @@ struct intel_display_platforms {
- #define HAS_TRANSCODER(__display, trans)	((DISPLAY_RUNTIME_INFO(__display)->cpu_transcoder_mask & \
- 						  BIT(trans)) != 0)
- #define HAS_UNCOMPRESSED_JOINER(__display)	(DISPLAY_VER(__display) >= 13)
--#define HAS_ULTRAJOINER(__display)	((DISPLAY_VER(__display) >= 20 || \
--					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
--					 HAS_DSC(__display))
-+#define HAS_ULTRAJOINER(__display)	(((__display)->platform.dgfx && \
-+					  DISPLAY_VER(__display) == 14) && HAS_DSC(__display))
- #define HAS_VRR(__display)		(DISPLAY_VER(__display) >= 11)
- #define INTEL_NUM_PIPES(__display)	(hweight8(DISPLAY_RUNTIME_INFO(__display)->pipe_mask))
- #define OVERLAY_NEEDS_PHYSICAL(__display)	(DISPLAY_INFO(__display)->overlay_needs_physical)
--- 
-2.45.2
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 7bc153635620 drm-tip: 2025y-06m-10d-14h-07m-46s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Implement clear VRAM on free
+
 
