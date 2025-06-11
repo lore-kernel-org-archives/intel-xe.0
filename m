@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91DC7C677C4
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 10:42:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7526C61CE7
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 10:46:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5714C10E029;
-	Wed, 11 Jun 2025 10:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68C3D10E618;
+	Wed, 11 Jun 2025 10:46:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DiqgFzEn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P5eYTSqP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 074E210E029
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 10:42:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAA6110E617
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 10:46:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749638537; x=1781174537;
+ t=1749638769; x=1781174769;
  h=from:date:to:cc:subject:in-reply-to:message-id:
  references:mime-version;
- bh=h08gi4WLI6tcGkAwrH+Thpr07BPoSnIzkPWpfLw/hfY=;
- b=DiqgFzEnx0ymFeN6IuT9Ju7aKAvGtJxyHfB7ljZA/0RR7XWo1tqiA/LE
- SdLz0/Pclvuc2IkyGadmc1mIbj94/GBZVcMpNygrpHBwJNMr+DohW76+D
- NynlSEvCK+cSqTjwQVqaOcXslg7IeewmDtU0z4RMav2SQWYjeP3lt/olz
- 3/CQG6VQIdnMop3nvGDqsdSeRkYuadhUMyMUIaBwVkQLSHRSxwGO9DRxo
- xUIehBcLFjBmwRd7cscmAlPHTEt0rK8pu4Ojhu8Gfm6T+j65t3tA1M6kv
- X3VnicFeIuprCSpCuqdh9fGdo7ia5ExfkEt6Z+wi55hPusEQel0HuFQel Q==;
-X-CSE-ConnectionGUID: 34RbiC33QP2/arkFV3PxPA==
-X-CSE-MsgGUID: SFg/TJqkRHS9CuFsNbSE8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="55579940"
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="55579940"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 03:42:16 -0700
-X-CSE-ConnectionGUID: j9wcgsUQTH6sMQgM6O0/oA==
-X-CSE-MsgGUID: maI4rBXCRCqFr7C+RSwyzg==
+ bh=fKzQ6/PxMRvg6pvmN0Jg2JkCgKPX7E5u70SSFZzZ0o8=;
+ b=P5eYTSqP/r5IdFfbDvNByG50HJfh8eVON5jiOukgEFG3qe3+WL7MKUj+
+ F43/k7wD2lj0V/IEXhtik3kadG5CU5nbvaZdOybfn0Uxfnfzna1aHZ25k
+ NcxPPlRhveB32KeYhy7FF5T39YpIPPU0y99FD/2j5KOIQUGJ+38MEleNe
+ pj+RTKHjHiMABd9vgAafQGSz+P8btHZbZ7kOPRD2R8m3pC/qCLabzWPnc
+ neJyv6flMI/F2s8J0MXctlcL8izYEDqbemEGO7WNruwYMF250D4uPQXca
+ E19Lfu0BQ1qeDadAbGfchy119EKBe5ziIuv9rnarJcVQ9UynztefLZoB1 A==;
+X-CSE-ConnectionGUID: 6KKzLUBmT+OsvgfLlDbGJA==
+X-CSE-MsgGUID: JsjfhECIQG6mgxod/53y7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="50998749"
+X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="50998749"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 03:46:09 -0700
+X-CSE-ConnectionGUID: lJza57DAS/q9quE94dXNVw==
+X-CSE-MsgGUID: ZJdwZc6MRFaoG7xzDAuWsA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="147515911"
+X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="147652734"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.183])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 03:42:12 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 03:46:06 -0700
 From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 11 Jun 2025 13:42:08 +0300 (EEST)
+Date: Wed, 11 Jun 2025 13:46:02 +0300 (EEST)
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
  Hans de Goede <hdegoede@redhat.com>, lucas.demarchi@intel.com, 
  rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com, 
- airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com, 
- stable@vger.kernel.org
-Subject: Re: [PATCH v4 01/10] platform/x86/intel/pmt: fix a crashlog NULL
- pointer access
-In-Reply-To: <20250610211225.1085901-2-michael.j.ruhl@intel.com>
-Message-ID: <e4f3a1e0-5332-212d-6ad0-8a72dcaf554a@linux.intel.com>
+ airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com
+Subject: Re: [PATCH v4 05/10] platform/x86/intel/pmt: re-order trigger
+ logic
+In-Reply-To: <20250610211225.1085901-6-michael.j.ruhl@intel.com>
+Message-ID: <3f0c7164-7cef-a8b2-e989-ccc58e0ef592@linux.intel.com>
 References: <20250610211225.1085901-1-michael.j.ruhl@intel.com>
- <20250610211225.1085901-2-michael.j.ruhl@intel.com>
+ <20250610211225.1085901-6-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: multipart/mixed; boundary="8323328-584342154-1749638762=:957"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,78 +71,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--8323328-584342154-1749638762=:957
+Content-Type: text/plain; charset=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+
 On Tue, 10 Jun 2025, Michael J. Ruhl wrote:
 
-> Usage of the intel_pmt_read() for binary sysfs, requires a pcidev.  The
-> current use of the endpoint value is only valid for telemetry endpoint
-> usage.
-> 
-> Without the ep, the crashlog usage causes the following NULL pointer
-> exception:
-> 
-> BUG: kernel NULL pointer dereference, address: 0000000000000000
-> Oops: Oops: 0000 [#1] SMP NOPTI
-> RIP: 0010:intel_pmt_read+0x3b/0x70 [pmt_class]
-> Code:
-> Call Trace:
->  <TASK>
->  ? sysfs_kf_bin_read+0xc0/0xe0
->  kernfs_fop_read_iter+0xac/0x1a0
->  vfs_read+0x26d/0x350
->  ksys_read+0x6b/0xe0
->  __x64_sys_read+0x1d/0x30
->  x64_sys_call+0x1bc8/0x1d70
->  do_syscall_64+0x6d/0x110
-> 
-> Augment the inte_pmt_entry to include the pcidev to allow for access to
-
-intel_pmt_entry
-
-> the pcidev and avoid the NULL pointer exception.
-> 
-> Fixes: 416eeb2e1fc7 ("platform/x86/intel/pmt: telemetry: Export API to read telemetry")
-> Cc: <stable@vger.kernel.org>
+> Setting the clear bit or checking the complete bit before checking to
+> see if crashlog is disabled seems incorrect.
+>=20
+> Check disable before accessing any other bits.
+>=20
+> Reviewed-by: David E. Box <david.e.box@linux.intel.com>
 > Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 > ---
->  drivers/platform/x86/intel/pmt/class.c | 3 ++-
->  drivers/platform/x86/intel/pmt/class.h | 1 +
->  2 files changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-> index 7233b654bbad..d046e8752173 100644
-> --- a/drivers/platform/x86/intel/pmt/class.c
-> +++ b/drivers/platform/x86/intel/pmt/class.c
-> @@ -97,7 +97,7 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
->  	if (count > entry->size - off)
->  		count = entry->size - off;
->  
-> -	count = pmt_telem_read_mmio(entry->ep->pcidev, entry->cb, entry->header.guid, buf,
-> +	count = pmt_telem_read_mmio(entry->pcidev, entry->cb, entry->header.guid, buf,
->  				    entry->base, off, count);
->  
->  	return count;
-> @@ -252,6 +252,7 @@ static int intel_pmt_populate_entry(struct intel_pmt_entry *entry,
->  		return -EINVAL;
->  	}
->  
-> +	entry->pcidev = pci_dev;
->  	entry->guid = header->guid;
->  	entry->size = header->size;
->  	entry->cb = ivdev->priv_data;
-> diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-> index b2006d57779d..f6ce80c4e051 100644
-> --- a/drivers/platform/x86/intel/pmt/class.h
-> +++ b/drivers/platform/x86/intel/pmt/class.h
-> @@ -39,6 +39,7 @@ struct intel_pmt_header {
->  
->  struct intel_pmt_entry {
->  	struct telem_endpoint	*ep;
-> +	struct pci_dev		*pcidev;
->  	struct intel_pmt_header	header;
->  	struct bin_attribute	pmt_bin_attr;
->  	struct kobject		*kobj;
-> 
+>  drivers/platform/x86/intel/pmt/crashlog.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform=
+/x86/intel/pmt/crashlog.c
+> index 1525e702e993..3d3b72451c01 100644
+> --- a/drivers/platform/x86/intel/pmt/crashlog.c
+> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
+> @@ -192,6 +192,10 @@ trigger_store(struct device *dev, struct device_attr=
+ibute *attr,
+> =20
+>  =09guard(mutex)(&entry->control_mutex);
+> =20
+> +=09/* if device is currently disabled, return busy */
+> +=09if (pmt_crashlog_disabled(&entry->entry))
+> +=09=09return -EBUSY;
+> +
+>  =09if (!trigger) {
+>  =09=09pmt_crashlog_set_clear(&entry->entry);
+>  =09=09return count;
+> @@ -201,10 +205,6 @@ trigger_store(struct device *dev, struct device_attr=
+ibute *attr,
+>  =09if (pmt_crashlog_complete(&entry->entry))
+>  =09=09return -EEXIST;
+> =20
+> -=09/* if device is currently disabled, return busy */
+> -=09if (pmt_crashlog_disabled(&entry->entry))
+> -=09=09return -EBUSY;
+> -
+>  =09pmt_crashlog_set_execute(&entry->entry);
+> =20
+>  =09return count;
+>=20
 
--- 
+Reviewed-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
+
+--=20
  i.
 
+--8323328-584342154-1749638762=:957--
