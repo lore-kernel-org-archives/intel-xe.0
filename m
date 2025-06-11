@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB53EC61CE7
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 07:35:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B2F9C677C4
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 07:41:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF6610E34D;
-	Wed, 11 Jun 2025 07:35:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VzETrk5d";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 264F310E329
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 07:35:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749627356; x=1781163356;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=z8ezwKpKZec8BRa0co6hVhoTgjTZv38Pfo1jLo3P/Jc=;
- b=VzETrk5dzNRT70IuJ/4GXF+pU0rm2EEkt62Ag9yTE0KRHdsSTIOXAbmY
- R6XDWypHXOPMwDKoXhNndi6zGQ3dQCcz6JK/qJUdrMXPkss8Ci5ZoLqR+
- uG+8vzaHmcjP9p8IuZ8H478e3/qh+kRVD8zHS8NsjLP32BNNiInuLUHeV
- osieyYDr6qcdfcOsoKnNQqfwx2rF1U4WXQ+dNsTw7r1BoHHKktVMfa8T1
- EX5kEh8/tDNm7BXCtc7U9FqKR6exbo3QNKytEwufo17K2JyIi7FdR3suk
- 3fWa0SVSPf3FEfywaN3eIs6S+1lEFRQ64akN1pJJ/UIJRgDC5GvJ/U0ib A==;
-X-CSE-ConnectionGUID: biypnQS+TMKwJRPvsPZFwQ==
-X-CSE-MsgGUID: U8FTfIGDQgSpMQfonUoUmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="55423386"
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="55423386"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 00:35:55 -0700
-X-CSE-ConnectionGUID: aNqrH+YERZGo/WSIK8nGHA==
-X-CSE-MsgGUID: uaCQAC52TT2vLcxjuWzNwA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="151887045"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.209])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 00:35:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: John Harrison <john.c.harrison@intel.com>, Satyanarayana K V P
- <satyanarayana.k.v.p@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH v6] drm/xe: Add helper function to inject fault into
- ct_dead_capture()
-In-Reply-To: <1e939cd3-1db4-432e-89c7-add155d67606@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250524144613.11970-1-satyanarayana.k.v.p@intel.com>
- <a0c92aa2-ed7d-41f0-8d7c-b66b36be3fa7@intel.com>
- <ff47692cc6c70d10b3e58cf68e6d70ef79ebd997@intel.com>
- <1e939cd3-1db4-432e-89c7-add155d67606@intel.com>
-Date: Wed, 11 Jun 2025 10:35:50 +0300
-Message-ID: <6fe7082cd28ada8a4f5d52e08512aaf3eb10ea1c@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCD8510E35B;
+	Wed, 11 Jun 2025 07:41:15 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D6D110E377;
+ Wed, 11 Jun 2025 07:41:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6742695127043833629=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Fix_mac?=
+ =?utf-8?q?ro_HAS=5FULTRAJOINER_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 11 Jun 2025 07:41:15 -0000
+Message-ID: <174962767537.66486.15560667742363704981@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250611053039.377695-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250611053039.377695-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,21 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 06 Jun 2025, John Harrison <john.c.harrison@intel.com> wrote:
-> In other words, the test and the output suppression are inherently 
-> connected and not orthogonal.
->
-> So having extra complication to make the suppression mechanism generic 
-> and unrelated to the injection test is wasted effort and unnecessary 
-> complication.
+--===============6742695127043833629==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fair enough.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915/display: Fix macro HAS_ULTRAJOINER (rev2)
+URL   : https://patchwork.freedesktop.org/series/149861/
+State : success
 
--- 
-Jani Nikula, Intel
+== Summary ==
+
+CI Bug Log - changes from xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60_BAT -> xe-pw-149861v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8403 -> IGT_8404
+  * Linux: xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60 -> xe-pw-149861v2
+
+  IGT_8403: f2e82612b44bf8c30bfd0c523b69e424dc5f8d7a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8404: dad4b2bb9e5a2c87ae0275efbf9f0df00a67ef46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60: 7bc153635620254b73cfe8714ce42768b2bf6d60
+  xe-pw-149861v2: 149861v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149861v2/index.html
+
+--===============6742695127043833629==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Fix macro HAS_ULTRAJOINER (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149861/">https://patchwork.freedesktop.org/series/149861/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149861v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149861v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60_BAT -&gt; xe-pw-149861v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8403 -&gt; IGT_8404</li>
+<li>Linux: xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60 -&gt; xe-pw-149861v2</li>
+</ul>
+<p>IGT_8403: f2e82612b44bf8c30bfd0c523b69e424dc5f8d7a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8404: dad4b2bb9e5a2c87ae0275efbf9f0df00a67ef46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3226-7bc153635620254b73cfe8714ce42768b2bf6d60: 7bc153635620254b73cfe8714ce42768b2bf6d60<br />
+  xe-pw-149861v2: 149861v2</p>
+
+</body>
+</html>
+
+--===============6742695127043833629==--
