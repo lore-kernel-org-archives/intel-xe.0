@@ -4,61 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B6E3C71136
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 22:52:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 030B1C71135
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 22:52:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17A7810E740;
-	Wed, 11 Jun 2025 22:52:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B074710E74A;
+	Wed, 11 Jun 2025 22:52:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="WNpGN0k6";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="BmzjtkT/";
 	dkim-atps=neutral
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
- [209.85.210.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1DB910E747
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 22:52:10 +0000 (UTC)
-Received: by mail-pf1-f182.google.com with SMTP id
- d2e1a72fcca58-74849e33349so380537b3a.3
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 15:52:10 -0700 (PDT)
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
+ [209.85.210.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9AB310E74A
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 22:52:21 +0000 (UTC)
+Received: by mail-pf1-f169.google.com with SMTP id
+ d2e1a72fcca58-742c035f2afso337287b3a.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 15:52:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1749682330; x=1750287130;
+ d=chromium.org; s=google; t=1749682341; x=1750287141;
  darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=84Hgd2RGx/mxW+pZm1vBUVDnwbeeMzQmnUi3fAiJya8=;
- b=WNpGN0k6itp7E8qVe7P/B1a8VCQnw6y9i7CZhg8sHLPrs3lpb/r4MD2aXlNpEVIyii
- sCVwHN6ZmHvcrhk1l1R5eQbbUvPGmC3+MUBFwVswdLfiSh/B9CZORxp5sVshSLdpZ7qN
- YlL8Xd21OBFCF06eLcLgpGe3dZbDJtzdm9Uo0=
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ZL7bJXlrc4QuKLK+LAdR7e7yY1tvCUZtU7oEuPGARqU=;
+ b=BmzjtkT/ofOh5cbrxcYUwfppbdAlcxKoDJ/S3mf7TXy6Wxb+3F3dwHzzMmgq/MkWqd
+ CjRubUcCi0v1ZlqJRsiO7z//qKtx+Z0+mCQvdCys811s8EFk5IXOpdAAJdPFlocQEdME
+ w3tva1CkDj82zFItube1gJNqvEALJtUuKh1e8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749682330; x=1750287130;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=84Hgd2RGx/mxW+pZm1vBUVDnwbeeMzQmnUi3fAiJya8=;
- b=c2i+S9D9o016o/nvKlVVp5YSLUimua4ziA7GZGub9MUN5GRkYs+N2G2WkBLj66sSXa
- ZkSHAYps9s2fBXOiRb3mHNz9B6tbhiFJIGEv2awhOeY3FDG63TKmjeZ+u0dlXdudqrgZ
- rWhNRvPM5MLivggTABR+nF1trup8QG5p6EgoYiMFLfjT2/Kkd/4T79irQXWD6oDnAAdH
- JpeLuwhSGgZze2dSFg3kKHRTzZpI8EXJePXzq4PH5cOtRvCifgRBGCRkmCoTinmWW9ZQ
- wS5ehYqeNEeTtuEUdYHHYDUFIrKiFPile3+tdPBZJb/sxLYScWue7jAvtnLawHbXZbah
- hLrQ==
-X-Gm-Message-State: AOJu0Yzs3JLPwR30mDu+lLp7KHQgMQVH7Ygrh27pQyivyrEFTqxRRK27
- g2zkIDkPywDqpYL5UB1vz00hv0c65aOgeLZ0fezT/WVlirH/1BnVthqPIbThfXG/CdVwvZz7a6Z
- 6Rjo=
-X-Gm-Gg: ASbGncup/JfodWhV94XgCjD5CW4hZfF4W18fMGDvfFbTCmqk7K2CmQNozPoRIJzH6Np
- YoTsUJzxCfq3wZgBWTKKOSV4+tiA6nBg2m+pMpLKHWt/EUD8xwRmRh9PWFBuExVmS2ixHvDfdSJ
- p7FHUgwob2loP8Er1SZgo48OmxZaTVu4Wbs58afpAk+tF8MHQZ7DFsT+2AgFpR4bOuEGOADS7rN
- BSUh8RqpTVTEktRPG8O29DuGalT0mCK1FhtXiO34SVP9Vu9+4bNgWdLYtHSO8uFugj+dvYb/s5S
- LA7WLaq2Pqsay6XRiYoXGbDG3cybxYvvOgwUeClfSXJD6J9vV8daxQSODWGmgQRdjysGjINW8md
- +eKitRkSQZHzkUMtptbra3ts/q5KzPU2d4B5q8oyeooLsYamp2sQ=
-X-Google-Smtp-Source: AGHT+IHokrxQ7fax+fHfTiQw8NQRpdyltqL4MaEQkpkazv6Uh48EJr62tYuvVX4wB/mn2W3oIn91NA==
-X-Received: by 2002:a05:6a00:1787:b0:746:25d1:b711 with SMTP id
- d2e1a72fcca58-7486ce17a7cmr5771270b3a.17.1749682329697; 
- Wed, 11 Jun 2025 15:52:09 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1749682341; x=1750287141;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ZL7bJXlrc4QuKLK+LAdR7e7yY1tvCUZtU7oEuPGARqU=;
+ b=FQQq246zuUCoQEPbrw8BbXJpO9AU7ors4dagEOvfEXueTBUo4wNhoHFXP5OmycHqiQ
+ ox8smOXcx6z8ZW0ZjAqxl5vy7H7ZvwJGfo8GLOcQP/tHbCT7VD2xRiI/gl+0EVSP9T15
+ uB/+1HbhlKWuajOf80bXc+KQy+UD+K95H3oemyMITjsm7XdP+wnZzfQ2JJs/zqww7n1M
+ +rHtKNhR4hDJwQfNfx4pvC9+2O7PM7DOjujEN98NMFT5HhQRwgbbe1qWTXfSujfwsaBC
+ QX6JTfskXqN/8qg3tRoCMmbl/s+C0TcHF3/mcKD8mActlcucf0laEesp3yfJE9r5ubwc
+ rhPA==
+X-Gm-Message-State: AOJu0Yx90h1c0H5UvFaDwvSnyie3MbZS5hBUlP+1hW4GBmMdTFn/0gnS
+ HV6ARo/4PRPVCeFsQzqoPyf+dTRx5RY1uethxEOEuzyGHgl/MV4hNqBonCVHAuNrluisHdUTZUQ
+ rIyc=
+X-Gm-Gg: ASbGncuQef12cSdvXTE9S3dwfDh9WWrv7+BffCzqKq39UCtkqILXUrkBlfyJ3MsoLTs
+ zN39kI9aq3nUONJPWtmJiKL9iqP/cAXH8IU4qS9anscrpk0ZdmsBk8+sFnyTOxj8195PVZsV3oY
+ +6oD7zO0DrJlPWKFKWLm+/VxQXQyWGfy9QZH5k5cso8kC5EhlTjyqE7sj+3UZGL3lth9QCGt4/y
+ BBMosUnEqoDQpfkB5XqRICVNnkZW+9LEFxER9CmdrJKGBaTfTb6jVfBRwe9Zt7+u1w7Pdwr0GMR
+ wqv7YeoK47PwJt18vFAWqCutAeiTi0gERomWUFukYSrYnKXiwmMfT71fAYJSDRD75DRLFvb/Q/Z
+ yBB3mlBxee74GBdwZSVlisT89PesyBcuC6jH58rSG605BJYTJCkc=
+X-Google-Smtp-Source: AGHT+IGHrL2te5ihrUuSVrWd9Wurw58yUglqWTjphT5nGaKOd907H3nFWcTEOlXwRmthLOhSnxLKSA==
+X-Received: by 2002:a05:6a00:4f93:b0:748:2fa4:14c0 with SMTP id
+ d2e1a72fcca58-7486ca40308mr6133459b3a.0.1749682340668; 
+ Wed, 11 Jun 2025 15:52:20 -0700 (PDT)
 Received: from justonli3.c.googlers.com.com
  (11.103.168.34.bc.googleusercontent.com. [34.168.103.11])
  by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-74880a0bf68sm90555b3a.163.2025.06.11.15.52.08
+ d2e1a72fcca58-74880a0bf68sm90555b3a.163.2025.06.11.15.52.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Jun 2025 15:52:08 -0700 (PDT)
+ Wed, 11 Jun 2025 15:52:20 -0700 (PDT)
 From: Juston Li <justonli@chromium.org>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -67,10 +68,12 @@ Cc: Tvrtko Ursulin <tursulin@ursulin.net>,
  Yiwei Zhang <zzyiwei@google.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Juston Li <justonli@chromium.org>
-Subject: [PATCH v4 1/2] gpu/trace: make TRACE_GPU_MEM configurable
-Date: Wed, 11 Jun 2025 15:51:23 -0700
-Message-ID: <20250611225145.1739201-1-justonli@chromium.org>
+Subject: [PATCH v4 2/2] drm/xe/bo: add GPU memory trace points
+Date: Wed, 11 Jun 2025 15:51:24 -0700
+Message-ID: <20250611225145.1739201-2-justonli@chromium.org>
 X-Mailer: git-send-email 2.50.0.rc1.591.g9c95f17f64-goog
+In-Reply-To: <20250611225145.1739201-1-justonli@chromium.org>
+References: <20250611225145.1739201-1-justonli@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -87,65 +90,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the source to a better place in Device Drivers -> Graphics support
-now that its configurable.
+Add TRACE_GPU_MEM tracepoints for tracking global and per-process GPU
+memory usage.
 
-v4:
- - Move source location (Tvrtko)
+These are required by VSR on Android 12+ for reporting GPU driver memory
+allocations.
 
 v3:
- - Patch introduced to replace per-driver config (Lucas)
+ - Use now configurable CONFIG_TRACE_GPU_MEM instead of adding a
+   per-driver Kconfig (Lucas)
+
+v2:
+ - Use u64 as preferred by checkpatch (Tvrtko)
+ - Fix errors in comments/Kconfig description (Tvrtko)
+ - drop redundant "CONFIG" in Kconfig
 
 Signed-off-by: Juston Li <justonli@chromium.org>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/Kconfig           |  2 --
- drivers/gpu/trace/Kconfig | 11 ++++++++++-
- drivers/video/Kconfig     |  1 +
- 3 files changed, 11 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c           | 47 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device_types.h | 16 ++++++++++
+ 2 files changed, 63 insertions(+)
 
-diff --git a/drivers/Kconfig b/drivers/Kconfig
-index 7c556c5ac4fdd..c5edbd2288a19 100644
---- a/drivers/Kconfig
-+++ b/drivers/Kconfig
-@@ -209,8 +209,6 @@ source "drivers/thunderbolt/Kconfig"
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 4e39188a021ab..89a3d23e3b800 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -19,6 +19,8 @@
  
- source "drivers/android/Kconfig"
+ #include <kunit/static_stub.h>
  
--source "drivers/gpu/trace/Kconfig"
--
- source "drivers/nvdimm/Kconfig"
- 
- source "drivers/dax/Kconfig"
-diff --git a/drivers/gpu/trace/Kconfig b/drivers/gpu/trace/Kconfig
-index c24e9edd022e6..cd3d19c4a201c 100644
---- a/drivers/gpu/trace/Kconfig
-+++ b/drivers/gpu/trace/Kconfig
-@@ -1,4 +1,13 @@
- # SPDX-License-Identifier: GPL-2.0-only
- 
- config TRACE_GPU_MEM
--	bool
-+	bool "Enable GPU memory usage tracepoints"
-+	default n
-+	help
-+	  Choose this option to enable tracepoints for tracking
-+	  global and per-process GPU memory usage. Intended for
-+	  performance profiling and required for Android.
++#include <trace/events/gpu_mem.h>
 +
-+	  Tracepoint availability varies by GPU driver.
+ #include "xe_device.h"
+ #include "xe_dma_buf.h"
+ #include "xe_drm_client.h"
+@@ -418,6 +420,35 @@ static void xe_ttm_tt_account_subtract(struct xe_device *xe, struct ttm_tt *tt)
+ 		xe_shrinker_mod_pages(xe->mem.shrinker, -(long)tt->num_pages, 0);
+ }
+ 
++#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
++static void update_global_total_pages(struct ttm_device *ttm_dev, long num_pages)
++{
++	struct xe_device *xe = ttm_to_xe_device(ttm_dev);
++	u64 global_total_pages =
++		atomic64_add_return(num_pages, &xe->global_total_pages);
 +
-+	  If in doubt, say "N".
-diff --git a/drivers/video/Kconfig b/drivers/video/Kconfig
-index 5df981920a945..96adceab2df00 100644
---- a/drivers/video/Kconfig
-+++ b/drivers/video/Kconfig
-@@ -70,5 +70,6 @@ if FB_CORE || SGI_NEWPORT_CONSOLE
++	trace_gpu_mem_total(0, 0, global_total_pages << PAGE_SHIFT);
++}
++
++static void update_process_mem(struct drm_file *file, ssize_t size)
++{
++	struct xe_file *xef = to_xe_file(file);
++	u64 process_mem = atomic64_add_return(size, &xef->process_mem);
++
++	rcu_read_lock(); /* Locks file->pid! */
++	trace_gpu_mem_total(0, pid_nr(rcu_dereference(file->pid)), process_mem);
++	rcu_read_unlock();
++}
++#else
++static inline void update_global_total_pages(struct ttm_device *ttm_dev, long num_pages)
++{
++}
++
++static inline void update_process_mem(struct drm_file *file, ssize_t size)
++{
++}
++#endif
++
+ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 				       u32 page_flags)
+ {
+@@ -525,6 +556,7 @@ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
  
- endif
+ 	xe_tt->purgeable = false;
+ 	xe_ttm_tt_account_add(ttm_to_xe_device(ttm_dev), tt);
++	update_global_total_pages(ttm_dev, tt->num_pages);
  
-+source "drivers/gpu/trace/Kconfig"
+ 	return 0;
+ }
+@@ -541,6 +573,7 @@ static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev, struct ttm_tt *tt)
  
- endmenu
+ 	ttm_pool_free(&ttm_dev->pool, tt);
+ 	xe_ttm_tt_account_subtract(xe, tt);
++	update_global_total_pages(ttm_dev, -(long)tt->num_pages);
+ }
+ 
+ static void xe_ttm_tt_destroy(struct ttm_device *ttm_dev, struct ttm_tt *tt)
+@@ -1653,6 +1686,15 @@ static void xe_gem_object_free(struct drm_gem_object *obj)
+ 	ttm_bo_put(container_of(obj, struct ttm_buffer_object, base));
+ }
+ 
++#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
++static int xe_gem_object_open(struct drm_gem_object *obj,
++			      struct drm_file *file_priv)
++{
++	update_process_mem(file_priv, obj->size);
++	return 0;
++}
++#endif
++
+ static void xe_gem_object_close(struct drm_gem_object *obj,
+ 				struct drm_file *file_priv)
+ {
+@@ -1665,6 +1707,8 @@ static void xe_gem_object_close(struct drm_gem_object *obj,
+ 		ttm_bo_set_bulk_move(&bo->ttm, NULL);
+ 		xe_bo_unlock(bo);
+ 	}
++
++	update_process_mem(file_priv, -obj->size);
+ }
+ 
+ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+@@ -1762,6 +1806,9 @@ static const struct vm_operations_struct xe_gem_vm_ops = {
+ 
+ static const struct drm_gem_object_funcs xe_gem_object_funcs = {
+ 	.free = xe_gem_object_free,
++#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
++	.open = xe_gem_object_open,
++#endif
+ 	.close = xe_gem_object_close,
+ 	.mmap = drm_gem_ttm_mmap,
+ 	.export = xe_gem_prime_export,
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index e5d02a47a5287..b797e766ccbc2 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -641,6 +641,14 @@ struct xe_device {
+ 		unsigned int fsb_freq, mem_freq, is_ddr3;
+ 	};
+ #endif
++
++#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
++	/**
++	 * @global_total_pages: global GPU page usage tracked for gpu_mem
++	 * tracepoints
++	 */
++	atomic64_t global_total_pages;
++#endif
+ };
+ 
+ /**
+@@ -702,6 +710,14 @@ struct xe_file {
+ 
+ 	/** @refcount: ref count of this xe file */
+ 	struct kref refcount;
++
++#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
++	/**
++	 * @process_mem: per-process GPU memory usage tracked for gpu_mem
++	 * tracepoints
++	 */
++	atomic64_t process_mem;
++#endif
+ };
+ 
+ #endif
 -- 
 2.50.0.rc1.591.g9c95f17f64-goog
 
