@@ -4,177 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF031C71136
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 21:22:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 941DEC71136
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 21:23:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78A5510E737;
-	Wed, 11 Jun 2025 21:22:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PWzsv1Lf";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4503310E737
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 21:22:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749676934; x=1781212934;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=O0aeeBQa2hQZId4F58VDixUrX7O3OWlbGfBJlUjejO0=;
- b=PWzsv1Lf980nQvQKoiH40TQGCfrXvjJ58fdL/yVn2XgZMLyo+7qz5EGo
- zBPJ/ZEZbSnak+7oYWO40BHTSN2u0zunyRYhEEszI5aZ5dws8D2tHhcQM
- HIn4BJTQQvqb+5zTuOVHzj9sXVmoJrd0b4/9Qn7Ic3fhU6oxXpKelYk4L
- Q+rbVMAAuRvlDA8bxNQFF22pDB2ne25WtV+QaWPEfT/yEXFegsgZEKrjv
- XSGhKfKeHpq8Kn5INahK8J+dXKRfyB3xTkQpzBBHdpnTQ1Wvd8IGdj2Hr
- 8WIBAui8iEBeR0aFyY8UlkG81uXfR6tC9oIK7zlJMNSiEhpvBqvaOcL30 Q==;
-X-CSE-ConnectionGUID: 6sB4iOxlQOiSq+Sdq9bMng==
-X-CSE-MsgGUID: kKjGyPqjTreeYNqQIRYuOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="74370741"
-X-IronPort-AV: E=Sophos;i="6.16,229,1744095600"; d="scan'208";a="74370741"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 14:22:14 -0700
-X-CSE-ConnectionGUID: 13MaxxeRRIegsQ/KCoytLg==
-X-CSE-MsgGUID: OBTAq1gZQj+/in9zOugGxw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,229,1744095600"; d="scan'208";a="152203168"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 14:22:12 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 11 Jun 2025 14:22:11 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Wed, 11 Jun 2025 14:22:11 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.74)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 11 Jun 2025 14:22:11 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jqpgA/zHyx496bEarNYrEevYADMkjM85k8Yg9zNJ47XuQC+cVTAUL3LbiayvytOkw949ixDh2b8H5rvOWWv2CobLl+pOA+tRLv3LPSr81QDWAC1Iy3Dlt8R/8sehNMfXX0zPb51SU3Wudu1HOgapeaxDiVugyYw7hziWW1iX6PSAyZfbrW0G0/ZlyD65PEThNzrW5zOuFS8mOJJFywy2qBdxP4y55M22OLHv0hGytQB8rjZQVxNti7FIkAYjhNI0PBCv9hEI9abu+KBZ6buQQWs5erIxczreIFA6deBzTng/LtCXYD0LMvyBt3F9byEB5NA35aQx5n9Y+VSsym5kig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Rt2kmOgG2fbNyw7iworFWphXd2pQyU8XhoyuBxLaMgQ=;
- b=IZEisB3ZTmLSM0n3Xr13i4DVTDI/2+TghkN25jeXYNUGHSSv8RFH/uWVHojiNDAgfJPFeCEOGhmJBHBDVqqmtvoJej8GTHUyRX44BRZ6VtFnnulUgHbUx9CBkIl2Fka+v3yfTpooWMnmhlKQZnYUJf3jK+IjwxTj9rf29BDFSUBN7EKaZB8heycY38+3eT8qRCk5i06H0FdAbkiTJLk7dmOzDgvjBP+arruylAHKGBuYFo4ags8XIvxeyM0L38dMnK/vfLjOMUGyO6azNuKEIk2fQgptLengvkNr4SXO0HfeCdM+c+9iu9FmAy9DvOhJNUOx3iAR/FD+F9wXhAVH+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DS7PR11MB6063.namprd11.prod.outlook.com (2603:10b6:8:76::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.19; Wed, 11 Jun
- 2025 21:22:09 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.8835.018; Wed, 11 Jun 2025
- 21:22:09 +0000
-Date: Wed, 11 Jun 2025 14:23:44 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Summers, Stuart" <stuart.summers@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Auld, 
- Matthew" <matthew.auld@intel.com>, "thomas.hellstrom@linux.intel.com"
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Implement clear VRAM on free
-Message-ID: <aEnz4JgHCpCmXAR8@lstrano-desk.jf.intel.com>
-References: <0c909f7376ab30f8260d83a74b3a908a4e6eb764.camel@intel.com>
- <aEmy8yBp0Ghssyuq@lstrano-desk.jf.intel.com>
- <7ede4886131931de5f9a672fd823d8bac3f374af.camel@intel.com>
- <aEnDbmfEVUEzmk0A@lstrano-desk.jf.intel.com>
- <c99af8b540ab40381b2bc44f78bfc634c27043b6.camel@intel.com>
- <aEnI7t5DTbcfYibp@lstrano-desk.jf.intel.com>
- <bfad428658219de07f8defb4c46b234bdd34c2dc.camel@intel.com>
- <aEnSdmCa64X1OFBP@lstrano-desk.jf.intel.com>
- <aEnTF6zsZXYsARNI@lstrano-desk.jf.intel.com>
- <9abc88885b9bc23dc323d35c343105cdce8ec680.camel@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9abc88885b9bc23dc323d35c343105cdce8ec680.camel@intel.com>
-X-ClientProxiedBy: BY5PR03CA0022.namprd03.prod.outlook.com
- (2603:10b6:a03:1e0::32) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4966E10E73A;
+	Wed, 11 Jun 2025 21:23:04 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25A1E10E737;
+ Wed, 11 Jun 2025 21:23:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS7PR11MB6063:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0e88944b-42cb-4df8-b6a1-08dda92e05f0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?zSgeRNHmVSR8AYMJqzgpz+p4/PRZEeuHoH4g/dBaV3ik1LSpqA0g1YPyUl?=
- =?iso-8859-1?Q?gC5/HmZlrL2/Tp3eR4IiDK1srPT+U/xYwzXoBvX/yKKr0YBVDM1wZOG6A6?=
- =?iso-8859-1?Q?lgDoZOXmuTni5VmWx3vHZ3KJ6ZIVg81v6I6ymdKJlQXwp6RkKpMaNIOZ9V?=
- =?iso-8859-1?Q?hmZqt7AdLrAg5cYJ+7kiB4UNXzV1l50PlLFzY926VEHbCESYgyJ63c/rVn?=
- =?iso-8859-1?Q?1kLT/ePlXt1k0XQLcYLMguO6w1MH6OjJkah+urLmWBzT3Tr/XuGhQqEIWy?=
- =?iso-8859-1?Q?SyaT6DO0snNO0F3L/09L24z/W75hpV30winlwFu3tjJy5ncHJVa93urk7p?=
- =?iso-8859-1?Q?IO4L8oqyj1LbC7ttomRJslAycYjdHuwzflAZ4eX2MheUvbDI6KTL/D70EW?=
- =?iso-8859-1?Q?i6uZIP20uXc/q7REfXxaa9U/ju0RRXJNWHKTjLe9G/EGMO6lU7/ZL7fs6O?=
- =?iso-8859-1?Q?VYCatUnGQOWrGTHEzquZK1bKw7EFTmqP5oXFU3qvhZ6gSH2w0+3AJuq2w+?=
- =?iso-8859-1?Q?yswKdJjDEVWNyGRNFHy/r3mY2RfcKXnlWmvm4VWIooKKCmrsmpLwDaArG8?=
- =?iso-8859-1?Q?2gwbF0DLPb3LCQFl1HlUv037OuhOL/gKZfKQvYcoi3+gC9xSxotxJ34TXs?=
- =?iso-8859-1?Q?tUyliyPYvQKrOH7g5sx59BfabTEgCRYGPXVue+nqStbxgQUgiXHJx0uBh+?=
- =?iso-8859-1?Q?mUhroH5i8DMIQoGK2VOKqFgRzSpXi+yDlKqndgKP+Pqluw9RPbP0j1Ndq+?=
- =?iso-8859-1?Q?8/L4fbW8Pgv7gTltLqqy8+wZvF2zOtj4iBSUXNTm5YnkDFoEUMNmYodtsz?=
- =?iso-8859-1?Q?eSw7NQyFO94CENzGSyqijY5yFCSH2thvjcOfSdMP/21MVE4XD1X36PU4ZH?=
- =?iso-8859-1?Q?6CeB0yilnCzZ8DLGs/UTiiUa+6UuzpBcdS3DM1d0uXGCFo8yrOW+WVbUR2?=
- =?iso-8859-1?Q?IGaeZ+NNdRy325ht8QF6ApLrfAYF4WXX7NRIqkrEpiSoWgFVMTxbdpWjmv?=
- =?iso-8859-1?Q?F97No1i/QgbRuyDQr7x9TfKfBzh6UTseJR3iCXRFCsQrRvkt/Mf4XTtY4T?=
- =?iso-8859-1?Q?xYOw1kAH6aSd3V/yV3OFu/U34+hqpaG1Jp9jTZYaa/2/LDJ+8a0ZORmavN?=
- =?iso-8859-1?Q?IyLadFCxiT6Cw6UE+15WaVeBcKYh3/IRAzi0KvOXWa+RxAcv5bfy1tHi0e?=
- =?iso-8859-1?Q?HIwbInZY2s1qr5dHkjxnOSUjY8qUn6kN36UKzfIJl3Olx/zEMBGrQi+XLd?=
- =?iso-8859-1?Q?SI/IJ14S7jQhVj1CGth1JEH8S2/li/J5F4bhClA94OVRMoCA1uVNOGhboW?=
- =?iso-8859-1?Q?MqhXuOyIgl+Z9re+7ovJMcHC+TwAn4bmS1y6sIOWy2UJEMUCIF8EOkg7sd?=
- =?iso-8859-1?Q?WYg9MLBMVA5EszfNyX1xh6LmAhKkHPNV8Y2CHay6e3Y213/dbbhEq2VTNe?=
- =?iso-8859-1?Q?rGpTl0GsD/yJowXwAZ73zoRu9fSiMwGa0TKny15IGsknTAV+A9cvil4Dv3?=
- =?iso-8859-1?Q?Q=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?YXyYCSWeIBQElLQsmNc/46E9Cgk5M6vOK6wgSVBHzkWIwz/dyfVT6jb8/A?=
- =?iso-8859-1?Q?eXzIPxBmlE0ZsnaFo8VlzYheewh1H1w+pFXNgpxJG3WEhDXXItL52Qrg/A?=
- =?iso-8859-1?Q?8S0EwrUmvKic4E4faJ+PuYn1FFNOgeeLRQE2+A8+a2fGAG8pzthcqvprZG?=
- =?iso-8859-1?Q?GKmQ7gGI9fVxDaP52riRsUxvRHhwNsq3x3/W5/UvjJNtwpcv7wp9e9EUVh?=
- =?iso-8859-1?Q?7oYT13D3cL0iP7as4zhD+qMtHcfxrbotacj0IbSXdORwwZFjToTPdMweQL?=
- =?iso-8859-1?Q?ig5wKEPtABebzzFRGLE45REfSVlCnS21cukaaYd6MnvO6jAOdEAU2U7y3c?=
- =?iso-8859-1?Q?+8XI2kYtW0Fy5DBBv1g6xSNmCG69u5TE4AEFEAa4LOLM912Zr9LPtePDUw?=
- =?iso-8859-1?Q?Jv4NET+dqqo+SC0ClDq3JwuIuU/tT241VS8kpXqGDJ0n+G5C29WZCnV2nT?=
- =?iso-8859-1?Q?JDQiX/3M3IvBnvSlqXLIi6OPHI7n57x+7VDQRE2Qbx/kIYvteUkWOolnSS?=
- =?iso-8859-1?Q?ton5bVP1JsXn/Tt0E8Itlxvc8ZIaA5UiitSDFZA6TKqKP4m6HG1R8xKkz4?=
- =?iso-8859-1?Q?DzOXMDGjnCZ9zBjhZgEX5H7kdP/OOSNT77gWGX5lxjxPlj25lRiQwt6DTQ?=
- =?iso-8859-1?Q?VwQxguQCRUBtgwHabhzn1kY2l+QFLLRa1ij9U2EDl2WWj10nwvt3KFHMzd?=
- =?iso-8859-1?Q?37dfO63ZIUquNI2RGxw6226RCvoa9d0JsAGVhjhMv/cEIIoLge92LMOzuq?=
- =?iso-8859-1?Q?AlUD7DlMOn9eSUbTEVOoQDV3wE9Lb8mD3NQJuvVx4cEvCo/of2CIepAGIW?=
- =?iso-8859-1?Q?DbvLYEJV7ZnZCGHcrFh0/9MOBFq5+mun8Aad/wV6Ahc9/XV3q4Gv0MxvED?=
- =?iso-8859-1?Q?JfnIZgsBnfcVfW38A9gWwLrsDz6q4hXidZfYmhH0TmyfOm7Mh1FRfaSsl2?=
- =?iso-8859-1?Q?+KTLUTjaGU6zhTU2b19jjM+q4GJAkzwZWbA8qNf4YiWChE57wBH2d4DhKi?=
- =?iso-8859-1?Q?EH6Cb24pqJP5I42yJ1oEKU83s5uztzfI6M23g4h2jLVZHiiMzOkyytcfUt?=
- =?iso-8859-1?Q?6NXbirtu76icW7wkyUuCkG+f5v6IXuSmJNBfdKJ9B10yYQVbO+tRx8Gwa5?=
- =?iso-8859-1?Q?bVnkYI7DXxv5RjrvU2+BmNFYVV3YNd+Z+J5M8UOsA/oLh7k84E2vU2z5aA?=
- =?iso-8859-1?Q?4KRAqi1ll4FAhx3WwPDrPhl/khfnvJfLGnLl40Z2UvH9DY+fFYmL6g6bzd?=
- =?iso-8859-1?Q?k5zXII2hqptOSLt0g6Ao8h6p1VNrR8Ih0jc3zcuy9UQLP9MzaU26tThk9+?=
- =?iso-8859-1?Q?8q7ZkHl6LjspOQmKm3ObQFDPqLKxbnGn6xHv1cCh5r+oWpSHMaNnoEbV8I?=
- =?iso-8859-1?Q?fMSvrcpwSlAg77+P6cNL6aPjkVwyzT8AQdQdXiqpnBIElJL5UxhcHqVCgs?=
- =?iso-8859-1?Q?8HnNiIcuS2GmUG5cpuqwP0LMfSpZnEN8Cz7eiZ2cpZ6gDM9GMsqiXnR+ak?=
- =?iso-8859-1?Q?gWKznrR+dlLKkg0taYiVPG/+cCiniMHIQn3nEdWjr/+WS86yn2C6LXT1v9?=
- =?iso-8859-1?Q?ncyR5ovSkZkvotB7RiKYNrSQQC9QvyH8Mg2hd6HQdwl7bLO89VIonw4xWU?=
- =?iso-8859-1?Q?9pfiqEDNbVkrneRRi14yB8VD0d81wN/Ix67RjB6kmUh5Gb3ak4lTENQA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e88944b-42cb-4df8-b6a1-08dda92e05f0
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2025 21:22:09.2722 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Sc0saY1k6lfRvOPD4DyQYzqMYCOsTPCkF6KM6wdDNS18QsebGDK4pQphNOMYX4N4x6IjeCGfB6Y1huEw/6RhPw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6063
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Clean_up_of_GuC_init_data_macr?=
+ =?utf-8?q?os?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 11 Jun 2025 21:23:03 -0000
+Message-ID: <174967698314.69074.5443380911751657133@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250611210553.3756700-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20250611210553.3756700-1-John.C.Harrison@Intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,845 +36,1984 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 11, 2025 at 01:12:13PM -0600, Summers, Stuart wrote:
-> On Wed, 2025-06-11 at 12:03 -0700, Matthew Brost wrote:
-> > On Wed, Jun 11, 2025 at 12:01:10PM -0700, Matthew Brost wrote:
-> > 
-> > One correction...
-> > 
-> > > On Wed, Jun 11, 2025 at 12:23:13PM -0600, Summers, Stuart wrote:
-> > > > On Wed, 2025-06-11 at 11:20 -0700, Matthew Brost wrote:
-> > > > > On Wed, Jun 11, 2025 at 12:05:36PM -0600, Summers, Stuart
-> > > > > wrote:
-> > > > > > On Wed, 2025-06-11 at 10:57 -0700, Matthew Brost wrote:
-> > > > > > > On Wed, Jun 11, 2025 at 11:04:06AM -0600, Summers, Stuart
-> > > > > > > wrote:
-> > > > > > > > On Wed, 2025-06-11 at 09:46 -0700, Matthew Brost wrote:
-> > > > > > > > > On Wed, Jun 11, 2025 at 10:26:44AM -0600, Summers,
-> > > > > > > > > Stuart
-> > > > > > > > > wrote:
-> > > > > > > > > > On Tue, 2025-06-10 at 22:42 -0700, Matthew Brost
-> > > > > > > > > > wrote:
-> > > > > > > > > > > Clearing on free should hide latency of BO clears
-> > > > > > > > > > > on new
-> > > > > > > > > > > user
-> > > > > > > > > > > BO
-> > > > > > > > > > > allocations.
-> > > > > > > > > > 
-> > > > > > > > > > Do you have any test results showing the latency
-> > > > > > > > > > improvement
-> > > > > > > > > > here
-> > > > > > > > > > on
-> > > > > > > > > > high volume submission tests? Also how does this
-> > > > > > > > > > impact at
-> > > > > > > > > > very
-> > > > > > > > > > large
-> > > > > > > > > 
-> > > > > > > > > No performance data yet available. Something we
-> > > > > > > > > definitely
-> > > > > > > > > should
-> > > > > > > > > look
-> > > > > > > > > into and would be curious about the results. FWIW,
-> > > > > > > > > AMDGPU
-> > > > > > > > > implements
-> > > > > > > > > clear on free in a very similar way to this series. 
-> > > > 
-> > > > So back to this one, what is the motivation for this change if we
-> > > > don't
-> > > > have data?
-> > > > 
-> > > 
-> > > It is the assumption that in typical cases (no memory pressure) the
-> > > buddy allocator pool can find a clean VRAM upon allocation
-> > > resulting in
-> > > immediate use of the BO rather than issuing a clear which could
-> > > delay a
-> > > bind IOCTL, an exec IOCTL, or even mmaping the BO (dma-resv
-> > > enforces
-> > > this ordering btw).
-> > > 
-> > > Even if there is memory pressure, it is fairly easy to reason that
-> > > clear-on-free creates a pipeline in which the clear is started
-> > > earlier
-> > > than it would be upon allocation thus reducing the overall delay of
-> > > the
-> > > BO usage after allocation.
-> > > 
-> > > Yes, there might be odd corner of large clear-on-free followed by
-> > > small
-> > > allocation where it might be slightly worse, but overall it seems
-> > > to be
-> > > an easy win - both AMD / Intel have done work to make clear-on-free
-> > > possible.
-> 
-> Ok so basically we think the baseline is going to be better this way (I
-> agree with what you have here) and any corner case will be addressed in
-> the future as they come up (i.e. uAPI).
-> 
-> It does seem like even if we don't have a uAPI we could have a solution
-> that lets the small workload preempt the large workload clear to do its
-> own clear-on-alloc, allowing the small workload to move on to the
-> render/compute engine while the large clearing workload does it's clear
-> using blitter (just as an example). It's an optimization though I
-> agree. And without an explicit user (yet for Xe...) we might just kick
-> that can down the road.
-> 
+== Series Details ==
 
-All of this depends on getting memory - there isn't a concept of large
-or small BOs anywhere in DRM subsystem, or specially clears attached to
-BOs - it just BOs with fences in dma-resv and once all the fences signal
-memory is return to the buddy allocator. Either memory is available or
-it isn't and eviction is triggered.
+Series: Clean up of GuC init data macros
+URL   : https://patchwork.freedesktop.org/series/150120/
+State : success
 
-What you suggest sounds like i915ism that is wildly complex, likely not
-possible with a shared code base, and would never be accepted by our
-maintainers or anyone in the DRM subsystem.
+== Summary ==
 
-> > > 
-> > > > > > > > 
-> > > > > > > > I had a few other comments towards the end of the patch.
-> > > > > > > > Basically
-> > > > > > > > I
-> > > > > > > 
-> > > > > > > I should slow down and read... Repling to all comments
-> > > > > > > here.
-> > > > > > > 
-> > > > > > > > think it would be nice to be able to configure this.
-> > > > > > > > There was
-> > > > > > > > significant testing done here for Aurora in i915 and the
-> > > > > > > > performance
-> > > > > > > > benefits were potentially different based on the types of
-> > > > > > > > workloads
-> > > > > > > > being used. Having user hints for instance might allow us
-> > > > > > > > to
-> > > > > > > > take
-> > > > > > > > advantage of those workload specific use cases.
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > We can wire this mode to the uAPI for BO creation if needed
-> > > > > > > -
-> > > > > > > this
-> > > > > > > patch
-> > > > > > > does clear-on-free blindly for any user BO. Ofc with uAPI
-> > > > > > > we need
-> > > > > > > a
-> > > > > > > UMD
-> > > > > > > user to upstream. We may just want to start with this patch
-> > > > > > > and
-> > > > > > > do
-> > > > > > > that
-> > > > > > > in a follow up if needed as it a minor tweak from a code
-> > > > > > > PoV.
-> > > > > > 
-> > > > > > Actually it would be great if you can add exactly this to the
-> > > > > > commit
-> > > > > > message. Basically we are intentionally doing clear on free
-> > > > > > here
-> > > > > > blindly because we don't currently have a user for some kind
-> > > > > > of
-> > > > > > more
-> > > > > > complicated (from the user perspective) hint system. (just
-> > > > > > kind of
-> > > > > > repeating what you said)
-> > > > > > 
-> > > > > > This way we have some documentation of why we chose this
-> > > > > > route
-> > > > > > other
-> > > > > > than just because amd is doing that.
-> > > > > > 
-> > > > > 
-> > > > > Sure.
-> > > > > 
-> > > > > > > 
-> > > > > > > > > 
-> > > > > > > > > > buffer size submissions and mix of large and small
-> > > > > > > > > > buffer
-> > > > > > > > > > submissions
-> > > > > > > > > > with eviction between different processes?
-> > > > > > > > > > 
-> > > > > > > > > 
-> > > > > > > > > Eviction somewhat orthogonal to this. If an eviction
-> > > > > > > > > occurs
-> > > > > > > > > and
-> > > > > > > > > it is
-> > > > > > > > > a
-> > > > > > > > > new allocation a clear would still have be issued ahead
-> > > > > > > > > handing
-> > > > > > > > > the
-> > > > > > > > > memory over to the new BO, if eviction occurs and paged
-> > > > > > > > > in BO
-> > > > > > > > > has
-> > > > > > > > > backing store (it was previously evicted) we'd just
-> > > > > > > > > copy the
-> > > > > > > > > contents
-> > > > > > > > > into the allocated memory.
-> > > > > > > > 
-> > > > > > > > Good point. I still think we should consider the
-> > > > > > > > scenarios of
-> > > > > > > > having a
-> > > > > > > > large buffer workload running and then clearing, then we
-> > > > > > > > have a
-> > > > > > > > small
-> > > > > > > > buffer workload coming in which now needs to wait on the
-> > > > > > > > clear
-> > > > > > > > from
-> > > > > > > > that large workload. Whereas on clear-on-alloc for the
-> > > > > > > > small
-> > > > > > > > workload,
-> > > > > > > > we can get that submission in quickly and not wait for
-> > > > > > > > that
-> > > > > > > > larger
-> > > > > > > > one.
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > The buddy allocator tries to allocate cleared VRAM first,
-> > > > > > > then
-> > > > > > > falls
-> > > > > > > back to dirty VRAM. Dirty VRAM will still be cleared upon
-> > > > > > > allocation
-> > > > > > > in
-> > > > > > > this patch.
-> > > > > > > 
-> > > > > > > The senerio you describe could result in eviction actually.
-> > > > > > > If a
-> > > > > > > large
-> > > > > > > BO has pending clear - it won't be in either buddy
-> > > > > > > allocator pool
-> > > > > > > -
-> > > > > > > it
-> > > > > > > will be TTM as ghost object (pending free). If the buddy
-> > > > > > > allocator
-> > > > > > > fails
-> > > > > > > an allocation, eviction is triggered with the ghost objects
-> > > > > > > in
-> > > > > > > TTM
-> > > > > > > being
-> > > > > > > tried to allocate first (I think, if I'm misstaing TTM
-> > > > > > > internals
-> > > > > > > my
-> > > > > > > bad). This would as you suggest result in the BO allocation
-> > > > > > > waiting
-> > > > > > > on
-> > > > > > > potentially a large clear to finish even though the
-> > > > > > > allocation is
-> > > > > > > small
-> > > > > > > in size.
-> > > > > > 
-> > > > > > So we have had customers in the past who have wanted explicit
-> > > > > > disabling
-> > > > > > of eviction. I agree in the current implementation that might
-> > > > > > be
-> > > > > > the
-> > > > > 
-> > > > > Explicitly disabling eviction is not an upstream option,
-> > > > > downstream
-> > > > > in
-> > > > > i915 you can do whatever you want as there are no rules. We
-> > > > > have
-> > > > > discussed a pin accounting controler vis cgroups or something
-> > > > > upstream
-> > > > > which may be acceptable. Different discussion though.
-> > > > > 
-> > > > > > case, but in the future we might want such a capability, so
-> > > > > > there
-> > > > > > is
-> > > > > > still a chance of blocking. But again, maybe this can be a
-> > > > > > future
-> > > > > > enhancement as you said.
-> > > > > > 
-> > > > > > > 
-> > > > > > > > I don't think there is necessarily a one-size-fits-all
-> > > > > > > > solution
-> > > > > > > > here
-> > > > > > > > which is why I think the hints are important.
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > Jumping to new uAPI + hints immediately might not be the
-> > > > > > > best
-> > > > > > > approach,
-> > > > > > > but as I stated this is minor thing to add if needed.
-> > > > > > > 
-> > > > > > > > Thanks,
-> > > > > > > > Stuart
-> > > > > > > > 
-> > > > > > > > > 
-> > > > > > > > > Matt
-> > > > > > > > > 
-> > > > > > > > > > > 
-> > > > > > > > > > > Implemented via calling xe_migrate_clear in release
-> > > > > > > > > > > notify
-> > > > > > > > > > > and
-> > > > > > > > > > > updating
-> > > > > > > > > > > iterator in xe_migrate_clear to skip cleared buddy
-> > > > > > > > > > > blocks.
-> > > > > > > > > > > Only
-> > > > > > > > > > > user
-> > > > > > > > > > > BOs
-> > > > > > > > > > > cleared in release notify as kernel BOs could still
-> > > > > > > > > > > be in
-> > > > > > > > > > > use
-> > > > > > > > > > > (e.g.,
-> > > > > > > > > > > PT
-> > > > > > > > > > > BOs need to wait for dma-resv to be idle).
-> > > > > > > > > > > 
-> > > > > > > > > > > Signed-off-by: Matthew Brost
-> > > > > > > > > > > <matthew.brost@intel.com>
-> > > > > > > > > > > ---
-> > > > > > > > > > >  drivers/gpu/drm/xe/xe_bo.c           | 47
-> > > > > > > > > > > ++++++++++++++++++++++++++++
-> > > > > > > > > > >  drivers/gpu/drm/xe/xe_migrate.c      | 14 ++++++--
-> > > > > > > > > > > -
-> > > > > > > > > > >  drivers/gpu/drm/xe/xe_migrate.h      |  1 +
-> > > > > > > > > > >  drivers/gpu/drm/xe/xe_res_cursor.h   | 26
-> > > > > > > > > > > +++++++++++++++
-> > > > > > > > > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  5 ++-
-> > > > > > > > > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  6 ++++
-> > > > > > > > > > >  6 files changed, 94 insertions(+), 5 deletions(-)
-> > > > > > > > > > > 
-> > > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > > index 4e39188a021a..74470f4d418d 100644
-> > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > > @@ -1434,6 +1434,51 @@ static bool
-> > > > > > > > > > > xe_ttm_bo_lock_in_destructor(struct
-> > > > > > > > > > > ttm_buffer_object
-> > > > > > > > > > > *ttm_bo)
-> > > > > > > > > > >         return locked;
-> > > > > > > > > > >  }
-> > > > > > > > > > >  
-> > > > > > > > > > > +static void xe_ttm_bo_release_clear(struct
-> > > > > > > > > > > ttm_buffer_object
-> > > > > > > > > > > *ttm_bo)
-> > > > > > > > > > > +{
-> > > > > > > > > > > +       struct xe_device *xe =
-> > > > > > > > > > > ttm_to_xe_device(ttm_bo-
-> > > > > > > > > > > > bdev);
-> > > > > > > > > > > +       struct dma_fence *fence;
-> > > > > > > > > > > +       int err, idx;
-> > > > > > > > > > > +
-> > > > > > > > > > > +       xe_bo_assert_held(ttm_to_xe_bo(ttm_bo));
-> > > > > > > > > > > +
-> > > > > > > > > > > +       if (ttm_bo->type != ttm_bo_type_device)
-> > > > > > > > > > > +               return;
-> > > > > > > > > > > +
-> > > > > > > > > > > +       if (xe_device_wedged(xe))
-> > > > > > > > > > > +               return;
-> > > > > > > > > > > +
-> > > > > > > > > > > +       if (!ttm_bo->resource ||
-> > > > > > > > > > > !mem_type_is_vram(ttm_bo-
-> > > > > > > > > > > > resource-
-> > > > > > > > > > > > mem_type))
-> > > > > > > > > > > +               return;
-> > > > > > > > > > > +
-> > > > > > > > > > > +       if (!drm_dev_enter(&xe->drm, &idx))
-> > > > > > > > > > > +               return;
-> > > > > > > > > > > +
-> > > > > > > > > > > +       if (!xe_pm_runtime_get_if_active(xe))
-> > > > > > > > > > > +               goto unbind;
-> > > > > > > > > > > +
-> > > > > > > > > > > +       err = dma_resv_reserve_fences(&ttm_bo-
-> > > > > > > > > > > > base._resv,
-> > > > > > > > > > > 1);
-> > > > > > > > > > > +       if (err)
-> > > > > > > > > > > +               goto put_pm;
-> > > > > > > > > > > +
-> > > > > > > > > > > +       fence =
-> > > > > > > > > > > xe_migrate_clear(mem_type_to_migrate(xe,
-> > > > > > > > > > > ttm_bo-
-> > > > > > > > > > > > resource->mem_type),
-> > > > > > > > > > > +                               
-> > > > > > > > > > > ttm_to_xe_bo(ttm_bo),
-> > > > > > > > > > > ttm_bo-
-> > > > > > > > > > > > resource,
-> > > > > > > > > > > +                               
-> > > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL |
-> > > > > > > > > > > +                               
-> > > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY);
-> > > > > > > > > > > +       if (XE_WARN_ON(IS_ERR(fence)))
-> > > > > > > > > > > +               goto put_pm;
-> > > > > > > > > > > +
-> > > > > > > > > > > +       xe_ttm_vram_mgr_resource_set_cleared(ttm_bo
-> > > > > > > > > > > -
-> > > > > > > > > > > > resource);
-> > > > > > > > > > > +       dma_resv_add_fence(&ttm_bo->base._resv,
-> > > > > > > > > > > fence,
-> > > > > > > > > > > +                          DMA_RESV_USAGE_KERNEL);
-> > > > > > > > > > > +       dma_fence_put(fence);
-> > > > > > > > > > > +
-> > > > > > > > > > > +put_pm:
-> > > > > > > > > > > +       xe_pm_runtime_put(xe);
-> > > > > > > > > > > +unbind:
-> > > > > > > > > > > +       drm_dev_exit(idx);
-> > > > > > > > > > > +}
-> > > > > > > > > > > +
-> > > > > > > > > > >  static void xe_ttm_bo_release_notify(struct
-> > > > > > > > > > > ttm_buffer_object
-> > > > > > > > > > > *ttm_bo)
-> > > > > > > > > > >  {
-> > > > > > > > > > >         struct dma_resv_iter cursor;
-> > > > > > > > > > > @@ -1478,6 +1523,8 @@ static void
-> > > > > > > > > > > xe_ttm_bo_release_notify(struct
-> > > > > > > > > > > ttm_buffer_object *ttm_bo)
-> > > > > > > > > > >         }
-> > > > > > > > > > >         dma_fence_put(replacement);
-> > > > > > > > > > >  
-> > > > > > > > > > > +       xe_ttm_bo_release_clear(ttm_bo);
-> > > > > > > > > > > +
-> > > > > > > > > > >         dma_resv_unlock(ttm_bo->base.resv);
-> > > > > > > > > > >  }
-> > > > > > > > > > >  
-> > > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > > > index 8f8e9fdfb2a8..39d7200cb366 100644
-> > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > > > @@ -1063,7 +1063,7 @@ struct dma_fence
-> > > > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > > > xe_migrate *m,
-> > > > > > > > > > >         struct xe_gt *gt = m->tile->primary_gt;
-> > > > > > > > > > >         struct xe_device *xe = gt_to_xe(gt);
-> > > > > > > > > > >         bool clear_only_system_ccs = false;
-> > > > > > > > > > > -       struct dma_fence *fence = NULL;
-> > > > > > > > > > > +       struct dma_fence *fence =
-> > > > > > > > > > > dma_fence_get_stub();
-> > > > > > > > > > >         u64 size = bo->size;
-> > > > > > > > > > >         struct xe_res_cursor src_it;
-> > > > > > > > > > >         struct ttm_resource *src = dst;
-> > > > > > > > > > > @@ -1075,10 +1075,13 @@ struct dma_fence
-> > > > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > > > xe_migrate *m,
-> > > > > > > > > > >         if (!clear_bo_data && clear_ccs &&
-> > > > > > > > > > > !IS_DGFX(xe))
-> > > > > > > > > > >                 clear_only_system_ccs = true;
-> > > > > > > > > > >  
-> > > > > > > > > > > -       if (!clear_vram)
-> > > > > > > > > > > +       if (!clear_vram) {
-> > > > > > > > > > >                 xe_res_first_sg(xe_bo_sg(bo), 0,
-> > > > > > > > > > > bo-
-> > > > > > > > > > > > size,
-> > > > > > > > > > > &src_it);
-> > > > > > > > > > > -       else
-> > > > > > > > > > > +       } else {
-> > > > > > > > > > >                 xe_res_first(src, 0, bo->size,
-> > > > > > > > > > > &src_it);
-> > > > > > > > > > > +               if (!(clear_flags &
-> > > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
-> > > > > > > > > > > +                       size -=
-> > > > > > > > > > > xe_res_next_dirty(&src_it);
-> > > > > > > > > > > +       }
-> > > > > > > > > > >  
-> > > > > > > > > > >         while (size) {
-> > > > > > > > > > >                 u64 clear_L0_ofs;
-> > > > > > > > > > > @@ -1125,6 +1128,9 @@ struct dma_fence
-> > > > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > > > xe_migrate *m,
-> > > > > > > > > > >                         emit_pte(m, bb,
-> > > > > > > > > > > clear_L0_pt,
-> > > > > > > > > > > clear_vram,
-> > > > > > > > > > > clear_only_system_ccs,
-> > > > > > > > > > >                                  &src_it, clear_L0,
-> > > > > > > > > > > dst);
-> > > > > > > > > > >  
-> > > > > > > > > > > +               if (clear_vram && !(clear_flags &
-> > > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
-> > > > > > > > > > > +                       size -=
-> > > > > > > > > > > xe_res_next_dirty(&src_it);
-> > > > > > > > > > > +
-> > > > > > > > > > >                 bb->cs[bb->len++] =
-> > > > > > > > > > > MI_BATCH_BUFFER_END;
-> > > > > > > > > > >                 update_idx = bb->len;
-> > > > > > > > > > >  
-> > > > > > > > > > > @@ -1146,7 +1152,7 @@ struct dma_fence
-> > > > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > > > xe_migrate *m,
-> > > > > > > > > > >                 }
-> > > > > > > > > > >  
-> > > > > > > > > > >                 xe_sched_job_add_migrate_flush(job,
-> > > > > > > > > > > flush_flags);
-> > > > > > > > > > > -               if (!fence) {
-> > > > > > > > > > > +               if (fence == dma_fence_get_stub())
-> > > > > > > > > > > {
-> > > > > > > > > > >                         /*
-> > > > > > > > > > >                          * There can't be anything
-> > > > > > > > > > > userspace
-> > > > > > > > > > > related
-> > > > > > > > > > > at this
-> > > > > > > > > > >                          * point, so we just need
-> > > > > > > > > > > to
-> > > > > > > > > > > respect
-> > > > > > > > > > > any
-> > > > > > > > > > > potential move
-> > > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > > > index fb9839c1bae0..58a7b747ef11 100644
-> > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > > > @@ -118,6 +118,7 @@ int
-> > > > > > > > > > > xe_migrate_access_memory(struct
-> > > > > > > > > > > xe_migrate
-> > > > > > > > > > > *m, struct xe_bo *bo,
-> > > > > > > > > > >  
-> > > > > > > > > > >  #define
-> > > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_BO_DATA          BIT(0)
-> > > > > > > > > > >  #define
-> > > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_CCS_DATA         BIT(1)
-> > > > > > > > > > > +#define
-> > > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY             BIT(2)
-> > > > > > > > > > >  #define
-> > > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL     (XE_MIGRATE_CLEAR_FL
-> > > > > > > > > > > AG_BO_
-> > > > > > > > > > > DATA
-> > > > > > > > > > > > \
-> > > > > > > > > > >                                         XE_MIGRATE_
-> > > > > > > > > > > CLEAR_
-> > > > > > > > > > > FLAG
-> > > > > > > > > > > _CCS
-> > > > > > > > > > > _DAT
-> > > > > > > > > > > A)
-> > > > > > > > > > >  struct dma_fence *xe_migrate_clear(struct
-> > > > > > > > > > > xe_migrate *m,
-> > > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > > > b/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > > > index d1a403cfb628..630082e809ba 100644
-> > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > > > @@ -315,6 +315,32 @@ static inline void
-> > > > > > > > > > > xe_res_next(struct
-> > > > > > > > > > > xe_res_cursor *cur, u64 size)
-> > > > > > > > > > >         }
-> > > > > > > > > > >  }
-> > > > > > > > > > >  
-> > > > > > > > > > > +/**
-> > > > > > > > > > > + * xe_res_next_dirty - advance the cursor to next
-> > > > > > > > > > > dirty
-> > > > > > > > > > > buddy
-> > > > > > > > > > > block
-> > > > > > > > > > > + *
-> > > > > > > > > > > + * @cur: the cursor to advance
-> > > > > > > > > > > + *
-> > > > > > > > > > > + * Move the cursor until dirty buddy block is
-> > > > > > > > > > > found.
-> > > > > > > > > > > + *
-> > > > > > > > > > > + * Return: Number of bytes cursor has been
-> > > > > > > > > > > advanced
-> > > > > > > > > > > + */
-> > > > > > > > > > > +static inline u64 xe_res_next_dirty(struct
-> > > > > > > > > > > xe_res_cursor
-> > > > > > > > > > > *cur)
-> > > > > > > > > > > +{
-> > > > > > > > > > > +       struct drm_buddy_block *block = cur->node;
-> > > > > > > > > > > +       u64 bytes = 0;
-> > > > > > > > > > > +
-> > > > > > > > > > > +       XE_WARN_ON(cur->mem_type != XE_PL_VRAM0 &&
-> > > > > > > > > > > +                  cur->mem_type != XE_PL_VRAM1);
-> > > > > > > > > > 
-> > > > > > > > > > What if we have more than just these two? Maybe check
-> > > > > > > > > > against
-> > > > > > > > > > the
-> > > > > > > > > > mask
-> > > > > > > > > > instead.
-> > > > > > > 
-> > > > > > > Sure. I think we do this test in a couple of other places
-> > > > > > > in the
-> > > > > > > driver too
-> > > > > > > and clean this up in seperate patch first.
-> > > > > > 
-> > > > > > No problem, just wanted to call it out. We can do this
-> > > > > > later..
-> > > > > > 
-> > > > > > > 
-> > > > > > > > > > 
-> > > > > > > > > > > +
-> > > > > > > > > > > +       while (cur->remaining &&
-> > > > > > > > > > > drm_buddy_block_is_clear(block))
-> > > > > > > > > > > {
-> > > > > > > > > > > +               bytes += cur->size;
-> > > > > > > > > > > +               xe_res_next(cur, cur->size);
-> > > > > > > > > > > +               block = cur->node;
-> > > > > > > > > > > +       }
-> > > > > > > > > > > +
-> > > > > > > > > > > +       return bytes;
-> > > > > > > > > > > +}
-> > > > > > > > > > > +
-> > > > > > > > > > >  /**
-> > > > > > > > > > >   * xe_res_dma - return dma address of cursor at
-> > > > > > > > > > > current
-> > > > > > > > > > > position
-> > > > > > > > > > >   *
-> > > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > > > index 9e375a40aee9..120046941c1e 100644
-> > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > > > @@ -84,6 +84,9 @@ static int
-> > > > > > > > > > > xe_ttm_vram_mgr_new(struct
-> > > > > > > > > > > ttm_resource_manager *man,
-> > > > > > > > > > >         if (place->fpfn || lpfn != man->size >>
-> > > > > > > > > > > PAGE_SHIFT)
-> > > > > > > > > > >                 vres->flags |=
-> > > > > > > > > > > DRM_BUDDY_RANGE_ALLOCATION;
-> > > > > > > > > > >  
-> > > > > > > > > > > +       if (tbo->type == ttm_bo_type_device)
-> > > > > > > > > > > +               vres->flags |=
-> > > > > > > > > > > DRM_BUDDY_CLEAR_ALLOCATION;
-> > > > > > > > > > > +
-> > > > > > > > > > >         if (WARN_ON(!vres->base.size)) {
-> > > > > > > > > > >                 err = -EINVAL;
-> > > > > > > > > > >                 goto error_fini;
-> > > > > > > > > > > @@ -187,7 +190,7 @@ static void
-> > > > > > > > > > > xe_ttm_vram_mgr_del(struct
-> > > > > > > > > > > ttm_resource_manager *man,
-> > > > > > > > > > >         struct drm_buddy *mm = &mgr->mm;
-> > > > > > > > > > >  
-> > > > > > > > > > >         mutex_lock(&mgr->lock);
-> > > > > > > > > > > -       drm_buddy_free_list(mm, &vres->blocks, 0);
-> > > > > > > > > > > +       drm_buddy_free_list(mm, &vres->blocks,
-> > > > > > > > > > > vres-
-> > > > > > > > > > > > flags);
-> > > > > > > > > > >         mgr->visible_avail += vres-
-> > > > > > > > > > > >used_visible_size;
-> > > > > > > > > > >         mutex_unlock(&mgr->lock);
-> > > > > > > > > > >  
-> > > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > > > index cc76050e376d..dfc0e6890b3c 100644
-> > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > > > @@ -36,6 +36,12 @@
-> > > > > > > > > > > to_xe_ttm_vram_mgr_resource(struct
-> > > > > > > > > > > ttm_resource
-> > > > > > > > > > > *res)
-> > > > > > > > > > >         return container_of(res, struct
-> > > > > > > > > > > xe_ttm_vram_mgr_resource,
-> > > > > > > > > > > base);
-> > > > > > > > > > >  }
-> > > > > > > > > > >  
-> > > > > > > > > > > +static inline void
-> > > > > > > > > > > +xe_ttm_vram_mgr_resource_set_cleared(struct
-> > > > > > > > > > > ttm_resource
-> > > > > > > > > > > *res)
-> > > > > > > > > > > +{
-> > > > > > > > > > > +       to_xe_ttm_vram_mgr_resource(res)->flags |=
-> > > > > > > > > > > DRM_BUDDY_CLEARED;
-> > > > > > > > > > 
-> > > > > > > > > > I see the amd driver is doing the same thing here.
-> > > > > > > > > > Maybe we
-> > > > > > > > > > can
-> > > > > > > > > > pull
-> > > > > > > > > > this in based on the flags given at the resource
-> > > > > > > > > > initialization
-> > > > > > > > > > so
-> > > > > > > > > > we
-> > > > > > > > > > can potentially tweak this for different scenarios
-> > > > > > > > > > (when to
-> > > > > > > > > > free)
-> > > > > > > > > > and
-> > > > > > > > > > converge what we're doing here and what amd is doing
-> > > > > > > > > > into
-> > > > > > > > > > the
-> > > > > > > > > > common
-> > > > > > > > > > code.
-> > > > > > > > > > 
-> > > > > > > 
-> > > > > > > AMD has a flag, which is the same test in this series as
-> > > > > > > 'type ==
-> > > > > > > ttm_bo_type_device'. AMD blindly sets this flag on user BO
-> > > > > > > creation
-> > > > > > > but
-> > > > > > > as I stated above we could wire this to uAPI if needed.
-> 
-> Sorry I didn't fully understand the response here. So I was saying we
+INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rv3029c2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rv3032.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rv8803.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx4581.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx6110.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rv3029c2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rv3032.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rv8803.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx4581.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx8010.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx6110.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx8025.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx8111.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx8581.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx8010.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx8025.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx8111.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-rx8581.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-s35390a.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-sd3078.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-stk17ta8.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-tps6586x.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-s35390a.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-sd3078.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-stk17ta8.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-tps6594.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-tps6586x.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-tps65910.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-wilco-ec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-wm831x.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-wm8350.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-tps6594.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-tps65910.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-wilco-ec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-wm831x.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-wm8350.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-x1205.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/algos/i2c-algo-bit.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/algos/i2c-algo-pca.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-scmi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/rtc/rtc-x1205.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/algos/i2c-algo-bit.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/algos/i2c-algo-pca.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ccgx-ucsi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ali1535.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-scmi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ali1563.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ali15x3.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ccgx-ucsi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ali1535.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ali1563.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ali15x3.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-amd756.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-amd8111.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-cht-wc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-i801.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-amd756.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-amd8111.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-cht-wc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-isch.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-i801.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ismt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-nforce2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-nvidia-gpu.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-piix4.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-isch.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ismt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-nforce2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-nvidia-gpu.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-piix4.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-sis5595.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-sis630.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-sis96x.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-sis5595.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-sis630.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-via.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-sis96x.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-viapro.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-viai2c-zhaoxin.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-viai2c-common.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-via.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-amd-mp2-pci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-viapro.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-viai2c-zhaoxin.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-viai2c-common.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-amd-mp2-plat.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-cbus-gpio.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-amd-mp2-pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-designware-pci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-amd-mp2-plat.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-cbus-gpio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-gpio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-kempld.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-designware-pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ocores.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-pca-platform.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-gpio.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-kempld.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-simtec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ocores.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-pca-platform.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-xiic.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-diolan-u2c.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-dln2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-simtec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ljca.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-xiic.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-diolan-u2c.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-dln2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-cp2615.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-ljca.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-parport.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-mchp-pci1xxxx.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-robotfuzz-osif.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-cp2615.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-parport.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-mchp-pci1xxxx.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-taos-evm.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-robotfuzz-osif.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-tiny-usb.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-viperboard.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-cros-ec-tunnel.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-taos-evm.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-tiny-usb.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-viperboard.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-cros-ec-tunnel.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-mlxcpld.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-virtio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-gpio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-ltc4306.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-mlxcpld.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/busses/i2c-virtio.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-gpio.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-ltc4306.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-mlxcpld.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-pca9541.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-pca954x.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-reg.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/i2c-smbus.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-mlxcpld.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-pca9541.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-pca954x.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/muxes/i2c-mux-reg.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/i2c-smbus.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/i2c-mux.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/i2c-stub.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i3c/i3c.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i3c/master/i3c-master-cdns.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/i2c-mux.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i2c/i2c-stub.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i3c/i3c.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i3c/master/dw-i3c-master.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i3c/master/i3c-master-cdns.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i3c/master/svc-i3c-master.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i3c/master/mipi-i3c-hci/mipi-i3c-hci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-adstech-dvb-t-pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-alink-dtu-m.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i3c/master/dw-i3c-master.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i3c/master/svc-i3c-master.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/i3c/master/mipi-i3c-hci/mipi-i3c-hci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-adstech-dvb-t-pci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-alink-dtu-m.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-anysee.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-apac-viewcomp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-astrometa-t2hybrid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-asus-pc39.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-anysee.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-apac-viewcomp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-astrometa-t2hybrid.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-asus-pc39.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-asus-ps3-100.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-ati-tv-wonder-hd-600.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-ati-x10.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-a16d.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-asus-ps3-100.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-ati-tv-wonder-hd-600.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-ati-x10.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-cardbus.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-a16d.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-dvbt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-m135a.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-m733a-rm-k6.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-cardbus.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-dvbt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-m135a.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-m733a-rm-k6.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-rm-ks.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avertv-303.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-azurewave-ad-tu700.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avermedia-rm-ks.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-beelink-gs1.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-avertv-303.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-azurewave-ad-tu700.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-beelink-mxiii.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-behold-columbus.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-behold.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-beelink-gs1.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-budget-ci-old.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-beelink-mxiii.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-behold-columbus.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-behold.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-cinergy-1400.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-budget-ci-old.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-cinergy.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-ct-90405.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-cinergy-1400.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-d680-dmb.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-cinergy.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-ct-90405.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-delock-61959.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dib0700-nec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dib0700-rc5.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-d680-dmb.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-digitalnow-tinytwin.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-delock-61959.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dib0700-nec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dib0700-rc5.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-digittrade.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-digitalnow-tinytwin.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dm1105-nec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvb-t.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-digittrade.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvbt-pro.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dm1105-nec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvb-t.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dreambox.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dtt200u.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dvbsky.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dntv-live-dvbt-pro.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dvico-mce.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dreambox.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dtt200u.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dvbsky.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dvico-portable.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dvico-mce.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-em-terratec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-encore-enltv2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-encore-enltv-fm53.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-dvico-portable.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-em-terratec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-encore-enltv2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-encore-enltv.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-encore-enltv-fm53.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-evga-indtube.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-eztv.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-flydvb.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-encore-enltv.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-evga-indtube.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-eztv.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-flydvb.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-flyvideo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-fusionhdtv-mce.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-gadmei-rm008z.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-geekbox.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-flyvideo.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-fusionhdtv-mce.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-gadmei-rm008z.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-geekbox.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-genius-tvgo-a11mce.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-gotview7135.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-hauppauge.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-hisi-poplar.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-genius-tvgo-a11mce.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-gotview7135.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-hauppauge.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-hisi-poplar.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-hisi-tv-demo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-imon-mce.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-imon-pad.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-imon-rsc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-hisi-tv-demo.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-imon-mce.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-imon-pad.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-imon-rsc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-iodata-bctv7e.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-it913x-v1.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-it913x-v2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-kaiomy.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-iodata-bctv7e.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-it913x-v1.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-it913x-v2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-kaiomy.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-khadas.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-khamsin.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-kworld-315u.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-kworld-pc150u.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-khadas.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-khamsin.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-kworld-315u.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-kworld-pc150u.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-kworld-plus-tv-analog.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-leadtek-y04g0051.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-lme2510.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-manli.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-kworld-plus-tv-analog.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-leadtek-y04g0051.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-lme2510.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-manli.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-mecool-kiii-pro.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-mecool-kii-pro.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-medion-x10-digitainer.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-medion-x10.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-mecool-kiii-pro.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-mecool-kii-pro.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-medion-x10-digitainer.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-medion-x10.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-medion-x10-or2x.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-minix-neo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-msi-digivox-iii.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-msi-digivox-ii.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-medion-x10-or2x.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-minix-neo.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-msi-digivox-iii.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-msi-digivox-ii.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere-plus.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-mygica-utv3.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-nebula.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-msi-tvanywhere-plus.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-mygica-utv3.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-nebula.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-nec-terratec-cinergy-xs.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-norwood.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-npgtech.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-odroid.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-nec-terratec-cinergy-xs.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-norwood.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-npgtech.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-odroid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pctv-sedna.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pine64.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pinnacle-color.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pinnacle-grey.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pctv-sedna.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pine64.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pinnacle-color.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pinnacle-grey.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pixelview-002t.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pixelview-mk12.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pixelview-new.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pixelview-002t.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pixelview-mk12.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pixelview-new.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pixelview.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-powercolor-real-angel.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-proteus-2309.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-purpletv.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pv951.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pixelview.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-powercolor-real-angel.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-proteus-2309.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-purpletv.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-pv951.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-rc6-mce.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-real-audio-220-32-keys.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-reddo.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-rc6-mce.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-real-audio-220-32-keys.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-siemens-gigaset-rc20.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-reddo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-snapstream-firefly.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-streamzap.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-su3000.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tanix-tx3mini.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-siemens-gigaset-rc20.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-snapstream-firefly.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-streamzap.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-su3000.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tanix-tx5max.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tanix-tx3mini.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tbs-nec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-technisat-ts35.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-technisat-usb2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tanix-tx5max.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tbs-nec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-technisat-ts35.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-technisat-usb2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-c-pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-s2-hd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-xs.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-terratec-slim-2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-c-pci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-s2-hd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-terratec-cinergy-xs.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-terratec-slim.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-terratec-slim-2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tevii-nec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tivo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand-02.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-terratec-slim.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tevii-nec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tivo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand-02.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-trekstor.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tt-1500.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-twinhan1027.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-total-media-in-hand.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-trekstor.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-tt-1500.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-twinhan1027.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-vega-s9x.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-videomate-m1f.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-videomate-s350.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-vega-s9x.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-videomate-m1f.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-videomate-tv-pvr.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-videostrong-kii-pro.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-videomate-s350.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-wetek-hub.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-videomate-tv-pvr.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-videostrong-kii-pro.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-wetek-play2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-winfast.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-wetek-hub.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-winfast-usbii-deluxe.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-x96max.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-wetek-play2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-winfast.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-xbox-360.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-winfast-usbii-deluxe.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-xbox-dvd.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/kallsyms
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-x96max.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/sorttable
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-zx-irdec.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/asn1_compiler
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-xbox-360.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-xbox-dvd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/rc-core.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/keymaps/rc-zx-irdec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-imon-decoder.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-jvc-decoder.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/basic/fixdep
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/rc-core.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/genksyms/genksyms.o
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-mce_kbd-decoder.ko
+  YACC    debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/genksyms/parse.tab.[ch]
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-imon-decoder.ko
+  LEX     debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/genksyms/lex.lex.c
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-jvc-decoder.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-nec-decoder.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-rc5-decoder.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-mce_kbd-decoder.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-rc6-decoder.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-nec-decoder.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-rcmm-decoder.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-rc5-decoder.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-sanyo-decoder.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-rc6-decoder.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-sharp-decoder.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-rcmm-decoder.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-sony-decoder.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-sanyo-decoder.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-xmp-decoder.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/selinux/mdp/mdp
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-sharp-decoder.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-sony-decoder.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ene_ir.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/sign-file
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir-xmp-decoder.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/insert-sys-cert
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/fintek-cir.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/mod/modpost.o
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/igorplugusb.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/mod/file2alias.o
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ene_ir.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/mod/sumversion.o
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/iguanair.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/mod/symsearch.o
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/fintek-cir.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/imon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/igorplugusb.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/imon_raw.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/iguanair.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ite-cir.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/imon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/imon_raw.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/mceusb.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ite-cir.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/nuvoton-cir.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/redrat3.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/mceusb.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/serial_ir.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/nuvoton-cir.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/redrat3.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/streamzap.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir_toy.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/serial_ir.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ttusbir.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/streamzap.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ir_toy.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/winbond-cir.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ttusbir.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ati_remote.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/rc-loopback.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/winbond-cir.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/xbox_remote.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/ati_remote.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/rc-loopback.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/core/cec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/i2c/ch7322.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/rc/xbox_remote.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/i2c/tda9950.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/i2c/ch7322.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/core/cec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/platform/cros-ec/cros-ec-cec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/i2c/tda9950.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/platform/cec-gpio/cec-gpio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/platform/seco/seco-cec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/usb/pulse8/pulse8-cec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/platform/cros-ec/cros-ec-cec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/usb/rainshadow/rainshadow-cec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/platform/cec-gpio/cec-gpio.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/platform/seco/seco-cec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/usb/pulse8/pulse8-cec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/pps/clients/pps-ldisc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/media/cec/usb/rainshadow/rainshadow-cec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/pps/clients/pps_parport.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/pps/clients/pps-gpio.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/pps/clients/pps-ldisc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/pps/clients/pps_parport.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_ines.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/pps/clients/pps-gpio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_kvm.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_vmclock.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_clockmatrix.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_ines.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_kvm.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_vmclock.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_fc3.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_clockmatrix.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_idt82p33.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_mock.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_fc3.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_idt82p33.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_vmw.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_mock.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_ocp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/reset/atc260x-poweroff.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_vmw.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ip5xxx_power.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ptp/ptp_ocp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/reset/atc260x-poweroff.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max8925_power.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/wm831x_backup.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ip5xxx_power.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/wm831x_power.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max8925_power.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/wm831x_backup.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/wm8350_power.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/wm831x_power.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/test_power.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/88pm860x_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/wm8350_power.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/adp5061.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/test_power.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/88pm860x_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/cw2015_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ds2760_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/adp5061.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ds2780_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/cw2015_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ds2760_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ds2781_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ds2780_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ds2782_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ltc2941-battery-gauge.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ds2781_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/goldfish_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ds2782_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ltc2941-battery-gauge.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/sbs-battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/sbs-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/goldfish_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/sbs-manager.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/sbs-battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/sbs-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq27xxx_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq27xxx_battery_i2c.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/sbs-manager.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq27xxx_battery_hdq.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/da9030_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/da9052-battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq27xxx_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq27xxx_battery_i2c.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq27xxx_battery_hdq.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/da9030_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/da9052-battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/da9150-fg.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max17042_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max1720x_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max1721x_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/da9150-fg.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max17042_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max1720x_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max1721x_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/rt5033_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/rt5033_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/rt9455_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/rt9467-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/rt9471.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/rt5033_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/rt5033_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/rt9455_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/rt9467-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/rt9471.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/88pm860x_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/isp1704_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max8903_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/lp8727_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/88pm860x_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/isp1704_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max8903_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/lp8727_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/gpio-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/lt3651-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ltc4162-l-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max14577_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/gpio-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/lt3651-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ltc4162-l-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max14577_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max77693_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max77976_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max8997_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max8998_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/mt6360_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max77693_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max77976_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max8997_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/max8998_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq2415x_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/mt6360_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq24190_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq24257_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq24735-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq2415x_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq24190_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq24257_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq24735-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq2515x_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq25890_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq25980_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq256xx_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/smb347-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq2515x_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq25890_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq25980_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bq256xx_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/smb347-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/tps65090-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/axp288_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/cros_charge-control.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/cros_usbpd-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/tps65090-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/axp288_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/cros_charge-control.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/cros_usbpd-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/cros_peripheral_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bd99954-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/wilco-charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/surface_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/surface_charger.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/genksyms/parse.tab.o
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/cros_peripheral_charger.ko
+  HOSTCC  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/genksyms/lex.lex.o
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/bd99954-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/wilco-charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/surface_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/surface_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ug3105_battery.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/mm8013.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/sequencing/pwrseq-core.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/hwmon-vid.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/ug3105_battery.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/supply/mm8013.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/power/sequencing/pwrseq-core.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/hwmon-vid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/acpi_power_meter.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asus_atk0110.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asus-ec-sensors.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asus_wmi_sensors.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/hp-wmi-sensors.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/acpi_power_meter.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asus_atk0110.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asus-ec-sensors.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asus_wmi_sensors.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asb100.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/hp-wmi-sensors.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83627hf.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83773g.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83792d.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asb100.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83627hf.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83773g.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83792d.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83793.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83795.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83781d.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83791d.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/abituguru.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83793.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83795.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83781d.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83791d.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/abituguru.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/abituguru3.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ad7314.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ad7414.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ad7418.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adc128d818.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/abituguru3.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ad7314.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ad7414.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ad7418.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adc128d818.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adcxx.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm1025.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm1026.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm1029.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adcxx.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm1025.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm1026.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm1029.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm1031.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm1177.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm9240.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ads7828.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ads7871.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm1031.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm1177.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adm9240.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ads7828.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ads7871.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7x10.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7310.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7410.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7411.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7x10.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7410.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7310.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7411.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7462.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7470.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7475.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/aht10.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7462.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7470.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/adt7475.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/aht10.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/applesmc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/aquacomputer_d5next.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/as370-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asc7621.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asus_rog_ryujin.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/atxp1.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/applesmc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/aquacomputer_d5next.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/as370-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asc7621.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/asus_rog_ryujin.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/atxp1.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/axi-fan-control.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/chipcap2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/coretemp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/corsair-cpro.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/axi-fan-control.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/chipcap2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/coretemp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/corsair-cpro.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/corsair-psu.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/cros_ec_hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/da9052-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/da9055-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/corsair-psu.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/cros_ec_hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/da9052-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/da9055-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/dell-smm-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/dme1737.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/drivetemp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ds620.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/dell-smm-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/dme1737.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/drivetemp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ds620.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ds1621.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/emc1403.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/emc2103.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/emc2305.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/emc6w201.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ds1621.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/emc1403.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/emc2103.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/emc2305.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/emc6w201.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/f71805f.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/f71882fg.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/f75375s.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/fam15h_power.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/f71805f.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/f71882fg.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/f75375s.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/fam15h_power.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/fschmd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ftsteutates.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/g760a.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/g762.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/gigabyte_waterforce.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/gl518sm.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/fschmd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ftsteutates.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/g760a.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/g762.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/gigabyte_waterforce.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/gl518sm.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/gl520sm.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/hih6130.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/hs3001.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/gl520sm.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/hih6130.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/hs3001.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/i5500_temp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/i5k_amb.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ibmaem.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ibmpex.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ina209.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/i5500_temp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/i5k_amb.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ibmaem.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ibmpex.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ina209.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ina2xx.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ina238.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ina3221.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/intel-m10-bmc-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ina2xx.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ina238.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ina3221.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/intel-m10-bmc-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/it87.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/jc42.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/k8temp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/k10temp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lenovo-ec-sensors.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/it87.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/jc42.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/k8temp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/k10temp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lenovo-ec-sensors.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lineage-pem.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm63.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm70.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lineage-pem.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm63.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm70.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm73.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm75.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm77.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm78.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm80.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm73.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm75.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm77.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm78.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm80.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm83.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm85.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm87.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm90.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm83.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm85.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm87.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm90.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm92.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm93.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm95234.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm95241.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm95245.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm92.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm93.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm95234.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm95241.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/lm95245.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2945.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2947-core.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2947-i2c.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2947-spi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2990.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2945.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2947-core.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2947-i2c.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2947-spi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2990.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2991.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2992.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4151.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4215.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2991.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc2992.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4151.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4215.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4222.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4245.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4260.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4261.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4282.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4222.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4245.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4260.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4261.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max1111.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/ltc4282.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max127.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max16065.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max1619.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max1111.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max127.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max16065.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max1619.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max1668.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max197.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max31722.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max31730.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max1668.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max197.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max31722.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max31760.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max31730.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max6620.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max6621.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max6639.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max31760.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max6620.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max6621.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max6650.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max6639.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max6697.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max31790.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max31827.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max6650.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max6697.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max31790.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/max31827.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/mc13783-adc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/mc34vr500.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/mcp3021.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tc654.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tps23861.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/mc13783-adc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/mc34vr500.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/mcp3021.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tc654.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tps23861.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/mlxreg-fan.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/menf21bmc_hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/mr75203.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct6683.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/mlxreg-fan.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/menf21bmc_hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/mr75203.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct6683.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct6775-core.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct6775.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct6775-i2c.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct7802.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct7904.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct6775-core.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct6775.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct6775-i2c.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct7802.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/npcm750-pwm-fan.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nct7904.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nzxt-kraken2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nzxt-kraken3.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nzxt-smart2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pc87360.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/npcm750-pwm-fan.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nzxt-kraken2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nzxt-kraken3.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/nzxt-smart2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pc87360.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pc87427.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pcf8591.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/powerz.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/powr1220.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pt5161l.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pc87427.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pcf8591.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/powerz.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/powr1220.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pwm-fan.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pt5161l.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sbtsi_temp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sch56xx-common.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sch5627.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sch5636.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pwm-fan.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sbtsi_temp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sch56xx-common.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sch5627.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sch5636.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sht15.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sht21.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sht3x.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sht4x.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sht15.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sht21.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sht3x.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sht4x.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/shtc1.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sis5595.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/smpro-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/smsc47b397.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/smsc47m1.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/shtc1.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sis5595.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/smpro-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/smsc47b397.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/smsc47m1.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/smsc47m192.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/stts751.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/surface_fan.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sy7636a-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/smsc47m192.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/stts751.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/surface_fan.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/sy7636a-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/amc6821.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tc74.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/thmc50.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp102.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp103.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/amc6821.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tc74.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/thmc50.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp102.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp103.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp108.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp401.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp421.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp464.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp513.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp108.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp401.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp421.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp464.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/tmp513.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/via-cputemp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/via686a.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/vt1211.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/vt8231.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/via-cputemp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/via686a.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/vt1211.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/vt8231.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83627ehf.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83l785ts.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83l786ng.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/wm831x-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/wm8350-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83627ehf.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83l785ts.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/w83l786ng.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/wm831x-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/wm8350-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/xgene-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/occ/occ-hwmon-common.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/occ/occ-p8-hwmon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/peci/peci-cputemp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/xgene-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/occ/occ-hwmon-common.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/occ/occ-p8-hwmon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/peci/peci-cputemp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/peci/peci-dimmtemp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pmbus_core.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pmbus.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/acbel-fsg032.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/peci/peci-dimmtemp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pmbus_core.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pmbus.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/acbel-fsg032.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/adm1266.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/adm1275.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/adp1050.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/bel-pfe.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/bpa-rs600.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/adm1266.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/adm1275.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/adp1050.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/bel-pfe.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/bpa-rs600.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/delta-ahe50dc-fan.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/fsp-3y.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ibm-cffps.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/dps920ab.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/delta-ahe50dc-fan.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/fsp-3y.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ibm-cffps.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/dps920ab.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/inspur-ipsps.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ir35221.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ir36021.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ir38064.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/inspur-ipsps.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ir35221.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ir36021.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/irps5401.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ir38064.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/isl68137.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/lm25066.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/lt7182s.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/irps5401.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/isl68137.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/lm25066.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/lt7182s.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ltc2978.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ltc3815.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max15301.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max16064.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ltc2978.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ltc3815.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max15301.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max16601.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max16064.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max20730.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max20751.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max31785.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max34440.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max16601.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max20730.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max20751.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max31785.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max34440.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max8688.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp2856.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp2888.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp2891.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/max8688.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp2856.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp2888.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp2891.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp2975.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp2993.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp5023.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp5920.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp2975.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp2993.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp5023.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp5920.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp5990.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp9941.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mpq7932.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mpq8785.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pli1209bc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp5990.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mp9941.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mpq7932.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/mpq8785.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pm6764tr.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pli1209bc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pxe1610.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/q54sj108a2.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/stpddc60.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pm6764tr.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pxe1610.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/q54sj108a2.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/stpddc60.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/tda38640.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/tps40422.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/tps53679.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/tps546d24.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/tda38640.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/tps40422.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/tps53679.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ucd9000.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/tps546d24.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ucd9200.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/xdp710.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/xdpe12284.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ucd9000.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/ucd9200.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/xdp710.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/xdpe152c4.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/xdpe12284.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/zl6100.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pim4328.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_powerclamp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/xdpe152c4.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/zl6100.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hwmon/pmbus/pim4328.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/x86_pkg_temp_thermal.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_powerclamp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_soc_dts_iosf.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_soc_dts_thermal.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int3400_thermal.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/x86_pkg_temp_thermal.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_soc_dts_iosf.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_soc_dts_thermal.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int3400_thermal.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int3402_thermal.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int3403_thermal.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int3402_thermal.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int3403_thermal.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int3401_thermal.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci_legacy.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rapl.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int3401_thermal.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci_legacy.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rfim.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rapl.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/platform_temperature_control.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_mbox.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_req.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_rfim.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_hint.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/platform_temperature_control.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_mbox.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_req.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_power_floor.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_wt_hint.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int3406_thermal.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/acpi_thermal_rel.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_bxt_pmic_thermal.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/processor_thermal_power_floor.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/int3406_thermal.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/int340x_thermal/acpi_thermal_rel.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_bxt_pmic_thermal.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_pch_thermal.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_tcc_cooling.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/pretimeout_panic.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/pcwd_pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/wdt_pci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_pch_thermal.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/thermal/intel/intel_tcc_cooling.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/pretimeout_panic.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/pcwd_pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/pcwd_usb.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/wdt_pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/cadence_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/twl4030_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/dw_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/pcwd_usb.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/cadence_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/twl4030_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/dw_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/retu_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/acquirewdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/advantechwdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/advantech_ec_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/retu_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/acquirewdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/advantechwdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/alim1535_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/advantech_ec_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/alim7101_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ebc-c384_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/exar_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/f71808e_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/alim1535_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/alim7101_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ebc-c384_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/exar_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sp5100_tco.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/f71808e_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sbc_fitpc2_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/eurotechwdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ib700wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sp5100_tco.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sbc_fitpc2_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/eurotechwdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ib700wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ibmasr.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/wafer5823wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/i6300esb.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ie6xx_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ibmasr.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/wafer5823wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/i6300esb.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ie6xx_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/iTCO_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/lenovo_se10_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/iTCO_vendor_support.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/it8712f_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/iTCO_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/lenovo_se10_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/iTCO_vendor_support.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/it87_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/it8712f_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/hpwdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/kempld_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sc1200wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/it87_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/hpwdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/kempld_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/pc87413_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sc1200wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/nv_tco.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sbc60xxwdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sch311x_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/smsc37b787_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/pc87413_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/nv_tco.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sbc60xxwdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sch311x_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/smsc37b787_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/tqmx86_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/via_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/w83627hf_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/w83877f_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/tqmx86_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/via_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/w83627hf_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/w83877f_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/w83977f_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/machzwd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sbc_epx_c3.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/mei_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/w83977f_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/machzwd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/sbc_epx_c3.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ni903x_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/mei_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/nic7018_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/mlx_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/simatic-ipc-wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ni903x_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/nic7018_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/mlx_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/simatic-ipc-wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/of_xilinx_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/mena21_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/xen_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/cros_ec_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/da9052_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/of_xilinx_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/mena21_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/xen_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/cros_ec_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/da9052_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/da9055_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/da9062_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/da9063_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/wdat_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/da9055_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/da9062_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/da9063_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/wdat_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/wm831x_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/wm8350_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/max63xx_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ziirave_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/wm831x_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/wm8350_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/max63xx_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/menf21bmc_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/ziirave_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/menz69_wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/rave-sp-wdt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/raid0.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/raid1.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/menf21bmc_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/menz69_wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/watchdog/rave-sp-wdt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/raid0.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/raid10.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/raid1.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/raid456.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/bcache/bcache.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-unstripe.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/raid10.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-bufio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-bio-prison.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/raid456.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-unstripe.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-crypt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/bcache/bcache.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-delay.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-bufio.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-bio-prison.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-flakey.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-multipath.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-crypt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-delay.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-round-robin.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-queue-length.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-flakey.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-multipath.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-service-time.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-round-robin.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-queue-length.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-historical-service-time.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-io-affinity.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-service-time.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-switch.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-historical-service-time.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-io-affinity.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-snapshot.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/persistent-data/dm-persistent-data.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-mirror.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-switch.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-log.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-snapshot.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/persistent-data/dm-persistent-data.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-mirror.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-region-hash.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-log-userspace.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-log.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-zero.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-raid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-thin-pool.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-region-hash.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-log-userspace.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-zero.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-raid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-verity.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-thin-pool.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-vdo/dm-vdo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-cache.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-cache-smq.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-verity.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-ebs.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-era.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-cache.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-clone.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-cache-smq.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-log-writes.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-ebs.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-vdo/dm-vdo.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-era.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-integrity.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-clone.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-zoned.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-log-writes.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-writecache.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-integrity.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/edac_mce_amd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-zoned.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i5100_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/md/dm-writecache.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i5400_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/edac_mce_amd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i7300_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i7core_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i5100_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/sb_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i5400_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i7300_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i7core_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/pnd2_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/sb_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/igen6_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/e752x_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/pnd2_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i82975x_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i3000_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/igen6_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/e752x_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i3200_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i82975x_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/ie31200_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i3000_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/x38_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/amd64_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i3200_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/ie31200_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/x38_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/skx_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/amd64_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/skx_edac_common.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i10nm_edac.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/skx_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/cpufreq/speedstep-lib.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/skx_edac_common.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/cpufreq/p4-clockmod.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/edac/i10nm_edac.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/cpufreq/amd_freq_sensitivity.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/cpuidle/cpuidle-haltpoll.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/cpufreq/speedstep-lib.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/cpufreq/p4-clockmod.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/core/mmc_block.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/cpufreq/amd_freq_sensitivity.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/cpuidle/cpuidle-haltpoll.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/core/sdio_uart.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/sdhci_f_sdh30.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/core/mmc_block.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/wbsd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/alcor.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/core/sdio_uart.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/sdhci_f_sdh30.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/mtk-sd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/wbsd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/tifm_sd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/alcor.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/mmc_spi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/of_mmc_spi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/mtk-sd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/tifm_sd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/mmc_spi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/of_mmc_spi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/cb710-mmc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/via-sdmmc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/vub300.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/ushc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/cb710-mmc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/via-sdmmc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/vub300.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/ushc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/usdhi6rol0.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/toshsd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/rtsx_pci_sdmmc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/rtsx_usb_sdmmc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/mmc_hsq.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/usdhi6rol0.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/toshsd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/rtsx_pci_sdmmc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/rtsx_usb_sdmmc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/mmc_hsq.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/sdhci-xenon-driver.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/core/ufshcd-core.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/tc-dwc-g210-pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/ufshcd-dwc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/tc-dwc-g210.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/mmc/host/sdhci-xenon-driver.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/tc-dwc-g210-pci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/ufshcd-dwc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/tc-dwc-g210.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/core/ufshcd-core.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/cdns-pltfrm.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/ufshcd-pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/ufshcd-pltfrm.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/cirrus/cs_dsp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/cdns-pltfrm.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/ufshcd-pci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/ufs/host/ufshcd-pltfrm.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/efi/efi-pstore.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/cirrus/cs_dsp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/efi/efibc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/efi/test/efi_test.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/efi/capsule-loader.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/iscsi_ibft.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/efi/efi-pstore.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/efi/efibc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/efi/test/efi_test.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/efi/capsule-loader.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/iscsi_ibft.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/qemu_fw_cfg.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/ccp/ccp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/ccp/ccp-crypto.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/inside-secure/crypto_safexcel.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/firmware/qemu_fw_cfg.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_common/intel_qat.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/ccp/ccp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_dh895xcc/qat_dh895xcc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/ccp/ccp-crypto.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_c3xxx/qat_c3xxx.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/inside-secure/crypto_safexcel.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_c62x/qat_c62x.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_4xxx/qat_4xxx.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_dh895xcc/qat_dh895xcc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_c3xxx/qat_c3xxx.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_420xx/qat_420xx.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_common/intel_qat.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_c62x/qat_c62x.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_4xxx/qat_4xxx.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_dh895xccvf/qat_dh895xccvf.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_420xx/qat_420xx.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_c3xxxvf/qat_c3xxxvf.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_c62xvf/qat_c62xvf.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_dh895xccvf/qat_dh895xccvf.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/iaa/iaa_crypto.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/cavium/nitrox/n5pf.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_c3xxxvf/qat_c3xxxvf.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/qat/qat_c62xvf/qat_c62xvf.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/atmel-i2c.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/atmel-ecc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/intel/iaa/iaa_crypto.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/atmel-sha204a.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/cavium/nitrox/n5pf.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/atmel-i2c.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/atmel-ecc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/padlock-aes.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/atmel-sha204a.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/padlock-sha.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/virtio/virtio_crypto.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/amlogic/amlogic-gxl-crypto.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/padlock-aes.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/padlock-sha.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/virtio/virtio_crypto.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/crypto/amlogic/amlogic-gxl-crypto.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/uhid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-generic.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-a4tech.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-accutouch.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-alps.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/uhid.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-generic.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-a4tech.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-accutouch.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-apple.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-alps.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-asus.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-belkin.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-cherry.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-apple.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-asus.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-belkin.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-cherry.ko
+  HOSTLD  debian/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/usr/src/linux-headers-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/scripts/genksyms/genksyms
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-chicony.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-corsair.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-corsair-void.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-cougar.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-cp2112.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-chicony.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-corsair.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-corsair-void.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-cougar.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-cp2112.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-cypress.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-elan.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-elecom.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-elo.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-cypress.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-elan.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-elecom.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-elo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-ft260.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-glorious.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-vivaldi-common.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-google-hammer.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-vivaldi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-ft260.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-glorious.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-vivaldi-common.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-google-hammer.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-holtek-kbd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-vivaldi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-holtek-mouse.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-holtekff.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-ite.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-jabra.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-holtek-kbd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-holtek-mouse.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-holtekff.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-ite.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-jabra.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-kensington.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-keytouch.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-lenovo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-logitech.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-kensington.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-keytouch.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-lenovo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-lg-g15.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-logitech.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-logitech-dj.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-logitech-hidpp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-magicmouse.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-lg-g15.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-mcp2200.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-logitech-dj.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-logitech-hidpp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-magicmouse.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-mcp2221.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-microsoft.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-mcp2200.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-monterey.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-multitouch.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-mcp2221.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-microsoft.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-ntrig.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-monterey.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-multitouch.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-penmount.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-plantronics.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-ntrig.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-primax.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-penmount.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-plantronics.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-razer.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-redragon.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-primax.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-common.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-razer.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-redragon.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-arvo.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-common.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-isku.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-kone.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-arvo.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-koneplus.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-konepure.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-isku.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-kone.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-kovaplus.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-koneplus.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-konepure.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-lua.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-pyra.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-ryos.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-kovaplus.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-lua.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-pyra.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-ryos.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-savu.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-rmi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-saitek.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-samsung.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-roccat-savu.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-rmi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-saitek.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-semitek.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-samsung.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-sigmamicro.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-steam.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-topre.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-xiaomi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-semitek.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-sigmamicro.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-steam.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-topre.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-xiaomi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-sensor-hub.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-sensor-custom.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/usbhid/usbhid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/usbhid/usbkbd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-sensor-hub.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/hid-sensor-custom.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/usbhid/usbhid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/usbhid/usbmouse.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/usbhid/usbkbd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/i2c-hid/i2c-hid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/i2c-hid/i2c-hid-acpi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/i2c-hid/i2c-hid-of.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/intel-ish-hid/intel-ishtp.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/usbhid/usbmouse.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/i2c-hid/i2c-hid.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/i2c-hid/i2c-hid-acpi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/i2c-hid/i2c-hid-of.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/intel-ish-hid/intel-ish-ipc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/intel-ish-hid/intel-ishtp.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/intel-ish-hid/intel-ishtp-hid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/intel-ish-hid/intel-ishtp-loader.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/intel-ish-hid/intel-ish-ipc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/amd-sfh-hid/amd_sfh.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/intel-ish-hid/intel-ishtp-hid.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/intel-ish-hid/intel-ishtp-loader.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/surface-hid/surface_hid_core.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/surface-hid/surface_kbd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/vme_user/vme_user.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/amd-sfh-hid/amd_sfh.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/vme_user/vme_tsi148.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/surface-hid/surface_hid_core.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/hid/surface-hid/surface_kbd.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/vme_user/vme_user.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/vme_user/vme_fake.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fbtft.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/vme_user/vme_tsi148.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_agm1264k-fl.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_bd663474.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/vme_user/vme_fake.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fbtft.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_agm1264k-fl.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_hx8340bn.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_bd663474.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_hx8347d.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_hx8353d.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_hx8357d.ko
+dpkg-deb: building package 'linux-libc-dev' in '../linux-libc-dev_6.16.0~rc1-ge7ff20098585-2_amd64.deb'.
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_hx8340bn.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_hx8347d.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9163.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_hx8353d.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_hx8357d.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9320.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9325.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9340.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9163.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9341.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9481.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9320.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9325.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9340.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9341.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9481.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9486.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_pcd8544.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ra8875.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_s6d02a1.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ili9486.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_pcd8544.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ra8875.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_s6d02a1.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_s6d1121.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_seps525.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_sh1106.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1289.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_s6d1121.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_seps525.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_sh1106.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1305.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1289.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1306.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1325.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1331.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1351.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1305.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1306.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1325.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1331.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_ssd1351.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_st7735r.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_st7789v.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_tinylcd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_tls8204.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_st7735r.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_st7789v.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_tinylcd.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_uc1611.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_tls8204.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_uc1701.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_upd161704.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/most/net/most_net.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/most/i2c/most_i2c.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_uc1611.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_uc1701.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/fbtft/fb_upd161704.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/most/net/most_net.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/staging/most/i2c/most_i2c.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/amd/pmc/amd-pmc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/amd/pmf/amd-pmf.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/alienware-wmi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dcdbas.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/amd/pmc/amd-pmc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/amd/pmf/amd-pmf.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/alienware-wmi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-laptop.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dcdbas.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell_rbu.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-pc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-smbios.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-smo8800.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-lis3lv02d.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-laptop.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell_rbu.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-pc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-smbios.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-smo8800.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-lis3lv02d.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi-aio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi-descriptor.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi-ddv.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi-aio.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi-descriptor.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi-ddv.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi-led.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi-sysman/dell-wmi-sysman.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/hp/hp_accel.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/hp/hp-wmi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/hp/hp-bioscfg/hp-bioscfg.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi-led.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/dell/dell-wmi-sysman/dell-wmi-sysman.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/hp/hp_accel.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/hp/hp-wmi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_led.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/hp/hp-bioscfg/hp-bioscfg.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_pm.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/wmi/intel-wmi-sbl-fw-update.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/wmi/intel-wmi-thunderbolt.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/ifs/intel_ifs.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_led.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/atomisp2/intel_atomisp2_pm.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/wmi/intel-wmi-sbl-fw-update.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/wmi/intel-wmi-thunderbolt.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/ifs/intel_ifs.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/int1092/intel_sar.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_discrete.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_tps68470.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_common.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/int1092/intel_sar.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_discrete.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_tps68470.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/int3472/intel_skl_int3472_common.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core_pltdrv.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmc/intel_pmc_ssram_telemetry.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmt/pmt_class.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmc/intel_pmc_core_pltdrv.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmc/intel_pmc_ssram_telemetry.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmt/pmt_class.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmt/pmt_telemetry.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmt/pmt_crashlog.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_common.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mmio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_pci.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmt/pmt_telemetry.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/pmt/pmt_crashlog.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_common.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mmio.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_pci.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_msr.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi_core.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_core.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_if_mbox_msr.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi_core.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/speed_select_if/isst_tpmi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_core.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_pltdrv.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_debugfs.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-common.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_pltdrv.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/telemetry/intel_telemetry_debugfs.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-common.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-tpmi.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-hid.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-vbtn.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-int0002_vgpio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-ishtp_eclite.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-tpmi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-hid.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-vbtn.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-int0002_vgpio.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-sdsi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-ishtp_eclite.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-vsec.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-bytcrc_pwrsrc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-bxtwc_tmu.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-sdsi.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-vsec.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-bytcrc_pwrsrc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-bxtwc_tmu.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-chtdc_ti_pwrbtn.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-chtwc_int33fe.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-crystal_cove_charger.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-mrfld_pwrbtn.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-punit_ipc.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-chtdc_ti_pwrbtn.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-chtwc_int33fe.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-crystal_cove_charger.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-mrfld_pwrbtn.ko
+  STRIP   debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/intel-punit_ipc.ko
+  INSTALL debian/linux-image-6.16.0-rc1-lgci-xe-xe-pw-150120v1+/lib/modules/6.16.0-rc1-lgci-xe-xe-pw-150120v1+/kernel/drivers/platform/x86/intel/inte
 
-Ok, my bad, I think get what you are suggesting now.
 
-> have a common routine on the drm side that takes a flag (CLEAR_ON_ALLOC
-> vs CLEAR_ON_FREE) and performs the operation based on the flag. Then
-
-'performs the operation based on the flag'
-
-Do you mean the clear - that is device specific operation hence in the
-TTM vfunc release notify.
-
-> both users on this side would just CLEAR_ON_FREE. Or we can even drop
-> that flag and just assume everyone will always CLEAR_ON_FREE to avoid
-> the extra code of clear-on-alloc. Then if we do decide to do some uAPI
-
-'avoid the extra code of clear-on-alloc' - The clear on alloc is skipped
-if buddy blocks are marked as clear. There is not a guarantee they will
-be clear given we skip clear-on-free for kernel memory, drm buddy does
-not initialize blocks to clear, or for whatever reason the clear-on-free
-fails in the TTM release notify vfunc function (e.g., a kmalloc fails
-there).
-
-> in the future we add the extra flag. But it still lets us consolidate
-> the amd and intel routines.
-> 
-
-You mean xe_ttm_vram_mgr_resource_set_cleared /
-amdgpu_vram_mgr_set_cleared?
-
-Both of those operate on a driver specific structure which encapsulates
-a TTM resource. TTM allocates memory via a TTM resource manager
-abstraction /w driver vfuncs making no assumptions about memory
-allocation - AMD and Intel happen to use the DRM buddy allocator for
-VRAM but TTM again has no idea how the memory is being allocated. So
-sticking a buddy allocation specific flag into TTM is a no go.
-
-We could add specific TTM flag to TTM resource saying the resource is
-clear and convert to buddy flag upon block list free, but we don't have
-a flags fields in the TTM resource whereas the driver side we do. Also
-have you ever tried changing TTM - it is not a whole lot of fun and
-I pretty much guarnetee it will get nacked for one reason or another.
-That is not something I would personally even attempt to post because I
-know better.
-
-> The type == ttm_bo_type_device seems like something we can extract out
-> as device-specific.
-> 
-
-What do mean extract? A driver side helper? I thought about that but
-struggled a bit with naming so left out. Could include that in next rev
-I suppose.
-
-Matt
-
-> Thanks,
-> Stuart
-> 
-> > > > > > > 
-> > > > > > > Also I think there are some kernel BOs which clear-on-free
-> > > > > > > is
-> > > > > > > safe
-> > > > > > > too
-> > > > > > > (e.g., I think only PT BOs need contents to stick around
-> > > > > > > after
-> > > > > > > final
-> > > > > > > put
-> > > > > > > until dma-resv is clean of fences). Would have to fully to
-> > > > > > > test
-> > > > > > > for
-> > > > > > > definitive answer though.
-> > > > > > 
-> > > > > > In most cases the kernel operations are going to be lower
-> > > > > > priority
-> > > > > > than
-> > > > > 
-> > > > > It is the inverse of that - kernel operations are a always
-> > > > > higher
-> > > > > priority as without them a user app can't function (think any
-> > > > > page
-> > > > > table
-> > > > > memory allocation or memory allocation for a LRC). This is one
-> > > > > of
-> > > > > reasons we just pin kernel memory in Xe compared evictable
-> > > > > kernel
-> > > > > memory
-> > > > > in the i915 (also evicting kernel memory is a huge pain as we
-> > > > > have
-> > > > > idle
-> > > > > the GuC state which could use that memory).
-> > > > 
-> > > > We're talking about kernel operations attached to different
-> > > > processes
-> > > > though. The incoming kernel work would be for a new user process
-> > > > (prepping the buffer for submission). The existing user process
-> > > > IMO
-> > > > should have higher priority.
-> > > > 
-> > > 
-> > > You still have to wait on the user operation complete in dma-resv
-> > > mode
-> > > before stealing memory.
-> > > 
-> > > In LR preempt fence mode, we'd wait until LR VM is preempted off
-> > > the
-> > > hardware.
-> > > 
-> > > In LR fault mode, we can steal the memory immediately.
-> > > 
-> > 
-> > s/immediately/after TLB invalidation completes
-> > 
-> > Matt
-> > 
-> > > There is no difference though if we are trying to get kernel memory
-> > > or
-> > > user memory - this is just how eviction works.
-> > > 
-> > > Also if we are in LR mode, we have no idea how long the user
-> > > processes
-> > > which we stealing memory from will take to complete (e.g., we do
-> > > not
-> > > install fences in dma-resv attached to jobs as the fences could run
-> > > forever breaking the rules of fence or in other word breaking
-> > > reclaim).
-> > > 
-> > > This is where pinning of user memory could come in play /w some
-> > > accounting controler, likely cgroups. LR mode could pin some memory
-> > > to
-> > > ensure fast forward progress or buffers it really doesn't want to
-> > > be
-> > > moved around (e.g., buffers exported over a fast network
-> > > interconnect).
-> > > 
-> > > Matt
-> > > 
-> > > > Thanks,
-> > > > Stuart
-> > > > 
-> > > > > 
-> > > > > > the user operations (with the exception of maybe page
-> > > > > > faults). We
-> > > > > > had
-> > > > > > looked at things in i915 like preempting kernel operations
-> > > > > > when a
-> > > > > > user
-> > > > > > op comes in (the user clear-on-alloc preempts the kernel
-> > > > > > clear-on-
-> > > > > > free/alloc). This probably falls in the same optimization
-> > > > > > category
-> > > > > > you
-> > > > > 
-> > > > > We definitely won't do that as this would require multiple
-> > > > > migration
-> > > > > queues and preemption via the GuC is so expensive I'd doubt
-> > > > > you'd
-> > > > > ever
-> > > > > win. I guess we could have a convolved algorithm in the
-> > > > > migration
-> > > > > queue
-> > > > > to jump to higher priortiy jobs but would need some really
-> > > > > strong
-> > > > > data
-> > > > > indicating this is needed. Also with dma-resv basically the
-> > > > > migration
-> > > > > queue needs to be idle before anything from the user can run.
-> > > > > 
-> > > > > Matt
-> > > > > 
-> > > > > > mentioned, although it doesn't necessarily need a user hint.
-> > > > > > 
-> > > > > > Thanks,
-> > > > > > Stuart
-> > > > > > 
-> > > > > > > 
-> > > > > > > Matt
-> > > > > > > 
-> > > > > > > > > > Thanks,
-> > > > > > > > > > Stuart
-> > > > > > > > > > 
-> > > > > > > > > > > +}
-> > > > > > > > > > > +
-> > > > > > > > > > >  static inline struct xe_ttm_vram_mgr *
-> > > > > > > > > > >  to_xe_ttm_vram_mgr(struct ttm_resource_manager
-> > > > > > > > > > > *man)
-> > > > > > > > > > >  {
-> > > > > > > > > > 
-> > > > > > > > 
-> > > > > > 
-> > > > 
-> 
