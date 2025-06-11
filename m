@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25923C678DC
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 13:44:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B71EC71131
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 13:44:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1A7510E669;
-	Wed, 11 Jun 2025 13:44:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B573910E66A;
+	Wed, 11 Jun 2025 13:44:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BNKRawPS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MIka2ptW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3E0210E668;
- Wed, 11 Jun 2025 13:44:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6645910E66A;
+ Wed, 11 Jun 2025 13:44:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749649476; x=1781185476;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Xncmf4Gka7FfB7Z0JF9rJEKxKfegl/LRsxCdtVMLb4Q=;
- b=BNKRawPSIVrxcMKeyd3eSRguBvP2VbAu6PvPWXYep0yNPnPn9814SAXJ
- c3BSLQ6HbBuks7rVz4OjSj/uCkx1uQKGSwLbQ9Lk+tkOb3ZU7BFH9L74F
- U/X47gDT+hzkwSqU0Ok3Qoz9bJTP1lzYKIUuOhYs4qm7Yaw75TsVZ/vY3
- ElNsGuTTmwelobDhdzcyETwpzJXGyVKfhjZZOn9ayT6c3IgZl5OCaTL1S
- Yr7dQW6Z6lckYh9CLb64E4YEdble4IQ6cd1FNUpfoXZTDtI/BQRtlTv98
- jxWQ4tm3A3yowZhDT4GH+NlnfpTXlt4rQEypVWt6BXFTMDdZVBwzEYG+U Q==;
-X-CSE-ConnectionGUID: e4TQrgcqSDmP514SxG5KvQ==
-X-CSE-MsgGUID: ddtpOLTVToqIVy7xNhJsLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51505802"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="51505802"
+ t=1749649479; x=1781185479;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=nFGOY9sqBa0B2Jmd1zU8jJFXjil81q2FQpwcxxFAs9M=;
+ b=MIka2ptWCltkgXwDKo9jU2/84ACYh83fJNygEINgbu6meGc9v9cPzDkW
+ 45W0MCwS0RTAB/XshkhByUrSgDPsqLJ4NaTPCrjx1VqimY4Gq9a4IB/Nz
+ IqCBivAqLXFVqC8JoOa7jHRNh7ndpl1VuH+vbb19hqfAh4lWEOC8ErO9+
+ qmZ8+YWy6JQmaxkuusQ816DyfMT5c5syzDEG/rVtdD3q/N+EEUNxu1Hti
+ TU0iHYqxAst7l1NydhmNxy+jt/aFi+H50rBUb395hv5TeGje6y605ek0D
+ 0zOmfvP9dFdoM0s+57ikOOqjusApcc3SdMUtNcG5rM4MQB4E0Rs19NOne Q==;
+X-CSE-ConnectionGUID: R7Wg8aNuShSK08k1NrP0Yw==
+X-CSE-MsgGUID: K2qGR6m2T5eNBlivWq7pcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51505811"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="51505811"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 06:44:36 -0700
-X-CSE-ConnectionGUID: vfd/ibuvQ+qApNy7ClR+cA==
-X-CSE-MsgGUID: WbLyJMNMSNetMNLE4iHrCw==
+ 11 Jun 2025 06:44:39 -0700
+X-CSE-ConnectionGUID: Xfjue05wQISnNOvgE3EJuA==
+X-CSE-MsgGUID: xkOGpVoCRB+20QZjAKCH+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152360281"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152360297"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa004.fm.intel.com with ESMTP; 11 Jun 2025 06:44:34 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 11 Jun 2025 06:44:37 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
+Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v4 0/9] Add WildCat Lake support
-Date: Wed, 11 Jun 2025 19:14:22 +0530
-Message-Id: <20250611134431.2761487-1-dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v4 2/9] drm/xe/xe3: Add support for graphics IP version 30.03
+Date: Wed, 11 Jun 2025 19:14:24 +0530
+Message-Id: <20250611134431.2761487-3-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250611134431.2761487-1-dnyaneshwar.bhadane@intel.com>
+References: <20250611134431.2761487-1-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,36 +66,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable Wildcat Lake by adding PCI IDs and add the initial support GT, Media
-and Display workarounds.
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Dnyaneshwar Bhadane (3):
-  drm/i915/xe3lpd: Extend DMC path for display version 30.02
-  drm/i915/wcl: C10 phy connected to port A and B
-  drm/i915/xe3lpd: Extend WA 16023981245 for display 30.02
+Graphics version 30.03 should be treated the same as other Xe3 IP, but
+will have a slightly different set of workarounds.
 
-Matt Atwood (2):
-  drm/i915/xe3lpd: Update bandwidth parameters for display version 30.02
-  drm/i915: Set max cdclk for display 30.02
+-v2: Merge and extend the WA onto existing entry (Bala)
 
-Matt Roper (4):
-  drm/i915/xe3lpd: Add support for display version 30.02
-  drm/xe/xe3: Add support for graphics IP version 30.03
-  drm/xe/xe3: Add support for media IP version 30.02
-  drm/xe: Add Wildcat Lake device IDs to PTL list
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pci.c        | 1 +
+ drivers/gpu/drm/xe/xe_wa.c         | 2 +-
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 7 ++++---
+ 3 files changed, 6 insertions(+), 4 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_atomic_plane.c   |  3 ++-
- drivers/gpu/drm/i915/display/intel_bw.c             | 11 ++++++++++-
- drivers/gpu/drm/i915/display/intel_cdclk.c          |  4 +++-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c        |  8 +++++++-
- drivers/gpu/drm/i915/display/intel_display_device.c |  1 +
- drivers/gpu/drm/i915/display/intel_dmc.c            |  3 ++-
- drivers/gpu/drm/xe/xe_pci.c                         |  2 ++
- drivers/gpu/drm/xe/xe_wa.c                          |  6 +++---
- drivers/gpu/drm/xe/xe_wa_oob.rules                  | 11 ++++++-----
- include/drm/intel/pciids.h                          |  4 +++-
- 10 files changed, 39 insertions(+), 14 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index b5559800db7a..8824a8016b1c 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -183,6 +183,7 @@ static const struct xe_ip graphics_ips[] = {
+ 	{ 2004, "Xe2_LPG", &graphics_xe2 },
+ 	{ 3000, "Xe3_LPG", &graphics_xe2 },
+ 	{ 3001, "Xe3_LPG", &graphics_xe2 },
++	{ 3003, "Xe3_LPG", &graphics_xe2 },
+ };
+ 
+ /* Pre-GMDID Media IPs */
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 67196baa4249..8693d098aa9b 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -609,7 +609,7 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	/* Xe3_LPG */
+ 
+ 	{ XE_RTP_NAME("14021402888"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3003),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7, CLEAR_OPTIMIZATION_DISABLE))
+ 	},
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 9efc5accd43d..5c0d8b720946 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -32,10 +32,10 @@
+ 		GRAPHICS_VERSION(3001)
+ 14022293748	GRAPHICS_VERSION(2001)
+ 		GRAPHICS_VERSION(2004)
+-		GRAPHICS_VERSION_RANGE(3000, 3001)
++		GRAPHICS_VERSION_RANGE(3000, 3003)
+ 22019794406	GRAPHICS_VERSION(2001)
+ 		GRAPHICS_VERSION(2004)
+-		GRAPHICS_VERSION_RANGE(3000, 3001)
++		GRAPHICS_VERSION_RANGE(3000, 3003)
+ 22019338487	MEDIA_VERSION(2000)
+ 		GRAPHICS_VERSION(2001)
+ 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_not_sriov_vf)
+@@ -57,5 +57,6 @@ no_media_l3	MEDIA_VERSION(3000)
+ 		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
+ 16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
+ 		MEDIA_VERSION_RANGE(1301, 3000)
+-16026508708	GRAPHICS_VERSION_RANGE(1200, 3001)
++		GRAPHICS_VERSION(3003)
++16026508708	GRAPHICS_VERSION_RANGE(1200, 3003)
+ 		MEDIA_VERSION_RANGE(1300, 3000)
 -- 
 2.34.1
 
