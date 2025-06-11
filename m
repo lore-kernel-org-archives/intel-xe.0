@@ -4,59 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 644ACC61CE7
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 10:52:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2DD8C677C4
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 11:02:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CD0110E608;
-	Wed, 11 Jun 2025 10:52:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 983EE10E61F;
+	Wed, 11 Jun 2025 11:02:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fn5U67lE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EDRyYQ7T";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFD7F10E608
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 10:52:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09D0D10E635
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Jun 2025 11:02:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749639152; x=1781175152;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=gGMagrCDK3sN1QP+NUuRSNak5emFF1SEvpjfqW/lTX4=;
- b=Fn5U67lExvJDNiFYzksolqkamSoXHMzZc7bY7akLKTPKiJSjAsuBLvkv
- k9YHYX5NxXANPPvnDmRqlKsAnQNNjeIB5aksZ+UMQqROyj8GYwS5X+ZRq
- FS1fd+t9K4weBqCYIa1BoICInMqaDBv2gIlny+ADGaQXbgmGJuMl+E6ih
- rvCJbZzcTpF83+4izEmGBdiCGFHHUG6M1Lp8nWQ7Uia/kpB6FC3P3O7hq
- DlUQfSQpoK+oKH9J8ZfyfgecnH3MCgRWpUiWT8xjw800LJhM3//L3VH5W
- xfLoUEXmv9jgvUScoJyF8BktBZlixaurju74mYFVI4P2ldxiqidnY9PSY g==;
-X-CSE-ConnectionGUID: pAbhxS7vSUKjgc+Ylx4bqA==
-X-CSE-MsgGUID: /ubp5sDRRTq6Q2eawtgE7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="63186271"
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="63186271"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 03:52:32 -0700
-X-CSE-ConnectionGUID: X8kzDrbZSSmWKMsjkooWew==
-X-CSE-MsgGUID: InIDx2zRQEC8iQ5CX9WUzQ==
+ t=1749639754; x=1781175754;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=3OyV5WY4Hk7eNtm+MdB/+B8SJ279BQsSyfrm09iazgk=;
+ b=EDRyYQ7TuhLVjSQjSXWma2lOl71xTSMZeJKGc6FhlCoyvj7raVtALbwf
+ TRKEK6lva8k66pE7TYXp+8TPrO9cJMca805/eQPTYHF526v/RY0qLM11K
+ RM25lpu5OymKFPrtYikZanNdo0i5Ok5lHgqV377ZhFp+LwGDht3SdszJx
+ oyQjUk9TSL6EOvb/oPDCW4e+g7IaK36HYKO02IgGF7bCLGNYTykRAslQI
+ j7DMfuipcqDUltugd+FhQxDLNBoSBsorENY9DwHns0f2q/TzrR0Ce8+cL
+ hHCcbfx3lfgdd13rSM1gWvoj51d4FVMItscSXjYlUvoDao4vlARMvxNXt A==;
+X-CSE-ConnectionGUID: PHSU2bbhR7Kvbc+/S4YmDg==
+X-CSE-MsgGUID: VYo3qdmlQoC1vgQsQFMa0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="62815372"
+X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="62815372"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 04:02:34 -0700
+X-CSE-ConnectionGUID: kYlS5Z8TS+WaKEO7dNgmGw==
+X-CSE-MsgGUID: beXAJlVRQeWWE7oyiL2dEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="152443572"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.183])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 03:52:29 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 11 Jun 2025 13:52:24 +0300 (EEST)
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- Hans de Goede <hdegoede@redhat.com>, lucas.demarchi@intel.com, 
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com, 
- airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com
-Subject: Re: [PATCH v4 08/10] platform/x86/intel/pmt: add register access
- helpers
-In-Reply-To: <20250610211225.1085901-9-michael.j.ruhl@intel.com>
-Message-ID: <8baebd44-971f-dd79-cede-1e8fd5965956@linux.intel.com>
-References: <20250610211225.1085901-1-michael.j.ruhl@intel.com>
- <20250610211225.1085901-9-michael.j.ruhl@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="178071975"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.209])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 04:02:32 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>, "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>
+Subject: RE: [PATCH] Revert "drm/xe/display: use xe->display to decide
+ whether to do anything"
+In-Reply-To: <IA0PR11MB718568265F56A8EC2FC009B1F875A@IA0PR11MB7185.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250605054247.386633-1-vivek.kasireddy@intel.com>
+ <fc535785263b34ee08802dba3a451fb99469ca58@intel.com>
+ <27e47fe60426f4ae41e405cc9eb9ac059ddfb79f@intel.com>
+ <IA0PR11MB718568265F56A8EC2FC009B1F875A@IA0PR11MB7185.namprd11.prod.outlook.com>
+Date: Wed, 11 Jun 2025 14:02:28 +0300
+Message-ID: <5f874ab8a2469bfd08addeb441e98e4462b67111@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,120 +73,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 10 Jun 2025, Michael J. Ruhl wrote:
+On Wed, 11 Jun 2025, "Kasireddy, Vivek" <vivek.kasireddy@intel.com> wrote:
+> I do not have commit access to drm-intel-next. So, I guess either you
+> or Matt would need to merge it.
 
-> The control register is used in a read/modify/write pattern.
-> The status register is used in a read/check bit pattern.
-> 
-> Add helpers to eliminate common code.
-> 
-> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> ---
->  drivers/platform/x86/intel/pmt/crashlog.c | 58 +++++++++++------------
->  1 file changed, 29 insertions(+), 29 deletions(-)
-> 
-> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-> index 99f0e85f2de6..e11865686f2a 100644
-> --- a/drivers/platform/x86/intel/pmt/crashlog.c
-> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
-> @@ -63,20 +63,40 @@ struct pmt_crashlog_priv {
->  /*
->   * I/O
->   */
-> -static bool pmt_crashlog_complete(struct intel_pmt_entry *entry)
-> +#define SET	true
-> +#define CLEAR	false
+Pushed to drm-intel-next, thanks for the patch.
 
-There's a risk of namespace collisions if using too generic names.
+BR,
+Jani.
 
-> +static void read_modify_write(struct intel_pmt_entry *entry, u32 bit, bool set)
->  {
-> -	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
-> +	u32 reg = readl(entry->disc_table + CONTROL_OFFSET);
-> +
-> +	reg &= ~CRASHLOG_FLAG_TRIGGER_MASK;
-> +
-> +	if (set)
-> +		reg |= bit;
-> +	else
-> +		reg &= bit;
-> +
-> +	writel(reg, entry->disc_table + CONTROL_OFFSET);
-> +}
-> +
-> +static bool read_check(struct intel_pmt_entry *entry, u32 bit)
-
-Despite being static, I'd prefer these to have prefixes. With the prefixes 
-reading the calling code, it's trivial to discern it's an driver internal 
-function whereas generic names likes will not convey the scope 
-information.
-
-> +{
-> +	u32 reg = readl(entry->disc_table + CONTROL_OFFSET);
-> +
-> +	return !!(reg & bit);
-> +}
->  
-> +static bool pmt_crashlog_complete(struct intel_pmt_entry *entry)
-> +{
->  	/* return current value of the crashlog complete flag */
-> -	return !!(control & CRASHLOG_FLAG_TRIGGER_COMPLETE);
-> +	return read_check(entry, CRASHLOG_FLAG_TRIGGER_COMPLETE);
->  }
->  
->  static bool pmt_crashlog_disabled(struct intel_pmt_entry *entry)
->  {
-> -	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
-> -
->  	/* return current value of the crashlog disabled flag */
-> -	return !!(control & CRASHLOG_FLAG_DISABLE);
-> +	return read_check(entry, CRASHLOG_FLAG_DISABLE);
->  }
->  
->  static bool pmt_crashlog_supported(struct intel_pmt_entry *entry)
-> @@ -97,37 +117,17 @@ static bool pmt_crashlog_supported(struct intel_pmt_entry *entry)
->  static void pmt_crashlog_set_disable(struct intel_pmt_entry *entry,
->  				     bool disable)
->  {
-> -	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
-> -
-> -	/* clear trigger bits so we are only modifying disable flag */
-> -	control &= ~CRASHLOG_FLAG_TRIGGER_MASK;
-> -
-> -	if (disable)
-> -		control |= CRASHLOG_FLAG_DISABLE;
-> -	else
-> -		control &= ~CRASHLOG_FLAG_DISABLE;
-> -
-> -	writel(control, entry->disc_table + CONTROL_OFFSET);
-> +	read_modify_write(entry, CRASHLOG_FLAG_DISABLE, disable);
->  }
->  
->  static void pmt_crashlog_set_clear(struct intel_pmt_entry *entry)
->  {
-> -	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
-> -
-> -	control &= ~CRASHLOG_FLAG_TRIGGER_MASK;
-> -	control |= CRASHLOG_FLAG_TRIGGER_CLEAR;
-> -
-> -	writel(control, entry->disc_table + CONTROL_OFFSET);
-> +	read_modify_write(entry, CRASHLOG_FLAG_TRIGGER_CLEAR, SET);
->  }
->  
->  static void pmt_crashlog_set_execute(struct intel_pmt_entry *entry)
->  {
-> -	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
-> -
-> -	control &= ~CRASHLOG_FLAG_TRIGGER_MASK;
-> -	control |= CRASHLOG_FLAG_TRIGGER_EXECUTE;
-> -
-> -	writel(control, entry->disc_table + CONTROL_OFFSET);
-> +	read_modify_write(entry, CRASHLOG_FLAG_TRIGGER_EXECUTE, SET);
->  }
->  
->  /*
-> 
 
 -- 
- i.
-
+Jani Nikula, Intel
