@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08842C71136
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 22:19:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD16DC71135
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 22:28:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C234910E740;
-	Wed, 11 Jun 2025 22:19:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9278A10E73D;
+	Wed, 11 Jun 2025 22:28:29 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 380EA10E0CD;
- Wed, 11 Jun 2025 22:19:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8739893570351499163=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2F1110E73D;
+ Wed, 11 Jun 2025 22:28:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Clean_up_of_GuC_init_data_m?=
- =?utf-8?q?acros?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_early_wedge?=
+ =?utf-8?q?_on_GuC_load_failure_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 11 Jun 2025 22:19:32 -0000
-Message-ID: <174968037222.69074.2786606726396148552@1538d3639d33>
+Date: Wed, 11 Jun 2025 22:28:28 -0000
+Message-ID: <174968090879.69215.2720195148434998289@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250611210553.3756700-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20250611210553.3756700-1-John.C.Harrison@Intel.com>
+References: <20250611214453.1159846-2-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20250611214453.1159846-2-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,47 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8739893570351499163==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Clean up of GuC init data macros
-URL   : https://patchwork.freedesktop.org/series/150120/
+Series: drm/xe: Fix early wedge on GuC load failure (rev3)
+URL   : https://patchwork.freedesktop.org/series/149906/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3232-441e516a4359fedd83969b1b6a75194f096c11ba_BAT -> xe-pw-150120v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bd4f209ab871d22c7e8515c46322c59cfffca68e
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Wed Jun 11 14:44:54 2025 -0700
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3232-441e516a4359fedd83969b1b6a75194f096c11ba -> xe-pw-150120v1
-
-  IGT_8405: 8405
-  xe-3232-441e516a4359fedd83969b1b6a75194f096c11ba: 441e516a4359fedd83969b1b6a75194f096c11ba
-  xe-pw-150120v1: 150120v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150120v1/index.html
-
---===============8739893570351499163==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+    drm/xe: Fix early wedge on GuC load failure
+    
+    When the GuC fails to load we declare the device wedged. However, the
+    very first GuC load attempt on GT0 (from xe_gt_init_hwconfig) is done
+    before the GT1 GuC objects are initialized, so things go bad when the
+    wedge code attempts to cleanup GT1. To fix this, check the initialization
+    status in the functions called during wedge.
+    
+    Fixes: 7dbe8af13c18 ("drm/xe: Wedge the entire device")
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+    Cc: <stable@vger.kernel.org> # v6.12+: 1e1981b16bb1: drm/xe: Fix taking invalid lock on wedge
+    Cc: <stable@vger.kernel.org> # v6.12+
+    Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 03848f8a962392d602e7f2a6a22f2a7e3efa4a3b drm-intel
+bd4f209ab871 drm/xe: Fix early wedge on GuC load failure
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Clean up of GuC init data macros</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150120/">https://patchwork.freedesktop.org/series/150120/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150120v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150120v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3232-441e516a4359fedd83969b1b6a75194f096c11ba_BAT -&gt; xe-pw-150120v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3232-441e516a4359fedd83969b1b6a75194f096c11ba -&gt; xe-pw-150120v1</li>
-</ul>
-<p>IGT_8405: 8405<br />
-  xe-3232-441e516a4359fedd83969b1b6a75194f096c11ba: 441e516a4359fedd83969b1b6a75194f096c11ba<br />
-  xe-pw-150120v1: 150120v1</p>
-
-</body>
-</html>
-
---===============8739893570351499163==--
