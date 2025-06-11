@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E440BC677C4
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 13:30:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D90CEC677C4
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Jun 2025 13:32:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 281D410E65C;
-	Wed, 11 Jun 2025 13:30:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0728B10E65B;
+	Wed, 11 Jun 2025 13:32:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MOh6CKgF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j82pf381";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A94B810E65C;
- Wed, 11 Jun 2025 13:30:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8432C10E366;
+ Wed, 11 Jun 2025 13:32:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749648607; x=1781184607;
+ t=1749648729; x=1781184729;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=JC4F+d/pvrioYdZ9AYIGldIrPl8dtrYqGUX3TdBs/9s=;
- b=MOh6CKgFMspJXCGYoUTlmv8Zpp3ZxbbR4PQZdt6gM5eD6vxkzlXaeqaW
- awff3bR9tpTw3PmYqUHUY9rDs86KxB80OU7DhB76aS/gNAHoQy0oz9xsm
- rKiIQOwJCBzqGmzOEPuZ+HE/yekpJI1pZXJNFW1MHlrOe3xuTP+gq7Qzz
- YthZGbtEhvQelE9fiNPtXWSoK1uLfRfiC2f8ZFHIFSPA2TdqoQrqxNJb3
- q6SkxQZDcT+QyXYkJnR7nUIgkCuv+7zTJ/XKgpoG6b9oCKG6i6CGK7duU
- Io0HHLUx6cuIqy5dVY5qtcoOdvzUbd5ek8UIwTwX3+oW74mzKEshdXJ0R Q==;
-X-CSE-ConnectionGUID: tY2B49jzSpSIQaLOPMWPNQ==
-X-CSE-MsgGUID: WMi3bURUQTuA9Z+AwohUxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51928891"
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="51928891"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 06:30:07 -0700
-X-CSE-ConnectionGUID: sVSOd23mSOS2Mty9grBnIQ==
-X-CSE-MsgGUID: YMwT0HbPR+uoMN6tWsG39g==
+ mime-version:in-reply-to;
+ bh=eSDv28MuTdwZ6xTMeqLdugHcHec2hDq5By/9GkUZe3g=;
+ b=j82pf3812PnnESkwJj9ifMm7vpzhIGaOammCq0koJRM4Jn2icMsLaF/I
+ BJEb8gfn8Q4o8xANDg+DmQ2ggrmR1azIbI6/66ATLeUbHA0Ffb1uPgmU7
+ 2uEc4XsuUGkANYVPPjR4oywIu1n3GwbrPuNhBafzq4XW5d6sRsHkIIsai
+ hCOmNd2ux8ewkIgMgBUKftYaNypgDZpnD3pporl5brXhltF3nVdLG2LJ8
+ cL5eK2hPhg+Dp25PaO+PIUM+RwJv0swfWe2Yp/j5xNyvKdeLnuFFrca4l
+ qo0F/9q46Eb0pw6p3p8ARpe6AlObdPSd9jF/SbQmUwt+ye/Pn5DpIMd/q w==;
+X-CSE-ConnectionGUID: NSIL5LsOQuu+A7ok3l4eDg==
+X-CSE-MsgGUID: 3U0Y0UTEQ2u1La0VmIneqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51014381"
+X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="51014381"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 06:32:08 -0700
+X-CSE-ConnectionGUID: 071oI+h3Qji4k13VB1TsaA==
+X-CSE-MsgGUID: Q8gjurnuS2eCKUnDRZRfiA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="152475591"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.24])
- by orviesa005.jf.intel.com with SMTP; 11 Jun 2025 06:30:04 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Jun 2025 16:30:03 +0300
-Date: Wed, 11 Jun 2025 16:30:03 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v4 07/21] drm/i915/dmc: Limit PIPEDMC clock gating w/a to
- just ADL/DG2/MTL
-Message-ID: <aEmDWG_mdQiLI6fq@intel.com>
-References: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
- <20250609141046.6244-8-ville.syrjala@linux.intel.com>
- <DM4PR11MB63603D5DE7B6FB5F13AA2143F46AA@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="184407810"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+ by orviesa001.jf.intel.com with ESMTP; 11 Jun 2025 06:31:49 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1uPLYQ-000AVO-28;
+ Wed, 11 Jun 2025 13:31:46 +0000
+Date: Wed, 11 Jun 2025 21:30:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, kernel-dev@igalia.com,
+ amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>
+Subject: Re: [PATCH v4 2/6] drm/syncobj: Do not allocate an array to store
+ zeros when waiting
+Message-ID: <202506112101.YHxD1SCt-lkp@intel.com>
+References: <20250610083001.4120-3-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM4PR11MB63603D5DE7B6FB5F13AA2143F46AA@DM4PR11MB6360.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <20250610083001.4120-3-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,60 +73,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 10, 2025 at 10:06:18PM +0000, Shankar, Uma wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
-> > Syrjala
-> > Sent: Monday, June 9, 2025 7:41 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Cc: intel-xe@lists.freedesktop.org
-> > Subject: [PATCH v4 07/21] drm/i915/dmc: Limit PIPEDMC clock gating w/a to just
-> > ADL/DG2/MTL
-> > 
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Supposedly nothing post-MTL (even BMG) needs the PIPEDMC clock gating w/a
-> > (Wa_16015201720), so don't apply it.
-> > 	
-> > TODO: check if the ADL/DG2 "clock gating needed during DMC loading" part
-> >       is actuall needed, not seeing anything in the docs about it...
-> 
-> Yes ADL does need the WA, you can drop the TODO.
-> Display 13.1 ADL: 16015201720	: Clockgating for pipe A DMC and pipe B DMC needs to be disabled.
-> Bit 12 of register CLKGATE_DIS_PSL_EXT_A (4654Ch) and CLKGATE_DIS_PSL_EXT_B (46550h) needs to be set.
+Hi Tvrtko,
 
-I meant the part about also enabling clock gating on pipes C/D
-while loading the firmware.
+kernel test robot noticed the following build warnings:
 
-> 
-> Looks Good to me.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > index a10e56e7cf31..b6ac480f391c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > @@ -487,7 +487,7 @@ static void mtl_pipedmc_clock_gating_wa(struct
-> > intel_display *display)
-> > 
-> >  static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)  {
-> > -	if (DISPLAY_VER(display) >= 14 && enable)
-> > +	if (display->platform.meteorlake && enable)
-> >  		mtl_pipedmc_clock_gating_wa(display);
-> >  	else if (DISPLAY_VER(display) == 13)
-> >  		adlp_pipedmc_clock_gating_wa(display, enable);
-> > --
-> > 2.49.0
-> 
+[auto build test WARNING on drm-exynos/exynos-drm-next]
+[also build test WARNING on linus/master v6.16-rc1 next-20250611]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Tvrtko-Ursulin/drm-syncobj-Remove-unhelpful-helper/20250610-163819
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/daeinki/drm-exynos.git exynos-drm-next
+patch link:    https://lore.kernel.org/r/20250610083001.4120-3-tvrtko.ursulin%40igalia.com
+patch subject: [PATCH v4 2/6] drm/syncobj: Do not allocate an array to store zeros when waiting
+config: x86_64-randconfig-121-20250611 (https://download.01.org/0day-ci/archive/20250611/202506112101.YHxD1SCt-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250611/202506112101.YHxD1SCt-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506112101.YHxD1SCt-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/drm_syncobj.c:1090:47: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *to @@     got unsigned long long [noderef] [usertype] __user * @@
+   drivers/gpu/drm/drm_syncobj.c:1090:47: sparse:     expected void *to
+   drivers/gpu/drm/drm_syncobj.c:1090:47: sparse:     got unsigned long long [noderef] [usertype] __user *
+>> drivers/gpu/drm/drm_syncobj.c:1090:59: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void const [noderef] __user *from @@     got unsigned long long * @@
+   drivers/gpu/drm/drm_syncobj.c:1090:59: sparse:     expected void const [noderef] __user *from
+   drivers/gpu/drm/drm_syncobj.c:1090:59: sparse:     got unsigned long long *
+
+vim +1090 drivers/gpu/drm/drm_syncobj.c
+
+  1056	
+  1057	static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
+  1058							  u64 __user *user_points,
+  1059							  uint32_t count,
+  1060							  uint32_t flags,
+  1061							  signed long timeout,
+  1062							  uint32_t *idx,
+  1063							  ktime_t *deadline)
+  1064	{
+  1065		struct syncobj_wait_entry *entries;
+  1066		uint32_t signaled_count, i;
+  1067		struct dma_fence *fence;
+  1068	
+  1069		if (flags & (DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
+  1070			     DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE)) {
+  1071			might_sleep();
+  1072			lockdep_assert_none_held_once();
+  1073		}
+  1074	
+  1075		entries = kcalloc(count, sizeof(*entries), GFP_KERNEL);
+  1076		if (!entries)
+  1077			return -ENOMEM;
+  1078	
+  1079		/* Walk the list of sync objects and initialize entries.  We do
+  1080		 * this up-front so that we can properly return -EINVAL if there is
+  1081		 * a syncobj with a missing fence and then never have the chance of
+  1082		 * returning -EINVAL again.
+  1083		 */
+  1084		signaled_count = 0;
+  1085		for (i = 0; i < count; ++i) {
+  1086			struct dma_fence *fence;
+  1087	
+  1088			entries[i].task = current;
+  1089			if (user_points &&
+> 1090			    copy_from_user(user_points++, &entries[i].point,
+  1091					   sizeof(*user_points))) {
+  1092				timeout = -EFAULT;
+  1093				goto cleanup_entries;
+  1094			}
+  1095			fence = drm_syncobj_fence_get(syncobjs[i]);
+  1096			if (!fence ||
+  1097			    dma_fence_chain_find_seqno(&fence, entries[i].point)) {
+  1098				dma_fence_put(fence);
+  1099				if (flags & (DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
+  1100					     DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE)) {
+  1101					continue;
+  1102				} else {
+  1103					timeout = -EINVAL;
+  1104					goto cleanup_entries;
+  1105				}
+  1106			}
+  1107	
+  1108			if (fence)
+  1109				entries[i].fence = fence;
+  1110			else
+  1111				entries[i].fence = dma_fence_get_stub();
+  1112	
+  1113			if ((flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE) ||
+  1114			    dma_fence_is_signaled(entries[i].fence)) {
+  1115				if (signaled_count == 0 && idx)
+  1116					*idx = i;
+  1117				signaled_count++;
+  1118			}
+  1119		}
+  1120	
+  1121		if (signaled_count == count ||
+  1122		    (signaled_count > 0 &&
+  1123		     !(flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL)))
+  1124			goto cleanup_entries;
+  1125	
+  1126		/* There's a very annoying laxness in the dma_fence API here, in
+  1127		 * that backends are not required to automatically report when a
+  1128		 * fence is signaled prior to fence->ops->enable_signaling() being
+  1129		 * called.  So here if we fail to match signaled_count, we need to
+  1130		 * fallthough and try a 0 timeout wait!
+  1131		 */
+  1132	
+  1133		if (flags & (DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
+  1134			     DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE)) {
+  1135			for (i = 0; i < count; ++i)
+  1136				drm_syncobj_fence_add_wait(syncobjs[i], &entries[i]);
+  1137		}
+  1138	
+  1139		if (deadline) {
+  1140			for (i = 0; i < count; ++i) {
+  1141				fence = entries[i].fence;
+  1142				if (!fence)
+  1143					continue;
+  1144				dma_fence_set_deadline(fence, *deadline);
+  1145			}
+  1146		}
+  1147	
+  1148		do {
+  1149			set_current_state(TASK_INTERRUPTIBLE);
+  1150	
+  1151			signaled_count = 0;
+  1152			for (i = 0; i < count; ++i) {
+  1153				fence = entries[i].fence;
+  1154				if (!fence)
+  1155					continue;
+  1156	
+  1157				if ((flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE) ||
+  1158				    dma_fence_is_signaled(fence) ||
+  1159				    (!entries[i].fence_cb.func &&
+  1160				     dma_fence_add_callback(fence,
+  1161							    &entries[i].fence_cb,
+  1162							    syncobj_wait_fence_func))) {
+  1163					/* The fence has been signaled */
+  1164					if (flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL) {
+  1165						signaled_count++;
+  1166					} else {
+  1167						if (idx)
+  1168							*idx = i;
+  1169						goto done_waiting;
+  1170					}
+  1171				}
+  1172			}
+  1173	
+  1174			if (signaled_count == count)
+  1175				goto done_waiting;
+  1176	
+  1177			if (timeout == 0) {
+  1178				timeout = -ETIME;
+  1179				goto done_waiting;
+  1180			}
+  1181	
+  1182			if (signal_pending(current)) {
+  1183				timeout = -ERESTARTSYS;
+  1184				goto done_waiting;
+  1185			}
+  1186	
+  1187			timeout = schedule_timeout(timeout);
+  1188		} while (1);
+  1189	
+  1190	done_waiting:
+  1191		__set_current_state(TASK_RUNNING);
+  1192	
+  1193	cleanup_entries:
+  1194		for (i = 0; i < count; ++i) {
+  1195			drm_syncobj_remove_wait(syncobjs[i], &entries[i]);
+  1196			if (entries[i].fence_cb.func)
+  1197				dma_fence_remove_callback(entries[i].fence,
+  1198							  &entries[i].fence_cb);
+  1199			dma_fence_put(entries[i].fence);
+  1200		}
+  1201		kfree(entries);
+  1202	
+  1203		return timeout;
+  1204	}
+  1205	
 
 -- 
-Ville Syrjälä
-Intel
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
