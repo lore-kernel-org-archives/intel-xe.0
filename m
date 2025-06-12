@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D29AC71136
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 08:17:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7917DC71136
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 08:24:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20DB710E1B5;
-	Thu, 12 Jun 2025 08:17:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 685E210E7A0;
+	Thu, 12 Jun 2025 08:24:08 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B8CB10E1B5;
- Thu, 12 Jun 2025 08:17:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0510532155848168401=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E65F10E7A0;
+ Thu, 12 Jun 2025 08:24:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/bmg=3A_Update_some_W?=
- =?utf-8?q?As_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Add_helper_func?=
+ =?utf-8?q?tion_to_inject_fault_into_ct=5Fdead=5Fcapture=28=29_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Jun 2025 08:17:21 -0000
-Message-ID: <174971624184.70493.9269942636710958122@1538d3639d33>
+Date: Thu, 12 Jun 2025 08:24:07 -0000
+Message-ID: <174971664712.70589.15281558387516816025@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250612-wa-14022085890-v4-0-94ba5dcc1e30@intel.com>
-In-Reply-To: <20250612-wa-14022085890-v4-0-94ba5dcc1e30@intel.com>
+References: <20250612080402.22011-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250612080402.22011-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,41 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0510532155848168401==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/bmg: Update some WAs (rev4)
-URL   : https://patchwork.freedesktop.org/series/149684/
+Series: drm/xe: Add helper function to inject fault into ct_dead_capture() (rev8)
+URL   : https://patchwork.freedesktop.org/series/148415/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3236-03848f8a962392d602e7f2a6a22f2a7e3efa4a3b_BAT -> xe-pw-149684v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 94f48fff65144c4a681f6438bac642bb98c87535
+Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Date:   Thu Jun 12 13:34:02 2025 +0530
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3236-03848f8a962392d602e7f2a6a22f2a7e3efa4a3b -> xe-pw-149684v4
-
-  IGT_8405: 8405
-  xe-3236-03848f8a962392d602e7f2a6a22f2a7e3efa4a3b: 03848f8a962392d602e7f2a6a22f2a7e3efa4a3b
-  xe-pw-149684v4: 149684v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149684v4/index.html
-
---===============0510532155848168401==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+    drm/xe: Add helper function to inject fault into ct_dead_capture()
+    
+    When injecting fault to xe_guc_ct_send_recv() & xe_guc_mmio_send_recv()
+    functions, the CI test systems are going out of space and crashing. To
+    avoid this issue, a new helper function is created and when fault is
+    injected into this xe_is_injection_active() helper function, ct dead
+    capture is avoided which suppresses ct dumps in the log.
+    
+    Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+    Suggested-by: John Harrison <John.C.Harrison@Intel.com>
+    Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 75238c32deae15ee4120b42a5be556ec36807a84 drm-intel
+94f48fff6514 drm/xe: Add helper function to inject fault into ct_dead_capture()
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/bmg: Update some WAs (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149684/">https://patchwork.freedesktop.org/series/149684/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149684v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149684v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3236-03848f8a962392d602e7f2a6a22f2a7e3efa4a3b_BAT -&gt; xe-pw-149684v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3236-03848f8a962392d602e7f2a6a22f2a7e3efa4a3b -&gt; xe-pw-149684v4</li>
-</ul>
-<p>IGT_8405: 8405<br />
-  xe-3236-03848f8a962392d602e7f2a6a22f2a7e3efa4a3b: 03848f8a962392d602e7f2a6a22f2a7e3efa4a3b<br />
-  xe-pw-149684v4: 149684v4</p>
-
-</body>
-</html>
-
---===============0510532155848168401==--
