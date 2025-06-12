@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F47CC61CE8
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 07:09:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15323C71143
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 07:09:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2F8A10E722;
-	Thu, 12 Jun 2025 07:09:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C845210E758;
+	Thu, 12 Jun 2025 07:09:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VK6qoGXg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jI0VbuXh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89AD010E72F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACC0F10E758
  for <intel-xe@lists.freedesktop.org>; Thu, 12 Jun 2025 07:09:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749712159; x=1781248159;
+ t=1749712160; x=1781248160;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=T5sCXimXCA67R571Ebz+iqx24W/rnvRb5aGT33lP6dQ=;
- b=VK6qoGXgU3/eoec6bRL7bkfSjjK1wCZwYuEAe33PWG/iZxsrk39cXjlx
- xk0Dgh2I4t4aSRR8GGlNWU/p9zCG56uJbs6F0Tqe64ZJOoZpMjnYgLkzQ
- QMfatbOejVlIatCZJl1qq9x57Fd+LjtferdHieILHH7rvxrx2EvAt45VW
- JiAWpZSm3HdcefZ0L3u07hNlJtWcWO0ONL2H79eZMWdSdygGLVS4L5oCC
- hSsgJUtV+0iae/n+yjmyMe9xsVA6ZdR3JgrxrWIu34aAYeFMmXFUxZ+3S
- B2t2f00R1isxffN/bDM+k3WGpP9AY/HNxaDFJWWIB7Zpe/u3JEcLoVHlM A==;
-X-CSE-ConnectionGUID: 8DdMmqUWTIWD1vrb0n1Hbg==
-X-CSE-MsgGUID: +ySL7ejqQkeirCZefrfAIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51792681"
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="51792681"
+ bh=1Y5PpALDJM8POr7Nk5wazhMuBENZrjLofkkXAoPoLRk=;
+ b=jI0VbuXhOfzvNGNAVuf3dfquqRY3hinDq0HsVe779XGDphKj+r4yPNCs
+ 0sJADmnHTGHwREAJYTd5gWu/VBDhIanxP4LkJUYzvDGB2+2DNxvhLK+TR
+ 8sDCAPR4oLY3HnYfMRtHYcMve46chiGYVjCLqyGkof8pN3zTtFqfsiU7r
+ MOLCsEJjwA/XsuThbZOd0MwsbBi1+/h3IOKL/a9Od2/RCNWlbJRTSzwqa
+ yjdDgMkjy0Ld0+1VKuoMGkFBQ2Lb2f+Yyhlbu+ljpWKThxKVyVH1J20ay
+ mFfXumNkGnNzaYS8flLRhhrHzK3esRNi4wmNG2DEQKS08Jvhn1ckXyCtb A==;
+X-CSE-ConnectionGUID: 0/oWQfHFR4GpDqFc7aHYAA==
+X-CSE-MsgGUID: ExT04c0iSzWmFY6IMGl5ng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51792684"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="51792684"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 00:09:16 -0700
-X-CSE-ConnectionGUID: Rlo6cAdQQqiVBnLhYvS4qg==
-X-CSE-MsgGUID: 80LOHHvdQKKxxauYlGamgQ==
+ 12 Jun 2025 00:09:17 -0700
+X-CSE-ConnectionGUID: x0Nx6SsQSIqCDPX6McSEEg==
+X-CSE-MsgGUID: to3Ti4wnTeG2yaX+mSu+vw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="152197768"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="152197774"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2025 00:09:16 -0700
@@ -46,10 +46,11 @@ To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Stuart Summers <stuart.summers@intel.com>,
  Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH v4 1/3] drm/xe/guc: Ignore GuC CT errors when wedged
-Date: Thu, 12 Jun 2025 00:09:00 -0700
-Message-ID: <20250612-wa-14022085890-v4-1-94ba5dcc1e30@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v4 3/3] drm/xe/bmg: Update Wa_14022085890
+Date: Thu, 12 Jun 2025 00:09:02 -0700
+Message-ID: <20250612-wa-14022085890-v4-3-94ba5dcc1e30@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250612-wa-14022085890-v4-0-94ba5dcc1e30@intel.com>
 References: <20250612-wa-14022085890-v4-0-94ba5dcc1e30@intel.com>
@@ -73,66 +74,63 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-Messaging to GuC may get canceled when device is wedged. Don't
-flag this as an error in xe_guc_pc code.
+Set GT min frequency to 1200Mhz once driver load is complete.
 
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+v2: Review comments (Rodrigo)
+v3: Apply Wa earlier so user_req_min is not clobbered.
+v4: Apply to all GTs (Lucas)
+
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_pc.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_pc.c     | 5 +++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 4 ++++
+ 2 files changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 18c6239920355..aedf59162709a 100644
+index aedf59162709a..39d2acb2f30f6 100644
 --- a/drivers/gpu/drm/xe/xe_guc_pc.c
 +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -153,7 +153,7 @@ static int pc_action_reset(struct xe_guc_pc *pc)
+@@ -51,6 +51,7 @@
+ 
+ #define LNL_MERT_FREQ_CAP	800
+ #define BMG_MERT_FREQ_CAP	2133
++#define BMG_MIN_FREQ		1200
+ 
+ #define SLPC_RESET_TIMEOUT_MS 5 /* roughly 5ms, but no need for precision */
+ #define SLPC_RESET_EXTENDED_TIMEOUT_MS 1000 /* To be used only at pc_start */
+@@ -817,6 +818,7 @@ void xe_guc_pc_init_early(struct xe_guc_pc *pc)
+ 
+ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+ {
++	struct xe_tile *tile = gt_to_tile(pc_to_gt(pc));
  	int ret;
  
- 	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
--	if (ret)
-+	if (ret && !(xe_device_wedged(pc_to_xe(pc)) && ret == -ECANCELED))
- 		xe_gt_err(pc_to_gt(pc), "GuC PC reset failed: %pe\n",
- 			  ERR_PTR(ret));
+ 	lockdep_assert_held(&pc->freq_lock);
+@@ -843,6 +845,9 @@ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+ 	if (pc_get_min_freq(pc) > pc->rp0_freq)
+ 		ret = pc_set_min_freq(pc, pc->rp0_freq);
  
-@@ -177,7 +177,7 @@ static int pc_action_query_task_state(struct xe_guc_pc *pc)
- 
- 	/* Blocking here to ensure the results are ready before reading them */
- 	ret = xe_guc_ct_send_block(ct, action, ARRAY_SIZE(action));
--	if (ret)
-+	if (ret && !(xe_device_wedged(pc_to_xe(pc)) && ret == -ECANCELED))
- 		xe_gt_err(pc_to_gt(pc), "GuC PC query task state failed: %pe\n",
- 			  ERR_PTR(ret));
- 
-@@ -200,7 +200,7 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
- 		return -EAGAIN;
- 
- 	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
--	if (ret)
-+	if (ret && !(xe_device_wedged(pc_to_xe(pc)) && ret == -ECANCELED))
- 		xe_gt_err(pc_to_gt(pc), "GuC PC set param[%u]=%u failed: %pe\n",
- 			  id, value, ERR_PTR(ret));
- 
-@@ -222,7 +222,7 @@ static int pc_action_unset_param(struct xe_guc_pc *pc, u8 id)
- 		return -EAGAIN;
- 
- 	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
--	if (ret)
-+	if (ret && !(xe_device_wedged(pc_to_xe(pc)) && ret == -ECANCELED))
- 		xe_gt_err(pc_to_gt(pc), "GuC PC unset param failed: %pe",
- 			  ERR_PTR(ret));
- 
-@@ -239,7 +239,7 @@ static int pc_action_setup_gucrc(struct xe_guc_pc *pc, u32 mode)
- 	int ret;
- 
- 	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
--	if (ret)
-+	if (ret && !(xe_device_wedged(pc_to_xe(pc)) && ret == -ECANCELED))
- 		xe_gt_err(pc_to_gt(pc), "GuC RC enable mode=%u failed: %pe\n",
- 			  mode, ERR_PTR(ret));
++	if (XE_WA(tile->primary_gt, 14022085890))
++		ret = pc_set_min_freq(pc, max(BMG_MIN_FREQ, pc_get_min_freq(pc)));
++
+ out:
  	return ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 425cb401c2762..38b589fe9198d 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -59,3 +59,7 @@ no_media_l3	MEDIA_VERSION(3000)
+ 		MEDIA_VERSION_RANGE(1301, 3000)
+ 16026508708	GRAPHICS_VERSION_RANGE(1200, 3001)
+ 		MEDIA_VERSION_RANGE(1300, 3000)
++
++# SoC workaround - should apply to all platforms using this
++# graphics version in tile->primary_gt
++14022085890	GRAPHICS_VERSION(2001)
 
 -- 
 2.49.0
