@@ -4,64 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C878FC61CE8
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 13:25:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B5E0C61CE8
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 13:26:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9380B10E3F8;
-	Thu, 12 Jun 2025 13:25:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41B4610E331;
+	Thu, 12 Jun 2025 13:26:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D2PM+DaZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eYJPCmoV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 078A610E27A
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Jun 2025 13:25:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A966310E06B;
+ Thu, 12 Jun 2025 13:26:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749734725; x=1781270725;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=SIjFkanjeqNj8t7I+yrVNo4R4IqXB7cn0S6I/15UTGQ=;
- b=D2PM+DaZlrhdxbQ7BwQhRYzIU15GGheuQC7QQd6s1xpmc49LvFOoczqI
- LGjwT6GN6oJqsdCKM07N954zMpJtwfX2eVzUsxgdEJ3VSKTBjAftkotz8
- 1WpVYcXpTNPGb9qyHcQLmWN27nirAHfPydKRMMGBtlzv00ImAKr3kqnx5
- O3+MNgn7tlYX5mD5uKf4NYeqJaR6DKaoWewBpDVpDuAFG6VmazCGPqC5e
- gJS5BdG26yITynmvwEH/I/0kCt/UN6MEitSxeGPPHuNpToxJx9RxkZxsq
- a+1GrxHXb7yKSOAZCiJsQz+ig64m2t2QWz9vszSP4eSyz1+L2S/YI8Wd2 A==;
-X-CSE-ConnectionGUID: vnyPaQSiQ9SjgxKE5V80pA==
-X-CSE-MsgGUID: 383IoeEESnyi4HYzhoDNXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="55588428"
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="55588428"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 06:25:12 -0700
-X-CSE-ConnectionGUID: Vu9ebvFORTuEpz3PZ5ZCfA==
-X-CSE-MsgGUID: ZUJFVbr9S9u7L5MWPAY4Sw==
+ t=1749734764; x=1781270764;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=0zBWI8x8biRjpgqMpowrwouRX7HhLXRZIsyv1DDbZD8=;
+ b=eYJPCmoVYqoGWWJJ8ujo2eEJSnEEbLYmt32GS5tHqFWP7sm0U3sP7dEh
+ F+w7TDY3VqvzKvYnDNW0h3z0PQM8yfhh4P5Xxrwxum1GLaREekJMjdm+3
+ 3pmSDJPO13faXix7nxKlWaEzONpQuSN1u+x/MElBaNy09OQi7/5YZJcMq
+ pyUe/0LoBp3E4FIyeTuxG6GZ8NayhLT7el4bbP5tnAnDerSyeP5hK156S
+ KigB/xAWYRFYi2AgDsUNA4OxOjy/gJBxfAUA83KlOXA33YqZE3zvIUPU3
+ /PBc1LFYEEfEyB8mX2NYVeKYRhEU7XuIru681mFcTb6T7I6ytXw5HfET5 Q==;
+X-CSE-ConnectionGUID: gqb3X80OTzGAAiLUvjUMFQ==
+X-CSE-MsgGUID: BBHYsBiKSgm5gORwRmMi0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="51023578"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="51023578"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 06:26:02 -0700
+X-CSE-ConnectionGUID: LfNf2cLISuSclF5zSstC0A==
+X-CSE-MsgGUID: 4m/L8koZTb2em8TivtmJYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="152509211"
-Received: from black.fi.intel.com (HELO black.fi.intel.com.) ([10.237.72.28])
- by orviesa004.jf.intel.com with ESMTP; 12 Jun 2025 06:25:06 -0700
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
- Raag Jadav <raag.jadav@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>,
- "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v3 3/4] drm/xe/pm: Wire up suspend/resume for I2C controller
-Date: Thu, 12 Jun 2025 16:24:49 +0300
-Message-ID: <20250612132450.3293248-4-heikki.krogerus@linux.intel.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250612132450.3293248-1-heikki.krogerus@linux.intel.com>
-References: <20250612132450.3293248-1-heikki.krogerus@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="147390199"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 06:26:01 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Thu, 12 Jun 2025 06:26:00 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Thu, 12 Jun 2025 06:26:00 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.61) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Thu, 12 Jun 2025 06:25:59 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Q0KtjMoomsqZeQdLA/RDec7QSpY76SzTWbSvOzvVSwdHyJBpzqRaupryYF0KXlpc29GNUVWoQRKjtRHRCIKovWsLylZgdV0s9RjX8P63q3WZkh2HCmNmgKkbagNsRdatAui7DVj3lSottjR1PPyPq0xLGeLq7Db0c4tX8A+8lh9A6lsN9k4JVNzVM3gyQQc/prmONIppK58XtwdU5UeDpDC0d5OedlE2oWwUoBpGe1/7OpkbM/Hb4rR3x4DvbeT3qe1Fyzt0mXoVGu0fBh0AA+9OsnxLatw7ZCOD+4iO+pAzZrXMRjWLYTWnCK3B52Jsda6Cg1wv06by5Vyb8+lCvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Advl0gUldDZ+PdTSR9mOaIxQFhApWtdfDJf9oSyvT/0=;
+ b=ELrjCABdza7gXFUpz5mJKK/X/f6LrgDkABXfMk84SvzUOulwzhgkPIyIFNW/uG4rzuqhdxPgSG4/y5Bngdbcc0q5lIQTaYziWoHW2ljTjrCVQuCu46ATTP16dQczhXQlgwqBHEoJeI2zzxhC5phKOtJuM39ogsms0tFQWKp81VDlhDmd6M6lte/hYclQ1kedWU6oMGeoLEKxGQRCiOuDSnzlUQyYgdmTHZCHgoKFvlmPjAO8AQihqlH3cPcNwIj3TIMccLUvLlwOJ/uYftjOTeuGzxpIQ+z0s09n1o59Eq4WdmK8nYKfa/QTeTH1MD3zKeVBTebRNXu9aQDn9M7iKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by CY8PR11MB7170.namprd11.prod.outlook.com (2603:10b6:930:91::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.31; Thu, 12 Jun
+ 2025 13:25:56 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%4]) with mapi id 15.20.8813.024; Thu, 12 Jun 2025
+ 13:25:55 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250612124617.626958-1-jani.nikula@intel.com>
+References: <20250612124617.626958-1-jani.nikula@intel.com>
+Subject: Re: [PATCH] drm/i915/panel: make panel funcs static
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <dri-devel@lists.freedesktop.org>, <jani.nikula@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>
+Date: Thu, 12 Jun 2025 10:25:49 -0300
+Message-ID: <174973474918.14553.5194064664827391011@intel.com>
+User-Agent: alot/0.12.dev27+gd21c920b07eb
+X-ClientProxiedBy: MW4PR04CA0255.namprd04.prod.outlook.com
+ (2603:10b6:303:88::20) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|CY8PR11MB7170:EE_
+X-MS-Office365-Filtering-Correlation-Id: 88091013-9f8f-4230-1c8d-08dda9b4a938
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|1800799024|376014|366016|16122699012;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?QWFzbW5ZSmEyQlVYQlF4eFgzMlhVR1h5cmdUVy90TEs0S2R6TGNwS2JyMk45?=
+ =?utf-8?B?aVY4NHh5dlhxV3NKYWNZM0tOdHh0M25SZnJVNnZaZmJxUm8xZzFsTDB2aHI1?=
+ =?utf-8?B?TGRGVjlxVVdnRkxNM1RZb3FsY2prTkgzN3hwTFZZU2t0SHA1WDZwVE5XZ0k1?=
+ =?utf-8?B?V1Vhbm1nODJnYUhJb2tZMktxd29uSTlsSWNESDRoOE5KelpwVHIzVDV4cXQz?=
+ =?utf-8?B?MGphRm5XRG50dVVnb1dKa0ZkUFVabkdPWE9lTFYyd3RnRnExOHJDbWl2ZTBF?=
+ =?utf-8?B?K1Zib2I0ZmFpR0g2VzdyMEdYWHNHS1JmN2lwRjRsemRlU0UrZ1dWRWZ4RkJH?=
+ =?utf-8?B?TnZPN0FORHZZdzBrY1VjVzNxV2FNTXFONHBwdGlnakF1UWVJRzVZUVRVZ1Mv?=
+ =?utf-8?B?UVdWY1JHSTczSG9ENmlFcEJHSlRRMmFsWm96SzA0bFhnLzhycHhEZWpmRktB?=
+ =?utf-8?B?T2o3UnFvTjY3YlRHNk1TanRLRy91OE15WHdDcG0yQUQyV2pONTVGaG9Qbkhy?=
+ =?utf-8?B?TzlRY0ZJWGYySlR6ZkZNK0dXQUZnMGxubThUNjZ3dVVOQmRPU0xzOGsyM05N?=
+ =?utf-8?B?aTZYM2kwU1M2czRFQWdxS2FJUUg3bk03a0pzT1pEYjM2TGhidXB2MmdhKzVT?=
+ =?utf-8?B?ZFgxVCtzdEIzMlJJSlBuZGZvZWIxQXFJdFRXeUlGR0FvK1NCdFpZeTZYVnZ4?=
+ =?utf-8?B?TklNaS9WQjgxVm01TGhZYktPb0x5QXJHRmFJQ2hoUWpzaXBXbDlmL2dKdFpB?=
+ =?utf-8?B?T0d4MC9OMkJpaWthQ3h2dGxVZThUNVM2U2t1UTFrTmYvZ29NRUVFbmhuZ2w5?=
+ =?utf-8?B?UGtITHdVTUZoalRlWUR2NUhIbWlIQWxkSHB3QTkrdEhzMmpLRDdTMjdFUFdh?=
+ =?utf-8?B?eldMVFdrQU1EVmNPQXlpL1pFa1dFQXA0TGJ3OVRieXVmYjZxdU9UekVPYWdD?=
+ =?utf-8?B?Q1g5bkxuZ200MDc2dnBhNWZFVVUwLzEzNDR0TVVZNnRtTENUTGJaUVhyYlMv?=
+ =?utf-8?B?aHBreHRVNkZET2djdmtFLzFudDZVbjdvT1VuQUFtNFRpUyt2R09kOFM5MEtt?=
+ =?utf-8?B?c1pCaW9uM2xKZ2QzZ0RLbEFKT0E1M1RuTzBGNTdxZnNLY1BVMnFVdWtSUHN5?=
+ =?utf-8?B?ZW5KRnN5bHU0ZWFxTUIrT2J1YSs3S0YxcS9Rek5vbXhWTncyODVYRGFlUW5m?=
+ =?utf-8?B?TmlnUkVnendsRkNnZjNickN5NmN2ZW9oWkRhcS9NUmxSeCs4enp1d2pqTHQ2?=
+ =?utf-8?B?SU1jM3c2ckM1aURQaWlkWUJ0emY1SHJLVXp2ajltSWxkVjY1TFl2RzhzQXY2?=
+ =?utf-8?B?T1N1N1FGTEN1S2VFOUxkN2NpdTdtV3hDT3hHbTNxQmJjM3A0dGtUN000bkZz?=
+ =?utf-8?B?WDl3Mk5mUlozRXpHaUU5ZFpqbkhyVUhPYm84RWt4RG5NbFB2emtlNWp1aHFz?=
+ =?utf-8?B?K0pRY2w3aE5lRHREb2NLQTVobFRLblltWndHR3lzMWpzblZTdGN2aDljeTV1?=
+ =?utf-8?B?Tkk5Yy9hVWliQ1E3YTE5SDJycUoyVGUvUWFWek9iUEJzVG1nNkIzQWdSWGRQ?=
+ =?utf-8?B?QzQ4OVlVRFJUTm5VL1NlTjB3cHhTNkZra0w1U0JDWUNBU0U2R2xmYXo2L0Q3?=
+ =?utf-8?B?TVZrenk0QkEwRHMrZVU0QW1ueUIxOXB0OUY4eWZSYnNZWjd1dDdsY1YxZWZU?=
+ =?utf-8?B?RmZoaFZlcnVzaytGakZJOUtqcnF2OEdKZE4yVVdiNUtNdlNLUzBkQjlobFQ3?=
+ =?utf-8?B?MzI0MjRROXhDR0I0eDJLZnoxVEpnVEN2M2l6ejIxYXpiTUZHa1dMelNFaWNY?=
+ =?utf-8?B?TlIxTHhqZEhLQlh4NnVJTUpvUnFnQUVGVGdVaHVkbTdOSE5WOTk4blU0T2d3?=
+ =?utf-8?B?aW9JRnVWYk0yMlo1eGlzWmd0ZHIwRjZOZzNpYlM4ZXlOUnFENW1nK1I0ZFhI?=
+ =?utf-8?B?cDlqSi9EWWp3THFmY3Vhd05tTEhUazdvdHppNENGdVhuWjdnSGcxSHVZSmhw?=
+ =?utf-8?B?czE3Yk50UjdnPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(16122699012); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bTBPbFV2OUpFU0VaQzRadGluOHcydWRyOWNRdVJsaXBPODFVOFNKMjFrNFVZ?=
+ =?utf-8?B?b0lpaEhNV01lZ3Nqb2xRWHBpRlFJZU9WbC9qdHlha1IzRTBVU0ZzZEZGcmNj?=
+ =?utf-8?B?aUc3dTNrV1M5cnJnenhrR2kwcVdreHpWYnI0eDBPZTlVMVNPZnByYk5sSkZ2?=
+ =?utf-8?B?cGthQzV4VmwyVlhIWm85dzRScmx6bnJTSDkyWHZ3WEpqZ25Jc3hVc3J3Z2pX?=
+ =?utf-8?B?a09qd2FyTVVEbkU5Znl4NmxvMnluMVlCRFB2cUoxb0Y0TmFBQ1pXZDErcWVs?=
+ =?utf-8?B?cW1kY2NMOGxGelRKcXorTTkwYWRqZTl5L0VBdGVwUG9SS1J2aHUvdFU5V1Vt?=
+ =?utf-8?B?RTEwMTE0RmtTSVFsa2lwZXBzbFBNRzBTYWhkTVZwU2VXTTF6N1lrVU5Lay93?=
+ =?utf-8?B?Q2xNOEhmWGwwU3FWSENCNVF2SVpWNU9mdE81UDFKc3Fqb2pzOXpvTVZHclJH?=
+ =?utf-8?B?KzZoWW91cS9LWHgzZGhHUm9mRkRUU25JNGVXalVtc0FKZzJabkZDbU5vQ0Iv?=
+ =?utf-8?B?d2JVTkgrckpFVG5uM0QxUGNUQWxLR05NeGNjalFFM3J4V3J0V1czK2xNWktp?=
+ =?utf-8?B?L3RLbjN4a1dpMTBSZGlEOFhaR1VpQkNRU1o5ams1YXFQSmRoYUVObXpzc3cv?=
+ =?utf-8?B?OVo2WXVrOXVoSDZnR0wrbktUOWhzRTJGRkdnZnBBQzB5WXQ1ckUzVlgvTnpz?=
+ =?utf-8?B?WjRwRjUweVd6MU9CRW83WDVLT1BrWmE4MVRwS3lmNjE4SmlobGt0NFlEREtL?=
+ =?utf-8?B?a0ZoMkRua3BLVSt0bCt5UXg3QWVlRXBPL1dqNy9qQVR4MnJ6RGR6a2xhSU5w?=
+ =?utf-8?B?dHZOaWhCbC8xcDgxdHZOclBrWHpzV0UrbmR5dlNJYVZDV1FtNDEwVWREN2RF?=
+ =?utf-8?B?dkxLWkhxOGRiNnFIKzFZMFY0Y0lVc2JWWGY5c2NKeG5kQjRUVnJuWWt5WGNV?=
+ =?utf-8?B?b1hkTDYzdkVoeEpMVXpIZW5ISUVMd3U4enRyeThURXJVVkpBS1ZGNWdaUXYv?=
+ =?utf-8?B?WDJHZThzKzhrMzhneXlCTWFKQ1NMcmVvUkhzRU9oY093YUQ4eDVvYyt4MTBp?=
+ =?utf-8?B?R0NBQklDajUxVE9iWlo5ekdoLzlCSnBxdS9nb0UvT3RNbFJMU251OGxuNEtN?=
+ =?utf-8?B?bjNtcWFlS1U1LzFPRThsNkdmSUppWkhIanh6YUVNQitQbEpTczE0M0RtbklT?=
+ =?utf-8?B?ZzBzdWs0dDNtM3BuUUhRR09nMHAzS1FrTEpPYlJNeldPOXZRemVMc0ZKQ1Y2?=
+ =?utf-8?B?YUtpM081MzJKRHlFT1lHQ1VMZXZpVS9BYTE4OHlxVzRZMGdBajZxODlkbHVj?=
+ =?utf-8?B?NHJ1WVpLeFpQdU1iTmZuNEs3U0IrRVF4d3dTeEd5dGVoUVZBK3Z3YmNoMDBw?=
+ =?utf-8?B?UHRxYll6Ulc5NkRLTzF4Ym1CNFEyOU5SYUgyMm5WUmUwdXJ6QmNrNCtSMFAv?=
+ =?utf-8?B?MVN0QjhQM2srdkdSbGFMY2k1TE5tVlFZYkpQekZHZG9nRmtpV1oxQjUzUlZ0?=
+ =?utf-8?B?cDBPbDJLcjRHb0xqT2RUTlFYTlhST0dmNks4TWduekVrWXNaVVFoZ0ZTTmhK?=
+ =?utf-8?B?T1lBbFo3eENUOU44TjM4K3FJU3hBbHE3UUdoSUtpU1BGQmpsbmdQWUxIM2dE?=
+ =?utf-8?B?Y2pPTmFTdmVRQ2xRYnNDR2ZWWnYyUTBUSm5mcnM1WVdicUxUU29admtkeHFo?=
+ =?utf-8?B?Sk9LT2d2K0xGVmhKQnJmQmxlRHpmcmNsNXNFbGZMUlNvc1ZCMW5OZGMvVFJD?=
+ =?utf-8?B?ZmdRWWpJT0RySVZTTHduSWN6RERmemdSMktqWEo4UmUvZnhFS2JURDRHY1lr?=
+ =?utf-8?B?TGFOb3VuUVNubVp2dGdvL0FnUlNvdFlQdEFNTnhuY0RLUTdkUGl5ZGJ3bTZD?=
+ =?utf-8?B?SnNnemZmblpXUDlMenpRd2JZa3B3d1YzRmdicTdtTy9Ja0loL3BqWXgzNEtm?=
+ =?utf-8?B?VEp0QjZ3ekIrWm1WeXlwWHIzblp4WUNzekxjVWJnUkxPSGVxd05EdlIyR1U4?=
+ =?utf-8?B?bElqUjdtbG9lKzlic1I0dDB0OStaTVhQaXdFSm1rMTNia1QrWVZEOTZvUzdZ?=
+ =?utf-8?B?SjEwdkEzL3dXcE9MV2phSnA1VUUwQTVyQzJ4YmJuV1ZyN3RJYXllZXRJQnlu?=
+ =?utf-8?B?dE9oNmlMYTFlRkZJRVNQNVZoV2VzZzR3ejd1MzBSWVNvWmJDL0p5SUhFVCtV?=
+ =?utf-8?B?dmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88091013-9f8f-4230-1c8d-08dda9b4a938
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2025 13:25:55.6193 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: J027czULfSt9E7ImGzy8hNCZgjFo7nkLVkizZCbw26YZFURbCrVLHOcQlXQYIyYwDPGOVZTKwVrjNXj15IvmHA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7170
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,155 +195,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Raag Jadav <raag.jadav@intel.com>
+Quoting Jani Nikula (2025-06-12 09:46:17-03:00)
+>The drm panel funcs should be static, fix it.
+>
+>Fixes: 3fdd5bfbd638 ("drm/i915/panel: register drm_panel and call prepare/=
+unprepare for ICL+ DSI")
+>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Wire up suspend/resume handles for I2C controller to match its power
-state with SGUnit.
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Karthik Poosa <karthik.poosa@intel.com>
-Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
----
- drivers/gpu/drm/xe/regs/xe_i2c_regs.h |  5 +++++
- drivers/gpu/drm/xe/xe_i2c.c           | 29 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_i2c.h           |  4 ++++
- drivers/gpu/drm/xe/xe_pm.c            |  9 +++++++++
- 4 files changed, 47 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/regs/xe_i2c_regs.h b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-index fa7223e6ce9e..27f9935fd8fd 100644
---- a/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-@@ -2,6 +2,8 @@
- #ifndef _XE_I2C_REGS_H_
- #define _XE_I2C_REGS_H_
- 
-+#include <linux/pci_regs.h>
-+
- #include "xe_reg_defs.h"
- #include "xe_regs.h"
- 
-@@ -12,4 +14,7 @@
- #define CLIENT_DISC_COOKIE		XE_REG(SOC_BASE + 0x0164)
- #define CLIENT_DISC_ADDRESS		XE_REG(SOC_BASE + 0x0168)
- 
-+#define I2C_CONFIG_CMD			XE_REG(I2C_CONFIG_SPACE_OFFSET + PCI_COMMAND)
-+#define I2C_CONFIG_PMCSR		XE_REG(I2C_CONFIG_SPACE_OFFSET + 0x84)
-+
- #endif /* _XE_I2C_REGS_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-index 3d649602ede8..59bdf28717bc 100644
---- a/drivers/gpu/drm/xe/xe_i2c.c
-+++ b/drivers/gpu/drm/xe/xe_i2c.c
-@@ -208,6 +208,31 @@ static const struct regmap_config i2c_regmap_config = {
- 	.fast_io = true,
- };
- 
-+void xe_i2c_pm_suspend(struct xe_device *xe)
-+{
-+	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+
-+	if (!xe->i2c || xe->i2c->ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
-+		return;
-+
-+	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, PCI_D3hot);
-+	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
-+}
-+
-+void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
-+{
-+	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+
-+	if (!xe->i2c || xe->i2c->ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
-+		return;
-+
-+	if (d3cold)
-+		xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_MEMORY);
-+
-+	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, PCI_D0);
-+	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
-+}
-+
- static void xe_i2c_remove(void *data)
- {
- 	struct xe_i2c *i2c = data;
-@@ -240,6 +265,10 @@ int xe_i2c_probe(struct xe_device *xe)
- 	i2c->mmio = xe_root_tile_mmio(xe);
- 	i2c->drm_dev = xe->drm.dev;
- 	i2c->ep = ep;
-+	xe->i2c = i2c;
-+
-+	/* PCI PM isn't aware of this device, bring it up and match it with SGUnit state. */
-+	xe_i2c_pm_resume(xe, true);
- 
- 	regmap = devm_regmap_init(i2c->drm_dev, NULL, i2c, &i2c_regmap_config);
- 	if (IS_ERR(regmap))
-diff --git a/drivers/gpu/drm/xe/xe_i2c.h b/drivers/gpu/drm/xe/xe_i2c.h
-index e88845be61b4..3b1208416bde 100644
---- a/drivers/gpu/drm/xe/xe_i2c.h
-+++ b/drivers/gpu/drm/xe/xe_i2c.h
-@@ -50,9 +50,13 @@ struct xe_i2c {
- #if IS_ENABLED(CONFIG_I2C)
- int xe_i2c_probe(struct xe_device *xe);
- void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl);
-+void xe_i2c_pm_suspend(struct xe_device *xe);
-+void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold);
- #else
- static inline int xe_i2c_probe(struct xe_device *xe) { return 0; }
- static inline void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl) { }
-+static inline void xe_i2c_pm_suspend(struct xe_device *xe) { }
-+static inline void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold) { }
- #endif
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 26e95460af87..46471e166b96 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -19,6 +19,7 @@
- #include "xe_ggtt.h"
- #include "xe_gt.h"
- #include "xe_guc.h"
-+#include "xe_i2c.h"
- #include "xe_irq.h"
- #include "xe_pcode.h"
- #include "xe_pxp.h"
-@@ -146,6 +147,8 @@ int xe_pm_suspend(struct xe_device *xe)
- 
- 	xe_display_pm_suspend_late(xe);
- 
-+	xe_i2c_pm_suspend(xe);
-+
- 	drm_dbg(&xe->drm, "Device suspended\n");
- 	return 0;
- 
-@@ -191,6 +194,8 @@ int xe_pm_resume(struct xe_device *xe)
- 	if (err)
- 		goto err;
- 
-+	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
-+
- 	xe_irq_resume(xe);
- 
- 	for_each_gt(gt, xe, id)
-@@ -484,6 +489,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 
- 	xe_display_pm_runtime_suspend_late(xe);
- 
-+	xe_i2c_pm_suspend(xe);
-+
- 	xe_rpm_lockmap_release(xe);
- 	xe_pm_write_callback_task(xe, NULL);
- 	return 0;
-@@ -531,6 +538,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 			goto out;
- 	}
- 
-+	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
-+
- 	xe_irq_resume(xe);
- 
- 	for_each_gt(gt, xe, id)
--- 
-2.47.2
-
+>---
+> drivers/gpu/drm/i915/display/intel_panel.c | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/=
+i915/display/intel_panel.c
+>index f956919dc648..e28ad72c4f2b 100644
+>--- a/drivers/gpu/drm/i915/display/intel_panel.c
+>+++ b/drivers/gpu/drm/i915/display/intel_panel.c
+>@@ -502,7 +502,7 @@ static void intel_panel_sync_state(struct intel_connec=
+tor *connector)
+>         drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+> }
+>=20
+>-const struct drm_panel_funcs dummy_panel_funcs =3D {
+>+static const struct drm_panel_funcs dummy_panel_funcs =3D {
+> };
+>=20
+> int intel_panel_register(struct intel_connector *connector)
+>--=20
+>2.39.5
+>
