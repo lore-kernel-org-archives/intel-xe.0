@@ -4,55 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61FEAC71136
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 22:15:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E68B8C61CE8
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 22:46:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1729D10E1C2;
-	Thu, 12 Jun 2025 22:15:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 759F810E08B;
+	Thu, 12 Jun 2025 22:46:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X+JuRe6O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N3mtfC+Y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E349D10E1C2
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Jun 2025 22:15:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 529E210E08B
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Jun 2025 22:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749766503; x=1781302503;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kWoTnOx6wC+YUG6sd3T0BM74MyVEqOKLoBscpuPxDjA=;
- b=X+JuRe6OAe3TQELPbXETx5S1zwPCGsh5AsohX1+LdbC35pupe+LmU1sS
- bvYnTIxlkXfmMBq/g20+92Qgg+QK9J0Y+RsWx73/Ml12S/22zvnn4UIEt
- Wywr0GQicHYMGO0AVnnya39SuL0U5qZE6M5UoY1m+UQ61hr/OPvEBp0Or
- G4en5D+6x5eIxEGv9Ci6dvVksyZCDJqtZcJkMMDfekzgE1krkYsqERzDD
- tBw5hQHUApOWH4aKrkOM3jAL983Kzlovtpse+1K9N0uvSugDVDkoF6MOz
- 6eX7TdHxa3H42LOy63pzlo3olJ0UIB1ETWC2s2SbUR/8z43uURcD3L5/B A==;
-X-CSE-ConnectionGUID: MEgf9NKCRgi5oqEdsUWyqg==
-X-CSE-MsgGUID: watXf5AJRGCbuJSDaym6oA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="55641812"
-X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="55641812"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 15:15:03 -0700
-X-CSE-ConnectionGUID: 7/2zJnDXQsqROxBzwBWRyg==
-X-CSE-MsgGUID: TlWunpA5R5KckmL4PDSryA==
+ t=1749768391; x=1781304391;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kQ3/+ZEkX0WMS6QKjzBZ1q3fNjDQte7eqBypBCT90h8=;
+ b=N3mtfC+YU52PJ5q0OBCTRcEeZaA8ULvsOmrl9ISaC13RLFS/kjG9U9Cz
+ d8dgi8zTXznndBcbM7X5MNnYN+Do2hvaX4xivD18tlRIJjZXHjtP2I63P
+ khNmuCmVzNGDqAbitPy3R6L40HEnYqYsbhFWmoMhKpcbhf239ZSuBFXjb
+ /i485LH2O2TySWrY+RXij1pxHU86nAIsdWryq7kkrbY/7Y8z5+gytHB5Q
+ uf/Dnr49kCum4rOCPNE5w1+oiEyOhCK9XL2fOH8GFzAd8/Mr2bPsdWPGf
+ dgGejSi0v1PX6XyjeYuzjQCjOT9fAuBP6QLp/rjAsXPWNbuzxHcdk+bxV A==;
+X-CSE-ConnectionGUID: pCTfxoWgTeGqVkMj5/DLuQ==
+X-CSE-MsgGUID: dA+92FUdSCeuQQpxKs68Vw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="55772123"
+X-IronPort-AV: E=Sophos;i="6.16,232,1744095600"; d="scan'208";a="55772123"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 15:46:29 -0700
+X-CSE-ConnectionGUID: UuQkVSg9QsyDvKYLclkM8A==
+X-CSE-MsgGUID: nCCRZ2DpTy20cL7sJB68/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="152555144"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 15:15:02 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,232,1744095600"; d="scan'208";a="147496980"
+Received: from osgcshtiger.sh.intel.com ([10.239.70.161])
+ by fmviesa006.fm.intel.com with ESMTP; 12 Jun 2025 15:46:28 -0700
+From: Jia Yao <jia.yao@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
-	stable@vger.kernel.org
-Subject: [PATCH] drm/xe: Fix memset on iomem
-Date: Thu, 12 Jun 2025 15:14:12 -0700
-Message-ID: <20250612-vmap-vaddr-v1-1-26238ed443eb@intel.com>
-X-Mailer: git-send-email 2.49.0
+Cc: Jia Yao <jia.yao@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Brian3 Nguyen <brian3.nguyen@intel.com>, Alex Zuo <alex.zuo@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maciej Patelczyk <maciej.patelczyk@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH v3] drm/xe: Fix out-of-bounds field write in MI_STORE_DATA_IMM
+Date: Thu, 12 Jun 2025 22:46:20 +0000
+Message-Id: <20250612224620.161105-1-jia.yao@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250523150418.168362-1-jia.yao@intel.com>
+References: <20250523150418.168362-1-jia.yao@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20250612-vmap-vaddr-cba93a33b947
-X-Mailer: b4 0.15-dev-a7f9c
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,29 +70,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It should rather use xe_map_memset() as the BO is created with
-XE_BO_FLAG_VRAM_IF_DGFX in xe_guc_pc_init().
+According to Bspec, bits 0~9 of MI_STORE_DATA_IMM must not exceed 0x3FE.
+The macro MI_SDI_NUM_QW(x) evaluates to 2 * x + 1, which means the
+condition 2 * x + 1 <= 0x3FE must be satisfied. Therefore, the maximum
+valid value for x is 0x1FE, not 0x1FF.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: stable@vger.kernel.org
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+v2
+ - Replace 0x1fe with macro MAX_PTE_PER_SDI (Auld, Matthew & Patelczyk, Maciej)
+
+v3
+ - Change macro MAX_PTE_PER_SDI from 0x1fe to 0x1feU (De Marchi, Lucas)
+
+Bspec: 60246
+
+Fixes: 9c44fd5f6e8a ("drm/xe: Add migrate layer functions for SVM support")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Brian3 Nguyen <brian3.nguyen@intel.com>
+Cc: Alex Zuo <alex.zuo@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Suggested-by: Shuicheng Lin <shuicheng.lin@intel.com>
+Signed-off-by: Jia Yao <jia.yao@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_pc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 18c6239920355..3beaaa7b25c1b 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -1068,7 +1068,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 		goto out;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 8f8e9fdfb2a8..6cdd4538fd6b 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -82,7 +82,7 @@ struct xe_migrate {
+  * of the instruction.  Subtracting the instruction header (1 dword) and
+  * address (2 dwords), that leaves 0x3FD dwords (0x1FE qwords) for PTE values.
+  */
+-#define MAX_PTE_PER_SDI 0x1FE
++#define MAX_PTE_PER_SDI 0x1FEU
  
--	memset(pc->bo->vmap.vaddr, 0, size);
-+	xe_map_memset(xe, &pc->bo->vmap, 0, 0, size);
- 	slpc_shared_data_write(pc, header.size, size);
+ /**
+  * xe_tile_migrate_exec_queue() - Get this tile's migrate exec queue.
+@@ -1555,13 +1555,13 @@ static u32 pte_update_cmd_size(u64 size)
+ 	XE_WARN_ON(size > MAX_PREEMPTDISABLE_TRANSFER);
+ 	/*
+ 	 * MI_STORE_DATA_IMM command is used to update page table. Each
+-	 * instruction can update maximumly 0x1ff pte entries. To update
+-	 * n (n <= 0x1ff) pte entries, we need:
++	 * instruction can update maximumly 0x1fe pte entries. To update
++	 * n (n <= 0x1fe) pte entries, we need:
+ 	 * 1 dword for the MI_STORE_DATA_IMM command header (opcode etc)
+ 	 * 2 dword for the page table's physical location
+ 	 * 2*n dword for value of pte to fill (each pte entry is 2 dwords)
+ 	 */
+-	num_dword = (1 + 2) * DIV_U64_ROUND_UP(entries, 0x1ff);
++	num_dword = (1 + 2) * DIV_U64_ROUND_UP(entries, MAX_PTE_PER_SDI);
+ 	num_dword += entries * 2;
  
- 	earlier = ktime_get();
-
-
+ 	return num_dword;
+@@ -1577,7 +1577,7 @@ static void build_pt_update_batch_sram(struct xe_migrate *m,
+ 
+ 	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+ 	while (ptes) {
+-		u32 chunk = min(0x1ffU, ptes);
++		u32 chunk = min(MAX_PTE_PER_SDI, ptes);
+ 
+ 		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
+ 		bb->cs[bb->len++] = pt_offset;
+-- 
+2.34.1
 
