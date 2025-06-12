@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A684C61CE8
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 12:11:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C33CAC61CE8
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 12:12:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3B6210E7E5;
-	Thu, 12 Jun 2025 12:11:39 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F116A10E7E5;
- Thu, 12 Jun 2025 12:11:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83DD310E7E9;
+	Thu, 12 Jun 2025 12:12:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mA8MD/ej";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCAD410E7E9;
+ Thu, 12 Jun 2025 12:12:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749730338; x=1781266338;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LlySYcKf4JmRGREnB4gOUI/icF7THZKufjSNyMonh4M=;
+ b=mA8MD/ejv0zk9aEDB2DgInPVWLnfX529ZlmmxvU/erKBLcxRtvfbyutt
+ 0bm2cY32txqTH/cJ1XZUVwKrvVUPcbrfDYgdom7hJaW0sMXg0BkY4mnfC
+ hgQ2iX+/7g9do1Sd1l/4nETdpuh1TsbfSyvB+UIrNghWVULMq9AZtd87f
+ AKLjcjUSjlRaGCrx8m7kcBGi0xkzVtN793rv8CQz42xhYYOYnWC3w2+Vn
+ rMRWhoP8tFmRIbA0nCP2RgRVW0Kp1z2sx4GXit+MgbMA23WpmP3hRLXgN
+ 2f+veYzevMG39P2WQ5qCN1xRYKw617J2acTVsgbQQqWtAyziIreGDEG8f A==;
+X-CSE-ConnectionGUID: 8O7/iLZxQ1+0csky0k8V9A==
+X-CSE-MsgGUID: NNdHidbmQEOfTx9CuRjfNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="63314775"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="63314775"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 05:12:18 -0700
+X-CSE-ConnectionGUID: LHXm4puHR9yMgaR116d5HQ==
+X-CSE-MsgGUID: mA2KvGrWQYahHtFQYhyjVQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="178476759"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.242])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 05:12:15 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 00/16] drm/i915/display: make all global state opaque
+Date: Thu, 12 Jun 2025 15:11:55 +0300
+Message-Id: <cover.1749730224.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/plane=3A_file_a?=
- =?utf-8?q?nd_function_renames_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Jun 2025 12:11:38 -0000
-Message-ID: <174973029897.70743.1761531153477684542@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <cover.1749728173.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1749728173.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,40 +64,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hide all the structs that "derive" from struct intel_global_state inside
+their respective implementation files.
 
-Series: drm/i915/plane: file and function renames (rev2)
-URL   : https://patchwork.freedesktop.org/series/147415/
-State : warning
+Jani Nikula (16):
+  drm/i915/wm: abstract intel_dbuf_pmdemand_needs_update()
+  drm/i915/wm: add more accessors to dbuf state
+  drm/i915/wm: make struct intel_dbuf_state opaque type
+  drm/i915/bw: abstract intel_bw_pmdemand_needs_update()
+  drm/i915/bw: relocate intel_can_enable_sagv() and rename to
+    intel_bw_can_enable_sagv()
+  drm/i915: move icl_sagv_{pre,post}_plane_update() to intel_bw.c
+  drm/i915/bw: abstract intel_bw_qgv_point_peakbw()
+  drm/i915/bw: make struct intel_bw_state opaque
+  drm/i915/cdclk: abstract intel_cdclk_logical()
+  drm/i915/cdclk: abstract intel_cdclk_min_cdclk()
+  drm/i915/cdclk: abstract intel_cdclk_bw_min_cdclk()
+  drm/i915/cdclk: abstract intel_cdclk_pmdemand_needs_update()
+  drm/i915/cdclk: abstract intel_cdclk_force_min_cdclk()
+  drm/i915/cdclk: abstract intel_cdclk_read_hw()
+  drm/i915/cdclk: abstract intel_cdclk_actual() and
+    intel_cdclk_actual_voltage_level()
+  drm/i915/cdclk: make struct intel_cdclk_state opaque
 
-== Summary ==
+ drivers/gpu/drm/i915/display/hsw_ips.c        |   2 +-
+ .../gpu/drm/i915/display/intel_atomic_plane.c |   4 +-
+ drivers/gpu/drm/i915/display/intel_audio.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       | 153 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_bw.h       |  53 ++----
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  93 +++++++++++
+ drivers/gpu/drm/i915/display/intel_cdclk.h    |  50 ++----
+ drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
+ .../drm/i915/display/intel_display_driver.c   |   8 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  41 ++---
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 134 +++++++--------
+ drivers/gpu/drm/i915/display/skl_watermark.h  |  33 +---
+ 13 files changed, 336 insertions(+), 241 deletions(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 97cffe7577962cb45e3a66d758f9a7cd2633c303
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.39.5
 
