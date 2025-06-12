@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AD21C61CE8
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 10:20:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4E32C71136
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 10:24:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E87110E778;
-	Thu, 12 Jun 2025 10:20:22 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAFF010E76E;
- Thu, 12 Jun 2025 10:20:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D5D910E48F;
+	Thu, 12 Jun 2025 10:24:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lR1x4lIi";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B791410E48F
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Jun 2025 10:24:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749723893; x=1781259893;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ftC8RmBra5s0Ap9CSE8ACflS9oFalVjWZL1rjPHvH6c=;
+ b=lR1x4lIib+QvzVtu2kkJBqhpkvJWdVnbQKlwMxDKS0kpfBX1TJJqOaH2
+ U64XOGGFa34VmAbRffohYcPZV+U/Difrkp+EK28wgF1SQLCG+iR5RjFB7
+ BJqyx75mhA1dPw3L8ZDeMJ/qMXS99bejjv9tSTPRQ69ADAAMWyQXsQoL3
+ h6jzNvjEhI80/24217xGGx2gbh7RFNlyB+hezsWVybhjCEO18Wy9MvLEz
+ 00i5/mcpUzG/2zH+eMHBZGdHGIQVqZ0CqCuMb0bcLUa7RZc/uPQNH8xYy
+ 4KDx0cSZFehRRYyoqNECrCr+DSMLHbR9QHXkdzSG3TUE7OnXjFoyPyB2H A==;
+X-CSE-ConnectionGUID: ngTzjz1FRVSKdaXIwiaVPg==
+X-CSE-MsgGUID: Wl7LMCHXQ2qgGYmyPlCeDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51608598"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="51608598"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 03:24:52 -0700
+X-CSE-ConnectionGUID: yv0qYqOdQXGsJa3cmn0LDA==
+X-CSE-MsgGUID: 7LxlAeBlRAu+/tr3SJIbDQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="152382741"
+Received: from gkczarna.igk.intel.com ([10.211.131.163])
+ by fmviesa005.fm.intel.com with ESMTP; 12 Jun 2025 03:24:50 -0700
+From: Tomasz Lis <tomasz.lis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v5 0/8] drm/xe/vf: Post-migration recovery of queues and jobs
+Date: Thu, 12 Jun 2025 12:24:41 +0200
+Message-Id: <20250612102449.1412058-1-tomasz.lis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915=3A_Add_drm=5Fpa?=
- =?utf-8?q?nic_support_=28rev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jocelyn Falempe" <jfalempe@redhat.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Jun 2025 10:20:20 -0000
-Message-ID: <174972362095.70743.17419881569701008524@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250612081344.225200-1-jfalempe@redhat.com>
-In-Reply-To: <20250612081344.225200-1-jfalempe@redhat.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+To support VF Migration, it is necessary to do fixups to any
+non-virtualized resources. These fixups need to be applied within
+VM, on the KMD working with VF.
 
-Series: drm/i915: Add drm_panic support (rev9)
-URL   : https://patchwork.freedesktop.org/series/141937/
-State : warning
+This series adds two fixup functions to the recovery worker:
+* for fixing xe_lrc structs within queues
+* for fixing xe_job structs and the commands they emit
+It also provides some performance and stability fixes - blocking
+submissions and resets while the fixups are being applied.
+In case of sub-allocator, it removes the cached GGTT addresses
+instead of implementing fixups for them.
 
-== Summary ==
+v2: Switcghed to update of addresses by xe_lrc_write_ctx_reg()
+  to avoid kzalloc(), renamed or moved few functions
+v3: Renamed and reordered parameters, added kerneldocs
+v4: Take job_list_lock, introduce a new atomic for reset
+  blocking, add "refresh utilization buffer" patch
+v5: Replaced "Finish RESFIX by reset" patch with "Skip fixups
+  before getting GGTT info", rebased "Refresh utilization buffer"
+  patch
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 75238c32deae15ee4120b42a5be556ec36807a84
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_display_types.h:1997:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1997:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1997:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1997:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1997:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2010:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_panel.c:505:30: warning: symbol 'dummy_panel_funcs' was not declared. Should it be static?
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
-+drivers/gpu/drm/i915/gt/intel_reset.c:1571:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_sseu.c:598:17: error: too long token expansion
-+drivers/gpu/drm/i915/i915_active.c:1063:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_irq.c:492:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:492:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:500:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:500:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:505:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:505:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:505:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:543:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:543:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:551:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:551:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:556:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:556:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:556:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:600:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:600:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:603:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:603:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:607:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:607:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/intel_uncore.c:1927:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1929:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1995:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1996:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1997:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2017:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2018:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2019:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_wakeref.c:145:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+drivers/gpu/drm/ttm/ttm_bo.c:1196:31: warning: symbol 'ttm_swap_ops' was not declared. Should it be static?
-+drivers/gpu/drm/ttm/ttm_bo_util.c:326:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:326:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:326:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:329:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:329:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:329:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:332:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:332:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:332:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:465:28:    expected void volatile [noderef] __iomem *addr
-+drivers/gpu/drm/ttm/ttm_bo_util.c:465:28:    got void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:465:28: warning: incorrect type in argument 1 (different address spaces)
+Tomasz Lis (8):
+  drm/xe/sa: Avoid caching GGTT address within the manager
+  drm/xe/vf: Skip fixups on migration before getting GGTT info
+  drm/xe/vf: Pause submissions during RESFIX fixups
+  drm/xe: Block reset while recovering from VF migration
+  drm/xe/vf: Rebase HWSP of all contexts after migration
+  drm/xe/vf: Rebase MEMIRQ structures for all contexts after migration
+  drm/xe/vf: Post migration, repopulate ring area for pending request
+  drm/xe/vf: Refresh utilization buffer during migration recovery
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/xe/xe_exec_queue.c    |  40 ++++++++++
+ drivers/gpu/drm/xe/xe_exec_queue.h    |   4 +
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c |  13 +++
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h |   1 +
+ drivers/gpu/drm/xe/xe_gt.c            |  10 +++
+ drivers/gpu/drm/xe/xe_gt_debugfs.c    |   3 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c   |  23 ++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h   |   1 +
+ drivers/gpu/drm/xe/xe_guc_buf.c       |   2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c    | 111 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h    |   9 +++
+ drivers/gpu/drm/xe/xe_guc_types.h     |   6 ++
+ drivers/gpu/drm/xe/xe_lrc.c           |  65 ++++++++++++++-
+ drivers/gpu/drm/xe/xe_lrc.h           |   4 +
+ drivers/gpu/drm/xe/xe_sa.c            |   1 -
+ drivers/gpu/drm/xe/xe_sa.h            |  15 +++-
+ drivers/gpu/drm/xe/xe_sa_types.h      |   1 -
+ drivers/gpu/drm/xe/xe_sriov_vf.c      |  84 ++++++++++++++++++-
+ 18 files changed, 384 insertions(+), 9 deletions(-)
 
+-- 
+2.25.1
 
