@@ -4,77 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14426C71156
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F999C71157
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 13:59:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A482E10E9B6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E3FA10E9B5;
 	Fri, 13 Jun 2025 13:59:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kYAKXL2x";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="P97DiLsE";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7E0110E0C8;
- Fri, 13 Jun 2025 01:11:37 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id EBA47A521CB;
- Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 91554C4CEF1;
- Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1749777091;
- bh=woWKYitU+ZTuRE8At30QAD+trikncUB1NYbv7oKpxSE=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=kYAKXL2xGUAA2muouJo4wdPci1/dXCq3Lws0XGaIYFBFtUT1GzC+hjKFxoj+oVs3B
- YdyS5hwbfdqsqSUOPaAHz0nka8/33YGFA1S5fX2YvSRwlwPWFy4NYV/848n9mjN1xC
- 3byBlwJj0MHepj/cBkAFomkL8FeKti5BRYq3Q3cJS/svFVC6nNL8vfdJuoejbTnO6q
- nRiYFEddd5N0IORwsk4O3KVP+SD693zPVXJLRldyvvhrMYqU7U09NrO/5b/HXt1HLA
- 5X1HjlFEoflP/8gwn2Sfs7AT3r5MW5zGskEyCav8Q3zSRQHLLM3KicivCm7tPp9iF3
- b6zBuk3pBxWgg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id 88D45C71148;
- Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
-From: Mingcong Bai via B4 Relay <devnull+jeffbai.aosc.io@kernel.org>
-Date: Fri, 13 Jun 2025 09:11:29 +0800
-Subject: [PATCH v2 1/5] drm/xe/bo: fix alignment with non-4KiB kernel page
- sizes
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB90F10E0F1;
+ Thu, 12 Jun 2025 08:43:13 +0000 (UTC)
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
+ [91.158.153.178])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 55F0C250;
+ Thu, 12 Jun 2025 10:43:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1749717784;
+ bh=DFZAKZf8wHZi/y9r247ZL0ZUXvFSN1yMyupDQcqZ3+0=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=P97DiLsEsf/6i8aVwoi/8/jCDHmL9CIaqVE6F1kh5oZibLMLuYmgz4R5sZGO7dayi
+ A9sBXgz1SuZs74C1VD4Xp16/e+PXSodQRenE1+LjsblMSGLXpOt87yMih54vtsY4Sp
+ 87w8fmpZjBB9PIYbdL6yYmzS28ULBjvl9UmrLU2M=
+Message-ID: <d7e016fd-3d0e-4822-a404-a53ba11e5dc4@ideasonboard.com>
+Date: Thu, 12 Jun 2025 11:43:08 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/25] drm/gem-dma: Compute dumb-buffer sizes with
+ drm_mode_size_dumb()
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ simona@ffwll.ch, airlied@gmail.com, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, geert@linux-m68k.org
+References: <20250311155120.442633-1-tzimmermann@suse.de>
+ <20250311155120.442633-4-tzimmermann@suse.de>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
+ wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
+ Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
+ eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
+ LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
+ G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
+ DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
+ 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
+ rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
+ Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
+ aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
+ ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
+ PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
+ VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
+ 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
+ uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
+ R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
+ sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
+ Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
+ PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
+ dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
+ qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
+ hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
+ DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
+ KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
+ 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
+ xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
+ UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
+ /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
+ 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
+ 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
+ mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
+ 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
+ suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
+ xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
+ m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
+ CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
+ CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
+ 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
+ ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
+ yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
+ 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
+In-Reply-To: <20250311155120.442633-4-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250613-upstream-xe-non-4k-v2-v2-1-934f82249f8a@aosc.io>
-References: <20250613-upstream-xe-non-4k-v2-v2-0-934f82249f8a@aosc.io>
-In-Reply-To: <20250613-upstream-xe-non-4k-v2-v2-0-934f82249f8a@aosc.io>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Francois Dugast <francois.dugast@intel.com>, 
- =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>, 
- =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>, 
- Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Zhanjun Dong <zhanjun.dong@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>, 
- Alan Previn <alan.previn.teres.alexis@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Mateusz Naklicki <mateusz.naklicki@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
- Kexy Biscuit <kexybiscuit@aosc.io>, Shang Yatsen <429839446@qq.com>, 
- Mingcong Bai <jeffbai@aosc.io>, Wenbin Fang <fangwenbin@vip.qq.com>, 
- Haien Liang <27873200@qq.com>, Jianfeng Liu <liujianfeng1994@gmail.com>, 
- Shirong Liu <lsr1024@qq.com>, Haofeng Wu <s2600cw2@126.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749777090; l=7779;
- i=jeffbai@aosc.io; s=20250604; h=from:subject:message-id;
- bh=xSGwCQGvwAiX+QXGpf7BRIVGfqz2xRhzgtsh+/oMkpM=;
- b=ndJA9s+Q0CEASwC5edH5pMZL19PX8z0RS8kJtbZB1FLGIobXAQISANdb2DrbHhbWpNTalI3vZ
- Xscw2wmWnb5CmBeSlc+d0ZrDuzPmFy9bVu8V43q0T9kkWxs80yzNS1F
-X-Developer-Key: i=jeffbai@aosc.io; a=ed25519;
- pk=MJdgklflDF+Xz9x2Lp+ogEnEyk8HRosMGiqLgWbFctY=
-X-Endpoint-Received: by B4 Relay for jeffbai@aosc.io/20250604 with auth_id=422
-X-Original-From: Mingcong Bai <jeffbai@aosc.io>
 X-Mailman-Approved-At: Fri, 13 Jun 2025 13:59:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,143 +105,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: jeffbai@aosc.io
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mingcong Bai <jeffbai@aosc.io>
+Hi,
 
-The bo/ttm interfaces with kernel memory mapping from dedicated GPU
-memory. It is not correct to assume that SZ_4K would suffice for page
-alignment as there are a few hardware platforms that commonly uses non-
-4KiB pages - for instance, 16KiB is the most commonly used kernel page
-size used on Loongson devices (of the LoongArch architecture).
+On 11/03/2025 17:47, Thomas Zimmermann wrote:
+> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
+> buffer size. Align the pitch to a multiple of 8.
+> 
+> Push the current calculation into the only direct caller imx. Imx's
+> hardware requires the framebuffer width to be aligned to 8. The
+> driver's current approach is actually incorrect, as it only guarantees
+> this implicitly and requires bpp to be a multiple of 8 already. A
+> later commit will fix this problem by aligning the scanline pitch
+> such that an aligned width still fits into each scanline's memory.
+> 
+> A number of other drivers are build on top of gem-dma helpers and
+> implement their own dumb-buffer allocation. These drivers invoke
+> drm_gem_dma_dumb_create_internal(), which is not affected by this
+> commit.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/gpu/drm/drm_gem_dma_helper.c     | 7 +++++--
+>  drivers/gpu/drm/imx/ipuv3/imx-drm-core.c | 2 ++
+>  2 files changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem_dma_helper.c b/drivers/gpu/drm/drm_gem_dma_helper.c
+> index b7f033d4352a..49be9b033610 100644
+> --- a/drivers/gpu/drm/drm_gem_dma_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_dma_helper.c
+> @@ -20,6 +20,7 @@
+>  #include <drm/drm.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_drv.h>
+> +#include <drm/drm_dumb_buffers.h>
+>  #include <drm/drm_gem_dma_helper.h>
+>  #include <drm/drm_vma_manager.h>
+>  
+> @@ -304,9 +305,11 @@ int drm_gem_dma_dumb_create(struct drm_file *file_priv,
+>  			    struct drm_mode_create_dumb *args)
+>  {
+>  	struct drm_gem_dma_object *dma_obj;
+> +	int ret;
+>  
+> -	args->pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
+> -	args->size = args->pitch * args->height;
+> +	ret = drm_mode_size_dumb(drm, args, SZ_8, 0);
+> +	if (ret)
+> +		return ret;
+>  
+>  	dma_obj = drm_gem_dma_create_with_handle(file_priv, drm, args->size,
+>  						 &args->handle);
+> diff --git a/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c b/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
+> index ec5fd9a01f1e..e7025df7b978 100644
+> --- a/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
+> +++ b/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
+> @@ -145,6 +145,8 @@ static int imx_drm_dumb_create(struct drm_file *file_priv,
+>  	int ret;
+>  
+>  	args->width = ALIGN(width, 8);
+> +	args->pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
+> +	args->size = args->pitch * args->height;
+>  
+>  	ret = drm_gem_dma_dumb_create(file_priv, drm, args);
+>  	if (ret)
 
-Per our testing, Intel Xe/Alchemist/Battlemage families of GPUs works on
-Loongson platforms so long as "Above 4G Decoding" was enabled and
-"Resizable BAR" was set to auto in the UEFI firmware settings.
+Won't the pitch and size just be overwritten by the
+drm_gem_dma_dumb_create() call?
 
-Without this fix, the kernel will hang at a kernel BUG():
-
-[    7.425445] ------------[ cut here ]------------
-[    7.430032] kernel BUG at drivers/gpu/drm/drm_gem.c:181!
-[    7.435330] Oops - BUG[#1]:
-[    7.438099] CPU: 0 UID: 0 PID: 102 Comm: kworker/0:4 Tainted: G            E      6.13.3-aosc-main-00336-g60829239b300-dirty #3
-[    7.449511] Tainted: [E]=UNSIGNED_MODULE
-[    7.453402] Hardware name: Loongson Loongson-3A6000-HV-7A2000-1w-V0.1-EVB/Loongson-3A6000-HV-7A2000-1w-EVB-V1.21, BIOS Loongson-UDK2018-V4.0.05756-prestab
-[    7.467144] Workqueue: events work_for_cpu_fn
-[    7.471472] pc 9000000001045fa4 ra ffff8000025331dc tp 90000001010c8000 sp 90000001010cb960
-[    7.479770] a0 900000012a3e8000 a1 900000010028c000 a2 000000000005d000 a3 0000000000000000
-[    7.488069] a4 0000000000000000 a5 0000000000000000 a6 0000000000000000 a7 0000000000000001
-[    7.496367] t0 0000000000001000 t1 9000000001045000 t2 0000000000000000 t3 0000000000000000
-[    7.504665] t4 0000000000000000 t5 0000000000000000 t6 0000000000000000 t7 0000000000000000
-[    7.504667] t8 0000000000000000 u0 90000000029ea7d8 s9 900000012a3e9360 s0 900000010028c000
-[    7.504668] s1 ffff800002744000 s2 0000000000000000 s3 0000000000000000 s4 0000000000000001
-[    7.504669] s5 900000012a3e8000 s6 0000000000000001 s7 0000000000022022 s8 0000000000000000
-[    7.537855]    ra: ffff8000025331dc ___xe_bo_create_locked+0x158/0x3b0 [xe]
-[    7.544893]   ERA: 9000000001045fa4 drm_gem_private_object_init+0xcc/0xd0
-[    7.551639]  CRMD: 000000b0 (PLV0 -IE -DA +PG DACF=CC DACM=CC -WE)
-[    7.557785]  PRMD: 00000004 (PPLV0 +PIE -PWE)
-[    7.562111]  EUEN: 00000000 (-FPE -SXE -ASXE -BTE)
-[    7.566870]  ECFG: 00071c1d (LIE=0,2-4,10-12 VS=7)
-[    7.571628] ESTAT: 000c0000 [BRK] (IS= ECode=12 EsubCode=0)
-[    7.577163]  PRID: 0014d000 (Loongson-64bit, Loongson-3A6000-HV)
-[    7.583128] Modules linked in: xe(E+) drm_gpuvm(E) drm_exec(E) drm_buddy(E) gpu_sched(E) drm_suballoc_helper(E) drm_display_helper(E) loongson(E) r8169(E) cec(E) rc_core(E) realtek(E) i2c_algo_bit(E) tpm_tis_spi(E) led_class(E) hid_generic(E) drm_ttm_helper(E) ttm(E) drm_client_lib(E) drm_kms_helper(E) sunrpc(E) la_ow_syscall(E) i2c_dev(E)
-[    7.613049] Process kworker/0:4 (pid: 102, threadinfo=00000000bc26ebd1, task=0000000055480707)
-[    7.621606] Stack : 0000000000000000 3030303a6963702b 000000000005d000 0000000000000000
-[    7.629563]         0000000000000001 0000000000000000 0000000000000000 8e1bfae42b2f7877
-[    7.637519]         000000000005d000 900000012a3e8000 900000012a3e9360 0000000000000000
-[    7.645475]         ffffffffffffffff 0000000000000000 0000000000022022 0000000000000000
-[    7.653431]         0000000000000001 ffff800002533660 0000000000022022 9000000000234470
-[    7.661386]         90000001010cba28 0000000000001000 0000000000000000 000000000005c300
-[    7.669342]         900000012a3e8000 0000000000000000 0000000000000001 900000012a3e8000
-[    7.677298]         ffffffffffffffff 0000000000022022 900000012a3e9498 ffff800002533a14
-[    7.685254]         0000000000022022 0000000000000000 900000000209c000 90000000010589e0
-[    7.693209]         90000001010cbab8 ffff8000027c78c0 fffffffffffff000 900000012a3e8000
-[    7.701165]         ...
-[    7.703588] Call Trace:
-[    7.703590] [<9000000001045fa4>] drm_gem_private_object_init+0xcc/0xd0
-[    7.712496] [<ffff8000025331d8>] ___xe_bo_create_locked+0x154/0x3b0 [xe]
-[    7.719268] [<ffff80000253365c>] __xe_bo_create_locked+0x228/0x304 [xe]
-[    7.725951] [<ffff800002533a10>] xe_bo_create_pin_map_at_aligned+0x70/0x1b0 [xe]
-[    7.733410] [<ffff800002533c7c>] xe_managed_bo_create_pin_map+0x34/0xcc [xe]
-[    7.740522] [<ffff800002533d58>] xe_managed_bo_create_from_data+0x44/0xb0 [xe]
-[    7.747807] [<ffff80000258d19c>] xe_uc_fw_init+0x3ec/0x904 [xe]
-[    7.753814] [<ffff80000254a478>] xe_guc_init+0x30/0x3dc [xe]
-[    7.759553] [<ffff80000258bc04>] xe_uc_init+0x20/0xf0 [xe]
-[    7.765121] [<ffff800002542abc>] xe_gt_init_hwconfig+0x5c/0xd0 [xe]
-[    7.771461] [<ffff800002537204>] xe_device_probe+0x240/0x588 [xe]
-[    7.777627] [<ffff800002575448>] xe_pci_probe+0x6c0/0xa6c [xe]
-[    7.783540] [<9000000000e9828c>] local_pci_probe+0x4c/0xb4
-[    7.788989] [<90000000002aa578>] work_for_cpu_fn+0x20/0x40
-[    7.794436] [<90000000002aeb50>] process_one_work+0x1a4/0x458
-[    7.800143] [<90000000002af5a0>] worker_thread+0x304/0x3fc
-[    7.805591] [<90000000002bacac>] kthread+0x114/0x138
-[    7.810520] [<9000000000241f64>] ret_from_kernel_thread+0x8/0xa4
-[    7.816489]
-[    7.817961] Code: 4c000020  29c3e2f9  53ff93ff <002a0001> 0015002c  03400000  02ff8063  29c04077  001500f7
-[    7.827651]
-[    7.829140] ---[ end trace 0000000000000000 ]---
-
-Revise all instances of `SZ_4K' with `PAGE_SIZE' and revise the call to
-`drm_gem_private_object_init()' in `*___xe_bo_create_locked()' (last call
-before BUG()) to use `size_t aligned_size' calculated from `PAGE_SIZE' to
-fix the above error.
-
-Cc: <stable@vger.kernel.org>
-Fixes: 4e03b584143e ("drm/xe/uapi: Reject bo creation of unaligned size")
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Tested-by: Mingcong Bai <jeffbai@aosc.io>
-Tested-by: Wenbin Fang <fangwenbin@vip.qq.com>
-Tested-by: Haien Liang <27873200@qq.com>
-Tested-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-Tested-by: Shirong Liu <lsr1024@qq.com>
-Tested-by: Haofeng Wu <s2600cw2@126.com>
-Link: https://github.com/FanFansfan/loongson-linux/commit/22c55ab3931c32410a077b3ddb6dca3f28223360
-Link: https://t.me/c/1109254909/768552
-Co-developed-by: Shang Yatsen <429839446@qq.com>
-Signed-off-by: Shang Yatsen <429839446@qq.com>
-Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
----
- drivers/gpu/drm/xe/xe_bo.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index d99d91fe8aa98a2bfc901a998c9fc78fcb146e15..0767df4aebbab18283ba74deb5e984d5d847812c 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1837,9 +1837,9 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 		flags |= XE_BO_FLAG_INTERNAL_64K;
- 		alignment = align >> PAGE_SHIFT;
- 	} else {
--		aligned_size = ALIGN(size, SZ_4K);
-+		aligned_size = ALIGN(size, PAGE_SIZE);
- 		flags &= ~XE_BO_FLAG_INTERNAL_64K;
--		alignment = SZ_4K >> PAGE_SHIFT;
-+		alignment = PAGE_SIZE >> PAGE_SHIFT;
- 	}
- 
- 	if (type == ttm_bo_type_device && aligned_size != size)
-@@ -1853,7 +1853,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 
- 	bo->ccs_cleared = false;
- 	bo->tile = tile;
--	bo->size = size;
-+	bo->size = aligned_size;
- 	bo->flags = flags;
- 	bo->cpu_caching = cpu_caching;
- 	bo->ttm.base.funcs = &xe_gem_object_funcs;
-@@ -1864,7 +1864,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- #endif
- 	INIT_LIST_HEAD(&bo->vram_userfault_link);
- 
--	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
-+	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, aligned_size);
- 
- 	if (resv) {
- 		ctx.allow_res_evict = !(flags & XE_BO_FLAG_NO_RESV_EVICT);
-
--- 
-2.49.0
-
+ Tomi
 
