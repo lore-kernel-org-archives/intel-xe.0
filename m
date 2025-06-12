@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55DF7C71136
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 16:39:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E051C71136
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 16:46:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D797710E0F5;
-	Thu, 12 Jun 2025 16:39:24 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2133910E033;
- Thu, 12 Jun 2025 16:39:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4017996128712023508=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEEA10E033;
+	Thu, 12 Jun 2025 16:46:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="c6pw1RMd";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18A1910E033;
+ Thu, 12 Jun 2025 16:46:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=eTRNXW0fVGge2AWOB3MBFp05UH3BIqXQgyaRGEov/9o=; b=c6pw1RMdhgyBHvLW0z+HqZKxAB
+ OtEmk+VL7J9K/o4VRJ1Gy8xcd9dfQu3yL+FJLQawSnl9okL+BXIRh4RXghtWGZX6dEiUMmSN+0q63
+ zM6URuVowG7tgLN2IB38vANoX8YvysAueqvHoU8GzBIlJE5CRXScV/wosrQBgmGFIpPaPuyjuf+7q
+ dihv3cSFiXwDFtGpgm068Ye4sg1EJYMePj/C46v8DxVJCjetz/Tvt1WaFzZMDSm5kKgyzVEMNzCBj
+ twUSoMksyH93K/O6IWusXx6ezOz3v/tAmwUEcaXtVwfeiE7KFBV1xt8TsmH0y+Ia0PnzhGTjdhK2+
+ /GlK8yKQ==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uPl4n-002i0g-Fo; Thu, 12 Jun 2025 18:46:53 +0200
+Message-ID: <37a5f250-1c19-4b95-882b-b4ef3e5c6268@igalia.com>
+Date: Thu, 12 Jun 2025 17:46:52 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_i2c_support_=28re?=
- =?utf-8?q?v3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Heikki Krogerus" <heikki.krogerus@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Jun 2025 16:39:24 -0000
-Message-ID: <174974636412.73282.2478110205461482325@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250612132450.3293248-1-heikki.krogerus@linux.intel.com>
-In-Reply-To: <20250612132450.3293248-1-heikki.krogerus@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] drm/xe/bo: add GPU memory trace points
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Juston Li <justonli@chromium.org>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Yiwei Zhang <zzyiwei@google.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20250611225145.1739201-1-justonli@chromium.org>
+ <20250611225145.1739201-2-justonli@chromium.org>
+ <mrfsys5djmsbotxlaahed5ogmofn4pkmgqfhl47rj3bwxdtlbv@7xbekwpkte57>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <mrfsys5djmsbotxlaahed5ogmofn4pkmgqfhl47rj3bwxdtlbv@7xbekwpkte57>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,149 +61,208 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4017996128712023508==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 12/06/2025 06:40, Lucas De Marchi wrote:
+> On Wed, Jun 11, 2025 at 03:51:24PM -0700, Juston Li wrote:
+>> Add TRACE_GPU_MEM tracepoints for tracking global and per-process GPU
+>> memory usage.
+>>
+>> These are required by VSR on Android 12+ for reporting GPU driver memory
+>> allocations.
+>>
+>> v3:
+>> - Use now configurable CONFIG_TRACE_GPU_MEM instead of adding a
+>>   per-driver Kconfig (Lucas)
+>>
+>> v2:
+>> - Use u64 as preferred by checkpatch (Tvrtko)
+>> - Fix errors in comments/Kconfig description (Tvrtko)
+>> - drop redundant "CONFIG" in Kconfig
+>>
+>> Signed-off-by: Juston Li <justonli@chromium.org>
+>> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> ---
+>> drivers/gpu/drm/xe/xe_bo.c           | 47 ++++++++++++++++++++++++++++
+>> drivers/gpu/drm/xe/xe_device_types.h | 16 ++++++++++
+>> 2 files changed, 63 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>> index 4e39188a021ab..89a3d23e3b800 100644
+>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>> @@ -19,6 +19,8 @@
+>>
+>> #include <kunit/static_stub.h>
+>>
+>> +#include <trace/events/gpu_mem.h>
+>> +
+>> #include "xe_device.h"
+>> #include "xe_dma_buf.h"
+>> #include "xe_drm_client.h"
+>> @@ -418,6 +420,35 @@ static void xe_ttm_tt_account_subtract(struct 
+>> xe_device *xe, struct ttm_tt *tt)
+>>         xe_shrinker_mod_pages(xe->mem.shrinker, -(long)tt->num_pages, 0);
+>> }
+>>
+>> +#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
+>> +static void update_global_total_pages(struct ttm_device *ttm_dev, 
+>> long num_pages)
+>> +{
+>> +    struct xe_device *xe = ttm_to_xe_device(ttm_dev);
+>> +    u64 global_total_pages =
+>> +        atomic64_add_return(num_pages, &xe->global_total_pages);
+>> +
+>> +    trace_gpu_mem_total(0, 0, global_total_pages << PAGE_SHIFT);
+>> +}
+>> +
+>> +static void update_process_mem(struct drm_file *file, ssize_t size)
+>> +{
+>> +    struct xe_file *xef = to_xe_file(file);
+>> +    u64 process_mem = atomic64_add_return(size, &xef->process_mem);
+>> +
+>> +    rcu_read_lock(); /* Locks file->pid! */
+>> +    trace_gpu_mem_total(0, pid_nr(rcu_dereference(file->pid)), 
+>> process_mem);
+> 
+> Isn't the first arg supposed to be the gpu id? Doesn't this become
+> invalid when I have e.g. LNL + BMG and the trace is enabled?
 
-Series: drm/xe: i2c support (rev3)
-URL   : https://patchwork.freedesktop.org/series/149699/
-State : failure
+Good point.
 
-== Summary ==
+u32 gpu_id does not seem possible to map to anything useful.
 
-CI Bug Log - changes from xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e_BAT -> xe-pw-149699v3_BAT
-====================================================
+Shall we replace it with a string obtained from dev_name(struct device 
+*) ? As only Android parses them I think we can get still away with 
+changing the tracepoints ABI.
 
-Summary
--------
+> 
+>> +    rcu_read_unlock();
+>> +}
+>> +#else
+>> +static inline void update_global_total_pages(struct ttm_device 
+>> *ttm_dev, long num_pages)
+>> +{
+>> +}
+>> +
+>> +static inline void update_process_mem(struct drm_file *file, ssize_t 
+>> size)
+>> +{
+>> +}
+>> +#endif
+>> +
+>> static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+>>                        u32 page_flags)
+>> {
+>> @@ -525,6 +556,7 @@ static int xe_ttm_tt_populate(struct ttm_device 
+>> *ttm_dev, struct ttm_tt *tt,
+>>
+>>     xe_tt->purgeable = false;
+>>     xe_ttm_tt_account_add(ttm_to_xe_device(ttm_dev), tt);
+>> +    update_global_total_pages(ttm_dev, tt->num_pages);
+>>
+>>     return 0;
+>> }
+>> @@ -541,6 +573,7 @@ static void xe_ttm_tt_unpopulate(struct ttm_device 
+>> *ttm_dev, struct ttm_tt *tt)
+>>
+>>     ttm_pool_free(&ttm_dev->pool, tt);
+>>     xe_ttm_tt_account_subtract(xe, tt);
+>> +    update_global_total_pages(ttm_dev, -(long)tt->num_pages);
+>> }
+>>
+>> static void xe_ttm_tt_destroy(struct ttm_device *ttm_dev, struct 
+>> ttm_tt *tt)
+>> @@ -1653,6 +1686,15 @@ static void xe_gem_object_free(struct 
+>> drm_gem_object *obj)
+>>     ttm_bo_put(container_of(obj, struct ttm_buffer_object, base));
+>> }
+>>
+>> +#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
+>> +static int xe_gem_object_open(struct drm_gem_object *obj,
+>> +                  struct drm_file *file_priv)
+>> +{
+>> +    update_process_mem(file_priv, obj->size);
+>> +    return 0;
+>> +}
+>> +#endif
+>> +
+>> static void xe_gem_object_close(struct drm_gem_object *obj,
+>>                 struct drm_file *file_priv)
+>> {
+>> @@ -1665,6 +1707,8 @@ static void xe_gem_object_close(struct 
+>> drm_gem_object *obj,
+>>         ttm_bo_set_bulk_move(&bo->ttm, NULL);
+>>         xe_bo_unlock(bo);
+>>     }
+>> +
+>> +    update_process_mem(file_priv, -obj->size);
+>> }
+>>
+>> static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+>> @@ -1762,6 +1806,9 @@ static const struct vm_operations_struct 
+>> xe_gem_vm_ops = {
+>>
+>> static const struct drm_gem_object_funcs xe_gem_object_funcs = {
+>>     .free = xe_gem_object_free,
+>> +#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
+>> +    .open = xe_gem_object_open,
+>> +#endif
+>>     .close = xe_gem_object_close,
+>>     .mmap = drm_gem_ttm_mmap,
+>>     .export = xe_gem_prime_export,
+>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/ 
+>> xe/xe_device_types.h
+>> index e5d02a47a5287..b797e766ccbc2 100644
+>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>> @@ -641,6 +641,14 @@ struct xe_device {
+>>         unsigned int fsb_freq, mem_freq, is_ddr3;
+>>     };
+>> #endif
+>> +
+>> +#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
+>> +    /**
+>> +     * @global_total_pages: global GPU page usage tracked for gpu_mem
+>> +     * tracepoints
+>> +     */
+>> +    atomic64_t global_total_pages;
+>> +#endif
+>> };
+>>
+>> /**
+>> @@ -702,6 +710,14 @@ struct xe_file {
+>>
+>>     /** @refcount: ref count of this xe file */
+>>     struct kref refcount;
+>> +
+>> +#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
+>> +    /**
+>> +     * @process_mem: per-process GPU memory usage tracked for gpu_mem
+>> +     * tracepoints
+>> +     */
+>> +    atomic64_t process_mem;
+> 
+> so... this is not per-process, it's actually "per dev node" open. Does
+> this map correctly to the intended use and how it's handled in msm?
 
-  **FAILURE**
+Per struct drm_file. Yes it is the same, both do it via 
+drm_gem_object_funcs->open/close.
 
-  Serious unknown changes coming with xe-pw-149699v3_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-149699v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Regards,
 
-  
+Tvrtko
 
-Participating hosts (7 -> 7)
-------------------------------
+> 
+> Lucas De Marchi
+> 
+>> +#endif
+>> };
+>>
+>> #endif
+>> -- 
+>> 2.50.0.rc1.591.g9c95f17f64-goog
+>>
 
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-149699v3_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_prime_self_import@basic-with_one_bo:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-bmg-2/igt@xe_prime_self_import@basic-with_one_bo.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-bmg-2/igt@xe_prime_self_import@basic-with_one_bo.html
-    - bat-bmg-1:          [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-bmg-1/igt@xe_prime_self_import@basic-with_one_bo.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-bmg-1/igt@xe_prime_self_import@basic-with_one_bo.html
-    - bat-lnl-2:          [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-lnl-2/igt@xe_prime_self_import@basic-with_one_bo.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-lnl-2/igt@xe_prime_self_import@basic-with_one_bo.html
-    - bat-lnl-1:          [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-lnl-1/igt@xe_prime_self_import@basic-with_one_bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-lnl-1/igt@xe_prime_self_import@basic-with_one_bo.html
-    - bat-dg2-oem2:       [PASS][9] -> [ABORT][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_one_bo.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_one_bo.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e -> xe-pw-149699v3
-
-  IGT_8406: 12d7c99650c85e479571b6db2c392408be474c88 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e: 00d9cf004336a745e36e9f103acf7925f714d97e
-  xe-pw-149699v3: 149699v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/index.html
-
---===============4017996128712023508==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: i2c support (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149699/">https://patchwork.freedesktop.org/series/149699/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e_BAT -&gt; xe-pw-149699v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-149699v3_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-149699v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-149699v3_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_prime_self_import@basic-with_one_bo:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-bmg-2/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-bmg-2/igt@xe_prime_self_import@basic-with_one_bo.html">ABORT</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-bmg-1/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-bmg-1/igt@xe_prime_self_import@basic-with_one_bo.html">ABORT</a></li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-lnl-2/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-lnl-2/igt@xe_prime_self_import@basic-with_one_bo.html">ABORT</a></li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-lnl-1/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-lnl-1/igt@xe_prime_self_import@basic-with_one_bo.html">ABORT</a></li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_one_bo.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e -&gt; xe-pw-149699v3</li>
-</ul>
-<p>IGT_8406: 12d7c99650c85e479571b6db2c392408be474c88 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e: 00d9cf004336a745e36e9f103acf7925f714d97e<br />
-  xe-pw-149699v3: 149699v3</p>
-
-</body>
-</html>
-
---===============4017996128712023508==--
