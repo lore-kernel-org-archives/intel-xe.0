@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 970D9C61CE8
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 11:50:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04C3DC71141
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 11:53:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D1E310E7E3;
-	Thu, 12 Jun 2025 11:50:16 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 242E710E7E4;
- Thu, 12 Jun 2025 11:50:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8212857697924669303=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B376810E7E6;
+	Thu, 12 Jun 2025 11:53:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WrJgcFim";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A865710E7E3;
+ Thu, 12 Jun 2025 11:53:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749729197; x=1781265197;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=uUQTx5mi42VjjGaXoU8tl/WfZwIOMVFPQUOacLgvD6U=;
+ b=WrJgcFimq7PbR9DxTxNjy6n0ajpdNGLfkuqjqteZijnsprhqkfBWrLqr
+ z0O+s5MQu2/EEfpVSccc7E0AMD2QYgD7F7LA/xSYbo3xx6LDWek6iHJ5W
+ Kk6Ok0Yv53A9IPBLwWU1sdbaVh0dk3I3lU5v9QQ+JYMZUtmPP1LY1MfdF
+ iRq72Bth2l3cb2DCNeLPiTx8e0JzaVLNj4rEoiu46N8As432b7kGYalZI
+ IDFrvRyuLg/Ro6Vbd7LxCFEFP+g/zw/ZmHYaFyLeHmB1H/0QnIbFOrWO6
+ YGqRb12LhOaFmxp3AoH1gq2VGanf9sZNcWYvkb5DD9DVy3BxqwQ0f6pPA w==;
+X-CSE-ConnectionGUID: n5Pwk2pOSvmIUq/ALyorgw==
+X-CSE-MsgGUID: zyRgJmN5RwKhhgt3/ip5nw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="69342699"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="69342699"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 04:53:17 -0700
+X-CSE-ConnectionGUID: zBYpDSQYTfSlSn2rO3FgHQ==
+X-CSE-MsgGUID: K9tu20mETwmF1NS1Xbwp+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="184730305"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO [10.245.244.165])
+ ([10.245.244.165])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 04:53:12 -0700
+Message-ID: <62c06195-8bc1-4dae-8777-e86d94e4d9d9@linux.intel.com>
+Date: Thu, 12 Jun 2025 13:53:09 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Post-migration?=
- =?utf-8?q?_recovery_of_queues_and_jobs_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tomasz Lis" <tomasz.lis@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Jun 2025 11:50:15 -0000
-Message-ID: <174972901513.71058.8978182632451360364@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250612102449.1412058-1-tomasz.lis@intel.com>
-In-Reply-To: <20250612102449.1412058-1-tomasz.lis@intel.com>
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +73,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8212857697924669303==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Simona,
 
-== Series Details ==
+Here's a pull request for v6.16-rc2, especially the EPROBE_DEFER one seems serious,
+I've had the same loop when converting xe/i915 audio to use EPROBE_DEFER. :)
 
-Series: drm/xe/vf: Post-migration recovery of queues and jobs (rev5)
-URL   : https://patchwork.freedesktop.org/series/148982/
-State : success
+Best regards!
+~Maarten
 
-== Summary ==
+drm-misc-fixes-2025-06-12:
+drm-misc-fixes for v6.16-rc2:
+- Fix infinite EPROBE_DEFER loop in vc4 probing.
+- Fix amdxdna firmware size.
+- mode fixes for meson.
+- Kconfig fix for st7171-i2c.
+- Fix -EBUSY WARN_ON_ONCE in dma-buf
+- Use dma_sync_sgtable_for_cpu in udmabuf.
+The following changes since commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494:
 
-CI Bug Log - changes from xe-3237-75238c32deae15ee4120b42a5be556ec36807a84_BAT -> xe-pw-148982v5_BAT
-====================================================
+  Linux 6.16-rc1 (2025-06-08 13:44:43 -0700)
 
-Summary
--------
+are available in the Git repository at:
 
-  **SUCCESS**
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-06-12
 
-  No regressions found.
+for you to fetch changes up to afe382843717d44b24ef5014d57dcbaab75a4052:
 
-  
+  udmabuf: use sgtable-based scatterlist wrappers (2025-06-11 13:18:07 +0200)
 
-Participating hosts (7 -> 7)
-------------------------------
+----------------------------------------------------------------
+drm-misc-fixes for v6.16-rc2:
+- Fix infinite EPROBE_DEFER loop in vc4 probing.
+- Fix amdxdna firmware size.
+- mode fixes for meson.
+- Kconfig fix for st7171-i2c.
+- Fix -EBUSY WARN_ON_ONCE in dma-buf
+- Use dma_sync_sgtable_for_cpu in udmabuf.
 
-  No changes in participating hosts
+----------------------------------------------------------------
+Christian König (1):
+      dma-buf: fix compare in WARN_ON_ONCE
 
+Gabriel Dalimonte (1):
+      drm/vc4: fix infinite EPROBE_DEFER loop
 
-Changes
--------
+Lizhi Hou (1):
+      accel/amdxdna: Fix incorrect PSP firmware size
 
-  No changes found
+Marek Szyprowski (1):
+      udmabuf: use sgtable-based scatterlist wrappers
 
+Martin Blumenstingl (3):
+      drm/meson: fix debug log statement when setting the HDMI clocks
+      drm/meson: use vclk_freq instead of pixel_freq in debug print
+      drm/meson: fix more rounding issues with 59.94Hz modes
 
-Build changes
--------------
+Nathan Chancellor (1):
+      drm/sitronix: st7571-i2c: Select VIDEOMODE_HELPERS
 
-  * IGT: IGT_8405 -> IGT_8406
-  * Linux: xe-3237-75238c32deae15ee4120b42a5be556ec36807a84 -> xe-pw-148982v5
-
-  IGT_8405: 8405
-  IGT_8406: 12d7c99650c85e479571b6db2c392408be474c88 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3237-75238c32deae15ee4120b42a5be556ec36807a84: 75238c32deae15ee4120b42a5be556ec36807a84
-  xe-pw-148982v5: 148982v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148982v5/index.html
-
---===============8212857697924669303==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Post-migration recovery of queues and jobs (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148982/">https://patchwork.freedesktop.org/series/148982/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148982v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148982v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3237-75238c32deae15ee4120b42a5be556ec36807a84_BAT -&gt; xe-pw-148982v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8405 -&gt; IGT_8406</li>
-<li>Linux: xe-3237-75238c32deae15ee4120b42a5be556ec36807a84 -&gt; xe-pw-148982v5</li>
-</ul>
-<p>IGT_8405: 8405<br />
-  IGT_8406: 12d7c99650c85e479571b6db2c392408be474c88 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3237-75238c32deae15ee4120b42a5be556ec36807a84: 75238c32deae15ee4120b42a5be556ec36807a84<br />
-  xe-pw-148982v5: 148982v5</p>
-
-</body>
-</html>
-
---===============8212857697924669303==--
+ drivers/accel/amdxdna/aie2_psp.c           |  4 +--
+ drivers/dma-buf/dma-buf.c                  |  2 +-
+ drivers/dma-buf/udmabuf.c                  |  5 ++-
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c |  2 +-
+ drivers/gpu/drm/meson/meson_vclk.c         | 55 ++++++++++++++++++------------
+ drivers/gpu/drm/sitronix/Kconfig           |  1 +
+ drivers/gpu/drm/vc4/vc4_hdmi.c             | 12 +++----
+ 7 files changed, 47 insertions(+), 34 deletions(-)
