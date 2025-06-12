@@ -4,182 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10EDCC71136
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 12:01:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ED9CC61CE8
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 12:02:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9F9F10E7E5;
-	Thu, 12 Jun 2025 12:01:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41FB810E7EE;
+	Thu, 12 Jun 2025 12:02:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="acZ9oTqC";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="quVBfAKr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 043F810E7E5;
- Thu, 12 Jun 2025 12:01:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749729675; x=1781265675;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:to:date:message-id:mime-version;
- bh=ZN+e2nrL7cYdkMErSWmQ7n1BIfcv0ZqJXvzmN3j9zGI=;
- b=acZ9oTqClQFkGOM6eTREOgJ6PhSON7MqEV8//6pxl1wpGrlr43LrsMGS
- KN0mULZ+B5iwkmRUHWyst3vkHdtB6UhD55wPg4n/aBxRDccKOI4vxlyJL
- 2Qm+Vn/wOj8pR+2ZCwjYWN8pwqeo7B1kllkgvrvphBAdZq0OD++4wKqZw
- +vcu34wtg9JYgTrplR5dBpW0JYfQ0zoWDSVTBm4pcC7/zDkLujEyk8nRl
- M5kTKZ/0omTvZw2PuAQGP7mpf3AU5TMN6rNtmmwjp8Gj5AcfmJ5TDrDZZ
- +3xTgwYuvjQCxZFnIdgDLB29A1BB647ga8oSS9mQvX5Q5xrh1qSDkfl0S A==;
-X-CSE-ConnectionGUID: fP90lG7OQBOQYnN5Hgqmjw==
-X-CSE-MsgGUID: A5TKpdLJQJ2F4vAtJ6QJNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51822245"
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="51822245"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 05:01:14 -0700
-X-CSE-ConnectionGUID: fzWr9i4FRUKCpkqOD8XsHQ==
-X-CSE-MsgGUID: SgIUewmWR22CgiZJq9Vh4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="147489468"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 05:01:14 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 12 Jun 2025 05:01:13 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Thu, 12 Jun 2025 05:01:13 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.46)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 12 Jun 2025 05:01:12 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2054.outbound.protection.outlook.com [40.107.220.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD5410E7EF;
+ Thu, 12 Jun 2025 12:02:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N2UTfT43NqhLwvjODKIFk2poqu1/oQoHd02FZohX8U6O3XWkA87/rcJZk+ijC7pExeRK0tekAmSdtWyei3RjWp4TxcaiOm/Z3WWwO+BGSEMQz3FeHUsDKaFP6iZVOOgqEB4dOK9rArwAcbidpVUZksBxf8Kj6OSlyxjISv3OsOCdMPED1j12IwFegLQ0pK++kMeZ9cAEJu0yDxxJd5r+ZHK7/MqNH+bvXCoNzlAu0e9Q/kd/pxHocm+T5tL5pYreD3OPDbjEG3bmriZfGc4Y+PWoEvvnL3TqDbV4nUxRqWbSQNt5MriIoOaYbgrEiWvwVPBA7WSqfryA7GQ+HqFFpw==
+ b=tIZAH2JlgagZDPbpHvjCorYPCwEEJOtGk9OApTlbr1EdePw5jNb8K5Hryoa0mvTr4L7gMPYA54r0TeJRqe+C8tIQKdTxLARGJBBO3nCkIm4c9buEnIbOHR+s3B62QLhyPlYYlmG5DpfopfxJLMm6Sz5apKz42t26lhQv0BmNVOYfAIKRUs5tqQnzyQS2HhJ0jURBfdKypAuWU4WL9rMvNkRIs3l6ta5KdX41/Pt7qGsVVHikHesqM2VD7zgwEGmjE0EycXad0WArYmu6aHu0kwik/KQit8qbghjpDQFw4mnQHKGLMULuQrCw1YOn1GTSPrYKwHVAEBhdUren9PykPg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9x1D6QQehVYzPTbrpd/ZwKQRTmupVG5jZ60kRVJGhaw=;
- b=ZLNrv7sldbBq+TuQUX9PtqRVDYYKgJAzkEs5/wPh+/gqr+HMMGthpv4fPfx2n2RslBd3J1UG7itEUZfvv0ZfWshkfF0HXs8YF5ioh692rqbVx2xRu8A5fS0wsqAZdM9UEU1uorNYD0K/JNSZ/dlIhohGbwRGIGFh68QGPvSLHur6tY2UXP/Rkd4zXhX9nrgviRnHVc8NUIkfRLgREkLHr/G38Llrojvxi0jhZEly6+0F/1Dw5K+jb6wlBYhVdHxjlsSTSeqXXGQsajhRB7CsLOMbzXnV/chJOar3m1jnxVoVx9wREkYOhtsD8Z9UNF7A9zSbilxpYekM4KGMIKqUlg==
+ bh=uxSNAJXbLbk68jxDgzD9poMQCu7Cb7Ll84pfa+WXEjE=;
+ b=i1xLjhLwhCGBr4Ek33brKPIxsHb8ruCmMTZMHxltVBUdsO5q+wAXtQzAcwhHPMvRioKeCm38JfsY3wavnwpluaqTAA+s7vmArGO1/5kQ1R/E16nHIXGuDuuFGr0BiIrL4VuUib0FfHdBpTBnRQOIKhL7RFq9G1ndIfD8CyB67XH24p8j7t4PHsuw96XVGBVR69PRKbk6/4HQp7xEwotz37rjwlmPBV8klpdMrVAJplJzh37vzAm5OeGJyhLBdLCQxTJeiSbmadwlaMev4dNQMvIpgPjMJxFZSnYfV09bGqlmDdHtF2CcnLNtbN/OXhbvomH98qEyChA23+eF7L4Q/A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uxSNAJXbLbk68jxDgzD9poMQCu7Cb7Ll84pfa+WXEjE=;
+ b=quVBfAKrVwYwc5rtoU5rO8Lt0ZTPPtKFHtxir4Y5FL+D0S7KWO4MrKcnm+zO3BaTzZMY3+dKxo2PLhzRNRvmMpJTvKeHg0bT73j7rexkCjTp5x3QNi6aCkNerNv00hQMIKyn7NXKCI768P8w6/UPAW32pUimxwD/MKT2txDaFVo=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by SN7PR11MB6603.namprd11.prod.outlook.com (2603:10b6:806:271::21)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CH3PR12MB9172.namprd12.prod.outlook.com (2603:10b6:610:198::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.18; Thu, 12 Jun
- 2025 12:00:27 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%4]) with mapi id 15.20.8813.024; Thu, 12 Jun 2025
- 12:00:27 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250612075330.837179-1-ankit.k.nautiyal@intel.com>
-References: <20250612075330.837179-1-ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH] drm/i915/gmbus: Add Wa_16025573575 for PTL for bit-bashing
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Date: Thu, 12 Jun 2025 09:00:20 -0300
-Message-ID: <174972962084.14553.9763596946172547950@intel.com>
-User-Agent: alot/0.12.dev27+gd21c920b07eb
-X-ClientProxiedBy: MW4PR04CA0302.namprd04.prod.outlook.com
- (2603:10b6:303:82::7) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Thu, 12 Jun
+ 2025 12:02:44 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%7]) with mapi id 15.20.8722.031; Thu, 12 Jun 2025
+ 12:02:43 +0000
+Message-ID: <6984bb7e-8026-49f8-a683-a8142f0d013c@amd.com>
+Date: Thu, 12 Jun 2025 14:02:39 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 6/6] drm/syncobj: Add a fast path to
+ drm_syncobj_array_find
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, =?UTF-8?Q?Michel_D=C3=A4nzer?=
+ <michel.daenzer@mailbox.org>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
+ <mcanal@igalia.com>
+References: <20250611140057.27259-1-tvrtko.ursulin@igalia.com>
+ <20250611140057.27259-7-tvrtko.ursulin@igalia.com>
+ <b57b6549-7dbe-45fe-ab8e-4232041ec1a5@amd.com>
+ <10e83252-e565-4cb4-9bc2-ae238528df92@igalia.com>
+ <c17f25ef-390a-43e3-a467-45e64048ed6c@amd.com>
+ <28ec6760-c2d4-472e-84fd-211bfea47d4b@igalia.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <28ec6760-c2d4-472e-84fd-211bfea47d4b@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0241.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f5::6) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SN7PR11MB6603:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f429390-fa88-45de-ad9f-08dda9a8b85b
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH3PR12MB9172:EE_
+X-MS-Office365-Filtering-Correlation-Id: 874e1f81-83e9-465d-d365-08dda9a909e4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|366016|1800799024|376014|16122699012;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RjJoNXJGYWtyNVJtQlFwTFFVbWJnOWwyL0dQS0pzWCtrN3NCUk5FYS81dDNv?=
- =?utf-8?B?Z3diQVFnUHdOWEh0TjMzc1JVZnNLY0RGNEx2bGtiY1pMYkMzdzE4dDd3VXlp?=
- =?utf-8?B?SHhQK0swYkh4cjM1UDJhUVQySmxlQ2ZJTERuTzhZdXZobnMxWFBmb1piV3dk?=
- =?utf-8?B?QXhHbkF6ZUVKbm43ZlVndjNTVG95TmZVVFh5Q3dUWFFrU244aVZOUVIyYlgr?=
- =?utf-8?B?V00va1ZHTVVqSkNRNENjS3JyaFByelFzRHNnOGtmZXd6Wmp0MG1hOGtiTlNE?=
- =?utf-8?B?VUcyZGtvTWlwM2pUdGRWVUMra0ZBS1JQZ1RKUjEzK3g0akxtYUlKemFrWDZX?=
- =?utf-8?B?MnpJYjdtTnJvNG5ocW9FSjd3ank4ZDZycmFYZ05haVl4TkdkSUtrRjd4OE1I?=
- =?utf-8?B?SS9KbWtNZU85d3hHS1lpT2hoUnFIbWN1ZmdSVWoyNEZUalFwMU5QalR2eWZy?=
- =?utf-8?B?MkRZa0lPNE1VKzRWMDdjbXFrOStMTnRUZWZDMmFiK0lKdEJET2NBYStEWFZk?=
- =?utf-8?B?UGtJVVdZTllTa0tMdkhKeElSR0FZS0s2a3I1LzJTR1ZWNlhrTnBYVXJqWmQ2?=
- =?utf-8?B?YWR3Yk9JUERSMDk4dWdRTHhERmhzekdJOFlhdGVYdnNtUE1ndnErVkd6eFpB?=
- =?utf-8?B?K3pKOW55L3NhbGVQN1NMRXlUOGl6T0RaNmJER1ZwL01mU0dmcFhJTDdYMmRU?=
- =?utf-8?B?WmFZalFGckpsTGhuMzNueXZsbFg5SXIxbEpKNTBGSEZ5MWdUQitJaHRsM0gz?=
- =?utf-8?B?L2dnb2t4SUcxK1RMMVkxVXpFSVNsdEhweElyYW5pVEdDa3EzdkVhcVpxdEt0?=
- =?utf-8?B?aE11bmk4eExaQkMvc0hsTjU1Nmh5bjBBNzlncUNMbDBnZ1hUMXFKbjc2bnVL?=
- =?utf-8?B?UXMvV2M5b3Fma1lEU21FTkRvV1pBOGRvK3RGYmRObitMLzNjdXE4ZURzdlBj?=
- =?utf-8?B?RTdpL3F1N1NIQlJZdC9DWWhVUUdiWVhIT0NxeC9ySkdiOHJ2T3p1WSsxcTJm?=
- =?utf-8?B?VEw0dFhuK0EybGtVcFVDR1c1WDd6OFkvMDRYVXJVTnR1NXNhcEpWWmVBUEF1?=
- =?utf-8?B?VkdTZWhqbWNaQjlzVTYyT29WTnlCQTJqSWJac05nZVJUMWxrc0JObk4vKzEx?=
- =?utf-8?B?N2dvRDcxR0Y0T241cDhQbkMvdERkUG1ZY1FPaEZpV1dacGtCa1QrQmxGQ255?=
- =?utf-8?B?YWFBNlYzWit4UWlaQWhxRjVzNEp3SG85SnFrK2M3SUkycys4aFE3RFpQZU1s?=
- =?utf-8?B?anBVSWQ1aWRhSWtHTytuWWF0cFRIRXdNSHdSUEJPa3ZlL0tOMzNYSGRWdElj?=
- =?utf-8?B?NU5XNjRZS1plbmtuWUZrYUJzdHdvRDRyTnlSZU1ESzdndHRtYzRiWjdBaFZy?=
- =?utf-8?B?UUZxTlNhL2ZTSlJ5WkV5d1EvOGFBYnA5bFRyaEJCdFVqckFwMGVTeU5vc2xw?=
- =?utf-8?B?RkJ4M2o4dVhmV056WVBuMHpvWUp5ZkwvRU1UMFpoUGdTZE80cytxa0pzYy9D?=
- =?utf-8?B?RzF0RGRPS29JQnR1SHA1S2NWUTZsblBvTExOQkl4cUJXSktlNTIwNjNxdSt0?=
- =?utf-8?B?TlFkNUtGZDltVWVSeXRIcVFUMUJDd25xbk1KNWlDRHVyUlFZTlZYOEJOaElG?=
- =?utf-8?B?dWdsdVk2WUZRUUVNSnpQbTA2MDVLTDF0MFF1eFJLV0VQZ2hHQ0srRXdUTmNu?=
- =?utf-8?B?VTBPWU1XaG9na0JkYllDc3Z0eDFWc0lpdExFNGUyaVB1dzRKMlFza2xEN2V1?=
- =?utf-8?B?NGRlN0x0OFhEbzZOVXdENm8yQ2NKU3ErZ0c2eU1rdVo1Q2psRDJVc3FkQ2FY?=
- =?utf-8?B?eW9zR1d3Y2NnZ1IxR05iWU5RRmU4R0RlQU96VzA1a3A0SnorSDlhRjVrWnRK?=
- =?utf-8?B?a2xwQUNFRWZPc1FMZ0FydU1HUWZseHk0YTFpQU4vUk1sN1ROek9rcm81OFpZ?=
- =?utf-8?B?MlZuQ1hKNGM2cnF0ajNHNTR5c0NsbEF2K2NDbkQ0ZWJvNmhEMHdjMW14K0U3?=
- =?utf-8?B?ZnZpTXBCVkdBPT0=?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TTNJbjJtdklkZkJnWEE1N0pHSzdjU3FibVF6RnEyK3VJM24wb2pVVWdaeUpH?=
+ =?utf-8?B?Wit5NExPVTMzR3cyN0o3cWYrcW5kajlyK0ZvQXgwRTdFVCtRYjhQN1RNd2ha?=
+ =?utf-8?B?TUxwU2hDRXVnbHYzZGRONjN6cllBek9TWURQSWNvR3ZWWGtFZXRLbXZaU1pB?=
+ =?utf-8?B?aVd3bVp6UWt0Zit6YW0zRVpjWXdkTUUwajZ1VEdpMVpJRnFwOTI2MnR5UEk2?=
+ =?utf-8?B?cEYzTlZ6RXFDT0lpazk5dDhjd0tjQ0dDazk3ZFNrbDNta2JUNDJ4TExuaDRx?=
+ =?utf-8?B?N3J1c0FKRGE2YnZ1ajBuQW51WEllOVF1QWFpQWJXMWdhUW1HNEVSOFlYYWVN?=
+ =?utf-8?B?cGdqYnJsRWZ3TmkzMFdHR2RYYVJpRnlrMkxqTThIb3FUYTZyRVFqR2Jzanhn?=
+ =?utf-8?B?Y0hFb0xsUk5QSk50b3N2QU9XUERwdVlVRk1XMG4zTGZCWTZGVDErMGQwby9X?=
+ =?utf-8?B?eDlzbFpoNlY1eWJhYzkvVG1QQzFzQ3FpL2M1d0dwZnRNcmE2ZW05MExsNU14?=
+ =?utf-8?B?bExLcTlxQmRKaWo4OXh0SktQeGN6ZTlJL25nRFV3WlVtZTU2S2ZaQ0QvQXp3?=
+ =?utf-8?B?a1BxcFYwNFJLZGFHdzJTNHgxQjVmTDVQZWR4aUp2V2M3ZmY0MWJxQUM0cUhm?=
+ =?utf-8?B?dHIvdnNwdXAraXJYK1Z2OTFkZ3BYOGpWQXZjSGVhMnAxNSt0Ym5tMm92RGtO?=
+ =?utf-8?B?dGJGZS9RMVI0OUhMSHpsUHREdEV0aDM0c0V4QWIxUVcwNHVsNEdpc3VoMXhO?=
+ =?utf-8?B?ejh0YWNNUkMwKzFoaWN5VnpBa1l2Ym50WmxmTWpqNE9aTFgydnFzclRvY0g5?=
+ =?utf-8?B?NGV2TjNrallXVXJqSkJDd3prYyt4VnAwcEVxNjZmczJHN3VnNU1pSVVIdFBH?=
+ =?utf-8?B?alJUMm83UU1JMFl1ZE9UbmR1SlhRbTNoMWhmaEZRNnpuYlBSNS9JYjhock5n?=
+ =?utf-8?B?bGN2YzVMZGNEUHAvV045d0ZHS3h6NFdmRTVzdUsvWWxHcHRxNzUwWWpPZ3p5?=
+ =?utf-8?B?LzhtY1JDZFplTWduS2t5UjRHaGxxSVZDS1VsdEpZRzlITHRMMEw5aTB3VE5E?=
+ =?utf-8?B?U2dkZjFzUjZBc3VCZXY5SUFla1UyZXZPSU1SSjlWNGFHYU0xNGwweXFLLzlF?=
+ =?utf-8?B?dWxZUXMybi8vcFVCbHNlQUo1Uldsc3JZaWw5Q3I1clBsbzFyTFF5TnlqbkJM?=
+ =?utf-8?B?NVNVUUxLVnJlMTZaMm9XMGNYbWZUb0xKRGZCWTB2c2tJSmFBWGhIRmJrdHNH?=
+ =?utf-8?B?ZnQ4MjNlZEtOMzFENjdDa3pubHhqVmVyTXdYOTQyVzRHOG54U3ZpWUFBV2t0?=
+ =?utf-8?B?VnJwcGI2eldmNTVhS1RPUUUvN1B3SU1tdlVZWlIwTkNOamxVS3dNUTdBbnNw?=
+ =?utf-8?B?TVppckgyRVVPQ0F0MkV3M3Yvbys1L2toeCtWS2E1Ly9UaGVFUUlPSEZvM3JZ?=
+ =?utf-8?B?ek5OTU0rRHdwdk1pOC9YVUc2czVobTErSWIyZ2k1Qm5rTWxYZXcxaVlJSDRD?=
+ =?utf-8?B?Yi9maktEQkIrSkhjMWw2YmlSWUlKNEhGdUloNmJjRUdWV09zWEVwaVFCU29z?=
+ =?utf-8?B?c2wxOWRGblJNOGZQQ1lLZ1hCcU0rMnNPeGttUHlueS9KVVdXZmlsOGk1OGdI?=
+ =?utf-8?B?RStIcStJaGVZNmpaNmc1bGR4ZzRZeUp5U2RTK0p4di80U1pFZlUzOWpCSGRM?=
+ =?utf-8?B?Y01QNThUL2h3alFKMlR4WWE0Q01WeGJFUUlzaXc4SFRMeDduSFFHU1BkaERj?=
+ =?utf-8?B?eVFsR2w2dWVhWHhhYVFCdnRIQlpQVTlpdHFaeU1OSXBVdFM3b0NPNDJ3N25O?=
+ =?utf-8?B?T3djcFdxb3VGOERqVFYydlF0VWdJUm1IU0dVbUNrREJuZ0R0bW1XQ0NhRWpM?=
+ =?utf-8?B?M0U2UDVlcGZiaFFTRU85bGF3S0VpelIvTkdIUXY2YUdLWnJHSmNIL0Z0NVRS?=
+ =?utf-8?Q?cb083sWZPd0=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(16122699012); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QzhGaFpVTEQxMHN6amtONVhZRTZQTktYeWVTWE5TOTJGTEpXT21EeVVhcGkz?=
- =?utf-8?B?a0xtT3VnSndNN3ZkL2E2Y0tmK3lEb0NJRWNIWkRScWhIYkVZSEluK01aMVJr?=
- =?utf-8?B?eUU3UW8xN0JSQWt5U0svWGM4ZVdSYlhtOWg2bDJpcmRxZCtkcUFsdHBjVVp6?=
- =?utf-8?B?bmRqODloTTg0OWk0d2djVU9USFRPUitLQjZaVmp3bkU5czlQNlh4SVA0RGRT?=
- =?utf-8?B?K2xOeW5PNVlzb1lVQ1ljb1JiSVRCdC8vWVFac3FockJ2WlRIQjBXQjN6YVVh?=
- =?utf-8?B?Y2ltUzVxbitQS1RmbTlySGdUU29XUG94MnlnRFNFamI1dE1JaEg2SHhjcVcr?=
- =?utf-8?B?cmZKamd2ZklmZm9oRnU1SnB1d1VyYjVjQW40V1YyZVI2dytMTTRxcjQyOW85?=
- =?utf-8?B?bTFhcTI3L2FVOEoyRms2b3RMTmhPQ2JhcXdGTWtnZVliRlhiOTNpanUxVU9t?=
- =?utf-8?B?RFR2eklYLzJrOFBMQ3RSUzYrdDRSYis4UWp1U0ZxYTdFa1VqMEN2d29UWFVM?=
- =?utf-8?B?N0QwclhycE5SUU9OZXYzVHZYMnhCR1pLR0tVN2I3ZTJYQ2lHZGswYk1nRGJq?=
- =?utf-8?B?c1hOdVRXQnVFRUlnck8yS2R3akw5dUNkVXlibnpBcUFLcXFGZHpmbXJ1Qll6?=
- =?utf-8?B?ZTF1byt2eHRVK1FDZW5UR3VOR0J0WWE2aC9JSzJmRHA5NkFRS3NLNTF5dU1q?=
- =?utf-8?B?cjZyTlVpVjk4YkNSbUNhSlk1YTVGZkMyMGRaZXEySUJyaHdXdnlYUGVHRnJy?=
- =?utf-8?B?RGF6Zkc2VURTOE5nbndKOStLWmFLYzRZcS9tZlBmSFdaQjljTEdoTTRZSW54?=
- =?utf-8?B?aFNVUEYwMjBnZktRS3lnL2pJTUxCbHRWeTExdzkxQjhCUU9iWkFnNFdob0Va?=
- =?utf-8?B?ZnFTNFNHZlAveVAraE9Zc05hQnp1YXAxb08yaVV4R0VXOWdHby92ZEp3azk4?=
- =?utf-8?B?cktrMEcwM2o4cmJWZnB5U1dMVDd5M2FyRVNteVRpRStGbFFleEpEb1g0WmRu?=
- =?utf-8?B?dVVPeGNqekZIY3hHQ3JFZE9qTXkvR0wrVHA4RG5UYll5c2YyaXl3ZkE4VElL?=
- =?utf-8?B?bXpobi9vMXhDbDJWU1NDL05rc0ZiMC84MXFUYVlIeW9Oei9yeFhWWklFUklB?=
- =?utf-8?B?Z29uYmhFRC9OVXZRNmQrOG9kRHNKTHdvVXRCc0wvVlY1aHpJT2JzQzdPTTJR?=
- =?utf-8?B?dHBvUjJPSzJ0dHdadWNRcEhVRldZQkZxNTJaNWtaZ29vT1MxWWl2WjA4OWFW?=
- =?utf-8?B?ZHprbTNyMUVJaENLS1lHRUhNd01oaXBtSy94ZUZaUnVkSi9SNzFXUUMrRTJR?=
- =?utf-8?B?Tjd4MDdmb0t2dFFXMTNDZExtWHE1dWt5c2c4emNPZm83ZjBaVTR6WHlmN0tt?=
- =?utf-8?B?QzVMaXVkMlJpVTZnQkc5QXhxa3VGWU1VSjNFWjZLNHBkcmFNZUhGWWdseGRC?=
- =?utf-8?B?bUYyOEVlbzlSSEpSS2MrWkE5Yzl4T0c5OENVNmcvRmpYVWJMV0xkeldDbTFy?=
- =?utf-8?B?U1JRQnpEaS9MTk9UeUdJMlRkZlVtM29IOVBkM3VsY0M1V2tURzdyd3FraHA3?=
- =?utf-8?B?Mk9xSVVBVkZ2ZEc4emp5R3pXTXFwZ0xCRTVUWWg2V2dtZFJuc25pL1MyaTJY?=
- =?utf-8?B?am9mcDJzTkprdXBQb1BlMU5EZmt3ZEd3Ulhsc2o5cmdRRFZiUTZ1eE1WYkpF?=
- =?utf-8?B?ZkZ0SUx6b3FnaE5KeVVhYVpOczYxVXFxK1B0Q0ZYTUJFUGZPNVhLSnFZdUtG?=
- =?utf-8?B?V2ptektoVmpBeUlSbzZpdU5JaFNRK3g0UnRuYU9ncFNHUjRYUEJuRlJLU3oy?=
- =?utf-8?B?ME1acitaWFBYM25IK09OLzU1NkFoWVRxQlRndU1JMFJlOXdOY2RhdVBMT2FN?=
- =?utf-8?B?ZEpZb01RQ3R4RE1kbXJqSE5mWEZncnNRNEdqcTN4a2FnVEsraUhLWlpUUzBP?=
- =?utf-8?B?OVQra1hqZ0Z0REtNR0MvVTJTZkE4USt6SC9oWndzMWFhbXBXbWRhNnlaYWZQ?=
- =?utf-8?B?M0pxWTI2UVd4aXE4MkR0NUhIRmhuSTRWMHpIWG91b1F4amtCK1c3Ym9FRGRM?=
- =?utf-8?B?ZGtERWxUT3VLNFVwb0l5VXVud2dqWjl1Nlh3bGxoaWVXWnp5WkQ5VmhpaHpD?=
- =?utf-8?B?Y2UvcGw5UCtwTmJITFNNRW5wRUwvL1FoNWxCY0xONVhta05kMWZWZ0hhelJC?=
- =?utf-8?B?SXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f429390-fa88-45de-ad9f-08dda9a8b85b
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RnZsUmNWeHBRYTB3NTVUVTZRVXkyUlZSSEhycDVEQ2Uvd0xtdHBmR3BjRCtX?=
+ =?utf-8?B?U1liOE1yakRqRExaelNZdElmRDFCS0xNWmlITWlwTEJQRnNFSVJCU2MyS0Zl?=
+ =?utf-8?B?Wlp2K1dESnF4SGMwZWhDOTVtZnVQMGExYkpacHFzbVpTUTVFWXc5U0dmOW41?=
+ =?utf-8?B?UU1kWml4eHdWN25zWFNpMGxNeFJTV0dmRUZoM3RGNVBpZ2dtZVdEQlFxRktF?=
+ =?utf-8?B?QlVmQ09PVkR6VXIxY2dhczJnbTF3VXNualg4R25wOURTNjJrQUtTbThENTJ2?=
+ =?utf-8?B?UzczV1RFbXRONGVqSFpnUTVRcmY4STBXUm5BS2RwdEYzOHpLUDNFN1F0VjJQ?=
+ =?utf-8?B?b2ZRdjJEZFloVWRhZW1lUDEvNjA1bTRIVUZaSFI1OENYM2U2aWpLMU40c1hN?=
+ =?utf-8?B?R1lDdHVWRE01R3FldDdhNGI2bHRnL2JFVnkvdVZnSkJXOUVuc1RDekV3ZytG?=
+ =?utf-8?B?OHRaVDA1VVVKclErUzJnREVsYmtHdXFPaEtOSHliVkp1dFp0WGxTYitGK1Vu?=
+ =?utf-8?B?eG8xSWtWalVRUnE4S3VlUU5pT0gyc3BQL1U1emxPZ2tvYndQeitrSU9xYjly?=
+ =?utf-8?B?TjYwOTJsd25zMjdOUVdDdUJrOHBVTXd0aXdHSVRpYU02bkFjUm9sWGZPQUky?=
+ =?utf-8?B?MXQ3WEptS0ZXVXp2QnZCRTBKR3Erc0trNDQyTExTd3RvbThzaVNHdlR0RlRD?=
+ =?utf-8?B?Zk9PSnV2b3EvTnY4UEF2Z1hRc1JLQW11U0dJK1FUS2hGMVM1NVBoaFZOOXZQ?=
+ =?utf-8?B?ckdYSzhkR2pCUlJBTzF3eitoQ0JZU20yei9NTVgyZEdKMkJ1djh5aFdaZkxy?=
+ =?utf-8?B?T2lKcHVKZkZFQVZoMStEblNZTW5iKzNHekk4ZlRQeU1KajBKb2N6OUhNQWlx?=
+ =?utf-8?B?ZzFHQXFXWDA3b3gySGZTRXVmMnhTWk9DYkc2a2ZFOFgrSGZ4WDhVV1JSK0Nw?=
+ =?utf-8?B?dWE3cUp6TlJQRVJ3aDFnYUpQUmJ2R1F3S3NyYnV1TldOODVRdm5tZ2lLcnlI?=
+ =?utf-8?B?RE1FK3FXeW5aVlUzZ25hRWtyZVQ5SklMYnBvVlYrd20rZUFESWFYS25qaVFi?=
+ =?utf-8?B?cmo1TnJqQVVhNDVhQTBOR0lOaEJma043cUU2cnJlZzdWazZqTldJa3FlRkVB?=
+ =?utf-8?B?OU45QmFqdVZaeUNwMFBhQ0EyVGZVbi9tOHdDT09FOVVZODB0Q1dRMXg2RUt3?=
+ =?utf-8?B?QW9DQW5RdEd4SnhLSXYvUER4bU92dVFUcXV1Zm1jcGxROUxleEhlWHBFKzZX?=
+ =?utf-8?B?SjlBdVJxTkVXZlFBZ0ZPUkh2bENhdHdCTWdpenVyRmxwWWQza0NNckhQY1NK?=
+ =?utf-8?B?THBwSHYwSFgwdXBHV01YUGduR3NvemNET1BRL01HSlkwV0RkTGhEQ2RFdDRh?=
+ =?utf-8?B?ZlhyUkE2cENid1dWS3BqU2dNelF4ZmNvOGpVWWRHRzczU09lQ3ZyZURTbzJT?=
+ =?utf-8?B?NmpiS0wrN1FKMm5yQVJKajV5V0g0NnJvZXV5R3FmcmtwMmV5R29taGNvckpD?=
+ =?utf-8?B?UzdRUURoRXJ1SmhmR2piclNXNGdEQXhLNGpTZDlMbTM0djRIRldqbGpIaStj?=
+ =?utf-8?B?SHgxL09WVlNPS0RKb1hYYzJ1ZldoSXgxNmxISitQREphVzhiU09vMDZUNHJ5?=
+ =?utf-8?B?TTFVVjRMbkRpdEE4cElYTDJDNjAwa2tDV3Vkc2NwL2srOGkyODkveW1PTFg0?=
+ =?utf-8?B?ZXdnTUROUWNqSWw1dldmcm04VTZKeHBGODVmUmZBcmNreEFwdzlWTm9pNzFM?=
+ =?utf-8?B?N3QvRHJiY1cxMlVyWGRYTVZCN0hITXhyQzZ5enZUWU9oR1dqdFNsNHFZU1Z2?=
+ =?utf-8?B?cysrMCsxSkorUEhIR0F6MGhEMkduTWtESnl2clpvK2xqdjRGa0NNY1FiRlFm?=
+ =?utf-8?B?NWxTQ05qR3krOTlabnJDbnAxK2dXSUpGUGxlOE51MUlIc3FPYStGWWxZR3E1?=
+ =?utf-8?B?NnZMSnFETVBqaE5YOVhZQ2l0NlRWc3FvQ0dDblRMSGdOcGkvUS9SQjZob2k0?=
+ =?utf-8?B?VXBqYjdYWHBUWG9nTWxqbElHOW03VTc3d1U2OWlTMS9CSTBJRVJWWnZxbUlZ?=
+ =?utf-8?B?OWNkQnMxT3h3WmNUQ3hiNTNWTXpqNE92K2xtNUV3ZFdJNWQxVnlTK0VRUUph?=
+ =?utf-8?Q?ZrOfu2CHPGoNhqIfjioEiwuZ7?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 874e1f81-83e9-465d-d365-08dda9a909e4
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2025 12:00:27.1388 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2025 12:02:43.8608 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OPli+I6ZKHUdfO2SytZ9zi7WnD7P3Eiz+xMG5akhjT8tf50spsZcGPBtUj8Lu8ub1NIYGIPeh1P3LaoKqVWcqA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6603
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: IQIiDK0pEwUDKLmR3ysMS232fk0NL1J1Ohbr6OOBzUZQWku5OhgEkxVBgmLw85uK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9172
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,116 +169,270 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Ankit Nautiyal (2025-06-12 04:53:30-03:00)
->As per Wa_16025573575 for PTL, set the GPIO masks bit before starting
->bit-bashing and maintain value through the bit-bashing sequence.
->After bit-bashing sequence is done, clear the GPIO masks bits.
->
->Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_gmbus.c | 38 +++++++++++++++++++---
-> 1 file changed, 34 insertions(+), 4 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/=
-i915/display/intel_gmbus.c
->index 0d73f32fe7f1..c96167c70228 100644
->--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
->+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
->@@ -242,10 +242,17 @@ static u32 get_reserved(struct intel_gmbus *bus)
->         struct intel_display *display =3D bus->display;
->         u32 reserved =3D 0;
->=20
->-        /* On most chips, these bits must be preserved in software. */
->-        if (!display->platform.i830 && !display->platform.i845g)
->-                reserved =3D intel_de_read_notrace(display, bus->gpio_reg=
-) &
->-                        (GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DIS=
-ABLE);
->+        if (!display->platform.i830 && !display->platform.i845g) {
+On 6/12/25 12:58, Tvrtko Ursulin wrote:
+> 
+> On 12/06/2025 08:21, Christian König wrote:
+>> On 6/11/25 17:29, Tvrtko Ursulin wrote:
+>>>
+>>> On 11/06/2025 15:21, Christian König wrote:
+>>>> On 6/11/25 16:00, Tvrtko Ursulin wrote:
+>>>>> Running the Cyberpunk 2077 benchmark we can observe that the lookup helper
+>>>>> is relatively hot, but the 97% of the calls are for a single object. (~3%
+>>>>> for two points, and never more than three points. While a more trivial
+>>>>> workload like vkmark under Plasma is even more skewed to single point
+>>>>> lookups.)
+>>>>>
+>>>>> Therefore lets add a fast path to bypass the kmalloc_array/kfree and use a
+>>>>> pre-allocated stack array for those cases.
+>>>>
+>>>> Have you considered using memdup_user()? That's using a separate bucket IIRC and might give similar performance.
+>>>
+>>> I haven't but I can try it. I would be surprised if it made a (positive) difference though.
+>>
+>> Yeah, it's mostly for extra security I think.
+> 
+> On this topic, this discussion prompted me to quickly cook up some trivial cleanups for amdgpu to use memdup_user & co where it was easy. Series is on the mailing list but I did not copy you explicitly giving chance for someone else to notice it and off load you a bit.
 
-I believe the stuff specific to Wa_16025573575 could be done in a
-separate "if" statement. The conditions for Wa_16025573575 already imply
-(!display->platform.i830 && !display->platform.i845g), and using in a
-separate "if" statement reduces one indentation level :-)
+Yeah, I know I always wanted to give that task to a student or interim :)
 
-That would mean moving preserve_bits one level up, making it available
-in the function's scope and doing the registers read conditioned on
-preserve_bits being non-zero.
+Alex is the one usually picking up amdgpu patches from the mailing list, but I'm happy to add an rb if necessary.
 
->+                /* On most chips, these bits must be preserved in softwar=
-e. */
->+                u32 preserve_bits =3D GPIO_DATA_PULLUP_DISABLE | GPIO_CLO=
-CK_PULLUP_DISABLE;
->+
->+                /* PTL: Wa_16025573575: the masks bits need to be preserv=
-ed through out */
->+                if (DISPLAY_VER(display) =3D=3D 30)
+>>> And I realised I need to repeat the benchmarks anyway, since in v4 I had to stop doing access_ok+__get_user, after kernel test robot let me know 64-bit get_user is a not a thing on all platforms. I thought the gains are from avoiding allocations but, as you say, now I need to see if copy_from_user doesn't nullify them..
+>>>
+>>>> If that is still not sufficient I'm really wondering if we shouldn't have a macro for doing this. It's a really common use case as far as I can see.
+>>>
+>>> Hmm macro for what exactly?
+>>
+>> Like a macro which uses an array on the stack for small (<4) number of values and k(v)malloc() for large ones.
+>>
+>> IIRC there is also a relatively new functionality which allows releasing the memory automatically when we leave the function.
+> 
+> Okay I will have a look at all those options. But it's going to the bottom of my priority pile so it might be a while.
 
-Instead of open-coding the conditions for the workaround in three
-different places in the file, I think we should have a function
-needs_wa_16025573575() and use it.
+I'm also perfectly fine with the solution you came up in those patches here for now if that improves the performance at hand.
 
-Also, note that the workaround is also required for WCL (display version
-30.02), and we would then include that in needs_wa_16025573575().
+Just wanted to point out that it is possible that somebody has an use case where X sync_obj handles are asked for timeline fences and that now becomes slower because of that here.
 
---
-Gustavo Sousa
+Regards,
+Christian.
 
->+                        preserve_bits |=3D GPIO_CLOCK_DIR_MASK | GPIO_CLO=
-CK_VAL_MASK |
->+                                         GPIO_DATA_DIR_MASK | GPIO_DATA_V=
-AL_MASK;
->+
->+                reserved =3D intel_de_read_notrace(display, bus->gpio_reg=
-) & preserve_bits;
->+        }
->=20
->         return reserved;
-> }
->@@ -308,6 +315,23 @@ static void set_data(void *data, int state_high)
->         intel_de_posting_read(display, bus->gpio_reg);
-> }
->=20
->+/* PTL: Wa_16025573575 */
->+static void
->+ptl_handle_mask_bits(struct intel_gmbus *bus, bool set)
->+{
->+        struct intel_display *display =3D bus->display;
->+        u32 reg_val =3D intel_de_read_notrace(display, bus->gpio_reg);
->+        u32 mask_bits =3D GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
->+                        GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
->+        if (set)
->+                reg_val |=3D mask_bits;
->+        else
->+                reg_val &=3D ~mask_bits;
->+
->+        intel_de_write_notrace(display, bus->gpio_reg, reg_val);
->+        intel_de_posting_read(display, bus->gpio_reg);
->+}
->+
-> static int
-> intel_gpio_pre_xfer(struct i2c_adapter *adapter)
-> {
->@@ -319,6 +343,9 @@ intel_gpio_pre_xfer(struct i2c_adapter *adapter)
->         if (display->platform.pineview)
->                 pnv_gmbus_clock_gating(display, false);
->=20
->+        if (DISPLAY_VER(display) =3D=3D 30)
->+                ptl_handle_mask_bits(bus, true);
->+
->         set_data(bus, 1);
->         set_clock(bus, 1);
->         udelay(I2C_RISEFALL_TIME);
->@@ -336,6 +363,9 @@ intel_gpio_post_xfer(struct i2c_adapter *adapter)
->=20
->         if (display->platform.pineview)
->                 pnv_gmbus_clock_gating(display, true);
->+
->+        if (DISPLAY_VER(display) =3D=3D 30)
->+                ptl_handle_mask_bits(bus, false);
-> }
->=20
-> static void
->--=20
->2.45.2
->
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>>> Reviewed-by: Maíra Canal <mcanal@igalia.com>
+>>>>> ---
+>>>>> v2:
+>>>>>    * Added comments describing how the fast path arrays were sized.
+>>>>>    * Make container freeing criteria clearer by using a boolean.
+>>>>> ---
+>>>>>    drivers/gpu/drm/drm_syncobj.c | 56 +++++++++++++++++++++++++++--------
+>>>>>    1 file changed, 44 insertions(+), 12 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
+>>>>> index be5905dca87f..65c301852f0d 100644
+>>>>> --- a/drivers/gpu/drm/drm_syncobj.c
+>>>>> +++ b/drivers/gpu/drm/drm_syncobj.c
+>>>>> @@ -1259,6 +1259,8 @@ EXPORT_SYMBOL(drm_timeout_abs_to_jiffies);
+>>>>>    static int drm_syncobj_array_find(struct drm_file *file_private,
+>>>>>                      u32 __user *handles,
+>>>>>                      uint32_t count,
+>>>>> +                  struct drm_syncobj **stack_syncobjs,
+>>>>> +                  u32 stack_count,
+>>>>>                      struct drm_syncobj ***syncobjs_out)
+>>>>>    {
+>>>>>        struct drm_syncobj **syncobjs;
+>>>>> @@ -1268,9 +1270,13 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
+>>>>>        if (!access_ok(handles, count * sizeof(*handles)))
+>>>>>            return -EFAULT;
+>>>>>    -    syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
+>>>>> -    if (!syncobjs)
+>>>>> -        return -ENOMEM;
+>>>>> +    if (count > stack_count) {
+>>>>> +        syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
+>>>>> +        if (!syncobjs)
+>>>>> +            return -ENOMEM;
+>>>>> +    } else {
+>>>>> +        syncobjs = stack_syncobjs;
+>>>>> +    }
+>>>>>          for (i = 0; i < count; i++) {
+>>>>>            u32 handle;
+>>>>> @@ -1292,25 +1298,31 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
+>>>>>    err_put_syncobjs:
+>>>>>        while (i-- > 0)
+>>>>>            drm_syncobj_put(syncobjs[i]);
+>>>>> -    kfree(syncobjs);
+>>>>> +
+>>>>> +    if (syncobjs != stack_syncobjs)
+>>>>> +        kfree(syncobjs);
+>>>>>          return ret;
+>>>>>    }
+>>>>>      static void drm_syncobj_array_free(struct drm_syncobj **syncobjs,
+>>>>> -                   uint32_t count)
+>>>>> +                   uint32_t count,
+>>>>> +                   bool free_container)
+>>>>>    {
+>>>>>        uint32_t i;
+>>>>>          for (i = 0; i < count; i++)
+>>>>>            drm_syncobj_put(syncobjs[i]);
+>>>>> -    kfree(syncobjs);
+>>>>> +
+>>>>> +    if (free_container)
+>>>>> +        kfree(syncobjs);
+>>>>>    }
+>>>>>      int
+>>>>>    drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
+>>>>>                   struct drm_file *file_private)
+>>>>>    {
+>>>>> +    struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>>>>        struct drm_syncobj_wait *args = data;
+>>>>>        ktime_t deadline, *pdeadline = NULL;
+>>>>>        u32 count = args->count_handles;
+>>>>> @@ -1336,6 +1348,8 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
+>>>>>        ret = drm_syncobj_array_find(file_private,
+>>>>>                         u64_to_user_ptr(args->handles),
+>>>>>                         count,
+>>>>> +                     stack_syncobjs,
+>>>>> +                     ARRAY_SIZE(stack_syncobjs),
+>>>>>                         &syncobjs);
+>>>>>        if (ret < 0)
+>>>>>            return ret;
+>>>>> @@ -1354,7 +1368,7 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
+>>>>>                             &first,
+>>>>>                             pdeadline);
+>>>>>    -    drm_syncobj_array_free(syncobjs, count);
+>>>>> +    drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
+>>>>>          if (timeout < 0)
+>>>>>            return timeout;
+>>>>> @@ -1368,6 +1382,7 @@ int
+>>>>>    drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
+>>>>>                    struct drm_file *file_private)
+>>>>>    {
+>>>>> +    struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>>>>        struct drm_syncobj_timeline_wait *args = data;
+>>>>>        ktime_t deadline, *pdeadline = NULL;
+>>>>>        u32 count = args->count_handles;
+>>>>> @@ -1394,6 +1409,8 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
+>>>>>        ret = drm_syncobj_array_find(file_private,
+>>>>>                         u64_to_user_ptr(args->handles),
+>>>>>                         count,
+>>>>> +                     stack_syncobjs,
+>>>>> +                     ARRAY_SIZE(stack_syncobjs),
+>>>>>                         &syncobjs);
+>>>>>        if (ret < 0)
+>>>>>            return ret;
+>>>>> @@ -1412,7 +1429,7 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
+>>>>>                             &first,
+>>>>>                             pdeadline);
+>>>>>    -    drm_syncobj_array_free(syncobjs, count);
+>>>>> +    drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
+>>>>>          if (timeout < 0)
+>>>>>            return timeout;
+>>>>> @@ -1529,6 +1546,7 @@ int
+>>>>>    drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
+>>>>>                struct drm_file *file_private)
+>>>>>    {
+>>>>> +    struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>>>>        struct drm_syncobj_array *args = data;
+>>>>>        struct drm_syncobj **syncobjs;
+>>>>>        uint32_t i;
+>>>>> @@ -1546,6 +1564,8 @@ drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
+>>>>>        ret = drm_syncobj_array_find(file_private,
+>>>>>                         u64_to_user_ptr(args->handles),
+>>>>>                         args->count_handles,
+>>>>> +                     stack_syncobjs,
+>>>>> +                     ARRAY_SIZE(stack_syncobjs),
+>>>>>                         &syncobjs);
+>>>>>        if (ret < 0)
+>>>>>            return ret;
+>>>>> @@ -1553,7 +1573,8 @@ drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
+>>>>>        for (i = 0; i < args->count_handles; i++)
+>>>>>            drm_syncobj_replace_fence(syncobjs[i], NULL);
+>>>>>    -    drm_syncobj_array_free(syncobjs, args->count_handles);
+>>>>> +    drm_syncobj_array_free(syncobjs, args->count_handles,
+>>>>> +                   syncobjs != stack_syncobjs);
+>>>>>          return 0;
+>>>>>    }
+>>>>> @@ -1562,6 +1583,7 @@ int
+>>>>>    drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
+>>>>>                 struct drm_file *file_private)
+>>>>>    {
+>>>>> +    struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>>>>        struct drm_syncobj_array *args = data;
+>>>>>        struct drm_syncobj **syncobjs;
+>>>>>        uint32_t i;
+>>>>> @@ -1579,6 +1601,8 @@ drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
+>>>>>        ret = drm_syncobj_array_find(file_private,
+>>>>>                         u64_to_user_ptr(args->handles),
+>>>>>                         args->count_handles,
+>>>>> +                     stack_syncobjs,
+>>>>> +                     ARRAY_SIZE(stack_syncobjs),
+>>>>>                         &syncobjs);
+>>>>>        if (ret < 0)
+>>>>>            return ret;
+>>>>> @@ -1589,7 +1613,8 @@ drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
+>>>>>                break;
+>>>>>        }
+>>>>>    -    drm_syncobj_array_free(syncobjs, args->count_handles);
+>>>>> +    drm_syncobj_array_free(syncobjs, args->count_handles,
+>>>>> +                   syncobjs != stack_syncobjs);
+>>>>>          return ret;
+>>>>>    }
+>>>>> @@ -1598,6 +1623,7 @@ int
+>>>>>    drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>>>>>                      struct drm_file *file_private)
+>>>>>    {
+>>>>> +    struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>>>>        struct drm_syncobj_timeline_array *args = data;
+>>>>>        uint64_t __user *points = u64_to_user_ptr(args->points);
+>>>>>        uint32_t i, j, count = args->count_handles;
+>>>>> @@ -1617,6 +1643,8 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>>>>>        ret = drm_syncobj_array_find(file_private,
+>>>>>                         u64_to_user_ptr(args->handles),
+>>>>>                         count,
+>>>>> +                     stack_syncobjs,
+>>>>> +                     ARRAY_SIZE(stack_syncobjs),
+>>>>>                         &syncobjs);
+>>>>>        if (ret < 0)
+>>>>>            return ret;
+>>>>> @@ -1653,7 +1681,7 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>>>>>    err_chains:
+>>>>>        kfree(chains);
+>>>>>    out:
+>>>>> -    drm_syncobj_array_free(syncobjs, count);
+>>>>> +    drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
+>>>>>          return ret;
+>>>>>    }
+>>>>> @@ -1661,6 +1689,7 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
+>>>>>    int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+>>>>>                    struct drm_file *file_private)
+>>>>>    {
+>>>>> +    struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
+>>>>>        struct drm_syncobj_timeline_array *args = data;
+>>>>>        struct drm_syncobj **syncobjs;
+>>>>>        uint64_t __user *points = u64_to_user_ptr(args->points);
+>>>>> @@ -1679,6 +1708,8 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+>>>>>        ret = drm_syncobj_array_find(file_private,
+>>>>>                         u64_to_user_ptr(args->handles),
+>>>>>                         args->count_handles,
+>>>>> +                     stack_syncobjs,
+>>>>> +                     ARRAY_SIZE(stack_syncobjs),
+>>>>>                         &syncobjs);
+>>>>>        if (ret < 0)
+>>>>>            return ret;
+>>>>> @@ -1722,7 +1753,8 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+>>>>>            if (ret)
+>>>>>                break;
+>>>>>        }
+>>>>> -    drm_syncobj_array_free(syncobjs, args->count_handles);
+>>>>> +    drm_syncobj_array_free(syncobjs, args->count_handles,
+>>>>> +                   syncobjs != stack_syncobjs);
+>>>>>          return ret;
+>>>>>    }
+>>>>
+>>>
+>>
+> 
+
