@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A800C71136
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 16:33:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55DF7C71136
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 16:39:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56CBF10E033;
-	Thu, 12 Jun 2025 16:33:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EFdc2kph";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63CF010E033;
- Thu, 12 Jun 2025 16:33:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749746001; x=1781282001;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=knpY9TnrIN/QfoSgT+7uq4ApwvboXq1mAPt+MQMAoLQ=;
- b=EFdc2kphxbAdaELK/Cv+EbEBvsrrxXatTZdAyKvzB01/EArghxQt/85k
- uyA2szE1hqIhxLbznMBwWPA/WLfxqvqTNtcvsvH8Th8R9u+kA69sMr4IO
- ydazqXL4en8nyKPXP2K1cUlfrHgeLVPtyGaanozwHKeKwzipKpWb4eVrl
- chxqLnuluGeQYJ5H/YFoMjbdkRdEMon4eBq3UvYibzWw1XoHrUveIUqo/
- u2kIJuCmhppWUSDyO/iCWifNBId+7kqJIXUCb5WGx3ofWmL24wPZTeEFx
- 89Eeyrbij8Ch1o5lslasZD4bPPsuLbVgk9KytD3tY1atd2nAdaZs2aaK4 Q==;
-X-CSE-ConnectionGUID: dbdlOqtQTG+Za3CicnW/nQ==
-X-CSE-MsgGUID: a0nAwWvhRq2sg+ujtXxagw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="55742798"
-X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="55742798"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 09:33:21 -0700
-X-CSE-ConnectionGUID: wXq6CVcLQCWHIRErkPbKBA==
-X-CSE-MsgGUID: F5oDRIxUSqaD/5gteABZYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="148067853"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO fedora)
- ([10.245.244.109])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 09:33:17 -0700
-Date: Thu, 12 Jun 2025 18:33:06 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <aEsBQoh5Si3ouPgE@fedora>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D797710E0F5;
+	Thu, 12 Jun 2025 16:39:24 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2133910E033;
+ Thu, 12 Jun 2025 16:39:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4017996128712023508=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_i2c_support_=28re?=
+ =?utf-8?q?v3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Heikki Krogerus" <heikki.krogerus@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Jun 2025 16:39:24 -0000
+Message-ID: <174974636412.73282.2478110205461482325@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250612132450.3293248-1-heikki.krogerus@linux.intel.com>
+In-Reply-To: <20250612132450.3293248-1-heikki.krogerus@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,45 +36,149 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona
+--===============4017996128712023508==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Two fixes for 6.16-rc2.
+== Series Details ==
 
-Thanks,
-Thomas
+Series: drm/xe: i2c support (rev3)
+URL   : https://patchwork.freedesktop.org/series/149699/
+State : failure
 
-drm-xe-fixes-2025-06-12:
-Driver Changes:
-- Fix regression disallowing 64K SVM migration (Maarten)
-- Use a bounce buffer for WA BB (Lucas)
+== Summary ==
 
-The following changes since commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494:
+CI Bug Log - changes from xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e_BAT -> xe-pw-149699v3_BAT
+====================================================
 
-  Linux 6.16-rc1 (2025-06-08 13:44:43 -0700)
+Summary
+-------
 
-are available in the Git repository at:
+  **FAILURE**
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2025-06-12
+  Serious unknown changes coming with xe-pw-149699v3_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-149699v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-for you to fetch changes up to 9c7632faad434c98f1f2cc06f3647a5a5d05ddbf:
+  
 
-  drm/xe/lrc: Use a temporary buffer for WA BB (2025-06-12 18:09:50 +0200)
+Participating hosts (7 -> 7)
+------------------------------
 
-----------------------------------------------------------------
-Driver Changes:
-- Fix regression disallowing 64K SVM migration (Maarten)
-- Use a bounce buffer for WA BB (Lucas)
+  No changes in participating hosts
 
-----------------------------------------------------------------
-Lucas De Marchi (1):
-      drm/xe/lrc: Use a temporary buffer for WA BB
+Possible new issues
+-------------------
 
-Maarten Lankhorst (1):
-      drm/xe/svm: Fix regression disallowing 64K SVM migration
+  Here are the unknown changes that may have been introduced in xe-pw-149699v3_BAT:
 
- drivers/gpu/drm/xe/xe_lrc.c | 24 ++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_svm.c |  2 +-
- 2 files changed, 21 insertions(+), 5 deletions(-)
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_prime_self_import@basic-with_one_bo:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-bmg-2/igt@xe_prime_self_import@basic-with_one_bo.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-bmg-2/igt@xe_prime_self_import@basic-with_one_bo.html
+    - bat-bmg-1:          [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-bmg-1/igt@xe_prime_self_import@basic-with_one_bo.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-bmg-1/igt@xe_prime_self_import@basic-with_one_bo.html
+    - bat-lnl-2:          [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-lnl-2/igt@xe_prime_self_import@basic-with_one_bo.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-lnl-2/igt@xe_prime_self_import@basic-with_one_bo.html
+    - bat-lnl-1:          [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-lnl-1/igt@xe_prime_self_import@basic-with_one_bo.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-lnl-1/igt@xe_prime_self_import@basic-with_one_bo.html
+    - bat-dg2-oem2:       [PASS][9] -> [ABORT][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_one_bo.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_one_bo.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e -> xe-pw-149699v3
+
+  IGT_8406: 12d7c99650c85e479571b6db2c392408be474c88 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e: 00d9cf004336a745e36e9f103acf7925f714d97e
+  xe-pw-149699v3: 149699v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/index.html
+
+--===============4017996128712023508==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: i2c support (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149699/">https://patchwork.freedesktop.org/series/149699/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e_BAT -&gt; xe-pw-149699v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-149699v3_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-149699v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-149699v3_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_prime_self_import@basic-with_one_bo:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-bmg-2/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-bmg-2/igt@xe_prime_self_import@basic-with_one_bo.html">ABORT</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-bmg-1/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-bmg-1/igt@xe_prime_self_import@basic-with_one_bo.html">ABORT</a></li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-lnl-2/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-lnl-2/igt@xe_prime_self_import@basic-with_one_bo.html">ABORT</a></li>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-lnl-1/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-lnl-1/igt@xe_prime_self_import@basic-with_one_bo.html">ABORT</a></li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149699v3/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_one_bo.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e -&gt; xe-pw-149699v3</li>
+</ul>
+<p>IGT_8406: 12d7c99650c85e479571b6db2c392408be474c88 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3239-00d9cf004336a745e36e9f103acf7925f714d97e: 00d9cf004336a745e36e9f103acf7925f714d97e<br />
+  xe-pw-149699v3: 149699v3</p>
+
+</body>
+</html>
+
+--===============4017996128712023508==--
