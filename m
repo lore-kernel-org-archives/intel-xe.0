@@ -4,186 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45E92C71136
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 21:29:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F3F2C71136
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Jun 2025 21:39:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0848310E29B;
-	Thu, 12 Jun 2025 21:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5743A10E1D6;
+	Thu, 12 Jun 2025 21:39:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D/fuirsT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nQhYV8++";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EE0710E28F;
- Thu, 12 Jun 2025 21:29:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80BB310E1D6
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Jun 2025 21:39:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749763754; x=1781299754;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=jsGMvHfHqc7tvpInd9iym+EsjC/XHRu69XGZwQ9Eg/A=;
- b=D/fuirsTbe271jBROUmnlrOa1vTzSGCoOaoGrjxu3Zh5l3GqnQ9+ofms
- P+53NO6MM2t0sVHcTSKH8UlaTdffVu08aq07IHgaZAZcbeM2YvFeAcQ3b
- AUVfO8r+Vo0KwpSV7Q2nfbhfSJvfQWF/vavzsVa75Kn2ssPkqz8U2nVQe
- MqOfROiwjqQeJ6LwAt0RAiKVvgs3ZNv61J6lHFRl/bYCNnwPnY/c+Y9jd
- hcPcDUrB3/DzdjY7QpyCwjS9obb4+FZ+Ddu4yeinoRK3ElnRTLJEd7/4u
- 3OvWth0zHo1myms8ieu5nWWweuFLhWW4tUcMDl5rC+oFvb9qrdCjKEibp w==;
-X-CSE-ConnectionGUID: RCi8AX5hQrWW8rSojfQ8Lg==
-X-CSE-MsgGUID: wfrOfz1bRa+MALCoK3NDtA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="51075525"
-X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="51075525"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 14:28:53 -0700
-X-CSE-ConnectionGUID: h0gDvp8gTrCCBRqWNk4X6Q==
-X-CSE-MsgGUID: 2wbVWUcvQXWZOgTX5MDxHw==
+ t=1749764355; x=1781300355;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LADu1cMiYm8EYW1FooIpG1eqDiUg7XBy5aQH50aD1Yw=;
+ b=nQhYV8++IfiiNIDfIBz88+M+gjVkLU7LVmKcrMZxOnjh4JfwP9+6rx/S
+ YnBe+wAut1M1M4vh8R6WbMpisFlj7rQ9hZs9l/M+SYsY9whD6D+zZfjDJ
+ Bw03Cs3GXG11kgAFN20bhpQ1nAkGKVaVu3nkYbSj/QSMp6gQ0IXIpUbjk
+ vutnzFR2r6a/kOwt/YceOnFfTaZx9PtG/0qz6E7hBhU9BKWcp6S7I4NHq
+ bus3IB5KpH55OhRmbS4ZOPjCNCXeCPcO39lcKAmB03s1s10IVCYKsI0pu
+ 7vVrgRXqQatYtsCSWOCCrcbjsVgJhqPWbJKxqr7QrPHJ3a7Ma5eQzMCio w==;
+X-CSE-ConnectionGUID: x5m8TUKrRXaD5gtiMAMRdQ==
+X-CSE-MsgGUID: I7zyz/1JSB+P+u+VHIYX+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="51834250"
+X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="51834250"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 14:39:08 -0700
+X-CSE-ConnectionGUID: gCsZrM+3SM2IV6rJ04gNuQ==
+X-CSE-MsgGUID: XTot3xDsSNiwQRmaPXKO8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="151456433"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 14:28:53 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 12 Jun 2025 14:28:52 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Thu, 12 Jun 2025 14:28:52 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.69) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 12 Jun 2025 14:28:51 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QWYLlcgsXa4ffbVDsZA9eKqOkAmmNMnl8Dnr+OpGGKzRxkPtUS5ZFdvaOfeFeNbMnCG5cAeKbewtfA5XL5vRhVqzyEDV1GxHvyZIUrhe0yTZHRAaT/onOsmxmgHqrWHxgG/3u25IFeFoOIyfCFFIO9vUT8dY01GGItpcB0bRX4oDDyWekrY8LO2t5VyC6/b8XLccSGRRR7Scp3e1FxRj9pvbbYao4IgH1LENGg7QLi4TSw6cm73AMKQK7YGFAjrnuKTCJaviZLJg9LahXZV0FRHVnmXhEriO1o1xFgT5q5vorVDWKKQFLTdUYRu8VXfbSDYoXcvQNLU71EcHwBjAbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qCuz/j2a8MZviwyVnXv6wO0Qq3c0qiQvwDzeaBVRv2k=;
- b=LoPPN9Fzt/zGPI8ibCoJfVq7vjKJKk5Eg1VCPO4s716tIZ5xLIx1/IE33XYsADMVW6Agr+Tf9QLHpHCuLIAOjZcKZuO7oFK8sXMWcM+6R8GioyXgK+rHOw+/DKxWMnQX5n0icDwe7m5BKB2kv//ow+kRhV2T6Aw70+kBNiGcpa9uSs3X4wvM4QeSIyvZV5xil5RLdVdhXgRax/zp0A2dVC3az2cibROvkaqJidBGzsp5o4lofHpEIZ0dSMG48+9mzSDjS0MDSVfLFpJ09aQ1Vh8gpXCzXe8hsWr917bDm6nNfQeqHGwM2S30YDkG2WM9n4vUWqiITYQHGymtrW/cmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by DM4PR11MB7277.namprd11.prod.outlook.com (2603:10b6:8:10b::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.26; Thu, 12 Jun
- 2025 21:28:50 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50%4]) with mapi id 15.20.8813.024; Thu, 12 Jun 2025
- 21:28:50 +0000
-Message-ID: <011d4c94-0ffe-40d9-b089-98e5519b27b7@intel.com>
-Date: Thu, 12 Jun 2025 14:28:48 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/10] drm/xe/xe_late_bind_fw: Introduce debug fs node
- to disable late binding
-To: Badal Nilawar <badal.nilawar@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <dri-devel@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
- <alexander.usyskin@intel.com>, <gregkh@linuxfoundation.org>, <jgg@nvidia.com>
-References: <20250606175707.1403384-1-badal.nilawar@intel.com>
- <20250606175707.1403384-9-badal.nilawar@intel.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20250606175707.1403384-9-badal.nilawar@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY3PR04CA0018.namprd04.prod.outlook.com
- (2603:10b6:a03:217::23) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="152411176"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 14:39:08 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: francois.dugast@intel.com, thomas.hellstrom@linux.intel.com,
+ himal.prasad.ghimiray@intel.com
+Subject: [PATCH] drm/xe: Use TLB innvalidation context for invalidations
+ issued from bind queues
+Date: Thu, 12 Jun 2025 14:40:41 -0700
+Message-Id: <20250612214041.235258-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|DM4PR11MB7277:EE_
-X-MS-Office365-Filtering-Correlation-Id: 36a66e0b-0b80-410f-e6e1-08dda9f81f5b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WSsyaTYzb0tjalZwNkRmUHRzQUNadlMrSjV1aWlIVDlib1VmR0w2dE9kdHZ5?=
- =?utf-8?B?M3N2Mng0aGdBcENYY04wUE5tS200VlpQQnQ0cFRVMG9qcTR0Sko3T1ZXMnd2?=
- =?utf-8?B?UnZ6Y0N4M242VFp1a21US0twcmVwRGNvN1hKVnViRHE5VWlRelJDbEdaWXhu?=
- =?utf-8?B?N3JsUnhWbVJnenZLQitManQ4ZVJaTVB0UHJzVXdwVU80c0hVMXRpbW5uQ2RQ?=
- =?utf-8?B?OS85VmZDbStPajFIOTVJazd1WkpxbzRPWm1HUi9Jd2dpbkhMbE9oL0JuYlIw?=
- =?utf-8?B?bXZZZysybjd1alRoQWM2bFQ1S0hxYlRuMGRqdTVuYWZKSFhTbVdmRkR1RUpI?=
- =?utf-8?B?WDhMMDJFNE00S1FQaHI4S3JRSFNybjYydXZPQUk5bnBQYjZHVTN2dVFLQ2Jx?=
- =?utf-8?B?emVoQ0ZaZjFVZ0Y0ZmluRm9ITUhhV2crTER4UGpzQjRBeDVYdFVlRkJmOWpj?=
- =?utf-8?B?SzBkS3Fpb051UkdNZmNETVlydlYvbDZ6YmJKYmY3MThkdHhjbElwTytDeEpl?=
- =?utf-8?B?MGtVYytvRm56djhXdjFudWl6Q1VpUGtMdVFHTEhRYzQwdEZwWTRlZmFJV1Yy?=
- =?utf-8?B?NTJIdkY5WENGaDhZTjlnbDZ1L09ZZHRBTzRwTnBHK0lHdjNiYmlVZTFZclFn?=
- =?utf-8?B?cHlkZnN5Q0c4M1dlWERKWTJ5c09VOUtmb0lScG96UThJSVkzQjNNZ0pFRURr?=
- =?utf-8?B?Y2NkQ09hTWw1SkZRN2ZKMG9Od3NRbmhtVDVNUHlxczcvOHRXMEJzTGlNT3dH?=
- =?utf-8?B?VG1pVml4bm5ONUNBWWlOUmZNYWEvRWI5SU1qWDMvdWFNSStCMXJ6VU5FTjJv?=
- =?utf-8?B?VHhhdlpxTFk5dVFnZFBXY3R0MmF5T0d3dVZVWFlYMHRONUpFR2lwM0l5ckFH?=
- =?utf-8?B?elltdUtYQURNZU9uRklyM1NNenQ5VXdrWUNVZEJ3MWtwTW81Sng3ZDFIbVgy?=
- =?utf-8?B?bUh1QmRuMHFtSm5vc1E4b29UUFgyc0pkN1pDT1FQd3dTZzJoSlNVay9tcjVH?=
- =?utf-8?B?eERVblVjYzV0MXdOWElkSVpYL1dSakFLWGQyc1cxL2NSZ3VRbUNGeDhtMmJj?=
- =?utf-8?B?Vm5oeVBZR3QvY2g0SS93ZHRrVkVxL1pINWEzUkVmcVBid1ppeGRUaCtHUGg3?=
- =?utf-8?B?RXp6N2dtQUZJbzBsbCtKSWpWQW1hWjNyQWJOV04rcHErbUU3TkVSeGJLWnhk?=
- =?utf-8?B?R0hEUzl0Q2l2RGpuREE2b0tvdEhvOW96Y252QXFkaDZVZndLaG8xajF6UDMy?=
- =?utf-8?B?andhV2QxeUsyVmlkSnorYk5iUm5kMEtBSkRPTDFuNEVNY2J4emQrS1Ivc05R?=
- =?utf-8?B?a1Bja2lDRU53UG01VHlnbmdLS1N6Mkw3NHY1YS9YYTVWV2d2NHZrS2Q5QmFz?=
- =?utf-8?B?TVArUXJlNGgvdHBBVlUxMXJhYmNyUFRLVHN4a3d2N1lrekpnL0pRS09NQmM5?=
- =?utf-8?B?VDdoVFFHTHVCZkxuN0RWM0hIcjU1SDc0NTJJTWp0aUl1dGlZajByL3NZaVZh?=
- =?utf-8?B?cjUvUHNOL25EYlU3aGtHYjc1aFE5b1ZuekVJbWNrRFh1aEdiSEdiZXJ1Q21k?=
- =?utf-8?B?eldaYkVFblM3TVk0enFQUHZDY2I1OEFjTm1ISEVMbFNrZ0NENHZQWmljNS8z?=
- =?utf-8?B?aW1VNlZQM2dkOTkrL0dmTFlLSWh3VmtEWVUxaDNtaG5Dc2ZWM3prRlMzUVFs?=
- =?utf-8?B?WFpDOWR3Vm8rWVJnMlpXOXBKR0hUMWdtZWk3enEyekdFenRRd3pPVzR2Zk94?=
- =?utf-8?B?YndGZ1hJTUJvMGxNelNFYUdzVEZ6TlNHeHgrcWFDMjQ5bU5Ub0k5b2RqWTVG?=
- =?utf-8?B?MVk4QmtMQ2k3MEFMSVVhdE5XQUFrRGJRNVlWNVozU0ZxdTRoMzFiakI4UGpC?=
- =?utf-8?B?QkVmM1VieWRjbDlzbGpjZzFYK2JVWUYyT2pydFF4dFZZTGRQTi9SM3VGVmRX?=
- =?utf-8?Q?1q+YxY58400=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZTFtdFAvWXp2djkrdUhoN2V4WVpoNjAvRnNuNFFDb1NGLzhiMEZ1OFg3RWpm?=
- =?utf-8?B?c3NDdWVTVVBtMFJFVVlpM2RvaU1VQ1pHRHR0K0lWRWliRWtreFRoSEtlMU1R?=
- =?utf-8?B?bDdLYytVY1pGN01nd2Q4a013ODhZQW5DMGh3WUFOT3p0VGlIOFpVUGlJV0Rj?=
- =?utf-8?B?aWNkd0VQVmhPQXFBdCsrOTVvRUIyTjA1Ukh6M2ZSRlY0cmtaWG5lNHRwZ3ps?=
- =?utf-8?B?QUpwd3kyZlFPL21RaW0rMDJUVTFpVzY5TDFVN0twUXhGejVTODZwNFRrelBp?=
- =?utf-8?B?ckU3OFB2NnRZaWsvWjRJd0NuQXhUSFY3UkgrTDhUVTlyeUVudGhRZk9kOHU2?=
- =?utf-8?B?RUF5YXZaVmZZbHBvalp5V3Z2RlZva2VnaU1xMFZQaDNaTVRJMVpVLzVGWEI2?=
- =?utf-8?B?aGVaelU3R3dwSURac0YzYi9XTStZWDVJa3FHdWljSUNJelpUbUxrYlNGVFM2?=
- =?utf-8?B?ZFM1R2tjL0ZQTGRGYlN0WkduVmRKQzFtajZkYzFabG5vUVRSeE1QL3U0Zm1q?=
- =?utf-8?B?ZmIzUlhZTnJSWVY1VzJwL3M0SmptZXpaYkIwYXdMcmFqa0NUZXprdUJiNjNj?=
- =?utf-8?B?a3hwaGEwMWp1UE45SGFpSG5tN2Q1Yy94RThqNzhQclg5ODNPSWNBakxmM0Rx?=
- =?utf-8?B?eDJHTiszelJYV1RYVDVVOHhvUXkrNFdaZy8zSjRwV2hEN1ZIcHpUZTNLRXk2?=
- =?utf-8?B?QmZmWHpNamRYQllEM3Y0ODVyNlZhdFFPK1BqRkNOdVc4UFJpdFRITHl2MnBW?=
- =?utf-8?B?ZWdBYUhHNDk0TlExeDR0QUFzeGtmVHpRM21LRlRqcVlIMW1CVUxROWZ2aFpU?=
- =?utf-8?B?QjBFZFA3ZWVBdEdCclVFMUhYd09SV2tUazhVY2Vlb0NLTEc1M2tqclBLbVdL?=
- =?utf-8?B?dHR6VkJxT0JseGxRazVLK2FyZXhWSTRCSnl6QWdJQnhWUDRUb1pNdnFzbW9J?=
- =?utf-8?B?VEVkMU1BU0gwdW5jOUVldm5VOWdzNXZKUlhjaUdNN2lFZ2x3T01RVVJ5Rkkx?=
- =?utf-8?B?RTFWT3RHRTJuWXJETng3SHNoTGdyQzNSdjB6TG9BeEt1dFN0b1FwanllaUtU?=
- =?utf-8?B?S2JFRStMTEpFZTFEcDRVMzhuWlZXdWxpeURkTXRhUkZDa2NXMU1BU1NNN09Q?=
- =?utf-8?B?TXgzZHZnS3NwRHJlUUhHK0c1V3FkODMrOTVKdGgrSXhKZHhIZW5sTFFVL2RG?=
- =?utf-8?B?Q05QVkNoRUdxSzBXT2x6WVcxZkZ5bDg1cjFTSnkvMXNLaDBjdTdQSDZLUkkx?=
- =?utf-8?B?SU9paWdkSTZtWC8rZmhSWUFJRnQ1RDB3WWVneWIxNHNUWkJpVS9Ed25hVjJM?=
- =?utf-8?B?UkNwdHQyWjF6VkhoY3BCSG1XVy9CK1Z6ZjBTaHRPYU80STg0eXZkQ1dGR1lL?=
- =?utf-8?B?QUNlZzNFOWxyQ2I0TVRaV0pxYmY3SG1senFSWWYzT0tGZHdWd0doVThrTHJj?=
- =?utf-8?B?N3c1STVJbTRuUHV3enQxZHdqV2FEOGF4Uy9mZVBOSXVhelE1S29WUEhsc1dp?=
- =?utf-8?B?T2JqV3BpZnZic3ZIblhlNEVxaGt6MXp6MGdxZVF1Uy8wN0p3ZUVETXJMQ2hU?=
- =?utf-8?B?UnBoeXVUYkdoeVdCN24wWXdlVHE2MldHcWI4ZnFZTnBYUnZCK0RKaHhoVmpt?=
- =?utf-8?B?ZGVUTXpqbWhleDE5QTd4T0NlU0NBT0dFRFdPd1RNR1NiL3V1YXQydWZVdVlB?=
- =?utf-8?B?T3FqaUN1b0N1KzdYb0VEbzVHOU1va3N5U1pWd2JsczdSQ2NMd0QraTMrYTVr?=
- =?utf-8?B?R3ZXK0VpUjI0R09FUi81QmlwYU41K0ViVUdOZENhbERRWStORGt3WXZwYjJO?=
- =?utf-8?B?T0RUTGUvSTh2d3BQU250MmpBRGNEdU13VkVKZklpa1Z5VTVLcmZlZW5ablBT?=
- =?utf-8?B?eUIxTFRlWWNKQ243aXk3T09OVzVrREgrNXN1TldCOVFKS3VXNUdGbjFtMnFv?=
- =?utf-8?B?N0R6akpGQlRZbytzcDZuWUpieHJCVTBnZFFQejZQQkJJYlkrUUpRQi9NeTJG?=
- =?utf-8?B?R1JVc2JobDFJbEkydVZiNDl5dlJ2ZlUwN2NLM1BCaVBLVVNWTHprWXBNZ2pq?=
- =?utf-8?B?YXo4TmZMR2cyempyNjQyU1BTREhWYUtWdmVKUUJWQmpVWkpXNTh0c2Z3NnVQ?=
- =?utf-8?B?ZWpDM3pweHRLbExlb3FySGpja3I0SEN4KzlIMkR1YlM3VzlhUjc5WXZZOWNG?=
- =?utf-8?Q?5hsLt5XR4S/MGHP2pFimJHk=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36a66e0b-0b80-410f-e6e1-08dda9f81f5b
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2025 21:28:50.1001 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jdkz0yx21DHD7qHpvyZROLo3NrLo55kYfD3Pqw9zhkspsU3NPWLGEMgiOYDrwiO6D6WBk44CrOjKNi70uNaCrjAVwqv5tpUr0Nth5fUVwKg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7277
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -198,129 +66,331 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+In order to avoid adding tons of invalidation fences to dma-resv
+BOOKKEEP slots, and thus jobs dependencies, when stream of unbinds
+arrives (e.g., many user frees or unmaps), use a dma fence tlb
+invalidation context associated with the queue issuing the bind
+operation.
 
+Two fence contexts are needed - one for each GT as TLB invalidations
+are only ordered on a GT. A per GT ordered wq is needed to queue the
+invalidations to maintain dma fence ordering as well.
 
-On 6/6/2025 10:57 AM, Badal Nilawar wrote:
-> Introduce a debug filesystem node to disable late binding fw reload
-> during the system or runtime resume. This is intended for situations
-> where the late binding fw needs to be loaded from user mode.
+This fixes the below splat when the number of invalidations gets out of
+hand:
 
-Can you clarify a bit what the use-case here is? Because this 
-description makes it sound like this is something a user might want to 
-do, but the debugfs interface is for testing only. If we only need this 
-for testing, please specify so.
+[ 1661.638258] watchdog: BUG: soft lockup - CPU#2 stuck for 26s!
+[kworker/u65:8:75257]
+[ 1661.638262] Modules linked in: xe drm_gpusvm drm_gpuvm
+drm_ttm_helper ttm drm_exec gpu_sched drm_suballoc_helper drm_buddy
+drm_kms_helper x86_pkg_temp_thermal coretemp snd_hda_cod      ec_realtek
+snd_hda_codec_generic snd_hda_scodec_component mei_pxp mei_hdcp wmi_bmof
+snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwdep i2c_i801
+snd_hda_core i2c_mux snd_pcm i2c_s      mbus video wmi mei_me mei fuse
+igb e1000e i2c_algo_bit ptp ghash_clmulni_intel pps_core intel_lpss_pci
+[last unloaded: xe]
+[ 1661.638278] CPU: 2 UID: 0 PID: 75257 Comm: kworker/u65:8
+Tainted: G S                  6.16.0-rc1-xe+ #397 PREEMPT(undef)
+[ 1661.638280] Tainted: [S]=CPU_OUT_OF_SPEC
+[ 1661.638280] Hardware name: Intel Corporation Raptor Lake Client
+Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS
+RPLSFWI1.R00.3492.A00.2211291114 11/29/2022
+[ 1661.638281] Workqueue: xe_gt_page_fault_work_queue
+xe_svm_garbage_collector_work_func [xe]
+[ 1661.638311] RIP: 0010:xas_start+0x47/0xd0
+[ 1661.638317] Code: 07 48 8b 57 08 48 8b 40 08 48 89 c1 83 e1 03
+48 83 f9 02 75 08 48 3d 00 10 00 00 77 21 48 85 d2 75 29 48 c7 47 18 00
+00 00 00 <c3> cc cc cc cc 48 c1 fa 02 85 d2       74 c7 31 c0 c3 cc cc
+cc cc 0f b6
+[ 1661.638317] RSP: 0018:ffffc90003d9b968 EFLAGS: 00000297
+[ 1661.638318] RAX: ffff88810459b232 RBX: ffffc90003d9b9a0 RCX:
+0000000000000006
+[ 1661.638319] RDX: 0000000000000009 RSI: 0000000000000003 RDI:
+ffffc90003d9b9a0
+[ 1661.638320] RBP: ffffffffffffffff R08: ffff888197a0a600 R09:
+0000000000000228
+[ 1661.638320] R10: ffffffffffffffff R11: ffffffffffffffc0 R12:
+0000000000000241
+[ 1661.638320] R13: ffffffffffffffff R14: 0000000000000040 R15:
+ffff8881014db000
+[ 1661.638321] FS:  0000000000000000(0000)
+GS:ffff88890aee8000(0000) knlGS:0000000000000000
+[ 1661.638322] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 1661.638322] CR2: 00007fc07287fff8 CR3: 000000000242c003 CR4:
+0000000000f70ef0
+[ 1661.638323] PKRU: 55555554
+[ 1661.638323] Call Trace:
+[ 1661.638325]  <TASK>
+[ 1661.638326]  xas_load+0xd/0xb0
+[ 1661.638328]  xas_find+0x187/0x1d0
+[ 1661.638330]  xa_find_after+0x10f/0x130
+[ 1661.638332]  drm_sched_job_add_dependency+0x80/0x1e0
+[gpu_sched]
+[ 1661.638335]  drm_sched_job_add_resv_dependencies+0x62/0x120
+[gpu_sched]
+[ 1661.638337]  xe_pt_vm_dependencies+0x5b/0x2f0 [xe]
+[ 1661.638359]  xe_pt_svm_pre_commit+0x59/0x1a0 [xe]
+[ 1661.638376]  xe_migrate_update_pgtables+0x67f/0x910 [xe]
+[ 1661.638397]  ? xe_pt_stage_unbind+0x92/0xd0 [xe]
+[ 1661.638416]  xe_pt_update_ops_run+0x12e/0x7f0 [xe]
+[ 1661.638433]  ops_execute+0x1b1/0x430 [xe]
+[ 1661.638449]  xe_vm_range_unbind+0x260/0x2a0 [xe]
+[ 1661.638465]  xe_svm_garbage_collector+0xfe/0x1c0 [xe]
+[ 1661.638478]  xe_svm_garbage_collector_work_func+0x25/0x30 [xe]
+[ 1661.638491]  process_one_work+0x16b/0x2e0
+[ 1661.638495]  worker_thread+0x284/0x410
+[ 1661.638496]  ? __pfx_worker_thread+0x10/0x10
+[ 1661.638496]  kthread+0xe9/0x210
+[ 1661.638498]  ? __pfx_kthread+0x10/0x10
 
->
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_debugfs.c            | 42 ++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_late_bind_fw.c       |  5 ++-
->   drivers/gpu/drm/xe/xe_late_bind_fw_types.h |  3 ++
->   3 files changed, 49 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-> index d83cd6ed3fa8..1c145089d177 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -226,6 +226,45 @@ static const struct file_operations atomic_svm_timeslice_ms_fops = {
->   	.write = atomic_svm_timeslice_ms_set,
->   };
->   
-> +static ssize_t disable_late_binding_show(struct file *f, char __user *ubuf,
-> +					 size_t size, loff_t *pos)
-> +{
-> +	struct xe_device *xe = file_inode(f)->i_private;
-> +	struct xe_late_bind *late_bind = &xe->late_bind;
-> +	char buf[32];
-> +	int len;
-> +
-> +	len = scnprintf(buf, sizeof(buf), "%d\n", late_bind->disable);
-> +
-> +	return simple_read_from_buffer(ubuf, size, pos, buf, len);
-> +}
-> +
-> +static ssize_t disable_late_binding_set(struct file *f, const char __user *ubuf,
-> +					size_t size, loff_t *pos)
-> +{
-> +	struct xe_device *xe = file_inode(f)->i_private;
-> +	struct xe_late_bind *late_bind = &xe->late_bind;
-> +	u32 uval;
-> +	ssize_t ret;
-> +
-> +	ret = kstrtouint_from_user(ubuf, size, sizeof(uval), &uval);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (uval > 1)
-> +		return -EINVAL;
-> +
-> +	late_bind->disable = (uval == 1) ? true : false;
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c          |  8 +++++++
+ drivers/gpu/drm/xe/xe_exec_queue_types.h    | 17 +++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 23 ++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  4 +++-
+ drivers/gpu/drm/xe/xe_pt.c                  | 10 +++++++--
+ drivers/gpu/drm/xe/xe_svm.c                 |  9 +++++---
+ drivers/gpu/drm/xe/xe_vm.c                  |  6 ++++--
+ 7 files changed, 64 insertions(+), 13 deletions(-)
 
-nit: could do
-
-late_bind->disable = !!uval;
-
-> +
-> +	return size;
-> +}
-> +
-> +static const struct file_operations disable_late_binding_fops = {
-> +	.owner = THIS_MODULE,
-> +	.read = disable_late_binding_show,
-> +	.write = disable_late_binding_set,
-> +};
-> +
->   void xe_debugfs_register(struct xe_device *xe)
->   {
->   	struct ttm_device *bdev = &xe->ttm;
-> @@ -249,6 +288,9 @@ void xe_debugfs_register(struct xe_device *xe)
->   	debugfs_create_file("atomic_svm_timeslice_ms", 0600, root, xe,
->   			    &atomic_svm_timeslice_ms_fops);
->   
-> +	debugfs_create_file("disable_late_binding", 0600, root, xe,
-> +			    &disable_late_binding_fops);
-> +
->   	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
->   		man = ttm_manager_type(bdev, mem_type);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-> index d69f950bddd2..f9d3d0f341f2 100644
-> --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
-> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-> @@ -123,11 +123,14 @@ int xe_late_bind_fw_load(struct xe_late_bind *late_bind)
->   	if (!late_bind->component_added)
->   		return -EINVAL;
->   
-> +	if (late_bind->disable)
-> +		return 0;
-> +
->   	lbfw = &late_bind->late_bind_fw;
->   	if (lbfw->valid) {
->   		drm_dbg(&xe->drm, "Queue work: to load %s firmware\n",
->   			fw_type_to_name[lbfw->type]);
-> -			queue_work(late_bind->wq, &lbfw->work);
-> +		queue_work(late_bind->wq, &lbfw->work);
-
-This seems to be a fix for a broken indent in a previous patch in the 
-series, so it should be moved to that patch.
-
-Daniele
-
->   	}
->   
->   	return 0;
-> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-> index 690680e8ff22..6f4a945ca236 100644
-> --- a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-> @@ -76,6 +76,9 @@ struct xe_late_bind {
->   	struct xe_late_bind_fw late_bind_fw;
->   	/** @late_bind.wq: workqueue to submit request to download late bind blob */
->   	struct workqueue_struct *wq;
-> +
-> +	/** @late_bind.disable to block late binding reload during pm resume flow*/
-> +	bool disable;
->   };
->   
->   #endif
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index fee22358cc09..71e354c56ad9 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -94,6 +94,14 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 	else
+ 		q->sched_props.priority = XE_EXEC_QUEUE_PRIORITY_NORMAL;
+ 
++	if (q->flags & (EXEC_QUEUE_FLAG_PERMANENT | EXEC_QUEUE_FLAG_VM)) {
++		int i;
++
++		for (i = 0; i < XE_EXEC_QUEUE_TLB_CONTEXT_COUNT; ++i)
++			q->tlb_invalidation.context[i] =
++				dma_fence_context_alloc(1);
++	}
++
+ 	if (vm)
+ 		q->vm = xe_vm_get(vm);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index cc1cffb5c87f..81d240e561ee 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -132,6 +132,23 @@ struct xe_exec_queue {
+ 		struct list_head link;
+ 	} lr;
+ 
++	/** @tlb_invalidation: TLB invalidations exec queue state */
++	struct {
++		/**
++		 * @tlb_invalidation.context: The TLB invalidation context
++		 * for the queue (VM and MIGRATION queues only)
++		 */
++#define XE_EXEC_QUEUE_TLB_CONTEXT_PRIMARY_GT	0
++#define XE_EXEC_QUEUE_TLB_CONTEXT_MEDIA_GT	1
++#define XE_EXEC_QUEUE_TLB_CONTEXT_COUNT		(XE_EXEC_QUEUE_TLB_CONTEXT_MEDIA_GT  + 1)
++		u64 context[XE_EXEC_QUEUE_TLB_CONTEXT_COUNT];
++		/**
++		 * @tlb_invalidation.seqno: The TLB invalidation seqno for the
++		 * queue (VM and MIGRATION queues only)
++		 */
++		u32 seqno[XE_EXEC_QUEUE_TLB_CONTEXT_COUNT];
++	} tlb_invalidation;
++
+ 	/** @pxp: PXP info tracking */
+ 	struct {
+ 		/** @pxp.type: PXP session type used by this queue */
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 084cbdeba8ea..0a2fcaaf04fc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -7,6 +7,7 @@
+ 
+ #include "abi/guc_actions_abi.h"
+ #include "xe_device.h"
++#include "xe_exec_queue_types.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_gt_printk.h"
+@@ -294,7 +295,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+ 		struct xe_gt_tlb_invalidation_fence fence;
+ 		int ret;
+ 
+-		xe_gt_tlb_invalidation_fence_init(gt, &fence, true);
++		xe_gt_tlb_invalidation_fence_init(gt, NULL, &fence, 0, true);
+ 		ret = xe_gt_tlb_invalidation_guc(gt, &fence);
+ 		if (ret)
+ 			return ret;
+@@ -431,7 +432,7 @@ void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm *vm)
+ 	u64 range = 1ull << vm->xe->info.va_bits;
+ 	int ret;
+ 
+-	xe_gt_tlb_invalidation_fence_init(gt, &fence, true);
++	xe_gt_tlb_invalidation_fence_init(gt, NULL, &fence, 0, true);
+ 
+ 	ret = xe_gt_tlb_invalidation_range(gt, &fence, 0, range, vm->usm.asid);
+ 	if (ret < 0)
+@@ -551,7 +552,9 @@ static const struct dma_fence_ops invalidation_fence_ops = {
+ /**
+  * xe_gt_tlb_invalidation_fence_init - Initialize TLB invalidation fence
+  * @gt: GT
++ * @q: exec queue issuing TLB invalidation, if NULL no queue associated
+  * @fence: TLB invalidation fence to initialize
++ * @tlb_context: TLB invalidation context for exec_queue
+  * @stack: fence is stack variable
+  *
+  * Initialize TLB invalidation fence for use. xe_gt_tlb_invalidation_fence_fini
+@@ -559,15 +562,25 @@ static const struct dma_fence_ops invalidation_fence_ops = {
+  * even on error.
+  */
+ void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
++				       struct xe_exec_queue *q,
+ 				       struct xe_gt_tlb_invalidation_fence *fence,
++				       int tlb_context,
+ 				       bool stack)
+ {
++	xe_gt_assert(gt, tlb_context < XE_EXEC_QUEUE_TLB_CONTEXT_COUNT);
++
+ 	xe_pm_runtime_get_noresume(gt_to_xe(gt));
+ 
+ 	spin_lock_irq(&gt->tlb_invalidation.lock);
+-	dma_fence_init(&fence->base, &invalidation_fence_ops,
+-		       &gt->tlb_invalidation.lock,
+-		       dma_fence_context_alloc(1), 1);
++	if (q)
++		dma_fence_init(&fence->base, &invalidation_fence_ops,
++			       &gt->tlb_invalidation.lock,
++			       q->tlb_invalidation.context[tlb_context],
++			       ++q->tlb_invalidation.seqno[tlb_context]);
++	else
++		dma_fence_init(&fence->base, &invalidation_fence_ops,
++			       &gt->tlb_invalidation.lock,
++			       dma_fence_context_alloc(1), 1);
+ 	spin_unlock_irq(&gt->tlb_invalidation.lock);
+ 	INIT_LIST_HEAD(&fence->link);
+ 	if (stack)
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+index abe9b03d543e..8440c608a0ec 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+@@ -10,6 +10,7 @@
+ 
+ #include "xe_gt_tlb_invalidation_types.h"
+ 
++struct xe_exec_queue;
+ struct xe_gt;
+ struct xe_guc;
+ struct xe_vm;
+@@ -29,8 +30,9 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ 
+ void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
++				       struct xe_exec_queue *q,
+ 				       struct xe_gt_tlb_invalidation_fence *fence,
+-				       bool stack);
++				       int tlb_context, bool stack);
+ void xe_gt_tlb_invalidation_fence_signal(struct xe_gt_tlb_invalidation_fence *fence);
+ 
+ static inline void
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index f39d5cc9f411..feab4b7c7e70 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1529,7 +1529,7 @@ static void invalidation_fence_cb(struct dma_fence *fence,
+ 
+ 	trace_xe_gt_tlb_invalidation_fence_cb(xe, &ifence->base);
+ 	if (!ifence->fence->error) {
+-		queue_work(system_wq, &ifence->work);
++		queue_work(ifence->gt->ordered_wq, &ifence->work);
+ 	} else {
+ 		ifence->base.base.error = ifence->fence->error;
+ 		xe_gt_tlb_invalidation_fence_signal(&ifence->base);
+@@ -1551,13 +1551,15 @@ static void invalidation_fence_work_func(struct work_struct *w)
+ static void invalidation_fence_init(struct xe_gt *gt,
+ 				    struct invalidation_fence *ifence,
+ 				    struct dma_fence *fence,
++				    struct xe_exec_queue *q, int tlb_context,
+ 				    u64 start, u64 end, u32 asid)
+ {
+ 	int ret;
+ 
+ 	trace_xe_gt_tlb_invalidation_fence_create(gt_to_xe(gt), &ifence->base);
+ 
+-	xe_gt_tlb_invalidation_fence_init(gt, &ifence->base, false);
++	xe_gt_tlb_invalidation_fence_init(gt, q, &ifence->base, tlb_context,
++					  false);
+ 
+ 	ifence->fence = fence;
+ 	ifence->gt = gt;
+@@ -2467,10 +2469,14 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 		if (mfence)
+ 			dma_fence_get(fence);
+ 		invalidation_fence_init(tile->primary_gt, ifence, fence,
++					pt_update_ops->q,
++					XE_EXEC_QUEUE_TLB_CONTEXT_PRIMARY_GT,
+ 					pt_update_ops->start,
+ 					pt_update_ops->last, vm->usm.asid);
+ 		if (mfence) {
+ 			invalidation_fence_init(tile->media_gt, mfence, fence,
++						pt_update_ops->q,
++						XE_EXEC_QUEUE_TLB_CONTEXT_MEDIA_GT,
+ 						pt_update_ops->start,
+ 						pt_update_ops->last, vm->usm.asid);
+ 			fences[0] = &ifence->base.base;
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 13abc6049041..2edd1c52150e 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -227,7 +227,9 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+ 			int err;
+ 
+ 			xe_gt_tlb_invalidation_fence_init(tile->primary_gt,
+-							  &fence[fence_id], true);
++							  NULL,
++							  &fence[fence_id], 0,
++							  true);
+ 
+ 			err = xe_gt_tlb_invalidation_range(tile->primary_gt,
+ 							   &fence[fence_id],
+@@ -241,8 +243,9 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+ 			if (!tile->media_gt)
+ 				continue;
+ 
+-			xe_gt_tlb_invalidation_fence_init(tile->media_gt,
+-							  &fence[fence_id], true);
++			xe_gt_tlb_invalidation_fence_init(tile->media_gt, NULL,
++							  &fence[fence_id], 0,
++							  true);
+ 
+ 			err = xe_gt_tlb_invalidation_range(tile->media_gt,
+ 							   &fence[fence_id],
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index d18807b92b18..730319b78a0a 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3896,8 +3896,9 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 		if (xe_pt_zap_ptes(tile, vma)) {
+ 			xe_device_wmb(xe);
+ 			xe_gt_tlb_invalidation_fence_init(tile->primary_gt,
++							  NULL,
+ 							  &fence[fence_id],
+-							  true);
++							  0, true);
+ 
+ 			ret = xe_gt_tlb_invalidation_vma(tile->primary_gt,
+ 							 &fence[fence_id], vma);
+@@ -3909,8 +3910,9 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 				continue;
+ 
+ 			xe_gt_tlb_invalidation_fence_init(tile->media_gt,
++							  NULL,
+ 							  &fence[fence_id],
+-							  true);
++							  0, true);
+ 
+ 			ret = xe_gt_tlb_invalidation_vma(tile->media_gt,
+ 							 &fence[fence_id], vma);
+-- 
+2.34.1
 
