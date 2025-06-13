@@ -4,113 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D599CC71136
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 09:05:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F59BC71136
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 09:14:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9947C10E94F;
-	Fri, 13 Jun 2025 09:05:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E83A210E920;
+	Fri, 13 Jun 2025 09:14:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="rn6TtKGP";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="f0RIyjap";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="O6Z0PRGP";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="GxplLMXk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gI/Nidm2";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF4410E980
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Jun 2025 09:05:44 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id EF9B41F8A8;
- Fri, 13 Jun 2025 09:04:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1749805494; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xTgJLZKjv1ShNDiAP6gz2e2IBWIMv9+AKE3JgrfHkhY=;
- b=rn6TtKGPOJFjUMFwbSCJZfAkpnCGSmgDNkjnf/6To20/nOznZ/odaS1mr2MD2JpTgph0Lc
- Jhz/eiLZN72mNMs8kA8onVO+3x28S59aRsqOX0xFOHYROP9AeRrVw0ArWqBR4G14ktRi/b
- qEzXSiJCRFe+4cAih2yx9mEBcHaJGb8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1749805494;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xTgJLZKjv1ShNDiAP6gz2e2IBWIMv9+AKE3JgrfHkhY=;
- b=f0RIyjapDNaqegxghUGTlgNwmkujbOrE2wlhF0Oy99TvxOmzchXRGN2Vf83d/rhmLHYcxk
- M/dcwZkEFKZF4iAA==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1749805493; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xTgJLZKjv1ShNDiAP6gz2e2IBWIMv9+AKE3JgrfHkhY=;
- b=O6Z0PRGPpq8mmeve6mEtv2wlDyR3y4S617WpIQTDLVGyU5wuFemZB68O8J5ngmSWkIhtLj
- xyoqh0PR2FCuuxDLNRwv4jOFam7oa8P0Lek5eCKAMkUJp4DYlkA1mu8nH5WJu9ug6B72Gv
- liWA+CEHcnaG23m9PlyRvCNaEkGzkhg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1749805493;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xTgJLZKjv1ShNDiAP6gz2e2IBWIMv9+AKE3JgrfHkhY=;
- b=GxplLMXkE2H32FCXiXASCcEVUHD/OZuHNzugRRtn2fz2Qc/U+QCSPGp/8hgatFA36DcWVs
- cnySRfhImxN7gKDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 62C7213A9C;
- Fri, 13 Jun 2025 09:04:53 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id eCq/FrXpS2inNAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 13 Jun 2025 09:04:53 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: simona@ffwll.ch, airlied@gmail.com, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, geert@linux-m68k.org,
- tomi.valkeinen@ideasonboard.com
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v5 25/25] drm/xlnx: Compute dumb-buffer sizes with
- drm_mode_size_dumb()
-Date: Fri, 13 Jun 2025 11:00:44 +0200
-Message-ID: <20250613090431.127087-26-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250613090431.127087-1-tzimmermann@suse.de>
-References: <20250613090431.127087-1-tzimmermann@suse.de>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12AA710E906;
+ Fri, 13 Jun 2025 09:14:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749806046; x=1781342046;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=akZdz53H5d0JUQFKm7VrJX6HGKVQ5+7nDEE2cge6EQ4=;
+ b=gI/Nidm2QfM4/SdFTnfWZw+mydGHcoX/CQir8uLA2ev7Um5LepoJvK6F
+ fp4VcZCj1OQtbkK75pBSWQPQopGc+HmrkAWBx/9aO4zUpIici3xfhxmRw
+ 80Pg6dkn135wM5TTfrXxnhsajtk//2TkaMVXqnTCIo5Gi++2t41ie7F6t
+ dgXfZkK6ljni+RdLXqHlV039t7aexQd6BEPmb3LaZCBGJ54gus8mThw8L
+ pbcjMNQwxOExPC5xTZnpyeUCQ5gnqHqZKBCGplYPJRzEqHLeh0sL4B6A6
+ cJd/LsPK1fscN72kpXiYLXlTJUGrBhfTnWUvduc0BXeBzsQ2IvL7NilQx Q==;
+X-CSE-ConnectionGUID: Hdy1DEcVS5y17cyuhdUGtg==
+X-CSE-MsgGUID: Ukx10FmWQJOg5vL/8lXu+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="51129654"
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="51129654"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2025 02:14:00 -0700
+X-CSE-ConnectionGUID: 1XuVc/SlSdu6OwCxW/oJDQ==
+X-CSE-MsgGUID: mkzcpkI2SeK3irDpTC5XkQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="148253033"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.26])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2025 02:13:58 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, Gustavo Sousa
+ <gustavo.sousa@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/gmbus: Add Wa_16025573575 for PTL for bit-bashing
+In-Reply-To: <bd3a2162-7fc6-42fd-808c-934720cbc5c2@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250612075330.837179-1-ankit.k.nautiyal@intel.com>
+ <174972962084.14553.9763596946172547950@intel.com>
+ <bd3a2162-7fc6-42fd-808c-934720cbc5c2@intel.com>
+Date: Fri, 13 Jun 2025 12:13:55 +0300
+Message-ID: <7f079861f91861e9e895240cd3272f6e29deab7e@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-5.30 / 50.00]; REPLY(-4.00)[];
- BAYES_HAM(-3.00)[100.00%]; SUSPICIOUS_RECIPS(1.50)[];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-0.999];
- MIME_GOOD(-0.10)[text/plain];
- FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,kernel.org,linux.intel.com,linux-m68k.org,ideasonboard.com];
- MIME_TRACE(0.00)[0:+]; TO_DN_SOME(0.00)[]; ARC_NA(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCPT_COUNT_TWELVE(0.00)[22];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- URIBL_BLOCKED(0.00)[suse.de:email,suse.de:mid,imap1.dmz-prg2.suse.org:helo];
- RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,suse.de:email,suse.de:mid];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,43 +69,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
-buffer size. Align the pitch according to hardware requirements.
+On Fri, 13 Jun 2025, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
+> On 6/12/2025 5:30 PM, Gustavo Sousa wrote:
+>> Instead of open-coding the conditions for the workaround in three
+>> different places in the file, I think we should have a function
+>> needs_wa_16025573575() and use it.
+>>
+>> Also, note that the workaround is also required for WCL (display version
+>> 30.02), and we would then include that in needs_wa_16025573575().
+>
+> I agree, will make a separate function needs_wa_16025573575().
+>
+> Thanks for the suggestions. I will make suggested changes in next revision.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
----
- drivers/gpu/drm/xlnx/zynqmp_kms.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+Please let's aim for something a little more generic and unified than
+that, and one that can be easily extended and switched to a generated
+version in the future.
 
-diff --git a/drivers/gpu/drm/xlnx/zynqmp_kms.c b/drivers/gpu/drm/xlnx/zynqmp_kms.c
-index b47463473472..7ea0cd4f71d3 100644
---- a/drivers/gpu/drm/xlnx/zynqmp_kms.c
-+++ b/drivers/gpu/drm/xlnx/zynqmp_kms.c
-@@ -19,6 +19,7 @@
- #include <drm/drm_crtc.h>
- #include <drm/drm_device.h>
- #include <drm/drm_drv.h>
-+#include <drm/drm_dumb_buffers.h>
- #include <drm/drm_encoder.h>
- #include <drm/drm_fbdev_dma.h>
- #include <drm/drm_fourcc.h>
-@@ -363,10 +364,12 @@ static int zynqmp_dpsub_dumb_create(struct drm_file *file_priv,
- 				    struct drm_mode_create_dumb *args)
- {
- 	struct zynqmp_dpsub *dpsub = to_zynqmp_dpsub(drm);
--	unsigned int pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
-+	int ret;
- 
- 	/* Enforce the alignment constraints of the DMA engine. */
--	args->pitch = ALIGN(pitch, dpsub->dma_align);
-+	ret = drm_mode_size_dumb(drm, args, dpsub->dma_align, 0);
-+	if (ret)
-+		return ret;
- 
- 	return drm_gem_dma_dumb_create_internal(file_priv, drm, args);
- }
+intel_display_wa.h:
+
+enum intel_display_wa {
+	INTEL_DISPLAY_WA_16025573575,
+};
+
+bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa);
+
+#define intel_display_wa(__display, __wa) __intel_display_wa((__display), INTEL_DISPLAY_WA_ ## __wa)
+
+In code you'd use:
+
+	if (intel_display_wa(display, 16025573575))
+
+For now, you'd manually check for each enum in __intel_display_wa()
+implementation, but in the future that code could be generated similar
+to what xe currently has. I'm just not very enthusiastic about adding C
+language hostprogs with custom .rules files and parsing.
+
+
+BR,
+Jani.
+
+
 -- 
-2.49.0
-
+Jani Nikula, Intel
