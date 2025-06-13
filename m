@@ -4,183 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B5E5C71136
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 16:20:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 976CFC71148
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 16:30:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF1F910EA2A;
-	Fri, 13 Jun 2025 16:20:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B470710E183;
+	Fri, 13 Jun 2025 16:30:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZOZcY8Vo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R6aht8Xq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C43A410E013
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Jun 2025 16:20:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DBEF10E183
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Jun 2025 16:30:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749831619; x=1781367619;
+ t=1749832206; x=1781368206;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=OjZGmUnm5FNjyWcZx57joMJGslhPySAiKGNgkzLb2oc=;
- b=ZOZcY8VoUhdTC5DtVrirGwxIUk4g3fER418UtHBxP/cypr4oaVv2a3HG
- KOPcjlnJEToa1c6HvcP9LgrLVNGD4Xlu2OpfvJEv8yZsr4yrhkUtV04ZT
- bswLRTZFDXb6eBdOpVAGygWTFhbfSI2W6/oZXV+7cpEcaFX3/lXYP4w3g
- EuD/g8x89CLjf/PaK6R08XlNZQD7kv6wG957f+7F8/yr8ZlvkbU7Z43kX
- s9zABmDcpCXwd8ByUFlZAj/wWTj5F0cCbOAf8qV5ju/ZaHaIk8fTrOfyz
- XjwLxDjY86VPhCCbpjMHMLyyiCrPxXEfa6Ez6/Por64YwMwL+A9b3LB8p Q==;
-X-CSE-ConnectionGUID: 59Jgs2CSSumngCOFC5a3Iw==
-X-CSE-MsgGUID: 2Eglo5CuTm23lKxmEeMJgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="52149362"
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="52149362"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 09:20:18 -0700
-X-CSE-ConnectionGUID: 8qLFvWMPTPaA4ARvw/SUAw==
-X-CSE-MsgGUID: ViaAAV/eRD2gN9Q1JlJf8Q==
+ bh=F14mriYRxVYHaToCk3/1eOAINRVWPiMe5oyyA8I7WvU=;
+ b=R6aht8Xq5F+PQWe3Qd+Y8ZMktD63wXfrIe5jqqPW0vQXGiUusrhynITT
+ KltCI159ReBXrvC+E4CJwz1gEbVgj6IFleEsK0emGC0eiHjd4jAeRJlWn
+ 34QdkRWlZJ8T3fINa8SJ2rcRIGlhybTj8QSRIbj0akiW6+R5nv0Zqxw7d
+ 8oJSwqGRJSf7nDm2gSQP9E0XzXyF/WnnQJUepn8IKC/wJV1bLJmxWiZts
+ G60Xbaym1GJsByDhyEg0n+soHAL/szZ5ufBoTror12qohbP5/4nKT8g2W
+ slu8M8zcylM+Q1ocYjTAhae9lzgtkMM5/GOtN27JtuitsAilulBrEOEzA w==;
+X-CSE-ConnectionGUID: ZU5xHevCQuWHtoE/3epmyg==
+X-CSE-MsgGUID: +I/54x0HQxaUofMFh3B5qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="63464867"
+X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="63464867"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2025 09:30:03 -0700
+X-CSE-ConnectionGUID: BmLQZt6DTGGgOb1ulHF/qA==
+X-CSE-MsgGUID: FZBS5SRqTReA13dCfrZxpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="147859601"
+X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="178763076"
 Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 09:20:17 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2025 09:30:04 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Fri, 13 Jun 2025 09:20:16 -0700
+ 15.2.1544.25; Fri, 13 Jun 2025 09:30:02 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Fri, 13 Jun 2025 09:20:16 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (40.107.96.62) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.1544.25 via Frontend Transport; Fri, 13 Jun 2025 09:30:02 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.43)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Fri, 13 Jun 2025 09:20:16 -0700
+ 15.2.1544.25; Fri, 13 Jun 2025 09:30:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tt0xOTPwnKW1aJHWWPnHWA8eSqk4q/R+uwYVn4o+RBZLls17THpEGPnILlFPDssqyOPqWtfovbyFyi90PiiPP8psWuNBSTQbAnkAqZjprjTFMSQn1Yo8iPioxbr+4lpSb6o63uOtMsPspRAplven19oJotAzO3Qq40Xr4b8+bsD2aQ8ILs+f7ix5bjtpeBM9XIT1dD2iL6y8J5gkhgMCwJgxACJ9UUujJReEdldLXQyJSHGIC7niDnnOPg4sfgdghdZQiirOJ1dEDReu+/4fe6IM1xP9wS0Vqf9zwDVtHmwKNnieWwQFW5jhprc3w8IVZnPlJKyKuJCXZQP+ARuX3A==
+ b=v3HXDYd8teOgwl92n/BbJ/BkL6QJnDkg6i/FL1syOe5LymUhJrGvUTTkfUKQpflIwKt6rT2DwXnXg+c85LNZ2yaTA5qo1w8vCrHj7Q+jz8lcnh1+fSjYA4aMxuRsggYsR8fgeDtB1TVv3LKS5ya8bNtl5t71zDp0NuUJZ+AMIDosCIOL/7aLh8isMMT3+FL9DkhG226ccK6PAKSI/1X8vut3i1u+5v4BJqSilXQFhsUAl3pewCKgGktjgBiekQtYoru9ujRyzWU9ainL/Q3Xm52Vx/xDGQ2xGZdBDOYiE6KNoTNpqOulHuihP/IHZHHbsAztKs64qprizU65Htr+sQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MXGn4RCnO80ErblpoF3jnEuxd+y5i389TqYzGefkxNc=;
- b=QyR8rweDfGzzqluKBOwxZUM/KNEbeJQcDJt5hrxr8hkVfYhvYqIlpqq1jKlFm7RHqsdZyCAxy5vK8Mgm+uJgPpJjA1tL55eZXX0RVbgg29/rDJmSfxAWKqVhzbzdYSfIE8A3fSqIFn7Ij4ZGMCeifjWm9YqPSTgRkdMeBHPON2FMnMkA5fTsDjbMVv2xMCdXDF3KpA/KLArbCtHjvQXNbjU0kQ8PLKBkysTq95ysQpvhrjZoqSa2oKZRt0BqkcQNEn/CxvXqOz0BYsAaEobIInMFZiLTLfWHM4uIO+fhzlDVcOD27ua/urTf3VVaePL/O0Jub8W8W98ZA6bvxmpq7w==
+ bh=oVxCtWzsIBKTcOUe8FFoWWkNN2rPngJ4tVumYAHbsDY=;
+ b=qUR7ho2RswegmXFVU8ecW5/eNM15dPt0CZo72J26IcDCKpDf4SZNUn1fZDpztL9pbA6Afqw37fKKhcR67OZ0LIRc5fc2kDBSh4lqT8DeuxFezS8atxDJLggv6x3+UZoNJKL4bKYSWVq7KWSTbhffMdYTuzEPxgyZgmmnXXHLypiWWWtmA7PGjJ2+t+/tPuq9wuM8tMd7smfWZPDZ6xF30O5IwJQrt3oKv4C3CFNmvciP70ixf5jCj5VMGQbp5aNPWjceE9BFQ30jmrZgko2KshrGS8yxPr4xRGB2pShFT2nnAdtGpBLesfDoVSjMqbBJYjjDvXB2WlLKil4DNrs2ig==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH0PR11MB4919.namprd11.prod.outlook.com (2603:10b6:510:34::12)
+ by SA3PR11MB7625.namprd11.prod.outlook.com (2603:10b6:806:305::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.26; Fri, 13 Jun
- 2025 16:20:00 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Fri, 13 Jun
+ 2025 16:29:56 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.8835.018; Fri, 13 Jun 2025
- 16:20:00 +0000
-Date: Fri, 13 Jun 2025 09:21:36 -0700
+ 16:29:56 +0000
+Date: Fri, 13 Jun 2025 09:31:32 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <matthew.auld@intel.com>
-Subject: Re: [PATCH] drm/xe: Implement clear VRAM on free
-Message-ID: <aExQEKec1H7yqS1I@lstrano-desk.jf.intel.com>
-References: <20250611054235.3540936-1-matthew.brost@intel.com>
- <cb53d2efe677724fd5d141d8f3cada5f06758adb.camel@linux.intel.com>
- <aEsKU2LliY6JmG6a@lstrano-desk.jf.intel.com>
- <eb5531f03ee560a593f77f60ae1f6f862eea6a14.camel@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
+CC: <intel-xe@lists.freedesktop.org>, <francois.dugast@intel.com>,
+ <himal.prasad.ghimiray@intel.com>
+Subject: Re: [PATCH] drm/xe: Opportunistically skip TLB invalidaion on unbind
+Message-ID: <aExSZGseiz/qY0Om@lstrano-desk.jf.intel.com>
+References: <20250613043645.255351-1-matthew.brost@intel.com>
+ <136f645b70f1c0bfd646830d6cef2b60a0c3a22e.camel@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <eb5531f03ee560a593f77f60ae1f6f862eea6a14.camel@linux.intel.com>
-X-ClientProxiedBy: MW4PR03CA0010.namprd03.prod.outlook.com
- (2603:10b6:303:8f::15) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <136f645b70f1c0bfd646830d6cef2b60a0c3a22e.camel@linux.intel.com>
+X-ClientProxiedBy: MW4PR04CA0215.namprd04.prod.outlook.com
+ (2603:10b6:303:87::10) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB4919:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2daf782f-6dc3-4223-06f3-08ddaa96252e
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA3PR11MB7625:EE_
+X-MS-Office365-Filtering-Correlation-Id: bd2b36d5-add2-48db-51ab-08ddaa9788ad
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aEZBZmhxRnRFbVRIV0M5akZTRjhRSjU3NWtpOUV6bUhWalQ2TFBhYjMyU2g0?=
- =?utf-8?B?WnQ3dGZFOGJKcDFjMkM5bENrVWhuZGJGOWI2Y2h4Y3h3ZEg0aHh6MDdZZWpP?=
- =?utf-8?B?Y28xZDZ5WEtjbHJ4ZC9ncDNnM25RY0QvT29xOHpXUU9Lc3ZNemMwMVB1azYv?=
- =?utf-8?B?VVBmcm9MUDVNdzBMYUoyOFF5TUtsd0lMU2EyaWJRcDhDRWlsUFRMNG9VNGRm?=
- =?utf-8?B?b293SGh5S3dNbVpUcklObmdwdmd4SU1ZOTNhNFRHK3hKYmkwYXp0VTdYZEpW?=
- =?utf-8?B?SDA1VHQ5eWRiUmVXTWN4TWczZ0FQWFAyUVJkYWVMdHd0NDE0bGFOWngza3lw?=
- =?utf-8?B?SWVPY1NMSGt3ZmVqV1htL1FtdXpaYUlaei9pNUw0U2kwTm5GMVd1OHRlLys4?=
- =?utf-8?B?UVZvMzQ2UWpYeUNtaVdiYk5sYXIrNTBPeTZOOFN5Y3hJTU9BTnRLZnB2cUJB?=
- =?utf-8?B?V1o4b1hnVU9DZXEvU0I1ZmVxZ0R0NWY2TkhPbExtcUhCT0xRdDJVNlp2ZTA3?=
- =?utf-8?B?MFFlVlNQNGFsK3BjR1p2bnR1YVFTb0JReG84Ny9aMy80NHhGUDY4dktKZ3pk?=
- =?utf-8?B?bEpaTnl5VllWMEh3WVB1MzY5NTdtTEI2emMycUVEcmJEVnJwM2ZLVWdvYjlN?=
- =?utf-8?B?cjVWUzJVL2sxUmpmTG1CVW9hYnlocUVDT2tyK1hmanQ1OXRzQzJhdmlCNDNk?=
- =?utf-8?B?bFpoYVJQbTlvY0l2cGRoMnV2VW55d0tjd2xBcXV6RnY4ZGdSQUlrdHJiSnow?=
- =?utf-8?B?b1FBS0E1VDFIdWhPWjlDN1Zkbkh5NXBqQW1nUWtoZ3ZTbUpGYzluUXZVYmxx?=
- =?utf-8?B?VzFhK3orQjVlTEpCaTBRN0p2dXFYWTR5RXYyQXJDTytDdjhSaEsrZnBRY0Fj?=
- =?utf-8?B?S1Z6TW5lSVFuRVR2V3R0QndmWnVPYVFPb1BWQ1doYUdxOFdpcVZqVGtvSVV3?=
- =?utf-8?B?Q3J5eTFzWmtCbnkyS0hJaHZPYXQ5WENvV2hjVFdaRWpaQU9Bdk4wajBUZEhn?=
- =?utf-8?B?SkFuL0VESjN2VS8rWWdGVWpNTUpsVDViQ1dFQzlRaWNma1gySHhicXJ0eDhK?=
- =?utf-8?B?M21yREVlQkdVaENEV0Z3WkIwOE9UMmpjZzZUejdxM3FlT3dDVHF3dUU4S0Vm?=
- =?utf-8?B?MEJpdjl5KzhoSVYzcWRnbmlKNS9EZ0ZLeWEvZGZoVkhhR3p1aDlRTnk1a1JI?=
- =?utf-8?B?ZTB4dzZsc2NyYXRlQjlwMHdYZ0oyazUxUGxKNDV0bFNBWm54UER2YTlwNkhz?=
- =?utf-8?B?dHZJa01SekhGYllXTndWaWQraHNndExlVDJZTEoyaHQrd2R3MFhzS3hUcHBC?=
- =?utf-8?B?K2NuZVYvSmJLMzJ3akNhRFB5RllPZjJDSVVQb0lyWUMvVzJXWWdPeUhXcHRu?=
- =?utf-8?B?RUErSGxlbDd1RzZRTG9WR0puYVRVQzExbUlmYk5zcnVEdWE1aFBtZlMvTHoz?=
- =?utf-8?B?SU8yMmFZeGdrOU9sSVFkeno0aGxQU3ZaQ0xNNElIY0w1NFNBd3VyS2J3STZ1?=
- =?utf-8?B?QTEwYXhOODc1QS9lL3dIOERpZSs2akxXb1N5RjZhQzAzcjEwZFI3MmEzdXFO?=
- =?utf-8?B?T1VPaUwrRlZ6R2R2VzB4TGpFQmtzSCtEQW12Z1VoMWxydWhyLzhwTkdTbFdl?=
- =?utf-8?B?T1JrQ3ZWa2F6TjcwVXdiWjA5ejNEaDU5eUMyQ3ZXaTdrd0ttM2sxOFFHYXBl?=
- =?utf-8?B?V2VvNEpnMTMzam9ZMUxTZTBmTmY2Z2k1RG9mR2xBWkRJUEtncmdSUzNkUnlp?=
- =?utf-8?B?b0VuVlZrdHk2R3pIKytvSENMN0U3TFo0cGU3bU1kM3E5dDFrWSs4VElJU1Nn?=
- =?utf-8?B?K3l4SG1mQUtNN2RjeVNYT3FRVXRLaDNLb1FCV3NvaHUyYm5tdThqUGhFcWls?=
- =?utf-8?B?bHFqN3lMZG1jUW5sU21CZEhINFJnVEsvck50N2gyak82anNjK3ByWUpWNmli?=
- =?utf-8?Q?leo0QFI9Wls=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?zZHo/8LDOjnf2dDZLa0apq2NQ8PjvsYqxgISRgoAq7lYMurCPTBhRAXDv/?=
+ =?iso-8859-1?Q?qcLL0ZkzZfK0Bs6wXt+NLdlE8o0Ydz9u3egzJounwrMi8k1BQz+Wa0tYmL?=
+ =?iso-8859-1?Q?TRRF958mbhLKDjxxcpNVVKqgWm3KTR53a6ckpYSBdh7CwdzqgFDCScevR2?=
+ =?iso-8859-1?Q?QIRYzOZp++Dl6dpDi1cuuA/Hq6hCIOme/Uit++u1uBEcMSU1lM0xBQ+KuK?=
+ =?iso-8859-1?Q?X29EDWiumqkAoczGf70ddWk0owHvsPgOJp7JMOLVbYOuczYPmJY9ZCRzyh?=
+ =?iso-8859-1?Q?5yglgijeDBPC6nfNNG9pTfBiUzIerJPu3+ISGKYgJxsAvEtAfXM5ohUw0Q?=
+ =?iso-8859-1?Q?CkGP/La+SYNYRQC2UPf8tk5qZTyeuezwrz9oL9eyhXupZK7p+e13teqSIA?=
+ =?iso-8859-1?Q?jb0TDP9QVltq8V1TAWPj+MuvB6Ma8RFlAvs9NcWXuYiFmBsuI7a+kcjswe?=
+ =?iso-8859-1?Q?MMTbgN32l/FJ+zNr+X2lERri9d8UYM+e3ypvSdTQF3BlaOzjSOHFTN0Ryi?=
+ =?iso-8859-1?Q?IhlTRqmBKQ1qQtHOwRwHk2mZcEIvtj5AbKsDzritKkgDJ5TUZGgoG4DfTo?=
+ =?iso-8859-1?Q?4MVRuXyz87JWmAUqnkS8r7NYwucga3vmH24aH6AQi0RASFXE7EspgUKLGE?=
+ =?iso-8859-1?Q?WTSuILOxXECsi5swN7rBQeG+CSKwIMqqIgmIpP1cZ60uLzEnlxo800erdc?=
+ =?iso-8859-1?Q?X6DCKVyrSqcoPo9tylqHbEjfoL8azyIt2G7sQxe1mb6Ak8LFqAeD10N77n?=
+ =?iso-8859-1?Q?zyJewjyO77ms3m7vHfotUfnwx1yGm/1m6xjiUK2bX/OgmXLjoXVnSXf1Rx?=
+ =?iso-8859-1?Q?DBQJlcjCNfRBj5sEcZcNxtbVVhA3acBdYGY2+A7i+2EmsM4IVwCS2VRKcr?=
+ =?iso-8859-1?Q?XNnmueFo0frJSW261eJaH8rUEMS4CoeCdaH/h4knC+k1RG/s+yeA3tmkvu?=
+ =?iso-8859-1?Q?i26RUUPBwIHpFLzErqIGqklYCscmsmDBaMe9gO+uXpBwpww6C6iEqEStXT?=
+ =?iso-8859-1?Q?xRUJ72MMSVPXjnpsHtzLutzPeoPiQ+4yQ4hIpsYmUF4Lg16exLGoj39stF?=
+ =?iso-8859-1?Q?GpERD5I4cDyM35bUsj1Ly3v5FhvqwNzt/z694+cYOYmqIdLG/MfgYn7/GZ?=
+ =?iso-8859-1?Q?CxEbQCiVTp5XSQUxkcMab1vIPSSZhSi898rgIEVCCaLp/5YUn/IALc0H/4?=
+ =?iso-8859-1?Q?LkJuzd6iMaGoECQ3j7s9Gd0Gixx90oaD5wBg40qW3Erjr1PwpZPpt7kCQW?=
+ =?iso-8859-1?Q?s4be3JN0iFPTGxXKD74E8KSD22XzAep4es2k4rhXA/a5kAlTNfkhiX0IHy?=
+ =?iso-8859-1?Q?1J6ikiyuXMTuoVPIu8hCxAYxpM5uLeBv8V1Aow5sRfusviWo1ZwYVdqnOX?=
+ =?iso-8859-1?Q?Z0JW+sQ4hy5L9AGw4G5T6uWW1+Kye/obZE7o+F2kw3Io/8D1K8ALNhv9/o?=
+ =?iso-8859-1?Q?qtyS3FCZ3gkUwgAYxSZm2UhBc4s8lhZQNqsRJ3o0JBpnmGtZ1ywYwO9Cgx?=
+ =?iso-8859-1?Q?0=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NGU4QWpyVTVXN1FKTHRzSk0yTzh4R3VhQ3dJeVNNNUc2QUhuVHpPa1p5UlBn?=
- =?utf-8?B?ckhJWDhxUzlpTTlHMGVNS3Z4MDVTcW51aFFMTnliSmdLTG5EQzN0K0ZWK0Er?=
- =?utf-8?B?SXdwVnJQbVppOWg5alp1MFUwUkFIWis2cnJYZUI4dGdVazR3NHA2ZytpWEww?=
- =?utf-8?B?Z0pOMU9yeEFaMHhFMkZweWlVeXlkbWR5djd1NE9jL2FUMG8wWm5NOGxRM0ww?=
- =?utf-8?B?YzZjYStuRGtxK3g1NnFnMHVnZXRicDNrRHJJMTluajJHNzRPaVZmNXllUjcz?=
- =?utf-8?B?Y1Q5MzBNdlRTM0EzMkhoZC9CcWdPQXFhc0o0RmxrZEdLc1REK1FRYWtCQkhj?=
- =?utf-8?B?V2twZDNBem9aR3BYM3FXSHRIT0N0dlEwUG9Db3hsb0hyL2JsTjdoTU91MWNt?=
- =?utf-8?B?SVlHT21OZ0ZCVE9JY0tVdHU5NHR2UmNpa0FzZjV6cUk2T2MvNUNlRkw1eXEw?=
- =?utf-8?B?L015dmVBRXRzdVBVT0V3M2QzU3MralRDdWhUNzc2MXl2eGFacGVPWEQwTHZ4?=
- =?utf-8?B?UHFzNkUwb0ZMamI5UW02N2lTYmF3bHVjUGNTa0lTVXZZTVk1N2xVVTlxZnRm?=
- =?utf-8?B?ZGk2Z0xIR3hMSnRKYVh5Z1l5OG0wZ2pBQWgwRlBudmRyMlBndXNpVGMrbnMv?=
- =?utf-8?B?dDZRWXV5TElKNzg1eG5KVVRkTWlTcHVzZUxYUHdVc0V1YlN6RElvUnJhSjJn?=
- =?utf-8?B?a003Rnd1cDB1bGVkVjBsN2xpa2FhUURlOEFWU2dib3JuV1FoZWYrcU1iRmVL?=
- =?utf-8?B?c21OMWoxbkFXVENJVlFBb3FlWlVMTFVnQ1J6c210M2JoNHZaNXM5Nm8wanJ0?=
- =?utf-8?B?dkxEcVdVV1FudHRwYUdJZzV5TDMyeVhuL1JBNXdjWnloUitNZnVpQ2J5ZGRO?=
- =?utf-8?B?QnVEaUlwNFMxNFUwRFFvalJwcmpGanlGOFAzaFBpTFFuayt4bVQxYTNqaFFU?=
- =?utf-8?B?ZlRldnhMVngzdW5EelljWlIzeUpmTk02NjBFTGRVNGNzVGNSZVk0bFNkcW1S?=
- =?utf-8?B?SVMvNHM3NlVMb1RTOUlJYkZGTDBHYlRkSFFxeC9rNmU3YTZ1eWFuVTlrSVBk?=
- =?utf-8?B?L2RXMkh1Z2RCT2NaTW96VDZXa1E4b2Rxd2FmdjNIUm52QVVOSjF4azZMVlFx?=
- =?utf-8?B?UVNZVkdUaW91Mi81cFVxQXV0dkRmUlg3ajU0NWdRL01PZ3RzRit5a3daNlVu?=
- =?utf-8?B?bkN5T0ZnY1lXbExLUTQwRS9DYlgzY1VDd3VqZ0NETjNhUDc0Rk9RUlNBQ05v?=
- =?utf-8?B?TUxZbElQSWFNazZmRi9RR1d2UzlveDdzSWVqRGJRQ3pEVUFVbXpkOFRBclpB?=
- =?utf-8?B?bTRESHAzNUp0SXU1RkQ3UVM1R1ZzTnpxeTNoUDIvbXBVRVR5UENIT3l4NFZZ?=
- =?utf-8?B?TXhoTk9zekJreFFYaDJQTXlMQVNZb3VFNVBTeWxXSlcxUGZ0eFZYTW5OQnNj?=
- =?utf-8?B?RGVPY2dsdGJGZEJmWVhmQkw1QmlHU2UxZDFLZFVCckdueTR2dmI3aWFyOHg2?=
- =?utf-8?B?M1o0MmYyWWJqTzNmUHlmamZFS0ZFZEVRUXhXaHp5REwvT3NEU253dTlxcWk4?=
- =?utf-8?B?WFUzN1l0TXVtM1ZyL2FvN1g0VW5NSXVubTg1Y1NHWW9IdGJtUGg3N1NTRE16?=
- =?utf-8?B?VWUrbG1QZ2hiK3l3elV5S2FtQ0pZMkZhVXRJYmUyenNFc1kzS2l0RDBWa1A5?=
- =?utf-8?B?a2tWbURwSm1OWC83QTVBeDIvMUphOFZwd0NWOU5yYnNBQmdBZmg2N0kzcmdP?=
- =?utf-8?B?ZWUrTzZyQm44RWdXdC9Dd0trMDRWbWlJa2NHNDlPelRKWjJBdE5GZlJxWXNa?=
- =?utf-8?B?ZWViV2E4eC9XOWlXQ1NKMXNTdk8ybG5sWHdPODRGUFQyQ1pvQzhEOTJjeTJS?=
- =?utf-8?B?d3dzVm0zZER6SXYvWVNrM2kzdU1ubmJ0VUdRWk1yNHRpRUZGdyt0dkk3b2tF?=
- =?utf-8?B?blIwNldYK0FjM2ZnYVBwUGFpenZOTzhiZGdRcmlyMHdoWkxRK2w0Q1FIL1NP?=
- =?utf-8?B?VGRWcklkeHIzQnl0Tzg3dDhvNVVoUnBEVDZsWkhQTXFiejZmMVFTMUpHTDJK?=
- =?utf-8?B?Q2VZN3JlLytsdldmN1VvRG5XUjJJWDdtaFcyZm5zdWI5a3c3NHE0Vis0dnV5?=
- =?utf-8?B?YkFtc1VhS1JMMGx0Q2VsUGEyT0dTaENIb0hoYS9VbEljU0lvSHBFUVh6R3lB?=
- =?utf-8?B?S3c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2daf782f-6dc3-4223-06f3-08ddaa96252e
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?CNoI/tQ7nnfD+i2kKQwJnipJioz9Er/Gwfz1qGQvPL2l2JayeyOACc8hVX?=
+ =?iso-8859-1?Q?//ZqeGlxsILN2U4fgH5gf7zeKbo9f3ZRtNpM21PI8bM+ulk+F6boYYHqa+?=
+ =?iso-8859-1?Q?lB6mXJuZDNsbRmstlXqJz14/YZuDG/09s9TjJbxZh4Tty/TN6/3jYSDbdN?=
+ =?iso-8859-1?Q?0pn97jPtoc2ealzQtoGTmWVq5aoVs4mOoH3UtP0M7KX9i3t+qGBBkcpTsx?=
+ =?iso-8859-1?Q?uL9zleEhSpvcFNNQzBexoBtXGi+nx66Zy8X3gvYSc7hHJMm1Sei58aKhg1?=
+ =?iso-8859-1?Q?Xo4XD0gSZwg7fJIi3UFk5nzPAVyModjBoNia586Tya5oaDNghAkn8pzC3s?=
+ =?iso-8859-1?Q?Xfb9i3SeYhAySk1oDIUCNnMDeOOb2W9lxNYcx9UyYvOCx82jnDbl04lv8v?=
+ =?iso-8859-1?Q?AZKAXtoVLjLPk+MEUVhkfXBF7gWpdQVUNOKWHGsNVID8lIIG0qmFk9Abt3?=
+ =?iso-8859-1?Q?/0z/EKLjtwlsBfO189MMMy1/dbHZvxl0DL0vjgNAvxK+CIuEq6WLz1BAg5?=
+ =?iso-8859-1?Q?9aAplGgjfLkz28SVxdQTu9w9314oOsnBL2P4Q1MBz6Q8pkplUnxdhJQFkh?=
+ =?iso-8859-1?Q?ucwxkYOq30swtS6lyfwgKMFVYA4Rms0UqQp2p8T59dbP9I9GAEsnT2icIZ?=
+ =?iso-8859-1?Q?RbsThUM7YJV+g3rJ1srSojikQw0PjxWtW92wekNdSmwLcAz7Z/Ck569G2y?=
+ =?iso-8859-1?Q?C64KQdEBU1eskb1Y+Sby56WAmg76kABQiFZwjT4QiO4COaQliQ5JufvGiI?=
+ =?iso-8859-1?Q?k8sah+6PTl/suhjHOwWD857FUksg1f/JX9R6yEE+xISafy8Ckwi07vYw/P?=
+ =?iso-8859-1?Q?uOsoCPUDiMsIGmeVWBmY5mYBUNvkCeRfvVhmoEkyYR9mqY8usB5ZuHZ1U8?=
+ =?iso-8859-1?Q?zlhVxDKn9tIVBSuQnUt88h3+Y3je1Lq029LImqOPndh3uB/JAVCHPPSYPu?=
+ =?iso-8859-1?Q?003ACH0Yy/uS29Yn2foqmfvGr0fDa7K/q9LMJ1UAP0h/KvEF/pF2xeBmM1?=
+ =?iso-8859-1?Q?dUXQqtjTCNtL0Q0IEdnQv30UlHk41cTygAX1PymUsCqiky/Jq7pEzxH00s?=
+ =?iso-8859-1?Q?H4RDRIarKCL1guVaIHhfsqRf/roqw632vO75ke2x1SiMS8Vh4M5PFCGBfL?=
+ =?iso-8859-1?Q?iD+1S87B42gdlenuivxUy7VIxIQlq5k2e1qn9VfA17etjhbMR+VCAv9xcu?=
+ =?iso-8859-1?Q?X01qvB862s6aaRPvcrc63CxjrnKBt4+lgdiqXwrF+EGrmleiqTkGFKq2w3?=
+ =?iso-8859-1?Q?1SnMbXm2BdNRfowacrHpmbMY5tMaGEyvghwMTV8X9DwwOquSZ40iKoH6c1?=
+ =?iso-8859-1?Q?Ys5WiyFq/LQHzv0bkZWBWhJB8JqwFJ1WIyDvUDon/e8u4dHHOABJ4IUs9a?=
+ =?iso-8859-1?Q?hrB+o89fsBnTct7M20OvFU99h3s96RiOkkxWn7em65I42olBg/CgLPxNbm?=
+ =?iso-8859-1?Q?6nbF59fv21w/Ha1SFi+YxabZqca9i9FY96vLTNP2m+YhopEgQe/yOFHsEM?=
+ =?iso-8859-1?Q?hwfOGVE777xGxnGoK7FAxsbjaNXAtO3wKS+4yxmFVVWBoQ9ec2r2EanwhB?=
+ =?iso-8859-1?Q?BhXJvt1DQkT2CU+qWDcjzN2YCmnaJ8OeDaaP1ZZ7iP20fIvF0OvNhjoNu6?=
+ =?iso-8859-1?Q?AK/Sbfrcx9xQCcajXEFjlrMHPWHzYUZzD4tUM0adwh5+ZDZI18kOTnDQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd2b36d5-add2-48db-51ab-08ddaa9788ad
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2025 16:20:00.3827 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2025 16:29:56.8336 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C2rpsyogqFLvBk8EZv3qQhJxlte9j5Fco5C9JJ502nzum3LF+ehCiOAbk6YpkaF2NoIjyLDY+WURuYIufWdVbA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4919
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZPkFFP8mZ7vX779ihr+fTa5Pz3kWwMquejSY4ykY2b4Ljr4rgA37a+AMAVRThlOexNYYMpN17wu+kOIusUf16A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7625
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -196,405 +180,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 13, 2025 at 10:07:17AM +0200, Thomas Hellström wrote:
-> On Thu, 2025-06-12 at 10:11 -0700, Matthew Brost wrote:
-> > On Thu, Jun 12, 2025 at 02:53:16PM +0200, Thomas Hellström wrote:
-> > > On Tue, 2025-06-10 at 22:42 -0700, Matthew Brost wrote:
-> > > > Clearing on free should hide latency of BO clears on new user BO
-> > > > allocations.
-> > > > 
-> > > > Implemented via calling xe_migrate_clear in release notify and
-> > > > updating
-> > > > iterator in xe_migrate_clear to skip cleared buddy blocks. Only
-> > > > user
-> > > > BOs
-> > > > cleared in release notify as kernel BOs could still be in use
-> > > > (e.g.,
-> > > > PT
-> > > > BOs need to wait for dma-resv to be idle).
-> > > 
-> > > Wouldn't it be fully possible for a user to do (deep pipelining 3d
-> > > case)
-> > > 
-> > > create_bo();
-> > > map_write_unmap_bo();
-> > > bind_bo();
-> > > submit_job_touching_bo();
-> > > unbind_bo();
-> > > free_bo();
-> > > 
-> > > Where the free_bo and release_notify() is called long before the
-> > > job we
-> > > submitted even started?
-> > > 
-> > > So that would mean the clear needs to await any previous fences,
-> > > and
-> > > that dependency addition seems to have been removed from
-> > > xe_migrate_clear.
-> > > 
+On Fri, Jun 13, 2025 at 10:24:32AM +0200, Thomas Hellstr�m wrote:
+> On Thu, 2025-06-12 at 21:36 -0700, Matthew Brost wrote:
+> > If a range or VMA is invalidated and scratched page is disabled,
+> > there
+> > is no reason to issue a TLB invalidation on unbind, skip TLB
+> > innvalidation is this condition is true. This is an opportunistic
+> > check
+> > as it is done without the notifier lock, thus it possible for the
+> > range
+> > or VMA to be invalidated after this check is performed.
 > > 
-> > I think we are actually ok here. xe_vma_destroy is called on unbind
-> > with
-> > the out fence from the bind IOCTL, so we don't get to
-> > xe_vma_destroy_late until that fence signals, and xe_vma_destroy_late
-> > (possibly) does the final BO put. Whether this follow makes sense is
-> > a
-> > bit questable - this was very early code I wrote in Xe and if I
-> > rewrote
-> > today I suspect it would look different.
-> 
-> Hmm, yeah you're right. So the unbind kernel fence should indeed be
-> last fence we need to wait for here.
-> 
-
-It should actually be signaled too. I think we could avoid any dma-resv
-wait in this case. Kernel operations are typically (maybe always) on the
-migration queue, though, so we’d be waiting on those operations via
-queue ordering anyway.
-
+> > This should improve performance of the SVM garbage collector, for
+> > example, xe_exec_system_allocator --r many-stride-new-prefetch, went
+> > ~20s to ~9.5s on a BMG.
 > > 
-> > We could make this 'safer' by waiting on DMA_RESV_USAGE_BOOKKEEP in
-> > xe_migrate_clear for calls from release notify but for private to VM
-> > BO's we'd risk the clear getting stuck behind newly submitted (i.e.,
-> > submitted after the unbind) exec IOCTLs or binds.
-> 
-> Yeah, although at this point the individualization has already taken
-> place, so at least there should be no starving, since the only
-> unnecessary waits would be for execs submitted between the unbind and
-> the individualization. So doable but leave it up to you.
-> 
-
-The individualization is done by the final put-likely assuming the BO is
-closed and unmapped in user space—in the worker mentioned above. If an
-exec or bind IOCTL is issued in the interim, we’d be waiting on those.
-
-> > > Another side-effect I think this will have is that bos that are
-> > > deleted
-> > > are not subject to asynchronous evicton. I think if this bo is hit
-> > > during lru walk and clearing, TTM will just sync wait for it to
-> > > become
-> > > idle and then free the memory. I think the reason that could not be
-> > > fixed in TTM is that TTM needs for all resource manager fences to
-> > > be
-> > > ordered, but if a check for ordered fences which I think requires
-> > > here
-> > > that the eviction exec_queue is the same as the clearing one, that
-> > > could be fixed in TTM.
-> > > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> > �drivers/gpu/drm/xe/xe_pt.c� | 18 ++++++++++++++++--
+> > �drivers/gpu/drm/xe/xe_svm.c |� 5 ++++-
+> > �drivers/gpu/drm/xe/xe_vm.c� |� 5 ++++-
+> > �3 files changed, 24 insertions(+), 4 deletions(-)
 > > 
-> > I think async eviction is still controlled by no_wait_gpu, right? See
-> > ttm_bo_wait_ctx, if a deleted BO is found and no_wait_gpu is clear
-> > the
-> > eviction process moves on, right? So the exec IOCTL can still be
-> > pipelined albeit not with deleted BOs that have pending clears. We
-> > also
-> > clear no_wait_gpu in Xe FWIW.
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> > index f39d5cc9f411..09c3ccc81cca 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> > @@ -1988,7 +1988,14 @@ static int unbind_op_prepare(struct xe_tile
+> > *tile,
+> > �					 xe_vma_end(vma));
+> > �	++pt_update_ops->current_op;
+> > �	pt_update_ops->needs_userptr_lock |= xe_vma_is_userptr(vma);
+> > -	pt_update_ops->needs_invalidation = true;
+> > +
+> > +	/*
+> > +	 * Opportunistically supressing invalidation, READ_ONCE
+> > pairs with
+> > +	 * WRITE_ONCE in MMU notifier or BO move
+> > +	 */
+> > +	pt_update_ops->needs_invalidation |=
+> > xe_vm_has_scratch(xe_vma_vm(vma)) ||
+> > +		((vma->tile_present & BIT(tile->id)) &
+> > +		 ~READ_ONCE(vma->tile_invalidated));
+> > �
+> > �	xe_pt_commit_prepare_unbind(vma, pt_op->entries, pt_op-
+> > >num_entries);
+> > �
+> > @@ -2023,7 +2030,14 @@ static int unbind_range_prepare(struct xe_vm
+> > *vm,
+> > �					 range->base.itree.last +
+> > 1);
+> > �	++pt_update_ops->current_op;
+> > �	pt_update_ops->needs_svm_lock = true;
+> > -	pt_update_ops->needs_invalidation = true;
+> > +
+> > +	/*
+> > +	 * Opportunistically supressing invalidation, READ_ONCE
+> > pairs with
+> > +	 * WRITE_ONCE in SVM MMU notifier
 > 
-> Yes this is a rather complex problem further complicated by the fact
-> that since we can in wait for fences under dma_resv locks, for a true
-> no_wait_gpu exec to succeed, we're only allowed to do dma_resv_trylock.
+> To avoid having to document the pairing for all use, perhaps some
+> tile_invalidated accessors?
 > 
-> Better to try to fix this in TTM rather than try to worry too much
-> about it here.
+> 
+> > +	 */
+> > +	pt_update_ops->needs_invalidation |= xe_vm_has_scratch(vm)
+> > ||
+> > +		((range->tile_present & BIT(tile->id)) &
+> > +		 ~READ_ONCE(range->tile_invalidated));
+> 
+> Would it be possible to code this repeated pattern as a function?
+> 
+> xe_vm_needs_invalidaion(vm, tile, tile_present, tile_invalidated);
+> 
+> Perhaps doesn't improve much on readability. Up to you.
 > 
 
-+1.
+Let do this in a follow up. I think most of checks are similar enough a
+per vma, range helper will eliminate most of these.
 
-> > 
-> > > Otherwise, this could also cause newly introduced sync waits in the
-> > > exec() and vm_bind paths where we previously performed eviction and
-> > > the
-> > > subsequent clearing async.
-> > > 
-> > > Some additional stuff below:
-> > > 
-> > > 
-> > > > 
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/xe/xe_bo.c           | 47
-> > > > ++++++++++++++++++++++++++++
-> > > >  drivers/gpu/drm/xe/xe_migrate.c      | 14 ++++++---
-> > > >  drivers/gpu/drm/xe/xe_migrate.h      |  1 +
-> > > >  drivers/gpu/drm/xe/xe_res_cursor.h   | 26 +++++++++++++++
-> > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  5 ++-
-> > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  6 ++++
-> > > >  6 files changed, 94 insertions(+), 5 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > > index 4e39188a021a..74470f4d418d 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > > @@ -1434,6 +1434,51 @@ static bool
-> > > > xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
-> > > >  	return locked;
-> > > >  }
-> > > >  
-> > > > +static void xe_ttm_bo_release_clear(struct ttm_buffer_object
-> > > > *ttm_bo)
-> > > > +{
-> > > > +	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
-> > > > +	struct dma_fence *fence;
-> > > > +	int err, idx;
-> > > > +
-> > > > +	xe_bo_assert_held(ttm_to_xe_bo(ttm_bo));
-> > > > +
-> > > > +	if (ttm_bo->type != ttm_bo_type_device)
-> > > > +		return;
-> > > > +
-> > > > +	if (xe_device_wedged(xe))
-> > > > +		return;
-> > > > +
-> > > > +	if (!ttm_bo->resource || !mem_type_is_vram(ttm_bo-
-> > > > >resource-
-> > > > > mem_type))
-> > > > +		return;
-> > > > +
-> > > > +	if (!drm_dev_enter(&xe->drm, &idx))
-> > > > +		return;
-> > > > +
-> > > > +	if (!xe_pm_runtime_get_if_active(xe))
-> > > > +		goto unbind;
-> > > > +
-> > > > +	err = dma_resv_reserve_fences(&ttm_bo->base._resv, 1);
-> > > > +	if (err)
-> > > > +		goto put_pm;
-> > > > +
-> > > > +	fence = xe_migrate_clear(mem_type_to_migrate(xe, ttm_bo-
-> > > > > resource->mem_type),
-> > > > +				 ttm_to_xe_bo(ttm_bo), ttm_bo-
-> > > > > resource,
-> > > 
-> > > We should be very careful with passing the xe_bo part here because
-> > > the
-> > > gem refcount is currently zero. So that any caller deeper down in
-> > > the
-> > > call chain might try to do an xe_bo_get() and blow up.
-> > > 
-> > > Ideally we'd make xe_migrate_clear() operate only on the ttm_bo for
-> > > this to be safe.
-> > > 
-> > 
-> > It looks like bo->size and xe_bo_sg are the two uses of an Xe BO in
-> > xe_migrate_clear(). Let me see if I can refactor the arguments to
-> > avoid
-> > these + add some kernel doc.
-> 
-> Thanks,
+Matt 
+
+> Otherwise LGTM.
 > Thomas
->
-
-So I'll just respin the next rev with a refactor xe_migrate_clear
-arguments.
-
-Matt
-
 > 
-> > 
-> > Matt
-> > 
-> > > /Thomas
-> > > 
-> > > 
-> > > > +				 XE_MIGRATE_CLEAR_FLAG_FULL |
-> > > > +				 XE_MIGRATE_CLEAR_NON_DIRTY);
-> > > > +	if (XE_WARN_ON(IS_ERR(fence)))
-> > > > +		goto put_pm;
-> > > > +
-> > > > +	xe_ttm_vram_mgr_resource_set_cleared(ttm_bo->resource);
-> > > > +	dma_resv_add_fence(&ttm_bo->base._resv, fence,
-> > > > +			   DMA_RESV_USAGE_KERNEL);
-> > > > +	dma_fence_put(fence);
-> > > > +
-> > > > +put_pm:
-> > > > +	xe_pm_runtime_put(xe);
-> > > > +unbind:
-> > > > +	drm_dev_exit(idx);
-> > > > +}
-> > > > +
-> > > >  static void xe_ttm_bo_release_notify(struct ttm_buffer_object
-> > > > *ttm_bo)
-> > > >  {
-> > > >  	struct dma_resv_iter cursor;
-> > > > @@ -1478,6 +1523,8 @@ static void xe_ttm_bo_release_notify(struct
-> > > > ttm_buffer_object *ttm_bo)
-> > > >  	}
-> > > >  	dma_fence_put(replacement);
-> > > >  
-> > > > +	xe_ttm_bo_release_clear(ttm_bo);
-> > > > +
-> > > >  	dma_resv_unlock(ttm_bo->base.resv);
-> > > >  }
-> > > >  
-> > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > index 8f8e9fdfb2a8..39d7200cb366 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > @@ -1063,7 +1063,7 @@ struct dma_fence *xe_migrate_clear(struct
-> > > > xe_migrate *m,
-> > > >  	struct xe_gt *gt = m->tile->primary_gt;
-> > > >  	struct xe_device *xe = gt_to_xe(gt);
-> > > >  	bool clear_only_system_ccs = false;
-> > > > -	struct dma_fence *fence = NULL;
-> > > > +	struct dma_fence *fence = dma_fence_get_stub();
-> > > >  	u64 size = bo->size;
-> > > >  	struct xe_res_cursor src_it;
-> > > >  	struct ttm_resource *src = dst;
-> > > > @@ -1075,10 +1075,13 @@ struct dma_fence *xe_migrate_clear(struct
-> > > > xe_migrate *m,
-> > > >  	if (!clear_bo_data && clear_ccs && !IS_DGFX(xe))
-> > > >  		clear_only_system_ccs = true;
-> > > >  
-> > > > -	if (!clear_vram)
-> > > > +	if (!clear_vram) {
-> > > >  		xe_res_first_sg(xe_bo_sg(bo), 0, bo->size,
-> > > > &src_it);
-> > > > -	else
-> > > > +	} else {
-> > > >  		xe_res_first(src, 0, bo->size, &src_it);
-> > > > +		if (!(clear_flags & XE_MIGRATE_CLEAR_NON_DIRTY))
-> > > > +			size -= xe_res_next_dirty(&src_it);
-> > > > +	}
-> > > >  
-> > > >  	while (size) {
-> > > >  		u64 clear_L0_ofs;
-> > > > @@ -1125,6 +1128,9 @@ struct dma_fence *xe_migrate_clear(struct
-> > > > xe_migrate *m,
-> > > >  			emit_pte(m, bb, clear_L0_pt, clear_vram,
-> > > > clear_only_system_ccs,
-> > > >  				 &src_it, clear_L0, dst);
-> > > >  
-> > > > +		if (clear_vram && !(clear_flags &
-> > > > XE_MIGRATE_CLEAR_NON_DIRTY))
-> > > > +			size -= xe_res_next_dirty(&src_it);
-> > > > +
-> > > >  		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
-> > > >  		update_idx = bb->len;
-> > > >  
-> > > > @@ -1146,7 +1152,7 @@ struct dma_fence *xe_migrate_clear(struct
-> > > > xe_migrate *m,
-> > > >  		}
-> > > >  
-> > > >  		xe_sched_job_add_migrate_flush(job,
-> > > > flush_flags);
-> > > > -		if (!fence) {
-> > > > +		if (fence == dma_fence_get_stub()) {
-> > > >  			/*
-> > > >  			 * There can't be anything userspace
-> > > > related
-> > > > at this
-> > > >  			 * point, so we just need to respect any
-> > > > potential move
-> > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.h
-> > > > b/drivers/gpu/drm/xe/xe_migrate.h
-> > > > index fb9839c1bae0..58a7b747ef11 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_migrate.h
-> > > > +++ b/drivers/gpu/drm/xe/xe_migrate.h
-> > > > @@ -118,6 +118,7 @@ int xe_migrate_access_memory(struct
-> > > > xe_migrate
-> > > > *m, struct xe_bo *bo,
-> > > >  
-> > > >  #define XE_MIGRATE_CLEAR_FLAG_BO_DATA		BIT(0)
-> > > >  #define XE_MIGRATE_CLEAR_FLAG_CCS_DATA		BIT(1)
-> > > > +#define XE_MIGRATE_CLEAR_NON_DIRTY		BIT(2)
-> > > >  #define
-> > > > XE_MIGRATE_CLEAR_FLAG_FULL	(XE_MIGRATE_CLEAR_FLAG_BO_DATA |
-> > > > \
-> > > >  					XE_MIGRATE_CLEAR_FLAG_CC
-> > > > S_DA
-> > > > TA)
-> > > >  struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
-> > > > diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > b/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > index d1a403cfb628..630082e809ba 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > +++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > @@ -315,6 +315,32 @@ static inline void xe_res_next(struct
-> > > > xe_res_cursor *cur, u64 size)
-> > > >  	}
-> > > >  }
-> > > >  
-> > > > +/**
-> > > > + * xe_res_next_dirty - advance the cursor to next dirty buddy
-> > > > block
-> > > > + *
-> > > > + * @cur: the cursor to advance
-> > > > + *
-> > > > + * Move the cursor until dirty buddy block is found.
-> > > > + *
-> > > > + * Return: Number of bytes cursor has been advanced
-> > > > + */
-> > > > +static inline u64 xe_res_next_dirty(struct xe_res_cursor *cur)
-> > > > +{
-> > > > +	struct drm_buddy_block *block = cur->node;
-> > > > +	u64 bytes = 0;
-> > > > +
-> > > > +	XE_WARN_ON(cur->mem_type != XE_PL_VRAM0 &&
-> > > > +		   cur->mem_type != XE_PL_VRAM1);
-> > > > +
-> > > > +	while (cur->remaining &&
-> > > > drm_buddy_block_is_clear(block)) {
-> > > > +		bytes += cur->size;
-> > > > +		xe_res_next(cur, cur->size);
-> > > > +		block = cur->node;
-> > > > +	}
-> > > > +
-> > > > +	return bytes;
-> > > > +}
-> > > > +
-> > > >  /**
-> > > >   * xe_res_dma - return dma address of cursor at current position
-> > > >   *
-> > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > index 9e375a40aee9..120046941c1e 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > @@ -84,6 +84,9 @@ static int xe_ttm_vram_mgr_new(struct
-> > > > ttm_resource_manager *man,
-> > > >  	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
-> > > >  		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
-> > > >  
-> > > > +	if (tbo->type == ttm_bo_type_device)
-> > > > +		vres->flags |= DRM_BUDDY_CLEAR_ALLOCATION;
-> > > > +
-> > > >  	if (WARN_ON(!vres->base.size)) {
-> > > >  		err = -EINVAL;
-> > > >  		goto error_fini;
-> > > > @@ -187,7 +190,7 @@ static void xe_ttm_vram_mgr_del(struct
-> > > > ttm_resource_manager *man,
-> > > >  	struct drm_buddy *mm = &mgr->mm;
-> > > >  
-> > > >  	mutex_lock(&mgr->lock);
-> > > > -	drm_buddy_free_list(mm, &vres->blocks, 0);
-> > > > +	drm_buddy_free_list(mm, &vres->blocks, vres->flags);
-> > > >  	mgr->visible_avail += vres->used_visible_size;
-> > > >  	mutex_unlock(&mgr->lock);
-> > > >  
-> > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > index cc76050e376d..dfc0e6890b3c 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > @@ -36,6 +36,12 @@ to_xe_ttm_vram_mgr_resource(struct
-> > > > ttm_resource
-> > > > *res)
-> > > >  	return container_of(res, struct
-> > > > xe_ttm_vram_mgr_resource,
-> > > > base);
-> > > >  }
-> > > >  
-> > > > +static inline void
-> > > > +xe_ttm_vram_mgr_resource_set_cleared(struct ttm_resource *res)
-> > > > +{
-> > > > +	to_xe_ttm_vram_mgr_resource(res)->flags |=
-> > > > DRM_BUDDY_CLEARED;
-> > > > +}
-> > > > +
-> > > >  static inline struct xe_ttm_vram_mgr *
-> > > >  to_xe_ttm_vram_mgr(struct ttm_resource_manager *man)
-> > > >  {
-> > > 
+> 
+> 
+> > �
+> > �	xe_pt_commit_prepare_unbind(XE_INVALID_VMA, pt_op->entries,
+> > �				��� pt_op->num_entries);
+> > diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> > b/drivers/gpu/drm/xe/xe_svm.c
+> > index 13abc6049041..5e5bf47293ad 100644
+> > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > @@ -141,7 +141,10 @@ xe_svm_range_notifier_event_begin(struct xe_vm
+> > *vm, struct drm_gpusvm_range *r,
+> > �	for_each_tile(tile, xe, id)
+> > �		if (xe_pt_zap_ptes_range(tile, vm, range)) {
+> > �			tile_mask |= BIT(id);
+> > -			/* Pairs with READ_ONCE in
+> > xe_svm_range_is_valid */
+> > +			/*
+> > +			 * Pairs with READ_ONCE in
+> > xe_svm_range_is_valid or PT
+> > +			 * code to suppress invalidation on unbind
+> > +			 */
+> > �			WRITE_ONCE(range->tile_invalidated,
+> > �				�� range->tile_invalidated |
+> > BIT(id));
+> > �		}
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index d18807b92b18..b296ac37347b 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -3924,7 +3924,10 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+> > �	for (id = 0; id < fence_id; ++id)
+> > �		xe_gt_tlb_invalidation_fence_wait(&fence[id]);
+> > �
+> > -	/* WRITE_ONCE pair with READ_ONCE in xe_gt_pagefault.c */
+> > +	/*
+> > +	 * WRITE_ONCE pair with READ_ONCE in xe_gt_pagefault.c or PT
+> > code to
+> > +	 * suppress invalidation on unbind
+> > +	 */
+> > �	WRITE_ONCE(vma->tile_invalidated, vma->tile_mask);
+> > �
+> > �	return ret;
 > 
