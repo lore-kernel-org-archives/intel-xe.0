@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11D5FC71148
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 10:23:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51090C61DB2
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 10:23:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 807C810E988;
-	Fri, 13 Jun 2025 10:23:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91D1510E985;
+	Fri, 13 Jun 2025 10:23:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IcCm7W1i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PEQYq5kz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 103C510E987;
- Fri, 13 Jun 2025 10:23:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C5A10E98D;
+ Fri, 13 Jun 2025 10:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749810206; x=1781346206;
+ t=1749810209; x=1781346209;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EIElUrKFkDwdELXFYGaGoOXmRj25eCe35unOEGEe7No=;
- b=IcCm7W1iS/y30gSzISDhiKw16O31Xjtv0JgoihEriMXgIPYGHLk19wxW
- 6DFi1AWPrfCHs9hLyzuibbUkV2PIZuAgOxepQ/brS3d6j4Nke/F95OHdI
- rBtHWjLvQ33/jTH5+S/KFZ2l+nN+W12yN5rXO6ZHvmquXJGTxCZRofVg9
- udBA6XEeWsXF3XTy4ie6GbpvxL3kgOeSqEZykSEiioqRhywDkgvxLIXz8
- Ob/SBXcmeX/GQqxNC37hyEqZIL2br4sDVnRbwQ14JAB71Wo1G8RYFe86o
- Q77hIlgFurHTS5aDo7NApuF/C3nyzY7fCIF8gwCUcrE/xOd5LrePJCEpq g==;
-X-CSE-ConnectionGUID: HplXAgieQ1W5PeGmivtrnQ==
-X-CSE-MsgGUID: ilfNkixmQhG2qWDRMF8o9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="62673642"
-X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="62673642"
+ bh=1Qw/ufFaFlA7K5R0eJXMaTNFPzfulYuQsUr0fAvGOmE=;
+ b=PEQYq5kztuM2dnQecuS5hSAY8Uu1ciHBtpGo0cuo547oPcipclOxymmf
+ lTmxcgdwPXDXu7SsW8CDjzzJQdOySEkMZrmLkedPuKXfu69x3G7d1/IWh
+ U2nvOm1CwGO+7onZYQFmQOow7/bINi8UoKCWMwQKxoikeL7bvwKCu0ZHe
+ caq/76uSKve8uPWgA4Si37zGf/TgLk35vK70gbXQ85j5mfB9Bm5arLd8m
+ KycUgVCFtneRMU9ZUCUgg1p6itT+Ck7gzs9u2LZD0O77xeOrx1zxEIKHd
+ ffsz3EKEfoZR/V88lusg1P33QgNCwhmTt4oqHjXjL4HTiCGMtwatl2h4j A==;
+X-CSE-ConnectionGUID: ubOdeGgUTkaA3VXPNQQvYA==
+X-CSE-MsgGUID: 4ROm0iyCR4+tUVgcL8RA1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="62673645"
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="62673645"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 03:23:25 -0700
-X-CSE-ConnectionGUID: X+XibjlDTjG3UEAWeCfcIQ==
-X-CSE-MsgGUID: DrXj8aetQvCArYJlYYZ0+A==
+ 13 Jun 2025 03:23:29 -0700
+X-CSE-ConnectionGUID: NGohnlGTRRinNdzkRvo40w==
+X-CSE-MsgGUID: tIBXUnc0Tn+QdxW4GZFGZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="152758953"
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="152758962"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa004.jf.intel.com with ESMTP; 13 Jun 2025 03:23:24 -0700
+ by orviesa004.jf.intel.com with ESMTP; 13 Jun 2025 03:23:28 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Matt Atwood <matthew.s.atwood@intel.com>,
+Cc: intel-gfx@lists.freedesktop.org,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v6 5/9] drm/i915: Set max cdclk for display 30.02
-Date: Fri, 13 Jun 2025 15:52:52 +0530
-Message-Id: <20250613102256.3508267-6-dnyaneshwar.bhadane@intel.com>
+ Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Subject: [PATCH v6 7/9] drm/i915/xe3lpd: Extend DMC load path for display
+Date: Fri, 13 Jun 2025 15:52:54 +0530
+Message-Id: <20250613102256.3508267-8-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250613102256.3508267-1-dnyaneshwar.bhadane@intel.com>
 References: <20250613102256.3508267-1-dnyaneshwar.bhadane@intel.com>
@@ -67,33 +67,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Atwood <matthew.s.atwood@intel.com>
+Display version 30.02 should be treated the same as other Xe3 IP.
+So exteding DMC load path the condition for it.
 
-Display version 30.02 has a lower max cdclk rate than 30.00.
-
-Bspec: 68861
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 38b3094b37d7..1cbb1d526fe8 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3386,7 +3386,9 @@ static int intel_compute_max_dotclk(struct intel_display *display)
-  */
- void intel_update_max_cdclk(struct intel_display *display)
- {
--	if (DISPLAY_VER(display) >= 30) {
-+	if (DISPLAY_VERx100(display) >= 3002) {
-+		display->cdclk.max_cdclk_freq = 480000;
-+	} else if (DISPLAY_VER(display) >= 30) {
- 		display->cdclk.max_cdclk_freq = 691200;
- 	} else if (display->platform.jasperlake || display->platform.elkhartlake) {
- 		if (display->cdclk.hw.ref == 24000)
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index a10e56e7cf31..1295d8245a2e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -179,7 +179,8 @@ static const char *dmc_firmware_default(struct intel_display *display, u32 *size
+ 	const char *fw_path = NULL;
+ 	u32 max_fw_size = 0;
+ 
+-	if (DISPLAY_VERx100(display) == 3000) {
++	if (DISPLAY_VERx100(display) == 3002 ||
++	    DISPLAY_VERx100(display) == 3000) {
+ 		fw_path = XE3LPD_DMC_PATH;
+ 		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
+ 	} else if (DISPLAY_VERx100(display) == 2000) {
 -- 
 2.34.1
 
