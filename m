@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C155C71136
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2E6CC7114A
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 20:00:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E50C110E9BA;
-	Fri, 13 Jun 2025 20:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0710610E9EB;
+	Fri, 13 Jun 2025 20:00:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f07FII0n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WS/ioRio";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEB7510E9A6
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Jun 2025 20:00:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 082A410E9A6
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Jun 2025 20:00:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1749844847; x=1781380847;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hH8XluUgRHrCzqqn9nSQ6B2YNtTtzv4i/si1nhji+bg=;
- b=f07FII0n1dOJbkM8IARa59df63SBdo8uyAfdXgelUrWSmnN9oMTvxP00
- 81RywC5fjrR0B3fRHVi2ePk2VdoU49cAJGiKeCCOqlP9iEMcqtHWPCXWP
- GZ/Z3zubh8XWfhAlBXXEWwKFz/LgVQc4UR0OcW9gjgknTd0x5yF4uWGyh
- p6APatUeyvVrcs0lXIO+ND0MfQBkCbojx0QZsec1+KHfoBkBSr2RQIe/h
- gUyMrLIZFktCOi9uM4LRlAaYiz8oZFzSRhdO4iU99byHjHZxNcAtaimoX
- pIQqpRAos3qxHcrUpdhSJpaSgFJzl+n9O+NupleBXaP6po6hN6OMd2o8Q w==;
-X-CSE-ConnectionGUID: OB7jrwNIRdOUEt/15s+uzg==
-X-CSE-MsgGUID: iCqRiyEOQ6SjEbGYTWxzWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="52054312"
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="52054312"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=UQt2OBApqVAksZQ1VKx6Gjj7rcHvWUmCxen21l/qBdc=;
+ b=WS/ioRiokSBW8QZm9epUskEy01y2+GWwgHTF/47mjKtMGE72fTVtITbw
+ 9U7KUM3A/+cAjmU6ySqNMq3S7bKka50xNLx8ogqVQuhHNjjmd6Wrbu8Q7
+ KF3miR9R1N8swURhL0cCR+bEUyUaw0hRD3c54c4JHs0nspg+QW13hCSar
+ Ks4sSV8jy7Qrwqg1Mwx7T0nFJh53eJGHcf3LnZ4swtGrkUjekB7AhKrHl
+ 0QBito+b2lnATWdNVpZvLJ/HzXwmwy36gk/2R1Mc04TaabO/IUxze2uTK
+ g2nSOXYgy+gtkoGr1Jxn7tQne1JkfAKK0vT+KgYG3MU/fPCX2urnvniFu g==;
+X-CSE-ConnectionGUID: TDG/WydoTmKSQSkeH/xt2g==
+X-CSE-MsgGUID: TwDy1zFJQICJcP4LbTHjjg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="52054314"
+X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="52054314"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 13:00:46 -0700
-X-CSE-ConnectionGUID: ss8Rhv5kR4evwCtu11wKtQ==
-X-CSE-MsgGUID: ymFap617Qhu6elhjV4eqDg==
+ 13 Jun 2025 13:00:47 -0700
+X-CSE-ConnectionGUID: AEHVi0jmS0eRyGX2+C3zLw==
+X-CSE-MsgGUID: dxRGEGNvRle0t2ajNzWVLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="152875667"
+X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="152875675"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jun 2025 13:00:46 -0700
@@ -47,15 +47,16 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Michal Mrozek <michal.mrozek@intel.com>,
  John Harrison <John.C.Harrison@Intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 0/3] drm/xe: Tweak default GuC log level
-Date: Fri, 13 Jun 2025 13:00:36 -0700
-Message-ID: <20250613-guc-log-level-v2-0-cb84a63e49fe@intel.com>
+Subject: [PATCH v2 2/3] drm/xe: Annotate default for guc_log_level param
+Date: Fri, 13 Jun 2025 13:00:38 -0700
+Message-ID: <20250613-guc-log-level-v2-2-cb84a63e49fe@intel.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250613-guc-log-level-v2-0-cb84a63e49fe@intel.com>
+References: <20250613-guc-log-level-v2-0-cb84a63e49fe@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20250612-guc-log-level-79f87ca03396
 X-Mailer: b4 0.15-dev-a7f9c
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,27 +71,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>=0D
----=0D
-Changes in v2:=0D
-- Rework the second patch so the default is kept in a single place and=0D
-  the module description doesn't need to be repeated according to the=0D
-  configuration. Suggested by Michal Wajdeczko.=0D
-- Add a new patch to normalize all module param descriptions.=0D
-- Link to v1: https://lore.kernel.org/r/20250612-guc-log-level-v1-0-51f124a=
-3be6d@intel.com=0D
----=0D
-Lucas De Marchi (3):=0D
-      drm/xe/guc: Default log level to non-verbose=0D
-      drm/xe: Annotate default for guc_log_level param=0D
-      drm/xe: Normalize default param values=0D
-=0D
- drivers/gpu/drm/xe/xe_module.c | 49 +++++++++++++++++++++++++++++---------=
-----=0D
- 1 file changed, 34 insertions(+), 15 deletions(-)=0D
-=0D
-base-commit: 4d016d6e602638e0ebc3895331224e057508c07a=0D
-change-id: 20250612-guc-log-level-79f87ca03396=0D
-=0D
-Lucas De Marchi=0D
-=0D
+Reword the parameter description so it's clear what's the default and
+what are the verbose levels.
+
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_module.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 4809afa7ce3f9..192908fa074cb 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -18,9 +18,15 @@
+ #include "xe_observation.h"
+ #include "xe_sched_job.h"
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++#define DEFAULT_GUC_LOG_LEVEL	3
++#else
++#define DEFAULT_GUC_LOG_LEVEL	1
++#endif
++
+ struct xe_modparam xe_modparam = {
+ 	.probe_display = true,
+-	.guc_log_level = IS_ENABLED(CONFIG_DRM_XE_DEBUG) ? 3 : 1,
++	.guc_log_level = DEFAULT_GUC_LOG_LEVEL,
+ 	.force_probe = CONFIG_DRM_XE_FORCE_PROBE,
+ #ifdef CONFIG_PCI_IOV
+ 	.max_vfs = IS_ENABLED(CONFIG_DRM_XE_DEBUG) ? ~0 : 0,
+@@ -43,7 +49,8 @@ module_param_named(vram_bar_size, xe_modparam.force_vram_bar_size, int, 0600);
+ MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size (in MiB) - <0=disable-resize, 0=max-needed-size[default], >0=force-size");
+ 
+ module_param_named(guc_log_level, xe_modparam.guc_log_level, int, 0600);
+-MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=disable, 1..5=enable with verbosity min..max)");
++MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=disable, 1=normal, 2..5=verbose-levels "
++		 "[default=" __stringify(DEFAULT_GUC_LOG_LEVEL) "])");
+ 
+ module_param_named_unsafe(guc_firmware_path, xe_modparam.guc_firmware_path, charp, 0400);
+ MODULE_PARM_DESC(guc_firmware_path,
+
+-- 
+2.49.0
+
