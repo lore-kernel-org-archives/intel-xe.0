@@ -4,23 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E16D4C71156
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6285EC71136
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 13:45:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0931F10E028;
-	Fri, 13 Jun 2025 13:45:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06C8210E1A0;
+	Fri, 13 Jun 2025 13:45:47 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64DBA10E1F2;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64B2210E1E7;
  Fri, 13 Jun 2025 13:45:44 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [RFC PATCH 0/8] RFC enable IAF support on PVC.
-Date: Fri, 13 Jun 2025 15:45:19 +0200
-Message-ID: <20250613134520.2458175-10-dev@lankhorst.se>
+Subject: [RFC PATCH 3/8] mei: Add IAF mei component
+Date: Fri, 13 Jun 2025 15:45:22 +0200
+Message-ID: <20250613134520.2458175-13-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250613134520.2458175-10-dev@lankhorst.se>
+References: <20250613134520.2458175-10-dev@lankhorst.se>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -36,246 +39,419 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A lot of this code is not new, it's mostly based on previous patches
-by David Kershner.
+From the backport repository.
 
-A lot of this code is lifted from the backport/main branch in
-https://github.com/intel-gpu/intel-gpu-i915-backports
-
-With the recent patch series to enable MTD support, it's possible to
-enable IAF support as well. This series applies on top of the
-v12 MTD series by Alexander Usyskin.
-
-Patch 1 enables the PSC region in MTD.
-Patch 2 adds IAF define to i915-component.
-Patch 3 adds MEI support from the backports repo. 
-Patch 4 is a small modification of the backport of the IAF code.
-Patch 5 enables loading of the fabric code in xe.
-Patch 6 is a UAPI change.
-Patch 7 is a small cleanup, should probably be sent separately.
-Patch 8 enables mapping of DMA-BUF through IAF instead of through PCI-E.
-
-I would like to have a discussion mostly on the last patch, I'm abusing
-the DMA-BUF api, and would like to start a discussion if this way is
-acceptable or not, or potentially ways to handle it.
-
-In particular, I have been using the following (pseudo) code:
-
-xe_dma_buf_map(...)
-{
-	if (dir == DMA_NONE) {
-		/* Only allow DMA_NONE for xe <-> xe */
-		if (attach->importer_ops != &xe_dma_buf_attach_ops)
-			return ERR_PTR(-EOPNOTSUPP);
-
-		iaf = true;
-	}
-}
-
-bo_map_dma_buf(...)
-{
-	if (dmabuf->ops == &xe_dmabuf_ops) {
-		struct xe_device *src = xe_bo_device(gem_to_xe_bo(dmabuf->priv));
-		struct xe_device *dst = xe_bo_device(bo);
-
-		if (iaf_possible(src, dst))
-			sg = dma_buf_map_attachment(attach, DMA_NONE);
-
-		if (!IS_ERR(sg)) {
-			bo->flags |= XE_BO_FLAG_IAF;
-			return sg;
-		}
-
-		/* fallback */
-	}
-
-	return dma_buf_map_attachment(attach, DMA_BIDIRECTIONAL);
-}
-
-With of course:
-bo_unmap_dma_buf(...)
-{
-	dma_buf_unmap_attachment(attach, sg,
-				bo->flags & XE_BO_FLAG_IAF ?
-				DMA_NONE : DMA_BIDIRECTIONAL);
-}
-
-Maarten Lankhorst (8):
-  drm/xe: Add PSC region for PVC
-  include/drm/i915_component: Add IAF type.
-  mei: Add IAF mei component
-  drm/xe: Add fabric code from i915 backport repository.
-  drm/xe: Add support for IAF devices.
-  drm/xe/uapi: Add query ioctl for fabric connectivity
-  drm/xe: Remove unused XE_DEFAULT_GTT_SIZE_MB definition.
-  drm/xe: Allow mapping DMA-BUF buffer objects connected through IAF
-
- drivers/gpu/drm/xe/Kconfig                    |    2 +
- drivers/gpu/drm/xe/Makefile                   |    2 +
- drivers/gpu/drm/xe/fabric/Kconfig             |   53 +
- drivers/gpu/drm/xe/fabric/Makefile            |   42 +
- drivers/gpu/drm/xe/fabric/csr.h               |  497 ++++
- drivers/gpu/drm/xe/fabric/debugfs.c           |  112 +
- drivers/gpu/drm/xe/fabric/debugfs.h           |   26 +
- drivers/gpu/drm/xe/fabric/dev_diag.c          |  723 ++++++
- drivers/gpu/drm/xe/fabric/dev_diag.h          |   15 +
- drivers/gpu/drm/xe/fabric/error.c             | 1490 ++++++++++++
- drivers/gpu/drm/xe/fabric/error.h             |   15 +
- drivers/gpu/drm/xe/fabric/fw.c                | 2089 +++++++++++++++++
- drivers/gpu/drm/xe/fabric/fw.h                |   21 +
- drivers/gpu/drm/xe/fabric/iaf_drv.h           | 1341 +++++++++++
- drivers/gpu/drm/xe/fabric/iaf_netlink.h       |  208 ++
- drivers/gpu/drm/xe/fabric/io.h                |   82 +
- drivers/gpu/drm/xe/fabric/main.c              | 1098 +++++++++
- drivers/gpu/drm/xe/fabric/mbdb.c              | 1173 +++++++++
- drivers/gpu/drm/xe/fabric/mbdb.h              |  171 ++
- drivers/gpu/drm/xe/fabric/mbox.c              |  440 ++++
- drivers/gpu/drm/xe/fabric/mbox.h              |   18 +
- drivers/gpu/drm/xe/fabric/mei_iaf_user.c      |  440 ++++
- drivers/gpu/drm/xe/fabric/mei_iaf_user.h      |   19 +
- drivers/gpu/drm/xe/fabric/netlink.c           | 1532 ++++++++++++
- drivers/gpu/drm/xe/fabric/netlink.h           |   15 +
- drivers/gpu/drm/xe/fabric/ops.c               | 1476 ++++++++++++
- drivers/gpu/drm/xe/fabric/ops.h               |  525 +++++
- drivers/gpu/drm/xe/fabric/parallel.c          |   96 +
- drivers/gpu/drm/xe/fabric/parallel.h          |   33 +
- drivers/gpu/drm/xe/fabric/port.c              | 1884 +++++++++++++++
- drivers/gpu/drm/xe/fabric/port.h              |   41 +
- drivers/gpu/drm/xe/fabric/port_diag.c         | 1892 +++++++++++++++
- drivers/gpu/drm/xe/fabric/port_diag.h         |   19 +
- drivers/gpu/drm/xe/fabric/routing_debug.c     |  484 ++++
- drivers/gpu/drm/xe/fabric/routing_debug.h     |   16 +
- drivers/gpu/drm/xe/fabric/routing_engine.c    |  565 +++++
- drivers/gpu/drm/xe/fabric/routing_engine.h    |   25 +
- drivers/gpu/drm/xe/fabric/routing_event.c     |  249 ++
- drivers/gpu/drm/xe/fabric/routing_event.h     |   19 +
- drivers/gpu/drm/xe/fabric/routing_io.c        |  496 ++++
- drivers/gpu/drm/xe/fabric/routing_io.h        |   15 +
- drivers/gpu/drm/xe/fabric/routing_logic.c     |  934 ++++++++
- drivers/gpu/drm/xe/fabric/routing_logic.h     |   16 +
- drivers/gpu/drm/xe/fabric/routing_p2p.c       |  883 +++++++
- drivers/gpu/drm/xe/fabric/routing_p2p.h       |   22 +
- drivers/gpu/drm/xe/fabric/routing_pause.c     |  282 +++
- drivers/gpu/drm/xe/fabric/routing_pause.h     |   16 +
- drivers/gpu/drm/xe/fabric/routing_topology.c  |  200 ++
- drivers/gpu/drm/xe/fabric/routing_topology.h  |  376 +++
- .../drm/xe/fabric/selftests/routing_mock.c    |  291 +++
- .../drm/xe/fabric/selftests/routing_mock.h    |   22 +
- .../xe/fabric/selftests/routing_selftest.c    |  424 ++++
- .../xe/fabric/selftests/routing_selftest.h    |   12 +
- .../gpu/drm/xe/fabric/selftests/selftest.c    |   73 +
- .../gpu/drm/xe/fabric/selftests/selftest.h    |   34 +
- drivers/gpu/drm/xe/fabric/statedump.c         |  283 +++
- drivers/gpu/drm/xe/fabric/statedump.h         |   32 +
- drivers/gpu/drm/xe/fabric/sysfs.c             |  327 +++
- drivers/gpu/drm/xe/fabric/sysfs.h             |   16 +
- drivers/gpu/drm/xe/fabric/trace.c             |    8 +
- drivers/gpu/drm/xe/fabric/trace.h             |   11 +
- drivers/gpu/drm/xe/fabric/trace_mbx.h         |   99 +
- drivers/gpu/drm/xe/fabric/trace_nl.h          |   54 +
- drivers/gpu/drm/xe/fabric/trace_pm.h          |  102 +
- drivers/gpu/drm/xe/fabric/trace_rt.h          |  110 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   23 +
- drivers/gpu/drm/xe/xe_bo.c                    |   85 +-
- drivers/gpu/drm/xe/xe_bo.h                    |    4 +-
- drivers/gpu/drm/xe/xe_device.c                |   12 +-
- drivers/gpu/drm/xe/xe_device_types.h          |    3 +
- drivers/gpu/drm/xe/xe_dma_buf.c               |   27 +-
- drivers/gpu/drm/xe/xe_dma_buf.h               |    1 +
- drivers/gpu/drm/xe/xe_ggtt.c                  |    4 +-
- drivers/gpu/drm/xe/xe_gt_types.h              |    3 +
- drivers/gpu/drm/xe/xe_iaf.c                   |  460 ++++
- drivers/gpu/drm/xe/xe_iaf.h                   |   82 +
- drivers/gpu/drm/xe/xe_irq.c                   |   16 +-
- drivers/gpu/drm/xe/xe_nvm.c                   |    1 +
- drivers/gpu/drm/xe/xe_pt.c                    |    4 +
- drivers/gpu/drm/xe/xe_query.c                 |   58 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |   23 +-
- drivers/gpu/drm/xe/xe_vm.c                    |    2 +-
- drivers/gpu/drm/xe/xe_vram.c                  |    4 +-
- drivers/misc/mei/Kconfig                      |    1 +
- drivers/misc/mei/Makefile                     |    1 +
- drivers/misc/mei/iaf/Kconfig                  |   12 +
- drivers/misc/mei/iaf/Makefile                 |    7 +
- drivers/misc/mei/iaf/mei_iaf.c                |  292 +++
- drivers/misc/mei/mkhi.h                       |    2 +
- include/drm/intel/i915_component.h            |    1 +
- include/drm/intel/i915_mei_iaf_interface.h    |   25 +
- include/drm/intel/intel_iaf_platform.h        |  145 ++
- include/linux/intel_dg_nvm_aux.h              |    2 +-
- include/uapi/drm/xe_drm.h                     |   32 +
- 94 files changed, 25389 insertions(+), 29 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/fabric/Kconfig
- create mode 100644 drivers/gpu/drm/xe/fabric/Makefile
- create mode 100644 drivers/gpu/drm/xe/fabric/csr.h
- create mode 100644 drivers/gpu/drm/xe/fabric/debugfs.c
- create mode 100644 drivers/gpu/drm/xe/fabric/debugfs.h
- create mode 100644 drivers/gpu/drm/xe/fabric/dev_diag.c
- create mode 100644 drivers/gpu/drm/xe/fabric/dev_diag.h
- create mode 100644 drivers/gpu/drm/xe/fabric/error.c
- create mode 100644 drivers/gpu/drm/xe/fabric/error.h
- create mode 100644 drivers/gpu/drm/xe/fabric/fw.c
- create mode 100644 drivers/gpu/drm/xe/fabric/fw.h
- create mode 100644 drivers/gpu/drm/xe/fabric/iaf_drv.h
- create mode 100644 drivers/gpu/drm/xe/fabric/iaf_netlink.h
- create mode 100644 drivers/gpu/drm/xe/fabric/io.h
- create mode 100644 drivers/gpu/drm/xe/fabric/main.c
- create mode 100644 drivers/gpu/drm/xe/fabric/mbdb.c
- create mode 100644 drivers/gpu/drm/xe/fabric/mbdb.h
- create mode 100644 drivers/gpu/drm/xe/fabric/mbox.c
- create mode 100644 drivers/gpu/drm/xe/fabric/mbox.h
- create mode 100644 drivers/gpu/drm/xe/fabric/mei_iaf_user.c
- create mode 100644 drivers/gpu/drm/xe/fabric/mei_iaf_user.h
- create mode 100644 drivers/gpu/drm/xe/fabric/netlink.c
- create mode 100644 drivers/gpu/drm/xe/fabric/netlink.h
- create mode 100644 drivers/gpu/drm/xe/fabric/ops.c
- create mode 100644 drivers/gpu/drm/xe/fabric/ops.h
- create mode 100644 drivers/gpu/drm/xe/fabric/parallel.c
- create mode 100644 drivers/gpu/drm/xe/fabric/parallel.h
- create mode 100644 drivers/gpu/drm/xe/fabric/port.c
- create mode 100644 drivers/gpu/drm/xe/fabric/port.h
- create mode 100644 drivers/gpu/drm/xe/fabric/port_diag.c
- create mode 100644 drivers/gpu/drm/xe/fabric/port_diag.h
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_debug.c
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_debug.h
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_engine.c
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_engine.h
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_event.c
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_event.h
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_io.c
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_io.h
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_logic.c
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_logic.h
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_p2p.c
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_p2p.h
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_pause.c
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_pause.h
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_topology.c
- create mode 100644 drivers/gpu/drm/xe/fabric/routing_topology.h
- create mode 100644 drivers/gpu/drm/xe/fabric/selftests/routing_mock.c
- create mode 100644 drivers/gpu/drm/xe/fabric/selftests/routing_mock.h
- create mode 100644 drivers/gpu/drm/xe/fabric/selftests/routing_selftest.c
- create mode 100644 drivers/gpu/drm/xe/fabric/selftests/routing_selftest.h
- create mode 100644 drivers/gpu/drm/xe/fabric/selftests/selftest.c
- create mode 100644 drivers/gpu/drm/xe/fabric/selftests/selftest.h
- create mode 100644 drivers/gpu/drm/xe/fabric/statedump.c
- create mode 100644 drivers/gpu/drm/xe/fabric/statedump.h
- create mode 100644 drivers/gpu/drm/xe/fabric/sysfs.c
- create mode 100644 drivers/gpu/drm/xe/fabric/sysfs.h
- create mode 100644 drivers/gpu/drm/xe/fabric/trace.c
- create mode 100644 drivers/gpu/drm/xe/fabric/trace.h
- create mode 100644 drivers/gpu/drm/xe/fabric/trace_mbx.h
- create mode 100644 drivers/gpu/drm/xe/fabric/trace_nl.h
- create mode 100644 drivers/gpu/drm/xe/fabric/trace_pm.h
- create mode 100644 drivers/gpu/drm/xe/fabric/trace_rt.h
- create mode 100644 drivers/gpu/drm/xe/xe_iaf.c
- create mode 100644 drivers/gpu/drm/xe/xe_iaf.h
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/misc/mei/Kconfig                   |   1 +
+ drivers/misc/mei/Makefile                  |   1 +
+ drivers/misc/mei/iaf/Kconfig               |  12 +
+ drivers/misc/mei/iaf/Makefile              |   7 +
+ drivers/misc/mei/iaf/mei_iaf.c             | 292 +++++++++++++++++++++
+ drivers/misc/mei/mkhi.h                    |   2 +
+ include/drm/intel/i915_mei_iaf_interface.h |  25 ++
+ 7 files changed, 340 insertions(+)
  create mode 100644 drivers/misc/mei/iaf/Kconfig
  create mode 100644 drivers/misc/mei/iaf/Makefile
  create mode 100644 drivers/misc/mei/iaf/mei_iaf.c
  create mode 100644 include/drm/intel/i915_mei_iaf_interface.h
- create mode 100644 include/drm/intel/intel_iaf_platform.h
 
+diff --git a/drivers/misc/mei/Kconfig b/drivers/misc/mei/Kconfig
+index 7575fee96cc6a..60b2cfa27ebaa 100644
+--- a/drivers/misc/mei/Kconfig
++++ b/drivers/misc/mei/Kconfig
+@@ -84,5 +84,6 @@ config INTEL_MEI_VSC
+ source "drivers/misc/mei/hdcp/Kconfig"
+ source "drivers/misc/mei/pxp/Kconfig"
+ source "drivers/misc/mei/gsc_proxy/Kconfig"
++source "drivers/misc/mei/iaf/Kconfig"
+ 
+ endif
+diff --git a/drivers/misc/mei/Makefile b/drivers/misc/mei/Makefile
+index 6f9fdbf1a4959..8be787f8ecd41 100644
+--- a/drivers/misc/mei/Makefile
++++ b/drivers/misc/mei/Makefile
+@@ -31,6 +31,7 @@ CFLAGS_mei-trace.o = -I$(src)
+ obj-$(CONFIG_INTEL_MEI_HDCP) += hdcp/
+ obj-$(CONFIG_INTEL_MEI_PXP) += pxp/
+ obj-$(CONFIG_INTEL_MEI_GSC_PROXY) += gsc_proxy/
++obj-$(CONFIG_INTEL_MEI_IAF) += iaf/
+ 
+ obj-$(CONFIG_INTEL_MEI_VSC_HW) += mei-vsc-hw.o
+ mei-vsc-hw-y := vsc-tp.o
+diff --git a/drivers/misc/mei/iaf/Kconfig b/drivers/misc/mei/iaf/Kconfig
+new file mode 100644
+index 0000000000000..4d131df6cf79f
+--- /dev/null
++++ b/drivers/misc/mei/iaf/Kconfig
+@@ -0,0 +1,12 @@
++# SPDX-License-Identifier: GPL-2.0
++# Copyright (c) 2020-2021, Intel Corporation. All rights reserved.
++#
++config INTEL_MEI_IAF
++	tristate "Intel Accelerator Fabric services of ME Interface"
++	depends on m
++	select INTEL_MEI_ME
++	depends on DRM_XE
++	help
++	  MEI Support for IAF Services on Intel graphics card.
++
++	  Enables the ME FW services required for IAF support.
+diff --git a/drivers/misc/mei/iaf/Makefile b/drivers/misc/mei/iaf/Makefile
+new file mode 100644
+index 0000000000000..1130cbc9c0ccb
+--- /dev/null
++++ b/drivers/misc/mei/iaf/Makefile
+@@ -0,0 +1,7 @@
++# SPDX-License-Identifier: GPL-2.0
++#
++# Copyright (c) 2020-2021, Intel Corporation. All rights reserved.
++#
++# Makefile - IAF client driver for Intel MEI Bus Driver.
++
++obj-$(CONFIG_INTEL_MEI_IAF) += mei_iaf.o
+diff --git a/drivers/misc/mei/iaf/mei_iaf.c b/drivers/misc/mei/iaf/mei_iaf.c
+new file mode 100644
+index 0000000000000..ad138ffe2b663
+--- /dev/null
++++ b/drivers/misc/mei/iaf/mei_iaf.c
+@@ -0,0 +1,292 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright © 2020-2021 Intel Corporation
++ */
++
++/**
++ * DOC: MEI_IAF Client Driver
++ *
++ * The IAF (Intel Accelerator Fabric) component driver acts as an interface
++ * between IAF i915 driver and GSC. The only api this interface provides is
++ * the 'commit svn' call.
++ */
++
++#include <linux/module.h>
++#include <linux/slab.h>
++#include <linux/uuid.h>
++#include <linux/mei_cl_bus.h>
++#include <linux/component.h>
++#include <drm/drm_connector.h>
++#include <drm/intel/i915_component.h>
++#include <drm/intel/i915_mei_iaf_interface.h>
++
++#include "../mkhi.h"
++
++#define MCA_ARBSVN_COMMIT_COMMAND_ID 0x1B
++
++enum arbsvn_nvar_usage {
++	ARBSVN_NVAR_USAGE_FW_MIN_VER = 0,
++	ARBSVN_NVAR_USAGE_MAX
++};
++
++struct mca_arbsvn_commit_req {
++	struct mkhi_msg_hdr mkhi_header;
++	u8                  usage_id;
++	u8                  reserved0;
++	u16                 reserved1;
++} __packed;
++
++struct mca_arbsvn_commit_resp {
++	struct mkhi_msg_hdr mkhi_header;
++};
++
++#define MCA_OK               0x0  /* on successful commit */
++#define MCA_INVALID_INPUT    0xb  /* if usage id is invalid */
++/* if disabled in the file or any other error (generic, reading or writing file) */
++#define MCA_ARB_SVN_DISABLED 0x20
++/* SVN was not updated, same value */
++#define MCA_ARB_SVN_SAME     0x28
++/* SVN was not updated, older value */
++#define MCA_ARB_SVN_SMALLER  0x29
++
++static int get_error_code(const struct device *dev, u8 result)
++{
++	int ret;
++
++	switch (result) {
++	case MCA_OK:
++		ret = 0;
++		break;
++	case MCA_ARB_SVN_DISABLED:
++		dev_dbg(dev, "Arb Svn disabled (error code 0x%x)\n",
++			MCA_ARB_SVN_DISABLED);
++		ret = -ENOENT;
++	break;
++	case MCA_INVALID_INPUT:
++		dev_err(dev, "Wrong usage id(error code 0x%x)\n",
++			MCA_INVALID_INPUT);
++		ret = -EINVAL;
++	break;
++	case MCA_ARB_SVN_SAME:
++		dev_dbg(dev, "SVN was not updated, same value(error code 0x%x)\n",
++			MCA_ARB_SVN_SAME);
++		ret = -EACCES;
++	break;
++	case MCA_ARB_SVN_SMALLER:
++		dev_dbg(dev, "SVN was not updated, older value(error code 0x%x)\n",
++			MCA_ARB_SVN_SMALLER);
++		ret = -EBADF;
++	break;
++	default:
++		dev_err(dev, "Unknown error code 0x%x\n", result);
++		ret = -EIO;
++	}
++
++	return ret;
++}
++
++static int mei_iaf_check_response(const struct device *dev,
++				  struct mkhi_msg_hdr *hdr)
++{
++	if (hdr->group_id != MCHI_GROUP_ID) {
++		dev_err(dev, "Mismatch group id: 0x%x instead of 0x%x\n",
++			hdr->group_id, MCHI_GROUP_ID);
++		return -EINVAL;
++	}
++
++	if (hdr->command != (MCA_ARBSVN_COMMIT_COMMAND_ID | 0x80)) {
++		dev_err(dev, "Mismatch command: 0x%x instead of 0x%x\n",
++			hdr->command, MCA_ARBSVN_COMMIT_COMMAND_ID | 0x80);
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++/**
++ * mei_iaf_commit_svn() - Commits current SVN.
++ * @dev: device corresponding to the mei_cl_device
++ * Return: 0 on Success
++ * *  -EINVAL : Invalid usage id parameter
++ * *  -ENOENT : ARB SVN is disabled in the file or any other error
++ *             (generic, reading or writing file)
++ * *  -EIO    : Unknown I/O error
++ */
++static int mei_iaf_commit_svn(const struct device *dev)
++{
++	struct mei_cl_device *cldev;
++	struct mca_arbsvn_commit_req commit_req = { };
++	struct mca_arbsvn_commit_resp commit_resp = { };
++	int ret;
++
++	dev_dbg(dev, "in %s\n", __func__);
++
++	if (!dev)
++		return -EINVAL;
++
++	cldev = to_mei_cl_device(dev);
++
++	dev_dbg(dev, "after to_mei_cl_device cldev %p\n", cldev);
++
++	ret = mei_cldev_enable(cldev);
++	if (ret < 0) {
++		dev_dbg(dev, "mei_cldev_enable Failed. %d\n", ret);
++		return -EBUSY;
++	}
++
++	dev_dbg(dev, "after mei_cldev_enable, ret=%d\n", ret);
++	commit_req.mkhi_header.group_id = MCHI_GROUP_ID;
++	commit_req.mkhi_header.command = MCA_ARBSVN_COMMIT_COMMAND_ID;
++	commit_req.usage_id = ARBSVN_NVAR_USAGE_FW_MIN_VER;
++
++	ret = mei_cldev_send(cldev, (u8 *)&commit_req, sizeof(commit_req));
++	if (ret < 0) {
++		dev_err(dev, "mei_cldev_send failed. %d\n", ret);
++		goto end;
++	}
++	dev_dbg(dev, "after send, ret=%d\n", ret);
++	print_hex_dump_debug("sent svn commit message: ", DUMP_PREFIX_OFFSET,
++			     16, 1, (u8 *)&commit_req, ret, false);
++
++	ret = mei_cldev_recv(cldev, (u8 *)&commit_resp, sizeof(commit_resp));
++	if (ret < 0) {
++		dev_err(dev, "mei_cldev_recv failed. %d\n", ret);
++		goto end;
++	}
++	dev_dbg(dev, "after recv, ret=%d\n", ret);
++	print_hex_dump_debug("mei_iaf_commit_response ", DUMP_PREFIX_OFFSET,
++			     16, 1, (u8 *)&commit_resp, ret, false);
++
++	ret = mei_iaf_check_response(dev, &commit_resp.mkhi_header);
++	if (ret) {
++		dev_err(dev, "bad result response from the firmware: 0x%x\n",
++			*(uint32_t *)&commit_resp.mkhi_header);
++		goto end;
++	}
++	dev_dbg(dev, "after check_response\n");
++	ret = get_error_code(dev, commit_resp.mkhi_header.result);
++
++end:
++	dev_dbg(dev, "returning with %d\n", ret);
++	mei_cldev_disable(cldev);
++	return ret;
++}
++
++static const struct i915_iaf_component_ops mei_iaf_ops = {
++	.owner = THIS_MODULE,
++	.commit_svn = mei_iaf_commit_svn,
++};
++
++static int mei_component_master_bind(struct device *dev)
++{
++	int ret;
++
++	dev_dbg(dev, "mei_iaf_ops addr %p\n", &mei_iaf_ops);
++
++	ret = component_bind_all(dev, (void *)&mei_iaf_ops);
++	if (ret < 0)
++		return ret;
++
++	return 0;
++}
++
++static void mei_component_master_unbind(struct device *dev)
++{
++	dev_dbg(dev, "in %s\n", __func__);
++	component_unbind_all(dev, (void *)&mei_iaf_ops);
++}
++
++static const struct component_master_ops mei_component_master_ops = {
++	.bind = mei_component_master_bind,
++	.unbind = mei_component_master_unbind,
++};
++
++/**
++ * mei_iaf_component_match - compare function for matching mei iaf.
++ *
++ *    The function checks if the driver is i915, the subcomponent is IAF
++ *    and the parent of iaf and the grand parent of mei_if are the same
++ *    i915 device.
++ *
++ * @dev: master device
++ * @subcomponent: subcomponent to match (I915_COMPONENT_IAF)
++ * @data: compare data (mei iaf device)
++ *
++ * Return:
++ * * 1 - if components match
++ * * 0 - otherwise
++ */
++static int mei_iaf_component_match(struct device *dev, int subcomponent,
++				   void *data)
++{
++	struct device *base = data;
++
++	if (subcomponent != I915_COMPONENT_IAF ||
++	    !dev->driver || strcmp(dev->driver->name, "iaf"))
++		return 0;
++
++	base = base->parent;
++	if (!base)
++		return 0;
++
++	base = base->parent;
++	dev = dev->parent;
++
++	return (base && dev && dev == base);
++}
++
++static int mei_iaf_probe(struct mei_cl_device *cldev,
++			 const struct mei_cl_device_id *id)
++{
++	struct component_match *master_match;
++	int ret;
++
++	master_match = NULL;
++	component_match_add_typed(&cldev->dev, &master_match,
++				  mei_iaf_component_match, &cldev->dev);
++	if (IS_ERR_OR_NULL(master_match)) {
++		ret = -ENOMEM;
++		goto err_exit;
++	}
++
++	ret = component_master_add_with_match(&cldev->dev,
++					      &mei_component_master_ops,
++					      master_match);
++	if (ret < 0) {
++		dev_err(&cldev->dev, "Master comp add failed %d\n", ret);
++		goto err_exit;
++	}
++
++	return 0;
++
++err_exit:
++	return ret;
++}
++
++static void mei_iaf_remove(struct mei_cl_device *cldev)
++{
++	component_master_del(&cldev->dev, &mei_component_master_ops);
++}
++
++/* fe2af7a6-ef22-4b45-872f-176b0bbc8b43: MCHIF GUID */
++#define MEI_GUID_MCHIF UUID_LE(0xfe2af7a6, 0xef22, 0x4b45, \
++			       0x87, 0x2f, 0x17, 0x6b, 0x0b, 0xbc, 0x8b, 0x43)
++
++static struct mei_cl_device_id mei_iaf_tbl[] = {
++	{ .uuid = MEI_GUID_MCHIF, .version = MEI_CL_VERSION_ANY },
++	{ }
++};
++MODULE_DEVICE_TABLE(mei, mei_iaf_tbl);
++
++static struct mei_cl_driver mei_iaf_driver = {
++	.id_table = mei_iaf_tbl,
++	.name = KBUILD_MODNAME,
++	.probe = mei_iaf_probe,
++	.remove	= mei_iaf_remove,
++};
++
++module_mei_cl_driver(mei_iaf_driver);
++
++MODULE_AUTHOR("Intel Corporation");
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("MEI IAF");
+diff --git a/drivers/misc/mei/mkhi.h b/drivers/misc/mei/mkhi.h
+index 1473ea4896662..63d9f02e7341f 100644
+--- a/drivers/misc/mei/mkhi.h
++++ b/drivers/misc/mei/mkhi.h
+@@ -16,6 +16,8 @@
+ #define MKHI_GEN_GROUP_ID 0xFF
+ #define MKHI_GEN_GET_FW_VERSION_CMD 0x2
+ 
++#define MCHI_GROUP_ID  0xA
++
+ #define MKHI_GROUP_ID_GFX              0x30
+ #define MKHI_GFX_RESET_WARN_CMD_REQ    0x0
+ #define MKHI_GFX_MEMORY_READY_CMD_REQ  0x1
+diff --git a/include/drm/intel/i915_mei_iaf_interface.h b/include/drm/intel/i915_mei_iaf_interface.h
+new file mode 100644
+index 0000000000000..dde938dd0ea2c
+--- /dev/null
++++ b/include/drm/intel/i915_mei_iaf_interface.h
+@@ -0,0 +1,25 @@
++/* SPDX-License-Identifier: (GPL-2.0+) */
++/*
++ * Copyright © 2020-2021 Intel Corporation
++ */
++
++#ifndef _I915_MEI_IAF_INTERFACE_H_
++#define _I915_MEI_IAF_INTERFACE_H_
++
++#include <linux/device.h>
++
++/**
++ * struct i915_iaf_component_ops- ops for IAF services.
++ * @owner: Module providing the ops
++ * @commit_svn: commits current FW SVN
++ */
++struct i915_iaf_component_ops {
++	/**
++	 * @owner: mei_iaf module
++	 */
++	struct module *owner;
++
++	int (*commit_svn)(const struct device *dev);
++};
++
++#endif /* _I915_MEI_IAF_INTERFACE_H_ */
 -- 
 2.45.2
 
