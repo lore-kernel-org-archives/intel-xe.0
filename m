@@ -4,46 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18130C71159
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 13:59:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDA46C71153
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 13:59:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B717710E9BA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C36210E9B2;
 	Fri, 13 Jun 2025 13:59:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tzmOPzlc";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HTix3quG";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F2C710E250;
- Wed,  4 Jun 2025 02:58:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 436F410E004;
+ Fri, 13 Jun 2025 01:11:32 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 902EF4497D;
- Wed,  4 Jun 2025 02:58:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 60BD9C4CEF8;
- Wed,  4 Jun 2025 02:58:00 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 055BE49B29;
+ Fri, 13 Jun 2025 01:11:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C113DC4CEF4;
+ Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1749005880;
- bh=fYjZRivWn2Fn+oWmzNXQqN7xuN63eEwOfSVBHQpA9yc=;
+ s=k20201202; t=1749777091;
+ bh=+NYye4MNUBzt+8gl9CH+0mAJaYkWbn1vnUcsS4wSDTY=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=tzmOPzlcgHGjZGee02gOEJaooaeiPs6Hq2uTgVrRFWafpP9RNER3zkljIebv6FXa+
- hTZBI6iBod0WT/TKZ706Yrggh57ak3c4oKk3Ht6d4xA4Xi7FhVKoMsEqnSokqq/ZGB
- xXxiqhYOtAavbpQE6eBTb7WH7iNVWnellAU088j5ZL4LXbaUCJkBg6p9pdp+cKw92v
- jasip2nA3BEg7RIFwBqIbO/024UCyV7JlAN5FrRzhGu3LjZMaGkPl8qnQoZc7Iyz+M
- hn5BAxZAUlN4qMgGkl+4zHr3q7VqP5RfbPizwkr0Dl354YkKH8U7Q3jPvAidLEk/Cx
- 35AJUACPOtEGQ==
+ b=HTix3quG9jysMHH/ardx70hcNXVKzPW5rAo2n53Zo5gcttooUXwhpBWAgRzVEpqc8
+ 33j6imvtD49t7cl5UNIHG2wuSS8S1DTtRDnvyYNWq62HmkhuWER4LWGckRkZ8lZzlo
+ nrLKftaHnOxPf6at6z+EUfMh7wcoR82sJccIGhNEA+16kjR6YrYq3ezMSRz9F5I9Dg
+ jtIwb2FBlVT+6CWIK/RHgiAlQMq9px285CKIeo80SxTyqITl1//aMzOMlSUeMluIIX
+ 5qOCAYGgT30L95eGDcpV/5cZyXNAaS0qeM2aGUQKToypEQOS2z7qzD7U5+ZWEUmNUe
+ ZVtU9rGu4W4Nw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
  (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id 55682C61CE7;
- Wed,  4 Jun 2025 02:58:00 +0000 (UTC)
+ by smtp.lore.kernel.org (Postfix) with ESMTP id B67AAC7114C;
+ Fri, 13 Jun 2025 01:11:31 +0000 (UTC)
 From: Mingcong Bai via B4 Relay <devnull+jeffbai.aosc.io@kernel.org>
-Date: Wed, 04 Jun 2025 10:57:59 +0800
-Subject: [PATCH v2 5/5] drm/xe/query: use PAGE_SIZE as the minimum page
- alignment
+Date: Fri, 13 Jun 2025 09:11:31 +0800
+Subject: [PATCH v2 3/5] drm/xe/regs: fix RING_CTL_SIZE(size) calculation
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250604-upstream-xe-non-4k-v2-v2-5-ce7905da7b08@aosc.io>
-References: <20250604-upstream-xe-non-4k-v2-v2-0-ce7905da7b08@aosc.io>
-In-Reply-To: <20250604-upstream-xe-non-4k-v2-v2-0-ce7905da7b08@aosc.io>
+Message-Id: <20250613-upstream-xe-non-4k-v2-v2-3-934f82249f8a@aosc.io>
+References: <20250613-upstream-xe-non-4k-v2-v2-0-934f82249f8a@aosc.io>
+In-Reply-To: <20250613-upstream-xe-non-4k-v2-v2-0-934f82249f8a@aosc.io>
 To: Lucas De Marchi <lucas.demarchi@intel.com>, 
  =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
  Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
@@ -66,11 +65,11 @@ Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Haien Liang <27873200@qq.com>, Jianfeng Liu <liujianfeng1994@gmail.com>, 
  Shirong Liu <lsr1024@qq.com>, Haofeng Wu <s2600cw2@126.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749005878; l=3034;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749777090; l=6855;
  i=jeffbai@aosc.io; s=20250604; h=from:subject:message-id;
- bh=gWL8RWOcZ+T5Uids7FBARXCOIx0PC8BeNHiC9X6HMCs=;
- b=SYj4MCax89jyQea100fjLf4kZD36vhAK0FGEdfap8OjkmEqmBIJy1U6DSXpbD8+A6LNaB4VOa
- HFLJ8fi3pqUCLJqcyuS8rHEFY0aR/tgQFeec9DKh2shI8/4m+0UoZyq
+ bh=3xAgeSx/kQOKvU32cZAgSjMp+7iADD0ecjGV9IQ2UqA=;
+ b=T2CI7xLa2+GyufMpZGOBEUr5PG/VRusl/QURmgjEkWfSVErjRUXfYoofFNSvv27T1+7ypecOL
+ 3UJUBsTTLk8Akiwo6cLwSIWOffAIqIF+PDE4McTNUJHUkmCPqfNhd9+
 X-Developer-Key: i=jeffbai@aosc.io; a=ed25519;
  pk=MJdgklflDF+Xz9x2Lp+ogEnEyk8HRosMGiqLgWbFctY=
 X-Endpoint-Received: by B4 Relay for jeffbai@aosc.io/20250604 with auth_id=422
@@ -93,14 +92,68 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Mingcong Bai <jeffbai@aosc.io>
 
-As this component hooks into userspace API, it should be assumed that it
-will play well with non-4KiB/64KiB pages.
+Similar to the preceding patch for GuC (and with the same references),
+Intel GPUs expects command buffers to align to 4KiB boundaries.
 
-Use `PAGE_SIZE' as the final reference for page alignment instead.
+Current code uses `PAGE_SIZE' as an assumed alignment reference but 4KiB
+kernel page sizes is by no means a guarantee. On 16KiB-paged kernels, this
+causes driver failures during boot up:
+
+[   14.018975] ------------[ cut here ]------------
+[   14.023562] xe 0000:09:00.0: [drm] GT0: Kernel-submitted job timed out
+[   14.030084] WARNING: CPU: 3 PID: 564 at drivers/gpu/drm/xe/xe_guc_submit.c:1181 guc_exec_queue_timedout_job+0x1c0/0xacc [xe]
+[   14.041300] Modules linked in: nf_conntrack_netbios_ns(E) nf_conntrack_broadcast(E) nft_fib_inet(E) nft_fib_ipv4(E) nft_fib_ipv6(E) nft_fib(E) nft_reject_inet(E) nf_reject_ipv4(E) nf_reject_ipv6(E) nft_reject(E) nft_ct(E) nft_chain_nat(E) ip6table_nat(E) ip6table_mangle(E) ip6table_raw(E) ip6table_security(E) iptable_nat(E) nf_nat(E) nf_conntrack(E) nf_defrag_ipv6(E) nf_defrag_ipv4(E) rfkill(E) iptable_mangle(E) iptable_raw(E) iptable_security(E) ip_set(E) nf_tables(E) ip6table_filter(E) ip6_tables(E) iptable_filter(E) snd_hda_codec_conexant(E) snd_hda_codec_generic(E) snd_hda_codec_hdmi(E) nls_iso8859_1(E) snd_hda_intel(E) snd_intel_dspcfg(E) qrtr(E) nls_cp437(E) snd_hda_codec(E) spi_loongson_pci(E) rtc_efi(E) snd_hda_core(E) loongson3_cpufreq(E) spi_loongson_core(E) snd_hwdep(E) snd_pcm(E) snd_timer(E) snd(E) soundcore(E) gpio_loongson_64bit(E) input_leds(E) rtc_loongson(E) i2c_ls2x(E) mousedev(E) sch_fq_codel(E) fuse(E) nfnetlink(E) dmi_sysfs(E) ip_tables(E) x_tables(E) xe(E) d
+ rm_gpuvm(E) drm_buddy(E) gpu_sched(E)
+[   14.041369]  drm_exec(E) drm_suballoc_helper(E) drm_display_helper(E) cec(E) rc_core(E) hid_generic(E) tpm_tis_spi(E) r8169(E) realtek(E) led_class(E) loongson(E) i2c_algo_bit(E) drm_ttm_helper(E) ttm(E) drm_client_lib(E) drm_kms_helper(E) sunrpc(E) i2c_dev(E)
+[   14.153910] CPU: 3 UID: 0 PID: 564 Comm: kworker/u32:2 Tainted: G            E      6.14.0-rc4-aosc-main-gbad70b1cd8b0-dirty #7
+[   14.165325] Tainted: [E]=UNSIGNED_MODULE
+[   14.169220] Hardware name: Loongson Loongson-3A6000-HV-7A2000-1w-V0.1-EVB/Loongson-3A6000-HV-7A2000-1w-EVB-V1.21, BIOS Loongson-UDK2018-V4.0.05756-prestab
+[   14.182970] Workqueue: gt-ordered-wq drm_sched_job_timedout [gpu_sched]
+[   14.189549] pc ffff8000024f3760 ra ffff8000024f3760 tp 900000012f150000 sp 900000012f153ca0
+[   14.197853] a0 0000000000000000 a1 0000000000000000 a2 0000000000000000 a3 0000000000000000
+[   14.206156] a4 0000000000000000 a5 0000000000000000 a6 0000000000000000 a7 0000000000000000
+[   14.214458] t0 0000000000000000 t1 0000000000000000 t2 0000000000000000 t3 0000000000000000
+[   14.222761] t4 0000000000000000 t5 0000000000000000 t6 0000000000000000 t7 0000000000000000
+[   14.231064] t8 0000000000000000 u0 900000000195c0c8 s9 900000012e4dcf48 s0 90000001285f3640
+[   14.239368] s1 90000001004f8000 s2 ffff8000026ec000 s3 0000000000000000 s4 900000012e4dc028
+[   14.247672] s5 90000001009f5e00 s6 000000000000137e s7 0000000000000001 s8 900000012f153ce8
+[   14.255975]    ra: ffff8000024f3760 guc_exec_queue_timedout_job+0x1c0/0xacc [xe]
+[   14.263379]   ERA: ffff8000024f3760 guc_exec_queue_timedout_job+0x1c0/0xacc [xe]
+[   14.270777]  CRMD: 000000b0 (PLV0 -IE -DA +PG DACF=CC DACM=CC -WE)
+[   14.276927]  PRMD: 00000004 (PPLV0 +PIE -PWE)
+[   14.281258]  EUEN: 00000000 (-FPE -SXE -ASXE -BTE)
+[   14.286024]  ECFG: 00071c1d (LIE=0,2-4,10-12 VS=7)
+[   14.290790] ESTAT: 000c0000 [BRK] (IS= ECode=12 EsubCode=0)
+[   14.296329]  PRID: 0014d000 (Loongson-64bit, Loongson-3A6000-HV)
+[   14.302299] CPU: 3 UID: 0 PID: 564 Comm: kworker/u32:2 Tainted: G            E      6.14.0-rc4-aosc-main-gbad70b1cd8b0-dirty #7
+[   14.302302] Tainted: [E]=UNSIGNED_MODULE
+[   14.302302] Hardware name: Loongson Loongson-3A6000-HV-7A2000-1w-V0.1-EVB/Loongson-3A6000-HV-7A2000-1w-EVB-V1.21, BIOS Loongson-UDK2018-V4.0.05756-prestab
+[   14.302304] Workqueue: gt-ordered-wq drm_sched_job_timedout [gpu_sched]
+[   14.302307] Stack : 900000012f153928 d84a6232d48f1ac7 900000000023eb34 900000012f150000
+[   14.302310]         900000012f153900 0000000000000000 900000012f153908 9000000001c31c70
+[   14.302313]         0000000000000000 0000000000000000 0000000000000000 0000000000000000
+[   14.302315]         0000000000000000 d84a6232d48f1ac7 0000000000000000 0000000000000000
+[   14.302318]         0000000000000000 0000000000000000 0000000000000000 0000000000000000
+[   14.302320]         0000000000000000 0000000000000000 00000000072b4000 900000012e4dcf48
+[   14.302323]         9000000001eb8000 0000000000000000 9000000001c31c70 0000000000000004
+[   14.302325]         0000000000000004 0000000000000000 000000000000137e 0000000000000001
+[   14.302328]         900000012f153ce8 9000000001c31c70 9000000000244174 0000555581840b98
+[   14.302331]         00000000000000b0 0000000000000004 0000000000000000 0000000000071c1d
+[   14.302333]         ...
+[   14.302335] Call Trace:
+[   14.302336] [<9000000000244174>] show_stack+0x3c/0x16c
+[   14.302341] [<900000000023eb30>] dump_stack_lvl+0x84/0xe0
+[   14.302346] [<9000000000288208>] __warn+0x8c/0x174
+[   14.302350] [<90000000017c1918>] report_bug+0x1c0/0x22c
+[   14.302354] [<90000000017f66e8>] do_bp+0x280/0x344
+[   14.302359]
+[   14.302360] ---[ end trace 0000000000000000 ]---
+
+Revise calculation of `RING_CTL_SIZE(size)' to use `SZ_4K' to fix the
+aforementioned issue.
 
 Cc: stable@vger.kernel.org
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Fixes: 801989b08aff ("drm/xe/uapi: Make constant comments visible in kernel doc")
+Fixes: b79e8fd954c4 ("drm/xe: Remove dependency on intel_engine_regs.h")
 Tested-by: Mingcong Bai <jeffbai@aosc.io>
 Tested-by: Wenbin Fang <fangwenbin@vip.qq.com>
 Tested-by: Haien Liang <27873200@qq.com>
@@ -113,41 +166,22 @@ Co-developed-by: Shang Yatsen <429839446@qq.com>
 Signed-off-by: Shang Yatsen <429839446@qq.com>
 Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 ---
- drivers/gpu/drm/xe/xe_query.c | 2 +-
- include/uapi/drm/xe_drm.h     | 7 +++++--
- 2 files changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 2dbf4066d86ff225eee002d352e1233c8d9519b9..fe94a7781fa04fb277d5cc8b973b145293d3d066 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -346,7 +346,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
- 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
--		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
-+		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : PAGE_SIZE;
- 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
- 	config->info[DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
- 		xe_exec_queue_device_get_max_priority(xe);
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 9c08738c3b918ee387f51a68ba080057c6d5716f..f92eb8c3317a09baad4550024bb3beea02850010 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -397,8 +397,11 @@ struct drm_xe_query_mem_regions {
-  *      has low latency hint support
-  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR - Flag is set if the
-  *      device has CPU address mirroring support
-- *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
-- *    required by this device, typically SZ_4K or SZ_64K
-+ *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment required
-+ *    by this device and the CPU. The minimum page size for the device is
-+ *    usually SZ_4K or SZ_64K, while for the CPU, it is PAGE_SIZE. This value
-+ *    is calculated by max(min_gpu_page_size, PAGE_SIZE). This alignment is
-+ *    enforced on buffer object allocations and VM binds.
-  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-  *  - %DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY - Value of the highest
-  *    available exec queue priority
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 7ade41e2b7b3b4438a1955eb73e7d929d6bec24c..a7608c50c907e704404d029d909f4b39130d29c7 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -56,7 +56,7 @@
+ #define RING_START(base)			XE_REG((base) + 0x38)
+ 
+ #define RING_CTL(base)				XE_REG((base) + 0x3c)
+-#define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
++#define   RING_CTL_SIZE(size)			((size) - SZ_4K) /* in bytes -> pages */
+ 
+ #define RING_START_UDW(base)			XE_REG((base) + 0x48)
+ 
 
 -- 
 2.49.0
