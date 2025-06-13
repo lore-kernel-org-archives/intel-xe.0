@@ -4,63 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FFFDC71136
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 18:40:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0481C7114A
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 18:44:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9E5F10E99D;
-	Fri, 13 Jun 2025 18:40:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13FE810EA2A;
+	Fri, 13 Jun 2025 18:44:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UbGbWDPJ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="S939APoI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF12610EA33;
- Fri, 13 Jun 2025 18:40:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749840009; x=1781376009;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=qUp7OWoLLHjLEb+MSAH2UyjVIUcUUSZsadGYuLFKVdE=;
- b=UbGbWDPJ2DRCWebK/bU/iIZN17FTnTyepWUlP/u39EiLnIGyo14dYJ/R
- W4ci4zblZ/d1iSi9eAmmizl0o7CY38AZhI9fpiJhX2upU3SbOxp57HTIm
- MDxowb11pwsZ6/HQxlB+zRhKw7wGHP+nhdpIZ5OnBnxDCAB60hCluJZlN
- QLlVJeKbeOIE0h2fPtVWD0GUJIn/NyDXHAiozWM4dQXVKL8HVdfCS9MHk
- ZA1wW/Und+A1vIkjuqWe4tS16leS360d9IEJFHRXe33g5j/fAM6rzWyOh
- R5zl1E8jHJgs4f86YZYIxkj9ok+Bd9al3PSGZXSTSunCJE1h+2QWxTUyM g==;
-X-CSE-ConnectionGUID: 3whocI8oS1yURtROXLIXdQ==
-X-CSE-MsgGUID: Vzt50LffSSOaGC8lbRMcnA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="69642111"
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="69642111"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 11:40:09 -0700
-X-CSE-ConnectionGUID: ZJCfA9P+TLqsa4q7weCvbg==
-X-CSE-MsgGUID: UR7j5CDPQIGe7bZestR+Qw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="153182580"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
- by orviesa005.jf.intel.com with ESMTP; 13 Jun 2025 11:40:06 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uQ9Jr-000CuA-19;
- Fri, 13 Jun 2025 18:40:03 +0000
-Date: Sat, 14 Jun 2025 02:39:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org, airlied@gmail.com,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Subject: Re: [PATCH 3/3] drm/ttm, drm_xe, Implement ttm_lru_walk_for_evict()
- using the guarded LRU iteration
-Message-ID: <202506140238.KCnSVmrU-lkp@intel.com>
-References: <20250613151824.178650-4-thomas.hellstrom@linux.intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60F9110E99D;
+ Fri, 13 Jun 2025 18:44:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=fpk+ehOaQJ0s95miGn1Ez8px3wlt6Oawad6Q66DHOjU=; b=S939APoIsq6qoj2YPu1pqM+TfA
+ xvORIeAUjZevu8HWvOhiNN+gfHlO68WxcMwYMG9zVv0WQ3JprFlbQFVdmzRkl3gObOaVu7lXVaKWm
+ FJHmFunkBWRZ3gYx1t7jyBcscpW/elsnmbf1YGzQ9P1Vtcsbd0QYGg/SbTpkBHboklfCZusprABmi
+ uJPtVVsvfDTe9z7hDEb1gSN/2skHgkuBiorxZ622CI5BrajiaK3yyvGoOV5BHj6MMJtNB+9oovXRy
+ T1M0tnJ5Pd2PtYokTXBT6wYeFT6feledj2PcH3jivhqbDBzS9op1RdmVwwZf+8yG1fYISsVEUH21s
+ /SOk+X6w==;
+Received: from [191.204.192.64] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uQ9Nf-003AD0-P4; Fri, 13 Jun 2025 20:44:00 +0200
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: "Alex Deucher" <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ "Raag Jadav" <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, Xaver Hugl <xaver.hugl@gmail.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v7 1/5] drm: amdgpu: Create amdgpu_vm_print_task_info()
+Date: Fri, 13 Jun 2025 15:43:44 -0300
+Message-ID: <20250613184348.1761020-2-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250613184348.1761020-1-andrealmeid@igalia.com>
+References: <20250613184348.1761020-1-andrealmeid@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250613151824.178650-4-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,114 +66,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+To avoid repetitive code in amdgpu, create a function that prints the
+content of struct amdgpu_task_info.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: André Almeida <andrealmeid@igalia.com>
+---
+v7: new patch
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 4 +---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 9 +++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  | 3 +++
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 5 +----
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c  | 5 +----
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c  | 5 +----
+ drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c   | 4 +---
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c   | 5 +----
+ 8 files changed, 18 insertions(+), 22 deletions(-)
 
-[auto build test WARNING on drm-xe/drm-xe-next]
-[also build test WARNING on linus/master v6.16-rc1 next-20250613]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-ttm-Use-a-struct-for-the-common-part-of-struct-ttm_lru_walk-and-struct-ttm_bo_lru_cursor/20250613-232106
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20250613151824.178650-4-thomas.hellstrom%40linux.intel.com
-patch subject: [PATCH 3/3] drm/ttm, drm_xe, Implement ttm_lru_walk_for_evict() using the guarded LRU iteration
-config: i386-buildonly-randconfig-005-20250613 (https://download.01.org/0day-ci/archive/20250614/202506140238.KCnSVmrU-lkp@intel.com/config)
-compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250614/202506140238.KCnSVmrU-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506140238.KCnSVmrU-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/ttm/ttm_bo_util.c:965:7: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-     965 |                 if (!bo_locked)
-         |                     ^~~~~~~~~~
-   drivers/gpu/drm/ttm/ttm_bo_util.c:975:8: note: uninitialized use occurs here
-     975 |                 if (!ret && bo->resource && bo->resource->mem_type == mem_type)
-         |                      ^~~
-   drivers/gpu/drm/ttm/ttm_bo_util.c:965:3: note: remove the 'if' if its condition is always true
-     965 |                 if (!bo_locked)
-         |                 ^~~~~~~~~~~~~~~
-     966 |                         ret = ttm_lru_walk_ticketlock(arg, bo, &curs->needs_unlock);
-   drivers/gpu/drm/ttm/ttm_bo_util.c:939:20: note: initialize the variable 'ret' to silence this warning
-     939 |                 int mem_type, ret;
-         |                                  ^
-         |                                   = 0
-   1 warning generated.
-
-
-vim +965 drivers/gpu/drm/ttm/ttm_bo_util.c
-
-   926	
-   927	static struct ttm_buffer_object *
-   928	__ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs, bool first)
-   929	{
-   930		spinlock_t *lru_lock = &curs->res_curs.man->bdev->lru_lock;
-   931		struct ttm_resource *res = NULL;
-   932		struct ttm_buffer_object *bo;
-   933		struct ttm_lru_walk_arg *arg = curs->arg;
-   934	
-   935		ttm_bo_lru_cursor_cleanup_bo(curs);
-   936	
-   937		spin_lock(lru_lock);
-   938		for (;;) {
-   939			int mem_type, ret;
-   940			bool bo_locked = false;
-   941	
-   942			if (first) {
-   943				res = ttm_resource_manager_first(&curs->res_curs);
-   944				first = false;
-   945			} else {
-   946				res = ttm_resource_manager_next(&curs->res_curs);
-   947			}
-   948			if (!res)
-   949				break;
-   950	
-   951			bo = res->bo;
-   952			if (ttm_lru_walk_trylock(arg, bo, &curs->needs_unlock))
-   953				bo_locked = true;
-   954			else if (!arg->ticket || arg->ctx->no_wait_gpu || arg->trylock_only)
-   955				continue;
-   956	
-   957			if (!ttm_bo_get_unless_zero(bo)) {
-   958				if (curs->needs_unlock)
-   959					dma_resv_unlock(bo->base.resv);
-   960				continue;
-   961			}
-   962	
-   963			mem_type = res->mem_type;
-   964			spin_unlock(lru_lock);
- > 965			if (!bo_locked)
-   966				ret = ttm_lru_walk_ticketlock(arg, bo, &curs->needs_unlock);
-   967			/*
-   968			 * Note that in between the release of the lru lock and the
-   969			 * ticketlock, the bo may have switched resource,
-   970			 * and also memory type, since the resource may have been
-   971			 * freed and allocated again with a different memory type.
-   972			 * In that case, just skip it.
-   973			 */
-   974			curs->bo = bo;
-   975			if (!ret && bo->resource && bo->resource->mem_type == mem_type)
-   976				return bo;
-   977	
-   978			ttm_bo_lru_cursor_cleanup_bo(curs);
-   979			if (ret)
-   980				return ERR_PTR(ret);
-   981	
-   982			spin_lock(lru_lock);
-   983		}
-   984	
-   985		spin_unlock(lru_lock);
-   986		return res ? bo : NULL;
-   987	}
-   988	
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index 75262ce8db27..3d887428ca2b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -124,9 +124,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+ 
+ 	ti = amdgpu_vm_get_task_info_pasid(ring->adev, job->pasid);
+ 	if (ti) {
+-		dev_err(adev->dev,
+-			"Process information: process %s pid %d thread %s pid %d\n",
+-			ti->process_name, ti->tgid, ti->task_name, ti->pid);
++		amdgpu_vm_print_task_info(adev, ti);
+ 		amdgpu_vm_put_task_info(ti);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 3911c78f8282..f2a0132521c2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -3156,3 +3156,12 @@ bool amdgpu_vm_is_bo_always_valid(struct amdgpu_vm *vm, struct amdgpu_bo *bo)
+ {
+ 	return bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv;
+ }
++
++inline void amdgpu_vm_print_task_info(struct amdgpu_device *adev,
++				      struct amdgpu_task_info *task_info)
++{
++	dev_err(adev->dev,
++		" Process %s pid %d thread %s pid %d\n",
++		task_info->process_name, task_info->tgid,
++		task_info->task_name, task_info->pid);
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+index f3ad687125ad..3862a256b9b8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+@@ -668,4 +668,7 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev,
+ 				 struct amdgpu_vm *vm,
+ 				 struct dma_fence **fence);
+ 
++inline void amdgpu_vm_print_task_info(struct amdgpu_device *adev,
++			       struct amdgpu_task_info *task_info);
++
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index a3e2787501f1..7923f491cf73 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -164,10 +164,7 @@ static int gmc_v10_0_process_interrupt(struct amdgpu_device *adev,
+ 		entry->src_id, entry->ring_id, entry->vmid, entry->pasid);
+ 	task_info = amdgpu_vm_get_task_info_pasid(adev, entry->pasid);
+ 	if (task_info) {
+-		dev_err(adev->dev,
+-			" in process %s pid %d thread %s pid %d\n",
+-			task_info->process_name, task_info->tgid,
+-			task_info->task_name, task_info->pid);
++		amdgpu_vm_print_task_info(adev, task_info);
+ 		amdgpu_vm_put_task_info(task_info);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+index 72211409227b..f15d691e9a20 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+@@ -134,10 +134,7 @@ static int gmc_v11_0_process_interrupt(struct amdgpu_device *adev,
+ 			entry->src_id, entry->ring_id, entry->vmid, entry->pasid);
+ 		task_info = amdgpu_vm_get_task_info_pasid(adev, entry->pasid);
+ 		if (task_info) {
+-			dev_err(adev->dev,
+-				" in process %s pid %d thread %s pid %d)\n",
+-				task_info->process_name, task_info->tgid,
+-				task_info->task_name, task_info->pid);
++			amdgpu_vm_print_task_info(adev, task_info);
+ 			amdgpu_vm_put_task_info(task_info);
+ 		}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+index b645d3e6a6c8..de763105fdfd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+@@ -127,10 +127,7 @@ static int gmc_v12_0_process_interrupt(struct amdgpu_device *adev,
+ 			entry->src_id, entry->ring_id, entry->vmid, entry->pasid);
+ 		task_info = amdgpu_vm_get_task_info_pasid(adev, entry->pasid);
+ 		if (task_info) {
+-			dev_err(adev->dev,
+-				" in process %s pid %d thread %s pid %d)\n",
+-				task_info->process_name, task_info->tgid,
+-				task_info->task_name, task_info->pid);
++			amdgpu_vm_print_task_info(adev, task_info);
+ 			amdgpu_vm_put_task_info(task_info);
+ 		}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+index 99ca08e9bdb5..b45fa0cea9d2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+@@ -1458,9 +1458,7 @@ static int gmc_v8_0_process_interrupt(struct amdgpu_device *adev,
+ 
+ 		task_info = amdgpu_vm_get_task_info_pasid(adev, entry->pasid);
+ 		if (task_info) {
+-			dev_err(adev->dev, " for process %s pid %d thread %s pid %d\n",
+-				task_info->process_name, task_info->tgid,
+-				task_info->task_name, task_info->pid);
++			amdgpu_vm_print_task_info(adev, task_info);
+ 			amdgpu_vm_put_task_info(task_info);
+ 		}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index 282197f4ffb1..78f65aea03f8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -641,10 +641,7 @@ static int gmc_v9_0_process_interrupt(struct amdgpu_device *adev,
+ 
+ 	task_info = amdgpu_vm_get_task_info_pasid(adev, entry->pasid);
+ 	if (task_info) {
+-		dev_err(adev->dev,
+-			" for process %s pid %d thread %s pid %d)\n",
+-			task_info->process_name, task_info->tgid,
+-			task_info->task_name, task_info->pid);
++		amdgpu_vm_print_task_info(adev, task_info);
+ 		amdgpu_vm_put_task_info(task_info);
+ 	}
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.49.0
+
