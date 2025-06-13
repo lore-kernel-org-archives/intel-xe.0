@@ -4,58 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44028C71148
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 15:55:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F11E4C71148
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 15:56:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 068FB10EA2A;
-	Fri, 13 Jun 2025 15:55:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rs2Owyus";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 600FF10EA2A
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Jun 2025 15:55:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749830126; x=1781366126;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=JosDdZFMfnF1LDZicOLoWAQFCO7/VE8sj6iS2r1qh7s=;
- b=Rs2OwyusNeolENKBxTWFzL2IR9Mke8W32NCM9HqUHh9dv6V3+ncXqTN0
- EoGTLNKUFuJsWBg+rCgNCmEemRSy27EqEaE/ogqzx8y87AcbNqil9C6wL
- lBOjlHlGAe7Z0hyvTRMFV/B3W0AFPsuvBo0n/6FX33mlWc1w6ZcF98r1e
- PL5wZCye5i0fRpWPrlvyPgJkaVmyrCjTShnER9FKyk6tHob0QPswokYWs
- uOahisRDPg/zSG18MFbStW2/j6kTL/sUa0AiYtrwVP3okUg4Z9iK+Fi/5
- otL/Zefq8RViVmApjoltv4KsBdwbJNXrzVhMXyEWcZ1cdfIvNLF+iuH6Y g==;
-X-CSE-ConnectionGUID: +VWivduMRtqHuBuWSKyJYg==
-X-CSE-MsgGUID: yIIbCJpDQBqd2YNoQ65KzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="77441413"
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="77441413"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 08:55:26 -0700
-X-CSE-ConnectionGUID: QyuPSJxDS0Wi3YIQQQoy5w==
-X-CSE-MsgGUID: dGcCmTp3Ss6OcnUEfuvO2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="152751007"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa005.fm.intel.com with ESMTP; 13 Jun 2025 08:52:54 -0700
-Received: from [10.245.96.176] (unknown [10.245.96.176])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 2FCE73430D;
- Fri, 13 Jun 2025 16:52:53 +0100 (IST)
-Message-ID: <4bc609fa-168a-4601-864e-1b078ecb89f5@intel.com>
-Date: Fri, 13 Jun 2025 17:52:52 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id B829810EA18;
+	Fri, 13 Jun 2025 15:56:45 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0E3410EA21;
+ Fri, 13 Jun 2025 15:56:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] drm/xe: Export xe_step_name for kunit tests
-To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
-References: <20250613001438.678728-7-matthew.d.roper@intel.com>
- <20250613001438.678728-8-matthew.d.roper@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250613001438.678728-8-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/gpusvm=2C_drm/pagemap?=
+ =?utf-8?q?=2C_drm/xe=3A_Restructure_migration_in_preparation_for_multi-devi?=
+ =?utf-8?q?ce_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Jun 2025 15:56:44 -0000
+Message-ID: <174983020478.77977.17213484987028533174@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250613140219.87479-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250613140219.87479-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,47 +37,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: drm/gpusvm, drm/pagemap, drm/xe: Restructure migration in preparation for multi-device (rev3)
+URL   : https://patchwork.freedesktop.org/series/147902/
+State : warning
 
-On 13.06.2025 02:14, Matt Roper wrote:
-> xe_step_name() is used by xe_assert(), so adding assertions to functions
-> like xe_device_get_gt() will result in
-> 
->   ERROR: modpost: "xe_step_name" [drivers/gpu/drm/xe/tests/xe_test.ko] undefined!
-> 
-> while building the kunit tests.  Export xe_step_name to avoid these
-> build failures when adding assertions.
-> 
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+== Summary ==
 
-this looks exactly as my patch from Feb [1] so it must be good ;)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3dd17d3f125ecdf4c1940f3691ecc96f146eea95
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri Jun 13 16:02:19 2025 +0200
 
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    drm/xe: Implement and use the drm_pagemap populate_mm op
+    
+    Add runtime PM since we might call populate_mm on a foreign device.
+    
+    v3:
+    - Fix a kerneldoc failure (Matt Brost)
+    - Revert the bo type change from device to kernel (Matt Brost)
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 4d016d6e602638e0ebc3895331224e057508c07a drm-intel
+4b5f765f273b drm/gpusvm, drm/pagemap: Move migration functionality to drm_pagemap
+-:944: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#944: 
+new file mode 100644
 
-[1] https://patchwork.freedesktop.org/patch/638883/?series=145269&rev=1
+-:1747: WARNING:CONFIG_DESCRIPTION: please write a help paragraph that fully describes the config symbol with at least 4 lines
+#1747: FILE: drivers/gpu/drm/xe/Kconfig:89:
++config DRM_XE_PAGEMAP
++	bool "Enable device memory pool for SVM"
+ 	depends on DRM_XE_GPUSVM
+ 	select GET_FREE_REGION
+ 	default y
+ 	help
++	  Disable this option only if you don't want to expose local device
++	  Disable this option only if you don't want to expose local device
++	  Disable this option only if you don't want to expose local device
++	  memory for SVM. Will reduce KMD memory footprint when disabled.
++
++	  If in doubut say "Y".
+ 
+ config DRM_XE_FORCE_PROBE
+ 	string "Force probe xe for selected Intel hardware IDs"
 
-> ---
->  drivers/gpu/drm/xe/xe_step.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_step.c b/drivers/gpu/drm/xe/xe_step.c
-> index c77b5c317fa0..10e88f2c9615 100644
-> --- a/drivers/gpu/drm/xe/xe_step.c
-> +++ b/drivers/gpu/drm/xe/xe_step.c
-> @@ -5,6 +5,7 @@
->  
->  #include "xe_step.h"
->  
-> +#include <kunit/visibility.h>
->  #include <linux/bitfield.h>
->  
->  #include "xe_device.h"
-> @@ -255,3 +256,4 @@ const char *xe_step_name(enum xe_step step)
->  		return "**";
->  	}
->  }
-> +EXPORT_SYMBOL_IF_KUNIT(xe_step_name);
+-:2169: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Matthew Brost <matthew.brost@intel.com>'
+
+total: 1 errors, 2 warnings, 0 checks, 2055 lines checked
+006871746ffd drm/pagemap: Add a populate_mm op
+3dd17d3f125e drm/xe: Implement and use the drm_pagemap populate_mm op
+
 
