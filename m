@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42E0CC71136
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 23:16:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F618C71136
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 23:16:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E907510E576;
-	Fri, 13 Jun 2025 23:16:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LIKBYxPq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 693B410E576
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Jun 2025 23:16:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749856594; x=1781392594;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FFrJfzPtojkna9NNjzPqZskdrWuQs8x43SvZeADYfu4=;
- b=LIKBYxPqZ0RQsqnkqnPfESoHDtRWij3et0PlPkGx1Z3BYvBuotlIszW5
- drdmctDEn5R7p9O+91xa7IDDs37C7fvgg8YWbQNNr0gTJxMaKMuHoLm0t
- eq0ltpSl/5Vtzx2M6BOz1FNdYw+/a7ymTmmjF7vQ14JIFV3jfpL7ewfPj
- X/QrwZxfKHPSPiAoiGmyzNWtq/r6zAnhaq9sZXRX823+tZucC7oXi5oYb
- S43h4ISfpxN340twvzLQYfRbHl895IOgW16rFlVy2M8b+/l53Pk46OdZY
- iJqH6czVc8kDsqZLQJDT7oxIsA3WyxE86GNxbHAItpGGOQRRtxQ6B28ta w==;
-X-CSE-ConnectionGUID: 7o6RVQzeT12exNBYkdQhTA==
-X-CSE-MsgGUID: 9+ZwZdUBS/ew88qhKyBuzw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="69524195"
-X-IronPort-AV: E=Sophos;i="6.16,235,1744095600"; d="scan'208";a="69524195"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 16:16:33 -0700
-X-CSE-ConnectionGUID: wpQA9FlXSXangM0HphDLEA==
-X-CSE-MsgGUID: 8W2jKMMUR8Kjjf48VVMz6A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,235,1744095600"; d="scan'208";a="147787678"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 16:16:33 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com
-Subject: [PATCH] drm/xe: Do not kill VM in PT code on -ENODATA
-Date: Fri, 13 Jun 2025 16:18:08 -0700
-Message-Id: <20250613231808.752616-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21F0410E67C;
+	Fri, 13 Jun 2025 23:16:54 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C86C10E67C;
+ Fri, 13 Jun 2025 23:16:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6007887110650178385=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Move_LRC=5FENGINE?=
+ =?utf-8?q?=5FID=5FPPHWSP=5FOFFSET_outside_of_parallel_offset_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Jun 2025 23:16:52 -0000
+Message-ID: <174985661256.79414.11804014786731953529@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250612172850.4170428-1-matthew.brost@intel.com>
+In-Reply-To: <20250612172850.4170428-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,32 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-No need kill on -ENODATA as is this non-fatal error can occur when MMU
-notifiers race with prefetches.
+--===============6007887110650178385==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 09ba0a8f06cd ("drm/xe/svm: Implement prefetch support for SVM ranges")
-Cc: stable@vger.kernel.org
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_pt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index f39d5cc9f411..971e55fd0061 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -2524,7 +2524,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 	kfree(mfence);
- 	kfree(ifence);
- kill_vm_tile1:
--	if (err != -EAGAIN && tile->id)
-+	if (err != -EAGAIN && err != -ENODATA && tile->id)
- 		xe_vm_kill(vops->vm, false);
- 
- 	return ERR_PTR(err);
--- 
-2.34.1
+Series: drm/xe: Move LRC_ENGINE_ID_PPHWSP_OFFSET outside of parallel offset (rev2)
+URL   : https://patchwork.freedesktop.org/series/150182/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3252-4d016d6e602638e0ebc3895331224e057508c07a_BAT -> xe-pw-150182v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3252-4d016d6e602638e0ebc3895331224e057508c07a -> xe-pw-150182v2
+
+  IGT_8411: d5b5d2bb4f8795a98ea58376a128b74f654b7ec1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3252-4d016d6e602638e0ebc3895331224e057508c07a: 4d016d6e602638e0ebc3895331224e057508c07a
+  xe-pw-150182v2: 150182v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150182v2/index.html
+
+--===============6007887110650178385==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Move LRC_ENGINE_ID_PPHWSP_OFFSET outside of parallel offset (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150182/">https://patchwork.freedesktop.org/series/150182/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150182v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150182v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3252-4d016d6e602638e0ebc3895331224e057508c07a_BAT -&gt; xe-pw-150182v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3252-4d016d6e602638e0ebc3895331224e057508c07a -&gt; xe-pw-150182v2</li>
+</ul>
+<p>IGT_8411: d5b5d2bb4f8795a98ea58376a128b74f654b7ec1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3252-4d016d6e602638e0ebc3895331224e057508c07a: 4d016d6e602638e0ebc3895331224e057508c07a<br />
+  xe-pw-150182v2: 150182v2</p>
+
+</body>
+</html>
+
+--===============6007887110650178385==--
