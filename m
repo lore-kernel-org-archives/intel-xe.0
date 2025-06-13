@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 273D0C71136
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 19:21:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE4D9C71136
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 19:21:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDFD510E9A6;
-	Fri, 13 Jun 2025 19:21:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lK/HuFq0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FAB210EA45
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Jun 2025 19:21:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749842468; x=1781378468;
- h=message-id:date:mime-version:subject:from:to:references:
- in-reply-to:content-transfer-encoding;
- bh=VC2k16EruImw332eNcX9VuwGOcA2m0z7jr3VD4Ej0r8=;
- b=lK/HuFq0hUojNNWq/2RnOhZEaQlGHiVc36X+OFLqzBUvwXUQAZi1CLFV
- UfeGV0wF2kqK1hi1cCbofyAcyKF8EVeEUMcsRepd/tuWMLl6TO5+L9NvH
- 7EBIOMkcvqnM2yznelRNHWvsqPBPpJjRAx3Dp0IPKob0tLDuEVEJG7qIa
- 4YokJXMbVxXrPl3FdjD6v18FN+1FtLPJDxF2ET+vQA84f+m8c9ztYuBXR
- spHT9QH+flv9OOE/V9hBcs3kMNa2zp4xIxrL/KNhATb6WcESc6uJNMOkL
- /pYvqK8RbEvEykoL5gwhyFWW1sc/5Ey69cbSYkrkx+5lzkXW8rVfUlsvP A==;
-X-CSE-ConnectionGUID: rIgjEqezTd2fHkvO5IETeA==
-X-CSE-MsgGUID: Q4sqTCzeRsyXhDqfKNuLjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="69509610"
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="69509610"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 12:21:08 -0700
-X-CSE-ConnectionGUID: eB5z5LKOSdWpaRiMCsl59A==
-X-CSE-MsgGUID: G+lqTLsuQTW9WF1ym7KTFw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="153191780"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa005.jf.intel.com with ESMTP; 13 Jun 2025 12:21:07 -0700
-Received: from [10.245.96.176] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.96.176])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 4B77B3432F;
- Fri, 13 Jun 2025 20:21:04 +0100 (IST)
-Message-ID: <380760e0-dc0f-48b6-b20e-d501167e3c83@intel.com>
-Date: Fri, 13 Jun 2025 21:21:03 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D7CE10E527;
+	Fri, 13 Jun 2025 19:21:56 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED96210E4AC;
+ Fri, 13 Jun 2025 19:21:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] drm/xe/tests/pci: Ensure all platforms have a valid
- GT/tile count
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
-References: <20250613001438.678728-7-matthew.d.roper@intel.com>
- <20250613001438.678728-10-matthew.d.roper@intel.com>
- <de11c42c-98b4-4ae8-a91e-ed2f06cc8337@intel.com>
-Content-Language: en-US
-In-Reply-To: <de11c42c-98b4-4ae8-a91e-ed2f06cc8337@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm=3A_Create_a_task_info?=
+ =?utf-8?q?_option_for_wedge_events_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Jun 2025 19:21:55 -0000
+Message-ID: <174984251596.78545.4267947333858614425@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250613184348.1761020-1-andrealmeid@igalia.com>
+In-Reply-To: <20250613184348.1761020-1-andrealmeid@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,70 +36,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: drm: Create a task info option for wedge events (rev2)
+URL   : https://patchwork.freedesktop.org/series/149332/
+State : warning
 
-On 13.06.2025 19:59, Michal Wajdeczko wrote:
-> 
-> 
-> On 13.06.2025 02:14, Matt Roper wrote:
->> Add a simple kunit test to ensure each platform's GT per tile count is
->> non-zero and does not exceed the global XE_MAX_GT_PER_TILE definition.
->>
->> We need to move 'struct xe_subplatform_desc' from the .c file to the
->> types header to ensure it is accessible from the kunit test.
->>
-> 
-> ...
-> 
->> diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
->> index ede46800aff1..5abbf522f7a8 100644
->> --- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
->> +++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
->> @@ -14,13 +14,16 @@
->>  struct xe_device;
->>  struct xe_graphics_desc;
->>  struct xe_media_desc;
->> +struct xe_device_desc;
->>  
->>  typedef int (*xe_device_fn)(struct xe_device *);
-> 
-> note: this is not used, can be dropped/replaced
-> 
->>  typedef void (*xe_graphics_fn)(const struct xe_graphics_desc *);
->>  typedef void (*xe_media_fn)(const struct xe_media_desc *);
->> +typedef void (*xe_platform_fn)(const struct xe_device_desc *);
-> 
-> this is more like 'device_desc' function, so either:
-> 
-> 	xe_device_desc_fn
-> or
-> 	xe_device_fn
-> 
-> since previous typedef is not used anywhere
-> 
->>  
->>  void xe_call_for_each_graphics_ip(xe_graphics_fn xe_fn);
->>  void xe_call_for_each_media_ip(xe_media_fn xe_fn);
->> +void xe_call_for_each_platform(xe_platform_fn xe_fn);
-> 
-> to match above pattern maybe:
-> 
-> 	void xe_call_for_each_device_desc(xe_device_desc_fn fn);
-> 
-> then later we could add really something like:
-> 
-> 	typedef void (*xe_platform_fn)(enum xe_platform platform,
-> 				       enum xe_subplatform subplatform);
-> 
-> 	void xe_call_for_each_platform(xe_platform_fn xe_fn);
-> 
-> which would help us create new tests based on per-platform pattern.
-> 
-> or maybe we should already start converting existing tests that use
-> xe_call_for_each() into parametrized tests that use generators instead?
+== Summary ==
 
-please see https://patchwork.freedesktop.org/series/150254/
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2367d766a594558add76622491dd566aa60ca87a
+Author: André Almeida <andrealmeid@igalia.com>
+Date:   Fri Jun 13 15:43:48 2025 -0300
+
+    drm/amdgpu: Make use of drm_wedge_task_info
+    
+    To notify userspace about which task (if any) made the device get in a
+    wedge state, make use of drm_wedge_task_info parameter, filling it with
+    the task PID and name.
+    
+    Signed-off-by: André Almeida <andrealmeid@igalia.com>
++ /mt/dim checkpatch 4d016d6e602638e0ebc3895331224e057508c07a drm-intel
+cd74716ebc6c drm: amdgpu: Create amdgpu_vm_print_task_info()
+b130b63bd360 drm: Create a task info option for wedge events
+-:86: WARNING:STATIC_CONST_CHAR_ARRAY: char * array declaration might be better as static const
+#86: FILE: drivers/gpu/drm/drm_drv.c:568:
++	char *envp[] = { event_string, NULL, NULL, NULL };
+
+-:94: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'info->pid >= 0'
+#94: FILE: drivers/gpu/drm/drm_drv.c:590:
++	if (info && (info->comm[0] != '\0') && (info->pid >= 0)) {
+
+total: 0 errors, 1 warnings, 1 checks, 102 lines checked
+6b6fcf9cf02c drm/doc: Add a section about "Task information" for the wedge API
+60675e990cc9 drm: amdgpu: Use struct drm_wedge_task_info inside of struct amdgpu_task_info
+-:25: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#25: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1789:
++			seq_printf(m, "pid:%d\tProcess:%s ----------\n", ti->task.pid, ti->process_name);
+
+-:180: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#180: FILE: drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c:363:
++				  KFD_EVENT_FMT_PROCESS(task_info->task.pid,
++				  task_info->task.comm));
+
+total: 0 errors, 1 warnings, 1 checks, 119 lines checked
+2367d766a594 drm/amdgpu: Make use of drm_wedge_task_info
+
 
