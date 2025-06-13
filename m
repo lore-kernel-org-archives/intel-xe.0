@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33830C71148
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 02:18:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B797C61CE8
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 02:18:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BED9110E8BC;
-	Fri, 13 Jun 2025 02:18:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EBC010E097;
+	Fri, 13 Jun 2025 02:18:44 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C48910E82A;
- Fri, 13 Jun 2025 02:18:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D07CC10E097;
+ Fri, 13 Jun 2025 02:18:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_WildCat_Lake_support_?=
- =?utf-8?q?=28rev5=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Add_WildCat_Lake_support_=28re?=
+ =?utf-8?q?v5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Jun 2025 02:18:01 -0000
-Message-ID: <174978108117.74585.2023153273678529604@1538d3639d33>
+Date: Fri, 13 Jun 2025 02:18:42 -0000
+Message-ID: <174978112284.74585.15113856288977929922@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250612203448.2948795-1-dnyaneshwar.bhadane@intel.com>
 In-Reply-To: <20250612203448.2948795-1-dnyaneshwar.bhadane@intel.com>
@@ -44,45 +44,61 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Add WildCat Lake support (rev5)
 URL   : https://patchwork.freedesktop.org/series/149794/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-202708c00696422fd217223bb679a353a5936e23
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 365d6fcb54956110b7a8171af169ce717c6084e6
-Author: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Date:   Fri Jun 13 02:04:48 2025 +0530
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_wa.c:873:
+drivers/gpu/drm/xe/generated/xe_wa_oob.c:104:34: error: unterminated argument list invoking macro "XE_RTP_RULES"
+  104 |         GRAPHICS_VERSION(3003) },
+      |                                  ^
+drivers/gpu/drm/xe/generated/xe_wa_oob.c:101:3: error: ‘XE_RTP_RULES’ undeclared here (not in a function)
+  101 |   XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 3001), OR,
+      |   ^~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_wa.c:874:9: error: expected ‘}’ before ‘{’ token
+  874 |         {}
+      |         ^
+drivers/gpu/drm/xe/generated/xe_wa_oob.c:100:1: note: to match this ‘{’
+  100 | { XE_RTP_NAME("16026508708"),
+      | ^
+../drivers/gpu/drm/xe/xe_wa.c:875:2: error: expected ‘}’ before ‘;’ token
+  875 | };
+      |  ^
+../drivers/gpu/drm/xe/xe_wa.c:872:61: note: to match this ‘{’
+  872 | static __maybe_unused const struct xe_rtp_entry oob_was[] = {
+      |                                                             ^
+../drivers/gpu/drm/xe/xe_wa.c:665:37: warning: ‘lrc_was’ defined but not used [-Wunused-const-variable=]
+  665 | static const struct xe_rtp_entry_sr lrc_was[] = {
+      |                                     ^~~~~~~
+../drivers/gpu/drm/xe/xe_wa.c:308:37: warning: ‘engine_was’ defined but not used [-Wunused-const-variable=]
+  308 | static const struct xe_rtp_entry_sr engine_was[] = {
+      |                                     ^~~~~~~~~~
+../drivers/gpu/drm/xe/xe_wa.c:101:37: warning: ‘gt_was’ defined but not used [-Wunused-const-variable=]
+  101 | static const struct xe_rtp_entry_sr gt_was[] = {
+      |                                     ^~~~~~
+make[7]: *** [../scripts/Makefile.build:287: drivers/gpu/drm/xe/xe_wa.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:554: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:554: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:554: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:554: drivers] Error 2
+make[2]: *** [/kernel/Makefile:2006: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/i915/xe3lpd: Extend WA 16023981245 for display 30.02
-    
-    wa_16023981245 need to be extended for display version 30.02
-    
-    Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-    Reviewed-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-+ /mt/dim checkpatch 07cb1c19ef8056f2f964909c9273b3c45049760e drm-intel
-33f38bff25bb drm/i915/xe3lpd: Add support for display version 30.02
-5b307c4d6600 drm/xe/xe3: Add support for graphics IP version 30.03
-c9643f8dcaf0 drm/xe/xe3: Add support for media IP version 30.02
--:12: WARNING:BAD_SIGN_OFF: Unexpected content after email: 'Matt Roper <matthew.d.roper@intel.com>:q', should be: 'Matt Roper <matthew.d.roper@intel.com> (:q)'
-#12: 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>:q
-
--:64: CHECK:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email comments mismatch: 'From: Matt Roper <matthew.d.roper@intel.com>' != 'Signed-off-by: Matt Roper <matthew.d.roper@intel.com>:q'
-
-total: 0 errors, 1 warnings, 1 checks, 34 lines checked
-134a7633f1da drm/i915/xe3lpd: Update bandwidth parameters for display version 30.02
-102b84f1a9f5 drm/i915: Set max cdclk for display 30.02
-a1bd955a2a94 drm/xe: Add Wildcat Lake device IDs to PTL list
-132bf6c1d8c3 drm/i915/xe3lpd: Extend DMC load path for display version 30.02
-6272062d85bf drm/i915/wcl: C10 phy connected to port A and B
-365d6fcb5495 drm/i915/xe3lpd: Extend WA 16023981245 for display 30.02
+[02:17:58] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[02:18:03] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=25
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
