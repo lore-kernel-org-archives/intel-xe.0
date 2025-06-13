@@ -4,47 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B58C71153
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 12:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33629C71135
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 12:42:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E57B310E25E;
-	Fri, 13 Jun 2025 12:42:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="NuqWg1bV";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8F3D10E1EF
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Jun 2025 12:42:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=SH/ZE8khse9vaFlX/uCjHLn/Ze/x4tWE2zUo+FCVfA8=; b=NuqWg1bVpVcnzvB4ICimUph8ao
- iLvxiKHv5oQ4h73hxk3wqV15KEHn3i1FaV86DCzQsqBHe/NOxgjY0ECoxK/QcdLamr1FMj+97xcM4
- 78Z2D39HlXBOhT6FRVDRGaTn+x9zd43tOqMfdnLvFLNqsQHiH1LVNjrjJv/lKRnO13jpdV/SI4f3A
- 7OY4IUJtVCIVnfg5rei7oXntc/yvU45YGNH2/hAD+FauuW6KGwQhspN/x0YbH3ctStWPwrZmX9pcJ
- JbueBkyAvpRcwSl23rnpPGP7H+5bYQ8WJahdt5Vkw5e7Nb2YLYWc+RcSH0XPD2Z28gHcWb1hSXJuI
- O5kQzqSA==;
-Received: from [81.79.92.254] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uQ3jZ-0030zx-0a; Fri, 13 Jun 2025 14:42:13 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v3 8/8] drm/xe/xelp: Add Wa_18022495364
-Date: Fri, 13 Jun 2025 13:41:59 +0100
-Message-ID: <20250613124159.65636-9-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250613124159.65636-1-tvrtko.ursulin@igalia.com>
-References: <20250613124159.65636-1-tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E36CF10E8DF;
+	Fri, 13 Jun 2025 12:42:28 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE92010E1F3;
+ Fri, 13 Jun 2025 12:42:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5256710653330076670=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe=3A_Move_LRC=5FENGIN?=
+ =?utf-8?q?E=5FID=5FPPHWSP=5FOFFSET_outside_of_parallel_offset?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Jun 2025 12:42:18 -0000
+Message-ID: <174981853890.76844.730270679508816186@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250612172850.4170428-1-matthew.brost@intel.com>
+In-Reply-To: <20250612172850.4170428-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,84 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add Wa_18022495364 as a context workaround batch buffer workaround.
+--===============5256710653330076670==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  3 +++
- drivers/gpu/drm/xe/xe_lrc.c              | 21 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules       |  1 +
- 3 files changed, 25 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 7ade41e2b7b3..f4c3e1187a00 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -111,6 +111,9 @@
- #define   PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS	REG_BIT(14)
- #define   CS_PRIORITY_MEM_READ			REG_BIT(7)
- 
-+#define CS_DEBUG_MODE2(base)			XE_REG((base) + 0xd8, XE_REG_OPTION_MASKED)
-+#define   INSTRUCTION_STATE_CACHE_INVALIDATE	REG_BIT(6)
-+
- #define FF_SLICE_CS_CHICKEN1(base)		XE_REG((base) + 0xe0, XE_REG_OPTION_MASKED)
- #define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 6c3f6fab465a..53ac54f77691 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1021,6 +1021,26 @@ xelp_emit_timestamp_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	return cmd - batch;
- }
- 
-+static ssize_t
-+xelp_invalidate_state_cache(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-+			    u32 *batch, size_t max_len)
-+{
-+	u32 *cmd = batch;
-+
-+	if (!XE_WA(lrc->gt, 18022495364) ||
-+	    hwe->class != XE_ENGINE_CLASS_RENDER)
-+		return 0;
-+
-+	if (xe_gt_WARN_ON(lrc->gt, max_len < 3))
-+		return -ENOSPC;
-+
-+	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
-+	*cmd++ = CS_DEBUG_MODE1(0).addr;
-+	*cmd++ = _MASKED_BIT_ENABLE(INSTRUCTION_STATE_CACHE_INVALIDATE);
-+
-+	return cmd - batch;
-+}
-+
- struct wa_bo_setup {
- 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 			 u32 *batch, size_t max_size);
-@@ -1097,6 +1117,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- {
- 	static const struct wa_bo_setup funcs[] = {
- 		{ .setup = xelp_emit_timestamp_wa },
-+		{ .setup = xelp_invalidate_state_cache },
- 		{ .setup = wa_bb_setup_utilization },
- 	};
- 	unsigned int written = 0;
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index e88398ac3da9..8b7f1495cc78 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -1,5 +1,6 @@
- 1607983814	GRAPHICS_VERSION_RANGE(1200, 1210)
- 16010904313	GRAPHICS_VERSION_RANGE(1200, 1210)
-+18022495364	GRAPHICS_VERSION_RANGE(1200, 1210)
- 22012773006	GRAPHICS_VERSION_RANGE(1200, 1250)
- 14014475959	GRAPHICS_VERSION_RANGE(1270, 1271), GRAPHICS_STEP(A0, B0)
- 		PLATFORM(DG2)
--- 
-2.48.0
+Series: drm/xe: Move LRC_ENGINE_ID_PPHWSP_OFFSET outside of parallel offset
+URL   : https://patchwork.freedesktop.org/series/150182/
+State : failure
 
+== Summary ==
+
+ERROR: The runconfig 'xe-3243-aca8df1835568921d5f108fe9fd16b1d282a74b2_FULL' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150182v1/index.html
+
+--===============5256710653330076670==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Move LRC_ENGINE_ID_PPHWSP_OFFSET outside of parallel offset</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150182/">https://patchwork.freedesktop.org/series/150182/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150182v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150182v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-3243-aca8df1835568921d5f108fe9fd16b1d282a74b2_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============5256710653330076670==--
