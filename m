@@ -4,81 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B407BC71136
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 21:15:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 470DEC71135
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 21:18:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7107E10EA62;
-	Fri, 13 Jun 2025 21:15:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BF7A10EA53;
+	Fri, 13 Jun 2025 21:18:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nhvB1Swl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CZFP5eWT";
 	dkim-atps=neutral
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com
- [209.85.216.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2310010EA62;
- Fri, 13 Jun 2025 21:15:34 +0000 (UTC)
-Received: by mail-pj1-f44.google.com with SMTP id
- 98e67ed59e1d1-31305ee3281so345697a91.0; 
- Fri, 13 Jun 2025 14:15:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749849333; x=1750454133; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=QJeMTJLsPpoZ526pz4G9wjeN6mu4hd8USxzTK4H8xRE=;
- b=nhvB1SwlH3prvAFBpDYrzecGeZw4fjw5qR/iLBDtztDEw/8h4Z4q8GYOraElANXTRA
- kd0DhTTBmR89jhbUk94AhJA7uJHxGwEsl+VbRWb0tZ+eEoDwyuQaAGwvy79rP2XO9mnx
- H/b4T81lzFLbhyBUMAZJLujTUyUMpKj39P2lG2CyVrAiRqmTijsAy1IKHwffsrS3EgEU
- h0QoNSux/cB6mFL2jHB3CgzIq7ZITQIofJfnCH/BPpS/iPGmCA8wNUuH4KtoySO8M9AF
- 1SeCsq44EeN/L00F2RwvoqT6pNAnTacV0Om/5PSAYpoWNqtFB/nAKhKinenOZ9Xuiy+k
- 0elA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749849333; x=1750454133;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=QJeMTJLsPpoZ526pz4G9wjeN6mu4hd8USxzTK4H8xRE=;
- b=i56mfZ0TcRhoZMCSM1I6bKhl6/csDaxo0i6iNXvxIlUEAzEBima0aCfTvQfDarDo2d
- qyPlcj3vwKVpRNFG1EqhZKAbA8Yq3u7nytlFMMGcWPZ8m7qu/jsLHPOrKkL/JmV9g7BV
- CKHoFeOxt6fOXZByXOXNyKzl32aMHNwMNrX4dq9CVUbNQjyLwIMXxOc1UvVdocE5MZ6w
- nmUvvdhgMOANTvepfWc5mAuin64jL/e6mEphX5R2vebPqKz8LpdkAYyQywZRbyAIircn
- RItpqtfCpUc8CSXj6qvVLfrFstedE1YFhU/p2AR30z0rgcGpFJD1Bu+B/YuEWd6hP58d
- BYLQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU+tVtEZxqPTDrURhsflAq+yTk7DdrwLeN1t+6Mtr13u/yJzqzfdkCCrRrRMhmtPlttQHzGs9V1dA4=@lists.freedesktop.org,
- AJvYcCWmxtVn7AwH4FqH30lwn0VZZcpcQP3cF7nbkEqkCn1KpST1NYwCptkHr4jGXR5wq13qaz357JPzFQ/V@lists.freedesktop.org,
- AJvYcCXEzbUu9oLU6ftTPFmLG/HJAbnvTg54asdoatMztUAQAvvNjhZyg5mv9UYTPsd+99+vjR/HrMPx@lists.freedesktop.org,
- AJvYcCXdLDldP/EAuucoOdudpeLX9crHVD6tlvcFemVX8ZT15532Gt1qqOzNEDCApbeu/qP5MC3lfiZvAFcl@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyS4+qVpIcpGwjRveEkFosMZwZ1sQnRBzd9FAKnWcJ/e6hEF9lR
- aiPpMQyeeaiSME9F+GJF3WBzExELGrLB0BCwnMXiY48cmsJ4UhnYxnWyWktFsRPlXCpYMuqlFp/
- wkuHPSuK9Le+NJN3vy50AtVxBlU32Ms0=
-X-Gm-Gg: ASbGncscJhWOmbeiyh3u9BlHSZCp27pqSHmc1Hxdu/+9mJPRLfi7yZlioNlNVgvAJ/e
- eiOl8CqywGopYX8H9SWHejIVWa86CGUiPvaPOlKl0Atu1f2Fhu2azkTy4VlbbLtZbJtCGMDCmno
- lpAZDsyUA5ZgT7qV4X2clepJKpgGIcnq/TvI1PW/Q58LbZ
-X-Google-Smtp-Source: AGHT+IHMT3b9RhDq7DF8jswCxgr7d6mN06Y+VZ295k/pxhswWy2GEgZljwDgGAjGkhSqJ52I/CPau3enKG4QcEJoUN4=
-X-Received: by 2002:a17:90b:1ccc:b0:311:c939:c842 with SMTP id
- 98e67ed59e1d1-313f1de6397mr560326a91.7.1749849333444; Fri, 13 Jun 2025
- 14:15:33 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA0AC10EA4F;
+ Fri, 13 Jun 2025 21:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749849520; x=1781385520;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AQkkWRoLInwDkrCsz63hcBjTjWSwc0T28TMvklYYRac=;
+ b=CZFP5eWTcPcg9LKuBMBZwCJlTsSYbDBKfcV18GMV59CRzehxI/++2p6c
+ gGrgsfdmSkziBXSLMgwU+sGStZ4fHR/EwvBPKVoSPCdxScQlNW7aKBU6E
+ Ee13pbNH8x5i4CrTD7u2TlQkZGziUEXl4mYm+pN0Qdjw0CwdtoetXNPEL
+ HGU5BdYNedmTFTJg13CoHr2Hq/G452GqJvHotN4U1NfBLld84NGvRgFNk
+ q8hFImh0Ni0FoT8sGpeJO74981cITQQ7f+2ZtmWeGiIcWoRZerBr8KXe5
+ CeW/SW87geuPWKP0vdo4mHsC7FeV1i/HhsRVexmFKDPu+KiANALfmKKq/ g==;
+X-CSE-ConnectionGUID: /dTgQG+/TTWR5VPfburpSw==
+X-CSE-MsgGUID: o35iNtuMTT6kmG3Wzw6MSw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="54693657"
+X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="54693657"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2025 14:18:39 -0700
+X-CSE-ConnectionGUID: lUU0g3+BShKfUgbp9pJOew==
+X-CSE-MsgGUID: fF44QwTvRwaL9mgDYdKVCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="153211452"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2025 14:18:39 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: dakr@kernel.org,
+	christian.koenig@amd.com,
+	pstanner@redhat.com
+Subject: [PATCH] drm/sched: Increment job count before swapping tail spsc queue
+Date: Fri, 13 Jun 2025 14:20:13 -0700
+Message-Id: <20250613212013.719312-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20250613184348.1761020-1-andrealmeid@igalia.com>
- <20250613184348.1761020-6-andrealmeid@igalia.com>
-In-Reply-To: <20250613184348.1761020-6-andrealmeid@igalia.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 13 Jun 2025 17:15:22 -0400
-X-Gm-Features: AX0GCFtXwnYDqJL1urtZKmWiIecz2HQesv_xT39ZwFVUqF0ZLp2XZp7Mg7Xy3no
-Message-ID: <CADnq5_PsERbdVyLfQMAMDu4cdy9u7YWXXrT-_GGRJ5Tv55JZdg@mail.gmail.com>
-Subject: Re: [PATCH v7 5/5] drm/amdgpu: Make use of drm_wedge_task_info
-To: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch, 
- Raag Jadav <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, 
- Xaver Hugl <xaver.hugl@gmail.com>, Krzysztof Karas <krzysztof.karas@intel.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,116 +68,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 13, 2025 at 2:44=E2=80=AFPM Andr=C3=A9 Almeida <andrealmeid@iga=
-lia.com> wrote:
->
-> To notify userspace about which task (if any) made the device get in a
-> wedge state, make use of drm_wedge_task_info parameter, filling it with
-> the task PID and name.
->
-> Signed-off-by: Andr=C3=A9 Almeida <andrealmeid@igalia.com>
+A small race exists between spsc_queue_push and the run-job worker, in
+which spsc_queue_push may return not-first while the run-job worker has
+already idled due to the job count being zero. If this race occurs, job
+scheduling stops, leading to hangs while waiting on the job’s DMA
+fences.
 
-If you want the guilty state to be reliably correct for GC, you'll
-need this patch:
-https://lists.freedesktop.org/archives/amd-gfx/2025-June/125715.html
-GC is pipelined, so the hardware will start working on subsequent jobs
-before prior submissions are complete.  This can lead to subsequent
-jobs causing a hang which gets attributed to a prior job.  With that
-patch in place, the driver will force a fence wait between jobs from
-different contexts to ensure they are serialized.
+Seal this race by incrementing the job count before appending to the
+SPSC queue.
 
-Alex
+This race was observed on a drm-tip 6.16-rc1 build with the Xe driver in
+an SVM test case.
 
-> ---
-> v7:
->  - Remove struct cast, now we can use `info =3D &ti->task`
->  - Fix struct lifetime, move amdgpu_vm_put_task_info() after
->    drm_dev_wedged_event() call
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 17 +++++++++++++++--
->  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  8 ++++++--
->  2 files changed, 21 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_device.c
-> index 8a0f36f33f13..67cff53678e1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -6363,8 +6363,21 @@ int amdgpu_device_gpu_recover(struct amdgpu_device=
- *adev,
->
->         atomic_set(&adev->reset_domain->reset_res, r);
->
-> -       if (!r)
-> -               drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVER=
-Y_NONE, NULL);
-> +       if (!r) {
-> +               struct drm_wedge_task_info *info =3D NULL;
-> +               struct amdgpu_task_info *ti =3D NULL;
-> +
-> +               if (job) {
-> +                       ti =3D amdgpu_vm_get_task_info_pasid(adev, job->p=
-asid);
-> +                       if (ti)
-> +                               info =3D &ti->task;
-> +               }
-> +
-> +               drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVER=
-Y_NONE, info);
-> +
-> +               if (ti)
-> +                       amdgpu_vm_put_task_info(ti);
-> +       }
->
->         return r;
->  }
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_job.c
-> index 0c1381b527fe..f061f691f556 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> @@ -89,6 +89,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(stru=
-ct drm_sched_job *s_job)
->  {
->         struct amdgpu_ring *ring =3D to_amdgpu_ring(s_job->sched);
->         struct amdgpu_job *job =3D to_amdgpu_job(s_job);
-> +       struct drm_wedge_task_info *info =3D NULL;
->         struct amdgpu_task_info *ti;
->         struct amdgpu_device *adev =3D ring->adev;
->         int idx;
-> @@ -125,7 +126,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(st=
-ruct drm_sched_job *s_job)
->         ti =3D amdgpu_vm_get_task_info_pasid(ring->adev, job->pasid);
->         if (ti) {
->                 amdgpu_vm_print_task_info(adev, ti);
-> -               amdgpu_vm_put_task_info(ti);
-> +               info =3D &ti->task;
->         }
->
->         /* attempt a per ring reset */
-> @@ -164,13 +165,16 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(=
-struct drm_sched_job *s_job)
->                         if (amdgpu_ring_sched_ready(ring))
->                                 drm_sched_start(&ring->sched, 0);
->                         dev_err(adev->dev, "Ring %s reset succeeded\n", r=
-ing->sched.name);
-> -                       drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE=
-_RECOVERY_NONE, NULL);
-> +                       drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE=
-_RECOVERY_NONE, info);
->                         goto exit;
->                 }
->                 dev_err(adev->dev, "Ring %s reset failure\n", ring->sched=
-.name);
->         }
->         dma_fence_set_error(&s_job->s_fence->finished, -ETIME);
->
-> +       if (ti)
-> +               amdgpu_vm_put_task_info(ti);
-> +
->         if (amdgpu_device_should_recover_gpu(ring->adev)) {
->                 struct amdgpu_reset_context reset_context;
->                 memset(&reset_context, 0, sizeof(reset_context));
-> --
-> 2.49.0
->
+Fixes: 1b1f42d8fde4 ("drm: move amd_gpu_scheduler into common location")
+Fixes: 27105db6c63a ("drm/amdgpu: Add SPSC queue to scheduler.")
+Cc: stable@vger.kernel.org
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ include/drm/spsc_queue.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/include/drm/spsc_queue.h b/include/drm/spsc_queue.h
+index 125f096c88cb..ee9df8cc67b7 100644
+--- a/include/drm/spsc_queue.h
++++ b/include/drm/spsc_queue.h
+@@ -70,9 +70,11 @@ static inline bool spsc_queue_push(struct spsc_queue *queue, struct spsc_node *n
+ 
+ 	preempt_disable();
+ 
++	atomic_inc(&queue->job_count);
++	smp_mb__after_atomic();
++
+ 	tail = (struct spsc_node **)atomic_long_xchg(&queue->tail, (long)&node->next);
+ 	WRITE_ONCE(*tail, node);
+-	atomic_inc(&queue->job_count);
+ 
+ 	/*
+ 	 * In case of first element verify new node will be visible to the consumer
+-- 
+2.34.1
+
