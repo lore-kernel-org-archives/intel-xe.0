@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58805C71148
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 18:19:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FBC1C71148
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 18:25:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11DF310E285;
-	Fri, 13 Jun 2025 18:19:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B15410E8EF;
+	Fri, 13 Jun 2025 18:25:06 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 563CE10E285;
- Fri, 13 Jun 2025 18:19:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8369023552086413888=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C583810E8E4;
+ Fri, 13 Jun 2025 18:25:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/ttm=2C_drm/xe=3A_Consol?=
- =?utf-8?q?idate_the_Buffer_Object_LRU_walks?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_More_missing_XeLP_workaro?=
+ =?utf-8?q?unds_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Jun 2025 18:19:24 -0000
-Message-ID: <174983876434.77919.358590448254458508@1538d3639d33>
+Date: Fri, 13 Jun 2025 18:25:04 -0000
+Message-ID: <174983910479.78545.14314664172554177010@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250613151824.178650-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250613151824.178650-1-thomas.hellstrom@linux.intel.com>
+References: <20250613153558.68350-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250613153558.68350-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,46 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8369023552086413888==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/ttm, drm/xe: Consolidate the Buffer Object LRU walks
-URL   : https://patchwork.freedesktop.org/series/150242/
-State : success
+Series: More missing XeLP workarounds (rev4)
+URL   : https://patchwork.freedesktop.org/series/149097/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3252-4d016d6e602638e0ebc3895331224e057508c07a_BAT -> xe-pw-150242v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b9fcea25e0072d16e3ea3ec5860d42e71cb43e8e
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Fri Jun 13 16:35:58 2025 +0100
 
-Summary
--------
+    drm/xe/xelp: Add Wa_18022495364
+    
+    Add Wa_18022495364 as a context workaround batch buffer workaround.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 4d016d6e602638e0ebc3895331224e057508c07a drm-intel
+848e4b6ec224 drm/xe: Consolidate LRC offset calculations
+-:16: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Brost <matthew.brost@intel.com'
+#16: 
+Cc: Matthew Brost <matthew.brost@intel.com
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3252-4d016d6e602638e0ebc3895331224e057508c07a -> xe-pw-150242v1
-
-  IGT_8411: d5b5d2bb4f8795a98ea58376a128b74f654b7ec1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3252-4d016d6e602638e0ebc3895331224e057508c07a: 4d016d6e602638e0ebc3895331224e057508c07a
-  xe-pw-150242v1: 150242v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150242v1/index.html
-
---===============8369023552086413888==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 1 errors, 0 warnings, 0 checks, 119 lines checked
+1189ef779c49 drm/xe: Generalize wa bb emission code
+2dd1fd606caa drm/xe: Return number of written dwords from workaround batch buffer emission
+ab7f97cd9561 drm/xe: Allow specifying number of extra dwords at the end of wa bb emission
+c37aef22896e drm/xe: Add plumbing for indirect context workarounds
+597d21a4805a drm/xe/xelp: Implement Wa_16010904313
+b9fcea25e007 drm/xe/xelp: Add Wa_18022495364
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm, drm/xe: Consolidate the Buffer Object LRU walks</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150242/">https://patchwork.freedesktop.org/series/150242/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150242v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150242v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3252-4d016d6e602638e0ebc3895331224e057508c07a_BAT -&gt; xe-pw-150242v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3252-4d016d6e602638e0ebc3895331224e057508c07a -&gt; xe-pw-150242v1</li>
-</ul>
-<p>IGT_8411: d5b5d2bb4f8795a98ea58376a128b74f654b7ec1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3252-4d016d6e602638e0ebc3895331224e057508c07a: 4d016d6e602638e0ebc3895331224e057508c07a<br />
-  xe-pw-150242v1: 150242v1</p>
-
-</body>
-</html>
-
---===============8369023552086413888==--
