@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27309C71135
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Jun 2025 23:31:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C5E1C71136
+	for <intel-xe@archiver.kernel.org>; Sat, 14 Jun 2025 00:13:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E210710E576;
-	Fri, 13 Jun 2025 23:31:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jqsb5Nvn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F71310E576
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Jun 2025 23:31:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749857495; x=1781393495;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=iUs8Isc8CCyS4Z0N7iAPKqJD0A97jCBCSqjlQNyoRaA=;
- b=Jqsb5Nvn+qr1I5xVA2bwk+T+OvtycOWQyQeWiJFUUnq2jg3bJNpwkr92
- qZ1MRKn8SgIsJrUzPp/C+nr6vblJ8KRwXWibIwddP5CNO4WG9OBnrEmPv
- 2TWWebriuExnJqtoU+lRWEcj9OWGczd+DXEUmtSues1klb5uYcUX1V/IV
- AU7/p+BsQs5GKI90hodfjJcNyNtrQUAPBBWiex+V3MCX9criraNxuiQZT
- UudDKqEeI5BM955Lq8hyOse4Wltj0mz2DBax4r1rjuxSiU0RsjpDAb0G7
- ZUfgYCTrfRTDXeXTrNddBXjvHc+HM5hymvMy0OgJm+UoGozVUe5/3+/Zb w==;
-X-CSE-ConnectionGUID: 9coBDIDDQZe7g2o33oVXWw==
-X-CSE-MsgGUID: oqcT+kiSTV+4224+ds87wA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="51196287"
-X-IronPort-AV: E=Sophos;i="6.16,235,1744095600"; d="scan'208";a="51196287"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 16:31:31 -0700
-X-CSE-ConnectionGUID: GDDyr6glRTi9CH4KTZO+jg==
-X-CSE-MsgGUID: rbTEnckhSX2EXELDsJFzTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,235,1744095600"; d="scan'208";a="178840676"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
- by orviesa002.jf.intel.com with ESMTP; 13 Jun 2025 16:31:30 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uQDrr-000D5O-0F;
- Fri, 13 Jun 2025 23:31:27 +0000
-Date: Sat, 14 Jun 2025 07:31:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v4 13/20] drm/xe/madvise: Update migration policy based
- on preferred location
-Message-ID: <202506140711.9Ogt4vi6-lkp@intel.com>
-References: <20250613125558.2607665-14-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC9C810E9BB;
+	Sat, 14 Jun 2025 00:13:35 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9583510E4FA;
+ Sat, 14 Jun 2025 00:13:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0167666469783966246=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250613125558.2607665-14-himal.prasad.ghimiray@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Opportunistically_skip_TLB_?=
+ =?utf-8?q?invalidaion_on_unbind?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 14 Jun 2025 00:13:34 -0000
+Message-ID: <174986001460.79414.13850872274433909388@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250613210242.718441-1-matthew.brost@intel.com>
+In-Reply-To: <20250613210242.718441-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,88 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Himal,
+--===============0167666469783966246==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build warnings:
+== Series Details ==
 
-[auto build test WARNING on drm-xe/drm-xe-next]
-[also build test WARNING on next-20250613]
-[cannot apply to linus/master v6.16-rc1]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: Opportunistically skip TLB invalidaion on unbind
+URL   : https://patchwork.freedesktop.org/series/150257/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Himal-Prasad-Ghimiray/Introduce-drm_gpuvm_sm_map_ops_flags-enums-for-sm_map_ops/20250614-003138
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20250613125558.2607665-14-himal.prasad.ghimiray%40intel.com
-patch subject: [PATCH v4 13/20] drm/xe/madvise: Update migration policy based on preferred location
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250614/202506140711.9Ogt4vi6-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250614/202506140711.9Ogt4vi6-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506140711.9Ogt4vi6-lkp@intel.com/
+CI Bug Log - changes from xe-3252-4d016d6e602638e0ebc3895331224e057508c07a_BAT -> xe-pw-150257v1_BAT
+====================================================
 
-All warnings (new ones prefixed by >>):
+Summary
+-------
 
->> drivers/gpu/drm/xe/xe_vm_madvise.c:201:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
-     201 |                 s32 fd = (s32)args->preferred_mem_loc.devmem_fd;
-         |                 ^
-   1 warning generated.
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
 
 
-vim +201 drivers/gpu/drm/xe/xe_vm_madvise.c
+Changes
+-------
 
-   177	
-   178	static int drm_xe_madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madvise *args)
-   179	{
-   180		if (XE_IOCTL_DBG(xe, !args))
-   181			return -EINVAL;
-   182	
-   183		if (XE_IOCTL_DBG(xe, !IS_ALIGNED(args->start, SZ_4K)))
-   184			return -EINVAL;
-   185	
-   186		if (XE_IOCTL_DBG(xe, !IS_ALIGNED(args->range, SZ_4K)))
-   187			return -EINVAL;
-   188	
-   189		if (XE_IOCTL_DBG(xe, args->range < SZ_4K))
-   190			return -EINVAL;
-   191	
-   192		switch (args->type) {
-   193		case DRM_XE_VMA_ATTR_ATOMIC:
-   194			if (XE_IOCTL_DBG(xe, args->atomic.val > DRM_XE_VMA_ATOMIC_CPU))
-   195				return -EINVAL;
-   196			break;
-   197		case DRM_XE_VMA_ATTR_PAT:
-   198			/*TODO: Add valid pat check */
-   199			break;
-   200		case DRM_XE_VMA_ATTR_PREFERRED_LOC:
- > 201			s32 fd = (s32)args->preferred_mem_loc.devmem_fd;
-   202	
-   203			if (XE_IOCTL_DBG(xe, fd < DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM))
-   204				return -EINVAL;
-   205	
-   206			if (XE_IOCTL_DBG(xe, args->preferred_mem_loc.migration_policy >
-   207					     DRM_XE_MIGRATE_ONLY_SYSTEM_PAGES))
-   208				return -EINVAL;
-   209			break;
-   210		default:
-   211			if (XE_IOCTL_DBG(xe, 1))
-   212				return -EINVAL;
-   213		}
-   214	
-   215		if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-   216			return -EINVAL;
-   217	
-   218		return 0;
-   219	}
-   220	
+  No changes found
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
+Build changes
+-------------
+
+  * Linux: xe-3252-4d016d6e602638e0ebc3895331224e057508c07a -> xe-pw-150257v1
+
+  IGT_8411: d5b5d2bb4f8795a98ea58376a128b74f654b7ec1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3252-4d016d6e602638e0ebc3895331224e057508c07a: 4d016d6e602638e0ebc3895331224e057508c07a
+  xe-pw-150257v1: 150257v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150257v1/index.html
+
+--===============0167666469783966246==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Opportunistically skip TLB invalidaion on unbind</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150257/">https://patchwork.freedesktop.org/series/150257/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150257v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150257v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3252-4d016d6e602638e0ebc3895331224e057508c07a_BAT -&gt; xe-pw-150257v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3252-4d016d6e602638e0ebc3895331224e057508c07a -&gt; xe-pw-150257v1</li>
+</ul>
+<p>IGT_8411: d5b5d2bb4f8795a98ea58376a128b74f654b7ec1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3252-4d016d6e602638e0ebc3895331224e057508c07a: 4d016d6e602638e0ebc3895331224e057508c07a<br />
+  xe-pw-150257v1: 150257v1</p>
+
+</body>
+</html>
+
+--===============0167666469783966246==--
