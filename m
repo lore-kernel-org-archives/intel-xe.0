@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42A95C71155
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 14:51:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74DF9C71159
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 14:51:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05E8110E3CB;
-	Mon, 16 Jun 2025 14:51:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37B1F10E3CF;
+	Mon, 16 Jun 2025 14:51:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MiZatB5S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KlvmUKiI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D849B10E3C8
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 14:51:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB7C910E3C8
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 14:51:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750085507; x=1781621507;
+ t=1750085510; x=1781621510;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jVsLK8xX4tdIS6vtOXtYd6V2/O53R1sMj0S+iu9yGFE=;
- b=MiZatB5StzTt1J6jp5W6l195AHQ1164w154eojuMZjovAfOJm3QkPI5b
- uvPUBErQtPtpq7jE0AiugylONKQEJE4yZ7s1YDfLp91RDpycRqbLIjmPy
- Be0mDw8FsmlhhojgwQjD2+lKOqLS9KEu5aFgl3czrxv5Ox01AaoZ4LCs6
- pXcwE22lgc5rNig+aNvE6cvSbWAc5A2haoirprHn3WK/M8VGrbpwAvNSz
- J4m5xDbkEsSXa/uOS9L94DlqyeCYoIlFZQZDuu19e42SxopLfzVmhrDTf
- j/NVVD9Li5Q4CHz6xDwg3rZNrZnYmA9gd1433QGogF4CNtAmR1/Frd3He Q==;
-X-CSE-ConnectionGUID: U8ejYdzeTWu5MW0qWbcgHA==
-X-CSE-MsgGUID: tLLhV9pfTW2E/CAgxJlaEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="77628119"
-X-IronPort-AV: E=Sophos;i="6.16,241,1744095600"; d="scan'208";a="77628119"
+ bh=obBtU8sDKu0tCl3F0FCUGPj6ZoM3K/xE9I9fQUQE778=;
+ b=KlvmUKiIOaeeediscAhFVS+xQnz5cYi7LWN1LtLiUTTKfBRgM2r3Evpe
+ ti58pql8eBTJce3/l6UxxGzm7Wekzs6lAMuVTKr5MwmecEtM3ESfB/QAq
+ UvmrmTgw3IiI/+lIvcWKN3wUolNywt5vvZ448ZVIJZcPkqj6NIS0ST9sF
+ oBZzX6WdUq5QjdIzUEDOGRC7pNqjdeXLof46qWamwo9cirwETCs171sS/
+ 8BGxlyrxVceqgz+6KZrDSjP9gpMhKC3GGTbeNd5e/UJygg+k9oqbIUnqb
+ 6Fp2FsAJJ3fCAKTU7Cs73+YkkmGSpNXtflEt73anoDKBZKMkxjnJEbfPQ A==;
+X-CSE-ConnectionGUID: vBVEk7BeRgGv/ospgZL5vg==
+X-CSE-MsgGUID: nC2xkSOGRueAity6Nq5iWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="77628121"
+X-IronPort-AV: E=Sophos;i="6.16,241,1744095600"; d="scan'208";a="77628121"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 07:51:46 -0700
-X-CSE-ConnectionGUID: IM/xWSp2Rq+oy2RfETLGKQ==
-X-CSE-MsgGUID: q+xr71pfSHicNeRGq9C8nA==
+ 16 Jun 2025 07:51:49 -0700
+X-CSE-ConnectionGUID: IVI5CYQkQsa4zRexIsRcOw==
+X-CSE-MsgGUID: elxcr177T5G2mrK8jSLE6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,241,1744095600"; d="scan'208";a="153248269"
+X-IronPort-AV: E=Sophos;i="6.16,241,1744095600"; d="scan'208";a="153248273"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by orviesa003.jf.intel.com with ESMTP; 16 Jun 2025 07:51:45 -0700
+ by orviesa003.jf.intel.com with ESMTP; 16 Jun 2025 07:51:47 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Tomasz Lis <tomasz.lis@intel.com>
-Subject: [PATCH v7 2/3] drm/xe/vf: Attach and detach CCS copy commands with BO
-Date: Mon, 16 Jun 2025 20:38:04 +0530
-Message-ID: <20250616150805.26780-3-satyanarayana.k.v.p@intel.com>
+ Tomasz Lis <tomasz.lis@intel.com>, Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH v7 3/3] drm/xe/vf: Register CCS read/write contexts with Guc
+Date: Mon, 16 Jun 2025 20:38:05 +0530
+Message-ID: <20250616150805.26780-4-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250616150805.26780-1-satyanarayana.k.v.p@intel.com>
 References: <20250616150805.26780-1-satyanarayana.k.v.p@intel.com>
@@ -71,459 +71,409 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Attach CCS read/write copy commands to BO for old and new mem types as
-NULL -> tt or system -> tt.
-Detach the CCS read/write copy commands from BO while deleting ttm bo
-from xe_ttm_bo_delete_mem_notify().
+Register read write contexts with newly added flags with GUC and
+enable the context immediately after registration.
+Re-register the context with Guc when resuming from runtime suspend as
+soft reset is applied to Guc during xe_pm_runtime_resume().
+Make Ring head=tail while unbinding device to avoid issues with VF pause
+after device is unbinded.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
+Cc: Michał Winiarski <michal.winiarski@intel.com>
 Cc: Tomasz Lis <tomasz.lis@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
 
 V6 -> V7:
-- Created xe_bb_ccs_realloc() to create a single BB instead of maintaining
-a list. (Matthew Brost)
+- Fixed review comments (Matthew Brost).
+- Replaced xe_tile_migrate_exec_queue() with xe_migrate_exec_queue() as per
+review comments (Matthew Brost).
 
 V5 -> V6:
-- Removed dead code from xe_migrate_ccs_rw_copy() function. (Matthew Brost)
+- None
 
 V4 -> V5:
-- Create a list of BBs for the given BO and fixed memory leak while
-detaching BOs. (Matthew Brost).
-- Fixed review comments (Matthew Brost & Matthew Auld).
-- Yet to cleanup xe_migrate_ccs_rw_copy() function.
+- Fixed review comments (Matthew Brost).
 
 V3 -> V4:
 - Fixed issues reported by patchworks.
 
 V2 -> V3:
-- Attach and detach functions check for IS_VF_CCS_READY().
+- Made xe_migrate structure private as per review comments.
+- Created new xe_migrate functions to get lrc and exec_queue.
 
 V1 -> V2:
 - Fixed review comments.
 ---
- drivers/gpu/drm/xe/xe_bb.c                 | 54 ++++++++++++
- drivers/gpu/drm/xe/xe_bb.h                 |  6 ++
- drivers/gpu/drm/xe/xe_bo.c                 | 23 ++++++
- drivers/gpu/drm/xe/xe_bo_types.h           |  3 +
- drivers/gpu/drm/xe/xe_migrate.c            | 95 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_migrate.h            |  6 ++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       | 72 ++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.h       |  3 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |  8 ++
- 9 files changed, 270 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_fwif.h     |  5 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c   | 34 +++++++++-
+ drivers/gpu/drm/xe/xe_guc_submit.h   |  1 +
+ drivers/gpu/drm/xe/xe_migrate.c      | 35 +++++++----
+ drivers/gpu/drm/xe/xe_migrate.h      |  4 +-
+ drivers/gpu/drm/xe/xe_pm.c           |  4 ++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 93 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  1 +
+ drivers/gpu/drm/xe/xe_vm.c           |  6 +-
+ 9 files changed, 163 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index 9570672fce33..9a9c33c7362a 100644
---- a/drivers/gpu/drm/xe/xe_bb.c
-+++ b/drivers/gpu/drm/xe/xe_bb.c
-@@ -60,6 +60,60 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
- 	return ERR_PTR(err);
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index 6f57578b07cb..ca9f999d38d1 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -45,6 +45,11 @@
+ #define GUC_MAX_ENGINE_CLASSES		16
+ #define GUC_MAX_INSTANCES_PER_CLASS	32
+ 
++#define GUC_CONTEXT_NORMAL			0
++#define GUC_CONTEXT_COMPRESSION_SAVE		1
++#define GUC_CONTEXT_COMPRESSION_RESTORE	2
++#define GUC_CONTEXT_COUNT			(GUC_CONTEXT_COMPRESSION_RESTORE + 1)
++
+ /* Helper for context registration H2G */
+ struct guc_ctxt_registration_info {
+ 	u32 flags;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index df7a5a4eec74..f17a63ea06e9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -542,7 +542,7 @@ static void __register_exec_queue(struct xe_guc *guc,
+ 	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
  }
  
-+struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
-+			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
-+{
-+	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_sa_manager *bb_pool;
-+	int err;
-+
-+	if (!bb)
-+		return ERR_PTR(-ENOMEM);
-+
-+	/*
-+	 * We need to allocate space for the requested number of dwords,
-+	 * one additional MI_BATCH_BUFFER_END dword, and additional buffer
-+	 * space to accommodate the platform-specific hardware prefetch
-+	 * requirements.
-+	 */
-+	bb_pool = tile->sriov.vf.ccs[ctx_id].mem.ccs_bb_pool;
-+	bb->bo = xe_sa_bo_new(bb_pool, 4 * (dwords + 1) + bb_prefetch(gt));
-+
-+	if (IS_ERR(bb->bo)) {
-+		err = PTR_ERR(bb->bo);
-+		goto err;
-+	}
-+
-+	bb->cs = xe_sa_bo_cpu_addr(bb->bo);
-+	bb->len = 0;
-+
-+	return bb;
-+err:
-+	kfree(bb);
-+	return ERR_PTR(err);
-+}
-+
-+struct xe_bb *xe_bb_ccs_realloc(struct xe_bb *bb, struct xe_gt *gt,
-+				u32 dwords,
-+				enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
-+{
-+	struct xe_bb *new_bb;
-+
-+	if (!bb)
-+		return xe_bb_ccs_new(gt, dwords, ctx_id);
-+
-+	new_bb = xe_bb_ccs_new(gt, dwords, ctx_id);
-+	if (IS_ERR(new_bb))
-+		return new_bb;
-+
-+	memcpy(new_bb->cs, bb->cs, bb->len * sizeof(u32));
-+	new_bb->len = bb->len;
-+	xe_bb_free(bb, NULL);
-+
-+	return new_bb;
-+}
-+
- static struct xe_sched_job *
- __xe_bb_create_job(struct xe_exec_queue *q, struct xe_bb *bb, u64 *addr)
+-static void register_exec_queue(struct xe_exec_queue *q)
++static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
  {
-diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
-index fafacd73dcc3..7dfe9422dfab 100644
---- a/drivers/gpu/drm/xe/xe_bb.h
-+++ b/drivers/gpu/drm/xe/xe_bb.h
-@@ -13,8 +13,14 @@ struct dma_fence;
- struct xe_gt;
- struct xe_exec_queue;
- struct xe_sched_job;
-+enum xe_sriov_vf_ccs_rw_ctxs;
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	struct xe_device *xe = guc_to_xe(guc);
+@@ -550,6 +550,7 @@ static void register_exec_queue(struct xe_exec_queue *q)
+ 	struct guc_ctxt_registration_info info;
  
- struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 size, bool usm);
-+struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
-+			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id);
-+struct xe_bb *xe_bb_ccs_realloc(struct xe_bb *bb, struct xe_gt *gt,
-+				u32 dwords,
-+				enum xe_sriov_vf_ccs_rw_ctxs ctx_id);
- struct xe_sched_job *xe_bb_create_job(struct xe_exec_queue *q,
- 				      struct xe_bb *bb);
- struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 4e39188a021a..beaf8544bf08 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -31,6 +31,7 @@
- #include "xe_pxp.h"
- #include "xe_res_cursor.h"
- #include "xe_shrinker.h"
-+#include "xe_sriov_vf_ccs.h"
- #include "xe_trace_bo.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
-@@ -947,6 +948,20 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	dma_fence_put(fence);
- 	xe_pm_runtime_put(xe);
+ 	xe_gt_assert(guc_to_gt(guc), !exec_queue_registered(q));
++	xe_gt_assert(guc_to_gt(guc), ctx_type < GUC_CONTEXT_COUNT);
  
-+	/*
-+	 * CCS meta data is migrated from TT -> SMEM. So, let us detach the
-+	 * BBs from BO as it is no longer needed.
-+	 */
-+	if (IS_VF_CCS_BB_VALID(xe, bo) && old_mem_type == XE_PL_TT &&
-+	    new_mem->mem_type == XE_PL_SYSTEM)
-+		xe_sriov_vf_ccs_detach_bo(bo);
+ 	memset(&info, 0, sizeof(info));
+ 	info.context_idx = q->guc->id;
+@@ -559,6 +560,9 @@ static void register_exec_queue(struct xe_exec_queue *q)
+ 	info.hwlrca_hi = upper_32_bits(xe_lrc_descriptor(lrc));
+ 	info.flags = CONTEXT_REGISTRATION_FLAG_KMD;
+ 
++	if (ctx_type != GUC_CONTEXT_NORMAL)
++		info.flags |= BIT(ctx_type);
 +
-+	if (IS_SRIOV_VF(xe) &&
-+	    ((move_lacks_source && new_mem->mem_type == XE_PL_TT) ||
-+	     (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT)) &&
-+	    handle_system_ccs)
-+		ret = xe_sriov_vf_ccs_attach_bo(bo);
-+
- out:
- 	if ((!ttm_bo->resource || ttm_bo->resource->mem_type == XE_PL_SYSTEM) &&
- 	    ttm_bo->ttm) {
-@@ -957,6 +972,9 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		if (timeout < 0)
- 			ret = timeout;
+ 	if (xe_exec_queue_is_parallel(q)) {
+ 		u64 ggtt_addr = xe_lrc_parallel_ggtt_addr(lrc);
+ 		struct iosys_map map = xe_lrc_parallel_map(lrc);
+@@ -761,7 +765,7 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
  
-+		if (IS_VF_CCS_BB_VALID(xe, bo))
-+			xe_sriov_vf_ccs_detach_bo(bo);
-+
- 		xe_tt_unmap_sg(xe, ttm_bo->ttm);
- 	}
- 
-@@ -1483,9 +1501,14 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
- 
- static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
- {
-+	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
-+
- 	if (!xe_bo_is_xe_bo(ttm_bo))
- 		return;
- 
-+	if (IS_VF_CCS_BB_VALID(ttm_to_xe_device(ttm_bo->bdev), bo))
-+		xe_sriov_vf_ccs_detach_bo(bo);
-+
- 	/*
- 	 * Object is idle and about to be destroyed. Release the
- 	 * dma-buf attachment.
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index eb5e83c5f233..642e519fcfd1 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -78,6 +78,9 @@ struct xe_bo {
- 	/** @ccs_cleared */
- 	bool ccs_cleared;
- 
-+	/** @bb_ccs_rw: BB instructions of CCS read/write. Valid only for VF */
-+	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
-+
- 	/**
- 	 * @cpu_caching: CPU caching mode. Currently only used for userspace
- 	 * objects. Exceptions are system memory on DGFX, which is always
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 8f8e9fdfb2a8..6c30b106b817 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -940,6 +940,101 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 	return fence;
+ 	if (!exec_queue_killed_or_banned_or_wedged(q) && !xe_sched_job_is_error(job)) {
+ 		if (!exec_queue_registered(q))
+-			register_exec_queue(q);
++			register_exec_queue(q, GUC_CONTEXT_NORMAL);
+ 		if (!lr)	/* LR jobs are emitted in the exec IOCTL */
+ 			q->ring_ops->emit_job(job);
+ 		submit_exec_queue(q);
+@@ -2366,6 +2370,32 @@ static void guc_exec_queue_print(struct xe_exec_queue *q, struct drm_printer *p)
+ 	xe_guc_exec_queue_snapshot_free(snapshot);
  }
  
 +/**
-+ * xe_migrate_ccs_rw_copy() - Copy content of TTM resources.
-+ * @m: The migration context.
-+ * @src_bo: The buffer object @src is currently bound to.
-+ * @read_write : Creates BB commands for CCS read/write.
++ * xe_guc_register_exec_queue - Register exec queue for a given context type.
++ * @q - Execution queue
++ * @ctx_type - Type of the context
 + *
-+ * Creates batch buffer instructions to copy CCS metadata from CCS pool to
-+ * memory and vice versa.
++ * This function registers the execution queue with the guc. Special context
++ * types like GUC_CONTEXT_COMPRESSION_SAVE and GUC_CONTEXT_COMPRESSION_RESTORE
++ * are only applicable for IGPU and in the VF.
++ * Submits the execution queue to GUC after registering it.
 + *
-+ * This function should only be called for IGPU.
-+ *
-+ * Return: 0 if successful, negative error code on failure.
++ * Returns - None.
 + */
-+int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
-+			   struct xe_bo *src_bo,
-+			   enum xe_sriov_vf_ccs_rw_ctxs read_write)
-+
++void xe_guc_register_exec_queue(struct xe_exec_queue *q, int ctx_type)
 +{
-+	bool src_is_pltt = read_write == XE_SRIOV_VF_CCS_WRITE_CTX;
-+	bool dst_is_pltt = read_write == XE_SRIOV_VF_CCS_READ_CTX;
-+	struct ttm_resource *src = src_bo->ttm.resource;
-+	struct xe_gt *gt = m->tile->primary_gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_res_cursor src_it, ccs_it;
-+	u64 size = src_bo->size;
-+	struct xe_bb *bb = NULL;
-+	u64 src_L0, src_L0_ofs;
-+	u32 batch_size;
-+	u32 src_L0_pt;
-+	int err;
++	struct xe_guc *guc = exec_queue_to_guc(q);
++	struct xe_device *xe = guc_to_xe(guc);
 +
-+	xe_res_first_sg(xe_bo_sg(src_bo), 0, size, &src_it);
++	xe_assert(xe, IS_SRIOV_VF(xe));
++	xe_assert(xe, !IS_DGFX(xe));
++	xe_assert(xe, (ctx_type > GUC_CONTEXT_NORMAL &&
++		       ctx_type < GUC_CONTEXT_COUNT));
 +
-+	xe_res_first_sg(xe_bo_sg(src_bo), xe_bo_ccs_pages_start(src_bo),
-+			PAGE_ALIGN(xe_device_ccs_bytes(xe, size)),
-+			&ccs_it);
++	register_exec_queue(q, ctx_type);
++	enable_scheduling(q);
++}
 +
-+	batch_size = 0;
-+	while (size) {
-+		batch_size += 8; /* arb_clear() + MI_BATCH_BUFFER_END + Flush + NOP */
-+		u32 flush_flags = 0;
-+		u64 ccs_ofs, ccs_size;
-+		u32 ccs_pt;
+ /**
+  * xe_guc_submit_print - GuC Submit Print.
+  * @guc: GuC.
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index 9b71a986c6ca..8f64e799283b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -39,5 +39,6 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ void
+ xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapshot);
+ void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p);
++void xe_guc_register_exec_queue(struct xe_exec_queue *q, int ctx_type);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 6c30b106b817..3e684e1a6208 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -84,19 +84,6 @@ struct xe_migrate {
+  */
+ #define MAX_PTE_PER_SDI 0x1FE
+ 
+-/**
+- * xe_tile_migrate_exec_queue() - Get this tile's migrate exec queue.
+- * @tile: The tile.
+- *
+- * Returns the default migrate exec queue of this tile.
+- *
+- * Return: The default migrate exec queue
+- */
+-struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile)
+-{
+-	return tile->migrate->q;
+-}
+-
+ static void xe_migrate_fini(void *arg)
+ {
+ 	struct xe_migrate *m = arg;
+@@ -1035,6 +1022,28 @@ int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
+ 	return err;
+ }
+ 
++/**
++ * xe_get_migrate_lrc() - Get the LRC from migrate context.
++ * @migrate: Migrate context.
++ *
++ * Return: Pointer to LRC on success, error on failure
++ */
++struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate)
++{
++	return migrate->q->lrc[0];
++}
 +
-+		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-+
-+		src_L0 = xe_migrate_res_sizes(m, &src_it);
-+
-+		batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
-+					      &src_L0_ofs, &src_L0_pt, 0, 0,
-+					      avail_pts);
-+
-+		ccs_size = xe_device_ccs_bytes(xe, src_L0);
-+		batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
-+					      &ccs_pt, 0, avail_pts, avail_pts);
-+		xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
-+
-+		/* Add copy commands size here */
-+		batch_size += EMIT_COPY_CCS_DW;
-+
-+		bb = xe_bb_ccs_realloc(bb, gt, batch_size, read_write);
-+		if (IS_ERR(bb)) {
-+			drm_err(&xe->drm, "BB allocation failed.\n");
-+			err = PTR_ERR(bb);
-+			goto err_ret;
-+		}
-+
-+		emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
-+
-+		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
-+
-+		bb->cs[bb->len++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-+					MI_FLUSH_IMM_DW;
-+		bb->cs[bb->len++] = MI_NOOP;
-+		bb->cs[bb->len++] = MI_NOOP;
-+
-+		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
-+						  src_L0_ofs, dst_is_pltt,
-+						  src_L0, ccs_ofs, true);
-+
-+		bb->cs[bb->len++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-+					MI_FLUSH_IMM_DW | flush_flags;
-+		bb->cs[bb->len++] = MI_NOOP;
-+		bb->cs[bb->len++] = MI_NOOP;
-+
-+		src_bo->bb_ccs[read_write] = bb;
-+
-+		size -= src_L0;
-+	}
-+	return 0;
-+
-+err_ret:
-+	return err;
++/**
++ * xe_get_migrate_exec_queue() - Get the execution queue from migrate context.
++ * @migrate: Migrate context.
++ *
++ * Return: Pointer to execution queue on success, error on failure
++ */
++struct xe_exec_queue *xe_migrate_exec_queue(struct xe_migrate *migrate)
++{
++	return migrate->q;
 +}
 +
  static void emit_clear_link_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
  				 u32 size, u32 pitch)
  {
 diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index fb9839c1bae0..96b0449e7edb 100644
+index 96b0449e7edb..3754d9e6150f 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.h
 +++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -24,6 +24,8 @@ struct xe_vm;
- struct xe_vm_pgtable_update;
- struct xe_vma;
+@@ -118,6 +118,8 @@ int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
+ 			   struct xe_bo *src_bo,
+ 			   enum xe_sriov_vf_ccs_rw_ctxs read_write);
  
-+enum xe_sriov_vf_ccs_rw_ctxs;
-+
- /**
-  * struct xe_migrate_pt_update_ops - Callbacks for the
-  * xe_migrate_update_pgtables() function.
-@@ -112,6 +114,10 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 				  struct ttm_resource *dst,
- 				  bool copy_only_ccs);
- 
-+int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
-+			   struct xe_bo *src_bo,
-+			   enum xe_sriov_vf_ccs_rw_ctxs read_write);
-+
++struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate);
++struct xe_exec_queue *xe_migrate_exec_queue(struct xe_migrate *migrate);
  int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
  			     unsigned long offset, void *buf, int len,
  			     int write);
+@@ -138,6 +140,4 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 			   struct xe_migrate_pt_update *pt_update);
+ 
+ void xe_migrate_wait(struct xe_migrate *m);
+-
+-struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 26e95460af87..6c32412126d7 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -22,6 +22,7 @@
+ #include "xe_irq.h"
+ #include "xe_pcode.h"
+ #include "xe_pxp.h"
++#include "xe_sriov_vf_ccs.h"
+ #include "xe_trace.h"
+ #include "xe_wa.h"
+ 
+@@ -546,6 +547,9 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 
+ 	xe_pxp_pm_resume(xe->pxp);
+ 
++	if (IS_SRIOV_VF(xe))
++		xe_sriov_vf_ccs_register_context(xe);
++
+ out:
+ 	xe_rpm_lockmap_release(xe);
+ 	xe_pm_write_callback_task(xe, NULL);
 diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index ff5ad472eb96..3e37cb95ff32 100644
+index 3e37cb95ff32..4d4f4f8bbbe0 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
 +++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -5,6 +5,7 @@
- 
- #include "instructions/xe_mi_commands.h"
- #include "instructions/xe_gpu_commands.h"
-+#include "xe_bb.h"
+@@ -8,6 +8,9 @@
+ #include "xe_bb.h"
  #include "xe_bo.h"
  #include "xe_device.h"
++#include "xe_exec_queue_types.h"
++#include "xe_guc_submit.h"
++#include "xe_lrc.h"
  #include "xe_migrate.h"
-@@ -208,3 +209,74 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
- err_ret:
- 	return err;
+ #include "xe_sa.h"
+ #include "xe_sriov_printk.h"
+@@ -163,6 +166,86 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_tile_vf_ccs *ctx)
+ 	return 0;
  }
+ 
++static void ccs_rw_update_ring(struct xe_tile_vf_ccs *ctx)
++{
++	struct xe_lrc *lrc = xe_migrate_lrc(ctx->migrate);
++	u32 addr = ctx->mem.ccs_bb_pool->gpu_addr;
++	u32 dw[10], i = 0;
++
++	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE;
++	dw[i++] = MI_BATCH_BUFFER_START | XE_INSTR_NUM_DW(3);
++	dw[i++] = addr;
++	dw[i++] = 0;
++	dw[i++] = MI_NOOP;
++
++	xe_lrc_write_ring(lrc, dw, i * sizeof(u32));
++}
++
++static int register_save_restore_context(struct xe_migrate *m,
++					 enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
++{
++	int err = -EINVAL;
++	int ctx_type;
++
++	switch (ctx_id) {
++	case XE_SRIOV_VF_CCS_READ_CTX:
++		ctx_type = GUC_CONTEXT_COMPRESSION_SAVE;
++		break;
++	case XE_SRIOV_VF_CCS_WRITE_CTX:
++		ctx_type = GUC_CONTEXT_COMPRESSION_RESTORE;
++		break;
++	default:
++		return err;
++	}
++
++	xe_guc_register_exec_queue(xe_migrate_exec_queue(m), ctx_type);
++	return 0;
++}
 +
 +/**
-+ * xe_sriov_vf_ccs_attach_bo - Insert CCS read write commands in the BO.
-+ * @bo: the &buffer object to which batch buffer commands will be added.
++ * xe_sriov_vf_ccs_register_context - Register read/write contexts with guc.
++ * @xe: the &xe_device to register contexts on.
 + *
-+ * This function shall be called only by VF. It inserts the PTEs and copy
-+ * command instructions in the BO by calling xe_migrate_ccs_rw_copy()
-+ * function.
++ * This function registers read and write contexts with Guc. Re-registration
++ * is needed whenever resuming from pm runtime suspend.
 + *
-+ * Returns: 0 if successful, negative error code on failure.
++ * Return: 0 on success. Negative error code on failure.
 + */
-+int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
++int xe_sriov_vf_ccs_register_context(struct xe_device *xe)
 +{
-+	struct xe_device *xe = xe_bo_device(bo);
 +	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
-+	struct xe_migrate *migrate;
++	struct xe_tile_vf_ccs *ctx;
 +	struct xe_tile *tile;
-+	struct xe_bb *bb;
 +	int tile_id;
-+	int err = 0;
++	int err;
 +
 +	if (!IS_VF_CCS_READY(xe))
 +		return 0;
 +
 +	for_each_tile(tile, xe, tile_id) {
 +		for_each_ccs_rw_ctx(ctx_id) {
-+			bb = bo->bb_ccs[ctx_id];
-+			if (bb)
-+				xe_sriov_err(xe, "Probable memory leak\n");
-+
-+			migrate = tile->sriov.vf.ccs[ctx_id].migrate;
-+			err = xe_migrate_ccs_rw_copy(migrate, bo, ctx_id);
++			ctx = &tile->sriov.vf.ccs[ctx_id];
++			err = register_save_restore_context(ctx->migrate, ctx_id);
++			if (err)
++				return err;
 +		}
 +	}
++
 +	return err;
 +}
 +
-+/**
-+ * xe_sriov_vf_ccs_detach_bo - Remove CCS read write commands from the BO.
-+ * @bo: the &buffer object from which batch buffer commands will be removed.
-+ *
-+ * This function shall be called only by VF. It removes the PTEs and copy
-+ * command instructions from the BO. Make sure to update the BB with MI_NOOP
-+ * before freeing.
-+ *
-+ * Returns: 0 if successful.
-+ */
-+int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
++static void xe_sriov_vf_ccs_fini(void *arg)
 +{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
-+	struct xe_bb *bb;
-+	struct xe_tile *tile;
-+	int tile_id;
++	struct xe_tile_vf_ccs *ctx = arg;
++	struct xe_lrc *lrc = xe_migrate_lrc(ctx->migrate);
 +
-+	if (!IS_VF_CCS_READY(xe))
-+		return 0;
-+
-+	for_each_tile(tile, xe, tile_id) {
-+		for_each_ccs_rw_ctx(ctx_id) {
-+			bb = bo->bb_ccs[ctx_id];
-+			if (!bb)
-+				continue;
-+
-+			memset(bb->cs, MI_NOOP, bb->len * sizeof(u32));
-+			xe_bb_free(bb, NULL);
-+			bo->bb_ccs[ctx_id] = NULL;
-+		}
-+	}
-+	return 0;
++	/*
++	 * Make TAIL = HEAD in the ring so that no issues are seen if Guc
++	 * submits this context to HW on VF pause after unbinding device.
++	 */
++	xe_lrc_set_ring_tail(lrc, xe_lrc_ring_head(lrc));
 +}
++
+ /**
+  * xe_sriov_vf_ccs_init - Setup LRCA for save & restore.
+  * @xe: the &xe_device to start recovery on
+@@ -199,6 +282,16 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
+ 			err = alloc_bb_pool(tile, ctx);
+ 			if (err)
+ 				goto err_ret;
++
++			ccs_rw_update_ring(ctx);
++
++			err = register_save_restore_context(ctx->migrate, ctx_id);
++			if (err)
++				goto err_ret;
++
++			err = devm_add_action_or_reset(xe->drm.dev,
++						       xe_sriov_vf_ccs_fini,
++						       ctx);
+ 		}
+ 	}
+ 
 diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-index 5df9ba028d14..5d5e4bd25904 100644
+index 5d5e4bd25904..1f1baf685fec 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
 +++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-@@ -7,7 +7,10 @@
- #define _XE_SRIOV_VF_CCS_H_
- 
- struct xe_device;
-+struct xe_bo;
- 
+@@ -12,5 +12,6 @@ struct xe_bo;
  int xe_sriov_vf_ccs_init(struct xe_device *xe);
-+int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
-+int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
++int xe_sriov_vf_ccs_register_context(struct xe_device *xe);
  
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-index 6dc279d206ec..e240f3fd18af 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-@@ -27,6 +27,14 @@ enum xe_sriov_vf_ccs_rw_ctxs {
- 	XE_SRIOV_VF_CCS_CTX_COUNT
- };
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 6ef8c4dab647..45e4eee3be6b 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -953,7 +953,7 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_ma
+ 	for_each_tile(tile, vm->xe, id) {
+ 		vops.pt_update_ops[id].wait_vm_bookkeep = true;
+ 		vops.pt_update_ops[tile->id].q =
+-			xe_tile_migrate_exec_queue(tile);
++			xe_migrate_exec_queue(tile->migrate);
+ 	}
  
-+#define IS_VF_CCS_BB_VALID(xe, bo) ({ \
-+		struct xe_device *___xe = (xe); \
-+		struct xe_bo *___bo = (bo); \
-+		IS_SRIOV_VF(___xe) && \
-+		___bo->bb_ccs[XE_SRIOV_VF_CCS_READ_CTX] && \
-+		___bo->bb_ccs[XE_SRIOV_VF_CCS_WRITE_CTX]; \
-+		})
-+
- struct xe_migrate;
- struct xe_sa_manager;
+ 	err = xe_vm_ops_add_rebind(&vops, vma, tile_mask);
+@@ -1043,7 +1043,7 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm *vm,
+ 	for_each_tile(tile, vm->xe, id) {
+ 		vops.pt_update_ops[id].wait_vm_bookkeep = true;
+ 		vops.pt_update_ops[tile->id].q =
+-			xe_tile_migrate_exec_queue(tile);
++			xe_migrate_exec_queue(tile->migrate);
+ 	}
  
+ 	err = xe_vm_ops_add_range_rebind(&vops, vma, range, tile_mask);
+@@ -1126,7 +1126,7 @@ struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
+ 	for_each_tile(tile, vm->xe, id) {
+ 		vops.pt_update_ops[id].wait_vm_bookkeep = true;
+ 		vops.pt_update_ops[tile->id].q =
+-			xe_tile_migrate_exec_queue(tile);
++			xe_migrate_exec_queue(tile->migrate);
+ 	}
+ 
+ 	err = xe_vm_ops_add_range_unbind(&vops, range);
 -- 
 2.43.0
 
