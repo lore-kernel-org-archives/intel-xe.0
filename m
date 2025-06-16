@@ -4,73 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED1BC7115B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68AC7C71155
 	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 13:07:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 196B710E38C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2176610E38D;
 	Mon, 16 Jun 2025 13:07:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q8knF8yq";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kCQjveV4";
 	dkim-atps=neutral
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B180010E386;
- Mon, 16 Jun 2025 13:07:29 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id
- a640c23a62f3a-ad572ba1347so706793066b.1; 
- Mon, 16 Jun 2025 06:07:29 -0700 (PDT)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A884110E386;
+ Mon, 16 Jun 2025 13:07:31 +0000 (UTC)
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-ad89c32a7b5so688127166b.2; 
+ Mon, 16 Jun 2025 06:07:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750079248; x=1750684048; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:from:to:cc:subject:date:message-id:reply-to;
- bh=TyO4veQSuBiVwPvwSV+VielD/6bZG5huwF6JmWtE6Qw=;
- b=Q8knF8yqg+fK5XLM2ZEK9zw5xzHuJ6F0Qzg+rtxKmrcuKa04mXOT0FFZ5AmJ+tcXP/
- GoUxOMmbv+bDqi5huPrfh5dMFgdBC2xuwo0mV2r+OPe5FG2fQGuF0ML/4/6pvgci9Oh9
- UGSPWZT0ZpLbw+6rTxhcLEpaiPsRguXZdc85tylsjOLgdR2Pfj7bNCL0o0ylp+nwrZMv
- p3Qc5FkgtmaMfr4rdGNGHl/1UDPCiSpnxyO+C9ebvpL/wBWtfJx2Ff8W+oQ6x5YcrAfP
- kAHsLvHwaMWlBoFRP9Ji9OEIDG/TOk9uOPUpes0jAHibNvUgB8LypjzE8NolWtK0FD/t
- BmlQ==
+ d=gmail.com; s=20230601; t=1750079250; x=1750684050; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=6HsEnJf6J6CxVp5EEQQGWh3uQy/4Uu182VhO2tmXgsc=;
+ b=kCQjveV4zSwmeEyAkVAoM3W+YSQsDUzLGDH1skaJ8EKHwVCc+MjnJgK5CbiwWvA612
+ P2HbVbVwrq38JG4f7Rvx7QryASUYWJpdADx/b9kADTfP0Od4cM1N5l0CdxqQH4AzR0hZ
+ ak9IxM6iHjvsNY1mV3DwaZPJjLlKDUcfN+VCihoCWDrWY9Zy8SZcx+hUKK263h+u/AnS
+ bV0ULx0OWshHuw6At6s32uPyvXsYN2ZxZ7al8B3TdpvUGXmBtppaCR2RZke1kQVBoPu0
+ /Zaa+3yNGYV9IL8yOPdIWZtETgqdKB4PNXIm87Oxjtej1D4E1LGtFx49ISQezqF5/KKJ
+ lEPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750079248; x=1750684048;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=TyO4veQSuBiVwPvwSV+VielD/6bZG5huwF6JmWtE6Qw=;
- b=oEre41MeZS/wn4xJ9Ao9ItbDtuUtXbx885jjw0JB21lC4dKwsJ5qwfW3DMpeLBy+RG
- cqgWGe4lkUGGVAYyGQ9y0PNrZ3UznZ7BIey7sL/LPcKyKaXmDyIGLuoPzmwWlNxEYpQG
- bfcJ20sBZFBzApuTVFKrG7T8kbr/8UNFP1KgsbYL9PQ0UeCUV9miTazLAdk3PrhcFWoz
- MlqXznEp9yB9aKUf/CMY3YDFPIUOFpSvour18bVvYyWUbAM6RZaEy8YxCyp8Lyq/COxo
- floiikiojFoKDu29UH81aSFrhf+4q/1wvHdhzn7j9omuoBA8p0S0Ff1BSwuWynmbq8Am
- ieHg==
+ d=1e100.net; s=20230601; t=1750079250; x=1750684050;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=6HsEnJf6J6CxVp5EEQQGWh3uQy/4Uu182VhO2tmXgsc=;
+ b=hJTJRots7mAeL+VjaxuylJqn61Tx59PazZV+WgBPtXEl9N0CvShoX/EzOhuNYEgrtE
+ RzZIVhSum4B10uE4T1oEet20BBx286G0jaVKqOX2EHuA9JAuZTaQ5kHZIBKYRarhIvU9
+ +ODZpLtrxMSPtVCcwZxwuI01hbM/9n5/bStEkXKyOjhDP5GdJbrTJEo7lDQYtPgF29zY
+ Fyay33wYEsjQB0jK094hTWE8rJbmKvEXvEcmNylqH4eqOpyJUhJLFTDwrcT0EubqVRNo
+ xSqHYDqzgVqqfwbGzmPFB6pF70ComoJFcdGZpVzCt4DaXMP4dpfZLQOffy+ouZxv3+yR
+ pqdA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX9XQgT6QtlaxQr93nDPBV9WOA+QNzNWnuJkxltOaoYtPU73MxEOcmhfzA06Jd4vMAnbQvvqieeQmo=@lists.freedesktop.org,
- AJvYcCXzbVpVtth93qozq8Lwl3toE07TABCxrmMPWkPUcDMnPWvj5Q2E/KQ9pgMA0bjpfnHXlm0NN6lEmbg=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxL6g7C8DKxyk/HqW5iPjcE6wPINSWACuG0VmqiXoBFbPQiQYkL
- j3h8zZr2JYpws+5FBQ03tI7caG3VBW3pIxj9nEAslFo6jUDZ4l4mFu3p
-X-Gm-Gg: ASbGnctiDq6aHMaG/AJJITJWKso7n0baG6qT0BGb86T4hHud/uS0n/SXeAaYf5ZngLI
- QxlM3oa5hJ8CjMliZcdzK6gT3qri+47l0ePz+IZaK3WBLzJs8YbggWl6L7x7tPxDiepfulz7V7d
- jRKAm9AcNYDmwRUPZd54bMbfTNTijHLpepX1CITkkCSEPlBnskW5kJMBIRx54busWBZEDU6QWOs
- cDMf71sjFdbuBVJDfGinxNiUYIE4DIz8y+9REmy2aJw/L8FsK95oi+yF0aBvNiitQX0Sjl3lCaw
- 9YsRwcXkyHu4S3yTsukFxI4f8d/unKD2zcTnYTR6Lz2KSSWXHFiDaXzdBUQAW8Ew+m4ZMqCQJSJ
- Mw7iXWM2Suu0=
-X-Google-Smtp-Source: AGHT+IFtBpQHzXZFsTExfq6Kcyxk6ifSJYrv+/KwVTK+EbbD+VDhdHiJeeDHXo6kCfCFefjxsnEqMw==
-X-Received: by 2002:a17:907:3c82:b0:ad8:9b24:9d16 with SMTP id
- a640c23a62f3a-adfad2b761fmr850846866b.6.1750079247872; 
- Mon, 16 Jun 2025 06:07:27 -0700 (PDT)
+ AJvYcCUodTiAK6qmsc5Ud1csU8k8po8UauReXIFLb1KtJ8uiVtWNPIeToceSZu5+9H95P1ea3g72epYUrOs=@lists.freedesktop.org,
+ AJvYcCW738wBvLQhyULly6X5sCNNBbiDQHWq+3JvYPIU3fiJUaetEQLXF0U9QZ5FIi3acCST9AIYblnnPfM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz5w2IZRYZEomw7NKATKdMao28ukyij+perpCZuNca6IaeP7ZiK
+ CnKfTLsVpcsV16FRSpwEf5+hpHkiMDV71yUvZth1CDojBBAzGRatpyyx
+X-Gm-Gg: ASbGncvEseZ0757NEm1hLqIeS/C+pZ0Q5VpVuiQv3elQa2KkNrl0qpT8jtzY3G45I6n
+ Kf4/bdcLP0IUBI0+ZdZZNQeSjNmBfrgchZAUrbNTAImjZYyOkk8eJBSgQtzhwX8TqqzSAzBlkL6
+ JrCp7E3Z+uITVPYKlJso3Boc9wYrPsu1vk7QD4UprYG6DKSypLWw8BFNhchc5L7KxnarxtJj1HO
+ obsYdRryMbwb9X2kFUAYJ/pJdAc5FYAcrA8qtcyMg5qyfVcmJESJqlkebyRxACJBaBzK2iVd8G7
+ hX1sC8n5eJjHIpTUVvhOmTkVtxLMgb3gyF/rI2WyJ4Y+SnGryGrisvntm3QfbbXdAAMaCWm9jLz
+ N
+X-Google-Smtp-Source: AGHT+IGD2j+R7DTeQ9XuPlOQmumKnJoAnTJ1SzewI6cp+vRoxJOvC0uTaEYJVwJ/IjECKCGzTdVTFQ==
+X-Received: by 2002:a17:907:3e1e:b0:ad2:1cd6:aacf with SMTP id
+ a640c23a62f3a-adfad487be3mr787422866b.47.1750079249777; 
+ Mon, 16 Jun 2025 06:07:29 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:1535:2600:63e1:a803:ebae:a9dd])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-adf93630a33sm520717766b.29.2025.06.16.06.07.26
+ a640c23a62f3a-adf93630a33sm520717766b.29.2025.06.16.06.07.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Jun 2025 06:07:27 -0700 (PDT)
+ Mon, 16 Jun 2025 06:07:29 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: thomas.hellstrom@linux.intel.com, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, matthew.brost@intel.com,
  matthew.auld@intel.com
-Subject: [PATCH 1/6] drm/vmwgfx: drop printing the TTM refcount for debugging
-Date: Mon, 16 Jun 2025 15:07:21 +0200
-Message-Id: <20250616130726.22863-1-christian.koenig@amd.com>
+Subject: [PATCH 3/6] drm/ttm: fix error handling in ttm_buffer_object_transfer
+Date: Mon, 16 Jun 2025 15:07:23 +0200
+Message-Id: <20250616130726.22863-3-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250616130726.22863-1-christian.koenig@amd.com>
+References: <20250616130726.22863-1-christian.koenig@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -88,30 +91,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-That is something TTM internal which is about to get dropped.
+Unlocking the resv object was missing in the error path, additionally to
+that we should move over the resource only after the fence slot was
+reserved.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/vmwgfx/vmwgfx_gem.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-index c55382167c1b..7057d852951b 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-@@ -284,11 +284,10 @@ static void vmw_bo_print_info(int id, struct vmw_bo *bo, struct seq_file *m)
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index b78365dc1fed..56f3152f34f5 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -256,6 +256,13 @@ static int ttm_buffer_object_transfer(struct ttm_buffer_object *bo,
+ 	ret = dma_resv_trylock(&fbo->base.base._resv);
+ 	WARN_ON(!ret);
  
- 	seq_printf(m, "\t\t0x%08x: %12zu bytes %s, type = %s",
- 		   id, bo->tbo.base.size, placement, type);
--	seq_printf(m, ", priority = %u, pin_count = %u, GEM refs = %d, TTM refs = %d",
-+	seq_printf(m, ", priority = %u, pin_count = %u, GEM refs = %d",
- 		   bo->tbo.priority,
- 		   bo->tbo.pin_count,
--		   kref_read(&bo->tbo.base.refcount),
--		   kref_read(&bo->tbo.kref));
-+		   kref_read(&bo->tbo.base.refcount));
- 	seq_puts(m, "\n");
- }
++	ret = dma_resv_reserve_fences(&fbo->base.base._resv, 1);
++	if (ret) {
++		dma_resv_unlock(&fbo->base.base._resv);
++		kfree(fbo);
++		return ret;
++	}
++
+ 	if (fbo->base.resource) {
+ 		ttm_resource_set_bo(fbo->base.resource, &fbo->base);
+ 		bo->resource = NULL;
+@@ -264,12 +271,6 @@ static int ttm_buffer_object_transfer(struct ttm_buffer_object *bo,
+ 		fbo->base.bulk_move = NULL;
+ 	}
+ 
+-	ret = dma_resv_reserve_fences(&fbo->base.base._resv, 1);
+-	if (ret) {
+-		kfree(fbo);
+-		return ret;
+-	}
+-
+ 	ttm_bo_get(bo);
+ 	fbo->bo = bo;
  
 -- 
 2.34.1
