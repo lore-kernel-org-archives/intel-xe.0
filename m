@@ -4,55 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86B21C7115C
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 06:28:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B8A7C71136
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 06:38:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46D1210E2AA;
-	Mon, 16 Jun 2025 06:28:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C844110E28B;
+	Mon, 16 Jun 2025 06:37:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="niun6KdW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KcFTMQNj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBC0D10E28B
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 06:28:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B249B10E28B
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 06:37:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750055332; x=1781591332;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BTACCayWj8hEm+OoZ97APTZIEOxhM9WkXQViIngI0hw=;
- b=niun6KdWMXo9w7BMD7pEjSha5idWGzF0Bc9ntGZEERFgKzN86C3vzIRv
- cMk89ChtYlyp1JU3/dyxL5JGmx5jCShh2vM1nCmuAPPamv4nXhFxzr3Rz
- O0oAZiclB5h4yFDSYrQnVTRyuFvMLkwkWf9tbDLAyg0s4bO/0ENlcD0lt
- 4Mmbl142O6XBbFK7geIX4Ksh9/MoIieHZOHTOJDS9rdfywDrD84sIBKml
- e4eBv9AeA885Ap4XVfSBl1XaZ4v81OtDb9Pb4Qx6ipgxunRoDaeGJa3JS
- 39pGR9vBeuVXR89eAcAz0qUg/xrXycEa1XNY9fGFW3DxEAc4bzls5FhZu g==;
-X-CSE-ConnectionGUID: oR/AN6dzS82wT9Dl1THRhQ==
-X-CSE-MsgGUID: 60r/khvlToe85rcdNWFdHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="51298103"
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="51298103"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2025 23:28:50 -0700
-X-CSE-ConnectionGUID: Sjv0InOXRLStdM/1/IA8dQ==
-X-CSE-MsgGUID: GITZ8rYZRSS+2oVJSJrsVg==
+ t=1750055879; x=1781591879;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HZVRwkiZUJPpjfEZWnBJa0Fumsop/7u1gW+Lvy7A3KI=;
+ b=KcFTMQNjfyDhEb9QSfkREDiJqYpWqXvJB9oZ7/kfSGBeU0+6c8kS6i71
+ I5uDDwpSwFOdW4eAnQf3wBC6niCWEMdZGiMZpBZir8lgEgHaXfBoiQ779
+ vbr+zyGAQV3rVJD+cw7kCAcuq0RKX0ad64dcozOuM4yTdOO1V+TO+OZC+
+ WBx8e4KAhnb0fu5U+lQTAamP9vNHMySuRhD/1qEiYgNsuNTCRQrk1lSPy
+ fRa7Cg4ELbDz8KASuGiyAgqrevwpjAmEz/XmW4HJIXLvd6zZSV0fC87W3
+ Okb6BuvOt+caOE7rx4aP2USBjt30AtUfLW2kg8jc/Ys3PSKZG8hou0d5L Q==;
+X-CSE-ConnectionGUID: +m1UotXVTLCEbZrSfmaiYw==
+X-CSE-MsgGUID: mOPNJQr2Q8yc7SnJlcOI2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="52108857"
+X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="52108857"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2025 23:37:58 -0700
+X-CSE-ConnectionGUID: Lnv9dh8aRcWmvwLna7NzHw==
+X-CSE-MsgGUID: Sg6HHEguTFWR/Vojb0KC/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="153257153"
+X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="148754259"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2025 23:28:49 -0700
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2025 23:37:58 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com,
-	thomas.hellstrom@linux.intel.com
-Subject: [PATCH v3 1/2] drm/xe: Add xe_vm_has_valid_gpu_mapping helper
-Date: Sun, 15 Jun 2025 23:30:23 -0700
-Message-Id: <20250616063024.2059829-2-matthew.brost@intel.com>
+Cc: tvrtko.ursulin@igalia.com
+Subject: [PATCH] drm/xe: Use RCU free for exec queue, not GuC exec queue
+Date: Sun, 15 Jun 2025 23:39:33 -0700
+Message-Id: <20250616063933.2060322-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250616063024.2059829-1-matthew.brost@intel.com>
-References: <20250616063024.2059829-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,153 +64,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather than having multiple READ_ONCE of the tile_* fields and comments
-in code, use helper with kernel doc for single access point and clear
-rules.
+The exec queue name is used in dma-fence timelines, not the GuC exec queue.
+Therefore, the exec queue itself requires RCU freeing rather than the
+GuC exec queue.
 
-v3:
- - s/xe_vm_has_valid_gpu_pages/xe_vm_has_valid_gpu_mapping
-
-Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Fixes: 6bd90e700b42 ("drm/xe: Make dma-fences compliant with the safe access rules")
+Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: stable@vger.kernel.org
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  9 ++-------
- drivers/gpu/drm/xe/xe_pt.c           |  6 +++---
- drivers/gpu/drm/xe/xe_svm.c          | 16 +++++++---------
- drivers/gpu/drm/xe/xe_vm.c           |  2 +-
- drivers/gpu/drm/xe/xe_vm.h           | 19 +++++++++++++++++++
- 5 files changed, 32 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c           | 7 ++++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h     | 2 ++
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h | 2 --
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 7 +------
+ 4 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index e2d975b2fddb..3522865c67c9 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -69,15 +69,10 @@ static bool access_is_atomic(enum access_type access_type)
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index fee22358cc09..41d5766a2033 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -47,7 +47,11 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
+ 	if (q->xef)
+ 		xe_file_put(q->xef);
  
- static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
- {
+-	kfree(q);
++	/*
++ 	 * RCU free due sched being exported via DRM scheduler fences
++ 	 * (timeline name).
++	 */
++	kfree_rcu(q, rcu);
+ }
+ 
+ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+@@ -82,6 +86,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 	INIT_LIST_HEAD(&q->multi_gt_link);
+ 	INIT_LIST_HEAD(&q->hw_engine_group_link);
+ 	INIT_LIST_HEAD(&q->pxp.link);
++	init_rcu_head(&q->rcu);
+ 
+ 	q->sched_props.timeslice_us = hwe->eclass->sched_props.timeslice_us;
+ 	q->sched_props.preempt_timeout_us =
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index cc1cffb5c87f..a17fe852fc0d 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -43,6 +43,8 @@ struct xe_exec_queue {
+ 
+ 	/** @gt: GT structure this exec queue can submit to */
+ 	struct xe_gt *gt;
++	/** @rcu: For safe freeing of exported dma fences */
++	struct rcu_head rcu;
+ 	/**
+ 	 * @hwe: A hardware of the same class. May (physical engine) or may not
+ 	 * (virtual engine) be where jobs actual engine up running. Should never
+diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+index a3f421e2adc0..4c39f01e4f52 100644
+--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+@@ -20,8 +20,6 @@ struct xe_exec_queue;
+ struct xe_guc_exec_queue {
+ 	/** @q: Backpointer to parent xe_exec_queue */
+ 	struct xe_exec_queue *q;
+-	/** @rcu: For safe freeing of exported dma fences */
+-	struct rcu_head rcu;
+ 	/** @sched: GPU scheduler for this xe_exec_queue */
+ 	struct xe_gpu_scheduler sched;
+ 	/** @entity: Scheduler entity for this xe_exec_queue */
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index df7a5a4eec74..7170e78e5b8e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1299,11 +1299,7 @@ static void __guc_exec_queue_fini_async(struct work_struct *w)
+ 	xe_sched_entity_fini(&ge->entity);
+ 	xe_sched_fini(&ge->sched);
+ 
 -	/*
--	 * Advisory only check whether the VMA currently has a valid mapping,
--	 * READ_ONCE pairs with WRITE_ONCE in xe_pt.c
+-	 * RCU free due sched being exported via DRM scheduler fences
+-	 * (timeline name).
 -	 */
--	return BIT(tile->id) & READ_ONCE(vma->tile_present) &&
--		!(BIT(tile->id) & READ_ONCE(vma->tile_invalidated));
-+	return xe_vm_has_valid_gpu_mapping(tile, vma->tile_present,
-+					   vma->tile_invalidated);
+-	kfree_rcu(ge, rcu);
++	kfree(ge);
+ 	xe_exec_queue_fini(q);
+ 	xe_pm_runtime_put(guc_to_xe(guc));
  }
+@@ -1486,7 +1482,6 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
  
--
- static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
- 		       bool atomic, unsigned int id)
- {
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index f39d5cc9f411..9c30111e8786 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -2196,7 +2196,7 @@ static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 					   DMA_RESV_USAGE_KERNEL :
- 					   DMA_RESV_USAGE_BOOKKEEP);
- 	}
--	/* All WRITE_ONCE pair with READ_ONCE in xe_gt_pagefault.c */
-+	/* All WRITE_ONCE pair with READ_ONCE in xe_vm_has_valid_gpu_mapping() */
- 	WRITE_ONCE(vma->tile_present, vma->tile_present | BIT(tile->id));
- 	if (invalidate_on_bind)
- 		WRITE_ONCE(vma->tile_invalidated,
-@@ -2255,7 +2255,7 @@ static void range_present_and_invalidated_tile(struct xe_vm *vm,
- 					       struct xe_svm_range *range,
- 					       u8 tile_id)
- {
--	/* WRITE_ONCE pairs with READ_ONCE in xe_svm.c */
-+	/* All WRITE_ONCE pair with READ_ONCE in xe_vm_has_valid_gpu_mapping() */
+ 	q->guc = ge;
+ 	ge->q = q;
+-	init_rcu_head(&ge->rcu);
+ 	init_waitqueue_head(&ge->suspend_wait);
  
- 	lockdep_assert_held(&vm->svm.gpusvm.notifier_lock);
- 
-@@ -2324,7 +2324,7 @@ static void op_commit(struct xe_vm *vm,
- 	}
- 	case DRM_GPUVA_OP_DRIVER:
- 	{
--		/* WRITE_ONCE pairs with READ_ONCE in xe_svm.c */
-+		/* WRITE_ONCE pairs with READ_ONCE in xe_vm_has_valid_gpu_mapping() */
- 		if (op->subop == XE_VMA_SUBOP_MAP_RANGE)
- 			range_present_and_invalidated_tile(vm, op->map_range.range, tile->id);
- 		else if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE)
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 2fbbd6a604ea..26418e9bdff0 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -141,7 +141,10 @@ xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct drm_gpusvm_range *r,
- 	for_each_tile(tile, xe, id)
- 		if (xe_pt_zap_ptes_range(tile, vm, range)) {
- 			tile_mask |= BIT(id);
--			/* Pairs with READ_ONCE in xe_svm_range_is_valid */
-+			/*
-+			 * WRITE_ONCE pairs with READ_ONCE in
-+			 * xe_vm_has_valid_gpu_mapping()
-+			 */
- 			WRITE_ONCE(range->tile_invalidated,
- 				   range->tile_invalidated | BIT(id));
- 		}
-@@ -605,14 +608,9 @@ static bool xe_svm_range_is_valid(struct xe_svm_range *range,
- 				  struct xe_tile *tile,
- 				  bool devmem_only)
- {
--	/*
--	 * Advisory only check whether the range currently has a valid mapping,
--	 * READ_ONCE pairs with WRITE_ONCE in xe_pt.c,
--	 * xe_svm_range_notifier_event_begin
--	 */
--	return ((READ_ONCE(range->tile_present) &
--		 ~READ_ONCE(range->tile_invalidated)) & BIT(tile->id)) &&
--		(!devmem_only || xe_svm_range_in_vram(range));
-+	return (xe_vm_has_valid_gpu_mapping(tile, range->tile_present,
-+					    range->tile_invalidated) &&
-+		(!devmem_only || xe_svm_range_in_vram(range)));
- }
- 
- /** xe_svm_range_migrate_to_smem() - Move range pages from VRAM to SMEM
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 6ef8c4dab647..04d1a43b81e3 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3961,7 +3961,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
- 	ret = xe_vm_range_tilemask_tlb_invalidation(xe_vma_vm(vma), xe_vma_start(vma),
- 						    xe_vma_end(vma), tile_mask);
- 
--	/* WRITE_ONCE pair with READ_ONCE in xe_gt_pagefault.c */
-+	/* WRITE_ONCE pairs with READ_ONCE in xe_vm_has_valid_gpu_mapping() */
- 	WRITE_ONCE(vma->tile_invalidated, vma->tile_mask);
- 
- 	return ret;
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index acd3fd6c605b..cc332c4ebdf2 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -375,6 +375,25 @@ static inline bool xe_vm_is_validating(struct xe_vm *vm)
- 	return false;
- }
- 
-+/**
-+ * xe_vm_has_valid_gpu_mapping() - Advisory helper to check if VMA or SVM range has
-+ * a valid GPU mapping
-+ * @tile: The tile which the GPU mapping belongs to
-+ * @tile_present: Tile present mask
-+ * @tile_invalidated: Tile invalidated mask
-+ *
-+ * The READ_ONCEs pair with WRITE_ONCEs in either the TLB invalidation paths
-+ * (xe_vm.c, xe_svm.c) or the binding paths (xe_pt.c). These are not reliable
-+ * without the notifier lock in userptr or SVM cases, and not reliable without
-+ * the BO dma-resv lock in the BO case. As such, they should only be used in
-+ * opportunistic cases (e.g., skipping a page fault fix or not skipping a TLB
-+ * invalidation) where it is harmless.
-+ *
-+ * Return: True is there are valid GPU pages, False otherwise
-+ */
-+#define xe_vm_has_valid_gpu_mapping(tile, tile_present, tile_invalidated)	\
-+	((READ_ONCE(tile_present) & ~READ_ONCE(tile_invalidated)) & BIT(tile->id))
-+
- #if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
- void xe_vma_userptr_force_invalidate(struct xe_userptr_vma *uvma);
- #else
+ 	for (i = 0; i < MAX_STATIC_MSG_TYPE; ++i)
 -- 
 2.34.1
 
