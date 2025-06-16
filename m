@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34EFAC71136
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 15:56:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43849C71136
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 16:00:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A47310E33B;
-	Mon, 16 Jun 2025 15:56:06 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B5E810E33B;
- Mon, 16 Jun 2025 15:56:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1049050512323253255=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E84C810E3E7;
+	Mon, 16 Jun 2025 16:00:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="n3V87Fjz";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C56AA10E33B;
+ Mon, 16 Jun 2025 16:00:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=zyNQaQ/EStVOnSfpJh1vPTOGYEjDmA7Oxvuyblxxg74=; b=n3V87Fjz1YyBu0ocLE878k+c5K
+ jXDCq6dx7XcL6YFCbgoABnhzPzg3MLJsGBixwDcXKpmBYFXFXWVa3HgfnJ50pGIVlzLOkajSQh+5y
+ bc9FLa99fZLzbZnUIRMQGqN27/XhW4HjIqq73WpqwXllUUngtFACWufCh6PGLQh3u33eSleC1l/i2
+ JN730+PLkrTd2KTdhpEsSxGf26rB7qE408d2tPM3fmxGFZRPFPSkm0p20pa689KjggnLQ/ibNyjz2
+ GUtBBQK6YIgIzc8TQJknfjINH4D8uxYZ/9IEtnfUskUaJg4iB+Lv7PDTxVTgB/5q7JtFTyAisBz0v
+ u3tejBVg==;
+Received: from [81.79.92.254] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uRCFZ-004BtA-67; Mon, 16 Jun 2025 17:59:57 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Rob Clark <robdclark@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ kernel test robot <lkp@intel.com>
+Subject: [PATCH] dma-fence: Fix sparse warnings due __rcu annotations
+Date: Mon, 16 Jun 2025 16:59:52 +0100
+Message-ID: <20250616155952.24259-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_CCS_save_restore_for_IGPU_?=
- =?utf-8?q?=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Jun 2025 15:56:05 -0000
-Message-ID: <175008936549.82997.17788432798481690236@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250616150805.26780-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250616150805.26780-1-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,142 +63,134 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1049050512323253255==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+__rcu annotations on the return types from dma_fence_driver_name() and
+dma_fence_timeline_name() cause sparse to complain because both the
+constant signaled strings, and the strings return by the dma_fence_ops are
+not __rcu annotated.
 
-== Series Details ==
+For a simple fix it is easiest to cast them with __rcu added and undo the
+smarts from the tracpoints side of things. There is no functional change
+since the rest is left in place. Later we can consider changing the
+dma_fence_ops return types too, and handle all the individual drivers
+which define them.
 
-Series: CCS save restore for IGPU (rev7)
-URL   : https://patchwork.freedesktop.org/series/149108/
-State : success
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Fixes: 506aa8b02a8d ("dma-fence: Add safe access helpers and document the rules")
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202506162214.1eA69hLe-lkp@intel.com/
+Cc: Christian König <christian.koenig@amd.com>
+---
+ drivers/dma-buf/dma-fence.c      |  8 ++++----
+ include/trace/events/dma_fence.h | 35 +++++---------------------------
+ 2 files changed, 9 insertions(+), 34 deletions(-)
 
-== Summary ==
+diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+index 3f78c56b58dc..da60d4e68b89 100644
+--- a/drivers/dma-buf/dma-fence.c
++++ b/drivers/dma-buf/dma-fence.c
+@@ -1109,9 +1109,9 @@ const char __rcu *dma_fence_driver_name(struct dma_fence *fence)
+ 			 "RCU protection is required for safe access to returned string");
+ 
+ 	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+-		return fence->ops->get_driver_name(fence);
++		return (const char __rcu *)fence->ops->get_driver_name(fence);
+ 	else
+-		return "detached-driver";
++		return (const char __rcu *)"detached-driver";
+ }
+ EXPORT_SYMBOL(dma_fence_driver_name);
+ 
+@@ -1141,8 +1141,8 @@ const char __rcu *dma_fence_timeline_name(struct dma_fence *fence)
+ 			 "RCU protection is required for safe access to returned string");
+ 
+ 	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+-		return fence->ops->get_driver_name(fence);
++		return (const char __rcu *)fence->ops->get_driver_name(fence);
+ 	else
+-		return "signaled-timeline";
++		return (const char __rcu *)"signaled-timeline";
+ }
+ EXPORT_SYMBOL(dma_fence_timeline_name);
+diff --git a/include/trace/events/dma_fence.h b/include/trace/events/dma_fence.h
+index 4814a65b68dc..3abba45c0601 100644
+--- a/include/trace/events/dma_fence.h
++++ b/include/trace/events/dma_fence.h
+@@ -9,37 +9,12 @@
+ 
+ struct dma_fence;
+ 
+-DECLARE_EVENT_CLASS(dma_fence,
+-
+-	TP_PROTO(struct dma_fence *fence),
+-
+-	TP_ARGS(fence),
+-
+-	TP_STRUCT__entry(
+-		__string(driver, dma_fence_driver_name(fence))
+-		__string(timeline, dma_fence_timeline_name(fence))
+-		__field(unsigned int, context)
+-		__field(unsigned int, seqno)
+-	),
+-
+-	TP_fast_assign(
+-		__assign_str(driver);
+-		__assign_str(timeline);
+-		__entry->context = fence->context;
+-		__entry->seqno = fence->seqno;
+-	),
+-
+-	TP_printk("driver=%s timeline=%s context=%u seqno=%u",
+-		  __get_str(driver), __get_str(timeline), __entry->context,
+-		  __entry->seqno)
+-);
+-
+ /*
+  * Safe only for call sites which are guaranteed to not race with fence
+  * signaling,holding the fence->lock and having checked for not signaled, or the
+  * signaling path itself.
+  */
+-DECLARE_EVENT_CLASS(dma_fence_unsignaled,
++DECLARE_EVENT_CLASS(dma_fence,
+ 
+ 	TP_PROTO(struct dma_fence *fence),
+ 
+@@ -64,14 +39,14 @@ DECLARE_EVENT_CLASS(dma_fence_unsignaled,
+ 		  __entry->seqno)
+ );
+ 
+-DEFINE_EVENT(dma_fence_unsignaled, dma_fence_emit,
++DEFINE_EVENT(dma_fence, dma_fence_emit,
+ 
+ 	TP_PROTO(struct dma_fence *fence),
+ 
+ 	TP_ARGS(fence)
+ );
+ 
+-DEFINE_EVENT(dma_fence_unsignaled, dma_fence_init,
++DEFINE_EVENT(dma_fence, dma_fence_init,
+ 
+ 	TP_PROTO(struct dma_fence *fence),
+ 
+@@ -85,14 +60,14 @@ DEFINE_EVENT(dma_fence, dma_fence_destroy,
+ 	TP_ARGS(fence)
+ );
+ 
+-DEFINE_EVENT(dma_fence_unsignaled, dma_fence_enable_signal,
++DEFINE_EVENT(dma_fence, dma_fence_enable_signal,
+ 
+ 	TP_PROTO(struct dma_fence *fence),
+ 
+ 	TP_ARGS(fence)
+ );
+ 
+-DEFINE_EVENT(dma_fence_unsignaled, dma_fence_signaled,
++DEFINE_EVENT(dma_fence, dma_fence_signaled,
+ 
+ 	TP_PROTO(struct dma_fence *fence),
+ 
+-- 
+2.48.0
 
-CI Bug Log - changes from xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76_BAT -> xe-pw-149108v7_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-149108v7_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@eof:
-    - bat-pvc-2:          [PASS][1] -> [SKIP][2] ([Intel XE#2134]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76/bat-pvc-2/igt@fbdev@eof.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v7/bat-pvc-2/igt@fbdev@eof.html
-
-  * igt@fbdev@info:
-    - bat-atsm-2:         [PASS][3] -> [SKIP][4] ([Intel XE#2134]) +4 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76/bat-atsm-2/igt@fbdev@info.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v7/bat-atsm-2/igt@fbdev@info.html
-
-  
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-
-
-Build changes
--------------
-
-  * IGT: IGT_8411 -> IGT_8412
-  * Linux: xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76 -> xe-pw-149108v7
-
-  IGT_8411: d5b5d2bb4f8795a98ea58376a128b74f654b7ec1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8412: 8412
-  xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76: dea7240e83c9e58ec755a3d68e7db10068df6b76
-  xe-pw-149108v7: 149108v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v7/index.html
-
---===============1049050512323253255==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>CCS save restore for IGPU (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149108/">https://patchwork.freedesktop.org/series/149108/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76_BAT -&gt; xe-pw-149108v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-149108v7_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@eof:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76/bat-pvc-2/igt@fbdev@eof.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v7/bat-pvc-2/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76/bat-atsm-2/igt@fbdev@info.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v7/bat-atsm-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8411 -&gt; IGT_8412</li>
-<li>Linux: xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76 -&gt; xe-pw-149108v7</li>
-</ul>
-<p>IGT_8411: d5b5d2bb4f8795a98ea58376a128b74f654b7ec1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8412: 8412<br />
-  xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76: dea7240e83c9e58ec755a3d68e7db10068df6b76<br />
-  xe-pw-149108v7: 149108v7</p>
-
-</body>
-</html>
-
---===============1049050512323253255==--
