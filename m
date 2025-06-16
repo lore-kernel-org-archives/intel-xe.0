@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F3EDC7115B
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 13:07:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2868EC71136
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 13:07:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10E4010E39B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8969310E39C;
 	Mon, 16 Jun 2025 13:07:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AIeTI6nP";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Qui8ZcH6";
 	dkim-atps=neutral
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D05F010E386;
- Mon, 16 Jun 2025 13:07:32 +0000 (UTC)
-Received: by mail-ej1-f54.google.com with SMTP id
- a640c23a62f3a-ade326e366dso815247166b.3; 
- Mon, 16 Jun 2025 06:07:32 -0700 (PDT)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+ [209.85.208.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2305710E39B;
+ Mon, 16 Jun 2025 13:07:35 +0000 (UTC)
+Received: by mail-ed1-f42.google.com with SMTP id
+ 4fb4d7f45d1cf-608acb0a27fso5436932a12.0; 
+ Mon, 16 Jun 2025 06:07:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750079251; x=1750684051; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1750079253; x=1750684053; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=VqDPS65+t3taX5zIuxcpVu/59+ugpF4WvwzbYL+TyO4=;
- b=AIeTI6nP+BaaCKcjKkueuFoKMugaPosWT1g4ko+ZvHjPEu5XPSTOzD1TSPqwL8jLvE
- irIAqxCOSCvwCbNNKnD+KTwQWJs1NZeQ6xt4pfh3F2MwNTHOnjvOZDCWBAg6qZQoiQaZ
- IfiziawKf+6CqI7i/88TwRInGfw+IAnxodA+D43TPnZz5I25ioHIoOMvuIoR0a47T6WP
- Cn7BJO9DROftdgkwJDXpM/EMwij36DbbmwE1A3EyOtMinSD5AOlKs2DRyxC6KEkm1wsL
- /HG6dYa9HIT1n9PLwJK/MkuoefBnTdIdD5Cx03dwovKg+XnC/8XeZCb9C3MxcmVpV/B6
- jUGg==
+ :reply-to; bh=+rQeAuwVLQ8vBldVjNbK1SMu6BlRh147HzB4aK90NkI=;
+ b=Qui8ZcH6loXncY2QengW5ig0hvtagO3VvUTte3OJ5bSpmVHQVOvdUKTIp8b9FQuOS8
+ 2byWEtXybeVZyUEbEBkE04DY9Ew8tECTY55Gt3avLaMPjPvUuCluHz/FiVkUci9Cq2gz
+ F3XpgQ+q/P4aoffEAdu4ItnxbxYijBuD5Xk4CpgAHsXCByNo+TqQcNzmqojGgkxWTEM9
+ e2eyklu0TFdvUyyx0F1xfLpFIZQ5suMN9rWnDChS+7DrSjwlpEk/UcJ6ocOJsk12K7ru
+ KqvC9ZUGNZoMviLxLJEuDjTcH1UuzaO8pl48mWuJVkMoxovVrmMJ5b5Gaye0semtOn/a
+ 7eZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750079251; x=1750684051;
+ d=1e100.net; s=20230601; t=1750079253; x=1750684053;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=VqDPS65+t3taX5zIuxcpVu/59+ugpF4WvwzbYL+TyO4=;
- b=vr3wOrcq20rct6D88NVgzYYuMikTapWhozK+VM+N/JlwwxxBixSkvgCjBKL4Ulaord
- q4qE0d+RTtVHpPQ8uE5+0MrvAdxlBB+vintJSjhULCdtmCyUupMakhIOC1OjgMRJ4oqu
- Ze6aPLI9wSSgnOJrqLdLcroCqKsAZ/U+YkpJzISfXKX74U/UFd25k1glNXdrLQuhVsqk
- In2gdzwRcxHqraLn3GG9fwUWWQWLpm8H2E1eZHrjZnv9GzpnFJKsLT+6H9qkzTVUf1AK
- s718XdqVK6u+AzpHOqpkK6zTT0u7rDVGVbfEwj154kCpW1lEIFoycPo5+ClxBr3jZxVm
- oDGg==
+ bh=+rQeAuwVLQ8vBldVjNbK1SMu6BlRh147HzB4aK90NkI=;
+ b=tgJ7YoVjwBPQyF4NGwgwKf2Y4OAvSWpf87OsgDsq1siywfczanOYh5G03IK/Y0e/0e
+ VoJUK+F75qoBIqSJt3cSJooq9vouHNka2Q/fYAwLGEBK/RfIjQIqALZPe9sfGXdAS6r/
+ /r20tJyOrkRxz3TMarTgjCwzWVFK7pduPIj0mOFC+kOcwkbOQrytmWut5NBeMEfgCVur
+ 1g26IHDt4dMIaRG8GGzOyN0DoJW08r/0IHcK1udRjeNoE7VDJHBhPSSelEfB66n/I57W
+ 3PFcQZ/xwqVbLR+mao8Mk7wGWwMtNpQstrWVrAw1ru/gTJWbfz8ythbjsrip+vgElPQv
+ 7c5A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWTbgajpacGXgtqeBR1j9iOJVVXozXofPwhgTbAYs24/3DqMjoboM4wi0xapP9wxr7XosgD8P6mFCM=@lists.freedesktop.org,
- AJvYcCXXoe/4Im+zIMPbx9u+Z13gGHJ9fa8jqy028ZnsLaDEwjhM6U5spE/mYI+X770sPM1h4dcm6hcE8XM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx2QzEpH81AKEVxYWoIAQBYMhvZiFU7kcrDZTe5ctZWTq6XVW/J
- OK7M0EELCoZ2K2mRVTJl5jay8tVNhZdw5+ph+wx5KDP0AwvLopkdr/vt
-X-Gm-Gg: ASbGncsHF7nkjXXqmZX+aunoDZGOGaewFaLZH631sKzZKBtdoTrDEmCABEBqyHWPX4C
- BPJULyyAVvAPRoCj0Brp29Ep5vLlOTmrmbUgdCKCF/erdoueo7bkOzJBZftEgex5S/AHWu/J9ro
- dT9GIOYRjrmVIO2A6/AF+RHiDkoktisPnMF9LnmsMFk2RVBVj4Ojs1+x5bnbW5RroBF5hywTvtV
- 53BmpM5KOFymtME8PGyWb3AUluG5XC9ZHLRUrX62cSR1Oz7wB0k+++SVr7RGCDvzbzRTyvmkPFW
- 9J3aDYtFcpVLEDdNIg6jT9QGCB/E/z1L6GRCqwaxtcjG4211ktp20vt5B+K4He2HoUAzmqZSauF
- k
-X-Google-Smtp-Source: AGHT+IHzdAgo0f8rQqFFQ5FG5K1PtGxU1kU1cB2GvCm2kBMD4ClxU+JnClhTZIdrQmMNyAgGC3INDw==
-X-Received: by 2002:a17:907:ea5:b0:add:f0a2:d5d8 with SMTP id
- a640c23a62f3a-adfad296d0emr799655466b.11.1750079250869; 
- Mon, 16 Jun 2025 06:07:30 -0700 (PDT)
+ AJvYcCWKA8QWMhphDXDy42uqpevk6R17wF73souB+PcQtDO4+2BKUJVpiEJQ+EEAJuYNgHqMeXAh91MPBZs=@lists.freedesktop.org,
+ AJvYcCWnzeufUDAmCwVMjDWShMHeQ9AFlwZBrSeLRfbVs0vBWNasYuFxEsphQJ9owOsVEuc6ABYoST7Ryt8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywd7NSizqwSsUOCRPjNNmOEjLZtg8RwF+waTeRLy41T+aCPBwvu
+ S+9WHxgguUSTdS5W9DXpYrKPhaaHdZPeZTZDXV+w/0v/xd9C2Xusvhq9
+X-Gm-Gg: ASbGncuss/bqaDvQz0uAhPGfWTKu00U1zznkar7aB8NI5i0j30WEHF9rb3qXkB1QK6T
+ jSO8rIEjsRBiRWJ0/TNiXcCwc1QhNXZfwJQxminjr3sAFiWMV9u9gULCo/lDMtbFYx9gKRojrW5
+ KMRyHJ7DMi4cvT6q5P9ixmiu54cciJd+LjPgk9O0DmsKwqI1r6GMpcGGlbtWBfDo4WqDpROxxy8
+ 7QJIHUk/rY6MwLBNyYHfpXCuj4V+h3q+70PetrP1L5oGwu9tj0sDX1RDozKyxljGKLrUFE511WI
+ YFrcBYudHnJH1OdgLlMIbM8DjPHeVFa96XsWzI9TDuN5JiLux0grvsl3ki5urOX7Vl8jNsXns6P
+ j
+X-Google-Smtp-Source: AGHT+IEQZb8avbANwB4w2lzdc2c5yMHcLMYtKMp5HPbINE8C48BhJ4k5F4h74RlbGkwOZM6HhlNBiw==
+X-Received: by 2002:a17:907:9810:b0:adb:469d:223b with SMTP id
+ a640c23a62f3a-adfad451c9cmr830484866b.49.1750079253005; 
+ Mon, 16 Jun 2025 06:07:33 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:1535:2600:63e1:a803:ebae:a9dd])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-adf93630a33sm520717766b.29.2025.06.16.06.07.29
+ a640c23a62f3a-adf93630a33sm520717766b.29.2025.06.16.06.07.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Jun 2025 06:07:30 -0700 (PDT)
+ Mon, 16 Jun 2025 06:07:32 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: thomas.hellstrom@linux.intel.com, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, matthew.brost@intel.com,
  matthew.auld@intel.com
-Subject: [PATCH 4/6] drm/ttm: rename ttm_bo_put to _fini
-Date: Mon, 16 Jun 2025 15:07:24 +0200
-Message-Id: <20250616130726.22863-4-christian.koenig@amd.com>
+Subject: [PATCH 6/6] drm/ttm: replace TTMs refcount with the DRM refcount
+Date: Mon, 16 Jun 2025 15:07:26 +0200
+Message-Id: <20250616130726.22863-6-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250616130726.22863-1-christian.koenig@amd.com>
 References: <20250616130726.22863-1-christian.koenig@amd.com>
@@ -91,515 +91,356 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Give TTM BOs a separate cleanup function.
+Instead of keeping a separate reference count for the TTM object also use
+the reference count for DRM GEM objects inside TTM.
 
-The next step in removing the TTM BO reference counting and replacing it
-with the GEM object reference counting.
+Apart from avoiding two reference counts for one object this approach has
+the clear advantage of being able to use drm_exec inside TTM.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       |  2 +-
- drivers/gpu/drm/drm_gem_vram_helper.c         |  6 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  4 +-
- drivers/gpu/drm/loongson/lsdc_gem.c           |  2 +-
- drivers/gpu/drm/nouveau/nouveau_gem.c         |  2 +-
- drivers/gpu/drm/qxl/qxl_gem.c                 |  2 +-
- drivers/gpu/drm/radeon/radeon_gem.c           |  2 +-
- drivers/gpu/drm/ttm/tests/ttm_bo_test.c       | 12 ++--
- .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  | 64 +++++++++----------
- drivers/gpu/drm/ttm/ttm_bo.c                  | 21 +++---
- drivers/gpu/drm/ttm/ttm_bo_internal.h         |  2 +
- drivers/gpu/drm/vmwgfx/vmwgfx_gem.c           |  2 +-
- drivers/gpu/drm/xe/xe_bo.c                    |  2 +-
- include/drm/ttm/ttm_bo.h                      |  2 +-
- 14 files changed, 64 insertions(+), 61 deletions(-)
+ .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |   4 +-
+ drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c |   2 -
+ drivers/gpu/drm/ttm/ttm_bo.c                  | 146 +++++++++---------
+ drivers/gpu/drm/ttm/ttm_bo_internal.h         |   9 +-
+ drivers/gpu/drm/ttm/ttm_bo_util.c             |   2 +-
+ include/drm/ttm/ttm_bo.h                      |   9 --
+ 6 files changed, 81 insertions(+), 91 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index 0ecc88df7208..1d5756be974a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -198,7 +198,7 @@ static void amdgpu_gem_object_free(struct drm_gem_object *gobj)
- 	struct amdgpu_bo *aobj = gem_to_amdgpu_bo(gobj);
- 
- 	amdgpu_hmm_unregister(aobj);
--	ttm_bo_put(&aobj->tbo);
-+	ttm_bo_fini(&aobj->tbo);
- }
- 
- int amdgpu_gem_object_create(struct amdgpu_device *adev, unsigned long size,
-diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
-index ead50fef5e7d..3cb0acdd7bba 100644
---- a/drivers/gpu/drm/drm_gem_vram_helper.c
-+++ b/drivers/gpu/drm/drm_gem_vram_helper.c
-@@ -106,7 +106,7 @@ static const struct drm_gem_object_funcs drm_gem_vram_object_funcs;
- 
- static void drm_gem_vram_cleanup(struct drm_gem_vram_object *gbo)
- {
--	/* We got here via ttm_bo_put(), which means that the
-+	/* We got here via ttm_bo_fini(), which means that the
- 	 * TTM buffer object in 'bo' has already been cleaned
- 	 * up; only release the GEM object.
- 	 */
-@@ -233,11 +233,11 @@ EXPORT_SYMBOL(drm_gem_vram_create);
-  * drm_gem_vram_put() - Releases a reference to a VRAM-backed GEM object
-  * @gbo:	the GEM VRAM object
-  *
-- * See ttm_bo_put() for more information.
-+ * See ttm_bo_fini() for more information.
-  */
- void drm_gem_vram_put(struct drm_gem_vram_object *gbo)
- {
--	ttm_bo_put(&gbo->bo);
-+	ttm_bo_fini(&gbo->bo);
- }
- EXPORT_SYMBOL(drm_gem_vram_put);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 1f4814968868..57bb111d65da 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -1029,7 +1029,7 @@ static void i915_ttm_delayed_free(struct drm_i915_gem_object *obj)
- {
- 	GEM_BUG_ON(!obj->ttm.created);
- 
--	ttm_bo_put(i915_gem_to_ttm(obj));
-+	ttm_bo_fini(i915_gem_to_ttm(obj));
- }
- 
- static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
-@@ -1325,7 +1325,7 @@ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
- 	 * If this function fails, it will call the destructor, but
- 	 * our caller still owns the object. So no freeing in the
- 	 * destructor until obj->ttm.created is true.
--	 * Similarly, in delayed_destroy, we can't call ttm_bo_put()
-+	 * Similarly, in delayed_destroy, we can't call ttm_bo_fini()
- 	 * until successful initialization.
- 	 */
- 	ret = ttm_bo_init_reserved(&i915->bdev, i915_gem_to_ttm(obj), bo_type,
-diff --git a/drivers/gpu/drm/loongson/lsdc_gem.c b/drivers/gpu/drm/loongson/lsdc_gem.c
-index a720d8f53209..22d0eced95da 100644
---- a/drivers/gpu/drm/loongson/lsdc_gem.c
-+++ b/drivers/gpu/drm/loongson/lsdc_gem.c
-@@ -57,7 +57,7 @@ static void lsdc_gem_object_free(struct drm_gem_object *obj)
- 	struct ttm_buffer_object *tbo = to_ttm_bo(obj);
- 
- 	if (tbo)
--		ttm_bo_put(tbo);
-+		ttm_bo_fini(tbo);
- }
- 
- static int lsdc_gem_object_vmap(struct drm_gem_object *obj, struct iosys_map *map)
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index 690e10fbf0bd..395d92ab6271 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -87,7 +87,7 @@ nouveau_gem_object_del(struct drm_gem_object *gem)
- 		return;
- 	}
- 
--	ttm_bo_put(&nvbo->bo);
-+	ttm_bo_fini(&nvbo->bo);
- 
- 	pm_runtime_mark_last_busy(dev);
- 	pm_runtime_put_autosuspend(dev);
-diff --git a/drivers/gpu/drm/qxl/qxl_gem.c b/drivers/gpu/drm/qxl/qxl_gem.c
-index fc5e3763c359..d26043424e95 100644
---- a/drivers/gpu/drm/qxl/qxl_gem.c
-+++ b/drivers/gpu/drm/qxl/qxl_gem.c
-@@ -39,7 +39,7 @@ void qxl_gem_object_free(struct drm_gem_object *gobj)
- 	qxl_surface_evict(qdev, qobj, false);
- 
- 	tbo = &qobj->tbo;
--	ttm_bo_put(tbo);
-+	ttm_bo_fini(tbo);
- }
- 
- int qxl_gem_object_create(struct qxl_device *qdev, int size,
-diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
-index f86773f3db20..18ca1bcfd2f9 100644
---- a/drivers/gpu/drm/radeon/radeon_gem.c
-+++ b/drivers/gpu/drm/radeon/radeon_gem.c
-@@ -86,7 +86,7 @@ static void radeon_gem_object_free(struct drm_gem_object *gobj)
- 
- 	if (robj) {
- 		radeon_mn_unregister(robj);
--		ttm_bo_put(&robj->tbo);
-+		ttm_bo_fini(&robj->tbo);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
-index 6c77550c51af..5426b435f702 100644
---- a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
-+++ b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
-@@ -379,7 +379,7 @@ static void ttm_bo_unreserve_bulk(struct kunit *test)
- 	dma_resv_fini(resv);
- }
- 
--static void ttm_bo_put_basic(struct kunit *test)
-+static void ttm_bo_fini_basic(struct kunit *test)
- {
- 	struct ttm_test_devices *priv = test->priv;
- 	struct ttm_buffer_object *bo;
-@@ -410,7 +410,7 @@ static void ttm_bo_put_basic(struct kunit *test)
- 	dma_resv_unlock(bo->base.resv);
- 	KUNIT_EXPECT_EQ(test, err, 0);
- 
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- }
- 
- static const char *mock_name(struct dma_fence *f)
-@@ -423,7 +423,7 @@ static const struct dma_fence_ops mock_fence_ops = {
- 	.get_timeline_name = mock_name,
- };
- 
--static void ttm_bo_put_shared_resv(struct kunit *test)
-+static void ttm_bo_fini_shared_resv(struct kunit *test)
- {
- 	struct ttm_test_devices *priv = test->priv;
- 	struct ttm_buffer_object *bo;
-@@ -463,7 +463,7 @@ static void ttm_bo_put_shared_resv(struct kunit *test)
- 	bo->type = ttm_bo_type_device;
- 	bo->base.resv = external_resv;
- 
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- }
- 
- static void ttm_bo_pin_basic(struct kunit *test)
-@@ -616,8 +616,8 @@ static struct kunit_case ttm_bo_test_cases[] = {
- 	KUNIT_CASE(ttm_bo_unreserve_basic),
- 	KUNIT_CASE(ttm_bo_unreserve_pinned),
- 	KUNIT_CASE(ttm_bo_unreserve_bulk),
--	KUNIT_CASE(ttm_bo_put_basic),
--	KUNIT_CASE(ttm_bo_put_shared_resv),
-+	KUNIT_CASE(ttm_bo_fini_basic),
-+	KUNIT_CASE(ttm_bo_fini_shared_resv),
- 	KUNIT_CASE(ttm_bo_pin_basic),
- 	KUNIT_CASE(ttm_bo_pin_unpin_resource),
- 	KUNIT_CASE(ttm_bo_multiple_pin_one_unpin),
 diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
-index 3148f5d3dbd6..4553c4e0e0f1 100644
+index 6766e1753343..7b908920aae5 100644
 --- a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
 +++ b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
-@@ -144,7 +144,7 @@ static void ttm_bo_init_reserved_sys_man(struct kunit *test)
- 				  drm_mm_node_allocated(&bo->base.vma_node.vm_node));
- 
- 	ttm_resource_free(bo, &bo->resource);
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- }
- 
- static void ttm_bo_init_reserved_mock_man(struct kunit *test)
-@@ -186,7 +186,7 @@ static void ttm_bo_init_reserved_mock_man(struct kunit *test)
- 				  drm_mm_node_allocated(&bo->base.vma_node.vm_node));
- 
- 	ttm_resource_free(bo, &bo->resource);
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
- }
- 
-@@ -221,7 +221,7 @@ static void ttm_bo_init_reserved_resv(struct kunit *test)
- 	KUNIT_EXPECT_PTR_EQ(test, bo->base.resv, &resv);
- 
- 	ttm_resource_free(bo, &bo->resource);
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- }
- 
- static void ttm_bo_validate_basic(struct kunit *test)
-@@ -265,7 +265,7 @@ static void ttm_bo_validate_basic(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, bo->resource->placement,
- 			DRM_BUDDY_TOPDOWN_ALLOCATION);
- 
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- 	ttm_mock_manager_fini(priv->ttm_dev, snd_mem);
- }
- 
-@@ -292,7 +292,7 @@ static void ttm_bo_validate_invalid_placement(struct kunit *test)
- 
- 	KUNIT_EXPECT_EQ(test, err, -ENOMEM);
- 
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- }
- 
- static void ttm_bo_validate_failed_alloc(struct kunit *test)
-@@ -321,7 +321,7 @@ static void ttm_bo_validate_failed_alloc(struct kunit *test)
- 
- 	KUNIT_EXPECT_EQ(test, err, -ENOMEM);
- 
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- 	ttm_bad_manager_fini(priv->ttm_dev, mem_type);
- }
- 
-@@ -353,7 +353,7 @@ static void ttm_bo_validate_pinned(struct kunit *test)
- 	ttm_bo_unpin(bo);
+@@ -127,7 +127,7 @@ static void ttm_bo_init_reserved_sys_man(struct kunit *test)
  	dma_resv_unlock(bo->base.resv);
  
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- }
- 
- static const struct ttm_bo_validate_test_case ttm_mem_type_cases[] = {
-@@ -403,7 +403,7 @@ static void ttm_bo_validate_same_placement(struct kunit *test)
  	KUNIT_EXPECT_EQ(test, err, 0);
- 	KUNIT_EXPECT_EQ(test, ctx_val.bytes_moved, 0);
+-	KUNIT_EXPECT_EQ(test, kref_read(&bo->kref), 1);
++	KUNIT_EXPECT_EQ(test, kref_read(&bo->base.refcount), 1);
+ 	KUNIT_EXPECT_PTR_EQ(test, bo->bdev, priv->ttm_dev);
+ 	KUNIT_EXPECT_EQ(test, bo->type, bo_type);
+ 	KUNIT_EXPECT_EQ(test, bo->page_alignment, PAGE_SIZE);
+@@ -176,7 +176,7 @@ static void ttm_bo_init_reserved_mock_man(struct kunit *test)
+ 	dma_resv_unlock(bo->base.resv);
  
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- 
- 	if (params->mem_type != TTM_PL_SYSTEM)
- 		ttm_mock_manager_fini(priv->ttm_dev, params->mem_type);
-@@ -452,7 +452,7 @@ static void ttm_bo_validate_busy_placement(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, bo->resource->mem_type, snd_mem);
- 	KUNIT_ASSERT_TRUE(test, list_is_singular(&man->lru[bo->priority]));
- 
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- 	ttm_bad_manager_fini(priv->ttm_dev, fst_mem);
- 	ttm_mock_manager_fini(priv->ttm_dev, snd_mem);
- }
-@@ -495,7 +495,7 @@ static void ttm_bo_validate_multihop(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, ctx_val.bytes_moved, size * 2);
- 	KUNIT_EXPECT_EQ(test, bo->resource->mem_type, final_mem);
- 
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- 
- 	ttm_mock_manager_fini(priv->ttm_dev, fst_mem);
- 	ttm_mock_manager_fini(priv->ttm_dev, tmp_mem);
-@@ -566,7 +566,7 @@ static void ttm_bo_validate_no_placement_signaled(struct kunit *test)
- 		KUNIT_ASSERT_TRUE(test, flags & TTM_TT_FLAG_ZERO_ALLOC);
- 	}
- 
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- }
- 
- static int threaded_dma_resv_signal(void *arg)
-@@ -634,7 +634,7 @@ static void ttm_bo_validate_no_placement_not_signaled(struct kunit *test)
- 	/* Make sure we have an idle object at this point */
- 	dma_resv_wait_timeout(bo->base.resv, usage, false, MAX_SCHEDULE_TIMEOUT);
- 
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- }
- 
- static void ttm_bo_validate_move_fence_signaled(struct kunit *test)
-@@ -667,7 +667,7 @@ static void ttm_bo_validate_move_fence_signaled(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, bo->resource->mem_type, mem_type);
+ 	KUNIT_EXPECT_EQ(test, err, 0);
+-	KUNIT_EXPECT_EQ(test, kref_read(&bo->kref), 1);
++	KUNIT_EXPECT_EQ(test, kref_read(&bo->base.refcount), 1);
+ 	KUNIT_EXPECT_PTR_EQ(test, bo->bdev, priv->ttm_dev);
+ 	KUNIT_EXPECT_EQ(test, bo->type, bo_type);
  	KUNIT_EXPECT_EQ(test, ctx.bytes_moved, size);
+diff --git a/drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c b/drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c
+index b91c13f46225..7bc8eae77b8c 100644
+--- a/drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c
++++ b/drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c
+@@ -190,8 +190,6 @@ struct ttm_buffer_object *ttm_bo_kunit_init(struct kunit *test,
+ 	bo->bdev = devs->ttm_dev;
+ 	bo->destroy = dummy_ttm_bo_destroy;
  
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- 	dma_fence_put(man->move);
+-	kref_init(&bo->kref);
+-
+ 	return bo;
  }
- 
-@@ -752,7 +752,7 @@ static void ttm_bo_validate_move_fence_not_signaled(struct kunit *test)
- 	else
- 		KUNIT_EXPECT_EQ(test, bo->resource->mem_type, fst_mem);
- 
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo);
- 	ttm_mock_manager_fini(priv->ttm_dev, fst_mem);
- 	ttm_mock_manager_fini(priv->ttm_dev, snd_mem);
- }
-@@ -801,8 +801,8 @@ static void ttm_bo_validate_swapout(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, bo_small->resource->mem_type, TTM_PL_SYSTEM);
- 	KUNIT_EXPECT_TRUE(test, bo_small->ttm->page_flags & TTM_TT_FLAG_SWAPPED);
- 
--	ttm_bo_put(bo_big);
--	ttm_bo_put(bo_small);
-+	ttm_bo_fini(bo_big);
-+	ttm_bo_fini(bo_small);
- 
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
- }
-@@ -856,8 +856,8 @@ static void ttm_bo_validate_happy_evict(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, bos[1].resource->mem_type, mem_type);
- 
- 	for (i = 0; i < bo_no; i++)
--		ttm_bo_put(&bos[i]);
--	ttm_bo_put(bo_val);
-+		ttm_bo_fini(&bos[i]);
-+	ttm_bo_fini(bo_val);
- 
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_multihop);
-@@ -901,12 +901,12 @@ static void ttm_bo_validate_all_pinned_evict(struct kunit *test)
- 
- 	KUNIT_EXPECT_EQ(test, err, -ENOMEM);
- 
--	ttm_bo_put(bo_small);
-+	ttm_bo_fini(bo_small);
- 
- 	ttm_bo_reserve(bo_big, false, false, NULL);
- 	ttm_bo_unpin(bo_big);
- 	dma_resv_unlock(bo_big->base.resv);
--	ttm_bo_put(bo_big);
-+	ttm_bo_fini(bo_big);
- 
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_multihop);
-@@ -965,13 +965,13 @@ static void ttm_bo_validate_allowed_only_evict(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, bo_evictable->resource->mem_type, mem_type_evict);
- 	KUNIT_EXPECT_EQ(test, ctx_val.bytes_moved, size * 2 + BO_SIZE);
- 
--	ttm_bo_put(bo);
--	ttm_bo_put(bo_evictable);
-+	ttm_bo_fini(bo);
-+	ttm_bo_fini(bo_evictable);
- 
- 	ttm_bo_reserve(bo_pinned, false, false, NULL);
- 	ttm_bo_unpin(bo_pinned);
- 	dma_resv_unlock(bo_pinned->base.resv);
--	ttm_bo_put(bo_pinned);
-+	ttm_bo_fini(bo_pinned);
- 
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_multihop);
-@@ -1022,8 +1022,8 @@ static void ttm_bo_validate_deleted_evict(struct kunit *test)
- 	KUNIT_EXPECT_NULL(test, bo_big->ttm);
- 	KUNIT_EXPECT_NULL(test, bo_big->resource);
- 
--	ttm_bo_put(bo_small);
--	ttm_bo_put(bo_big);
-+	ttm_bo_fini(bo_small);
-+	ttm_bo_fini(bo_big);
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
- }
- 
-@@ -1074,8 +1074,8 @@ static void ttm_bo_validate_busy_domain_evict(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, bo_init->resource->mem_type, mem_type);
- 	KUNIT_EXPECT_NULL(test, bo_val->resource);
- 
--	ttm_bo_put(bo_init);
--	ttm_bo_put(bo_val);
-+	ttm_bo_fini(bo_init);
-+	ttm_bo_fini(bo_val);
- 
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
- 	ttm_bad_manager_fini(priv->ttm_dev, mem_type_evict);
-@@ -1119,8 +1119,8 @@ static void ttm_bo_validate_evict_gutting(struct kunit *test)
- 	KUNIT_ASSERT_NULL(test, bo_evict->resource);
- 	KUNIT_ASSERT_TRUE(test, bo_evict->ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC);
- 
--	ttm_bo_put(bo_evict);
--	ttm_bo_put(bo);
-+	ttm_bo_fini(bo_evict);
-+	ttm_bo_fini(bo);
- 
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
- }
-@@ -1177,9 +1177,9 @@ static void ttm_bo_validate_recrusive_evict(struct kunit *test)
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
- 	ttm_mock_manager_fini(priv->ttm_dev, mem_type_evict);
- 
--	ttm_bo_put(bo_val);
--	ttm_bo_put(bo_tt);
--	ttm_bo_put(bo_mock);
-+	ttm_bo_fini(bo_val);
-+	ttm_bo_fini(bo_tt);
-+	ttm_bo_fini(bo_mock);
- }
- 
- static struct kunit_case ttm_bo_validate_test_cases[] = {
+ EXPORT_SYMBOL_GPL(ttm_bo_kunit_init);
 diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 0f874f1e2526..abcf45bc3930 100644
+index abcf45bc3930..071cbad2fe9e 100644
 --- a/drivers/gpu/drm/ttm/ttm_bo.c
 +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -48,6 +48,14 @@
+@@ -48,14 +48,6 @@
  #include "ttm_module.h"
  #include "ttm_bo_internal.h"
  
-+static void ttm_bo_release(struct kref *kref);
-+
-+/* TODO: remove! */
-+void ttm_bo_put(struct ttm_buffer_object *bo)
-+{
-+	kref_put(&bo->kref, ttm_bo_release);
-+}
-+
+-static void ttm_bo_release(struct kref *kref);
+-
+-/* TODO: remove! */
+-void ttm_bo_put(struct ttm_buffer_object *bo)
+-{
+-	kref_put(&bo->kref, ttm_bo_release);
+-}
+-
  static void ttm_bo_mem_space_debug(struct ttm_buffer_object *bo,
  					struct ttm_placement *placement)
  {
-@@ -317,18 +325,11 @@ static void ttm_bo_release(struct kref *kref)
- 	bo->destroy(bo);
+@@ -252,82 +244,91 @@ static void ttm_bo_delayed_delete(struct work_struct *work)
+ 	ttm_bo_put(bo);
  }
  
--/**
-- * ttm_bo_put
-- *
-- * @bo: The buffer object.
-- *
-- * Unreference a buffer object.
-- */
--void ttm_bo_put(struct ttm_buffer_object *bo)
+-static void ttm_bo_release(struct kref *kref)
++static void ttm_bo_free(struct drm_gem_object *gobj)
++{
++	struct ttm_buffer_object *bo = container_of(gobj, typeof(*bo), base);
++
++	atomic_dec(&ttm_glob.bo_count);
++	bo->destroy(bo);
++}
++
++/*
++ * All other callbacks should never ever be called on a deleted TTM object.
++ */
++static const struct drm_gem_object_funcs ttm_deleted_object_funcs = {
++	.free = ttm_bo_free
++};
++
++/* Returns true if the BO is about to get deleted */
++static bool ttm_bo_is_zombie(struct ttm_buffer_object *bo)
++{
++	return bo->base.funcs == &ttm_deleted_object_funcs;
++}
++
 +void ttm_bo_fini(struct ttm_buffer_object *bo)
  {
--	kref_put(&bo->kref, ttm_bo_release);
-+	ttm_bo_put(bo);
- }
--EXPORT_SYMBOL(ttm_bo_put);
-+EXPORT_SYMBOL(ttm_bo_fini);
+-	struct ttm_buffer_object *bo =
+-	    container_of(kref, struct ttm_buffer_object, kref);
+ 	struct ttm_device *bdev = bo->bdev;
+ 	int ret;
  
- static int ttm_bo_bounce_temp_buffer(struct ttm_buffer_object *bo,
- 				     struct ttm_operation_ctx *ctx,
+ 	WARN_ON_ONCE(bo->pin_count);
+ 	WARN_ON_ONCE(bo->bulk_move);
+ 
+-	if (!bo->deleted) {
+-		ret = ttm_bo_individualize_resv(bo);
+-		if (ret) {
+-			/* Last resort, if we fail to allocate memory for the
+-			 * fences block for the BO to become idle
+-			 */
+-			dma_resv_wait_timeout(bo->base.resv,
+-					      DMA_RESV_USAGE_BOOKKEEP, false,
+-					      30 * HZ);
+-		}
++	ret = ttm_bo_individualize_resv(bo);
++	if (ret) {
++		/* Last resort, if we fail to allocate memory for the
++		 * fences block for the BO to become idle
++		 */
++		dma_resv_wait_timeout(bo->base.resv, DMA_RESV_USAGE_BOOKKEEP,
++				      false, 30 * HZ);
++	}
+ 
+-		if (bo->bdev->funcs->release_notify)
+-			bo->bdev->funcs->release_notify(bo);
+-
+-		drm_vma_offset_remove(bdev->vma_manager, &bo->base.vma_node);
+-		ttm_mem_io_free(bdev, bo->resource);
+-
+-		if (!dma_resv_test_signaled(&bo->base._resv,
+-					    DMA_RESV_USAGE_BOOKKEEP) ||
+-		    (want_init_on_free() && (bo->ttm != NULL)) ||
+-		    bo->type == ttm_bo_type_sg ||
+-		    !dma_resv_trylock(bo->base.resv)) {
+-			/* The BO is not idle, resurrect it for delayed destroy */
+-			ttm_bo_flush_all_fences(bo);
+-			bo->deleted = true;
+-
+-			spin_lock(&bo->bdev->lru_lock);
+-
+-			/*
+-			 * Make pinned bos immediately available to
+-			 * shrinkers, now that they are queued for
+-			 * destruction.
+-			 *
+-			 * FIXME: QXL is triggering this. Can be removed when the
+-			 * driver is fixed.
+-			 */
+-			if (bo->pin_count) {
+-				bo->pin_count = 0;
+-				ttm_resource_move_to_lru_tail(bo->resource);
+-			}
++	if (bo->bdev->funcs->release_notify)
++		bo->bdev->funcs->release_notify(bo);
++
++	drm_vma_offset_remove(bdev->vma_manager, &bo->base.vma_node);
++	ttm_mem_io_free(bdev, bo->resource);
+ 
+-			kref_init(&bo->kref);
+-			spin_unlock(&bo->bdev->lru_lock);
++	if (!dma_resv_test_signaled(&bo->base._resv, DMA_RESV_USAGE_BOOKKEEP) ||
++	    (want_init_on_free() && (bo->ttm != NULL)) ||
++	    bo->type == ttm_bo_type_sg ||
++	    !dma_resv_trylock(bo->base.resv)) {
++		/* The BO is not idle, resurrect it for delayed destroy */
++		ttm_bo_flush_all_fences(bo);
+ 
+-			INIT_WORK(&bo->delayed_delete, ttm_bo_delayed_delete);
++		spin_lock(&bo->bdev->lru_lock);
+ 
+-			/* Schedule the worker on the closest NUMA node. This
+-			 * improves performance since system memory might be
+-			 * cleared on free and that is best done on a CPU core
+-			 * close to it.
+-			 */
+-			queue_work_node(bdev->pool.nid, bdev->wq, &bo->delayed_delete);
+-			return;
++		/*
++		 * Make pinned bos immediately available to
++		 * shrinkers, now that they are queued for
++		 * destruction.
++		 *
++		 * FIXME: QXL is triggering this. Can be removed when the
++		 * driver is fixed.
++		 */
++		if (bo->pin_count) {
++			bo->pin_count = 0;
++			ttm_resource_move_to_lru_tail(bo->resource);
+ 		}
+ 
++		kref_init(&bo->base.refcount);
++		bo->base.funcs = &ttm_deleted_object_funcs;
++		spin_unlock(&bo->bdev->lru_lock);
++
++		INIT_WORK(&bo->delayed_delete, ttm_bo_delayed_delete);
++
++		/* Schedule the worker on the closest NUMA node. This
++		 * improves performance since system memory might be
++		 * cleared on free and that is best done on a CPU core
++		 * close to it.
++		 */
++		queue_work_node(bdev->pool.nid, bdev->wq, &bo->delayed_delete);
++	} else {
+ 		ttm_bo_cleanup_memtype_use(bo);
+ 		dma_resv_unlock(bo->base.resv);
+-	}
+ 
+-	atomic_dec(&ttm_glob.bo_count);
+-	bo->destroy(bo);
+-}
+-
+-void ttm_bo_fini(struct ttm_buffer_object *bo)
+-{
+-	ttm_bo_put(bo);
++		atomic_dec(&ttm_glob.bo_count);
++		bo->destroy(bo);
++	}
+ }
+ EXPORT_SYMBOL(ttm_bo_fini);
+ 
+@@ -471,7 +472,7 @@ int ttm_bo_evict_first(struct ttm_device *bdev, struct ttm_resource_manager *man
+ 	if (!bo->resource || bo->resource->mem_type != mem_type)
+ 		goto out_bo_moved;
+ 
+-	if (bo->deleted) {
++	if (ttm_bo_is_zombie(bo)) {
+ 		ret = ttm_bo_wait_ctx(bo, ctx);
+ 		if (!ret)
+ 			ttm_bo_cleanup_memtype_use(bo);
+@@ -525,7 +526,7 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *
+ 	if (bo->pin_count || !bo->bdev->funcs->eviction_valuable(bo, evict_walk->place))
+ 		return 0;
+ 
+-	if (bo->deleted) {
++	if (ttm_bo_is_zombie(bo)) {
+ 		lret = ttm_bo_wait_ctx(bo, walk->ctx);
+ 		if (!lret)
+ 			ttm_bo_cleanup_memtype_use(bo);
+@@ -623,7 +624,6 @@ static int ttm_bo_evict_alloc(struct ttm_device *bdev,
+ void ttm_bo_pin(struct ttm_buffer_object *bo)
+ {
+ 	dma_resv_assert_held(bo->base.resv);
+-	WARN_ON_ONCE(!kref_read(&bo->kref));
+ 	spin_lock(&bo->bdev->lru_lock);
+ 	if (bo->resource)
+ 		ttm_resource_del_bulk_move(bo->resource, bo);
+@@ -642,7 +642,6 @@ EXPORT_SYMBOL(ttm_bo_pin);
+ void ttm_bo_unpin(struct ttm_buffer_object *bo)
+ {
+ 	dma_resv_assert_held(bo->base.resv);
+-	WARN_ON_ONCE(!kref_read(&bo->kref));
+ 	if (WARN_ON_ONCE(!bo->pin_count))
+ 		return;
+ 
+@@ -931,7 +930,6 @@ int ttm_bo_init_reserved(struct ttm_device *bdev, struct ttm_buffer_object *bo,
+ {
+ 	int ret;
+ 
+-	kref_init(&bo->kref);
+ 	bo->bdev = bdev;
+ 	bo->type = type;
+ 	bo->page_alignment = alignment;
+@@ -1127,7 +1125,7 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
+ 		goto out;
+ 	}
+ 
+-	if (bo->deleted) {
++	if (ttm_bo_is_zombie(bo)) {
+ 		pgoff_t num_pages = bo->ttm->num_pages;
+ 
+ 		ret = ttm_bo_wait_ctx(bo, ctx);
 diff --git a/drivers/gpu/drm/ttm/ttm_bo_internal.h b/drivers/gpu/drm/ttm/ttm_bo_internal.h
-index 9d8b747a34db..e0d48eac74b0 100644
+index e0d48eac74b0..81327bc73834 100644
 --- a/drivers/gpu/drm/ttm/ttm_bo_internal.h
 +++ b/drivers/gpu/drm/ttm/ttm_bo_internal.h
-@@ -55,4 +55,6 @@ ttm_bo_get_unless_zero(struct ttm_buffer_object *bo)
+@@ -34,7 +34,7 @@
+  */
+ static inline void ttm_bo_get(struct ttm_buffer_object *bo)
+ {
+-	kref_get(&bo->kref);
++	drm_gem_object_get(&bo->base);
+ }
+ 
+ /**
+@@ -50,11 +50,14 @@ static inline void ttm_bo_get(struct ttm_buffer_object *bo)
+ static inline __must_check struct ttm_buffer_object *
+ ttm_bo_get_unless_zero(struct ttm_buffer_object *bo)
+ {
+-	if (!kref_get_unless_zero(&bo->kref))
++	if (!kref_get_unless_zero(&bo->base.refcount))
+ 		return NULL;
  	return bo;
  }
  
-+void ttm_bo_put(struct ttm_buffer_object *bo);
-+
+-void ttm_bo_put(struct ttm_buffer_object *bo);
++static inline void ttm_bo_put(struct ttm_buffer_object *bo)
++{
++	drm_gem_object_put(&bo->base);
++}
+ 
  #endif
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-index 7057d852951b..e564d071f40b 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-@@ -37,7 +37,7 @@ static void vmw_gem_object_free(struct drm_gem_object *gobj)
- {
- 	struct ttm_buffer_object *bo = drm_gem_ttm_of_gem(gobj);
- 	if (bo)
--		ttm_bo_put(bo);
-+		ttm_bo_fini(bo);
- }
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index 56f3152f34f5..56645039757e 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -245,7 +245,7 @@ static int ttm_buffer_object_transfer(struct ttm_buffer_object *bo,
+ 	atomic_inc(&ttm_glob.bo_count);
+ 	drm_vma_node_reset(&fbo->base.base.vma_node);
  
- static int vmw_gem_object_open(struct drm_gem_object *obj,
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 2a8e7cb8c982..a43b3f4f3da3 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1647,7 +1647,7 @@ static void xe_gem_object_free(struct drm_gem_object *obj)
- 	 * refcount directly if needed.
- 	 */
- 	__xe_bo_vunmap(gem_to_xe_bo(obj));
--	ttm_bo_put(container_of(obj, struct ttm_buffer_object, base));
-+	ttm_bo_fini(container_of(obj, struct ttm_buffer_object, base));
- }
- 
- static void xe_gem_object_close(struct drm_gem_object *obj,
+-	kref_init(&fbo->base.kref);
++	kref_init(&fbo->base.base.refcount);
+ 	fbo->base.destroy = &ttm_transfered_destroy;
+ 	fbo->base.pin_count = 0;
+ 	if (bo->type != ttm_bo_type_sg)
 diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 8ad6e2713625..4b0552d1bc55 100644
+index 4b0552d1bc55..4fe4031f0165 100644
 --- a/include/drm/ttm/ttm_bo.h
 +++ b/include/drm/ttm/ttm_bo.h
-@@ -383,7 +383,7 @@ int ttm_bo_wait_ctx(struct ttm_buffer_object *bo,
- int ttm_bo_validate(struct ttm_buffer_object *bo,
- 		    struct ttm_placement *placement,
- 		    struct ttm_operation_ctx *ctx);
--void ttm_bo_put(struct ttm_buffer_object *bo);
-+void ttm_bo_fini(struct ttm_buffer_object *bo);
- void ttm_bo_set_bulk_move(struct ttm_buffer_object *bo,
- 			  struct ttm_lru_bulk_move *bulk);
- bool ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
+@@ -78,11 +78,8 @@ enum ttm_bo_type {
+  * @type: The bo type.
+  * @page_alignment: Page alignment.
+  * @destroy: Destruction function. If NULL, kfree is used.
+- * @kref: Reference count of this buffer object. When this refcount reaches
+- * zero, the object is destroyed or put on the delayed delete list.
+  * @resource: structure describing current placement.
+  * @ttm: TTM structure holding system pages.
+- * @deleted: True if the object is only a zombie and already deleted.
+  * @bulk_move: The bulk move object.
+  * @priority: Priority for LRU, BOs with lower priority are evicted first.
+  * @pin_count: Pin count.
+@@ -109,17 +106,11 @@ struct ttm_buffer_object {
+ 	uint32_t page_alignment;
+ 	void (*destroy) (struct ttm_buffer_object *);
+ 
+-	/*
+-	* Members not needing protection.
+-	*/
+-	struct kref kref;
+-
+ 	/*
+ 	 * Members protected by the bo::resv::reserved lock.
+ 	 */
+ 	struct ttm_resource *resource;
+ 	struct ttm_tt *ttm;
+-	bool deleted;
+ 	struct ttm_lru_bulk_move *bulk_move;
+ 	unsigned priority;
+ 	unsigned pin_count;
 -- 
 2.34.1
 
