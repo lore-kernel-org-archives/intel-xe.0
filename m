@@ -4,182 +4,188 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B0F3C71136
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 08:57:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80EF4C71136
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 09:15:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1FEB10E2EA;
-	Mon, 16 Jun 2025 08:57:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36F9B10E2F3;
+	Mon, 16 Jun 2025 09:15:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eTExBoNS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="auMNbL/K";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0B410E2EA
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 08:57:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3859A10E2EC
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 09:15:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750064237; x=1781600237;
+ t=1750065300; x=1781601300;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=2OL9rqxGyZL+EFhknrbParr3vi7BoLT4h0yZGOkDH+o=;
- b=eTExBoNSoJ5U5uvSeLA/7tjtMkE+66yLrAFIDqRg75iX1yTXRPpFooxS
- 79dWBcBmR01LSMLz6DgQPNw8HcYnQhvmjcdktxF4JP9O68vh45oNIiwxv
- DD1M9NcmIQ1sBcCUqfUezwvVk20cmnb+lDZSC+s8vtfMRIQ/Zizz3/jnv
- FaNus8Dbl+sKvDdou6GaLVOMtoH72mdWizwvgqBCGW+QtM4yYdJ5ruo05
- lT0fVEeQMWYA7Wk9nthNjCWuyAu5H7K/xO7/1J4WqiuuPqM9BN/01TueK
- MA/9Ey32Pg2CSWk4+3ynculxE2yvLyckPvQQPEpjb7QOqBGkVAdBv74MQ Q==;
-X-CSE-ConnectionGUID: UEsem39RQoGyvegLbpdFzg==
-X-CSE-MsgGUID: 2NeixOlDSPGoT9SrtgavLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="62473349"
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="62473349"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 01:57:04 -0700
-X-CSE-ConnectionGUID: FePycC1wT76lMjwe560Ymw==
-X-CSE-MsgGUID: F1KAekGiTYG/QJMwGNDGgg==
+ bh=vsegD0U5JVrNOzgnQwPuf6u21NhnvqaetX6ZUWMwt0w=;
+ b=auMNbL/KeZsSeLEYlIUfTMnMJpzeaXGp2ID5BXnmEBMoPiSAe+7PSaDv
+ jVRuEawB2T0OS99XAoN5LVYlQhOvBwx8EPpzNGxLrhQBHJORz7n3ZMHyG
+ kPcTuLJXh6ki4rqEtTbz/dm1ckZKX6ZaYV2S0nV/y2avxDPp+jhDPfdcq
+ q/0SPe2KvjEbxeTjSTXq2vQFzJGoGlAOoqJZ3jl9VXDYoBS+3p21AEMg8
+ uDZA5VpNzY/fPeHkjN1cegXjUPRWkIEJcajSjDmnh1jzsuUND1KMhu09r
+ mgulC6X/6mzz1Z7K9qyLob3aPDT+MZxccGtP/TpWcEAh1BFZDsUfGhZ/d g==;
+X-CSE-ConnectionGUID: N0MD0cLXTGqfbZrJ3/L1oQ==
+X-CSE-MsgGUID: LHlXr0VfThmHuDErGLL6SA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="62809800"
+X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="62809800"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2025 02:14:59 -0700
+X-CSE-ConnectionGUID: xz1i7/YZTz2g8WdyOZ8omQ==
+X-CSE-MsgGUID: h/FBoG25RDOi2C6Mn6gK7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="153711611"
+X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="152250659"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 01:56:57 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2025 02:14:57 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 16 Jun 2025 01:56:55 -0700
+ 15.2.1544.25; Mon, 16 Jun 2025 02:14:55 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Mon, 16 Jun 2025 01:56:55 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.72)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.1544.25 via Frontend Transport; Mon, 16 Jun 2025 02:14:55 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.40) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 16 Jun 2025 01:56:54 -0700
+ 15.2.1544.25; Mon, 16 Jun 2025 02:14:54 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=j+vTcbEHjhyQsLRHbaSsv1m5rQKJfJzjFGawz5pPkmsLZkRx01RzdgXwK/Qr8bcK11A44kxduCGQrnnXI9reqxepQYF5sHzMiVEVWSH6c59dCmVSxzuIZYCcTM44L/AOO+RDtaJ8w28NKPCwFDLqueQ/HKpEGOz7LfCLYygiufCSA6miQwV1Ka/T4SCregiEnyOn8MvoDH2DXwmrCXhq3jYhLa2YujSfX7QV1icO5IhfZdPfPH/OdDCQ55oyLJmzywckvn9Uk96fMnusjP4fsC7quu1pEGNmoks43XxbdwBpHUaLzidaoRZgKu+nHnJ8mDmhPgCWSgTYCkBUTyEZAA==
+ b=Fp16GZTDwd3YL2jAfgxM1jvOO+UAw5AkhDCEtqzR9a8uk46naAEApU/6jfz6SsUXGuqfShXqpiwsERZqAp1ZU6TSU5/0FuASfn+8nA1T6JGebxF7LmWJIy97v1CZxGxG8N/iSZXv5M7AbXtAP55MZGswgbCautjsQrC1sdTtjrLZSSvInFIhrf6nQrlptdZW1A/VQ2gAqqP21xubCW6nUjmMJ0fM6qfN0fAGQi/a00DfYE8Aiyrdilfy0tXNq5Oabpg9mGeUOSpBJiSpCig+RAeePVoMw+9NRKs68h0DeohV0vRs8RT5+zSxwCn9Kwln1qqRFwaA+hzwXZ+c8D3Y9A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Iq7WA+1ibgMunoN0HHkT6QnjZzm4iCr3C0SkfxzHOTU=;
- b=LHHbcI0O9pRGPhfOmm+moEMgUp9S33RQwp/wtLwacWNAPp9eckPQRHHBz6hNVAUiT3gJC9jNfy05lWG5Ll9mkH4Bnx9MQDUcbaQe4zxeDlLtYrLc5iPtzd/MZL+srSG6wgx3hTd90bb56ztl+n4gN4OJZIeQKeHe4kczlJvOx+DTVXlp36alCrE/fE2jbajgcpVVZD7hWdPuVaGuKXlSyh+w6eJQ7NrLTk58o3nnXjxK/Zj3DV8l7yFw9ZX5klSSq+eySjdRKlFkMajEdVpfS0W4CmsKBj1k/CaGmey4xwUDc0qc8zrNWeglsfD3VPM2Jb0vQBHGM+AB0HoFz4YWCw==
+ bh=01azLBmPOZ9pXN1B+xeMqfwjlJRqh6VqIzrl48YPHjY=;
+ b=DRlc3vpNbaX/vhlXf0Lm/OwG5VSAVhnNiYMoxKTPtyXABtq4uou03PcwL9NlAkz3v2VhybCQ1UGkRwTQsOuLR/YYmu5O/J9YeF/sOMUJaaFwQTZ15Xh/X2yAKZ0jgp2CPS+fDxcvjUpXNoRWdaFlIHIBPgQMWIvHG7WReqTiwnveTh/RvnkH3urNssIjHqr7QsYZDpMwPPQW0pQllXcZIcHXlZQUH5i55jHdZcRvG9aVWoKD9byzMlWB6myYC1G1YPeqHqDI2XIaTI6bRBnGSiXTR1eYJmqb/V4VupjPrqSfhpSVt5HAgalHA1Z+QaNreECS5CWFP5oZBcifdPNB4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH8PR11MB8105.namprd11.prod.outlook.com (2603:10b6:510:254::22)
+ by PH0PR11MB7493.namprd11.prod.outlook.com (2603:10b6:510:284::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.19; Mon, 16 Jun
- 2025 08:56:52 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.30; Mon, 16 Jun
+ 2025 09:14:25 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.8835.027; Mon, 16 Jun 2025
- 08:56:52 +0000
-Date: Mon, 16 Jun 2025 01:58:23 -0700
+ 09:14:25 +0000
+Date: Mon, 16 Jun 2025 02:16:00 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
- <michal.mrozek@intel.com>
-Subject: Re: [PATCH] drm/xe: Thread prefetch of SVM ranges
-Message-ID: <aE/cr2Eb/KJUIXnE@lstrano-desk.jf.intel.com>
-References: <20250616064712.2060879-1-matthew.brost@intel.com>
- <b1620d738130de216644d09722735607f0b1e35c.camel@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <matthew.auld@intel.com>
+Subject: Re: [PATCH] drm/xe: Implement clear VRAM on free
+Message-ID: <aE/g0Hw/ZmBxBXpD@lstrano-desk.jf.intel.com>
+References: <20250611054235.3540936-1-matthew.brost@intel.com>
+ <cb53d2efe677724fd5d141d8f3cada5f06758adb.camel@linux.intel.com>
+ <aEsKU2LliY6JmG6a@lstrano-desk.jf.intel.com>
+ <eb5531f03ee560a593f77f60ae1f6f862eea6a14.camel@linux.intel.com>
+ <aExQEKec1H7yqS1I@lstrano-desk.jf.intel.com>
+ <aEyDw0ZQ5R/ohrO3@lstrano-desk.jf.intel.com>
+ <2f5a1a129ae6dff415d7160a1bed9e28786147e2.camel@linux.intel.com>
+ <aE/OLjpW/pwyV+DM@lstrano-desk.jf.intel.com>
+ <cb55e47574a0fcd62728aa4fad150f1682b92b83.camel@linux.intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <b1620d738130de216644d09722735607f0b1e35c.camel@linux.intel.com>
-X-ClientProxiedBy: ROAP284CA0185.BRAP284.PROD.OUTLOOK.COM
- (2603:10d6:10:43::28) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <cb55e47574a0fcd62728aa4fad150f1682b92b83.camel@linux.intel.com>
+X-ClientProxiedBy: CYZPR14CA0009.namprd14.prod.outlook.com
+ (2603:10b6:930:8f::29) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH8PR11MB8105:EE_
-X-MS-Office365-Filtering-Correlation-Id: ec29a43f-301e-4573-cb9e-08ddacb3bca1
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB7493:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6d48e0b0-aec0-40d3-671d-08ddacb6302c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?QjRmSW04UGJBSWdISHZHVnRpZmJuTGFWNHpmeXNwVmFTWFZBSU44SVBkM1g1?=
- =?utf-8?B?N29McHZ3ajBPS1ovTXBaY1czaWxQWU5waDlzZk52VElXU0lUS0c4bFZGR2l4?=
- =?utf-8?B?alVIMng1MzdmVHc2UDBhRk5hME5lOUhUaktPU3NZWDgxM0VWTS9GV3BXcDB6?=
- =?utf-8?B?VUpsMlhBamFFUEgxcTdabWdzSWJHOU5QVkZnT2hoYU0wdU0vSEprczFoVjVz?=
- =?utf-8?B?Wlk0VVpQa3loWTB6cWt1K0pKWlZOckJXR3VpK2VEMVkwZzFxOGMvdDg4RzNy?=
- =?utf-8?B?L214THc3blhWR3J1cmtIbm5TczV1STdOTms2TkFnZ0Vsa2FCQVhwa0dXNFZh?=
- =?utf-8?B?WUdjWTFMeTJOZmZkSmxqUWVUblRkT1BQMFo2eDZDMUN4dENid1pWUE5MVWhL?=
- =?utf-8?B?TllYcExCN1NYQXVnUnJSVURzOWMvbDd5LzV0VFQyNXVDVDJvMUZGQjIwMHdG?=
- =?utf-8?B?eUVteUdKTXV2dDFuZUR3M011UWN2Q0llWTRRQ0M4SW12R3RKVCtQa3EySW1J?=
- =?utf-8?B?Y3IwbWthUmJzZlJyK2N1YW1mdVBMcEhPeVpxcjFsRjY5TWQwNXpuK0RVTjJk?=
- =?utf-8?B?V1p3dGd5YXUzbTZZSTJUSjhqdnBDTmtzUTl5c2ZoUDd6L3BiVmVybkxiUWFE?=
- =?utf-8?B?QW1ibDRnV2hZbEsrYWZPbGpVSEN6U211UUp6VVFHdGpIbDQyd0d0aUxvK215?=
- =?utf-8?B?RGZmcmZzOHZEUWVhaFRXQnU2M3Jjd3AxOWVhdVQ4dXd4RkRiSS8yOVRRb3Zt?=
- =?utf-8?B?dnVGSkhwbkxkaFM4M0g2c282VTVRR2t1aEMrNWFva2p1eFhiblMzQ1p3c1dw?=
- =?utf-8?B?c3NmRHJvcENSa0NvMXU5WHI1ai93U0t0dWU2Q2lKZXl3dDJiUFJGSXhadGZV?=
- =?utf-8?B?UDhLR2FwVWJCRUJwWUJSeHZKNW13VDgybXo2TVN3dWxpMU5HUlhmajdML3lm?=
- =?utf-8?B?YmNmdzFLNS9UOXpRaXN0bzFVczl1akI4bldnYUJkYWIrcGlSbWlHcnJFaGM4?=
- =?utf-8?B?RlZZVWpkQ3czUnI0WEwwempDNEVPNDM5Z3VoUmQwODR2NEh5dDBicHlVOEMy?=
- =?utf-8?B?aFh3SDNZTVIzcFpaYWdUVnVTQVVZTzh5VW1zK0NiQ3lwQXZERDltWGhXL1FC?=
- =?utf-8?B?UGFES3pKZ2xjQldvL1N3WHJLVjVwT0lmOHVpdTROQ013OUJvR3hwV0Qyem9U?=
- =?utf-8?B?aFMxbVkxYmpOb3hqbU1BME1US1FwMFpyTUoyenJCY2hSUmNuMFVqOFUzV0Ri?=
- =?utf-8?B?dEpFQXg3NHJURzBTSEhwbU5iTUdYdm9rUUp3U1BiUzJlbUZxczNWTkQ5N1g5?=
- =?utf-8?B?MzNCYkF5STlSZkcrc1lWNmV0dml1bCtoZDNMZkRTRWZLOU42ZDV2bldBdU4z?=
- =?utf-8?B?MVdvc1VhRTg4Wmw2RVA5NThGTGcyUE90bStzTEN3Mzdzd2lNVi9USStOa0M3?=
- =?utf-8?B?OGdoVWVuQ0hSODBiWGRnVGxTS1U3aFNqMHZlQ3hhdnFWME9mZGNEbVU0dFE3?=
- =?utf-8?B?WmZ4QWl1UW1SbDVpakxScU9iWmtGcHJ1dXR1bDNLTlQ0UXdzNktJZHNNd0RL?=
- =?utf-8?B?QjdnSEM1dUxzUGIvVUFodzN6MWJpSWR4QkN2bUtGVXIvaWluYVhtU0tlQUJk?=
- =?utf-8?B?RGxIK2c5UEFRaTRsOVBvUEdabVRhYll3ZDdQRlZRMS85emZua0FTbWZ2MEZ1?=
- =?utf-8?B?bUxaajMvLzNjT2RmWXZrQjBPanIwQ00xZXowRDR5cVZxRjgxT3Z1Z0F0b3g4?=
- =?utf-8?B?MmRCRzJvSE9BMklPS3ZzYjBhalVTc0cwVG05TURvdy9sRVRMajlTK01qMk9v?=
- =?utf-8?B?WWxLVFZlUnVuNXFncWpwL29rT2tEQ2hicHY5d3pqeXRBb0NBMk5YWlU1cGJz?=
- =?utf-8?B?b0svcXl3VHd1UmV5cnFqTGtqT0pybzBrQUZ5ZExBVEVhOWQ3VTg2VmYrWVVU?=
- =?utf-8?Q?ub3qgxB/VYk=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Wjl2YVkzc0Y1aTdLM2FpNEhVUHROSDhpRjE0TzFrS09aQ1Q2cXBMOVFSWUMv?=
+ =?utf-8?B?WVZaV2JLZ2E0cE1EOHplWmZBRm05eUV3a3lBdEZIeXRLTUxYZ25CeW1ucm9O?=
+ =?utf-8?B?bkQxNGVJSm9oWGNQTHdsYlVnRE5iVTFlUmhDUEdIbmd4ZWZKYS9oRUIwYU4w?=
+ =?utf-8?B?QVpqNU5UTDdCMzRna20wMlFwUUFuSzFUejk2MHNsOEFvNlRJeGpSTFluVkhY?=
+ =?utf-8?B?OWU0SFREMHhndlJuV2p5UG9oeElEU0t2Ly9YNnArT2lEbTA1SXFVQk5QRXdq?=
+ =?utf-8?B?SmNsTkJiYkswaDBTcjVrZ0hnQ3RRc1hVYytNQ1FZRDl4bXV3dnhNdmR2VzBX?=
+ =?utf-8?B?MkI0S1FaU0VhWVN5TlhBcWk4VSs5anlqRy9lNHd0eGxHUzNZdXMzNmxnZW55?=
+ =?utf-8?B?MFJUdXRZaDJNRmUzWGlGLzNZTEVpaVFtRUUzenhZVHJCaFR6dGMvVWNjRU1F?=
+ =?utf-8?B?RWxmRXpKdHN3RWdYUis0Q0xGbFY3NUZKMEdUakw2dHhXUFIrWjJ0ZnJCWU92?=
+ =?utf-8?B?eS8vL3dBMWtZYlFSTzRnRXZPb0hYT29vckFkSXRLeVVROFowSUxwWUdqMGJs?=
+ =?utf-8?B?SUUvQjgvZ3hsc2F6Y3kzUUgycXJGbVV0SDc5S2ZQVVB5RWtLNnR5bmRDNVg2?=
+ =?utf-8?B?d3Y1QnIzL1V6MlkrUDBkSW1kelVhRDNIQ1I5VVpBeFZyc01KZUY4SXNCQnI2?=
+ =?utf-8?B?VGZWTEdxOWZSTGYvb3dxNlpLWExnNDBqaXBjbVhSazdMOFVVaEkxQjNaaE91?=
+ =?utf-8?B?cmVQaGNVVE9WZzhpYVRHRmU1cnBTL0VMU2dCV214b0V1eUdOcUgwVlYvcVI3?=
+ =?utf-8?B?Vjl6bFZ4V2JQVmpsZ0hxdWpLM3Q4OW5ublRSYzI0SURVcXZuQjN3SHFhKzI4?=
+ =?utf-8?B?UzdpbTJFb1FId1dSNG1oRm1nWlVNUlc3Qjd2ODFLUkltL3pUMkUxWXIzZ3lu?=
+ =?utf-8?B?bzJNalhjSFRFUjJBMFBydkU1Y3psUWlmeEtqYlVmSVhWeko0elRxK2JSRGZP?=
+ =?utf-8?B?eG9ZMDh4Vk4wSXQ5NVRFM3B3bDhsMnlDTnJESjNCRFJmVmZMOU1aaGF3QkQx?=
+ =?utf-8?B?dXRJL1NQZEZ1eUg2ZldaSXR3VmlhUGkyTnFhOTlnTlNpODZFVzNqeWVnUU1i?=
+ =?utf-8?B?UmxXV1l0eEFXamdtR2JWVE4yY2VRSlVadVJFeHdUblZLamNtNE12a0RGUjZ5?=
+ =?utf-8?B?aHhUY0U5TnpWaytrdDRWUGtpVXk4SE4vS1BrRkN0WTl0Mll3T1k0T1JWek5o?=
+ =?utf-8?B?TlViZ0l1YlpmdjJmK3F0T1VLanlMQ2d2RWpzazhQaWNLY0lmVGRlVzkveTF1?=
+ =?utf-8?B?R1BQNmZZK0k2WnB3Mm04K3hmL21wSzZheWpDbFh6M293V2FkUGtOencwaUEr?=
+ =?utf-8?B?dkpKRFRKYTM0K293U3BySnYwcC9FQ2xhd3hranZNd1dSNmRyT1dqNkVMNWhX?=
+ =?utf-8?B?M01HZ3d1VnBlTGNYa1h1TU82d3BDaE1HRitmSUt1RHBXZzFHK3R6VC83dmZN?=
+ =?utf-8?B?cndBcHhtQldtbzNmcFNYbDhXWDdwWDYzNWI3YzEzT254eHVkekk3M0VXckxJ?=
+ =?utf-8?B?OVJwbEdRd1F2SzVTaGplaXA1TlBXVzNzdnFXWUhNeW93WE1RSUU0eGVnM2lx?=
+ =?utf-8?B?a1B1ekhvNzVFVHVIeFh3YStsWUhLODNod2NpUWJGVFh1enQ0cVNsMlBJR1ZH?=
+ =?utf-8?B?SHJkWnJmdUFSb0d0SEpYRkdkWUQ1S1dpSStuWUw1bXo0NjRzcE5UZjQzUWFD?=
+ =?utf-8?B?TGU2TGRGaXZlZ2N6c3p0STJSRk80M3gwdU1CTFZtendTMWJadnVoandGUlAy?=
+ =?utf-8?B?YXdHa0JIR3p6cisrRDNKQjZCYzlGRkZEOCtseXNZbmF6eFdBSWdaUkp4V3la?=
+ =?utf-8?B?UisyY1UrNUF2WUMyZlpQcTRMcWtkSnREcFRBVUlrQzZ2Q1ZxdHJnaVVjVUQ5?=
+ =?utf-8?Q?M1tM8uRYcto=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7053199007); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M05GQTZtSWw2cDYydGdtaU42NisxcUIxWXA2NmZoRFUxSjUyaTZ1MVVKRDZr?=
- =?utf-8?B?NXdtd1JGb0F3cnhlMmdMYVY3RlhUalZmdTBBMGRGRkpZa3hwb0xzWVplRVlQ?=
- =?utf-8?B?ZkxaUzVneUdYVUEvejI4Uk4zQ3JicC96di9QOXQrcyt5alNIUDZzRGprVXpV?=
- =?utf-8?B?Q3JWRFRoWXZabFZUVHJ6MmlLMUtKSFB3RHFySFRiSTltVitYUFArUHJsWXow?=
- =?utf-8?B?TDF5eHRkSS9lR3hkUUVvMG1oV0pBODhOM1B6TVk3T3VJOEVQQVk2Y1FDNHdz?=
- =?utf-8?B?Vkhwbzd5MDJQM1pqeVplalFJNjdOcGpmK015MlIzMUswRjZPZlN6bUMyZXIr?=
- =?utf-8?B?S0NBWFo0NSsrN1RMaXpBOHFCNTNwdmlyb3Rzb0Npd0pmZ1paKzhkRFQ4b3VW?=
- =?utf-8?B?MGszd2tWR0IzQzVWaHhyRjB0cXQrYXRtOHIzQ2tmNFhvMXE2T0RGaGNrMXNQ?=
- =?utf-8?B?Zks3NktDK2lEUUd5czZyMm1VZTlENE9ZT3FwNTV2dmdlT2RWN20yUzkwbTFk?=
- =?utf-8?B?MXcrQkFOWVlkMkM1S0hVNHl4VTVnOU4wRG1iNm1BWDR1UWNmditoTW8zaXpY?=
- =?utf-8?B?NXgyV0thQmhwVFlNVEJ5UGNKcFp1b3JxUUk2cm5yWWdYQlZJUjAvUkdyck9I?=
- =?utf-8?B?KzBDajd4TDJPM1NPU1kwSk1WLzBvajRGK2JVNEhKQmNEY25HNkc4YnBwa2x2?=
- =?utf-8?B?T3VHcGFEd1RaMEtTTU82WVF0Z0t4NDlpMHpSRzVVOUxld1Y1WmNKSmNuYzZE?=
- =?utf-8?B?MWNNc3FlTDBselNzby9XY0g2SzN3UWdPNkFudjkrU2NxTitKSW50NG1sR2ZU?=
- =?utf-8?B?anY1QmNYNDVTNGFSdDB4K29kVU5LS2Z6dVZZSXZuc2loZk8yQ3AzVXFxVmZK?=
- =?utf-8?B?MU5rb0J6dVR0Y0RkSGl6dU00cmN6OEtSeFFVanZDZmNnR3B1bm9wSXdYaDFs?=
- =?utf-8?B?Mm5pOW1TQ21kcU9TYlRscVFmSEdqVmVLNEExd0lvZ2JtT1NqSnltK2wxeCtV?=
- =?utf-8?B?bHBtVHRZQXdndWpWeks3NWVlV1dXMFJpc1ROZ2c2NVBGODlqa1loYzFKQnBC?=
- =?utf-8?B?bmh1N3lUK0RGTnNVRVVneWdSSFk5UFFqbFptWnJTcDREOW9xMStkck8remFM?=
- =?utf-8?B?Z3BkOUFacm1vWCtENDhLa3pPTWVmeXhaVlR3V2R2QjVUYUs4T0V2Q0c3bmhq?=
- =?utf-8?B?WG5NanFBT09Gb2JkbEVrWmZrMDU4UWorTnBmSS9HZ3drSkVrbkxwMncxdzFF?=
- =?utf-8?B?cWQxVXoza1BLZUtyRzVzdldtSW4zSGZWeUhBNDNTeTd6N0NHSFZtcmszTjFr?=
- =?utf-8?B?dURxaDErTzJpNlhPalkwYlF4OWV3d1R3aVluWllnelZyNkxQenVVN3NuS3BJ?=
- =?utf-8?B?NWF4UGJGUmx4ZVN5TTFZQWduaXJ6akkvbElyNnYwajY5ZGJyb1R0Nks2algy?=
- =?utf-8?B?RGtadnpsUXhONnArWjEzUzl2TTNMUDIvSmlROUsrd1pySkJUMjRwSVlDWjNK?=
- =?utf-8?B?UG0wN1hLUWNYV0tET0hWRXpHVGQzMHc0TTR3eHlIenFWc28vNE0vc2p4eWE2?=
- =?utf-8?B?WXhGUDI5dGJWUzlNdHBCT3czMUlRUVA3M2h1RWlMVFVCcFczeGF0a3JrdXNY?=
- =?utf-8?B?OHNsSkVqN1I2aGJhWnlnL0dtWHhCdE5hT2ZXdkFvL3Bya3NjakZhZ2IvNHF1?=
- =?utf-8?B?T3dRV3hhYlNKajJteFhpaTk1UkhNcDdwTGFubGlTOTY1SzlTNk5Vb2xHN3p5?=
- =?utf-8?B?cnZKUHlHRFR5a2ZWdDZUK1lyWW5NaHdkelJrVFBsN3p1NXYwWmswMlk1WlVu?=
- =?utf-8?B?bnNsR25Vc3JhWlNxbWlNcE9qa2RWRFpaMkJSMUVtdTdObS9hOFN3TGhtV0N3?=
- =?utf-8?B?NzBvQnVPR004TDhzYVEyekplaE1RVnVmQlBpN3lEYkZTMGI3eU9nNjZLZ3lH?=
- =?utf-8?B?cVFhK1VKckEyRkhRa0grTTRib3FKc1FRVXRDbzExUTM4dFBBYVlJTXhqUVF5?=
- =?utf-8?B?OHkwdG9waEhNaG9Rckt5N3dmeWpPdXZFYkRjUUc1bU00bjB5U1NNSUVvMnRy?=
- =?utf-8?B?dUR2L0lUVmFGQ2p2MnR1UlEyN1hwV3lFYjU1ZzNsZkxJVzYwVGN1MDg4akNE?=
- =?utf-8?B?Mzd3YTNIbFpTQWxoOURQMElGOCtlaDI1R3FwKytjeVIvZVp0MVN0VkJCTVd0?=
- =?utf-8?B?V0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec29a43f-301e-4573-cb9e-08ddacb3bca1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MFlSd1gxYURwSDhvRlA0Vjd2YVdEVitTb2M2eWl6N21qMm1RM1l4cmU3Ly9a?=
+ =?utf-8?B?dXZha1g4cGprRVh3NlJGTUFXY2E3VXpNU0JiUEdzNVdXUWdmK0hVaXpXdUtN?=
+ =?utf-8?B?cHlTY2RrOHlHUWc3eE9MMFBrMER3TGk1MU9vSkhEMk5SNGhRclFTTHlvN0NG?=
+ =?utf-8?B?ZWZHZ3lQVXlTMER3WlZPYnJ6TklOTkNzQWdlQ2JUZGRvUVl4ZFpHQnJHUGFo?=
+ =?utf-8?B?SnZDVytybi9iREpadHV3NEYraFRlVW01UmlWU1RIWFV3MWhyRTJVelpHb3V5?=
+ =?utf-8?B?U3BUeUtFUVdJYUxwZjJhdjZDNi9FdUZUZFhXVVdCYm1NWlZDaThqMlgvd0Vi?=
+ =?utf-8?B?RytxbHB6T0NqRlNxMjgvdTh5UzRIUU5aZTluY3hVYkhzbmlQcHhKU016NUZV?=
+ =?utf-8?B?V0VteTBqeGZEb3dQb2szWGpzeUdzL3p6TGtKK2RqZEIwK29RV2pSd2pOMjVY?=
+ =?utf-8?B?clpqVGJGTnJYTHVvbDNoZ3E3OVYrUXZoWlowS003Y0VBeXpiQmtMSW5KZG9D?=
+ =?utf-8?B?M1ZpMHRiSURWaDRESHNmeU5KanVTMFBvRi90U2NKS2VQdlgwVGo3MzRvN1BM?=
+ =?utf-8?B?cksxb2g2Y25lOHR5djBoeUZJd09RRTF5YjhCZ0JXcDFJN0FLVGNQcUlmMDZh?=
+ =?utf-8?B?TXc2MDd0VCtDUm9vYTBuTkk0eDVwQy9QZ1NmRTJIL1FSS1h6OERyQW8vQUtP?=
+ =?utf-8?B?OGtQbkdXd2pGbXdCa1JnM3VpOGFmRVN2bmM4WHBCOXJMT0tkM1R5ZXdoL2FD?=
+ =?utf-8?B?NktHY3ZOcGFSdzd0d1pMS0h2VUpzM2JFd0FLMWRVM2pIVzhuQWhtVWFZRElZ?=
+ =?utf-8?B?KzFxZDE1SUZmeDJxcisvNmFvMEpoUHowR2NDd2hDT0dqNVpMc1pyM1RSL2Fu?=
+ =?utf-8?B?Vlg2ZktNdEVwbUhKYmd5VkhERTY4MHluNmJnT1RpakhLYkpqbkhsTmZVMFZs?=
+ =?utf-8?B?b0IycWJCeXpRN1IzUmtRdFJrWnR1bDYvU3o5Tk9NdnpSYmJXQzZKYVlFQ09B?=
+ =?utf-8?B?a1ZPSGY5Uzh4YXRKSEVHMGtvK0VnbnVBVitvT1EwOFBHa0tHQzhOeW51R29L?=
+ =?utf-8?B?cGdkU2I5YUtFYUFPWEt5eFdWT2tkMHpodklxcW1HenFHVlNZQ0tSMTlaV2xm?=
+ =?utf-8?B?dWlkc3o1a1g3Z2R4QklGT241aXFlT3hiNVF2UGMwMkNoOHRqSkZRWnFzQXJv?=
+ =?utf-8?B?RVhRbXRnNVdaZERkQXZwYmRJVXhJbkdRUjdGM3lxaWw1dE95aTg2ckN6Z1Bi?=
+ =?utf-8?B?Y20rSWlmdlZBYUZIMEhDNHQ1ZkhKMjdYTjBoOGFJdzIrZDJKVVQ3MDdYUks2?=
+ =?utf-8?B?bHFkWWpwaGxuZUFXd3FqSmpkODhXaGY1dTRzWGdiQ3BMVUZVdzBmakdUR0Nk?=
+ =?utf-8?B?NEtDZU5ZbEloeEgxb1VyT3JRTlliQzZzc3ErOFcyK0Y4c0ZCaWUyN05IcjVX?=
+ =?utf-8?B?TnBUWkQ1d3FSdzZSV2dPMEV4OGh1bHlZL2FGMXJaMzM2MmpSWkJLL3NrK2t1?=
+ =?utf-8?B?N3BQQWZRZ3NOVEpqd2lrVTlXZCtFNmFWMXVJaDN1V0tPdEt0TEltMHlwYUNW?=
+ =?utf-8?B?aDljVUFpckIvc2QvdU91bCtUN1JEZFlTTEd0OUtQdDNPbVNESDcyM1V6RUto?=
+ =?utf-8?B?a0tQbncvb2VLV0dWUUhDdU5UZmhQYVh0VUZQVHFWT0hHYVJjKzVnYURBdzdK?=
+ =?utf-8?B?YnJPMTBiTVIzc3M5U2JkMDBJOWNzKzNMdld1WU10bkMrTy9nV2dVUU93Wkc0?=
+ =?utf-8?B?aUZhWm1vaDVGYlZJZHkreGtFLzVRUHA4eGxRRWhvS1MwVW05djU0RnhicmNU?=
+ =?utf-8?B?T2wrWk4rVkE2cDl1Z1RLWW1qSzZYMW9SRDVCOC9IK3JrcFJyVStqTGVudVpa?=
+ =?utf-8?B?dkZIdmJMbWZJamJpajhNWDZYTXdXN3lLb0dEQ3FOZGQybmxSZUFTYnMrZnlG?=
+ =?utf-8?B?SGJORDVzVGprZ2NUQjd1Q001OFNiZzlUK0ZzeVU1ekRZdnNsTTBYMG1scjF3?=
+ =?utf-8?B?Y1dXQW1HK1l2UFl6L2xQazl6THM4MWVDUXNQNnBOMytidVN5VUhIV2VNb0xq?=
+ =?utf-8?B?SVNZNFFpdEVMNjJBWmdjVHkweGcvUWpvV3QzZTE1OGY0dlFjdWo1SlQ4M0h3?=
+ =?utf-8?B?eGFMYUtOblpGVlJmaHFZMHVQcDRGM1RBaFgzVllmY1RnL24vZ0QxajI3Z011?=
+ =?utf-8?B?cGc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d48e0b0-aec0-40d3-671d-08ddacb6302c
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2025 08:56:52.2728 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2025 09:14:25.1822 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dpGSUaL0fWPCFaC+4xJgI6V1NT8cYTkODuAtJaGUXaS8E+xAZ+jMX4mX3MvY5+GDhwvzrnqqffeSJw44QORPsQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8105
+X-MS-Exchange-CrossTenant-UserPrincipalName: p1GZaFC3+Fnl34ZM9L14eOS3Ka9sB7f7Pqnsd8SAs3jvLJ5IEULdRiS7SVP0UE9k5L6/pOytEyO9DC7xyVoWzg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7493
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,389 +201,658 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 16, 2025 at 10:28:16AM +0200, Thomas Hellström wrote:
-> On Sun, 2025-06-15 at 23:47 -0700, Matthew Brost wrote:
-> > The migrate_vma_* functions are very CPU-intensive; as a result,
-> > prefetching SVM ranges is limited by CPU performance rather than
-> > paging
-> > copy engine bandwidth. To accelerate SVM range prefetching, the step
-> > that calls migrate_vma_* is now threaded. This uses a dedicated
-> > workqueue, as the page fault workqueue cannot be shared without
-> > risking
-> > deadlocks—due to the prefetch IOCTL holding the VM lock in write mode
-> > while work items in the page fault workqueue also require the VM
-> > lock.
+On Mon, Jun 16, 2025 at 10:53:37AM +0200, Thomas Hellström wrote:
+> On Mon, 2025-06-16 at 00:56 -0700, Matthew Brost wrote:
+> > On Mon, Jun 16, 2025 at 09:40:05AM +0200, Thomas Hellström wrote:
+> > > On Fri, 2025-06-13 at 13:02 -0700, Matthew Brost wrote:
+> > > > On Fri, Jun 13, 2025 at 09:21:36AM -0700, Matthew Brost wrote:
+> > > > > On Fri, Jun 13, 2025 at 10:07:17AM +0200, Thomas Hellström
+> > > > > wrote:
+> > > > > > On Thu, 2025-06-12 at 10:11 -0700, Matthew Brost wrote:
+> > > > > > > On Thu, Jun 12, 2025 at 02:53:16PM +0200, Thomas Hellström
+> > > > > > > wrote:
+> > > > > > > > On Tue, 2025-06-10 at 22:42 -0700, Matthew Brost wrote:
+> > > > > > > > > Clearing on free should hide latency of BO clears on
+> > > > > > > > > new
+> > > > > > > > > user BO
+> > > > > > > > > allocations.
+> > > > > > > > > 
+> > > > > > > > > Implemented via calling xe_migrate_clear in release
+> > > > > > > > > notify
+> > > > > > > > > and
+> > > > > > > > > updating
+> > > > > > > > > iterator in xe_migrate_clear to skip cleared buddy
+> > > > > > > > > blocks.
+> > > > > > > > > Only
+> > > > > > > > > user
+> > > > > > > > > BOs
+> > > > > > > > > cleared in release notify as kernel BOs could still be
+> > > > > > > > > in
+> > > > > > > > > use
+> > > > > > > > > (e.g.,
+> > > > > > > > > PT
+> > > > > > > > > BOs need to wait for dma-resv to be idle).
+> > > > > > > > 
+> > > > > > > > Wouldn't it be fully possible for a user to do (deep
+> > > > > > > > pipelining 3d
+> > > > > > > > case)
+> > > > > > > > 
+> > > > > > > > create_bo();
+> > > > > > > > map_write_unmap_bo();
+> > > > > > > > bind_bo();
+> > > > > > > > submit_job_touching_bo();
+> > > > > > > > unbind_bo();
+> > > > > > > > free_bo();
+> > > > > > > > 
+> > > > > > > > Where the free_bo and release_notify() is called long
+> > > > > > > > before
+> > > > > > > > the
+> > > > > > > > job we
+> > > > > > > > submitted even started?
+> > > > > > > > 
+> > > > > > > > So that would mean the clear needs to await any previous
+> > > > > > > > fences,
+> > > > > > > > and
+> > > > > > > > that dependency addition seems to have been removed from
+> > > > > > > > xe_migrate_clear.
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > I think we are actually ok here. xe_vma_destroy is called
+> > > > > > > on
+> > > > > > > unbind
+> > > > > > > with
+> > > > > > > the out fence from the bind IOCTL, so we don't get to
+> > > > > > > xe_vma_destroy_late until that fence signals, and
+> > > > > > > xe_vma_destroy_late
+> > > > > > > (possibly) does the final BO put. Whether this follow makes
+> > > > > > > sense is
+> > > > > > > a
+> > > > > > > bit questable - this was very early code I wrote in Xe and
+> > > > > > > if I
+> > > > > > > rewrote
+> > > > > > > today I suspect it would look different.
+> > > > > > 
+> > > > > > Hmm, yeah you're right. So the unbind kernel fence should
+> > > > > > indeed
+> > > > > > be
+> > > > > > last fence we need to wait for here.
+> > > > > > 
+> > > > > 
+> > > > > It should actually be signaled too. I think we could avoid any
+> > > > > dma-
+> > > > > resv
+> > > > > wait in this case. Kernel operations are typically (maybe
+> > > > > always)
+> > > > > on the
+> > > > > migration queue, though, so we’d be waiting on those operations
+> > > > > via
+> > > > > queue ordering anyway.
+> > > 
+> > > Hm. We should not be keeping the vma and xe_bo around until the
+> > > unbind
+> > > fence has signaled? We did not always do that except for userptr
+> > > where
+> > > we needed a mechanism to keep the dma-mappings? So if we mistakenly
+> > > introduced something that needs to keep them around, the above
+> > > would
+> > > only make that harder to fix? It sounds like this completely
+> > > bypasses
+> > > the TTM delayed delete mechanism?
+> > > 
 > > 
-> > The prefetch workqueue is currently allocated in GT, similar to the
-> > page
-> > fault workqueue. While this is likely not the ideal location for
-> > either,
-> > refactoring will be deferred to a later patch.
+> > See xe_vma_destroy — if there’s an unsignaled fence attached to the
+> > VMA,
+> > we delay the destroy.
 > > 
-> > Running xe_exec_system_allocator --r prefetch-benchmark, which tests
-> > 64MB prefetches, shows an increase from ~4.35 GB/s to 12.25 GB/s with
-> > this patch on drm-tip. Enabling high SLPC further increases
-> > throughput
-> > to ~15.25 GB/s, and combining SLPC with ULLS raises it to ~16 GB/s.
-> > Both
-> > of these optimizations are upcoming.
+> > Yeah, like I said, this code is very questionable at best and was
+> > written early in my Xe days, before I understood TTM a bit better.
+> 
+> But I'm pretty sure it wasn't always like this? Perhaps it was an easy
+> way to keep the user-fence around until it signaled?
+> 
+
+I’d have to check, but I’m pretty sure I added this worker early
+on—before I had a clue how a lot of things actually worked, out of
+ignorance.
+
 > > 
-> > v2:
-> >  - Use dedicated prefetch workqueue
-> >  - Pick dedicated prefetch thread count based on profiling
-> >  - Skip threaded prefetch for only 1 range or if prefetching to SRAM
-> >  - Fully tested
+> > > If the remaining operations are maybe always from the migration
+> > > queue,
+> > > they will be skipped for the clearing operation by the scheduler
+> > > anyway, right?
+> > > 
+> > > I think the safest and looking forward least error prone thing to
+> > > do
+> > > here is to wait for all fences, since if we can restore the
+> > > original
+> > > behaviour of dropping the bo reference at unbind time rather than
+> > > unbind fence signal time, the bo will be immediately individualized
+> > > an
+> > > no new unnecessary fences can be added.
+> > > 
 > > 
-> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > I think this needs to be a tandem change then — we drop the VMA/BO
+> > delayed destroy and wait on the bookkeeping here. Sound reasonable?
 > 
-> Hi,
-> Is this really the right place to do optimizations like this?
+> Yes. Although we need to keep the delayed vma destroy for userptr.
 > 
 
-Yes, for now.
+Agree.
 
-> The migration takes place in xe_svm_alloc_vram() and is being moved to
-> drm_pagemap_populate_mm(). If those functions are considered to be slow
-> then they should be optimized, rather than calling them multiple times
-> in parallel from an outer layer? 
->
-
-Shared code with an already-parallel fault handler... Prefetch is just
-adding parallelism too.
-
-> Before doing something like this I think we need to consider
-> 
-> 1) Why are the migrate functions so cpu consuming? Do we have a
-> performance profile for it?
-
-Yes, I have profiled this. On BMG, a 2MB migrate takes approximately
-300µs of CPU overhead in the migrate_vma_* functions, while a copy job
-takes around 130µs. The copy must complete between setup and finalize,
-which serializes this flow.
-
-Thus, as of now, the only way to saturate the copy engine is to use
-threads so that CPU cycles can overlap.
-
-Have you caught up on Nvidia's series [1] and what Francois is working
-on? I'd guess we'll go from ~300µs to ~7µs once that lands.
-
-I don't know why the migrate_vma_* functions take so long—the core MM
-code is tough to read. I suppose I could hack it to find out.
-
-[1] https://lore.kernel.org/linux-mm/20250306044239.3874247-1-balbirs@nvidia.com/ 
-
-> 2) Do we actually *want* to use 5 CPU cores for this?
-
-Yes, I profiled this with a test issuing 64MB prefetches—5 threads was
-ideal. I have a comment in the code about this. Once [1] lands, we’ll
-likely only need 2 threads on BMG. That would probably get us to a bus
-8× faster than BMG; for 16×, we might need more threads. But I think
-we’ll always want at least 2, as there will always be some CPU overhead
-that limits copy bandwidth due to serialization.
-
-> 3) Isn't a single CPU write-combined non-temporal CPU memcopy enough to
-> saturate the system->VRAM bandwith?
+> Also for the user-fence, perhaps it can keep a reference to itself
+> until it signals, rather than we keep the vma->ufence reference.
 > 
 
-I'm not entirely following (see above), but almost certainly not.
+I’ve paged this out, but user_fence_worker already dereferences itself…
+so maybe we’re okay? I’d need to dig back in to fully understand it
+again.
 
-Maat
+I think we’ve switched to an unrelated topic at this point. I agree that
+the whole VMA destroy path should be analyzed. At a minimum, let's add
+comments in the code explaining the design—and at best, refactor it to
+make a bit more sense. I can take an action item to do that in the short
+term, since I can’t give a precise answer right now.
+
+Is this worth holding up the patch, though?
+
+Matt
 
 > Thanks,
 > Thomas
 > 
 > 
 > 
-> > ---
-> >  drivers/gpu/drm/xe/xe_gt_pagefault.c |  31 ++++++-
-> >  drivers/gpu/drm/xe/xe_gt_types.h     |   2 +
-> >  drivers/gpu/drm/xe/xe_vm.c           | 128 +++++++++++++++++++++----
-> > --
-> >  3 files changed, 135 insertions(+), 26 deletions(-)
+> 
+> 
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > index e2d975b2fddb..941cca3371f2 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > @@ -400,6 +400,8 @@ static void pagefault_fini(void *arg)
-> >  
-> >  	destroy_workqueue(gt->usm.acc_wq);
-> >  	destroy_workqueue(gt->usm.pf_wq);
-> > +	if (gt->usm.prefetch_wq)
-> > +		destroy_workqueue(gt->usm.prefetch_wq);
-> >  }
-> >  
-> >  static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue
-> > *pf_queue)
-> > @@ -438,10 +440,24 @@ static int xe_alloc_pf_queue(struct xe_gt *gt,
-> > struct pf_queue *pf_queue)
-> >  	return 0;
-> >  }
-> >  
-> > +static int prefetch_thread_count(struct xe_device *xe)
-> > +{
-> > +	if (!IS_DGFX(xe))
-> > +		return 0;
-> > +
-> > +	/*
-> > +	 * Based on profiling large aligned 2M prefetches, this is
-> > the optimial
-> > +	 * number of threads on BMG (only platform currently
-> > supported). This
-> > +	 * should be tuned for each supported platform and can
-> > change on per
-> > +	 * platform basis as optimizations land (e.g., large device
-> > pages).
-> > +	 */
-> > +	return 5;
-> > +}
-> > +
-> >  int xe_gt_pagefault_init(struct xe_gt *gt)
-> >  {
-> >  	struct xe_device *xe = gt_to_xe(gt);
-> > -	int i, ret = 0;
-> > +	int i, count, ret = 0;
-> >  
-> >  	if (!xe->info.has_usm)
-> >  		return 0;
-> > @@ -462,10 +478,23 @@ int xe_gt_pagefault_init(struct xe_gt *gt)
-> >  	if (!gt->usm.pf_wq)
-> >  		return -ENOMEM;
-> >  
-> > +	count = prefetch_thread_count(xe);
-> > +	if (count) {
-> > +		gt->usm.prefetch_wq =
-> > alloc_workqueue("xe_gt_prefetch_work_queue",
-> > +						      WQ_UNBOUND |
-> > WQ_HIGHPRI,
-> > +						      count);
-> > +		if (!gt->usm.prefetch_wq) {
-> > +			destroy_workqueue(gt->usm.pf_wq);
-> > +			return -ENOMEM;
-> > +		}
-> > +	}
-> > +
-> >  	gt->usm.acc_wq =
-> > alloc_workqueue("xe_gt_access_counter_work_queue",
-> >  					 WQ_UNBOUND | WQ_HIGHPRI,
-> >  					 NUM_ACC_QUEUE);
-> >  	if (!gt->usm.acc_wq) {
-> > +		if (gt->usm.prefetch_wq)
-> > +			destroy_workqueue(gt->usm.prefetch_wq);
-> >  		destroy_workqueue(gt->usm.pf_wq);
-> >  		return -ENOMEM;
-> >  	}
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_types.h
-> > b/drivers/gpu/drm/xe/xe_gt_types.h
-> > index 7def0959da35..d9ba4921b8ce 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> > @@ -239,6 +239,8 @@ struct xe_gt {
-> >  		u16 reserved_bcs_instance;
-> >  		/** @usm.pf_wq: page fault work queue, unbound, high
-> > priority */
-> >  		struct workqueue_struct *pf_wq;
-> > +		/** @usm.prefetch_wq: prefetch work queue, unbound,
-> > high priority */
-> > +		struct workqueue_struct *prefetch_wq;
-> >  		/** @usm.acc_wq: access counter work queue, unbound,
-> > high priority */
-> >  		struct workqueue_struct *acc_wq;
-> >  		/**
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index 6ef8c4dab647..1ae8e03aead6 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -2885,52 +2885,130 @@ static int check_ufence(struct xe_vma *vma)
-> >  	return 0;
-> >  }
-> >  
-> > -static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
-> > +struct prefetch_thread {
-> > +	struct work_struct work;
-> > +	struct drm_gpusvm_ctx *ctx;
-> > +	struct xe_vma *vma;
-> > +	struct xe_svm_range *svm_range;
-> > +	struct xe_tile *tile;
-> > +	u32 region;
-> > +	int err;
-> > +};
-> > +
-> > +static void prefetch_work_func(struct work_struct *w)
-> >  {
-> > -	bool devmem_possible = IS_DGFX(vm->xe) &&
-> > IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR);
-> > -	struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
-> > +	struct prefetch_thread *thread =
-> > +		container_of(w, struct prefetch_thread, work);
-> > +	struct xe_vma *vma = thread->vma;
-> > +	struct xe_vm *vm = xe_vma_vm(vma);
-> > +	struct xe_svm_range *svm_range = thread->svm_range;
-> > +	u32 region = thread->region;
-> > +	struct xe_tile *tile = thread->tile;
-> >  	int err = 0;
-> >  
-> > -	struct xe_svm_range *svm_range;
-> > +	if (!region) {
-> > +		xe_svm_range_migrate_to_smem(vm, svm_range);
-> > +	} else if (xe_svm_range_needs_migrate_to_vram(svm_range,
-> > vma, region)) {
-> > +		err = xe_svm_alloc_vram(vm, tile, svm_range, thread-
-> > >ctx);
-> > +		if (err) {
-> > +			drm_dbg(&vm->xe->drm,
-> > +				"VRAM allocation failed, retry from
-> > userspace, asid=%u, gpusvm=%p, errno=%pe\n",
-> > +				vm->usm.asid, &vm->svm.gpusvm,
-> > ERR_PTR(err));
-> > +			thread->err = -ENODATA;
-> > +			return;
-> > +		}
-> > +		xe_svm_range_debug(svm_range, "PREFETCH - RANGE
-> > MIGRATED TO VRAM");
-> > +	}
-> > +
-> > +	err = xe_svm_range_get_pages(vm, svm_range, thread->ctx);
-> > +	if (err) {
-> > +		drm_dbg(&vm->xe->drm, "Get pages failed, asid=%u,
-> > gpusvm=%p, errno=%pe\n",
-> > +			vm->usm.asid, &vm->svm.gpusvm,
-> > ERR_PTR(err));
-> > +		if (err == -EOPNOTSUPP || err == -EFAULT || err == -
-> > EPERM)
-> > +			err = -ENODATA;
-> > +		thread->err = err;
-> > +		return;
-> > +	}
-> > +
-> > +	xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES
-> > DONE");
-> > +}
-> > +
-> > +static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
-> > +{
-> > +	struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
-> > +	u32 j, region = op->prefetch_range.region;
-> >  	struct drm_gpusvm_ctx ctx = {};
-> > -	struct xe_tile *tile;
-> > +	struct prefetch_thread stack_thread;
-> > +	struct xe_svm_range *svm_range;
-> > +	struct xarray prefetches;
-> > +	bool sram = region_to_mem_type[region] == XE_PL_TT;
-> > +	struct xe_tile *tile = sram ? xe_device_get_root_tile(vm-
-> > >xe) :
-> > +		&vm->xe->tiles[region_to_mem_type[region] -
-> > XE_PL_VRAM0];
-> >  	unsigned long i;
-> > -	u32 region;
-> > +	bool devmem_possible = IS_DGFX(vm->xe) &&
-> > +		IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR);
-> > +	bool skip_threads = op->prefetch_range.ranges_count == 1 ||
-> > sram;
-> > +	struct prefetch_thread *thread = skip_threads ?
-> > &stack_thread : NULL;
-> > +	int err = 0;
-> >  
-> >  	if (!xe_vma_is_cpu_addr_mirror(vma))
-> >  		return 0;
-> >  
-> > -	region = op->prefetch_range.region;
-> > +	if (!skip_threads)
-> > +		xa_init_flags(&prefetches, XA_FLAGS_ALLOC);
-> >  
-> >  	ctx.read_only = xe_vma_read_only(vma);
-> >  	ctx.devmem_possible = devmem_possible;
-> >  	ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
-> >  
-> > -	/* TODO: Threading the migration */
-> >  	xa_for_each(&op->prefetch_range.range, i, svm_range) {
-> > -		if (!region)
-> > -			xe_svm_range_migrate_to_smem(vm, svm_range);
-> > +		if (!skip_threads) {
-> > +			thread = kmalloc(sizeof(*thread),
-> > GFP_KERNEL);
-> > +			if (!thread)
-> > +				goto wait_threads;
-> >  
-> > -		if (xe_svm_range_needs_migrate_to_vram(svm_range,
-> > vma, region)) {
-> > -			tile = &vm->xe-
-> > >tiles[region_to_mem_type[region] - XE_PL_VRAM0];
-> > -			err = xe_svm_alloc_vram(vm, tile, svm_range,
-> > &ctx);
-> > +			err = xa_alloc(&prefetches, &j, thread,
-> > xa_limit_32b,
-> > +				       GFP_KERNEL);
-> >  			if (err) {
-> > -				drm_dbg(&vm->xe->drm, "VRAM
-> > allocation failed, retry from userspace, asid=%u, gpusvm=%p,
-> > errno=%pe\n",
-> > -					vm->usm.asid, &vm-
-> > >svm.gpusvm, ERR_PTR(err));
-> > -				return -ENODATA;
-> > +				kfree(thread);
-> > +				goto wait_threads;
-> >  			}
-> > -			xe_svm_range_debug(svm_range, "PREFETCH -
-> > RANGE MIGRATED TO VRAM");
-> >  		}
-> >  
-> > -		err = xe_svm_range_get_pages(vm, svm_range, &ctx);
-> > -		if (err) {
-> > -			drm_dbg(&vm->xe->drm, "Get pages failed,
-> > asid=%u, gpusvm=%p, errno=%pe\n",
-> > -				vm->usm.asid, &vm->svm.gpusvm,
-> > ERR_PTR(err));
-> > -			if (err == -EOPNOTSUPP || err == -EFAULT ||
-> > err == -EPERM)
-> > -				err = -ENODATA;
-> > -			return err;
-> > +		INIT_WORK(&thread->work, prefetch_work_func);
-> > +		thread->ctx = &ctx;
-> > +		thread->vma = vma;
-> > +		thread->svm_range = svm_range;
-> > +		thread->tile = tile;
-> > +		thread->region = region;
-> > +		thread->err = 0;
-> > +
-> > +		if (skip_threads) {
-> > +			prefetch_work_func(&thread->work);
-> > +			if (thread->err)
-> > +				return thread->err;
-> > +		} else {
-> > +			/*
-> > +			 * Prefetch uses a dedicated workqueue, as
-> > the page
-> > +			 * fault workqueue cannot be shared without
-> > risking
-> > +			 * deadlocks—due to holding the VM lock in
-> > write mode
-> > +			 * here while work items in the page fault
-> > workqueue
-> > +			 * also require the VM lock.
-> > +			 */
-> > +			queue_work(tile->primary_gt-
-> > >usm.prefetch_wq,
-> > +				   &thread->work);
-> > +		}
-> > +	}
-> > +
-> > +wait_threads:
-> > +	if (!skip_threads) {
-> > +		xa_for_each(&prefetches, i, thread) {
-> > +			flush_work(&thread->work);
-> > +			if (thread->err && (!err || err == -
-> > ENODATA))
-> > +				err = thread->err;
-> > +			kfree(thread);
-> >  		}
-> > -		xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET
-> > PAGES DONE");
-> > +		xa_destroy(&prefetches);
-> >  	}
-> >  
-> >  	return err;
+> > > > > 
+> > > > > > > 
+> > > > > > > We could make this 'safer' by waiting on
+> > > > > > > DMA_RESV_USAGE_BOOKKEEP in
+> > > > > > > xe_migrate_clear for calls from release notify but for
+> > > > > > > private
+> > > > > > > to VM
+> > > > > > > BO's we'd risk the clear getting stuck behind newly
+> > > > > > > submitted
+> > > > > > > (i.e.,
+> > > > > > > submitted after the unbind) exec IOCTLs or binds.
+> > > > > > 
+> > > > > > Yeah, although at this point the individualization has
+> > > > > > already
+> > > > > > taken
+> > > > > > place, so at least there should be no starving, since the
+> > > > > > only
+> > > > > > unnecessary waits would be for execs submitted between the
+> > > > > > unbind
+> > > > > > and
+> > > > > > the individualization. So doable but leave it up to you.
+> > > > > > 
+> > > > > 
+> > > > > The individualization is done by the final put-likely assuming
+> > > > > the
+> > > > > BO is
+> > > > > closed and unmapped in user space—in the worker mentioned
+> > > > > above. If
+> > > > > an
+> > > > > exec or bind IOCTL is issued in the interim, we’d be waiting on
+> > > > > those.
+> > > > > 
+> > > > > > > > Another side-effect I think this will have is that bos
+> > > > > > > > that
+> > > > > > > > are
+> > > > > > > > deleted
+> > > > > > > > are not subject to asynchronous evicton. I think if this
+> > > > > > > > bo
+> > > > > > > > is hit
+> > > > > > > > during lru walk and clearing, TTM will just sync wait for
+> > > > > > > > it
+> > > > > > > > to
+> > > > > > > > become
+> > > > > > > > idle and then free the memory. I think the reason that
+> > > > > > > > could
+> > > > > > > > not be
+> > > > > > > > fixed in TTM is that TTM needs for all resource manager
+> > > > > > > > fences to
+> > > > > > > > be
+> > > > > > > > ordered, but if a check for ordered fences which I think
+> > > > > > > > requires
+> > > > > > > > here
+> > > > > > > > that the eviction exec_queue is the same as the clearing
+> > > > > > > > one,
+> > > > > > > > that
+> > > > > > > > could be fixed in TTM.
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > I think async eviction is still controlled by no_wait_gpu,
+> > > > > > > right? See
+> > > > > > > ttm_bo_wait_ctx, if a deleted BO is found and no_wait_gpu
+> > > > > > > is
+> > > > > > > clear
+> > > > > > > the
+> > > > > > > eviction process moves on, right? So the exec IOCTL can
+> > > > > > > still
+> > > > > > > be
+> > > > > > > pipelined albeit not with deleted BOs that have pending
+> > > > > > > clears.
+> > > > > > > We
+> > > > > > > also
+> > > > > > > clear no_wait_gpu in Xe FWIW.
+> > > > > > 
+> > > > > > Yes this is a rather complex problem further complicated by
+> > > > > > the
+> > > > > > fact
+> > > > > > that since we can in wait for fences under dma_resv locks,
+> > > > > > for a
+> > > > > > true
+> > > > > > no_wait_gpu exec to succeed, we're only allowed to do
+> > > > > > dma_resv_trylock.
+> > > > > > 
+> > > > > > Better to try to fix this in TTM rather than try to worry too
+> > > > > > much
+> > > > > > about it here.
+> > > > > > 
+> > > > > 
+> > > > > +1.
+> > > > > 
+> > > > > > > 
+> > > > > > > > Otherwise, this could also cause newly introduced sync
+> > > > > > > > waits
+> > > > > > > > in the
+> > > > > > > > exec() and vm_bind paths where we previously performed
+> > > > > > > > eviction and
+> > > > > > > > the
+> > > > > > > > subsequent clearing async.
+> > > > > > > > 
+> > > > > > > > Some additional stuff below:
+> > > > > > > > 
+> > > > > > > > 
+> > > > > > > > > 
+> > > > > > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > > > > > > ---
+> > > > > > > > >  drivers/gpu/drm/xe/xe_bo.c           | 47
+> > > > > > > > > ++++++++++++++++++++++++++++
+> > > > > > > > >  drivers/gpu/drm/xe/xe_migrate.c      | 14 ++++++---
+> > > > > > > > >  drivers/gpu/drm/xe/xe_migrate.h      |  1 +
+> > > > > > > > >  drivers/gpu/drm/xe/xe_res_cursor.h   | 26
+> > > > > > > > > +++++++++++++++
+> > > > > > > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  5 ++-
+> > > > > > > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  6 ++++
+> > > > > > > > >  6 files changed, 94 insertions(+), 5 deletions(-)
+> > > > > > > > > 
+> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > b/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > index 4e39188a021a..74470f4d418d 100644
+> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > @@ -1434,6 +1434,51 @@ static bool
+> > > > > > > > > xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object
+> > > > > > > > > *ttm_bo)
+> > > > > > > > >  	return locked;
+> > > > > > > > >  }
+> > > > > > > > >  
+> > > > > > > > > +static void xe_ttm_bo_release_clear(struct
+> > > > > > > > > ttm_buffer_object
+> > > > > > > > > *ttm_bo)
+> > > > > > > > > +{
+> > > > > > > > > +	struct xe_device *xe =
+> > > > > > > > > ttm_to_xe_device(ttm_bo-
+> > > > > > > > > > bdev);
+> > > > > > > > > +	struct dma_fence *fence;
+> > > > > > > > > +	int err, idx;
+> > > > > > > > > +
+> > > > > > > > > +	xe_bo_assert_held(ttm_to_xe_bo(ttm_bo));
+> > > > > > > > > +
+> > > > > > > > > +	if (ttm_bo->type != ttm_bo_type_device)
+> > > > > > > > > +		return;
+> > > > > > > > > +
+> > > > > > > > > +	if (xe_device_wedged(xe))
+> > > > > > > > > +		return;
+> > > > > > > > > +
+> > > > > > > > > +	if (!ttm_bo->resource ||
+> > > > > > > > > !mem_type_is_vram(ttm_bo-
+> > > > > > > > > > resource-
+> > > > > > > > > > mem_type))
+> > > > > > > > > +		return;
+> > > > > > > > > +
+> > > > > > > > > +	if (!drm_dev_enter(&xe->drm, &idx))
+> > > > > > > > > +		return;
+> > > > > > > > > +
+> > > > > > > > > +	if (!xe_pm_runtime_get_if_active(xe))
+> > > > > > > > > +		goto unbind;
+> > > > > > > > > +
+> > > > > > > > > +	err = dma_resv_reserve_fences(&ttm_bo-
+> > > > > > > > > >base._resv,
+> > > > > > > > > 1);
+> > > > > > > > > +	if (err)
+> > > > > > > > > +		goto put_pm;
+> > > > > > > > > +
+> > > > > > > > > +	fence =
+> > > > > > > > > xe_migrate_clear(mem_type_to_migrate(xe,
+> > > > > > > > > ttm_bo-
+> > > > > > > > > > resource->mem_type),
+> > > > > > > > > +				 ttm_to_xe_bo(ttm_bo),
+> > > > > > > > > ttm_bo-
+> > > > > > > > > > resource,
+> > > > > > > > 
+> > > > > > > > We should be very careful with passing the xe_bo part
+> > > > > > > > here
+> > > > > > > > because
+> > > > > > > > the
+> > > > > > > > gem refcount is currently zero. So that any caller deeper
+> > > > > > > > down in
+> > > > > > > > the
+> > > > > > > > call chain might try to do an xe_bo_get() and blow up.
+> > > > > > > > 
+> > > > > > > > Ideally we'd make xe_migrate_clear() operate only on the
+> > > > > > > > ttm_bo for
+> > > > > > > > this to be safe.
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > It looks like bo->size and xe_bo_sg are the two uses of an
+> > > > > > > Xe
+> > > > > > > BO in
+> > > > > > > xe_migrate_clear(). Let me see if I can refactor the
+> > > > > > > arguments
+> > > > > > > to
+> > > > > > > avoid
+> > > > > > > these + add some kernel doc.
+> > > > > > 
+> > > > > > Thanks,
+> > > > > > Thomas
+> > > > > > 
+> > > > > 
+> > > > > So I'll just respin the next rev with a refactor
+> > > > > xe_migrate_clear
+> > > > > arguments.
+> > > > > 
+> > > > 
+> > > > Actually xe_migrate_clear sets the bo->ccs_cleared field, so we
+> > > > kinda
+> > > > need the Xe BO. I guess I'll leave as is.
+> > > > 
+> > > > Yes, if caller does xe_bo_get, that will blow up but no one is
+> > > > doing
+> > > > that and we'd immediately get a kernel splat if some one tried to
+> > > > change
+> > > > this so I think we are good. Thoughts?
+> > > 
+> > > I think we either (again to be robust to future errors)
+> > > 
+> > > 1) need to ensure and document that the migrate layer is completely
+> > > safe for gem refcount 0 case bos or we
+> > > 
+> > > 2) Only dereference gem refcount 0 bos directly in the TTM
+> > > callbacks.
+> > > 
+> > > To me 2) seems simplest meaning we'd need to pass the ccs_cleared
+> > > field
+> > > into the migrate layer function.
+> > > 
+> > 
+> > So, pass ccs_cleared by reference and also pass in the TTM BO? I
+> > typically despise pass-by-reference, but yeah, that could work. Some
+> > kernel doc indicating that xe_migrate_clear can be called with a
+> > refcount of 0 would be good too.
+> > 
+> > Matt 
+> > 
+> > > Thanks,
+> > > Thomas
+> > > 
+> > > 
+> > > 
+> > > > 
+> > > > Matt
+> > > > 
+> > > > > Matt
+> > > > > 
+> > > > > > 
+> > > > > > > 
+> > > > > > > Matt
+> > > > > > > 
+> > > > > > > > /Thomas
+> > > > > > > > 
+> > > > > > > > 
+> > > > > > > > > +				
+> > > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL |
+> > > > > > > > > +				
+> > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY);
+> > > > > > > > > +	if (XE_WARN_ON(IS_ERR(fence)))
+> > > > > > > > > +		goto put_pm;
+> > > > > > > > > +
+> > > > > > > > > +	xe_ttm_vram_mgr_resource_set_cleared(ttm_bo-
+> > > > > > > > > > resource);
+> > > > > > > > > +	dma_resv_add_fence(&ttm_bo->base._resv, fence,
+> > > > > > > > > +			   DMA_RESV_USAGE_KERNEL);
+> > > > > > > > > +	dma_fence_put(fence);
+> > > > > > > > > +
+> > > > > > > > > +put_pm:
+> > > > > > > > > +	xe_pm_runtime_put(xe);
+> > > > > > > > > +unbind:
+> > > > > > > > > +	drm_dev_exit(idx);
+> > > > > > > > > +}
+> > > > > > > > > +
+> > > > > > > > >  static void xe_ttm_bo_release_notify(struct
+> > > > > > > > > ttm_buffer_object
+> > > > > > > > > *ttm_bo)
+> > > > > > > > >  {
+> > > > > > > > >  	struct dma_resv_iter cursor;
+> > > > > > > > > @@ -1478,6 +1523,8 @@ static void
+> > > > > > > > > xe_ttm_bo_release_notify(struct
+> > > > > > > > > ttm_buffer_object *ttm_bo)
+> > > > > > > > >  	}
+> > > > > > > > >  	dma_fence_put(replacement);
+> > > > > > > > >  
+> > > > > > > > > +	xe_ttm_bo_release_clear(ttm_bo);
+> > > > > > > > > +
+> > > > > > > > >  	dma_resv_unlock(ttm_bo->base.resv);
+> > > > > > > > >  }
+> > > > > > > > >  
+> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > > index 8f8e9fdfb2a8..39d7200cb366 100644
+> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > > @@ -1063,7 +1063,7 @@ struct dma_fence
+> > > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > > xe_migrate *m,
+> > > > > > > > >  	struct xe_gt *gt = m->tile->primary_gt;
+> > > > > > > > >  	struct xe_device *xe = gt_to_xe(gt);
+> > > > > > > > >  	bool clear_only_system_ccs = false;
+> > > > > > > > > -	struct dma_fence *fence = NULL;
+> > > > > > > > > +	struct dma_fence *fence =
+> > > > > > > > > dma_fence_get_stub();
+> > > > > > > > >  	u64 size = bo->size;
+> > > > > > > > >  	struct xe_res_cursor src_it;
+> > > > > > > > >  	struct ttm_resource *src = dst;
+> > > > > > > > > @@ -1075,10 +1075,13 @@ struct dma_fence
+> > > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > > xe_migrate *m,
+> > > > > > > > >  	if (!clear_bo_data && clear_ccs &&
+> > > > > > > > > !IS_DGFX(xe))
+> > > > > > > > >  		clear_only_system_ccs = true;
+> > > > > > > > >  
+> > > > > > > > > -	if (!clear_vram)
+> > > > > > > > > +	if (!clear_vram) {
+> > > > > > > > >  		xe_res_first_sg(xe_bo_sg(bo), 0, bo-
+> > > > > > > > > >size,
+> > > > > > > > > &src_it);
+> > > > > > > > > -	else
+> > > > > > > > > +	} else {
+> > > > > > > > >  		xe_res_first(src, 0, bo->size,
+> > > > > > > > > &src_it);
+> > > > > > > > > +		if (!(clear_flags &
+> > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
+> > > > > > > > > +			size -=
+> > > > > > > > > xe_res_next_dirty(&src_it);
+> > > > > > > > > +	}
+> > > > > > > > >  
+> > > > > > > > >  	while (size) {
+> > > > > > > > >  		u64 clear_L0_ofs;
+> > > > > > > > > @@ -1125,6 +1128,9 @@ struct dma_fence
+> > > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > > xe_migrate *m,
+> > > > > > > > >  			emit_pte(m, bb, clear_L0_pt,
+> > > > > > > > > clear_vram,
+> > > > > > > > > clear_only_system_ccs,
+> > > > > > > > >  				 &src_it, clear_L0,
+> > > > > > > > > dst);
+> > > > > > > > >  
+> > > > > > > > > +		if (clear_vram && !(clear_flags &
+> > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
+> > > > > > > > > +			size -=
+> > > > > > > > > xe_res_next_dirty(&src_it);
+> > > > > > > > > +
+> > > > > > > > >  		bb->cs[bb->len++] =
+> > > > > > > > > MI_BATCH_BUFFER_END;
+> > > > > > > > >  		update_idx = bb->len;
+> > > > > > > > >  
+> > > > > > > > > @@ -1146,7 +1152,7 @@ struct dma_fence
+> > > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > > xe_migrate *m,
+> > > > > > > > >  		}
+> > > > > > > > >  
+> > > > > > > > >  		xe_sched_job_add_migrate_flush(job,
+> > > > > > > > > flush_flags);
+> > > > > > > > > -		if (!fence) {
+> > > > > > > > > +		if (fence == dma_fence_get_stub()) {
+> > > > > > > > >  			/*
+> > > > > > > > >  			 * There can't be anything
+> > > > > > > > > userspace
+> > > > > > > > > related
+> > > > > > > > > at this
+> > > > > > > > >  			 * point, so we just need to
+> > > > > > > > > respect any
+> > > > > > > > > potential move
+> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > > index fb9839c1bae0..58a7b747ef11 100644
+> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > > @@ -118,6 +118,7 @@ int xe_migrate_access_memory(struct
+> > > > > > > > > xe_migrate
+> > > > > > > > > *m, struct xe_bo *bo,
+> > > > > > > > >  
+> > > > > > > > >  #define XE_MIGRATE_CLEAR_FLAG_BO_DATA		BIT(0)
+> > > > > > > > >  #define XE_MIGRATE_CLEAR_FLAG_CCS_DATA		BIT(1)
+> > > > > > > > > +#define XE_MIGRATE_CLEAR_NON_DIRTY		BIT(2)
+> > > > > > > > >  #define
+> > > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL	(XE_MIGRATE_CLEAR_FLAG
+> > > > > > > > > _BO_
+> > > > > > > > > DATA |
+> > > > > > > > > \
+> > > > > > > > >  					XE_MIGRATE_CLE
+> > > > > > > > > AR_F
+> > > > > > > > > LAG_CC
+> > > > > > > > > S_DA
+> > > > > > > > > TA)
+> > > > > > > > >  struct dma_fence *xe_migrate_clear(struct xe_migrate
+> > > > > > > > > *m,
+> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > > b/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > > index d1a403cfb628..630082e809ba 100644
+> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > > @@ -315,6 +315,32 @@ static inline void
+> > > > > > > > > xe_res_next(struct
+> > > > > > > > > xe_res_cursor *cur, u64 size)
+> > > > > > > > >  	}
+> > > > > > > > >  }
+> > > > > > > > >  
+> > > > > > > > > +/**
+> > > > > > > > > + * xe_res_next_dirty - advance the cursor to next
+> > > > > > > > > dirty
+> > > > > > > > > buddy
+> > > > > > > > > block
+> > > > > > > > > + *
+> > > > > > > > > + * @cur: the cursor to advance
+> > > > > > > > > + *
+> > > > > > > > > + * Move the cursor until dirty buddy block is found.
+> > > > > > > > > + *
+> > > > > > > > > + * Return: Number of bytes cursor has been advanced
+> > > > > > > > > + */
+> > > > > > > > > +static inline u64 xe_res_next_dirty(struct
+> > > > > > > > > xe_res_cursor
+> > > > > > > > > *cur)
+> > > > > > > > > +{
+> > > > > > > > > +	struct drm_buddy_block *block = cur->node;
+> > > > > > > > > +	u64 bytes = 0;
+> > > > > > > > > +
+> > > > > > > > > +	XE_WARN_ON(cur->mem_type != XE_PL_VRAM0 &&
+> > > > > > > > > +		   cur->mem_type != XE_PL_VRAM1);
+> > > > > > > > > +
+> > > > > > > > > +	while (cur->remaining &&
+> > > > > > > > > drm_buddy_block_is_clear(block)) {
+> > > > > > > > > +		bytes += cur->size;
+> > > > > > > > > +		xe_res_next(cur, cur->size);
+> > > > > > > > > +		block = cur->node;
+> > > > > > > > > +	}
+> > > > > > > > > +
+> > > > > > > > > +	return bytes;
+> > > > > > > > > +}
+> > > > > > > > > +
+> > > > > > > > >  /**
+> > > > > > > > >   * xe_res_dma - return dma address of cursor at
+> > > > > > > > > current
+> > > > > > > > > position
+> > > > > > > > >   *
+> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > > index 9e375a40aee9..120046941c1e 100644
+> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > > @@ -84,6 +84,9 @@ static int xe_ttm_vram_mgr_new(struct
+> > > > > > > > > ttm_resource_manager *man,
+> > > > > > > > >  	if (place->fpfn || lpfn != man->size >>
+> > > > > > > > > PAGE_SHIFT)
+> > > > > > > > >  		vres->flags |=
+> > > > > > > > > DRM_BUDDY_RANGE_ALLOCATION;
+> > > > > > > > >  
+> > > > > > > > > +	if (tbo->type == ttm_bo_type_device)
+> > > > > > > > > +		vres->flags |=
+> > > > > > > > > DRM_BUDDY_CLEAR_ALLOCATION;
+> > > > > > > > > +
+> > > > > > > > >  	if (WARN_ON(!vres->base.size)) {
+> > > > > > > > >  		err = -EINVAL;
+> > > > > > > > >  		goto error_fini;
+> > > > > > > > > @@ -187,7 +190,7 @@ static void
+> > > > > > > > > xe_ttm_vram_mgr_del(struct
+> > > > > > > > > ttm_resource_manager *man,
+> > > > > > > > >  	struct drm_buddy *mm = &mgr->mm;
+> > > > > > > > >  
+> > > > > > > > >  	mutex_lock(&mgr->lock);
+> > > > > > > > > -	drm_buddy_free_list(mm, &vres->blocks, 0);
+> > > > > > > > > +	drm_buddy_free_list(mm, &vres->blocks, vres-
+> > > > > > > > > > flags);
+> > > > > > > > >  	mgr->visible_avail += vres->used_visible_size;
+> > > > > > > > >  	mutex_unlock(&mgr->lock);
+> > > > > > > > >  
+> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > > index cc76050e376d..dfc0e6890b3c 100644
+> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > > @@ -36,6 +36,12 @@ to_xe_ttm_vram_mgr_resource(struct
+> > > > > > > > > ttm_resource
+> > > > > > > > > *res)
+> > > > > > > > >  	return container_of(res, struct
+> > > > > > > > > xe_ttm_vram_mgr_resource,
+> > > > > > > > > base);
+> > > > > > > > >  }
+> > > > > > > > >  
+> > > > > > > > > +static inline void
+> > > > > > > > > +xe_ttm_vram_mgr_resource_set_cleared(struct
+> > > > > > > > > ttm_resource
+> > > > > > > > > *res)
+> > > > > > > > > +{
+> > > > > > > > > +	to_xe_ttm_vram_mgr_resource(res)->flags |=
+> > > > > > > > > DRM_BUDDY_CLEARED;
+> > > > > > > > > +}
+> > > > > > > > > +
+> > > > > > > > >  static inline struct xe_ttm_vram_mgr *
+> > > > > > > > >  to_xe_ttm_vram_mgr(struct ttm_resource_manager *man)
+> > > > > > > > >  {
+> > > > > > > > 
+> > > > > > 
+> > > 
 > 
