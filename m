@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B8A7C71136
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 06:38:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D24A9C71136
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 06:45:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C844110E28B;
-	Mon, 16 Jun 2025 06:37:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 991EF10E2AF;
+	Mon, 16 Jun 2025 06:45:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KcFTMQNj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RG+wNkyf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B249B10E28B
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 06:37:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33EF010E2AF
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 06:45:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750055879; x=1781591879;
+ t=1750056340; x=1781592340;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=HZVRwkiZUJPpjfEZWnBJa0Fumsop/7u1gW+Lvy7A3KI=;
- b=KcFTMQNjfyDhEb9QSfkREDiJqYpWqXvJB9oZ7/kfSGBeU0+6c8kS6i71
- I5uDDwpSwFOdW4eAnQf3wBC6niCWEMdZGiMZpBZir8lgEgHaXfBoiQ779
- vbr+zyGAQV3rVJD+cw7kCAcuq0RKX0ad64dcozOuM4yTdOO1V+TO+OZC+
- WBx8e4KAhnb0fu5U+lQTAamP9vNHMySuRhD/1qEiYgNsuNTCRQrk1lSPy
- fRa7Cg4ELbDz8KASuGiyAgqrevwpjAmEz/XmW4HJIXLvd6zZSV0fC87W3
- Okb6BuvOt+caOE7rx4aP2USBjt30AtUfLW2kg8jc/Ys3PSKZG8hou0d5L Q==;
-X-CSE-ConnectionGUID: +m1UotXVTLCEbZrSfmaiYw==
-X-CSE-MsgGUID: mOPNJQr2Q8yc7SnJlcOI2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="52108857"
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="52108857"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2025 23:37:58 -0700
-X-CSE-ConnectionGUID: Lnv9dh8aRcWmvwLna7NzHw==
-X-CSE-MsgGUID: Sg6HHEguTFWR/Vojb0KC/g==
+ bh=UTmS0TgRpv+batIr6a1EEMIP2/MJ1eYt1iThV3iRcxY=;
+ b=RG+wNkyfS4+sYZc6Lo7YVkPDhjTrfvVq2SqDennrTIsap7DEUW/+NGmb
+ QrVBERY2/TwQ0V7Hc4QVotN6afUv7QBcJt1fGwI1JcYq/qYpKfCY4y0rE
+ RCQsesby+KkqeUrFqYNvBEx/8k+EZjlf2EIp7/r9JI8Q9/isOXus9dIMf
+ 4Eq6N/XnyVIXfef43Ql8SWpEIp9PFclSctuILXyRXxteNp+TpKT5C6b4c
+ HThBdmpWRYKPr70xvQxx7o4Shdzue2r+fnV6idRVVcauyqO2CePaIufFJ
+ zhVRitC+Ve4OkX4MtxLHlqxuxJGam6dhnH7bNrfxPhqxcYFaCU8dMKnxB w==;
+X-CSE-ConnectionGUID: JVZ/LaLtTzm6ntxEI6yzHQ==
+X-CSE-MsgGUID: LYYRXWAxRIyK76ppy2AEDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="55988865"
+X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="55988865"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2025 23:45:38 -0700
+X-CSE-ConnectionGUID: 18mKAsZ+S/Oko8k7KDAArw==
+X-CSE-MsgGUID: GQYIE2l0TG2vi2jyD0JEaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="148754259"
+X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="152216949"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2025 23:37:58 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2025 23:45:38 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: tvrtko.ursulin@igalia.com
-Subject: [PATCH] drm/xe: Use RCU free for exec queue, not GuC exec queue
-Date: Sun, 15 Jun 2025 23:39:33 -0700
-Message-Id: <20250616063933.2060322-1-matthew.brost@intel.com>
+Cc: himal.prasad.ghimiray@intel.com, thomas.hellstrom@linux.intel.com,
+ michal.mrozek@intel.com
+Subject: [PATCH] drm/xe: Thread prefetch of SVM ranges
+Date: Sun, 15 Jun 2025 23:47:12 -0700
+Message-Id: <20250616064712.2060879-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,97 +66,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The exec queue name is used in dma-fence timelines, not the GuC exec queue.
-Therefore, the exec queue itself requires RCU freeing rather than the
-GuC exec queue.
+The migrate_vma_* functions are very CPU-intensive; as a result,
+prefetching SVM ranges is limited by CPU performance rather than paging
+copy engine bandwidth. To accelerate SVM range prefetching, the step
+that calls migrate_vma_* is now threaded. This uses a dedicated
+workqueue, as the page fault workqueue cannot be shared without risking
+deadlocks—due to the prefetch IOCTL holding the VM lock in write mode
+while work items in the page fault workqueue also require the VM lock.
 
-Fixes: 6bd90e700b42 ("drm/xe: Make dma-fences compliant with the safe access rules")
-Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: stable@vger.kernel.org
+The prefetch workqueue is currently allocated in GT, similar to the page
+fault workqueue. While this is likely not the ideal location for either,
+refactoring will be deferred to a later patch.
+
+Running xe_exec_system_allocator --r prefetch-benchmark, which tests
+64MB prefetches, shows an increase from ~4.35 GB/s to 12.25 GB/s with
+this patch on drm-tip. Enabling high SLPC further increases throughput
+to ~15.25 GB/s, and combining SLPC with ULLS raises it to ~16 GB/s. Both
+of these optimizations are upcoming.
+
+v2:
+ - Use dedicated prefetch workqueue
+ - Pick dedicated prefetch thread count based on profiling
+ - Skip threaded prefetch for only 1 range or if prefetching to SRAM
+ - Fully tested
+
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c           | 7 ++++++-
- drivers/gpu/drm/xe/xe_exec_queue_types.h     | 2 ++
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h | 2 --
- drivers/gpu/drm/xe/xe_guc_submit.c           | 7 +------
- 4 files changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  31 ++++++-
+ drivers/gpu/drm/xe/xe_gt_types.h     |   2 +
+ drivers/gpu/drm/xe/xe_vm.c           | 128 +++++++++++++++++++++------
+ 3 files changed, 135 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index fee22358cc09..41d5766a2033 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -47,7 +47,11 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
- 	if (q->xef)
- 		xe_file_put(q->xef);
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index e2d975b2fddb..941cca3371f2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -400,6 +400,8 @@ static void pagefault_fini(void *arg)
  
--	kfree(q);
+ 	destroy_workqueue(gt->usm.acc_wq);
+ 	destroy_workqueue(gt->usm.pf_wq);
++	if (gt->usm.prefetch_wq)
++		destroy_workqueue(gt->usm.prefetch_wq);
+ }
+ 
+ static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
+@@ -438,10 +440,24 @@ static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
+ 	return 0;
+ }
+ 
++static int prefetch_thread_count(struct xe_device *xe)
++{
++	if (!IS_DGFX(xe))
++		return 0;
++
 +	/*
-+ 	 * RCU free due sched being exported via DRM scheduler fences
-+ 	 * (timeline name).
++	 * Based on profiling large aligned 2M prefetches, this is the optimial
++	 * number of threads on BMG (only platform currently supported). This
++	 * should be tuned for each supported platform and can change on per
++	 * platform basis as optimizations land (e.g., large device pages).
 +	 */
-+	kfree_rcu(q, rcu);
++	return 5;
++}
++
+ int xe_gt_pagefault_init(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	int i, ret = 0;
++	int i, count, ret = 0;
+ 
+ 	if (!xe->info.has_usm)
+ 		return 0;
+@@ -462,10 +478,23 @@ int xe_gt_pagefault_init(struct xe_gt *gt)
+ 	if (!gt->usm.pf_wq)
+ 		return -ENOMEM;
+ 
++	count = prefetch_thread_count(xe);
++	if (count) {
++		gt->usm.prefetch_wq = alloc_workqueue("xe_gt_prefetch_work_queue",
++						      WQ_UNBOUND | WQ_HIGHPRI,
++						      count);
++		if (!gt->usm.prefetch_wq) {
++			destroy_workqueue(gt->usm.pf_wq);
++			return -ENOMEM;
++		}
++	}
++
+ 	gt->usm.acc_wq = alloc_workqueue("xe_gt_access_counter_work_queue",
+ 					 WQ_UNBOUND | WQ_HIGHPRI,
+ 					 NUM_ACC_QUEUE);
+ 	if (!gt->usm.acc_wq) {
++		if (gt->usm.prefetch_wq)
++			destroy_workqueue(gt->usm.prefetch_wq);
+ 		destroy_workqueue(gt->usm.pf_wq);
+ 		return -ENOMEM;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 7def0959da35..d9ba4921b8ce 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -239,6 +239,8 @@ struct xe_gt {
+ 		u16 reserved_bcs_instance;
+ 		/** @usm.pf_wq: page fault work queue, unbound, high priority */
+ 		struct workqueue_struct *pf_wq;
++		/** @usm.prefetch_wq: prefetch work queue, unbound, high priority */
++		struct workqueue_struct *prefetch_wq;
+ 		/** @usm.acc_wq: access counter work queue, unbound, high priority */
+ 		struct workqueue_struct *acc_wq;
+ 		/**
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 6ef8c4dab647..1ae8e03aead6 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2885,52 +2885,130 @@ static int check_ufence(struct xe_vma *vma)
+ 	return 0;
  }
  
- static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
-@@ -82,6 +86,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 	INIT_LIST_HEAD(&q->multi_gt_link);
- 	INIT_LIST_HEAD(&q->hw_engine_group_link);
- 	INIT_LIST_HEAD(&q->pxp.link);
-+	init_rcu_head(&q->rcu);
+-static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
++struct prefetch_thread {
++	struct work_struct work;
++	struct drm_gpusvm_ctx *ctx;
++	struct xe_vma *vma;
++	struct xe_svm_range *svm_range;
++	struct xe_tile *tile;
++	u32 region;
++	int err;
++};
++
++static void prefetch_work_func(struct work_struct *w)
+ {
+-	bool devmem_possible = IS_DGFX(vm->xe) && IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR);
+-	struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
++	struct prefetch_thread *thread =
++		container_of(w, struct prefetch_thread, work);
++	struct xe_vma *vma = thread->vma;
++	struct xe_vm *vm = xe_vma_vm(vma);
++	struct xe_svm_range *svm_range = thread->svm_range;
++	u32 region = thread->region;
++	struct xe_tile *tile = thread->tile;
+ 	int err = 0;
  
- 	q->sched_props.timeslice_us = hwe->eclass->sched_props.timeslice_us;
- 	q->sched_props.preempt_timeout_us =
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index cc1cffb5c87f..a17fe852fc0d 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -43,6 +43,8 @@ struct xe_exec_queue {
+-	struct xe_svm_range *svm_range;
++	if (!region) {
++		xe_svm_range_migrate_to_smem(vm, svm_range);
++	} else if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, region)) {
++		err = xe_svm_alloc_vram(vm, tile, svm_range, thread->ctx);
++		if (err) {
++			drm_dbg(&vm->xe->drm,
++				"VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
++				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
++			thread->err = -ENODATA;
++			return;
++		}
++		xe_svm_range_debug(svm_range, "PREFETCH - RANGE MIGRATED TO VRAM");
++	}
++
++	err = xe_svm_range_get_pages(vm, svm_range, thread->ctx);
++	if (err) {
++		drm_dbg(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=%p, errno=%pe\n",
++			vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
++		if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
++			err = -ENODATA;
++		thread->err = err;
++		return;
++	}
++
++	xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES DONE");
++}
++
++static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
++{
++	struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
++	u32 j, region = op->prefetch_range.region;
+ 	struct drm_gpusvm_ctx ctx = {};
+-	struct xe_tile *tile;
++	struct prefetch_thread stack_thread;
++	struct xe_svm_range *svm_range;
++	struct xarray prefetches;
++	bool sram = region_to_mem_type[region] == XE_PL_TT;
++	struct xe_tile *tile = sram ? xe_device_get_root_tile(vm->xe) :
++		&vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
+ 	unsigned long i;
+-	u32 region;
++	bool devmem_possible = IS_DGFX(vm->xe) &&
++		IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR);
++	bool skip_threads = op->prefetch_range.ranges_count == 1 || sram;
++	struct prefetch_thread *thread = skip_threads ? &stack_thread : NULL;
++	int err = 0;
  
- 	/** @gt: GT structure this exec queue can submit to */
- 	struct xe_gt *gt;
-+	/** @rcu: For safe freeing of exported dma fences */
-+	struct rcu_head rcu;
- 	/**
- 	 * @hwe: A hardware of the same class. May (physical engine) or may not
- 	 * (virtual engine) be where jobs actual engine up running. Should never
-diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-index a3f421e2adc0..4c39f01e4f52 100644
---- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-@@ -20,8 +20,6 @@ struct xe_exec_queue;
- struct xe_guc_exec_queue {
- 	/** @q: Backpointer to parent xe_exec_queue */
- 	struct xe_exec_queue *q;
--	/** @rcu: For safe freeing of exported dma fences */
--	struct rcu_head rcu;
- 	/** @sched: GPU scheduler for this xe_exec_queue */
- 	struct xe_gpu_scheduler sched;
- 	/** @entity: Scheduler entity for this xe_exec_queue */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index df7a5a4eec74..7170e78e5b8e 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1299,11 +1299,7 @@ static void __guc_exec_queue_fini_async(struct work_struct *w)
- 	xe_sched_entity_fini(&ge->entity);
- 	xe_sched_fini(&ge->sched);
+ 	if (!xe_vma_is_cpu_addr_mirror(vma))
+ 		return 0;
  
--	/*
--	 * RCU free due sched being exported via DRM scheduler fences
--	 * (timeline name).
--	 */
--	kfree_rcu(ge, rcu);
-+	kfree(ge);
- 	xe_exec_queue_fini(q);
- 	xe_pm_runtime_put(guc_to_xe(guc));
- }
-@@ -1486,7 +1482,6 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+-	region = op->prefetch_range.region;
++	if (!skip_threads)
++		xa_init_flags(&prefetches, XA_FLAGS_ALLOC);
  
- 	q->guc = ge;
- 	ge->q = q;
--	init_rcu_head(&ge->rcu);
- 	init_waitqueue_head(&ge->suspend_wait);
+ 	ctx.read_only = xe_vma_read_only(vma);
+ 	ctx.devmem_possible = devmem_possible;
+ 	ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
  
- 	for (i = 0; i < MAX_STATIC_MSG_TYPE; ++i)
+-	/* TODO: Threading the migration */
+ 	xa_for_each(&op->prefetch_range.range, i, svm_range) {
+-		if (!region)
+-			xe_svm_range_migrate_to_smem(vm, svm_range);
++		if (!skip_threads) {
++			thread = kmalloc(sizeof(*thread), GFP_KERNEL);
++			if (!thread)
++				goto wait_threads;
+ 
+-		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, region)) {
+-			tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
+-			err = xe_svm_alloc_vram(vm, tile, svm_range, &ctx);
++			err = xa_alloc(&prefetches, &j, thread, xa_limit_32b,
++				       GFP_KERNEL);
+ 			if (err) {
+-				drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
+-					vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+-				return -ENODATA;
++				kfree(thread);
++				goto wait_threads;
+ 			}
+-			xe_svm_range_debug(svm_range, "PREFETCH - RANGE MIGRATED TO VRAM");
+ 		}
+ 
+-		err = xe_svm_range_get_pages(vm, svm_range, &ctx);
+-		if (err) {
+-			drm_dbg(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=%p, errno=%pe\n",
+-				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+-			if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
+-				err = -ENODATA;
+-			return err;
++		INIT_WORK(&thread->work, prefetch_work_func);
++		thread->ctx = &ctx;
++		thread->vma = vma;
++		thread->svm_range = svm_range;
++		thread->tile = tile;
++		thread->region = region;
++		thread->err = 0;
++
++		if (skip_threads) {
++			prefetch_work_func(&thread->work);
++			if (thread->err)
++				return thread->err;
++		} else {
++			/*
++			 * Prefetch uses a dedicated workqueue, as the page
++			 * fault workqueue cannot be shared without risking
++			 * deadlocks—due to holding the VM lock in write mode
++			 * here while work items in the page fault workqueue
++			 * also require the VM lock.
++			 */
++			queue_work(tile->primary_gt->usm.prefetch_wq,
++				   &thread->work);
++		}
++	}
++
++wait_threads:
++	if (!skip_threads) {
++		xa_for_each(&prefetches, i, thread) {
++			flush_work(&thread->work);
++			if (thread->err && (!err || err == -ENODATA))
++				err = thread->err;
++			kfree(thread);
+ 		}
+-		xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES DONE");
++		xa_destroy(&prefetches);
+ 	}
+ 
+ 	return err;
 -- 
 2.34.1
 
