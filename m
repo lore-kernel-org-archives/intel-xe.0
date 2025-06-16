@@ -4,55 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2812EC71136
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 09:24:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43498C71135
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 09:28:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D74F610E2FE;
-	Mon, 16 Jun 2025 09:24:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03B3810E308;
+	Mon, 16 Jun 2025 09:28:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iR88FttA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V02wFi86";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2764F10E2FE
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 09:24:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F7C910E305
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 09:28:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750065873; x=1781601873;
+ t=1750066095; x=1781602095;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=WX2M1BBPFx0tHr4ODkPYzpdMSMkKK9yOK/AxgUICSZo=;
- b=iR88FttAJeuc2xef4qoJYFfSdMxSHaDBb0K0bfbjweg1/oZy0NGzqnGF
- CRtnz/Prs0F9koXOcQEDETY+j2U3h8eNTnM2I7xgAPRfPxRxTUoH13AY0
- EJOzesvvQm3TSj+DJ2BbtQ2DzLLH4LF7OT9uh15/8SyrwvElWxxG6wMGZ
- yZ3IJ9UcWAGJHeJn4UUVDiLsavtuthoCeFR4zC5cMLtReZOydbclr8EsV
- O2EaE+KpqP9P51lA4TkhBQYod5Pq6Vo3ag4voP1AhDM8524TB/pZayt2N
- uz2ugqY5k3yt5jMgxgYpkfh10eo+I4RGMVaGqiuCqJC+EiaqgozRx8dE2 A==;
-X-CSE-ConnectionGUID: r/rmFyFCSly+hJMjGwesnQ==
-X-CSE-MsgGUID: 7sjnqfIeSqKOrtCKyck31Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="77598451"
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="77598451"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 02:24:33 -0700
-X-CSE-ConnectionGUID: 0O1m7r4pTpa42x8mukjohw==
-X-CSE-MsgGUID: S9BS/O14R82IWO8AtaEniw==
+ bh=dahJFYWDHiF73dyKENTvZihdgABwSyVKNf3aKP+6mUI=;
+ b=V02wFi86DOKnT2alfJh3tDkQKrCt/XtSqiFhWTM899v/YKO7MgdZhyoL
+ IyqtM3KARhyKqKuTu6Rbj9twVqfvYm/GOnLRmNoC2K4jPGR9J7Tk+GcND
+ lUvQt+uEIIeXakcolBoEzcBtmv54r8xgn9kaBf2cAk0szCOFFuItP5tBK
+ F7A58EBkZctsvVNgFemN0MJHXdXESDCIqA1/4zw/F8aNPAPnClXheUuT7
+ WP7IzmXWfMrRJMAa4jdon1kcSW1JABz0fahJGbrI8pQOVXEa8hAUjhzar
+ ltFZ4C+N7kb6cWUPtQfITME9N8RoSNiFlg0LzyrdlvP9M9s5WjIubBD84 Q==;
+X-CSE-ConnectionGUID: Xzkq39JJTfWxeeq0ESHjuw==
+X-CSE-MsgGUID: r61YMOKURjWdEzLp9wLVig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="63553189"
+X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="63553189"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2025 02:28:15 -0700
+X-CSE-ConnectionGUID: 8EINxPIESVCcW+ZdVSQXcA==
+X-CSE-MsgGUID: ISh80HKmSS2ZtpqgkQNjOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="171637275"
+X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="185682250"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.63])
  ([10.245.244.63])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 02:24:32 -0700
-Message-ID: <9b68aa6f48644a383cb2e9ed5ca3a35a66546ac8.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Thread prefetch of SVM ranges
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2025 02:28:14 -0700
+Message-ID: <57a1b3ebeceb43b54d8882c9ef1ecfe1dd5dbf38.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Implement clear VRAM on free
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
- michal.mrozek@intel.com
-Date: Mon, 16 Jun 2025 11:24:29 +0200
-In-Reply-To: <aE/cr2Eb/KJUIXnE@lstrano-desk.jf.intel.com>
-References: <20250616064712.2060879-1-matthew.brost@intel.com>
- <b1620d738130de216644d09722735607f0b1e35c.camel@linux.intel.com>
- <aE/cr2Eb/KJUIXnE@lstrano-desk.jf.intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.auld@intel.com
+Date: Mon, 16 Jun 2025 11:28:10 +0200
+In-Reply-To: <aE/g0Hw/ZmBxBXpD@lstrano-desk.jf.intel.com>
+References: <20250611054235.3540936-1-matthew.brost@intel.com>
+ <cb53d2efe677724fd5d141d8f3cada5f06758adb.camel@linux.intel.com>
+ <aEsKU2LliY6JmG6a@lstrano-desk.jf.intel.com>
+ <eb5531f03ee560a593f77f60ae1f6f862eea6a14.camel@linux.intel.com>
+ <aExQEKec1H7yqS1I@lstrano-desk.jf.intel.com>
+ <aEyDw0ZQ5R/ohrO3@lstrano-desk.jf.intel.com>
+ <2f5a1a129ae6dff415d7160a1bed9e28786147e2.camel@linux.intel.com>
+ <aE/OLjpW/pwyV+DM@lstrano-desk.jf.intel.com>
+ <cb55e47574a0fcd62728aa4fad150f1682b92b83.camel@linux.intel.com>
+ <aE/g0Hw/ZmBxBXpD@lstrano-desk.jf.intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,488 +78,764 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-06-16 at 01:58 -0700, Matthew Brost wrote:
-> On Mon, Jun 16, 2025 at 10:28:16AM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Sun, 2025-06-15 at 23:47 -0700, Matthew Brost wrote:
-> > > The migrate_vma_* functions are very CPU-intensive; as a result,
-> > > prefetching SVM ranges is limited by CPU performance rather than
-> > > paging
-> > > copy engine bandwidth. To accelerate SVM range prefetching, the
-> > > step
-> > > that calls migrate_vma_* is now threaded. This uses a dedicated
-> > > workqueue, as the page fault workqueue cannot be shared without
-> > > risking
-> > > deadlocks=E2=80=94due to the prefetch IOCTL holding the VM lock in wr=
-ite
-> > > mode
-> > > while work items in the page fault workqueue also require the VM
-> > > lock.
+On Mon, 2025-06-16 at 02:16 -0700, Matthew Brost wrote:
+> On Mon, Jun 16, 2025 at 10:53:37AM +0200, Thomas Hellstr=C3=B6m wrote:
+> > On Mon, 2025-06-16 at 00:56 -0700, Matthew Brost wrote:
+> > > On Mon, Jun 16, 2025 at 09:40:05AM +0200, Thomas Hellstr=C3=B6m wrote=
+:
+> > > > On Fri, 2025-06-13 at 13:02 -0700, Matthew Brost wrote:
+> > > > > On Fri, Jun 13, 2025 at 09:21:36AM -0700, Matthew Brost
+> > > > > wrote:
+> > > > > > On Fri, Jun 13, 2025 at 10:07:17AM +0200, Thomas Hellstr=C3=B6m
+> > > > > > wrote:
+> > > > > > > On Thu, 2025-06-12 at 10:11 -0700, Matthew Brost wrote:
+> > > > > > > > On Thu, Jun 12, 2025 at 02:53:16PM +0200, Thomas
+> > > > > > > > Hellstr=C3=B6m
+> > > > > > > > wrote:
+> > > > > > > > > On Tue, 2025-06-10 at 22:42 -0700, Matthew Brost
+> > > > > > > > > wrote:
+> > > > > > > > > > Clearing on free should hide latency of BO clears
+> > > > > > > > > > on
+> > > > > > > > > > new
+> > > > > > > > > > user BO
+> > > > > > > > > > allocations.
+> > > > > > > > > >=20
+> > > > > > > > > > Implemented via calling xe_migrate_clear in release
+> > > > > > > > > > notify
+> > > > > > > > > > and
+> > > > > > > > > > updating
+> > > > > > > > > > iterator in xe_migrate_clear to skip cleared buddy
+> > > > > > > > > > blocks.
+> > > > > > > > > > Only
+> > > > > > > > > > user
+> > > > > > > > > > BOs
+> > > > > > > > > > cleared in release notify as kernel BOs could still
+> > > > > > > > > > be
+> > > > > > > > > > in
+> > > > > > > > > > use
+> > > > > > > > > > (e.g.,
+> > > > > > > > > > PT
+> > > > > > > > > > BOs need to wait for dma-resv to be idle).
+> > > > > > > > >=20
+> > > > > > > > > Wouldn't it be fully possible for a user to do (deep
+> > > > > > > > > pipelining 3d
+> > > > > > > > > case)
+> > > > > > > > >=20
+> > > > > > > > > create_bo();
+> > > > > > > > > map_write_unmap_bo();
+> > > > > > > > > bind_bo();
+> > > > > > > > > submit_job_touching_bo();
+> > > > > > > > > unbind_bo();
+> > > > > > > > > free_bo();
+> > > > > > > > >=20
+> > > > > > > > > Where the free_bo and release_notify() is called long
+> > > > > > > > > before
+> > > > > > > > > the
+> > > > > > > > > job we
+> > > > > > > > > submitted even started?
+> > > > > > > > >=20
+> > > > > > > > > So that would mean the clear needs to await any
+> > > > > > > > > previous
+> > > > > > > > > fences,
+> > > > > > > > > and
+> > > > > > > > > that dependency addition seems to have been removed
+> > > > > > > > > from
+> > > > > > > > > xe_migrate_clear.
+> > > > > > > > >=20
+> > > > > > > >=20
+> > > > > > > > I think we are actually ok here. xe_vma_destroy is
+> > > > > > > > called
+> > > > > > > > on
+> > > > > > > > unbind
+> > > > > > > > with
+> > > > > > > > the out fence from the bind IOCTL, so we don't get to
+> > > > > > > > xe_vma_destroy_late until that fence signals, and
+> > > > > > > > xe_vma_destroy_late
+> > > > > > > > (possibly) does the final BO put. Whether this follow
+> > > > > > > > makes
+> > > > > > > > sense is
+> > > > > > > > a
+> > > > > > > > bit questable - this was very early code I wrote in Xe
+> > > > > > > > and
+> > > > > > > > if I
+> > > > > > > > rewrote
+> > > > > > > > today I suspect it would look different.
+> > > > > > >=20
+> > > > > > > Hmm, yeah you're right. So the unbind kernel fence should
+> > > > > > > indeed
+> > > > > > > be
+> > > > > > > last fence we need to wait for here.
+> > > > > > >=20
+> > > > > >=20
+> > > > > > It should actually be signaled too. I think we could avoid
+> > > > > > any
+> > > > > > dma-
+> > > > > > resv
+> > > > > > wait in this case. Kernel operations are typically (maybe
+> > > > > > always)
+> > > > > > on the
+> > > > > > migration queue, though, so we=E2=80=99d be waiting on those
+> > > > > > operations
+> > > > > > via
+> > > > > > queue ordering anyway.
+> > > >=20
+> > > > Hm. We should not be keeping the vma and xe_bo around until the
+> > > > unbind
+> > > > fence has signaled? We did not always do that except for
+> > > > userptr
+> > > > where
+> > > > we needed a mechanism to keep the dma-mappings? So if we
+> > > > mistakenly
+> > > > introduced something that needs to keep them around, the above
+> > > > would
+> > > > only make that harder to fix? It sounds like this completely
+> > > > bypasses
+> > > > the TTM delayed delete mechanism?
+> > > >=20
 > > >=20
-> > > The prefetch workqueue is currently allocated in GT, similar to
+> > > See xe_vma_destroy =E2=80=94 if there=E2=80=99s an unsignaled fence a=
+ttached to
 > > > the
-> > > page
-> > > fault workqueue. While this is likely not the ideal location for
-> > > either,
-> > > refactoring will be deferred to a later patch.
+> > > VMA,
+> > > we delay the destroy.
 > > >=20
-> > > Running xe_exec_system_allocator --r prefetch-benchmark, which
-> > > tests
-> > > 64MB prefetches, shows an increase from ~4.35 GB/s to 12.25 GB/s
-> > > with
-> > > this patch on drm-tip. Enabling high SLPC further increases
-> > > throughput
-> > > to ~15.25 GB/s, and combining SLPC with ULLS raises it to ~16
-> > > GB/s.
-> > > Both
-> > > of these optimizations are upcoming.
+> > > Yeah, like I said, this code is very questionable at best and was
+> > > written early in my Xe days, before I understood TTM a bit
+> > > better.
+> >=20
+> > But I'm pretty sure it wasn't always like this? Perhaps it was an
+> > easy
+> > way to keep the user-fence around until it signaled?
+> >=20
+>=20
+> I=E2=80=99d have to check, but I=E2=80=99m pretty sure I added this worke=
+r early
+> on=E2=80=94before I had a clue how a lot of things actually worked, out o=
+f
+> ignorance.
+>=20
 > > >=20
-> > > v2:
-> > > =C2=A0- Use dedicated prefetch workqueue
-> > > =C2=A0- Pick dedicated prefetch thread count based on profiling
-> > > =C2=A0- Skip threaded prefetch for only 1 range or if prefetching to
-> > > SRAM
-> > > =C2=A0- Fully tested
+> > > > If the remaining operations are maybe always from the migration
+> > > > queue,
+> > > > they will be skipped for the clearing operation by the
+> > > > scheduler
+> > > > anyway, right?
+> > > >=20
+> > > > I think the safest and looking forward least error prone thing
+> > > > to
+> > > > do
+> > > > here is to wait for all fences, since if we can restore the
+> > > > original
+> > > > behaviour of dropping the bo reference at unbind time rather
+> > > > than
+> > > > unbind fence signal time, the bo will be immediately
+> > > > individualized
+> > > > an
+> > > > no new unnecessary fences can be added.
+> > > >=20
 > > >=20
-> > > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > I think this needs to be a tandem change then =E2=80=94 we drop the
+> > > VMA/BO
+> > > delayed destroy and wait on the bookkeeping here. Sound
+> > > reasonable?
 > >=20
-> > Hi,
-> > Is this really the right place to do optimizations like this?
-> >=20
->=20
-> Yes, for now.
-
-I think it's pretty dangerous to rush in optimizations that add
-technical depth. That was exactly what made i915 to what it was.=20
-
->=20
-> > The migration takes place in xe_svm_alloc_vram() and is being moved
-> > to
-> > drm_pagemap_populate_mm(). If those functions are considered to be
-> > slow
-> > then they should be optimized, rather than calling them multiple
-> > times
-> > in parallel from an outer layer?
+> > Yes. Although we need to keep the delayed vma destroy for userptr.
 > >=20
 >=20
-> Shared code with an already-parallel fault handler... Prefetch is
-> just
-> adding parallelism too.
-
-What I meant was thinking from a higher perspective. If we call
-drm_pagemap_populate_mm() (that in theory is designed to be available
-from another driver) we'd expect that function to perform in an optimal
-way. If anywhare this parallelization should be placed in what is now
-xe_svm_alloc_vram().
-
+> Agree.
 >=20
-> > Before doing something like this I think we need to consider
-> >=20
-> > 1) Why are the migrate functions so cpu consuming? Do we have a
-> > performance profile for it?
->=20
-> Yes, I have profiled this. On BMG, a 2MB migrate takes approximately
-> 300=C2=B5s of CPU overhead in the migrate_vma_* functions, while a copy
-> job
-> takes around 130=C2=B5s. The copy must complete between setup and
-> finalize,
-> which serializes this flow.
-
->=20
-> Thus, as of now, the only way to saturate the copy engine is to use
-> threads so that CPU cycles can overlap.
-
-So we're not actually not using 100% CPU-time all the time but rather
-spending time waiting for the GPU copy to finish? If so, the effect
-comes more from being able to start the finalize() step early. Couldn't
-that be made within a single thread using an alternative
-synchronization strategy?
-
->=20
-> Have you caught up on Nvidia's series [1] and what Francois is
-> working
-> on? I'd guess we'll go from ~300=C2=B5s to ~7=C2=B5s once that lands.
-
-Yes, been discussing that a lot with Francois, but that's orthogonal to
-this, right?
-
->=20
-> I don't know why the migrate_vma_* functions take so long=E2=80=94the cor=
-e MM
-> code is tough to read. I suppose I could hack it to find out.
->=20
-> [1]
-> https://lore.kernel.org/linux-mm/20250306044239.3874247-1-balbirs@nvidia.=
-com/
-> =C2=A0
->=20
-> > 2) Do we actually *want* to use 5 CPU cores for this?
->=20
-> Yes, I profiled this with a test issuing 64MB prefetches=E2=80=945 thread=
-s
-> was
-> ideal. I have a comment in the code about this. Once [1] lands, we=E2=80=
-=99ll
-> likely only need 2 threads on BMG. That would probably get us to a
-> bus
-> 8=C3=97 faster than BMG; for 16=C3=97, we might need more threads. But I =
-think
-> we=E2=80=99ll always want at least 2, as there will always be some CPU
-> overhead
-> that limits copy bandwidth due to serialization.
-
-What I meant was IIRC NEO has previously been picky about starting
-threads. Perhaps Michal can enlighten us here?
-
->=20
-> > 3) Isn't a single CPU write-combined non-temporal CPU memcopy
-> > enough to
-> > saturate the system->VRAM bandwith?
+> > Also for the user-fence, perhaps it can keep a reference to itself
+> > until it signals, rather than we keep the vma->ufence reference.
 > >=20
 >=20
-> I'm not entirely following (see above), but almost certainly not.
+> I=E2=80=99ve paged this out, but user_fence_worker already dereferences
+> itself=E2=80=A6
+> so maybe we=E2=80=99re okay? I=E2=80=99d need to dig back in to fully und=
+erstand it
+> again.
+>=20
+> I think we=E2=80=99ve switched to an unrelated topic at this point. I agr=
+ee
+> that
+> the whole VMA destroy path should be analyzed. At a minimum, let's
+> add
+> comments in the code explaining the design=E2=80=94and at best, refactor =
+it
+> to
+> make a bit more sense. I can take an action item to do that in the
+> short
+> term, since I can=E2=80=99t give a precise answer right now.
+>=20
+> Is this worth holding up the patch, though?
 
-What I meant was instead of migrating using GPU with 5 threads to
-mitigate GPU latencies, wouldn't a CPU optimized memcopy from system to
-VRAM be able to saturate the PCIe bus at 16GiB/s without any latencies
-to be considered at all.
+I think as long as we make the migration clear depend on the current bo
+fences, I'm OK with this part.
 
-/Thomas
+Thanks,
+Thomas
+
 
 
 >=20
-> Maat
+> Matt
 >=20
 > > Thanks,
 > > Thomas
 > >=20
 > >=20
 > >=20
-> > > ---
-> > > =C2=A0drivers/gpu/drm/xe/xe_gt_pagefault.c |=C2=A0 31 ++++++-
-> > > =C2=A0drivers/gpu/drm/xe/xe_gt_types.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0 2 +
-> > > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 128
-> > > +++++++++++++++++++++----
-> > > --
-> > > =C2=A03 files changed, 135 insertions(+), 26 deletions(-)
+> >=20
+> >=20
 > > >=20
-> > > diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > > b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > > index e2d975b2fddb..941cca3371f2 100644
-> > > --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > > +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > > @@ -400,6 +400,8 @@ static void pagefault_fini(void *arg)
-> > > =C2=A0
-> > > =C2=A0	destroy_workqueue(gt->usm.acc_wq);
-> > > =C2=A0	destroy_workqueue(gt->usm.pf_wq);
-> > > +	if (gt->usm.prefetch_wq)
-> > > +		destroy_workqueue(gt->usm.prefetch_wq);
-> > > =C2=A0}
-> > > =C2=A0
-> > > =C2=A0static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue
-> > > *pf_queue)
-> > > @@ -438,10 +440,24 @@ static int xe_alloc_pf_queue(struct xe_gt
-> > > *gt,
-> > > struct pf_queue *pf_queue)
-> > > =C2=A0	return 0;
-> > > =C2=A0}
-> > > =C2=A0
-> > > +static int prefetch_thread_count(struct xe_device *xe)
-> > > +{
-> > > +	if (!IS_DGFX(xe))
-> > > +		return 0;
-> > > +
-> > > +	/*
-> > > +	 * Based on profiling large aligned 2M prefetches, this
-> > > is
-> > > the optimial
-> > > +	 * number of threads on BMG (only platform currently
-> > > supported). This
-> > > +	 * should be tuned for each supported platform and can
-> > > change on per
-> > > +	 * platform basis as optimizations land (e.g., large
-> > > device
-> > > pages).
-> > > +	 */
-> > > +	return 5;
-> > > +}
-> > > +
-> > > =C2=A0int xe_gt_pagefault_init(struct xe_gt *gt)
-> > > =C2=A0{
-> > > =C2=A0	struct xe_device *xe =3D gt_to_xe(gt);
-> > > -	int i, ret =3D 0;
-> > > +	int i, count, ret =3D 0;
-> > > =C2=A0
-> > > =C2=A0	if (!xe->info.has_usm)
-> > > =C2=A0		return 0;
-> > > @@ -462,10 +478,23 @@ int xe_gt_pagefault_init(struct xe_gt *gt)
-> > > =C2=A0	if (!gt->usm.pf_wq)
-> > > =C2=A0		return -ENOMEM;
-> > > =C2=A0
-> > > +	count =3D prefetch_thread_count(xe);
-> > > +	if (count) {
-> > > +		gt->usm.prefetch_wq =3D
-> > > alloc_workqueue("xe_gt_prefetch_work_queue",
-> > > +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WQ_UNBOUND
-> > > |
-> > > WQ_HIGHPRI,
-> > > +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 count);
-> > > +		if (!gt->usm.prefetch_wq) {
-> > > +			destroy_workqueue(gt->usm.pf_wq);
-> > > +			return -ENOMEM;
-> > > +		}
-> > > +	}
-> > > +
-> > > =C2=A0	gt->usm.acc_wq =3D
-> > > alloc_workqueue("xe_gt_access_counter_work_queue",
-> > > =C2=A0					 WQ_UNBOUND |
-> > > WQ_HIGHPRI,
-> > > =C2=A0					 NUM_ACC_QUEUE);
-> > > =C2=A0	if (!gt->usm.acc_wq) {
-> > > +		if (gt->usm.prefetch_wq)
-> > > +			destroy_workqueue(gt->usm.prefetch_wq);
-> > > =C2=A0		destroy_workqueue(gt->usm.pf_wq);
-> > > =C2=A0		return -ENOMEM;
-> > > =C2=A0	}
-> > > diff --git a/drivers/gpu/drm/xe/xe_gt_types.h
-> > > b/drivers/gpu/drm/xe/xe_gt_types.h
-> > > index 7def0959da35..d9ba4921b8ce 100644
-> > > --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> > > +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> > > @@ -239,6 +239,8 @@ struct xe_gt {
-> > > =C2=A0		u16 reserved_bcs_instance;
-> > > =C2=A0		/** @usm.pf_wq: page fault work queue, unbound,
-> > > high
-> > > priority */
-> > > =C2=A0		struct workqueue_struct *pf_wq;
-> > > +		/** @usm.prefetch_wq: prefetch work queue,
-> > > unbound,
-> > > high priority */
-> > > +		struct workqueue_struct *prefetch_wq;
-> > > =C2=A0		/** @usm.acc_wq: access counter work queue,
-> > > unbound,
-> > > high priority */
-> > > =C2=A0		struct workqueue_struct *acc_wq;
-> > > =C2=A0		/**
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > > b/drivers/gpu/drm/xe/xe_vm.c
-> > > index 6ef8c4dab647..1ae8e03aead6 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > @@ -2885,52 +2885,130 @@ static int check_ufence(struct xe_vma
-> > > *vma)
-> > > =C2=A0	return 0;
-> > > =C2=A0}
-> > > =C2=A0
-> > > -static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op
-> > > *op)
-> > > +struct prefetch_thread {
-> > > +	struct work_struct work;
-> > > +	struct drm_gpusvm_ctx *ctx;
-> > > +	struct xe_vma *vma;
-> > > +	struct xe_svm_range *svm_range;
-> > > +	struct xe_tile *tile;
-> > > +	u32 region;
-> > > +	int err;
-> > > +};
-> > > +
-> > > +static void prefetch_work_func(struct work_struct *w)
-> > > =C2=A0{
-> > > -	bool devmem_possible =3D IS_DGFX(vm->xe) &&
-> > > IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR);
-> > > -	struct xe_vma *vma =3D gpuva_to_vma(op->base.prefetch.va);
-> > > +	struct prefetch_thread *thread =3D
-> > > +		container_of(w, struct prefetch_thread, work);
-> > > +	struct xe_vma *vma =3D thread->vma;
-> > > +	struct xe_vm *vm =3D xe_vma_vm(vma);
-> > > +	struct xe_svm_range *svm_range =3D thread->svm_range;
-> > > +	u32 region =3D thread->region;
-> > > +	struct xe_tile *tile =3D thread->tile;
-> > > =C2=A0	int err =3D 0;
-> > > =C2=A0
-> > > -	struct xe_svm_range *svm_range;
-> > > +	if (!region) {
-> > > +		xe_svm_range_migrate_to_smem(vm, svm_range);
-> > > +	} else if (xe_svm_range_needs_migrate_to_vram(svm_range,
-> > > vma, region)) {
-> > > +		err =3D xe_svm_alloc_vram(vm, tile, svm_range,
-> > > thread-
-> > > > ctx);
-> > > +		if (err) {
-> > > +			drm_dbg(&vm->xe->drm,
-> > > +				"VRAM allocation failed, retry
-> > > from
-> > > userspace, asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
-> > > +				vm->usm.asid, &vm->svm.gpusvm,
-> > > ERR_PTR(err));
-> > > +			thread->err =3D -ENODATA;
-> > > +			return;
-> > > +		}
-> > > +		xe_svm_range_debug(svm_range, "PREFETCH - RANGE
-> > > MIGRATED TO VRAM");
-> > > +	}
-> > > +
-> > > +	err =3D xe_svm_range_get_pages(vm, svm_range, thread-
-> > > >ctx);
-> > > +	if (err) {
-> > > +		drm_dbg(&vm->xe->drm, "Get pages failed,
-> > > asid=3D%u,
-> > > gpusvm=3D%p, errno=3D%pe\n",
-> > > +			vm->usm.asid, &vm->svm.gpusvm,
-> > > ERR_PTR(err));
-> > > +		if (err =3D=3D -EOPNOTSUPP || err =3D=3D -EFAULT || err
-> > > =3D=3D -
-> > > EPERM)
-> > > +			err =3D -ENODATA;
-> > > +		thread->err =3D err;
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET
-> > > PAGES
-> > > DONE");
-> > > +}
-> > > +
-> > > +static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op
-> > > *op)
-> > > +{
-> > > +	struct xe_vma *vma =3D gpuva_to_vma(op->base.prefetch.va);
-> > > +	u32 j, region =3D op->prefetch_range.region;
-> > > =C2=A0	struct drm_gpusvm_ctx ctx =3D {};
-> > > -	struct xe_tile *tile;
-> > > +	struct prefetch_thread stack_thread;
-> > > +	struct xe_svm_range *svm_range;
-> > > +	struct xarray prefetches;
-> > > +	bool sram =3D region_to_mem_type[region] =3D=3D XE_PL_TT;
-> > > +	struct xe_tile *tile =3D sram ?
-> > > xe_device_get_root_tile(vm-
-> > > > xe) :
-> > > +		&vm->xe->tiles[region_to_mem_type[region] -
-> > > XE_PL_VRAM0];
-> > > =C2=A0	unsigned long i;
-> > > -	u32 region;
-> > > +	bool devmem_possible =3D IS_DGFX(vm->xe) &&
-> > > +		IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR);
-> > > +	bool skip_threads =3D op->prefetch_range.ranges_count =3D=3D 1
-> > > ||
-> > > sram;
-> > > +	struct prefetch_thread *thread =3D skip_threads ?
-> > > &stack_thread : NULL;
-> > > +	int err =3D 0;
-> > > =C2=A0
-> > > =C2=A0	if (!xe_vma_is_cpu_addr_mirror(vma))
-> > > =C2=A0		return 0;
-> > > =C2=A0
-> > > -	region =3D op->prefetch_range.region;
-> > > +	if (!skip_threads)
-> > > +		xa_init_flags(&prefetches, XA_FLAGS_ALLOC);
-> > > =C2=A0
-> > > =C2=A0	ctx.read_only =3D xe_vma_read_only(vma);
-> > > =C2=A0	ctx.devmem_possible =3D devmem_possible;
-> > > =C2=A0	ctx.check_pages_threshold =3D devmem_possible ? SZ_64K :
-> > > 0;
-> > > =C2=A0
-> > > -	/* TODO: Threading the migration */
-> > > =C2=A0	xa_for_each(&op->prefetch_range.range, i, svm_range) {
-> > > -		if (!region)
-> > > -			xe_svm_range_migrate_to_smem(vm,
-> > > svm_range);
-> > > +		if (!skip_threads) {
-> > > +			thread =3D kmalloc(sizeof(*thread),
-> > > GFP_KERNEL);
-> > > +			if (!thread)
-> > > +				goto wait_threads;
-> > > =C2=A0
-> > > -		if
-> > > (xe_svm_range_needs_migrate_to_vram(svm_range,
-> > > vma, region)) {
-> > > -			tile =3D &vm->xe-
-> > > > tiles[region_to_mem_type[region] - XE_PL_VRAM0];
-> > > -			err =3D xe_svm_alloc_vram(vm, tile,
-> > > svm_range,
-> > > &ctx);
-> > > +			err =3D xa_alloc(&prefetches, &j, thread,
-> > > xa_limit_32b,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 GFP_KERNEL);
-> > > =C2=A0			if (err) {
-> > > -				drm_dbg(&vm->xe->drm, "VRAM
-> > > allocation failed, retry from userspace, asid=3D%u, gpusvm=3D%p,
-> > > errno=3D%pe\n",
-> > > -					vm->usm.asid, &vm-
-> > > > svm.gpusvm, ERR_PTR(err));
-> > > -				return -ENODATA;
-> > > +				kfree(thread);
-> > > +				goto wait_threads;
-> > > =C2=A0			}
-> > > -			xe_svm_range_debug(svm_range, "PREFETCH
-> > > -
-> > > RANGE MIGRATED TO VRAM");
-> > > =C2=A0		}
-> > > =C2=A0
-> > > -		err =3D xe_svm_range_get_pages(vm, svm_range,
-> > > &ctx);
-> > > -		if (err) {
-> > > -			drm_dbg(&vm->xe->drm, "Get pages failed,
-> > > asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
-> > > -				vm->usm.asid, &vm->svm.gpusvm,
-> > > ERR_PTR(err));
-> > > -			if (err =3D=3D -EOPNOTSUPP || err =3D=3D -EFAULT
-> > > ||
-> > > err =3D=3D -EPERM)
-> > > -				err =3D -ENODATA;
-> > > -			return err;
-> > > +		INIT_WORK(&thread->work, prefetch_work_func);
-> > > +		thread->ctx =3D &ctx;
-> > > +		thread->vma =3D vma;
-> > > +		thread->svm_range =3D svm_range;
-> > > +		thread->tile =3D tile;
-> > > +		thread->region =3D region;
-> > > +		thread->err =3D 0;
-> > > +
-> > > +		if (skip_threads) {
-> > > +			prefetch_work_func(&thread->work);
-> > > +			if (thread->err)
-> > > +				return thread->err;
-> > > +		} else {
-> > > +			/*
-> > > +			 * Prefetch uses a dedicated workqueue,
-> > > as
-> > > the page
-> > > +			 * fault workqueue cannot be shared
-> > > without
-> > > risking
-> > > +			 * deadlocks=E2=80=94due to holding the VM lock
-> > > in
-> > > write mode
-> > > +			 * here while work items in the page
-> > > fault
-> > > workqueue
-> > > +			 * also require the VM lock.
-> > > +			 */
-> > > +			queue_work(tile->primary_gt-
-> > > > usm.prefetch_wq,
-> > > +				=C2=A0=C2=A0 &thread->work);
-> > > +		}
-> > > +	}
-> > > +
-> > > +wait_threads:
-> > > +	if (!skip_threads) {
-> > > +		xa_for_each(&prefetches, i, thread) {
-> > > +			flush_work(&thread->work);
-> > > +			if (thread->err && (!err || err =3D=3D -
-> > > ENODATA))
-> > > +				err =3D thread->err;
-> > > +			kfree(thread);
-> > > =C2=A0		}
-> > > -		xe_svm_range_debug(svm_range, "PREFETCH - RANGE
-> > > GET
-> > > PAGES DONE");
-> > > +		xa_destroy(&prefetches);
-> > > =C2=A0	}
-> > > =C2=A0
-> > > =C2=A0	return err;
+> > > > > >=20
+> > > > > > > >=20
+> > > > > > > > We could make this 'safer' by waiting on
+> > > > > > > > DMA_RESV_USAGE_BOOKKEEP in
+> > > > > > > > xe_migrate_clear for calls from release notify but for
+> > > > > > > > private
+> > > > > > > > to VM
+> > > > > > > > BO's we'd risk the clear getting stuck behind newly
+> > > > > > > > submitted
+> > > > > > > > (i.e.,
+> > > > > > > > submitted after the unbind) exec IOCTLs or binds.
+> > > > > > >=20
+> > > > > > > Yeah, although at this point the individualization has
+> > > > > > > already
+> > > > > > > taken
+> > > > > > > place, so at least there should be no starving, since the
+> > > > > > > only
+> > > > > > > unnecessary waits would be for execs submitted between
+> > > > > > > the
+> > > > > > > unbind
+> > > > > > > and
+> > > > > > > the individualization. So doable but leave it up to you.
+> > > > > > >=20
+> > > > > >=20
+> > > > > > The individualization is done by the final put-likely
+> > > > > > assuming
+> > > > > > the
+> > > > > > BO is
+> > > > > > closed and unmapped in user space=E2=80=94in the worker mention=
+ed
+> > > > > > above. If
+> > > > > > an
+> > > > > > exec or bind IOCTL is issued in the interim, we=E2=80=99d be
+> > > > > > waiting on
+> > > > > > those.
+> > > > > >=20
+> > > > > > > > > Another side-effect I think this will have is that
+> > > > > > > > > bos
+> > > > > > > > > that
+> > > > > > > > > are
+> > > > > > > > > deleted
+> > > > > > > > > are not subject to asynchronous evicton. I think if
+> > > > > > > > > this
+> > > > > > > > > bo
+> > > > > > > > > is hit
+> > > > > > > > > during lru walk and clearing, TTM will just sync wait
+> > > > > > > > > for
+> > > > > > > > > it
+> > > > > > > > > to
+> > > > > > > > > become
+> > > > > > > > > idle and then free the memory. I think the reason
+> > > > > > > > > that
+> > > > > > > > > could
+> > > > > > > > > not be
+> > > > > > > > > fixed in TTM is that TTM needs for all resource
+> > > > > > > > > manager
+> > > > > > > > > fences to
+> > > > > > > > > be
+> > > > > > > > > ordered, but if a check for ordered fences which I
+> > > > > > > > > think
+> > > > > > > > > requires
+> > > > > > > > > here
+> > > > > > > > > that the eviction exec_queue is the same as the
+> > > > > > > > > clearing
+> > > > > > > > > one,
+> > > > > > > > > that
+> > > > > > > > > could be fixed in TTM.
+> > > > > > > > >=20
+> > > > > > > >=20
+> > > > > > > > I think async eviction is still controlled by
+> > > > > > > > no_wait_gpu,
+> > > > > > > > right? See
+> > > > > > > > ttm_bo_wait_ctx, if a deleted BO is found and
+> > > > > > > > no_wait_gpu
+> > > > > > > > is
+> > > > > > > > clear
+> > > > > > > > the
+> > > > > > > > eviction process moves on, right? So the exec IOCTL can
+> > > > > > > > still
+> > > > > > > > be
+> > > > > > > > pipelined albeit not with deleted BOs that have pending
+> > > > > > > > clears.
+> > > > > > > > We
+> > > > > > > > also
+> > > > > > > > clear no_wait_gpu in Xe FWIW.
+> > > > > > >=20
+> > > > > > > Yes this is a rather complex problem further complicated
+> > > > > > > by
+> > > > > > > the
+> > > > > > > fact
+> > > > > > > that since we can in wait for fences under dma_resv
+> > > > > > > locks,
+> > > > > > > for a
+> > > > > > > true
+> > > > > > > no_wait_gpu exec to succeed, we're only allowed to do
+> > > > > > > dma_resv_trylock.
+> > > > > > >=20
+> > > > > > > Better to try to fix this in TTM rather than try to worry
+> > > > > > > too
+> > > > > > > much
+> > > > > > > about it here.
+> > > > > > >=20
+> > > > > >=20
+> > > > > > +1.
+> > > > > >=20
+> > > > > > > >=20
+> > > > > > > > > Otherwise, this could also cause newly introduced
+> > > > > > > > > sync
+> > > > > > > > > waits
+> > > > > > > > > in the
+> > > > > > > > > exec() and vm_bind paths where we previously
+> > > > > > > > > performed
+> > > > > > > > > eviction and
+> > > > > > > > > the
+> > > > > > > > > subsequent clearing async.
+> > > > > > > > >=20
+> > > > > > > > > Some additional stuff below:
+> > > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > >=20
+> > > > > > > > > > Signed-off-by: Matthew Brost
+> > > > > > > > > > <matthew.brost@intel.com>
+> > > > > > > > > > ---
+> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 47
+> > > > > > > > > > ++++++++++++++++++++++++++++
+> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_migrate.c=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 14 ++++++--
+> > > > > > > > > > -
+> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_migrate.h=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0 1 +
+> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_res_cursor.h=C2=A0=C2=A0 | =
+26
+> > > > > > > > > > +++++++++++++++
+> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |=C2=A0 5 ++=
+-
+> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |=C2=A0 6 ++=
+++
+> > > > > > > > > > =C2=A06 files changed, 94 insertions(+), 5 deletions(-)
+> > > > > > > > > >=20
+> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > > b/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > > index 4e39188a021a..74470f4d418d 100644
+> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > > @@ -1434,6 +1434,51 @@ static bool
+> > > > > > > > > > xe_ttm_bo_lock_in_destructor(struct
+> > > > > > > > > > ttm_buffer_object
+> > > > > > > > > > *ttm_bo)
+> > > > > > > > > > =C2=A0	return locked;
+> > > > > > > > > > =C2=A0}
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > +static void xe_ttm_bo_release_clear(struct
+> > > > > > > > > > ttm_buffer_object
+> > > > > > > > > > *ttm_bo)
+> > > > > > > > > > +{
+> > > > > > > > > > +	struct xe_device *xe =3D
+> > > > > > > > > > ttm_to_xe_device(ttm_bo-
+> > > > > > > > > > > bdev);
+> > > > > > > > > > +	struct dma_fence *fence;
+> > > > > > > > > > +	int err, idx;
+> > > > > > > > > > +
+> > > > > > > > > > +	xe_bo_assert_held(ttm_to_xe_bo(ttm_bo));
+> > > > > > > > > > +
+> > > > > > > > > > +	if (ttm_bo->type !=3D ttm_bo_type_device)
+> > > > > > > > > > +		return;
+> > > > > > > > > > +
+> > > > > > > > > > +	if (xe_device_wedged(xe))
+> > > > > > > > > > +		return;
+> > > > > > > > > > +
+> > > > > > > > > > +	if (!ttm_bo->resource ||
+> > > > > > > > > > !mem_type_is_vram(ttm_bo-
+> > > > > > > > > > > resource-
+> > > > > > > > > > > mem_type))
+> > > > > > > > > > +		return;
+> > > > > > > > > > +
+> > > > > > > > > > +	if (!drm_dev_enter(&xe->drm, &idx))
+> > > > > > > > > > +		return;
+> > > > > > > > > > +
+> > > > > > > > > > +	if (!xe_pm_runtime_get_if_active(xe))
+> > > > > > > > > > +		goto unbind;
+> > > > > > > > > > +
+> > > > > > > > > > +	err =3D dma_resv_reserve_fences(&ttm_bo-
+> > > > > > > > > > > base._resv,
+> > > > > > > > > > 1);
+> > > > > > > > > > +	if (err)
+> > > > > > > > > > +		goto put_pm;
+> > > > > > > > > > +
+> > > > > > > > > > +	fence =3D
+> > > > > > > > > > xe_migrate_clear(mem_type_to_migrate(xe,
+> > > > > > > > > > ttm_bo-
+> > > > > > > > > > > resource->mem_type),
+> > > > > > > > > > +			=09
+> > > > > > > > > > ttm_to_xe_bo(ttm_bo),
+> > > > > > > > > > ttm_bo-
+> > > > > > > > > > > resource,
+> > > > > > > > >=20
+> > > > > > > > > We should be very careful with passing the xe_bo part
+> > > > > > > > > here
+> > > > > > > > > because
+> > > > > > > > > the
+> > > > > > > > > gem refcount is currently zero. So that any caller
+> > > > > > > > > deeper
+> > > > > > > > > down in
+> > > > > > > > > the
+> > > > > > > > > call chain might try to do an xe_bo_get() and blow
+> > > > > > > > > up.
+> > > > > > > > >=20
+> > > > > > > > > Ideally we'd make xe_migrate_clear() operate only on
+> > > > > > > > > the
+> > > > > > > > > ttm_bo for
+> > > > > > > > > this to be safe.
+> > > > > > > > >=20
+> > > > > > > >=20
+> > > > > > > > It looks like bo->size and xe_bo_sg are the two uses of
+> > > > > > > > an
+> > > > > > > > Xe
+> > > > > > > > BO in
+> > > > > > > > xe_migrate_clear(). Let me see if I can refactor the
+> > > > > > > > arguments
+> > > > > > > > to
+> > > > > > > > avoid
+> > > > > > > > these + add some kernel doc.
+> > > > > > >=20
+> > > > > > > Thanks,
+> > > > > > > Thomas
+> > > > > > >=20
+> > > > > >=20
+> > > > > > So I'll just respin the next rev with a refactor
+> > > > > > xe_migrate_clear
+> > > > > > arguments.
+> > > > > >=20
+> > > > >=20
+> > > > > Actually xe_migrate_clear sets the bo->ccs_cleared field, so
+> > > > > we
+> > > > > kinda
+> > > > > need the Xe BO. I guess I'll leave as is.
+> > > > >=20
+> > > > > Yes, if caller does xe_bo_get, that will blow up but no one
+> > > > > is
+> > > > > doing
+> > > > > that and we'd immediately get a kernel splat if some one
+> > > > > tried to
+> > > > > change
+> > > > > this so I think we are good. Thoughts?
+> > > >=20
+> > > > I think we either=C2=A0(again to be robust to future errors)
+> > > >=20
+> > > > 1) need to ensure and document that the migrate layer is
+> > > > completely
+> > > > safe for gem refcount 0 case bos or we
+> > > >=20
+> > > > 2) Only dereference gem refcount 0 bos directly in the TTM
+> > > > callbacks.
+> > > >=20
+> > > > To me 2) seems simplest meaning we'd need to pass the
+> > > > ccs_cleared
+> > > > field
+> > > > into the migrate layer function.
+> > > >=20
+> > >=20
+> > > So, pass ccs_cleared by reference and also pass in the TTM BO? I
+> > > typically despise pass-by-reference, but yeah, that could work.
+> > > Some
+> > > kernel doc indicating that xe_migrate_clear can be called with a
+> > > refcount of 0 would be good too.
+> > >=20
+> > > Matt=20
+> > >=20
+> > > > Thanks,
+> > > > Thomas
+> > > >=20
+> > > >=20
+> > > >=20
+> > > > >=20
+> > > > > Matt
+> > > > >=20
+> > > > > > Matt
+> > > > > >=20
+> > > > > > >=20
+> > > > > > > >=20
+> > > > > > > > Matt
+> > > > > > > >=20
+> > > > > > > > > /Thomas
+> > > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > > +			=09
+> > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL |
+> > > > > > > > > > +			=09
+> > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY);
+> > > > > > > > > > +	if (XE_WARN_ON(IS_ERR(fence)))
+> > > > > > > > > > +		goto put_pm;
+> > > > > > > > > > +
+> > > > > > > > > > +	xe_ttm_vram_mgr_resource_set_cleared(ttm_b
+> > > > > > > > > > o-
+> > > > > > > > > > > resource);
+> > > > > > > > > > +	dma_resv_add_fence(&ttm_bo->base._resv,
+> > > > > > > > > > fence,
+> > > > > > > > > > +			=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
+> > > > > > > > > > +	dma_fence_put(fence);
+> > > > > > > > > > +
+> > > > > > > > > > +put_pm:
+> > > > > > > > > > +	xe_pm_runtime_put(xe);
+> > > > > > > > > > +unbind:
+> > > > > > > > > > +	drm_dev_exit(idx);
+> > > > > > > > > > +}
+> > > > > > > > > > +
+> > > > > > > > > > =C2=A0static void xe_ttm_bo_release_notify(struct
+> > > > > > > > > > ttm_buffer_object
+> > > > > > > > > > *ttm_bo)
+> > > > > > > > > > =C2=A0{
+> > > > > > > > > > =C2=A0	struct dma_resv_iter cursor;
+> > > > > > > > > > @@ -1478,6 +1523,8 @@ static void
+> > > > > > > > > > xe_ttm_bo_release_notify(struct
+> > > > > > > > > > ttm_buffer_object *ttm_bo)
+> > > > > > > > > > =C2=A0	}
+> > > > > > > > > > =C2=A0	dma_fence_put(replacement);
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > +	xe_ttm_bo_release_clear(ttm_bo);
+> > > > > > > > > > +
+> > > > > > > > > > =C2=A0	dma_resv_unlock(ttm_bo->base.resv);
+> > > > > > > > > > =C2=A0}
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > > > index 8f8e9fdfb2a8..39d7200cb366 100644
+> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> > > > > > > > > > @@ -1063,7 +1063,7 @@ struct dma_fence
+> > > > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > > > xe_migrate *m,
+> > > > > > > > > > =C2=A0	struct xe_gt *gt =3D m->tile->primary_gt;
+> > > > > > > > > > =C2=A0	struct xe_device *xe =3D gt_to_xe(gt);
+> > > > > > > > > > =C2=A0	bool clear_only_system_ccs =3D false;
+> > > > > > > > > > -	struct dma_fence *fence =3D NULL;
+> > > > > > > > > > +	struct dma_fence *fence =3D
+> > > > > > > > > > dma_fence_get_stub();
+> > > > > > > > > > =C2=A0	u64 size =3D bo->size;
+> > > > > > > > > > =C2=A0	struct xe_res_cursor src_it;
+> > > > > > > > > > =C2=A0	struct ttm_resource *src =3D dst;
+> > > > > > > > > > @@ -1075,10 +1075,13 @@ struct dma_fence
+> > > > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > > > xe_migrate *m,
+> > > > > > > > > > =C2=A0	if (!clear_bo_data && clear_ccs &&
+> > > > > > > > > > !IS_DGFX(xe))
+> > > > > > > > > > =C2=A0		clear_only_system_ccs =3D true;
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > -	if (!clear_vram)
+> > > > > > > > > > +	if (!clear_vram) {
+> > > > > > > > > > =C2=A0		xe_res_first_sg(xe_bo_sg(bo), 0,
+> > > > > > > > > > bo-
+> > > > > > > > > > > size,
+> > > > > > > > > > &src_it);
+> > > > > > > > > > -	else
+> > > > > > > > > > +	} else {
+> > > > > > > > > > =C2=A0		xe_res_first(src, 0, bo->size,
+> > > > > > > > > > &src_it);
+> > > > > > > > > > +		if (!(clear_flags &
+> > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
+> > > > > > > > > > +			size -=3D
+> > > > > > > > > > xe_res_next_dirty(&src_it);
+> > > > > > > > > > +	}
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > =C2=A0	while (size) {
+> > > > > > > > > > =C2=A0		u64 clear_L0_ofs;
+> > > > > > > > > > @@ -1125,6 +1128,9 @@ struct dma_fence
+> > > > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > > > xe_migrate *m,
+> > > > > > > > > > =C2=A0			emit_pte(m, bb,
+> > > > > > > > > > clear_L0_pt,
+> > > > > > > > > > clear_vram,
+> > > > > > > > > > clear_only_system_ccs,
+> > > > > > > > > > =C2=A0				 &src_it,
+> > > > > > > > > > clear_L0,
+> > > > > > > > > > dst);
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > +		if (clear_vram && !(clear_flags &
+> > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
+> > > > > > > > > > +			size -=3D
+> > > > > > > > > > xe_res_next_dirty(&src_it);
+> > > > > > > > > > +
+> > > > > > > > > > =C2=A0		bb->cs[bb->len++] =3D
+> > > > > > > > > > MI_BATCH_BUFFER_END;
+> > > > > > > > > > =C2=A0		update_idx =3D bb->len;
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > @@ -1146,7 +1152,7 @@ struct dma_fence
+> > > > > > > > > > *xe_migrate_clear(struct
+> > > > > > > > > > xe_migrate *m,
+> > > > > > > > > > =C2=A0		}
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > =C2=A0		xe_sched_job_add_migrate_flush(job
+> > > > > > > > > > ,
+> > > > > > > > > > flush_flags);
+> > > > > > > > > > -		if (!fence) {
+> > > > > > > > > > +		if (fence =3D=3D dma_fence_get_stub())
+> > > > > > > > > > {
+> > > > > > > > > > =C2=A0			/*
+> > > > > > > > > > =C2=A0			 * There can't be anything
+> > > > > > > > > > userspace
+> > > > > > > > > > related
+> > > > > > > > > > at this
+> > > > > > > > > > =C2=A0			 * point, so we just need
+> > > > > > > > > > to
+> > > > > > > > > > respect any
+> > > > > > > > > > potential move
+> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > > > index fb9839c1bae0..58a7b747ef11 100644
+> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> > > > > > > > > > @@ -118,6 +118,7 @@ int
+> > > > > > > > > > xe_migrate_access_memory(struct
+> > > > > > > > > > xe_migrate
+> > > > > > > > > > *m, struct xe_bo *bo,
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > =C2=A0#define
+> > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_BO_DATA		BIT(0)
+> > > > > > > > > > =C2=A0#define
+> > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_CCS_DATA		BIT(1)
+> > > > > > > > > > +#define
+> > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY		BIT(2)
+> > > > > > > > > > =C2=A0#define
+> > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL	(XE_MIGRATE_CLEAR_
+> > > > > > > > > > FLAG
+> > > > > > > > > > _BO_
+> > > > > > > > > > DATA |
+> > > > > > > > > > \
+> > > > > > > > > > =C2=A0					XE_MIGRATE
+> > > > > > > > > > _CLE
+> > > > > > > > > > AR_F
+> > > > > > > > > > LAG_CC
+> > > > > > > > > > S_DA
+> > > > > > > > > > TA)
+> > > > > > > > > > =C2=A0struct dma_fence *xe_migrate_clear(struct
+> > > > > > > > > > xe_migrate
+> > > > > > > > > > *m,
+> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > > > b/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > > > index d1a403cfb628..630082e809ba 100644
+> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+> > > > > > > > > > @@ -315,6 +315,32 @@ static inline void
+> > > > > > > > > > xe_res_next(struct
+> > > > > > > > > > xe_res_cursor *cur, u64 size)
+> > > > > > > > > > =C2=A0	}
+> > > > > > > > > > =C2=A0}
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > +/**
+> > > > > > > > > > + * xe_res_next_dirty - advance the cursor to next
+> > > > > > > > > > dirty
+> > > > > > > > > > buddy
+> > > > > > > > > > block
+> > > > > > > > > > + *
+> > > > > > > > > > + * @cur: the cursor to advance
+> > > > > > > > > > + *
+> > > > > > > > > > + * Move the cursor until dirty buddy block is
+> > > > > > > > > > found.
+> > > > > > > > > > + *
+> > > > > > > > > > + * Return: Number of bytes cursor has been
+> > > > > > > > > > advanced
+> > > > > > > > > > + */
+> > > > > > > > > > +static inline u64 xe_res_next_dirty(struct
+> > > > > > > > > > xe_res_cursor
+> > > > > > > > > > *cur)
+> > > > > > > > > > +{
+> > > > > > > > > > +	struct drm_buddy_block *block =3D cur->node;
+> > > > > > > > > > +	u64 bytes =3D 0;
+> > > > > > > > > > +
+> > > > > > > > > > +	XE_WARN_ON(cur->mem_type !=3D XE_PL_VRAM0 &&
+> > > > > > > > > > +		=C2=A0=C2=A0 cur->mem_type !=3D XE_PL_VRAM1);
+> > > > > > > > > > +
+> > > > > > > > > > +	while (cur->remaining &&
+> > > > > > > > > > drm_buddy_block_is_clear(block)) {
+> > > > > > > > > > +		bytes +=3D cur->size;
+> > > > > > > > > > +		xe_res_next(cur, cur->size);
+> > > > > > > > > > +		block =3D cur->node;
+> > > > > > > > > > +	}
+> > > > > > > > > > +
+> > > > > > > > > > +	return bytes;
+> > > > > > > > > > +}
+> > > > > > > > > > +
+> > > > > > > > > > =C2=A0/**
+> > > > > > > > > > =C2=A0 * xe_res_dma - return dma address of cursor at
+> > > > > > > > > > current
+> > > > > > > > > > position
+> > > > > > > > > > =C2=A0 *
+> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > > > index 9e375a40aee9..120046941c1e 100644
+> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > > > > > > > > > @@ -84,6 +84,9 @@ static int
+> > > > > > > > > > xe_ttm_vram_mgr_new(struct
+> > > > > > > > > > ttm_resource_manager *man,
+> > > > > > > > > > =C2=A0	if (place->fpfn || lpfn !=3D man->size >>
+> > > > > > > > > > PAGE_SHIFT)
+> > > > > > > > > > =C2=A0		vres->flags |=3D
+> > > > > > > > > > DRM_BUDDY_RANGE_ALLOCATION;
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > +	if (tbo->type =3D=3D ttm_bo_type_device)
+> > > > > > > > > > +		vres->flags |=3D
+> > > > > > > > > > DRM_BUDDY_CLEAR_ALLOCATION;
+> > > > > > > > > > +
+> > > > > > > > > > =C2=A0	if (WARN_ON(!vres->base.size)) {
+> > > > > > > > > > =C2=A0		err =3D -EINVAL;
+> > > > > > > > > > =C2=A0		goto error_fini;
+> > > > > > > > > > @@ -187,7 +190,7 @@ static void
+> > > > > > > > > > xe_ttm_vram_mgr_del(struct
+> > > > > > > > > > ttm_resource_manager *man,
+> > > > > > > > > > =C2=A0	struct drm_buddy *mm =3D &mgr->mm;
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > =C2=A0	mutex_lock(&mgr->lock);
+> > > > > > > > > > -	drm_buddy_free_list(mm, &vres->blocks, 0);
+> > > > > > > > > > +	drm_buddy_free_list(mm, &vres->blocks,
+> > > > > > > > > > vres-
+> > > > > > > > > > > flags);
+> > > > > > > > > > =C2=A0	mgr->visible_avail +=3D vres-
+> > > > > > > > > > >used_visible_size;
+> > > > > > > > > > =C2=A0	mutex_unlock(&mgr->lock);
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > > > index cc76050e376d..dfc0e6890b3c 100644
+> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > > > > > > > > > @@ -36,6 +36,12 @@
+> > > > > > > > > > to_xe_ttm_vram_mgr_resource(struct
+> > > > > > > > > > ttm_resource
+> > > > > > > > > > *res)
+> > > > > > > > > > =C2=A0	return container_of(res, struct
+> > > > > > > > > > xe_ttm_vram_mgr_resource,
+> > > > > > > > > > base);
+> > > > > > > > > > =C2=A0}
+> > > > > > > > > > =C2=A0
+> > > > > > > > > > +static inline void
+> > > > > > > > > > +xe_ttm_vram_mgr_resource_set_cleared(struct
+> > > > > > > > > > ttm_resource
+> > > > > > > > > > *res)
+> > > > > > > > > > +{
+> > > > > > > > > > +	to_xe_ttm_vram_mgr_resource(res)->flags |=3D
+> > > > > > > > > > DRM_BUDDY_CLEARED;
+> > > > > > > > > > +}
+> > > > > > > > > > +
+> > > > > > > > > > =C2=A0static inline struct xe_ttm_vram_mgr *
+> > > > > > > > > > =C2=A0to_xe_ttm_vram_mgr(struct ttm_resource_manager
+> > > > > > > > > > *man)
+> > > > > > > > > > =C2=A0{
+> > > > > > > > >=20
+> > > > > > >=20
+> > > >=20
 > >=20
 
