@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C70ADC71136
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 14:23:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60D14C71136
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 14:23:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86AE110E3B9;
-	Mon, 16 Jun 2025 14:23:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05DE010E3C8;
+	Mon, 16 Jun 2025 14:23:44 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E380010E3B9;
- Mon, 16 Jun 2025 14:23:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6205488201901397348=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E759610E3C8;
+ Mon, 16 Jun 2025 14:23:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Use_RCU_free_for_?=
- =?utf-8?q?exec_queue=2C_not_GuC_exec_queue_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_series_starting?=
+ =?utf-8?q?_with_=5B1/6=5D_drm/vmwgfx=3A_drop_printing_the_TTM_refcount_for_?=
+ =?utf-8?q?debugging?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Jun 2025 14:23:23 -0000
-Message-ID: <175008380392.82638.1461368038995119198@1538d3639d33>
+Date: Mon, 16 Jun 2025 14:23:42 -0000
+Message-ID: <175008382294.82638.96259855408092677@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250616072737.2062805-1-matthew.brost@intel.com>
-In-Reply-To: <20250616072737.2062805-1-matthew.brost@intel.com>
+References: <20250616130726.22863-1-christian.koenig@amd.com>
+In-Reply-To: <20250616130726.22863-1-christian.koenig@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,138 +41,16 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6205488201901397348==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Use RCU free for exec queue, not GuC exec queue (rev2)
-URL   : https://patchwork.freedesktop.org/series/150302/
-State : success
+Series: series starting with [1/6] drm/vmwgfx: drop printing the TTM refcount for debugging
+URL   : https://patchwork.freedesktop.org/series/150325/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76_BAT -> xe-pw-150302v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-150302v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@eof:
-    - bat-pvc-2:          [PASS][1] -> [SKIP][2] ([Intel XE#2134]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76/bat-pvc-2/igt@fbdev@eof.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150302v2/bat-pvc-2/igt@fbdev@eof.html
-
-  * igt@fbdev@info:
-    - bat-atsm-2:         [PASS][3] -> [SKIP][4] ([Intel XE#2134]) +4 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76/bat-atsm-2/igt@fbdev@info.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150302v2/bat-atsm-2/igt@fbdev@info.html
-
-  
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+Address 'ckoenig.leichtzumerken@gmail.com' is not on the allowlist, which prevents CI from being triggered for this patch.
+If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
+Exception occurred during validation, bailing out!
 
 
-Build changes
--------------
-
-  * IGT: IGT_8411 -> IGT_8412
-  * Linux: xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76 -> xe-pw-150302v2
-
-  IGT_8411: d5b5d2bb4f8795a98ea58376a128b74f654b7ec1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8412: 8412
-  xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76: dea7240e83c9e58ec755a3d68e7db10068df6b76
-  xe-pw-150302v2: 150302v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150302v2/index.html
-
---===============6205488201901397348==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Use RCU free for exec queue, not GuC exec queue (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150302/">https://patchwork.freedesktop.org/series/150302/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150302v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150302v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76_BAT -&gt; xe-pw-150302v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-150302v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@eof:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76/bat-pvc-2/igt@fbdev@eof.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150302v2/bat-pvc-2/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76/bat-atsm-2/igt@fbdev@info.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150302v2/bat-atsm-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8411 -&gt; IGT_8412</li>
-<li>Linux: xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76 -&gt; xe-pw-150302v2</li>
-</ul>
-<p>IGT_8411: d5b5d2bb4f8795a98ea58376a128b74f654b7ec1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8412: 8412<br />
-  xe-3255-dea7240e83c9e58ec755a3d68e7db10068df6b76: dea7240e83c9e58ec755a3d68e7db10068df6b76<br />
-  xe-pw-150302v2: 150302v2</p>
-
-</body>
-</html>
-
---===============6205488201901397348==--
