@@ -4,66 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43498C71135
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 09:28:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9FF8C71135
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 09:47:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03B3810E308;
-	Mon, 16 Jun 2025 09:28:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0C2410E31D;
+	Mon, 16 Jun 2025 09:47:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V02wFi86";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eIWFhdTY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F7C910E305
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 09:28:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC9710E31D
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Jun 2025 09:47:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750066095; x=1781602095;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=dahJFYWDHiF73dyKENTvZihdgABwSyVKNf3aKP+6mUI=;
- b=V02wFi86DOKnT2alfJh3tDkQKrCt/XtSqiFhWTM899v/YKO7MgdZhyoL
- IyqtM3KARhyKqKuTu6Rbj9twVqfvYm/GOnLRmNoC2K4jPGR9J7Tk+GcND
- lUvQt+uEIIeXakcolBoEzcBtmv54r8xgn9kaBf2cAk0szCOFFuItP5tBK
- F7A58EBkZctsvVNgFemN0MJHXdXESDCIqA1/4zw/F8aNPAPnClXheUuT7
- WP7IzmXWfMrRJMAa4jdon1kcSW1JABz0fahJGbrI8pQOVXEa8hAUjhzar
- ltFZ4C+N7kb6cWUPtQfITME9N8RoSNiFlg0LzyrdlvP9M9s5WjIubBD84 Q==;
-X-CSE-ConnectionGUID: Xzkq39JJTfWxeeq0ESHjuw==
-X-CSE-MsgGUID: r61YMOKURjWdEzLp9wLVig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="63553189"
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="63553189"
+ t=1750067254; x=1781603254;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=f040BnaqW85Y0KHM0oAnR2H0bmvwvLKNJePriF1pZvY=;
+ b=eIWFhdTYQNF7HtNwVeZIv8s2+E1xmoBN7P9Y9SeAjtIMp+pkG+CzoFYf
+ XMYoTkswFAChnSY8miihF+Dfyj6AbHZlQcMR/ixqjiMBdYJGTjvigmony
+ NR/ObWd4P+TMOCJJMkwuJRIs6s1+EgWeN7dmf8A90fpDvG8LA+e6pbfm7
+ WDPaCMmxeXxNOJbY2MlM4WYx0QsQ4gbJ9ffJgryJh9YejFthLaNXU1DuD
+ IeIoNoTnuLhwED3dPwLCrIo8SG1DMrdI+ukQjH6BFGbkvku/Luga+k7e9
+ WuKyM2IJ7sGy9UChY+MXJWFWO8KEaQYCbZ3VteddA4qNRjBG0F+Lid+lI w==;
+X-CSE-ConnectionGUID: t5RMnXecTOSMwhh7rWXppg==
+X-CSE-MsgGUID: yKzaGsA9RHKxTJspAnPSig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="56006172"
+X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="56006172"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 02:28:15 -0700
-X-CSE-ConnectionGUID: 8EINxPIESVCcW+ZdVSQXcA==
-X-CSE-MsgGUID: ISh80HKmSS2ZtpqgkQNjOg==
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2025 02:47:32 -0700
+X-CSE-ConnectionGUID: UotM5FNlStiMMc3VP7tUHg==
+X-CSE-MsgGUID: wHHuojkySUaYDS6154UNPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="185682250"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.63])
- ([10.245.244.63])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 02:28:14 -0700
-Message-ID: <57a1b3ebeceb43b54d8882c9ef1ecfe1dd5dbf38.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Implement clear VRAM on free
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.auld@intel.com
-Date: Mon, 16 Jun 2025 11:28:10 +0200
-In-Reply-To: <aE/g0Hw/ZmBxBXpD@lstrano-desk.jf.intel.com>
-References: <20250611054235.3540936-1-matthew.brost@intel.com>
- <cb53d2efe677724fd5d141d8f3cada5f06758adb.camel@linux.intel.com>
- <aEsKU2LliY6JmG6a@lstrano-desk.jf.intel.com>
- <eb5531f03ee560a593f77f60ae1f6f862eea6a14.camel@linux.intel.com>
- <aExQEKec1H7yqS1I@lstrano-desk.jf.intel.com>
- <aEyDw0ZQ5R/ohrO3@lstrano-desk.jf.intel.com>
- <2f5a1a129ae6dff415d7160a1bed9e28786147e2.camel@linux.intel.com>
- <aE/OLjpW/pwyV+DM@lstrano-desk.jf.intel.com>
- <cb55e47574a0fcd62728aa4fad150f1682b92b83.camel@linux.intel.com>
- <aE/g0Hw/ZmBxBXpD@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; d="scan'208";a="185689254"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2025 02:47:32 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Mon, 16 Jun 2025 02:47:31 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Mon, 16 Jun 2025 02:47:31 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.54) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Mon, 16 Jun 2025 02:47:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HL/wuT9E6XlARgni1AIE9+WXr2RFYip/PF/Mqbrj2xtNrjFsuctpSO0naQ8uN38/ORJtaBQ67i6pIf2rENFKobbLTH3lmLU+IEzmHnqWcOIIO73kdNIa/3yNpPDDd/Nd7Gp3DGdXiknF+nxmD8N0MYpr27j+0D1rqD9ZgSyTBZxTNmdUkw1KsSXf1V2CfEdjbVNQWK8gsqCcr7XDfPf7VS5UR765Ijx0ILTP5zju7L3yCNrbmi8F5lz4TH+8w/OzEUTDB9InNDkdAxnEXCnqRKKE5eKzNBsrqPrev2ywQzQV/5Sq1K2VXeATkE+bjVoLxUWdWL2kxjJk1LphBF1ecA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nKunCVc1jfwN+MgtVTIQBnrffVA1w49V8K5YLMn/dp0=;
+ b=rbJxH2KNtm66j9F/06qznu+xpFyE1b1rjOspSKl5XtYXTZfGB+B8iw7y0MPWuYHrzOR+hVAqighFs7uZRnDX1X21yRQUkavEQbnmmlsThr5L7V90fA68ioArTZ2yTQZaCuaGQtYy9cGg1Vtp+Acg6gSS1lTSni6KaaQxi+0irNaMpX1XCPSeFTtmwCJlOYS248CtOgRtgR4VN7tkpqe1FtwVJume0xWr9NgKChj/p6AlSf41PC0k9nR87GZQsdTOx9L5Dx53Gbg0dd8v9IGFrdRFrPd29HOo9zUYgb1AEKcH/Gij2TR7pB0W1Ag4nudnpaYUQi0aEDhuDxwiSZIiUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SN7PR11MB6970.namprd11.prod.outlook.com (2603:10b6:806:2aa::20)
+ by DS0PR11MB7190.namprd11.prod.outlook.com (2603:10b6:8:132::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.29; Mon, 16 Jun
+ 2025 09:47:16 +0000
+Received: from SN7PR11MB6970.namprd11.prod.outlook.com
+ ([fe80::b1b4:c000:90be:abea]) by SN7PR11MB6970.namprd11.prod.outlook.com
+ ([fe80::b1b4:c000:90be:abea%4]) with mapi id 15.20.8835.018; Mon, 16 Jun 2025
+ 09:47:15 +0000
+Date: Mon, 16 Jun 2025 15:17:08 +0530
+From: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>
+To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v6 3/9] drm/xe/xe3: Add support for media IP version 30.02
+Message-ID: <aE_oHEybMDhsFWBj@bvivekan-mob1>
+References: <20250613193146.3549862-1-dnyaneshwar.bhadane@intel.com>
+ <20250613193146.3549862-4-dnyaneshwar.bhadane@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20250613193146.3549862-4-dnyaneshwar.bhadane@intel.com>
+X-ClientProxiedBy: MA0PR01CA0041.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:81::15) To SN7PR11MB6970.namprd11.prod.outlook.com
+ (2603:10b6:806:2aa::20)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN7PR11MB6970:EE_|DS0PR11MB7190:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0417c13c-59a3-4a16-85f9-08ddacbac6ab
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?d0JZR3BvWGlDZVRKWmxZd2dyc2x3VzRvZjBLc3VNWkpWck9MZkE0eE1HaGR6?=
+ =?utf-8?B?RjlMRlpOZWZnWGZMN2NLZjB5YnBJYzlZTUZJaVNxd3RSNzFVdzJKVWdsVGlh?=
+ =?utf-8?B?clUwWER4cWVhWmhMNnc3N3J6VlBscmt1Y0diSFRPNEZWT0Nxa2xGcHI2am8x?=
+ =?utf-8?B?aURPeUpVN29FaWRSYjhJQU5qQVZjdWtYU2Y4NXV0dnJTVXdPSjBFRE5HaE1v?=
+ =?utf-8?B?N3Y0K3JVd2liOTVVU0RHNHlzc0lwTXE0cUVDWHkyMzN4NjBPdFp2SXJBNEc5?=
+ =?utf-8?B?aVpLTW95VjI2WmxkTldPMzFENmx4bkxqek04QUlLdFZMQ3lFc0U2NEJWa3o5?=
+ =?utf-8?B?bU4xUkg3VG5ZMXVNT01hWml4QXhMUHJKWDQvWllxZ0Q5Q3JGR0R4Yys4UjVF?=
+ =?utf-8?B?TlJ4KzEzUGdkZUlDd2NXQ2FDMGEzQWl5bkhlY3M1MnhEd205NnpOVTl4WHRo?=
+ =?utf-8?B?U1BEdWlqM3BLOWM1d1JVTVQrTkVQRUo3ZmJqZlUraDlyMnV3VndkVjc2K0lx?=
+ =?utf-8?B?S01MQlJlTnowcFVyMUhrWHVPcTdVMzZtUUEyL2x3YkN3NVllRG11ZkVueHM1?=
+ =?utf-8?B?c1A1dnhKMkR1NkFPL3lIbEZUVlhJaGFlT1VNMk5LU1d2d1FHb1llRzN5THFt?=
+ =?utf-8?B?KzRaaW1iNlMrdGNnQ2RtMENSSWZ0RjEzMVlxUERRMitRcUxwR2JSWTNjcWVo?=
+ =?utf-8?B?bHdvVERZaTI0dGd5eEVYMXVZSUlCS3lvWUhZV0h5U0FQQzZZZDl0STZOZWNT?=
+ =?utf-8?B?K01ZM3AwTGlSRmxlR0tlb0p4N0kvaTBINGk0aHNjY0U0aXgrSWRvR2ltNFVk?=
+ =?utf-8?B?QWQvckFmZm1aaHlmVTRyTHlJSnRJODdBeTlyN1MyS3Flc1VEaXJ4cFJIWjFr?=
+ =?utf-8?B?KzVwV3Z0Z2JZTEpBekY3bWsyMFpTTm5UbEtqaG1vT0NVaWZnSnE4cGRPdE9y?=
+ =?utf-8?B?UVBRVWFwRmhWbWlrSzBBcEduVEVXbUR4aENkbVNhRnJheUlYWENUd28zbThF?=
+ =?utf-8?B?cW9QTDBNeEQxclV1bWVqcEQ5ZE5FNHBUMmNPNnRrYWh3eEh1NmRJWW9sanVx?=
+ =?utf-8?B?Wm1iKy9DQzUyNEF2UHZjTmU1THBHK0dwS0NCUFJ0RUo1ejNyN004Ujk0eTNs?=
+ =?utf-8?B?bTBuTi9FaVpWc09NazUrS3lRMmtkOW5JQXVFbFJpSzg0S1k1VGtQZVFhbWxn?=
+ =?utf-8?B?aWFwTjhoYmowVFlxWlBoaUZsVTZaVjBUNjR5RTRjbUJ6emVPcDR5WFgxTnFp?=
+ =?utf-8?B?cmpGOEpCajU2TG82WE50Y1c3Q1dyNFR2SWFZQndxVlJMQVdweERHUnZDVE4w?=
+ =?utf-8?B?SS92M3hWMFJySy9vRjFEQnUwcjZXNmprOU5jQVMzZEtWZ05xZWFIUEF1NGpZ?=
+ =?utf-8?B?S0hScm96WVdKdEdkdmxWeThjelYyY0o1WGdtRDdqeEhGeWEzS3MwUVcwQy83?=
+ =?utf-8?B?VENjenpPTXU5cEY2NE9uc1UzNjdEZ3htU3dCZ2VYc1laVWpCRVFzU1I2TlRY?=
+ =?utf-8?B?b0xiZHlrT0ozSlpBeEJEa25lY090eHVGeTJOSVNIL3RocmhYTy9ydHdSZUJM?=
+ =?utf-8?B?QnRzMG0wMk1aTTZ6NmRIbktaUVduOVNNOG5hU3F5R3FxTk8vZk1ZQTdyR3NQ?=
+ =?utf-8?B?TFdCZXA3WG9IQ3BEcFFzRnVsRjdCdVpzU1NQRG5QVVliOGFzdGV6cHNPRG5M?=
+ =?utf-8?B?bXB4RHhrYTVHV1YwVVJmWkwvcktHY2pycllKUXJOL0lkdTE4NlV2cFdVOGpH?=
+ =?utf-8?B?T3k5cWpUZVFXd2ZaV3ZKeHplbU9nRW1PNjJGeEtaOHZyN2c0WWcwcFU0Zk0r?=
+ =?utf-8?B?dXpVVjhNazdpUUpYTTUyKzdTTWtpSkZXS2dEaXdVa09XYVdONENUSldROTZj?=
+ =?utf-8?B?UEJsYzdSTHRGUGpBelN2Y09pdU5nazN0TmVOM1VlRGhkZHc9PQ==?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB6970.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVFRcVBXTGJlSmRjRmkxM254dVR5WmdDdnVXZjkyTUdWMjZuL1FkZjFmbE5J?=
+ =?utf-8?B?Vk95eVNkSkJ5eTFBNWRaWEhkU0dDRGJmZ2JJMzAxV3R1NEgwRkdwNDRSY1R3?=
+ =?utf-8?B?dDNRZ0FpS295dEt1OUxGV2FFWjk1b2NUbWNtS2pJTGVUTEdnQm1HVkk4TXdm?=
+ =?utf-8?B?OCtiODljWW52bzJYRzd1RlcwSWF3ak5rdk1uazBtNC9aL24xc0ZPY0VTQjhR?=
+ =?utf-8?B?OENweVFrYzBSMXdESmpuT1VNUnAyTUdhdmFoWFlCWDI5OEJReHBvSGFFVTR3?=
+ =?utf-8?B?S3lJeEJYdXk3Z0J6NGxONEJ4SGViWXZxQWQwRmtUMlZlNWcxeUY2enVXdEJP?=
+ =?utf-8?B?c0JwR1I2U1NGaVcxTFU5MUxaSlF1TjVGa0hDVVpXRjVrb0NITGphd2dUcGhR?=
+ =?utf-8?B?RVc4VGlSbzVZOXJwMGY3YW9tYU1naUFvenAyd2hxdGxPd1FHNEVxMnhrODhF?=
+ =?utf-8?B?azJsSTBmMDdUUEN6dmtoQXlrNGdxVTFQYll1REVkWEl6K2VFL2xEWFBRRFhi?=
+ =?utf-8?B?NGljYnYvOEw2SGdWanB5dlVDRWVyR092cDdDcllHUkZkVjJ2d2ZuZlNRWkNv?=
+ =?utf-8?B?ZjhNR2x6Qy9YUlQ5V245eDh3Q0ZXdW1tVVhPZ0VHOEFZZVl5ZzlXQ2F3VXR0?=
+ =?utf-8?B?czY2OXZHY00zMm8zanhNQ3Z1UGxGZ2RnOWMwQXdFclZyR05EKzhobEluK2hu?=
+ =?utf-8?B?bE1mcnpsdnRodnpiUUEzK2U4UGIzelI5V2RBTmFFOVR2ejFjanBBcm11WC9p?=
+ =?utf-8?B?WEZ3eEtnQ1h6MDFuUWhZR3JCV29yNDVETG1CL3VjWGRUWGxiaEE1bExCWWhC?=
+ =?utf-8?B?UW10QXEvYzFQOXNRZnJzaU9zNDVKWXduY1pGZDB6VGdCdGRrZU15T3hHVWVW?=
+ =?utf-8?B?RHRjTHNYRm5jOUJyVTJKU09jbnh0Y3psMzdnYlROdWgxZUdtTFJ5VlkyRzlM?=
+ =?utf-8?B?Zmt0U2ZJaGF2N2UrSkZnZUxmTFNoUGNBdDV3b2RFMFVqbWNXallXOXNMU3Fu?=
+ =?utf-8?B?OVJ5OTVXeWxXK2xWRXdyNXRiYkd0L1pkS1hqbTcrdHA2LzhjK0ZBNDhsenpL?=
+ =?utf-8?B?cllsbXpwQzRvUDdDNkMwd0dhZXFsUGY3b3M1R3hVOXlORnJrQWhYV3YxZ1Ni?=
+ =?utf-8?B?OWJIOU1WNTYySnBUcmxCb1NsekpqZjRiaERxQ3A2RDlDZDBWNUZ2SzZ5dXcx?=
+ =?utf-8?B?Qit2V1VnazNFVlN3Vjd5cG1Wc2tvOUt3Mk5nMGV3Q1RNTXQ0MUkyQlpnZ3pI?=
+ =?utf-8?B?cDlPRzlYdmZGS3dSUDRQRUFhNlZGeEZoMnE1QitRUTBYaE5rRE1BL1AxRTFp?=
+ =?utf-8?B?Qm9kTDR1TVNNek1jOHFPYUk4clB0bG40VXdENW1XeTlidlM1NkNYUHp3RnJy?=
+ =?utf-8?B?R0I5a2RjS0Fwd2hNYi96US9DVnd0YjltelEzdzhoUXNBTTNBNmYxSk5tcmJE?=
+ =?utf-8?B?N1U4T2g4dEgvWkZzdkt4KzRObkJIQ0h6VGVic0NkeExjMXM3OU1yanlZMXVI?=
+ =?utf-8?B?eWN4UWFFYmtYUjJtMWJFeGxZYU5Wdkx6Yk5sbDl3QTVtMkFlTkt5R3hDU0xu?=
+ =?utf-8?B?M1pvOEVPMGJ2d0ZnaTRNY2xaZWtIZWFyZ1JTeDlDQmU5OHV2ZUR4eEFJN3Jl?=
+ =?utf-8?B?eGRuTnh5UmlycEQrdHpuL05UZGRqWms4MWZOdlRua2tHYWhnQk8xbE1ob09H?=
+ =?utf-8?B?QUJJZGNqb2RnUktINno0dy90TllyaTV3dGVhN0hDYzZDSEVnQ1o3UGxrRVgx?=
+ =?utf-8?B?RGJpMXdhVXNOd2J4dUU2eTh5YkNtZFlPK1ZJbU5PRkRxcnpleVBMcnNjRnRM?=
+ =?utf-8?B?ajJLRGx4MkJxb1dmWDhzMW1xLzRTRzFBZ0tEdjlWL09zWVNJYThZUndGQTdT?=
+ =?utf-8?B?ejBTUEo3WlRDeDA5dWFaWU9Ta2pYSVZib3lpdU9ENzc5dGxpRmRqejdqaHE5?=
+ =?utf-8?B?S2laNzBFOVJEWThQbkQ1NUdGK01DODNZL3V1VEZ6THpwcUY0L0FBeUtIZ0lk?=
+ =?utf-8?B?OUFyR3JMOUNwei9KRmlHQ25icnl3QzBKTElhN1FnYURFbnBLWWZuRTRJVGM2?=
+ =?utf-8?B?S1VNZjNpcmoxYTJKT3l6eVhuL3doeUc1amNOY1ptb1RNbnE0cytFbDdUblZh?=
+ =?utf-8?B?R3p0aVJ5SXBpWnFxd1plb3dyaEcxSTBWSnE3WlFYUHZSN0FwT2VSUm1BeE5q?=
+ =?utf-8?Q?G908NMa0ApZ3VUhe0kcMf6s=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0417c13c-59a3-4a16-85f9-08ddacbac6ab
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6970.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2025 09:47:15.8674 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rppQsL/L8cvgKbf09oTiUueQAkYhcCubm7r/ll/rwSa7PMhO6vYBKevsWP9kUXf3qBpM1hA3wEa7Tha3axitb/tcaAosDMgRXuU4DZrJlIuSdgq56A6mMd1UT8E128z2
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7190
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,764 +193,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-06-16 at 02:16 -0700, Matthew Brost wrote:
-> On Mon, Jun 16, 2025 at 10:53:37AM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Mon, 2025-06-16 at 00:56 -0700, Matthew Brost wrote:
-> > > On Mon, Jun 16, 2025 at 09:40:05AM +0200, Thomas Hellstr=C3=B6m wrote=
-:
-> > > > On Fri, 2025-06-13 at 13:02 -0700, Matthew Brost wrote:
-> > > > > On Fri, Jun 13, 2025 at 09:21:36AM -0700, Matthew Brost
-> > > > > wrote:
-> > > > > > On Fri, Jun 13, 2025 at 10:07:17AM +0200, Thomas Hellstr=C3=B6m
-> > > > > > wrote:
-> > > > > > > On Thu, 2025-06-12 at 10:11 -0700, Matthew Brost wrote:
-> > > > > > > > On Thu, Jun 12, 2025 at 02:53:16PM +0200, Thomas
-> > > > > > > > Hellstr=C3=B6m
-> > > > > > > > wrote:
-> > > > > > > > > On Tue, 2025-06-10 at 22:42 -0700, Matthew Brost
-> > > > > > > > > wrote:
-> > > > > > > > > > Clearing on free should hide latency of BO clears
-> > > > > > > > > > on
-> > > > > > > > > > new
-> > > > > > > > > > user BO
-> > > > > > > > > > allocations.
-> > > > > > > > > >=20
-> > > > > > > > > > Implemented via calling xe_migrate_clear in release
-> > > > > > > > > > notify
-> > > > > > > > > > and
-> > > > > > > > > > updating
-> > > > > > > > > > iterator in xe_migrate_clear to skip cleared buddy
-> > > > > > > > > > blocks.
-> > > > > > > > > > Only
-> > > > > > > > > > user
-> > > > > > > > > > BOs
-> > > > > > > > > > cleared in release notify as kernel BOs could still
-> > > > > > > > > > be
-> > > > > > > > > > in
-> > > > > > > > > > use
-> > > > > > > > > > (e.g.,
-> > > > > > > > > > PT
-> > > > > > > > > > BOs need to wait for dma-resv to be idle).
-> > > > > > > > >=20
-> > > > > > > > > Wouldn't it be fully possible for a user to do (deep
-> > > > > > > > > pipelining 3d
-> > > > > > > > > case)
-> > > > > > > > >=20
-> > > > > > > > > create_bo();
-> > > > > > > > > map_write_unmap_bo();
-> > > > > > > > > bind_bo();
-> > > > > > > > > submit_job_touching_bo();
-> > > > > > > > > unbind_bo();
-> > > > > > > > > free_bo();
-> > > > > > > > >=20
-> > > > > > > > > Where the free_bo and release_notify() is called long
-> > > > > > > > > before
-> > > > > > > > > the
-> > > > > > > > > job we
-> > > > > > > > > submitted even started?
-> > > > > > > > >=20
-> > > > > > > > > So that would mean the clear needs to await any
-> > > > > > > > > previous
-> > > > > > > > > fences,
-> > > > > > > > > and
-> > > > > > > > > that dependency addition seems to have been removed
-> > > > > > > > > from
-> > > > > > > > > xe_migrate_clear.
-> > > > > > > > >=20
-> > > > > > > >=20
-> > > > > > > > I think we are actually ok here. xe_vma_destroy is
-> > > > > > > > called
-> > > > > > > > on
-> > > > > > > > unbind
-> > > > > > > > with
-> > > > > > > > the out fence from the bind IOCTL, so we don't get to
-> > > > > > > > xe_vma_destroy_late until that fence signals, and
-> > > > > > > > xe_vma_destroy_late
-> > > > > > > > (possibly) does the final BO put. Whether this follow
-> > > > > > > > makes
-> > > > > > > > sense is
-> > > > > > > > a
-> > > > > > > > bit questable - this was very early code I wrote in Xe
-> > > > > > > > and
-> > > > > > > > if I
-> > > > > > > > rewrote
-> > > > > > > > today I suspect it would look different.
-> > > > > > >=20
-> > > > > > > Hmm, yeah you're right. So the unbind kernel fence should
-> > > > > > > indeed
-> > > > > > > be
-> > > > > > > last fence we need to wait for here.
-> > > > > > >=20
-> > > > > >=20
-> > > > > > It should actually be signaled too. I think we could avoid
-> > > > > > any
-> > > > > > dma-
-> > > > > > resv
-> > > > > > wait in this case. Kernel operations are typically (maybe
-> > > > > > always)
-> > > > > > on the
-> > > > > > migration queue, though, so we=E2=80=99d be waiting on those
-> > > > > > operations
-> > > > > > via
-> > > > > > queue ordering anyway.
-> > > >=20
-> > > > Hm. We should not be keeping the vma and xe_bo around until the
-> > > > unbind
-> > > > fence has signaled? We did not always do that except for
-> > > > userptr
-> > > > where
-> > > > we needed a mechanism to keep the dma-mappings? So if we
-> > > > mistakenly
-> > > > introduced something that needs to keep them around, the above
-> > > > would
-> > > > only make that harder to fix? It sounds like this completely
-> > > > bypasses
-> > > > the TTM delayed delete mechanism?
-> > > >=20
-> > >=20
-> > > See xe_vma_destroy =E2=80=94 if there=E2=80=99s an unsignaled fence a=
-ttached to
-> > > the
-> > > VMA,
-> > > we delay the destroy.
-> > >=20
-> > > Yeah, like I said, this code is very questionable at best and was
-> > > written early in my Xe days, before I understood TTM a bit
-> > > better.
-> >=20
-> > But I'm pretty sure it wasn't always like this? Perhaps it was an
-> > easy
-> > way to keep the user-fence around until it signaled?
-> >=20
->=20
-> I=E2=80=99d have to check, but I=E2=80=99m pretty sure I added this worke=
-r early
-> on=E2=80=94before I had a clue how a lot of things actually worked, out o=
-f
-> ignorance.
->=20
-> > >=20
-> > > > If the remaining operations are maybe always from the migration
-> > > > queue,
-> > > > they will be skipped for the clearing operation by the
-> > > > scheduler
-> > > > anyway, right?
-> > > >=20
-> > > > I think the safest and looking forward least error prone thing
-> > > > to
-> > > > do
-> > > > here is to wait for all fences, since if we can restore the
-> > > > original
-> > > > behaviour of dropping the bo reference at unbind time rather
-> > > > than
-> > > > unbind fence signal time, the bo will be immediately
-> > > > individualized
-> > > > an
-> > > > no new unnecessary fences can be added.
-> > > >=20
-> > >=20
-> > > I think this needs to be a tandem change then =E2=80=94 we drop the
-> > > VMA/BO
-> > > delayed destroy and wait on the bookkeeping here. Sound
-> > > reasonable?
-> >=20
-> > Yes. Although we need to keep the delayed vma destroy for userptr.
-> >=20
->=20
-> Agree.
->=20
-> > Also for the user-fence, perhaps it can keep a reference to itself
-> > until it signals, rather than we keep the vma->ufence reference.
-> >=20
->=20
-> I=E2=80=99ve paged this out, but user_fence_worker already dereferences
-> itself=E2=80=A6
-> so maybe we=E2=80=99re okay? I=E2=80=99d need to dig back in to fully und=
-erstand it
-> again.
->=20
-> I think we=E2=80=99ve switched to an unrelated topic at this point. I agr=
-ee
-> that
-> the whole VMA destroy path should be analyzed. At a minimum, let's
-> add
-> comments in the code explaining the design=E2=80=94and at best, refactor =
-it
-> to
-> make a bit more sense. I can take an action item to do that in the
-> short
-> term, since I can=E2=80=99t give a precise answer right now.
->=20
-> Is this worth holding up the patch, though?
+On 14.06.2025 01:01, Dnyaneshwar Bhadane wrote:
+> From: Matt Roper <matthew.d.roper@intel.com>
+> 
+> Media version 30.02 should be treated the same as other Xe3 IP, but
+> will have a slightly different set of workarounds.
+> 
+> -v2: Extend the range in existing WA entry (Bala)
+> -v3: Revert v2, Do not extend the range for the time being(Matt)
 
-I think as long as we make the migration clear depend on the current bo
-fences, I'm OK with this part.
+Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-Thanks,
-Thomas
+Regards,
+Bala
 
-
-
->=20
-> Matt
->=20
-> > Thanks,
-> > Thomas
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> > >=20
-> > > > > >=20
-> > > > > > > >=20
-> > > > > > > > We could make this 'safer' by waiting on
-> > > > > > > > DMA_RESV_USAGE_BOOKKEEP in
-> > > > > > > > xe_migrate_clear for calls from release notify but for
-> > > > > > > > private
-> > > > > > > > to VM
-> > > > > > > > BO's we'd risk the clear getting stuck behind newly
-> > > > > > > > submitted
-> > > > > > > > (i.e.,
-> > > > > > > > submitted after the unbind) exec IOCTLs or binds.
-> > > > > > >=20
-> > > > > > > Yeah, although at this point the individualization has
-> > > > > > > already
-> > > > > > > taken
-> > > > > > > place, so at least there should be no starving, since the
-> > > > > > > only
-> > > > > > > unnecessary waits would be for execs submitted between
-> > > > > > > the
-> > > > > > > unbind
-> > > > > > > and
-> > > > > > > the individualization. So doable but leave it up to you.
-> > > > > > >=20
-> > > > > >=20
-> > > > > > The individualization is done by the final put-likely
-> > > > > > assuming
-> > > > > > the
-> > > > > > BO is
-> > > > > > closed and unmapped in user space=E2=80=94in the worker mention=
-ed
-> > > > > > above. If
-> > > > > > an
-> > > > > > exec or bind IOCTL is issued in the interim, we=E2=80=99d be
-> > > > > > waiting on
-> > > > > > those.
-> > > > > >=20
-> > > > > > > > > Another side-effect I think this will have is that
-> > > > > > > > > bos
-> > > > > > > > > that
-> > > > > > > > > are
-> > > > > > > > > deleted
-> > > > > > > > > are not subject to asynchronous evicton. I think if
-> > > > > > > > > this
-> > > > > > > > > bo
-> > > > > > > > > is hit
-> > > > > > > > > during lru walk and clearing, TTM will just sync wait
-> > > > > > > > > for
-> > > > > > > > > it
-> > > > > > > > > to
-> > > > > > > > > become
-> > > > > > > > > idle and then free the memory. I think the reason
-> > > > > > > > > that
-> > > > > > > > > could
-> > > > > > > > > not be
-> > > > > > > > > fixed in TTM is that TTM needs for all resource
-> > > > > > > > > manager
-> > > > > > > > > fences to
-> > > > > > > > > be
-> > > > > > > > > ordered, but if a check for ordered fences which I
-> > > > > > > > > think
-> > > > > > > > > requires
-> > > > > > > > > here
-> > > > > > > > > that the eviction exec_queue is the same as the
-> > > > > > > > > clearing
-> > > > > > > > > one,
-> > > > > > > > > that
-> > > > > > > > > could be fixed in TTM.
-> > > > > > > > >=20
-> > > > > > > >=20
-> > > > > > > > I think async eviction is still controlled by
-> > > > > > > > no_wait_gpu,
-> > > > > > > > right? See
-> > > > > > > > ttm_bo_wait_ctx, if a deleted BO is found and
-> > > > > > > > no_wait_gpu
-> > > > > > > > is
-> > > > > > > > clear
-> > > > > > > > the
-> > > > > > > > eviction process moves on, right? So the exec IOCTL can
-> > > > > > > > still
-> > > > > > > > be
-> > > > > > > > pipelined albeit not with deleted BOs that have pending
-> > > > > > > > clears.
-> > > > > > > > We
-> > > > > > > > also
-> > > > > > > > clear no_wait_gpu in Xe FWIW.
-> > > > > > >=20
-> > > > > > > Yes this is a rather complex problem further complicated
-> > > > > > > by
-> > > > > > > the
-> > > > > > > fact
-> > > > > > > that since we can in wait for fences under dma_resv
-> > > > > > > locks,
-> > > > > > > for a
-> > > > > > > true
-> > > > > > > no_wait_gpu exec to succeed, we're only allowed to do
-> > > > > > > dma_resv_trylock.
-> > > > > > >=20
-> > > > > > > Better to try to fix this in TTM rather than try to worry
-> > > > > > > too
-> > > > > > > much
-> > > > > > > about it here.
-> > > > > > >=20
-> > > > > >=20
-> > > > > > +1.
-> > > > > >=20
-> > > > > > > >=20
-> > > > > > > > > Otherwise, this could also cause newly introduced
-> > > > > > > > > sync
-> > > > > > > > > waits
-> > > > > > > > > in the
-> > > > > > > > > exec() and vm_bind paths where we previously
-> > > > > > > > > performed
-> > > > > > > > > eviction and
-> > > > > > > > > the
-> > > > > > > > > subsequent clearing async.
-> > > > > > > > >=20
-> > > > > > > > > Some additional stuff below:
-> > > > > > > > >=20
-> > > > > > > > >=20
-> > > > > > > > > >=20
-> > > > > > > > > > Signed-off-by: Matthew Brost
-> > > > > > > > > > <matthew.brost@intel.com>
-> > > > > > > > > > ---
-> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 47
-> > > > > > > > > > ++++++++++++++++++++++++++++
-> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_migrate.c=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 14 ++++++--
-> > > > > > > > > > -
-> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_migrate.h=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 1 +
-> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_res_cursor.h=C2=A0=C2=A0 | =
-26
-> > > > > > > > > > +++++++++++++++
-> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |=C2=A0 5 ++=
--
-> > > > > > > > > > =C2=A0drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |=C2=A0 6 ++=
-++
-> > > > > > > > > > =C2=A06 files changed, 94 insertions(+), 5 deletions(-)
-> > > > > > > > > >=20
-> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > index 4e39188a021a..74470f4d418d 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > @@ -1434,6 +1434,51 @@ static bool
-> > > > > > > > > > xe_ttm_bo_lock_in_destructor(struct
-> > > > > > > > > > ttm_buffer_object
-> > > > > > > > > > *ttm_bo)
-> > > > > > > > > > =C2=A0	return locked;
-> > > > > > > > > > =C2=A0}
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > +static void xe_ttm_bo_release_clear(struct
-> > > > > > > > > > ttm_buffer_object
-> > > > > > > > > > *ttm_bo)
-> > > > > > > > > > +{
-> > > > > > > > > > +	struct xe_device *xe =3D
-> > > > > > > > > > ttm_to_xe_device(ttm_bo-
-> > > > > > > > > > > bdev);
-> > > > > > > > > > +	struct dma_fence *fence;
-> > > > > > > > > > +	int err, idx;
-> > > > > > > > > > +
-> > > > > > > > > > +	xe_bo_assert_held(ttm_to_xe_bo(ttm_bo));
-> > > > > > > > > > +
-> > > > > > > > > > +	if (ttm_bo->type !=3D ttm_bo_type_device)
-> > > > > > > > > > +		return;
-> > > > > > > > > > +
-> > > > > > > > > > +	if (xe_device_wedged(xe))
-> > > > > > > > > > +		return;
-> > > > > > > > > > +
-> > > > > > > > > > +	if (!ttm_bo->resource ||
-> > > > > > > > > > !mem_type_is_vram(ttm_bo-
-> > > > > > > > > > > resource-
-> > > > > > > > > > > mem_type))
-> > > > > > > > > > +		return;
-> > > > > > > > > > +
-> > > > > > > > > > +	if (!drm_dev_enter(&xe->drm, &idx))
-> > > > > > > > > > +		return;
-> > > > > > > > > > +
-> > > > > > > > > > +	if (!xe_pm_runtime_get_if_active(xe))
-> > > > > > > > > > +		goto unbind;
-> > > > > > > > > > +
-> > > > > > > > > > +	err =3D dma_resv_reserve_fences(&ttm_bo-
-> > > > > > > > > > > base._resv,
-> > > > > > > > > > 1);
-> > > > > > > > > > +	if (err)
-> > > > > > > > > > +		goto put_pm;
-> > > > > > > > > > +
-> > > > > > > > > > +	fence =3D
-> > > > > > > > > > xe_migrate_clear(mem_type_to_migrate(xe,
-> > > > > > > > > > ttm_bo-
-> > > > > > > > > > > resource->mem_type),
-> > > > > > > > > > +			=09
-> > > > > > > > > > ttm_to_xe_bo(ttm_bo),
-> > > > > > > > > > ttm_bo-
-> > > > > > > > > > > resource,
-> > > > > > > > >=20
-> > > > > > > > > We should be very careful with passing the xe_bo part
-> > > > > > > > > here
-> > > > > > > > > because
-> > > > > > > > > the
-> > > > > > > > > gem refcount is currently zero. So that any caller
-> > > > > > > > > deeper
-> > > > > > > > > down in
-> > > > > > > > > the
-> > > > > > > > > call chain might try to do an xe_bo_get() and blow
-> > > > > > > > > up.
-> > > > > > > > >=20
-> > > > > > > > > Ideally we'd make xe_migrate_clear() operate only on
-> > > > > > > > > the
-> > > > > > > > > ttm_bo for
-> > > > > > > > > this to be safe.
-> > > > > > > > >=20
-> > > > > > > >=20
-> > > > > > > > It looks like bo->size and xe_bo_sg are the two uses of
-> > > > > > > > an
-> > > > > > > > Xe
-> > > > > > > > BO in
-> > > > > > > > xe_migrate_clear(). Let me see if I can refactor the
-> > > > > > > > arguments
-> > > > > > > > to
-> > > > > > > > avoid
-> > > > > > > > these + add some kernel doc.
-> > > > > > >=20
-> > > > > > > Thanks,
-> > > > > > > Thomas
-> > > > > > >=20
-> > > > > >=20
-> > > > > > So I'll just respin the next rev with a refactor
-> > > > > > xe_migrate_clear
-> > > > > > arguments.
-> > > > > >=20
-> > > > >=20
-> > > > > Actually xe_migrate_clear sets the bo->ccs_cleared field, so
-> > > > > we
-> > > > > kinda
-> > > > > need the Xe BO. I guess I'll leave as is.
-> > > > >=20
-> > > > > Yes, if caller does xe_bo_get, that will blow up but no one
-> > > > > is
-> > > > > doing
-> > > > > that and we'd immediately get a kernel splat if some one
-> > > > > tried to
-> > > > > change
-> > > > > this so I think we are good. Thoughts?
-> > > >=20
-> > > > I think we either=C2=A0(again to be robust to future errors)
-> > > >=20
-> > > > 1) need to ensure and document that the migrate layer is
-> > > > completely
-> > > > safe for gem refcount 0 case bos or we
-> > > >=20
-> > > > 2) Only dereference gem refcount 0 bos directly in the TTM
-> > > > callbacks.
-> > > >=20
-> > > > To me 2) seems simplest meaning we'd need to pass the
-> > > > ccs_cleared
-> > > > field
-> > > > into the migrate layer function.
-> > > >=20
-> > >=20
-> > > So, pass ccs_cleared by reference and also pass in the TTM BO? I
-> > > typically despise pass-by-reference, but yeah, that could work.
-> > > Some
-> > > kernel doc indicating that xe_migrate_clear can be called with a
-> > > refcount of 0 would be good too.
-> > >=20
-> > > Matt=20
-> > >=20
-> > > > Thanks,
-> > > > Thomas
-> > > >=20
-> > > >=20
-> > > >=20
-> > > > >=20
-> > > > > Matt
-> > > > >=20
-> > > > > > Matt
-> > > > > >=20
-> > > > > > >=20
-> > > > > > > >=20
-> > > > > > > > Matt
-> > > > > > > >=20
-> > > > > > > > > /Thomas
-> > > > > > > > >=20
-> > > > > > > > >=20
-> > > > > > > > > > +			=09
-> > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL |
-> > > > > > > > > > +			=09
-> > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY);
-> > > > > > > > > > +	if (XE_WARN_ON(IS_ERR(fence)))
-> > > > > > > > > > +		goto put_pm;
-> > > > > > > > > > +
-> > > > > > > > > > +	xe_ttm_vram_mgr_resource_set_cleared(ttm_b
-> > > > > > > > > > o-
-> > > > > > > > > > > resource);
-> > > > > > > > > > +	dma_resv_add_fence(&ttm_bo->base._resv,
-> > > > > > > > > > fence,
-> > > > > > > > > > +			=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
-> > > > > > > > > > +	dma_fence_put(fence);
-> > > > > > > > > > +
-> > > > > > > > > > +put_pm:
-> > > > > > > > > > +	xe_pm_runtime_put(xe);
-> > > > > > > > > > +unbind:
-> > > > > > > > > > +	drm_dev_exit(idx);
-> > > > > > > > > > +}
-> > > > > > > > > > +
-> > > > > > > > > > =C2=A0static void xe_ttm_bo_release_notify(struct
-> > > > > > > > > > ttm_buffer_object
-> > > > > > > > > > *ttm_bo)
-> > > > > > > > > > =C2=A0{
-> > > > > > > > > > =C2=A0	struct dma_resv_iter cursor;
-> > > > > > > > > > @@ -1478,6 +1523,8 @@ static void
-> > > > > > > > > > xe_ttm_bo_release_notify(struct
-> > > > > > > > > > ttm_buffer_object *ttm_bo)
-> > > > > > > > > > =C2=A0	}
-> > > > > > > > > > =C2=A0	dma_fence_put(replacement);
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > +	xe_ttm_bo_release_clear(ttm_bo);
-> > > > > > > > > > +
-> > > > > > > > > > =C2=A0	dma_resv_unlock(ttm_bo->base.resv);
-> > > > > > > > > > =C2=A0}
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > > index 8f8e9fdfb2a8..39d7200cb366 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > > > > > > > @@ -1063,7 +1063,7 @@ struct dma_fence
-> > > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > > xe_migrate *m,
-> > > > > > > > > > =C2=A0	struct xe_gt *gt =3D m->tile->primary_gt;
-> > > > > > > > > > =C2=A0	struct xe_device *xe =3D gt_to_xe(gt);
-> > > > > > > > > > =C2=A0	bool clear_only_system_ccs =3D false;
-> > > > > > > > > > -	struct dma_fence *fence =3D NULL;
-> > > > > > > > > > +	struct dma_fence *fence =3D
-> > > > > > > > > > dma_fence_get_stub();
-> > > > > > > > > > =C2=A0	u64 size =3D bo->size;
-> > > > > > > > > > =C2=A0	struct xe_res_cursor src_it;
-> > > > > > > > > > =C2=A0	struct ttm_resource *src =3D dst;
-> > > > > > > > > > @@ -1075,10 +1075,13 @@ struct dma_fence
-> > > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > > xe_migrate *m,
-> > > > > > > > > > =C2=A0	if (!clear_bo_data && clear_ccs &&
-> > > > > > > > > > !IS_DGFX(xe))
-> > > > > > > > > > =C2=A0		clear_only_system_ccs =3D true;
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > -	if (!clear_vram)
-> > > > > > > > > > +	if (!clear_vram) {
-> > > > > > > > > > =C2=A0		xe_res_first_sg(xe_bo_sg(bo), 0,
-> > > > > > > > > > bo-
-> > > > > > > > > > > size,
-> > > > > > > > > > &src_it);
-> > > > > > > > > > -	else
-> > > > > > > > > > +	} else {
-> > > > > > > > > > =C2=A0		xe_res_first(src, 0, bo->size,
-> > > > > > > > > > &src_it);
-> > > > > > > > > > +		if (!(clear_flags &
-> > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
-> > > > > > > > > > +			size -=3D
-> > > > > > > > > > xe_res_next_dirty(&src_it);
-> > > > > > > > > > +	}
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > =C2=A0	while (size) {
-> > > > > > > > > > =C2=A0		u64 clear_L0_ofs;
-> > > > > > > > > > @@ -1125,6 +1128,9 @@ struct dma_fence
-> > > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > > xe_migrate *m,
-> > > > > > > > > > =C2=A0			emit_pte(m, bb,
-> > > > > > > > > > clear_L0_pt,
-> > > > > > > > > > clear_vram,
-> > > > > > > > > > clear_only_system_ccs,
-> > > > > > > > > > =C2=A0				 &src_it,
-> > > > > > > > > > clear_L0,
-> > > > > > > > > > dst);
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > +		if (clear_vram && !(clear_flags &
-> > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY))
-> > > > > > > > > > +			size -=3D
-> > > > > > > > > > xe_res_next_dirty(&src_it);
-> > > > > > > > > > +
-> > > > > > > > > > =C2=A0		bb->cs[bb->len++] =3D
-> > > > > > > > > > MI_BATCH_BUFFER_END;
-> > > > > > > > > > =C2=A0		update_idx =3D bb->len;
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > @@ -1146,7 +1152,7 @@ struct dma_fence
-> > > > > > > > > > *xe_migrate_clear(struct
-> > > > > > > > > > xe_migrate *m,
-> > > > > > > > > > =C2=A0		}
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > =C2=A0		xe_sched_job_add_migrate_flush(job
-> > > > > > > > > > ,
-> > > > > > > > > > flush_flags);
-> > > > > > > > > > -		if (!fence) {
-> > > > > > > > > > +		if (fence =3D=3D dma_fence_get_stub())
-> > > > > > > > > > {
-> > > > > > > > > > =C2=A0			/*
-> > > > > > > > > > =C2=A0			 * There can't be anything
-> > > > > > > > > > userspace
-> > > > > > > > > > related
-> > > > > > > > > > at this
-> > > > > > > > > > =C2=A0			 * point, so we just need
-> > > > > > > > > > to
-> > > > > > > > > > respect any
-> > > > > > > > > > potential move
-> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > > b/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > > index fb9839c1bae0..58a7b747ef11 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_migrate.h
-> > > > > > > > > > @@ -118,6 +118,7 @@ int
-> > > > > > > > > > xe_migrate_access_memory(struct
-> > > > > > > > > > xe_migrate
-> > > > > > > > > > *m, struct xe_bo *bo,
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > =C2=A0#define
-> > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_BO_DATA		BIT(0)
-> > > > > > > > > > =C2=A0#define
-> > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_CCS_DATA		BIT(1)
-> > > > > > > > > > +#define
-> > > > > > > > > > XE_MIGRATE_CLEAR_NON_DIRTY		BIT(2)
-> > > > > > > > > > =C2=A0#define
-> > > > > > > > > > XE_MIGRATE_CLEAR_FLAG_FULL	(XE_MIGRATE_CLEAR_
-> > > > > > > > > > FLAG
-> > > > > > > > > > _BO_
-> > > > > > > > > > DATA |
-> > > > > > > > > > \
-> > > > > > > > > > =C2=A0					XE_MIGRATE
-> > > > > > > > > > _CLE
-> > > > > > > > > > AR_F
-> > > > > > > > > > LAG_CC
-> > > > > > > > > > S_DA
-> > > > > > > > > > TA)
-> > > > > > > > > > =C2=A0struct dma_fence *xe_migrate_clear(struct
-> > > > > > > > > > xe_migrate
-> > > > > > > > > > *m,
-> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > > b/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > > index d1a403cfb628..630082e809ba 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-> > > > > > > > > > @@ -315,6 +315,32 @@ static inline void
-> > > > > > > > > > xe_res_next(struct
-> > > > > > > > > > xe_res_cursor *cur, u64 size)
-> > > > > > > > > > =C2=A0	}
-> > > > > > > > > > =C2=A0}
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > +/**
-> > > > > > > > > > + * xe_res_next_dirty - advance the cursor to next
-> > > > > > > > > > dirty
-> > > > > > > > > > buddy
-> > > > > > > > > > block
-> > > > > > > > > > + *
-> > > > > > > > > > + * @cur: the cursor to advance
-> > > > > > > > > > + *
-> > > > > > > > > > + * Move the cursor until dirty buddy block is
-> > > > > > > > > > found.
-> > > > > > > > > > + *
-> > > > > > > > > > + * Return: Number of bytes cursor has been
-> > > > > > > > > > advanced
-> > > > > > > > > > + */
-> > > > > > > > > > +static inline u64 xe_res_next_dirty(struct
-> > > > > > > > > > xe_res_cursor
-> > > > > > > > > > *cur)
-> > > > > > > > > > +{
-> > > > > > > > > > +	struct drm_buddy_block *block =3D cur->node;
-> > > > > > > > > > +	u64 bytes =3D 0;
-> > > > > > > > > > +
-> > > > > > > > > > +	XE_WARN_ON(cur->mem_type !=3D XE_PL_VRAM0 &&
-> > > > > > > > > > +		=C2=A0=C2=A0 cur->mem_type !=3D XE_PL_VRAM1);
-> > > > > > > > > > +
-> > > > > > > > > > +	while (cur->remaining &&
-> > > > > > > > > > drm_buddy_block_is_clear(block)) {
-> > > > > > > > > > +		bytes +=3D cur->size;
-> > > > > > > > > > +		xe_res_next(cur, cur->size);
-> > > > > > > > > > +		block =3D cur->node;
-> > > > > > > > > > +	}
-> > > > > > > > > > +
-> > > > > > > > > > +	return bytes;
-> > > > > > > > > > +}
-> > > > > > > > > > +
-> > > > > > > > > > =C2=A0/**
-> > > > > > > > > > =C2=A0 * xe_res_dma - return dma address of cursor at
-> > > > > > > > > > current
-> > > > > > > > > > position
-> > > > > > > > > > =C2=A0 *
-> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > > index 9e375a40aee9..120046941c1e 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > > > > > @@ -84,6 +84,9 @@ static int
-> > > > > > > > > > xe_ttm_vram_mgr_new(struct
-> > > > > > > > > > ttm_resource_manager *man,
-> > > > > > > > > > =C2=A0	if (place->fpfn || lpfn !=3D man->size >>
-> > > > > > > > > > PAGE_SHIFT)
-> > > > > > > > > > =C2=A0		vres->flags |=3D
-> > > > > > > > > > DRM_BUDDY_RANGE_ALLOCATION;
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > +	if (tbo->type =3D=3D ttm_bo_type_device)
-> > > > > > > > > > +		vres->flags |=3D
-> > > > > > > > > > DRM_BUDDY_CLEAR_ALLOCATION;
-> > > > > > > > > > +
-> > > > > > > > > > =C2=A0	if (WARN_ON(!vres->base.size)) {
-> > > > > > > > > > =C2=A0		err =3D -EINVAL;
-> > > > > > > > > > =C2=A0		goto error_fini;
-> > > > > > > > > > @@ -187,7 +190,7 @@ static void
-> > > > > > > > > > xe_ttm_vram_mgr_del(struct
-> > > > > > > > > > ttm_resource_manager *man,
-> > > > > > > > > > =C2=A0	struct drm_buddy *mm =3D &mgr->mm;
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > =C2=A0	mutex_lock(&mgr->lock);
-> > > > > > > > > > -	drm_buddy_free_list(mm, &vres->blocks, 0);
-> > > > > > > > > > +	drm_buddy_free_list(mm, &vres->blocks,
-> > > > > > > > > > vres-
-> > > > > > > > > > > flags);
-> > > > > > > > > > =C2=A0	mgr->visible_avail +=3D vres-
-> > > > > > > > > > >used_visible_size;
-> > > > > > > > > > =C2=A0	mutex_unlock(&mgr->lock);
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > > index cc76050e376d..dfc0e6890b3c 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> > > > > > > > > > @@ -36,6 +36,12 @@
-> > > > > > > > > > to_xe_ttm_vram_mgr_resource(struct
-> > > > > > > > > > ttm_resource
-> > > > > > > > > > *res)
-> > > > > > > > > > =C2=A0	return container_of(res, struct
-> > > > > > > > > > xe_ttm_vram_mgr_resource,
-> > > > > > > > > > base);
-> > > > > > > > > > =C2=A0}
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > +static inline void
-> > > > > > > > > > +xe_ttm_vram_mgr_resource_set_cleared(struct
-> > > > > > > > > > ttm_resource
-> > > > > > > > > > *res)
-> > > > > > > > > > +{
-> > > > > > > > > > +	to_xe_ttm_vram_mgr_resource(res)->flags |=3D
-> > > > > > > > > > DRM_BUDDY_CLEARED;
-> > > > > > > > > > +}
-> > > > > > > > > > +
-> > > > > > > > > > =C2=A0static inline struct xe_ttm_vram_mgr *
-> > > > > > > > > > =C2=A0to_xe_ttm_vram_mgr(struct ttm_resource_manager
-> > > > > > > > > > *man)
-> > > > > > > > > > =C2=A0{
-> > > > > > > > >=20
-> > > > > > >=20
-> > > >=20
-> >=20
-
+> 
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_pci.c        |  1 +
+>  drivers/gpu/drm/xe/xe_wa.c         | 12 ++++++++++++
+>  drivers/gpu/drm/xe/xe_wa_oob.rules |  2 ++
+>  3 files changed, 15 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 8bb698786334..5ff2169019ed 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -197,6 +197,7 @@ static const struct xe_ip media_ips[] = {
+>  	{ 1301, "Xe2_HPM", &media_xelpmp },
+>  	{ 2000, "Xe2_LPM", &media_xelpmp },
+>  	{ 3000, "Xe3_LPM", &media_xelpmp },
+> +	{ 3002, "Xe3_LPM", &media_xelpmp },
+>  };
+>  
+>  static const struct xe_device_desc tgl_desc = {
+> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+> index 6baf369fb330..f51218a7a580 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.c
+> +++ b/drivers/gpu/drm/xe/xe_wa.c
+> @@ -285,6 +285,18 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+>  	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), IECPUNIT_CLKGATE_DIS)),
+>  	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
+>  	},
+> +	{ XE_RTP_NAME("16021865536"),
+> +	  XE_RTP_RULES(MEDIA_VERSION(3002),
+> +		       ENGINE_CLASS(VIDEO_DECODE)),
+> +	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), IECPUNIT_CLKGATE_DIS)),
+> +	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
+> +	},
+> +	{ XE_RTP_NAME("16021867713"),
+> +	  XE_RTP_RULES(MEDIA_VERSION(3002),
+> +		       ENGINE_CLASS(VIDEO_DECODE)),
+> +	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F1C(0), MFXPIPE_CLKGATE_DIS)),
+> +	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
+> +	},
+>  	{ XE_RTP_NAME("14021486841"),
+>  	  XE_RTP_RULES(MEDIA_VERSION(3000), MEDIA_STEP(A0, B0),
+>  		       ENGINE_CLASS(VIDEO_DECODE)),
+> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> index 9a691045831e..d67202c07bc9 100644
+> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
+> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> @@ -59,9 +59,11 @@ no_media_l3	MEDIA_VERSION(3000)
+>  		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
+>  16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
+>  		MEDIA_VERSION_RANGE(1301, 3000)
+> +		MEDIA_VERSION(3002)
+>  		GRAPHICS_VERSION(3003)
+>  16026508708	GRAPHICS_VERSION_RANGE(1200, 3001)
+>  		MEDIA_VERSION_RANGE(1300, 3000)
+> +		MEDIA_VERSION(3002)
+>  		GRAPHICS_VERSION(3003)
+>  
+>  # SoC workaround - currently applies to all platforms with the following
+> -- 
+> 2.34.1
+> 
