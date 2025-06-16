@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68AC7C71155
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 13:07:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64A17C7115E
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Jun 2025 13:07:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2176610E38D;
-	Mon, 16 Jun 2025 13:07:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18B5710E393;
+	Mon, 16 Jun 2025 13:07:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kCQjveV4";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BIIJZL09";
 	dkim-atps=neutral
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
- [209.85.218.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A884110E386;
- Mon, 16 Jun 2025 13:07:31 +0000 (UTC)
-Received: by mail-ej1-f41.google.com with SMTP id
- a640c23a62f3a-ad89c32a7b5so688127166b.2; 
- Mon, 16 Jun 2025 06:07:31 -0700 (PDT)
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
+ [209.85.218.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8326B10E392;
+ Mon, 16 Jun 2025 13:07:33 +0000 (UTC)
+Received: by mail-ej1-f47.google.com with SMTP id
+ a640c23a62f3a-adf34d5e698so540855266b.1; 
+ Mon, 16 Jun 2025 06:07:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750079250; x=1750684050; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1750079252; x=1750684052; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=6HsEnJf6J6CxVp5EEQQGWh3uQy/4Uu182VhO2tmXgsc=;
- b=kCQjveV4zSwmeEyAkVAoM3W+YSQsDUzLGDH1skaJ8EKHwVCc+MjnJgK5CbiwWvA612
- P2HbVbVwrq38JG4f7Rvx7QryASUYWJpdADx/b9kADTfP0Od4cM1N5l0CdxqQH4AzR0hZ
- ak9IxM6iHjvsNY1mV3DwaZPJjLlKDUcfN+VCihoCWDrWY9Zy8SZcx+hUKK263h+u/AnS
- bV0ULx0OWshHuw6At6s32uPyvXsYN2ZxZ7al8B3TdpvUGXmBtppaCR2RZke1kQVBoPu0
- /Zaa+3yNGYV9IL8yOPdIWZtETgqdKB4PNXIm87Oxjtej1D4E1LGtFx49ISQezqF5/KKJ
- lEPw==
+ :reply-to; bh=BhjJlPUAmPZfAEzNSgM6aJQtR1SzEIXN+iASDEWwa5I=;
+ b=BIIJZL09kQ7O9YDgVT0uX8/4sikAVoocbMJj0B6ZC+MuzdZW9yVlLkZdU1yCWeVHKz
+ FxQG17MvH8d87h2Iu1RQLGertM0QNMWHnNoF64xKh05MZlfqu0tXzsZ9vXhuFUtn6LvN
+ eqkDL1kVSi7W1eA3yiGl1vJ73eQjEN0xKopXWHRXmos2P3DIzzcfh31OTaIRgEvCqQmq
+ 84QufBuwwXaRqc7sfmUUo7c/kqGOKDugrMht5TApXuSWhBEeZefYnJwAuJIKfUHI23uu
+ iIV6rEsPUvFv8Nvi5QoxMNcXTHfGSuUBkXOlQGQLvfFaucahV5CWxM/Mfl82secFEyjj
+ L9bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750079250; x=1750684050;
+ d=1e100.net; s=20230601; t=1750079252; x=1750684052;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=6HsEnJf6J6CxVp5EEQQGWh3uQy/4Uu182VhO2tmXgsc=;
- b=hJTJRots7mAeL+VjaxuylJqn61Tx59PazZV+WgBPtXEl9N0CvShoX/EzOhuNYEgrtE
- RzZIVhSum4B10uE4T1oEet20BBx286G0jaVKqOX2EHuA9JAuZTaQ5kHZIBKYRarhIvU9
- +ODZpLtrxMSPtVCcwZxwuI01hbM/9n5/bStEkXKyOjhDP5GdJbrTJEo7lDQYtPgF29zY
- Fyay33wYEsjQB0jK094hTWE8rJbmKvEXvEcmNylqH4eqOpyJUhJLFTDwrcT0EubqVRNo
- xSqHYDqzgVqqfwbGzmPFB6pF70ComoJFcdGZpVzCt4DaXMP4dpfZLQOffy+ouZxv3+yR
- pqdA==
+ bh=BhjJlPUAmPZfAEzNSgM6aJQtR1SzEIXN+iASDEWwa5I=;
+ b=xHXZD4fFYD01B0lajzNyRBl6JOLtJwIvWhuwZOgPR3E4IJe3j1R5ShANSPp8l5SUKg
+ tXrDkcg209bhzDJIbiysZBO+WI6xZQlPCoxNYN4Q1fmZKjwev9Telbjr8wrfWgoW2awU
+ JgjBtPVMQwPAma9sxdE596dqLQaV7lzLV3noRVoh57VrDoF5q29vHfKmHT5fUyL+9rXZ
+ wiKjUDuBSaq0Z7dFZ76ekY5mZB45NOxFvIR1YsG2OmXkwgv6dkePSy95lvN4tX1of2E6
+ DZHz1F/N/xKmg6iHOX8d63gD7/YU/S6Wo1axxEsxVr4chvxplctCwly3ICvEjfo78GUP
+ saJQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUodTiAK6qmsc5Ud1csU8k8po8UauReXIFLb1KtJ8uiVtWNPIeToceSZu5+9H95P1ea3g72epYUrOs=@lists.freedesktop.org,
- AJvYcCW738wBvLQhyULly6X5sCNNBbiDQHWq+3JvYPIU3fiJUaetEQLXF0U9QZ5FIi3acCST9AIYblnnPfM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz5w2IZRYZEomw7NKATKdMao28ukyij+perpCZuNca6IaeP7ZiK
- CnKfTLsVpcsV16FRSpwEf5+hpHkiMDV71yUvZth1CDojBBAzGRatpyyx
-X-Gm-Gg: ASbGncvEseZ0757NEm1hLqIeS/C+pZ0Q5VpVuiQv3elQa2KkNrl0qpT8jtzY3G45I6n
- Kf4/bdcLP0IUBI0+ZdZZNQeSjNmBfrgchZAUrbNTAImjZYyOkk8eJBSgQtzhwX8TqqzSAzBlkL6
- JrCp7E3Z+uITVPYKlJso3Boc9wYrPsu1vk7QD4UprYG6DKSypLWw8BFNhchc5L7KxnarxtJj1HO
- obsYdRryMbwb9X2kFUAYJ/pJdAc5FYAcrA8qtcyMg5qyfVcmJESJqlkebyRxACJBaBzK2iVd8G7
- hX1sC8n5eJjHIpTUVvhOmTkVtxLMgb3gyF/rI2WyJ4Y+SnGryGrisvntm3QfbbXdAAMaCWm9jLz
- N
-X-Google-Smtp-Source: AGHT+IGD2j+R7DTeQ9XuPlOQmumKnJoAnTJ1SzewI6cp+vRoxJOvC0uTaEYJVwJ/IjECKCGzTdVTFQ==
-X-Received: by 2002:a17:907:3e1e:b0:ad2:1cd6:aacf with SMTP id
- a640c23a62f3a-adfad487be3mr787422866b.47.1750079249777; 
- Mon, 16 Jun 2025 06:07:29 -0700 (PDT)
+ AJvYcCV+cZQPtK1GaFlqYu/9I9Yhg+W5K8UpD5DTpWwcVtX0xUQcf4u0eZC7JAeNBhNABQ2sXoKZAZcohcc=@lists.freedesktop.org,
+ AJvYcCWPhE1Epixzt5SJfflHzJ9M11ip7rF3i/VHKQG9pgjiy6n0ApBi7yT6Gxwte14gmqAii29AfB3N/Zg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzZ/0sjY/JUnyC0y2x1+QXPP+r6swu8gDKvZBr3koZGGdmP/3CQ
+ Wv/aPOKgYdbwVlX+haZf8OPswyzhhLPXzNIrgiD8+adrGK5vV5ST/qk6Oaav4g==
+X-Gm-Gg: ASbGnctKX0mcCK51v2AQYCyxk3+6YT6yvPHSuXkPSHOEsP4EByatx+F8dpU3IdpurHo
+ 5Paony8tZU7QzHf2cKK2k7ESmE27cJY47prjDsFJqBjdoB84krWD9S7NcA/qJTrVLPR1Wy+X6Ys
+ PXukxYtsjBa2FUsRfj/QUgqEpwqVyn5D7a8qJ5Q2OuFwV6ciI3uhI+mb+yd4EezIl96WoEel/Tn
+ F/4Bo9FB3yGQUg02ukD/QahBj1fh7l3TSd0SwgsiVLxQTv8jufNtUhy5ommaAm6sC+tEOYxhDCn
+ iGcCyuVPvDH3NOK1jZRPIAmLqbFO0UT+se70bf+RVRIaqaekczBLHV8eEX57tnysLvXxfDlzF8L
+ y
+X-Google-Smtp-Source: AGHT+IF9LgzHmVsUplnpLj70wyHTT1D2I4iKS3sLFsquKcG/QFnxGwLN6Dg//j1VGYbR2aDxzw/Ddg==
+X-Received: by 2002:a17:907:2d87:b0:ade:4121:8d2d with SMTP id
+ a640c23a62f3a-adf9eab31c0mr900176066b.20.1750079251812; 
+ Mon, 16 Jun 2025 06:07:31 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:1535:2600:63e1:a803:ebae:a9dd])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-adf93630a33sm520717766b.29.2025.06.16.06.07.29
+ a640c23a62f3a-adf93630a33sm520717766b.29.2025.06.16.06.07.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Jun 2025 06:07:29 -0700 (PDT)
+ Mon, 16 Jun 2025 06:07:31 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: thomas.hellstrom@linux.intel.com, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, matthew.brost@intel.com,
  matthew.auld@intel.com
-Subject: [PATCH 3/6] drm/ttm: fix error handling in ttm_buffer_object_transfer
-Date: Mon, 16 Jun 2025 15:07:23 +0200
-Message-Id: <20250616130726.22863-3-christian.koenig@amd.com>
+Subject: [PATCH 5/6] drm/ttm: disable ttm_bo_validate_deleted_evict for now
+Date: Mon, 16 Jun 2025 15:07:25 +0200
+Message-Id: <20250616130726.22863-5-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250616130726.22863-1-christian.koenig@amd.com>
 References: <20250616130726.22863-1-christian.koenig@amd.com>
@@ -91,46 +91,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unlocking the resv object was missing in the error path, additionally to
-that we should move over the resource only after the fence slot was
-reserved.
+That test case uses internal TTM behavior which is about to change. We
+need a mock fence or similar to get it working instead.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo_util.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index b78365dc1fed..56f3152f34f5 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -256,6 +256,13 @@ static int ttm_buffer_object_transfer(struct ttm_buffer_object *bo,
- 	ret = dma_resv_trylock(&fbo->base.base._resv);
- 	WARN_ON(!ret);
+diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
+index 4553c4e0e0f1..6766e1753343 100644
+--- a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
++++ b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
+@@ -977,6 +977,7 @@ static void ttm_bo_validate_allowed_only_evict(struct kunit *test)
+ 	ttm_mock_manager_fini(priv->ttm_dev, mem_multihop);
+ }
  
-+	ret = dma_resv_reserve_fences(&fbo->base.base._resv, 1);
-+	if (ret) {
-+		dma_resv_unlock(&fbo->base.base._resv);
-+		kfree(fbo);
-+		return ret;
-+	}
-+
- 	if (fbo->base.resource) {
- 		ttm_resource_set_bo(fbo->base.resource, &fbo->base);
- 		bo->resource = NULL;
-@@ -264,12 +271,6 @@ static int ttm_buffer_object_transfer(struct ttm_buffer_object *bo,
- 		fbo->base.bulk_move = NULL;
- 	}
++#if 0
+ static void ttm_bo_validate_deleted_evict(struct kunit *test)
+ {
+ 	struct ttm_operation_ctx ctx_init = { }, ctx_val  = { };
+@@ -1026,6 +1027,7 @@ static void ttm_bo_validate_deleted_evict(struct kunit *test)
+ 	ttm_bo_fini(bo_big);
+ 	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
+ }
++#endif
  
--	ret = dma_resv_reserve_fences(&fbo->base.base._resv, 1);
--	if (ret) {
--		kfree(fbo);
--		return ret;
--	}
--
- 	ttm_bo_get(bo);
- 	fbo->bo = bo;
- 
+ static void ttm_bo_validate_busy_domain_evict(struct kunit *test)
+ {
+@@ -1205,7 +1207,7 @@ static struct kunit_case ttm_bo_validate_test_cases[] = {
+ 	KUNIT_CASE(ttm_bo_validate_happy_evict),
+ 	KUNIT_CASE(ttm_bo_validate_all_pinned_evict),
+ 	KUNIT_CASE(ttm_bo_validate_allowed_only_evict),
+-	KUNIT_CASE(ttm_bo_validate_deleted_evict),
++	/*KUNIT_CASE(ttm_bo_validate_deleted_evict),*/
+ 	KUNIT_CASE(ttm_bo_validate_busy_domain_evict),
+ 	KUNIT_CASE(ttm_bo_validate_evict_gutting),
+ 	KUNIT_CASE(ttm_bo_validate_recrusive_evict),
 -- 
 2.34.1
 
