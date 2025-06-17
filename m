@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 190BEC71136
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Jun 2025 21:40:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 552B3C71136
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Jun 2025 21:46:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDC4D10E112;
-	Tue, 17 Jun 2025 21:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14B7810E112;
+	Tue, 17 Jun 2025 21:46:11 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11C1C10E112;
- Tue, 17 Jun 2025 21:40:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9033082817178413101=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13CB810E112;
+ Tue, 17 Jun 2025 21:46:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Init_changes_for_?=
- =?utf-8?q?flicker-free_boot=2E?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enable_GuC_opt-in_feature?=
+ =?utf-8?q?s_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Jun 2025 21:40:54 -0000
-Message-ID: <175019645406.88665.16021858350842646983@1538d3639d33>
+Date: Tue, 17 Jun 2025 21:46:10 -0000
+Message-ID: <175019677007.89473.9406652197083662897@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250617180132.7059-11-dev@lankhorst.se>
-In-Reply-To: <20250617180132.7059-11-dev@lankhorst.se>
+References: <20250604002454.743404-4-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20250604002454.743404-4-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,63 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9033082817178413101==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Init changes for flicker-free boot.
-URL   : https://patchwork.freedesktop.org/series/150410/
-State : success
+Series: Enable GuC opt-in features (rev3)
+URL   : https://patchwork.freedesktop.org/series/149815/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3265-e80a19c9e840e1b43c82ec843a3d89089ec46c68_BAT -> xe-pw-150410v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2c1f556b1f487c732e5f56321fce8a4149ef8907
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Tue Jun 3 17:24:57 2025 -0700
 
-Summary
--------
+    drm/xe/guc: Enable the Dynamic Inhibit Context Switch optimization
+    
+    The Dynamic Inhibit Context Switch is an optimization aimed at reducing
+    the amount of time the HW is stuck waiting on an unsatisfied semaphore.
+    When this optimization is enabled, the GuC will dynamically modify the
+    CTX_CTRL_INHIBIT_SYN_CTX_SWITCH in the CTX_CONTEXT_CONTROL register of
+    LRCs to enable immediate switching out on an unsatisfied semaphore wait
+    when multiple contexts are competing for time on the same engine.
+    
+    This feature is available on recent HW from GuC 70.40.1 onwards and it
+    is enabled via a per-VF feature opt-in.
+    
+    v2: rebase
+    v3: switch to using guc_buf_cache instead of dedicated alloc
+    v4: add helper to check for feature availability (Michal), don't enable
+    if multi-lrc is possible.
+    
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: John Harrison <John.C.Harrison@Intel.com>
+    Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
++ /mt/dim checkpatch c85b21c23c1a119cdd02b809e8f7d5562b461937 drm-intel
+85326359f3ec drm/xe/guc: Enable extended CAT error reporting
+-:121: WARNING:LINE_SPACING: Missing a blank line after declarations
+#121: FILE: drivers/gpu/drm/xe/xe_guc.c:590:
++	struct xe_device *xe = guc_to_xe(guc);
++	CLASS(xe_guc_buf, buf)(&guc->buf, OPT_IN_MAX_DWORDS);
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 165 lines checked
+2c1f556b1f48 drm/xe/guc: Enable the Dynamic Inhibit Context Switch optimization
+-:98: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#98: FILE: drivers/gpu/drm/xe/xe_guc.c:636:
+ 
++
 
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8413 -> IGT_8414
-  * Linux: xe-3265-e80a19c9e840e1b43c82ec843a3d89089ec46c68 -> xe-pw-150410v1
-
-  IGT_8413: 8413
-  IGT_8414: 8414
-  xe-3265-e80a19c9e840e1b43c82ec843a3d89089ec46c68: e80a19c9e840e1b43c82ec843a3d89089ec46c68
-  xe-pw-150410v1: 150410v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150410v1/index.html
-
---===============9033082817178413101==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 0 warnings, 1 checks, 66 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Init changes for flicker-free boot.</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150410/">https://patchwork.freedesktop.org/series/150410/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150410v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150410v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3265-e80a19c9e840e1b43c82ec843a3d89089ec46c68_BAT -&gt; xe-pw-150410v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8413 -&gt; IGT_8414</li>
-<li>Linux: xe-3265-e80a19c9e840e1b43c82ec843a3d89089ec46c68 -&gt; xe-pw-150410v1</li>
-</ul>
-<p>IGT_8413: 8413<br />
-  IGT_8414: 8414<br />
-  xe-3265-e80a19c9e840e1b43c82ec843a3d89089ec46c68: e80a19c9e840e1b43c82ec843a3d89089ec46c68<br />
-  xe-pw-150410v1: 150410v1</p>
-
-</body>
-</html>
-
---===============9033082817178413101==--
