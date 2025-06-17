@@ -4,188 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF7D9C71157
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Jun 2025 11:05:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2AF4C71157
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Jun 2025 11:27:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C13410E5AC;
-	Tue, 17 Jun 2025 11:05:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB6E010E4B0;
+	Tue, 17 Jun 2025 11:27:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IWz3BTox";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HUeYjC6I";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E85810E5A4;
- Tue, 17 Jun 2025 11:05:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 931B510E4B0
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Jun 2025 11:27:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750158325; x=1781694325;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=xJVT683SN5FEXT1W8s++gGs5S1jUvbA10KUybnpCav0=;
- b=IWz3BToxWO3r5ikELZyu9p0m1sTp0QZA/LFi+fmqZmO4UUnNF7BLeuz4
- DSRSIIzRG5RWioqM1YBRzQGGrduxLIsoGwG5GgeZpKJQjjKjmViOyWMEr
- AMVrWNngDAzp1vMI54G3Xqrka06Jc5fM+8Z96LP7KsqNXhTb9aUE7Ip9g
- ADi9sMRjge03zT2yzaVW02rtavnsNRBAz8+dLs+QMkE7ewAKCnU1LBPbC
- XDkmF+55xWRc9ClUtSBgBd28VRya1ukyfir6qEI9OU/VdjoCDi8OpyOlq
- bw/aNT00SII/9KNQp/gZ5a75l0brYliaURm5i2vu78E4RprHTpU8IjWw1 Q==;
-X-CSE-ConnectionGUID: RtOVCm1QSDenDDnylxs4Sg==
-X-CSE-MsgGUID: fzDUf96KT4Waw6v/f+ranQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="62982426"
-X-IronPort-AV: E=Sophos;i="6.16,243,1744095600"; d="scan'208";a="62982426"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2025 04:05:23 -0700
-X-CSE-ConnectionGUID: BQtnRE+ER8S3dVFHRffXyw==
-X-CSE-MsgGUID: rkkdCZs/TMq6eGyHSOI+Mg==
+ t=1750159672; x=1781695672;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ruUqN6ft/arA1UJpeej5ZFmbmNVv7kSpek2zyp69t6I=;
+ b=HUeYjC6ImNYi8JToz1bjQnhpfENffykCHksmD3dpyHksaXMwoPMOpbLL
+ XKDxc7wUOFz7HQYPYY0PMK05HyrDJDbZMOd/DboHqs5pPhJN066S4MmxI
+ 3IHpeKinrOgpPZv7B4c1qupQgiFhaJVix6C95lC6uaeBoj9y85Cs/8msQ
+ yhtNyqybue7ni1biCSd3RrlFlShpQdsiOeIf0EqyzkqFqMNfV85/5WXCu
+ 3zvw4n/IeHNZfsI5ID1dA7kwvZkPgkqEoCodcc5s0DtFIqZpKQVC81mEn
+ kq2xLPLpDPrVieHESMNYo31ZX2jHWbF/KxubnyjHdKTKavO5ewCuj4LVh Q==;
+X-CSE-ConnectionGUID: U9JUZDx4R6yuaZjI7nawrg==
+X-CSE-MsgGUID: ZOiV4YHiRwiEiJD+GNO+Pg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="52467470"
+X-IronPort-AV: E=Sophos;i="6.16,243,1744095600"; d="scan'208";a="52467470"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2025 04:27:51 -0700
+X-CSE-ConnectionGUID: 71PAEoGbTJaW0q6ROsnRyw==
+X-CSE-MsgGUID: pDuJ6fB4Sm6pi5AD2l8xmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,243,1744095600"; d="scan'208";a="149236588"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2025 04:05:22 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 17 Jun 2025 04:05:21 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Tue, 17 Jun 2025 04:05:21 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.42) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 17 Jun 2025 04:05:21 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hRT12wBGuo5qlMIxAbKqYuWu8d977SV0GYNx7TAsO6p9ccjWOzs00gQ6/D/aIXPRnVIDX8BqmnY/OrdkdZv/MCIPprBBxnH01MZsqJIvYE1+ySBe0rFMVhzFasoEtURSZXev1S9L3IL3HK5g0tvB+Btvz+kDUTMs3GQN0SUkMaCu9IcLg27Fwj8eb30HiE8vI/AtX3eMVrIUoE4LmWjq9UxMaS8CFiOfKMB2O+12ltFj/TmXdd7tQFvvW6SX/Z5zyPlJfRL5KI7CNkf5zb/Tj+/gNIOM1VmnaKTBc4QiWeooez/Hf4EN5jLZwuPVwS+h+Dw28NXhQaD/D0xjtaQ+Vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xJVT683SN5FEXT1W8s++gGs5S1jUvbA10KUybnpCav0=;
- b=EBo99C1wAST7hhYUMCsmSzJuESuEneme5URfl6XBCjjEiMkrMKx4iMnC9HjzJWn+5tLVKATxNDGOA1sg3Jph0Il2D8q+RcmQeGjJnLmshDVT4YPu8K1rZIv6joucQBdY9glTiamwFCAdDOY6IDkYxACFF8rMdhT3hQXzKwQDUn3wqc0LFwZ14U7lkycPGBJNtHxQ1ALuNgelcl5ofkWUdJiV2LDFwoHMmuhxF4GTEdVZ/vMNpdmRLhU20Oy6JNaa1KUn0+iO4g2NIKXZP0WYdWNw9lfGzhUZ0NCJQmpQIdzeH3WN4U+bC9lswRmOlGAiYGPDamIgRQfeuTiphBZruA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::28) by SJ0PR11MB6624.namprd11.prod.outlook.com
- (2603:10b6:a03:47a::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.29; Tue, 17 Jun
- 2025 11:05:05 +0000
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::cd7d:8601:c9fb:ef8c]) by DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::cd7d:8601:c9fb:ef8c%4]) with mapi id 15.20.8835.018; Tue, 17 Jun 2025
- 11:05:05 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "Grzelak, Michal" <michal.grzelak@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Grzelak, Michal" <michal.grzelak@intel.com>
-Subject: RE: [PATCH v2 1/1] drm/i915/display: Add no_psr_reason to PSR debugfs
-Thread-Topic: [PATCH v2 1/1] drm/i915/display: Add no_psr_reason to PSR debugfs
-Thread-Index: AQHb1fn+Lv4/6V3pYUGt0l4iBXE+vbQHPP8Q
-Date: Tue, 17 Jun 2025 11:05:05 +0000
-Message-ID: <DS4PPF69154114F6344CD02CF0D853FBE4FEF73A@DS4PPF69154114F.namprd11.prod.outlook.com>
-References: <20250605091300.3739436-1-michal.grzelak@intel.com>
- <20250605091300.3739436-2-michal.grzelak@intel.com>
-In-Reply-To: <20250605091300.3739436-2-michal.grzelak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|SJ0PR11MB6624:EE_
-x-ms-office365-filtering-correlation-id: fbeb18bf-1a14-4925-6bc2-08ddad8ed08f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?utf-8?B?YXM3ZWhLNG9WVDdpYnphUlV3eW1YN0lqcG1BcjZ4R1FkdlFpV3lwWE51UCtk?=
- =?utf-8?B?RDBsVUVHYVdFSWJwNlM1ZDQ3andUR0gxak9mR1BuTFN5VzlkQXlYcUhyTUxm?=
- =?utf-8?B?dUs4cmdFNUMydGFzaGtJUy80S1BsT2xuNmpGdHQyUUxMZ3pUVkxJYlJFaldi?=
- =?utf-8?B?MXZvWjZMYm5ucVFaZzIwejJTQlJYc05QK0dsb0Fya3dFZmk0Vk42aGc0ZkhF?=
- =?utf-8?B?RXE2MmF5S2ZTVnViOFNGSGw1T2grV0xEcWk4THl5Y0crTWhLNVIwN0JOTHJE?=
- =?utf-8?B?YktiTFI3VXcrc0V2RUY3Y3YzMVV6c0VKYVVINVoxSzVVTi9jd1Aydmdhc2Jp?=
- =?utf-8?B?bG9RancvS0NSckZwOTRTc3VDRVVuajBnQzJVYVRNV2hnUW4yVjQyaWRZcjdE?=
- =?utf-8?B?UGRJbTRvUEZIclVTZDRkY0ppME5PVEhCRFFKbEppZEhmdXJnbkhCKyt3U0k0?=
- =?utf-8?B?ZS9yVXo3WWtnN3IxRUYyT0Z3MmRyY1JZN3BmczNNMTBoYmxVVHhhV0lYNU1N?=
- =?utf-8?B?YzNOSlVuQnR6TlNBcnBqNmlvVUt1RytyQk0wZmtCaFZ6bCt5WWRUbDdFbC9S?=
- =?utf-8?B?SnhFN2JLZmhXLzN5UWpEbDlrTFp1VGNyR0c0Tk4rcXR4Y2RvSGkzWW81Rm9m?=
- =?utf-8?B?STE0aThGQXhZZjUvbnFvMC9TTnNSdktyMFgwNXlvbHFKb3F1L1FXdlJOeDI4?=
- =?utf-8?B?eGdHWWRxODV6WG9LWFMwdGQwT081S0R3L0JjVzZTb2FmVmY0RG8zSUFEWmVR?=
- =?utf-8?B?SzU2L0hlVjEvL1FtQ1p2U1MrQjY2dFpKQklyNDQvcE5obHRPTTR2S21lc0RT?=
- =?utf-8?B?dCtYWXgwNHhQOWlNU2FvSlpwZGkyOW1lZ1RwUWc2M0h2ampUNXhWUnlxZ2J6?=
- =?utf-8?B?VVBjL2pLQXVTbE93WFZCajlmZHAyZWU0TzQ4VTZwN3JDM0xod3UvWWgvOFZ2?=
- =?utf-8?B?TDRBaFV1cmE5SmlScnprYUZwZXpOQWNlT3A2dUo2dlNoWkY4UE1aYUpFWG9j?=
- =?utf-8?B?S2Q3QVVMaU4vWmp5YVlpM0NVZVMwNHh4dzJISHBZajBmeGt1UXUxamFmVEMv?=
- =?utf-8?B?QXU0SGNlNTRadU9ERTJEYkhCaEt6L0pWRHMxSEpnakpOcVppR0N0MW1GSWdi?=
- =?utf-8?B?N1hXRmNDZ0FSdlpPNXRxWDV1cUlMS1A2Tmo5VVIyWVQ2U1R0cldGNEcrcEpu?=
- =?utf-8?B?d0ovWlhDVnlaVWpjL1VuSVdnWGdnSU9sakQ3Tmh4RDlDWlYwZTBKYVVUYUxF?=
- =?utf-8?B?cGR5US9rQXlUSWlTL1dFb2RmMW1lNXBnVmxya2VodFlzOHBJMGhFM3p2ditS?=
- =?utf-8?B?VkVQS20xaEtEK01lb2NCWThFWDhOYURzMUZIMW1GbmhYdVQ1eFVoNHpqWnRi?=
- =?utf-8?B?Y2hvZ0x6aEpDcm5qM0pseWhtL21KWUFPUklXaFBuRkpaRXlJVXlZRUtRSU1i?=
- =?utf-8?B?djNOQU5zQ3M4YkczVkJmaFFKL2FWZjU3U2M1Mmp4c1RZTUg1VHRkU0tDck1W?=
- =?utf-8?B?bXR1bzJBcUQ5Mm4rcjRhamx0NlF4WWtLb3Fyd1NXOCtVNll0elJFMEtKVzE1?=
- =?utf-8?B?Z3pxaFlYd2Q3b3pMNFJxNTJKZGxHc1dIbGhMNGozQzJjTHo1QlFJMmJLRHFu?=
- =?utf-8?B?WHdFUG12OUtjaWtFWnBrNmZpb0tNd2VpMVJ1SzZidW5SVitWQk1sVERIdm1s?=
- =?utf-8?B?cGMwWE1EQkdicmdHM25lV2FJZ29TclR3M2xISTZhNS8vV1FKNjZtMWxKcFN5?=
- =?utf-8?B?VXlYZFExUVR4RTU2ejRyUFZuMnM4aFgvY1ZUdWh3K1I2YWJjOFEwaWVTdEVK?=
- =?utf-8?B?bkV0US9OMGE4VUxtY01rYlhTWnpxS1ArdzBRNm1VKzZQYy9wVU1aczV1NTND?=
- =?utf-8?B?ZUJEMm5XTHNlT0VGZlRxWjc3RHc4VER6ck4vcFladHdueFo2UzFITFo4cElM?=
- =?utf-8?B?TXVEcHd6Z3ErT2srM2ZuSEhlbTFLc3I4YVJDR3hhQlM4U1VjSW1wOHdkMzQw?=
- =?utf-8?B?Tmx0UUJXVmR3PT0=?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bXc2a1hRUSttUlJYZ09LQiswTUVGaGdsTklwekRMV01mOE5LTGs5ZXFIVFph?=
- =?utf-8?B?ODhuQUlJZGxwZjA3ZnYxOHpIa2tWRUo0dDNPQnZQUnFBRjZCL2dxZElJRDMr?=
- =?utf-8?B?dU9hMTVoVEpRWDc0OHBwWHN6YTlsR0FSOTNNNnJsWUxXVWp0SFV6dUlCNmtl?=
- =?utf-8?B?MzNxV1pSakpTR0htRC9lZko3RUpuaTNvOGkwSFlxeHFtSjgzM0hOd0VPdy85?=
- =?utf-8?B?TjhRb3BVUmQyOW9CSmhwdHNLK0hyZUJSWlRDK2xrMnR2dGF3RjBGNTB3ZDlD?=
- =?utf-8?B?ZGdHZlBZQ2ZnN3ZyRmVaMy81VXpCYTJaQ2VQekxvOTA0YWhWN2NRSzdsRXZ4?=
- =?utf-8?B?aDhVcGlaZXUrSWxNVlhXMXU1c2QxcFJ0VlNlTnhkdW5VRStXQzBNYXV1UU9q?=
- =?utf-8?B?aEt5SStTSUtMVU9ZWnY5bVZya24xb2FRODdrR1JMVG5tcjh2M3ZVeXVtQUhn?=
- =?utf-8?B?U3cwYVFjamRvcGhIUFprUUYwb3NCaXhJTkhSUW53WlhNL09pNHN4dzU4TWVJ?=
- =?utf-8?B?QWVBZE9iNG5IUVg3d2hoNDZtNkxJTE01ekZwWWZsaC9xVzMxRVZTbVZFWnpT?=
- =?utf-8?B?MGhaTGFjQkNjNXJLRDdXQkovb3Y2ODlDY1RyMjUzZEI0Wi9BVGdqUWRoVVB4?=
- =?utf-8?B?WjZXR1NMSFR3N1duUWVBdGozNHgzajFPVnVqZ2IwSnBqYXROekFDSFI5Wmdv?=
- =?utf-8?B?dDN3aDBtTUkwZHp0OEQxUld0SDc3ME80UythdGtEeEhzTG1uYmY4RUZVSDVZ?=
- =?utf-8?B?bENEZWdXbWNyZlA3ZzR6ek9WZGhpdE1RMlN0cTUxcWRtTW1VemxhQ29Hcm5h?=
- =?utf-8?B?bkVQN3lEaWx2WUk5aDBneWRsaE5RaFEvcnU0U0ZmSEQvekxNN1QremZNMGpq?=
- =?utf-8?B?bS8wd3g5QnhVQnNwM1J2MUtWL1krdDQ2MzZXVEdYUFc3bEtFYnpnUEdKbHV1?=
- =?utf-8?B?cU5kNlNWcmtnZW1Wemw5YTMvTmVnZ0I3WFpIcjNkejk3eVM5V0VMbzFaaElu?=
- =?utf-8?B?ZUE4YjgwdnA3dEJ0NndEWDBuNW9YdHZ5Nis5akx5YjVGUzNMWGdCOGpYNmJU?=
- =?utf-8?B?dWp0N3Rya0R1V2lNeXJ1V1RSWm5TN0VUR2diMS9nNmloZm55ZWpkTWh3Umw4?=
- =?utf-8?B?c2dEOEliS3ZoQStscllhckZGallWYURUa3JJWkFVdmRXL1cveGZyR3ZNUjZD?=
- =?utf-8?B?dlpJM0pyWXVoUXpSZWZUUWhaYWxJVHMyWGNxU08vK0IvSXBSMzNneWhYdG94?=
- =?utf-8?B?QmJKd1RqTGx5ZGZSWWtZZjdPUHNvRjdDYXBMOWNPT2VpcVpPUVkvUUs2ckFT?=
- =?utf-8?B?MzRQcDVjVmVOZTVicVhYbExiMHVDY3F0dmVEQVlKRHR2NldtS2d0NVNiSjFx?=
- =?utf-8?B?QTFUalR2WStQNkZGT1JGVWVCb3Y1TEZhYlIySEpUNklXZ1VnT2RJd1ZmY09j?=
- =?utf-8?B?bVFSVkcwOTExYlQ5bFRjbUNGbkFSSnR5NStlc014Q3JRZFJNSmkxOU4wRGRD?=
- =?utf-8?B?ZnZuZng5V01Ob05WNmVVRXp6S3RySG9SUUc3SWFsV1VmT2xwTjQ0NHI0M2tC?=
- =?utf-8?B?OFBBZzB2bjU4Um1zcXQ2Kys1M2t3Q2FmNkFZWmwxd0xabTBmdWNWMjlnWXk4?=
- =?utf-8?B?aVJxYzVzdm1HQklKdS9PNXp1RXZhNUJ1RVVHTkpNbWtRTlBLSW9oRHdZY2VK?=
- =?utf-8?B?WEcxcURTdk1UNFYrY0RjUGNvb2JYd0tiZ1Q4M1BFaU8zNUdmendWR0VhMGlq?=
- =?utf-8?B?TW5UTlVIM1dGbFFCS2tpL0NBd0R5S2h6aTRKMUI2ck1uN3l6VEVxRWpXZHpP?=
- =?utf-8?B?dDhOampoQjZqMUxIcGNqT01xYzJDV3ROMEJkWFVaSVRBclFrZ0NRVU4xUDI2?=
- =?utf-8?B?eXN2M05ySDRnWEpIMVRXaW9lZSs1eHVOZmhOZENuZW9hM25MMUQ5N3p3bG9k?=
- =?utf-8?B?MlhYb1d6eStmdWR2ekhrczNMcGxHdGpkMUk1b2FJVTFqZndjeTVUeHRjam54?=
- =?utf-8?B?cTBBMkhRRTNURXpWSDRPZG81cHRSdlg1bmJFcUJwazU1OGVzVjVyNVByYm5o?=
- =?utf-8?B?ZTU2OUdLRlg4WmNaU1lGeHlVd1NwN0VXMzA3NzRRbVlQMkw5WkFVdjV4L3k3?=
- =?utf-8?Q?ui2U=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.16,243,1744095600"; d="scan'208";a="153518352"
+Received: from kuha.fi.intel.com ([10.237.72.152])
+ by orviesa003.jf.intel.com with SMTP; 17 Jun 2025 04:27:45 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
+ Tue, 17 Jun 2025 14:27:44 +0300
+Date: Tue, 17 Jun 2025 14:27:44 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
+ Raag Jadav <raag.jadav@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>,
+ "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] drm/xe: Support for I2C attached MCUs
+Message-ID: <aFFRMIvChfQI3dND@kuha.fi.intel.com>
+References: <20250612132450.3293248-1-heikki.krogerus@linux.intel.com>
+ <20250612132450.3293248-3-heikki.krogerus@linux.intel.com>
+ <aFB-y_bObI8LZvzp@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fbeb18bf-1a14-4925-6bc2-08ddad8ed08f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jun 2025 11:05:05.2361 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LhidOmzJyfbnnpO/bcqKmuPDR9A63rVwsPm3WlfY8Fyc1NoRoOQir8gpCmRAnEzudzPf83mj1zzY8vFYvvz/YA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6624
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aFB-y_bObI8LZvzp@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -200,101 +81,556 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC14ZSA8aW50ZWwteGUt
-Ym91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBNaWNoYWwgR3J6ZWxh
-aw0KPiBTZW50OiBUaHVyc2RheSwgNSBKdW5lIDIwMjUgMTIuMTMNCj4gVG86IGludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmc7IGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBD
-YzogR3J6ZWxhaywgTWljaGFsIDxtaWNoYWwuZ3J6ZWxha0BpbnRlbC5jb20+DQo+IFN1YmplY3Q6
-IFtQQVRDSCB2MiAxLzFdIGRybS9pOTE1L2Rpc3BsYXk6IEFkZCBub19wc3JfcmVhc29uIHRvIFBT
-UiBkZWJ1Z2ZzDQo+IA0KPiBUaGVyZSBpcyBubyByZWFzb24gaW4gZGVidWdmcyB3aHkgUFNSIGhh
-cyBiZWVuIGRpc2FibGVkLiBBZGQgbm9fcHNyX3JlYXNvbiBmaWVsZCBpbnRvIHN0cnVjdCBpbnRl
-bF9wc3IuIFdyaXRlIHRoZSByZWFzb24sIGUuZy4gUFNSDQo+IHNldHVwIHRpbWluZyBub3QgbWV0
-LCBpbnRvIHByb3BlciBQU1IgZGVidWdmcyBmaWxlLg0KPiBDbGVhbiBpdCB3aGVuIFBTUiBpcyBh
-Y3RpdmF0ZWQuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBNaWNoYcWCIEdyemVsYWsgPG1pY2hhbC5n
-cnplbGFrQGludGVsLmNvbT4NCj4gLS0tDQo+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5X3R5cGVzLmggICAgfCAgMiArDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX3Bzci5jICAgICAgfCAzOCArKysrKysrKysrKystLS0tLS0tDQo+ICAyIGZpbGVzIGNo
-YW5nZWQsIDI2IGluc2VydGlvbnMoKyksIDE0IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgNCj4gaW5k
-ZXggNzQxNTU2NGQwNThhLi43ZDU5ODM1N2E3MDIgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oDQo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oDQo+IEBAIC0xNjUzLDYg
-KzE2NTMsOCBAQCBzdHJ1Y3QgaW50ZWxfcHNyIHsNCj4gIAlib29sIGxpbmtfb2s7DQo+IA0KPiAg
-CXU4IGFjdGl2ZV9ub25fcHNyX3BpcGVzOw0KPiArDQo+ICsJY29uc3QgY2hhciAqbm9fcHNyX3Jl
-YXNvbjsNCj4gIH07DQo+IA0KPiAgc3RydWN0IGludGVsX2RwIHsNCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IGluZGV4IGNjZDY2YmJjNzJmNy4uMmM4YWYyYTEw
-ZWUxIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bz
-ci5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4g
-QEAgLTE1NzcsNiArMTU3Nyw3IEBAIHN0YXRpYyBib29sIF9wc3JfY29tcHV0ZV9jb25maWcoc3Ry
-dWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gIAlpZiAoZW50cnlfc2V0dXBfZnJhbWVzID49IDAp
-IHsNCj4gIAkJaW50ZWxfZHAtPnBzci5lbnRyeV9zZXR1cF9mcmFtZXMgPSBlbnRyeV9zZXR1cF9m
-cmFtZXM7DQo+ICAJfSBlbHNlIHsNCj4gKwkJaW50ZWxfZHAtPnBzci5ub19wc3JfcmVhc29uID0g
-IlBTUiBzZXR1cCB0aW1pbmcgbm90IG1ldCI7DQo+ICAJCWRybV9kYmdfa21zKGRpc3BsYXktPmRy
-bSwNCj4gIAkJCSAgICAiUFNSIGNvbmRpdGlvbiBmYWlsZWQ6IFBTUiBzZXR1cCB0aW1pbmcgbm90
-IG1ldFxuIik7DQo+ICAJCXJldHVybiBmYWxzZTsNCj4gQEAgLTE4MTIsNiArMTgxMyw3IEBAIHN0
-YXRpYyB2b2lkIGludGVsX3Bzcl9hY3RpdmF0ZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQ0K
-PiAgCQloc3dfYWN0aXZhdGVfcHNyMShpbnRlbF9kcCk7DQo+IA0KPiAgCWludGVsX2RwLT5wc3Iu
-YWN0aXZlID0gdHJ1ZTsNCj4gKwlpbnRlbF9kcC0+cHNyLm5vX3Bzcl9yZWFzb24gPSBOVUxMOw0K
-PiAgfQ0KPiANCj4gIC8qDQo+IEBAIC0yOTA0LDEzICsyOTA2LDIxIEBAIHZvaWQgaW50ZWxfcHNy
-X3ByZV9wbGFuZV91cGRhdGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICAJ
-CQkgKiAtIFJlZ2lvbiBFYXJseSBUcmFuc3BvcnQgY2hhbmdpbmcNCj4gIAkJCSAqIC0gRGlzcGxh
-eSBXQSAjMTEzNjogc2tsLCBieHQNCj4gIAkJCSAqLw0KPiAtCQkJaWYgKGludGVsX2NydGNfbmVl
-ZHNfbW9kZXNldChuZXdfY3J0Y19zdGF0ZSkgfHwNCj4gLQkJCSAgICAhbmV3X2NydGNfc3RhdGUt
-Pmhhc19wc3IgfHwNCj4gLQkJCSAgICAhbmV3X2NydGNfc3RhdGUtPmFjdGl2ZV9wbGFuZXMgfHwN
-Cj4gLQkJCSAgICBuZXdfY3J0Y19zdGF0ZS0+aGFzX3NlbF91cGRhdGUgIT0gcHNyLT5zZWxfdXBk
-YXRlX2VuYWJsZWQgfHwNCj4gLQkJCSAgICBuZXdfY3J0Y19zdGF0ZS0+ZW5hYmxlX3BzcjJfc3Vf
-cmVnaW9uX2V0ICE9IHBzci0+c3VfcmVnaW9uX2V0X2VuYWJsZWQgfHwNCj4gLQkJCSAgICBuZXdf
-Y3J0Y19zdGF0ZS0+aGFzX3BhbmVsX3JlcGxheSAhPSBwc3ItPnBhbmVsX3JlcGxheV9lbmFibGVk
-IHx8DQo+IC0JCQkgICAgKERJU1BMQVlfVkVSKGRpc3BsYXkpIDwgMTEgJiYgbmV3X2NydGNfc3Rh
-dGUtPndtX2xldmVsX2Rpc2FibGVkKSkNCj4gKwkJCWlmIChpbnRlbF9jcnRjX25lZWRzX21vZGVz
-ZXQobmV3X2NydGNfc3RhdGUpKQ0KPiArCQkJCXBzci0+bm9fcHNyX3JlYXNvbiA9ICJOZXcgc3Rh
-dGUgbmVlZHMgbW9kZXNldCI7DQpQaHJhc2luZyB0aGVzZSBzdGF0ZW1lbnRzIGFyZSBhbHdheXMg
-bWF0dGVyIG9mIGEgb3BpbmlvbiBidXQgSSB3b3VsZCByZXBocmFzZSB0aGlzIGFzIGZvbGxvd2lu
-Zw0KDQpwc3ItPm5vX3Bzcl9yZWFzb24gPSAiQ1JUQyBuZWVkcyBtb2Rlc2V0IiANCg0KYXMgY3J0
-YyBzdGF0ZSBpcyBzaW1wbHkgYSBzdGF0ZSBvZiB0aGUgY3J0YyBhbmQgY3J0YyBpcyB0aGUgb25l
-IHRoYXQgbmVlZHMgbW9kZSBzZXR0aW5nLg0KDQo+ICsJCQlpZiAoIW5ld19jcnRjX3N0YXRlLT5o
-YXNfcHNyKQ0KPiArCQkgICAgICAgICAgICAgICAgcHNyLT5ub19wc3JfcmVhc29uID0gIlBTUiBk
-aXNhYmxlZCBpbiBuZXcgc3RhdGUiOw0KVGhlc2UgcmVhc29ucyBhcmUgbGlzdGVkIGluIHRoZSBj
-b21tZW50IG9mIHRoaXMgc2VjdGlvbiBvZiBjb2RlLiBIb3dldmVyLCBzaW5jZSBoYXNfcHNyIGlz
-IG5vdCB0cnVlLCB0aGUgUFNSIGlzIGRpc2FibGVkIHdoYXRldmVyIHJlYXNvbiAoZHVlIHRvIGxh
-Y2sgb2YgcGxhbmVzIGV0Yy4pIEkgd291bGQgc2ltcGx5IHJlcGhyYXNlIHRoaXMgYXMNCg0KcHNy
-LT5ub19wc3JfcmVhc29uID0gIlBTUiBkaXNhYmxlZCINCg0KPiArCQkJaWYgKCFuZXdfY3J0Y19z
-dGF0ZS0+YWN0aXZlX3BsYW5lcykNCj4gKwkJICAgICAgICAgICAgICAgIHBzci0+bm9fcHNyX3Jl
-YXNvbiA9ICJBbGwgcGxhbmVzIHdpbGwgZ28gaW5hY3RpdmUiOw0KTWF5YmUganVzdA0KDQpwc3It
-Pm5vX3Bzcl9yZWFzb24gPSAiQWxsIHBsYW5lcyBpbmFjdGl2ZSINCg0KPiArCQkJaWYgKG5ld19j
-cnRjX3N0YXRlLT5oYXNfc2VsX3VwZGF0ZSAhPSBwc3ItPnNlbF91cGRhdGVfZW5hYmxlZCkNCj4g
-KwkJCQlwc3ItPm5vX3Bzcl9yZWFzb24gPSAiQ2hhbmdpbmcgYmV0d2VlbiBQU1IgdmVyc2lvbnMi
-Ow0KPiArCQkJaWYgKG5ld19jcnRjX3N0YXRlLT5lbmFibGVfcHNyMl9zdV9yZWdpb25fZXQgIT0g
-cHNyLT5zdV9yZWdpb25fZXRfZW5hYmxlZCkNCj4gKwkJICAgICAgICAgICAgICAgIHBzci0+bm9f
-cHNyX3JlYXNvbiA9ICJSZWdpb24gRWFybHkgVHJhbnNwb3J0IGNoYW5naW5nIjsNClNpbmNlIHJl
-YXNvbnMgYWJvdmUgYW5kIGJlbG93IHRoaXMgc3RhcnRzIHdpdGggIkNoYW5naW5nIiBhbmQgdGhl
-IGNvbXBhcmlzb24gaXMgc2ltaWxhciwgbWF5YmUgd2UgY291bGQgcmVwaHJhc2UgdGhpcyBzaW1p
-bGFybHkgaS5lLg0KDQpwc3ItPm5vX3Bzcl9yZWFzb24gPSAiQ2hhbmdpbmcgUmVnaW9uIEVhcmx5
-IFRyYW5zcG9ydCINCg0KPiArCQkJaWYgKG5ld19jcnRjX3N0YXRlLT5oYXNfcGFuZWxfcmVwbGF5
-ICE9IHBzci0+cGFuZWxfcmVwbGF5X2VuYWJsZWQpDQo+ICsJCQkJcHNyLT5ub19wc3JfcmVhc29u
-ID0gIkNoYW5naW5nIFBhbmVsIFJlcGxheSBtb2RlIjsNCj4gKwkJCWlmIChESVNQTEFZX1ZFUihk
-aXNwbGF5KSA8IDExICYmIG5ld19jcnRjX3N0YXRlLT53bV9sZXZlbF9kaXNhYmxlZCkNCj4gKwkJ
-CSAgICAgICAgcHNyLT5ub19wc3JfcmVhc29uID0gIkJzcGVjICMyMTY2NCBEaXNwbGF5IFdBICMx
-MTM2OiBza2wsIGJ4dCI7DQo+ICsJCQlpZiAocHNyLT5ub19wc3JfcmVhc29uKQ0KPiAgCQkJCWlu
-dGVsX3Bzcl9kaXNhYmxlX2xvY2tlZChpbnRlbF9kcCk7DQo+ICAJCQllbHNlIGlmIChuZXdfY3J0
-Y19zdGF0ZS0+d21fbGV2ZWxfZGlzYWJsZWQpDQo+ICAJCQkJLyogV2FfMTQwMTU2NDgwMDYgKi8N
-Cj4gQEAgLTM5MTgsMTIgKzM5MjgsNyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9wc3JfcHJpbnRfbW9k
-ZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLA0KPiAgCQkJCSBzdHJ1Y3Qgc2VxX2ZpbGUgKm0p
-DQo+ICB7DQo+ICAJc3RydWN0IGludGVsX3BzciAqcHNyID0gJmludGVsX2RwLT5wc3I7DQo+IC0J
-Y29uc3QgY2hhciAqc3RhdHVzLCAqbW9kZSwgKnJlZ2lvbl9ldDsNCj4gLQ0KPiAtCWlmIChwc3It
-PmVuYWJsZWQpDQo+IC0JCXN0YXR1cyA9ICIgZW5hYmxlZCI7DQo+IC0JZWxzZQ0KPiAtCQlzdGF0
-dXMgPSAiZGlzYWJsZWQiOw0KPiArCWNvbnN0IGNoYXIgKm1vZGUsICpyZWdpb25fZXQ7DQo+IA0K
-PiAgCWlmIChwc3ItPnBhbmVsX3JlcGxheV9lbmFibGVkICYmIHBzci0+c2VsX3VwZGF0ZV9lbmFi
-bGVkKQ0KPiAgCQltb2RlID0gIlBhbmVsIFJlcGxheSBTZWxlY3RpdmUgVXBkYXRlIjsgQEAgLTM5
-NDEsNyArMzk0NiwxMiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9wc3JfcHJpbnRfbW9kZShzdHJ1Y3QN
-Cj4gaW50ZWxfZHAgKmludGVsX2RwLA0KPiAgCWVsc2UNCj4gIAkJcmVnaW9uX2V0ID0gIiI7DQo+
-IA0KPiAtCXNlcV9wcmludGYobSwgIlBTUiBtb2RlOiAlcyVzJXNcbiIsIG1vZGUsIHN0YXR1cywg
-cmVnaW9uX2V0KTsNCj4gKwlpZiAocHNyLT5lbmFibGVkKSB7DQo+ICsJCXNlcV9wdXRzKG0sICJQ
-U1IgZW5hYmxlZFxuIik7DQo+ICsJCXNlcV9wcmludGYobSwgIlBTUiBtb2RlOiAlcyVzXG4iLCBt
-b2RlLCByZWdpb25fZXQpOw0KPiArCX0gZWxzZSB7DQo+ICsJCXNlcV9wcmludGYobSwgIlBTUiBk
-aXNhYmxlZDogJXNcbiIsIHBzci0+bm9fcHNyX3JlYXNvbik7DQo+ICsJfQ0KPiAgfQ0KPiANCj4g
-IHN0YXRpYyBpbnQgaW50ZWxfcHNyX3N0YXR1cyhzdHJ1Y3Qgc2VxX2ZpbGUgKm0sIHN0cnVjdCBp
-bnRlbF9kcCAqaW50ZWxfZHApDQo+IC0tDQo+IDIuNDUuMg0KDQpPdGhlcndpc2UsIHRoZSBwYXRj
-aCBsb29rcyBnb29kLg0K
+Hi Rodrigo,
+
+Thank you for the review.
+
+On Mon, Jun 16, 2025 at 04:30:03PM -0400, Rodrigo Vivi wrote:
+> On Thu, Jun 12, 2025 at 04:24:48PM +0300, Heikki Krogerus wrote:
+> > Adding adaption/glue layer where the I2C host adapter
+> > (Synopsys DesignWare I2C adapter) and the I2C clients (the
+> > microcontroller units) are enumerated.
+> > 
+> > The microcontroller units (MCU) that are attached to the GPU
+> > depend on the OEM. The initially supported MCU will be the
+> > Add-In Management Controller (AMC).
+> > 
+> > Originally-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> > Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/Kconfig            |   1 +
+> >  drivers/gpu/drm/xe/Makefile           |   1 +
+> >  drivers/gpu/drm/xe/regs/xe_i2c_regs.h |  15 ++
+> >  drivers/gpu/drm/xe/regs/xe_irq_regs.h |   1 +
+> >  drivers/gpu/drm/xe/regs/xe_pmt.h      |   2 +-
+> >  drivers/gpu/drm/xe/regs/xe_regs.h     |   2 +
+> >  drivers/gpu/drm/xe/xe_device.c        |   5 +
+> >  drivers/gpu/drm/xe/xe_device_types.h  |   4 +
+> >  drivers/gpu/drm/xe/xe_i2c.c           | 270 ++++++++++++++++++++++++++
+> >  drivers/gpu/drm/xe/xe_i2c.h           |  58 ++++++
+> >  drivers/gpu/drm/xe/xe_irq.c           |   2 +
+> >  11 files changed, 360 insertions(+), 1 deletion(-)
+> >  create mode 100644 drivers/gpu/drm/xe/regs/xe_i2c_regs.h
+> >  create mode 100644 drivers/gpu/drm/xe/xe_i2c.c
+> >  create mode 100644 drivers/gpu/drm/xe/xe_i2c.h
+> > 
+> > diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+> > index c57f1da0791d..5c162031fc3f 100644
+> > --- a/drivers/gpu/drm/xe/Kconfig
+> > +++ b/drivers/gpu/drm/xe/Kconfig
+> > @@ -44,6 +44,7 @@ config DRM_XE
+> >  	select WANT_DEV_COREDUMP
+> >  	select AUXILIARY_BUS
+> >  	select HMM_MIRROR
+> > +	select REGMAP if I2C
+> >  	help
+> >  	  Experimental driver for Intel Xe series GPUs
+> >  
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index f5f5775acdc0..293552fc5aaf 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -124,6 +124,7 @@ xe-y += xe_bb.o \
+> >  	xe_wait_user_fence.o \
+> >  	xe_wopcm.o
+> >  
+> > +xe-$(CONFIG_I2C)	+= xe_i2c.o
+> >  xe-$(CONFIG_HMM_MIRROR) += xe_hmm.o
+> >  xe-$(CONFIG_DRM_XE_GPUSVM) += xe_svm.o
+> >  
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_i2c_regs.h b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
+> > new file mode 100644
+> > index 000000000000..fa7223e6ce9e
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
+> > @@ -0,0 +1,15 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +#ifndef _XE_I2C_REGS_H_
+> > +#define _XE_I2C_REGS_H_
+> > +
+> > +#include "xe_reg_defs.h"
+> > +#include "xe_regs.h"
+> > +
+> > +#define I2C_CONFIG_SPACE_OFFSET		(SOC_BASE + 0xf6000)
+> > +#define I2C_MEM_SPACE_OFFSET		(SOC_BASE + 0xf7400)
+> > +#define I2C_BRIDGE_OFFSET		(SOC_BASE + 0xd9000)
+> > +
+> > +#define CLIENT_DISC_COOKIE		XE_REG(SOC_BASE + 0x0164)
+> > +#define CLIENT_DISC_ADDRESS		XE_REG(SOC_BASE + 0x0168)
+> 
+> Could you please send me some pointers of the spec for this registers
+> so I can help on the review here?
+
+Done.
+
+> > +
+> > +#endif /* _XE_I2C_REGS_H_ */
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_irq_regs.h b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
+> > index f0ecfcac4003..13635e4331d4 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_irq_regs.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
+> > @@ -19,6 +19,7 @@
+> >  #define   MASTER_IRQ				REG_BIT(31)
+> >  #define   GU_MISC_IRQ				REG_BIT(29)
+> >  #define   DISPLAY_IRQ				REG_BIT(16)
+> > +#define   I2C_IRQ				REG_BIT(12)
+> >  #define   GT_DW_IRQ(x)				REG_BIT(x)
+> >  
+> >  /*
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
+> > index b0efd9b48d1e..2995d72c3f78 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_pmt.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
+> > @@ -5,7 +5,7 @@
+> >  #ifndef _XE_PMT_H_
+> >  #define _XE_PMT_H_
+> >  
+> > -#define SOC_BASE			0x280000
+> > +#include "xe_regs.h"
+> >  
+> >  #define BMG_PMT_BASE_OFFSET		0xDB000
+> >  #define BMG_DISCOVERY_OFFSET		(SOC_BASE + BMG_PMT_BASE_OFFSET)
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+> > index 3abb17d2ca33..1926b4044314 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_regs.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+> > @@ -7,6 +7,8 @@
+> >  
+> >  #include "regs/xe_reg_defs.h"
+> >  
+> > +#define SOC_BASE				0x280000
+> > +
+> >  #define GU_CNTL_PROTECTED			XE_REG(0x10100C)
+> >  #define   DRIVERINT_FLR_DIS			REG_BIT(31)
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> > index 7e87344943cd..ca098ed532b5 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -42,6 +42,7 @@
+> >  #include "xe_guc.h"
+> >  #include "xe_hw_engine_group.h"
+> >  #include "xe_hwmon.h"
+> > +#include "xe_i2c.h"
+> >  #include "xe_irq.h"
+> >  #include "xe_memirq.h"
+> >  #include "xe_mmio.h"
+> > @@ -921,6 +922,10 @@ int xe_device_probe(struct xe_device *xe)
+> >  	if (err)
+> >  		goto err_unregister_display;
+> >  
+> > +	err = xe_i2c_probe(xe);
+> > +	if (err)
+> > +		goto err_unregister_display;
+> > +
+> >  	for_each_gt(gt, xe, id)
+> >  		xe_gt_sanitize_freq(gt);
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > index ac27389ccb8b..8f3c5ea58034 100644
+> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > @@ -33,6 +33,7 @@
+> >  struct dram_info;
+> >  struct intel_display;
+> >  struct xe_ggtt;
+> > +struct xe_i2c;
+> >  struct xe_pat_ops;
+> >  struct xe_pxp;
+> >  
+> > @@ -573,6 +574,9 @@ struct xe_device {
+> >  	/** @pmu: performance monitoring unit */
+> >  	struct xe_pmu pmu;
+> >  
+> > +	/** @i2c: I2C host controller */
+> > +	struct xe_i2c *i2c;
+> > +
+> >  	/** @atomic_svm_timeslice_ms: Atomic SVM fault timeslice MS */
+> >  	u32 atomic_svm_timeslice_ms;
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+> > new file mode 100644
+> > index 000000000000..3d649602ede8
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_i2c.c
+> > @@ -0,0 +1,270 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> 
+> Does it really need to be GPL or could it be MIT?
+> 
+> (If you copied code from other files that are GPL, then it needs
+> to be GPL)
+
+Michael, do we need to use GPL here, or is MIT okay?
+
+> > +/*
+> > + * Intel Xe I2C attached Microcontroller Units (MCU)
+> > + *
+> > + * Copyright (C) 2025 Intel Corporation.
+> > + */
+> > +
+> > +#include <linux/array_size.h>
+> > +#include <linux/container_of.h>
+> > +#include <linux/device.h>
+> > +#include <linux/err.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/ioport.h>
+> > +#include <linux/irq.h>
+> > +#include <linux/irqdomain.h>
+> > +#include <linux/notifier.h>
+> > +#include <linux/pci.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/property.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/sprintf.h>
+> > +#include <linux/string.h>
+> > +#include <linux/types.h>
+> > +#include <linux/workqueue.h>
+> > +
+> > +#include "regs/xe_i2c_regs.h"
+> > +#include "regs/xe_irq_regs.h"
+> > +
+> > +#include "xe_device.h"
+> > +#include "xe_device_types.h"
+> > +#include "xe_i2c.h"
+> > +#include "xe_mmio.h"
+> > +#include "xe_platform_types.h"
+> > +
+> > +/* Synopsys DesignWare I2C Host Adapter */
+> > +static const char adapter_name[] = "i2c_designware";
+> > +
+> > +static const struct property_entry xe_i2c_adapter_properties[] = {
+> > +	PROPERTY_ENTRY_STRING("compatible", "intel,xe-i2c"),
+> > +	PROPERTY_ENTRY_U32("clock-frequency", I2C_MAX_FAST_MODE_PLUS_FREQ),
+> > +	{ }
+> > +};
+> > +
+> > +static inline void xe_i2c_read_endpoint(struct xe_mmio *mmio, void *ep)
+> > +{
+> > +	u32 *val = ep;
+> > +
+> > +	val[0] = xe_mmio_read32(mmio, CLIENT_DISC_COOKIE);
+> > +	val[1] = xe_mmio_read32(mmio, CLIENT_DISC_ADDRESS);
+> > +}
+> > +
+> > +static void xe_i2c_client_work(struct work_struct *work)
+> > +{
+> > +	struct xe_i2c *i2c = container_of(work, struct xe_i2c, work);
+> > +	struct i2c_board_info info = {
+> > +		.type	= "amc",
+> > +		.flags	= I2C_CLIENT_HOST_NOTIFY,
+> > +		.addr	= i2c->ep.addr[1],
+> > +	};
+> > +
+> > +	i2c->client[0] = i2c_new_client_device(i2c->adapter, &info);
+> > +}
+> > +
+> > +static int xe_i2c_notifier(struct notifier_block *nb, unsigned long action, void *data)
+> > +{
+> > +	struct xe_i2c *i2c = container_of(nb, struct xe_i2c, bus_notifier);
+> > +	struct i2c_adapter *adapter = i2c_verify_adapter(data);
+> > +	struct device *dev = data;
+> > +
+> > +	if (action == BUS_NOTIFY_ADD_DEVICE &&
+> > +	    adapter && dev->parent == &i2c->pdev->dev) {
+> > +		i2c->adapter = adapter;
+> > +		schedule_work(&i2c->work);
+> > +		return NOTIFY_OK;
+> > +	}
+> > +
+> > +	return NOTIFY_DONE;
+> > +}
+> > +
+> > +static int xe_i2c_register_adapter(struct xe_i2c *i2c)
+> > +{
+> > +	struct pci_dev *pci = to_pci_dev(i2c->drm_dev);
+> > +	struct platform_device *pdev;
+> > +	struct fwnode_handle *fwnode;
+> > +	int ret;
+> > +
+> > +	fwnode = fwnode_create_software_node(xe_i2c_adapter_properties, NULL);
+> > +	if (!fwnode)
+> > +		return -ENOMEM;
+> > +
+> > +	/*
+> > +	 * Not using platform_device_register_full() here because we don't have
+> > +	 * a handle to the platform_device before it returns. xe_i2c_notifier()
+> > +	 * uses that handle, but it may be called before
+> > +	 * platform_device_register_full() is done.
+> > +	 */
+> > +	pdev = platform_device_alloc(adapter_name, pci_dev_id(pci));
+> > +	if (!pdev) {
+> > +		ret = -ENOMEM;
+> > +		goto err_fwnode_remove;
+> > +	}
+> > +
+> > +	if (i2c->adapter_irq) {
+> > +		struct resource	res = { };
+> > +
+> > +		res.start = i2c->adapter_irq;
+> > +		res.name = "xe_i2c";
+> > +		res.flags = IORESOURCE_IRQ;
+> > +
+> > +		ret = platform_device_add_resources(pdev, &res, 1);
+> > +		if (ret)
+> > +			goto err_pdev_put;
+> > +	}
+> > +
+> > +	pdev->dev.parent = i2c->drm_dev;
+> > +	pdev->dev.fwnode = fwnode;
+> > +	i2c->adapter_node = fwnode;
+> > +	i2c->pdev = pdev;
+> > +
+> > +	ret = platform_device_add(pdev);
+> > +	if (ret)
+> > +		goto err_pdev_put;
+> > +
+> > +	return 0;
+> > +
+> > +err_pdev_put:
+> > +	platform_device_put(pdev);
+> > +err_fwnode_remove:
+> > +	fwnode_remove_software_node(fwnode);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static void xe_i2c_unregister_adapter(struct xe_i2c *i2c)
+> > +{
+> > +	platform_device_unregister(i2c->pdev);
+> > +	fwnode_remove_software_node(i2c->adapter_node);
+> > +}
+> > +
+> > +void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
+> > +{
+> > +	if (!xe->i2c || !xe->i2c->adapter_irq)
+> > +		return;
+> > +
+> > +	if (master_ctl & I2C_IRQ)
+> > +		generic_handle_irq_safe(xe->i2c->adapter_irq);
+> > +}
+> > +
+> > +static int xe_i2c_irq_map(struct irq_domain *h, unsigned int virq,
+> > +			  irq_hw_number_t hw_irq_num)
+> > +{
+> > +	irq_set_chip_and_handler(virq, &dummy_irq_chip, handle_simple_irq);
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct irq_domain_ops xe_i2c_irq_ops = {
+> > +	.map = xe_i2c_irq_map,
+> > +};
+> > +
+> > +static int xe_i2c_create_irq(struct xe_i2c *i2c)
+> > +{
+> > +	struct irq_domain *domain;
+> > +
+> > +	if (!(i2c->ep.capabilities & XE_I2C_EP_CAP_IRQ))
+> > +		return 0;
+> > +
+> > +	domain = irq_domain_create_linear(dev_fwnode(i2c->drm_dev), 1, &xe_i2c_irq_ops, NULL);
+> > +	if (!domain)
+> > +		return -ENOMEM;
+> > +
+> > +	i2c->adapter_irq = irq_create_mapping(domain, 0);
+> > +	i2c->irqdomain = domain;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static void xe_i2c_remove_irq(struct xe_i2c *i2c)
+> > +{
+> > +	if (i2c->irqdomain) {
+> > +		irq_dispose_mapping(i2c->adapter_irq);
+> > +		irq_domain_remove(i2c->irqdomain);
+> > +	}
+> > +}
+> > +
+> > +static int xe_i2c_read(void *context, unsigned int reg, unsigned int *val)
+> > +{
+> > +	struct xe_i2c *i2c = context;
+> > +
+> > +	*val = xe_mmio_read32(i2c->mmio, XE_REG(reg + I2C_MEM_SPACE_OFFSET));
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int xe_i2c_write(void *context, unsigned int reg, unsigned int val)
+> > +{
+> > +	struct xe_i2c *i2c = context;
+> > +
+> > +	xe_mmio_write32(i2c->mmio, XE_REG(reg + I2C_MEM_SPACE_OFFSET), val);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct regmap_config i2c_regmap_config = {
+> > +	.reg_bits = 32,
+> > +	.val_bits = 32,
+> > +	.reg_read = xe_i2c_read,
+> > +	.reg_write = xe_i2c_write,
+> > +	.fast_io = true,
+> > +};
+> > +
+> > +static void xe_i2c_remove(void *data)
+> > +{
+> > +	struct xe_i2c *i2c = data;
+> > +	int i;
+> > +
+> > +	for (i = 0; i < XE_I2C_MAX_CLIENTS; i++)
+> > +		i2c_unregister_device(i2c->client[i]);
+> > +
+> > +	bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
+> > +	xe_i2c_unregister_adapter(i2c);
+> > +	xe_i2c_remove_irq(i2c);
+> > +}
+> > +
+> > +int xe_i2c_probe(struct xe_device *xe)
+> 
+> could you please add some /** DOC: Xe i2c ... above
+> and then add some doc to the exported functions?
+
+Sure thing. But just to be clear to everyone, there no are exported
+functions here (global but not exported).
+
+> > +{
+> > +	struct xe_i2c_endpoint ep;
+> > +	struct regmap *regmap;
+> > +	struct xe_i2c *i2c;
+> > +	int ret;
+> > +
+> > +	xe_i2c_read_endpoint(xe_root_tile_mmio(xe), &ep);
+> > +	if (ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
+> > +		return 0;
+> > +
+> > +	i2c = devm_kzalloc(xe->drm.dev, sizeof(*i2c), GFP_KERNEL);
+> > +	if (!i2c)
+> > +		return -ENOMEM;
+> > +
+> > +	INIT_WORK(&i2c->work, xe_i2c_client_work);
+> > +	i2c->mmio = xe_root_tile_mmio(xe);
+> > +	i2c->drm_dev = xe->drm.dev;
+> > +	i2c->ep = ep;
+> > +
+> > +	regmap = devm_regmap_init(i2c->drm_dev, NULL, i2c, &i2c_regmap_config);
+> > +	if (IS_ERR(regmap))
+> > +		return PTR_ERR(regmap);
+> > +
+> > +	i2c->bus_notifier.notifier_call = xe_i2c_notifier;
+> > +	ret = bus_register_notifier(&i2c_bus_type, &i2c->bus_notifier);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = xe_i2c_create_irq(i2c);
+> > +	if (ret)
+> > +		goto err_unregister_notifier;
+> > +
+> > +	ret = xe_i2c_register_adapter(i2c);
+> > +	if (ret)
+> > +		goto err_remove_irq;
+> > +
+> > +	return devm_add_action_or_reset(i2c->drm_dev, xe_i2c_remove, i2c);
+> > +
+> > +err_remove_irq:
+> > +	xe_i2c_remove_irq(i2c);
+> > +
+> > +err_unregister_notifier:
+> > +	bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
+> > +
+> > +	return ret;
+> > +}
+> > diff --git a/drivers/gpu/drm/xe/xe_i2c.h b/drivers/gpu/drm/xe/xe_i2c.h
+> > new file mode 100644
+> > index 000000000000..e88845be61b4
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_i2c.h
+> > @@ -0,0 +1,58 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> 
+> same question here...
+> 
+> > +#ifndef _XE_I2C_H_
+> > +#define _XE_I2C_H_
+> > +
+> > +#include <linux/bits.h>
+> > +#include <linux/notifier.h>
+> > +#include <linux/types.h>
+> > +#include <linux/workqueue.h>
+> > +
+> > +struct device;
+> > +struct fwnode_handle;
+> > +struct i2c_adapter;
+> > +struct i2c_client;
+> > +struct irq_domain;
+> > +struct platform_device;
+> > +struct xe_device;
+> > +struct xe_mmio;
+> > +
+> > +#define XE_I2C_MAX_CLIENTS		3
+> > +
+> > +#define XE_I2C_EP_COOKIE_DEVICE		0xde
+> > +
+> > +/* Endpoint Capabilities */
+> > +#define XE_I2C_EP_CAP_IRQ		BIT(0)
+> > +
+> > +struct xe_i2c_endpoint {
+> > +	u8 cookie;
+> > +	u8 capabilities;
+> > +	u16 addr[XE_I2C_MAX_CLIENTS];
+> > +};
+> > +
+> > +struct xe_i2c {
+> > +	struct fwnode_handle *adapter_node;
+> > +	struct platform_device *pdev;
+> > +	struct i2c_adapter *adapter;
+> > +	struct i2c_client *client[XE_I2C_MAX_CLIENTS];
+> > +
+> > +	struct notifier_block bus_notifier;
+> > +	struct work_struct work;
+> > +
+> > +	struct irq_domain *irqdomain;
+> > +	int adapter_irq;
+> > +
+> > +	struct xe_i2c_endpoint ep;
+> > +	struct device *drm_dev;
+> > +
+> > +	struct xe_mmio *mmio;
+> > +};
+> > +
+> > +#if IS_ENABLED(CONFIG_I2C)
+> > +int xe_i2c_probe(struct xe_device *xe);
+> > +void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl);
+> > +#else
+> > +static inline int xe_i2c_probe(struct xe_device *xe) { return 0; }
+> > +static inline void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl) { }
+> > +#endif
+> > +
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+> > index 5362d3174b06..c43e62dc692e 100644
+> > --- a/drivers/gpu/drm/xe/xe_irq.c
+> > +++ b/drivers/gpu/drm/xe/xe_irq.c
+> > @@ -18,6 +18,7 @@
+> >  #include "xe_gt.h"
+> >  #include "xe_guc.h"
+> >  #include "xe_hw_engine.h"
+> > +#include "xe_i2c.h"
+> >  #include "xe_memirq.h"
+> >  #include "xe_mmio.h"
+> >  #include "xe_pxp.h"
+> > @@ -476,6 +477,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+> >  			if (xe->info.has_heci_cscfi)
+> >  				xe_heci_csc_irq_handler(xe, master_ctl);
+> >  			xe_display_irq_handler(xe, master_ctl);
+> > +			xe_i2c_irq_handler(xe, master_ctl);
+> >  			gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
+> >  		}
+> >  	}
+> > -- 
+> > 2.47.2
+> > 
+
+thanks,
+
+-- 
+heikki
