@@ -4,59 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B81D1C71159
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Jun 2025 02:08:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75F88C71159
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Jun 2025 02:09:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAF5310E3EB;
-	Tue, 17 Jun 2025 02:08:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A60910E2AB;
+	Tue, 17 Jun 2025 02:09:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l8iNKa4C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FsTEUkjK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DAED10E2AB;
- Tue, 17 Jun 2025 02:08:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C3ED10E2AB
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Jun 2025 02:09:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750126114; x=1781662114;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=hkmxoAth24IUQdWeWg/PW1kvEopOf7zFgXKj55VjQDM=;
- b=l8iNKa4CTW7jGfkyH4hRqtpBYgvA7STYlnKIsxF77ZEThjCp5kwQVFfc
- 1Zo4aCU/B+HQMUpP5Kd7IhsO9ULXdpW8cQ5LcjgyUtH8R7YaCQMzNbnZy
- +lkypGpaQePuQvk0pFnl6fViEpF6nNxkkZryHH1UdWs08v5T3tl/fzr/r
- fJUH26oEzc39TykclkRUzEd4Pn2d0tb1fvCiyfTOEwj2dzWSE2l4i4+Od
- 95E5sIPzWiHkJ/XO4lOPNe7T2XkxnciCO5FdvhvXyyWXRXZ1iIFKOXPC7
- lkjwodZovDg3fCxJ3XAohMo22YB1MfObMdBHXvpiIdlcher+yF1kFOXmy w==;
-X-CSE-ConnectionGUID: J+9T6E2TQce941cgTqKwkg==
-X-CSE-MsgGUID: 1mG/XBUBRSyzxbIAWV/eeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="52152772"
-X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="52152772"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 19:08:31 -0700
-X-CSE-ConnectionGUID: 7FqgPxr3S8OW7DheVNUUYQ==
-X-CSE-MsgGUID: h7mtKchlQ8Op5htLGZgezw==
+ t=1750126153; x=1781662153;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/AL7paBee8pMf6p5G6K7GhOXGmgkWT+2o1fj3BJ5hd8=;
+ b=FsTEUkjKEpkWVbgicbPeZWNyqVNj/2eiX1Z8uyaJn3E76lgjzovBiJRt
+ y3lxV0YAZxqa+6ASRL0oL6NPw01N2sV8unvIDsqQ+xIbUvZgULX0Q3lVC
+ lDsQlyzvl2mqHkTChUUZhLVkD1QMyk8ewQl+lJZ3JuN8vPLBQWB/YoHpz
+ jkWrun3Wjl67eOYKJ2737lXL28MLnyiw3wHAHZtQXbxMi9/rRcEvqC3Mk
+ GKoEp3GaSQzQa/YEvM1B8pEtoG78zAI6I8Z0n+bxiHSbaKk0/RyGrpAYW
+ 8gWtyoxPwJaHtf+4QDCMLJXQMwlJZBLUqyAfCmWZ9X6Hw38uSShEN6dDD g==;
+X-CSE-ConnectionGUID: V9zMErDnS6O3qiKRcq/iqw==
+X-CSE-MsgGUID: /Vth9mbpRcG9JzfsHjVx+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="62890147"
+X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="62890147"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2025 19:09:13 -0700
+X-CSE-ConnectionGUID: CNIJBnb6RyqvOz1hWmA+YA==
+X-CSE-MsgGUID: FTUz1502RVe0JeL2I4LP8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="149093529"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
- by fmviesa010.fm.intel.com with ESMTP; 16 Jun 2025 19:08:29 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uRLkQ-000FVc-34;
- Tue, 17 Jun 2025 02:08:26 +0000
-Date: Tue, 17 Jun 2025 10:08:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- thomas.hellstrom@linux.intel.com, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, matthew.brost@intel.com,
- matthew.auld@intel.com
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 4/6] drm/ttm: rename ttm_bo_put to _fini
-Message-ID: <202506170945.w3e0EBJ6-lkp@intel.com>
-References: <20250616130726.22863-4-christian.koenig@amd.com>
+X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="149174183"
+Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2025 19:09:13 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH v2 0/5] Future-proof for multi-tile + multi-GT cases
+Date: Mon, 16 Jun 2025 19:09:07 -0700
+Message-ID: <20250617020906.1719276-7-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250616130726.22863-4-christian.koenig@amd.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,52 +64,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Christian,
+Today all of our platforms fall into one of three cases:
+ * Single tile platforms with a single (primary) GT
+ * Single tile platforms with two GTs (primary + media)
+ * Two-tile platforms with a single GT (primary) in each
 
-kernel test robot noticed the following build errors:
+Our numbering of GTs has been a bit inconsistent between platforms
+(e.g., GT1 is the media GT on some platforms, but the second tile's
+primary GT on others).  In the future we'll likely have platforms that
+are both multi-tile and multi-GT, which will make the situation more
+confusing.  We could also wind up with more than just two types of GTs
+at some point in the future.
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on next-20250616]
-[cannot apply to drm-xe/drm-xe-next drm-exynos/exynos-drm-next linus/master drm/drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.16-rc2]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Going forward we should standardize the way we assign uapi GT IDs to
+internal GT structures.  Let's declare that for userspace GT ID n,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/drm-xe-stop-asserting-on-the-TTM-refcount/20250616-210818
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20250616130726.22863-4-christian.koenig%40amd.com
-patch subject: [PATCH 4/6] drm/ttm: rename ttm_bo_put to _fini
-config: riscv-randconfig-002-20250617 (https://download.01.org/0day-ci/archive/20250617/202506170945.w3e0EBJ6-lkp@intel.com/config)
-compiler: riscv32-linux-gcc (GCC) 10.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250617/202506170945.w3e0EBJ6-lkp@intel.com/reproduce)
+  GT[n]'s tile             = n / (max gt per tile)
+  GT[n]'s slot within tile = n % (max gt per tile)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506170945.w3e0EBJ6-lkp@intel.com/
+If we allow 'max gt per tile' to vary by platform, we can support any
+possible future tile/GT combinations (even if new types of GTs show up)
+without changing any behavior of our existing platforms.
 
-All errors (new ones prefixed by >>):
+v2:
+ - Rebase on top of the latest xe_pci test updates from Michal.  Convert
+   the kunit test into a parameterized test that will run against each
+   PCI ID supported by the driver.
 
-   In file included from drivers/gpu/drm/nouveau/nouveau_dma.h:30,
-                    from drivers/gpu/drm/nouveau/nouveau_chan.c:31:
-   drivers/gpu/drm/nouveau/nouveau_bo.h: In function 'nouveau_bo_fini':
->> drivers/gpu/drm/nouveau/nouveau_bo.h:60:2: error: implicit declaration of function 'ttm_bo_put'; did you mean 'ttm_bo_pin'? [-Werror=implicit-function-declaration]
-      60 |  ttm_bo_put(&bo->bo);
-         |  ^~~~~~~~~~
-         |  ttm_bo_pin
-   cc1: some warnings being treated as errors
+Matt Roper (5):
+  drm/xe: Export xe_step_name for kunit tests
+  drm/xe: Track maximum GTs per tile on a per-platform basis
+  drm/xe/tests/pci: Ensure all platforms have a valid GT/tile count
+  drm/xe: Assign GT IDs properly on multi-tile + multi-GT platforms
+  drm/xe: Don't compare GT ID to GT count when determining valid GTs
 
-
-vim +60 drivers/gpu/drm/nouveau/nouveau_bo.h
-
-8be21a6402baa5 Ben Skeggs       2012-07-18  56  
-bf32a3a1268638 Danilo Krummrich 2024-07-18  57  static inline void
-bf32a3a1268638 Danilo Krummrich 2024-07-18  58  nouveau_bo_fini(struct nouveau_bo *bo)
-8be21a6402baa5 Ben Skeggs       2012-07-18  59  {
-bf32a3a1268638 Danilo Krummrich 2024-07-18 @60  	ttm_bo_put(&bo->bo);
-8be21a6402baa5 Ben Skeggs       2012-07-18  61  }
-8be21a6402baa5 Ben Skeggs       2012-07-18  62  
+ drivers/gpu/drm/xe/tests/xe_pci.c      | 31 ++++++++++++
+ drivers/gpu/drm/xe/tests/xe_pci_test.c | 12 +++++
+ drivers/gpu/drm/xe/tests/xe_pci_test.h |  1 +
+ drivers/gpu/drm/xe/xe_device.h         | 47 ++++++++----------
+ drivers/gpu/drm/xe/xe_device_types.h   |  2 +
+ drivers/gpu/drm/xe/xe_eu_stall.c       |  6 ++-
+ drivers/gpu/drm/xe/xe_exec_queue.c     |  2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c      |  3 +-
+ drivers/gpu/drm/xe/xe_mmio.c           |  8 ---
+ drivers/gpu/drm/xe/xe_pci.c            | 68 ++++++++------------------
+ drivers/gpu/drm/xe/xe_pci_types.h      | 40 +++++++++++++++
+ drivers/gpu/drm/xe/xe_pmu.c            |  4 +-
+ drivers/gpu/drm/xe/xe_query.c          |  2 +-
+ drivers/gpu/drm/xe/xe_step.c           |  2 +
+ 14 files changed, 140 insertions(+), 88 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.49.0
+
