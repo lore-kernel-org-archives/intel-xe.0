@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C730AC7114A
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Jun 2025 04:28:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 461E5C71157
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Jun 2025 04:43:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8805010E5F7;
-	Tue, 17 Jun 2025 04:28:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04A6B10E4F4;
+	Tue, 17 Jun 2025 04:43:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gCecL61i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HQtCSQ1N";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7EE510EA97;
- Tue, 17 Jun 2025 04:28:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5575F10E4F4;
+ Tue, 17 Jun 2025 04:43:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750134527; x=1781670527;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=r+JlwcSVkr+3dCSAPh82FbMT/WtwIWWYDyDV7nZ6rqc=;
- b=gCecL61ikPeLcvbXHKWe0V49TZK8816mUWcWPeJjt2neTEcSP+O/hFSp
- MoUxuntYIDo4Jn44Prd4ZYUzhzzyFw2ae6udUuvSiJtGx+kmZwGE0GDVi
- N/ez1HcqxI0mUbyoB9QZIRiRolXZd/ost+hh9IijyPec6ZA7WT7gDYFRx
- Wlzv+I2oyne59rFFoSch3o63x2Gfvwcn37qe0g4H4LHe3/NNQbbEQxK0b
- zKrFY8mlntCWS8die2vmtWOvraNrS88ahmqUopSF/BHM/8js8hXXpVsaI
- L12DWoZIVXg8ZWWqzTvDD4YBZqKImFRjW6RpIh6jrLliZ7qg4C4QHkrHD g==;
-X-CSE-ConnectionGUID: NOkDKzC6QD+6+y6G3hH9mw==
-X-CSE-MsgGUID: RDnoloqpS+ChgZAX05f5hQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="52386681"
-X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="52386681"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 21:28:46 -0700
-X-CSE-ConnectionGUID: l7Cy+F8MRUS3XxF327Kqsg==
-X-CSE-MsgGUID: LtY74Y6DQcuJ1/NV4lX+zQ==
+ t=1750135417; x=1781671417;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EHuC4aeYXON5gjT2GgbhOR7xYypkcW/CGLS1TV3d46Q=;
+ b=HQtCSQ1NA7tkbLICpmD7Ou/xpBu7FuLB4YUAAOl+ksgy9xlfi9yL9Bbc
+ ZfGmHPKjSlATGJOnDVaf+AsfDOsGRgg7O1ICBc72qaRIJPQxwEq0ZYLv8
+ 5gJnAPVjApNynFvHorP5nWXd1H/H/sfeh3XhYV7QxbbuF1ajP90NVZvKi
+ wGDPwkZYXBYCRWyk3dyqoMD+/7XSvdfS3QbY6qrT0V2lKPUk7E2T2r9Nc
+ 1riUXweIMN2BsTg3bD3Dqdkl2t27WdX1sb1WwyYMgghJmnXL1Ui1C2tGT
+ AePQziOCLD3rueC506WCnNUjQf0Y/8dL/En6vJQvAAxea2YfGt/7OQSg2 w==;
+X-CSE-ConnectionGUID: /W57dcX4RlOHbKwi/KrlKA==
+X-CSE-MsgGUID: eXe3gx/5Qf69ULfmV2Rj3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="69738168"
+X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="69738168"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2025 21:43:33 -0700
+X-CSE-ConnectionGUID: JlHJ21s9T5mwimwRr8YciA==
+X-CSE-MsgGUID: WbdFtbstT0WBXl0eW6nJ6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="185915972"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 16 Jun 2025 21:28:44 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uRNw8-000FaG-2C;
- Tue, 17 Jun 2025 04:28:40 +0000
-Date: Tue, 17 Jun 2025 12:27:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- thomas.hellstrom@linux.intel.com, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, matthew.brost@intel.com,
- matthew.auld@intel.com
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 6/6] drm/ttm: replace TTMs refcount with the DRM refcount
-Message-ID: <202506171254.EsodeP9U-lkp@intel.com>
-References: <20250616130726.22863-6-christian.koenig@amd.com>
+X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="153625508"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa004.jf.intel.com with ESMTP; 16 Jun 2025 21:43:31 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: [PATCH] drm/i915/xe3lpd: Prune modes for YUV420
+Date: Tue, 17 Jun 2025 10:13:06 +0530
+Message-Id: <20250617044305.3079459-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250616130726.22863-6-christian.koenig@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,136 +65,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Christian,
+We only support resolution up to 4k for single pipe when using
+YUV420 format so we prune these modes and restrict the plane size
+at src. This is because pipe scaling will not support YUV420 scaling
+for hwidth > 4096.
 
-kernel test robot noticed the following build errors:
+--v2
+-Use output format to check [Ville]
+-Add Bspec references
+-Modify commit messge to point to why this is needed
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on next-20250616]
-[cannot apply to drm-xe/drm-xe-next drm-exynos/exynos-drm-next linus/master drm/drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.16-rc2]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+--v3
+-Use a function skl_scaler_mode_valid which is routed throug
+intel_pfit_mode_valid [Ville]
+-Combine the check conditons [Jonathan]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/drm-xe-stop-asserting-on-the-TTM-refcount/20250616-210818
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20250616130726.22863-6-christian.koenig%40amd.com
-patch subject: [PATCH 6/6] drm/ttm: replace TTMs refcount with the DRM refcount
-config: x86_64-buildonly-randconfig-006-20250617 (https://download.01.org/0day-ci/archive/20250617/202506171254.EsodeP9U-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250617/202506171254.EsodeP9U-lkp@intel.com/reproduce)
+Bspec: 49247, 50441
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com> #v2
+---
+ drivers/gpu/drm/i915/display/intel_dp.c   | 10 +++++++---
+ drivers/gpu/drm/i915/display/intel_hdmi.c |  3 +++
+ drivers/gpu/drm/i915/display/intel_pfit.c | 12 ++++++++++++
+ drivers/gpu/drm/i915/display/intel_pfit.h | 12 +++++++++++-
+ drivers/gpu/drm/i915/display/skl_scaler.c | 18 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/skl_scaler.h | 12 ++++++++++++
+ 6 files changed, 63 insertions(+), 4 deletions(-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506171254.EsodeP9U-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/i915/gem/i915_gem_ttm.c: In function 'i915_ttm_adjust_lru':
->> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:935:27: error: 'struct ttm_buffer_object' has no member named 'kref'
-     935 |         if (!kref_read(&bo->kref))
-         |                           ^~
-
-
-vim +935 drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-
-213d5092776345 Thomas Hellström 2021-06-10   918  
-3589fdbd3b2085 Thomas Hellström 2021-11-04   919  /**
-3589fdbd3b2085 Thomas Hellström 2021-11-04   920   * i915_ttm_adjust_lru - Adjust an object's position on relevant LRU lists.
-3589fdbd3b2085 Thomas Hellström 2021-11-04   921   * @obj: The object
-3589fdbd3b2085 Thomas Hellström 2021-11-04   922   */
-3589fdbd3b2085 Thomas Hellström 2021-11-04   923  void i915_ttm_adjust_lru(struct drm_i915_gem_object *obj)
-213d5092776345 Thomas Hellström 2021-06-10   924  {
-213d5092776345 Thomas Hellström 2021-06-10   925  	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
-7ae034590ceaef Matthew Auld     2021-10-18   926  	struct i915_ttm_tt *i915_tt =
-7ae034590ceaef Matthew Auld     2021-10-18   927  		container_of(bo->ttm, typeof(*i915_tt), ttm);
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   928  	bool shrinkable =
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   929  		bo->ttm && i915_tt->filp && ttm_tt_is_populated(bo->ttm);
-213d5092776345 Thomas Hellström 2021-06-10   930  
-213d5092776345 Thomas Hellström 2021-06-10   931  	/*
-213d5092776345 Thomas Hellström 2021-06-10   932  	 * Don't manipulate the TTM LRUs while in TTM bo destruction.
-213d5092776345 Thomas Hellström 2021-06-10   933  	 * We're called through i915_ttm_delete_mem_notify().
-213d5092776345 Thomas Hellström 2021-06-10   934  	 */
-213d5092776345 Thomas Hellström 2021-06-10  @935  	if (!kref_read(&bo->kref))
-213d5092776345 Thomas Hellström 2021-06-10   936  		return;
-213d5092776345 Thomas Hellström 2021-06-10   937  
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   938  	/*
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   939  	 * We skip managing the shrinker LRU in set_pages() and just manage
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   940  	 * everything here. This does at least solve the issue with having
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   941  	 * temporary shmem mappings(like with evicted lmem) not being visible to
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   942  	 * the shrinker. Only our shmem objects are shrinkable, everything else
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   943  	 * we keep as unshrinkable.
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   944  	 *
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   945  	 * To make sure everything plays nice we keep an extra shrink pin in TTM
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   946  	 * if the underlying pages are not currently shrinkable. Once we release
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   947  	 * our pin, like when the pages are moved to shmem, the pages will then
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   948  	 * be added to the shrinker LRU, assuming the caller isn't also holding
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   949  	 * a pin.
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   950  	 *
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   951  	 * TODO: consider maybe also bumping the shrinker list here when we have
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   952  	 * already unpinned it, which should give us something more like an LRU.
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   953  	 *
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   954  	 * TODO: There is a small window of opportunity for this function to
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   955  	 * get called from eviction after we've dropped the last GEM refcount,
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   956  	 * but before the TTM deleted flag is set on the object. Avoid
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   957  	 * adjusting the shrinker list in such cases, since the object is
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   958  	 * not available to the shrinker anyway due to its zero refcount.
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   959  	 * To fix this properly we should move to a TTM shrinker LRU list for
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   960  	 * these objects.
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   961  	 */
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   962  	if (kref_get_unless_zero(&obj->base.refcount)) {
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   963  		if (shrinkable != obj->mm.ttm_shrinkable) {
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   964  			if (shrinkable) {
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   965  				if (obj->mm.madv == I915_MADV_WILLNEED)
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   966  					__i915_gem_object_make_shrinkable(obj);
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   967  				else
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   968  					__i915_gem_object_make_purgeable(obj);
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   969  			} else {
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   970  				i915_gem_object_make_unshrinkable(obj);
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   971  			}
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   972  
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   973  			obj->mm.ttm_shrinkable = shrinkable;
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   974  		}
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   975  		i915_gem_object_put(obj);
-d3cb30f8dcbcb7 Thomas Hellström 2021-11-10   976  	}
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   977  
-213d5092776345 Thomas Hellström 2021-06-10   978  	/*
-213d5092776345 Thomas Hellström 2021-06-10   979  	 * Put on the correct LRU list depending on the MADV status
-213d5092776345 Thomas Hellström 2021-06-10   980  	 */
-213d5092776345 Thomas Hellström 2021-06-10   981  	spin_lock(&bo->bdev->lru_lock);
-ebd4a8ec7799b1 Matthew Auld     2021-10-18   982  	if (shrinkable) {
-7ae034590ceaef Matthew Auld     2021-10-18   983  		/* Try to keep shmem_tt from being considered for shrinking. */
-7ae034590ceaef Matthew Auld     2021-10-18   984  		bo->priority = TTM_MAX_BO_PRIORITY - 1;
-7ae034590ceaef Matthew Auld     2021-10-18   985  	} else if (obj->mm.madv != I915_MADV_WILLNEED) {
-213d5092776345 Thomas Hellström 2021-06-10   986  		bo->priority = I915_TTM_PRIO_PURGE;
-213d5092776345 Thomas Hellström 2021-06-10   987  	} else if (!i915_gem_object_has_pages(obj)) {
-213d5092776345 Thomas Hellström 2021-06-10   988  		bo->priority = I915_TTM_PRIO_NO_PAGES;
-ba2c5d15022a56 Matthew Auld     2022-02-09   989  	} else {
-9373505967ffc1 Matthew Auld     2022-02-28   990  		struct ttm_resource_manager *man =
-9373505967ffc1 Matthew Auld     2022-02-28   991  			ttm_manager_type(bo->bdev, bo->resource->mem_type);
-9373505967ffc1 Matthew Auld     2022-02-28   992  
-9373505967ffc1 Matthew Auld     2022-02-28   993  		/*
-9373505967ffc1 Matthew Auld     2022-02-28   994  		 * If we need to place an LMEM resource which doesn't need CPU
-9373505967ffc1 Matthew Auld     2022-02-28   995  		 * access then we should try not to victimize mappable objects
-9373505967ffc1 Matthew Auld     2022-02-28   996  		 * first, since we likely end up stealing more of the mappable
-54296aa4cfe718 Nitin Gote       2025-01-20   997  		 * portion. And likewise when we try to find space for a mappable
-9373505967ffc1 Matthew Auld     2022-02-28   998  		 * object, we know not to ever victimize objects that don't
-9373505967ffc1 Matthew Auld     2022-02-28   999  		 * occupy any mappable pages.
-9373505967ffc1 Matthew Auld     2022-02-28  1000  		 */
-9373505967ffc1 Matthew Auld     2022-02-28  1001  		if (i915_ttm_cpu_maps_iomem(bo->resource) &&
-9373505967ffc1 Matthew Auld     2022-02-28  1002  		    i915_ttm_buddy_man_visible_size(man) < man->size &&
-9373505967ffc1 Matthew Auld     2022-02-28  1003  		    !(obj->flags & I915_BO_ALLOC_GPU_ONLY))
-9373505967ffc1 Matthew Auld     2022-02-28  1004  			bo->priority = I915_TTM_PRIO_NEEDS_CPU_ACCESS;
-9373505967ffc1 Matthew Auld     2022-02-28  1005  		else
-ba2c5d15022a56 Matthew Auld     2022-02-09  1006  			bo->priority = I915_TTM_PRIO_HAS_PAGES;
-213d5092776345 Thomas Hellström 2021-06-10  1007  	}
-213d5092776345 Thomas Hellström 2021-06-10  1008  
-fee2ede155423b Christian König  2022-01-24  1009  	ttm_bo_move_to_lru_tail(bo);
-213d5092776345 Thomas Hellström 2021-06-10  1010  	spin_unlock(&bo->bdev->lru_lock);
-213d5092776345 Thomas Hellström 2021-06-10  1011  }
-213d5092776345 Thomas Hellström 2021-06-10  1012  
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 277b40b13948..7af936e6ea46 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1418,6 +1418,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	struct intel_display *display = to_intel_display(_connector->dev);
+ 	struct intel_connector *connector = to_intel_connector(_connector);
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
++	enum intel_output_format sink_format, output_format;
+ 	const struct drm_display_mode *fixed_mode;
+ 	int target_clock = mode->clock;
+ 	int max_rate, mode_rate, max_lanes, max_link_clock;
+@@ -1451,6 +1452,12 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 						     mode->hdisplay, target_clock);
+ 	max_dotclk *= num_joined_pipes;
+ 
++	sink_format = intel_dp_sink_format(connector, mode);
++	output_format = intel_dp_output_format(connector, sink_format);
++
++	if (!intel_pfit_mode_valid(display, mode, output_format, num_joined_pipes, &status))
++		return status;
++
+ 	if (target_clock > max_dotclk)
+ 		return MODE_CLOCK_HIGH;
+ 
+@@ -1466,11 +1473,8 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 					   intel_dp_mode_min_output_bpp(connector, mode));
+ 
+ 	if (intel_dp_has_dsc(connector)) {
+-		enum intel_output_format sink_format, output_format;
+ 		int pipe_bpp;
+ 
+-		sink_format = intel_dp_sink_format(connector, mode);
+-		output_format = intel_dp_output_format(connector, sink_format);
+ 		/*
+ 		 * TBD pass the connector BPC,
+ 		 * for now U8_MAX so that max BPC on that platform would be picked
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 9961ff259298..53ba1e16100d 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2053,6 +2053,9 @@ intel_hdmi_mode_valid(struct drm_connector *_connector,
+ 	else
+ 		sink_format = INTEL_OUTPUT_FORMAT_RGB;
+ 
++	if (!intel_pfit_mode_valid(display, mode, sink_format, 0, &status))
++		return status;
++
+ 	status = intel_hdmi_mode_clock_valid(&connector->base, clock, has_hdmi_sink, sink_format);
+ 	if (status != MODE_OK) {
+ 		if (ycbcr_420_only ||
+diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
+index 13541be4d6df..a8fb92c3417a 100644
+--- a/drivers/gpu/drm/i915/display/intel_pfit.c
++++ b/drivers/gpu/drm/i915/display/intel_pfit.c
+@@ -14,6 +14,7 @@
+ #include "intel_lvds_regs.h"
+ #include "intel_pfit.h"
+ #include "intel_pfit_regs.h"
++#include "skl_scaler.h"
+ 
+ static int intel_pch_pfit_check_dst_window(const struct intel_crtc_state *crtc_state)
+ {
+@@ -546,6 +547,17 @@ static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
+ 	return intel_gmch_pfit_check_timings(crtc_state);
+ }
+ 
++bool
++intel_pfit_mode_valid(struct intel_display *display,
++		      const struct drm_display_mode *mode,
++		      enum intel_output_format output_format,
++		      int num_joined_pipes,
++		      enum drm_mode_status *status)
++{
++	return skl_scaler_mode_valid(display, mode, output_format,
++				     num_joined_pipes, status);
++}
++
+ int intel_pfit_compute_config(struct intel_crtc_state *crtc_state,
+ 			      const struct drm_connector_state *conn_state)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_pfit.h b/drivers/gpu/drm/i915/display/intel_pfit.h
+index ef34f9b49d09..ce68ceebc700 100644
+--- a/drivers/gpu/drm/i915/display/intel_pfit.h
++++ b/drivers/gpu/drm/i915/display/intel_pfit.h
+@@ -6,8 +6,14 @@
+ #ifndef __INTEL_PFIT_H__
+ #define __INTEL_PFIT_H__
+ 
++#include <linux/types.h>
++
++enum drm_mode_status;
++struct drm_display_mode;
+ struct drm_connector_state;
+ struct intel_crtc_state;
++struct intel_display;
++enum intel_output_format;
+ 
+ int intel_pfit_compute_config(struct intel_crtc_state *crtc_state,
+ 			      const struct drm_connector_state *conn_state);
+@@ -17,5 +23,9 @@ void ilk_pfit_get_config(struct intel_crtc_state *crtc_state);
+ void i9xx_pfit_enable(const struct intel_crtc_state *crtc_state);
+ void i9xx_pfit_disable(const struct intel_crtc_state *old_crtc_state);
+ void i9xx_pfit_get_config(struct intel_crtc_state *crtc_state);
+-
++bool intel_pfit_mode_valid(struct intel_display *display,
++			   const struct drm_display_mode *mode,
++			   enum intel_output_format output_format,
++			   int num_joined_pipes,
++			   enum drm_mode_status *status);
+ #endif /* __INTEL_PFIT_H__ */
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index d77798499c57..27001b52daf8 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -134,6 +134,24 @@ static void skl_scaler_max_dst_size(struct intel_crtc *crtc,
+ 	}
+ }
+ 
++bool
++skl_scaler_mode_valid(struct intel_display *display,
++		      const struct drm_display_mode *mode,
++		      enum intel_output_format output_format,
++		      int num_joined_pipes,
++		      enum drm_mode_status *status)
++{
++	if (num_joined_pipes < 2 && output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
++		if (DISPLAY_VER(display) >= 14 &&
++		    mode->hdisplay > 4096) {
++			*status = MODE_NO_420;
++			return false;
++		}
++	}
++
++	return true;
++}
++
+ static int
+ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 		  unsigned int scaler_user, int *scaler_id,
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
+index 355ea15260ca..37c6543b4731 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.h
++++ b/drivers/gpu/drm/i915/display/skl_scaler.h
+@@ -5,10 +5,16 @@
+ #ifndef INTEL_SCALER_H
+ #define INTEL_SCALER_H
+ 
++#include <linux/types.h>
++
++enum drm_mode_status;
++struct drm_display_mode;
+ struct intel_atomic_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
++struct intel_display;
+ struct intel_dsb;
++enum intel_output_format;
+ struct intel_plane;
+ struct intel_plane_state;
+ 
+@@ -32,4 +38,10 @@ void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state);
+ 
+ void skl_scaler_get_config(struct intel_crtc_state *crtc_state);
+ 
++bool skl_scaler_mode_valid(struct intel_display *display,
++			   const struct drm_display_mode *mode,
++			   enum intel_output_format output_format,
++			   int num_joined_pipes,
++			   enum drm_mode_status *status);
++
+ #endif
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
