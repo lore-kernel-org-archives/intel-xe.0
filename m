@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07E72C71136
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Jun 2025 13:11:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93FE9C71157
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Jun 2025 13:18:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC78810E68B;
-	Tue, 17 Jun 2025 13:11:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fKa5ePYX";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BC9010E68B;
- Tue, 17 Jun 2025 13:11:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750165886; x=1781701886;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=esbcnjXMNYaAmwABLm6KRNLffK01coaUFSmkWsAA9R0=;
- b=fKa5ePYXDP04QzIg/pO4IzCdQmds3qLPQwStRZ7hsybsc30jVRnPYCy8
- l2T8E0MfGCmfnlN/47f/CALL+7izEmnuVJ0Ddvobj6rcl+J3B5NpCrL1O
- P56yXwW+/qtKy+fhc6jxm35ADSJ6wJhucRa2RF9vSDDROZgzGruCHqQ/I
- TxminXNhhsRnoHrBHumcIHIBlajG/s9suGqvH2XpO3YoAevHptVqYYbpZ
- 1/Z/Lsw0zHj1zDWJIfgVqUuE4vrt7rG06ImBnD2Lk7nhg6NczHGkS/s1k
- caVQlejdkWRgIt0H3XbFhKImiARp6li9iK0SwW1WgAdjBwYMvnvmOOHwG g==;
-X-CSE-ConnectionGUID: RYq2I9nzQdi4nH04QRLo1w==
-X-CSE-MsgGUID: cWa9GkLwRwy0lmjsrpG6vg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11467"; a="69780790"
-X-IronPort-AV: E=Sophos;i="6.16,243,1744095600"; d="scan'208";a="69780790"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2025 06:11:25 -0700
-X-CSE-ConnectionGUID: y++aLavZQjuKHZgX67quNA==
-X-CSE-MsgGUID: uHAmvEowSISP/laA74Imcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,243,1744095600"; d="scan'208";a="149317255"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.95])
- ([10.245.245.95])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2025 06:11:22 -0700
-Message-ID: <f08ed0c71c8f193bbf09888e14d0171802415dcf.camel@linux.intel.com>
-Subject: Re: [PATCH v3 1/3] drm/gpusvm, drm/pagemap: Move migration
- functionality to drm_pagemap
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- dri-devel@lists.freedesktop.org, 	apopple@nvidia.com, airlied@gmail.com,
- Simona Vetter <simona.vetter@ffwll.ch>,  Felix =?ISO-8859-1?Q?K=FChling?=	
- <felix.kuehling@amd.com>, Philip Yang <philip.yang@amd.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, dakr@kernel.org,
- "Mrozek, Michal"	 <michal.mrozek@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>
-Date: Tue, 17 Jun 2025 15:11:20 +0200
-In-Reply-To: <93e663cf-01e7-4241-89ea-3bdda3d19437@intel.com>
-References: <20250613140219.87479-1-thomas.hellstrom@linux.intel.com>
- <20250613140219.87479-2-thomas.hellstrom@linux.intel.com>
- <93e663cf-01e7-4241-89ea-3bdda3d19437@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59EB310E6B5;
+	Tue, 17 Jun 2025 13:18:04 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7334710E6AD;
+ Tue, 17 Jun 2025 13:18:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm=3A_Create_a_task_inf?=
+ =?utf-8?q?o_option_for_wedge_events_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Jun 2025 13:18:03 -0000
+Message-ID: <175016628346.87049.5379232586923133788@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250617124949.2151549-1-andrealmeid@igalia.com>
+In-Reply-To: <20250617124949.2151549-1-andrealmeid@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,250 +36,127 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-06-17 at 18:25 +0530, Ghimiray, Himal Prasad wrote:
->=20
->=20
-> On 13-06-2025 19:32, Thomas Hellstr=C3=B6m wrote:
-> > From: Matthew Brost <matthew.brost@intel.com>
-> >=20
-> > The migration functionality and track-keeping of per-pagemap VRAM
-> > mapped to the CPU mm is not per GPU_vm, but rather per pagemap.
-> > This is also reflected by the functions not needing the drm_gpusvm
-> > structures. So move to drm_pagemap.
-> >=20
-> > With this, drm_gpusvm shouldn't really access the page zone-device-
-> > data
-> > since its meaning is internal to drm_pagemap. Currently it's used
-> > to
-> > reject mapping ranges backed by multiple drm_pagemap allocations.
-> > For now, make the zone-device-data a void pointer.
-> >=20
-> > Alter the interface of drm_gpusvm_migrate_to_devmem() to ensure we
-> > don't
-> > pass a gpusvm pointer.
-> >=20
-> > Rename CONFIG_DRM_XE_DEVMEM_MIRROR to CONFIG_DRM_XE_PAGEMAP.
-> >=20
-> > Matt is listed as author of this commit since he wrote most of the
-> > code,
-> > and it makes sense to retain his git authorship.
-> > Thomas mostly moved the code around.
->=20
-> >=20
-> > v3:
-> > - Kerneldoc fixes (CI)
-> > - Don't update documentation about how the drm_pagemap
-> > =C2=A0=C2=A0 migration should be interpreted until upcoming
-> > =C2=A0=C2=A0 patches where the functionality is implemented.
-> > =C2=A0=C2=A0 (Matt Brost)
-> >=20
-> > Co-developed-by: Thomas Hellstr=C3=B6m
-> > <thomas.hellstrom@linux.intel.com>
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0 Documentation/gpu/rfc/gpusvm.rst=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
- 12 +-
-> > =C2=A0 drivers/gpu/drm/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +-
-> > =C2=A0 drivers/gpu/drm/drm_gpusvm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 759 +---------------------
-> > ----
-> > =C2=A0 drivers/gpu/drm/drm_pagemap.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 788
-> > +++++++++++++++++++++++++++
-> > =C2=A0 drivers/gpu/drm/xe/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 10 +-
-> > =C2=A0 drivers/gpu/drm/xe/xe_bo_types.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
-=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/xe/xe_device_types.h |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 47 +-
-> > =C2=A0 include/drm/drm_gpusvm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 96 ----
-> > =C2=A0 include/drm/drm_pagemap.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 101 ++++
-> > =C2=A0 10 files changed, 950 insertions(+), 873 deletions(-)
-> > =C2=A0 create mode 100644 drivers/gpu/drm/drm_pagemap.c
-> >=20
-> > diff --git a/Documentation/gpu/rfc/gpusvm.rst
-> > b/Documentation/gpu/rfc/gpusvm.rst
-> > index bcf66a8137a6..469db1372f16 100644
-> > --- a/Documentation/gpu/rfc/gpusvm.rst
-> > +++ b/Documentation/gpu/rfc/gpusvm.rst
-> > @@ -73,15 +73,21 @@ Overview of baseline design
-> > =C2=A0 .. kernel-doc:: drivers/gpu/drm/drm_gpusvm.c
-> > =C2=A0=C2=A0=C2=A0=C2=A0 :doc: Locking
-> > =C2=A0=20
-> > -.. kernel-doc:: drivers/gpu/drm/drm_gpusvm.c
-> > -=C2=A0=C2=A0 :doc: Migration
-> > -
-> > =C2=A0 .. kernel-doc:: drivers/gpu/drm/drm_gpusvm.c
-> > =C2=A0=C2=A0=C2=A0=C2=A0 :doc: Partial Unmapping of Ranges
-> > =C2=A0=20
-> > =C2=A0 .. kernel-doc:: drivers/gpu/drm/drm_gpusvm.c
-> > =C2=A0=C2=A0=C2=A0=C2=A0 :doc: Examples
-> > =C2=A0=20
-> > +Overview of drm_pagemap design
-> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/drm_pagemap.c
-> > +=C2=A0=C2=A0 :doc: Overview
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/drm_pagemap.c
-> > +=C2=A0=C2=A0 :doc: Migration
-> > +
-> > =C2=A0 Possible future design features
-> > =C2=A0 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > =C2=A0=20
-> > diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> > index 5050ac32bba2..4dafbdc8f86a 100644
-> > --- a/drivers/gpu/drm/Makefile
-> > +++ b/drivers/gpu/drm/Makefile
-> > @@ -104,7 +104,11 @@ obj-$(CONFIG_DRM_PANEL_BACKLIGHT_QUIRKS) +=3D
-> > drm_panel_backlight_quirks.o
-> > =C2=A0 #
-> > =C2=A0 obj-$(CONFIG_DRM_EXEC) +=3D drm_exec.o
-> > =C2=A0 obj-$(CONFIG_DRM_GPUVM) +=3D drm_gpuvm.o
-> > -obj-$(CONFIG_DRM_GPUSVM) +=3D drm_gpusvm.o
-> > +
-> > +drm_gpusvm_helper-y :=3D \
-> > +	drm_gpusvm.o\
-> > +	drm_pagemap.o
-> > +obj-$(CONFIG_DRM_GPUSVM) +=3D drm_gpusvm_helper.o
-> > =C2=A0=20
-> > =C2=A0 obj-$(CONFIG_DRM_BUDDY) +=3D drm_buddy.o
-> > =C2=A0=20
-> > diff --git a/drivers/gpu/drm/drm_gpusvm.c
-> > b/drivers/gpu/drm/drm_gpusvm.c
-> > index 7ff81aa0a1ca..ef81381609de 100644
-> > --- a/drivers/gpu/drm/drm_gpusvm.c
-> > +++ b/drivers/gpu/drm/drm_gpusvm.c
-> > @@ -8,10 +8,9 @@
-> > =C2=A0=20
-> > =C2=A0 #include <linux/dma-mapping.h>
-> > =C2=A0 #include <linux/hmm.h>
-> > +#include <linux/hugetlb_inline.h>
-> > =C2=A0 #include <linux/memremap.h>
-> > -#include <linux/migrate.h>
-> > =C2=A0 #include <linux/mm_types.h>
-> > -#include <linux/pagemap.h>
-> > =C2=A0 #include <linux/slab.h>
-> > =C2=A0=20
-> > =C2=A0 #include <drm/drm_device.h>
-> > @@ -107,21 +106,6 @@
-> > =C2=A0=C2=A0 * to add annotations to GPU SVM.
-> > =C2=A0=C2=A0 */
-> > =C2=A0=20
-> > -/**
-> > - * DOC: Migration
-> > - *
-> > - * The migration support is quite simple, allowing migration
-> > between RAM and
-> > - * device memory at the range granularity. For example, GPU SVM
-> > currently does
-> > - * not support mixing RAM and device memory pages within a range.
-> > This means
-> > - * that upon GPU fault, the entire range can be migrated to device
-> > memory, and
-> > - * upon CPU fault, the entire range is migrated to RAM. Mixed RAM
-> > and device
-> > - * memory storage within a range could be added in the future if
-> > required.
-> > - *
-> > - * The reasoning for only supporting range granularity is as
-> > follows: it
-> > - * simplifies the implementation, and range sizes are driver-
-> > defined and should
-> > - * be relatively small.
-> > - */
-> > -
-> > =C2=A0 /**
-> > =C2=A0=C2=A0 * DOC: Partial Unmapping of Ranges
-> > =C2=A0=C2=A0 *
-> > @@ -193,10 +177,9 @@
-> > =C2=A0=C2=A0 *		if (driver_migration_policy(range)) {
-> > =C2=A0=C2=A0 *			mmap_read_lock(mm);
-> > =C2=A0=C2=A0 *			devmem =3D driver_alloc_devmem();
-> > - *			err =3D drm_gpusvm_migrate_to_devmem(gpusvm,
-> > range,
-> > - *							=C2=A0=C2=A0
-> > devmem_allocation,
-> > - *							=C2=A0=C2=A0 &ctx);
-> > - *			mmap_read_unlock(mm);
-> > + *			err =3D
-> > drm_pagemap_migrate_to_devmem(devmem, gpusvm->mm, gpuva_start,
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > gpuva_end, driver_pgmap_owner());
->=20
->=20
->=20
-> fix doc passing timeslice as parameter.
+== Series Details ==
 
-Will fix.
+Series: drm: Create a task info option for wedge events (rev4)
+URL   : https://patchwork.freedesktop.org/series/149332/
+State : warning
 
->=20
+== Summary ==
 
-8<---------------------------------------------------------------------
-> > +/**
-> > + * drm_pagemap_migrate_to_devmem() - Migrate a struct mm_struct
-> > range to device memory
-> > + * @devmem_allocation: The device memory allocation to migrate to.
-> > + * The caller should hold a reference to the device memory
-> > allocation,
-> > + * and the reference is consumed by this function unless it
-> > returns with
-> > + * an error.
-> > + * @mm: Pointer to the struct mm_struct.
-> > + * @start: Start of the virtual address range to migrate.
-> > + * @end: End of the virtual address range to migrate.
-> > + * @timeslice_ms: The time requested for the migrated pages to
-> > + * be present in the cpu memory map before migrated back.
->=20
-> Shouldn't this be present in gpu or cpu memory map ? We are using
-> this=20
-> to ensure pagefault can be handled effectively by ensuring pages
-> remain=20
-> in vram here for prescribed time too.
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 95f0ac069cc2eee10b5d5e0ba67502ccea089de8
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/drm_drv.c:452:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
++drivers/gpu/drm/drm_drv.c: note: in included file (through include/linux/notifier.h, arch/x86/include/asm/uprobes.h, include/linux/uprobes.h, include/linux/mm_types.h, include/linux/mmzone.h, include/linux/gfp.h, ...):
++drivers/gpu/drm/drm_plane.c:213:24: warning: Using plain integer as NULL pointer
++drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2008:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2008:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_panel.c:505:30: warning: symbol 'dummy_panel_funcs' was not declared. Should it be static?
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
++drivers/gpu/drm/i915/gt/intel_reset.c:1572:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/intel_sseu.c:598:17: error: too long token expansion
++drivers/gpu/drm/i915/i915_active.c:1063:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/i915_irq.c:492:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:492:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:500:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:500:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:505:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:505:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:505:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:543:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:543:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:551:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:551:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:556:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:556:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:556:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:600:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:600:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:603:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:603:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:607:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:607:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/intel_uncore.c:1927:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1929:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1995:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1996:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1997:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2017:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2018:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2019:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_wakeref.c:145:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
++drivers/gpu/drm/ttm/ttm_bo.c:1197:31: warning: symbol 'ttm_swap_ops' was not declared. Should it be static?
++drivers/gpu/drm/ttm/ttm_bo_util.c:328:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:328:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:328:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:331:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:331:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:331:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:334:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:334:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:334:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:440:28:    expected void volatile [noderef] __iomem *addr
++drivers/gpu/drm/ttm/ttm_bo_util.c:440:28:    got void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:440:28: warning: incorrect type in argument 1 (different address spaces)
++./include/linux/srcu.h:400:9: warning: context imbalance in 'drm_dev_exit' - unexpected unlock
 
-So with this split, drm_pagemap is responsible for migrating memory and
-updating the CPU memory map only, whereas drm_gpusvm is responsible for
-setting up the GPU memory maps. So if it remains in the CPU memory map,
-then nothing will force the gpu vms to invalidate, unless the gpu
-driver decides to invalidate itself.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-But looking at this i should probably rephrase "before migrated back"
-to "before being allowed to be migrated back".
-
-
->=20
-> > + * @pgmap_owner: Not used currently, since only system memory is
-> > considered.
-> > + *
-> > + * This function migrates the specified virtual address range to
-> > device memory.
-> > + * It performs the necessary setup and invokes the driver-specific
-> > operations for
-> > + * migration to device memory. Expected to be called while holding
-> > the mmap lock in
-> > + * at least read mode.
-> > + *
-> > + * Return: %0 on success, negative error code on failure.
->=20
-> s/%0/0
-
-kerneldoc prefers "%" before constants, no?
-
-
-
-Thanks,
-Thomas
 
