@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DF26C7115D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6EB0C7115E
 	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 18:50:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD7C510E8CE;
-	Wed, 18 Jun 2025 18:50:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2584710E8F2;
+	Wed, 18 Jun 2025 18:50:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SEM1UyiY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lBci/RzY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B5F10E43D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93B2F10E29D
  for <intel-xe@lists.freedesktop.org>; Wed, 18 Jun 2025 18:50:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1750272612; x=1781808612;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dDINoXszJr0JVvSz54g1/8o6ZmO7MCG8FN0tF4+Mi8g=;
- b=SEM1UyiYaRk7dB5B4V1pQpLK2IcZuHlaJ0ypJgvEwskL2xo+y0Mm+DbQ
- I0i+OjO8lc8oTBeMa+Gbg3txFIatyjq0usV+sCQIjCOQsfpvzn/Xxvou8
- YRZSjunMgFnFFtCH4xJA+t2IZkHC5N5MN2RA+Ji415NJq8Icb9YxjZQGD
- BkdLscfsn0Bk5mpNT5mJIXRSCA/5y2LmjkD4j4PyWZEinoSzrs0NVl45r
- 69V8ZoY0C3XCAMGkZ04XNnEp2CWdbTVOo3ufEzLnpicmNNDMgJtbEPv3l
- NYRG8HslySHSs48nx3OrfYGLISZeGye6RqQ2SG77/Q/B1Jmkx7ZWSVv1X w==;
-X-CSE-ConnectionGUID: ugASk8gvSx2b6vFAKKJDsg==
-X-CSE-MsgGUID: D91gAascSZ+CjLX4DJwh8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="75036861"
-X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="75036861"
+ bh=l9pptPT7bmWEy3B+P5zcrKlzmEM2u7VDrSP3hqJU+2s=;
+ b=lBci/RzYB5KtzZ+r1a+i6WodGQgXNSxMG7H0MGBfuTvCZGDVJfnLzCN2
+ LdNj4AVk4hCDGg27wB7LIoHdxN6zPqpJC1GwNVNdmx9q8hSPs/H4/tffa
+ 04oFm4wjD3BYHJtpzk4e/XbmfC93iKC+4FfXvP4alMy4ldRH2wvhJQhE3
+ EYIiv8AmYAV/5BVRKO30b4e7t23JUaRmuHkD2kMVykcCx/LHf41u/nMgu
+ azlzuUvfoSZdPuOqUoH21xd/gKseI3qCemXNSotyTedPnLBV7OPn4hBAE
+ 06j7ApMQtivnsUKZLbL9g2on7UP82NjAZBabmkjEw5+RbjNdTZlyI6bfS A==;
+X-CSE-ConnectionGUID: vZ2laQY4RxO2aEkfC8aVKw==
+X-CSE-MsgGUID: CefdSDZyQ5SvHb8rC5wK3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="75036863"
+X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="75036863"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2025 11:50:11 -0700
-X-CSE-ConnectionGUID: Qowtakb+Tcij8JPZEBNAWg==
-X-CSE-MsgGUID: +TrJpdILShG33O4WEDgCNQ==
+ 18 Jun 2025 11:50:12 -0700
+X-CSE-ConnectionGUID: vZQadyN2QxuU8IEa65gRTw==
+X-CSE-MsgGUID: BtH73RzkSVC6jept958LuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="150730705"
+X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="150730713"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Jun 2025 11:50:10 -0700
@@ -48,9 +48,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Badal Nilawar <badal.nilawar@intel.com>,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH v5 3/4] drm/xe: Split xe_device_td_flush()
-Date: Wed, 18 Jun 2025 11:50:00 -0700
-Message-ID: <20250618-wa-22019338487-v5-3-b888388477f2@intel.com>
+Subject: [PATCH v5 4/4] drm/xe/bmg: Update Wa_22019338487
+Date: Wed, 18 Jun 2025 11:50:01 -0700
+Message-ID: <20250618-wa-22019338487-v5-4-b888388477f2@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250618-wa-22019338487-v5-0-b888388477f2@intel.com>
 References: <20250618-wa-22019338487-v5-0-b888388477f2@intel.com>
@@ -72,121 +72,262 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_device_td_flush() has 2 possible implementations: an entire L2 flush
-or a transient flush, depending on WA 16023588340. Make this clear by
-splitting the function so it calls each of them.
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
+Limit GT max frequency to 2600MHz and wait for frequency to reduce
+before proceeding with a transient flush. This is really only needed for
+the transient flush: if L2 flush is needed due to 16023588340 then
+there's no need to do this additional wait since we are already using
+the bigger hammer.
+
+v2: Use generic names, ensure user set max frequency requests wait
+for flush to complete (Rodrigo)
+v3:
+ - User requests wait via wait_var_event_timeout (Lucas)
+ - Close races on flush + user requests (Lucas)
+ - Fix xe_guc_pc_remove_flush_freq_limit() being called on last gt
+   rather than root gt (Lucas)
+v4:
+ - Only apply the freq reducing part if a TDF is needed: L2 flush trumps
+   the need for waiting a lower frequency
+
+Fixes: aaa08078e725 ("drm/xe/bmg: Apply Wa_22019338487")
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v3
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 68 +++++++++++++++++++++++++-----------------
- 1 file changed, 40 insertions(+), 28 deletions(-)
+
+Rodrigo, since the change in v4 changed it considerably, please let me
+know if your review still stands
+---
+ drivers/gpu/drm/xe/xe_device.c       |   8 ++-
+ drivers/gpu/drm/xe/xe_guc_pc.c       | 125 +++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_pc.h       |   2 +
+ drivers/gpu/drm/xe/xe_guc_pc_types.h |   2 +
+ 4 files changed, 135 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 8cfcfff250ca5..8396612b68d4b 100644
+index 8396612b68d4b..c3aee79aa1acb 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -981,38 +981,15 @@ void xe_device_wmb(struct xe_device *xe)
- 		xe_mmio_write32(xe_root_tile_mmio(xe), VF_CAP_REG, 0);
- }
- 
--/**
-- * xe_device_td_flush() - Flush transient L3 cache entries
-- * @xe: The device
-- *
-- * Display engine has direct access to memory and is never coherent with L3/L4
-- * caches (or CPU caches), however KMD is responsible for specifically flushing
-- * transient L3 GPU cache entries prior to the flip sequence to ensure scanout
-- * can happen from such a surface without seeing corruption.
-- *
-- * Display surfaces can be tagged as transient by mapping it using one of the
-- * various L3:XD PAT index modes on Xe2.
-- *
-- * Note: On non-discrete xe2 platforms, like LNL, the entire L3 cache is flushed
-- * at the end of each submission via PIPE_CONTROL for compute/render, since SA
-- * Media is not coherent with L3 and we want to support render-vs-media
-- * usescases. For other engines like copy/blt the HW internally forces uncached
-- * behaviour, hence why we can skip the TDF on such platforms.
-+/*
-+ * Issue a TRANSIENT_FLUSH_REQUEST and wait for completion on each gt.
-  */
--void xe_device_td_flush(struct xe_device *xe)
-+static void tdf_request_sync(struct xe_device *xe)
- {
--	struct xe_gt *gt;
- 	unsigned int fw_ref;
-+	struct xe_gt *gt;
- 	u8 id;
- 
--	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
--		return;
--
--	if (XE_WA(xe_root_mmio_gt(xe), 16023588340)) {
--		xe_device_l2_flush(xe);
--		return;
--	}
--
- 	for_each_gt(gt, xe, id) {
- 		if (xe_gt_is_media_type(gt))
- 			continue;
-@@ -1022,6 +999,7 @@ void xe_device_td_flush(struct xe_device *xe)
- 			return;
- 
- 		xe_mmio_write32(&gt->mmio, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST);
-+
- 		/*
- 		 * FIXME: We can likely do better here with our choice of
- 		 * timeout. Currently we just assume the worst case, i.e. 150us,
-@@ -1052,15 +1030,49 @@ void xe_device_l2_flush(struct xe_device *xe)
+@@ -40,6 +40,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_guc.h"
++#include "xe_guc_pc.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_hwmon.h"
+ #include "xe_irq.h"
+@@ -1066,11 +1067,14 @@ void xe_device_td_flush(struct xe_device *xe)
  		return;
  
- 	spin_lock(&gt->global_invl_lock);
--	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
- 
-+	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
- 	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 500, NULL, true))
- 		xe_gt_err_once(gt, "Global invalidation timeout\n");
-+
- 	spin_unlock(&gt->global_invl_lock);
- 
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	root_gt = xe_root_mmio_gt(xe);
+-	if (XE_WA(root_gt, 16023588340))
++	if (XE_WA(root_gt, 16023588340)) {
+ 		/* A transient flush is not sufficient: flush the L2 */
+ 		xe_device_l2_flush(xe);
+-	else
++	} else {
++		xe_guc_pc_apply_flush_freq_limit(&root_gt->uc.guc.pc);
+ 		tdf_request_sync(xe);
++		xe_guc_pc_remove_flush_freq_limit(&root_gt->uc.guc.pc);
++	}
  }
  
-+/**
-+ * xe_device_td_flush() - Flush transient L3 cache entries
-+ * @xe: The device
-+ *
-+ * Display engine has direct access to memory and is never coherent with L3/L4
-+ * caches (or CPU caches), however KMD is responsible for specifically flushing
-+ * transient L3 GPU cache entries prior to the flip sequence to ensure scanout
-+ * can happen from such a surface without seeing corruption.
-+ *
-+ * Display surfaces can be tagged as transient by mapping it using one of the
-+ * various L3:XD PAT index modes on Xe2.
-+ *
-+ * Note: On non-discrete xe2 platforms, like LNL, the entire L3 cache is flushed
-+ * at the end of each submission via PIPE_CONTROL for compute/render, since SA
-+ * Media is not coherent with L3 and we want to support render-vs-media
-+ * usescases. For other engines like copy/blt the HW internally forces uncached
-+ * behaviour, hence why we can skip the TDF on such platforms.
-+ */
-+void xe_device_td_flush(struct xe_device *xe)
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 538b4ea61c17c..eb3552baa6029 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -7,7 +7,9 @@
+ 
+ #include <linux/cleanup.h>
+ #include <linux/delay.h>
++#include <linux/jiffies.h>
+ #include <linux/ktime.h>
++#include <linux/wait_bit.h>
+ 
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+@@ -53,9 +55,11 @@
+ #define LNL_MERT_FREQ_CAP	800
+ #define BMG_MERT_FREQ_CAP	2133
+ #define BMG_MIN_FREQ		1200
++#define BMG_MERT_FLUSH_FREQ_CAP	2600
+ 
+ #define SLPC_RESET_TIMEOUT_MS 5 /* roughly 5ms, but no need for precision */
+ #define SLPC_RESET_EXTENDED_TIMEOUT_MS 1000 /* To be used only at pc_start */
++#define SLPC_ACT_FREQ_TIMEOUT_MS 100
+ 
+ /**
+  * DOC: GuC Power Conservation (PC)
+@@ -143,6 +147,36 @@ static int wait_for_pc_state(struct xe_guc_pc *pc,
+ 	return -ETIMEDOUT;
+ }
+ 
++static int wait_for_flush_complete(struct xe_guc_pc *pc)
 +{
-+	struct xe_gt *root_gt;
++	const unsigned long timeout = msecs_to_jiffies(30);
 +
-+	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
-+		return;
++	if (!wait_var_event_timeout(&pc->flush_freq_limit,
++				    !atomic_read(&pc->flush_freq_limit),
++				    timeout))
++		return -ETIMEDOUT;
 +
-+	root_gt = xe_root_mmio_gt(xe);
-+	if (XE_WA(root_gt, 16023588340))
-+		/* A transient flush is not sufficient: flush the L2 */
-+		xe_device_l2_flush(xe);
-+	else
-+		tdf_request_sync(xe);
++	return 0;
 +}
 +
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
++static int wait_for_act_freq_limit(struct xe_guc_pc *pc, u32 freq)
++{
++	int timeout_us = SLPC_ACT_FREQ_TIMEOUT_MS * USEC_PER_MSEC;
++	int slept, wait = 10;
++
++	for (slept = 0; slept < timeout_us;) {
++		if (xe_guc_pc_get_act_freq(pc) <= freq)
++			return 0;
++
++		usleep_range(wait, wait << 1);
++		slept += wait;
++		wait <<= 1;
++		if (slept + wait > timeout_us)
++			wait = timeout_us - slept;
++	}
++
++	return -ETIMEDOUT;
++}
+ static int pc_action_reset(struct xe_guc_pc *pc)
  {
- 	return xe_device_has_flat_ccs(xe) ?
+ 	struct xe_guc_ct *ct = pc_to_ct(pc);
+@@ -689,6 +723,11 @@ static int xe_guc_pc_set_max_freq_locked(struct xe_guc_pc *pc, u32 freq)
+  */
+ int xe_guc_pc_set_max_freq(struct xe_guc_pc *pc, u32 freq)
+ {
++	if (XE_WA(pc_to_gt(pc), 22019338487)) {
++		if (wait_for_flush_complete(pc) != 0)
++			return -EAGAIN;
++	}
++
+ 	guard(mutex)(&pc->freq_lock);
+ 
+ 	return xe_guc_pc_set_max_freq_locked(pc, freq);
+@@ -889,6 +928,92 @@ static int pc_adjust_requested_freq(struct xe_guc_pc *pc)
+ 	return ret;
+ }
+ 
++static bool needs_flush_freq_limit(struct xe_guc_pc *pc)
++{
++	struct xe_gt *gt = pc_to_gt(pc);
++
++	return  XE_WA(gt, 22019338487) &&
++		pc->rp0_freq > BMG_MERT_FLUSH_FREQ_CAP;
++}
++
++/**
++ * xe_guc_pc_apply_flush_freq_limit() - Limit max GT freq during L2 flush
++ * @pc: the xe_guc_pc object
++ *
++ * As per the WA, reduce max GT frequency during L2 cache flush
++ */
++void xe_guc_pc_apply_flush_freq_limit(struct xe_guc_pc *pc)
++{
++	struct xe_gt *gt = pc_to_gt(pc);
++	u32 max_freq;
++	int ret;
++
++	if (!needs_flush_freq_limit(pc))
++		return;
++
++	guard(mutex)(&pc->freq_lock);
++
++	ret = xe_guc_pc_get_max_freq_locked(pc, &max_freq);
++	if (!ret && max_freq > BMG_MERT_FLUSH_FREQ_CAP) {
++		ret = pc_set_max_freq(pc, BMG_MERT_FLUSH_FREQ_CAP);
++		if (ret) {
++			xe_gt_err_once(gt, "Failed to cap max freq on flush to %u, %pe\n",
++				       BMG_MERT_FLUSH_FREQ_CAP, ERR_PTR(ret));
++			return;
++		}
++
++		atomic_set(&pc->flush_freq_limit, 1);
++
++		/*
++		 * If user has previously changed max freq, stash that value to
++		 * restore later, otherwise use the current max. New user
++		 * requests wait on flush.
++		 */
++		if (pc->user_requested_max != 0)
++			pc->stashed_max_freq = pc->user_requested_max;
++		else
++			pc->stashed_max_freq = max_freq;
++	}
++
++	/*
++	 * Wait for actual freq to go below the flush cap: even if the previous
++	 * max was below cap, the current one might still be above it
++	 */
++	ret = wait_for_act_freq_limit(pc, BMG_MERT_FLUSH_FREQ_CAP);
++	if (ret)
++		xe_gt_err_once(gt, "Actual freq did not reduce to %u, %pe\n",
++			       BMG_MERT_FLUSH_FREQ_CAP, ERR_PTR(ret));
++}
++
++/**
++ * xe_guc_pc_remove_flush_freq_limit() - Remove max GT freq limit after L2 flush completes.
++ * @pc: the xe_guc_pc object
++ *
++ * Retrieve the previous GT max frequency value.
++ */
++void xe_guc_pc_remove_flush_freq_limit(struct xe_guc_pc *pc)
++{
++	struct xe_gt *gt = pc_to_gt(pc);
++	int ret = 0;
++
++	if (!needs_flush_freq_limit(pc))
++		return;
++
++	if (!atomic_read(&pc->flush_freq_limit))
++		return;
++
++	mutex_lock(&pc->freq_lock);
++
++	ret = pc_set_max_freq(&gt->uc.guc.pc, pc->stashed_max_freq);
++	if (ret)
++		xe_gt_err_once(gt, "Failed to restore max freq %u:%d",
++			       pc->stashed_max_freq, ret);
++
++	atomic_set(&pc->flush_freq_limit, 0);
++	mutex_unlock(&pc->freq_lock);
++	wake_up_var(&pc->flush_freq_limit);
++}
++
+ static int pc_set_mert_freq_cap(struct xe_guc_pc *pc)
+ {
+ 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
+index 0a2664d5c8114..52ecdd5ddbff2 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.h
++++ b/drivers/gpu/drm/xe/xe_guc_pc.h
+@@ -38,5 +38,7 @@ u64 xe_guc_pc_mc6_residency(struct xe_guc_pc *pc);
+ void xe_guc_pc_init_early(struct xe_guc_pc *pc);
+ int xe_guc_pc_restore_stashed_freq(struct xe_guc_pc *pc);
+ void xe_guc_pc_raise_unslice(struct xe_guc_pc *pc);
++void xe_guc_pc_apply_flush_freq_limit(struct xe_guc_pc *pc);
++void xe_guc_pc_remove_flush_freq_limit(struct xe_guc_pc *pc);
+ 
+ #endif /* _XE_GUC_PC_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+index 2978ac9a249b5..c02053948a579 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+@@ -15,6 +15,8 @@
+ struct xe_guc_pc {
+ 	/** @bo: GGTT buffer object that is shared with GuC PC */
+ 	struct xe_bo *bo;
++	/** @flush_freq_limit: 1 when max freq changes are limited by driver */
++	atomic_t flush_freq_limit;
+ 	/** @rp0_freq: HW RP0 frequency - The Maximum one */
+ 	u32 rp0_freq;
+ 	/** @rpa_freq: HW RPa frequency - The Achievable one */
 
 -- 
 2.49.0
