@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A298C7115B
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 18:57:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08A37C7115E
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 18:57:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1287B10E918;
-	Wed, 18 Jun 2025 18:57:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFAC810E931;
+	Wed, 18 Jun 2025 18:57:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VPGDRFxz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZFFDcIUu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DABC10E921;
- Wed, 18 Jun 2025 18:57:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B61A310E91F;
+ Wed, 18 Jun 2025 18:56:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750273020; x=1781809020;
+ t=1750273014; x=1781809014;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wBhqdHFT6q92MdaZKb3oeHHxeJu1lqs/E+7CU/KnemU=;
- b=VPGDRFxziDKV2sDWaupmmUN8JNMPaN7LZoYRJvHwAorbT4pkWNkX+ozi
- Cdouf9Q7jI4DwAq3/cMCF/aTb5ByhLkuiOSH9K2tP6uL0YHLwoEsZVwRv
- JHsUvhXpwozZfqTDLkFEJvvOixhLsvEv6J+vpeoDmtM6EYMC9nxaVQ2kU
- tJJ3GsnXE2heQV+sBdlQtfbHfDcaDnuH2g8nGcFQs9jh40Hy9Q9NUL+b0
- 2mEywGYFqqJ28Lw4tXdN7JJjrYz5bvHL1f3X8YaISiV/5ZHnM0PefWH2O
- PfKdq5QXprCZBsOmPKgj54o5jeY0N2S3Afn602dDu4QyhEzHDVLJNkwWX g==;
-X-CSE-ConnectionGUID: 2UFHhlsJSbimk95hVsJKlA==
-X-CSE-MsgGUID: xP03j336TMCPnXAaEZZL1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="52210232"
-X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="52210232"
+ bh=XMM1yKoIiyyN1UDllJwOGlHcwGO+CC28Rl+/jttM528=;
+ b=ZFFDcIUugPUq5jatK38Ss38vbaAOAXtj5R4OL/O4qSh8PuoIP2D6MlSu
+ rMhDz2nFDHwWq5XxzEVNlEEtSM61vphDe2lMWN4XSktdd3iKqGsYdBRtn
+ Or4WAySVhOEG4Br9KxEn1kDQ5wmShPt/Tb2RejAEmyjLhe/AuIxQHSh8a
+ E4FfJ3ytpxEbyxDK0U7dnXaVDnZTNNx4p6ovjerXMj57T8r7VyERfJTqB
+ 3165zU7u5Ovc7i8btd4kQ6gyHZboaBGLovyRDO1ON8zS8FJeUARcV2KMH
+ hw/CC56MKaqdpjRg0h8OyAjmR107XA8Lkm3Y84jWA2Y6rbE3vWWe91Em1 w==;
+X-CSE-ConnectionGUID: NIMJaya5Te+qw3vuQEcP+g==
+X-CSE-MsgGUID: 1cP3lkPxT+iY5KhHj4OdVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="52210221"
+X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="52210221"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2025 11:57:00 -0700
-X-CSE-ConnectionGUID: YA/pEJfJSCm3aBMB9JG+MQ==
-X-CSE-MsgGUID: y8jRlaalRlyeXScKPUB1Zg==
+ 18 Jun 2025 11:56:54 -0700
+X-CSE-ConnectionGUID: P2E8190STyeeS/0HQ4vdYg==
+X-CSE-MsgGUID: 0cVIvXc6RpqWTHIaHYisBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="153952160"
+X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="153952004"
 Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
  by fmviesa003-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2025 11:56:57 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2025 11:56:51 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  alexander.usyskin@intel.com, gregkh@linuxfoundation.org,
  daniele.ceraolospurio@intel.com, jgg@nvidia.com
-Subject: [PATCH v3 10/10] [CI]drm/xe/xe_late_bind_fw: Select
- INTEL_MEI_LATE_BIND for CI
-Date: Thu, 19 Jun 2025 00:30:07 +0530
-Message-Id: <20250618190007.2932322-11-badal.nilawar@intel.com>
+Subject: [PATCH v3 08/10] drm/xe/xe_late_bind_fw: Introduce debug fs node to
+ disable late binding
+Date: Thu, 19 Jun 2025 00:30:05 +0530
+Message-Id: <20250618190007.2932322-9-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250618190007.2932322-1-badal.nilawar@intel.com>
 References: <20250618190007.2932322-1-badal.nilawar@intel.com>
@@ -70,25 +70,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not review
+Introduce a debug filesystem node to disable late binding fw reload
+during the system or runtime resume. This is intended for situations
+where the late binding fw needs to be loaded from user mode.
+
+v2:
+  -s/(uval == 1) ? true : false/!!uval/ (Daniele)
 
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/xe/xe_debugfs.c            | 41 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_late_bind_fw.c       |  3 ++
+ drivers/gpu/drm/xe/xe_late_bind_fw_types.h |  3 ++
+ 3 files changed, 47 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 30ed74ad29ab..b161e1156c73 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -44,6 +44,7 @@ config DRM_XE
- 	select WANT_DEV_COREDUMP
- 	select AUXILIARY_BUS
- 	select HMM_MIRROR
-+	select INTEL_MEI_LATE_BIND
- 	help
- 	  Driver for Intel Xe2 series GPUs and later. Experimental support
- 	  for Xe series is also available.
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index d83cd6ed3fa8..d1f6f556efa2 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -226,6 +226,44 @@ static const struct file_operations atomic_svm_timeslice_ms_fops = {
+ 	.write = atomic_svm_timeslice_ms_set,
+ };
+ 
++static ssize_t disable_late_binding_show(struct file *f, char __user *ubuf,
++					 size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	struct xe_late_bind *late_bind = &xe->late_bind;
++	char buf[32];
++	int len;
++
++	len = scnprintf(buf, sizeof(buf), "%d\n", late_bind->disable);
++
++	return simple_read_from_buffer(ubuf, size, pos, buf, len);
++}
++
++static ssize_t disable_late_binding_set(struct file *f, const char __user *ubuf,
++					size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	struct xe_late_bind *late_bind = &xe->late_bind;
++	u32 uval;
++	ssize_t ret;
++
++	ret = kstrtouint_from_user(ubuf, size, sizeof(uval), &uval);
++	if (ret)
++		return ret;
++
++	if (uval > 1)
++		return -EINVAL;
++
++	late_bind->disable = !!uval;
++	return size;
++}
++
++static const struct file_operations disable_late_binding_fops = {
++	.owner = THIS_MODULE,
++	.read = disable_late_binding_show,
++	.write = disable_late_binding_set,
++};
++
+ void xe_debugfs_register(struct xe_device *xe)
+ {
+ 	struct ttm_device *bdev = &xe->ttm;
+@@ -249,6 +287,9 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	debugfs_create_file("atomic_svm_timeslice_ms", 0600, root, xe,
+ 			    &atomic_svm_timeslice_ms_fops);
+ 
++	debugfs_create_file("disable_late_binding", 0600, root, xe,
++			    &disable_late_binding_fops);
++
+ 	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
+ 		man = ttm_manager_type(bdev, mem_type);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+index c0be9611c73b..001e526e569a 100644
+--- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
++++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+@@ -129,6 +129,9 @@ int xe_late_bind_fw_load(struct xe_late_bind *late_bind)
+ 	if (!late_bind->component_added)
+ 		return -EINVAL;
+ 
++	if (late_bind->disable)
++		return 0;
++
+ 	for (fw_id = 0; fw_id < MAX_FW_ID; fw_id++) {
+ 		lbfw = &late_bind->late_bind_fw[fw_id];
+ 		if (lbfw->valid)
+diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+index d256f53d59e6..f79f0c0b2c4a 100644
+--- a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
++++ b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+@@ -71,6 +71,9 @@ struct xe_late_bind {
+ 	struct xe_late_bind_fw late_bind_fw[MAX_FW_ID];
+ 	/** @late_bind.wq: workqueue to submit request to download late bind blob */
+ 	struct workqueue_struct *wq;
++
++	/** @late_bind.disable to block late binding reload during pm resume flow*/
++	bool disable;
+ };
+ 
+ #endif
 -- 
 2.34.1
 
