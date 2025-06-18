@@ -4,65 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79AA1C7115C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 09:27:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFAA8C7115B
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 09:40:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EBE410E0B9;
-	Wed, 18 Jun 2025 09:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD57810E7BC;
+	Wed, 18 Jun 2025 09:40:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P6hSuGEE";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Hto9NzQ0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61BC610E7B7;
- Wed, 18 Jun 2025 09:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750238855; x=1781774855;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zT0q+GxrbCrLhNeO0URi1morkjnepGuUePvCFdY7ZVE=;
- b=P6hSuGEE9h9OY65FjI7PdDH1rZMjQZiXW2SXfKAeYYNdZRcqoe51lLGK
- faI9xDCh5yhCSOIEEYh0ZMjGe1aPtofEVdAU/7kmto6OrFGbbonoatEq+
- 6Bqmjr15Z7CIoRafBIuow6e/hWQp7suuULRgcfCKnjYGNRTYYExiBVt3F
- vzKbFna+iVUps977dtRLSNBlI7WJvFTmJQ8CJY4mvtMj84QvXr83sIG2c
- OFdbC9zToKA4ErgqJWUYlGnA/nMqVgAmJr8k0gLRfjAz7S8VRJeLLWyIp
- iDp/+mMsDmfoUwJsSIGCsvzFqNneeNTIgU3AUGcdJmyF2EHUWF48qbVmd Q==;
-X-CSE-ConnectionGUID: 4jfDnuxcRI6kAoXerQx9Vg==
-X-CSE-MsgGUID: JzXu2MJYQOKBu3hdTadzwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11467"; a="70025721"
-X-IronPort-AV: E=Sophos;i="6.16,245,1744095600"; d="scan'208";a="70025721"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2025 02:27:35 -0700
-X-CSE-ConnectionGUID: SX7qyoZkTsK53juv/eVz+A==
-X-CSE-MsgGUID: w0lTSC/SS5mvajOXvlPPog==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,245,1744095600"; d="scan'208";a="186704557"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO fedora..)
- ([10.245.244.50])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2025 02:27:32 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
- Simona Vetter <simona.vetter@ffwll.ch>,
- =?UTF-8?q?Felix=20K=C3=BChling?= <felix.kuehling@amd.com>,
- "Philip Yang" <philip.yang@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dakr@kernel.org, "Mrozek, Michal" <michal.mrozek@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Subject: [PATCH v4 3/3] drm/xe: Implement and use the drm_pagemap populate_mm
- op
-Date: Wed, 18 Jun 2025 11:26:33 +0200
-Message-ID: <20250618092633.8616-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250618092633.8616-1-thomas.hellstrom@linux.intel.com>
-References: <20250618092633.8616-1-thomas.hellstrom@linux.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D191110E1C3
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Jun 2025 09:40:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1750239637;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rDJSn7lZBwyjuX5zqRMyk4Cm9Q70Xmc4Tn4BSpOgdus=;
+ b=Hto9NzQ0cVgrq8sI9AkKWH1fc3dqy90yOFICGuKCEmY3tjn1LQCgWCpAHMXx6U0d8irTwD
+ K47Ac7fsxkxXyeTsnqVv74gTa2xDoBeN0kNhOdxd022wY3qXsIDIPr1VpjPsHXJNRUQv/D
+ KrqheHnCbnDaXBnT+ZNYNhSr7vzUg9Y=
+Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-602-gSykbj8SNcWm4dq_Rfpqag-1; Wed,
+ 18 Jun 2025 05:40:32 -0400
+X-MC-Unique: gSykbj8SNcWm4dq_Rfpqag-1
+X-Mimecast-MFC-AGG-ID: gSykbj8SNcWm4dq_Rfpqag_1750239630
+Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 1DE3B195608B; Wed, 18 Jun 2025 09:40:29 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.45.225.137])
+ by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id EACF419560A3; Wed, 18 Jun 2025 09:40:22 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [PATCH v10 00/10] drm/i915: Add drm_panic support
+Date: Wed, 18 Jun 2025 11:31:18 +0200
+Message-ID: <20250618094011.238154-1-jfalempe@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,288 +79,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add runtime PM since we might call populate_mm on a foreign device.
+This adds drm_panic support for i915 and xe driver.
+
+I've tested it on the 4 intel laptops I have at my disposal.
+ * Haswell with 128MB of eDRAM.
+ * Comet Lake  i7-10850H
+ * Raptor Lake i7-1370P (with DPT, and Y-tiling).
+ * Lunar Lake Ultra 5 228V (with DPT, and 4-tiling, and using the Xe driver.
+
+I tested panic in both fbdev console and gnome desktop.
+I think it won't work yet on discrete GPU, but that can be added later.
+
+Best regards,
+
+v2:
+ * Add the proper abstractions to build also for Xe.
+ * Fix dim checkpatch issues.
 
 v3:
-- Fix a kerneldoc failure (Matt Brost)
-- Revert the bo type change from device to kernel (Matt Brost)
+ * Add support for Y-tiled framebuffer when DPT is enabled.
+
 v4:
-- Add an assert in xe_svm_alloc_vram (Matt Brost)
+ * Add support for Xe driver, which shares most of the code.
+ * Add support for 4-tiled framebuffer found in newest GPU.
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/drm_pagemap.c |   1 +
- drivers/gpu/drm/xe/xe_svm.c   | 102 ++++++++++++++++++++--------------
- drivers/gpu/drm/xe/xe_svm.h   |  10 ++--
- drivers/gpu/drm/xe/xe_tile.h  |  11 ++++
- drivers/gpu/drm/xe/xe_vm.c    |   2 +-
- 5 files changed, 77 insertions(+), 49 deletions(-)
+v5:
+ * Rebase on top of git@gitlab.freedesktop.org:drm/i915/kernel.git drm-intel-next
+ * Use struct intel_display instead of drm_i915_private.
+ * Use iosys_map for intel_bo_panic_map().
 
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 13e1519aa6d6..1da55322af12 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -835,3 +835,4 @@ int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
- 
- 	return err;
- }
-+EXPORT_SYMBOL(drm_pagemap_populate_mm);
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 51b01a11a0cf..332b47fdfd4e 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -3,13 +3,17 @@
-  * Copyright © 2024 Intel Corporation
-  */
- 
-+#include <drm/drm_drv.h>
-+
- #include "xe_bo.h"
- #include "xe_gt_stats.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_migrate.h"
- #include "xe_module.h"
-+#include "xe_pm.h"
- #include "xe_pt.h"
- #include "xe_svm.h"
-+#include "xe_tile.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vm.h"
- #include "xe_vm_types.h"
-@@ -525,8 +529,10 @@ static struct xe_bo *to_xe_bo(struct drm_pagemap_devmem *devmem_allocation)
- static void xe_svm_devmem_release(struct drm_pagemap_devmem *devmem_allocation)
- {
- 	struct xe_bo *bo = to_xe_bo(devmem_allocation);
-+	struct xe_device *xe = xe_bo_device(bo);
- 
- 	xe_bo_put_async(bo);
-+	xe_pm_runtime_put(xe);
- }
- 
- static u64 block_offset_to_pfn(struct xe_vram_region *vr, u64 offset)
-@@ -720,76 +726,63 @@ static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
- 	return &tile->mem.vram;
- }
- 
--/**
-- * xe_svm_alloc_vram()- Allocate device memory pages for range,
-- * migrating existing data.
-- * @vm: The VM.
-- * @tile: tile to allocate vram from
-- * @range: SVM range
-- * @ctx: DRM GPU SVM context
-- *
-- * Return: 0 on success, error code on failure.
-- */
--int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
--		      struct xe_svm_range *range,
--		      const struct drm_gpusvm_ctx *ctx)
-+static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
-+				      unsigned long start, unsigned long end,
-+				      struct mm_struct *mm,
-+				      unsigned long timeslice_ms)
- {
--	struct mm_struct *mm = vm->svm.gpusvm.mm;
-+	struct xe_tile *tile = container_of(dpagemap, typeof(*tile), mem.vram.dpagemap);
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct device *dev = xe->drm.dev;
- 	struct xe_vram_region *vr = tile_to_vr(tile);
- 	struct drm_buddy_block *block;
- 	struct list_head *blocks;
- 	struct xe_bo *bo;
--	ktime_t end = 0;
--	int err;
-+	ktime_t time_end = 0;
-+	int err, idx;
- 
--	if (!range->base.flags.migrate_devmem)
--		return -EINVAL;
--
--	range_debug(range, "ALLOCATE VRAM");
-+	if (!drm_dev_enter(&xe->drm, &idx))
-+		return -ENODEV;
- 
--	if (!mmget_not_zero(mm))
--		return -EFAULT;
--	mmap_read_lock(mm);
-+	xe_pm_runtime_get(xe);
- 
--retry:
--	bo = xe_bo_create_locked(tile_to_xe(tile), NULL, NULL,
--				 xe_svm_range_size(range),
-+ retry:
-+	bo = xe_bo_create_locked(tile_to_xe(tile), NULL, NULL, end - start,
- 				 ttm_bo_type_device,
- 				 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
- 				 XE_BO_FLAG_CPU_ADDR_MIRROR);
- 	if (IS_ERR(bo)) {
- 		err = PTR_ERR(bo);
--		if (xe_vm_validate_should_retry(NULL, err, &end))
-+		if (xe_vm_validate_should_retry(NULL, err, &time_end))
- 			goto retry;
--		goto unlock;
-+		goto out_pm_put;
- 	}
- 
--	drm_pagemap_devmem_init(&bo->devmem_allocation,
--				vm->xe->drm.dev, mm,
-+	drm_pagemap_devmem_init(&bo->devmem_allocation, dev, mm,
- 				&dpagemap_devmem_ops,
- 				&tile->mem.vram.dpagemap,
--				xe_svm_range_size(range));
-+				end - start);
- 
- 	blocks = &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)->blocks;
- 	list_for_each_entry(block, blocks, link)
- 		block->private = vr;
- 
- 	xe_bo_get(bo);
--	err = drm_pagemap_migrate_to_devmem(&bo->devmem_allocation,
--					    mm,
--					    xe_svm_range_start(range),
--					    xe_svm_range_end(range),
--					    ctx->timeslice_ms,
--					    xe_svm_devm_owner(vm->xe));
-+
-+	/* Ensure the device has a pm ref while there are device pages active. */
-+	xe_pm_runtime_get_noresume(xe);
-+	err = drm_pagemap_migrate_to_devmem(&bo->devmem_allocation, mm,
-+					    start, end, timeslice_ms,
-+					    xe_svm_devm_owner(xe));
- 	if (err)
- 		xe_svm_devmem_release(&bo->devmem_allocation);
- 
- 	xe_bo_unlock(bo);
- 	xe_bo_put(bo);
- 
--unlock:
--	mmap_read_unlock(mm);
--	mmput(mm);
-+out_pm_put:
-+	xe_pm_runtime_put(xe);
-+	drm_dev_exit(idx);
- 
- 	return err;
- }
-@@ -898,7 +891,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 
- 	if (--migrate_try_count >= 0 &&
- 	    xe_svm_range_needs_migrate_to_vram(range, vma, IS_DGFX(vm->xe))) {
--		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
-+		err = xe_svm_alloc_vram(tile, range, &ctx);
- 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
- 		if (err) {
- 			if (migrate_try_count || !ctx.devmem_only) {
-@@ -1054,6 +1047,30 @@ int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
- 
- #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
- 
-+/**
-+ * xe_svm_alloc_vram()- Allocate device memory pages for range,
-+ * migrating existing data.
-+ * @tile: tile to allocate vram from
-+ * @range: SVM range
-+ * @ctx: DRM GPU SVM context
-+ *
-+ * Return: 0 on success, error code on failure.
-+ */
-+int xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range *range,
-+		      const struct drm_gpusvm_ctx *ctx)
-+{
-+	struct drm_pagemap *dpagemap;
-+
-+	xe_assert(tile_to_xe(tile), range->base.flags.migrate_devmem);
-+	range_debug(range, "ALLOCATE VRAM");
-+
-+	dpagemap = xe_tile_local_pagemap(tile);
-+	return drm_pagemap_populate_mm(dpagemap, xe_svm_range_start(range),
-+				       xe_svm_range_end(range),
-+				       range->base.gpusvm->mm,
-+				       ctx->timeslice_ms);
-+}
-+
- static struct drm_pagemap_device_addr
- xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
- 			  struct device *dev,
-@@ -1078,6 +1095,7 @@ xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
- 
- static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
- 	.device_map = xe_drm_pagemap_device_map,
-+	.populate_mm = xe_drm_pagemap_populate_mm,
- };
- 
- /**
-@@ -1130,7 +1148,7 @@ int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
- 	return 0;
- }
- #else
--int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
-+int xe_svm_alloc_vram(struct xe_tile *tile,
- 		      struct xe_svm_range *range,
- 		      const struct drm_gpusvm_ctx *ctx)
- {
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 19ce4f2754a7..da9a69ea0bb1 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -70,8 +70,7 @@ int xe_svm_bo_evict(struct xe_bo *bo);
- 
- void xe_svm_range_debug(struct xe_svm_range *range, const char *operation);
- 
--int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
--		      struct xe_svm_range *range,
-+int xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range *range,
- 		      const struct drm_gpusvm_ctx *ctx);
- 
- struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
-@@ -237,10 +236,9 @@ void xe_svm_range_debug(struct xe_svm_range *range, const char *operation)
- {
- }
- 
--static inline
--int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
--		      struct xe_svm_range *range,
--		      const struct drm_gpusvm_ctx *ctx)
-+static inline int
-+xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range *range,
-+		  const struct drm_gpusvm_ctx *ctx)
- {
- 	return -EOPNOTSUPP;
- }
-diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-index eb939316d55b..066a3d0cea79 100644
---- a/drivers/gpu/drm/xe/xe_tile.h
-+++ b/drivers/gpu/drm/xe/xe_tile.h
-@@ -16,4 +16,15 @@ int xe_tile_init(struct xe_tile *tile);
- 
- void xe_tile_migrate_wait(struct xe_tile *tile);
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
-+static inline struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
-+{
-+	return &tile->mem.vram.dpagemap;
-+}
-+#else
-+static inline struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
-+{
-+	return NULL;
-+}
-+#endif
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d18807b92b18..d07264e8211f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2913,7 +2913,7 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
- 
- 		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, region)) {
- 			tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
--			err = xe_svm_alloc_vram(vm, tile, svm_range, &ctx);
-+			err = xe_svm_alloc_vram(tile, svm_range, &ctx);
- 			if (err) {
- 				drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
- 					vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+v6:
+ * Rebase on top of git@gitlab.freedesktop.org:drm/i915/kernel.git drm-intel-next
+ * Use struct intel_display instead of drm_i915_private for intel_atomic_plane.c
+
+v7:
+ * Fix mismatch {} in intel_panic_flush() (Jani Nikula)
+ * Return int for i915_gem_object_panic_map() (Ville Syrjälä)
+ * Reword commit message about alignment/size when disabling tiling (Ville Syrjälä)
+
+v8:
+ * Use kmap_try_from_panic() instead of vmap, to access the framebuffer.
+ * Add ttm_bo_kmap_try_from_panic() for the xe driver, that uses ttm.
+ * Replace intel_bo_panic_map() with a setup() and finish() function,
+   to allow mapping only one page of teh framebuffer at a time.
+ * Configure psr to send the full framebuffer update.
+
+v9:
+ * Fix comment in ttm_bo_kmap_try_from_panic(), this can *only* be called
+   from the panic handler (Christian König)
+ * Fix missing kfree() for i915_panic_pages in i915_gem_object_panic_finish()
+   Also change i915_panic_pages allocation to kmalloc, as kvmalloc is not
+   safe to call from the panic handler.
+ * Fix dim checkpatch warnings.
+
+v10:
+ * Add a private field to struct drm_scanout_buffer
+ * Replace static variables with new fields in struct intel_framebuffer
+   (Maarten Lankhorst)
+ * Add error handling if i915_gem_object_panic_pages() returns NULL
+ * Declare struct drm_scanout_buffer instead of including <drm/drm_panic.h>
+   in intel_bo.h
+
+Jocelyn Falempe (10):
+  drm/panic: Add a private field to struct drm_scanout_buffer
+  drm/i915/fbdev: Add intel_fbdev_get_map()
+  drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
+  drm/i915/display: Add a disable_tiling() for skl planes
+  drm/ttm: Add ttm_bo_kmap_try_from_panic()
+  drm/i915: Add intel_bo_panic_setup and intel_bo_panic_finish
+  drm/i915/display: Add drm_panic support
+  drm/i915/display: Add drm_panic support for Y-tiling with DPT
+  drm/i915/display: Add drm_panic support for 4-tiling with DPT
+  drm/i915/psr: Add intel_psr2_panic_force_full_update
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  23 +++
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 170 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bo.c       |  12 ++
+ drivers/gpu/drm/i915/display/intel_bo.h       |   4 +
+ .../drm/i915/display/intel_display_types.h    |  11 ++
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |   2 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |   5 +
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |   6 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  20 +++
+ drivers/gpu/drm/i915/display/intel_psr.h      |   2 +
+ .../drm/i915/display/skl_universal_plane.c    |  27 +++
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   5 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 112 ++++++++++++
+ drivers/gpu/drm/i915/i915_vma.h               |   5 +
+ drivers/gpu/drm/ttm/ttm_bo_util.c             |  27 +++
+ drivers/gpu/drm/xe/display/intel_bo.c         |  61 +++++++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |   5 +
+ include/drm/drm_panic.h                       |   6 +
+ include/drm/ttm/ttm_bo.h                      |   1 +
+ 20 files changed, 507 insertions(+), 2 deletions(-)
+
+
+base-commit: b2f7e30d2e4a34fcee8111d713bef4f29dc23c77
 -- 
 2.49.0
 
