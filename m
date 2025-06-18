@@ -4,69 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7EF7C71157
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 09:41:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D541C7115A
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 09:45:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B5B310E7D8;
-	Wed, 18 Jun 2025 09:41:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fGlilAjP";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB2510E7D8
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Jun 2025 09:41:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1750239697;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=aWTTi8FZbYEDW5xiUYs3MEDmgqvF5cs/pip6jmk+Nrw=;
- b=fGlilAjPcK/XwBjh3MjEhisCsedeX65lQAOsVASCzaGLOJpTxhTXWi6XXQxkHZUZr91KCV
- W4vJsNizt19pm55UDdFZcFQ5wehjnWho2hkDzmZGvEF+8FxTaVqfTaacx5Rx0ZDjVUG7a8
- gY5cHYGkrY16kSWbr3wlRGlTH8tmpB8=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-557-9cm4Ya36MEKpJK4UZSDBcw-1; Wed,
- 18 Jun 2025 05:41:33 -0400
-X-MC-Unique: 9cm4Ya36MEKpJK4UZSDBcw-1
-X-Mimecast-MFC-AGG-ID: 9cm4Ya36MEKpJK4UZSDBcw_1750239691
-Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 9A98B180028D; Wed, 18 Jun 2025 09:41:31 +0000 (UTC)
-Received: from hydra.redhat.com (unknown [10.45.225.137])
- by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id E3AEC19560A3; Wed, 18 Jun 2025 09:41:25 +0000 (UTC)
-From: Jocelyn Falempe <jfalempe@redhat.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Subject: [PATCH v10 10/10] drm/i915/psr: Add intel_psr2_panic_force_full_update
-Date: Wed, 18 Jun 2025 11:31:28 +0200
-Message-ID: <20250618094011.238154-11-jfalempe@redhat.com>
-In-Reply-To: <20250618094011.238154-1-jfalempe@redhat.com>
-References: <20250618094011.238154-1-jfalempe@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11B8610E7DE;
+	Wed, 18 Jun 2025 09:45:47 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 773C110E7DE
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Jun 2025 09:45:45 +0000 (UTC)
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v3.1] drm/xe: Simplify GuC early initialization
+Date: Wed, 18 Jun 2025 11:44:37 +0200
+Message-ID: <20250618094436.198481-2-dev@lankhorst.se>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250617180132.7059-14-dev@lankhorst.se>
+References: <20250617180132.7059-14-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,97 +37,290 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the panic handler is called, configure the psr to send the full
-framebuffer to the monitor, otherwise the panic screen is only
-partially visible.
+Add a 2-stage GuC init. An early one for everything that is needed
+for VF, and a full one that loads GuC and is allowed to do allocations.
 
-Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
+Changes since v3:
+- keep xe_guc_relay_init() to allow full IGT to pass.
 
-v8:
- * Added in v8
+ drivers/gpu/drm/xe/xe_device.c | 17 ------------
+ drivers/gpu/drm/xe/xe_gt.c     |  9 +++++-
+ drivers/gpu/drm/xe/xe_guc.c    | 51 +++++++++++++++++++++-------------
+ drivers/gpu/drm/xe/xe_guc.h    |  1 +
+ drivers/gpu/drm/xe/xe_guc_ct.c | 28 ++++++++++++-------
+ drivers/gpu/drm/xe/xe_guc_ct.h |  1 +
+ drivers/gpu/drm/xe/xe_uc.c     | 16 +++++++++++
+ drivers/gpu/drm/xe/xe_uc.h     |  1 +
+ 8 files changed, 77 insertions(+), 47 deletions(-)
 
- .../gpu/drm/i915/display/intel_atomic_plane.c |  7 +++++++
- drivers/gpu/drm/i915/display/intel_psr.c      | 20 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_psr.h      |  2 ++
- 3 files changed, 29 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 086195a11af9..82669367647a 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -58,6 +58,7 @@
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
- #include "intel_fbdev.h"
-+#include "intel_psr.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
- #include "skl_watermark.h"
-@@ -1319,6 +1320,7 @@ static unsigned int intel_4tile_get_offset(unsigned int width, unsigned int x, u
- static void intel_panic_flush(struct drm_plane *plane)
- {
- 	struct intel_plane_state *plane_state = to_intel_plane_state(plane->state);
-+	struct intel_crtc_state *crtc_state = to_intel_crtc_state(plane->state->crtc->state);
- 	struct intel_plane *iplane = to_intel_plane(plane);
- 	struct intel_display *display = to_intel_display(iplane);
- 	struct drm_framebuffer *fb = plane_state->hw.fb;
-@@ -1326,6 +1328,11 @@ static void intel_panic_flush(struct drm_plane *plane)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 03825cc214085..ead538029b128 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -793,23 +793,6 @@ int xe_device_probe(struct xe_device *xe)
+ 		err = xe_gt_init_early(gt);
+ 		if (err)
+ 			return err;
+-
+-		/*
+-		 * Only after this point can GT-specific MMIO operations
+-		 * (including things like communication with the GuC)
+-		 * be performed.
+-		 */
+-		xe_gt_mmio_init(gt);
+-
+-		if (IS_SRIOV_VF(xe)) {
+-			xe_guc_comm_init_early(&gt->uc.guc);
+-			err = xe_gt_sriov_vf_bootstrap(gt);
+-			if (err)
+-				return err;
+-			err = xe_gt_sriov_vf_query_config(gt);
+-			if (err)
+-				return err;
+-		}
+ 	}
  
- 	intel_bo_panic_finish(intel_fb);
+ 	for_each_tile(tile, xe, id) {
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 9752a38c0162a..6bc793043b400 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -419,7 +419,14 @@ int xe_gt_init_early(struct xe_gt *gt)
  
-+	if (crtc_state->enable_psr2_sel_fetch) {
-+		/* Force a full update for psr2 */
-+		intel_psr2_panic_force_full_update(display, crtc_state);
-+	}
+ 	xe_mocs_init_early(gt);
+ 
+-	return 0;
++	/*
++	 * Only after this point can GT-specific MMIO operations
++	 * (including things like communication with the GuC)
++	 * be performed.
++	 */
++	xe_gt_mmio_init(gt);
 +
- 	/* Flush the cache and don't disable tiling if it's the fbdev framebuffer.*/
- 	if (intel_fb == intel_fbdev_framebuffer(display->fbdev.fbdev)) {
- 		struct iosys_map map;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8bee2f592ae7..73bdc54d7831 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2889,6 +2889,26 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
++	return xe_uc_init_noalloc(&gt->uc);
+ }
+ 
+ static void dump_pat_on_error(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 81b22b6fb2493..eeb23f8aa9de8 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -627,21 +627,11 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
  	return 0;
  }
  
-+void intel_psr2_panic_force_full_update(struct intel_display *display,
-+					struct intel_crtc_state *crtc_state)
+-static int vf_guc_init(struct xe_guc *guc)
++static int vf_guc_init_noalloc(struct xe_guc *guc)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	int err;
+ 
+-	xe_guc_comm_init_early(guc);
+-
+-	err = xe_guc_ct_init(&guc->ct);
+-	if (err)
+-		return err;
+-
+-	err = xe_guc_relay_init(&guc->relay);
+-	if (err)
+-		return err;
+-
+ 	err = xe_gt_sriov_vf_bootstrap(gt);
+ 	if (err)
+ 		return err;
+@@ -653,6 +643,35 @@ static int vf_guc_init(struct xe_guc *guc)
+ 	return 0;
+ }
+ 
++int xe_guc_init_noalloc(struct xe_guc *guc)
 +{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 val = man_trk_ctl_enable_bit_get(display);
++	struct xe_device *xe = guc_to_xe(guc);
++	struct xe_gt *gt = guc_to_gt(guc);
++	int ret;
 +
-+	/* SF partial frame enable has to be set even on full update */
-+	val |= man_trk_ctl_partial_frame_bit_get(display);
-+	val |= man_trk_ctl_continuos_full_frame(display);
++	xe_guc_comm_init_early(guc);
 +
-+	/* Directly write the register */
-+	intel_de_write_fw(display, PSR2_MAN_TRK_CTL(display, cpu_transcoder), val);
++	ret = xe_guc_ct_init_noalloc(&guc->ct);
++	if (ret)
++		goto out;
 +
-+	if (!crtc_state->enable_psr2_su_region_et)
-+		return;
++	ret = xe_guc_relay_init(&guc->relay);
++	if (ret)
++		goto out;
 +
-+	intel_de_write_fw(display, PIPE_SRCSZ_ERLY_TPT(crtc->pipe), 0);
++	if (IS_SRIOV_VF(xe)) {
++		ret = vf_guc_init_noalloc(guc);
++		if (ret)
++			goto out;
++	}
++
++	return 0;
++
++out:
++	xe_gt_err(gt, "GuC init failed with %pe\n", ERR_PTR(ret));
++	return ret;
 +}
 +
- void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc)
+ int xe_guc_init(struct xe_guc *guc)
  {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 0cf53184f13f..9b061a22361f 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -57,6 +57,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc);
- void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
- 					  const struct intel_crtc_state *crtc_state);
-+void intel_psr2_panic_force_full_update(struct intel_display *display,
-+					struct intel_crtc_state *crtc_state);
- void intel_psr_pause(struct intel_dp *intel_dp);
- void intel_psr_resume(struct intel_dp *intel_dp);
- bool intel_psr_needs_vblank_notification(const struct intel_crtc_state *crtc_state);
+ 	struct xe_device *xe = guc_to_xe(guc);
+@@ -662,13 +681,13 @@ int xe_guc_init(struct xe_guc *guc)
+ 	guc->fw.type = XE_UC_FW_TYPE_GUC;
+ 	ret = xe_uc_fw_init(&guc->fw);
+ 	if (ret)
+-		goto out;
++		return ret;
+ 
+ 	if (!xe_uc_fw_is_enabled(&guc->fw))
+ 		return 0;
+ 
+ 	if (IS_SRIOV_VF(xe)) {
+-		ret = vf_guc_init(guc);
++		ret = xe_guc_ct_init(&guc->ct);
+ 		if (ret)
+ 			goto out;
+ 		return 0;
+@@ -690,10 +709,6 @@ int xe_guc_init(struct xe_guc *guc)
+ 	if (ret)
+ 		goto out;
+ 
+-	ret = xe_guc_relay_init(&guc->relay);
+-	if (ret)
+-		goto out;
+-
+ 	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_LOADABLE);
+ 
+ 	ret = devm_add_action_or_reset(xe->drm.dev, guc_fini_hw, guc);
+@@ -702,8 +717,6 @@ int xe_guc_init(struct xe_guc *guc)
+ 
+ 	guc_init_params(guc);
+ 
+-	xe_guc_comm_init_early(guc);
+-
+ 	return 0;
+ 
+ out:
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 58338be445585..965bf72912009 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -26,6 +26,7 @@
+ struct drm_printer;
+ 
+ void xe_guc_comm_init_early(struct xe_guc *guc);
++int xe_guc_init_noalloc(struct xe_guc *guc);
+ int xe_guc_init(struct xe_guc *guc);
+ int xe_guc_init_post_hwconfig(struct xe_guc *guc);
+ int xe_guc_post_load_init(struct xe_guc *guc);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 37509f6195035..20359a8d4bd85 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -207,12 +207,10 @@ static void primelockdep(struct xe_guc_ct *ct)
+ 	fs_reclaim_release(GFP_KERNEL);
+ }
+ 
+-int xe_guc_ct_init(struct xe_guc_ct *ct)
++int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct)
+ {
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	struct xe_gt *gt = ct_to_gt(ct);
+-	struct xe_tile *tile = gt_to_tile(gt);
+-	struct xe_bo *bo;
+ 	int err;
+ 
+ 	xe_gt_assert(gt, !(guc_ct_size() % PAGE_SIZE));
+@@ -238,6 +236,23 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 
+ 	primelockdep(ct);
+ 
++	err = drmm_add_action_or_reset(&xe->drm, guc_ct_fini, ct);
++	if (err)
++		return err;
++
++	xe_gt_assert(gt, ct->state == XE_GUC_CT_STATE_NOT_INITIALIZED);
++	ct->state = XE_GUC_CT_STATE_DISABLED;
++	return 0;
++}
++ALLOW_ERROR_INJECTION(xe_guc_ct_init_noalloc, ERRNO); /* See xe_pci_probe() */
++
++int xe_guc_ct_init(struct xe_guc_ct *ct)
++{
++	struct xe_device *xe = ct_to_xe(ct);
++	struct xe_gt *gt = ct_to_gt(ct);
++	struct xe_tile *tile = gt_to_tile(gt);
++	struct xe_bo *bo;
++
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ct_size(),
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+@@ -247,13 +262,6 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 		return PTR_ERR(bo);
+ 
+ 	ct->bo = bo;
+-
+-	err = drmm_add_action_or_reset(&xe->drm, guc_ct_fini, ct);
+-	if (err)
+-		return err;
+-
+-	xe_gt_assert(gt, ct->state == XE_GUC_CT_STATE_NOT_INITIALIZED);
+-	ct->state = XE_GUC_CT_STATE_DISABLED;
+ 	return 0;
+ }
+ ALLOW_ERROR_INJECTION(xe_guc_ct_init, ERRNO); /* See xe_pci_probe() */
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index 99c5dec446f23..18d4225e65024 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -11,6 +11,7 @@
+ struct drm_printer;
+ struct xe_device;
+ 
++int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
+ int xe_guc_ct_init(struct xe_guc_ct *ct);
+ int xe_guc_ct_enable(struct xe_guc_ct *ct);
+ void xe_guc_ct_disable(struct xe_guc_ct *ct);
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 3a8751a8b92dd..0e9ea57fcc88c 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -33,6 +33,22 @@ uc_to_xe(struct xe_uc *uc)
+ }
+ 
+ /* Should be called once at driver load only */
++int xe_uc_init_noalloc(struct xe_uc *uc)
++{
++	int ret;
++
++	ret = xe_guc_init_noalloc(&uc->guc);
++	if (ret)
++		goto err;
++
++	/* HuC and GSC have no early dependencies and can be completely initialized during full xe_uc_init(). */
++	return 0;
++
++err:
++	xe_gt_err(uc_to_gt(uc), "Failed to early initialize uC (%pe)\n", ERR_PTR(ret));
++	return ret;
++}
++
+ int xe_uc_init(struct xe_uc *uc)
+ {
+ 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
+index c23e6f5e25141..b573b7731f62e 100644
+--- a/drivers/gpu/drm/xe/xe_uc.h
++++ b/drivers/gpu/drm/xe/xe_uc.h
+@@ -8,6 +8,7 @@
+ 
+ struct xe_uc;
+ 
++int xe_uc_init_noalloc(struct xe_uc *uc);
+ int xe_uc_init(struct xe_uc *uc);
+ int xe_uc_init_hwconfig(struct xe_uc *uc);
+ int xe_uc_init_post_hwconfig(struct xe_uc *uc);
 -- 
-2.49.0
+2.45.2
 
