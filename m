@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EADA0C71157
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 18:56:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A014C71157
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 18:56:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C29C10E910;
-	Wed, 18 Jun 2025 18:56:02 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB51A10E8EE;
- Wed, 18 Jun 2025 18:56:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06BA310E919;
+	Wed, 18 Jun 2025 18:56:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TXp46L/V";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFD8F10E916;
+ Wed, 18 Jun 2025 18:56:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750272992; x=1781808992;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=z9br5LrInIVljMQihGbbAUPVThEIeJYu70LptYg3ObQ=;
+ b=TXp46L/VLf2kmR/4dBHGBcWzcqA7A2y8wQzaGLn5KGEBEUoboW3dmx48
+ ipEB+BLOV6v2MjnUBrna1jygLtgq4wtiVnwJsoeIKim2PLA6eh1BdSutV
+ FOCDyJcgi2OKnoEMdyQmrzV71sXStPay5RJSaLc4g7ucs1J022hFnrPpi
+ b7nqdSqyMhFQc/P4w1nAqkrXCU/b5852Bovp/AQICWYlaP2gcYItGeDeK
+ 9JPw6EVLYi/rZsKC+CQXazPYJaRprTOraSZH90BKiMYtjkRI0/QSZiu76
+ DnHatTnVYHStmxOr27zQ/m23dK7yBTojCIQcdubX/pLjIfw6yLeCg5mbd A==;
+X-CSE-ConnectionGUID: Ent1IKlvSOOCOl2waq5Z9g==
+X-CSE-MsgGUID: +oQ3uPuVRYSBjoutvOu46g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="52210175"
+X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="52210175"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2025 11:56:32 -0700
+X-CSE-ConnectionGUID: Whx/jbtDT3C3oKcL/+ChwQ==
+X-CSE-MsgGUID: smFV4sgQTjaDsuQ175NdyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="153951384"
+Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
+ by fmviesa003-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2025 11:56:29 -0700
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ alexander.usyskin@intel.com, gregkh@linuxfoundation.org,
+ daniele.ceraolospurio@intel.com, jgg@nvidia.com
+Subject: [PATCH v3 00/10] Introducing firmware late binding
+Date: Thu, 19 Jun 2025 00:29:57 +0530
+Message-Id: <20250618190007.2932322-1-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Update_Wa=5F220?=
- =?utf-8?q?19338487_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Jun 2025 18:56:00 -0000
-Message-ID: <175027296086.92817.7940764311732354329@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250618-wa-22019338487-v5-0-b888388477f2@intel.com>
-In-Reply-To: <20250618-wa-22019338487-v5-0-b888388477f2@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,64 +64,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Introducing firmware late binding feature to enable firmware loading
+for the devices, such as the fan controller and voltage regulator,
+during the driver probe.
+Typically, firmware for these devices are part of IFWI flash image but
+can be replaced at probe after OEM tuning.
 
-Series: drm/xe: Update Wa_22019338487 (rev2)
-URL   : https://patchwork.freedesktop.org/series/150300/
-State : warning
+v2:
+ - Dropped voltage regulator specific code as binaries for it will not
+   be available for upstreaming as of now.
+ - Address review comments
+v3:
+ - Dropped fwctl patch for now
+ - Added new patch to extract binary version
+ - Address v2 review comments
 
-== Summary ==
+Alexander Usyskin (2):
+  mei: bus: add mei_cldev_mtu interface
+  mei: late_bind: add late binding component driver
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-f8ff75ae1d2127635239b134695774ed4045d05b
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 10c14f1596364be0400b92da66ae948103b6f602
-Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Date:   Wed Jun 18 11:50:01 2025 -0700
+Badal Nilawar (8):
+  drm/xe/xe_late_bind_fw: Introducing xe_late_bind_fw
+  drm/xe/xe_late_bind_fw: Initialize late binding firmware
+  drm/xe/xe_late_bind_fw: Load late binding firmware
+  drm/xe/xe_late_bind_fw: Reload late binding fw in rpm resume
+  drm/xe/xe_late_bind_fw: Reload late binding fw in S2Idle/S3 resume
+  drm/xe/xe_late_bind_fw: Introduce debug fs node to disable late
+    binding
+  drm/xe/xe_late_bind_fw: Extract and print version info
+  [CI]drm/xe/xe_late_bind_fw: Select INTEL_MEI_LATE_BIND for CI
 
-    drm/xe/bmg: Update Wa_22019338487
-    
-    Limit GT max frequency to 2600MHz and wait for frequency to reduce
-    before proceeding with a transient flush. This is really only needed for
-    the transient flush: if L2 flush is needed due to 16023588340 then
-    there's no need to do this additional wait since we are already using
-    the bigger hammer.
-    
-    v2: Use generic names, ensure user set max frequency requests wait
-    for flush to complete (Rodrigo)
-    v3:
-     - User requests wait via wait_var_event_timeout (Lucas)
-     - Close races on flush + user requests (Lucas)
-     - Fix xe_guc_pc_remove_flush_freq_limit() being called on last gt
-       rather than root gt (Lucas)
-    v4:
-     - Only apply the freq reducing part if a TDF is needed: L2 flush trumps
-       the need for waiting a lower frequency
-    
-    Fixes: aaa08078e725 ("drm/xe/bmg: Apply Wa_22019338487")
-    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v3
-    Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-+ /mt/dim checkpatch b5956fc71790f85e9c9113adf1d9c7332c995f13 drm-intel
-576b9209863c drm/xe/guc_pc: Add _locked variant for min/max freq
--:108: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#108: FILE: drivers/gpu/drm/xe/xe_guc_pc.c:627:
-+
-+
+ drivers/gpu/drm/xe/Kconfig                  |   1 +
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c             |  41 ++
+ drivers/gpu/drm/xe/xe_device.c              |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   6 +
+ drivers/gpu/drm/xe/xe_late_bind_fw.c        | 432 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_late_bind_fw.h        |  17 +
+ drivers/gpu/drm/xe/xe_late_bind_fw_types.h  |  82 ++++
+ drivers/gpu/drm/xe/xe_pci.c                 |   3 +
+ drivers/gpu/drm/xe/xe_pm.c                  |   9 +
+ drivers/gpu/drm/xe/xe_uc_fw_abi.h           |  69 ++++
+ drivers/misc/mei/Kconfig                    |   1 +
+ drivers/misc/mei/Makefile                   |   1 +
+ drivers/misc/mei/bus.c                      |  13 +
+ drivers/misc/mei/late_bind/Kconfig          |  13 +
+ drivers/misc/mei/late_bind/Makefile         |   9 +
+ drivers/misc/mei/late_bind/mei_late_bind.c  | 263 ++++++++++++
+ include/drm/intel/i915_component.h          |   1 +
+ include/drm/intel/late_bind_mei_interface.h |  50 +++
+ include/linux/mei_cl_bus.h                  |   1 +
+ 20 files changed, 1018 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw.c
+ create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw.h
+ create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+ create mode 100644 drivers/misc/mei/late_bind/Kconfig
+ create mode 100644 drivers/misc/mei/late_bind/Makefile
+ create mode 100644 drivers/misc/mei/late_bind/mei_late_bind.c
+ create mode 100644 include/drm/intel/late_bind_mei_interface.h
 
-total: 0 errors, 0 warnings, 1 checks, 183 lines checked
-cfceef313427 drm/xe/xe_guc_pc: Lock once to update stashed frequencies
-8dd48df5907e drm/xe: Split xe_device_td_flush()
-10c14f159636 drm/xe/bmg: Update Wa_22019338487
-
+-- 
+2.34.1
 
