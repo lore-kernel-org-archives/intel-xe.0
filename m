@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2537AC71157
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 12:48:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82BDDC71157
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Jun 2025 13:20:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1C5110E15C;
-	Wed, 18 Jun 2025 12:48:31 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D543810E15C;
- Wed, 18 Jun 2025 12:48:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3862282889102227893=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0799D10E82A;
+	Wed, 18 Jun 2025 13:20:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nSq4QVj5";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A27310E829;
+ Wed, 18 Jun 2025 13:20:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750252839; x=1781788839;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nU3kkYjX02w+ev8NGYBcO1oHnilazxL10dM0JMOQVVM=;
+ b=nSq4QVj56iP7hRfH2bug6bC8n6pESED/RFKUapDS5nZybDk5Kdqh11k+
+ JuJ2DH4Dy3dgjmBLbzqilU3Evhn+yCDoK0dKqye4XyWtUu0Fwd+a1uyVI
+ yO8Gn0nXkObkyKlWv6mbbcFD9nYrENZ2pOp3S3InGKgqf/SNtP8D++rXC
+ 7jnuONBa9NBlymwt7IkwuCuL1tg8RJrvCzlSos0X04XHTOHNIAs5I9rbH
+ PH5r0nYvITyv2TNUd4dDuOjc/fYEHvRlSfinQ449eyxISZIOgU5tfvDFe
+ sB+7z9nVWSu0pWXPvnmONgxssNKK/inbb8jbHZPRHsxla87M6KzaTA0Jh g==;
+X-CSE-ConnectionGUID: 0dC1krUqSZ24/KS591BQxQ==
+X-CSE-MsgGUID: tI+SojSjQ4CVa7d5ZGLVeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="56272568"
+X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="56272568"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2025 06:20:37 -0700
+X-CSE-ConnectionGUID: 1AhCHAVjQd2R7vfWFq5Heg==
+X-CSE-MsgGUID: 9can9AKaS/+QNa+VwGOoyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; d="scan'208";a="150297010"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2025 06:20:34 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
+ jani.nikula@linux.intel.com, stable@vger.kernel.org,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/2] Fixes in snps-phy HDMI PLL algorithm
+Date: Wed, 18 Jun 2025 18:39:49 +0530
+Message-ID: <20250618130951.1596587-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_read_PCON?=
- =?utf-8?q?_capability_only_when_present?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Jun 2025 12:48:30 -0000
-Message-ID: <175025091086.90962.13115193193731030174@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250618114553.3974479-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20250618114553.3974479-1-chaitanya.kumar.borah@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +63,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3862282889102227893==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Fixes/improvement in snps-phy HDMI PLL algorithm.
 
-== Series Details ==
+Ankit Nautiyal (2):
+  drm/i915/snps_hdmi_pll: Fix 64-bit divisor truncation by using
+    div64_u64
+  drm/i915/snps_hdmi_pll: Use clamp() instead of max(min())
 
-Series: drm/xe/display: read PCON capability only when present
-URL   : https://patchwork.freedesktop.org/series/150450/
-State : success
+ drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-== Summary ==
+-- 
+2.45.2
 
-CI Bug Log - changes from xe-3272-55cbd02fa784e94b4f658c1e547371ac804c62a9_BAT -> xe-pw-150450v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8415 -> IGT_8416
-  * Linux: xe-3272-55cbd02fa784e94b4f658c1e547371ac804c62a9 -> xe-pw-150450v1
-
-  IGT_8415: bd8a24cf051c1efb81c76cf58a56151990a4a8ea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8416: 8416
-  xe-3272-55cbd02fa784e94b4f658c1e547371ac804c62a9: 55cbd02fa784e94b4f658c1e547371ac804c62a9
-  xe-pw-150450v1: 150450v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150450v1/index.html
-
---===============3862282889102227893==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/display: read PCON capability only when present</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150450/">https://patchwork.freedesktop.org/series/150450/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150450v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150450v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3272-55cbd02fa784e94b4f658c1e547371ac804c62a9_BAT -&gt; xe-pw-150450v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8415 -&gt; IGT_8416</li>
-<li>Linux: xe-3272-55cbd02fa784e94b4f658c1e547371ac804c62a9 -&gt; xe-pw-150450v1</li>
-</ul>
-<p>IGT_8415: bd8a24cf051c1efb81c76cf58a56151990a4a8ea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8416: 8416<br />
-  xe-3272-55cbd02fa784e94b4f658c1e547371ac804c62a9: 55cbd02fa784e94b4f658c1e547371ac804c62a9<br />
-  xe-pw-150450v1: 150450v1</p>
-
-</body>
-</html>
-
---===============3862282889102227893==--
