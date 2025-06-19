@@ -4,22 +4,22 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7181C73C66
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD2F6C77B7C
 	for <intel-xe@archiver.kernel.org>; Thu, 19 Jun 2025 10:49:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77E7710E9F6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D22D10E9F8;
 	Thu, 19 Jun 2025 10:49:51 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC91610E9F8
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Jun 2025 10:49:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3259810E9F8
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Jun 2025 10:49:36 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v4 04/11] drm/xe: Make it possible to read instance0 MCR
- registers after xe_gt_mcr_init_early
-Date: Thu, 19 Jun 2025 12:49:03 +0200
-Message-ID: <20250619104858.418440-17-dev@lankhorst.se>
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v4 05/11] drm/xe: Only dump PAT when xe_hw_engines_init_early
+ fails
+Date: Thu, 19 Jun 2025 12:49:04 +0200
+Message-ID: <20250619104858.418440-18-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250619104858.418440-13-dev@lankhorst.se>
 References: <20250619104858.418440-13-dev@lankhorst.se>
@@ -39,128 +39,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-After mcr_init_early, we need to be able to do VRAM and CCS probing
-without hwconfig probe. Fortunately the relevant registers are all
-instance 0, which fortunately means no dependencies on further initialization
-is required.
+After discussion with Lucas De Marchi, it turns out that is the
+specific caller requiring a dump. This allows us to cleanup
+gt_init in a bit.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-[mlankhorst: Fix british spelling]
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_gt_mcr.c   | 47 ++++++++++++++++++--------------
- drivers/gpu/drm/xe/xe_gt_types.h |  2 ++
- 2 files changed, 29 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index d4d9730f0d2c7..64a2f0d6aaf95 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -420,12 +420,6 @@ static void init_steering_sqidi_psmi(struct xe_gt *gt)
- 	gt->steering[SQIDI_PSMI].instance_target = select & 0x1;
- }
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 6bc793043b400..98360986df7db 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -464,8 +464,10 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 	xe_gt_mcr_init(gt);
  
--static void init_steering_inst0(struct xe_gt *gt)
--{
--	gt->steering[INSTANCE0].group_target = 0;	/* unused */
--	gt->steering[INSTANCE0].instance_target = 0;	/* unused */
--}
--
- static const struct {
- 	const char *name;
- 	void (*init)(struct xe_gt *gt);
-@@ -436,7 +430,7 @@ static const struct {
- 	[DSS] =		{ "DSS",	init_steering_dss },
- 	[OADDRM] =	{ "OADDRM / GPMXMT", init_steering_oaddrm },
- 	[SQIDI_PSMI] =  { "SQIDI_PSMI", init_steering_sqidi_psmi },
--	[INSTANCE0] =	{ "INSTANCE 0",	init_steering_inst0 },
-+	[INSTANCE0] =	{ "INSTANCE 0",	NULL },
- 	[IMPLICIT_STEERING] = { "IMPLICIT", NULL },
- };
- 
-@@ -446,25 +440,17 @@ static const struct {
-  *
-  * Perform early software only initialization of the MCR lock to allow
-  * the synchronization on accessing the STEER_SEMAPHORE register and
-- * use the xe_gt_mcr_multicast_write() function.
-+ * use the xe_gt_mcr_multicast_write() function, plus the minimum
-+ * safe MCR registers required for VRAM/CCS probing.
-  */
- void xe_gt_mcr_init_early(struct xe_gt *gt)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
-+
- 	BUILD_BUG_ON(IMPLICIT_STEERING + 1 != NUM_STEERING_TYPES);
- 	BUILD_BUG_ON(ARRAY_SIZE(xe_steering_types) != NUM_STEERING_TYPES);
- 
- 	spin_lock_init(&gt->mcr_lock);
--}
--
--/**
-- * xe_gt_mcr_init - Normal initialization of the MCR support
-- * @gt: GT structure
-- *
-- * Perform normal initialization of the MCR for all usages.
-- */
--void xe_gt_mcr_init(struct xe_gt *gt)
--{
--	struct xe_device *xe = gt_to_xe(gt);
- 
- 	if (IS_SRIOV_VF(xe))
- 		return;
-@@ -505,10 +491,27 @@ void xe_gt_mcr_init(struct xe_gt *gt)
- 		}
- 	}
- 
-+	/* Mark instance 0 as initialized, we need this early for VRAM and CCS probe. */
-+	gt->steering[INSTANCE0].initialized = true;
-+}
-+
-+/**
-+ * xe_gt_mcr_init - Normal initialization of the MCR support
-+ * @gt: GT structure
-+ *
-+ * Perform normal initialization of the MCR for all usages.
-+ */
-+void xe_gt_mcr_init(struct xe_gt *gt)
-+{
-+	if (IS_SRIOV_VF(gt_to_xe(gt)))
-+		return;
-+
- 	/* Select non-terminated steering target for each type */
--	for (int i = 0; i < NUM_STEERING_TYPES; i++)
-+	for (int i = 0; i < NUM_STEERING_TYPES; i++) {
-+		gt->steering[i].initialized = true;
- 		if (gt->steering[i].ranges && xe_steering_types[i].init)
- 			xe_steering_types[i].init(gt);
+ 	err = xe_hw_engines_init_early(gt);
+-	if (err)
++	if (err) {
++		dump_pat_on_error(gt);
+ 		goto err_force_wake;
 +	}
- }
  
- /**
-@@ -570,6 +573,10 @@ bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
+ 	err = xe_hw_engine_class_sysfs_init(gt);
+ 	if (err)
+@@ -486,7 +488,6 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 	return 0;
  
- 		for (int i = 0; gt->steering[type].ranges[i].end > 0; i++) {
- 			if (xe_mmio_in_range(&gt->mmio, &gt->steering[type].ranges[i], reg)) {
-+				drm_WARN(&gt_to_xe(gt)->drm, !gt->steering[type].initialized,
-+					 "Uninitialized usage of MCR register %s/%#x\n",
-+					 xe_steering_types[type].name, reg.addr);
-+
- 				*group = gt->steering[type].group_target;
- 				*instance = gt->steering[type].instance_target;
- 				return true;
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 7def0959da35d..96344c6047260 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -377,6 +377,8 @@ struct xe_gt {
- 		u16 group_target;
- 		/** @steering.instance_target: instance to steer accesses to */
- 		u16 instance_target;
-+		/** @steering.initialized: Whether this steering range is initialized */
-+		bool initialized;
- 	} steering[NUM_STEERING_TYPES];
+ err_force_wake:
+-	dump_pat_on_error(gt);
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
  
- 	/**
+ 	return err;
 -- 
 2.45.2
 
