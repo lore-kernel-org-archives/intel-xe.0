@@ -4,28 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7583CC7115A
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Jun 2025 15:42:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8A7AC7115B
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Jun 2025 16:03:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38AEA10E00B;
-	Thu, 19 Jun 2025 15:42:44 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E54F10E00B;
- Thu, 19 Jun 2025 15:42:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8839322277769654786=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB26F10E136;
+	Thu, 19 Jun 2025 16:03:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="igwa8+ah";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9922310E111;
+ Thu, 19 Jun 2025 16:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750349036; x=1781885036;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=g1wuA+3Bm5fjSAmJaxDskX5yucV1m/wl7q9NanZXzi4=;
+ b=igwa8+ah+Vb0DahOdX/r/qyXDscmZeDiQ6IFuyegQPcu9IJwk99uo1ZF
+ fNL9XmpskynC9slc9u16y9AtohZKIDYSm9Bu5wdqLM46o2QKbKmlYMRJS
+ ySoiToaWBr3h4LFeqUtfaK2KQ8ZPfwibiwuGOvttxDVUg31148T0M//gQ
+ MpO3O6PvkNWvMVKjfWFlqkFs7xPNbHUGd5JanRxUmHkDP8CjpZWekV8cS
+ RNSqE6bw8NN2aTWsLtKMEaBZClL69VEFJjuImVWddOWeizBdFyzWiYJg2
+ O/RdDCI+ox4bhkVH7welmhkAJ0kee7SdCTdgSywp/lUvwB5cbz2nYn2XB A==;
+X-CSE-ConnectionGUID: D9mk/KO4SdSK3Awk5f48+g==
+X-CSE-MsgGUID: ctGb3GwBRL2i/t/GtFu9DQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="51715785"
+X-IronPort-AV: E=Sophos;i="6.16,249,1744095600"; d="scan'208";a="51715785"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2025 09:03:56 -0700
+X-CSE-ConnectionGUID: wRRBmDLNRJKW6lRUBtru0Q==
+X-CSE-MsgGUID: p+T1KRIXT6Krr7FnJqwxlw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,249,1744095600"; d="scan'208";a="151007900"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.196])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2025 09:03:53 -0700
+Date: Thu, 19 Jun 2025 18:03:42 +0200
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <aFQ03kNzhbiNK7gW@fedora>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/gpusvm=2C_drm/pagemap?=
- =?utf-8?q?=2C_drm/xe=3A_Restructure_migration_in_preparation_for_multi-devi?=
- =?utf-8?q?ce_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 19 Jun 2025 15:42:43 -0000
-Message-ID: <175034776331.96475.12680171977225292060@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250619134035.170086-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250619134035.170086-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,124 +72,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8839322277769654786==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Simona
 
-== Series Details ==
+Three fixes for -rc3. There are a couple more pending with
+non-trivial merge conflicts that need to be properly
+backported.
 
-Series: drm/gpusvm, drm/pagemap, drm/xe: Restructure migration in preparation for multi-device (rev6)
-URL   : https://patchwork.freedesktop.org/series/147902/
-State : success
+drm-xe-fixes-2025-06-19:
+Driver Changes:
+- A workaround update (Vinay)
+- Fix memset on iomem (Lucas)
+- Fix early wedge on GuC Load failure (Daniele)
 
-== Summary ==
+The following changes since commit 9c7632faad434c98f1f2cc06f3647a5a5d05ddbf:
 
-CI Bug Log - changes from xe-3278-192b2df135154d4552710c489d4824d5090f8d2c_BAT -> xe-pw-147902v6_BAT
-====================================================
+  drm/xe/lrc: Use a temporary buffer for WA BB (2025-06-12 18:09:50 +0200)
 
-Summary
--------
+are available in the Git repository at:
 
-  **SUCCESS**
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2025-06-19
 
-  No regressions found.
+for you to fetch changes up to a39d082c3553d35b4fe5585e1e2fb221c130cae8:
 
-  
+  drm/xe: Fix early wedge on GuC load failure (2025-06-19 17:24:30 +0200)
 
-Participating hosts (9 -> 8)
-------------------------------
+----------------------------------------------------------------
+Driver Changes:
+- A workaround update (Vinay)
+- Fix memset on iomem (Lucas)
+- Fix early wedge on GuC Load failure (Daniele)
 
-  Missing    (1): bat-adlp-vm 
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (1):
+      drm/xe: Fix early wedge on GuC load failure
 
-Known issues
-------------
+Lucas De Marchi (1):
+      drm/xe: Fix memset on iomem
 
-  Here are the changes found in xe-pw-147902v6_BAT that come from known issues:
+Vinay Belgaumkar (1):
+      drm/xe/bmg: Update Wa_16023588340
 
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_pat@pat-index-xe2@render:
-    - bat-bmg-2:          [FAIL][1] -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3278-192b2df135154d4552710c489d4824d5090f8d2c/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147902v6/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-3278-192b2df135154d4552710c489d4824d5090f8d2c -> xe-pw-147902v6
-
-  IGT_8418: 8418
-  xe-3278-192b2df135154d4552710c489d4824d5090f8d2c: 192b2df135154d4552710c489d4824d5090f8d2c
-  xe-pw-147902v6: 147902v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147902v6/index.html
-
---===============8839322277769654786==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/gpusvm, drm/pagemap, drm/xe: Restructure migration in preparation for multi-device (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147902/">https://patchwork.freedesktop.org/series/147902/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147902v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147902v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3278-192b2df135154d4552710c489d4824d5090f8d2c_BAT -&gt; xe-pw-147902v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-147902v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xe2@render:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3278-192b2df135154d4552710c489d4824d5090f8d2c/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147902v6/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3278-192b2df135154d4552710c489d4824d5090f8d2c -&gt; xe-pw-147902v6</li>
-</ul>
-<p>IGT_8418: 8418<br />
-  xe-3278-192b2df135154d4552710c489d4824d5090f8d2c: 192b2df135154d4552710c489d4824d5090f8d2c<br />
-  xe-pw-147902v6: 147902v6</p>
-
-</body>
-</html>
-
---===============8839322277769654786==--
+ drivers/gpu/drm/xe/xe_gt.c                  | 2 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 8 ++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.c              | 7 +++++--
+ drivers/gpu/drm/xe/xe_guc_ct.h              | 5 +++++
+ drivers/gpu/drm/xe/xe_guc_pc.c              | 2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          | 3 +++
+ 6 files changed, 23 insertions(+), 4 deletions(-)
