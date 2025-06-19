@@ -4,20 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9116C73C66
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Jun 2025 10:49:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DAB2C7EE2C
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Jun 2025 10:49:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DA0410E9F7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99EB110E9FF;
 	Thu, 19 Jun 2025 10:49:38 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F99010E9FA
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Jun 2025 10:49:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC95810E9FA
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Jun 2025 10:49:32 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v4 10/11] drm/xe: Remove xe_uc_fini_hw
-Date: Thu, 19 Jun 2025 12:49:09 +0200
-Message-ID: <20250619104858.418440-23-dev@lankhorst.se>
+Cc: Maarten Lankhorst <dev@lankhorst.se>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Ilia Levi <ilia.levi@intel.com>
+Subject: [PATCH v4 01/11] drm/xe: Defer memirq init until needed
+Date: Thu, 19 Jun 2025 12:49:00 +0200
+Message-ID: <20250619104858.418440-14-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250619104858.418440-13-dev@lankhorst.se>
 References: <20250619104858.418440-13-dev@lankhorst.se>
@@ -37,60 +38,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_uc_init_hw() is called multiple times from xe_gt.c,
-and that makes the name xe_uc_fini_hw(), called for a different
-reason in xe_guc.c confusing.
+memirqs require allocations into GGTT, which we cannot use until
+after display is enabled.
 
-Remove it and inline the xe_uc_sanitize_reset into xe_guc.c directly.
+Now that the initialisation of interrupts is postponed, move memirq
+init too.
 
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Ilia Levi <ilia.levi@intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 2 +-
- drivers/gpu/drm/xe/xe_uc.c  | 5 -----
- drivers/gpu/drm/xe/xe_uc.h  | 1 -
- 3 files changed, 1 insertion(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 4 ----
+ drivers/gpu/drm/xe/xe_tile.c   | 7 +++++++
+ 2 files changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index eeb23f8aa9de8..7a4207a2c1e0c 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -577,7 +577,7 @@ static void guc_fini_hw(void *arg)
- 	unsigned int fw_ref;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 8cfcfff250ca5..a1d3b861ff9c6 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -43,7 +43,6 @@
+ #include "xe_hw_engine_group.h"
+ #include "xe_hwmon.h"
+ #include "xe_irq.h"
+-#include "xe_memirq.h"
+ #include "xe_mmio.h"
+ #include "xe_module.h"
+ #include "xe_oa.h"
+@@ -814,9 +813,6 @@ int xe_device_probe(struct xe_device *xe)
+ 		err = xe_ggtt_init_early(tile->mem.ggtt);
+ 		if (err)
+ 			return err;
+-		err = xe_memirq_init(&tile->memirq);
+-		if (err)
+-			return err;
+ 	}
  
- 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	xe_uc_fini_hw(&guc_to_gt(guc)->uc);
-+	xe_uc_sanitize_reset(&guc_to_gt(guc)->uc);
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	for_each_gt(gt, xe, id) {
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 672faa0b67f16..86e9811e60ba0 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -10,6 +10,7 @@
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
++#include "xe_memirq.h"
+ #include "xe_migrate.h"
+ #include "xe_pcode.h"
+ #include "xe_sa.h"
+@@ -174,6 +175,12 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
  
- 	guc_g2g_fini(guc);
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 8f56a5ef41e24..1b1441b234c92 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -220,11 +220,6 @@ int xe_uc_init_hw(struct xe_uc *uc)
- 	return 0;
- }
- 
--int xe_uc_fini_hw(struct xe_uc *uc)
--{
--	return xe_uc_sanitize_reset(uc);
--}
--
- int xe_uc_reset_prepare(struct xe_uc *uc)
+ int xe_tile_init(struct xe_tile *tile)
  {
- 	/* GuC submission not enabled, nothing to do */
-diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
-index c13d705fe02c4..58ff3946a80ec 100644
---- a/drivers/gpu/drm/xe/xe_uc.h
-+++ b/drivers/gpu/drm/xe/xe_uc.h
-@@ -12,7 +12,6 @@ int xe_uc_init_noalloc(struct xe_uc *uc);
- int xe_uc_init(struct xe_uc *uc);
- int xe_uc_init_post_hwconfig(struct xe_uc *uc);
- int xe_uc_init_hw(struct xe_uc *uc);
--int xe_uc_fini_hw(struct xe_uc *uc);
- void xe_uc_gucrc_disable(struct xe_uc *uc);
- int xe_uc_reset_prepare(struct xe_uc *uc);
- void xe_uc_stop_prepare(struct xe_uc *uc);
++	int err;
++
++	err = xe_memirq_init(&tile->memirq);
++	if (err)
++		return err;
++
+ 	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
+ 	if (IS_ERR(tile->mem.kernel_bb_pool))
+ 		return PTR_ERR(tile->mem.kernel_bb_pool);
 -- 
 2.45.2
 
