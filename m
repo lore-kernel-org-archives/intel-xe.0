@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40049C7115E
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Jun 2025 07:48:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D12BDC7115E
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Jun 2025 07:54:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 021F010E9D2;
-	Thu, 19 Jun 2025 07:48:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hsD6K8Ec";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC3010E07B
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Jun 2025 07:48:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750319320; x=1781855320;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qmh+rH5maNvfcf2HfGLEAliJ+J1+yJaUf2Rj9y2ywZs=;
- b=hsD6K8Ec6NII3I4kCPeOCKH1rU7tbOVJZmhkMQGEJkaF/A4DS9zEYMBy
- Q+SPkf+vdifKHdNx1QXRg9q0FYOSQIwpU/Wg30/PwMrY2kboveFVgUxtz
- MX0bcueta/SliMANHJmaGJ5xTQC0rn3Q9nV5wsBI1EXNUdgjVi5ZvAO7b
- RZ5dytZMqazUkLIHo0HLV8vmE8bgcW3Qi/VzutbXslKPsOdc28joF5Y/m
- kMMtL0+/Cb08WO/k4p4ipfEmeMS0zzyNNWjclyJZ2Z+W7zzRnktYiI6fY
- 6pDp6AW/hj0LnAwTNV0ORktgw5CqUMg3usxrjSpENLxtMGZ5Z5eRZ8frj w==;
-X-CSE-ConnectionGUID: PVzR5WCKRO23f/gvgfquOw==
-X-CSE-MsgGUID: b1bqxiOcTBuOBq5fIta/dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="52442155"
-X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208";a="52442155"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2025 00:48:29 -0700
-X-CSE-ConnectionGUID: Nz9dJY7FRgWOPZc3buf8sA==
-X-CSE-MsgGUID: ApA0eGOPQ66VNTyDZhCE3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208";a="174091269"
-Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa002.fm.intel.com with ESMTP; 19 Jun 2025 00:48:26 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Tomasz Lis <tomasz.lis@intel.com>
-Subject: [PATCH v8 2/3] drm/xe/vf: Attach and detach CCS copy commands with BO
-Date: Thu, 19 Jun 2025 13:34:58 +0530
-Message-ID: <20250619080459.27731-3-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250619080459.27731-1-satyanarayana.k.v.p@intel.com>
-References: <20250619080459.27731-1-satyanarayana.k.v.p@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 056B910E07B;
+	Thu, 19 Jun 2025 07:53:59 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B22D910E07B;
+ Thu, 19 Jun 2025 07:53:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_CCS_save_restore_for_IGPU?=
+ =?utf-8?q?_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Jun 2025 07:53:57 -0000
+Message-ID: <175031963772.94313.8644067467702414630@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250619080459.27731-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250619080459.27731-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,480 +36,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Attach CCS read/write copy commands to BO for old and new mem types as
-NULL -> tt or system -> tt.
-Detach the CCS read/write copy commands from BO while deleting ttm bo
-from xe_ttm_bo_delete_mem_notify().
+== Series Details ==
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
----
-Cc: Tomasz Lis <tomasz.lis@intel.com>
+Series: CCS save restore for IGPU (rev8)
+URL   : https://patchwork.freedesktop.org/series/149108/
+State : warning
 
-V7 -> V8:
-- Removed xe_bb_ccs_realloc() and created a single BB by calculating the
-BB size first and then emitting the commands. (Matthew Brost)
-- Added xe_assert() if BB is not NULL in xe_sriov_vf_ccs_attach_bo().
+== Summary ==
 
-V6 -> V7:
-- Created xe_bb_ccs_realloc() to create a single BB instead of maintaining
-a list. (Matthew Brost)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 44ffefdbc09b467e8f44e1a33d8b925b628d0108
+Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Date:   Thu Jun 19 13:34:59 2025 +0530
 
-V5 -> V6:
-- Removed dead code from xe_migrate_ccs_rw_copy() function. (Matthew Brost)
+    drm/xe/vf: Register CCS read/write contexts with Guc
+    
+    Register read write contexts with newly added flags with GUC and
+    enable the context immediately after registration.
+    Re-register the context with Guc when resuming from runtime suspend as
+    soft reset is applied to Guc during xe_pm_runtime_resume().
+    Make Ring head=tail while unbinding device to avoid issues with VF pause
+    after device is unbinded.
+    
+    Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
++ /mt/dim checkpatch 74c4708b7ac3e4bcecaa618e9f16c0b5c3e75ab3 drm-intel
+aff94b778c98 drm/xe/vf: Create contexts for CCS read write
+-:197: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#197: 
+new file mode 100644
 
-V4 -> V5:
-- Create a list of BBs for the given BO and fixed memory leak while
-detaching BOs. (Matthew Brost).
-- Fixed review comments (Matthew Brost & Matthew Auld).
-- Yet to cleanup xe_migrate_ccs_rw_copy() function.
+-:445: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id__' - possible side-effects?
+#445: FILE: drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h:9:
++#define for_each_ccs_rw_ctx(id__) \
++	for ((id__) = 0; (id__) < XE_SRIOV_VF_CCS_CTX_COUNT; (id__)++)
 
-V3 -> V4:
-- Fixed issues reported by patchworks.
+total: 0 errors, 1 warnings, 1 checks, 401 lines checked
+63f231fb5b73 drm/xe/vf: Attach and detach CCS copy commands with BO
+44ffefdbc09b drm/xe/vf: Register CCS read/write contexts with Guc
 
-V2 -> V3:
-- Attach and detach functions check for IS_VF_CCS_READY().
-
-V1 -> V2:
-- Fixed review comments.
----
- drivers/gpu/drm/xe/xe_bb.c                 |  35 ++++++
- drivers/gpu/drm/xe/xe_bb.h                 |   3 +
- drivers/gpu/drm/xe/xe_bo.c                 |  23 ++++
- drivers/gpu/drm/xe/xe_bo_types.h           |   3 +
- drivers/gpu/drm/xe/xe_migrate.c            | 130 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_migrate.h            |   6 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       |  72 ++++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.h       |   3 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |   8 ++
- 9 files changed, 283 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index 9570672fce33..533352dc892f 100644
---- a/drivers/gpu/drm/xe/xe_bb.c
-+++ b/drivers/gpu/drm/xe/xe_bb.c
-@@ -60,6 +60,41 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
- 	return ERR_PTR(err);
- }
- 
-+struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
-+			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
-+{
-+	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_sa_manager *bb_pool;
-+	int err;
-+
-+	if (!bb)
-+		return ERR_PTR(-ENOMEM);
-+	/*
-+	 * We need to allocate space for the requested number of dwords &
-+	 * one additional MI_BATCH_BUFFER_END dword. Since the whole SA
-+	 * is submitted to HW, we need to make sure that the last instruction
-+	 * is not over written when the last chunk of SA is allocated for BB.
-+	 * So, this extra DW acts as a guard here.
-+	 */
-+
-+	bb_pool = tile->sriov.vf.ccs[ctx_id].mem.ccs_bb_pool;
-+	bb->bo = xe_sa_bo_new(bb_pool, 4 * (dwords + 1));
-+
-+	if (IS_ERR(bb->bo)) {
-+		err = PTR_ERR(bb->bo);
-+		goto err;
-+	}
-+
-+	bb->cs = xe_sa_bo_cpu_addr(bb->bo);
-+	bb->len = 0;
-+
-+	return bb;
-+err:
-+	kfree(bb);
-+	return ERR_PTR(err);
-+}
-+
- static struct xe_sched_job *
- __xe_bb_create_job(struct xe_exec_queue *q, struct xe_bb *bb, u64 *addr)
- {
-diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
-index fafacd73dcc3..32c9c4c5d2be 100644
---- a/drivers/gpu/drm/xe/xe_bb.h
-+++ b/drivers/gpu/drm/xe/xe_bb.h
-@@ -13,8 +13,11 @@ struct dma_fence;
- struct xe_gt;
- struct xe_exec_queue;
- struct xe_sched_job;
-+enum xe_sriov_vf_ccs_rw_ctxs;
- 
- struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 size, bool usm);
-+struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
-+			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id);
- struct xe_sched_job *xe_bb_create_job(struct xe_exec_queue *q,
- 				      struct xe_bb *bb);
- struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 4e39188a021a..beaf8544bf08 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -31,6 +31,7 @@
- #include "xe_pxp.h"
- #include "xe_res_cursor.h"
- #include "xe_shrinker.h"
-+#include "xe_sriov_vf_ccs.h"
- #include "xe_trace_bo.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
-@@ -947,6 +948,20 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	dma_fence_put(fence);
- 	xe_pm_runtime_put(xe);
- 
-+	/*
-+	 * CCS meta data is migrated from TT -> SMEM. So, let us detach the
-+	 * BBs from BO as it is no longer needed.
-+	 */
-+	if (IS_VF_CCS_BB_VALID(xe, bo) && old_mem_type == XE_PL_TT &&
-+	    new_mem->mem_type == XE_PL_SYSTEM)
-+		xe_sriov_vf_ccs_detach_bo(bo);
-+
-+	if (IS_SRIOV_VF(xe) &&
-+	    ((move_lacks_source && new_mem->mem_type == XE_PL_TT) ||
-+	     (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT)) &&
-+	    handle_system_ccs)
-+		ret = xe_sriov_vf_ccs_attach_bo(bo);
-+
- out:
- 	if ((!ttm_bo->resource || ttm_bo->resource->mem_type == XE_PL_SYSTEM) &&
- 	    ttm_bo->ttm) {
-@@ -957,6 +972,9 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		if (timeout < 0)
- 			ret = timeout;
- 
-+		if (IS_VF_CCS_BB_VALID(xe, bo))
-+			xe_sriov_vf_ccs_detach_bo(bo);
-+
- 		xe_tt_unmap_sg(xe, ttm_bo->ttm);
- 	}
- 
-@@ -1483,9 +1501,14 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
- 
- static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
- {
-+	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
-+
- 	if (!xe_bo_is_xe_bo(ttm_bo))
- 		return;
- 
-+	if (IS_VF_CCS_BB_VALID(ttm_to_xe_device(ttm_bo->bdev), bo))
-+		xe_sriov_vf_ccs_detach_bo(bo);
-+
- 	/*
- 	 * Object is idle and about to be destroyed. Release the
- 	 * dma-buf attachment.
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index eb5e83c5f233..642e519fcfd1 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -78,6 +78,9 @@ struct xe_bo {
- 	/** @ccs_cleared */
- 	bool ccs_cleared;
- 
-+	/** @bb_ccs_rw: BB instructions of CCS read/write. Valid only for VF */
-+	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
-+
- 	/**
- 	 * @cpu_caching: CPU caching mode. Currently only used for userspace
- 	 * objects. Exceptions are system memory on DGFX, which is always
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 8f8e9fdfb2a8..c730b34071ad 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -940,6 +940,136 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 	return fence;
- }
- 
-+/**
-+ * xe_migrate_ccs_rw_copy() - Copy content of TTM resources.
-+ * @m: The migration context.
-+ * @src_bo: The buffer object @src is currently bound to.
-+ * @read_write : Creates BB commands for CCS read/write.
-+ *
-+ * Creates batch buffer instructions to copy CCS metadata from CCS pool to
-+ * memory and vice versa.
-+ *
-+ * This function should only be called for IGPU.
-+ *
-+ * Return: 0 if successful, negative error code on failure.
-+ */
-+int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
-+			   struct xe_bo *src_bo,
-+			   enum xe_sriov_vf_ccs_rw_ctxs read_write)
-+
-+{
-+	bool src_is_pltt = read_write == XE_SRIOV_VF_CCS_WRITE_CTX;
-+	bool dst_is_pltt = read_write == XE_SRIOV_VF_CCS_READ_CTX;
-+	struct ttm_resource *src = src_bo->ttm.resource;
-+	struct xe_gt *gt = m->tile->primary_gt;
-+	u32 batch_size, batch_size_allocated;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_res_cursor src_it, ccs_it;
-+	u64 size = src_bo->size;
-+	struct xe_bb *bb = NULL;
-+	u64 src_L0, src_L0_ofs;
-+	u32 src_L0_pt;
-+	int err;
-+
-+	xe_res_first_sg(xe_bo_sg(src_bo), 0, size, &src_it);
-+
-+	xe_res_first_sg(xe_bo_sg(src_bo), xe_bo_ccs_pages_start(src_bo),
-+			PAGE_ALIGN(xe_device_ccs_bytes(xe, size)),
-+			&ccs_it);
-+
-+	/* Calculate Batch buffer size */
-+	batch_size = 0;
-+	while (size) {
-+		batch_size += 6; /* Flush + 2 NOP */
-+		u64 ccs_ofs, ccs_size;
-+		u32 ccs_pt;
-+
-+		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-+
-+		src_L0 = min_t(u64, max_mem_transfer_per_pass(xe), size);
-+
-+		batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
-+					      &src_L0_ofs, &src_L0_pt, 0, 0,
-+					      avail_pts);
-+
-+		ccs_size = xe_device_ccs_bytes(xe, src_L0);
-+		batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
-+					      &ccs_pt, 0, avail_pts, avail_pts);
-+		xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
-+
-+		/* Add copy commands size here */
-+		batch_size += EMIT_COPY_CCS_DW;
-+
-+		size -= src_L0;
-+	}
-+
-+	bb = xe_bb_ccs_new(gt, batch_size, read_write);
-+	if (IS_ERR(bb)) {
-+		drm_err(&xe->drm, "BB allocation failed.\n");
-+		err = PTR_ERR(bb);
-+		goto err_ret;
-+	}
-+
-+	batch_size_allocated = batch_size;
-+	size = src_bo->size;
-+	batch_size = 0;
-+
-+	/*
-+	 * Emit PTE and copy commands here.
-+	 * The CCS copy command can only support limited size. If the size to be
-+	 * copied is more than the limit, divide copy into chunks. So, calculate
-+	 * sizes here again before copy command is emitted.
-+	 */
-+	while (size) {
-+		batch_size += 6; /* Flush + 2 NOP */
-+		u32 flush_flags = 0;
-+		u64 ccs_ofs, ccs_size;
-+		u32 ccs_pt;
-+
-+		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-+
-+		src_L0 = xe_migrate_res_sizes(m, &src_it);
-+
-+		batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
-+					      &src_L0_ofs, &src_L0_pt, 0, 0,
-+					      avail_pts);
-+
-+		ccs_size = xe_device_ccs_bytes(xe, src_L0);
-+		batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
-+					      &ccs_pt, 0, avail_pts, avail_pts);
-+		xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
-+		batch_size += EMIT_COPY_CCS_DW;
-+
-+		emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
-+
-+		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
-+
-+		bb->cs[bb->len++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-+					MI_FLUSH_IMM_DW;
-+		bb->cs[bb->len++] = MI_NOOP;
-+		bb->cs[bb->len++] = MI_NOOP;
-+
-+		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
-+						  src_L0_ofs, dst_is_pltt,
-+						  src_L0, ccs_ofs, true);
-+
-+		bb->cs[bb->len++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-+					MI_FLUSH_IMM_DW | flush_flags;
-+		bb->cs[bb->len++] = MI_NOOP;
-+		bb->cs[bb->len++] = MI_NOOP;
-+
-+		size -= src_L0;
-+	}
-+
-+	xe_assert(xe, (batch_size_allocated == bb->len));
-+	src_bo->bb_ccs[read_write] = bb;
-+
-+	return 0;
-+
-+err_ret:
-+	return err;
-+}
-+
- static void emit_clear_link_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
- 				 u32 size, u32 pitch)
- {
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index fb9839c1bae0..96b0449e7edb 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -24,6 +24,8 @@ struct xe_vm;
- struct xe_vm_pgtable_update;
- struct xe_vma;
- 
-+enum xe_sriov_vf_ccs_rw_ctxs;
-+
- /**
-  * struct xe_migrate_pt_update_ops - Callbacks for the
-  * xe_migrate_update_pgtables() function.
-@@ -112,6 +114,10 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 				  struct ttm_resource *dst,
- 				  bool copy_only_ccs);
- 
-+int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
-+			   struct xe_bo *src_bo,
-+			   enum xe_sriov_vf_ccs_rw_ctxs read_write);
-+
- int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
- 			     unsigned long offset, void *buf, int len,
- 			     int write);
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index ff5ad472eb96..242a3da1ef27 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -5,6 +5,7 @@
- 
- #include "instructions/xe_mi_commands.h"
- #include "instructions/xe_gpu_commands.h"
-+#include "xe_bb.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_migrate.h"
-@@ -208,3 +209,74 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
- err_ret:
- 	return err;
- }
-+
-+/**
-+ * xe_sriov_vf_ccs_attach_bo - Insert CCS read write commands in the BO.
-+ * @bo: the &buffer object to which batch buffer commands will be added.
-+ *
-+ * This function shall be called only by VF. It inserts the PTEs and copy
-+ * command instructions in the BO by calling xe_migrate_ccs_rw_copy()
-+ * function.
-+ *
-+ * Returns: 0 if successful, negative error code on failure.
-+ */
-+int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
-+	struct xe_migrate *migrate;
-+	struct xe_tile *tile;
-+	struct xe_bb *bb;
-+	int tile_id;
-+	int err = 0;
-+
-+	if (!IS_VF_CCS_READY(xe))
-+		return 0;
-+
-+	for_each_tile(tile, xe, tile_id) {
-+		for_each_ccs_rw_ctx(ctx_id) {
-+			bb = bo->bb_ccs[ctx_id];
-+			/* bb should be NULL here. Assert if not NULL */
-+			xe_assert(xe, !bb);
-+
-+			migrate = tile->sriov.vf.ccs[ctx_id].migrate;
-+			err = xe_migrate_ccs_rw_copy(migrate, bo, ctx_id);
-+		}
-+	}
-+	return err;
-+}
-+
-+/**
-+ * xe_sriov_vf_ccs_detach_bo - Remove CCS read write commands from the BO.
-+ * @bo: the &buffer object from which batch buffer commands will be removed.
-+ *
-+ * This function shall be called only by VF. It removes the PTEs and copy
-+ * command instructions from the BO. Make sure to update the BB with MI_NOOP
-+ * before freeing.
-+ *
-+ * Returns: 0 if successful.
-+ */
-+int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
-+	struct xe_bb *bb;
-+	struct xe_tile *tile;
-+	int tile_id;
-+
-+	if (!IS_VF_CCS_READY(xe))
-+		return 0;
-+
-+	for_each_tile(tile, xe, tile_id) {
-+		for_each_ccs_rw_ctx(ctx_id) {
-+			bb = bo->bb_ccs[ctx_id];
-+			if (!bb)
-+				continue;
-+
-+			memset(bb->cs, MI_NOOP, bb->len * sizeof(u32));
-+			xe_bb_free(bb, NULL);
-+			bo->bb_ccs[ctx_id] = NULL;
-+		}
-+	}
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-index 5df9ba028d14..5d5e4bd25904 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-@@ -7,7 +7,10 @@
- #define _XE_SRIOV_VF_CCS_H_
- 
- struct xe_device;
-+struct xe_bo;
- 
- int xe_sriov_vf_ccs_init(struct xe_device *xe);
-+int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
-+int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-index 6dc279d206ec..e240f3fd18af 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-@@ -27,6 +27,14 @@ enum xe_sriov_vf_ccs_rw_ctxs {
- 	XE_SRIOV_VF_CCS_CTX_COUNT
- };
- 
-+#define IS_VF_CCS_BB_VALID(xe, bo) ({ \
-+		struct xe_device *___xe = (xe); \
-+		struct xe_bo *___bo = (bo); \
-+		IS_SRIOV_VF(___xe) && \
-+		___bo->bb_ccs[XE_SRIOV_VF_CCS_READ_CTX] && \
-+		___bo->bb_ccs[XE_SRIOV_VF_CCS_WRITE_CTX]; \
-+		})
-+
- struct xe_migrate;
- struct xe_sa_manager;
- 
--- 
-2.43.0
 
