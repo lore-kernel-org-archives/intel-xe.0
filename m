@@ -4,89 +4,188 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E254C71159
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Jun 2025 06:39:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E37CC71159
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Jun 2025 06:51:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E951A10E12B;
-	Thu, 19 Jun 2025 06:39:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1736810E9B7;
+	Thu, 19 Jun 2025 06:51:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="HppjF6WZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RSDVLsP/";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E192810E212
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Jun 2025 06:39:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1750315161;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=p5enKuiqyRGMmsEPAdTXolzNCfuZy/BY1RSK8455g0s=;
- b=HppjF6WZRuKCsonUilYmGvKpZLPl5X8vwJXa1jVtZ3Q17YV/jdlrUr99gdUuY6QoZhA99P
- FgcuIu6kxiQeIUQZvJkFuyHMSxGBz9UswOrKQRByYl1Q3sNJSSdI4UjGfturGZ4Uddc8g9
- /e1ve5Y/LjtNQJvQc26vkeYQ+ymjCLM=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-393-YSHcAf5fPQ-DtqaR1Ce52Q-1; Thu, 19 Jun 2025 02:39:18 -0400
-X-MC-Unique: YSHcAf5fPQ-DtqaR1Ce52Q-1
-X-Mimecast-MFC-AGG-ID: YSHcAf5fPQ-DtqaR1Ce52Q_1750315158
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-451d2037f1eso2132415e9.0
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Jun 2025 23:39:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750315157; x=1750919957;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=p5enKuiqyRGMmsEPAdTXolzNCfuZy/BY1RSK8455g0s=;
- b=Qh7sy1/0BAtC7b8mY2cTQwHzgU6BCXU0jphh2vlIYrQI/qEU/bnAtwtwWF5VQe/S/J
- 470cPIuPhDnq+L6vAurYDODMduoIMPuGjF/kk72YLqfIfsG6wW0Pua209UyX9aTUpK9l
- FquFqPYJLUAjYQAuZNFzL2x2R2CKP7wlvX4+lzuj+tncu3jD3J0avECO5vo23ZGrZF3S
- VysYXQ1CBPWKznf4v4HrLHog0lYefxUyAF1jet8n5pV1+0kIJ1ltmB1I6DIN8M8mzBM5
- aRYotIcR9v2ZqXB3d2CQGndclrzkl5a2MCQcXqeXyQZpnUcomnF3Iq2t9sDvJjCqdubA
- HAtA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU920QI6YJZlC/1WUAfdHfImZpeiNzIV1RP/n16fxDkC1fsuo6hPSSYyy1XQ5bO+C2AxVCDoAqLVQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzTBG+l9lAgGuFzNDRNOWXZ0Qu6MX1nyp/ytAa5etP/SMg4gVvH
- DwtqqdhYNPalaIniC685zI5SiKSdqrGVSaVCz+EYCq/rCGvB3LC3oQ8r3gKEUyBxhLMmjnGQSTt
- ArwrG95y16kzVlHuzHnUwod4lRhjQNp4Vf3IMw1LROplPXnbrKlZbrL8cBZ+UgixQkbHPQhM3zI
- Bc
-X-Gm-Gg: ASbGncv1Kk/TPGVp0mA+wCHqcgwUzuq/QX0GcvWgCxkhKSe6hoh6ck5X94WlqH0aoll
- fvT5pgPPOFuBAKFFJl/2xFVtq+zOuePy1SKtzzfDrsCRFlM6Q1FtQIoqTmoFrmm74xV/k8QWaFs
- TTcTND1+TMTy+ARsJdAcC0IauOxbohHI84w6XVRDBMvf90wRKRRmblFBiniyoWV5g2jopgOlTwE
- 6lW3wVmYBPLeRE7r7F9QQkUQeEWoB42dyDewdkpFf1zOUpyRnwf+JVnJ1VYl7pDj99ce3gf6Q==
-X-Received: by 2002:a05:600c:529b:b0:43d:97ea:2f4 with SMTP id
- 5b1f17b1804b1-4533caf5b1amr190948645e9.12.1750315157186; 
- Wed, 18 Jun 2025 23:39:17 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHD6N+KfXImSt0Y6dhtlqz4sqW9hlH/ehek4UYK81qLYOfmhzPe0CczrO2UJ8jaLd0/rb+CDA==
-X-Received: by 2002:a05:600c:529b:b0:43d:97ea:2f4 with SMTP id
- 5b1f17b1804b1-4533caf5b1amr190948415e9.12.1750315156688; 
- Wed, 18 Jun 2025 23:39:16 -0700 (PDT)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3a568b1bc97sm18804299f8f.68.2025.06.18.23.39.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Jun 2025 23:39:15 -0700 (PDT)
-Date: Thu, 19 Jun 2025 08:39:15 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next
-Message-ID: <20250619-perfect-industrious-whippet-8ed3db@houat>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44D1110E9B7;
+ Thu, 19 Jun 2025 06:51:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750315892; x=1781851892;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=RRjaSuPVkt7/sYC1x/hXay9HgFDu0f4nD3he09KRwPE=;
+ b=RSDVLsP//fZT+GNjJplwgXybtzcyClSBJHrop8KA2LENerUsiboECX2g
+ kDM+bDEQOwrEP8ETlO7ERfDw4MSPkXhyY1Oi0DZ9P3ZuRJDy1ZaIBaZNx
+ wgQxwse/S6kMPMVO+LqKlC+XSgA40sjq/K3o0vYq3yL3RO+ABNnwLBg2A
+ ajEZlk4dztbf8W90pt3Qdk6wBrDGIMFBDgPDrnqwc1boNkm8/+rUiu4pl
+ rAqbqMh7UUjw39XtwxRKdU0OV+47zlyWE95dsPAonoYQVAyhqTHXaon13
+ zobzCdqKQ3slhvU+W1iZfEOeYSpXm0/fefpddtM4GtqqZ5RZhVKMo7oMH A==;
+X-CSE-ConnectionGUID: CzilSs4xS/6wKF5c0iayYg==
+X-CSE-MsgGUID: Y8lIBXQRTpm4Ms5n0RCLxw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="56379761"
+X-IronPort-AV: E=Sophos;i="6.16,247,1744095600"; d="scan'208";a="56379761"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2025 23:51:32 -0700
+X-CSE-ConnectionGUID: dhVG4eNmQHOOPX9xS+ymaQ==
+X-CSE-MsgGUID: ORiC73lpSRy1xjlr4Fs/nw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,247,1744095600"; d="scan'208";a="150845383"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2025 23:51:31 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Wed, 18 Jun 2025 23:51:31 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Wed, 18 Jun 2025 23:51:31 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.86)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Wed, 18 Jun 2025 23:51:30 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=W+81q0CIkTD1TRJyCI7Tsx3cY8zo3TiuyVWofrKxp73eLpSMerffoX11fc9o0/6HxtjYfh6Pr0LHRJLfMqjNCO1ehsxGw8Ok5EPSmfPJhsqht/X4XcBtyuSDismqwE+iPSUf7XbDSN+tgr0z+qcAbcmOwdRwDIcXAPY3OYMv3nUylKVazc4oUhyfIoM2KaH4D6mTNWd/tQXaF/teHJFFslT6sL13Ixz2kM4vm/5NSVAM2veGujv1FgY7U7dw5UJMzVT7Rp+XpSVe3xMzT48ZzQoQhsNmU7mYSiVasCYp51M9MPqt03qdvJpxuuhN+DoSwCXyEXFmNwhvaasmlvXcIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aNUZbOARQIwRoLtzh6Sc9VohUG2yN6EyzgpvQYibPxg=;
+ b=IDrzkmjUptDapLeIoiU9wLnyiKu3NA2z3CmXw3rklIpryMFrWPyHc9MdPdLosRQxN4KkJa4HvRTz8FJg5f8SNBE0n8L9GI2fkEVtWIdeB4SZxwn+dC568zu3wP4ZQwWE5E08UFvl3fabP2EshdAXWWKlXvBN/i5r8n3GyV1Nap3F9uF6goqcadrwAKqNmHM/aAyomQhOlJqYph+1VX+brEQRB8k6+P013b5RBXYlkwkWj1mN/sxnaxTlY1FHHNMGlpN9d5mjwlhQWBnavrlHGKqYxe2eBVXPK/X6I135FU39RF8X9ZGDCGIebz6Y9EmySChOENMs0J0owZgnoOo4zw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5536.namprd11.prod.outlook.com (2603:10b6:5:39b::15)
+ by IA1PR11MB7856.namprd11.prod.outlook.com (2603:10b6:208:3f5::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.29; Thu, 19 Jun
+ 2025 06:51:18 +0000
+Received: from DM4PR11MB5536.namprd11.prod.outlook.com
+ ([fe80::e353:636a:37f:21ef]) by DM4PR11MB5536.namprd11.prod.outlook.com
+ ([fe80::e353:636a:37f:21ef%6]) with mapi id 15.20.8857.019; Thu, 19 Jun 2025
+ 06:51:18 +0000
+Message-ID: <3fad6292-cbdb-4724-8e28-5315bb735d78@intel.com>
+Date: Thu, 19 Jun 2025 12:21:10 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 08/10] drm/xe/xe_late_bind_fw: Introduce debug fs node
+ to disable late binding
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>
+CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
+ <alexander.usyskin@intel.com>, <gregkh@linuxfoundation.org>, <jgg@nvidia.com>
+References: <20250618190007.2932322-1-badal.nilawar@intel.com>
+ <20250618190007.2932322-9-badal.nilawar@intel.com>
+ <b9a468c0-53ed-4da4-a044-76c5e8461b95@intel.com>
+Content-Language: en-US
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <b9a468c0-53ed-4da4-a044-76c5e8461b95@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA1PR01CA0181.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:d::19) To DM4PR11MB5536.namprd11.prod.outlook.com
+ (2603:10b6:5:39b::15)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="amohce7r5zhie2wj"
-Content-Disposition: inline
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5536:EE_|IA1PR11MB7856:EE_
+X-MS-Office365-Filtering-Correlation-Id: 972c8355-dda9-4920-e7e4-08ddaefdb192
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SFd2MStsb2hSODduZHJ3NDkvWkxqZDFyRU8wMStpWU41ekx5RGdjSlhUaWFl?=
+ =?utf-8?B?WVNmM01sYVAvYzdQek9oMU9vUG1oakhnendqc0JZa1Bzb0dxQWpJK293OFBY?=
+ =?utf-8?B?VmFmNWVxR3R3OVYrTFFKcXFkZHArb3dadTdpSXJJckhtYmZvSFoxT0Y3ZWxU?=
+ =?utf-8?B?VTJYWVV1VGIzd0J1WkRFMkszL2luVG1Bay83QVkvc3JGSERoS09HNFJHV1ZI?=
+ =?utf-8?B?V3Q4TmEydExFY0JOWndWdmRpZDB0RS8rN1MyMm9wajJMRVlyMW41Q0pWbnVI?=
+ =?utf-8?B?WFVRRGErL2xOd2Vhb3QyV1BvbUQ4VkJ1ZTdaQTVFYWMzVEptZEp4NFZHcGlt?=
+ =?utf-8?B?YjZYVkU3VnplaW5NWk5JQlRSTFA0NWRnaE5zRDVJZzFtb09Yc2J0MGVUbEdv?=
+ =?utf-8?B?c29SdUdtS1BHdTVYT1NGWlhCSWp0V0VsZHpCMGFGSXdUQk4yckJKUUtyUUM0?=
+ =?utf-8?B?cDNmbit1S1Mzc3NtTGpTTzBibEZQdXZka285NjhBb1lBV1I0azJ2aEViMmlq?=
+ =?utf-8?B?RTMzTU1tb2Y4SkNESjBaNEFwNTVpb3JESEJ3eXVKTmJJbUpTTms1RXRwVjcr?=
+ =?utf-8?B?NGxkeHBNRklzdXVIbmxHczhEVUxoODdJQWZwY2lDYmUwU0JMcFRmUlNYeTMr?=
+ =?utf-8?B?T1gwd2hMc1UrNzMwT3BhQ0VFTWJScitVTit3MC9BRytUeDZGS0NHYlRiUWxI?=
+ =?utf-8?B?bTNRZzF1cjdsY0FaT0xtdFB3dUNjbzRBMlNZdm5ma1Z1YmtnTVFXZ1QwTXZO?=
+ =?utf-8?B?R292YjdxTitta1BBb1FZdFRMUWNGcC95N3phRXFHNzNySUN4azB3alh0dFR6?=
+ =?utf-8?B?VjJENlFlWTlTaTMxUnNLcTVuVWoxNlRSQi9yS2RkY3VrVTNRQ1JXdjAxNDlD?=
+ =?utf-8?B?cVB0NzEvNllyY21nd1ZMMU1GRW12OXVJSkRTUFUvWVZiNXdiM0lCOVpqRWUz?=
+ =?utf-8?B?YTVOWW1LTFEvSmVCWVNtVE55QlJHb1U0by9DbWhyWkREMlFsN2poc1BDUHFR?=
+ =?utf-8?B?MGZuU2hFSEN5Q0pmbFdjT0UyWG11RmFYb2p0aUx3WndOMlFOOHFBR2NoaThG?=
+ =?utf-8?B?eHZKSlRxUFhNUElkN2hhWmVPRmcwUHVOWk15SlVnK0VXNkJMWXZvdFBMQlln?=
+ =?utf-8?B?VFdodFFjZVJDY3JZVFJQeGZOMXNNZW1lSDM3a3JBUkUzM2VpWHk1cnpIQ0Rv?=
+ =?utf-8?B?eXg4KzViaTJtZU9sc0FXaEpDWmJsb0xpejdpYktFYkg2ZGRHTzRDZ1FnT2R6?=
+ =?utf-8?B?dUVqSk9udnJFVGRoVEd0RnhYZVFiTlpWN0Z1bEpiN3F1UEx1Z1RwcE8yRm15?=
+ =?utf-8?B?Wnk1SzlUSkRvUG9UM0J2U2FVWE1EQUNxM3FzcjRmSFJKRFdFSW11Q3JkSms5?=
+ =?utf-8?B?bld5TTlYNjJqWEtjY040OGYxSkhQRHo5cWlsOVJBUGpQS1ZKME1aYjYyS3Va?=
+ =?utf-8?B?dDFndnkyVFJUakZ0MFRWVTdkc2lRdGFBM1VHUGlseXhhM2tmNFpqUHR4RjlP?=
+ =?utf-8?B?cXR4SVhlRlFpVExhNTVVUUJnUTcyeWZkRjFydVhraFBVZUlVMDFHQW5LaVhl?=
+ =?utf-8?B?UERqNDVkVTNiVkhXSHFDMnZFRU5ZV25zeEhrMnRXelEvc2xCTzdKbXdYZm1v?=
+ =?utf-8?B?emYrVTdHN0cxZ2xTS01qVXJKK2NxMUtnbnRjangvdUZSQTNCcEJkaEZ3L0Vv?=
+ =?utf-8?B?TnA5SllpQ1VEMjdiaittdlNuTlJaaEZjeldmNklFL08yWWc5UW54RytWU0cz?=
+ =?utf-8?B?UG1CL291cDNvS2ZUT0xuL0x1QUR2VTh4cDU3KzZHU1R0bTh1dTVUbzdob0tv?=
+ =?utf-8?B?OVVHZERmSlNOcTZEV1J3UlJpczZPOUQ4YUNVcGZNbC9sQnBYeGEyYStSZkdp?=
+ =?utf-8?B?MTVSbGlZcU80dnFwaGc2Nm1GV1NCUzAyZitvVDRmeDNIZGNjSkZpdm43T2xt?=
+ =?utf-8?Q?ttQXr51DLNQ=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5536.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YVBZWkRncGgvRGlsZzg0WW9YRE9iNktpMEJXaytrR0NvVWlZb2hLMlcvSzc4?=
+ =?utf-8?B?MmZkbTJwUnhWQTc4MlloOWZRRkdGUytxLzUzbC9WbnpBSG1ZcFhGbkV6NGRL?=
+ =?utf-8?B?ZUxiRDVjMW9Pai9LSEhNRitpNldubjA2MmFuVGt3cU55RnZmSkQvRk50Yytr?=
+ =?utf-8?B?SDkzQ2Z5ckZtdU9PN0hXbUptVnVBY1k4Y3lNZUZCMlNKRldkWE5ZaHo1SXdh?=
+ =?utf-8?B?bnorWW1ZNXA2T2wzelhvcGVEbU9HV3RSTmxsUEpMayttcEhqR21qTkt6QnZZ?=
+ =?utf-8?B?VXFUQ3Z6blV1MkU3b3FBbWRHMndna1lXb1B0Y1haVmJyS1pFTEpFSDJxa21P?=
+ =?utf-8?B?RzJpbXBnMEV1eDJtbkhTcjVDaGhUWjZ2ejhkZ1J5S1NTbkNGNEV2SlZQZ2Jw?=
+ =?utf-8?B?UkxyMC9ScDZuemVpd2Rsbk1EdHhWVXUreC9vZHVRaDI3VmlMNU04bVRpb3cy?=
+ =?utf-8?B?VHlybXNlanI0MG45YWZtMU14SElvR0dJdnArYWxmdjNvOXZMVnkrazRzUFB6?=
+ =?utf-8?B?MVdIRFpTRFFESFBvOWdhSVB4WUdiK3V0TVhKdStZMk9LQWhGUVZQOGk1K0NN?=
+ =?utf-8?B?TjNsTytTb21KYmp4MVZIeThVWC9zd0JnVlBaVkxWSkJielJvZmJLUnd3Qi9t?=
+ =?utf-8?B?ZEZudUxxR0xZc0VPQkNZWnhidEdDVFNwZ0ZRK0loYi9lWnRrMFFmRk9Hdm5z?=
+ =?utf-8?B?VWNic1AzU09iNmFYRk9STjNSVFQ0Y0wzdVNFa0FQVkFKSXRKYWhTcjdMVFZX?=
+ =?utf-8?B?Yzk4Q1M3UjRyRzh0QnhnaXZQaHVlbEdmYnM5MitTdloyajFpcVFQRWN1aXBa?=
+ =?utf-8?B?a3h2UFR2aW9rNUowekMvOUw1dlFvOUJuMWNnenBqK01ocjgyWE0xWU5ZeEsx?=
+ =?utf-8?B?cXRlQkdaYjd0UlVEdjEzZ2FlVitDUlNvblNlb0tqSUE5Q1B6ZzRTYzk0bE5Y?=
+ =?utf-8?B?VGhxak9GdHZnWjcxQktDK3pLQ0w3eGROblN0TDRxazVLYzBTeXN2bEVDcmR6?=
+ =?utf-8?B?VkdHNjczSEFZN0ZDVWJEM0t6YmFmdHBqZy9ReUNDdUNHTTZKQzJER29VMU9p?=
+ =?utf-8?B?dkVMR3d5cjY2NGFQRUJaeUMxUjJGL1owNCtGYlFmMkkvdnIxRzE0MWRqUlVl?=
+ =?utf-8?B?SkV1cWNhaW5Jb2hTU2krQmFwYXppc1M4RFVNTUdhUTZhOWxhS3l5WGlIZHly?=
+ =?utf-8?B?cXNHZW95eGI4bWl0eVlkWWNuVTJmZlNkb1VXd1dpaG1UZ1p6ZGxyYlRzWlUw?=
+ =?utf-8?B?WUVPYnFTdGhkMnlvUTJJWE5aN1V5bEZhWldRTmZWNThKK3JNVEF5eURDOXBV?=
+ =?utf-8?B?M0o2S0pGOTdGTFYzSE92dGRKUG03ajl5S1dRRXVJYUpha2l1c0xxcVhpYXNq?=
+ =?utf-8?B?MlVTdnJWWW8wa2tycnRONzVtQmt1dEo4WTY1MUdtQllnNlJZSHRnK3c2QS83?=
+ =?utf-8?B?K3BoS3llYk8zV3Nua0UxVU1VUFBtNlhlMFpSSlV3aVBlVUJXaGthR01RV2pq?=
+ =?utf-8?B?cnlCUnZYbmpHbkFpblJ1dkZXcExYYkU4cTBra241TWNnNkMvZW9XMnFIMjRW?=
+ =?utf-8?B?RURZMUNXMEV5dHVkNUlOUVBoWEVOYURrVkxPZWsybGlEY0sxZDFHNzdGT09i?=
+ =?utf-8?B?Y2RTbXlRaHF1bkhiTGhNVHpSczlZVjMvSFdEc0VTZ0FodjZTMkZjcDk3MUNX?=
+ =?utf-8?B?emlWTm93T25rYjFrK2NML3BHYjc3V0wvdU03cS8raHlnVkZMS25TMXBXU0dJ?=
+ =?utf-8?B?UVd5YWpUR214SFpHZHVkNVU0WTd6aTdWcHNaV3JHZ1Q4UFhuUFArcGNJZndU?=
+ =?utf-8?B?V2VRWmVkYUVkZi9UeHF0czdjbUVWTlBwdnRRMW9JUWZ3WWlTMGZ1SzNWWG9F?=
+ =?utf-8?B?M3BDUGN5TFhQYk9OVDN6bTFVamk1VzJYTTgzYVNncitwRXFQb1hoV3RXcy9r?=
+ =?utf-8?B?bUMzMzB5eWNjcGtVeGsxOURYN2VaTDk4RTZYUXcvNEtqRDJ5NS9xS2JXRldj?=
+ =?utf-8?B?NlRDL3FWbENBdU8xeUxSUWR4SUl6djRYdDRTN1VoRFVPTjFyRU9sK0xvaG1Y?=
+ =?utf-8?B?c2xOaGsyQ1BtRTZiQ1QxZCtwSmkvdXN3Y0tOU0xUY0paU2p6My80RjZNZVFO?=
+ =?utf-8?B?dlBZa2xpMDJjZFlSdGdJd0l6c0d3R0VSOUFvYkR1ZVcxbnA5bUNjYWNBR3ov?=
+ =?utf-8?B?dXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 972c8355-dda9-4920-e7e4-08ddaefdb192
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5536.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2025 06:51:18.6979 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gXfWO14gO9s7mv73PIqHKYo/Ekei6Zf3u+jVxfNNjCfy6UqKBRFW9UIM1sJtKKfUf1BJhb8X1XJww8XsgUNWVQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7856
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,400 +201,140 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
---amohce7r5zhie2wj
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: [PULL] drm-misc-next
-MIME-Version: 1.0
+On 19-06-2025 02:49, Daniele Ceraolo Spurio wrote:
+>
+>
+> On 6/18/2025 12:00 PM, Badal Nilawar wrote:
+>> Introduce a debug filesystem node to disable late binding fw reload
+>> during the system or runtime resume. This is intended for situations
+>> where the late binding fw needs to be loaded from user mode.
+>
+> You haven't replied to my question on the previous rev in regards to 
+> the expected use-case here.
+> Is this for testing only, or something an actual user might want to 
+> do? If we only need this for testing, please specify so.
 
-Hi,
+Apologies for the oversight. Yes, this is only necessary for testing the 
+binary before releasing it for up-streaming. There is internal
+tool which uses IGSC lib to download the binary. To avoid clash between 
+the binaries, this debug fs node is provided.
 
-Here's this week drm-misc-next PR.
+>
+> Also, what happens if we suspend with a user-loaded binary? userspace 
+> doesn't have visibility to know that they have to re-load their binary.
 
-Maxime
+If the device enters D3 cold state, the binary needs to be reloaded. 
+However, the kernel mode driver (KMD) does not have control over 
+binaries downloaded via the IGSC library.
+If needed D3 cold can be disabled from BIOS or by setting up 
+vram_threshold = 0.
 
-drm-misc-next-2025-06-19:
-drm-misc-next for 6.17:
+Regards,
+Badal
 
-UAPI Changes:
-- Add Task Information for the wedge API
-
-Cross-subsystem Changes:
-
-Core Changes:
-- Fix warnings related to export.h
-- fbdev: Make CONFIG_FIRMWARE_EDID available on all architectures
-- fence: Fix UAF issues
-- format-helper: Improve tests
-
-Driver Changes:
-- ivpu: Add turbo flag, Add Wildcat Lake Support
-- rz-du: Improve MIPI-DSI Support
-- vmwgfx: fence improvement
-The following changes since commit c5b4393c5492555e35c08677a326c9c53b275abd:
-
-  drm/file: add client id to drm_file_error (2025-06-12 14:33:51 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
-5-06-19
-
-for you to fetch changes up to 1a45ef022f0364186d4fb2f4e5255dcae1ff638a:
-
-  drm/format-helper: Move drm_fb_build_fourcc_list() to sysfb helpers (2025=
--06-18 10:46:03 +0200)
-
-----------------------------------------------------------------
-drm-misc-next for 6.17:
-
-UAPI Changes:
-- Add Task Information for the wedge API
-
-Cross-subsystem Changes:
-
-Core Changes:
-- Fix warnings related to export.h
-- fbdev: Make CONFIG_FIRMWARE_EDID available on all architectures
-- fence: Fix UAF issues
-- format-helper: Improve tests
-
-Driver Changes:
-- ivpu: Add turbo flag, Add Wildcat Lake Support
-- rz-du: Improve MIPI-DSI Support
-- vmwgfx: fence improvement
-
-----------------------------------------------------------------
-Andrzej Kacprowski (1):
-      accel/ivpu: Add turbo flag to the DRM_IVPU_CMDQ_CREATE ioctl
-
-Andr=E9 Almeida (6):
-      drm: amdgpu: Allow NULL pointers at amdgpu_vm_put_task_info()
-      drm: amdgpu: Create amdgpu_vm_print_task_info()
-      drm: Create a task info option for wedge events
-      drm/doc: Add a section about "Task information" for the wedge API
-      drm: amdgpu: Use struct drm_wedge_task_info inside of struct amdgpu_t=
-ask_info
-      drm/amdgpu: Make use of drm_wedge_task_info
-
-Arnd Bergmann (1):
-      drm: omapdrm: reduce clang stack usage
-
-Bartosz Golaszewski (1):
-      drm/bridge: ti-sn65dsi86: use new GPIO line value setter callbacks
-
-Christian K=F6nig (2):
-      drm/prime: remove drm_prime_lookup_buf_by_handle
-      Revert "drm/prime: remove drm_prime_lookup_buf_by_handle"
-
-Ian Forbes (3):
-      drm/vmwgfx: Update last_read_seqno under the fence lock
-      drm/vmwgfx: Implement dma_fence_ops properly
-      drm/vmwgfx: Fix Host-Backed userspace on Guest-Backed kernel
-
-Jerome Brunet (1):
-      drm/bridge: ti-sn65dsi86: use the auxiliary device
-
-Lad Prabhakar (9):
-      drm: renesas: rz-du: mipi_dsi: Add min check for VCLK range
-      drm: renesas: rz-du: mipi_dsi: Simplify HSFREQ calculation
-      drm: renesas: rz-du: mipi_dsi: Use VCLK for HSFREQ calculation
-      drm: renesas: rz-du: mipi_dsi: Add OF data support
-      drm: renesas: rz-du: mipi_dsi: Make "rst" reset control optional for =
-RZ/V2H(P)
-      drm: renesas: rz-du: mipi_dsi: Use mHz for D-PHY frequency calculatio=
-ns
-      drm: renesas: rz-du: mipi_dsi: Add feature flag for 16BPP support
-      drm: renesas: rz-du: mipi_dsi: Add dphy_late_init() callback for RZ/V=
-2H(P)
-      drm: renesas: rz-du: mipi_dsi: Add function pointers for configuring =
-VCLK and mode validation
-
-Lizhi Hou (1):
-      accel/amdxdna: Revise device bo creation and free
-
-Maciej Falkowski (1):
-      accel/ivpu: Add initial Wildcat Lake support
-
-Ma=EDra Canal (1):
-      drm/vkms: Compile all tests with CONFIG_DRM_VKMS_KUNIT_TEST
-
-Thomas Zimmermann (30):
-      drm/format-helper: Normalize BT.601 factors to 256
-      drm/format-helper: Update tests after BT.601 changes
-      drm: Do not include <linux/export.h>
-      drm: Include <linux/export.h>
-      drm/bridge: Include <linux/export.h>
-      drm/client: Include <linux/export.h>
-      drm/display: Include <linux/export.h>
-      drm/gem: Include <linux/export.h>
-      drm/panel: Include <linux/export.h>
-      drm/scheduler: Include <linux/export.h>
-      drm/ttm: Include <linux/export.h>
-      fbdev: Remove trailing whitespaces
-      fbdev: Include <linux/export.h>
-      fbdev/c2p: Include <linux/export.h>
-      fbdev/cyber2000fb: Unexport symbols
-      fbdev/matroxfb: Remove trailing whitespaces
-      fbdev/matroxfb: Include <linux/export.h>
-      fbdev/omap: Include <linux/export.h>
-      fbdev/omap2: Include <linux/export.h>
-      fbdev/omap2: Do not include <linux/export.h>
-      fbdev/mb862xx: Do not include <linux/export.h>
-      fbdev/pxafb: Unexport symbol
-      fbdev/sisfb: Unexport symbols
-      fbdev/viafb: Include <linux/export.h>
-      fbdev/viafb: Do not include <linux/export.h>
-      video: Make CONFIG_FIRMWARE_EDID generally available
-      video: Make global edid_info depend on CONFIG_FIRMWARE_EDID
-      drm/tests: Do not use drm_fb_blit() in format-helper tests
-      drm/tests: Test drm_fb_build_fourcc_list() in separate test suite
-      drm/format-helper: Move drm_fb_build_fourcc_list() to sysfb helpers
-
-Tvrtko Ursulin (4):
-      sync_file: Protect access to driver and timeline name
-      drm/i915: Protect access to driver and timeline name
-      dma-fence: Add safe access helpers and document the rules
-      drm/xe: Make dma-fences compliant with the safe access rules
-
- Documentation/gpu/drm-uapi.rst                     |  17 +
- arch/x86/kernel/setup.c                            |   4 +
- drivers/accel/amdxdna/aie2_ctx.c                   |   2 +-
- drivers/accel/amdxdna/amdxdna_gem.c                | 191 ++++----
- drivers/accel/amdxdna/amdxdna_gem.h                |   3 +-
- drivers/accel/ivpu/ivpu_drv.c                      |   1 +
- drivers/accel/ivpu/ivpu_drv.h                      |  14 +-
- drivers/accel/ivpu/ivpu_hw_ip.c                    |   1 +
- drivers/accel/ivpu/ivpu_job.c                      |  81 ++--
- drivers/dma-buf/dma-fence.c                        | 111 ++++-
- drivers/dma-buf/sync_file.c                        |  24 +-
- drivers/gpu/drm/Kconfig.debug                      |   1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c        |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c   |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |  13 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c            |  11 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |  22 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h             |   6 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c             |   5 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c             |   5 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c             |   5 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c              |   4 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c              |   5 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c             |   2 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c           |   2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_events.c            |   2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c        |   8 +-
- .../gpu/drm/bridge/analogix/analogix-i2c-dptx.c    |   2 +
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |   1 +
- drivers/gpu/drm/bridge/aux-bridge.c                |   1 +
- drivers/gpu/drm/bridge/aux-hpd-bridge.c            |   1 +
- drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c     |   2 +
- drivers/gpu/drm/bridge/panel.c                     |   1 +
- drivers/gpu/drm/bridge/samsung-dsim.c              |   1 +
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |   1 +
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   1 +
- drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c      |   1 +
- drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c     |   1 +
- drivers/gpu/drm/bridge/ti-sn65dsi86.c              |  67 +--
- drivers/gpu/drm/clients/drm_client_setup.c         |   2 +
- drivers/gpu/drm/display/drm_bridge_connector.c     |   1 +
- drivers/gpu/drm/display/drm_dp_aux_bus.c           |   1 +
- drivers/gpu/drm/display/drm_dp_cec.c               |   1 +
- drivers/gpu/drm/display/drm_dp_helper.c            |   1 +
- drivers/gpu/drm/display/drm_dp_mst_topology.c      |   1 +
- drivers/gpu/drm/display/drm_dp_tunnel.c            |   1 +
- drivers/gpu/drm/display/drm_dsc_helper.c           |   1 +
- drivers/gpu/drm/display/drm_hdmi_audio_helper.c    |   1 +
- drivers/gpu/drm/display/drm_hdmi_cec_helper.c      |   1 +
- .../gpu/drm/display/drm_hdmi_cec_notifier_helper.c |   1 +
- drivers/gpu/drm/display/drm_hdmi_helper.c          |   1 +
- drivers/gpu/drm/display/drm_hdmi_state_helper.c    |   2 +
- drivers/gpu/drm/display/drm_scdc_helper.c          |   1 +
- drivers/gpu/drm/drm_atomic.c                       |   2 +-
- drivers/gpu/drm/drm_atomic_helper.c                |   1 +
- drivers/gpu/drm/drm_atomic_state_helper.c          |   1 +
- drivers/gpu/drm/drm_atomic_uapi.c                  |   1 +
- drivers/gpu/drm/drm_auth.c                         |   1 +
- drivers/gpu/drm/drm_bridge.c                       |   1 +
- drivers/gpu/drm/drm_bridge_helper.c                |   2 +
- drivers/gpu/drm/drm_buddy.c                        |   1 +
- drivers/gpu/drm/drm_client.c                       |   1 +
- drivers/gpu/drm/drm_client_event.c                 |   1 +
- drivers/gpu/drm/drm_client_modeset.c               |   2 +
- drivers/gpu/drm/drm_color_mgmt.c                   |   1 +
- drivers/gpu/drm/drm_connector.c                    |   1 +
- drivers/gpu/drm/drm_damage_helper.c                |   2 +
- drivers/gpu/drm/drm_debugfs_crc.c                  |   1 +
- drivers/gpu/drm/drm_drv.c                          |  22 +-
- drivers/gpu/drm/drm_edid.c                         |   1 +
- drivers/gpu/drm/drm_exec.c                         |   2 +
- drivers/gpu/drm/drm_fb_dma_helper.c                |   2 +
- drivers/gpu/drm/drm_fb_helper.c                    |   1 +
- drivers/gpu/drm/drm_fbdev_dma.c                    |   1 +
- drivers/gpu/drm/drm_fbdev_shmem.c                  |   1 +
- drivers/gpu/drm/drm_fbdev_ttm.c                    |   1 +
- drivers/gpu/drm/drm_file.c                         |   1 +
- drivers/gpu/drm/drm_flip_work.c                    |   1 +
- drivers/gpu/drm/drm_format_helper.c                | 247 ++++------
- drivers/gpu/drm/drm_format_internal.h              |  10 +-
- drivers/gpu/drm/drm_gem.c                          |   1 +
- drivers/gpu/drm/drm_gem_atomic_helper.c            |   1 +
- drivers/gpu/drm/drm_gem_framebuffer_helper.c       |   1 +
- drivers/gpu/drm/drm_gem_ttm_helper.c               |   1 +
- drivers/gpu/drm/drm_gem_vram_helper.c              |   1 +
- drivers/gpu/drm/drm_gpusvm.c                       |   1 +
- drivers/gpu/drm/drm_gpuvm.c                        |   1 +
- drivers/gpu/drm/drm_managed.c                      |   1 +
- drivers/gpu/drm/drm_mipi_dbi.c                     |   1 +
- drivers/gpu/drm/drm_mipi_dsi.c                     |   1 +
- drivers/gpu/drm/drm_mode_config.c                  |   1 +
- drivers/gpu/drm/drm_modeset_helper.c               |   2 +
- drivers/gpu/drm/drm_modeset_lock.c                 |   2 +
- drivers/gpu/drm/drm_panel.c                        |   1 +
- drivers/gpu/drm/drm_panel_backlight_quirks.c       |   1 +
- drivers/gpu/drm/drm_panel_orientation_quirks.c     |   1 +
- drivers/gpu/drm/drm_panic.c                        |   1 +
- drivers/gpu/drm/drm_pci.c                          |   1 -
- drivers/gpu/drm/drm_plane.c                        |   1 +
- drivers/gpu/drm/drm_plane_helper.c                 |   1 +
- drivers/gpu/drm/drm_print.c                        |   1 +
- drivers/gpu/drm/drm_privacy_screen.c               |   1 +
- drivers/gpu/drm/drm_self_refresh_helper.c          |   1 +
- drivers/gpu/drm/drm_simple_kms_helper.c            |   1 +
- drivers/gpu/drm/drm_suballoc.c                     |   2 +
- drivers/gpu/drm/drm_syncobj.c                      |   1 +
- drivers/gpu/drm/drm_vblank_work.c                  |   2 +
- drivers/gpu/drm/drm_vma_manager.c                  |   1 +
- drivers/gpu/drm/drm_writeback.c                    |   1 +
- drivers/gpu/drm/i915/gt/intel_gt_requests.c        |  10 +-
- drivers/gpu/drm/i915/gt/intel_reset.c              |   3 +-
- drivers/gpu/drm/i915/i915_request.c                |   7 +-
- drivers/gpu/drm/i915/i915_sw_fence.c               |  10 +-
- drivers/gpu/drm/lib/drm_random.c                   |   1 +
- drivers/gpu/drm/omapdrm/dss/dispc.c                |   2 +-
- drivers/gpu/drm/panel/panel-samsung-s6e63m0.c      |   1 +
- drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c     | 151 ++++--
- .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h    |   2 -
- drivers/gpu/drm/scheduler/sched_entity.c           |   1 +
- drivers/gpu/drm/scheduler/sched_fence.c            |   1 +
- drivers/gpu/drm/scheduler/sched_main.c             |   1 +
- drivers/gpu/drm/sysfb/drm_sysfb_helper.h           |   4 +
- drivers/gpu/drm/sysfb/drm_sysfb_modeset.c          | 138 ++++++
- drivers/gpu/drm/sysfb/efidrm.c                     |   6 +-
- drivers/gpu/drm/sysfb/ofdrm.c                      |   5 +-
- drivers/gpu/drm/sysfb/simpledrm.c                  |   5 +-
- drivers/gpu/drm/sysfb/vesadrm.c                    |   6 +-
- drivers/gpu/drm/tests/Makefile                     |   3 +-
- drivers/gpu/drm/tests/drm_format_helper_test.c     | 262 +----------
- drivers/gpu/drm/tests/drm_kunit_helpers.c          |   1 +
- drivers/gpu/drm/tests/drm_sysfb_modeset_test.c     | 168 +++++++
- drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c      |   3 +
- drivers/gpu/drm/ttm/tests/ttm_mock_manager.c       |   3 +
- drivers/gpu/drm/ttm/ttm_agp_backend.c              |   1 +
- drivers/gpu/drm/ttm/ttm_backup.c                   |   2 +
- drivers/gpu/drm/ttm/ttm_bo.c                       |   1 +
- drivers/gpu/drm/ttm/ttm_bo_util.c                  |   2 +
- drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   2 +
- drivers/gpu/drm/ttm/ttm_device.c                   |   1 +
- drivers/gpu/drm/ttm/ttm_execbuf_util.c             |   2 +
- drivers/gpu/drm/ttm/ttm_pool.c                     |   1 +
- drivers/gpu/drm/ttm/ttm_range_manager.c            |   2 +
- drivers/gpu/drm/ttm/ttm_resource.c                 |   1 +
- drivers/gpu/drm/ttm/ttm_tt.c                       |   1 +
- drivers/gpu/drm/vkms/tests/Makefile                |   7 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_cmd.c                |   2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |   8 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |  19 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c            |  29 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_fence.c              | 510 +++--------------=
-----
- drivers/gpu/drm/vmwgfx/vmwgfx_fence.h              |  21 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_irq.c                |  61 ++-
- drivers/gpu/drm/vmwgfx/vmwgfx_shader.c             |   2 +-
- drivers/gpu/drm/xe/xe_device.c                     |   3 +-
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h       |   2 +
- drivers/gpu/drm/xe/xe_guc_submit.c                 |   7 +-
- drivers/gpu/drm/xe/xe_hw_fence.c                   |   3 +
- drivers/video/Kconfig                              |  18 +-
- drivers/video/fbdev/c2p_iplan2.c                   |   1 +
- drivers/video/fbdev/c2p_planar.c                   |   1 +
- drivers/video/fbdev/core/Kconfig                   |  15 -
- drivers/video/fbdev/core/cfbcopyarea.c             |   2 +
- drivers/video/fbdev/core/cfbfillrect.c             |   2 +
- drivers/video/fbdev/core/cfbimgblt.c               |   2 +
- drivers/video/fbdev/core/fb_ddc.c                  |   1 +
- drivers/video/fbdev/core/fb_defio.c                |   1 +
- drivers/video/fbdev/core/fb_io_fops.c              |   1 +
- drivers/video/fbdev/core/fb_sys_fops.c             |   2 +
- drivers/video/fbdev/core/fbcmap.c                  |   1 +
- drivers/video/fbdev/core/fbcon.c                   |   1 +
- drivers/video/fbdev/core/fbmon.c                   |   5 +-
- drivers/video/fbdev/core/modedb.c                  |   1 +
- drivers/video/fbdev/core/svgalib.c                 |   1 +
- drivers/video/fbdev/core/syscopyarea.c             |   2 +
- drivers/video/fbdev/core/sysfillrect.c             |   2 +
- drivers/video/fbdev/core/sysimgblt.c               |   2 +
- drivers/video/fbdev/cyber2000fb.c                  |  36 --
- drivers/video/fbdev/cyber2000fb.h                  |   2 -
- drivers/video/fbdev/macmodes.c                     |   3 +-
- drivers/video/fbdev/matrox/g450_pll.c              |  26 +-
- drivers/video/fbdev/matrox/matroxfb_DAC1064.c      |  47 +-
- drivers/video/fbdev/matrox/matroxfb_Ti3026.c       |   1 +
- drivers/video/fbdev/matrox/matroxfb_accel.c        |   2 +
- drivers/video/fbdev/matrox/matroxfb_base.c         |   1 +
- drivers/video/fbdev/matrox/matroxfb_g450.c         |  62 +--
- drivers/video/fbdev/matrox/matroxfb_misc.c         |  21 +-
- drivers/video/fbdev/mb862xx/mb862xx-i2c.c          |   1 -
- drivers/video/fbdev/omap/lcd_dma.c                 |   1 +
- drivers/video/fbdev/omap/lcdc.c                    |   2 +
- drivers/video/fbdev/omap/omapfb_main.c             |   2 +
- drivers/video/fbdev/omap2/omapfb/dss/apply.c       |   1 +
- drivers/video/fbdev/omap2/omapfb/dss/core.c        |   1 +
- .../video/fbdev/omap2/omapfb/dss/dispc-compat.c    |   1 +
- drivers/video/fbdev/omap2/omapfb/dss/display.c     |   1 +
- drivers/video/fbdev/omap2/omapfb/dss/dpi.c         |   1 -
- drivers/video/fbdev/omap2/omapfb/dss/dss-of.c      |   1 +
- .../video/fbdev/omap2/omapfb/dss/dss_features.c    |   1 +
- drivers/video/fbdev/omap2/omapfb/dss/manager.c     |   1 +
- drivers/video/fbdev/omap2/omapfb/dss/output.c      |   1 +
- drivers/video/fbdev/omap2/omapfb/dss/overlay.c     |   1 +
- drivers/video/fbdev/omap2/omapfb/dss/sdi.c         |   1 -
- drivers/video/fbdev/omap2/omapfb/dss/venc.c        |   1 +
- drivers/video/fbdev/omap2/omapfb/omapfb-ioctl.c    |   1 -
- drivers/video/fbdev/omap2/omapfb/vrfb.c            |   1 +
- drivers/video/fbdev/pxafb.c                        |  17 +-
- drivers/video/fbdev/sbuslib.c                      |   1 +
- drivers/video/fbdev/sis/sis.h                      |   2 -
- drivers/video/fbdev/sis/sis_main.c                 |  25 -
- drivers/video/fbdev/via/via-core.c                 |   1 +
- drivers/video/fbdev/via/via-gpio.c                 |   1 -
- drivers/video/fbdev/via/via_i2c.c                  |   1 +
- drivers/video/fbdev/wmt_ge_rops.c                  |   1 +
- include/drm/drm_device.h                           |   9 +
- include/drm/drm_drv.h                              |   3 +-
- include/drm/drm_format_helper.h                    |  13 +-
- include/linux/dma-fence.h                          |  31 +-
- include/linux/platform_data/video-pxafb.h          |   1 -
- include/trace/events/dma_fence.h                   |  38 +-
- include/uapi/drm/ivpu_accel.h                      |  14 +
- include/video/edid.h                               |   3 +-
- include/video/sisfb.h                              |   6 -
- 222 files changed, 1487 insertions(+), 1432 deletions(-)
- create mode 100644 drivers/gpu/drm/tests/drm_sysfb_modeset_test.c
-
---amohce7r5zhie2wj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaFOwkwAKCRAnX84Zoj2+
-dlJ7AX9bTXFYF4HpZCljXEDBBiHM6NDx1uvFg+CSazPSvT/A10JvmraQEqSsVil1
-EDTIjBcBgJV2559Y8cHz4kuxfRyK/f/UL1ySGC+P2MobntLFAVdDivAX131zyvQY
-wotJ1ISQig==
-=YTUj
------END PGP SIGNATURE-----
-
---amohce7r5zhie2wj--
-
+> Daniele
+>
+>>
+>> v2:
+>>    -s/(uval == 1) ? true : false/!!uval/ (Daniele)
+>>
+>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_debugfs.c            | 41 ++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_late_bind_fw.c       |  3 ++
+>>   drivers/gpu/drm/xe/xe_late_bind_fw_types.h |  3 ++
+>>   3 files changed, 47 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c 
+>> b/drivers/gpu/drm/xe/xe_debugfs.c
+>> index d83cd6ed3fa8..d1f6f556efa2 100644
+>> --- a/drivers/gpu/drm/xe/xe_debugfs.c
+>> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
+>> @@ -226,6 +226,44 @@ static const struct file_operations 
+>> atomic_svm_timeslice_ms_fops = {
+>>       .write = atomic_svm_timeslice_ms_set,
+>>   };
+>>   +static ssize_t disable_late_binding_show(struct file *f, char 
+>> __user *ubuf,
+>> +                     size_t size, loff_t *pos)
+>> +{
+>> +    struct xe_device *xe = file_inode(f)->i_private;
+>> +    struct xe_late_bind *late_bind = &xe->late_bind;
+>> +    char buf[32];
+>> +    int len;
+>> +
+>> +    len = scnprintf(buf, sizeof(buf), "%d\n", late_bind->disable);
+>> +
+>> +    return simple_read_from_buffer(ubuf, size, pos, buf, len);
+>> +}
+>> +
+>> +static ssize_t disable_late_binding_set(struct file *f, const char 
+>> __user *ubuf,
+>> +                    size_t size, loff_t *pos)
+>> +{
+>> +    struct xe_device *xe = file_inode(f)->i_private;
+>> +    struct xe_late_bind *late_bind = &xe->late_bind;
+>> +    u32 uval;
+>> +    ssize_t ret;
+>> +
+>> +    ret = kstrtouint_from_user(ubuf, size, sizeof(uval), &uval);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    if (uval > 1)
+>> +        return -EINVAL;
+>> +
+>> +    late_bind->disable = !!uval;
+>> +    return size;
+>> +}
+>> +
+>> +static const struct file_operations disable_late_binding_fops = {
+>> +    .owner = THIS_MODULE,
+>> +    .read = disable_late_binding_show,
+>> +    .write = disable_late_binding_set,
+>> +};
+>> +
+>>   void xe_debugfs_register(struct xe_device *xe)
+>>   {
+>>       struct ttm_device *bdev = &xe->ttm;
+>> @@ -249,6 +287,9 @@ void xe_debugfs_register(struct xe_device *xe)
+>>       debugfs_create_file("atomic_svm_timeslice_ms", 0600, root, xe,
+>>                   &atomic_svm_timeslice_ms_fops);
+>>   +    debugfs_create_file("disable_late_binding", 0600, root, xe,
+>> +                &disable_late_binding_fops);
+>> +
+>>       for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; 
+>> ++mem_type) {
+>>           man = ttm_manager_type(bdev, mem_type);
+>>   diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c 
+>> b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+>> index c0be9611c73b..001e526e569a 100644
+>> --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
+>> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+>> @@ -129,6 +129,9 @@ int xe_late_bind_fw_load(struct xe_late_bind 
+>> *late_bind)
+>>       if (!late_bind->component_added)
+>>           return -EINVAL;
+>>   +    if (late_bind->disable)
+>> +        return 0;
+>> +
+>>       for (fw_id = 0; fw_id < MAX_FW_ID; fw_id++) {
+>>           lbfw = &late_bind->late_bind_fw[fw_id];
+>>           if (lbfw->valid)
+>> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h 
+>> b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+>> index d256f53d59e6..f79f0c0b2c4a 100644
+>> --- a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+>> @@ -71,6 +71,9 @@ struct xe_late_bind {
+>>       struct xe_late_bind_fw late_bind_fw[MAX_FW_ID];
+>>       /** @late_bind.wq: workqueue to submit request to download late 
+>> bind blob */
+>>       struct workqueue_struct *wq;
+>> +
+>> +    /** @late_bind.disable to block late binding reload during pm 
+>> resume flow*/
+>> +    bool disable;
+>>   };
+>>     #endif
+>
