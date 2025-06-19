@@ -4,22 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD2F6C77B7C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7414C7115B
 	for <intel-xe@archiver.kernel.org>; Thu, 19 Jun 2025 10:49:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D22D10E9F8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A731C10EA02;
 	Thu, 19 Jun 2025 10:49:51 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3259810E9F8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4859010E9FC
  for <intel-xe@lists.freedesktop.org>; Thu, 19 Jun 2025 10:49:36 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 05/11] drm/xe: Only dump PAT when xe_hw_engines_init_early
- fails
-Date: Thu, 19 Jun 2025 12:49:04 +0200
-Message-ID: <20250619104858.418440-18-dev@lankhorst.se>
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v4 11/11] drm/xe: Rename xe_uc_init_hw to xe_uc_load_hw
+Date: Thu, 19 Jun 2025 12:49:10 +0200
+Message-ID: <20250619104858.418440-24-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250619104858.418440-13-dev@lankhorst.se>
 References: <20250619104858.418440-13-dev@lankhorst.se>
@@ -39,40 +37,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-After discussion with Lucas De Marchi, it turns out that is the
-specific caller requiring a dump. This allows us to cleanup
-gt_init in a bit.
+It feels to me like load is closer to the intention than init_hw.
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+It makes the init calls slightly less confusing to me. :)
+
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 6 +++---
+ drivers/gpu/drm/xe/xe_uc.c | 6 +++---
+ drivers/gpu/drm/xe/xe_uc.h | 2 +-
+ 3 files changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 6bc793043b400..98360986df7db 100644
+index 14761849390d8..d397df056e4cd 100644
 --- a/drivers/gpu/drm/xe/xe_gt.c
 +++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -464,8 +464,10 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	xe_gt_mcr_init(gt);
+@@ -573,7 +573,7 @@ static int gt_init_with_all_forcewake(struct xe_gt *gt)
+ 		}
+ 	}
  
- 	err = xe_hw_engines_init_early(gt);
--	if (err)
-+	if (err) {
-+		dump_pat_on_error(gt);
- 		goto err_force_wake;
-+	}
- 
- 	err = xe_hw_engine_class_sysfs_init(gt);
+-	err = xe_uc_init_hw(&gt->uc);
++	err = xe_uc_load_hw(&gt->uc);
  	if (err)
-@@ -486,7 +488,6 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	return 0;
+ 		goto err_force_wake;
  
- err_force_wake:
--	dump_pat_on_error(gt);
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+@@ -738,7 +738,7 @@ static int vf_gt_restart(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
  
- 	return err;
+-	err = xe_uc_init_hw(&gt->uc);
++	err = xe_uc_load_hw(&gt->uc);
+ 	if (err)
+ 		return err;
+ 
+@@ -776,7 +776,7 @@ static int do_gt_restart(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
+ 
+-	err = xe_uc_init_hw(&gt->uc);
++	err = xe_uc_load_hw(&gt->uc);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 1b1441b234c92..d8ac194107c32 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -144,7 +144,7 @@ int xe_uc_sanitize_reset(struct xe_uc *uc)
+ 	return uc_reset(uc);
+ }
+ 
+-static int vf_uc_init_hw(struct xe_uc *uc)
++static int vf_uc_load_hw(struct xe_uc *uc)
+ {
+ 	int err;
+ 
+@@ -173,7 +173,7 @@ static int vf_uc_init_hw(struct xe_uc *uc)
+  * Should be called during driver load, after every GT reset, and after every
+  * suspend to reload / auth the firmwares.
+  */
+-int xe_uc_init_hw(struct xe_uc *uc)
++int xe_uc_load_hw(struct xe_uc *uc)
+ {
+ 	int ret;
+ 
+@@ -182,7 +182,7 @@ int xe_uc_init_hw(struct xe_uc *uc)
+ 		return 0;
+ 
+ 	if (IS_SRIOV_VF(uc_to_xe(uc)))
+-		return vf_uc_init_hw(uc);
++		return vf_uc_load_hw(uc);
+ 
+ 	ret = xe_huc_upload(&uc->huc);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
+index 58ff3946a80ec..21c9306098cfd 100644
+--- a/drivers/gpu/drm/xe/xe_uc.h
++++ b/drivers/gpu/drm/xe/xe_uc.h
+@@ -11,7 +11,7 @@ struct xe_uc;
+ int xe_uc_init_noalloc(struct xe_uc *uc);
+ int xe_uc_init(struct xe_uc *uc);
+ int xe_uc_init_post_hwconfig(struct xe_uc *uc);
+-int xe_uc_init_hw(struct xe_uc *uc);
++int xe_uc_load_hw(struct xe_uc *uc);
+ void xe_uc_gucrc_disable(struct xe_uc *uc);
+ int xe_uc_reset_prepare(struct xe_uc *uc);
+ void xe_uc_stop_prepare(struct xe_uc *uc);
 -- 
 2.45.2
 
