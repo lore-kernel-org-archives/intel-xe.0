@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B2EBC71155
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 12:09:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FC27C71155
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 12:28:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EEA010EB51;
-	Fri, 20 Jun 2025 12:09:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D6Pkzz/b";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 482E310EB51
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Jun 2025 12:09:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750421397; x=1781957397;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=TD2FKEZAVRPdSYuPsVeqdL5F9CICuwpGt6+Qe3OhPFI=;
- b=D6Pkzz/bEPpCuB+atkWRh1HEfQoi4Igvpts+wchGUxQWISxkDqXPJKgY
- hOnxlGMWtRURV1hkaVh4b3F7F5sEGss6MbTgjoei44dinOQUGpDBbmnZk
- Q8BNxmma2BMfqKdYmn6hAzY+VxpFQCaUwSoP4Cd4s74w1MhAX9bwwJ6xi
- xRd2p3d+wyDPg2q7PTDkFnk1HujqqyEDZULVC85ikc8fMMQxJwcjwrj35
- EVBXpdI6F1P5KwZYVqHPzwhoQnP3uryMGZn24Qj61wqEc6HAOf3ceszTN
- 49HtnR64OrBaPz0J2Vmk3El2eKrddiM3YD8iXvfMpebJYQfqedR9MuGm7 A==;
-X-CSE-ConnectionGUID: UHT6vGc3TsWuBcZ8f2Yp1Q==
-X-CSE-MsgGUID: 1Ij4wyB+QUm228ZiiUNGQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="56361831"
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="56361831"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 05:09:57 -0700
-X-CSE-ConnectionGUID: IxMr/FibTtKh5RN309quYw==
-X-CSE-MsgGUID: SpGFA0/VSLKkyJYwr6sJig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="151036750"
-Received: from psoham-nuc7i7bnh.iind.intel.com ([10.190.216.151])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 05:09:54 -0700
-From: Soham Purkait <soham.purkait@intel.com>
-To: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, karthik.poosa@intel.com, riana.tauro@intel.com,
- jonathan.cavitt@intel.com
-Cc: lucas.demarchi@intel.com, soham.purkait@intel.com,
- ashutosh.dixit@intel.com, jani.nikula@intel.com
-Subject: [PATCH v5 2/2] drm/xe/xe_debugfs: Exposure of G-State and pcie link
- state residency counters through debugfs
-Date: Fri, 20 Jun 2025 17:33:56 +0530
-Message-Id: <20250620120356.3289744-3-soham.purkait@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250620120356.3289744-1-soham.purkait@intel.com>
-References: <20250620120356.3289744-1-soham.purkait@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2695610EB51;
+	Fri, 20 Jun 2025 12:28:10 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3C9610E21F;
+ Fri, 20 Jun 2025 12:28:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_debugfs_node_to_expos?=
+ =?utf-8?q?e_G-state_and_pcie_link_state_residency_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Soham Purkait" <soham.purkait@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Jun 2025 12:28:09 -0000
+Message-ID: <175042248973.98212.10964765109956614201@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250620120356.3289744-1-soham.purkait@intel.com>
+In-Reply-To: <20250620120356.3289744-1-soham.purkait@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,152 +36,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add debug nodes, "dgfx_pkg_residencies" for G-states (G2, G6, G8, G10,
-ModS) and "dgfx_pcie_link_residencies" for PCIe link states(L0, L1, L1.2)
-residency counters.
+== Series Details ==
 
-V1 : Expose all G-State residency counter values under dgfx_pkg_residencies. (Anshuman)
-     Included runtime_get/put and removed drm_warn. (Riana)
+Series: Add debugfs node to expose G-state and pcie link state residency (rev3)
+URL   : https://patchwork.freedesktop.org/series/149793/
+State : warning
 
-v2 : Moved "dgfx_pkg_residencies" from "/sys/kernel/debug/gtidle/" to "/sys/kernel/debug/".
-                                                                                 (Anshuman)
+== Summary ==
 
-v3 : Included debugfs node "dgfx_pcie_link_residencies" for pcie link state residency
-     counter values.       (Anshuman)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 178a117ee35c572010bcd7584657cd8cc1025b10
+Author: Soham Purkait <soham.purkait@intel.com>
+Date:   Fri Jun 20 17:33:56 2025 +0530
 
-v4 : Included check for BMG and dgfx and helper function for repetitive code.  (Riana)
-     Used drm_info_list to create the debugfs. (Karthik)
-
+    drm/xe/xe_debugfs: Exposure of G-State and pcie link state residency counters through debugfs
+    
+    Add debug nodes, "dgfx_pkg_residencies" for G-states (G2, G6, G8, G10,
+    ModS) and "dgfx_pcie_link_residencies" for PCIe link states(L0, L1, L1.2)
+    residency counters.
+    
+    V1 : Expose all G-State residency counter values under dgfx_pkg_residencies. (Anshuman)
+         Included runtime_get/put and removed drm_warn. (Riana)
+    
+    v2 : Moved "dgfx_pkg_residencies" from "/sys/kernel/debug/gtidle/" to "/sys/kernel/debug/".
+                                                                                     (Anshuman)
+    
+    v3 : Included debugfs node "dgfx_pcie_link_residencies" for pcie link state residency
+         counter values.       (Anshuman)
+    
+    v4 : Included check for BMG and dgfx and helper function for repetitive code.  (Riana)
+         Used drm_info_list to create the debugfs. (Karthik)
+    
+    v5 : Reordered commits to reflect the correct dependency hierarchy.  (Jonathan)
+         Simplification of commit message and rectified register offset. (Karthik)
+         Error handling and return before printing.                      (Riana)
+    
+    Signed-off-by: Soham Purkait <soham.purkait@intel.com>
++ /mt/dim checkpatch 1b4be188ae14a43b901f3005075fab3a22f77968 drm-intel
+a3011746b82e drm/xe/regs/xe_pmt: Macros for G-State and pcie link state residency offset
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
 v5 : Reordered commits to reflect the correct dependency hierarchy.  (Jonathan)
-     Simplification of commit message and rectified register offset. (Karthik)
-     Error handling and return before printing.			     (Riana)
 
-Signed-off-by: Soham Purkait <soham.purkait@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c | 71 +++++++++++++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+178a117ee35c drm/xe/xe_debugfs: Exposure of G-State and pcie link state residency counters through debugfs
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+V1 : Expose all G-State residency counter values under dgfx_pkg_residencies. (Anshuman)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index d83cd6ed3fa8..9e1f753ed1df 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -11,16 +11,19 @@
- 
- #include <drm/drm_debugfs.h>
- 
-+#include "regs/xe_pmt.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt_debugfs.h"
- #include "xe_gt_printk.h"
- #include "xe_guc_ads.h"
-+#include "xe_mmio.h"
- #include "xe_pm.h"
- #include "xe_pxp_debugfs.h"
- #include "xe_sriov.h"
- #include "xe_step.h"
-+#include "xe_vsec.h"
- 
- #ifdef CONFIG_DRM_XE_DEBUG
- #include "xe_bo_evict.h"
-@@ -30,6 +33,23 @@
- 
- DECLARE_FAULT_ATTR(gt_reset_failure);
- 
-+static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
-+				   u32 offset, char *name, struct drm_printer *p)
-+{
-+	u64 residency = 0;
-+	int ret;
-+
-+	ret = xe_pmt_telem_read(to_pci_dev(xe->drm.dev),
-+				xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
-+				&residency, offset, sizeof(residency));
-+	if (ret != sizeof(residency)) {
-+		drm_warn(&xe->drm, "%s counter failed to read, ret %d\n", name, ret);
-+		return;
-+	}
-+
-+	drm_printf(p, "%s : %llu\n", name, residency);
-+}
-+
- static struct xe_device *node_to_xe(struct drm_info_node *node)
- {
- 	return to_xe_device(node->minor->dev);
-@@ -82,11 +102,57 @@ static int sriov_info(struct seq_file *m, void *data)
- 	return 0;
- }
- 
-+static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
-+{
-+	struct xe_device *xe;
-+	struct xe_mmio *mmio;
-+	struct drm_printer p;
-+
-+	xe = node_to_xe(m->private);
-+	p = drm_seq_file_printer(m);
-+	xe_pm_runtime_get(xe);
-+	mmio = xe_root_tile_mmio(xe);
-+
-+	read_residency_counter(xe, mmio, BMG_G2_RESIDENCY_OFFSET, "Package G2", &p);
-+	read_residency_counter(xe, mmio, BMG_G6_RESIDENCY_OFFSET, "Package G6", &p);
-+	read_residency_counter(xe, mmio, BMG_G8_RESIDENCY_OFFSET, "Package G8", &p);
-+	read_residency_counter(xe, mmio, BMG_G10_RESIDENCY_OFFSET, "Package G10", &p);
-+	read_residency_counter(xe, mmio, BMG_MODS_RESIDENCY_OFFSET, "Package ModS", &p);
-+	xe_pm_runtime_put(xe);
-+	return 0;
-+}
-+
-+static int dgfx_pcie_link_residencies_show(struct seq_file *m, void *data)
-+{
-+	struct xe_device *xe;
-+	struct xe_mmio *mmio;
-+	struct drm_printer p;
-+
-+	xe = node_to_xe(m->private);
-+	p = drm_seq_file_printer(m);
-+	xe_pm_runtime_get(xe);
-+	mmio = xe_root_tile_mmio(xe);
-+
-+	read_residency_counter(xe, mmio, PCIE_LINK_L0_RESIDENCY_COUNTER,
-+			       "PCIE LINK L0 RESIDENCY", &p);
-+	read_residency_counter(xe, mmio, PCIE_LINK_L1_RESIDENCY_COUNTER,
-+			       "PCIE LINK L1 RESIDENCY", &p);
-+	read_residency_counter(xe, mmio, PCIE_LINK_L1_2_RESIDENCY_COUNTER,
-+			       "PCIE LINK L1.2 RESIDENCY", &p);
-+	xe_pm_runtime_put(xe);
-+	return 0;
-+}
-+
- static const struct drm_info_list debugfs_list[] = {
- 	{"info", info, 0},
- 	{ .name = "sriov_info", .show = sriov_info, },
- };
- 
-+static const struct drm_info_list debugfs_residencies[] = {
-+	{ .name = "dgfx_pkg_residencies", .show = dgfx_pkg_residencies_show, },
-+	{ .name = "dgfx_pcie_link_residencies", .show = dgfx_pcie_link_residencies_show, },
-+};
-+
- static int forcewake_open(struct inode *inode, struct file *file)
- {
- 	struct xe_device *xe = inode->i_private;
-@@ -240,6 +306,11 @@ void xe_debugfs_register(struct xe_device *xe)
- 				 ARRAY_SIZE(debugfs_list),
- 				 root, minor);
- 
-+	if (IS_DGFX(xe) && xe->info.platform == XE_BATTLEMAGE)
-+		drm_debugfs_create_files(debugfs_residencies,
-+					 ARRAY_SIZE(debugfs_residencies),
-+					 root, minor);
-+
- 	debugfs_create_file("forcewake_all", 0400, root, xe,
- 			    &forcewake_all_fops);
- 
--- 
-2.34.1
+total: 0 errors, 1 warnings, 0 checks, 110 lines checked
+
 
