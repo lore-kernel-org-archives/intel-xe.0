@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28E7FC77B7F
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 21:49:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBC65C7115B
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 21:49:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3D3010EBE5;
-	Fri, 20 Jun 2025 21:49:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C36F10EBEB;
+	Fri, 20 Jun 2025 21:49:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JQRE7UZG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ap9I6VX0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85DA110EBCD
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Jun 2025 21:49:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8407510EBCD
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Jun 2025 21:49:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750456167; x=1781992167;
+ t=1750456166; x=1781992166;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=w0IZ3BiynNWBRCZBZUwD362eKV09j0SkG1ePlOjw0Zo=;
- b=JQRE7UZGyglnS8RPTUe1FPPSYrG3CIoU4Qo9vxgJ7b63kQ7G/C/sXXu6
- 5cS6uVNMNNPVC5gNjlL+4zZ/Sz0iCRFbp2mJ99dLm53oEE1Vmgj4pJZIr
- hQMRtxpaLT0UWtm9QWCmlDsz1/C6T0Azs6DMlrQw6yzHrzRXjFw3oGaWb
- JObhnbYYfz8JpPw6E5Gd7FI+HpKWdpDU5J5plOcjeS/hC4PALKBl7Y43x
- Aj3uA2n6LgJydPvgcS+tji+o1WWj6czV3HJx3HVpZZhk24HzXtk7S7lQO
- Ecp5JPOCK81jFjdN+0U67DkYEqU+1UxqLhIKc79P2znkS18Yv6OCnUorl g==;
-X-CSE-ConnectionGUID: PoUPntZETVGmi7bSc+cfQw==
-X-CSE-MsgGUID: hZXBgpNZS9STYQenu2A32Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="40336504"
-X-IronPort-AV: E=Sophos;i="6.16,252,1744095600"; d="scan'208";a="40336504"
+ bh=MeD5afbFl1ia6uZdbDDU0BO9yASG7HcbqLfZjXm7oeI=;
+ b=Ap9I6VX0tK8otKLs+WvIMq0thXByN2K5crW59HwiliYFnqSomFQApSUF
+ zj6CI0x06UTsRtseixGhUNM0mhAMrxoj/+AQf6HQl6MvHSudmNCy2867W
+ Wq1VJUB5I2dauBRKqlkDxkY+uJD8TEJaXAbz47jYDLpEDy1nrtEEd7Fbv
+ zVOtxINmGuATP7JR8YIOj8w6NqaI1Zt/+Z9yYerBIeVgG1QBpRffHMnGN
+ N1ExKfs69oIVGvidkREJReUdfmXxYm+7reiHG9geE2IU8GaXglJkOJkYw
+ OYKVRIBzESb7CpBRit+xkFppVemOq6/lGzElbyBzQ9iybOJtnAdaGYUJu Q==;
+X-CSE-ConnectionGUID: hAsfRIaOSRy7G6HT2jTwlg==
+X-CSE-MsgGUID: xR2aFUP3TWijaVVbsdxnjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="40336502"
+X-IronPort-AV: E=Sophos;i="6.16,252,1744095600"; d="scan'208";a="40336502"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 14:49:27 -0700
-X-CSE-ConnectionGUID: ijr9Qn5ySVi/FuN3LjqDjw==
-X-CSE-MsgGUID: rYPMMxhzTlidAOOjVWuyeg==
+ 20 Jun 2025 14:49:26 -0700
+X-CSE-ConnectionGUID: r0E25yz0SjihKIoRkKfWeA==
+X-CSE-MsgGUID: PeXrsFfxQeugKPdlM/m6kQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,252,1744095600"; d="scan'208";a="151158406"
+X-IronPort-AV: E=Sophos;i="6.16,252,1744095600"; d="scan'208";a="151158399"
 Received: from msatwood-mobl.jf.intel.com ([10.24.13.181])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 14:49:27 -0700
+ 20 Jun 2025 14:49:26 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
 	Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 5/5] drm/xe: disable wa_15015404425 for PTL B0
-Date: Fri, 20 Jun 2025 14:49:20 -0700
-Message-ID: <20250620214920.718179-6-matthew.s.atwood@intel.com>
+Subject: [PATCH 3/5] drm/xe: Move Wa_15015404425 to use the new EX_SOC_WA macro
+Date: Fri, 20 Jun 2025 14:49:18 -0700
+Message-ID: <20250620214920.718179-4-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250620214920.718179-1-matthew.s.atwood@intel.com>
 References: <20250620214920.718179-1-matthew.s.atwood@intel.com>
@@ -67,52 +67,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This workaround only applies to PTL Compute Die A0. However, this
-information cannot be determined until after the GT is brought up. This
-means that we will assume that it is required for the initial bring up of
-the gt. After GT init, the oob workarounds are enabled for the GT. Use
-this flag to then manually set the bit in the soc oob bit field to 0
-which will help performance after device bring up.
+Move Wa_15015404425 to use the new implemented OOB macro XE_SOC_WA()
 
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c        | 6 ++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules | 1 +
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_mmio.c           | 10 +++++-----
+ drivers/gpu/drm/xe/xe_soc_wa_oob.rules |  1 +
+ 2 files changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index ded0f3dc8d73..a624c3fb9498 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -34,6 +34,9 @@
- #include "xe_tile.h"
- #include "xe_wa.h"
- 
-+#include "generated/xe_wa_oob.h"
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 7357458bc0d2..377fa82d1d13 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -22,6 +22,9 @@
+ #include "xe_macros.h"
+ #include "xe_sriov.h"
+ #include "xe_trace.h"
++#include "xe_wa.h"
++
 +#include "generated/xe_soc_wa_oob.h"
-+
- enum toggle_d3cold {
- 	D3COLD_DISABLE,
- 	D3COLD_ENABLE,
-@@ -890,6 +893,9 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	drm_dbg(&xe->drm, "d3cold: capable=%s\n",
- 		str_yes_no(xe->d3cold.capable));
  
-+	if (XE_WA(xe->tiles->media_gt, 15015404425_disable))
-+		xe->oob[XE_SOC_WA_OOB_15015404425] = 0;
-+
- 	return 0;
+ static void tiles_fini(void *arg)
+ {
+@@ -163,9 +166,6 @@ static void mmio_flush_pending_writes(struct xe_mmio *mmio)
+ #define DUMMY_REG_OFFSET	0x130030
+ 	int i;
  
- err_driver_cleanup:
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 8c2aa48cb33a..822cbff13819 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -71,3 +71,4 @@ no_media_l3	MEDIA_VERSION(3000)
- # primary GT GMDID
- 14022085890	GRAPHICS_VERSION(2001)
- 16026007364 	MEDIA_VERSION(3000)
-+15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
+-	if (mmio->tile->xe->info.platform != XE_LUNARLAKE)
+-		return;
+-
+ 	/* 4 dummy writes */
+ 	for (i = 0; i < 4; i++)
+ 		writel(0, mmio->regs + DUMMY_REG_OFFSET);
+@@ -176,8 +176,8 @@ u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
+ 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+ 	u8 val;
+ 
+-	/* Wa_15015404425 */
+-	mmio_flush_pending_writes(mmio);
++	if (XE_SOC_WA(mmio->tile->xe, 15015404425))
++		mmio_flush_pending_writes(mmio);
+ 
+ 	val = readb(mmio->regs + addr);
+ 	trace_xe_reg_rw(mmio, false, addr, val, sizeof(val));
+diff --git a/drivers/gpu/drm/xe/xe_soc_wa_oob.rules b/drivers/gpu/drm/xe/xe_soc_wa_oob.rules
+index e69de29bb2d1..b7d12ea4d65c 100644
+--- a/drivers/gpu/drm/xe/xe_soc_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_soc_wa_oob.rules
+@@ -0,0 +1 @@
++15015404425     PLATFORM(LUNARLAKE)
 -- 
 2.49.0
 
