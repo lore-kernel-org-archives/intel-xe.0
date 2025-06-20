@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1659EC7115C
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 21:49:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1965BC7115C
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 21:55:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD1A910EBEC;
-	Fri, 20 Jun 2025 21:49:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fWkD07tS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D76910EBCF
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Jun 2025 21:49:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750456165; x=1781992165;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+UveMRC4JFrlGd+it8z95G0YOqGUPxRcRxy5FPYu0Ck=;
- b=fWkD07tSfJCxnBGSPGm5JexSKAewt3SDG/b+arHSrZ9Igrc5P3LaOFGh
- EwORDrpjcV+6F5uOvdwOUAyGjtENDD1+ID/W9uAGSba3IMxbg7RhzSSw2
- 0YykJVSYy6FthcqiW5FOPb6ddXnTla21+y/3BhjL57JukZSDGrW7anj7x
- pIQpFRXNlDcfojrBcZ9iW/TINGotIKuhnDhd93TMP7scVPZwh0Clo56SM
- qpgXhYpgXnOeCoFuNO1erYvxdk60ycbGlKnmX83fn+nXiY0yw7wG9CzBM
- k/vtSkaZwXLxV7MGiNJJGSXX3DorXeNS9fF+dqTYFCasooFRLOJ/CDSw4 Q==;
-X-CSE-ConnectionGUID: 2ikXdCvsROqCKVnwXC8LRA==
-X-CSE-MsgGUID: 230h7Zh5SZyU0Wkv1Jr7XQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="40336500"
-X-IronPort-AV: E=Sophos;i="6.16,252,1744095600"; d="scan'208";a="40336500"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 14:49:25 -0700
-X-CSE-ConnectionGUID: ppj6Jr/5TleTmpUDE2oduA==
-X-CSE-MsgGUID: gN/6XGalRUGtpKwHih/3LQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,252,1744095600"; d="scan'208";a="151158393"
-Received: from msatwood-mobl.jf.intel.com ([10.24.13.181])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 14:49:24 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 1/5] drm/xe: add xe_soc_wa infrastructure
-Date: Fri, 20 Jun 2025 14:49:16 -0700
-Message-ID: <20250620214920.718179-2-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250620214920.718179-1-matthew.s.atwood@intel.com>
-References: <20250620214920.718179-1-matthew.s.atwood@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9E8210E241;
+	Fri, 20 Jun 2025 21:55:53 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67C5210E23F;
+ Fri, 20 Jun 2025 21:55:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Create_and_use_?=
+ =?utf-8?q?SoC_WA_infrastructure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Atwood" <matthew.s.atwood@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Jun 2025 21:55:53 -0000
+Message-ID: <175045655339.98943.4418732260505554846@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250620214920.718179-1-matthew.s.atwood@intel.com>
+In-Reply-To: <20250620214920.718179-1-matthew.s.atwood@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,118 +36,107 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are some workarounds that must be applied before gt init,
-wa_150154044425 for example. Instead of sprinkling them conditionally
-throughout the driver as we did for i915 generate an oob.rules file
-reusing the RTP infrastructure to make these easier to track.
+== Series Details ==
 
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/xe/Makefile            | 11 ++++++++++-
- drivers/gpu/drm/xe/xe_gen_wa_oob.c     | 27 ++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_soc_wa_oob.rules |  0
- 3 files changed, 29 insertions(+), 9 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_soc_wa_oob.rules
+Series: drm/xe: Create and use SoC WA infrastructure
+URL   : https://patchwork.freedesktop.org/series/150584/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 40d01751b49e..6b22e95002d5 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -21,6 +21,15 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
- 		 $(src)/xe_wa_oob.rules
- 	$(call cmd,wa_oob)
- 
-+generated_soc_oob := $(obj)/generated/xe_soc_wa_oob.c $(obj)/generated/xe_soc_wa_oob.h
-+quiet_cmd_soc_wa_oob = GEN     $(notdir $(generated_soc_oob))
-+      cmd_soc_wa_oob = mkdir -p $(@D); $^ $(generated_soc_oob)
-+$(obj)/generated/%_soc_wa_oob.c $(obj)/generated/%_soc_wa_oob.h: $(obj)/xe_gen_wa_oob \
-+		 $(src)/xe_soc_wa_oob.rules
-+	$(call cmd,soc_wa_oob)
-+
-+
-+
- # Please keep these build lists sorted!
- 
- # core driver code
-@@ -338,4 +347,4 @@ $(obj)/%.hdrtest: $(src)/%.h FORCE
- 	$(call if_changed_dep,hdrtest)
- 
- uses_generated_oob := $(addprefix $(obj)/, $(xe-y))
--$(uses_generated_oob): $(obj)/generated/xe_wa_oob.h
-+$(uses_generated_oob): $(obj)/generated/xe_wa_oob.h $(obj)/generated/xe_soc_wa_oob.h
-diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-index ed9183599e31..0484ed44e5d6 100644
---- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-+++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-@@ -18,8 +18,8 @@
- 	" *\n" \
- 	" * This file was generated from rules: %s\n" \
- 	" */\n" \
--	"#ifndef _GENERATED_XE_WA_OOB_\n" \
--	"#define _GENERATED_XE_WA_OOB_\n" \
-+	"#ifndef _GENERATED_%s_\n" \
-+	"#define _GENERATED_%s_\n" \
- 	"\n" \
- 	"enum {\n"
- 
-@@ -52,7 +52,7 @@ static char *strip(char *line, size_t linelen)
- }
- 
- #define MAX_LINE_LEN 4096
--static int parse(FILE *input, FILE *csource, FILE *cheader)
-+static int parse(FILE *input, FILE *csource, FILE *cheader, bool soc)
- {
- 	char line[MAX_LINE_LEN + 1];
- 	char *name, *prev_name = NULL, *rules;
-@@ -96,7 +96,10 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
- 		}
- 
- 		if (name) {
--			fprintf(cheader, "\tXE_WA_OOB_%s = %u,\n", name, idx);
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8d4ecef8b0011b22fa89bd7c2265bdca5c9a4899
+Author: Matt Atwood <matthew.s.atwood@intel.com>
+Date:   Fri Jun 20 14:49:20 2025 -0700
+
+    drm/xe: disable wa_15015404425 for PTL B0
+    
+    This workaround only applies to PTL Compute Die A0. However, this
+    information cannot be determined until after the GT is brought up. This
+    means that we will assume that it is required for the initial bring up of
+    the gt. After GT init, the oob workarounds are enabled for the GT. Use
+    this flag to then manually set the bit in the soc oob bit field to 0
+    which will help performance after device bring up.
+    
+    Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
++ /mt/dim checkpatch 3dde2e2646b2619f765de9c226bfe0dda7bf1f17 drm-intel
+76d7be70ef65 drm/xe: add xe_soc_wa infrastructure
+-:68: CHECK:BOOL_COMPARISON: Using comparison to false is error prone
+#68: FILE: drivers/gpu/drm/xe/xe_gen_wa_oob.c:99:
 +			if (soc == false)
-+				fprintf(cheader, "\tXE_WA_OOB_%s = %u,\n", name, idx);
-+			else
-+				fprintf(cheader, "\tXE_SOC_WA_OOB_%s = %u,\n", name, idx);
- 
- 			/* Close previous entry before starting a new one */
- 			if (idx)
-@@ -117,8 +120,10 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
- 	/* Close last entry */
- 	if (idx)
- 		fprintf(csource, ") },\n");
--
--	fprintf(cheader, "\t_XE_WA_OOB_COUNT = %u\n", idx);
+
+-:81: CHECK:BOOL_COMPARISON: Using comparison to false is error prone
+#81: FILE: drivers/gpu/drm/xe/xe_gen_wa_oob.c:123:
 +	if (soc == false)
-+		fprintf(cheader, "\t_XE_WA_OOB_COUNT = %u\n", idx);
-+	else
-+		fprintf(cheader, "\t_XE_SOC_WA_OOB_COUNT = %u\n", idx);
- 
- 	return 0;
- }
-@@ -157,9 +162,15 @@ int main(int argc, const char *argv[])
- 		}
- 	}
- 
--	fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn);
+
+-:94: WARNING:LINE_SPACING: Missing a blank line after declarations
+#94: FILE: drivers/gpu/drm/xe/xe_gen_wa_oob.c:166:
 +	char *soc = strstr(args[ARGS_CHEADER].fn, "soc_");
 +	if (soc == NULL)
-+		fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, "XE_WA_OOB", "XE_WA_OOB");
-+	else
-+		fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, "XE_SOC_WA_OOB", "XE_SOC_WA_OOB");
-+
+
+-:94: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!soc"
+#94: FILE: drivers/gpu/drm/xe/xe_gen_wa_oob.c:166:
++	if (soc == NULL)
+
+-:99: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "soc"
+#99: FILE: drivers/gpu/drm/xe/xe_gen_wa_oob.c:171:
 +	bool prefix = soc != NULL ? true : false;
- 	ret = parse(args[ARGS_INPUT].f, args[ARGS_CSOURCE].f,
--		    args[ARGS_CHEADER].f);
-+		    args[ARGS_CHEADER].f, prefix);
- 	if (!ret)
- 		fprintf(args[ARGS_CHEADER].f, FOOTER);
- 
-diff --git a/drivers/gpu/drm/xe/xe_soc_wa_oob.rules b/drivers/gpu/drm/xe/xe_soc_wa_oob.rules
+
+-:107: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#107: 
 new file mode 100644
-index 000000000000..e69de29bb2d1
--- 
-2.49.0
+
+total: 0 errors, 2 warnings, 4 checks, 78 lines checked
+1db4d1988d2c drm/xe: Add infrastructure for SoC OOB workarounds
+-:8: WARNING:TYPO_SPELLING: 'simlar' may be misspelled - perhaps 'similar'?
+#8: 
+mechanism simlar to the GT related OOB workarounds where we can more
+          ^^^^^^
+
+-:28: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#28: FILE: drivers/gpu/drm/xe/xe_device_types.h:365:
++	 *  initialization after SOC OOB WAs have been processed */
+
+-:81: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#81: FILE: drivers/gpu/drm/xe/xe_rtp.h:425:
++	struct xe_gt * :	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_GT },	\
+
+-:82: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#82: FILE: drivers/gpu/drm/xe/xe_rtp.h:426:
++	struct xe_device * :	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_SOC })
+
+-:126: CHECK:SPACING: spaces preferred around that '-' (ctx:WxV)
+#126: FILE: drivers/gpu/drm/xe/xe_wa.c:885:
++static_assert(ARRAY_SIZE(soc_oob_was) -1 == _XE_SOC_WA_OOB_COUNT);
+                                       ^
+
+-:140: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#140: FILE: drivers/gpu/drm/xe/xe_wa.c:911:
++	p = drmm_kzalloc(&xe->drm,
++			sizeof(xe->oob) * BITS_TO_LONGS(ARRAY_SIZE(soc_oob_was)),
+
+-:220: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'xe__' - possible side-effects?
+#220: FILE: drivers/gpu/drm/xe/xe_wa.h:43:
++#define XE_SOC_WA(xe__, id__) ({					\
++	xe_assert(xe__, (xe__)->oob_initialized);			\
++	test_bit(XE_SOC_WA_OOB_ ## id__, (xe__)->oob);			\
++})
+
+total: 0 errors, 4 warnings, 3 checks, 170 lines checked
+ee9ca050d3de drm/xe: Move Wa_15015404425 to use the new EX_SOC_WA macro
+9cc636479d1f drm/xe: extend Wa_15015404425 to apply to PTL
+8d4ecef8b001 drm/xe: disable wa_15015404425 for PTL B0
+
 
