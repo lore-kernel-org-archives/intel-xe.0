@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 810C1C7115D
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 10:52:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22BF6C71155
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 11:01:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1F5A10EB43;
-	Fri, 20 Jun 2025 10:52:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF45810EB43;
+	Fri, 20 Jun 2025 11:01:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A1zwKd4t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RTNY3bIB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 464B210EB43
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Jun 2025 10:52:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA86D10EB43
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Jun 2025 11:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750416747; x=1781952747;
+ t=1750417273; x=1781953273;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=YGX1XZs8aJT32EehiH5QDR3aUaha0EyJApKDVXkFPuk=;
- b=A1zwKd4tw/DM0fqbg++NBiDuhbixa46Wo+0Chr0YGQf2/oYAVH8TeCQs
- lMZ21bDfO59p85r8lzkzuCuMC/FMFMVg6ZpJeVRE4hwIVeW4Rpz+O7zUS
- EWg+cHQrXMDtFMDFpPIgl8Tw2mLqvTe4wQ7lCO9zcMSelAzcVD5dFnNEk
- 68IZGrtiZmF5kHzqYlNnEziPeZPepfcQx5t2c7RZvC+8rMEtKsEE0uStw
- PG/ooLMc3yqNRAKoitAzhfLK29pVmcwLKigMpLA0lAlukBKCteIS/eJXJ
- ki1+FIyXQwDqgCVM9xKnB2Nw6oDfvxs28bB0CeZvVl9jFU4SmzCo1VpAq g==;
-X-CSE-ConnectionGUID: geuvRHDzQRaHJdGo1JJlHQ==
-X-CSE-MsgGUID: pvL3FHVPR1Cldv8QNHMwXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="52551249"
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="52551249"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 03:52:26 -0700
-X-CSE-ConnectionGUID: 5vXd/lGCS7WI66l5dmGShg==
-X-CSE-MsgGUID: J6FaecAmSQmCpXXWk0XldA==
+ bh=JRfim6V5NazgMbWoDqhgdbdhooC1TmOLE4sYlYTxI4w=;
+ b=RTNY3bIByqzzKY9R9lOXUwej3Uueq3pkMlDTVfBQamn/Kj3PgmWiF9ZK
+ AmqITAwstml4n9n94ZwrTaYfXe8j7W2QPc1QYIKYejrHP3mS+QAXt8BnS
+ YzVUvGQ7MefmMZ5iYuiPM53xVV+q1MnpeioJv01hoDPn5fSYexs5ajAjw
+ 9Hn3aIwSORRyXraBDJNxw8KqtH767PZUouPzd+egOkn+crUBCqwGy/2uu
+ mz1kFW1OLfkKPThBcWLGOoS4oq6FA5U17OXcWv6JdNN0gVD0AXDdT7yOo
+ wng3OhkkZBxSmhveaSiNcE/P95xX5+dLx0Rvsesbjn/ZjncT1r+vmU4NI Q==;
+X-CSE-ConnectionGUID: phe4VkyURUeJ92aqsyXu8g==
+X-CSE-MsgGUID: fXB7sJ+OSveWV0KNFF5feQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="52608595"
+X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="52608595"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2025 04:01:12 -0700
+X-CSE-ConnectionGUID: XymCL3vJTYupdX3LX4Q/pg==
+X-CSE-MsgGUID: 64gCv07RTei6R3D8RdyNIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="151437457"
+X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="151183588"
 Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.64])
  ([10.245.245.64])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 03:52:24 -0700
-Message-ID: <b294c57b-65f0-4bfb-b361-a6b3669f5933@intel.com>
-Date: Fri, 20 Jun 2025 11:52:21 +0100
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2025 04:01:11 -0700
+Message-ID: <c6f0b60a-2e70-405f-9be5-e5f270c1ffbe@intel.com>
+Date: Fri, 20 Jun 2025 12:01:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm/xe: Unify the initialization of VRAM regions
-To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Stuart Summers <stuart.summers@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-References: <20250528074743.2027563-1-piotr.piorkowski@intel.com>
- <20250528074743.2027563-3-piotr.piorkowski@intel.com>
+Subject: Re: [PATCH v5 3/4] drm/xe: Split xe_device_td_flush()
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>
+References: <20250618-wa-22019338487-v5-0-b888388477f2@intel.com>
+ <20250618-wa-22019338487-v5-3-b888388477f2@intel.com>
 Content-Language: en-GB
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250528074743.2027563-3-piotr.piorkowski@intel.com>
+In-Reply-To: <20250618-wa-22019338487-v5-3-b888388477f2@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,496 +73,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 28/05/2025 08:47, Piórkowski, Piotr wrote:
-> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
+On 18/06/2025 19:50, Lucas De Marchi wrote:
+> xe_device_td_flush() has 2 possible implementations: an entire L2 flush
+> or a transient flush, depending on WA 16023588340. Make this clear by
+> splitting the function so it calls each of them.
 > 
-> Currently in the drivers we have defined VRAM regions per device and per
-> tile. Initialization of these regions is done in two completely different
-> ways. To simplify the logic of the code and make it easier to add new
-> regions in the future, let's unify the way we initialize VRAM regions.
-> 
-> v2:
-> - fix doc comments in struct xe_vram_region
-> - remove unnecessary includes (Jani)
-> 
-> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
 > ---
->   drivers/gpu/drm/xe/xe_device.c       |   4 +
->   drivers/gpu/drm/xe/xe_device_types.h |   8 ++
->   drivers/gpu/drm/xe/xe_gt_pagefault.c |   4 +-
->   drivers/gpu/drm/xe/xe_query.c        |   2 +-
->   drivers/gpu/drm/xe/xe_tile.c         |  30 +----
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  16 ++-
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |   3 +-
->   drivers/gpu/drm/xe/xe_vram.c         | 175 ++++++++++++++++++---------
->   drivers/gpu/drm/xe/xe_vram.h         |   5 +
->   9 files changed, 154 insertions(+), 93 deletions(-)
+>   drivers/gpu/drm/xe/xe_device.c | 68 +++++++++++++++++++++++++-----------------
+>   1 file changed, 40 insertions(+), 28 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index a80e892d6959..9793f1a6dab8 100644
+> index 8cfcfff250ca5..8396612b68d4b 100644
 > --- a/drivers/gpu/drm/xe/xe_device.c
 > +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -862,6 +862,10 @@ int xe_device_probe(struct xe_device *xe)
->   	if (err)
->   		return err;
->   
-> +	err = xe_vram_init_regions_managers(xe);
-> +	if (err)
-> +		return err;
-> +
->   	for_each_tile(tile, xe, id) {
->   		err = xe_tile_init_noalloc(tile);
->   		if (err)
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index cba1eed9ed6a..7af14c429684 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -74,6 +74,12 @@ struct xe_pxp;
->   struct xe_vram_region {
->   	/** @tile: Backpointer to tile */
->   	struct xe_tile *tile;
-> +	/**
-> +	 * @id: VRAM region instance id
-> +	 *
-> +	 * The value should be unique for VRAM region.
-> +	 */
-> +	u8 id;
->   	/** @io_start: IO start address of this VRAM instance */
->   	resource_size_t io_start;
->   	/**
-> @@ -106,6 +112,8 @@ struct xe_vram_region {
->   	void __iomem *mapping;
->   	/** @ttm: VRAM TTM manager */
->   	struct xe_ttm_vram_mgr ttm;
-> +	/** @placement: TTM placement dedicated for this region */
-> +	u32 placement;
->   #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
->   	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
->   	struct dev_pagemap pagemap;
-> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> index 7a8f87709e39..51d88cdb693e 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> @@ -138,7 +138,7 @@ static int handle_vma_pagefault(struct xe_gt *gt, struct xe_vma *vma,
->   	/* Lock VM and BOs dma-resv */
->   	drm_exec_init(&exec, 0, 0);
->   	drm_exec_until_all_locked(&exec) {
-> -		err = xe_pf_begin(&exec, vma, atomic, tile->id);
-> +		err = xe_pf_begin(&exec, vma, atomic, (tile->mem.vram) ? tile->mem.vram->id : 0);
->   		drm_exec_retry_on_contention(&exec);
->   		if (xe_vm_validate_should_retry(&exec, err, &end))
->   			err = -EAGAIN;
-> @@ -575,7 +575,7 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
->   	/* Lock VM and BOs dma-resv */
->   	drm_exec_init(&exec, 0, 0);
->   	drm_exec_until_all_locked(&exec) {
-> -		ret = xe_pf_begin(&exec, vma, true, tile->id);
-> +		ret = xe_pf_begin(&exec, vma, true, (tile->mem.vram) ? tile->mem.vram->id : 0);
-
-Would it make sense to pass along the tile instead, and just use 
-tile->vram->placement directly inside xe_pf_begin, where needed?
-
->   		drm_exec_retry_on_contention(&exec);
->   		if (ret)
->   			break;
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index 99189d15d4a5..a3b59949e31e 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -409,7 +409,7 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
->   			gt_list->gt_list[id].near_mem_regions = 0x1;
->   		else
->   			gt_list->gt_list[id].near_mem_regions =
-> -				BIT(gt_to_tile(gt)->id) << 1;
-> +				BIT(gt_to_tile(gt)->mem.vram->id) << 1;
->   		gt_list->gt_list[id].far_mem_regions = xe->info.mem_region_mask ^
->   			gt_list->gt_list[id].near_mem_regions;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index 8303ebd90099..7beb87124f3b 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -7,6 +7,7 @@
->   
->   #include <drm/drm_managed.h>
->   
-> +#include "xe_bo.h"
->   #include "xe_device.h"
->   #include "xe_ggtt.h"
->   #include "xe_gt.h"
-> @@ -18,6 +19,7 @@
->   #include "xe_tile_sysfs.h"
->   #include "xe_ttm_vram_mgr.h"
->   #include "xe_wa.h"
-> +#include "xe_vram.h"
->   
->   /**
->    * DOC: Multi-tile Design
-> @@ -115,11 +117,9 @@ int xe_tile_alloc_vram(struct xe_tile *tile)
->   	if (!IS_DGFX(xe))
->   		return 0;
->   
-> -	vram = drmm_kzalloc(&xe->drm, sizeof(*vram), GFP_KERNEL);
-> -	if (!vram)
-> -		return -ENOMEM;
-> -
-> -	vram->tile = tile;
-> +	vram = xe_vram_region_alloc(xe, tile->id, XE_PL_VRAM0 + tile->id);
-> +	if (IS_ERR(vram))
-> +		return PTR_ERR(vram);
->   	tile->mem.vram = vram;
->   
->   	return 0;
-> @@ -157,21 +157,6 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
+> @@ -981,38 +981,15 @@ void xe_device_wmb(struct xe_device *xe)
+>   		xe_mmio_write32(xe_root_tile_mmio(xe), VF_CAP_REG, 0);
 >   }
->   ALLOW_ERROR_INJECTION(xe_tile_init_early, ERRNO); /* See xe_pci_probe() */
 >   
-> -static int tile_ttm_mgr_init(struct xe_tile *tile)
-> -{
-> -	struct xe_device *xe = tile_to_xe(tile);
-> -	int err;
-> -
-> -	if (tile->mem.vram->usable_size) {
-> -		err = xe_ttm_vram_mgr_init(tile, &tile->mem.vram->ttm);
-> -		if (err)
-> -			return err;
-> -		xe->info.mem_region_mask |= BIT(tile->id) << 1;
-> -	}
-> -
-> -	return 0;
-> -}
-> -
->   /**
->    * xe_tile_init_noalloc - Init tile up to the point where allocations can happen.
->    * @tile: The tile to initialize.
-> @@ -189,11 +174,6 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
->   int xe_tile_init_noalloc(struct xe_tile *tile)
+> -/**
+> - * xe_device_td_flush() - Flush transient L3 cache entries
+> - * @xe: The device
+> - *
+> - * Display engine has direct access to memory and is never coherent with L3/L4
+> - * caches (or CPU caches), however KMD is responsible for specifically flushing
+> - * transient L3 GPU cache entries prior to the flip sequence to ensure scanout
+> - * can happen from such a surface without seeing corruption.
+> - *
+> - * Display surfaces can be tagged as transient by mapping it using one of the
+> - * various L3:XD PAT index modes on Xe2.
+> - *
+> - * Note: On non-discrete xe2 platforms, like LNL, the entire L3 cache is flushed
+> - * at the end of each submission via PIPE_CONTROL for compute/render, since SA
+> - * Media is not coherent with L3 and we want to support render-vs-media
+> - * usescases. For other engines like copy/blt the HW internally forces uncached
+> - * behaviour, hence why we can skip the TDF on such platforms.
+> +/*
+> + * Issue a TRANSIENT_FLUSH_REQUEST and wait for completion on each gt.
+>    */
+> -void xe_device_td_flush(struct xe_device *xe)
+> +static void tdf_request_sync(struct xe_device *xe)
 >   {
->   	struct xe_device *xe = tile_to_xe(tile);
-> -	int err;
-> -
-> -	err = tile_ttm_mgr_init(tile);
-> -	if (err)
-> -		return err;
->   
->   	xe_wa_apply_tile_workarounds(tile);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> index d9afe0e22071..3a9780d39c65 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -337,12 +337,18 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
->   	return drmm_add_action_or_reset(&xe->drm, ttm_vram_mgr_fini, mgr);
->   }
->   
-> -int xe_ttm_vram_mgr_init(struct xe_tile *tile, struct xe_ttm_vram_mgr *mgr)
-> +/**
-> + * xe_ttm_vram_mgr_init - initialize TTM VRAM region
-> + * @xe: pointer to Xe device
-> + * @vram: pointer to xe_vram_region that contains the memory region attributes
-> + *
-> + * Initialize the Xe TTM for given @vram region using the given parameters.
-> + *
-> + * Returns 0 for success, negative error code otherwise.
-> + */
-> +int xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_vram_region *vram)
->   {
-> -	struct xe_device *xe = tile_to_xe(tile);
-> -	struct xe_vram_region *vram = tile->mem.vram;
-> -
-> -	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + tile->id,
-> +	return __xe_ttm_vram_mgr_init(xe, &vram->ttm, vram->placement,
->   				      vram->usable_size, vram->io_size,
->   				      PAGE_SIZE);
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> index cc76050e376d..87b7fae5edba 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> @@ -11,11 +11,12 @@
->   enum dma_data_direction;
->   struct xe_device;
->   struct xe_tile;
-> +struct xe_vram_region;
->   
->   int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
->   			   u32 mem_type, u64 size, u64 io_size,
->   			   u64 default_page_size);
-> -int xe_ttm_vram_mgr_init(struct xe_tile *tile, struct xe_ttm_vram_mgr *mgr);
-> +int xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_vram_region *vram);
->   int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
->   			      struct ttm_resource *res,
->   			      u64 offset, u64 length,
-> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-> index 18124a5fb291..5f68fe4d414a 100644
-> --- a/drivers/gpu/drm/xe/xe_vram.c
-> +++ b/drivers/gpu/drm/xe/xe_vram.c
-> @@ -19,6 +19,7 @@
->   #include "xe_mmio.h"
->   #include "xe_module.h"
->   #include "xe_sriov.h"
-> +#include "xe_ttm_vram_mgr.h"
->   #include "xe_vram.h"
->   
->   #define BAR_SIZE_SHIFT 20
-> @@ -136,7 +137,7 @@ static bool resource_is_valid(struct pci_dev *pdev, int bar)
->   	return true;
->   }
->   
-> -static int determine_lmem_bar_size(struct xe_device *xe)
-> +static int determine_lmem_bar_size(struct xe_device *xe, struct xe_vram_region *lmem_bar)
->   {
->   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->   
-> @@ -147,16 +148,16 @@ static int determine_lmem_bar_size(struct xe_device *xe)
->   
->   	resize_vram_bar(xe);
->   
-> -	xe->mem.vram->io_start = pci_resource_start(pdev, LMEM_BAR);
-> -	xe->mem.vram->io_size = pci_resource_len(pdev, LMEM_BAR);
-> -	if (!xe->mem.vram->io_size)
-> +	lmem_bar->io_start = pci_resource_start(pdev, LMEM_BAR);
-> +	lmem_bar->io_size = pci_resource_len(pdev, LMEM_BAR);
-
-> +	if (!lmem_bar->io_size)
->   		return -EIO;
->   
->   	/* XXX: Need to change when xe link code is ready */
-> -	xe->mem.vram->dpa_base = 0;
-> +	lmem_bar->dpa_base = 0;
->   
->   	/* set up a map to the total memory area. */
-> -	xe->mem.vram->mapping = ioremap_wc(xe->mem.vram->io_start, xe->mem.vram->io_size);
-> +	lmem_bar->mapping = ioremap_wc(lmem_bar->io_start, lmem_bar->io_size);
-
-I guess we were missing the cleanup for this, if we fail before 
-registering the cleanup action?
-
->   
->   	return 0;
->   }
-> @@ -287,6 +288,92 @@ static void vram_fini(void *arg)
->   		tile->mem.vram->mapping = NULL;
->   }
->   
-> +struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement)
-> +{
-> +	struct xe_vram_region *vram;
-> +	struct drm_device *drm = &xe->drm;
-> +
-> +	xe_assert(xe, id < xe->info.tile_count);
-> +
-> +	vram = drmm_kzalloc(drm, sizeof(*vram), GFP_KERNEL);
-> +	if (!vram)
-> +		return NULL;
-> +
-> +	vram->id = id;
-> +	vram->placement = placement;
-> +	vram->tile = &xe->tiles[id];
-> +
-> +	return vram;
-> +}
-> +
-> +static void print_vram_region_info(struct xe_device *xe, struct xe_vram_region *vram)
-> +{
-> +	struct drm_device *drm = &xe->drm;
-> +
-> +	if (vram->io_size < vram->usable_size)
-> +		drm_info(drm, "Small BAR device\n");
-> +
-> +	drm_info(drm,
-> +		 "VRAM[%u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n",
-> +		 vram->id, &vram->actual_physical_size, &vram->usable_size, &vram->io_size);
-> +	drm_info(drm, "VRAM[%u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
-> +		 vram->id, &vram->dpa_base, vram->dpa_base + (u64)vram->actual_physical_size,
-> +		 &vram->io_start, vram->io_start + (u64)vram->io_size);
-> +}
-> +
-> +static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
-> +			    struct xe_vram_region *lmem_bar, u64 offset, u64 usable_size,
-> +			    u64 region_size, resource_size_t remain_io_size)
-> +{
-> +	/* Check if VRAM region is already initialized */
-> +	if (vram->mapping)
-> +		return 0;
-> +
-> +	vram->actual_physical_size = region_size;
-> +	vram->io_start = lmem_bar->io_start + offset;
-> +	vram->io_size = min_t(u64, usable_size, remain_io_size);
-> +
-> +	if (!vram->io_size) {
-> +		drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	vram->dpa_base = lmem_bar->dpa_base + offset;
-> +	vram->mapping = lmem_bar->mapping + offset;
-> +	vram->usable_size = usable_size;
-> +
-> +	print_vram_region_info(xe, vram);
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * xe_vram_init_regions_managers - Init all VRAM TTM managers.
-> + * @xe: the &xe_device
-> + *
-> + * Return: 0 on success, error code on failure
-> + */
-> +int xe_vram_init_regions_managers(struct xe_device *xe)
-> +{
-> +	struct xe_tile *tile;
-> +	u8 id;
-> +	int err;
-> +
-> +	if (!IS_DGFX(xe))
-> +		return 0;
-> +
-> +	for_each_tile(tile, xe, id) {
-> +		if (!ttm_resource_manager_used(&tile->mem.vram->ttm.manager)) {
-> +			err = xe_ttm_vram_mgr_init(xe, tile->mem.vram);
-> +			if (err)
-> +				return err;
-> +			xe->info.mem_region_mask |= BIT(tile->mem.vram->id) << 1;
-> +		}
-> +
-
-This can't stay in xe_tile_init_noalloc()?
-
-	}
-> +
-> +	return 0;
-> +}
-> +
->   /**
->    * xe_vram_probe() - Probe VRAM configuration
->    * @xe: the &xe_device
-> @@ -298,82 +385,52 @@ static void vram_fini(void *arg)
->   int xe_vram_probe(struct xe_device *xe)
->   {
->   	struct xe_tile *tile;
-> -	resource_size_t io_size;
-> +	struct xe_vram_region lmem_bar;
-> +	resource_size_t remain_io_size;
->   	u64 available_size = 0;
->   	u64 total_size = 0;
-> -	u64 tile_offset;
-> -	u64 tile_size;
-> -	u64 vram_size;
->   	int err;
+> -	struct xe_gt *gt;
+>   	unsigned int fw_ref;
+> +	struct xe_gt *gt;
 >   	u8 id;
 >   
->   	if (!IS_DGFX(xe))
->   		return 0;
->   
-> -	/* Get the size of the root tile's vram for later accessibility comparison */
-> -	tile = xe_device_get_root_tile(xe);
-> -	err = tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
-> +	err = determine_lmem_bar_size(xe, &lmem_bar);
->   	if (err)
->   		return err;
-> +	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &lmem_bar.io_start, &lmem_bar.io_size);
->   
-> -	err = determine_lmem_bar_size(xe);
-> -	if (err)
-> -		return err;
-> +	remain_io_size = lmem_bar.io_size;
->   
-> -	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &xe->mem.vram->io_start,
-> -		 &xe->mem.vram->io_size);
+> -	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
+> -		return;
 > -
-> -	io_size = xe->mem.vram->io_size;
+> -	if (XE_WA(xe_root_mmio_gt(xe), 16023588340)) {
+> -		xe_device_l2_flush(xe);
+> -		return;
+> -	}
 > -
-> -	/* tile specific ranges */
->   	for_each_tile(tile, xe, id) {
-> -		err = tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
-> +		u64 region_size;
-> +		u64 usable_size;
-> +		u64 tile_offset;
+>   	for_each_gt(gt, xe, id) {
+>   		if (xe_gt_is_media_type(gt))
+>   			continue;
+> @@ -1022,6 +999,7 @@ void xe_device_td_flush(struct xe_device *xe)
+>   			return;
+>   
+>   		xe_mmio_write32(&gt->mmio, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST);
 > +
-> +		err = tile_vram_size(tile, &usable_size, &region_size, &tile_offset);
->   		if (err)
->   			return err;
+>   		/*
+>   		 * FIXME: We can likely do better here with our choice of
+>   		 * timeout. Currently we just assume the worst case, i.e. 150us,
+> @@ -1052,15 +1030,49 @@ void xe_device_l2_flush(struct xe_device *xe)
+>   		return;
 >   
-> -		tile->mem.vram->actual_physical_size = tile_size;
-> -		tile->mem.vram->io_start = xe->mem.vram->io_start + tile_offset;
-> -		tile->mem.vram->io_size = min_t(u64, vram_size, io_size);
-> +		total_size += region_size;
-> +		available_size += usable_size;
+>   	spin_lock(&gt->global_invl_lock);
+> -	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
 >   
-> -		if (!tile->mem.vram->io_size) {
-> -			drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
-> -			return -ENODEV;
-> -		}
-> +		err = vram_region_init(xe, tile->mem.vram, &lmem_bar, tile_offset, usable_size,
-> +				       region_size, remain_io_size);
-> +		if (err)
-> +			return err;
+> +	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
+>   	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 500, NULL, true))
+>   		xe_gt_err_once(gt, "Global invalidation timeout\n");
+> +
+>   	spin_unlock(&gt->global_invl_lock);
 >   
-> -		tile->mem.vram->dpa_base = xe->mem.vram->dpa_base + tile_offset;
-> -		tile->mem.vram->usable_size = vram_size;
-> -		tile->mem.vram->mapping = xe->mem.vram->mapping + tile_offset;
-> -
-> -		if (tile->mem.vram->io_size < tile->mem.vram->usable_size)
-> -			drm_info(&xe->drm, "Small BAR device\n");
-> -		drm_info(&xe->drm,
-> -			 "VRAM[%u, %u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n",
-> -			 id, tile->id, &tile->mem.vram->actual_physical_size,
-> -			 &tile->mem.vram->usable_size, &tile->mem.vram->io_size);
-> -		drm_info(&xe->drm, "VRAM[%u, %u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
-> -			 id, tile->id, &tile->mem.vram->dpa_base,
-> -			 tile->mem.vram->dpa_base + (u64)tile->mem.vram->actual_physical_size,
-> -			 &tile->mem.vram->io_start,
-> -			 tile->mem.vram->io_start + (u64)tile->mem.vram->io_size);
-> -
-> -		/* calculate total size using tile size to get the correct HW sizing */
-> -		total_size += tile_size;
-> -		available_size += vram_size;
-> -
-> -		if (total_size > xe->mem.vram->io_size) {
-> +		if (total_size > lmem_bar.io_size) {
->   			drm_info(&xe->drm, "VRAM: %pa is larger than resource %pa\n",
-> -				 &total_size, &xe->mem.vram->io_size);
-> +				 &total_size, &lmem_bar.io_size);
->   		}
->   
-> -		io_size -= min_t(u64, tile_size, io_size);
-> +		remain_io_size -= min_t(u64, tile->mem.vram->actual_physical_size, remain_io_size);
->   	}
->   
-> -	xe->mem.vram->actual_physical_size = total_size;
-> -
-> -	drm_info(&xe->drm, "Total VRAM: %pa, %pa\n", &xe->mem.vram->io_start,
-> -		 &xe->mem.vram->actual_physical_size);
-> -	drm_info(&xe->drm, "Available VRAM: %pa, %pa\n", &xe->mem.vram->io_start,
-> -		 &available_size);
-> +	err = vram_region_init(xe, xe->mem.vram, &lmem_bar, 0, available_size, total_size,
-> +			       lmem_bar.io_size);
-> +	if (err)
-> +		return err;
->   
->   	return devm_add_action_or_reset(xe->drm.dev, vram_fini, xe);
+>   	xe_force_wake_put(gt_to_fw(gt), fw_ref);
 >   }
-> diff --git a/drivers/gpu/drm/xe/xe_vram.h b/drivers/gpu/drm/xe/xe_vram.h
-> index e31cc04ec0db..4453d2ecc249 100644
-> --- a/drivers/gpu/drm/xe/xe_vram.h
-> +++ b/drivers/gpu/drm/xe/xe_vram.h
-> @@ -6,8 +6,13 @@
->   #ifndef _XE_VRAM_H_
->   #define _XE_VRAM_H_
 >   
-> +#include <linux/types.h>
+> +/**
+> + * xe_device_td_flush() - Flush transient L3 cache entries
+> + * @xe: The device
+> + *
+> + * Display engine has direct access to memory and is never coherent with L3/L4
+> + * caches (or CPU caches), however KMD is responsible for specifically flushing
+> + * transient L3 GPU cache entries prior to the flip sequence to ensure scanout
+> + * can happen from such a surface without seeing corruption.
+> + *
+> + * Display surfaces can be tagged as transient by mapping it using one of the
+> + * various L3:XD PAT index modes on Xe2.
+> + *
+> + * Note: On non-discrete xe2 platforms, like LNL, the entire L3 cache is flushed
+> + * at the end of each submission via PIPE_CONTROL for compute/render, since SA
+> + * Media is not coherent with L3 and we want to support render-vs-media
+> + * usescases. For other engines like copy/blt the HW internally forces uncached
+> + * behaviour, hence why we can skip the TDF on such platforms.
+> + */
+> +void xe_device_td_flush(struct xe_device *xe)
+> +{
+> +	struct xe_gt *root_gt;
 > +
->   struct xe_device;
-> +struct xe_vram_region;
->   
-> +struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement);
-> +int xe_vram_init_regions_managers(struct xe_device *xe);
->   int xe_vram_probe(struct xe_device *xe);
->   
->   #endif
+> +	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
+> +		return;
+> +
+> +	root_gt = xe_root_mmio_gt(xe);
+> +	if (XE_WA(root_gt, 16023588340))
+> +		/* A transient flush is not sufficient: flush the L2 */
+> +		xe_device_l2_flush(xe);
+> +	else
+> +		tdf_request_sync(xe);
+> +}
+> +
+>   u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
+>   {
+>   	return xe_device_has_flat_ccs(xe) ?
+> 
 
