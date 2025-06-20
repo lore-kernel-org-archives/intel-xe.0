@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BBA4C71155
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 12:09:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43894C7115D
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 12:09:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 022EC10E21F;
-	Fri, 20 Jun 2025 12:09:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 041EC10E227;
+	Fri, 20 Jun 2025 12:09:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LAN/TarS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IS70p682";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A716810E21F
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Jun 2025 12:09:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C8C710E227
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Jun 2025 12:09:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750421392; x=1781957392;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dlLQjGbMEJVzRyNAjJ/li/w/BR1iY8D8q27dYLUeuL0=;
- b=LAN/TarSibLkCOeD289Dte8PbTKASOUYPjGtARk9I92nj1z3ZzmZB4+x
- sTW8c/gUU3+JbL6PpQaVpNEmK432z83ccuYOkiDk1njmHvTyYlPpBAIMu
- PBQEfhNWG4AdJ3+XycR7nKFYnvAKXj2JYBlyLf/VkV0xhrMcMTSDduHVd
- 0dQRI2M21/XUla2Kh87DEPQErgnRigWPciTllekVnduEr4ttWV4VwEWqG
- NxHYsyTv6I5FtuGn2m+2q1loumNxJFqu90ypUdBcQoKHTtfGSi2BZkzgc
- Ks5MdLaEItrKQou3mSDv2nm1SnsU03cq4e0s4c74GuAkz1boA4gha2CFM w==;
-X-CSE-ConnectionGUID: 4G1+0RDrRT+KRy5Gd9aPxA==
-X-CSE-MsgGUID: WNYg6xvQSQSeZRz0d1noeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="56361819"
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="56361819"
+ t=1750421395; x=1781957395;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=GgmJreELMjn6ElAagimUdlxttv58Cc4aw1B7ws3oyWI=;
+ b=IS70p682HA8PCzkmaFq3gi8PIKvnqqtlmTEeN5HVGPfZqpOvxsaeXMMv
+ 3fecnoRYRxKO4fkMixoN5sv7B6OLAISXcifMRDfw1/rOxZfXE7gEAjN+K
+ s2EH5x9ITzl3DjD8o08d/H0/CAN8GshsjAAq/dpXwxLuJt90Cy3ppBJCG
+ xKl92PJzejzZ9sNZvdFwoZLOctBqTTJzkf64PRZuKtqSmhC9mAxOPWzr9
+ ABfv70U9PX2VlXWp9B+jTVaWzG5jj0zOpS2hZUV+srBfelFjAFQRoA+ch
+ +StoDwiWL7PcSlLYq/isYFMcpMAq0DCEp7WROph6eU8VEPSi6rsYxrVkc w==;
+X-CSE-ConnectionGUID: 8nbRdbMjTrO6vjQ/QNOHpg==
+X-CSE-MsgGUID: snVXsuTSRUeDQjibJ79Ixw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="56361823"
+X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="56361823"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 05:09:52 -0700
-X-CSE-ConnectionGUID: bOmgd/e2SzKt3vCKZ/e5cQ==
-X-CSE-MsgGUID: VH5sMHYSShimRWV5EE4qIQ==
+ 20 Jun 2025 05:09:54 -0700
+X-CSE-ConnectionGUID: /rJKiLnlRrqFAdd6LLjkDw==
+X-CSE-MsgGUID: CWoyxAXdQE+x/9I+l9kSBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="151036711"
+X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="151036734"
 Received: from psoham-nuc7i7bnh.iind.intel.com ([10.190.216.151])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 05:09:48 -0700
+ 20 Jun 2025 05:09:51 -0700
 From: Soham Purkait <soham.purkait@intel.com>
 To: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, karthik.poosa@intel.com, riana.tauro@intel.com,
  jonathan.cavitt@intel.com
 Cc: lucas.demarchi@intel.com, soham.purkait@intel.com,
  ashutosh.dixit@intel.com, jani.nikula@intel.com
-Subject: [PATCH v5 0/2] Add debugfs node to expose G-state and pcie link state
- residency
-Date: Fri, 20 Jun 2025 17:33:54 +0530
-Message-Id: <20250620120356.3289744-1-soham.purkait@intel.com>
+Subject: [PATCH v5 1/2] drm/xe/regs/xe_pmt: Macros for G-State and pcie link
+ state residency offset
+Date: Fri, 20 Jun 2025 17:33:55 +0530
+Message-Id: <20250620120356.3289744-2-soham.purkait@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250620120356.3289744-1-soham.purkait@intel.com>
+References: <20250620120356.3289744-1-soham.purkait@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,21 +70,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-       This patch exposes G-state and pcie link state residency counter
-values through debugfs. The debugfs node "dgfx_pkg_residencies" exposes
-G-states counters (G2, G6, G8, G10, ModS) and "dgfx_pcie_link_residencies"
-exposes PCIe link states(L0, L1, L1.2) residency counters.
+   Add G-State residency and pcie link state residency
+offset macros for G2, G6, G8, G10, ModS and L0, L1, L1.2
+respectively.
 
-Soham Purkait (2):
-  drm/xe/regs/xe_pmt: Macros for G-State and pcie link state residency
-    offset
-  drm/xe/xe_debugfs: Exposure of G-State and pcie link state residency
-    counters through debugfs
+v1 : Moved offset macros to drm/xe/regs/xe_pmt. (Riana)
 
- drivers/gpu/drm/xe/regs/xe_pmt.h | 10 +++++
- drivers/gpu/drm/xe/xe_debugfs.c  | 71 ++++++++++++++++++++++++++++++++
- 2 files changed, 81 insertions(+)
+v5 : Reordered commits to reflect the correct dependency hierarchy.  (Jonathan)
 
+Signed-off-by: Soham Purkait <soham.purkait@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_pmt.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
+index b0efd9b48d1e..4e377b6eac92 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pmt.h
++++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
+@@ -21,4 +21,14 @@
+ #define SG_REMAP_INDEX1			XE_REG(SOC_BASE + 0x08)
+ #define   SG_REMAP_BITS			REG_GENMASK(31, 24)
+ 
++#define BMG_G2_RESIDENCY_OFFSET			(0x530)
++#define BMG_G6_RESIDENCY_OFFSET			(0x538)
++#define BMG_G8_RESIDENCY_OFFSET			(0x540)
++#define BMG_G10_RESIDENCY_OFFSET		(0x548)
++#define BMG_MODS_RESIDENCY_OFFSET		(0x4D0)
++
++#define PCIE_LINK_L0_RESIDENCY_COUNTER		(0x570)
++#define PCIE_LINK_L1_RESIDENCY_COUNTER		(0x578)
++#define PCIE_LINK_L1_2_RESIDENCY_COUNTER	(0x580)
++
+ #endif
 -- 
 2.34.1
 
