@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB952C77B7C
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 11:38:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61C3DC71155
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 11:43:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86D2E10EB4E;
-	Fri, 20 Jun 2025 11:38:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="syI9jqfz";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1A6C10EB4B;
- Fri, 20 Jun 2025 11:38:08 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 168665C4AC7;
- Fri, 20 Jun 2025 11:35:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5412DC4CEE3;
- Fri, 20 Jun 2025 11:38:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1750419484;
- bh=3syysiG5s6jCHwZHZvtiKPm1XEK5bb9XJyW3jNZETN8=;
- h=From:To:Cc:Subject:Date:From;
- b=syI9jqfzlBs1dCm60qmMir/8boGOv4AN1bV1APsBMoUsSprQG07z4c/TdjcdlYqeW
- 5a2ZfVR+1tO44jMf5vbTAfkAW0nts6uAexr1A7+tPAQwergVnJgeON/ItNVxhZ/JzU
- NgW9gEoUIiF1E7vA/PXyo8EfChrvBE1uUiqcWAp6DRzlX0hUnHwlrfeWQdNU/RDAG/
- p37kg/2FvfBC8ybzw17Hmzg3FoFbIrIT8vm9unKvlmLm3zreeTUOr6XXaNwviBtd8g
- fPewplJtLVVQh0xEWf4ni+zdT8/V/V9tzs+ZhoCHMENxn0ANGWAXCARq3JGqWezYDw
- Q3DDAmeAkOyoA==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: Arnd Bergmann <arnd@arndb.de>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Vinod Govindapillai <vinod.govindapillai@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/i915/wm: reduce stack usage in skl_print_wm_changes()
-Date: Fri, 20 Jun 2025 13:37:45 +0200
-Message-Id: <20250620113748.3869160-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.5
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F3B610EB51;
+	Fri, 20 Jun 2025 11:43:41 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB9710EB4F;
+ Fri, 20 Jun 2025 11:43:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/wm=3A_reduce_sta?=
+ =?utf-8?q?ck_usage_in_skl=5Fprint=5Fwm=5Fchanges=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Jun 2025 11:43:40 -0000
+Message-ID: <175041982017.98139.9452131229963022959@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250620113748.3869160-1-arnd@kernel.org>
+In-Reply-To: <20250620113748.3869160-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,228 +36,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+== Series Details ==
 
+Series: drm/i915/wm: reduce stack usage in skl_print_wm_changes()
+URL   : https://patchwork.freedesktop.org/series/150564/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 87c3264a6eb72ed39f5468f8bc420ac876029036
+Author: Arnd Bergmann <arnd@arndb.de>
+Date:   Fri Jun 20 13:37:45 2025 +0200
+
+    drm/i915/wm: reduce stack usage in skl_print_wm_changes()
+    
+    When KMSAN is enabled, this function causes has a rather excessive stack usage:
+    
+    drivers/gpu/drm/i915/display/skl_watermark.c:2977:1: error: stack frame size (1432) exceeds limit (1408) in 'skl_compute_wm' [-Werror,-Wframe-larger-than]
+    
+    This is apparently all caused by the varargs calls to drm_dbg_kms(). Inlining
+    this into skl_compute_wm() means that any function called by skl_compute_wm()
+    has its own stack on top of that.
+    
+    Move the worst bit into a separate function marked as noinline_for_stack to
+    limit that to the one code path that actually needs it.
+    
+    Signed-off-by: Arnd Bergmann <arnd@arndb.de>
++ /mt/dim checkpatch 1b4be188ae14a43b901f3005075fab3a22f77968 drm-intel
+87c3264a6eb7 drm/i915/wm: reduce stack usage in skl_print_wm_changes()
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
 When KMSAN is enabled, this function causes has a rather excessive stack usage:
 
-drivers/gpu/drm/i915/display/skl_watermark.c:2977:1: error: stack frame size (1432) exceeds limit (1408) in 'skl_compute_wm' [-Werror,-Wframe-larger-than]
+total: 0 errors, 1 warnings, 0 checks, 194 lines checked
 
-This is apparently all caused by the varargs calls to drm_dbg_kms(). Inlining
-this into skl_compute_wm() means that any function called by skl_compute_wm()
-has its own stack on top of that.
-
-Move the worst bit into a separate function marked as noinline_for_stack to
-limit that to the one code path that actually needs it.
-
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 176 ++++++++++---------
- 1 file changed, 92 insertions(+), 84 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 2c2371574d6f..b7c92c718c8f 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2680,6 +2680,97 @@ static char enast(bool enable)
- 	return enable ? '*' : ' ';
- }
- 
-+static noinline_for_stack void
-+skl_print_plane_changes(struct intel_display *display,
-+			struct intel_plane *plane,
-+			const struct skl_plane_wm *old_wm,
-+			const struct skl_plane_wm *new_wm)
-+{
-+	drm_dbg_kms(display->drm,
-+		    "[PLANE:%d:%s]   level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm"
-+		    " -> %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm\n",
-+		    plane->base.base.id, plane->base.name,
-+		    enast(old_wm->wm[0].enable), enast(old_wm->wm[1].enable),
-+		    enast(old_wm->wm[2].enable), enast(old_wm->wm[3].enable),
-+		    enast(old_wm->wm[4].enable), enast(old_wm->wm[5].enable),
-+		    enast(old_wm->wm[6].enable), enast(old_wm->wm[7].enable),
-+		    enast(old_wm->trans_wm.enable),
-+		    enast(old_wm->sagv.wm0.enable),
-+		    enast(old_wm->sagv.trans_wm.enable),
-+		    enast(new_wm->wm[0].enable), enast(new_wm->wm[1].enable),
-+		    enast(new_wm->wm[2].enable), enast(new_wm->wm[3].enable),
-+		    enast(new_wm->wm[4].enable), enast(new_wm->wm[5].enable),
-+		    enast(new_wm->wm[6].enable), enast(new_wm->wm[7].enable),
-+		    enast(new_wm->trans_wm.enable),
-+		    enast(new_wm->sagv.wm0.enable),
-+		    enast(new_wm->sagv.trans_wm.enable));
-+
-+	drm_dbg_kms(display->drm,
-+		    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d"
-+		      " -> %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d\n",
-+		    plane->base.base.id, plane->base.name,
-+		    enast(old_wm->wm[0].ignore_lines), old_wm->wm[0].lines,
-+		    enast(old_wm->wm[1].ignore_lines), old_wm->wm[1].lines,
-+		    enast(old_wm->wm[2].ignore_lines), old_wm->wm[2].lines,
-+		    enast(old_wm->wm[3].ignore_lines), old_wm->wm[3].lines,
-+		    enast(old_wm->wm[4].ignore_lines), old_wm->wm[4].lines,
-+		    enast(old_wm->wm[5].ignore_lines), old_wm->wm[5].lines,
-+		    enast(old_wm->wm[6].ignore_lines), old_wm->wm[6].lines,
-+		    enast(old_wm->wm[7].ignore_lines), old_wm->wm[7].lines,
-+		    enast(old_wm->trans_wm.ignore_lines), old_wm->trans_wm.lines,
-+		    enast(old_wm->sagv.wm0.ignore_lines), old_wm->sagv.wm0.lines,
-+		    enast(old_wm->sagv.trans_wm.ignore_lines), old_wm->sagv.trans_wm.lines,
-+		    enast(new_wm->wm[0].ignore_lines), new_wm->wm[0].lines,
-+		    enast(new_wm->wm[1].ignore_lines), new_wm->wm[1].lines,
-+		    enast(new_wm->wm[2].ignore_lines), new_wm->wm[2].lines,
-+		    enast(new_wm->wm[3].ignore_lines), new_wm->wm[3].lines,
-+		    enast(new_wm->wm[4].ignore_lines), new_wm->wm[4].lines,
-+		    enast(new_wm->wm[5].ignore_lines), new_wm->wm[5].lines,
-+		    enast(new_wm->wm[6].ignore_lines), new_wm->wm[6].lines,
-+		    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].lines,
-+		    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.lines,
-+		    enast(new_wm->sagv.wm0.ignore_lines), new_wm->sagv.wm0.lines,
-+		    enast(new_wm->sagv.trans_wm.ignore_lines), new_wm->sagv.trans_wm.lines);
-+
-+	drm_dbg_kms(display->drm,
-+		    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
-+		    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
-+		    plane->base.base.id, plane->base.name,
-+		    old_wm->wm[0].blocks, old_wm->wm[1].blocks,
-+		    old_wm->wm[2].blocks, old_wm->wm[3].blocks,
-+		    old_wm->wm[4].blocks, old_wm->wm[5].blocks,
-+		    old_wm->wm[6].blocks, old_wm->wm[7].blocks,
-+		    old_wm->trans_wm.blocks,
-+		    old_wm->sagv.wm0.blocks,
-+		    old_wm->sagv.trans_wm.blocks,
-+		    new_wm->wm[0].blocks, new_wm->wm[1].blocks,
-+		    new_wm->wm[2].blocks, new_wm->wm[3].blocks,
-+		    new_wm->wm[4].blocks, new_wm->wm[5].blocks,
-+		    new_wm->wm[6].blocks, new_wm->wm[7].blocks,
-+		    new_wm->trans_wm.blocks,
-+		    new_wm->sagv.wm0.blocks,
-+		    new_wm->sagv.trans_wm.blocks);
-+
-+	drm_dbg_kms(display->drm,
-+		    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
-+		    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
-+		    plane->base.base.id, plane->base.name,
-+		    old_wm->wm[0].min_ddb_alloc, old_wm->wm[1].min_ddb_alloc,
-+		    old_wm->wm[2].min_ddb_alloc, old_wm->wm[3].min_ddb_alloc,
-+		    old_wm->wm[4].min_ddb_alloc, old_wm->wm[5].min_ddb_alloc,
-+		    old_wm->wm[6].min_ddb_alloc, old_wm->wm[7].min_ddb_alloc,
-+		    old_wm->trans_wm.min_ddb_alloc,
-+		    old_wm->sagv.wm0.min_ddb_alloc,
-+		    old_wm->sagv.trans_wm.min_ddb_alloc,
-+		    new_wm->wm[0].min_ddb_alloc, new_wm->wm[1].min_ddb_alloc,
-+		    new_wm->wm[2].min_ddb_alloc, new_wm->wm[3].min_ddb_alloc,
-+		    new_wm->wm[4].min_ddb_alloc, new_wm->wm[5].min_ddb_alloc,
-+		    new_wm->wm[6].min_ddb_alloc, new_wm->wm[7].min_ddb_alloc,
-+		    new_wm->trans_wm.min_ddb_alloc,
-+		    new_wm->sagv.wm0.min_ddb_alloc,
-+		    new_wm->sagv.trans_wm.min_ddb_alloc);
-+}
-+
- static void
- skl_print_wm_changes(struct intel_atomic_state *state)
- {
-@@ -2709,7 +2800,6 @@ skl_print_wm_changes(struct intel_atomic_state *state)
- 
- 			if (skl_ddb_entry_equal(old, new))
- 				continue;
--
- 			drm_dbg_kms(display->drm,
- 				    "[PLANE:%d:%s] ddb (%4d - %4d) -> (%4d - %4d), size %4d -> %4d\n",
- 				    plane->base.base.id, plane->base.name,
-@@ -2727,89 +2817,7 @@ skl_print_wm_changes(struct intel_atomic_state *state)
- 			if (skl_plane_wm_equals(display, old_wm, new_wm))
- 				continue;
- 
--			drm_dbg_kms(display->drm,
--				    "[PLANE:%d:%s]   level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm"
--				    " -> %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm\n",
--				    plane->base.base.id, plane->base.name,
--				    enast(old_wm->wm[0].enable), enast(old_wm->wm[1].enable),
--				    enast(old_wm->wm[2].enable), enast(old_wm->wm[3].enable),
--				    enast(old_wm->wm[4].enable), enast(old_wm->wm[5].enable),
--				    enast(old_wm->wm[6].enable), enast(old_wm->wm[7].enable),
--				    enast(old_wm->trans_wm.enable),
--				    enast(old_wm->sagv.wm0.enable),
--				    enast(old_wm->sagv.trans_wm.enable),
--				    enast(new_wm->wm[0].enable), enast(new_wm->wm[1].enable),
--				    enast(new_wm->wm[2].enable), enast(new_wm->wm[3].enable),
--				    enast(new_wm->wm[4].enable), enast(new_wm->wm[5].enable),
--				    enast(new_wm->wm[6].enable), enast(new_wm->wm[7].enable),
--				    enast(new_wm->trans_wm.enable),
--				    enast(new_wm->sagv.wm0.enable),
--				    enast(new_wm->sagv.trans_wm.enable));
--
--			drm_dbg_kms(display->drm,
--				    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d"
--				      " -> %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d\n",
--				    plane->base.base.id, plane->base.name,
--				    enast(old_wm->wm[0].ignore_lines), old_wm->wm[0].lines,
--				    enast(old_wm->wm[1].ignore_lines), old_wm->wm[1].lines,
--				    enast(old_wm->wm[2].ignore_lines), old_wm->wm[2].lines,
--				    enast(old_wm->wm[3].ignore_lines), old_wm->wm[3].lines,
--				    enast(old_wm->wm[4].ignore_lines), old_wm->wm[4].lines,
--				    enast(old_wm->wm[5].ignore_lines), old_wm->wm[5].lines,
--				    enast(old_wm->wm[6].ignore_lines), old_wm->wm[6].lines,
--				    enast(old_wm->wm[7].ignore_lines), old_wm->wm[7].lines,
--				    enast(old_wm->trans_wm.ignore_lines), old_wm->trans_wm.lines,
--				    enast(old_wm->sagv.wm0.ignore_lines), old_wm->sagv.wm0.lines,
--				    enast(old_wm->sagv.trans_wm.ignore_lines), old_wm->sagv.trans_wm.lines,
--				    enast(new_wm->wm[0].ignore_lines), new_wm->wm[0].lines,
--				    enast(new_wm->wm[1].ignore_lines), new_wm->wm[1].lines,
--				    enast(new_wm->wm[2].ignore_lines), new_wm->wm[2].lines,
--				    enast(new_wm->wm[3].ignore_lines), new_wm->wm[3].lines,
--				    enast(new_wm->wm[4].ignore_lines), new_wm->wm[4].lines,
--				    enast(new_wm->wm[5].ignore_lines), new_wm->wm[5].lines,
--				    enast(new_wm->wm[6].ignore_lines), new_wm->wm[6].lines,
--				    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].lines,
--				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.lines,
--				    enast(new_wm->sagv.wm0.ignore_lines), new_wm->sagv.wm0.lines,
--				    enast(new_wm->sagv.trans_wm.ignore_lines), new_wm->sagv.trans_wm.lines);
--
--			drm_dbg_kms(display->drm,
--				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
--				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
--				    plane->base.base.id, plane->base.name,
--				    old_wm->wm[0].blocks, old_wm->wm[1].blocks,
--				    old_wm->wm[2].blocks, old_wm->wm[3].blocks,
--				    old_wm->wm[4].blocks, old_wm->wm[5].blocks,
--				    old_wm->wm[6].blocks, old_wm->wm[7].blocks,
--				    old_wm->trans_wm.blocks,
--				    old_wm->sagv.wm0.blocks,
--				    old_wm->sagv.trans_wm.blocks,
--				    new_wm->wm[0].blocks, new_wm->wm[1].blocks,
--				    new_wm->wm[2].blocks, new_wm->wm[3].blocks,
--				    new_wm->wm[4].blocks, new_wm->wm[5].blocks,
--				    new_wm->wm[6].blocks, new_wm->wm[7].blocks,
--				    new_wm->trans_wm.blocks,
--				    new_wm->sagv.wm0.blocks,
--				    new_wm->sagv.trans_wm.blocks);
--
--			drm_dbg_kms(display->drm,
--				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
--				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
--				    plane->base.base.id, plane->base.name,
--				    old_wm->wm[0].min_ddb_alloc, old_wm->wm[1].min_ddb_alloc,
--				    old_wm->wm[2].min_ddb_alloc, old_wm->wm[3].min_ddb_alloc,
--				    old_wm->wm[4].min_ddb_alloc, old_wm->wm[5].min_ddb_alloc,
--				    old_wm->wm[6].min_ddb_alloc, old_wm->wm[7].min_ddb_alloc,
--				    old_wm->trans_wm.min_ddb_alloc,
--				    old_wm->sagv.wm0.min_ddb_alloc,
--				    old_wm->sagv.trans_wm.min_ddb_alloc,
--				    new_wm->wm[0].min_ddb_alloc, new_wm->wm[1].min_ddb_alloc,
--				    new_wm->wm[2].min_ddb_alloc, new_wm->wm[3].min_ddb_alloc,
--				    new_wm->wm[4].min_ddb_alloc, new_wm->wm[5].min_ddb_alloc,
--				    new_wm->wm[6].min_ddb_alloc, new_wm->wm[7].min_ddb_alloc,
--				    new_wm->trans_wm.min_ddb_alloc,
--				    new_wm->sagv.wm0.min_ddb_alloc,
--				    new_wm->sagv.trans_wm.min_ddb_alloc);
-+			skl_print_plane_changes(display, plane, old_wm, new_wm);
- 		}
- 	}
- }
--- 
-2.39.5
 
