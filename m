@@ -4,61 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22BF6C71155
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 11:01:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB952C77B7C
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Jun 2025 11:38:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF45810EB43;
-	Fri, 20 Jun 2025 11:01:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86D2E10EB4E;
+	Fri, 20 Jun 2025 11:38:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RTNY3bIB";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="syI9jqfz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA86D10EB43
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Jun 2025 11:01:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750417273; x=1781953273;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=JRfim6V5NazgMbWoDqhgdbdhooC1TmOLE4sYlYTxI4w=;
- b=RTNY3bIByqzzKY9R9lOXUwej3Uueq3pkMlDTVfBQamn/Kj3PgmWiF9ZK
- AmqITAwstml4n9n94ZwrTaYfXe8j7W2QPc1QYIKYejrHP3mS+QAXt8BnS
- YzVUvGQ7MefmMZ5iYuiPM53xVV+q1MnpeioJv01hoDPn5fSYexs5ajAjw
- 9Hn3aIwSORRyXraBDJNxw8KqtH767PZUouPzd+egOkn+crUBCqwGy/2uu
- mz1kFW1OLfkKPThBcWLGOoS4oq6FA5U17OXcWv6JdNN0gVD0AXDdT7yOo
- wng3OhkkZBxSmhveaSiNcE/P95xX5+dLx0Rvsesbjn/ZjncT1r+vmU4NI Q==;
-X-CSE-ConnectionGUID: phe4VkyURUeJ92aqsyXu8g==
-X-CSE-MsgGUID: fXB7sJ+OSveWV0KNFF5feQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="52608595"
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="52608595"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 04:01:12 -0700
-X-CSE-ConnectionGUID: XymCL3vJTYupdX3LX4Q/pg==
-X-CSE-MsgGUID: 64gCv07RTei6R3D8RdyNIw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="151183588"
-Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.64])
- ([10.245.245.64])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 04:01:11 -0700
-Message-ID: <c6f0b60a-2e70-405f-9be5-e5f270c1ffbe@intel.com>
-Date: Fri, 20 Jun 2025 12:01:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] drm/xe: Split xe_device_td_flush()
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1A6C10EB4B;
+ Fri, 20 Jun 2025 11:38:08 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 168665C4AC7;
+ Fri, 20 Jun 2025 11:35:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5412DC4CEE3;
+ Fri, 20 Jun 2025 11:38:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1750419484;
+ bh=3syysiG5s6jCHwZHZvtiKPm1XEK5bb9XJyW3jNZETN8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=syI9jqfzlBs1dCm60qmMir/8boGOv4AN1bV1APsBMoUsSprQG07z4c/TdjcdlYqeW
+ 5a2ZfVR+1tO44jMf5vbTAfkAW0nts6uAexr1A7+tPAQwergVnJgeON/ItNVxhZ/JzU
+ NgW9gEoUIiF1E7vA/PXyo8EfChrvBE1uUiqcWAp6DRzlX0hUnHwlrfeWQdNU/RDAG/
+ p37kg/2FvfBC8ybzw17Hmzg3FoFbIrIT8vm9unKvlmLm3zreeTUOr6XXaNwviBtd8g
+ fPewplJtLVVQh0xEWf4ni+zdT8/V/V9tzs+ZhoCHMENxn0ANGWAXCARq3JGqWezYDw
+ Q3DDAmeAkOyoA==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Stuart Summers <stuart.summers@intel.com>
-References: <20250618-wa-22019338487-v5-0-b888388477f2@intel.com>
- <20250618-wa-22019338487-v5-3-b888388477f2@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250618-wa-22019338487-v5-3-b888388477f2@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/wm: reduce stack usage in skl_print_wm_changes()
+Date: Fri, 20 Jun 2025 13:37:45 +0200
+Message-Id: <20250620113748.3869160-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.5
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,124 +64,225 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 18/06/2025 19:50, Lucas De Marchi wrote:
-> xe_device_td_flush() has 2 possible implementations: an entire L2 flush
-> or a transient flush, depending on WA 16023588340. Make this clear by
-> splitting the function so it calls each of them.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+From: Arnd Bergmann <arnd@arndb.de>
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+When KMSAN is enabled, this function causes has a rather excessive stack usage:
 
-> ---
->   drivers/gpu/drm/xe/xe_device.c | 68 +++++++++++++++++++++++++-----------------
->   1 file changed, 40 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 8cfcfff250ca5..8396612b68d4b 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -981,38 +981,15 @@ void xe_device_wmb(struct xe_device *xe)
->   		xe_mmio_write32(xe_root_tile_mmio(xe), VF_CAP_REG, 0);
->   }
->   
-> -/**
-> - * xe_device_td_flush() - Flush transient L3 cache entries
-> - * @xe: The device
-> - *
-> - * Display engine has direct access to memory and is never coherent with L3/L4
-> - * caches (or CPU caches), however KMD is responsible for specifically flushing
-> - * transient L3 GPU cache entries prior to the flip sequence to ensure scanout
-> - * can happen from such a surface without seeing corruption.
-> - *
-> - * Display surfaces can be tagged as transient by mapping it using one of the
-> - * various L3:XD PAT index modes on Xe2.
-> - *
-> - * Note: On non-discrete xe2 platforms, like LNL, the entire L3 cache is flushed
-> - * at the end of each submission via PIPE_CONTROL for compute/render, since SA
-> - * Media is not coherent with L3 and we want to support render-vs-media
-> - * usescases. For other engines like copy/blt the HW internally forces uncached
-> - * behaviour, hence why we can skip the TDF on such platforms.
-> +/*
-> + * Issue a TRANSIENT_FLUSH_REQUEST and wait for completion on each gt.
->    */
-> -void xe_device_td_flush(struct xe_device *xe)
-> +static void tdf_request_sync(struct xe_device *xe)
->   {
-> -	struct xe_gt *gt;
->   	unsigned int fw_ref;
-> +	struct xe_gt *gt;
->   	u8 id;
->   
-> -	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
-> -		return;
-> -
-> -	if (XE_WA(xe_root_mmio_gt(xe), 16023588340)) {
-> -		xe_device_l2_flush(xe);
-> -		return;
-> -	}
-> -
->   	for_each_gt(gt, xe, id) {
->   		if (xe_gt_is_media_type(gt))
->   			continue;
-> @@ -1022,6 +999,7 @@ void xe_device_td_flush(struct xe_device *xe)
->   			return;
->   
->   		xe_mmio_write32(&gt->mmio, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST);
-> +
->   		/*
->   		 * FIXME: We can likely do better here with our choice of
->   		 * timeout. Currently we just assume the worst case, i.e. 150us,
-> @@ -1052,15 +1030,49 @@ void xe_device_l2_flush(struct xe_device *xe)
->   		return;
->   
->   	spin_lock(&gt->global_invl_lock);
-> -	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
->   
-> +	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
->   	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 500, NULL, true))
->   		xe_gt_err_once(gt, "Global invalidation timeout\n");
-> +
->   	spin_unlock(&gt->global_invl_lock);
->   
->   	xe_force_wake_put(gt_to_fw(gt), fw_ref);
->   }
->   
-> +/**
-> + * xe_device_td_flush() - Flush transient L3 cache entries
-> + * @xe: The device
-> + *
-> + * Display engine has direct access to memory and is never coherent with L3/L4
-> + * caches (or CPU caches), however KMD is responsible for specifically flushing
-> + * transient L3 GPU cache entries prior to the flip sequence to ensure scanout
-> + * can happen from such a surface without seeing corruption.
-> + *
-> + * Display surfaces can be tagged as transient by mapping it using one of the
-> + * various L3:XD PAT index modes on Xe2.
-> + *
-> + * Note: On non-discrete xe2 platforms, like LNL, the entire L3 cache is flushed
-> + * at the end of each submission via PIPE_CONTROL for compute/render, since SA
-> + * Media is not coherent with L3 and we want to support render-vs-media
-> + * usescases. For other engines like copy/blt the HW internally forces uncached
-> + * behaviour, hence why we can skip the TDF on such platforms.
-> + */
-> +void xe_device_td_flush(struct xe_device *xe)
-> +{
-> +	struct xe_gt *root_gt;
-> +
-> +	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
-> +		return;
-> +
-> +	root_gt = xe_root_mmio_gt(xe);
-> +	if (XE_WA(root_gt, 16023588340))
-> +		/* A transient flush is not sufficient: flush the L2 */
-> +		xe_device_l2_flush(xe);
-> +	else
-> +		tdf_request_sync(xe);
-> +}
-> +
->   u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
->   {
->   	return xe_device_has_flat_ccs(xe) ?
-> 
+drivers/gpu/drm/i915/display/skl_watermark.c:2977:1: error: stack frame size (1432) exceeds limit (1408) in 'skl_compute_wm' [-Werror,-Wframe-larger-than]
+
+This is apparently all caused by the varargs calls to drm_dbg_kms(). Inlining
+this into skl_compute_wm() means that any function called by skl_compute_wm()
+has its own stack on top of that.
+
+Move the worst bit into a separate function marked as noinline_for_stack to
+limit that to the one code path that actually needs it.
+
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 176 ++++++++++---------
+ 1 file changed, 92 insertions(+), 84 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 2c2371574d6f..b7c92c718c8f 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2680,6 +2680,97 @@ static char enast(bool enable)
+ 	return enable ? '*' : ' ';
+ }
+ 
++static noinline_for_stack void
++skl_print_plane_changes(struct intel_display *display,
++			struct intel_plane *plane,
++			const struct skl_plane_wm *old_wm,
++			const struct skl_plane_wm *new_wm)
++{
++	drm_dbg_kms(display->drm,
++		    "[PLANE:%d:%s]   level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm"
++		    " -> %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm\n",
++		    plane->base.base.id, plane->base.name,
++		    enast(old_wm->wm[0].enable), enast(old_wm->wm[1].enable),
++		    enast(old_wm->wm[2].enable), enast(old_wm->wm[3].enable),
++		    enast(old_wm->wm[4].enable), enast(old_wm->wm[5].enable),
++		    enast(old_wm->wm[6].enable), enast(old_wm->wm[7].enable),
++		    enast(old_wm->trans_wm.enable),
++		    enast(old_wm->sagv.wm0.enable),
++		    enast(old_wm->sagv.trans_wm.enable),
++		    enast(new_wm->wm[0].enable), enast(new_wm->wm[1].enable),
++		    enast(new_wm->wm[2].enable), enast(new_wm->wm[3].enable),
++		    enast(new_wm->wm[4].enable), enast(new_wm->wm[5].enable),
++		    enast(new_wm->wm[6].enable), enast(new_wm->wm[7].enable),
++		    enast(new_wm->trans_wm.enable),
++		    enast(new_wm->sagv.wm0.enable),
++		    enast(new_wm->sagv.trans_wm.enable));
++
++	drm_dbg_kms(display->drm,
++		    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d"
++		      " -> %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d\n",
++		    plane->base.base.id, plane->base.name,
++		    enast(old_wm->wm[0].ignore_lines), old_wm->wm[0].lines,
++		    enast(old_wm->wm[1].ignore_lines), old_wm->wm[1].lines,
++		    enast(old_wm->wm[2].ignore_lines), old_wm->wm[2].lines,
++		    enast(old_wm->wm[3].ignore_lines), old_wm->wm[3].lines,
++		    enast(old_wm->wm[4].ignore_lines), old_wm->wm[4].lines,
++		    enast(old_wm->wm[5].ignore_lines), old_wm->wm[5].lines,
++		    enast(old_wm->wm[6].ignore_lines), old_wm->wm[6].lines,
++		    enast(old_wm->wm[7].ignore_lines), old_wm->wm[7].lines,
++		    enast(old_wm->trans_wm.ignore_lines), old_wm->trans_wm.lines,
++		    enast(old_wm->sagv.wm0.ignore_lines), old_wm->sagv.wm0.lines,
++		    enast(old_wm->sagv.trans_wm.ignore_lines), old_wm->sagv.trans_wm.lines,
++		    enast(new_wm->wm[0].ignore_lines), new_wm->wm[0].lines,
++		    enast(new_wm->wm[1].ignore_lines), new_wm->wm[1].lines,
++		    enast(new_wm->wm[2].ignore_lines), new_wm->wm[2].lines,
++		    enast(new_wm->wm[3].ignore_lines), new_wm->wm[3].lines,
++		    enast(new_wm->wm[4].ignore_lines), new_wm->wm[4].lines,
++		    enast(new_wm->wm[5].ignore_lines), new_wm->wm[5].lines,
++		    enast(new_wm->wm[6].ignore_lines), new_wm->wm[6].lines,
++		    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].lines,
++		    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.lines,
++		    enast(new_wm->sagv.wm0.ignore_lines), new_wm->sagv.wm0.lines,
++		    enast(new_wm->sagv.trans_wm.ignore_lines), new_wm->sagv.trans_wm.lines);
++
++	drm_dbg_kms(display->drm,
++		    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
++		    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
++		    plane->base.base.id, plane->base.name,
++		    old_wm->wm[0].blocks, old_wm->wm[1].blocks,
++		    old_wm->wm[2].blocks, old_wm->wm[3].blocks,
++		    old_wm->wm[4].blocks, old_wm->wm[5].blocks,
++		    old_wm->wm[6].blocks, old_wm->wm[7].blocks,
++		    old_wm->trans_wm.blocks,
++		    old_wm->sagv.wm0.blocks,
++		    old_wm->sagv.trans_wm.blocks,
++		    new_wm->wm[0].blocks, new_wm->wm[1].blocks,
++		    new_wm->wm[2].blocks, new_wm->wm[3].blocks,
++		    new_wm->wm[4].blocks, new_wm->wm[5].blocks,
++		    new_wm->wm[6].blocks, new_wm->wm[7].blocks,
++		    new_wm->trans_wm.blocks,
++		    new_wm->sagv.wm0.blocks,
++		    new_wm->sagv.trans_wm.blocks);
++
++	drm_dbg_kms(display->drm,
++		    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
++		    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
++		    plane->base.base.id, plane->base.name,
++		    old_wm->wm[0].min_ddb_alloc, old_wm->wm[1].min_ddb_alloc,
++		    old_wm->wm[2].min_ddb_alloc, old_wm->wm[3].min_ddb_alloc,
++		    old_wm->wm[4].min_ddb_alloc, old_wm->wm[5].min_ddb_alloc,
++		    old_wm->wm[6].min_ddb_alloc, old_wm->wm[7].min_ddb_alloc,
++		    old_wm->trans_wm.min_ddb_alloc,
++		    old_wm->sagv.wm0.min_ddb_alloc,
++		    old_wm->sagv.trans_wm.min_ddb_alloc,
++		    new_wm->wm[0].min_ddb_alloc, new_wm->wm[1].min_ddb_alloc,
++		    new_wm->wm[2].min_ddb_alloc, new_wm->wm[3].min_ddb_alloc,
++		    new_wm->wm[4].min_ddb_alloc, new_wm->wm[5].min_ddb_alloc,
++		    new_wm->wm[6].min_ddb_alloc, new_wm->wm[7].min_ddb_alloc,
++		    new_wm->trans_wm.min_ddb_alloc,
++		    new_wm->sagv.wm0.min_ddb_alloc,
++		    new_wm->sagv.trans_wm.min_ddb_alloc);
++}
++
+ static void
+ skl_print_wm_changes(struct intel_atomic_state *state)
+ {
+@@ -2709,7 +2800,6 @@ skl_print_wm_changes(struct intel_atomic_state *state)
+ 
+ 			if (skl_ddb_entry_equal(old, new))
+ 				continue;
+-
+ 			drm_dbg_kms(display->drm,
+ 				    "[PLANE:%d:%s] ddb (%4d - %4d) -> (%4d - %4d), size %4d -> %4d\n",
+ 				    plane->base.base.id, plane->base.name,
+@@ -2727,89 +2817,7 @@ skl_print_wm_changes(struct intel_atomic_state *state)
+ 			if (skl_plane_wm_equals(display, old_wm, new_wm))
+ 				continue;
+ 
+-			drm_dbg_kms(display->drm,
+-				    "[PLANE:%d:%s]   level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm"
+-				    " -> %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm\n",
+-				    plane->base.base.id, plane->base.name,
+-				    enast(old_wm->wm[0].enable), enast(old_wm->wm[1].enable),
+-				    enast(old_wm->wm[2].enable), enast(old_wm->wm[3].enable),
+-				    enast(old_wm->wm[4].enable), enast(old_wm->wm[5].enable),
+-				    enast(old_wm->wm[6].enable), enast(old_wm->wm[7].enable),
+-				    enast(old_wm->trans_wm.enable),
+-				    enast(old_wm->sagv.wm0.enable),
+-				    enast(old_wm->sagv.trans_wm.enable),
+-				    enast(new_wm->wm[0].enable), enast(new_wm->wm[1].enable),
+-				    enast(new_wm->wm[2].enable), enast(new_wm->wm[3].enable),
+-				    enast(new_wm->wm[4].enable), enast(new_wm->wm[5].enable),
+-				    enast(new_wm->wm[6].enable), enast(new_wm->wm[7].enable),
+-				    enast(new_wm->trans_wm.enable),
+-				    enast(new_wm->sagv.wm0.enable),
+-				    enast(new_wm->sagv.trans_wm.enable));
+-
+-			drm_dbg_kms(display->drm,
+-				    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d"
+-				      " -> %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d\n",
+-				    plane->base.base.id, plane->base.name,
+-				    enast(old_wm->wm[0].ignore_lines), old_wm->wm[0].lines,
+-				    enast(old_wm->wm[1].ignore_lines), old_wm->wm[1].lines,
+-				    enast(old_wm->wm[2].ignore_lines), old_wm->wm[2].lines,
+-				    enast(old_wm->wm[3].ignore_lines), old_wm->wm[3].lines,
+-				    enast(old_wm->wm[4].ignore_lines), old_wm->wm[4].lines,
+-				    enast(old_wm->wm[5].ignore_lines), old_wm->wm[5].lines,
+-				    enast(old_wm->wm[6].ignore_lines), old_wm->wm[6].lines,
+-				    enast(old_wm->wm[7].ignore_lines), old_wm->wm[7].lines,
+-				    enast(old_wm->trans_wm.ignore_lines), old_wm->trans_wm.lines,
+-				    enast(old_wm->sagv.wm0.ignore_lines), old_wm->sagv.wm0.lines,
+-				    enast(old_wm->sagv.trans_wm.ignore_lines), old_wm->sagv.trans_wm.lines,
+-				    enast(new_wm->wm[0].ignore_lines), new_wm->wm[0].lines,
+-				    enast(new_wm->wm[1].ignore_lines), new_wm->wm[1].lines,
+-				    enast(new_wm->wm[2].ignore_lines), new_wm->wm[2].lines,
+-				    enast(new_wm->wm[3].ignore_lines), new_wm->wm[3].lines,
+-				    enast(new_wm->wm[4].ignore_lines), new_wm->wm[4].lines,
+-				    enast(new_wm->wm[5].ignore_lines), new_wm->wm[5].lines,
+-				    enast(new_wm->wm[6].ignore_lines), new_wm->wm[6].lines,
+-				    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].lines,
+-				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.lines,
+-				    enast(new_wm->sagv.wm0.ignore_lines), new_wm->sagv.wm0.lines,
+-				    enast(new_wm->sagv.trans_wm.ignore_lines), new_wm->sagv.trans_wm.lines);
+-
+-			drm_dbg_kms(display->drm,
+-				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
+-				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
+-				    plane->base.base.id, plane->base.name,
+-				    old_wm->wm[0].blocks, old_wm->wm[1].blocks,
+-				    old_wm->wm[2].blocks, old_wm->wm[3].blocks,
+-				    old_wm->wm[4].blocks, old_wm->wm[5].blocks,
+-				    old_wm->wm[6].blocks, old_wm->wm[7].blocks,
+-				    old_wm->trans_wm.blocks,
+-				    old_wm->sagv.wm0.blocks,
+-				    old_wm->sagv.trans_wm.blocks,
+-				    new_wm->wm[0].blocks, new_wm->wm[1].blocks,
+-				    new_wm->wm[2].blocks, new_wm->wm[3].blocks,
+-				    new_wm->wm[4].blocks, new_wm->wm[5].blocks,
+-				    new_wm->wm[6].blocks, new_wm->wm[7].blocks,
+-				    new_wm->trans_wm.blocks,
+-				    new_wm->sagv.wm0.blocks,
+-				    new_wm->sagv.trans_wm.blocks);
+-
+-			drm_dbg_kms(display->drm,
+-				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
+-				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
+-				    plane->base.base.id, plane->base.name,
+-				    old_wm->wm[0].min_ddb_alloc, old_wm->wm[1].min_ddb_alloc,
+-				    old_wm->wm[2].min_ddb_alloc, old_wm->wm[3].min_ddb_alloc,
+-				    old_wm->wm[4].min_ddb_alloc, old_wm->wm[5].min_ddb_alloc,
+-				    old_wm->wm[6].min_ddb_alloc, old_wm->wm[7].min_ddb_alloc,
+-				    old_wm->trans_wm.min_ddb_alloc,
+-				    old_wm->sagv.wm0.min_ddb_alloc,
+-				    old_wm->sagv.trans_wm.min_ddb_alloc,
+-				    new_wm->wm[0].min_ddb_alloc, new_wm->wm[1].min_ddb_alloc,
+-				    new_wm->wm[2].min_ddb_alloc, new_wm->wm[3].min_ddb_alloc,
+-				    new_wm->wm[4].min_ddb_alloc, new_wm->wm[5].min_ddb_alloc,
+-				    new_wm->wm[6].min_ddb_alloc, new_wm->wm[7].min_ddb_alloc,
+-				    new_wm->trans_wm.min_ddb_alloc,
+-				    new_wm->sagv.wm0.min_ddb_alloc,
+-				    new_wm->sagv.trans_wm.min_ddb_alloc);
++			skl_print_plane_changes(display, plane, old_wm, new_wm);
+ 		}
+ 	}
+ }
+-- 
+2.39.5
 
