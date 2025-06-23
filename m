@@ -4,187 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08410C7115B
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Jun 2025 10:31:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0238C7115B
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Jun 2025 10:45:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD59B10E354;
-	Mon, 23 Jun 2025 10:31:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D79410E357;
+	Mon, 23 Jun 2025 10:45:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U15enk7l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LWNiNKTS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6394110E354
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 10:31:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7466110E357
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 10:45:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750674708; x=1782210708;
+ t=1750675556; x=1782211556;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=MKrVdoaWTw88JldnSfWA7v2WZAMZGEgEEK1u5BGSrJg=;
- b=U15enk7lX4LXdD9RlAn72lQzxvYbF5KCy2Uk8s5lsaXVu10m49HHuqTy
- VeAJunS2LUXKwuoc86/rMMfQ6HYmWm9jlxoisxbYXVTntFABP/LwkHj4q
- LxKP5MYljPxeZfxG8K6yR4HD6u9JPmdQtTEz2Dc7ESsfaJqat4cxcHgxP
- lNHWHFc4bss3REwPbVOGZNGCvCbtgFHQitIaPfbVOkbPhjUezikwltZmh
- gh9/Bi3G9etb7QTgKVdkBzAlVhT/cPRfL5mpzb4KroYSEzu3Cnz2gm66L
- Y7UU6zqm12Xlq0kv3Qylk5uN6/jAXMgKoENA4gf92V51hT1yUQkeTqsLP A==;
-X-CSE-ConnectionGUID: WOwkLO+/Ru2BR8gV+05fzA==
-X-CSE-MsgGUID: 8l37BLZwQaCVRPAhw8/4ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="53014349"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="53014349"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 03:31:45 -0700
-X-CSE-ConnectionGUID: +sIpn+PzQUy+c1Q20xoHAw==
-X-CSE-MsgGUID: ak4ybRO5TIihO4cynFFByA==
+ bh=QB6/JEDGKlHSauadTIccW2IZ3Olduk2Jt2V62cDg4l4=;
+ b=LWNiNKTSDTgxKa+nFrVlly28cB2lNH6fh9Y+1oEe4W4CgKSLHjP14ImK
+ HT+XnNbaT3+AxkMFjpGQmRb6j3pPyk6FqMPCjVAu9oxbe7TW9Oh1z7KMl
+ pP1zMAtwcDZ7XLOH5HzpjGOERjTAgy7yOeH3Q4t1T2S3nwmRjCoNIbsFg
+ Krn/RLwyT2/UFxpc7jFwnTuAnqLFXtumwagk1Pd/wHqU0M8oclEJUxpGu
+ ywsTloFPgoxNRENhcoeCXEysP1B31zHV0zeQUs61f0v6tafjW9HXwNqd0
+ uOtYH7BWkZl/SgjyU0cWYPnlosId0OowcbcZUgDuwG1k2JnBsPs2o0muO A==;
+X-CSE-ConnectionGUID: HQbeL5BORXu9DecvpH5+vA==
+X-CSE-MsgGUID: QOiI3z50TgedV0bCWMiaQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="55510482"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="55510482"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2025 03:45:56 -0700
+X-CSE-ConnectionGUID: 6t5/anVPQ4Sw7aitt9hCvw==
+X-CSE-MsgGUID: ciBHu7PmR0mHV/aZpv98Hg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="155869531"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 03:31:43 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 23 Jun 2025 03:31:42 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="152082742"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2025 03:45:56 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Mon, 23 Jun 2025 03:31:42 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.53)
+ 15.2.1544.25; Mon, 23 Jun 2025 03:45:55 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Mon, 23 Jun 2025 03:45:55 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (40.107.243.64)
  by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 23 Jun 2025 03:31:41 -0700
+ 15.2.1544.25; Mon, 23 Jun 2025 03:45:54 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=l6z1ZrPdC3XD/s7OXa+EQeiteYBa94FKvcdcVFm3i00+k0s1EQcc+ftLI665jiM2hzoBhnZQxAjy7YNAFDcamhmTs/VXMDm6niCqBEnxmZ+CQx7kG/pVZ5RBHqUfXlRxZseoTXopdZqK2ZwLKrp1hby4neQ/Fetuxy1M+yiGwwoxwy+okVHrHkWA0oLTI5U21OkQf8Zz2ctpNGJsvfDcTTahDzdNatdtZ4XX82hiMBJpNK7KfNWJB3UBZ8OHhEftXGYYQRSFWaZ6Bf2sFav9dsM7eOwFshSK046/tPnsN5uUN+cfkT2x4jbFb5J0j5NLnIbB00zy2VnQZrffI8zN3A==
+ b=AblaXIz8XQyQWAyoHgVzePoLj5c1bbKQELKC5JXf+eK5Mj3ylBOaASQOLzJWLnsdZ0Iu3FfKyxddmRl2djz0dhx0AP7KaZ+PiQR8ou6/3aW0cnBt9rPbJSbCkmSusHRiTKkZR87Vx7Dob4rYeIzxMj6U+XgmXbwj5jmsxdn5JRepP9/UuvEHNnVbNUPjC+Bd/W0V9MGSCqAZkMoGjiQduWDkYEO3pTCJ+clQrDa1E2fW9BT+WD8pwUze79YXt7N2ppxSg0X2esV4AnvQpYtFTA6RtQ7s20oxBbRUrTFB7iuNshm4XKXhaZHcHc/VViRwBqwgZ3itkgFvzFQr9vWrXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l/fZjDIhCqgDTNrZUu+RClSnD0SnHnlCIGwIbNNvfrA=;
- b=OSWo5tRszQuWunwkIAuCynWORRe/RYn8OOoihQ8NZF8InL0dmov6fXA6BrmCcpX65A7flQ2SKlOspdTehPUAXRnROA1Cgm0mKEpez/ANd2ma0YjOSNuWE3h0KXeyqCGhPII8tu1nNc1Scdo+/owKKabHzLKtOYiXmzZh4QNEU0iROxO2dSrYCerYp/QN+XeA6WxtHSSOBdK7Y5p1PJFG200BxwEdSKQ2WJ4+cSDaqu/o22bwrTgKMbHxH2TZ1LjxGXx6zPFpmQnNz5rIfeIF2YRTMjEuCmRFgZP0Aq5n2DLoNQ/tBzxn6LqxRi3vaZGaeW402Ig0y9FwQu2WnJ66/g==
+ bh=akw1jaKS2U/RyWXsCVyKiz12x85S83lPnlO+2PBMcAo=;
+ b=ur8VU2VN0lalvhggJSgryeUZ/5KCa+QQjG/OcEGYZex0PvvXM083OZabS2aTirAjCzvWyYIN1ryjNHO1DyI+hoBxUuBYI3jQRSW9zXV5ELV4NmEag+Gv2ISwAGyMjRFtTrV9r1ECU4M39RHQyfrIvzR98IELNfp6srXpe/wv8NrCZ4RoU3b7UHWxdBI8qmpvrccupt8LBzSdmvlzE2Ef9wUz0vysRKMjwJHisWkIPLTJvrVFD7CPSYsM8xRmYvQvgXLY846jhACdoQMRe/Kmq1D6uuH16SSFB3s+LH3KJWj24IfRykOtmi4SQxjfWc5Jp7uVSjsnid0dMrzR4NF6qw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from SA1PR11MB7014.namprd11.prod.outlook.com (2603:10b6:806:2b9::15)
- by LV8PR11MB8677.namprd11.prod.outlook.com (2603:10b6:408:1fa::6)
+ by IA4PR11MB9201.namprd11.prod.outlook.com (2603:10b6:208:561::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.22; Mon, 23 Jun
- 2025 10:31:25 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.28; Mon, 23 Jun
+ 2025 10:45:25 +0000
 Received: from SA1PR11MB7014.namprd11.prod.outlook.com
  ([fe80::e707:2d60:2891:a02]) by SA1PR11MB7014.namprd11.prod.outlook.com
  ([fe80::e707:2d60:2891:a02%6]) with mapi id 15.20.8857.025; Mon, 23 Jun 2025
- 10:31:25 +0000
-Message-ID: <97dcc6e6-66c3-487f-b912-d343afe3bb56@intel.com>
-Date: Mon, 23 Jun 2025 13:31:19 +0300
+ 10:45:25 +0000
+Message-ID: <790f40b0-f9ec-44cc-8f99-d6c76d16be66@intel.com>
+Date: Mon, 23 Jun 2025 13:45:19 +0300
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2] drm/xe: Support for mmap-ing mmio regions
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Elbaz, Koby" <koby.elbaz@intel.com>, "Sinyuk, Konstantin"
- <konstantin.sinyuk@intel.com>, "Avizrat, Yaron" <yaron.avizrat@intel.com>,
- "Haimovski, Moti" <moti.haimovski@intel.com>, "Freiman, Didi"
- <didi.freiman@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <koby.elbaz@intel.com>,
+ <konstantin.sinyuk@intel.com>, <yaron.avizrat@intel.com>,
+ <moti.haimovski@intel.com>, <didi.freiman@intel.com>
 References: <20250609095938.16782-1-ilia.levi@intel.com>
- <SJ1PR11MB6204EF8ECD2EAE0F8F5AB93C816BA@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <47547e84-4d10-4037-9f9b-d1b02fa3fbac@intel.com>
- <SJ1PR11MB620443CA7F483CE7F4995250816AA@SJ1PR11MB6204.namprd11.prod.outlook.com>
+ <aEcByyaKe82P91RT@lstrano-desk.jf.intel.com>
+ <fd377581-4013-4139-aea2-9fb2578d2773@intel.com>
+ <aEg/T1kv2/lJliuh@lstrano-desk.jf.intel.com>
 Content-Language: en-US
 From: "Levi, Ilia" <ilia.levi@intel.com>
-In-Reply-To: <SJ1PR11MB620443CA7F483CE7F4995250816AA@SJ1PR11MB6204.namprd11.prod.outlook.com>
+In-Reply-To: <aEg/T1kv2/lJliuh@lstrano-desk.jf.intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TLZP290CA0012.ISRP290.PROD.OUTLOOK.COM
- (2603:1096:950:9::10) To SA1PR11MB7014.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: TLZP290CA0009.ISRP290.PROD.OUTLOOK.COM
+ (2603:1096:950:9::18) To SA1PR11MB7014.namprd11.prod.outlook.com
  (2603:10b6:806:2b9::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR11MB7014:EE_|LV8PR11MB8677:EE_
-X-MS-Office365-Filtering-Correlation-Id: 94fc0425-47ba-4fb4-657d-08ddb2411af0
+X-MS-TrafficTypeDiagnostic: SA1PR11MB7014:EE_|IA4PR11MB9201:EE_
+X-MS-Office365-Filtering-Correlation-Id: c2c8948c-0e68-4f7e-646c-08ddb2430f64
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?U1FBWS85YkVqbmRGeVdkRkpGY3lybGJJRlAxd2wrU0RoZ3pCWVU1amNlN3p4?=
- =?utf-8?B?RC9XQ0ZJZEY4SmwvZnllK1ZVc0xndmk3Mm1vTHJWM3F1UzE2aUlSU0tTaTg0?=
- =?utf-8?B?T2pwd2RkN2d2WnBGTm83cnZJaFlYcldiTHo5QzVITDNLR0NrUmxSdEE3RWYz?=
- =?utf-8?B?SHBhNEFEdlFpaHRLSVRvcGxEYXVBRzJTeGt2eHUzT2djSXg1K0FuUWduRy84?=
- =?utf-8?B?dy9jOFZzRlZBWTVUUkNyRDJ0UFo1SEY1QW9ob0hZSkR1dFdBWUFzNEZDdUpS?=
- =?utf-8?B?QmxtTFpmeUhySWJWdUlobW5GclBNQ2p1ZU1OQ1lSbm5SRnUwcHlGcUYvc1Vn?=
- =?utf-8?B?N3RpN0J2ZThTWXQwNUoxNEI4UnNuZ2YyNUc0U3NyMk04T3lhYVpmSkpST2xl?=
- =?utf-8?B?VHpua3N1MTh4V1ZQTDFwS0JGRENPK1F2K2lEMTQvek9hcDhEN1YyY0dvejVj?=
- =?utf-8?B?YjdMZDBzS0x4cmFYb29BQWl3bm9GaVIzWkVaTDRFdTQ3VUpqOHF4WmpqMTF5?=
- =?utf-8?B?UEVlanlPTEtkcjBCWWpYUDlZSjB1MVRDZnVpa3VBNTd5SFNMMGs0UDVadm1K?=
- =?utf-8?B?eFpvSWZqREV4STRLVC9VOXFsa0VWUnhHY2l3Y0Yrd1o3VEp2NGk5S2s3WDc5?=
- =?utf-8?B?eDE3cXRJZm1CN1k3UDJidnlleXVDLzdFNUs4cVhkR1c5SGViVmdYZThMdStO?=
- =?utf-8?B?T0RvSG16Mng3VzdUU1NISmFZZWNJNTVWRVhaVHdWNmNGSkpRTEgxWmEzY1Zv?=
- =?utf-8?B?b0dSTFZxVDVnM05hRldyUHRSQ3JrWTBjcjRrbWFSemc3SWhXdGdIV1VaZWVZ?=
- =?utf-8?B?dUdsYW9NR1RKanR3WGh6MHkzK1RmOXRRVUh3aUszc0hFWjlONWZwU3B2K1hp?=
- =?utf-8?B?d0NWbWlBUEduMENRK1VyTzNRQU1vcS9zRkRaeE0wRm5KVmlINWpGTHZJOGJC?=
- =?utf-8?B?ZDVoeUQvek9RU24zTW53eVF1VmNMWW9EdUdraFVTdUxmTjQzS0dlOHkram01?=
- =?utf-8?B?RXBPVVdDRXdXazRrcTcxTWwzaTRGZXFyU0s2cTN3REt5VUxXQ3lpbWlVZmc1?=
- =?utf-8?B?a3RjajRpbXdjTTlVejNVTTE0NXFiVUg3dEYvMmxlVU9mQy9PTGZxMjZHZzNC?=
- =?utf-8?B?UldHaHgvbjJyanJ0QWhESDlobk10ZHVjazZGNEZpUUFBaUdBclVvM3N4SjV6?=
- =?utf-8?B?ckwraG9CVTdCdlFEazhNcytVZC8zNk1kWmprcFhLRjJVRFA4bCtZSDlSUTg4?=
- =?utf-8?B?NXRQUU0zTGJwdmRCeWFDKzdLKzBwTTIvUUR4RnVMMXVBMk5rdGVIbnJ1dkZX?=
- =?utf-8?B?WEEyOTZ1UFI0Q3QxU0lVanJEZ1o0bExPSmFhYVdPcnZnL2drSnh4VTN5SHJD?=
- =?utf-8?B?dkk2dXA3UFUyNm1waHFHeE0venZ5ZTVaS2xRZHhZNFdCVUJkdEtvNElmSlor?=
- =?utf-8?B?SnF0aXhDZWVpZmlJRkRNeDVmajdPZ0ZoYVpVV0tHQ2k1RVhrTk11K1gzdTl1?=
- =?utf-8?B?M1kwS3FUaFNrNDhCb1p5aTJxQjRVcXdDS0p4UmtlaXlCbjB0WjMvZ1A0M01Z?=
- =?utf-8?B?MXRoMkRSeG4vMnFodUdqYjNacHIzbk1QOE52RVprR0ZMZEx4SmJHSU9Rb2Fv?=
- =?utf-8?B?VlNGSk5HYThaMU5RQTZSdXlDL0FVd3Y5R0kxd3NrNG8vMGVNS21hTGdjYjRv?=
- =?utf-8?B?R0VrQjdrbUhiNVU4MU1ETkhsMERRb05sNG1lY0JzQ3hNR05rZ2p0eHV4VUs3?=
- =?utf-8?B?SXJNb1RnckZXSlBjYkFRYlFFY3psa1hYRG0xWjdGZDI5N0V4eW1aOXpQM0Rw?=
- =?utf-8?B?ZkFnYmNhL1M2MDlmUnNXNGdKb2lOdk1TRTIyM0hHZTdYUFdieXR0SHdmWEs1?=
- =?utf-8?B?cUlZT3RNZlJiaVRINE5SYjQvWFdTUVd1MFQyVmdwMDlFZTZRSVAzUUFET2RW?=
- =?utf-8?Q?3ftUv9D7Gyo=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WHZUZUNrL0lDa05LRG13b2ZWQmQ3QzF2VlJnWEFnSkVDOE5nd04vRGRjMHBU?=
+ =?utf-8?B?dUdiVWRIWXhmMDdPbDJFaEs4Um0rYTVJZGRaSDY2TzY2NHFzZHlRRCtOa1Jz?=
+ =?utf-8?B?ZDZzOG9YYUJyU1ZUei9sRnExT1JFRlBYYk5EU0M4cSt2N0xjRXE2OWpqWFRp?=
+ =?utf-8?B?NVAzSlRrUForeGxoVFFkUGpaRkZqZFdqQkdUWDJzaXJmbGZaVVNBbmRKMVNI?=
+ =?utf-8?B?SlBLTDBJaGJMNUNZYm9QUkExUkc3aUorRmhJWnNLd2xxeVI3R1g3VStvOGRn?=
+ =?utf-8?B?R0RTZGgwKzVQcFZZZGFacjZqeDY1TkNibDFQbDQrV0VOcWp5b2F0WUNXa3F2?=
+ =?utf-8?B?eWxhSWtDOUFEdlU2UTJReFBRM3l4TkdnOTBta05pclhGTjNWckVYQjc4UmdF?=
+ =?utf-8?B?ekJoY3dkMWlXS01BRmFjVkc1T2pIdmJlVmg4SFE0NkRxRGlmNnJQamlSSzA5?=
+ =?utf-8?B?cERvaSt0cElCb3dudUVHWndmckVvQzJtRGpqMXhBeUxzeXhWVXNQa2JsRVBk?=
+ =?utf-8?B?NG1GK3ExWVlNUTQ3T0dzZ1BqTDdnWHg2MVNSZkFGWGtrbzZTQ2szeXVFQ2xt?=
+ =?utf-8?B?YXNwZVQvUmFxY0tieTFReEtPTmdESlp2THlHY0lRQk9GT0dETGZLT0FNRFlw?=
+ =?utf-8?B?RkV6M1QvYzRXM200bmsxMVl5eW40Wk1wcjJpNWZyd08vUEVjS1NBdGN6dTJX?=
+ =?utf-8?B?NmVEMDQ5MVhDMFpHN3g4Ky8xTnJYYkNEZWpvVEdWenpUYlJTYTBmYVZlL1Z0?=
+ =?utf-8?B?bnhSdm53RFlRT28zb3hpdHZ2V1RzZGdDbjZsUmlmUFcxSjJhTGNUeGd0Uktp?=
+ =?utf-8?B?ZGk2NUNnZWR0UTBvSVVkUTFjcTc5R2VsaDVlRXFOVjJBOHBCdFRNcFA4eDhh?=
+ =?utf-8?B?OXJZdDRIeXJ0NlVUNCtaOFRkY0oraitJRW5NcG9kbitMVUpZR3dUVFFsdDBZ?=
+ =?utf-8?B?V1h3M2lRMzU5TVF4ZHVyaDcySWlUVGdqR3FYOW1JVzUrcHo3RUVSYlFneGpM?=
+ =?utf-8?B?T0dzS29SakxMK2QwQ1Uxcnc1S0FJTE9pWHU5YjU1T1UzcUNjNHl1dHlpUnVp?=
+ =?utf-8?B?VFNPUXdkY3lBbGRGdWxDRWFKcSswbWhiK1Q4VVZIdlVYcmMvaHVPMkxXcEpM?=
+ =?utf-8?B?SHgxV0RYcGlLMVZDVVlmcEZrTEZHR2FrbUxjTG9NdUwzc0FBRkdET2Z4TERw?=
+ =?utf-8?B?Q1RpK2dWajFWa2ltakNHUkhaY054QytoWUQyT0RpZmx3bDBUTG03MmZqdzJG?=
+ =?utf-8?B?eWZpbXVwWlM1UUNuVWJZZExqd1JId0F0Vm1uUlZjMjZ5aXp6K01XelFHSWFm?=
+ =?utf-8?B?VllvWW9YZXIvRnF6c1VYNlhuNyttc05XZlpyc0FtWHhwdzJGa09LcHpVMXE4?=
+ =?utf-8?B?STJCUEc0NWVuZkRZSUdQdGlSNjV3VUs5YWFUUmVsR2ZvbTZFajBOaENjays1?=
+ =?utf-8?B?cXIwWEQ5eXNBUUtJMTlROS9RenNCWHZoZ3p1NEcxcVlUSFR4L0d2RytQWUlQ?=
+ =?utf-8?B?SXZzdGJVOThCQjc5RDg2djNIVzNnL1BBZUxoR296U1FWU25Ecmd6cGlBNlBi?=
+ =?utf-8?B?L2tNUzZZdnpXMk1CNURZM09YTWxzSk1MSlc5QTY0ZU9ZRzdzZGpRVGd1ZG51?=
+ =?utf-8?B?b0NuSklpUEhnbnN1N25zN1EwdTFHRkF5UnpMb2xpQ04xU2cxdjNxTSt5YmY1?=
+ =?utf-8?B?c0Fza044RHh2WEVXNzBjY2R3bkJJOGYzR0w4Ti9MdW1IWVdHZXpFdFZITXBJ?=
+ =?utf-8?B?dG5hRmhmNzRYUkc0NmlGaytNRGxIOFFqc0RHQXVTOG1UWXIvT0k3dDVhYjhO?=
+ =?utf-8?B?SjFENTVGalMxaVVSbzdYOFg3VWVrYUdvSTZkK0VtM1J5OGJDYktIV0ZwczZy?=
+ =?utf-8?B?WlZ5eTdqUlFKMy9SOHhBVzh4QTlLems0Si80SWlQenJFOFdkaGJYdzQwaU93?=
+ =?utf-8?Q?CrQw7SG+S30=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SA1PR11MB7014.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MHI4WVhkbzNzQUtub1JVd09lNDZLTlE4eWYrek9vQy9pVndiUmlldzRuTDJZ?=
- =?utf-8?B?OU8wN2NLMTR2dTV1eTYzc1VEQjBoN0RJVnFCZWI5elJIWnpicjJDQlZiY2tQ?=
- =?utf-8?B?M2VnTWZVMFppOS9PaEZDaE5yTEwxQVFnMnZjekNLQkUvL2Y0dXFoMXlTNjdO?=
- =?utf-8?B?UE1tYkxzN3VkZDhyLzNDUXkxMTVmbzNuNzBhNlVkMitWeEhjUzRXOE93T0Vj?=
- =?utf-8?B?aU1rNTBHNkJMbWlTN2FCRGtmZWlyWHJvTlpPUHgyNm1BMFRLcVN3OEF5ZEhr?=
- =?utf-8?B?TnBDWlpuS2dnY1ZvOG41dkRUOTRBZHZ1M3NvK2psbjB2OUVadmZkTWxGQnpC?=
- =?utf-8?B?MGV3dzlVRG4xdEg2bGxENmRFVEtLUC9CMGxPemhRSEgzRmJ5OCsyMklKY1FO?=
- =?utf-8?B?U0l5cVNSTCs5dkJQLzg0T1ZOc0hOS21uTkw0YjBCa05EeXRqa1dQZG9ESkdl?=
- =?utf-8?B?dTFxUjRheUFpYzVQOExROC8zUjFzSlVueDBCR25oVEVycFRnVnduUW5pb0dQ?=
- =?utf-8?B?SjdUb0xSV1VPdjBURENCK1ZWdU1Lc0NiMkFoVEFsSDZwVTVnRzJLTzRlZzgr?=
- =?utf-8?B?OTdiY2M4MlNhVHA4ZWtyWjJUY3EvOTBCck1PdHpmQlAvNW9RVDNKZEo3eS9R?=
- =?utf-8?B?TVdsdFFDaWZvbU1QYUxiaFA0Q1k2VXNRZWpkYmdqejN4OWdleHRzQ3UwQ1N5?=
- =?utf-8?B?a3JVMURwN3pCVU9sVFlSeUd6eGFvNkxBQ2lkZ3JDU3dxK0FXeWtLYnZOTU9U?=
- =?utf-8?B?MGR4dlVhaTlHWWFLWUdNNGZQYVZEK3FHYVZSVDRwZDArVnc1YlY0aCs5dDh0?=
- =?utf-8?B?bFZiVlU5OG1waHZCajk2L05rSzNJbmpmbXB6N0pJWjgwRXJkTktORGY1NUxl?=
- =?utf-8?B?bGppZ2xFV3V3WitDYk8rTEI5RzRNME5iSXNheGpsNnFxem5JSVkzd3ViWUcr?=
- =?utf-8?B?NkxLSUczblcxVVgvZjEvM1ptVHNpUC9Td2NMaGZnU09CTlBVZHlBcEtRNUJv?=
- =?utf-8?B?aktRcTVsb3FrMzBjaFNYVC8rS3h0dUordVFHaDY4Y1g2UFFyY2hVc3JEbzM4?=
- =?utf-8?B?RkVHZXpiNlUvd0xVaWtNelA5bEZ5RDg0aHphZ3A1ZVFVbkQ5VVRhMEFVOVE4?=
- =?utf-8?B?TDgrUjJOY3dqVHZ5clJzTUFUV3Y2R0J4bzRjZmJoMitNR3JyZ1pYdHI0MVFp?=
- =?utf-8?B?bmp6c0svUXV3OWU5V04vT0p6NHltTXFqRG5XRktiTGlhajJYQXFTM1hxQ3d2?=
- =?utf-8?B?TExSSDR5clRsMmk1b0Zia1g4Nm5UZEpaWExHTExITU85L3BMb1N3MDdHUkJB?=
- =?utf-8?B?L05NZnZVNlBBODFXaWRIWk5LRjNZTTNBUUY3bmlsT2pjNHFFTHlrRHQ1b0Nr?=
- =?utf-8?B?V3IzVHZLN0syeEpaL01QVkh6UFRXbzlmZDFCRE8rNkprNDRDNjhudkV0TEJt?=
- =?utf-8?B?bXU0Q3lvSyt1SzlnYWw5RGlqcGFxNkFhekFtS0RlSjFxNXdzUS93YkZPbHBk?=
- =?utf-8?B?aGxNVTJISFpIU3duUitDNG0xbFhOS0xOVDF0ZXFxQ3Yra1IzZDlETW4waS9U?=
- =?utf-8?B?L0R2Ri9hVUhHcktFenRXSk45NzJob1J0ZC91WWVmb3huM1BtV0tBbUllUnNX?=
- =?utf-8?B?ZEhrRFVDeFNoM0NLcDlNUW5nbklwOW9VZHR1SnlCUEZUSkhJYTcvWHJsOHFL?=
- =?utf-8?B?U2RaTEFEMUo5eGdzaTk3MWNjYzdCYlZGYWtlWjN6SWVwallRK21Md1BpUk1Y?=
- =?utf-8?B?WDRYVUR4Nmdwb2xxZC9Qa1J2N2tJVXBZaHd5UmtPSTF0QnRwbjB6MWJ2dWZr?=
- =?utf-8?B?cXFOOE1OWFQ3dkRDSVk2MU5mUFVXcy9HdlgzUXhSczNENnM5SlQreHJlRkty?=
- =?utf-8?B?ZW01U0JBYkh3Ym1sck45TFkxUmljZU1OTXBEVURDZy9FMGhVY1Ayd0poZ3JC?=
- =?utf-8?B?S0p0em9TSXl3V0hBd3BxSThQSHdTZUR2NTVhaUF6ZncvL0lqWTBPWk53Nkxo?=
- =?utf-8?B?bDEwc1ZCSi9zb2I2L0QrOWNoT2R0R3BmWlRyeGh4NXZXaXVPTGZ3YWdVYTQy?=
- =?utf-8?B?akdkVElDZjNocy9vU0tSOWdjdWJBd1Y4NjR1YkFGTklsei9va3BBMWtUVjRT?=
- =?utf-8?Q?AdHug1YIXa+QC4cs7jAnZ9cUE?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94fc0425-47ba-4fb4-657d-08ddb2411af0
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cXdkMzl2QVdmL0E2UC9BMmNSSDFBT1IzOFhXNmhMU2tRTEE0ck9PTVphN0ZL?=
+ =?utf-8?B?TnJRZWlBTUg4NU1EMTF6d3JFZ2k5eG1VSUFwV0NnVnc4cHM3MlcxdFRSS2hy?=
+ =?utf-8?B?N09IaHM4MC9HTzFQSjFiM2NCa2ZLWlA5azBqMEdsRXppTDNIVHR0TFUzc0NP?=
+ =?utf-8?B?QkZicmVSMWpqb0RTL2FRdzVTWFNZbXhoOE1XSFJFL0tBREw3N01RVUY0ZS8x?=
+ =?utf-8?B?N2Jzb2Zyb05TbC8xbXJwVUFUcGtWaGx5bHl4RlhzWUNuMHZhdmFQT1Y5Yzdo?=
+ =?utf-8?B?UStNUG1SNWZCcGVyeHBaeXpUVHo5RHFIeStVbnB2ZW1TODRaM3c3NlAxZi9M?=
+ =?utf-8?B?WHM2eTlzcUhMcjkrblJCRVB3Q2Z5N3dWY3VDNksydDRNQk16SXE4RS93U3U3?=
+ =?utf-8?B?bFJjc3NneEhlZVFhY04xZEE3NlNXSXBIR3pZVFRyeDNocTNadUhWV3lpUjE4?=
+ =?utf-8?B?bVZISU1FNHg2WTN4WVQrQ0NKamRTVGFKK0NlMDBhcHRGd01rbEZ2dU9ldzFw?=
+ =?utf-8?B?OURDa29tOEd5QjVmeEJmdHo4aEVyY3hBV2RLbFlFT3lDZnRZdTMzVWtzaXUx?=
+ =?utf-8?B?eXVwNzhqMGJaelBSVnFoM0IvM3lvZ3M1SnFuc2Erc0ZkeHJVR1g2SUpXSEF3?=
+ =?utf-8?B?bmVLbm1jWU9VQmEvSCt3cVlqdUZnWCtPcWx6S2FxREhYdUZTbWdHenp5KzMw?=
+ =?utf-8?B?Wk5PbEJBKzdPV2dLeXh2UFNuSWdaVGxkYmFPZGsyVkNib2xJLzhqWnBrV0Rw?=
+ =?utf-8?B?c1d6SGxiKzY0RzRtZnRQaWFZcVBiQ0dYRkRSOFRBNFBIS0FxdW15U2ptK1R2?=
+ =?utf-8?B?cVJRemQxSXVlUGhPek5abTFzTFZSNUtCV1kwYkF3bHQ3eGJEY2VHZkljaFl4?=
+ =?utf-8?B?UHFyMnlNSmMyNUJ5Wkd5Um9BN216VTRWcS9FaUZNeWppVStMb0NXbGxoREdH?=
+ =?utf-8?B?U0owTHdlcGpLa2JQb2lBNmxyU0s3eTlkRkxXWGpCSERIL1J1bDB2K0RpTS9p?=
+ =?utf-8?B?cmc1RjhCUFA4QVVaeVpSWGdNc2FHRVJrWVI2VFJOVlZSZ052N1FtMkVtM0VH?=
+ =?utf-8?B?WHdlbnB4MVZLR2NoT09YaFNZTUJYalhjWUI3UGZUeU1lcnErcW10dDduYVJo?=
+ =?utf-8?B?N2oyOHdyK1Q2azljdTBMSThtck1EenVVdDJ4d1M2OTIwYkJRanRpYm1qSjRP?=
+ =?utf-8?B?WnNXaTBlQTI0cTB6WGd6WWJoSS9HdzJBbHYxaWlxVnl3b01ZRFdwUk9scVQx?=
+ =?utf-8?B?MWJoeVZrN3EwQmJISGxTdThPd2JMYXRJbm5tZDRGbmJPVGZ2aUxiN3N1dkxQ?=
+ =?utf-8?B?NFVMOG1yMTh5QmlSbS95QUY1ajROYlhEQzRZZW5wekk2TG10Z2ZIYUN2TDJs?=
+ =?utf-8?B?Q1pxUmhRcU5GaWRFcU0yY3VmT2U4MnJNUEZkVFN1WXZVNUYyTVhYRXNLL1NL?=
+ =?utf-8?B?dEdiaWpaK0tZKy9SN1gydlRja0FoMGJzQWRKVTV1Vmp5cTJDbnk4WEdWbWVx?=
+ =?utf-8?B?SytYR3hvK2ZEbE5xM0F5SDg4T1paOStIZWd6R0NidmovNHNrSUJ5Vi9CVmE4?=
+ =?utf-8?B?YmRhaFRjRElzTjA0L0djYlRJQXovTk5pRkE2UHVhS0RIWDdUVDVoa2owSmxG?=
+ =?utf-8?B?bHlDWWJLN2pBazE4ZVVDbndJNU1DTlNJdVJYcGxleDRMalBQMVFGQ0laZzJX?=
+ =?utf-8?B?SXUxRW4rZGJTQmxsQ2o4S2c4eklKQlNMZkV0d2kvR1JWQXhIMndhY1Z0b0JC?=
+ =?utf-8?B?a3c2UTJkbzM2ajllNjRyYlVGTnY0MVFTaVJyc1lRak1NSEZnNHhHSkYxRGY1?=
+ =?utf-8?B?UUdWY28rZkU1bENaWkJ2cGZQRGNwT3NqNkl5TnVxNEU1QXh6Ukg0WVJML0Y2?=
+ =?utf-8?B?MXIvSkhhUDhkcXIzcTlBUy9uVlVLSUQyR3lSS3c0S3BNQmhGaWh4WU5pY01B?=
+ =?utf-8?B?OGgwcVFKRVlraWhVdmlzcEw1YktvSkllMVFuMlVLc3J2RVFQb3QweTcwS2JX?=
+ =?utf-8?B?aFFiOWV1RzBtRHpsU0xyMzJaM2YzeHRuaTdmUFJIOE9SYTZsYXd6TzdIUnpM?=
+ =?utf-8?B?bk5MbFNnZDN5TlpERWkxNVVPS2lZbWxBSjArT0VrNENySGkwUHFMUElpQ293?=
+ =?utf-8?Q?Veo9NAtKzFDUQkvZABC0nKvn4?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2c8948c-0e68-4f7e-646c-08ddb2430f64
 X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB7014.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2025 10:31:25.4646 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2025 10:45:24.9639 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aFLbVUlQX+IKFa5F9jwzGauxEUXzuD3ooZdbqE3Z7JYsgA5kLA+vtGAIiN+W8Uhj2nqDlScij9+ZC4bF7xdBlg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8677
+X-MS-Exchange-CrossTenant-UserPrincipalName: 98xx1kjuXpCexFm0nGZ7OaIPdaEB8KEiXeU6AmUgZkEdqZPA2+hPh0No/HrPQckPC8nt+27tCENvw2nQaW+XNg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9201
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,63 +198,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 10/06/2025 15:58, Upadhyay, Tejas wrote:
->
->> -----Original Message-----
->> From: Levi, Ilia <ilia.levi@intel.com>
->> Sent: 10 June 2025 15:09
->> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
->> xe@lists.freedesktop.org
->> Cc: Elbaz, Koby <koby.elbaz@intel.com>; Sinyuk, Konstantin
->> <konstantin.sinyuk@intel.com>; Avizrat, Yaron <yaron.avizrat@intel.com>;
->> Haimovski, Moti <moti.haimovski@intel.com>; Freiman, Didi
->> <didi.freiman@intel.com>
->> Subject: Re: [PATCH v2] drm/xe: Support for mmap-ing mmio regions
->>
->> On 09/06/2025 17:20, Upadhyay, Tejas wrote:
->>>> -----Original Message-----
->>>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
->>>> Ilia Levi
->>>> Sent: 09 June 2025 15:30
->>>> To: intel-xe@lists.freedesktop.org
->>>> Cc: Levi, Ilia <ilia.levi@intel.com>; Elbaz, Koby
->>>> <koby.elbaz@intel.com>; Sinyuk, Konstantin
->>>> <konstantin.sinyuk@intel.com>; Avizrat, Yaron
->>>> <yaron.avizrat@intel.com>; Haimovski, Moti
->>>> <moti.haimovski@intel.com>; Freiman, Didi <didi.freiman@intel.com>
->>>> Subject: [PATCH v2] drm/xe: Support for mmap-ing mmio regions
->>>>
+On 10/06/2025 17:21, Matthew Brost wrote:
+> On Tue, Jun 10, 2025 at 04:57:51PM +0300, Levi, Ilia wrote:
+>> On 09/06/2025 18:46, Matthew Brost wrote:
+>>> On Mon, Jun 09, 2025 at 12:59:38PM +0300, Ilia Levi wrote:
 >>>> Allow the driver to expose hardware register spaces to userspace
->>>> through GEM objects with fake mmap offsets. This can be useful for
->>>> userspace- firmware communication, debugging, etc.
+>>>> through GEM objects with fake mmap offsets. This can be useful
+>>>> for userspace-firmware communication, debugging, etc.
 >>>>
 >>>> v2: Minor doc fix (CI)
 >>>>
 >>>> Signed-off-by: Ilia Levi <ilia.levi@intel.com>
 >>>> ---
 >>>>  drivers/gpu/drm/xe/xe_device_types.h |  14 +++
->>>>  drivers/gpu/drm/xe/xe_mmio.c         | 142
->> +++++++++++++++++++++++++++
+>>>>  drivers/gpu/drm/xe/xe_mmio.c         | 142 +++++++++++++++++++++++++++
 >>>>  drivers/gpu/drm/xe/xe_mmio.h         |   4 +
 >>>>  3 files changed, 160 insertions(+)
 >>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h
->>>> b/drivers/gpu/drm/xe/xe_device_types.h
+>>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
 >>>> index ac27389ccb8b..78542de0d48d 100644
 >>>> --- a/drivers/gpu/drm/xe/xe_device_types.h
 >>>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
 >>>> @@ -10,6 +10,7 @@
->>>>
+>>>>  
 >>>>  #include <drm/drm_device.h>
 >>>>  #include <drm/drm_file.h>
 >>>> +#include <drm/drm_gem.h>
 >>>>  #include <drm/drm_pagemap.h>
 >>>>  #include <drm/ttm/ttm_device.h>
->>>>
+>>>>  
 >>>> @@ -161,6 +162,19 @@ struct xe_mmio {
 >>>>  	u32 adj_offset;
 >>>>  };
->>>>
+>>>>  
 >>>> +/**
 >>>> + * struct xe_mmio_gem - GEM wrapper for xe_mmio
 >>>> + *
@@ -268,84 +242,112 @@ On 10/06/2025 15:58, Upadhyay, Tejas wrote:
 >>>> +
 >>>> +	/** @mmio: The MMIO region to expose */
 >>>> +	struct xe_mmio mmio;
+>>> Any reason not this is not a pointer to xe_mmio?
+>>
+>> Yes, I'd like to keep xe_mmio a lightweight object that could even be defined on the stack.
+>> Here's an example of how this could be used:
+>>
+>> int foo_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>> {
+>>     struct xe_mmio mmio = {0};
+>>     struct xe_mmio_gem *gem;
+>>
+>>     xe_mmio_init(&mmio, xe_device_get_root_tile(xe), xe->mmio.regs +
+>>                               SOME_HW_BLOCK_PCI_OFFSET, SOME_HW_BLOCK_SIZE);
+>>
+>>     gem = xe_mmio_gem_create(&mmio, file);
+>>     / * store the gem somewhere, return drm_vma_node_offset_addr(&gem->base.vma_node) to the user */
+>> }
+>>
+>> - Ilia
+>>
+>>
 >>>> +};
 >>>> +
 >>>>  /**
 >>>>   * struct xe_tile - hardware tile structure
 >>>>   *
->>>> diff --git a/drivers/gpu/drm/xe/xe_mmio.c
->>>> b/drivers/gpu/drm/xe/xe_mmio.c index 7357458bc0d2..6bfa915a9602
->>>> 100644
+>>>> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+>>>> index 7357458bc0d2..6bfa915a9602 100644
 >>>> --- a/drivers/gpu/drm/xe/xe_mmio.c
 >>>> +++ b/drivers/gpu/drm/xe/xe_mmio.c
->>>> @@ -408,3 +408,145 @@ int xe_mmio_wait32_not(struct xe_mmio
->> *mmio,
->>>> struct xe_reg reg, u32 mask, u32 va  {
->>>>  	return __xe_mmio_wait32(mmio, reg, mask, val, timeout_us, out_val,
->>>> atomic, false);  }
+>>>> @@ -408,3 +408,145 @@ int xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 va
+>>>>  {
+>>>>  	return __xe_mmio_wait32(mmio, reg, mask, val, timeout_us, out_val, atomic, false);
+>>>>  }
 >>>> +
 >>>> +/**
 >>>> + * DOC: Exposing MMIO regions to userspace
 >>>> + *
->>>> + * In certain cases, the driver may allow userspace to mmap a
->>>> +portion of the
->>>> hardware registers.
+>>>> + * In certain cases, the driver may allow userspace to mmap a portion of the hardware registers.
 >>>> + *
 >>>> + * This can be done as follows:
 >>>> + * 1. Define an xe_mmio instance that represents this portion.
->>>> + * 2. Call xe_mmio_gem_create() to create a GEM object with an
->>>> + mmap-able
->>>> fake offset.
->>>> + * 3. Use drm_vma_node_offset_addr() on the created GEM object to
->>>> retrieve the fake offset.
+>>>> + * 2. Call xe_mmio_gem_create() to create a GEM object with an mmap-able fake offset.
+>>>> + * 3. Use drm_vma_node_offset_addr() on the created GEM object to retrieve the fake offset.
 >>>> + * 4. Provide the fake offset to userspace.
->>>> + * 5. Userspace can call mmap with the fake offset. The length
->>>> + provided to
->>>> mmap
+>>>> + * 5. Userspace can call mmap with the fake offset. The length provided to mmap
 >>>> + *    must match the size of the xe_mmio instance.
->>>> + * 6. When the region is no longer needed, call
->>>> + xe_mmio_gem_destroy() to
->>>> release the GEM object.
+>>>> + * 6. When the region is no longer needed, call xe_mmio_gem_destroy() to release the GEM object.
 >>>> + *
->>>> + * Limitations: The exposed xe_mmio must be page-aligned with
->>>> + regards to
->>>> its BAR offset and size.
+>>>> + * Limitations: The exposed xe_mmio must be page-aligned with regards to its BAR offset and size.
 >>>> + *
->>>> + * WARNING: Exposing MMIO regions to userspace can have security and
->>>> stability implications.
+>>>> + * WARNING: Exposing MMIO regions to userspace can have security and stability implications.
 >>>> + * Make sure not to expose any sensitive registers.
+>>> This is no secondary issue, it is a primary one. There is no way we can
+>>> expose entire PCIe MMIO register space to a non-root user (a root user
+>>> itself can just mmap the PCIe MMIO bar bypassing the XeKMD if it wants
+>>> btw).
+>>>
+>>> What is the requirement for this patch? I know on other PCIe devices
+>>> I've worked on we had similar issues where we needed to expose a subset
+>>> of the PCIe MMIO register space to user space for kernel bypass
+>>> submission - everything we needed to expose in that case was 4k aligned
+>>> + tied to a single process via a KMD config before mapping to user
+>>> space. I suspect to do anything safely here, somethine similar needs to
+>>> be done.
+>>>
+>>> Matt
+>>
+>> As you've figured out -  the idea is of course to expose small chunks (say 1 page)
+>> that are allocated solely to a specific user. One use-case is direct submission in
+>> upcoming platforms. I am checking 4K alignment in the patch. Not sure what
+>> you mean about KMD config - xe_mmio_gem_create accepts a drm_file *.
+> On the previous device I worked on we'd config some non-user exposed
+> MMIO registers to tie the exposed user registers to specifc user process
+> (e.g. we'd setup the PASID of the exposed submission queue). Not sure if
+> something like is required on the upcoming device(s).
+>
+>> So the driver performs exposure of an MMIO region on behalf of the user and
+>> only this user will be able to perform mmap. Do you think anything else is required
+>> here?
+> No, I think it makes sense now but personally I'd drop the reuse of
+> xe_mmio and keep that as a heavy weight kernel object only used in
+> xe_device, xe_tile, xe_gt, etc...
+>
+> Can you just pass in size / MMIO address (result of xe_mmio_phys_addr)
+> to xe_mmio_gem_create? I think that would avoid a bit confusion.
+>
+> Matt
+
+
+The usage of "small" xe_mmio's is actually something we do want in upcoming platforms.
+But I agree that copying the xe_mmio into xe_mmio_gem is somewhat not intuitive (hence your
+question about it not being a pointer before). How about leaving xe_mmio_gem_create signature as is, but storing only xe_mmio_phys_addr(mmio) in the xe_mmio_gem struct? I'll send out a revision with this change - hopefully it will make this less confusing.
+
+- Ilia
+
+>
+>> - Ilia
+>>
 >>>> + */
 >>>> +
->>>> +static void xe_mmio_gem_free(struct drm_gem_object *); static int
->>>> +xe_mmio_gem_mmap(struct drm_gem_object *, struct vm_area_struct
->> *);
+>>>> +static void xe_mmio_gem_free(struct drm_gem_object *);
+>>>> +static int xe_mmio_gem_mmap(struct drm_gem_object *, struct vm_area_struct *);
 >>>> +
 >>>> +static const struct vm_operations_struct vm_ops = {
 >>>> +	.open = drm_gem_vm_open,
 >>>> +	.close = drm_gem_vm_close,
->>> Should you remap in fault handler, to make sure mapping is there always?
->>
->> Hmm, do you see any benefit for lazy mapping here?
->> When a user maps HW registers (presumably a page or so - not much more) I
->> think it would be ok to do the mapping immediately on mmap. But let me
->> know if I'm missing something here.
->> - Ilia
-> In case user is doing some memory r/w and some event like hotunplug or similar would happen you may need some dummy page map in order allow smoother exit for user. Also for any other case mapping disappears fault handler would help reestablish mapping if device is working fine.
->
-> Tejas
-
-
-With the current patch, the user will receive SIGBUS when writing to the mmio after hot-unplug.
-But during hot-unplug the driver gets unbound, so any fault handler wouldn't be called anyway.
-I guess the fault handler could help if the driver was to intentionally zap the user PTEs, but AFAIK
-we don't do that in Xe. So for a BAR mapping like in this case, I think a fault handler is an overkill.
-I don't see a real-life scenario where mapping re-establishment could occur. Please correct me if I'm wrong.
-There are enough examples in the kernel of drivers that don't establish a fault handler too:
-amdkfd, exynos, mediatek, rockchip to name a few.
-
-- Ilia
-
->>
 >>>> +};
 >>>> +
 >>>> +static const struct drm_gem_object_funcs xe_mmio_gem_funcs = {
@@ -354,46 +356,43 @@ amdkfd, exynos, mediatek, rockchip to name a few.
 >>>> +	.vm_ops = &vm_ops,
 >>>> +};
 >>>> +
->>>> +static inline struct xe_mmio_gem *to_xe_mmio_gem(struct
->>>> +drm_gem_object
->>>> +*obj) {
->>>> +	return container_of(obj, struct xe_mmio_gem, base); }
+>>>> +static inline struct xe_mmio_gem *to_xe_mmio_gem(struct drm_gem_object *obj)
+>>>> +{
+>>>> +	return container_of(obj, struct xe_mmio_gem, base);
+>>>> +}
 >>>> +
->>>> +static inline phys_addr_t xe_mmio_phys_addr(struct xe_mmio *mmio) {
+>>>> +static inline phys_addr_t xe_mmio_phys_addr(struct xe_mmio *mmio)
+>>>> +{
 >>>> +	struct xe_device *xe = tile_to_xe(mmio->tile);
 >>>> +
 >>>> +	/*
->>>> +	 * All MMIO instances are currently on PCI BAR 0, so we can do the
->>>> trick below.
->>>> +	 * In the future we may want to store the physical address in
->>>> +struct
->>>> xe_mmio.
+>>>> +	 * All MMIO instances are currently on PCI BAR 0, so we can do the trick below.
+>>>> +	 * In the future we may want to store the physical address in struct xe_mmio.
 >>>> +	 */
->>>> +	return pci_resource_start(to_pci_dev(xe->drm.dev),
->>>> GTTMMADR_BAR) +
->>>> +		(uintptr_t)(mmio->regs - xe->mmio.regs); }
+>>>> +	return pci_resource_start(to_pci_dev(xe->drm.dev), GTTMMADR_BAR) +
+>>>> +		(uintptr_t)(mmio->regs - xe->mmio.regs);
+>>>> +}
 >>>> +
 >>>> +/**
 >>>> + * xe_mmio_gem_create - Expose an MMIO region to userspace
 >>>> + * @mmio: xe_mmio instance
 >>>> + * @file: DRM file descriptor
 >>>> + *
->>>> + * This function creates a GEM object with an mmap-able fake offset
->>>> +that wraps
+>>>> + * This function creates a GEM object with an mmap-able fake offset that wraps
 >>>> + * the provided xe_mmio instance.
 >>>> + *
 >>>> + * See: "Exposing MMIO regions to userspace"
 >>>> + */
 >>>> +struct xe_mmio_gem *
->>>> +xe_mmio_gem_create(struct xe_mmio *mmio, struct drm_file *file) {
+>>>> +xe_mmio_gem_create(struct xe_mmio *mmio, struct drm_file *file)
+>>>> +{
 >>>> +	struct xe_device *xe = tile_to_xe(mmio->tile);
 >>>> +	size_t size = mmio->regs_size;
 >>>> +	struct xe_mmio_gem *obj;
 >>>> +	struct drm_gem_object *base;
 >>>> +	int err;
 >>>> +
->>>> +	if ((xe_mmio_phys_addr(mmio) % PAGE_SIZE != 0) || (size %
->>>> PAGE_SIZE != 0))
+>>>> +	if ((xe_mmio_phys_addr(mmio) % PAGE_SIZE != 0) || (size % PAGE_SIZE != 0))
 >>>> +		return ERR_PTR(-EINVAL);
 >>>> +
 >>>> +	obj = kzalloc(sizeof(*obj), GFP_KERNEL);
@@ -421,7 +420,8 @@ amdkfd, exynos, mediatek, rockchip to name a few.
 >>>> +	return ERR_PTR(err);
 >>>> +}
 >>>> +
->>>> +static void xe_mmio_gem_free(struct drm_gem_object *base) {
+>>>> +static void xe_mmio_gem_free(struct drm_gem_object *base)
+>>>> +{
 >>>> +	struct xe_mmio_gem *obj = to_xe_mmio_gem(base);
 >>>> +
 >>>> +	drm_gem_object_release(base);
@@ -432,18 +432,18 @@ amdkfd, exynos, mediatek, rockchip to name a few.
 >>>> + * xe_mmio_gem_destroy - Destroy the GEM object wrapping xe_mmio
 >>>> + * @gem: the GEM object to destroy
 >>>> + *
->>>> + * This function releases resources associated with the GEM object
->>>> +created by
+>>>> + * This function releases resources associated with the GEM object created by
 >>>> + * xe_mmio_gem_create().
 >>>> + *
 >>>> + * See: "Exposing MMIO regions to userspace"
 >>>> + */
->>>> +void xe_mmio_gem_destroy(struct xe_mmio_gem *gem) {
+>>>> +void xe_mmio_gem_destroy(struct xe_mmio_gem *gem)
+>>>> +{
 >>>> +	xe_mmio_gem_free(&gem->base);
 >>>> +}
 >>>> +
->>>> +static int xe_mmio_gem_mmap(struct drm_gem_object *base, struct
->>>> +vm_area_struct *vma) {
+>>>> +static int xe_mmio_gem_mmap(struct drm_gem_object *base, struct vm_area_struct *vma)
+>>>> +{
 >>>> +	struct xe_mmio_gem *obj = to_xe_mmio_gem(base);
 >>>> +	struct xe_mmio *mmio = &obj->mmio;
 >>>> +
@@ -451,66 +451,39 @@ amdkfd, exynos, mediatek, rockchip to name a few.
 >>>> +		return -EINVAL;
 >>>> +
 >>>> +	/*
->>>> +	 * Set vm_pgoff (used as a fake buffer offset by DRM) to 0 and map
->>>> the
+>>>> +	 * Set vm_pgoff (used as a fake buffer offset by DRM) to 0 and map the
 >>>> +	 * whole buffer from the start.
 >>>> +	 */
 >>>> +	vma->vm_pgoff = 0;
->>> I am not sure, but is it confirmed this offset wont be used by anything else?
->>
->> Yes, I believe it is used to lookup the GEM object in drm_gem_mmap and
->> that's it.
->>
->> Also many (maybe all?) drivers do exactly this, for example see:
->> mtk_gem_object_mmap
->> exynos_drm_gem_mmap_buffer
->> rockchip_drm_gem_object_mmap
->> __tegra_gem_mmap
->>
->> - Ilia
->>
->>
 >>>> +	vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
 >>>> +
->>>> +	vm_flags_set(vma, VM_IO | VM_PFNMAP | VM_DONTEXPAND |
->>>> VM_DONTDUMP |
+>>>> +	vm_flags_set(vma, VM_IO | VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP |
 >>>> +		     VM_DONTCOPY | VM_NORESERVE);
->>> Do you want to allow cow_mapping?
->>
->> Good question... I probably should enforce that the user passed
->> MAP_SHARED, thanks!
->> - Ilia
->>
->>
->>> Tejas
 >>>> +
->>>> +	return remap_pfn_range(vma, vma->vm_start,
->>>> xe_mmio_phys_addr(mmio) >> PAGE_SHIFT,
->>>> +			       base->size, vma->vm_page_prot); }
->>>> diff --git a/drivers/gpu/drm/xe/xe_mmio.h
->>>> b/drivers/gpu/drm/xe/xe_mmio.h index c151ba569003..2990bbcef24d
->>>> 100644
+>>>> +	return remap_pfn_range(vma, vma->vm_start, xe_mmio_phys_addr(mmio) >> PAGE_SHIFT,
+>>>> +			       base->size, vma->vm_page_prot);
+>>>> +}
+>>>> diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+>>>> index c151ba569003..2990bbcef24d 100644
 >>>> --- a/drivers/gpu/drm/xe/xe_mmio.h
 >>>> +++ b/drivers/gpu/drm/xe/xe_mmio.h
 >>>> @@ -8,6 +8,7 @@
->>>>
+>>>>  
 >>>>  #include "xe_gt_types.h"
->>>>
+>>>>  
 >>>> +struct drm_file;
 >>>>  struct xe_device;
 >>>>  struct xe_reg;
->>>>
->>>> @@ -42,4 +43,7 @@ static inline struct xe_mmio
->>>> *xe_root_tile_mmio(struct xe_device *xe)
+>>>>  
+>>>> @@ -42,4 +43,7 @@ static inline struct xe_mmio *xe_root_tile_mmio(struct xe_device *xe)
 >>>>  	return &xe->tiles[0].mmio;
 >>>>  }
->>>>
->>>> +struct xe_mmio_gem *xe_mmio_gem_create(struct xe_mmio *mmio,
->> struct
->>>> +drm_file *file); void xe_mmio_gem_destroy(struct xe_mmio_gem *gem);
+>>>>  
+>>>> +struct xe_mmio_gem *xe_mmio_gem_create(struct xe_mmio *mmio, struct drm_file *file);
+>>>> +void xe_mmio_gem_destroy(struct xe_mmio_gem *gem);
 >>>> +
 >>>>  #endif
->>>> --
+>>>> -- 
 >>>> 2.43.0
-
+>>>>
 
