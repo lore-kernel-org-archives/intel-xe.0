@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 519F9C7EE33
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C990C77B7F
 	for <intel-xe@archiver.kernel.org>; Mon, 23 Jun 2025 15:17:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC48F10E3CF;
-	Mon, 23 Jun 2025 15:17:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0605A10E3D2;
+	Mon, 23 Jun 2025 15:17:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wuek0Q10";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m/3l6SMB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA5E10E1F3
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 15:17:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C229F10E1F3
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 15:17:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1750691876; x=1782227876;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FZtiC73+Sy0zkDr3HHN5VBXL1F2jwdLHN2pYywfsFZo=;
- b=Wuek0Q10gGIybwkEebb80iWtbYkrNzv4iqUq0uV/FqBVJvzqVMvB1GSc
- zyaXyQexKXCgtFH/x9TjoXNj86eTERiqbDpFNcoFbLVQ+yQm3pIZGJa4D
- 52Toq271SwYcxDE+jTZ6SjHpXNyErMLCEin9gYT3++bZvRxnZNEkB5JFy
- MTKCkkxNAbcGy0v5NzyRLeJBs0RYBs3bXxihMqKUuw5iq35b3jaR9wSnH
- OvpWC9H0x0DNtYH5Mgrrf/8dqCYRvNerhdECBu8XMekUpnhrZK6h1Q2O6
- Fvi6flawiI95xnV0yCzpHroMbitEoq2j+TG+0IWNBM+77KG7JRMU3Rdtb A==;
-X-CSE-ConnectionGUID: v0rER4s3TWeG/YSdilUM0w==
-X-CSE-MsgGUID: LWKtIZW2QTmkLUZz85Iupg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="70329567"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="70329567"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=hfTRV3nUE365F4722YyxlPGDCTjsyM4Pgifhy16644w=;
+ b=m/3l6SMBaWTJU4qc4L+9msTiLPfci0HBPPPvzWzqfw5e2qNaY4FttX/6
+ gnHjT4Cqm6cbh6Kewd3ecQURs7DjjwvX0TNlW8zugADFv8e9sSziLIJlZ
+ sO6PUln88+r+qqxqnCO0jPE7QkPW6uRTiz3COflmVreuOaQNT5xG1HGJo
+ /p/Na/Fv6T19lT7PEiFS5z6pFaVcibMGBfuZ2f+vFH165Xg4gkpwYumE6
+ XSKIBEIt14Btz2Qrtktj+wyABnguC/OUJkHj9aEHl0krIZIfrB/YIxAQo
+ TA0JjuM3Hsd4vK0BCUXNBWfhpOsHpDUI7Uw+vXOpWPD0NUgwQCTo5MQdw A==;
+X-CSE-ConnectionGUID: uKC/tnYWSEyDR3Ijux2wmg==
+X-CSE-MsgGUID: 0GaE++9RSAW06uvcMWt5UA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="70329570"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="70329570"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jun 2025 08:17:52 -0700
-X-CSE-ConnectionGUID: zKsv1MAdRKKdgpsl/cgAQQ==
-X-CSE-MsgGUID: p/Js4527SomE0LJMBOwLfw==
+X-CSE-ConnectionGUID: z24T89WESL6IC23IkpyRwQ==
+X-CSE-MsgGUID: +zN1cNOFR+uYVgMUhqCkNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="182669668"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="182669678"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jun 2025 08:17:52 -0700
@@ -45,10 +45,12 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@linux.intel.com,
 	matthew.auld@intel.com
-Subject: [PATCH v3 0/4] Implement clear VRAM on free 
-Date: Mon, 23 Jun 2025 08:19:25 -0700
-Message-Id: <20250623151929.2422584-1-matthew.brost@intel.com>
+Subject: [PATCH v3 3/4] drm/xe: Add xe_bo_tt_has_data helper
+Date: Mon, 23 Jun 2025 08:19:28 -0700
+Message-Id: <20250623151929.2422584-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250623151929.2422584-1-matthew.brost@intel.com>
+References: <20250623151929.2422584-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,38 +67,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not use a delayed worker to destroy BO VMAs. Drop the BO argument
-from xe_migrate_clear, as this function can be called with a BO that has
-a zero reference count. Finally, implement VRAM clearing on free.
+Add xe_bo_tt_has_data helper which determines if a BO has TT data (i.e.,
+a BO has SRAM or swap backing store).
 
-Avoiding a delayed worker for BO VMA destruction ensures timely
-finalization of the BO during unbind, which should improve the
-performance of clear-on-free. This change is therefore included in this
-series.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c | 21 ++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_bo.h |  2 ++
+ 2 files changed, 20 insertions(+), 3 deletions(-)
 
-v3:
- - Fix kunit
-
-Matt
-
-Matthew Brost (4):
-  drm/xe: Only use delayed worker to destroy userptr VMAs
-  drm/xe: Drop BO argument from xe_migrate_clear
-  drm/xe: Add xe_bo_tt_has_data helper
-  drm/xe: Implement clear VRAM on free
-
- drivers/gpu/drm/xe/tests/xe_migrate.c | 22 +++++---
- drivers/gpu/drm/xe/xe_bo.c            | 75 +++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_bo.h            |  2 +
- drivers/gpu/drm/xe/xe_migrate.c       | 50 +++++++++++------
- drivers/gpu/drm/xe/xe_migrate.h       |  9 ++-
- drivers/gpu/drm/xe/xe_res_cursor.h    | 26 +++++++++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c  |  6 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h  |  6 ++
- drivers/gpu/drm/xe/xe_vm.c            | 80 ++++++++++++++-------------
- drivers/gpu/drm/xe/xe_vm_types.h      | 13 ++---
- 10 files changed, 213 insertions(+), 76 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index c93381fa4858..7a412121477e 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -766,6 +766,23 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+ 	return 0;
+ }
+ 
++/**
++ * xe_bo_tt_has_data() - Xe BO has TT data (i.e., Xe BO has SRAM or swap backing
++ * store)
++ *
++ * Helper to determine if a BO has TT data. Useful to determine if copies or
++ * clears are needed on BO when it is moving.
++ *
++ * Return: True if a BO has TT data, False otherwise
++ */
++bool xe_bo_tt_has_data(struct xe_bo *bo)
++{
++	struct ttm_tt *ttm = bo->ttm.ttm;
++
++	return ttm && (ttm_tt_is_populated(ttm) ||
++		       (ttm->page_flags & TTM_TT_FLAG_SWAPPED));
++}
++
+ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		      struct ttm_operation_ctx *ctx,
+ 		      struct ttm_resource *new_mem,
+@@ -801,9 +818,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		return ret;
+ 	}
+ 
+-	tt_has_data = ttm && (ttm_tt_is_populated(ttm) ||
+-			      (ttm->page_flags & TTM_TT_FLAG_SWAPPED));
+-
++	tt_has_data = xe_bo_tt_has_data(bo);
+ 	move_lacks_source = !old_mem || (handle_system_ccs ? (!bo->ccs_cleared) :
+ 					 (!mem_type_is_vram(old_mem_type) && !tt_has_data));
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 02ada1fb8a23..150e98ce6fac 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -374,6 +374,8 @@ void xe_bo_dev_fini(struct xe_bo_dev *bo_device);
+ 
+ struct sg_table *xe_bo_sg(struct xe_bo *bo);
+ 
++bool xe_bo_tt_has_data(struct xe_bo *bo);
++
+ /*
+  * xe_sg_segment_size() - Provides upper limit for sg segment size.
+  * @dev: device pointer
 -- 
 2.34.1
 
