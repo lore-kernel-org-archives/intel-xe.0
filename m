@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4541C77B7F
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Jun 2025 11:23:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E626C77B7F
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Jun 2025 11:27:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 704A410E383;
-	Mon, 23 Jun 2025 11:23:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5E010E0DC;
+	Mon, 23 Jun 2025 11:27:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JTmOc3sz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dd7L3fgu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A32A10E371
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 11:23:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0F7410E0DC
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 11:27:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750677810; x=1782213810;
+ t=1750678027; x=1782214027;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=1g+KTEOquZf2kqC4gFS4TLOgsZoeRtnLL/e2lkX1b14=;
- b=JTmOc3szXzf/kM84Brs8xoz/j9QhbuJe4VENyBUwnJDjTWvX23rlnCWj
- 1qLIEWGNk6+GruiKLQnZI9j0qikaG3zjEe4Yx4djwxGNq3uwmPO9UwcDC
- gi74yetazfqWBjRJsVe2ZK98Vqw6df/mIMVQdxmAFRCU5KAbIVQcdyOMn
- QnjZGnbZ2ljuY+93DI2hefkgV+KEH7dfNWXC1nslwYU5ccZCm0/NeCWFA
- LCN0I+VXOfm7cZ28jvfls0/Euzn74OSDdzIOzQB8e7FFyiIgk1Mtgo4w0
- ieUFG2LjCn/mlJ7SlROwAiLHBuUTDR3WNbV9z8moHQX3+loxd483DfDGv A==;
-X-CSE-ConnectionGUID: Qx9H2xMBQuum/qZNEf8YCA==
-X-CSE-MsgGUID: zVRD3ozaQxuQh6q7evjEIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="56552921"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="56552921"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 04:23:28 -0700
-X-CSE-ConnectionGUID: Snop7C70R2G3c/Ync0Esvg==
-X-CSE-MsgGUID: Ndkr/ivFSZWirlfAz3TMoQ==
+ in-reply-to:mime-version;
+ bh=Xz4DgYYkwpH0sFSuHPBBSbsoWYp6uJNcjUHklb/53g0=;
+ b=dd7L3fgu8NMdlHu2JSQs2l6C/quKu+pzCL/B/2D28bI0zH5cZAxC+Q5l
+ WD8wVBArBBHh6XunmShHRy4wi8ZslNHqZk1NeWTs2CGVxalpJ+fgxqRMV
+ VKcjRwgUGdm5DB8zZqedgXW2FoCyz9sbNVP4fYfqRg7j+JHGUbCFeXX+0
+ UfxZ17sn4aAwUw8O00ZYYLtZBUqoria7D/s1uP7kWHoyw9ZTMzTe8ufal
+ 5BfqKSpwk9amEuKx5gbYULVHvzrjY1sj0kRi/pzzI/zRuGn4cdJZSfTlO
+ PuWeYjGYp3xR2Zub5pdTXQdaIOlWFiIkiY26Tm3nKxVZvGioUNGCoqSXB g==;
+X-CSE-ConnectionGUID: AzMPoERLR6+6OwUmR/z4mQ==
+X-CSE-MsgGUID: 3XciHPnnRfaPUZefWWZOTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="56660490"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="56660490"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2025 04:27:07 -0700
+X-CSE-ConnectionGUID: MJe09JpmQnC2THwS1GLf5w==
+X-CSE-MsgGUID: PHKwU+Y6QsahCjfA5wKbGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="151046891"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 04:23:27 -0700
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="151348648"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2025 04:27:06 -0700
 Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 23 Jun 2025 04:23:27 -0700
+ 15.2.1544.25; Mon, 23 Jun 2025 04:27:06 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Mon, 23 Jun 2025 04:23:27 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.62)
+ 15.2.1544.25 via Frontend Transport; Mon, 23 Jun 2025 04:27:06 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.69)
  by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 23 Jun 2025 04:23:26 -0700
+ 15.2.1544.25; Mon, 23 Jun 2025 04:27:06 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ql05dtTCTdmgWoIRn5TWtrBPqIGo2HC/jCh1uq6TImJ6gFCgBECZzw6LFjg8CSs2193d2j2Xb2XsnM7Qtk8dW0onLCoY//F0aHHx4GU6B0wJulFVuZ2EDZPESS85VGXa3hjWfwajpix0bGfBHnTvsmBejLtTt/T9fF66OpprGDGPGCTnPV7SyyZPXAJJgu9F/wp87ZETRShUj/yj1sNgNoTXbEBWuDu1pl1WFjTdYF9cxk3NQGTw4nAfbQ0zPZokqmFbrW2vVJSSQzi1ch5jlFsGunPBBeMc7JlwXf0a1+DkKBL1mn3k2YLplZWPT0ZsGBINnSTRf0BcMgrje3/L1A==
+ b=VW2mNXroFb7NZd19x697LfwkDv+PKHM3lbsHo55Up+2zVETOJ3mSuJuWBqkFqpgT7rvS84O1OZbTM8YCC/mY/L2kcOCZe2D78hJgqc/EVnxAJSRN7NUMcU3UTpM4B9LJuPMfZEj5o3tcU0Dr8qndipyo1ZSycqX1F9ryS3J80jX0+eYXm1oWfVPCA92qsjKWMRkSq2FI1miYhyq4PCtefKxHo8B/0k5qDH4P7MuIHH7X+8HjCiYj1jbOUFEdSPVrVzjWEi5+RrxyyJARvcxE3J7nFY7mNh31OzO4xeU7r161xuCm6p9oC69NKkAdp0N6g3gXs81SVyOooNf9WH8gtw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lWrTuwflWpgRVBSWyCPU+GVO6ES9v6Ksd4UazZu0hLI=;
- b=Yn1j/E6ZXRVptnc8liDmwNCBVyjb6enpL3o8MCQbdR98ZHv4mlwFl+oxEs60WVSHl5udkI7/CUTFNIAqg8WNbVbe1Bq1SfKHe8Ij5mV8cEbPqn+aQUhz6Z6r0dc5wmMe4vELlHAkxHl1CMyDTlFzsahSYVfoaFRXmzmih9WhPzpVEprlINw/noQfsZikZHOHi70U/u0Cr5T+8/5Q/Iwysab432vG18byt26OjVTsQRZOTnJTObDXNfoOy89UISE/WDBRlq8pIhsq5Yyq3ineid+wpT0CbLAVby+Z4681jGXfoQtTjxxGACIHx39/eJhDc5yZ9HspHgs5axqdr05sZA==
+ bh=vVfUiA9hQkm9rcFLl88nHtRiyzu0fDLoWzCX3ME3oms=;
+ b=c4tegzai7E3YlqBdbbNyXY/heSj0IkOp8wOizCkOPwsIImtRF5WTWzBB9/NB1ICtoz+B/RgjU98Z4S0opz8SYntpKmJXN7s+I2zGBhCpN03i1JEWyCKJlzKzvAy5IGgez0AzHtS4fUcdpYzOoWJJDk631rPn62l/0PWM3HClolP7ASPA3VawbAbGS9saWi7+Cn1suvID/YrEpyfDpMJqpgvWn6WrkzZj3XewV5csur31jvcSN2nGJdzyTTU6+W7tQgoEJ61P8DU5LSiManW/5BbbquvNdxhWYyMe5/MPIPA/nwzpfMpG5EtpSFvKLDnLCoQrG/WuBJkgB6yHuwExUg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,103 +69,97 @@ Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
  by DS4PPF6EA6DD735.namprd11.prod.outlook.com (2603:10b6:f:fc02::2d)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.29; Mon, 23 Jun
- 2025 11:22:58 +0000
+ 2025 11:27:04 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.8857.016; Mon, 23 Jun 2025
- 11:22:58 +0000
-Date: Mon, 23 Jun 2025 04:24:37 -0700
+ 11:27:04 +0000
+Date: Mon, 23 Jun 2025 04:28:43 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Matthew Auld <matthew.auld@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Himal Prasad Ghimiray
- <himal.prasad.ghimiray@intel.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/migrate: make MI_TLB_INVALIDATE conditional
-Message-ID: <aFk5dTinjFYcZKjt@lstrano-desk.jf.intel.com>
-References: <20250620152446.239699-2-matthew.auld@intel.com>
- <aFWIS3/rlAWSlF6K@lstrano-desk.jf.intel.com>
- <530d502e-165d-41fb-9ce8-b6bbbbb8107a@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+CC: <intel-xe@lists.freedesktop.org>, <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Implement clear VRAM on free
+Message-ID: <aFk6awqQSGi7W/dy@lstrano-desk.jf.intel.com>
+References: <20250611054235.3540936-1-matthew.brost@intel.com>
+ <52e8452f-cad6-47c0-9a4c-0e7ff333641c@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <530d502e-165d-41fb-9ce8-b6bbbbb8107a@intel.com>
-X-ClientProxiedBy: MW4PR04CA0372.namprd04.prod.outlook.com
- (2603:10b6:303:81::17) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <52e8452f-cad6-47c0-9a4c-0e7ff333641c@intel.com>
+X-ClientProxiedBy: MW4PR04CA0112.namprd04.prod.outlook.com
+ (2603:10b6:303:83::27) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS4PPF6EA6DD735:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3562851e-e10f-40e4-ba4d-08ddb2484e66
+X-MS-Office365-Filtering-Correlation-Id: e40ba0f5-6afa-4157-f1b9-08ddb248e134
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?gmk1my2iboqBHfU4R4PummMK/Wi/7XAZfq04RmjolKkxcke3d+B/bL2mh4?=
- =?iso-8859-1?Q?l65XuTcjMF6ADzQdrSjQv/ewFFaYm+r+rlzvkpuKBl7/gus7zHtwO9T1eI?=
- =?iso-8859-1?Q?euEEpgWb0WmmR+w38wLb8neHHF6qhVt+r8e7bu7pzGsGEepKEFkKiAbRHO?=
- =?iso-8859-1?Q?ix6flW9YMyUTaXCvkQrh/2W8/pkfYsohKBVx67YJbdXXHLXMFSWrcu9tOx?=
- =?iso-8859-1?Q?oVTZD/YKUARkMD+mxl/lmn7/D9eZdAPQJYc7uTz2g9lk1JbI7Lo2rgYz2b?=
- =?iso-8859-1?Q?tMB/CriFCHeIie3Bs+CBU/07BHfrQNz5qMU3qUIOY87hayI/AdLhwoC25v?=
- =?iso-8859-1?Q?H+5iNuyJThlVaP6srLVuMRNFNKIz/2b0v1t3Qe6E+zob7dvMD2pX9sdxjb?=
- =?iso-8859-1?Q?NIKnbjL197ADjH7JgAzVUjj7blUqyUHa4/PtSdnR/HSodZm8r0H5mmhBg1?=
- =?iso-8859-1?Q?9n9XDi+/T0JBtPZCwz4TMx0lhOxF5HjjWr8fRDAOeuXxqG1X+6GQu8qgyV?=
- =?iso-8859-1?Q?CZ7kCW0GoQ7VJJ3I0bSOreEjiQvIqCnxy4IPpbaMpSpAJPsQsoSSLxHc0m?=
- =?iso-8859-1?Q?I9L9fAE58kJXuufWjTay8FkyDfjVrctfgOLb2A6fpTCSbCKjo78BQBwzrG?=
- =?iso-8859-1?Q?NROzxHqmuly3yl75vGIObNFxjxp/OhrdZAWnlmdVFrXAq2biwtwcUZXU8W?=
- =?iso-8859-1?Q?+TaepIPGMmZUs0CQwKRUjVwZtCDW2uHabLZmuSzcPWdF+osJpp8wJgrvJS?=
- =?iso-8859-1?Q?ACBRPr5GUmuuWm3GhILWo72wZlMs3DeDIu8TeW9SEcBqnhszYRjqIK5cU+?=
- =?iso-8859-1?Q?mGt2Rw4IEpcg4KUiJkRBnMkPA4TEuX9Hmw0kbO4t+/m+/t08rh4o3FOG+E?=
- =?iso-8859-1?Q?j92m80qIyUduxnJruDSTJLzjgOF0Kcl9X12OOeVhU37vgM/qUqaeKxQaKo?=
- =?iso-8859-1?Q?HHsF7HEHZmo+jh7XjAI3vdwyFWrs7WC+bTPOxPRY1j1y6PM9prAwnxJmjg?=
- =?iso-8859-1?Q?AgwYWzpg4HfMEvdk/SHXmDaI5vvl9+llcC/zfGusKMPQezFnoEquaGRHfN?=
- =?iso-8859-1?Q?Q+gjx22NNtJjMRSZCFGpNLTiUPNaxMUULccVHwYSXRiAvVnWUK7IoigECb?=
- =?iso-8859-1?Q?0w9hxun4Oe2OQBQlMEuzrGuL8aF2CEiqq8cjAmR09BH0Bj9SgmrBZVsGbe?=
- =?iso-8859-1?Q?gNN2shbiCemJUC1lPdFg0X0gQ9/xl4uc//r8V9xp4SOhTs2GrTCjS/+TkM?=
- =?iso-8859-1?Q?fu9gkVB8hnvaoPIzTCiFB5YPcANkW21VIsubRdArPp+bOv/OXZx3Q/gdal?=
- =?iso-8859-1?Q?AOD021ZbmGwkrNGmWZEJ3W41J2wWZUlSi3BYhrGkb2P31RClNeSLFyzi5M?=
- =?iso-8859-1?Q?RbkcIxy+lbZA5D5g6kzRCCdKoElbjR4cqJHroG+eSRd+8vlMjURCaAGBJv?=
- =?iso-8859-1?Q?AJm94tKqDoFFk4XeUmaxhzvR7JFsW9k+bzohwNEPJHo83bG2TM8dGK43PQ?=
- =?iso-8859-1?Q?g=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?QFaSB/NcEFUiGUbnxXAH5tzC1DQYG2XmkxUMPXOQ/ZO2Wv4RXPxEFCoieAyE?=
+ =?us-ascii?Q?I61MHJeDVc0CLJ3ME1ymA67TYf40YlGjVgd0k0TVSXwF4vUGiGifVq1oEIdO?=
+ =?us-ascii?Q?U06Z/Pcz6UIe1tD+slvQE6I7m2bvdUSZyxa0kjpexnbsI5H1atuMR2YkddA/?=
+ =?us-ascii?Q?y+NygK7raH0l/3dl4SQR2mpzj+aeOZ8xuhD/Ut68UN8UJLijl5Kea6deCqKB?=
+ =?us-ascii?Q?WrKckPuHlP3ZbQ+d+ooNKdQZwv7lxG9fbNhZdRmwDQ888OY5ffYjA2N6Op2r?=
+ =?us-ascii?Q?iKn+dYEQCwmjlnAbWT8J3ZQRQH+6jGMQ0eCY1pSMgiyfWfykZelYOObY1c0h?=
+ =?us-ascii?Q?8JmwkFwdNAmIkbtmWtLhX4ztOhCEhzkGRJ5DGDCSccm+JuqOJgYL3FAtt02L?=
+ =?us-ascii?Q?W2VP9aHUdSLeeCt4hjs4d79kzxPYJVyJs0CVRwhgidOYJRl94c8FmO0ywQCl?=
+ =?us-ascii?Q?Rijc8qQy+d4mR64GJkDLVm7Ej6ZvKArRjf+cqdkHbebntU97ocYLCcW/5iSw?=
+ =?us-ascii?Q?6nTX2644F6Dq/+DvvZqzT1I2Ufsz0J2Zyh6Um8U4hu1uBcCsSKlI/hg7oI6W?=
+ =?us-ascii?Q?jn4mrqOp2bZp++dOckz9r2tLFVpjBhuLnYFkF5R7gnpAsHweQiuAxeVy8rvc?=
+ =?us-ascii?Q?n1K02JrADCiCiSL0PYq0U5gZ7l0lVTLiANDQ2ToRDwCsvSCd8JQRu9XBz0Cf?=
+ =?us-ascii?Q?OAp7YlJX4LFg/9FtpYT44yXmaUdttMCYZ3VtCMFkNZAl4DY4stw23/9ATOYC?=
+ =?us-ascii?Q?nKlWhzaxHmjmm9ztRc0rivbyIR6fttvSlLhO1dLSTVn8StM63AYqJPElxY+7?=
+ =?us-ascii?Q?2zJxfXvNPisgkgtkwGIKWQiG4hMoIih32uVfBXHupqWjI87pXKWz23q5lNhS?=
+ =?us-ascii?Q?I0ZIOB1rO+1S0EadYiFSie3Tb/r16Yoro/rUg/xYYiYarF7t5HYZAxcrd79L?=
+ =?us-ascii?Q?S14TdgGnPUWEOJdEzENo5IN0BsihrBiGm7BQCNOWfqm/AmbW+iBUAQp19Cpw?=
+ =?us-ascii?Q?KMLqCqgXghEfOhHCDIWgrDhWGYui+KcXlgBBXWZpi15TZb0lyt5RYNGjUGpM?=
+ =?us-ascii?Q?L2qCD9IPK7kCR2uTseT3LfqdEXYQ/D/AnKLqNvHzRLifV270SU69D3YTPzSU?=
+ =?us-ascii?Q?Bic1o3LU7UFelIeb2bV66eKCrCcAp0dq/zSi1Q01zmcsHojvZemXLcEpOrb7?=
+ =?us-ascii?Q?KgvdYm/XUTuTfY1LMwPfVQIC3e91/mrNdlxgwnUL9/36YMfZ9YP6sQ9pzAA5?=
+ =?us-ascii?Q?10upVBIg271N3Re9l9CrqY0TsgLEMEb1/SvPx8EfdtSEybXWrXMoLxW+8bYX?=
+ =?us-ascii?Q?964GsJ9DnPleRG/lwZxZmx+ZqowSnFNYxVfkcSY1QzR5vNfVj0foyg9idHjK?=
+ =?us-ascii?Q?JQi7RpBVAXJXG6eIg2aUYDx8kCAKA+Fu8INVv7g4nztun+VufINNlp51lck/?=
+ =?us-ascii?Q?bWQDMoBeoVM=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?SL5nyIVETmqZ74746Vpyc+Z1BvM6jq4RWimfkspR7Y0FbaHYBl6W830+GR?=
- =?iso-8859-1?Q?ZDXElrij2hq6fDn9uV1RHJn4WvKvfkR6SX7ZsgJqMCwvUatYy2h2UsUEfb?=
- =?iso-8859-1?Q?44ci3H/b5ybdwt+lts3z3T/GNf7sd6e8Ha6t5bDNH/e5noDL7W19alZcoS?=
- =?iso-8859-1?Q?S0sZ/Xl+Pi76EePj4qgoMqt/PmSzoEswOfKfoIDDF4KIFwg6C0sAUA71/r?=
- =?iso-8859-1?Q?z31ImeYxmg0Lb7IbsKNEqhDsunkv5LFuJI1E29LWrJ4gbeT7IN948PW3dp?=
- =?iso-8859-1?Q?bo6w9BwKWb4TmnHl/PqwKTS7o8eOOFCoakvWf8DuTiMniakREW/S6NGrrN?=
- =?iso-8859-1?Q?9z4kL+76vD9Z6SEsZpkzMI4YiFUCYyqcklVyRzViPVGMdfbcswbbLlMNqc?=
- =?iso-8859-1?Q?0UNWCs0gHFPEEs5wSMnCN1g1ConfV/ggabFAweRKLYvSMQzYJ1Ig7cGUqk?=
- =?iso-8859-1?Q?DIY6J8Q+uxcn/W7z22EElYtJyYGBRJbQbh3LpClMonuFvTd8pIucQuTsRc?=
- =?iso-8859-1?Q?li3T9rq5hvAUY8/TqikmEYprg00lUtVskpwQrGcmcFI9Ay6l9rRATbm/s+?=
- =?iso-8859-1?Q?3UYFGKUMY1IN5oiNLC81EVc0cSeyqSobDV4pqBnwZVPC0UicolxfLI7YVH?=
- =?iso-8859-1?Q?HEwArVeHuxZNbUTnLluU71HSLeq0RVdweX8PPy0nWfwbIUASVcxAQgnBzx?=
- =?iso-8859-1?Q?bhuztiD3cdVCn43W6D9rPNGJNv0vHaT62rFkDoodmi45XpN383WOaLss0O?=
- =?iso-8859-1?Q?7X/XY9S8sbTQfj5pWP1A6x/TJQiHceli1vs2lGpsXjMd7yh/9GF2sO5rPN?=
- =?iso-8859-1?Q?jU9JZs2MX4Ru/W1Peu8AbYAadZLbFV+GE+h0QABRXjBd8Phcb39WMGnYjR?=
- =?iso-8859-1?Q?VG7l6TJ8+DXUomlW5+vGMPmreFkzAFfwiQFStpsEeQE+sX3VPlXQhRCfh0?=
- =?iso-8859-1?Q?et1OPGQDoGQNRvcoS106lGrDGwVWIKJ0VzMjCMjrEO1EMVdMaqALqacGAu?=
- =?iso-8859-1?Q?9vdkQcf6jA4UdI0qsqfyCRpt6vtUtVinO8cNxEQgutbOiAJfGrKIQydojW?=
- =?iso-8859-1?Q?QIqe4yNtM3cl8yvqQ9YoAwrMIi326OzpgjoNXcpqqWeVO0pwSziBBBumuv?=
- =?iso-8859-1?Q?oVb+apSKwoidGe/2U8ML1RAIZNA/cHXMx02phERa1dt464v4IRtRX3N6Je?=
- =?iso-8859-1?Q?ykNGhzO40PNbdPz3SY2SuNLBsZWkM8B/Hv6lRZu17l6gwNA3TbhUvBZ/Tg?=
- =?iso-8859-1?Q?btIgk1EImHhGXhkhHJL+QuK8sBOVfWb770NPLimo3vFGR9ICV29bUvgcI9?=
- =?iso-8859-1?Q?+aB/swgzryzABkYdl6T+OX0AIzzNpSAqDVTvl9/GJ8XWEM2Y/RupojG9nL?=
- =?iso-8859-1?Q?4nqmwlkxz6arFNSte2qS52Tz8Kb6XehAE7i/C5rmjcSap+kFGRV99/It8M?=
- =?iso-8859-1?Q?Z3JrZbIZJMyJf7F8V4pVWlePTR17/S8yEnU+ZGqA1a7qei88dro/xLYOdt?=
- =?iso-8859-1?Q?HXCAFEDxRX4hy5sG7+ikpZRWICYqdEjD6Bg++AHftQKYgqw/Slu+fUFeF9?=
- =?iso-8859-1?Q?YdMql1iMr5TnZ3DjQaQ05UKwJK3Kay5cHZDQChymQl5LHU/nMtUhDWj47w?=
- =?iso-8859-1?Q?WWc/An71WBBcoifaHx/g7cfSPpg1AaqLabonTQzUc9bKrCftKVstC7uA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3562851e-e10f-40e4-ba4d-08ddb2484e66
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?75fFfrJQJnvZLYP+0UWS0xcp02NuNvgODhzsh+FtORaSHakzlq5x1fZzEgMz?=
+ =?us-ascii?Q?xwBwdXwNlz9VQB+/lownhvEbexRXWvD907TDAsBQ3OQwofDrlVEoy7eTs1EE?=
+ =?us-ascii?Q?Pdhf4oZ5P2YhB8un55CTBqqd5H7OZKnaYA0xEeniu6xJJh7nLLOPTxE5g+fE?=
+ =?us-ascii?Q?MiYnARWL9GJUi2eBXs87PVNMCRYolZE2UHNdOC3zCDKyj0w/ZMK5gONezh46?=
+ =?us-ascii?Q?EewyiPwKsoXAWZ3k1jI5womKffHFrgWOQs50/BiU72eTn0hJ5PJT9vsZB5u1?=
+ =?us-ascii?Q?Z4Q2YXxWre6FJAbbBr8j+lTLkLm0bfWYVuXbvbLKcAPnUV+gHmPlSz6cD/xc?=
+ =?us-ascii?Q?YVvVYeGrPHlq//S01dTawzutvK/5W9BxSyL63MYuiVE/oLN2/ls95g5rKv96?=
+ =?us-ascii?Q?Y6iXusgGf5QKBtR6gaX4X1zZxsBvHPM14rCdCznh/lKdZ81caLhI/OwJ8av9?=
+ =?us-ascii?Q?Y/bXtxH4x0jXhAuuah7nibPa3PAkPRrU7DsaxSDiFQbF4vO4KC3xr4FTLZaL?=
+ =?us-ascii?Q?NhgAwkjlodtzFmc8HeFJqU7V0H7GBIC6cXAh/rnaoj+CSgvK9xRcXc4ZnFDu?=
+ =?us-ascii?Q?ppkf55kXV/NvnBXaFU/531OTbBpXtWOBDRHHtxQa5uznm1pTq2+d2lUBLfwS?=
+ =?us-ascii?Q?de12VPPA6Up1ksAFBzmz6jArdnxlxGu3U0NboCPcQD9hKT81QAyvBEZ8WFqm?=
+ =?us-ascii?Q?5i8hUKaq0xuwtOzXusjJSVv8hQdDliyxj6X1d/mxBOVp/jMlRllXDKd5jjo1?=
+ =?us-ascii?Q?Ko84qiidW5bKd8qcd/Ouprl3TodgqBPU2FqREtd7gg8nvsCACMTYEqnqmTig?=
+ =?us-ascii?Q?FMAH2tYoj2bp3wqYhYPoyd0id+i6pD7JlUmyRBcpc2nZBDszzQ7u7mcWZJw3?=
+ =?us-ascii?Q?/W2+kDiPZpNS4eRshRsqO4tkEI86/VmnU9dUC3U1RFB4gEVWtXdx6eNgMKdt?=
+ =?us-ascii?Q?H/2ACtV2XNT9rNcXQGDmg8PxKcTWb/NujoYSqT+CcnjXxeFsNq7og3D57CE8?=
+ =?us-ascii?Q?NfwsIoVo9sZ6P7IWwpw5tP8Q4W69F5P2aWqjZGXNuEDzzrQE5hVeJ1lyPC7l?=
+ =?us-ascii?Q?X+WtRjoghPCDGaMezVVzoHzUgM+Dpo2BTIYda0SLGK7RKajELotGXcqhwWwo?=
+ =?us-ascii?Q?ymYBAVoPI1fYwapMvD2hWYTeadLmOGkkSIDGIwakEzpBLBenHJyWR7veCciS?=
+ =?us-ascii?Q?Glyyw375FoQ6gkB6MUIjdC1Hb6F008ec/ClWH3aGSQVhUWBPTfde5tAiNAuG?=
+ =?us-ascii?Q?QqixBjAUJ5+cp0c3xkl66TKl1+WJCiT39ScZ7KtPxGUR3052AMF+8ltoY+9Z?=
+ =?us-ascii?Q?ppL66s5ntndZhVJi/7HsITI2j+fM+xsZ4f3AWH3/dGYuTYzYHh5ssIecHi10?=
+ =?us-ascii?Q?WQ2ffthvuvb16Lzhk0atxFFk8mzqfOyQfykZEI+6Yr2zlOhbhx9qlu9APXfo?=
+ =?us-ascii?Q?ZwJ8ZuVeAzCfh+ROmDPOo654B4pT7WDctFBsseHYLdkfKT2IFJvYOkUmvkWC?=
+ =?us-ascii?Q?Y8WvV784b+2JyYrQRQGc6YuXAdWCT1H0gQoiAfIxnqK6HpufUVkGCwKzGYpy?=
+ =?us-ascii?Q?4/iX6p+yadJ9IwTi29bL5dIcvRHEytmdCOEMw7emIHLns9+3XNK9KrjSBfVp?=
+ =?us-ascii?Q?/g=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e40ba0f5-6afa-4157-f1b9-08ddb248e134
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2025 11:22:58.0745 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2025 11:27:04.3742 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LW3yQaeRyeyf/GpyBxsTCMSC4guWm/68K7qu++Ty4Y8PxKs6u9aIl5J0BMX/5m7iy81jKNgdp9hxl9pkzPN9Lw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: jMq758pCRnZhHdsXCEg/cgZskJcnvYk5cn1heoah7KlCmav743O7a4jI0HvH8pldSZn/RIiOo01TZiHOsurYgQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF6EA6DD735
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -182,134 +176,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 23, 2025 at 10:33:13AM +0100, Matthew Auld wrote:
-> On 20/06/2025 17:11, Matthew Brost wrote:
-> > On Fri, Jun 20, 2025 at 04:24:47PM +0100, Matthew Auld wrote:
-> > > When clearing VRAM we should be able to skip invalidating the TLBs if we
+On Fri, Jun 20, 2025 at 02:08:04PM +0100, Matthew Auld wrote:
+> On 11/06/2025 06:42, Matthew Brost wrote:
+> > Clearing on free should hide latency of BO clears on new user BO
+> > allocations.
 > > 
-> > For copies, we always program SRAM PTEs, and need a invalidate?
-> > Maybe mention this in the commit message.
-> 
-> Yup exactly that. I don't think we currently do vram -> vram in practice so
-> I didn't bother with the copy path. Will tweak the commit message.
-> 
+> > Implemented via calling xe_migrate_clear in release notify and updating
+> > iterator in xe_migrate_clear to skip cleared buddy blocks. Only user BOs
+> > cleared in release notify as kernel BOs could still be in use (e.g., PT
+> > BOs need to wait for dma-resv to be idle).
 > > 
-> > > are only using the identity map to access VRAM (which is the common
-> > > case), since no modifications are made to PTEs on the fly. Also since we
-> > > use huge 1G entries within the identity map, there should be a pretty
-> > > decent chance that the next packet(s) (if also clears) can avoid a tree
-> > > walk if we don't shoot down the TLBs, like if we have to process a long
-> > > stream of clears.
-> > > 
-> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/xe/xe_migrate.c  | 18 +++++++++++-------
-> > >   drivers/gpu/drm/xe/xe_ring_ops.c | 10 +++++-----
-> > >   2 files changed, 16 insertions(+), 12 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> > > index 8f8e9fdfb2a8..a76363740a12 100644
-> > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > @@ -896,7 +896,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
-> > >   			goto err;
-> > >   		}
-> > > -		xe_sched_job_add_migrate_flush(job, flush_flags);
-> > > +		xe_sched_job_add_migrate_flush(job, flush_flags | MI_INVALIDATE_TLB);
-> > >   		if (!fence) {
-> > >   			err = xe_sched_job_add_deps(job, src_bo->ttm.base.resv,
-> > >   						    DMA_RESV_USAGE_BOOKKEEP);
-> > > @@ -1119,11 +1119,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
-> > >   		size -= clear_L0;
-> > >   		/* Preemption is enabled again by the ring ops. */
-> > > -		if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it))
-> > > +		if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it)) {
-> > >   			xe_res_next(&src_it, clear_L0);
-> > > -		else
-> > > -			emit_pte(m, bb, clear_L0_pt, clear_vram, clear_only_system_ccs,
-> > > -				 &src_it, clear_L0, dst);
-> > > +		} else {
-> > > +			emit_pte(m, bb, clear_L0_pt, clear_vram,
-> > > +				 clear_only_system_ccs, &src_it, clear_L0, dst);
-> > > +			flush_flags |= MI_INVALIDATE_TLB;
-> > > +		}
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/xe/xe_bo.c           | 47 ++++++++++++++++++++++++++++
+> >   drivers/gpu/drm/xe/xe_migrate.c      | 14 ++++++---
+> >   drivers/gpu/drm/xe/xe_migrate.h      |  1 +
+> >   drivers/gpu/drm/xe/xe_res_cursor.h   | 26 +++++++++++++++
+> >   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  5 ++-
+> >   drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  6 ++++
+> >   6 files changed, 94 insertions(+), 5 deletions(-)
 > > 
-> > What about the if statements for dst_it / copy_system_ccs? Do we not
-> > need to set MI_INVALIDATE_TLB there?
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > index 4e39188a021a..74470f4d418d 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -1434,6 +1434,51 @@ static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
+> >   	return locked;
+> >   }
+> > +static void xe_ttm_bo_release_clear(struct ttm_buffer_object *ttm_bo)
+> > +{
+> > +	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
+> > +	struct dma_fence *fence;
+> > +	int err, idx;
+> > +
+> > +	xe_bo_assert_held(ttm_to_xe_bo(ttm_bo));
+> > +
+> > +	if (ttm_bo->type != ttm_bo_type_device)
+> > +		return;
+> > +
+> > +	if (xe_device_wedged(xe))
+> > +		return;
+> > +
+> > +	if (!ttm_bo->resource || !mem_type_is_vram(ttm_bo->resource->mem_type))
+> > +		return;
+> > +
+> > +	if (!drm_dev_enter(&xe->drm, &idx))
+> > +		return;
+> > +
+> > +	if (!xe_pm_runtime_get_if_active(xe))
+> > +		goto unbind;
+> > +
+> > +	err = dma_resv_reserve_fences(&ttm_bo->base._resv, 1);
+> > +	if (err)
+> > +		goto put_pm;
+> > +
+> > +	fence = xe_migrate_clear(mem_type_to_migrate(xe, ttm_bo->resource->mem_type),
+> > +				 ttm_to_xe_bo(ttm_bo), ttm_bo->resource,
+> > +				 XE_MIGRATE_CLEAR_FLAG_FULL |
+> > +				 XE_MIGRATE_CLEAR_NON_DIRTY);
+> > +	if (XE_WARN_ON(IS_ERR(fence)))
+> > +		goto put_pm;
+> > +
+> > +	xe_ttm_vram_mgr_resource_set_cleared(ttm_bo->resource);
+> > +	dma_resv_add_fence(&ttm_bo->base._resv, fence,
+> > +			   DMA_RESV_USAGE_KERNEL);
+> > +	dma_fence_put(fence);
+> > +
+> > +put_pm:
+> > +	xe_pm_runtime_put(xe);
+> > +unbind:
+> > +	drm_dev_exit(idx);
+> > +}
+> > +
+> >   static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+> >   {
+> >   	struct dma_resv_iter cursor;
+> > @@ -1478,6 +1523,8 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+> >   	}
+> >   	dma_fence_put(replacement);
+> > +	xe_ttm_bo_release_clear(ttm_bo);
+> > +
+> >   	dma_resv_unlock(ttm_bo->base.resv);
+> >   }
+> > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> > index 8f8e9fdfb2a8..39d7200cb366 100644
+> > --- a/drivers/gpu/drm/xe/xe_migrate.c
+> > +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> > @@ -1063,7 +1063,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+> >   	struct xe_gt *gt = m->tile->primary_gt;
+> >   	struct xe_device *xe = gt_to_xe(gt);
+> >   	bool clear_only_system_ccs = false;
+> > -	struct dma_fence *fence = NULL;
+> > +	struct dma_fence *fence = dma_fence_get_stub();
 > 
-> You mean for the copy path? We unconditionally apply MI_INVALIDATE_TLB when
-> doing any copy.
+> 
+> >   	u64 size = bo->size;
+> >   	struct xe_res_cursor src_it;
+> >   	struct ttm_resource *src = dst;
+> > @@ -1075,10 +1075,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+> >   	if (!clear_bo_data && clear_ccs && !IS_DGFX(xe))
+> >   		clear_only_system_ccs = true;
+> > -	if (!clear_vram)
+> > +	if (!clear_vram) {
+> >   		xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &src_it);
+> > -	else
+> > +	} else {
+> >   		xe_res_first(src, 0, bo->size, &src_it);
+> > +		if (!(clear_flags & XE_MIGRATE_CLEAR_NON_DIRTY))
+> > +			size -= xe_res_next_dirty(&src_it);
+> > +	}
+> >   	while (size) {
+> >   		u64 clear_L0_ofs;
+> > @@ -1125,6 +1128,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+> >   			emit_pte(m, bb, clear_L0_pt, clear_vram, clear_only_system_ccs,
+> >   				 &src_it, clear_L0, dst);
+> > +		if (clear_vram && !(clear_flags & XE_MIGRATE_CLEAR_NON_DIRTY))
+> > +			size -= xe_res_next_dirty(&src_it);
+> > +
+> >   		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+> >   		update_idx = bb->len;
+> > @@ -1146,7 +1152,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+> >   		}
+> >   		xe_sched_job_add_migrate_flush(job, flush_flags);
+> > -		if (!fence) {
+> > +		if (fence == dma_fence_get_stub()) {
+> >   			/*
+> >   			 * There can't be anything userspace related at this
+> >   			 * point, so we just need to respect any potential move
+> > diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+> > index fb9839c1bae0..58a7b747ef11 100644
+> > --- a/drivers/gpu/drm/xe/xe_migrate.h
+> > +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> > @@ -118,6 +118,7 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+> >   #define XE_MIGRATE_CLEAR_FLAG_BO_DATA		BIT(0)
+> >   #define XE_MIGRATE_CLEAR_FLAG_CCS_DATA		BIT(1)
+> > +#define XE_MIGRATE_CLEAR_NON_DIRTY		BIT(2)
+> >   #define XE_MIGRATE_CLEAR_FLAG_FULL	(XE_MIGRATE_CLEAR_FLAG_BO_DATA | \
+> >   					XE_MIGRATE_CLEAR_FLAG_CCS_DATA)
+> >   struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+> > diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+> > index d1a403cfb628..630082e809ba 100644
+> > --- a/drivers/gpu/drm/xe/xe_res_cursor.h
+> > +++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+> > @@ -315,6 +315,32 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
+> >   	}
+> >   }
+> > +/**
+> > + * xe_res_next_dirty - advance the cursor to next dirty buddy block
+> > + *
+> > + * @cur: the cursor to advance
+> > + *
+> > + * Move the cursor until dirty buddy block is found.
+> > + *
+> > + * Return: Number of bytes cursor has been advanced
+> > + */
+> > +static inline u64 xe_res_next_dirty(struct xe_res_cursor *cur)
+> > +{
+> > +	struct drm_buddy_block *block = cur->node;
+> > +	u64 bytes = 0;
+> > +
+> > +	XE_WARN_ON(cur->mem_type != XE_PL_VRAM0 &&
+> > +		   cur->mem_type != XE_PL_VRAM1);
+> > +
+> > +	while (cur->remaining && drm_buddy_block_is_clear(block)) {
+> > +		bytes += cur->size;
+> > +		xe_res_next(cur, cur->size);
+> > +		block = cur->node;
+> > +	}
+> > +
+> > +	return bytes;
+> > +}
+> > +
+> >   /**
+> >    * xe_res_dma - return dma address of cursor at current position
+> >    *
+> > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > index 9e375a40aee9..120046941c1e 100644
+> > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > @@ -84,6 +84,9 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+> >   	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
+> >   		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+> > +	if (tbo->type == ttm_bo_type_device)
+> > +		vres->flags |= DRM_BUDDY_CLEAR_ALLOCATION;
+> 
+> Would it make sense to also somehow check if the bo has tt pages at this
+> stage, and skip asking for cleared memory? If we have tt pages, that would
+> mean we are moving to vram, so we are about to copy over the memory anyway,
+> so ideally leave any pre-cleared pages for another user?
 > 
 
-I was looking at wrong function (xe_migrate_copy) - I thought there were 
-a couple more calls to emit_pte here but on 2nd look, nope.
+I think so. I assume because the ttm_buffer_object is an argument here
+we can safely fish out the tt pages for this check. Will follow up on
+this and if this works, will add.
 
-So patch the LGTM:
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Matt
 
-> > 
-> > Matt
-> > 
-> > >   		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
-> > >   		update_idx = bb->len;
-> > > @@ -1134,7 +1136,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
-> > >   		if (xe_migrate_needs_ccs_emit(xe)) {
-> > >   			emit_copy_ccs(gt, bb, clear_L0_ofs, true,
-> > >   				      m->cleared_mem_ofs, false, clear_L0);
-> > > -			flush_flags = MI_FLUSH_DW_CCS;
-> > > +			flush_flags |= MI_FLUSH_DW_CCS;
-> > >   		}
-> > >   		job = xe_bb_create_migration_job(m->q, bb,
-> > > @@ -1469,6 +1471,8 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
-> > >   		goto err_sa;
-> > >   	}
-> > > +	xe_sched_job_add_migrate_flush(job, MI_INVALIDATE_TLB);
-> > > +
-> > >   	if (ops->pre_commit) {
-> > >   		pt_update->job = job;
-> > >   		err = ops->pre_commit(pt_update);
-> > > @@ -1667,7 +1671,7 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
-> > >   		goto err;
-> > >   	}
-> > > -	xe_sched_job_add_migrate_flush(job, 0);
-> > > +	xe_sched_job_add_migrate_flush(job, MI_INVALIDATE_TLB);
-> > >   	mutex_lock(&m->job_mutex);
-> > >   	xe_sched_job_arm(job);
-> > > diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > index bc1689db4cd7..b5548e0769f4 100644
-> > > --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > @@ -110,10 +110,10 @@ static int emit_bb_start(u64 batch_addr, u32 ppgtt_flag, u32 *dw, int i)
-> > >   	return i;
-> > >   }
-> > > -static int emit_flush_invalidate(u32 *dw, int i)
-> > > +static int emit_flush_invalidate(u32 *dw, int i, u32 flush_flags)
-> > >   {
-> > > -	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-> > > -		  MI_FLUSH_IMM_DW | MI_FLUSH_DW_STORE_INDEX;
-> > > +	dw[i++] = MI_FLUSH_DW |  MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW |
-> > > +		MI_FLUSH_DW_STORE_INDEX | (flush_flags & MI_INVALIDATE_TLB) ?: 0;
-> > >   	dw[i++] = LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR;
-> > >   	dw[i++] = 0;
-> > >   	dw[i++] = 0;
-> > > @@ -411,13 +411,13 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
-> > >   	if (!IS_SRIOV_VF(gt_to_xe(job->q->gt))) {
-> > >   		/* XXX: Do we need this? Leaving for now. */
-> > >   		dw[i++] = preparser_disable(true);
-> > > -		i = emit_flush_invalidate(dw, i);
-> > > +		i = emit_flush_invalidate(dw, i, job->migrate_flush_flags);
-> > >   		dw[i++] = preparser_disable(false);
-> > >   	}
-> > >   	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
-> > > -	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
-> > > +	dw[i++] = MI_FLUSH_DW | job->migrate_flush_flags |
-> > >   		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
-> > >   	dw[i++] = xe_lrc_seqno_ggtt_addr(lrc) | MI_FLUSH_DW_USE_GTT;
-> > >   	dw[i++] = 0;
-> > > -- 
-> > > 2.49.0
-> > > 
+> > +
+> >   	if (WARN_ON(!vres->base.size)) {
+> >   		err = -EINVAL;
+> >   		goto error_fini;
+> > @@ -187,7 +190,7 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+> >   	struct drm_buddy *mm = &mgr->mm;
+> >   	mutex_lock(&mgr->lock);
+> > -	drm_buddy_free_list(mm, &vres->blocks, 0);
+> > +	drm_buddy_free_list(mm, &vres->blocks, vres->flags);
+> >   	mgr->visible_avail += vres->used_visible_size;
+> >   	mutex_unlock(&mgr->lock);
+> > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > index cc76050e376d..dfc0e6890b3c 100644
+> > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> > @@ -36,6 +36,12 @@ to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
+> >   	return container_of(res, struct xe_ttm_vram_mgr_resource, base);
+> >   }
+> > +static inline void
+> > +xe_ttm_vram_mgr_resource_set_cleared(struct ttm_resource *res)
+> > +{
+> > +	to_xe_ttm_vram_mgr_resource(res)->flags |= DRM_BUDDY_CLEARED;
+> > +}
+> > +
+> >   static inline struct xe_ttm_vram_mgr *
+> >   to_xe_ttm_vram_mgr(struct ttm_resource_manager *man)
+> >   {
 > 
