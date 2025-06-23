@@ -4,53 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6AB7C7115B
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Jun 2025 09:37:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45E77C7115B
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Jun 2025 09:37:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 982CA10E2D3;
-	Mon, 23 Jun 2025 09:37:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 017AC10E2D6;
+	Mon, 23 Jun 2025 09:37:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B4jphXtY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hcHhj7TY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FDD810E2C2
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 09:37:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2769F10E33E
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 09:37:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750671466; x=1782207466;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=l8S08kzdiaaMfluCRwuTcJzOyK0dzqjctSFR7bHHtI8=;
- b=B4jphXtYiEfzB+jkkjErjbpE+qkzyjfrls/MSDIheVzPL9nGs0QKqON8
- jHZnTnNB0Xqc9SrZJvEpQsf9YicDJJ8ufResLVjLRYn0rQYRrTBCtfnl2
- Y9aBScb0UayaumMcfU8BrAOOQo8CDgXb4EDtAVgLnrvcxi0nO0FgVnrRf
- LgznIvlfcyRNxokYE0Vmi+yrdeEGdmVnd0rCa+zfLpWkK2oBil4zHZESP
- P8Yh8lzzzwDw+kri+Lfp66oSwfYKKj5DUR1It25R6+CxbqyRYXg5cZ2R9
- 6+AzfeqxsQ2DtH05Zj/EmQclP7YijXeZAdW0EvCIJFb5ADS4ifT3ttjxF Q==;
-X-CSE-ConnectionGUID: pzndKTyVTMSNZ7EHtrUznA==
-X-CSE-MsgGUID: LyELYXj1SzWYSSYpPJglbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="52740308"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="52740308"
+ t=1750671468; x=1782207468;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SVi/DWhuUPkCMh/G6iuuiB2/+rolfUIFiGYCgT1F6Ls=;
+ b=hcHhj7TYf8p9YuAFY2IN5pulFSwGLEJldK0Th5sffvFB0khU4wYgPk3p
+ MbW5lzeMRh6NYBWBYR+aY4Gkzzo9ll02LUmtegTtk5W6pf+gsx4ItA1OY
+ t8sHi33yoFlejbnwWvRS2iHp73wQ0qQyQjX4bnWt7Y3KFnxY/q1UqCpib
+ c57DWyJlSGeF7phJdrxhYOm201Rmini7atXFauP2Vi3mSx9QWem6NAPfc
+ VXcwpiWDv9NCOYtqgZFNDBcsuRXqwm/hGeeUsdlgIz26DXCM3W4PNi2vB
+ SgFLSrA6Kerqd78/eENoWH3gC+63Dn7PLgJq92+ML8ADfOCoRk6i7kU64 Q==;
+X-CSE-ConnectionGUID: +G9UBIBVQ/Ole+i7Ata39Q==
+X-CSE-MsgGUID: XIsMJ9dfS2+9UBek/Nu+UA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="52740313"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="52740313"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 02:37:45 -0700
-X-CSE-ConnectionGUID: 2sSMOCc4Qoi9WSyq6YyF6Q==
-X-CSE-MsgGUID: kDVNoIiQR6WPqt9v+PttFg==
+ 23 Jun 2025 02:37:47 -0700
+X-CSE-ConnectionGUID: ZqtqP9uWTuqt+EzzKAF5bQ==
+X-CSE-MsgGUID: /YnE94sXSiephzehUZCifw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="152057633"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="152057638"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 02:36:38 -0700
+ 23 Jun 2025 02:36:48 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
  raag.jadav@intel.com, umesh.nerlige.ramappa@intel.com,
- frank.scarbrough@intel.com
-Subject: [PATCH v2 0/5] Handle Firmware reported Hardware Errors
-Date: Mon, 23 Jun 2025 15:31:03 +0530
-Message-ID: <20250623100109.1086459-1-riana.tauro@intel.com>
+ frank.scarbrough@intel.com,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH v2 1/5] drm: Add a firmware flash method to device wedged
+ uevent
+Date: Mon, 23 Jun 2025 15:31:04 +0530
+Message-ID: <20250623100109.1086459-2-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20250623100109.1086459-1-riana.tauro@intel.com>
+References: <20250623100109.1086459-1-riana.tauro@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,74 +73,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support to handle firmware reported errors. When CSC firmware
-errors are encoutered, a error interrupt is received by the GFX device as
-a MSI interrupt.
+A device is declared wedged when it is non-recoverable from
+the driver context. Some firmware errors can also cause
+the device to enter this state and the only method to recover
+from this would be to do a firmware flash
 
-Device Source control registers indicates the source of the error as CSC
-The HEC error status register indicates that the error is firmware reported
-Depending on the type of firmware error, the error cause is written to the HEC
-Firmware error register.
+v2: modify documentation (Raag, Rodrigo)
 
-On encountering such CSC firmware errors, the graphics device is
-non-recoverable from driver context. The only way to recover from these
-errors is firmware flash.
+Cc: André Almeida <andrealmeid@igalia.com>
+Cc: Christian König <christian.koenig@amd.com>
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+---
+ Documentation/gpu/drm-uapi.rst | 6 +++---
+ drivers/gpu/drm/drm_drv.c      | 2 ++
+ include/drm/drm_device.h       | 1 +
+ 3 files changed, 6 insertions(+), 3 deletions(-)
 
-Add a firmware flash method to the drm device wedged uevent. Send
-this method along with the uevent to notify userspace of the wedged
-state and the possible recovery method.
-
-$ udevadm monitor --property --kernel
-monitor will print the received events for:
-KERNEL - the kernel uevent
-
-KERNEL[754.709341] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 (drm)
-ACTION=change
-DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0
-SUBSYSTEM=drm
-WEDGED=firmware-flash
-DEVNAME=/dev/dri/card0
-DEVTYPE=drm_minor
-SEQNUM=5973
-MAJOR=226
-MINOR=0
-
-Bspec: 50875, 53073, 53074, 53075, 53076
-
-fwupd PR: https://github.com/fwupd/fwupd/pull/8922
-	  https://github.com/fwupd/fwupd/pull/8944
-
-IGT: https://patchwork.freedesktop.org/patch/660122/
-
-Rev2: add a fault injection for csc errors
-      fix review comments
-
-Riana Tauro (5):
-  drm: Add a firmware flash method to device wedged uevent
-  drm/xe: Add a helper function to set recovery method
-  drm/xe: Add support to handle hardware errors
-  drm/xe/xe_hw_error: Handle CSC Firmware reported Hardware errors
-  drm/xe/xe_hw_error: Add fault injection to trigger csc error handler
-
- Documentation/gpu/drm-uapi.rst             |   6 +-
- drivers/gpu/drm/drm_drv.c                  |   2 +
- drivers/gpu/drm/xe/Makefile                |   1 +
- drivers/gpu/drm/xe/regs/xe_gsc_regs.h      |   2 +
- drivers/gpu/drm/xe/regs/xe_hw_error_regs.h |  20 +++
- drivers/gpu/drm/xe/regs/xe_irq_regs.h      |   1 +
- drivers/gpu/drm/xe/xe_debugfs.c            |   2 +
- drivers/gpu/drm/xe/xe_device.c             |  48 ++++--
- drivers/gpu/drm/xe/xe_device.h             |   1 +
- drivers/gpu/drm/xe/xe_device_types.h       |   5 +
- drivers/gpu/drm/xe/xe_hw_error.c           | 182 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_error.h           |  15 ++
- drivers/gpu/drm/xe/xe_irq.c                |   4 +
- include/drm/drm_device.h                   |   1 +
- 14 files changed, 271 insertions(+), 19 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
- create mode 100644 drivers/gpu/drm/xe/xe_hw_error.c
- create mode 100644 drivers/gpu/drm/xe/xe_hw_error.h
-
+diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
+index 263e5a97c080..cd2481458755 100644
+--- a/Documentation/gpu/drm-uapi.rst
++++ b/Documentation/gpu/drm-uapi.rst
+@@ -422,9 +422,8 @@ Current implementation defines three recovery methods, out of which, drivers
+ can use any one, multiple or none. Method(s) of choice will be sent in the
+ uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
+ more side-effects. If driver is unsure about recovery or method is unknown
+-(like soft/hard system reboot, firmware flashing, physical device replacement
+-or any other procedure which can't be attempted on the fly), ``WEDGED=unknown``
+-will be sent instead.
++(like soft/hard system reboot, physical device replacement or any other procedure
++which can't be attempted on the fly), ``WEDGED=unknown`` will be sent instead.
+ 
+ Userspace consumers can parse this event and attempt recovery as per the
+ following expectations.
+@@ -435,6 +434,7 @@ following expectations.
+     none            optional telemetry collection
+     rebind          unbind + bind driver
+     bus-reset       unbind + bus reset/re-enumeration + bind
++    firmware-flash  firmware flash
+     unknown         consumer policy
+     =============== ========================================
+ 
+diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+index 02556363e918..5f3bbe01c207 100644
+--- a/drivers/gpu/drm/drm_drv.c
++++ b/drivers/gpu/drm/drm_drv.c
+@@ -535,6 +535,8 @@ static const char *drm_get_wedge_recovery(unsigned int opt)
+ 		return "rebind";
+ 	case DRM_WEDGE_RECOVERY_BUS_RESET:
+ 		return "bus-reset";
++	case DRM_WEDGE_RECOVERY_FW_FLASH:
++		return "firmware-flash";
+ 	default:
+ 		return NULL;
+ 	}
+diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+index 08b3b2467c4c..9d57c8882d93 100644
+--- a/include/drm/drm_device.h
++++ b/include/drm/drm_device.h
+@@ -30,6 +30,7 @@ struct pci_controller;
+ #define DRM_WEDGE_RECOVERY_NONE		BIT(0)	/* optional telemetry collection */
+ #define DRM_WEDGE_RECOVERY_REBIND	BIT(1)	/* unbind + bind driver */
+ #define DRM_WEDGE_RECOVERY_BUS_RESET	BIT(2)	/* unbind + reset bus device + bind */
++#define DRM_WEDGE_RECOVERY_FW_FLASH	BIT(3)  /* firmware flash */
+ 
+ /**
+  * struct drm_wedge_task_info - information about the guilty task of a wedge dev
 -- 
 2.47.1
 
