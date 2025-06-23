@@ -4,67 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A514BC77B7F
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Jun 2025 11:20:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4541C77B7F
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Jun 2025 11:23:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65DAF10E0DC;
-	Mon, 23 Jun 2025 11:20:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 704A410E383;
+	Mon, 23 Jun 2025 11:23:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JJeeDRRZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JTmOc3sz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DD0510E0DC
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 11:20:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A32A10E371
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 11:23:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750677605; x=1782213605;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+Mp4WKdpXSOHfViu/qyAWwlvQD6xPWqqloZY4ndKuCs=;
- b=JJeeDRRZoFFxRj4oZq9XWumyPfEGWWQfxx1Bq3HRZ73mkrN/ugGl7qB9
- MA9aYmTkrFIkYIWGuQizG/OSrrFjIlBAanQHZVpq5YY4L1duSKeU6QfJ3
- LY6jfPqYFEMCkQxQ3cAh5CVyXn17tWu8+3ROVocB6cNHl4ui1+84dBqO8
- kd+YaN5JGyWLFYoonX4S+Br3owK7hiUbEQSIgfi5eEMZHQSVmlNFxsFe6
- lI/n2CdpTHr9dTaBMyb9dIE8u5RSybRvUSmseKGjGgmRzapDw4acynSfq
- /IAzfZ/Z2Oyw9G6FU7ARDneQd9R0l7jxFySZdL5Vk8QJFt3PUjnbFw+LE Q==;
-X-CSE-ConnectionGUID: j1FTAB3sROCkTWryRenPvA==
-X-CSE-MsgGUID: rZwZ+no2RouMYBfxZgIzjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="52746721"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="52746721"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 04:20:05 -0700
-X-CSE-ConnectionGUID: mhpaQbJjTqCTXj9WP2y+Fw==
-X-CSE-MsgGUID: 0CvPVoQERXqTKfNiaA9FEw==
+ t=1750677810; x=1782213810;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=1g+KTEOquZf2kqC4gFS4TLOgsZoeRtnLL/e2lkX1b14=;
+ b=JTmOc3szXzf/kM84Brs8xoz/j9QhbuJe4VENyBUwnJDjTWvX23rlnCWj
+ 1qLIEWGNk6+GruiKLQnZI9j0qikaG3zjEe4Yx4djwxGNq3uwmPO9UwcDC
+ gi74yetazfqWBjRJsVe2ZK98Vqw6df/mIMVQdxmAFRCU5KAbIVQcdyOMn
+ QnjZGnbZ2ljuY+93DI2hefkgV+KEH7dfNWXC1nslwYU5ccZCm0/NeCWFA
+ LCN0I+VXOfm7cZ28jvfls0/Euzn74OSDdzIOzQB8e7FFyiIgk1Mtgo4w0
+ ieUFG2LjCn/mlJ7SlROwAiLHBuUTDR3WNbV9z8moHQX3+loxd483DfDGv A==;
+X-CSE-ConnectionGUID: Qx9H2xMBQuum/qZNEf8YCA==
+X-CSE-MsgGUID: zVRD3ozaQxuQh6q7evjEIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="56552921"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="56552921"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2025 04:23:28 -0700
+X-CSE-ConnectionGUID: Snop7C70R2G3c/Ync0Esvg==
+X-CSE-MsgGUID: Ndkr/ivFSZWirlfAz3TMoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="150998736"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO [10.245.244.101])
- ([10.245.244.101])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 04:20:03 -0700
-Message-ID: <124acf5a-d6e6-41ea-b231-6bdcd63666ae@intel.com>
-Date: Mon, 23 Jun 2025 12:19:59 +0100
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="151046891"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2025 04:23:27 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Mon, 23 Jun 2025 04:23:27 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Mon, 23 Jun 2025 04:23:27 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.62)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Mon, 23 Jun 2025 04:23:26 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ql05dtTCTdmgWoIRn5TWtrBPqIGo2HC/jCh1uq6TImJ6gFCgBECZzw6LFjg8CSs2193d2j2Xb2XsnM7Qtk8dW0onLCoY//F0aHHx4GU6B0wJulFVuZ2EDZPESS85VGXa3hjWfwajpix0bGfBHnTvsmBejLtTt/T9fF66OpprGDGPGCTnPV7SyyZPXAJJgu9F/wp87ZETRShUj/yj1sNgNoTXbEBWuDu1pl1WFjTdYF9cxk3NQGTw4nAfbQ0zPZokqmFbrW2vVJSSQzi1ch5jlFsGunPBBeMc7JlwXf0a1+DkKBL1mn3k2YLplZWPT0ZsGBINnSTRf0BcMgrje3/L1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lWrTuwflWpgRVBSWyCPU+GVO6ES9v6Ksd4UazZu0hLI=;
+ b=Yn1j/E6ZXRVptnc8liDmwNCBVyjb6enpL3o8MCQbdR98ZHv4mlwFl+oxEs60WVSHl5udkI7/CUTFNIAqg8WNbVbe1Bq1SfKHe8Ij5mV8cEbPqn+aQUhz6Z6r0dc5wmMe4vELlHAkxHl1CMyDTlFzsahSYVfoaFRXmzmih9WhPzpVEprlINw/noQfsZikZHOHi70U/u0Cr5T+8/5Q/Iwysab432vG18byt26OjVTsQRZOTnJTObDXNfoOy89UISE/WDBRlq8pIhsq5Yyq3ineid+wpT0CbLAVby+Z4681jGXfoQtTjxxGACIHx39/eJhDc5yZ9HspHgs5axqdr05sZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DS4PPF6EA6DD735.namprd11.prod.outlook.com (2603:10b6:f:fc02::2d)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.29; Mon, 23 Jun
+ 2025 11:22:58 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.8857.016; Mon, 23 Jun 2025
+ 11:22:58 +0000
+Date: Mon, 23 Jun 2025 04:24:37 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Himal Prasad Ghimiray
+ <himal.prasad.ghimiray@intel.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH] drm/xe/migrate: make MI_TLB_INVALIDATE conditional
+Message-ID: <aFk5dTinjFYcZKjt@lstrano-desk.jf.intel.com>
+References: <20250620152446.239699-2-matthew.auld@intel.com>
+ <aFWIS3/rlAWSlF6K@lstrano-desk.jf.intel.com>
+ <530d502e-165d-41fb-9ce8-b6bbbbb8107a@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <530d502e-165d-41fb-9ce8-b6bbbbb8107a@intel.com>
+X-ClientProxiedBy: MW4PR04CA0372.namprd04.prod.outlook.com
+ (2603:10b6:303:81::17) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe: Support for mmap-ing mmio regions
-To: "Levi, Ilia" <ilia.levi@intel.com>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "Elbaz, Koby" <koby.elbaz@intel.com>,
- "Sinyuk, Konstantin" <konstantin.sinyuk@intel.com>,
- "Avizrat, Yaron" <yaron.avizrat@intel.com>,
- "Haimovski, Moti" <moti.haimovski@intel.com>,
- "Freiman, Didi" <didi.freiman@intel.com>
-References: <20250609095938.16782-1-ilia.levi@intel.com>
- <SJ1PR11MB6204EF8ECD2EAE0F8F5AB93C816BA@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <47547e84-4d10-4037-9f9b-d1b02fa3fbac@intel.com>
- <SJ1PR11MB620443CA7F483CE7F4995250816AA@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <97dcc6e6-66c3-487f-b912-d343afe3bb56@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <97dcc6e6-66c3-487f-b912-d343afe3bb56@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS4PPF6EA6DD735:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3562851e-e10f-40e4-ba4d-08ddb2484e66
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?gmk1my2iboqBHfU4R4PummMK/Wi/7XAZfq04RmjolKkxcke3d+B/bL2mh4?=
+ =?iso-8859-1?Q?l65XuTcjMF6ADzQdrSjQv/ewFFaYm+r+rlzvkpuKBl7/gus7zHtwO9T1eI?=
+ =?iso-8859-1?Q?euEEpgWb0WmmR+w38wLb8neHHF6qhVt+r8e7bu7pzGsGEepKEFkKiAbRHO?=
+ =?iso-8859-1?Q?ix6flW9YMyUTaXCvkQrh/2W8/pkfYsohKBVx67YJbdXXHLXMFSWrcu9tOx?=
+ =?iso-8859-1?Q?oVTZD/YKUARkMD+mxl/lmn7/D9eZdAPQJYc7uTz2g9lk1JbI7Lo2rgYz2b?=
+ =?iso-8859-1?Q?tMB/CriFCHeIie3Bs+CBU/07BHfrQNz5qMU3qUIOY87hayI/AdLhwoC25v?=
+ =?iso-8859-1?Q?H+5iNuyJThlVaP6srLVuMRNFNKIz/2b0v1t3Qe6E+zob7dvMD2pX9sdxjb?=
+ =?iso-8859-1?Q?NIKnbjL197ADjH7JgAzVUjj7blUqyUHa4/PtSdnR/HSodZm8r0H5mmhBg1?=
+ =?iso-8859-1?Q?9n9XDi+/T0JBtPZCwz4TMx0lhOxF5HjjWr8fRDAOeuXxqG1X+6GQu8qgyV?=
+ =?iso-8859-1?Q?CZ7kCW0GoQ7VJJ3I0bSOreEjiQvIqCnxy4IPpbaMpSpAJPsQsoSSLxHc0m?=
+ =?iso-8859-1?Q?I9L9fAE58kJXuufWjTay8FkyDfjVrctfgOLb2A6fpTCSbCKjo78BQBwzrG?=
+ =?iso-8859-1?Q?NROzxHqmuly3yl75vGIObNFxjxp/OhrdZAWnlmdVFrXAq2biwtwcUZXU8W?=
+ =?iso-8859-1?Q?+TaepIPGMmZUs0CQwKRUjVwZtCDW2uHabLZmuSzcPWdF+osJpp8wJgrvJS?=
+ =?iso-8859-1?Q?ACBRPr5GUmuuWm3GhILWo72wZlMs3DeDIu8TeW9SEcBqnhszYRjqIK5cU+?=
+ =?iso-8859-1?Q?mGt2Rw4IEpcg4KUiJkRBnMkPA4TEuX9Hmw0kbO4t+/m+/t08rh4o3FOG+E?=
+ =?iso-8859-1?Q?j92m80qIyUduxnJruDSTJLzjgOF0Kcl9X12OOeVhU37vgM/qUqaeKxQaKo?=
+ =?iso-8859-1?Q?HHsF7HEHZmo+jh7XjAI3vdwyFWrs7WC+bTPOxPRY1j1y6PM9prAwnxJmjg?=
+ =?iso-8859-1?Q?AgwYWzpg4HfMEvdk/SHXmDaI5vvl9+llcC/zfGusKMPQezFnoEquaGRHfN?=
+ =?iso-8859-1?Q?Q+gjx22NNtJjMRSZCFGpNLTiUPNaxMUULccVHwYSXRiAvVnWUK7IoigECb?=
+ =?iso-8859-1?Q?0w9hxun4Oe2OQBQlMEuzrGuL8aF2CEiqq8cjAmR09BH0Bj9SgmrBZVsGbe?=
+ =?iso-8859-1?Q?gNN2shbiCemJUC1lPdFg0X0gQ9/xl4uc//r8V9xp4SOhTs2GrTCjS/+TkM?=
+ =?iso-8859-1?Q?fu9gkVB8hnvaoPIzTCiFB5YPcANkW21VIsubRdArPp+bOv/OXZx3Q/gdal?=
+ =?iso-8859-1?Q?AOD021ZbmGwkrNGmWZEJ3W41J2wWZUlSi3BYhrGkb2P31RClNeSLFyzi5M?=
+ =?iso-8859-1?Q?RbkcIxy+lbZA5D5g6kzRCCdKoElbjR4cqJHroG+eSRd+8vlMjURCaAGBJv?=
+ =?iso-8859-1?Q?AJm94tKqDoFFk4XeUmaxhzvR7JFsW9k+bzohwNEPJHo83bG2TM8dGK43PQ?=
+ =?iso-8859-1?Q?g=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?SL5nyIVETmqZ74746Vpyc+Z1BvM6jq4RWimfkspR7Y0FbaHYBl6W830+GR?=
+ =?iso-8859-1?Q?ZDXElrij2hq6fDn9uV1RHJn4WvKvfkR6SX7ZsgJqMCwvUatYy2h2UsUEfb?=
+ =?iso-8859-1?Q?44ci3H/b5ybdwt+lts3z3T/GNf7sd6e8Ha6t5bDNH/e5noDL7W19alZcoS?=
+ =?iso-8859-1?Q?S0sZ/Xl+Pi76EePj4qgoMqt/PmSzoEswOfKfoIDDF4KIFwg6C0sAUA71/r?=
+ =?iso-8859-1?Q?z31ImeYxmg0Lb7IbsKNEqhDsunkv5LFuJI1E29LWrJ4gbeT7IN948PW3dp?=
+ =?iso-8859-1?Q?bo6w9BwKWb4TmnHl/PqwKTS7o8eOOFCoakvWf8DuTiMniakREW/S6NGrrN?=
+ =?iso-8859-1?Q?9z4kL+76vD9Z6SEsZpkzMI4YiFUCYyqcklVyRzViPVGMdfbcswbbLlMNqc?=
+ =?iso-8859-1?Q?0UNWCs0gHFPEEs5wSMnCN1g1ConfV/ggabFAweRKLYvSMQzYJ1Ig7cGUqk?=
+ =?iso-8859-1?Q?DIY6J8Q+uxcn/W7z22EElYtJyYGBRJbQbh3LpClMonuFvTd8pIucQuTsRc?=
+ =?iso-8859-1?Q?li3T9rq5hvAUY8/TqikmEYprg00lUtVskpwQrGcmcFI9Ay6l9rRATbm/s+?=
+ =?iso-8859-1?Q?3UYFGKUMY1IN5oiNLC81EVc0cSeyqSobDV4pqBnwZVPC0UicolxfLI7YVH?=
+ =?iso-8859-1?Q?HEwArVeHuxZNbUTnLluU71HSLeq0RVdweX8PPy0nWfwbIUASVcxAQgnBzx?=
+ =?iso-8859-1?Q?bhuztiD3cdVCn43W6D9rPNGJNv0vHaT62rFkDoodmi45XpN383WOaLss0O?=
+ =?iso-8859-1?Q?7X/XY9S8sbTQfj5pWP1A6x/TJQiHceli1vs2lGpsXjMd7yh/9GF2sO5rPN?=
+ =?iso-8859-1?Q?jU9JZs2MX4Ru/W1Peu8AbYAadZLbFV+GE+h0QABRXjBd8Phcb39WMGnYjR?=
+ =?iso-8859-1?Q?VG7l6TJ8+DXUomlW5+vGMPmreFkzAFfwiQFStpsEeQE+sX3VPlXQhRCfh0?=
+ =?iso-8859-1?Q?et1OPGQDoGQNRvcoS106lGrDGwVWIKJ0VzMjCMjrEO1EMVdMaqALqacGAu?=
+ =?iso-8859-1?Q?9vdkQcf6jA4UdI0qsqfyCRpt6vtUtVinO8cNxEQgutbOiAJfGrKIQydojW?=
+ =?iso-8859-1?Q?QIqe4yNtM3cl8yvqQ9YoAwrMIi326OzpgjoNXcpqqWeVO0pwSziBBBumuv?=
+ =?iso-8859-1?Q?oVb+apSKwoidGe/2U8ML1RAIZNA/cHXMx02phERa1dt464v4IRtRX3N6Je?=
+ =?iso-8859-1?Q?ykNGhzO40PNbdPz3SY2SuNLBsZWkM8B/Hv6lRZu17l6gwNA3TbhUvBZ/Tg?=
+ =?iso-8859-1?Q?btIgk1EImHhGXhkhHJL+QuK8sBOVfWb770NPLimo3vFGR9ICV29bUvgcI9?=
+ =?iso-8859-1?Q?+aB/swgzryzABkYdl6T+OX0AIzzNpSAqDVTvl9/GJ8XWEM2Y/RupojG9nL?=
+ =?iso-8859-1?Q?4nqmwlkxz6arFNSte2qS52Tz8Kb6XehAE7i/C5rmjcSap+kFGRV99/It8M?=
+ =?iso-8859-1?Q?Z3JrZbIZJMyJf7F8V4pVWlePTR17/S8yEnU+ZGqA1a7qei88dro/xLYOdt?=
+ =?iso-8859-1?Q?HXCAFEDxRX4hy5sG7+ikpZRWICYqdEjD6Bg++AHftQKYgqw/Slu+fUFeF9?=
+ =?iso-8859-1?Q?YdMql1iMr5TnZ3DjQaQ05UKwJK3Kay5cHZDQChymQl5LHU/nMtUhDWj47w?=
+ =?iso-8859-1?Q?WWc/An71WBBcoifaHx/g7cfSPpg1AaqLabonTQzUc9bKrCftKVstC7uA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3562851e-e10f-40e4-ba4d-08ddb2484e66
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2025 11:22:58.0745 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LW3yQaeRyeyf/GpyBxsTCMSC4guWm/68K7qu++Ty4Y8PxKs6u9aIl5J0BMX/5m7iy81jKNgdp9hxl9pkzPN9Lw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF6EA6DD735
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,336 +182,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 23/06/2025 11:31, Levi, Ilia wrote:
-> On 10/06/2025 15:58, Upadhyay, Tejas wrote:
->>
->>> -----Original Message-----
->>> From: Levi, Ilia <ilia.levi@intel.com>
->>> Sent: 10 June 2025 15:09
->>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
->>> xe@lists.freedesktop.org
->>> Cc: Elbaz, Koby <koby.elbaz@intel.com>; Sinyuk, Konstantin
->>> <konstantin.sinyuk@intel.com>; Avizrat, Yaron <yaron.avizrat@intel.com>;
->>> Haimovski, Moti <moti.haimovski@intel.com>; Freiman, Didi
->>> <didi.freiman@intel.com>
->>> Subject: Re: [PATCH v2] drm/xe: Support for mmap-ing mmio regions
->>>
->>> On 09/06/2025 17:20, Upadhyay, Tejas wrote:
->>>>> -----Original Message-----
->>>>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
->>>>> Ilia Levi
->>>>> Sent: 09 June 2025 15:30
->>>>> To: intel-xe@lists.freedesktop.org
->>>>> Cc: Levi, Ilia <ilia.levi@intel.com>; Elbaz, Koby
->>>>> <koby.elbaz@intel.com>; Sinyuk, Konstantin
->>>>> <konstantin.sinyuk@intel.com>; Avizrat, Yaron
->>>>> <yaron.avizrat@intel.com>; Haimovski, Moti
->>>>> <moti.haimovski@intel.com>; Freiman, Didi <didi.freiman@intel.com>
->>>>> Subject: [PATCH v2] drm/xe: Support for mmap-ing mmio regions
->>>>>
->>>>> Allow the driver to expose hardware register spaces to userspace
->>>>> through GEM objects with fake mmap offsets. This can be useful for
->>>>> userspace- firmware communication, debugging, etc.
->>>>>
->>>>> v2: Minor doc fix (CI)
->>>>>
->>>>> Signed-off-by: Ilia Levi <ilia.levi@intel.com>
->>>>> ---
->>>>>   drivers/gpu/drm/xe/xe_device_types.h |  14 +++
->>>>>   drivers/gpu/drm/xe/xe_mmio.c         | 142
->>> +++++++++++++++++++++++++++
->>>>>   drivers/gpu/drm/xe/xe_mmio.h         |   4 +
->>>>>   3 files changed, 160 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h
->>>>> b/drivers/gpu/drm/xe/xe_device_types.h
->>>>> index ac27389ccb8b..78542de0d48d 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_device_types.h
->>>>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->>>>> @@ -10,6 +10,7 @@
->>>>>
->>>>>   #include <drm/drm_device.h>
->>>>>   #include <drm/drm_file.h>
->>>>> +#include <drm/drm_gem.h>
->>>>>   #include <drm/drm_pagemap.h>
->>>>>   #include <drm/ttm/ttm_device.h>
->>>>>
->>>>> @@ -161,6 +162,19 @@ struct xe_mmio {
->>>>>   	u32 adj_offset;
->>>>>   };
->>>>>
->>>>> +/**
->>>>> + * struct xe_mmio_gem - GEM wrapper for xe_mmio
->>>>> + *
->>>>> + * A GEM object for exposing xe_mmio instance to userspace via mmap.
->>>>> + */
->>>>> +struct xe_mmio_gem {
->>>>> +	/** @base: GEM object base */
->>>>> +	struct drm_gem_object base;
->>>>> +
->>>>> +	/** @mmio: The MMIO region to expose */
->>>>> +	struct xe_mmio mmio;
->>>>> +};
->>>>> +
->>>>>   /**
->>>>>    * struct xe_tile - hardware tile structure
->>>>>    *
->>>>> diff --git a/drivers/gpu/drm/xe/xe_mmio.c
->>>>> b/drivers/gpu/drm/xe/xe_mmio.c index 7357458bc0d2..6bfa915a9602
->>>>> 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_mmio.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_mmio.c
->>>>> @@ -408,3 +408,145 @@ int xe_mmio_wait32_not(struct xe_mmio
->>> *mmio,
->>>>> struct xe_reg reg, u32 mask, u32 va  {
->>>>>   	return __xe_mmio_wait32(mmio, reg, mask, val, timeout_us, out_val,
->>>>> atomic, false);  }
->>>>> +
->>>>> +/**
->>>>> + * DOC: Exposing MMIO regions to userspace
->>>>> + *
->>>>> + * In certain cases, the driver may allow userspace to mmap a
->>>>> +portion of the
->>>>> hardware registers.
->>>>> + *
->>>>> + * This can be done as follows:
->>>>> + * 1. Define an xe_mmio instance that represents this portion.
->>>>> + * 2. Call xe_mmio_gem_create() to create a GEM object with an
->>>>> + mmap-able
->>>>> fake offset.
->>>>> + * 3. Use drm_vma_node_offset_addr() on the created GEM object to
->>>>> retrieve the fake offset.
->>>>> + * 4. Provide the fake offset to userspace.
->>>>> + * 5. Userspace can call mmap with the fake offset. The length
->>>>> + provided to
->>>>> mmap
->>>>> + *    must match the size of the xe_mmio instance.
->>>>> + * 6. When the region is no longer needed, call
->>>>> + xe_mmio_gem_destroy() to
->>>>> release the GEM object.
->>>>> + *
->>>>> + * Limitations: The exposed xe_mmio must be page-aligned with
->>>>> + regards to
->>>>> its BAR offset and size.
->>>>> + *
->>>>> + * WARNING: Exposing MMIO regions to userspace can have security and
->>>>> stability implications.
->>>>> + * Make sure not to expose any sensitive registers.
->>>>> + */
->>>>> +
->>>>> +static void xe_mmio_gem_free(struct drm_gem_object *); static int
->>>>> +xe_mmio_gem_mmap(struct drm_gem_object *, struct vm_area_struct
->>> *);
->>>>> +
->>>>> +static const struct vm_operations_struct vm_ops = {
->>>>> +	.open = drm_gem_vm_open,
->>>>> +	.close = drm_gem_vm_close,
->>>> Should you remap in fault handler, to make sure mapping is there always?
->>>
->>> Hmm, do you see any benefit for lazy mapping here?
->>> When a user maps HW registers (presumably a page or so - not much more) I
->>> think it would be ok to do the mapping immediately on mmap. But let me
->>> know if I'm missing something here.
->>> - Ilia
->> In case user is doing some memory r/w and some event like hotunplug or similar would happen you may need some dummy page map in order allow smoother exit for user. Also for any other case mapping disappears fault handler would help reestablish mapping if device is working fine.
->>
->> Tejas
+On Mon, Jun 23, 2025 at 10:33:13AM +0100, Matthew Auld wrote:
+> On 20/06/2025 17:11, Matthew Brost wrote:
+> > On Fri, Jun 20, 2025 at 04:24:47PM +0100, Matthew Auld wrote:
+> > > When clearing VRAM we should be able to skip invalidating the TLBs if we
+> > 
+> > For copies, we always program SRAM PTEs, and need a invalidate?
+> > Maybe mention this in the commit message.
 > 
+> Yup exactly that. I don't think we currently do vram -> vram in practice so
+> I didn't bother with the copy path. Will tweak the commit message.
 > 
-> With the current patch, the user will receive SIGBUS when writing to the mmio after hot-unplug.
-> But during hot-unplug the driver gets unbound, so any fault handler wouldn't be called anyway.
-> I guess the fault handler could help if the driver was to intentionally zap the user PTEs, but AFAIK
-> we don't do that in Xe. So for a BAR mapping like in this case, I think a fault handler is an overkill.
-> I don't see a real-life scenario where mapping re-establishment could occur. Please correct me if I'm wrong.
-> There are enough examples in the kernel of drivers that don't establish a fault handler too:
-> amdkfd, exynos, mediatek, rockchip to name a few.
-
-I think the backstory was that SIGBUS is very violent and kills the 
-userspace, but if you instead map a dummy page you in theory give more 
-time for userspace to detect the issue and handle it more gracefully. 
-All iocts return an error and I think there is also some uevent or 
-something IIRC. For hotunplug the driver instance (drm_device) is still 
-alive afterwords, it's only the physical struct pci_device underneath 
-that is detached from it, so interacting with the driver is still 
-possible, including handling CPU faults etc, but interacting with the HW 
-is not allowed.
-
-Not sure about your exact usecase, but AFAIK that was at least the rough 
-idea with the dummy page and hotunplug. See xe_gem_fault() and 
-ttm_bo_vm_dummy_page(), which should ensure faulting a BO will not 
-return SIGBUS after hotunplug. amdgpu should have something similar.
-
-
+> > 
+> > > are only using the identity map to access VRAM (which is the common
+> > > case), since no modifications are made to PTEs on the fly. Also since we
+> > > use huge 1G entries within the identity map, there should be a pretty
+> > > decent chance that the next packet(s) (if also clears) can avoid a tree
+> > > walk if we don't shoot down the TLBs, like if we have to process a long
+> > > stream of clears.
+> > > 
+> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_migrate.c  | 18 +++++++++++-------
+> > >   drivers/gpu/drm/xe/xe_ring_ops.c | 10 +++++-----
+> > >   2 files changed, 16 insertions(+), 12 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> > > index 8f8e9fdfb2a8..a76363740a12 100644
+> > > --- a/drivers/gpu/drm/xe/xe_migrate.c
+> > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> > > @@ -896,7 +896,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+> > >   			goto err;
+> > >   		}
+> > > -		xe_sched_job_add_migrate_flush(job, flush_flags);
+> > > +		xe_sched_job_add_migrate_flush(job, flush_flags | MI_INVALIDATE_TLB);
+> > >   		if (!fence) {
+> > >   			err = xe_sched_job_add_deps(job, src_bo->ttm.base.resv,
+> > >   						    DMA_RESV_USAGE_BOOKKEEP);
+> > > @@ -1119,11 +1119,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+> > >   		size -= clear_L0;
+> > >   		/* Preemption is enabled again by the ring ops. */
+> > > -		if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it))
+> > > +		if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it)) {
+> > >   			xe_res_next(&src_it, clear_L0);
+> > > -		else
+> > > -			emit_pte(m, bb, clear_L0_pt, clear_vram, clear_only_system_ccs,
+> > > -				 &src_it, clear_L0, dst);
+> > > +		} else {
+> > > +			emit_pte(m, bb, clear_L0_pt, clear_vram,
+> > > +				 clear_only_system_ccs, &src_it, clear_L0, dst);
+> > > +			flush_flags |= MI_INVALIDATE_TLB;
+> > > +		}
+> > 
+> > What about the if statements for dst_it / copy_system_ccs? Do we not
+> > need to set MI_INVALIDATE_TLB there?
 > 
-> - Ilia
-> 
->>>
->>>>> +};
->>>>> +
->>>>> +static const struct drm_gem_object_funcs xe_mmio_gem_funcs = {
->>>>> +	.free = xe_mmio_gem_free,
->>>>> +	.mmap = xe_mmio_gem_mmap,
->>>>> +	.vm_ops = &vm_ops,
->>>>> +};
->>>>> +
->>>>> +static inline struct xe_mmio_gem *to_xe_mmio_gem(struct
->>>>> +drm_gem_object
->>>>> +*obj) {
->>>>> +	return container_of(obj, struct xe_mmio_gem, base); }
->>>>> +
->>>>> +static inline phys_addr_t xe_mmio_phys_addr(struct xe_mmio *mmio) {
->>>>> +	struct xe_device *xe = tile_to_xe(mmio->tile);
->>>>> +
->>>>> +	/*
->>>>> +	 * All MMIO instances are currently on PCI BAR 0, so we can do the
->>>>> trick below.
->>>>> +	 * In the future we may want to store the physical address in
->>>>> +struct
->>>>> xe_mmio.
->>>>> +	 */
->>>>> +	return pci_resource_start(to_pci_dev(xe->drm.dev),
->>>>> GTTMMADR_BAR) +
->>>>> +		(uintptr_t)(mmio->regs - xe->mmio.regs); }
->>>>> +
->>>>> +/**
->>>>> + * xe_mmio_gem_create - Expose an MMIO region to userspace
->>>>> + * @mmio: xe_mmio instance
->>>>> + * @file: DRM file descriptor
->>>>> + *
->>>>> + * This function creates a GEM object with an mmap-able fake offset
->>>>> +that wraps
->>>>> + * the provided xe_mmio instance.
->>>>> + *
->>>>> + * See: "Exposing MMIO regions to userspace"
->>>>> + */
->>>>> +struct xe_mmio_gem *
->>>>> +xe_mmio_gem_create(struct xe_mmio *mmio, struct drm_file *file) {
->>>>> +	struct xe_device *xe = tile_to_xe(mmio->tile);
->>>>> +	size_t size = mmio->regs_size;
->>>>> +	struct xe_mmio_gem *obj;
->>>>> +	struct drm_gem_object *base;
->>>>> +	int err;
->>>>> +
->>>>> +	if ((xe_mmio_phys_addr(mmio) % PAGE_SIZE != 0) || (size %
->>>>> PAGE_SIZE != 0))
->>>>> +		return ERR_PTR(-EINVAL);
->>>>> +
->>>>> +	obj = kzalloc(sizeof(*obj), GFP_KERNEL);
->>>>> +	if (!obj)
->>>>> +		return ERR_PTR(-ENOMEM);
->>>>> +
->>>>> +	base = &obj->base;
->>>>> +	base->funcs = &xe_mmio_gem_funcs;
->>>>> +	obj->mmio = *mmio;
->>>>> +
->>>>> +	drm_gem_private_object_init(&xe->drm, base, size);
->>>>> +
->>>>> +	err = drm_gem_create_mmap_offset(base);
->>>>> +	if (err)
->>>>> +		goto free_gem;
->>>>> +
->>>>> +	err = drm_vma_node_allow(&base->vma_node, file);
->>>>> +	if (err)
->>>>> +		goto free_gem;
->>>>> +
->>>>> +	return obj;
->>>>> +
->>>>> +free_gem:
->>>>> +	xe_mmio_gem_free(base);
->>>>> +	return ERR_PTR(err);
->>>>> +}
->>>>> +
->>>>> +static void xe_mmio_gem_free(struct drm_gem_object *base) {
->>>>> +	struct xe_mmio_gem *obj = to_xe_mmio_gem(base);
->>>>> +
->>>>> +	drm_gem_object_release(base);
->>>>> +	kfree(obj);
->>>>> +}
->>>>> +
->>>>> +/**
->>>>> + * xe_mmio_gem_destroy - Destroy the GEM object wrapping xe_mmio
->>>>> + * @gem: the GEM object to destroy
->>>>> + *
->>>>> + * This function releases resources associated with the GEM object
->>>>> +created by
->>>>> + * xe_mmio_gem_create().
->>>>> + *
->>>>> + * See: "Exposing MMIO regions to userspace"
->>>>> + */
->>>>> +void xe_mmio_gem_destroy(struct xe_mmio_gem *gem) {
->>>>> +	xe_mmio_gem_free(&gem->base);
->>>>> +}
->>>>> +
->>>>> +static int xe_mmio_gem_mmap(struct drm_gem_object *base, struct
->>>>> +vm_area_struct *vma) {
->>>>> +	struct xe_mmio_gem *obj = to_xe_mmio_gem(base);
->>>>> +	struct xe_mmio *mmio = &obj->mmio;
->>>>> +
->>>>> +	if (vma->vm_end - vma->vm_start != base->size)
->>>>> +		return -EINVAL;
->>>>> +
->>>>> +	/*
->>>>> +	 * Set vm_pgoff (used as a fake buffer offset by DRM) to 0 and map
->>>>> the
->>>>> +	 * whole buffer from the start.
->>>>> +	 */
->>>>> +	vma->vm_pgoff = 0;
->>>> I am not sure, but is it confirmed this offset wont be used by anything else?
->>>
->>> Yes, I believe it is used to lookup the GEM object in drm_gem_mmap and
->>> that's it.
->>>
->>> Also many (maybe all?) drivers do exactly this, for example see:
->>> mtk_gem_object_mmap
->>> exynos_drm_gem_mmap_buffer
->>> rockchip_drm_gem_object_mmap
->>> __tegra_gem_mmap
->>>
->>> - Ilia
->>>
->>>
->>>>> +	vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
->>>>> +
->>>>> +	vm_flags_set(vma, VM_IO | VM_PFNMAP | VM_DONTEXPAND |
->>>>> VM_DONTDUMP |
->>>>> +		     VM_DONTCOPY | VM_NORESERVE);
->>>> Do you want to allow cow_mapping?
->>>
->>> Good question... I probably should enforce that the user passed
->>> MAP_SHARED, thanks!
->>> - Ilia
->>>
->>>
->>>> Tejas
->>>>> +
->>>>> +	return remap_pfn_range(vma, vma->vm_start,
->>>>> xe_mmio_phys_addr(mmio) >> PAGE_SHIFT,
->>>>> +			       base->size, vma->vm_page_prot); }
->>>>> diff --git a/drivers/gpu/drm/xe/xe_mmio.h
->>>>> b/drivers/gpu/drm/xe/xe_mmio.h index c151ba569003..2990bbcef24d
->>>>> 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_mmio.h
->>>>> +++ b/drivers/gpu/drm/xe/xe_mmio.h
->>>>> @@ -8,6 +8,7 @@
->>>>>
->>>>>   #include "xe_gt_types.h"
->>>>>
->>>>> +struct drm_file;
->>>>>   struct xe_device;
->>>>>   struct xe_reg;
->>>>>
->>>>> @@ -42,4 +43,7 @@ static inline struct xe_mmio
->>>>> *xe_root_tile_mmio(struct xe_device *xe)
->>>>>   	return &xe->tiles[0].mmio;
->>>>>   }
->>>>>
->>>>> +struct xe_mmio_gem *xe_mmio_gem_create(struct xe_mmio *mmio,
->>> struct
->>>>> +drm_file *file); void xe_mmio_gem_destroy(struct xe_mmio_gem *gem);
->>>>> +
->>>>>   #endif
->>>>> --
->>>>> 2.43.0
-> 
+> You mean for the copy path? We unconditionally apply MI_INVALIDATE_TLB when
+> doing any copy.
 > 
 
+I was looking at wrong function (xe_migrate_copy) - I thought there were 
+a couple more calls to emit_pte here but on 2nd look, nope.
+
+So patch the LGTM:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> > 
+> > Matt
+> > 
+> > >   		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+> > >   		update_idx = bb->len;
+> > > @@ -1134,7 +1136,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+> > >   		if (xe_migrate_needs_ccs_emit(xe)) {
+> > >   			emit_copy_ccs(gt, bb, clear_L0_ofs, true,
+> > >   				      m->cleared_mem_ofs, false, clear_L0);
+> > > -			flush_flags = MI_FLUSH_DW_CCS;
+> > > +			flush_flags |= MI_FLUSH_DW_CCS;
+> > >   		}
+> > >   		job = xe_bb_create_migration_job(m->q, bb,
+> > > @@ -1469,6 +1471,8 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
+> > >   		goto err_sa;
+> > >   	}
+> > > +	xe_sched_job_add_migrate_flush(job, MI_INVALIDATE_TLB);
+> > > +
+> > >   	if (ops->pre_commit) {
+> > >   		pt_update->job = job;
+> > >   		err = ops->pre_commit(pt_update);
+> > > @@ -1667,7 +1671,7 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+> > >   		goto err;
+> > >   	}
+> > > -	xe_sched_job_add_migrate_flush(job, 0);
+> > > +	xe_sched_job_add_migrate_flush(job, MI_INVALIDATE_TLB);
+> > >   	mutex_lock(&m->job_mutex);
+> > >   	xe_sched_job_arm(job);
+> > > diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+> > > index bc1689db4cd7..b5548e0769f4 100644
+> > > --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> > > +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> > > @@ -110,10 +110,10 @@ static int emit_bb_start(u64 batch_addr, u32 ppgtt_flag, u32 *dw, int i)
+> > >   	return i;
+> > >   }
+> > > -static int emit_flush_invalidate(u32 *dw, int i)
+> > > +static int emit_flush_invalidate(u32 *dw, int i, u32 flush_flags)
+> > >   {
+> > > -	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
+> > > -		  MI_FLUSH_IMM_DW | MI_FLUSH_DW_STORE_INDEX;
+> > > +	dw[i++] = MI_FLUSH_DW |  MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW |
+> > > +		MI_FLUSH_DW_STORE_INDEX | (flush_flags & MI_INVALIDATE_TLB) ?: 0;
+> > >   	dw[i++] = LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR;
+> > >   	dw[i++] = 0;
+> > >   	dw[i++] = 0;
+> > > @@ -411,13 +411,13 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+> > >   	if (!IS_SRIOV_VF(gt_to_xe(job->q->gt))) {
+> > >   		/* XXX: Do we need this? Leaving for now. */
+> > >   		dw[i++] = preparser_disable(true);
+> > > -		i = emit_flush_invalidate(dw, i);
+> > > +		i = emit_flush_invalidate(dw, i, job->migrate_flush_flags);
+> > >   		dw[i++] = preparser_disable(false);
+> > >   	}
+> > >   	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
+> > > -	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
+> > > +	dw[i++] = MI_FLUSH_DW | job->migrate_flush_flags |
+> > >   		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
+> > >   	dw[i++] = xe_lrc_seqno_ggtt_addr(lrc) | MI_FLUSH_DW_USE_GTT;
+> > >   	dw[i++] = 0;
+> > > -- 
+> > > 2.49.0
+> > > 
+> 
