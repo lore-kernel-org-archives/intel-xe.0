@@ -4,165 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3B48C77B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 17:48:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 972EFC77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 18:19:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F60D10E60B;
-	Tue, 24 Jun 2025 17:48:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 549A310E621;
+	Tue, 24 Jun 2025 18:19:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LAwNd/EY";
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="lvpQiYLb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6250E10E60B
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 17:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750787300; x=1782323300;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=dBJ6AY/PExN5kFAFvIIAmtsOomsgsWVXZ+PFaauGv8U=;
- b=LAwNd/EYbBQ/nHv3sMXpzZ68MpXoIBnq2fn8hk49KRpjBYS9kIl9FWdm
- UyEu7Q9zh5IyfOpuzh7sBzV2mD1aK39dKoQaX9nkLHgKhA9wnV65fcQak
- THv1rlEEGk2ZQVWfqScGYJ67/sGYCypQQcGmsO/XJpQnfqhGmQSWe9BJp
- amVr8paX5dJxLd2Ho1eQYukWql/w1FjqRKUroK5jWqYry+zlZgI0WSz7c
- GwatECU9xQzZohNf0Htk+PlmfEPCjxi1GhAdJjTm2aa16qh1Ju4wH8wqH
- z2AQVI3fM2VXIMSqBFsoboWRRvUFn/mldGMLRezx+Iy5EtDl91txH/JGw w==;
-X-CSE-ConnectionGUID: d+ix2aAtT6mDQGv8vDuJ5Q==
-X-CSE-MsgGUID: 3IvofkmWTLecS0Qo8es77Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="63731977"
-X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="63731977"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 10:48:20 -0700
-X-CSE-ConnectionGUID: IPxw2+24S2idLocgj9D33A==
-X-CSE-MsgGUID: voVyOR3XSGSegNLmyH5uJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="156555441"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 10:48:20 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 24 Jun 2025 10:48:19 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Tue, 24 Jun 2025 10:48:19 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (40.107.243.65)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 24 Jun 2025 10:48:19 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wt0MEOeI9cDgK7CQ2KpMG8V2lznLkMNqLG+jWBtOSNOvk9QcAse9XywB8DqVvHue5MCXLCYj7BWWo5eKPlefBdlyZQ4Wdb2U82USxBrJwMiz5TBGLEgoXcAe209OXzJ6YJTUwSAnKVvrgzo4YfNdEu4IT2TqwI3yolAPGpboTupe0WWC/DuR4i/5bM+nPIEbU00lYMY5XpaTL11wAy6dNXySj4o04aqCQvIKnmdG0RLfLUNrLCLvlQXtCziwSy8vNZmS8hPxM0tqvLd/wWA7Ek4JSdxxqoUNjA+qtTs+88dx9GVIiKh4+cU7Cl9ymnWY2qdPXhfhp59+KjJXEmUv5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kEPBQHfrX12Bq+ANyCNx5hTl8cWVhpan2Sikhuj2xzI=;
- b=rY3XzhCjb0wyvpoTf0m1+33s0R0L3w4NG4j2MI3TDu27ZtElFX0KT6AthnhofSIsKZhqJmMt1QOtCl9of9zzflswVUkzrP3zVIgCeHiEpKd9KbXSylq+K8FZpFi+p/dJbUD6qKThM9L7TgO03tCr0z+ly6+dOC8PlQ7AheOjnDpDg6TFsdJ8x+NU+DOy7mxAvAS+4D8shhFhpwYRPnuRjAYF/te7u9tq5vppvIQkXx1buEwuFDSDm4RN121EI89FcmSc5bROxLKPsUszf0FLUj4mAlQEqxmH4RRkzPIoypNbPkiSOaVT50Dq0Qsw472IInyjimoEipZbeJJAGk6EhA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by IA1PR11MB8151.namprd11.prod.outlook.com (2603:10b6:208:44d::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.29; Tue, 24 Jun
- 2025 17:47:58 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%5]) with mapi id 15.20.8857.022; Tue, 24 Jun 2025
- 17:47:58 +0000
-Date: Tue, 24 Jun 2025 12:47:53 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, <stable@vger.kernel.org>
-Subject: Re: [PATCH 1/2] drm/xe: Move DSB l2 flush to a more sensible place
-Message-ID: <jxdnjj4oxkncs3b2g44y43p5mvckgzolaqgnxn44klvygvtybp@in7kev22zlfo>
-References: <20250606104546.1996818-3-matthew.auld@intel.com>
- <mmey6jwpnnwamwrj2trxzpre7j4jswrhjsisuqvx6d6knjbuv4@ddc6co4xn7ec>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <mmey6jwpnnwamwrj2trxzpre7j4jswrhjsisuqvx6d6knjbuv4@ddc6co4xn7ec>
-X-ClientProxiedBy: SJ0PR13CA0066.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::11) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-Greylist: delayed 465 seconds by postgrey-1.36 at gabe;
+ Mon, 23 Jun 2025 17:52:37 UTC
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A133410E14D;
+ Mon, 23 Jun 2025 17:52:37 +0000 (UTC)
+Received: from [192.168.42.116] (pd9e59880.dip0.t-ipconnect.de
+ [217.229.152.128]) (Authenticated sender: wse@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 28CBB2FC01F5;
+ Mon, 23 Jun 2025 19:45:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1750700719;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=FIN6wGJgM6sJP36YGLE7y7vieoBuFwosp9X9CclnC7M=;
+ b=lvpQiYLbtkqhGBdlC1dtkdukrhKTC4J4f1OHZdRhv1Bm+/G7kcfL/4hLXs7mie0e5XDj6K
+ HP+/WrqSq7kh/XO0syvttWbbjW9RCTfr1NY0Kz5HccumulRYT5iGY1yz/9Q0fL7BlWRp71
+ 5HLui6XjhXoQTzfj5c2XnfzFHag/f5E=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=wse@tuxedocomputers.com
+ smtp.mailfrom=wse@tuxedocomputers.com
+Message-ID: <84bf5d8f-4c57-4557-8f96-bfcfdbd893c7@tuxedocomputers.com>
+Date: Mon, 23 Jun 2025 19:45:19 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA1PR11MB8151:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f0e5d67-2bea-41cc-33c0-08ddb34741ad
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vtOp8BEDkXk/3cbvzVCFZQP/opfbrKkbE923gY8UfSBdvIqEDdRS7dZaElmQ?=
- =?us-ascii?Q?GqFAru58o6IhNPEPzCUdyGk2SbxZJvkJbpEsoL79r8cRD+S41QBRy4Qh3erM?=
- =?us-ascii?Q?00n1dFhqEwMg4MBPQpJZKLyaz0mZDgYZkWgJPzK+kVdAuBdSs5APcvbKwsEo?=
- =?us-ascii?Q?JOwrdoKDBLyWXtDgUeRD7rYPEjTmjjbvIUuHNJWjYGgNJNX5dHVPrqqhJW1B?=
- =?us-ascii?Q?H4rD7A6Pg0qQ4vYQbPS838J4jwpWtpZ+lbTt+L9ZHPAUuZpTSBugIJRhpOSt?=
- =?us-ascii?Q?v4h7AOOMlkYAEEwEOefAfH6G1wq9pHuuUJOTxydaMRU/uCDqOGA3G8204FxO?=
- =?us-ascii?Q?3Q5KKAQFrC+UarJuHSq8c+g9IglQjoQpLwtWR3+yTlJJV6RsnsoyrfcdmX0a?=
- =?us-ascii?Q?n9oDUZtYiV902SOoYoEH7TGQUw2x5Omz2iAeY+JPeP8yCEDa7jN29xXVZ0F4?=
- =?us-ascii?Q?QLGYy/2r2bW/iVCzt4svmJbVInlKGrZPbgbTx/Z8Ij/fcJ/eiofORlCLnhJb?=
- =?us-ascii?Q?RzFd/fhBKgsvPTlT4EBOTaC12Idbee3UVM6cLYVk5rVLzyZHI22jV+afNCoj?=
- =?us-ascii?Q?QUx8wX9SP1pyURjCmdMcEh+QlyhL13k4dEFfcuKia/rYlOXjCddJQBSWCsL3?=
- =?us-ascii?Q?D15bFEX3MZxOu2BYAoSjsjbhiF18LiDYBJuzT7M1Pzs9PLkeWmz6iv8sMCad?=
- =?us-ascii?Q?75McsCg3TY2BqI06CB+f3D/ZlCQ9CoJSgO8meJVLtzywpQkG9Fp3Spd0WqgJ?=
- =?us-ascii?Q?ReanM1CE6QN1IpkBrdOhbtAuOUUk8C8xKzG91FY4BHv15FOozzW+3/f68CBQ?=
- =?us-ascii?Q?vzGokK9nbwibedfk0Z+LIskgUdfJUmBlI9CgapswhNioDY9j4Y2lxVeE63Hq?=
- =?us-ascii?Q?08XRBRa/Iib/OlKSLCL0y+9X4rPGsSeyMbdSuOZeFlxvEXAQO9HM6I+dkuaj?=
- =?us-ascii?Q?+JbN5MEcsrAtImtiCpWmCVGUv18o+CNsB0aDhmmwN97Nt3myCzGoPlZob3I+?=
- =?us-ascii?Q?qlYrVCFCSiEuUV6sa9T0+dQhTCmyBn5MFvt2UotaXh+iUJ9e+NSooNeBbigF?=
- =?us-ascii?Q?rBU9Xq0gMvexqN1pXPkayH1qzH4cAbi8wlLUohrmj1CKjYtJqD0XbyMxcvIl?=
- =?us-ascii?Q?WJV1eGmU+6BpghYKM1NIxuWpGYvyysPU6t7NskJXy7MYAjyuQ+hGAxP4d6TQ?=
- =?us-ascii?Q?cRvy889VG7ExXngYWk3gYRCA0hXfm3a7mkRsvv5Con4j3xvmjThZZAsdecBC?=
- =?us-ascii?Q?Jetbi+ll5687knbma3pv4NGFYWyFLHHHkhIe34LAOE2omG3KN9zTjWB29txF?=
- =?us-ascii?Q?yRoEmRTK0uBAKhf0oDgrjCe0BG6Pj+cm1D1yDRnV+UJi7zJRIFS2JLRWZRaH?=
- =?us-ascii?Q?6p6YNiz9OLgUGIjey1+LgAZsqV1R8axMW8IkTXzHQJPxlEWSCurHBZcg3kG0?=
- =?us-ascii?Q?6kiql9BrPB8=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Ip6CgIVpkTtQD2IdRjc51KKSpEixxz3qywQEHnp+l72AlUu1yk6BLMrlQNNp?=
- =?us-ascii?Q?nvcNjoLNWA05LWBEfRboWaRzfrzqC1gnM7ovczi+e2HTFE9Ht+jDyOMofvLK?=
- =?us-ascii?Q?4qmi+TsbOEjn6UQAo50MPHNcjZ4CIAAcRG+QH5yrf0YAcLWN+deagji2wvsC?=
- =?us-ascii?Q?t0c5kACLCqNztsmOWtDzjJC2qGRvIoafFl19cQ9XsLKp0k4i/AgU3/0HJeOZ?=
- =?us-ascii?Q?54dtesBYgubHciuTC9ifEYVJPqpdyAEz+datLjMyCfNEAdvjNwe184bZYzmp?=
- =?us-ascii?Q?jX35L2KutTKS/sDSH7R1raGQR4cOA5XgSgCE1L4BP2E4uEU4v3S4D7dKr+pe?=
- =?us-ascii?Q?T62uSXH8CKW296BndV+Vw/tBpoNiGEF4mW8tAlTupuFLJwVZhLlkG8dAwHA9?=
- =?us-ascii?Q?68cWgK9i7DXXOOgUA1pVxW33PbbuMVCLKumpcpqOnfrp+h6ucAxsPIFrS2I4?=
- =?us-ascii?Q?Zzroc7zDbrkAxrAYdWc7JGsNxZzi22mbvBkWJQ9MbXfUUMW0FVUD5LRhTz68?=
- =?us-ascii?Q?r8/yqJF6gNlxr6j4WUR2WkMe3L/yXdjqVRv1Rhl1THpWGkXtIPN1sDljAu0p?=
- =?us-ascii?Q?qWDV7Mco7TTjxh17QYVy0OBHXaMdZ78db2HqnlH0hulADT/pgf2VK3BeixYh?=
- =?us-ascii?Q?fCGQ3uJ3K6WzMXWEYBUyfhv72WfVrCJB/1DQXOTRcxT/M2nXAQBDTN/1j1Kx?=
- =?us-ascii?Q?qqCCL0skQts0rMrFCWfd50IQV8hDjVigbVJI2tscoOnraFrxEkT5Drz+ZkmM?=
- =?us-ascii?Q?k06RFW6mITWuYNUq/q10bSpj4/qoq3NGiR3iulZEjbylGBdRWQUX8xjMXgeW?=
- =?us-ascii?Q?jYA86AwBB2hiamyl/WVDRAZW0MNCjg+4zHqUWLP1igRb33LLqZLX8vM9pjbE?=
- =?us-ascii?Q?RfGSdIeMv9/aPAe9ZEyRu98ZsP16/aIeChVhTfq4eYhatdn/vhnys/SKzYuy?=
- =?us-ascii?Q?D7ko+aL0HXAAZRcYZKk56TMLWbqltwajbB0WnDR+EYUv7lcf1k8MNbENot8I?=
- =?us-ascii?Q?WMFaSI/M9jaPTAzqpz4WucTzSxh9TPLPKB2hsQV1qodfBP9fvBojE5077635?=
- =?us-ascii?Q?7HlGilTytYekaFs8tE+oBsXFvGraY0dK1V1cK4fT0tatoncyyaixR5F2/FQ5?=
- =?us-ascii?Q?RXoqdtpSlGcjtvJt5YqjstFq3HPUKcYhmLDugNr5pPoN1lKxhP1VdSz8TpLZ?=
- =?us-ascii?Q?3+VpuT12vx3UH/HBsY8lgsfrmMfmXCYxG00q67AQQCfri4aEdGYyhqq82rsM?=
- =?us-ascii?Q?JXUvgLiyoMzKgS1EJ6uQA5FknXlLo/OjNsUUKqbYOwT9ezmf4f/mNXvcHmFI?=
- =?us-ascii?Q?eqQhhiFroIUBBWsxCT/FiBXFG5YUjmeFv18AE/hHKY6OaL6VaWCPTjxurWSM?=
- =?us-ascii?Q?l8gAllW7d4waflIAnkH90BFGG2nA/G+9xoTiaydjIJx55DD6oRb7BUOjSReh?=
- =?us-ascii?Q?oIoQwnhmMAW1eM5ZfAmSS07Au0nBiTL+NXi9tJL8O7LRoge3jpIyKib0nz23?=
- =?us-ascii?Q?k2k1OLbkflBN0qNCjN5iEoSUue6Ho18mMjZ0y+7/rc/xW7swOCAM4PzVxUk2?=
- =?us-ascii?Q?ZlcGYLB+wourQeNRX+CYrbDtwtKO2lriorHQrXU6u0tCJrIGK4Nva28PPhdm?=
- =?us-ascii?Q?ZA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f0e5d67-2bea-41cc-33c0-08ddb34741ad
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2025 17:47:58.4987 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nioMxyi+cyEJNuQef0ImS6FmnxjpWPvisiPApN4Hil4qvW4ASrCB71gZzFt56mkoIMsIEdZBqSG/dX7As+P+cIMV3fGH1ejAqZblMBMQ1Ew=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8151
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/i915/display: Add quirk to force backlight type
+ on some TUXEDO devices
+To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20250411171756.142777-1-wse@tuxedocomputers.com>
+ <20250411171756.142777-2-wse@tuxedocomputers.com>
+Content-Language: en-US
+From: Werner Sembach <wse@tuxedocomputers.com>
+In-Reply-To: <20250411171756.142777-2-wse@tuxedocomputers.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 24 Jun 2025 18:19:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,61 +68,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 18, 2025 at 02:06:39PM -0500, Lucas De Marchi wrote:
->On Fri, Jun 06, 2025 at 11:45:47AM +0100, Matthew Auld wrote:
->>From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>
->>Flushing l2 is only needed after all data has been written.
->>
->>Fixes: 01570b446939 ("drm/xe/bmg: implement Wa_16023588340")
->>Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>Cc: Matthew Auld <matthew.auld@intel.com>
->>Cc: <stable@vger.kernel.org> # v6.12+
->>Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->>Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>---
->>drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 11 ++++-------
->>1 file changed, 4 insertions(+), 7 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
->>index f95375451e2f..9f941fc2e36b 100644
->>--- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
->>+++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
->>@@ -17,10 +17,7 @@ u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
->>
->>void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val)
->>{
->>-	struct xe_device *xe = dsb_buf->vma->bo->tile->xe;
->>-
->>	iosys_map_wr(&dsb_buf->vma->bo->vmap, idx * 4, u32, val);
->>-	xe_device_l2_flush(xe);
->>}
->>
->>u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
->>@@ -30,12 +27,9 @@ u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
->>
->>void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val, size_t size)
->>{
->>-	struct xe_device *xe = dsb_buf->vma->bo->tile->xe;
->>-
->>	WARN_ON(idx > (dsb_buf->buf_size - size) / sizeof(*dsb_buf->cmd_buf));
->>
->>	iosys_map_memset(&dsb_buf->vma->bo->vmap, idx * 4, val, size);
->>-	xe_device_l2_flush(xe);
->>}
->>
->>bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *dsb_buf, size_t size)
->>@@ -74,9 +68,12 @@ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
->>
->>void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
->
->assuming the calls to this function are already in the right place,
->
->Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
->... but it seems quite fragile as we are exposing the other the
->functions writing to it. Not something introduced here though.
+gentle bump
 
-applied both patches to drm-xe-next. Thanks.
-
-Lucas De Marchi
+Am 11.04.25 um 17:55 schrieb Werner Sembach:
+> The display backlight on TUXEDO DX1708 and InsanityBook 15 v1 with panels
+> AUO 12701 and AUO 12701 must be forced to INTEL_DP_AUX_BACKLIGHT_ON to be
+> able to control the brightness.
+>
+> This could already be archived via a module parameter, but this patch adds
+> a quirk to apply this by default on the mentioned device + panel
+> combinations.
+>
+> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> Cc: stable@vger.kernel.org
+> ---
+>   .../drm/i915/display/intel_dp_aux_backlight.c | 14 ++++++-
+>   drivers/gpu/drm/i915/display/intel_quirks.c   | 42 +++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
+>   3 files changed, 56 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index c846ef4acf5b2..0cac04c98a3e3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -34,12 +34,14 @@
+>    * for some reason.
+>    */
+>   
+> +#include <drm/drm_edid.h>
+>   #include "i915_utils.h"
+>   #include "intel_backlight.h"
+>   #include "intel_display_core.h"
+>   #include "intel_display_types.h"
+>   #include "intel_dp.h"
+>   #include "intel_dp_aux_backlight.h"
+> +#include "intel_quirks.h"
+>   
+>   /*
+>    * DP AUX registers for Intel's proprietary HDR backlight interface. We define
+> @@ -607,11 +609,21 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+>   	struct drm_device *dev = connector->base.dev;
+>   	struct intel_panel *panel = &connector->panel;
+>   	bool try_intel_interface = false, try_vesa_interface = false;
+> +	int enable_dpcd_backlight;
+> +	u32 pnl_id;
+>   
+>   	/* Check the VBT and user's module parameters to figure out which
+>   	 * interfaces to probe
+>   	 */
+> -	switch (display->params.enable_dpcd_backlight) {
+> +	enable_dpcd_backlight = display->params.enable_dpcd_backlight;
+> +	if (enable_dpcd_backlight == INTEL_DP_AUX_BACKLIGHT_AUTO &&
+> +	    intel_has_quirk(display, QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT)) {
+> +		pnl_id = drm_edid_get_panel_id(panel->fixed_edid);
+> +		if (pnl_id == drm_edid_encode_panel_id('A', 'U', 'O', 0x319d) ||
+> +		    pnl_id == drm_edid_encode_panel_id('A', 'U', 'O', 0x52ed))
+> +			enable_dpcd_backlight = INTEL_DP_AUX_BACKLIGHT_ON;
+> +	}
+> +	switch (enable_dpcd_backlight) {
+>   	case INTEL_DP_AUX_BACKLIGHT_OFF:
+>   		return -ENODEV;
+>   	case INTEL_DP_AUX_BACKLIGHT_AUTO:
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+> index 8b30e9fd936e7..6f724e5712664 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> @@ -78,6 +78,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel_dp)
+>   	drm_info(display->drm, "Applying Fast Wake sync pulse count quirk\n");
+>   }
+>   
+> +static void quirk_auo_12701_21229_enable_dpcd_backlight(struct intel_display *display)
+> +{
+> +	intel_set_quirk(display, QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT);
+> +	drm_info(display->drm, "Applying Display AUO Model 12701 and 21229 Enable DPCD Backlight quirk\n");
+> +}
+> +
+>   struct intel_quirk {
+>   	int device;
+>   	int subsystem_vendor;
+> @@ -118,6 +124,12 @@ static int intel_dmi_no_pps_backlight(const struct dmi_system_id *id)
+>   	return 1;
+>   }
+>   
+> +static int intel_dmi_auo_12701_21229_enable_dpcd_backlight(const struct dmi_system_id *id)
+> +{
+> +	DRM_INFO("Display AUO model 12701 and 21229 DPCD backlight control on %s\n", id->ident);
+> +	return 1;
+> +}
+> +
+>   static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>   	{
+>   		.dmi_id_list = &(const struct dmi_system_id[]) {
+> @@ -164,6 +176,36 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>   		},
+>   		.hook = quirk_no_pps_backlight_power_hook,
+>   	},
+> +	{
+> +		.dmi_id_list = &(const struct dmi_system_id[]) {
+> +			{
+> +				.callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
+> +				.ident = "TUXEDO DX1708",
+> +				.matches = {DMI_MATCH(DMI_BOARD_NAME, "N8xEJEK"),
+> +				},
+> +			},
+> +			{
+> +				.callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
+> +				.ident = "TUXEDO InsanityBook 15 v1",
+> +				.matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HP"),
+> +				},
+> +			},
+> +			{
+> +				.callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
+> +				.ident = "TUXEDO InsanityBook 15 v1",
+> +				.matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HR"),
+> +				},
+> +			},
+> +			{
+> +				.callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
+> +				.ident = "TUXEDO InsanityBook 15 v1",
+> +				.matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HP,HR,HQ"),
+> +				},
+> +			},
+> +			{ }
+> +		},
+> +		.hook = quirk_auo_12701_21229_enable_dpcd_backlight,
+> +	},
+>   };
+>   
+>   static struct intel_quirk intel_quirks[] = {
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+> index cafdebda75354..38bdbd65d7efb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+> @@ -20,6 +20,7 @@ enum intel_quirk_id {
+>   	QUIRK_LVDS_SSC_DISABLE,
+>   	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
+>   	QUIRK_FW_SYNC_LEN,
+> +	QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT,
+>   };
+>   
+>   void intel_init_quirks(struct intel_display *display);
