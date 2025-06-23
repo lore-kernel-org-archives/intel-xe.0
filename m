@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AA83C7EE33
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F55EC7EE2A
 	for <intel-xe@archiver.kernel.org>; Mon, 23 Jun 2025 14:44:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA03810E3CE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF93210E3CC;
 	Mon, 23 Jun 2025 14:44:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NE9Fyw/F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mb2FjM9U";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B15910E3CA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48A1E10E3CA
  for <intel-xe@lists.freedesktop.org>; Mon, 23 Jun 2025 14:44:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1750689852; x=1782225852;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5qvuegHA1/Jz4PaNRvUdPMzv5dB4xVscxsaSwl+4yW0=;
- b=NE9Fyw/Ft0J72tNSoq1kDNb8sS22mIgvhlou7O5lLbqblbmpbqWn9eAG
- slAAUYPp4kR3M7pDsyWKh9eAMNq4m63TculIasOj9AW5ZO4yO6YUmFQc+
- cCsCuPL7wQEmT+WvDT9jZ78oSOgZF5utH2NBMn2SE26gZ65iun5LH9I+g
- D8pIprlYZC35b+JaV1H9bKdGbDZALvXYc4rJFtzxj/lUM4HAXgIFiIASk
- 2iI9Opkl9ZLa4KEBtbwwaGf41AtNesQQRMBs2/05tSt74BEMmmZCElHPt
- GFj7aWZgeijk3JV0bj4NZP3r6SKEyXPkPt4kqBJLgqV6xbeaq2yWAN7dq Q==;
-X-CSE-ConnectionGUID: mkBf3ry2QIeNIvDP/Jgmyg==
-X-CSE-MsgGUID: Gkr/Chj2QWaHTGza8Jmmtg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="52837056"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="52837056"
+ bh=6/Q72JabZQnDPiC2Ekhov7MPplgcAWSxpLh3wbWsspM=;
+ b=mb2FjM9Um8ZvCBoi4TQeRgsXyCABZgYEpTzVRhw0Sn3R9b9Io9UJn3BN
+ grT9nPBmsFU8PmG6PTGecOsPHFZh2Ax/49UHAEVhU5j5+5BhO28dwcEGK
+ ln5aG2ko9UujBTSL6metLMLUiZ8EZotRr6AusjANgWjZCzSn7bqI8KFvO
+ VLVplMqCm40hopmp6dK6TyrrRhHSXgkY34uhuNV5l+XwS3v6IDSphl5lC
+ uQpQZNttpqXbQ/CPvpTSo7mKRgC3TOZT34v1tMeuYVslaoTvnzow4yBVX
+ kiAVVSzZpKYakidUae0Sj4ZaXL639fW3J/V/iirQr2Qb1R+Y1R4ujXOPd A==;
+X-CSE-ConnectionGUID: AYWy+22iTyKh1moPS5dS5Q==
+X-CSE-MsgGUID: oEQ4vY0/TBOd38HlmghSkQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="52837059"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="52837059"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jun 2025 07:44:11 -0700
-X-CSE-ConnectionGUID: heGKAj4/SXyUAr4dQmR1Qw==
-X-CSE-MsgGUID: ZNDgYYKCRzWSMZ3HK5J/jw==
+X-CSE-ConnectionGUID: T3AjuykhT+6ghvOb5UK5pw==
+X-CSE-MsgGUID: 2Td39nYWT367AK4vvHhpRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="182661936"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="182661945"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jun 2025 07:44:10 -0700
@@ -45,9 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@linux.intel.com,
 	matthew.auld@intel.com
-Subject: [PATCH v2 1/4] drm/xe: Only use delayed worker to destroy userptr VMAs
-Date: Mon, 23 Jun 2025 07:45:45 -0700
-Message-Id: <20250623144548.2388268-2-matthew.brost@intel.com>
+Subject: [PATCH v2 4/4] drm/xe: Implement clear VRAM on free
+Date: Mon, 23 Jun 2025 07:45:48 -0700
+Message-Id: <20250623144548.2388268-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250623144548.2388268-1-matthew.brost@intel.com>
 References: <20250623144548.2388268-1-matthew.brost@intel.com>
@@ -67,179 +67,254 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-TTM has a delayed BO destruction mechanism based on dma-resv, which
-eliminates the need for the delayed worker to destroy VMAs containing
-BOs. However, userptr still requires this mechanism because DMA mappings
-and notifiers cannot be removed until the GPU bindings are gone.
-Therefore, move the delayed worker responsible for destroying userptr
-VMAs to the userptr code and bypass this process for VMAs containing a
-BO.
+Clearing on free should hide latency of BO clears on new user BO
+allocations.
+
+Implemented via calling xe_migrate_clear in release notify and updating
+iterator in xe_migrate_clear to skip cleared buddy blocks. Only user BOs
+cleared in release notify as kernel BOs could still be in use (e.g., PT
+BOs need to wait for dma-resv to be idle).
+
+v2:
+ - Update to new xe_migrate_clear arguments (Thomas)
+ - Wait on BOOKKEEP slots for clear onn free (Thomas)
+ - s/XE_MIGRATE_CLEAR_NON_DIRTY/XE_MIGRATE_CLEAR_FLAG_ON_FREE
+ - Do not requested clear memory in VRAM manager if BO as TT data (Auld)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c       | 80 +++++++++++++++++---------------
- drivers/gpu/drm/xe/xe_vm_types.h | 13 +++---
- 2 files changed, 48 insertions(+), 45 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c           | 48 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_migrate.c      | 31 ++++++++++++------
+ drivers/gpu/drm/xe/xe_migrate.h      |  1 +
+ drivers/gpu/drm/xe/xe_res_cursor.h   | 26 +++++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  6 +++-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  6 ++++
+ 6 files changed, 108 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 04d1a43b81e3..9309a5956f00 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1270,54 +1270,47 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	return vma;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 7a412121477e..900f67deef9d 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1453,6 +1453,52 @@ static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
+ 	return locked;
  }
  
--static void xe_vma_destroy_late(struct xe_vma *vma)
-+static void xe_vma_userptr_destroy_late(struct xe_userptr_vma *uvma)
++static void xe_ttm_bo_release_clear(struct ttm_buffer_object *ttm_bo)
++{
++	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
++	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
++	struct dma_fence *fence;
++	int err, idx;
++
++	xe_bo_assert_held(ttm_to_xe_bo(ttm_bo));
++
++	if (ttm_bo->type != ttm_bo_type_device)
++		return;
++
++	if (xe_device_wedged(xe))
++		return;
++
++	if (!ttm_bo->resource || !mem_type_is_vram(ttm_bo->resource->mem_type))
++		return;
++
++	if (!drm_dev_enter(&xe->drm, &idx))
++		return;
++
++	if (!xe_pm_runtime_get_if_active(xe))
++		goto unbind;
++
++	err = dma_resv_reserve_fences(&ttm_bo->base._resv, 1);
++	if (err)
++		goto put_pm;
++
++	fence = xe_migrate_clear(mem_type_to_migrate(xe, ttm_bo->resource->mem_type),
++				 ttm_bo->resource, &ttm_bo->base._resv, NULL,
++				 bo->size, XE_MIGRATE_CLEAR_FLAG_FULL |
++				 XE_MIGRATE_CLEAR_FLAG_ON_FREE, &bo->ccs_cleared);
++	if (XE_WARN_ON(IS_ERR(fence)))
++		goto put_pm;
++
++	xe_ttm_vram_mgr_resource_set_cleared(ttm_bo->resource);
++	dma_resv_add_fence(&ttm_bo->base._resv, fence,
++			   DMA_RESV_USAGE_KERNEL);
++	dma_fence_put(fence);
++
++put_pm:
++	xe_pm_runtime_put(xe);
++unbind:
++	drm_dev_exit(idx);
++}
++
+ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
  {
-+	struct xe_vma *vma = &uvma->vma;
-+	struct xe_userptr *userptr = &uvma->userptr;
- 	struct xe_vm *vm = xe_vma_vm(vma);
+ 	struct dma_resv_iter cursor;
+@@ -1497,6 +1543,8 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+ 	}
+ 	dma_fence_put(replacement);
  
--	if (vma->ufence) {
--		xe_sync_ufence_put(vma->ufence);
--		vma->ufence = NULL;
--	}
--
--	if (xe_vma_is_userptr(vma)) {
--		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
--		struct xe_userptr *userptr = &uvma->userptr;
-+	xe_assert(vm->xe, xe_vma_is_userptr(vma));
- 
--		if (userptr->sg)
--			xe_hmm_userptr_free_sg(uvma);
-+	if (userptr->sg)
-+		xe_hmm_userptr_free_sg(uvma);
- 
--		/*
--		 * Since userptr pages are not pinned, we can't remove
--		 * the notifier until we're sure the GPU is not accessing
--		 * them anymore
--		 */
--		mmu_interval_notifier_remove(&userptr->notifier);
--		mutex_destroy(&userptr->unmap_mutex);
--		xe_vm_put(vm);
--	} else if (xe_vma_is_null(vma) || xe_vma_is_cpu_addr_mirror(vma)) {
--		xe_vm_put(vm);
--	} else {
--		xe_bo_put(xe_vma_bo(vma));
--	}
-+	/*
-+	 * Since userptr pages are not pinned, we can't remove
-+	 * the notifier until we're sure the GPU is not accessing
-+	 * them anymore
-+	 */
-+	mmu_interval_notifier_remove(&userptr->notifier);
-+	mutex_destroy(&userptr->unmap_mutex);
-+	xe_vm_put(vm);
- 
- 	xe_vma_free(vma);
++	xe_ttm_bo_release_clear(ttm_bo);
++
+ 	dma_resv_unlock(ttm_bo->base.resv);
  }
  
--static void vma_destroy_work_func(struct work_struct *w)
-+static void userptr_destroy_work_func(struct work_struct *w)
- {
--	struct xe_vma *vma =
--		container_of(w, struct xe_vma, destroy_work);
-+	struct xe_userptr *userptr =
-+		container_of(w, typeof(*userptr), destroy_work);
-+	struct xe_userptr_vma *uvma = container_of(userptr, typeof(*uvma),
-+						   userptr);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 18030f9613ae..7620f4eb8fb3 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1067,7 +1067,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 	struct xe_gt *gt = m->tile->primary_gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool clear_only_system_ccs = false;
+-	struct dma_fence *fence = NULL;
++	struct dma_fence *fence = dma_fence_get_stub();
+ 	struct xe_res_cursor src_it;
+ 	struct ttm_resource *src = dst;
+ 	int err;
+@@ -1078,10 +1078,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 	if (!clear_bo_data && clear_ccs && !IS_DGFX(xe))
+ 		clear_only_system_ccs = true;
  
--	xe_vma_destroy_late(vma);
-+	xe_vma_userptr_destroy_late(uvma);
+-	if (!clear_vram)
++	if (!clear_vram) {
+ 		xe_res_first_sg(sgt, 0, size, &src_it);
+-	else
++	} else {
+ 		xe_res_first(src, 0, size, &src_it);
++		if (!(clear_flags & XE_MIGRATE_CLEAR_FLAG_ON_FREE))
++			size -= xe_res_next_dirty(&src_it);
++	}
+ 
+ 	while (size) {
+ 		u64 clear_L0_ofs;
+@@ -1128,6 +1131,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 			emit_pte(m, bb, clear_L0_pt, clear_vram, clear_only_system_ccs,
+ 				 &src_it, clear_L0, dst);
+ 
++		if (clear_vram && !(clear_flags & XE_MIGRATE_CLEAR_FLAG_ON_FREE))
++			size -= xe_res_next_dirty(&src_it);
++
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+ 
+@@ -1149,15 +1155,22 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		}
+ 
+ 		xe_sched_job_add_migrate_flush(job, flush_flags);
+-		if (!fence) {
++		if (fence == dma_fence_get_stub()) {
++			enum dma_resv_usage usage =
++			       (clear_flags & XE_MIGRATE_CLEAR_FLAG_ON_FREE) ?
++			       DMA_RESV_USAGE_BOOKKEEP : DMA_RESV_USAGE_KERNEL;
++
+ 			/*
+-			 * There can't be anything userspace related at this
+-			 * point, so we just need to respect any potential move
+-			 * fences, which are always tracked as
++			 * For initial clears, there can't be anything userspace
++			 * related at this point, so we just need to respect any
++			 * potential move fences, which are always tracked as
+ 			 * DMA_RESV_USAGE_KERNEL.
++			 *
++			 * For clear on free need to respect all fences as
++			 * memory could still be in use by the GPU which is
++			 * tracked in DMA_RESV_USAGE_BOOKKEEP.
+ 			 */
+-			err = xe_sched_job_add_deps(job, resv,
+-						    DMA_RESV_USAGE_KERNEL);
++			err = xe_sched_job_add_deps(job, resv, usage);
+ 			if (err)
+ 				goto err_job;
+ 		}
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 04b3cd86ba90..104c61812ba1 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -120,6 +120,7 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+ 
+ #define XE_MIGRATE_CLEAR_FLAG_BO_DATA		BIT(0)
+ #define XE_MIGRATE_CLEAR_FLAG_CCS_DATA		BIT(1)
++#define XE_MIGRATE_CLEAR_FLAG_ON_FREE		BIT(2)
+ #define XE_MIGRATE_CLEAR_FLAG_FULL	(XE_MIGRATE_CLEAR_FLAG_BO_DATA | \
+ 					XE_MIGRATE_CLEAR_FLAG_CCS_DATA)
+ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+index d1a403cfb628..630082e809ba 100644
+--- a/drivers/gpu/drm/xe/xe_res_cursor.h
++++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+@@ -315,6 +315,32 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
+ 	}
  }
  
--static void vma_destroy_cb(struct dma_fence *fence,
--			   struct dma_fence_cb *cb)
-+static void userptr_destroy_cb(struct dma_fence *fence,
-+			       struct dma_fence_cb *cb)
- {
--	struct xe_vma *vma = container_of(cb, struct xe_vma, destroy_cb);
-+	struct xe_userptr *userptr =
-+		container_of(cb, typeof(*userptr), destroy_cb);
- 
--	INIT_WORK(&vma->destroy_work, vma_destroy_work_func);
--	queue_work(system_unbound_wq, &vma->destroy_work);
-+	INIT_WORK(&userptr->destroy_work, userptr_destroy_work_func);
-+	queue_work(system_unbound_wq, &userptr->destroy_work);
- }
- 
- static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
-@@ -1327,6 +1320,11 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
- 	lockdep_assert_held_write(&vm->lock);
- 	xe_assert(vm->xe, list_empty(&vma->combined_links.destroy));
- 
-+	if (vma->ufence) {
-+		xe_sync_ufence_put(vma->ufence);
-+		vma->ufence = NULL;
++/**
++ * xe_res_next_dirty - advance the cursor to next dirty buddy block
++ *
++ * @cur: the cursor to advance
++ *
++ * Move the cursor until dirty buddy block is found.
++ *
++ * Return: Number of bytes cursor has been advanced
++ */
++static inline u64 xe_res_next_dirty(struct xe_res_cursor *cur)
++{
++	struct drm_buddy_block *block = cur->node;
++	u64 bytes = 0;
++
++	XE_WARN_ON(cur->mem_type != XE_PL_VRAM0 &&
++		   cur->mem_type != XE_PL_VRAM1);
++
++	while (cur->remaining && drm_buddy_block_is_clear(block)) {
++		bytes += cur->size;
++		xe_res_next(cur, cur->size);
++		block = cur->node;
 +	}
 +
- 	if (xe_vma_is_userptr(vma)) {
- 		xe_assert(vm->xe, vma->gpuva.flags & XE_VMA_DESTROYED);
++	return bytes;
++}
++
+ /**
+  * xe_res_dma - return dma address of cursor at current position
+  *
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 9e375a40aee9..838739e47815 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -84,6 +84,10 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
+ 		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
  
-@@ -1338,19 +1336,25 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
- 		xe_bo_assert_held(xe_vma_bo(vma));
++	if (tbo->type == ttm_bo_type_device &&
++	    !xe_bo_tt_has_data(ttm_to_xe_bo(tbo)))
++		vres->flags |= DRM_BUDDY_CLEAR_ALLOCATION;
++
+ 	if (WARN_ON(!vres->base.size)) {
+ 		err = -EINVAL;
+ 		goto error_fini;
+@@ -187,7 +191,7 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+ 	struct drm_buddy *mm = &mgr->mm;
  
- 		drm_gpuva_unlink(&vma->gpuva);
-+		xe_bo_put(xe_vma_bo(vma));
-+	} else {
-+		xe_vm_put(vm);
- 	}
+ 	mutex_lock(&mgr->lock);
+-	drm_buddy_free_list(mm, &vres->blocks, 0);
++	drm_buddy_free_list(mm, &vres->blocks, vres->flags);
+ 	mgr->visible_avail += vres->used_visible_size;
+ 	mutex_unlock(&mgr->lock);
  
- 	xe_vm_assert_held(vm);
--	if (fence) {
--		int ret = dma_fence_add_callback(fence, &vma->destroy_cb,
--						 vma_destroy_cb);
-+	if (fence && xe_vma_is_userptr(vma)) {
-+		struct xe_userptr *userptr = &to_userptr_vma(vma)->userptr;
-+		int ret = dma_fence_add_callback(fence, &userptr->destroy_cb,
-+						 userptr_destroy_cb);
- 
- 		if (ret) {
- 			XE_WARN_ON(ret != -ENOENT);
--			xe_vma_destroy_late(vma);
-+			xe_vma_userptr_destroy_late(to_userptr_vma(vma));
- 		}
-+	} else if (xe_vma_is_userptr(vma)) {
-+		xe_vma_userptr_destroy_late(to_userptr_vma(vma));
- 	} else {
--		xe_vma_destroy_late(vma);
-+		xe_vma_free(vma);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index cc76050e376d..dfc0e6890b3c 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -36,6 +36,12 @@ to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
+ 	return container_of(res, struct xe_ttm_vram_mgr_resource, base);
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index bed6088e1bb3..cb4b9fbcf75d 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -64,6 +64,12 @@ struct xe_userptr {
- 	unsigned long notifier_seq;
- 	/** @unmap_mutex: Mutex protecting dma-unmapping */
- 	struct mutex unmap_mutex;
-+	union {
-+		/** @destroy_cb: callback to destroy usertpr when unbind job is done */
-+		struct dma_fence_cb destroy_cb;
-+		/** @destroy_work: worker to destroy this usertpr */
-+		struct work_struct destroy_work;
-+	};
- 	/**
- 	 * @initial_bind: user pointer has been bound at least once.
- 	 * write: vm->userptr.notifier_lock in read mode and vm->resv held.
-@@ -93,13 +99,6 @@ struct xe_vma {
- 		struct list_head destroy;
- 	} combined_links;
- 
--	union {
--		/** @destroy_cb: callback to destroy VMA when unbind job is done */
--		struct dma_fence_cb destroy_cb;
--		/** @destroy_work: worker to destroy this BO */
--		struct work_struct destroy_work;
--	};
--
- 	/**
- 	 * @tile_invalidated: Tile mask of binding are invalidated for this VMA.
- 	 * protected by BO's resv and for userptrs, vm->userptr.notifier_lock in
++static inline void
++xe_ttm_vram_mgr_resource_set_cleared(struct ttm_resource *res)
++{
++	to_xe_ttm_vram_mgr_resource(res)->flags |= DRM_BUDDY_CLEARED;
++}
++
+ static inline struct xe_ttm_vram_mgr *
+ to_xe_ttm_vram_mgr(struct ttm_resource_manager *man)
+ {
 -- 
 2.34.1
 
