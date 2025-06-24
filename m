@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACC85C77B7F
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 22:57:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8F21C77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 23:03:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A53A310E011;
-	Tue, 24 Jun 2025 22:57:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6811710E063;
+	Tue, 24 Jun 2025 23:03:05 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DBF010E011;
- Tue, 24 Jun 2025 22:57:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4937940865925886891=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7949A10E011;
+ Tue, 24 Jun 2025 23:03:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Make_multi-GT_?=
- =?utf-8?q?migration_less_error_prone_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Drop_bo-=3Esize_=28r?=
+ =?utf-8?q?ev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tomasz Lis" <tomasz.lis@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Jun 2025 22:57:22 -0000
-Message-ID: <175080584217.106099.1493117064165265225@1538d3639d33>
+Date: Tue, 24 Jun 2025 23:03:04 -0000
+Message-ID: <175080618449.106491.15396104108146121913@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250624210957.2607454-1-tomasz.lis@intel.com>
-In-Reply-To: <20250624210957.2607454-1-tomasz.lis@intel.com>
+References: <20250624225018.2790110-1-matthew.brost@intel.com>
+In-Reply-To: <20250624225018.2790110-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,58 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4937940865925886891==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/vf: Make multi-GT migration less error prone (rev2)
-URL   : https://patchwork.freedesktop.org/series/150253/
-State : success
+Series: drm/xe: Drop bo->size (rev2)
+URL   : https://patchwork.freedesktop.org/series/150710/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-3301-e8efdbd16eab3b11b9500cb343b29878f3349d74_BAT -> xe-pw-150253v2_BAT
-====================================================
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:7:
+../drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c: In function ‘encode_config’:
+../drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:285:58: error: ‘struct xe_bo’ has no member named ‘size’
+  285 |                 cfg[n++] = lower_32_bits(config->lmem_obj->size);
+      |                                                          ^~
+../include/linux/wordpart.h:20:34: note: in definition of macro ‘lower_32_bits’
+   20 | #define lower_32_bits(n) ((u32)((n) & 0xffffffff))
+      |                                  ^
+../drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:286:58: error: ‘struct xe_bo’ has no member named ‘size’
+  286 |                 cfg[n++] = upper_32_bits(config->lmem_obj->size);
+      |                                                          ^~
+../include/linux/wordpart.h:14:35: note: in definition of macro ‘upper_32_bits’
+   14 | #define upper_32_bits(n) ((u32)(((n) >> 16) >> 16))
+      |                                   ^
+../drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c: In function ‘xe_gt_sriov_pf_config_print_lmem’:
+../drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2555:49: error: ‘struct xe_bo’ has no member named ‘size’
+ 2555 |                 string_get_size(config->lmem_obj->size, 1, STRING_UNITS_2,
+      |                                                 ^~
+../drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2558:47: error: ‘struct xe_bo’ has no member named ‘size’
+ 2558 |                            n, config->lmem_obj->size, buf);
+      |                                               ^~
+make[7]: *** [../scripts/Makefile.build:287: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:554: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:554: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:554: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:554: drivers] Error 2
+make[2]: *** [/kernel/Makefile:2003: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3301-e8efdbd16eab3b11b9500cb343b29878f3349d74 -> xe-pw-150253v2
-
-  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3301-e8efdbd16eab3b11b9500cb343b29878f3349d74: e8efdbd16eab3b11b9500cb343b29878f3349d74
-  xe-pw-150253v2: 150253v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150253v2/index.html
-
---===============4937940865925886891==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+[23:02:30] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[23:02:35] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Make multi-GT migration less error prone (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150253/">https://patchwork.freedesktop.org/series/150253/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150253v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150253v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3301-e8efdbd16eab3b11b9500cb343b29878f3349d74_BAT -&gt; xe-pw-150253v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3301-e8efdbd16eab3b11b9500cb343b29878f3349d74 -&gt; xe-pw-150253v2</li>
-</ul>
-<p>IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3301-e8efdbd16eab3b11b9500cb343b29878f3349d74: e8efdbd16eab3b11b9500cb343b29878f3349d74<br />
-  xe-pw-150253v2: 150253v2</p>
-
-</body>
-</html>
-
---===============4937940865925886891==--
