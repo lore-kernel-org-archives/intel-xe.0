@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 230FFC77B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 20:26:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C38A8C77B7C
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 20:31:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D18D310E103;
-	Tue, 24 Jun 2025 20:26:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 717FF10E12F;
+	Tue, 24 Jun 2025 20:31:56 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B3F910E103;
- Tue, 24 Jun 2025 20:26:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1120551055234817586=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD75810E12F;
+ Tue, 24 Jun 2025 20:31:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Do_not_wedge_devi?=
- =?utf-8?q?ce_on_killed_exec_queues?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Drop_bo-=3Esize?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Jun 2025 20:26:50 -0000
-Message-ID: <175079681061.105982.14913578368724076929@1538d3639d33>
+Date: Tue, 24 Jun 2025 20:31:54 -0000
+Message-ID: <175079711476.106099.17388448465011915534@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250624174103.2707941-1-matthew.brost@intel.com>
-In-Reply-To: <20250624174103.2707941-1-matthew.brost@intel.com>
+References: <20250624194654.2787356-1-matthew.brost@intel.com>
+In-Reply-To: <20250624194654.2787356-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +39,42 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1120551055234817586==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Do not wedge device on killed exec queues
-URL   : https://patchwork.freedesktop.org/series/150708/
-State : success
+Series: drm/xe: Drop bo->size
+URL   : https://patchwork.freedesktop.org/series/150710/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3299-0095a137b4944b43200228af265c708bdfcf262f_BAT -> xe-pw-150708v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7aff32de565791b0f137cd45ff7e1597a646f871
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Tue Jun 24 12:46:54 2025 -0700
 
-Summary
--------
+    drm/xe: Drop bo->size
+    
+    bo->size is redundant because the base GEM object already has a size
+    field with the same value. Drop bo->size and use the base GEM object’s
+    size instead. While at it, introduce xe_bo_size() to abstract the BO
+    size.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 0db5cf46e2c4fd232179cd9d5d127ab8c4aa0682 drm-intel
+7aff32de5657 drm/xe: Drop bo->size
+-:44: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#44: FILE: drivers/gpu/drm/xe/xe_bo.c:1203:
++		backup = ___xe_bo_create_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3299-0095a137b4944b43200228af265c708bdfcf262f -> xe-pw-150708v1
-
-  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3299-0095a137b4944b43200228af265c708bdfcf262f: 0095a137b4944b43200228af265c708bdfcf262f
-  xe-pw-150708v1: 150708v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150708v1/index.html
-
---===============1120551055234817586==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 508 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Do not wedge device on killed exec queues</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150708/">https://patchwork.freedesktop.org/series/150708/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150708v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150708v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3299-0095a137b4944b43200228af265c708bdfcf262f_BAT -&gt; xe-pw-150708v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3299-0095a137b4944b43200228af265c708bdfcf262f -&gt; xe-pw-150708v1</li>
-</ul>
-<p>IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3299-0095a137b4944b43200228af265c708bdfcf262f: 0095a137b4944b43200228af265c708bdfcf262f<br />
-  xe-pw-150708v1: 150708v1</p>
-
-</body>
-</html>
-
---===============1120551055234817586==--
