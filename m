@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C38A8C77B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 20:31:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 773E1C77B7C
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 20:32:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 717FF10E12F;
-	Tue, 24 Jun 2025 20:31:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 393CB10E12F;
+	Tue, 24 Jun 2025 20:32:25 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD75810E12F;
- Tue, 24 Jun 2025 20:31:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CE4E10E12F;
+ Tue, 24 Jun 2025 20:32:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Drop_bo-=3Esize?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Drop_bo-=3Esize?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Jun 2025 20:31:54 -0000
-Message-ID: <175079711476.106099.17388448465011915534@1538d3639d33>
+Date: Tue, 24 Jun 2025 20:32:24 -0000
+Message-ID: <175079714417.106099.11268515404871726740@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250624194654.2787356-1-matthew.brost@intel.com>
 In-Reply-To: <20250624194654.2787356-1-matthew.brost@intel.com>
@@ -43,38 +43,41 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Drop bo->size
 URL   : https://patchwork.freedesktop.org/series/150710/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-f8ff75ae1d2127635239b134695774ed4045d05b
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 7aff32de565791b0f137cd45ff7e1597a646f871
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Tue Jun 24 12:46:54 2025 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_bo.c:3136:
+../drivers/gpu/drm/xe/tests/xe_bo.c: In function ‘ccs_test_migrate’:
+../drivers/gpu/drm/xe/tests/xe_bo.c:109:58: error: ‘struct xe_bo’ has no member named ‘size’
+  109 |         offset = xe_device_ccs_bytes(tile_to_xe(tile), bo->size);
+      |                                                          ^~
+make[7]: *** [../scripts/Makefile.build:287: drivers/gpu/drm/xe/xe_bo.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:554: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:554: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:554: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:554: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:2003: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe: Drop bo->size
-    
-    bo->size is redundant because the base GEM object already has a size
-    field with the same value. Drop bo->size and use the base GEM object’s
-    size instead. While at it, introduce xe_bo_size() to abstract the BO
-    size.
-    
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-    Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-+ /mt/dim checkpatch 0db5cf46e2c4fd232179cd9d5d127ab8c4aa0682 drm-intel
-7aff32de5657 drm/xe: Drop bo->size
--:44: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#44: FILE: drivers/gpu/drm/xe/xe_bo.c:1203:
-+		backup = ___xe_bo_create_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
-
-total: 0 errors, 1 warnings, 0 checks, 508 lines checked
+[20:31:55] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[20:31:59] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
