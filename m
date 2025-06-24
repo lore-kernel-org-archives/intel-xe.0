@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69611C77B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 08:00:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 041D3C7EE31
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 08:13:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DCCF10E21E;
-	Tue, 24 Jun 2025 08:00:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74A1D89C0A;
+	Tue, 24 Jun 2025 08:13:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GLQzXSow";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VYQ9yJ3o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85D2210E21E
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 08:00:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 770628989C;
+ Tue, 24 Jun 2025 08:13:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750752039; x=1782288039;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RSL7CsUGWm0GT+czMltLGhuf5uTU1IkW2UfyH0pKs0s=;
- b=GLQzXSowUwyc7L8Pt5gJqVRSQbkavwDC889AnwrH+l442RMBVebsiJ2S
- rN/Qna5t8H7MgLGVRx/U2Iq+GpE+tDDpPCe90sTAr8LRzqs964ikZR+4D
- Uq1eGbhjZZhsfECkw1d5hT8L9triFj9WF2hv6buFmEcHl2SJuhezi5Fqj
- 5r2L8DTobwuE70BiIvJS42rlK2UaMCJ5jRej/ku+lg8S96f02ntCE/3A4
- 2dt9E05gKfyI9pOPSizj7jbTOZAxIaC28TIvRpHxMDY+9Zf8lW31vrBB9
- 4cQXcs2AAjyOtWieZKXhHZ2LUaCOYR/7cfS66lgxNKtDKdEBOTMPeWcf9 A==;
-X-CSE-ConnectionGUID: djxMRZ2RQ5S08aRB/aZm4g==
-X-CSE-MsgGUID: aXoviVHGSMGEOV2v/Ptyqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="52850087"
-X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="52850087"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 01:00:39 -0700
-X-CSE-ConnectionGUID: xu6Hq7yDTQCK96EMa8ZY3Q==
-X-CSE-MsgGUID: JQUBRQ+pRDSVZbs0XhiwiQ==
+ t=1750752832; x=1782288832;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=7qIiX1O90i1iS+BnNQQhFn/+ZF89wCeDlRcS63aJCjw=;
+ b=VYQ9yJ3oaNmOsFcLshfpel/AQzALoQh3T2p+BVf09QSeUUXwgigknT2+
+ sve9Fs2GsJy8DERsNYEdeou0Ap1fAoQwTWz4d3brLwu9mGFH+z2nBV16t
+ DlKT3mq1SCz5nclum/NnWVtvqG2ujy8k1PpSQKMQr5tc7Lef1p8ZBmYYS
+ 2fjNEFMnQC1nBouV7ZpQypw7mCqmE2D+Kt5iChpcfMxsUdfj7u08QW8av
+ Tqi8UfeDNndq1BjBgOi7ZZJtrhH0vK7mytx/YJVYO4mILflGkoLKk/E/c
+ tZ1yT5zE3HhLXmiLCkc7tpr+R5J2Y2t3I4A3mGrXiJDUkZWgUzz2Qv8Qb Q==;
+X-CSE-ConnectionGUID: vUOMAhw0QE6mpleXyPtYSA==
+X-CSE-MsgGUID: 4EWPDCdYTueUuxETg6ugIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="40597978"
+X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="40597978"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 01:13:52 -0700
+X-CSE-ConnectionGUID: fcs59DyAQxWG25Xl7mDj7w==
+X-CSE-MsgGUID: b6AtaRKrSVi6vsJWGs+Ikw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="151322116"
-Received: from unknown (HELO tejasupa-desk..) ([10.190.239.37])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 01:00:38 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lu Baolu <baolu.lu@linux.intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH] [topic/xe-for-CI]iommu/vt-d: Enable ATS before cache tag
- assignment
-Date: Tue, 24 Jun 2025 13:30:21 +0530
-Message-Id: <20250624080021.4015583-1-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="152545735"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.37])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 01:13:50 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, ankit.k.nautiyal@intel.com
+Subject: Re: [PATCH v7 04/18] drm/i915/display: Add VRR DC balance registers
+In-Reply-To: <20250624074948.671761-5-mitulkumar.ajitkumar.golani@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250624074948.671761-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20250624074948.671761-5-mitulkumar.ajitkumar.golani@intel.com>
+Date: Tue, 24 Jun 2025 11:13:47 +0300
+Message-ID: <ba1e60a942932530701f4cc5c2846b737d118b29@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,95 +69,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Lu Baolu <baolu.lu@linux.intel.com>
+On Tue, 24 Jun 2025, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
+> Add VRR register offsets and bits to access DC Balance configuration.
+>
+> --v2:
+> - Separate register definitions. (Ankit)
+> - Remove usage of dev_priv. (Jani, Nikula)
+>
+> --v3:
+> - Convert register address offset, from capital to small. (Ankit)
+> - Move mask bits near to register offsets. (Ankit)
+>
+> --v4:
+> - Use _MMIO_TRANS wherever possible. (Jani)
+>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Commit <4f1492efb495> ("iommu/vt-d: Revert ATS timing change to fix boot
-failure") placed the enabling of ATS in the probe_finalize callback. This
-occurs after the default domain attachment, which is when the ATS cache
-tag is assigned. Consequently, the device TLB cache tag is missed when the
-domain is attached, leading to the device TLB not being invalidated in the
-iommu_unmap paths.
+I just took the time to clean this file up. See commit 880e07d53849
+("drm/i915/vrr: fix register file style"). Please follow the style.
 
-Fix it by moving the ATS enabling to the default domain attachment path,
-ensuring ATS is enabled before the cache tag assignment.
+> ---
+>  drivers/gpu/drm/i915/display/intel_vrr_regs.h | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+> index ba9b9215dc11..c5cba5879f40 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+> @@ -8,6 +8,50 @@
+>  
+>  #include "intel_display_reg_defs.h"
+>  
+> +/* VRR registers */
+> +#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A	0x604d4
+> +#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_B	0x614d4
+> +#define TRANS_VRR_DCB_ADJ_FLIPLINE_CFG(trans)	_MMIO_TRANS(trans, \
+> +							    _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A, \
+> +							    _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_B)
+> +#define VRR_DCB_ADJ_FLIPLINE_CNT_MASK		REG_GENMASK(31, 24)
+> +#define VRR_DCB_ADJ_FLIPLINE_MASK		REG_GENMASK(19, 0)
+> +#define VRR_DCB_ADJ_FLIPLINE(flipline)		REG_FIELD_PREP(VRR_DCB_ADJ_FLIPLINE_MASK, \
+> +							       (flipline))
+> +
+> +#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_A		0x604d8
+> +#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_B		0x614d8
+> +#define TRANS_VRR_DCB_ADJ_VMAX_CFG(trans)	_MMIO_TRANS(trans, \
+> +							    _TRANS_VRR_DCB_ADJ_VMAX_CFG_A, \
+> +							    _TRANS_VRR_DCB_ADJ_VMAX_CFG_B)
+> +#define VRR_DCB_ADJ_VMAX_CNT_MASK		REG_GENMASK(31, 24)
+> +#define VRR_DCB_ADJ_VMAX_MASK			REG_GENMASK(19, 0)
+> +#define VRR_DCB_ADJ_VMAX(vmax)			REG_FIELD_PREP(VRR_DCB_ADJ_VMAX_MASK, (vmax))
+> +
+> +#define _TRANS_VRR_DCB_FLIPLINE_A		0x60418
+> +#define _TRANS_VRR_DCB_FLIPLINE_B		0x61418
+> +#define TRANS_VRR_DCB_FLIPLINE(trans)		_MMIO_TRANS(trans, \
+> +							    _TRANS_VRR_DCB_FLIPLINE_A, \
+> +							    _TRANS_VRR_DCB_FLIPLINE_B)
+> +#define VRR_DCB_FLIPLINE_MASK			REG_GENMASK(19, 0)
+> +#define VRR_DCB_FLIPLINE(flipline)		REG_FIELD_PREP(VRR_DCB_FLIPLINE_MASK, \
+> +							       (flipline))
+> +
+> +#define _TRANS_VRR_DCB_VMAX_A			0x60414
+> +#define _TRANS_VRR_DCB_VMAX_B			0x61414
+> +#define TRANS_VRR_DCB_VMAX(trans)		_MMIO_TRANS(trans, \
+> +							     _TRANS_VRR_DCB_VMAX_A, \
+> +							     _TRANS_VRR_DCB_VMAX_B)
+> +#define VRR_DCB_VMAX_MASK			REG_GENMASK(19, 0)
+> +#define VRR_DCB_VMAX(vmax)			REG_FIELD_PREP(VRR_DCB_VMAX_MASK, (vmax))
+> +
+> +#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_A		0x604c0
+> +#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_B		0x614c0
+> +#define TRANS_ADAPTIVE_SYNC_DCB_CTL(trans)	_MMIO_TRANS(trans, \
+> +							     _TRANS_ADAPTIVE_SYNC_DCB_CTL_A, \
+> +							     _TRANS_ADAPTIVE_SYNC_DCB_CTL_B)
+> +#define ADAPTIVE_SYNC_COUNTER_EN		REG_BIT(31)
+> +
+>  #define _TRANS_VRR_CTL_A			0x60420
+>  #define _TRANS_VRR_CTL_B			0x61420
+>  #define _TRANS_VRR_CTL_C			0x62420
+> @@ -20,6 +64,7 @@
+>  #define   VRR_CTL_PIPELINE_FULL_MASK		REG_GENMASK(10, 3)
+>  #define   VRR_CTL_PIPELINE_FULL(x)		REG_FIELD_PREP(VRR_CTL_PIPELINE_FULL_MASK, (x))
+>  #define   VRR_CTL_PIPELINE_FULL_OVERRIDE	REG_BIT(0)
+> +#define   VRR_CTL_DCB_ADJ_ENABLE		REG_BIT(28)
 
-Fixes: 4f1492efb495 ("iommu/vt-d: Revert ATS timing change to fix boot failure")
-Signed-off-by: Lu Baolu <baolu.lu@linux.intel.com>
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/iommu/intel/iommu.c | 17 +++++++++++++----
- 1 file changed, 13 insertions(+), 4 deletions(-)
+Highest to lowest bit.
 
-diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
-index 7aa3932251b2..863ccb47bcca 100644
---- a/drivers/iommu/intel/iommu.c
-+++ b/drivers/iommu/intel/iommu.c
-@@ -54,6 +54,7 @@
- 				__DOMAIN_MAX_PFN(gaw), (unsigned long)-1))
- #define DOMAIN_MAX_ADDR(gaw)	(((uint64_t)__DOMAIN_MAX_PFN(gaw)) << VTD_PAGE_SHIFT)
- 
-+static void sm_iommu_enable_pcicaps(struct device *dev);
- static void __init check_tylersburg_isoch(void);
- static int rwbf_quirk;
- 
-@@ -1825,10 +1826,11 @@ static int dmar_domain_attach_device(struct dmar_domain *domain,
- 	else
- 		ret = domain_setup_second_level(iommu, domain, dev,
- 						IOMMU_NO_PASID, NULL);
--
- 	if (ret)
- 		goto out_block_translation;
- 
-+	/* PCI ATS enablement must happen before cache tag assigning. */
-+	sm_iommu_enable_pcicaps(dev);
- 	ret = cache_tag_assign_domain(domain, dev, IOMMU_NO_PASID);
- 	if (ret)
- 		goto out_block_translation;
-@@ -3765,11 +3767,18 @@ static struct iommu_device *intel_iommu_probe_device(struct device *dev)
- 	return ERR_PTR(ret);
- }
- 
--static void intel_iommu_probe_finalize(struct device *dev)
-+static void sm_iommu_enable_pcicaps(struct device *dev)
- {
- 	struct device_domain_info *info = dev_iommu_priv_get(dev);
- 	struct intel_iommu *iommu = info->iommu;
- 
-+	/*
-+	 * Called only in iommu_device_register() path when iommu is
-+	 * configured in the scalable mode.
-+	 */
-+	if (!sm_supported(iommu) || READ_ONCE(iommu->iommu.ready))
-+		return;
-+
- 	/*
- 	 * The PCIe spec, in its wisdom, declares that the behaviour of the
- 	 * device is undefined if you enable PASID support after ATS support.
-@@ -3780,7 +3789,7 @@ static void intel_iommu_probe_finalize(struct device *dev)
- 	    !pci_enable_pasid(to_pci_dev(dev), info->pasid_supported & ~1))
- 		info->pasid_enabled = 1;
- 
--	if (sm_supported(iommu) && !dev_is_real_dma_subdevice(dev))
-+	if (!dev_is_real_dma_subdevice(dev))
- 		iommu_enable_pci_ats(info);
- 	iommu_enable_pci_pri(info);
- }
-@@ -4309,6 +4318,7 @@ static int identity_domain_attach_dev(struct iommu_domain *domain, struct device
- 		ret = intel_pasid_setup_pass_through(iommu, dev, IOMMU_NO_PASID);
- 	else
- 		ret = device_setup_pass_through(dev);
-+	sm_iommu_enable_pcicaps(dev);
- 
- 	if (!ret)
- 		info->domain_attached = true;
-@@ -4359,7 +4369,6 @@ const struct iommu_ops intel_iommu_ops = {
- 	.domain_alloc_sva	= intel_svm_domain_alloc,
- 	.domain_alloc_nested	= intel_iommu_domain_alloc_nested,
- 	.probe_device		= intel_iommu_probe_device,
--	.probe_finalize		= intel_iommu_probe_finalize,
- 	.release_device		= intel_iommu_release_device,
- 	.get_resv_regions	= intel_iommu_get_resv_regions,
- 	.device_group		= intel_iommu_device_group,
+>  #define   XELPD_VRR_CTL_VRR_GUARDBAND_MASK	REG_GENMASK(15, 0)
+>  #define   XELPD_VRR_CTL_VRR_GUARDBAND(x)	REG_FIELD_PREP(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, (x))
+
 -- 
-2.34.1
-
+Jani Nikula, Intel
