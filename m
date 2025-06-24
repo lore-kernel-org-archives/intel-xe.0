@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B3B7C77B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 16:48:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBA9DC77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 16:49:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05D7110E0AB;
-	Tue, 24 Jun 2025 16:48:29 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97AF910E5F5;
- Tue, 24 Jun 2025 16:48:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0821913690979210302=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ED8610E0DB;
+	Tue, 24 Jun 2025 16:49:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GjHlqS/k";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A9BD10E0DB;
+ Tue, 24 Jun 2025 16:49:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750783778; x=1782319778;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=v0DPzlfy76YOQxHcWuanm7CeUaiQUfbvaozrUxfQNz0=;
+ b=GjHlqS/k6Sx73sH6mNFx/STBL/bPPMCQ4lGKgQFwsLfCzDPwjUf1Wqhl
+ 4hC6nMomHTMxcPXTYktJ/y5QoDxsmKpVAfvo/di/XSiDhIommTMTdtqa1
+ 8t7/KyB9VOGzTcTnQ4iDWHK0W93YuBNbIPUN/LgH4FwxbinkjWXst/2rs
+ uAD4dy+tbWExW18oCa17/35+vr67fStQRm5myCmPHX7uG769auJUhpcGg
+ br/ATTkFMEtZwmjqeffZo4K+yCANMrIFP2egMXMZGVqjQhI01wHfQdqfW
+ 0QUXFwF1ja+YthenMDBC5hSl76BtCmDYwOGaUG3WTZCGAjRz//OdHAKNv Q==;
+X-CSE-ConnectionGUID: qt9K6qnAQUyf4DfEGGC/yA==
+X-CSE-MsgGUID: ItJUPbxkSiWFmDnji5jmbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="56818883"
+X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="56818883"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 09:49:38 -0700
+X-CSE-ConnectionGUID: QMMniqdWSeC875paM3lfJg==
+X-CSE-MsgGUID: 9+159ypCT7Kht5d7BaUqcg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="157748062"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by orviesa005.jf.intel.com with ESMTP; 24 Jun 2025 09:49:37 -0700
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v3 0/1] drm/i915/display: Add no_psr_reason to PSR debugfs
+Date: Tue, 24 Jun 2025 18:48:22 +0200
+Message-ID: <20250624164823.4118263-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Use_sta?=
- =?utf-8?q?tic_values_for_min=5Fhblank?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Jun 2025 16:48:27 -0000
-Message-ID: <175078370761.104825.2085101971371370764@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250624-min_hblank-v2-1-9110a9342d8c@intel.com>
-In-Reply-To: <20250624-min_hblank-v2-1-9110a9342d8c@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +66,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0821913690979210302==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Next version of v2 [1]. Adding Jani to CC: to ask for ACK if description
+regarding WA #1136 is ok, or something else would be better.
 
-== Series Details ==
+[1] https://lore.kernel.org/intel-gfx/20250605091300.3739436-2-michal.grzelak@intel.com
 
-Series: drm/i915/display: Use static values for min_hblank
-URL   : https://patchwork.freedesktop.org/series/150683/
-State : success
+Test-with: <20250513121918.2758842-2-michal.grzelak@intel.com>
 
-== Summary ==
+Best regards,
+Michał
 
-CI Bug Log - changes from xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201_BAT -> xe-pw-150683v1_BAT
-====================================================
+---
+Changelog:
+v2->v3
+- change reason description to be more specific [Mika]
+- remove BSpecs number & WA number from being written into no_psr_reason
+- replace spaces with tabs
+- provide correct Test-with tag to the IGT patch, instead of series
 
-Summary
--------
+v1->v2
+- set other reasons than "PSR setup timing not met"
+- clear no_psr_reason when activating PSR.
 
-  **SUCCESS**
+Michał Grzelak (1):
+  drm/i915/display: Add no_psr_reason to PSR debugfs
 
-  No regressions found.
+ .../drm/i915/display/intel_display_types.h    |  2 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 38 ++++++++++++-------
+ 2 files changed, 26 insertions(+), 14 deletions(-)
 
-  
+-- 
+2.45.2
 
-Participating hosts (9 -> 7)
-------------------------------
-
-  Missing    (2): bat-dg2-oem2 bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8423 -> IGT_8424
-  * Linux: xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201 -> xe-pw-150683v1
-
-  IGT_8423: 8423
-  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201: fb5dada21e3cfa26179ca58e1d7c26cdad217201
-  xe-pw-150683v1: 150683v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150683v1/index.html
-
---===============0821913690979210302==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Use static values for min_hblank</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150683/">https://patchwork.freedesktop.org/series/150683/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150683v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150683v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201_BAT -&gt; xe-pw-150683v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 7)</h2>
-<p>Missing    (2): bat-dg2-oem2 bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8423 -&gt; IGT_8424</li>
-<li>Linux: xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201 -&gt; xe-pw-150683v1</li>
-</ul>
-<p>IGT_8423: 8423<br />
-  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201: fb5dada21e3cfa26179ca58e1d7c26cdad217201<br />
-  xe-pw-150683v1: 150683v1</p>
-
-</body>
-</html>
-
---===============0821913690979210302==--
