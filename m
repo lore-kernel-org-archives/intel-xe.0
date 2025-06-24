@@ -4,190 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFE95C77B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 22:18:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 421DFC77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 22:48:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 662FF10E62F;
-	Tue, 24 Jun 2025 22:18:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBBA010E18B;
+	Tue, 24 Jun 2025 22:48:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WcqLUGgN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bkqbDVKu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 622C410E62E
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 22:18:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63E3010E18B
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 22:48:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750803490; x=1782339490;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=JCuj8YGpYoX8kIalDRC3tMks76Cv6aHTglPjCquCZPU=;
- b=WcqLUGgNjQBdjmVYMxuMEFVZ75nSIrYDGnWO8cJbZhJXBzQPCFEME3gc
- NjhQAK6Y45WqEIKXlHTrZ8Sl9xissngVnqlRbuXIUAP6crV2qnYtd4PPQ
- T8gfWBaK9O/xvZdnviaTU4af4U7qyz0uXR6SZtQpvqreC+m3GzUt7vlcy
- gwpt3TUBGmxLIQGJhOhoXpyqnnguU9qJ+Yj9Doa0S6Qsj+QtEMaUBGNGd
- jgq0N0lCLhUtP8PsrNoKPV+cnFgYWOiPf9Sg4YC89DIVBdEaydTtIJ7rK
- jDAlAuG8yy63kXgpkDGu3A5UNdgpceiYRXanm0BD1r9K02swSeB+4NZI/ w==;
-X-CSE-ConnectionGUID: iwEmhejVSeqVlnN5l8Wpsw==
-X-CSE-MsgGUID: Zcq2WDfXTe2zdZYX4xeDgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="52292470"
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="52292470"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 15:18:10 -0700
-X-CSE-ConnectionGUID: t2hM+rvwSnSczrmwqyjfKQ==
-X-CSE-MsgGUID: v0t6V/q3RRuD0KJpCZ2/0A==
+ t=1750805321; x=1782341321;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+HlnDq3RULp+og26kGBBSlzQcXAr4T0NMQI7LbfznL0=;
+ b=bkqbDVKuoDNJPNy7CC4EB0cYo2rL7I7p8RP7eXaJPDmCYpUN1341GnYd
+ gnYxU+IuXdm53L90cVjJbvTjY+TDBDNBpmpTm2avsahveki0r6aubjX8H
+ 0fJKl+USH/qAJVppUHjJPW99at8D83GvLIjgZiCUSVX72qRrKtH2sMuuN
+ 7kLq/rP91on4nKTQlXVxgjX9UW4eEa4aPNgYzlXJBSBrQXDqkZ+pPX467
+ J0qsip15DUJ4C7Y+ePOofwc5SwRHPBXzmifeyoO8GMyDfgQFpinEPff/a
+ xFLqpBmmjO1nZ/EdYfAMUpmSQFDoi/HQhLpSXZ+l7h0a56N/SOxF7aI5z Q==;
+X-CSE-ConnectionGUID: mQFDU8YURz6LmkPyMlrlxQ==
+X-CSE-MsgGUID: hpW0rdwVQsKsPfKwL3+rmw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="64418078"
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="64418078"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 15:48:41 -0700
+X-CSE-ConnectionGUID: K9rCZHs5TMOFom1I/mrVXw==
+X-CSE-MsgGUID: mw9VhdGkTJ2Kp5txTFYEBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="152207473"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 15:18:10 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 24 Jun 2025 15:18:09 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Tue, 24 Jun 2025 15:18:09 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.50)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 24 Jun 2025 15:18:09 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RuFWb3KysVAb8NPFJH9yp/stt3FXJSRgyy8Ba7mMz5y0bWPJ/tbOe+O1I4uUHe9ExwtbPt0B9bjOMeVywhe2enCc8U0uaZkYChnLtvR+OfkVo/qEsPVC/0Q+EgIXyqlC1J4N1ILlXnpf49x9sJB9QjcNqMNasPSiBEe2L1eBqR8Ot3psVFxAebpW0zYcyGGWgx+V/7kJ9eGYaqxEhSAwnRvydiQmOn+N/17BFxwmtLPZD9MchVlwWZ9O0PG5KckAcvzFHCY+d6d1hb251HH7KA1YYbPlgsB/h/et9hj87OgVS3LY+pY2oxpTbfZ8f9ylnUN1n0FQPE3zsyRV2oN8Ag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JCuj8YGpYoX8kIalDRC3tMks76Cv6aHTglPjCquCZPU=;
- b=hdjrWgCtVexvvAvFaW1O01bk77Cfsmom7UgFTliY26nG41pyImQ6aQ32JR4T+9FdxwuQtGZoCA8eHUKWwgTj4i62W4OUoIKO41jN9d+pbSgLPgNrcUNCyfGWQ+zcbS87EmEYyjVjgYaIiiToBiCB8utd237CS6kzQ59fWC0ISVEWycfkMVfm1VWUdBcgLs/A8RsOIZ92sjWK6asDTvOLqhA7ZBarOyakXQIV4AqJuc6r/8MuFGdDLf1VIjLhNwEP015EbX4XUI55gryu7fqLWwdum6tku1n5E7tD2HJij1FaS4l2LPdhLDY9wsCxYV4ejm0rSscKyyQkMLIyRL3O0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
- by CO1PR11MB4772.namprd11.prod.outlook.com (2603:10b6:303:97::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.18; Tue, 24 Jun
- 2025 22:17:48 +0000
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace%4]) with mapi id 15.20.8857.026; Tue, 24 Jun 2025
- 22:17:48 +0000
-From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-To: "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>, "Dong, Zhanjun"
- <zhanjun.dong@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Summers, Stuart" <stuart.summers@intel.com>, "Cavitt, Jonathan"
- <jonathan.cavitt@intel.com>
-Subject: RE: [PATCH v6] drm/xe/uc: Disable GuC communication on hardware
- initialization error.
-Thread-Topic: [PATCH v6] drm/xe/uc: Disable GuC communication on hardware
- initialization error.
-Thread-Index: AQHb5KXK98cu26FvyEGmOx+tptJoOLQSwBcAgAAgayA=
-Date: Tue, 24 Jun 2025 22:17:48 +0000
-Message-ID: <CH0PR11MB54444E1912ABECAA4426CD92E578A@CH0PR11MB5444.namprd11.prod.outlook.com>
-References: <20250624011735.3976-1-zhanjun.dong@intel.com>
- <4715fb2c-8176-4ace-a56c-e6dfc2da08c6@intel.com>
-In-Reply-To: <4715fb2c-8176-4ace-a56c-e6dfc2da08c6@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|CO1PR11MB4772:EE_
-x-ms-office365-filtering-correlation-id: 480d3c38-7d19-4760-f444-08ddb36cf3a0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?utf-8?B?Uk9FVTFDTms3RStDcDdsdUNNWi83dmJlZjN2MFk5a0J4bTJBdDRNMDdhemZF?=
- =?utf-8?B?V3FvczBEQTB0cmZkb01Ud0ZtN2loR2lpd21UOWNGamFmdW43MWZCZjNDajMv?=
- =?utf-8?B?eG9ocmFZazNncGE5SFpUekJuVHNveTFFOHdOaFBxMzJERVRnZHlrL1NuM3ZD?=
- =?utf-8?B?YXhTL2drWEJvY2dYdmJYNVJUeVhCclFRWEtpK2NuU3R5UDA1MHh0Z3FGS0cx?=
- =?utf-8?B?dFRCUlFINytuQzRpYk9rZG5PUnV0a0Q2RlRRZlJpWmpCR0lPaWt0SlhFRVlh?=
- =?utf-8?B?UzlRNEw0QS9tczZFRzBrUGY4djhLckJ6S3dXcUpYT29oYWZsSlVsRXdqNHZX?=
- =?utf-8?B?MWVWVlJ6KzlrcG1DMDI3Sm1sQndLelJjQm5GdWRzTmw3ZHhDNURIdnd6TVBZ?=
- =?utf-8?B?NzVhbWtqU1FGNnpJNEh3R1hucWpFR2dnS3JLa2svOEp1YnFHZ1BEUkQzZHk1?=
- =?utf-8?B?Z1Zwb2FnZ05Wa1FVMVI5b0U0ZWlCRFB3VkZWS3h4L2RLd2tzc3grSFBETUli?=
- =?utf-8?B?ODFTWmxqY2d5K1R2SGdxRWQ4SW5VSjBXeXJ1SStKMVVQcDNPbk05Y241YkZT?=
- =?utf-8?B?Z2VzQmRSWURFZ3JXUFcwazl5ZFNxYWI3dGw5MXhHQTdLdWRwMHpVeEN0NHJH?=
- =?utf-8?B?ZDZMVzhoM3h1L0cxRzBra21sNCtmdDIxUHNuQ1ArZE1yNkdWTHc3R1Bqb1gz?=
- =?utf-8?B?VHJiTWJmdzZzb0psZ3A1cnVSOEMzVGMzb3YyZW5TMUZVY05jTGpTVnBHZGZx?=
- =?utf-8?B?dUdDQ2ErUTVPK0hpQmk2d0lMTHliQkFaL2U3UC9QWFZrOVBFYVgxOWp0YXo2?=
- =?utf-8?B?azBSbTluN3g0dkhlakJIUk5FbDRzV1lFanVJdysvMW5NdmczK201dDNlVFY0?=
- =?utf-8?B?MWN2eURGS09QYTE1VDhjbmFDejhyQ1U4K3ZQMElxeXF0ZjRhMzM3QkhyWEpt?=
- =?utf-8?B?amM2WnoyVk9IVkExa2VRbnpXYmpUTlE4dnFTUU9YMDk2WTVoa0tObVQ1bHky?=
- =?utf-8?B?OUVaMjF3aDRyczNLS3ZkOUU1QkV1amcycTBYOXJjbktlakdDT0F2Si9aUkRV?=
- =?utf-8?B?d0h5b0VQYjE4Vkh3YlZFaU1RdWhETlRGSmNScVRHMExYTldWd011VzF4RUZQ?=
- =?utf-8?B?SWpuMGdNTHA0V3RmY0lRNEdhbjRFOUNRL3BtMjk4ZXFzU2lXbjl6dmFuYzl3?=
- =?utf-8?B?MTVmYllZV1lQeDBPNEhoQTdYL1hHK1p2c05HVFhOL2JXb3JWRlBmTjBBSld6?=
- =?utf-8?B?bjN5Y2pIYkFISm9xVU1la1NYUXk1eU1QR0d2czRsUjZCOFZ2SlFTckZsaXgy?=
- =?utf-8?B?aS9NemZEZHNFblk0TDhuNVUwa1VxYXFqUGxSc0VUM0pqWUhEQU5CSFQrVis3?=
- =?utf-8?B?Q2M4VE0wZnI5ZUt1bTcvWnI5QUR6blhLWVZ2U1BwM3VETkx0aDlRdlJaV2ZZ?=
- =?utf-8?B?UU5LTmlqYmgzeUJjRElMeVg1a2NuM0pNcmJpcGhMejJrTmY3eWNqNlg2S1FL?=
- =?utf-8?B?SWp0ZUNKSVpmSU5LVFJyVzlRN0lRVU8yclZxc3d4VGxrYUxzRkV2N0tZeExJ?=
- =?utf-8?B?RGo5NkhoaWRLT3JwRlNSc2F2cEpPcDZaKzJRRHlpQmxlNktHMUJiN2lwZVF5?=
- =?utf-8?B?dDhDd0hmU3lMRHNlSnZFbzZGeE42RGtGWmR1c3pMS2VUaHpTanZZcjZxM0c3?=
- =?utf-8?B?NzBHcEJBbkhxQll5OFgzaWRwUFJQd0xTYzU1QXBtcEtyeWkvK2FzZCtobW52?=
- =?utf-8?B?dGNISjFNNHVnWTB0TlU1bk10elViRHpiditlVTVFRDR1cG1ETU1KMEtaMll4?=
- =?utf-8?B?RnYrSU5RMHZBWTloSXdXelpxbW5uTWRnd1pwd3RXbm9VT0E5T0F2WE9uZ2x3?=
- =?utf-8?B?STJhVnV5M1ljaXpSbjk0REcwaDY1UmVQY0hBZEdSL1FyZTFmWlFyQ05WM0dO?=
- =?utf-8?Q?kFZXMkEBDe0=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TGdWREFadmFxUWJYbGpTREVGeVY2VHh3b1FqQ0VDUjBkTjNSMWg4MjlwVzRS?=
- =?utf-8?B?bXNPQXY4UlJrcmlJZG10WHFqOFRhRHdJVVhpbDJKdkxkcW1mc21mQkJpZENm?=
- =?utf-8?B?QjMvVnJ1QmI5aVNCYkcxQlFraERJanlGcnpIOVpZRHFqdkxXbUpBbFdUV0dq?=
- =?utf-8?B?S1VKcm9wazB2VDlka1dZTGFPU0lmRXNNNllaUDJETEVaUE1nOERkUmZmSnBm?=
- =?utf-8?B?WEZYRGlNVERIWk1vZWV4dHlWUStMUEFKSm9DckpGeUFYczJETTc2OHZPQStp?=
- =?utf-8?B?OW5mamRMcFgxT2RGSklIT2dTaUZCdE4wZmpOQUhUWDRxSGJCRFZKSlAzdU4y?=
- =?utf-8?B?Tm1zcDBvWEswVW9wTU5ncmgyQ3l5RDMxalNxalQvWG9nU3d6V240TUV2NlZX?=
- =?utf-8?B?cDkwNmlBN05XdjhqcDBEcERKZVRvUUhuYU1GWUIwK0h0bGlkcUgrWXpIUGkz?=
- =?utf-8?B?emFDUkhJREkrTWpkcS9YaE9hNEJ2ZjBUMlNzWEtiRUN0MTMwbkluKzJUcnpJ?=
- =?utf-8?B?ell6eEIra2hiSzBNVlVFK0liTkZYQUVQOWJYOWU3amVISkNxV3A5WGE3cGNL?=
- =?utf-8?B?QVlnQmNPclArT3BlQXhORU1zdUdqZnBzQ0h3ajFZejBnTGVKOStybkRiWDVk?=
- =?utf-8?B?U0NqbjdWQVhIck5tTHRoSWZrb2ZnMWp1TExiZFdHRnY5RGp0L0xrQ1F0dmhQ?=
- =?utf-8?B?STdJb2toWFJwM1BTQ1VCbGt6YVh4WDAvRkpudW4wbDYyd1dkeVh4OE10cUFR?=
- =?utf-8?B?VXB5M2p5MFBPNEwrV0tUQ1dRaXZnL0lldnNIbWREZ0lkZUNudWpWdVZKQ0cr?=
- =?utf-8?B?VG8xOTVBRUU0WDdlMmhZLzFCSlNXRUlFRUhlbEpPZnNsaDl2NXowTDhYaDVh?=
- =?utf-8?B?L1JWL1ZqSzc1M3c2MGtmYkRxZU5PVUpnQXJrMkRsV0lYNG1yWWZFRFFDYWxJ?=
- =?utf-8?B?MDFZYWlUMDJOeCt0TTdzNzhtTFl6OFVDTjdEUUlnaFYyOGROS05YVW1FcHFO?=
- =?utf-8?B?ZTJDL0RZeER1d0MwY25MamlsQmd5MjBGMGxacy9KQWlHbjZWbURmTi9hMlAr?=
- =?utf-8?B?SHBZQnJETk5BMHVFQmVEcVJJcHgwRWhOVkk5K0pwM2VUWjY2YSsvY0FsV1Jk?=
- =?utf-8?B?czNMT3FBSjFqRHBWYkFMTDdBRFNuSklOQUMyNWFGL2Nwd3dSb1NqSFpkcUV0?=
- =?utf-8?B?azhJenJJdkxUUzN1ZWs5b3d4YkdlS3MyZEYrSExxanpYdkE4cnpiVEJPU1lX?=
- =?utf-8?B?dVl5bTBianZ1Mmk1MjNSakg1aXE4SzV5M2lQQmpvZ25zRFh4WHRNL1VkcEVk?=
- =?utf-8?B?OEozdmZOb0hQS2x1NkxQWnNLZEl3b2dPM01aYzl5bVBHMXBBRVBFQzBIZG1R?=
- =?utf-8?B?TnQyUVcwMERUVmlYR0JZOFNMTXRzOGUwcFU4MzNXNjA3UU5KTmpGbk9ZTGha?=
- =?utf-8?B?QkJFcytkVTZ2RVJYckNmaXc1N1pZdlhGUU9sUmxvQ0xMdjE0UTNURXdXWUNi?=
- =?utf-8?B?cGhYeWRHNCtBemZlYVVVa1pQclFJVXh4WllvRWY0WW1vN0NKWWNlN09lTkJP?=
- =?utf-8?B?ZlVJMnR2MHpuQXJjOGtRNm1DdVJjSTFUYVVER3BNbHI4TlFYdlQ0Rll2V0I3?=
- =?utf-8?B?Umlzd2FWeUR3VVdSSHV4VkwzS1dwRk5TQ2lZSnd2NGlCSHR3aGdSc2dveHhM?=
- =?utf-8?B?SjRWVDhZdGY5eVZ0OEYyUTBOdUhETG9hbSs3UWVtSFZ6dWFUL2ZSSkRMaHBn?=
- =?utf-8?B?eVhRN2RGVFMyVEtLdXJXMWFDaXRpdWNCcFByQ0xQQUlOWjJHQ1ZiL1I2WHlX?=
- =?utf-8?B?cWFIbTcvdDNxZTdiVGpmeGRTWnNJZ0Z4Wk5PeVBTY1Z1b0dFVHdqMm1SZWFj?=
- =?utf-8?B?VWQ2Z25oUTJZK2tIT3BFT3h0SEhNMVBRY3hDeGc3SEd1dFU3bFdZYmhDVTR0?=
- =?utf-8?B?SjZWaC93QVY5Y1pXT3k4K04yZkp3R083U3Fhbkg3SDlHeWNaYXJmV25yM2pG?=
- =?utf-8?B?elNSaGpLVWowQU5wTy93eEkybVk0cDd0dzZOUUc4UTBUOG5PREs1SnZBTWll?=
- =?utf-8?B?MHU4ZUY4T2JSaUtJRlM5R1NMWmNEOUhDcXZXc3FxNzI3eWRldURya1RORjQz?=
- =?utf-8?Q?yNPR4psus7wZIKyxstoyjb4fM?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="156069443"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 15:48:41 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2] drm/xe: Drop bo->size
+Date: Tue, 24 Jun 2025 15:50:18 -0700
+Message-Id: <20250624225018.2790110-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 480d3c38-7d19-4760-f444-08ddb36cf3a0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2025 22:17:48.1207 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ysdGfKa3NVKPWfrlLu8uyRSHcCq+AcX+xW8pR7CSmcpJoxzZwK5wzGWtLKQYhJDiqG/AoQNhiEfD4Rp5L3req8IWZWCAMOD6qdvZBAoe6D0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4772
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,91 +64,930 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IFdhamRlY3prbywgTWljaGFsIDxNaWNo
-YWwuV2FqZGVjemtvQGludGVsLmNvbT4gDQpTZW50OiBUdWVzZGF5LCBKdW5lIDI0LCAyMDI1IDE6
-MTUgUE0NClRvOiBEb25nLCBaaGFuanVuIDx6aGFuanVuLmRvbmdAaW50ZWwuY29tPjsgaW50ZWwt
-eGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQpDYzogQ2F2aXR0LCBKb25hdGhhbiA8am9uYXRoYW4u
-Y2F2aXR0QGludGVsLmNvbT47IFN1bW1lcnMsIFN0dWFydCA8c3R1YXJ0LnN1bW1lcnNAaW50ZWwu
-Y29tPg0KU3ViamVjdDogUmU6IFtQQVRDSCB2Nl0gZHJtL3hlL3VjOiBEaXNhYmxlIEd1QyBjb21t
-dW5pY2F0aW9uIG9uIGhhcmR3YXJlIGluaXRpYWxpemF0aW9uIGVycm9yLg0KPiANCj4gT24gMjQu
-MDYuMjAyNSAwMzoxNywgWmhhbmp1biBEb25nIHdyb3RlOg0KPiA+IERpc2FibGUgR3VDIGNvbW11
-bmljYXRpb24gb24gWGUgbWljcm8gY29udHJvbGxlciBoYXJkd2FyZSBpbml0aWFsaXphdGlvbg0K
-PiA+IGVycm9yLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFpoYW5qdW4gRG9uZyA8emhhbmp1
-bi5kb25nQGludGVsLmNvbT4NCj4gPiBSZXZpZXdlZC1ieTogSm9uYXRoYW4gQ2F2aXR0IDxqb25h
-dGhhbi5jYXZpdHRAaW50ZWwuY29tPg0KPiA+IENsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRl
-c2t0b3Aub3JnL2RybS94ZS9rZXJuZWwvLS9pc3N1ZXMvNDkxNw0KPiA+IA0KPiA+IC0tLQ0KPiA+
-IENjOiBNaWNoYWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4NCj4gPiBD
-YzogU3R1YXJ0IFN1bW1lcnMgPHN0dWFydC5zdW1tZXJzQGludGVsLmNvbT4NCj4gPiBDYzogSm9u
-YXRoYW4gQ2F2aXR0IDxqb25hdGhhbi5jYXZpdHRAaW50ZWwuY29tPg0KPiA+IA0KPiA+IENoYW5n
-ZSBsaXN0Og0KPiA+IHY2OiBTa2lwIGRpc2FibGUgY3Qgb24geGVfZ3VjX2VuYWJsZV9jb21tdW5p
-Y2F0aW9uIGVycm9yDQo+ID4gdjU6IFNldCB3ZWRnZSBpcyBleGNlc3NpdmUgYWN0aW9uLCByZXZl
-cnQgYmFjayB0byBkaXNhYmxlIGN0DQo+ID4gdjQ6IEZpeCB0eXBvIGFuZCBhZGQgbmV3IGxpbmUN
-Cj4gPiB2MzogdjIgQ0kgcmUtcnVuDQo+ID4gdjI6IFJlbW92ZSB1bm5lY2Vzc2FyeSBqdW1wIHRv
-IGVyci1vdXQNCj4gPiAgICAgRHJvcCBkaXNhYmxlIGN0LCBzd2l0Y2ggdG8gc2V0IHdlZGdlDQo+
-ID4gLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndWMuYyB8ICA1ICsrKysrDQo+ID4g
-IGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndWMuaCB8ICAxICsNCj4gPiAgZHJpdmVycy9ncHUvZHJt
-L3hlL3hlX3VjLmMgIHwgMTkgKysrKysrKysrKysrKystLS0tLQ0KPiA+ICAzIGZpbGVzIGNoYW5n
-ZWQsIDIwIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndWMuYyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9n
-dWMuYw0KPiA+IGluZGV4IDIwOWU1ZDUzYzI5MC4uOWQ3MTc1YjE2Y2M3IDEwMDY0NA0KPiA+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndWMuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS94ZS94ZV9ndWMuYw0KPiA+IEBAIC0xMjMwLDYgKzEyMzAsMTEgQEAgaW50IHhlX2d1Y19lbmFi
-bGVfY29tbXVuaWNhdGlvbihzdHJ1Y3QgeGVfZ3VjICpndWMpDQo+ID4gIAlyZXR1cm4gMDsNCj4g
-PiAgfQ0KPiA+ICANCj4gDQo+IGVhY2ggbmV3IHB1YmxpYyBmdW5jdGlvbiBuZWVkcyB0byBoYXZl
-IGEgcHJvcGVyIGtlcm5lbC1kb2MNCj4gDQo+ID4gK3ZvaWQgeGVfZ3VjX2Rpc2FibGVfY29tbXVu
-aWNhdGlvbihzdHJ1Y3QgeGVfZ3VjICpndWMpDQo+ID4gK3sNCj4gPiArCXhlX2d1Y19jdF9kaXNh
-YmxlKCZndWMtPmN0KTsNCj4gPiArfQ0KPiA+ICsNCj4gPiAgaW50IHhlX2d1Y19zdXNwZW5kKHN0
-cnVjdCB4ZV9ndWMgKmd1YykNCj4gPiAgew0KPiA+ICAJc3RydWN0IHhlX2d0ICpndCA9IGd1Y190
-b19ndChndWMpOw0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3VjLmgg
-Yi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3VjLmgNCj4gPiBpbmRleCA1ODMzOGJlNDQ1NTguLjI4
-NWMxOTkyOWY4YyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3VjLmgN
-Cj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3VjLmgNCj4gPiBAQCAtMzMsNiArMzMs
-NyBAQCBpbnQgeGVfZ3VjX3Jlc2V0KHN0cnVjdCB4ZV9ndWMgKmd1Yyk7DQo+ID4gIGludCB4ZV9n
-dWNfdXBsb2FkKHN0cnVjdCB4ZV9ndWMgKmd1Yyk7DQo+ID4gIGludCB4ZV9ndWNfbWluX2xvYWRf
-Zm9yX2h3Y29uZmlnKHN0cnVjdCB4ZV9ndWMgKmd1Yyk7DQo+ID4gIGludCB4ZV9ndWNfZW5hYmxl
-X2NvbW11bmljYXRpb24oc3RydWN0IHhlX2d1YyAqZ3VjKTsNCj4gPiArdm9pZCB4ZV9ndWNfZGlz
-YWJsZV9jb21tdW5pY2F0aW9uKHN0cnVjdCB4ZV9ndWMgKmd1Yyk7DQo+ID4gIGludCB4ZV9ndWNf
-c3VzcGVuZChzdHJ1Y3QgeGVfZ3VjICpndWMpOw0KPiA+ICB2b2lkIHhlX2d1Y19ub3RpZnkoc3Ry
-dWN0IHhlX2d1YyAqZ3VjKTsNCj4gPiAgaW50IHhlX2d1Y19hdXRoX2h1YyhzdHJ1Y3QgeGVfZ3Vj
-ICpndWMsIHUzMiByc2FfYWRkcik7DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94
-ZS94ZV91Yy5jIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3VjLmMNCj4gPiBpbmRleCAzYTg3NTFh
-OGI5MmQuLmQ3NGJmYzdhODVkMSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUv
-eGVfdWMuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV91Yy5jDQo+ID4gQEAgLTEz
-LDYgKzEzLDcgQEANCj4gPiAgI2luY2x1ZGUgInhlX2d0X3ByaW50ay5oIg0KPiA+ICAjaW5jbHVk
-ZSAieGVfZ3Rfc3Jpb3ZfdmYuaCINCj4gPiAgI2luY2x1ZGUgInhlX2d1Yy5oIg0KPiA+ICsjaW5j
-bHVkZSAieGVfZ3VjX2N0LmgiDQo+ID4gICNpbmNsdWRlICJ4ZV9ndWNfcGMuaCINCj4gPiAgI2lu
-Y2x1ZGUgInhlX2d1Y19lbmdpbmVfYWN0aXZpdHkuaCINCj4gPiAgI2luY2x1ZGUgInhlX2h1Yy5o
-Ig0KPiA+IEBAIC0xNjEsMTUgKzE2MiwxOSBAQCBzdGF0aWMgaW50IHZmX3VjX2luaXRfaHcoc3Ry
-dWN0IHhlX3VjICp1YykNCj4gPiAgDQo+ID4gIAllcnIgPSB4ZV9ndF9zcmlvdl92Zl9jb25uZWN0
-KHVjX3RvX2d0KHVjKSk7DQo+ID4gIAlpZiAoZXJyKQ0KPiA+IC0JCXJldHVybiBlcnI7DQo+ID4g
-KwkJZ290byBlcnJfb3V0Ow0KPiA+ICANCj4gPiAgCXVjLT5ndWMuc3VibWlzc2lvbl9zdGF0ZS5l
-bmFibGVkID0gdHJ1ZTsNCj4gPiAgDQo+ID4gIAllcnIgPSB4ZV9ndF9yZWNvcmRfZGVmYXVsdF9s
-cmNzKHVjX3RvX2d0KHVjKSk7DQo+ID4gIAlpZiAoZXJyKQ0KPiA+IC0JCXJldHVybiBlcnI7DQo+
-ID4gKwkJZ290byBlcnJfb3V0Ow0KPiA+ICANCj4gPiAgCXJldHVybiAwOw0KPiA+ICsNCj4gPiAr
-ZXJyX291dDoNCj4gPiArCXhlX2d1Y19kaXNhYmxlX2NvbW11bmljYXRpb24oJnVjLT5ndWMpOw0K
-PiA+ICsJcmV0dXJuIGVycjsNCj4gPiAgfQ0KPiA+ICANCj4gPiAgLyoNCj4gPiBAQCAtMjAxLDE1
-ICsyMDYsMTUgQEAgaW50IHhlX3VjX2luaXRfaHcoc3RydWN0IHhlX3VjICp1YykNCj4gPiAgDQo+
-ID4gIAlyZXQgPSB4ZV9ndF9yZWNvcmRfZGVmYXVsdF9scmNzKHVjX3RvX2d0KHVjKSk7DQo+ID4g
-IAlpZiAocmV0KQ0KPiA+IC0JCXJldHVybiByZXQ7DQo+ID4gKwkJZ290byBlcnJfb3V0Ow0KPiA+
-ICANCj4gPiAgCXJldCA9IHhlX2d1Y19wb3N0X2xvYWRfaW5pdCgmdWMtPmd1Yyk7DQo+ID4gIAlp
-ZiAocmV0KQ0KPiA+IC0JCXJldHVybiByZXQ7DQo+ID4gKwkJZ290byBlcnJfb3V0Ow0KPiA+ICAN
-Cj4gPiAgCXJldCA9IHhlX2d1Y19wY19zdGFydCgmdWMtPmd1Yy5wYyk7DQo+ID4gIAlpZiAocmV0
-KQ0KPiA+IC0JCXJldHVybiByZXQ7DQo+ID4gKwkJZ290byBlcnJfb3V0Ow0KPiA+ICANCj4gPiAg
-CXhlX2d1Y19lbmdpbmVfYWN0aXZpdHlfZW5hYmxlX3N0YXRzKCZ1Yy0+Z3VjKTsNCj4gPiAgDQo+
-ID4gQEAgLTIyMSw2ICsyMjYsMTAgQEAgaW50IHhlX3VjX2luaXRfaHcoc3RydWN0IHhlX3VjICp1
-YykNCj4gPiAgCXhlX2dzY19sb2FkX3N0YXJ0KCZ1Yy0+Z3NjKTsNCj4gPiAgDQo+ID4gIAlyZXR1
-cm4gMDsNCj4gPiArDQo+ID4gK2Vycl9vdXQ6DQo+ID4gKwl4ZV9ndWNfZGlzYWJsZV9jb21tdW5p
-Y2F0aW9uKCZ1Yy0+Z3VjKTsNCj4gPiArCXJldHVybiByZXQ7DQo+ID4gIH0NCj4gPiAgDQo+ID4g
-IGludCB4ZV91Y19maW5pX2h3KHN0cnVjdCB4ZV91YyAqdWMpDQo+IA0KPiB3aGF0IGFib3V0IGRv
-aW5nIHNpbWlsYXIgY2xlYW51cCBpbiB4ZV9ndWNfbWluX2xvYWRfZm9yX2h3Y29uZmlnKCkgd2hl
-cmUNCj4gd2UgYWxzbyBoYXZlIHVuYmFsYW5jZWQgeGVfZ3VjX2VuYWJsZV9jb21tdW5pY2F0aW9u
-KCkgPw0KPiANCg0KSSBkb24ndCB0aGluayBpdCdzIG5lY2Vzc2FyeSB0aGVyZSwgYXMgeGVfZ3Vj
-X2VuYWJsZV9jb21tdW5pY2F0aW9uIGlzIHRoZSBsYXN0IGZ1bmN0aW9uIHJ1biBpbg0KeGVfZ3Vj
-X21pbl9sb2FkX2Zvcl9od2NvbmZpZy4NCklmIGl0IGZhaWxzLCB0aGVuIHRoZSBHdUMgQ1Qgd2Fz
-IG5ldmVyIGVuYWJsZWQsIHNvIGl0IGRvZXNuJ3QgbmVlZCB0byBiZSBkaXNhYmxlZC4gIEFuZCBp
-ZiBpdCBzdWNjZWVkcywNCnRoZW4gSSB0aGluayB0aGUgcmVzdCBvZiB0aGUgWGUgbWljcm8gY29u
-dHJvbGxlciBoYXJkd2FyZSBpbml0aWFsaXphdGlvbiB3aWxsIGhhdmUgc3VjY2VlZGVkIGFzIHdl
-bGwsDQptYWtpbmcgaXQgdW5uZWNlc3NhcnkgdG8gZGlzYWJsZSB0aGUgR3VDIENUIGFmdGVyd2Fy
-ZHMgYXMgdGhhdCBjb21wb25lbnQgYXQgbGVhc3Qgc2hvdWxkIGJlDQpmdW5jdGlvbmluZyBwcm9w
-ZXJseS4NClRob3VnaCwgbWF5YmUgd2UgbmVlZCBpdCBhZGRlZCB0byB2Zl9ndWNfbWluX2xvYWRf
-Zm9yX2h3Y29uZmlnPw0KLUpvbmF0aGFuIENhdml0dA0K
+bo->size is redundant because the base GEM object already has a size
+field with the same value. Drop bo->size and use the base GEM object’s
+size instead. While at it, introduce xe_bo_size() to abstract the BO
+size.
+
+v2:
+ - Fix typo in kernel doc (Ashutosh)
+ - Fix kunit (CI)
+ - Fix line wrap (Checkpatch)
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_bo.c            |  2 +-
+ drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c |  4 +-
+ drivers/gpu/drm/xe/tests/xe_migrate.c       | 52 ++++++++++-----------
+ drivers/gpu/drm/xe/xe_bo.c                  | 20 ++++----
+ drivers/gpu/drm/xe/xe_bo.h                  | 17 ++++++-
+ drivers/gpu/drm/xe/xe_bo_types.h            |  2 -
+ drivers/gpu/drm/xe/xe_drm_client.c          |  2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                | 14 +++---
+ drivers/gpu/drm/xe/xe_gsc.c                 |  6 ++-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  |  8 ++--
+ drivers/gpu/drm/xe/xe_guc.c                 |  4 +-
+ drivers/gpu/drm/xe/xe_guc_ads.c             |  4 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c              |  4 +-
+ drivers/gpu/drm/xe/xe_guc_log.c             |  2 +-
+ drivers/gpu/drm/xe/xe_huc.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_lmtt.c                |  4 +-
+ drivers/gpu/drm/xe/xe_lrc.c                 |  4 +-
+ drivers/gpu/drm/xe/xe_migrate.c             | 30 ++++++------
+ drivers/gpu/drm/xe/xe_oa.c                  | 10 ++--
+ drivers/gpu/drm/xe/xe_trace_bo.h            |  4 +-
+ drivers/gpu/drm/xe/xe_vm.c                  |  6 +--
+ 21 files changed, 107 insertions(+), 94 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 77ca1ab527ec..bb469096d072 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -106,7 +106,7 @@ static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
+ 	}
+ 
+ 	/* Check last CCS value, or at least last value in page. */
+-	offset = xe_device_ccs_bytes(tile_to_xe(tile), bo->size);
++	offset = xe_device_ccs_bytes(tile_to_xe(tile), xe_bo_size(bo));
+ 	offset = min_t(u32, offset, PAGE_SIZE) / sizeof(u64) - 1;
+ 	if (cpu_map[offset] != get_val) {
+ 		KUNIT_FAIL(test,
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+index 537766cdd882..d266882adc0e 100644
+--- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+@@ -32,7 +32,7 @@ static struct xe_bo *replacement_xe_managed_bo_create_pin_map(struct xe_device *
+ 
+ 	bo->tile = tile;
+ 	bo->ttm.bdev = &xe->ttm;
+-	bo->size = size;
++	bo->ttm.base.size = size;
+ 	iosys_map_set_vaddr(&bo->vmap, buf);
+ 
+ 	if (flags & XE_BO_FLAG_GGTT) {
+@@ -43,7 +43,7 @@ static struct xe_bo *replacement_xe_managed_bo_create_pin_map(struct xe_device *
+ 
+ 		KUNIT_ASSERT_EQ(test, 0,
+ 				xe_ggtt_node_insert(bo->ggtt_node[tile->id],
+-						    bo->size, SZ_4K));
++						    xe_bo_size(bo), SZ_4K));
+ 	}
+ 
+ 	return bo;
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 4a65e3103f77..edd1e701aa1c 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -74,13 +74,13 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ {
+ 	struct xe_device *xe = tile_to_xe(m->tile);
+ 	u64 retval, expected = 0;
+-	bool big = bo->size >= SZ_2M;
++	bool big = xe_bo_size(bo) >= SZ_2M;
+ 	struct dma_fence *fence;
+ 	const char *str = big ? "Copying big bo" : "Copying small bo";
+ 	int err;
+ 
+ 	struct xe_bo *remote = xe_bo_create_locked(xe, m->tile, NULL,
+-						   bo->size,
++						   xe_bo_size(bo),
+ 						   ttm_bo_type_kernel,
+ 						   region |
+ 						   XE_BO_FLAG_NEEDS_CPU_ACCESS |
+@@ -105,7 +105,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 		goto out_unlock;
+ 	}
+ 
+-	xe_map_memset(xe, &remote->vmap, 0, 0xd0, remote->size);
++	xe_map_memset(xe, &remote->vmap, 0, 0xd0, xe_bo_size(remote));
+ 	fence = xe_migrate_clear(m, remote, remote->ttm.resource,
+ 				 XE_MIGRATE_CLEAR_FLAG_FULL);
+ 	if (!sanity_fence_failed(xe, fence, big ? "Clearing remote big bo" :
+@@ -113,15 +113,15 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 		retval = xe_map_rd(xe, &remote->vmap, 0, u64);
+ 		check(retval, expected, "remote first offset should be cleared",
+ 		      test);
+-		retval = xe_map_rd(xe, &remote->vmap, remote->size - 8, u64);
++		retval = xe_map_rd(xe, &remote->vmap, xe_bo_size(remote) - 8, u64);
+ 		check(retval, expected, "remote last offset should be cleared",
+ 		      test);
+ 	}
+ 	dma_fence_put(fence);
+ 
+ 	/* Try to copy 0xc0 from remote to vram with 2MB or 64KiB/4KiB pages */
+-	xe_map_memset(xe, &remote->vmap, 0, 0xc0, remote->size);
+-	xe_map_memset(xe, &bo->vmap, 0, 0xd0, bo->size);
++	xe_map_memset(xe, &remote->vmap, 0, 0xc0, xe_bo_size(remote));
++	xe_map_memset(xe, &bo->vmap, 0, 0xd0, xe_bo_size(bo));
+ 
+ 	expected = 0xc0c0c0c0c0c0c0c0;
+ 	fence = xe_migrate_copy(m, remote, bo, remote->ttm.resource,
+@@ -131,15 +131,15 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 		retval = xe_map_rd(xe, &bo->vmap, 0, u64);
+ 		check(retval, expected,
+ 		      "remote -> vram bo first offset should be copied", test);
+-		retval = xe_map_rd(xe, &bo->vmap, bo->size - 8, u64);
++		retval = xe_map_rd(xe, &bo->vmap, xe_bo_size(bo) - 8, u64);
+ 		check(retval, expected,
+ 		      "remote -> vram bo offset should be copied", test);
+ 	}
+ 	dma_fence_put(fence);
+ 
+ 	/* And other way around.. slightly hacky.. */
+-	xe_map_memset(xe, &remote->vmap, 0, 0xd0, remote->size);
+-	xe_map_memset(xe, &bo->vmap, 0, 0xc0, bo->size);
++	xe_map_memset(xe, &remote->vmap, 0, 0xd0, xe_bo_size(remote));
++	xe_map_memset(xe, &bo->vmap, 0, 0xc0, xe_bo_size(bo));
+ 
+ 	fence = xe_migrate_copy(m, bo, remote, bo->ttm.resource,
+ 				remote->ttm.resource, false);
+@@ -148,7 +148,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 		retval = xe_map_rd(xe, &remote->vmap, 0, u64);
+ 		check(retval, expected,
+ 		      "vram -> remote bo first offset should be copied", test);
+-		retval = xe_map_rd(xe, &remote->vmap, bo->size - 8, u64);
++		retval = xe_map_rd(xe, &remote->vmap, xe_bo_size(bo) - 8, u64);
+ 		check(retval, expected,
+ 		      "vram -> remote bo last offset should be copied", test);
+ 	}
+@@ -245,9 +245,9 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 	if (m->q->vm->flags & XE_VM_FLAG_64K)
+ 		expected |= XE_PTE_PS64;
+ 	if (xe_bo_is_vram(pt))
+-		xe_res_first(pt->ttm.resource, 0, pt->size, &src_it);
++		xe_res_first(pt->ttm.resource, 0, xe_bo_size(pt), &src_it);
+ 	else
+-		xe_res_first_sg(xe_bo_sg(pt), 0, pt->size, &src_it);
++		xe_res_first_sg(xe_bo_sg(pt), 0, xe_bo_size(pt), &src_it);
+ 
+ 	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt), false,
+ 		 &src_it, XE_PAGE_SIZE, pt->ttm.resource);
+@@ -276,7 +276,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 
+ 	/* Clear a small bo */
+ 	kunit_info(test, "Clearing small buffer object\n");
+-	xe_map_memset(xe, &tiny->vmap, 0, 0x22, tiny->size);
++	xe_map_memset(xe, &tiny->vmap, 0, 0x22, xe_bo_size(tiny));
+ 	expected = 0;
+ 	fence = xe_migrate_clear(m, tiny, tiny->ttm.resource,
+ 				 XE_MIGRATE_CLEAR_FLAG_FULL);
+@@ -286,7 +286,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 	dma_fence_put(fence);
+ 	retval = xe_map_rd(xe, &tiny->vmap, 0, u32);
+ 	check(retval, expected, "Command clear small first value", test);
+-	retval = xe_map_rd(xe, &tiny->vmap, tiny->size - 4, u32);
++	retval = xe_map_rd(xe, &tiny->vmap, xe_bo_size(tiny) - 4, u32);
+ 	check(retval, expected, "Command clear small last value", test);
+ 
+ 	kunit_info(test, "Copying small buffer object to system\n");
+@@ -298,7 +298,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 
+ 	/* Clear a big bo */
+ 	kunit_info(test, "Clearing big buffer object\n");
+-	xe_map_memset(xe, &big->vmap, 0, 0x11, big->size);
++	xe_map_memset(xe, &big->vmap, 0, 0x11, xe_bo_size(big));
+ 	expected = 0;
+ 	fence = xe_migrate_clear(m, big, big->ttm.resource,
+ 				 XE_MIGRATE_CLEAR_FLAG_FULL);
+@@ -308,7 +308,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 	dma_fence_put(fence);
+ 	retval = xe_map_rd(xe, &big->vmap, 0, u32);
+ 	check(retval, expected, "Command clear big first value", test);
+-	retval = xe_map_rd(xe, &big->vmap, big->size - 4, u32);
++	retval = xe_map_rd(xe, &big->vmap, xe_bo_size(big) - 4, u32);
+ 	check(retval, expected, "Command clear big last value", test);
+ 
+ 	kunit_info(test, "Copying big buffer object to system\n");
+@@ -370,7 +370,7 @@ static struct dma_fence *blt_copy(struct xe_tile *tile,
+ 	struct xe_migrate *m = tile->migrate;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct dma_fence *fence = NULL;
+-	u64 size = src_bo->size;
++	u64 size = xe_bo_size(src_bo);
+ 	struct xe_res_cursor src_it, dst_it;
+ 	struct ttm_resource *src = src_bo->ttm.resource, *dst = dst_bo->ttm.resource;
+ 	u64 src_L0_ofs, dst_L0_ofs;
+@@ -498,7 +498,7 @@ static void test_migrate(struct xe_device *xe, struct xe_tile *tile,
+ 	long ret;
+ 
+ 	expected = 0xd0d0d0d0d0d0d0d0;
+-	xe_map_memset(xe, &sys_bo->vmap, 0, 0xd0, sys_bo->size);
++	xe_map_memset(xe, &sys_bo->vmap, 0, 0xd0, xe_bo_size(sys_bo));
+ 
+ 	fence = blt_copy(tile, sys_bo, vram_bo, false, "Blit copy from sysmem to vram", test);
+ 	if (!sanity_fence_failed(xe, fence, "Blit copy from sysmem to vram", test)) {
+@@ -523,7 +523,7 @@ static void test_migrate(struct xe_device *xe, struct xe_tile *tile,
+ 
+ 	retval = xe_map_rd(xe, &vram_bo->vmap, 0, u64);
+ 	check(retval, expected, "Clear evicted vram data first value", test);
+-	retval = xe_map_rd(xe, &vram_bo->vmap, vram_bo->size - 8, u64);
++	retval = xe_map_rd(xe, &vram_bo->vmap, xe_bo_size(vram_bo) - 8, u64);
+ 	check(retval, expected, "Clear evicted vram data last value", test);
+ 
+ 	fence = blt_copy(tile, vram_bo, ccs_bo,
+@@ -532,7 +532,7 @@ static void test_migrate(struct xe_device *xe, struct xe_tile *tile,
+ 		retval = xe_map_rd(xe, &ccs_bo->vmap, 0, u64);
+ 		check(retval, 0, "Clear ccs data first value", test);
+ 
+-		retval = xe_map_rd(xe, &ccs_bo->vmap, ccs_bo->size - 8, u64);
++		retval = xe_map_rd(xe, &ccs_bo->vmap, xe_bo_size(ccs_bo) - 8, u64);
+ 		check(retval, 0, "Clear ccs data last value", test);
+ 	}
+ 	dma_fence_put(fence);
+@@ -562,7 +562,7 @@ static void test_migrate(struct xe_device *xe, struct xe_tile *tile,
+ 
+ 	retval = xe_map_rd(xe, &vram_bo->vmap, 0, u64);
+ 	check(retval, expected, "Restored value must be equal to initial value", test);
+-	retval = xe_map_rd(xe, &vram_bo->vmap, vram_bo->size - 8, u64);
++	retval = xe_map_rd(xe, &vram_bo->vmap, xe_bo_size(vram_bo) - 8, u64);
+ 	check(retval, expected, "Restored value must be equal to initial value", test);
+ 
+ 	fence = blt_copy(tile, vram_bo, ccs_bo,
+@@ -570,7 +570,7 @@ static void test_migrate(struct xe_device *xe, struct xe_tile *tile,
+ 	if (!sanity_fence_failed(xe, fence, "Clear ccs buffer data", test)) {
+ 		retval = xe_map_rd(xe, &ccs_bo->vmap, 0, u64);
+ 		check(retval, 0, "Clear ccs data first value", test);
+-		retval = xe_map_rd(xe, &ccs_bo->vmap, ccs_bo->size - 8, u64);
++		retval = xe_map_rd(xe, &ccs_bo->vmap, xe_bo_size(ccs_bo) - 8, u64);
+ 		check(retval, 0, "Clear ccs data last value", test);
+ 	}
+ 	dma_fence_put(fence);
+@@ -583,7 +583,7 @@ static void test_clear(struct xe_device *xe, struct xe_tile *tile,
+ 	u64 expected, retval;
+ 
+ 	expected = 0xd0d0d0d0d0d0d0d0;
+-	xe_map_memset(xe, &sys_bo->vmap, 0, 0xd0, sys_bo->size);
++	xe_map_memset(xe, &sys_bo->vmap, 0, 0xd0, xe_bo_size(sys_bo));
+ 
+ 	fence = blt_copy(tile, sys_bo, vram_bo, false, "Blit copy from sysmem to vram", test);
+ 	if (!sanity_fence_failed(xe, fence, "Blit copy from sysmem to vram", test)) {
+@@ -597,7 +597,7 @@ static void test_clear(struct xe_device *xe, struct xe_tile *tile,
+ 	if (!sanity_fence_failed(xe, fence, "Blit copy from vram to sysmem", test)) {
+ 		retval = xe_map_rd(xe, &sys_bo->vmap, 0, u64);
+ 		check(retval, expected, "Decompressed value must be equal to initial value", test);
+-		retval = xe_map_rd(xe, &sys_bo->vmap, sys_bo->size - 8, u64);
++		retval = xe_map_rd(xe, &sys_bo->vmap, xe_bo_size(sys_bo) - 8, u64);
+ 		check(retval, expected, "Decompressed value must be equal to initial value", test);
+ 	}
+ 	dma_fence_put(fence);
+@@ -615,7 +615,7 @@ static void test_clear(struct xe_device *xe, struct xe_tile *tile,
+ 	if (!sanity_fence_failed(xe, fence, "Clear main buffer data", test)) {
+ 		retval = xe_map_rd(xe, &sys_bo->vmap, 0, u64);
+ 		check(retval, expected, "Clear main buffer first value", test);
+-		retval = xe_map_rd(xe, &sys_bo->vmap, sys_bo->size - 8, u64);
++		retval = xe_map_rd(xe, &sys_bo->vmap, xe_bo_size(sys_bo) - 8, u64);
+ 		check(retval, expected, "Clear main buffer last value", test);
+ 	}
+ 	dma_fence_put(fence);
+@@ -625,7 +625,7 @@ static void test_clear(struct xe_device *xe, struct xe_tile *tile,
+ 	if (!sanity_fence_failed(xe, fence, "Clear ccs buffer data", test)) {
+ 		retval = xe_map_rd(xe, &sys_bo->vmap, 0, u64);
+ 		check(retval, expected, "Clear ccs data first value", test);
+-		retval = xe_map_rd(xe, &sys_bo->vmap, sys_bo->size - 8, u64);
++		retval = xe_map_rd(xe, &sys_bo->vmap, xe_bo_size(sys_bo) - 8, u64);
+ 		check(retval, expected, "Clear ccs data last value", test);
+ 	}
+ 	dma_fence_put(fence);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 4e39188a021a..7f8470b22dc9 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -437,7 +437,7 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 
+ 	extra_pages = 0;
+ 	if (xe_bo_needs_ccs_pages(bo))
+-		extra_pages = DIV_ROUND_UP(xe_device_ccs_bytes(xe, bo->size),
++		extra_pages = DIV_ROUND_UP(xe_device_ccs_bytes(xe, xe_bo_size(bo)),
+ 					   PAGE_SIZE);
+ 
+ 	/*
+@@ -1122,7 +1122,7 @@ int xe_bo_notifier_prepare_pinned(struct xe_bo *bo)
+ 	if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
+ 		goto out_unlock_bo;
+ 
+-	backup = ___xe_bo_create_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, bo->size,
++	backup = ___xe_bo_create_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
+ 					DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+ 					XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+ 					XE_BO_FLAG_PINNED);
+@@ -1200,7 +1200,8 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+ 		goto out_unlock_bo;
+ 
+ 	if (!backup) {
+-		backup = ___xe_bo_create_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, bo->size,
++		backup = ___xe_bo_create_locked(xe, NULL, NULL, bo->ttm.base.resv,
++						NULL, xe_bo_size(bo),
+ 						DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+ 						XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+ 						XE_BO_FLAG_PINNED);
+@@ -1254,7 +1255,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+ 		}
+ 
+ 		xe_map_memcpy_from(xe, backup->vmap.vaddr, &bo->vmap, 0,
+-				   bo->size);
++				   xe_bo_size(bo));
+ 	}
+ 
+ 	if (!bo->backup_obj)
+@@ -1347,7 +1348,7 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+ 		}
+ 
+ 		xe_map_memcpy_to(xe, &bo->vmap, 0, backup->vmap.vaddr,
+-				 bo->size);
++				 xe_bo_size(bo));
+ 	}
+ 
+ 	bo->backup_obj = NULL;
+@@ -1558,7 +1559,7 @@ static int xe_ttm_access_memory(struct ttm_buffer_object *ttm_bo,
+ 
+ 	vram = res_to_mem_region(ttm_bo->resource);
+ 	xe_res_first(ttm_bo->resource, offset & PAGE_MASK,
+-		     bo->size - (offset & PAGE_MASK), &cursor);
++		     xe_bo_size(bo) - (offset & PAGE_MASK), &cursor);
+ 
+ 	do {
+ 		unsigned long page_offset = (offset & ~PAGE_MASK);
+@@ -1858,7 +1859,6 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+ 
+ 	bo->ccs_cleared = false;
+ 	bo->tile = tile;
+-	bo->size = size;
+ 	bo->flags = flags;
+ 	bo->cpu_caching = cpu_caching;
+ 	bo->ttm.base.funcs = &xe_gem_object_funcs;
+@@ -2036,7 +2036,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+ 
+ 			if (flags & XE_BO_FLAG_FIXED_PLACEMENT) {
+ 				err = xe_ggtt_insert_bo_at(t->mem.ggtt, bo,
+-							   start + bo->size, U64_MAX);
++							   start + xe_bo_size(bo), U64_MAX);
+ 			} else {
+ 				err = xe_ggtt_insert_bo(t->mem.ggtt, bo);
+ 			}
+@@ -2234,7 +2234,7 @@ int xe_managed_bo_reinit_in_vram(struct xe_device *xe, struct xe_tile *tile, str
+ 	xe_assert(xe, !(*src)->vmap.is_iomem);
+ 
+ 	bo = xe_managed_bo_create_from_data(xe, tile, (*src)->vmap.vaddr,
+-					    (*src)->size, dst_flags);
++					    xe_bo_size(*src), dst_flags);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+@@ -2524,7 +2524,7 @@ int xe_bo_vmap(struct xe_bo *bo)
+ 	 * TODO: Fix up ttm_bo_vmap to do that, or fix up ttm_bo_kmap
+ 	 * to use struct iosys_map.
+ 	 */
+-	ret = ttm_bo_kmap(&bo->ttm, 0, bo->size >> PAGE_SHIFT, &bo->kmap);
++	ret = ttm_bo_kmap(&bo->ttm, 0, xe_bo_size(bo) >> PAGE_SHIFT, &bo->kmap);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 02ada1fb8a23..bd4a8d1fb1df 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -238,6 +238,19 @@ xe_bo_main_addr(struct xe_bo *bo, size_t page_size)
+ 	return xe_bo_addr(bo, 0, page_size);
+ }
+ 
++/**
++ * xe_bo_size() - Xe BO size
++ * @bo: The bo to object.
++ *
++ * Simple helper to return Xe BO's size.
++ *
++ * Return: Xe BO's size
++ */
++static inline size_t xe_bo_size(struct xe_bo *bo)
++{
++	return bo->ttm.base.size;
++}
++
+ static inline u32
+ __xe_bo_ggtt_addr(struct xe_bo *bo, u8 tile_id)
+ {
+@@ -246,7 +259,7 @@ __xe_bo_ggtt_addr(struct xe_bo *bo, u8 tile_id)
+ 	if (XE_WARN_ON(!ggtt_node))
+ 		return 0;
+ 
+-	XE_WARN_ON(ggtt_node->base.size > bo->size);
++	XE_WARN_ON(ggtt_node->base.size > xe_bo_size(bo));
+ 	XE_WARN_ON(ggtt_node->base.start + ggtt_node->base.size > (1ull << 32));
+ 	return ggtt_node->base.start;
+ }
+@@ -300,7 +313,7 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo);
+ 
+ static inline size_t xe_bo_ccs_pages_start(struct xe_bo *bo)
+ {
+-	return PAGE_ALIGN(bo->ttm.base.size);
++	return PAGE_ALIGN(xe_bo_size(bo));
+ }
+ 
+ static inline bool xe_bo_has_pages(struct xe_bo *bo)
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index eb5e83c5f233..da3c879fc8d2 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -32,8 +32,6 @@ struct xe_bo {
+ 	struct xe_bo *backup_obj;
+ 	/** @parent_obj: Ref to parent bo if this a backup_obj */
+ 	struct xe_bo *parent_obj;
+-	/** @size: Size of this buffer object */
+-	size_t size;
+ 	/** @flags: flags for this buffer object */
+ 	u32 flags;
+ 	/** @vm: VM this BO is attached to, for extobj this will be NULL */
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index 31f688e953d7..f931ff9b1ec0 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -167,7 +167,7 @@ void xe_drm_client_remove_bo(struct xe_bo *bo)
+ static void bo_meminfo(struct xe_bo *bo,
+ 		       struct drm_memory_stats stats[TTM_NUM_MEM_TYPES])
+ {
+-	u64 sz = bo->size;
++	u64 sz = xe_bo_size(bo);
+ 	u32 mem_type = bo->ttm.resource->mem_type;
+ 
+ 	xe_bo_assert_held(bo);
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 7b11fa1356f0..65adcb07cb00 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -410,7 +410,7 @@ int xe_ggtt_init(struct xe_ggtt *ggtt)
+ 		goto err;
+ 	}
+ 
+-	xe_map_memset(xe, &ggtt->scratch->vmap, 0, 0, ggtt->scratch->size);
++	xe_map_memset(xe, &ggtt->scratch->vmap, 0, 0, xe_bo_size(ggtt->scratch));
+ 
+ 	xe_ggtt_initial_clear(ggtt);
+ 
+@@ -682,13 +682,13 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+ 		return;
+ 
+ 	start = node->base.start;
+-	end = start + bo->size;
++	end = start + xe_bo_size(bo);
+ 
+ 	pte = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
+ 	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
+ 		xe_assert(xe_bo_device(bo), bo->ttm.ttm);
+ 
+-		for (xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &cur);
++		for (xe_res_first_sg(xe_bo_sg(bo), 0, xe_bo_size(bo), &cur);
+ 		     cur.remaining; xe_res_next(&cur, XE_PAGE_SIZE))
+ 			ggtt->pt_ops->ggtt_set_pte(ggtt, end - cur.remaining,
+ 						   pte | xe_res_dma(&cur));
+@@ -696,7 +696,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+ 		/* Prepend GPU offset */
+ 		pte |= vram_region_gpu_offset(bo->ttm.resource);
+ 
+-		for (xe_res_first(bo->ttm.resource, 0, bo->size, &cur);
++		for (xe_res_first(bo->ttm.resource, 0, xe_bo_size(bo), &cur);
+ 		     cur.remaining; xe_res_next(&cur, XE_PAGE_SIZE))
+ 			ggtt->pt_ops->ggtt_set_pte(ggtt, end - cur.remaining,
+ 						   pte + cur.start);
+@@ -732,7 +732,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 
+ 	if (XE_WARN_ON(bo->ggtt_node[tile_id])) {
+ 		/* Someone's already inserted this BO in the GGTT */
+-		xe_tile_assert(ggtt->tile, bo->ggtt_node[tile_id]->base.size == bo->size);
++		xe_tile_assert(ggtt->tile, bo->ggtt_node[tile_id]->base.size == xe_bo_size(bo));
+ 		return 0;
+ 	}
+ 
+@@ -751,7 +751,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 
+ 	mutex_lock(&ggtt->lock);
+ 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node[tile_id]->base,
+-					  bo->size, alignment, 0, start, end, 0);
++					  xe_bo_size(bo), alignment, 0, start, end, 0);
+ 	if (err) {
+ 		xe_ggtt_node_fini(bo->ggtt_node[tile_id]);
+ 		bo->ggtt_node[tile_id] = NULL;
+@@ -812,7 +812,7 @@ void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ 		return;
+ 
+ 	/* This BO is not currently in the GGTT */
+-	xe_tile_assert(ggtt->tile, bo->ggtt_node[tile_id]->base.size == bo->size);
++	xe_tile_assert(ggtt->tile, bo->ggtt_node[tile_id]->base.size == xe_bo_size(bo));
+ 
+ 	xe_ggtt_node_remove(bo->ggtt_node[tile_id],
+ 			    bo->flags & XE_BO_FLAG_GGTT_INVALIDATE);
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+index 0bcf97063ff6..1d84bf2f2cef 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.c
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -59,7 +59,8 @@ static int memcpy_fw(struct xe_gsc *gsc)
+ 
+ 	xe_map_memcpy_from(xe, storage, &gsc->fw.bo->vmap, 0, fw_size);
+ 	xe_map_memcpy_to(xe, &gsc->private->vmap, 0, storage, fw_size);
+-	xe_map_memset(xe, &gsc->private->vmap, fw_size, 0, gsc->private->size - fw_size);
++	xe_map_memset(xe, &gsc->private->vmap, fw_size, 0,
++		      xe_bo_size(gsc->private) - fw_size);
+ 
+ 	kfree(storage);
+ 
+@@ -82,7 +83,8 @@ static int emit_gsc_upload(struct xe_gsc *gsc)
+ 	bb->cs[bb->len++] = GSC_FW_LOAD;
+ 	bb->cs[bb->len++] = lower_32_bits(offset);
+ 	bb->cs[bb->len++] = upper_32_bits(offset);
+-	bb->cs[bb->len++] = (gsc->private->size / SZ_4K) | GSC_FW_LOAD_LIMIT_VALID;
++	bb->cs[bb->len++] = (xe_bo_size(gsc->private) / SZ_4K) |
++		GSC_FW_LOAD_LIMIT_VALID;
+ 
+ 	job = xe_bb_create_job(gsc->q, bb);
+ 	if (IS_ERR(job)) {
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 3556c41c041b..54e21ce2877a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -1299,7 +1299,7 @@ static u64 pf_get_vf_config_lmem(struct xe_gt *gt, unsigned int vfid)
+ 	struct xe_bo *bo;
+ 
+ 	bo = config->lmem_obj;
+-	return bo ? bo->size : 0;
++	return bo ? xe_bo_size(bo) : 0;
+ }
+ 
+ static int pf_distribute_config_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
+@@ -1388,7 +1388,7 @@ static int pf_update_vf_lmtt(struct xe_device *xe, unsigned int vfid)
+ 			err = xe_lmtt_populate_pages(lmtt, vfid, bo, offset);
+ 			if (err)
+ 				goto fail;
+-			offset += bo->size;
++			offset += xe_bo_size(bo);
+ 		}
+ 	}
+ 
+@@ -1469,12 +1469,12 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
+ 			goto release;
+ 	}
+ 
+-	err = pf_push_vf_cfg_lmem(gt, vfid, bo->size);
++	err = pf_push_vf_cfg_lmem(gt, vfid, xe_bo_size(bo));
+ 	if (unlikely(err))
+ 		goto reset_lmtt;
+ 
+ 	xe_gt_sriov_dbg_verbose(gt, "VF%u LMEM %zu (%zuM)\n",
+-				vfid, bo->size, bo->size / SZ_1M);
++				vfid, xe_bo_size(bo), xe_bo_size(bo) / SZ_1M);
+ 	return 0;
+ 
+ reset_lmtt:
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 209e5d53c290..15ade05ca169 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -59,7 +59,7 @@ static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
+ 	/* GuC addresses above GUC_GGTT_TOP don't map through the GTT */
+ 	xe_assert(xe, addr >= xe_wopcm_size(guc_to_xe(guc)));
+ 	xe_assert(xe, addr < GUC_GGTT_TOP);
+-	xe_assert(xe, bo->size <= GUC_GGTT_TOP - addr);
++	xe_assert(xe, xe_bo_size(bo) <= GUC_GGTT_TOP - addr);
+ 
+ 	return addr;
+ }
+@@ -420,7 +420,7 @@ static int guc_g2g_register(struct xe_guc *near_guc, struct xe_gt *far_gt, u32 t
+ 	buf = base + G2G_DESC_AREA_SIZE + slot * G2G_BUFFER_SIZE;
+ 
+ 	xe_assert(xe, (desc - base + G2G_DESC_SIZE) <= G2G_DESC_AREA_SIZE);
+-	xe_assert(xe, (buf - base + G2G_BUFFER_SIZE) <= g2g_bo->size);
++	xe_assert(xe, (buf - base + G2G_BUFFER_SIZE) <= xe_bo_size(g2g_bo));
+ 
+ 	return guc_action_register_g2g_buffer(near_guc, type, far_tile, far_dev,
+ 					      desc, buf, G2G_BUFFER_SIZE);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index f3c74f9a40c6..57f611b692eb 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -895,7 +895,7 @@ void xe_guc_ads_populate_minimal(struct xe_guc_ads *ads)
+ 
+ 	xe_gt_assert(gt, ads->bo);
+ 
+-	xe_map_memset(ads_to_xe(ads), ads_to_map(ads), 0, 0, ads->bo->size);
++	xe_map_memset(ads_to_xe(ads), ads_to_map(ads), 0, 0, xe_bo_size(ads->bo));
+ 	guc_policies_init(ads);
+ 	guc_golden_lrc_init(ads);
+ 	guc_mapping_table_init_invalid(gt, &info_map);
+@@ -919,7 +919,7 @@ void xe_guc_ads_populate(struct xe_guc_ads *ads)
+ 
+ 	xe_gt_assert(gt, ads->bo);
+ 
+-	xe_map_memset(ads_to_xe(ads), ads_to_map(ads), 0, 0, ads->bo->size);
++	xe_map_memset(ads_to_xe(ads), ads_to_map(ads), 0, 0, xe_bo_size(ads->bo));
+ 	guc_policies_init(ads);
+ 	fill_engine_enable_masks(gt, &info_map);
+ 	guc_mmio_reg_state_init(ads);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 37509f619503..7228b13a65c4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -443,7 +443,7 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ 
+ 	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
+ 
+-	xe_map_memset(xe, &ct->bo->vmap, 0, 0, ct->bo->size);
++	xe_map_memset(xe, &ct->bo->vmap, 0, 0, xe_bo_size(ct->bo));
+ 	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
+ 	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
+ 
+@@ -1897,7 +1897,7 @@ static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bo
+ 		return NULL;
+ 
+ 	if (ct->bo && want_ctb) {
+-		snapshot->ctb_size = ct->bo->size;
++		snapshot->ctb_size = xe_bo_size(ct->bo);
+ 		snapshot->ctb = kmalloc(snapshot->ctb_size, atomic ? GFP_ATOMIC : GFP_KERNEL);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index 38039c411387..c01ccb35dc75 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -79,7 +79,7 @@ static struct xe_guc_log_snapshot *xe_guc_log_snapshot_alloc(struct xe_guc_log *
+ 	 * Also, can't use vmalloc as might be called from atomic context. So need
+ 	 * to break the buffer up into smaller chunks that can be allocated.
+ 	 */
+-	snapshot->size = log->bo->size;
++	snapshot->size = xe_bo_size(log->bo);
+ 	snapshot->num_chunks = DIV_ROUND_UP(snapshot->size, GUC_LOG_CHUNK_SIZE);
+ 
+ 	snapshot->copy = kcalloc(snapshot->num_chunks, sizeof(*snapshot->copy),
+diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
+index 6a846e4cb221..7e43b2dd6a32 100644
+--- a/drivers/gpu/drm/xe/xe_huc.c
++++ b/drivers/gpu/drm/xe/xe_huc.c
+@@ -171,7 +171,7 @@ static int huc_auth_via_gsccs(struct xe_huc *huc)
+ 				       sizeof(struct pxp43_new_huc_auth_in));
+ 	wr_offset = huc_emit_pxp_auth_msg(xe, &pkt->vmap, wr_offset,
+ 					  xe_bo_ggtt_addr(huc->fw.bo),
+-					  huc->fw.bo->size);
++					  xe_bo_size(huc->fw.bo));
+ 	do {
+ 		err = xe_gsc_pkt_submit_kernel(&gt->uc.gsc, ggtt_offset, wr_offset,
+ 					       ggtt_offset + PXP43_HUC_AUTH_INOUT_SIZE,
+diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
+index 63db66df064b..b56437a816e4 100644
+--- a/drivers/gpu/drm/xe/xe_lmtt.c
++++ b/drivers/gpu/drm/xe/xe_lmtt.c
+@@ -386,11 +386,11 @@ static void lmtt_insert_bo(struct xe_lmtt *lmtt, unsigned int vfid, struct xe_bo
+ 	u64 addr, vram_offset;
+ 
+ 	lmtt_assert(lmtt, IS_ALIGNED(start, page_size));
+-	lmtt_assert(lmtt, IS_ALIGNED(bo->size, page_size));
++	lmtt_assert(lmtt, IS_ALIGNED(xe_bo_size(bo), page_size));
+ 	lmtt_assert(lmtt, xe_bo_is_vram(bo));
+ 
+ 	vram_offset = vram_region_gpu_offset(bo->ttm.resource);
+-	xe_res_first(bo->ttm.resource, 0, bo->size, &cur);
++	xe_res_first(bo->ttm.resource, 0, xe_bo_size(bo), &cur);
+ 	while (cur.remaining) {
+ 		addr = xe_res_dma(&cur);
+ 		addr += vram_offset; /* XXX */
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 37598588a54f..c92e7eff79f7 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -975,7 +975,7 @@ struct wa_bb_setup {
+ 
+ static size_t wa_bb_offset(struct xe_lrc *lrc)
+ {
+-	return lrc->bo->size - LRC_WA_BB_SIZE;
++	return xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE;
+ }
+ 
+ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+@@ -1859,7 +1859,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ 	snapshot->seqno = xe_lrc_seqno(lrc);
+ 	snapshot->lrc_bo = xe_bo_get(lrc->bo);
+ 	snapshot->lrc_offset = xe_lrc_pphwsp_offset(lrc);
+-	snapshot->lrc_size = lrc->bo->size - snapshot->lrc_offset -
++	snapshot->lrc_size = xe_bo_size(lrc->bo) - snapshot->lrc_offset -
+ 		LRC_WA_BB_SIZE;
+ 	snapshot->lrc_snapshot = NULL;
+ 	snapshot->ctx_timestamp = lower_32_bits(xe_lrc_ctx_timestamp(lrc));
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 8f8e9fdfb2a8..b3a76758b02d 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -203,7 +203,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 	BUILD_BUG_ON(!(NUM_KERNEL_PDE & 1));
+ 
+ 	/* Need to be sure everything fits in the first PT, or create more */
+-	xe_tile_assert(tile, m->batch_base_ofs + batch->size < SZ_2M);
++	xe_tile_assert(tile, m->batch_base_ofs + xe_bo_size(batch) < SZ_2M);
+ 
+ 	bo = xe_bo_create_pin_map(vm->xe, tile, vm,
+ 				  num_entries * XE_PAGE_SIZE,
+@@ -214,7 +214,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 		return PTR_ERR(bo);
+ 
+ 	/* PT30 & PT31 reserved for 2M identity map */
+-	pt29_ofs = bo->size - 3 * XE_PAGE_SIZE;
++	pt29_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
+ 	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs, pat_index);
+ 	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
+ 
+@@ -236,7 +236,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 	if (!IS_DGFX(xe)) {
+ 		/* Write out batch too */
+ 		m->batch_base_ofs = NUM_PT_SLOTS * XE_PAGE_SIZE;
+-		for (i = 0; i < batch->size;
++		for (i = 0; i < xe_bo_size(batch);
+ 		     i += vm->flags & XE_VM_FLAG_64K ? XE_64K_PAGE_SIZE :
+ 		     XE_PAGE_SIZE) {
+ 			entry = vm->pt_ops->pte_encode_bo(batch, i,
+@@ -247,13 +247,13 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 			level++;
+ 		}
+ 		if (xe->info.has_usm) {
+-			xe_tile_assert(tile, batch->size == SZ_1M);
++			xe_tile_assert(tile, xe_bo_size(batch) == SZ_1M);
+ 
+ 			batch = tile->primary_gt->usm.bb_pool->bo;
+ 			m->usm_batch_base_ofs = m->batch_base_ofs + SZ_1M;
+-			xe_tile_assert(tile, batch->size == SZ_512K);
++			xe_tile_assert(tile, xe_bo_size(batch) == SZ_512K);
+ 
+-			for (i = 0; i < batch->size;
++			for (i = 0; i < xe_bo_size(batch);
+ 			     i += vm->flags & XE_VM_FLAG_64K ? XE_64K_PAGE_SIZE :
+ 			     XE_PAGE_SIZE) {
+ 				entry = vm->pt_ops->pte_encode_bo(batch, i,
+@@ -306,7 +306,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 
+ 	/* Identity map the entire vram at 256GiB offset */
+ 	if (IS_DGFX(xe)) {
+-		u64 pt30_ofs = bo->size - 2 * XE_PAGE_SIZE;
++		u64 pt30_ofs = xe_bo_size(bo) - 2 * XE_PAGE_SIZE;
+ 
+ 		xe_migrate_program_identity(xe, vm, bo, map_ofs, IDENTITY_OFFSET,
+ 					    pat_index, pt30_ofs);
+@@ -321,7 +321,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 			u16 comp_pat_index = xe->pat.idx[XE_CACHE_NONE_COMPRESSION];
+ 			u64 vram_offset = IDENTITY_OFFSET +
+ 				DIV_ROUND_UP_ULL(xe->mem.vram.actual_physical_size, SZ_1G);
+-			u64 pt31_ofs = bo->size - XE_PAGE_SIZE;
++			u64 pt31_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
+ 
+ 			xe_assert(xe, xe->mem.vram.actual_physical_size <= (MAX_NUM_PTE -
+ 						IDENTITY_OFFSET - IDENTITY_OFFSET / 2) * SZ_1G);
+@@ -768,7 +768,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 	struct xe_gt *gt = m->tile->primary_gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct dma_fence *fence = NULL;
+-	u64 size = src_bo->size;
++	u64 size = xe_bo_size(src_bo);
+ 	struct xe_res_cursor src_it, dst_it, ccs_it;
+ 	u64 src_L0_ofs, dst_L0_ofs;
+ 	u32 src_L0_pt, dst_L0_pt;
+@@ -791,7 +791,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 	if (XE_WARN_ON(copy_ccs && src_bo != dst_bo))
+ 		return ERR_PTR(-EINVAL);
+ 
+-	if (src_bo != dst_bo && XE_WARN_ON(src_bo->size != dst_bo->size))
++	if (src_bo != dst_bo && XE_WARN_ON(xe_bo_size(src_bo) != xe_bo_size(dst_bo)))
+ 		return ERR_PTR(-EINVAL);
+ 
+ 	if (!src_is_vram)
+@@ -1064,7 +1064,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool clear_only_system_ccs = false;
+ 	struct dma_fence *fence = NULL;
+-	u64 size = bo->size;
++	u64 size = xe_bo_size(bo);
+ 	struct xe_res_cursor src_it;
+ 	struct ttm_resource *src = dst;
+ 	int err;
+@@ -1076,9 +1076,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		clear_only_system_ccs = true;
+ 
+ 	if (!clear_vram)
+-		xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &src_it);
++		xe_res_first_sg(xe_bo_sg(bo), 0, xe_bo_size(bo), &src_it);
+ 	else
+-		xe_res_first(src, 0, bo->size, &src_it);
++		xe_res_first(src, 0, xe_bo_size(bo), &src_it);
+ 
+ 	while (size) {
+ 		u64 clear_L0_ofs;
+@@ -1407,7 +1407,7 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
+ 					if (idx == chunk)
+ 						goto next_cmd;
+ 
+-					xe_tile_assert(tile, pt_bo->size == SZ_4K);
++					xe_tile_assert(tile, xe_bo_size(pt_bo) == SZ_4K);
+ 
+ 					/* Map a PT at most once */
+ 					if (pt_bo->update_index < 0)
+@@ -1866,7 +1866,7 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+ 	if (IS_ERR(dma_addr))
+ 		return PTR_ERR(dma_addr);
+ 
+-	xe_res_first(bo->ttm.resource, offset, bo->size - offset, &cursor);
++	xe_res_first(bo->ttm.resource, offset, xe_bo_size(bo) - offset, &cursor);
+ 
+ 	do {
+ 		struct dma_fence *__fence;
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 4829ed46a8b4..a3379d39f76d 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -403,7 +403,7 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+ static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
+ {
+ 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+-	int size_exponent = __ffs(stream->oa_buffer.bo->size);
++	int size_exponent = __ffs(xe_bo_size(stream->oa_buffer.bo));
+ 	u32 oa_buf = gtt_offset | OAG_OABUFFER_MEMORY_SELECT;
+ 	struct xe_mmio *mmio = &stream->gt->mmio;
+ 	unsigned long flags;
+@@ -435,7 +435,7 @@ static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
+ 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+ 
+ 	/* Zero out the OA buffer since we rely on zero report id and timestamp fields */
+-	memset(stream->oa_buffer.vaddr, 0, stream->oa_buffer.bo->size);
++	memset(stream->oa_buffer.vaddr, 0, xe_bo_size(stream->oa_buffer.bo));
+ }
+ 
+ static u32 __format_to_oactrl(const struct xe_oa_format *format, int counter_sel_mask)
+@@ -1065,7 +1065,7 @@ static u32 oag_report_ctx_switches(const struct xe_oa_stream *stream)
+ static u32 oag_buf_size_select(const struct xe_oa_stream *stream)
+ {
+ 	return _MASKED_FIELD(OAG_OA_DEBUG_BUF_SIZE_SELECT,
+-			     stream->oa_buffer.bo->size > SZ_16M ?
++			     xe_bo_size(stream->oa_buffer.bo) > SZ_16M ?
+ 			     OAG_OA_DEBUG_BUF_SIZE_SELECT : 0);
+ }
+ 
+@@ -1582,7 +1582,7 @@ static long xe_oa_status_locked(struct xe_oa_stream *stream, unsigned long arg)
+ 
+ static long xe_oa_info_locked(struct xe_oa_stream *stream, unsigned long arg)
+ {
+-	struct drm_xe_oa_stream_info info = { .oa_buf_size = stream->oa_buffer.bo->size, };
++	struct drm_xe_oa_stream_info info = { .oa_buf_size = xe_bo_size(stream->oa_buffer.bo), };
+ 	void __user *uaddr = (void __user *)arg;
+ 
+ 	if (copy_to_user(uaddr, &info, sizeof(info)))
+@@ -1668,7 +1668,7 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
+ 	}
+ 
+ 	/* Can mmap the entire OA buffer or nothing (no partial OA buffer mmaps) */
+-	if (vma->vm_end - vma->vm_start != stream->oa_buffer.bo->size) {
++	if (vma->vm_end - vma->vm_start != xe_bo_size(stream->oa_buffer.bo)) {
+ 		drm_dbg(&stream->oa->xe->drm, "Wrong mmap size, must be OA buffer size\n");
+ 		return -EINVAL;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index ccebd5f0878e..86323cf3be2c 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -33,7 +33,7 @@ DECLARE_EVENT_CLASS(xe_bo,
+ 
+ 		    TP_fast_assign(
+ 			   __assign_str(dev);
+-			   __entry->size = bo->size;
++			   __entry->size = xe_bo_size(bo);
+ 			   __entry->flags = bo->flags;
+ 			   __entry->vm = bo->vm;
+ 			   ),
+@@ -73,7 +73,7 @@ TRACE_EVENT(xe_bo_move,
+ 
+ 	    TP_fast_assign(
+ 		   __entry->bo      = bo;
+-		   __entry->size = bo->size;
++		   __entry->size = xe_bo_size(bo);
+ 		   __assign_str(new_placement_name);
+ 		   __assign_str(old_placement_name);
+ 		   __assign_str(device_id);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 04d1a43b81e3..32c3d266a954 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3466,9 +3466,9 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ {
+ 	u16 coh_mode;
+ 
+-	if (XE_IOCTL_DBG(xe, range > bo->size) ||
++	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
+ 	    XE_IOCTL_DBG(xe, obj_offset >
+-			 bo->size - range)) {
++			 xe_bo_size(bo) - range)) {
+ 		return -EINVAL;
+ 	}
+ 
+@@ -3771,7 +3771,7 @@ struct dma_fence *xe_vm_bind_kernel_bo(struct xe_vm *vm, struct xe_bo *bo,
+ 
+ 	xe_vma_ops_init(&vops, vm, q, NULL, 0);
+ 
+-	ops = vm_bind_ioctl_ops_create(vm, &vops, bo, 0, addr, bo->size,
++	ops = vm_bind_ioctl_ops_create(vm, &vops, bo, 0, addr, xe_bo_size(bo),
+ 				       DRM_XE_VM_BIND_OP_MAP, 0, 0,
+ 				       vm->xe->pat.idx[cache_lvl]);
+ 	if (IS_ERR(ops)) {
+-- 
+2.34.1
+
