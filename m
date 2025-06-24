@@ -4,52 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87745C77B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 17:39:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7061C77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 17:40:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30A9510E09E;
-	Tue, 24 Jun 2025 17:39:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A218310E09E;
+	Tue, 24 Jun 2025 17:40:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RI9rZrxN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ksFXc1yW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E68EE10E09E
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 17:39:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65C8410E09E
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 17:40:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750786766; x=1782322766;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=h6vegOyLbfA/pNDpyt8Ob5VpcocHhniMkUMTkb5Buhc=;
- b=RI9rZrxN/TErPfLOMdHKgAAvybA8i7u4JfCL1Pp+fDlW5+eEuD2I+LZ1
- 5Od/IfqE1UpEJ1bm4qeSEJKqGW8shDJSfrSri+VSfeeOdS8/h8qOu/2/q
- r/JpadL3aWIYsdqnTm+fVxHJ4iMPDlVCLg9KP098FuD3LEuonVVAUpci3
- z5R36mYr+7230yC4X6xXIiUNrRCJ6IjnPhQBu3eEha8fuaQabCvrd/Ojy
- XirbwBOuv+cti8w/GjPhOlpIch1Yelg4ifESEwak7ANxQ69oduM4xzMcE
- TxFgIDlDgY4q+Pm5Sm0W44W8w0m97r3p66YA/RK/6Oh/5YbdPWCNkTZ4B Q==;
-X-CSE-ConnectionGUID: E40rT8FmSxuL2asn/8NXJw==
-X-CSE-MsgGUID: DbyAC3m6RX6zRWxE1z04XQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="63639804"
-X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="63639804"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 10:39:25 -0700
-X-CSE-ConnectionGUID: Oqxxgy+RTg25P5sSYLEycg==
-X-CSE-MsgGUID: sr6XdMENSreLhAVBncj5kQ==
+ t=1750786804; x=1782322804;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=HgmuUMg10/M9sjETv2oBlJOScUqwpfhrEbUdudsXZqI=;
+ b=ksFXc1yWQT3eV05HzuDDZbsk59Fupecv3O3ZHfEoQGtdFl+992A9mONF
+ kgfUH510okOl7SG/UQYrymc5mWRQg6D+/s4V9G8vRcSC0ikfwELk5T9Q0
+ g1O0jkr7qbeR6b9QGNqfAHgEZkD3KzGsTXPaNJv30n4hAKeYjnkAbVSTe
+ YpfaAGBfQZkc7nDqJUiZ0byG8cYpsG5xLVZow2+chyUYhSuZp95GCMCFQ
+ seP0689MDPdx0uEuqeOFZhdcC8Z9+V3Gk4d5Ja7zxY3MYZbIbiXMqFDsl
+ 7hfCs7s3w2uYSJowfl0gSYxOD3AFJyJLm+GfQM4UMw/6DulD0/3n2B+Co Q==;
+X-CSE-ConnectionGUID: Jw/SLhlrQTGTxez4GEEeYg==
+X-CSE-MsgGUID: iPjyJaE7QTGWGzvAfC4DZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="70608930"
+X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="70608930"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 10:40:03 -0700
+X-CSE-ConnectionGUID: dcyl4nlvQnyeKa4EF0ecXw==
+X-CSE-MsgGUID: BJMudRjHSVykY5Iy9MQFow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="157472282"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 10:39:25 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: umesh.nerlige.ramappa@intel.com,
-	rodrigo.vivi@intel.com
-Subject: [PATCH] drm/xe: Do not wedge device on killed exec queues
-Date: Tue, 24 Jun 2025 10:41:03 -0700
-Message-Id: <20250624174103.2707941-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="152150778"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 10:40:03 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org, Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Lu Baolu <baolu.lu@linux.intel.com>
+Subject: Re: [PATCH] [core-for-CI] iommu/vt-d: Enable ATS before cache tag
+ assignment
+Date: Tue, 24 Jun 2025 10:39:51 -0700
+Message-ID: <175078670155.2442009.10696751949945054368.b4-ty@intel.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250624092412.4016009-1-tejas.upadhyay@intel.com>
+References: <20250624092412.4016009-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,56 +69,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a user closes an exec queue or interrupts an app with Ctrl-C,
-this does not warrant wedging the device in mode 2.
 
-Avoid this by skipping the wedge check for killed exec queues in
-the TDR and LR exec queue cleanup worker.
+On Tue, 24 Jun 2025 14:54:12 +0530, Tejas Upadhyay wrote:
+> This is a core-for-CI patch for
+> https://lore.kernel.org/linux-iommu/20250620060802.3036137-1-baolu.lu@linux.intel.com/
+> 
+> Commit <4f1492efb495> ("iommu/vt-d: Revert ATS timing change to fix boot
+> failure") placed the enabling of ATS in the probe_finalize callback. This
+> occurs after the default domain attachment, which is when the ATS cache
+> tag is assigned. Consequently, the device TLB cache tag is missed when the
+> domain is attached, leading to the device TLB not being invalidated in the
+> iommu_unmap paths.
+> 
+> [...]
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+Applied to our topic/core-for-CI branch to let more tests happen on it,
+but from the reported fixes, it's looking good. Thanks!
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index df7a5a4eec74..72477ccc5c5e 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -908,12 +908,13 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	struct xe_exec_queue *q = ge->q;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_gpu_scheduler *sched = &ge->sched;
--	bool wedged;
-+	bool wedged = false;
- 
- 	xe_gt_assert(guc_to_gt(guc), xe_exec_queue_is_lr(q));
- 	trace_xe_exec_queue_lr_cleanup(q);
- 
--	wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
-+	if (!exec_queue_killed(q))
-+		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
- 
- 	/* Kill the run_job / process_msg entry points */
- 	xe_sched_submission_stop(sched);
-@@ -1084,7 +1085,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	int err = -ETIME;
- 	pid_t pid = -1;
- 	int i = 0;
--	bool wedged, skip_timeout_check;
-+	bool wedged = false, skip_timeout_check;
- 
- 	/*
- 	 * TDR has fired before free job worker. Common if exec queue
-@@ -1130,7 +1131,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	 * doesn't work for SRIOV. For now assuming timeouts in wedged mode are
- 	 * genuine timeouts.
- 	 */
--	wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
-+	if (!exec_queue_killed(q))
-+		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
- 
- 	/* Engine state now stable, disable scheduling to check timestamp */
- 	if (!wedged && exec_queue_registered(q)) {
+[1/1] iommu/vt-d: Enable ATS before cache tag assignment
+      commit: df2ed2be971d13ac658cf8049303462f1bfa4b82
+
+Best regards,
 -- 
-2.34.1
+Lucas De Marchi
 
