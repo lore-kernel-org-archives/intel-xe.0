@@ -4,63 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2241C77B7F
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 09:14:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59C2EC77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 09:15:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB0A10E29E;
-	Tue, 24 Jun 2025 09:14:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1178810E503;
+	Tue, 24 Jun 2025 09:15:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PqzidIKm";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fpQGURUc";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BE3689FD4;
- Tue, 24 Jun 2025 09:14:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=yzL8Uifc+rzD8qaTrVT/O7hLL73vXjI3lloUG7iwRts=; b=PqzidIKmk7zti1YwkxZqeyzcfy
- PPgxj3Fcrm53PSXpn9rM0ZtIZ6W90nlmI0tDJswoVD4yGDcw/zZ6n/zbb6ZKHs2q4b8cDPkmm3Vak
- i0l7So8JC6JxFmote9vu69SXsyfWZKk/SGFa2taaVpZhvJtVhn/DI0Uc2fTWE/74i8FLAmHQDEMkH
- hzB8muYeXWAQVTPZFyR8O6eVzSLHFWbaKkxwylX4wUjuJHISLGpoGboi04fa4yQ/SPd0zadBGXBnL
- rkxVGAUb+rNH+yFnPmgqMz6pE6jo/jTfo5SMuhZRVzQFLiCZrmBPZ/yieOrBqFWKDzlmWrXKcEmTF
- qiN7dTVA==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uTzjc-007vna-5G; Tue, 24 Jun 2025 11:14:32 +0200
-Message-ID: <8016b15f-237b-40cd-b9f7-2e5878401941@igalia.com>
-Date: Tue, 24 Jun 2025 10:14:30 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/8] drm/v3d: Use DRM_GPU_SCHED_STAT_NO_HANG to skip
- the reset
-To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Matthew Brost <matthew.brost@intel.com>, Danilo Krummrich <dakr@kernel.org>,
- Philipp Stanner <phasta@kernel.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Melissa Wen <mwen@igalia.com>, Lucas Stach <l.stach@pengutronix.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65EA510E53C
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 09:15:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1750756519;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=RSfMZ1nHfNC+ISCEN7sRBSU6EdL8uqjDNRxVT2qKqq0=;
+ b=fpQGURUchHctqtWxl0UFbNG9n0YKVZW8kciIZ7zl/EsDWzBeO546xECwx1fZdT9ef+/mmJ
+ svIAFNb/jxGZt4vjxghnHbmqPi0o/1cRSwhSUdQq9exxcxX+S5iGqvkWkweHY3tdmUrsdj
+ V87MxY0LT0ZmIXU7gsTKitmZzjEF44o=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-653-o-Wein_EO7ugO5715e2OjA-1; Tue,
+ 24 Jun 2025 05:15:14 -0400
+X-MC-Unique: o-Wein_EO7ugO5715e2OjA-1
+X-Mimecast-MFC-AGG-ID: o-Wein_EO7ugO5715e2OjA_1750756512
+Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 7180A1809C82; Tue, 24 Jun 2025 09:15:11 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.45.224.209])
+ by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 5D02F180045C; Tue, 24 Jun 2025 09:15:03 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>
-Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <20250618-sched-skip-reset-v3-0-8be5cca2725d@igalia.com>
- <20250618-sched-skip-reset-v3-5-8be5cca2725d@igalia.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250618-sched-skip-reset-v3-5-8be5cca2725d@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [PATCH v11 00/11] drm/i915: Add drm_panic support
+Date: Tue, 24 Jun 2025 11:01:09 +0200
+Message-ID: <20250624091501.257661-1-jfalempe@redhat.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,70 +79,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This adds drm_panic support for i915 and xe driver.
 
-On 18/06/2025 15:47, Maíra Canal wrote:
-> When a CL/CSD job times out, we check if the GPU has made any progress
-> since the last timeout. If so, instead of resetting the hardware, we skip
-> the reset and allow the timer to be rearmed. This gives long-running jobs
-> a chance to complete.
-> 
-> Instead of manipulating scheduler's internals, inform the scheduler that
-> the job did not actually timeout and no reset was performed through
-> the new status code DRM_GPU_SCHED_STAT_NO_HANG.
-> 
-> Signed-off-by: Maíra Canal <mcanal@igalia.com>
-> ---
->   drivers/gpu/drm/v3d/v3d_sched.c | 16 ++--------------
->   1 file changed, 2 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
-> index e2b7f24d528e773968daea0f5b31c869584bb692..cc85f1b19ac405146a2a516f335a46376684bc91 100644
-> --- a/drivers/gpu/drm/v3d/v3d_sched.c
-> +++ b/drivers/gpu/drm/v3d/v3d_sched.c
-> @@ -744,16 +744,6 @@ v3d_gpu_reset_for_timeout(struct v3d_dev *v3d, struct drm_sched_job *sched_job)
->   	return DRM_GPU_SCHED_STAT_RESET;
->   }
->   
-> -static void
-> -v3d_sched_skip_reset(struct drm_sched_job *sched_job)
-> -{
-> -	struct drm_gpu_scheduler *sched = sched_job->sched;
-> -
-> -	spin_lock(&sched->job_list_lock);
-> -	list_add(&sched_job->list, &sched->pending_list);
-> -	spin_unlock(&sched->job_list_lock);
-> -}
-> -
->   static enum drm_gpu_sched_stat
->   v3d_cl_job_timedout(struct drm_sched_job *sched_job, enum v3d_queue q,
->   		    u32 *timedout_ctca, u32 *timedout_ctra)
-> @@ -772,8 +762,7 @@ v3d_cl_job_timedout(struct drm_sched_job *sched_job, enum v3d_queue q,
->   		*timedout_ctca = ctca;
->   		*timedout_ctra = ctra;
->   
-> -		v3d_sched_skip_reset(sched_job);
-> -		return DRM_GPU_SCHED_STAT_RESET;
-> +		return DRM_GPU_SCHED_STAT_NO_HANG;
->   	}
->   
->   	return v3d_gpu_reset_for_timeout(v3d, sched_job);
-> @@ -818,8 +807,7 @@ v3d_csd_job_timedout(struct drm_sched_job *sched_job)
->   	if (job->timedout_batches != batches) {
->   		job->timedout_batches = batches;
->   
-> -		v3d_sched_skip_reset(sched_job);
-> -		return DRM_GPU_SCHED_STAT_RESET;
-> +		return DRM_GPU_SCHED_STAT_NO_HANG;
->   	}
->   
->   	return v3d_gpu_reset_for_timeout(v3d, sched_job);
-> 
+I've tested it on the 4 intel laptops I have at my disposal.
+ * Haswell with 128MB of eDRAM.
+ * Comet Lake  i7-10850H
+ * Raptor Lake i7-1370P (with DPT, and Y-tiling).
+ * Lunar Lake Ultra 5 228V (with DPT, and 4-tiling, and using the Xe driver.
 
-This one is easy, it looks the same before and after so:
+I tested panic in both fbdev console and gnome desktop.
+I think it won't work yet on discrete GPU, but that can be added later.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Best regards,
 
-Regards,
+v2:
+ * Add the proper abstractions to build also for Xe.
+ * Fix dim checkpatch issues.
 
-Tvrtko
+v3:
+ * Add support for Y-tiled framebuffer when DPT is enabled.
+
+v4:
+ * Add support for Xe driver, which shares most of the code.
+ * Add support for 4-tiled framebuffer found in newest GPU.
+
+v5:
+ * Rebase on top of git@gitlab.freedesktop.org:drm/i915/kernel.git drm-intel-next
+ * Use struct intel_display instead of drm_i915_private.
+ * Use iosys_map for intel_bo_panic_map().
+
+v6:
+ * Rebase on top of git@gitlab.freedesktop.org:drm/i915/kernel.git drm-intel-next
+ * Use struct intel_display instead of drm_i915_private for intel_atomic_plane.c
+
+v7:
+ * Fix mismatch {} in intel_panic_flush() (Jani Nikula)
+ * Return int for i915_gem_object_panic_map() (Ville Syrjälä)
+ * Reword commit message about alignment/size when disabling tiling (Ville Syrjälä)
+
+v8:
+ * Use kmap_try_from_panic() instead of vmap, to access the framebuffer.
+ * Add ttm_bo_kmap_try_from_panic() for the xe driver, that uses ttm.
+ * Replace intel_bo_panic_map() with a setup() and finish() function,
+   to allow mapping only one page of teh framebuffer at a time.
+ * Configure psr to send the full framebuffer update.
+
+v9:
+ * Fix comment in ttm_bo_kmap_try_from_panic(), this can *only* be called
+   from the panic handler (Christian König)
+ * Fix missing kfree() for i915_panic_pages in i915_gem_object_panic_finish()
+   Also change i915_panic_pages allocation to kmalloc, as kvmalloc is not
+   safe to call from the panic handler.
+ * Fix dim checkpatch warnings.
+
+v10:
+ * Add a private field to struct drm_scanout_buffer
+ * Replace static variables with new fields in struct intel_framebuffer
+   (Maarten Lankhorst)
+ * Add error handling if i915_gem_object_panic_pages() returns NULL
+ * Declare struct drm_scanout_buffer instead of including <drm/drm_panic.h>
+   in intel_bo.h
+
+v11:
+ * Encapsulate the struct intel_framebuffer into a xe_framebuffer or
+   i915_framebuffer, to make it easier to add a struct xe_res_cursor
+   to support discrete GPU later.
+
+
+Jocelyn Falempe (11):
+  drm/panic: Add a private field to struct drm_scanout_buffer
+  drm/i915/fbdev: Add intel_fbdev_get_map()
+  drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
+  drm/i915/display: Add a disable_tiling() for skl planes
+  drm/ttm: Add ttm_bo_kmap_try_from_panic()
+  drm/i915: Add intel_bo_alloc_framebuffer()
+  drm/i915: Add intel_bo_panic_setup() and intel_bo_panic_finish()
+  drm/i915/display: Add drm_panic support
+  drm/i915/display: Add drm_panic support for Y-tiling with DPT
+  drm/i915/display: Add drm_panic support for 4-tiling with DPT
+  drm/i915/psr: Add intel_psr2_panic_force_full_update
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  26 ++-
+ drivers/gpu/drm/i915/display/intel_bo.c       |  17 ++
+ drivers/gpu/drm/i915/display/intel_bo.h       |   5 +
+ .../drm/i915/display/intel_display_types.h    |   4 +
+ drivers/gpu/drm/i915/display/intel_fb.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |   2 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |   5 +
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |   6 +-
+ drivers/gpu/drm/i915/display/intel_plane.c    | 170 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  20 +++
+ drivers/gpu/drm/i915/display/intel_psr.h      |   2 +
+ .../drm/i915/display/skl_universal_plane.c    |  29 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   6 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 142 +++++++++++++++
+ drivers/gpu/drm/i915/i915_vma.h               |   5 +
+ drivers/gpu/drm/ttm/ttm_bo_util.c             |  27 +++
+ drivers/gpu/drm/xe/display/intel_bo.c         |  91 ++++++++++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |   5 +
+ include/drm/drm_panic.h                       |   6 +
+ include/drm/ttm/ttm_bo.h                      |   1 +
+ 21 files changed, 571 insertions(+), 5 deletions(-)
+
+
+base-commit: 266907bb491f2bdd731139792b5a5056b6d0a482
+-- 
+2.49.0
 
