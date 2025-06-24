@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40687C77B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 20:53:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7419DC77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 20:54:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 033FD10E12F;
-	Tue, 24 Jun 2025 20:53:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33F7910E12F;
+	Tue, 24 Jun 2025 20:54:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OrwaMCw6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BqLancKT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 722E710E12F
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 20:53:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B570C10E12F
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 20:54:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750798415; x=1782334415;
+ t=1750798466; x=1782334466;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=ywzbi8njoNBfYt5KGttIekjjmQVljn6ahcWOmPfTaKg=;
- b=OrwaMCw6eSjd98+GwLjjcyeIGZdCSPkPIOlrZjvMM+Ly2MNxtwcg0LKx
- lZaYu0v+zkmNb+Zh4f43CtEeF1uhi+aYdAASmAHkb2JaY7ztfQb4ydhsB
- 2EEAeY8uQp6VWptCMvoXoCqGbjUt5EXXtrCFRnhuguUan3GYLy3znO73N
- 85T/Dp2mn4Zj2vDSfhjYpwgNttT5G/vEPB2bNtgpmTTtgbisF90iEvh3W
- qnJZLnTl2WMWN8l/tmU5aooBescmDqVUN2KrWUcdrF4Obdv0s+HiIKIhD
- TqIzHJgyVHZ0MbmICmMn7Vm2Kba4dzjv634mcajk0ndlJM86OvYZPX8YN g==;
-X-CSE-ConnectionGUID: mwRAd+5vSCeFeFmzp8YhaA==
-X-CSE-MsgGUID: yQGx9Q0nS8OOUqMf3Y66jQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="56730720"
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="56730720"
+ bh=TsFixpK9VBXYDqK9V5Qs8YMyccYuMcnJ76Tu+BMiwoY=;
+ b=BqLancKTtTfMfLvi6/cD+OqM1jT3nejXMXOxABxTZW9vVQtymzVkDUIP
+ 1GMwPuCFcOj1jzBqsH/0HzALBj0v8UyBvhkdbBlq0baULsJA2Io/z1Txg
+ plqA0L3kBtuUwrv/w8tNG3gB17ipHY94yNDHywDPAtgUVPMrWiuWdohTP
+ VU8vzizz61uJD7z8rNrRuAdVPKrwTediAb/+4NVHCtn1rqezSSszDvlBn
+ kGpqfTJxfUqH6XnXirQfIeRLezgDMJlqQOiQ2mqcPFqVlzZeCXHkrmXRo
+ 2rbq1b2/YuLtIFSOJdu/+V/UxIMlw4nxaVI+kTYKYkbynI1XwIXY0lwPv g==;
+X-CSE-ConnectionGUID: JLQFoj0QSMeGNGVebIzraw==
+X-CSE-MsgGUID: 2yq5+viKS9GgyzkBDFO+bA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="56730877"
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="56730877"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 13:53:35 -0700
-X-CSE-ConnectionGUID: TGAIVzeYSiKWqObrmPpEog==
-X-CSE-MsgGUID: P/sbiJY8Sru7u0Il48PsZw==
+ 24 Jun 2025 13:54:25 -0700
+X-CSE-ConnectionGUID: 4UE7X1UgSWyuWBvZtZ24qg==
+X-CSE-MsgGUID: 3IjOtosSTDWFvClD57eKYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="156051591"
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="156051752"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 13:53:34 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ 24 Jun 2025 13:54:25 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 24 Jun 2025 13:53:34 -0700
+ 15.2.1544.25; Tue, 24 Jun 2025 13:54:24 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Tue, 24 Jun 2025 13:53:34 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.64)
+ 15.2.1544.25 via Frontend Transport; Tue, 24 Jun 2025 13:54:24 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.53)
  by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 24 Jun 2025 13:53:33 -0700
+ 15.2.1544.25; Tue, 24 Jun 2025 13:54:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CXiJcW6QdqIoWoRM9TCQoY6KKofYkR9VpzuAd1OcUR/uuweM0609LHJkhMlCMPs1G1ot5ygBbZfCR8XFu/C08fWkEe5VArGLc3B0KbCvvDied7NbVAKtPWG5Aj/vsJTnrpPCJXlLvXg1TGy/ct9rCOkvs0WmJwlM6bzd9v7Lw45poDz0n6L1ycLIHFlYTag8Xet1ifFjpCl0CNakUoaSVY1vHkAaYncsFqDEoAHvTYSn0adZFOBcGeEiwvK7yRqrhfYAQ0mrV96eA/aWbHMihQsialC3yuoplZ9D/SJ8XC4IhYUpnAeNseYJfgO6nmDCUlETMvTrrTCoTbui3ChBfw==
+ b=XlPQOUDDAOR2J2gZozw7yHnEyoiP/Dp1DEORBBW8YIBL/gtmxjBKXbluogVsCW96uqgKhuUPJJv2bGmVvADbhR6PsTp8AZocgvWmuVf1a3p18E9wzA9W+uXyEOpZ7qk6TlJJwA4z0TfF886gosCv97gJlqnuJQqrt4bj3ccpfjj3DaHp89IHU5HQlnlb5Yfgcko6DKL+KHbILruKHwX/MnJ2JHyV9Osb07bK7/yxgCQyoZas5MoRV8uraxd6aGOKwEGiXkADWq7L0YsNLRTvezKjpeQI8CCWh9wcC24rIepBFrGn9sxu6Gye+zXIxJDES95mfs7VIlyqF/Tg1rTlzg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hAJDIn0LqpC3y9vZtJdWnKJaq81S+O6VoKAxRjriUvQ=;
- b=lPn2A/H+ofWgZO1N+yx1XWvqzbS/oRl/4uneuA8weXk4HwXqc4C2qi3ZNXcMvc8BnvZUjy0XtZS77dsfaze9I5tCEmIhV7EkCaBKifuleAs2eNzdD/G7qULnbfjTtk1eaXCIyniWZe40uovipVijUBsbXrFCmxmr6ngh7P/fMcRzSK7BPmUqTUIumN2QBJekwuN7VHhEiUo13498AQJYyebWu7XghpIvUTTmxSCP/MLUuk/Pgcpwni6zDwHVb3wo732Nww0Ziu/wYPuyrHszSZWdeTn20rW7F1SnmTdPLc7ckbFxzv5jGgQ/DOE41E56Frsu3kgkKU8PNeL1H30Qyw==
+ bh=4oPC79JShbUJY/CTuSdArgLzx2J431RTtGTT0Q2BL8Y=;
+ b=S/1GThbSEZuXzeFGlVQEwqWwXPZFgN6jbRnrc5X7nY7i7drILj8be2hZLZuY/ICagrNb+gYUHHuSnmrFTfvU/cHifnLmMEbAPArnB57Umv/rj/ePfqtfnWwucW3fyprSxB/Su66h5eQr8yj7g2sDlGLJBIdc0BqDNysUQNFWTDi3/zppwUHqfMuixoSvG9VkZUm+cyJONZqHYKc+8V7ryo67E7ljZMhptnU+3vmuJ/5GRDvxpmTtAbcyEa1qQiVAiGGKgIuEvW7Xj+OBo6knW3g/aMRZks8Y0F9e3+zNjbiNzPqL2HjpQ2FE3IHTRWyWURXmFxHp9nQQlkpOm+bXkA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,100 +69,95 @@ Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
  by IA1PR11MB6513.namprd11.prod.outlook.com (2603:10b6:208:3a3::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.28; Tue, 24 Jun
- 2025 20:53:30 +0000
+ 2025 20:54:22 +0000
 Received: from CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::76d2:8036:2c6b:7563%5]) with mapi id 15.20.8880.015; Tue, 24 Jun 2025
- 20:53:30 +0000
-Date: Tue, 24 Jun 2025 16:53:26 -0400
+ 20:54:22 +0000
+Date: Tue, 24 Jun 2025 16:54:18 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>
-CC: <matthew.d.roper@intel.com>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 5/5] drm/xe: disable wa_15015404425 for PTL B0
-Message-ID: <aFsQRs8tObO_3tK5@intel.com>
-References: <20250620214920.718179-1-matthew.s.atwood@intel.com>
- <20250620214920.718179-6-matthew.s.atwood@intel.com>
- <aFnDJdKKgT_-j69u@intel.com>
- <20250623233130.GE4868@mdroper-desk1.amr.corp.intel.com>
- <aFr7scFlNsmNy32h@intel.com> <aFr-19HqjMgXar6v@msatwood-mobl>
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH] drm/xe: Do not wedge device on killed exec queues
+Message-ID: <aFsQegvdaBkcIZ8n@intel.com>
+References: <20250624174103.2707941-1-matthew.brost@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <aFr-19HqjMgXar6v@msatwood-mobl>
-X-ClientProxiedBy: SJ0PR03CA0085.namprd03.prod.outlook.com
- (2603:10b6:a03:331::30) To CYYPR11MB8430.namprd11.prod.outlook.com
+In-Reply-To: <20250624174103.2707941-1-matthew.brost@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0207.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::32) To CYYPR11MB8430.namprd11.prod.outlook.com
  (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|IA1PR11MB6513:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0fe26922-a4f1-46a2-3e4e-08ddb3612cbb
+X-MS-Office365-Filtering-Correlation-Id: 4c0107b0-724b-481c-34c1-08ddb3614bb1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2FxGJMzEg57vCAZVn4eUvpzL1FJbDI3xMbwWy/DfS8Hux8mB2Dnidz8sQNce?=
- =?us-ascii?Q?UybX7t9HRfCuAibOfFxr6oh2r7N7yEgT4eJWux8HQK0gaQgEGV8gwyYxeXtB?=
- =?us-ascii?Q?dMwsYqiXf0Iw20i3rBtBQFAvlfAI+y1NmLGrrcwDZjOS3E0VHdekeyiAVSZE?=
- =?us-ascii?Q?moIt68M3gjWiHxrcnUd2RGCslHmB3c7kasYEocRbcrpiNWAazv51Va2XXgU4?=
- =?us-ascii?Q?HcdFfoOdh1RdnSXnpVC3uJ6Cla943Fd6vjtbFMVuGqHay8rxuE4tT9rKsKGx?=
- =?us-ascii?Q?cJSjoEy+Z871wLpFPW4nOFq9oLFRykv+agpkYtEMlkPr+nXJsHXqPDY12M1T?=
- =?us-ascii?Q?3InnBfLIbk0p2NwuEGVGwQdTEYOnKNJuW3ozpGL/VHvGF9wpwOiyEIRHAfcp?=
- =?us-ascii?Q?WDJcU8/3zxV99kCZNvAwwkBXPZGWAKmE0twgKKwGxgs6OIfuVwEYTBJ/bLZ2?=
- =?us-ascii?Q?1E480LMW8NiUH+0Z4NH3aKRqpjPIVKw4Rm0QO6H7w+dODVMJDV1fgyhacAes?=
- =?us-ascii?Q?1Z2qr5hWz8ZKsoR3g5UzxmxCX+QR3lJuIdgomTXUXPMrdEENSHAwZj8Ks/AX?=
- =?us-ascii?Q?kVFCwY7kr8gOYI2RW0GzhAw7lzAl8dj3x/ZUq3kwCBDTLtYeuRSCeyTaG1nx?=
- =?us-ascii?Q?2WOXDeyaJS6nuWIHTGjV5hdDiITVrgv/hfzPR250Mh6ql64+EtzdFLyUbUFr?=
- =?us-ascii?Q?BnOao9RHjgTzRM9oywnFd/ELVTYs9D/CUJJlAM5Tixh0lQxhUjLQySbyBGwe?=
- =?us-ascii?Q?CoUpaTr6fKoLmsu++3aFjAvHOr4bmIlrWZR+EbwaF2n8a5R8AScHhxEMMj0R?=
- =?us-ascii?Q?bNzWsAKpYsKwC1jzI7D/vsH/+aHeIyafK/5SMT6iwIt+yiyIRqNdwONN0Q7B?=
- =?us-ascii?Q?LhhWEmqI+vBbyZYfDnjh5Ve7/v4D66A9+AfaxsNO0hQ9ScuISo1blsh6ZOlh?=
- =?us-ascii?Q?+ucq51os0L2QVquIE7R5Qb1GvxTn0jCEoV+gg1iCQJI9z8X60sUp0pUqzkJB?=
- =?us-ascii?Q?4f4c5/BUp6k854D0W7RNsiQgRHr8f2q59aJV4vzVUm7ltudsEMzhKJ/XnC2l?=
- =?us-ascii?Q?EcmknxGjtriWNC5QJ57G1anDxn08bf45Rjfj450dwLKR082S28CV5IHsLs4q?=
- =?us-ascii?Q?Y9tKJ7VFwiSvyiqs6nmOnm6HBNgu9GE2cxEdTQAP5+kThqQap64y86YQFxDe?=
- =?us-ascii?Q?rsn8AOqEQeMaBk6NdGyHybQyBVNvgdPZyw9idO38Lw3U9jTRp7Ow3l854BpA?=
- =?us-ascii?Q?3/ygtcRqqmTTlHF/VY6Uo18IVMpQiuARKnBwFEzEXMl9mo2OwedK0I4QaDvZ?=
- =?us-ascii?Q?sxb8qcyujFtCJYnP9+a6e/208AB1S8vlH78A3VazBeANr4+jDCsXOL3Zv2KR?=
- =?us-ascii?Q?AL9IuuyKPdD1r1OBSfdU/OmXdpZMenARwY6pCGNuXYuG6zyKb3y1SduaPLYD?=
- =?us-ascii?Q?2HNi27Ux7tU=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SS/FQwB+ZovhHfrW+EqTmaOZWWNvAsv1ysy/pGgFA8XDMlr8oywo1b7bt2f9?=
+ =?us-ascii?Q?/6anVmXz8u4oQ+0O1rIzQzGaYe2/qKWh018nHKBB4iOu7aagcCoN2SbnGQV5?=
+ =?us-ascii?Q?1DRzWtwCZLElv0rB9UnwLyOecuVbmfs99rbSvmBRNv/WLdx8RGRIiuvrKduT?=
+ =?us-ascii?Q?EewyoTa11m2OncPJQepx4ur6w8PYJpqC3gmqujdK+dOrE6x1aOpx47TXF8I8?=
+ =?us-ascii?Q?uPjVG7jfEF9oKkZj6fLVkxKiCwiVDucpupm0+G5yPXp1V0PO3z1ftgYYYUKd?=
+ =?us-ascii?Q?zXVddhDYqA1zMlWe1YAVJzk0oPTxbuWuyr71zxFq+8AWT9kmcTrUo+IQivRk?=
+ =?us-ascii?Q?4pH0FxCmO4HN+VXifY/43nrrOJ8vgpfVvMHEgz1ZL4J3sHI1nDxf9cFFDPd8?=
+ =?us-ascii?Q?tx7fyw0TnWkpygGxIqtc6feVlAk9l+Y5z5CT51X3lQ65q2ymHy1lF8o9WxWS?=
+ =?us-ascii?Q?cHceatAAu7HUo2qziTp3IB4OKJazNAleykZbN6vS04URyok6GGf9KL05Iej6?=
+ =?us-ascii?Q?yD7DK2C4QnWQ6XCaVMFQTHwLh0fTxlq7/6Rdj6MZdqiQTRTqnUiphEmgI5dM?=
+ =?us-ascii?Q?g2ZV+/Z1pdUEIZtHuItGAkPMutCiyFrvkW1YLHM98K71xSdsEtQleAxDjnDg?=
+ =?us-ascii?Q?ktjqGOzbum4PvbSj2kOWBuKC560YaWh8WbIgq2bOWttbmg8yJfZddhw3XHix?=
+ =?us-ascii?Q?v7r/56nMCCQejd+n4soyMnxym5i3PnvZu55gQYFGkwTlllR1+mzEpwUHr/PF?=
+ =?us-ascii?Q?9OqNTyP8KBVE5H2nSx+STnUlRsLeGFW4rAcVY1rZYCZDFU1twxUgnsD9Zyis?=
+ =?us-ascii?Q?nqVEc397qAdxaPoAlnyU+B3EuOT4cLDs5NzGzQyLNqI6Z9R74VdQgSQdfY4M?=
+ =?us-ascii?Q?nnw+XGf7jbLl980rvQdgS5KaNxJu1mycxjBxW4gFs4XCdWIvQgQLVFOyXzOe?=
+ =?us-ascii?Q?G9rohlwi0bobLmAAUJGfZgmhHwskLC+nS6KsleLvMhSqRdsWxXhr7++TZdOb?=
+ =?us-ascii?Q?M2Iu1NgbnzyskzZqdn01xKjqwm0BSYm47nrAtC4SBuhEQdWaoeGcBqShvTHF?=
+ =?us-ascii?Q?wms36jEF9p9AxaB0MRIyOK4X+IeHbiMZ/3N5o8+QLUcpOZxUnURDhZDkBWiK?=
+ =?us-ascii?Q?Ql4lfFn92d+YWCdsMZKaxaY0rH03fwsGIn96rrN4IzOZ7FeeYDhFL1HNpoT9?=
+ =?us-ascii?Q?Exe54FXW5SbOo4UISdwIQATibnh652rIaYTtqv7Pb3o4nzCuJHGKlL+pPak9?=
+ =?us-ascii?Q?ULFcvw6hJf3yUvvSler8pt5E1/ZHE7ZIiC8aAGGIeKiI4n6vplvmIjPlq9Cd?=
+ =?us-ascii?Q?kginSOxBadAGumcxKyAy7Bdqry7CPg6J6vSPPbQeF6SMRADNcAieXmSsmOvJ?=
+ =?us-ascii?Q?sR9NrNaZ+p1SzJVRRVRIO5cd9Zzi+6hf5sj7afHXTwkFDcy6zg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hYc9D114KypJPA3Ry+R6OKuLPzyFHi0AOfrDsqJnqOK1Fb6xC6b1oX6bujKG?=
- =?us-ascii?Q?PT/3GkTSCwacM55k4p6n6seGK9wTb24ugW0SY0wpcx5uCXCt8uUYjDL/ZSI7?=
- =?us-ascii?Q?Lq73L8ZHVMy90880iMW0UKnMCyq4A7E1SzlgCmuF8yFho6neJCUDwY6CQsdE?=
- =?us-ascii?Q?1fKRwD0rZajhYKtIlDecLOeLik15RtnPjxYit04art9G6+tn5ybyF1490XDY?=
- =?us-ascii?Q?xt8F4ZT0dO7VoxRn9rV5erDJK+dDTHBry/soaCYofdfo2/z5CCGYKzCSF+wD?=
- =?us-ascii?Q?nsWJTklLr7bWRaO8v1CE9943tYmlH54SSpaC/fm41cvQdheh+7L475WtHqBC?=
- =?us-ascii?Q?5A42Wo1dIOIJkIY1KLx/ekMiITCPJUry7CvRStLB03D7S9Kd4OTCxCf9UCDS?=
- =?us-ascii?Q?TcgPK1+keEBHE3Qu9kziiSVcFoUlkr5lNvxTpaeICkAT1Hi6vq7tk77Qgwez?=
- =?us-ascii?Q?vnbB0EbZKVmjhSAqOCzfE/QJTPoH2kzAwjdEkn8Iy83yTrjW/b7RSdk/wgAw?=
- =?us-ascii?Q?05NRbl2WuwRxjxRRd4INTbe95pztXd0ZGHpYswckj9lbtVnCAHcsjr+ZvZds?=
- =?us-ascii?Q?F/Jxf+3ZcFmLQ7HupBWbfDbARTZDFXzwyRJWsGxJtqT1A0rojv2hPI1I6Kvz?=
- =?us-ascii?Q?aOldfkXr5MzaVWKyAKBDV8fBuG6RpVBUGtVKW6aLHyd8I5HZa+VUIsdWlqxc?=
- =?us-ascii?Q?ZUxNMquyyVjOWK8aDzBusaIDYPMfgTjCgMIbz14d0KPPcRyCF33SExJ/nS5z?=
- =?us-ascii?Q?+/HRGQbrZmyElK4H7VX9hR1rs89koEbmZxeCAtx1oL1sWsA0XzRoAp9+7woh?=
- =?us-ascii?Q?YlA5uWjMKcBC7PS4m+L2R34e2gXS6IKjc/0Z+itYdacUJXqF2egt9Rln9u03?=
- =?us-ascii?Q?qvi0HEKnqLKQhr70unaqheqxiGGY1OdK2Iutu3eUndYbN/XxX8hmL7lwIKiL?=
- =?us-ascii?Q?5axwWYAiOOSJ2uRRzxil7J1sHX1r/NKqQYSaxsY8xSmuUFfkcdasZ7wnNZUP?=
- =?us-ascii?Q?eKDgklbwp3uh/aleSYWm3OlXNSDzqxXpthodcWmZTA4h+sKqyj3TkRpBTTyj?=
- =?us-ascii?Q?+6ZNnBKMzSxIQslpdp4aIMFbN5SDos0fBJq4YUK/DOIQIZjUNRqyfsmG07fG?=
- =?us-ascii?Q?qRKc3GArvWL+kVR3+xog8uGIz2EDxnhdoziNSi6X2ri+UYN/o6ZY6RyPsVdB?=
- =?us-ascii?Q?4bW6GeZLS3ptyDol/5ur2bX4J/4wLrBPy7chhHiPhHmytRaHJlIxXfaHUdG2?=
- =?us-ascii?Q?QLNFO4fMFx20YkX0z3V7ZYFEMsSYJUHEU4Dfw+xAwhyfLjQT3VOEEG5GEuEU?=
- =?us-ascii?Q?r49i/pVXX5jODrwcFUXt1jPIBnHdFtStpvNN/95LOeH7TdTifrb2WWS+GcUc?=
- =?us-ascii?Q?zMZlVhBHtoxKwsSHlOVocj4LrDr/Ye69ZYzqm4T8/GCkzSJN6p5lqSHQhAMP?=
- =?us-ascii?Q?cbf5aFxI1Y4C3q8KpLTZl/sGmFBWl5JaExAPcXT1akjzP+4ZcOXtV7AwztaZ?=
- =?us-ascii?Q?8Z0Qun9aHYJQoBpUD+wWR5WpjOsZsMXnSTGNWcc1FdfGpdF7qVFw4WEUXxRk?=
- =?us-ascii?Q?7k6pcUXan7/ZPcgOtHU8gA2MLZbZ6UhBr8rfnoZDje+O+XiwbVdydwO8nkan?=
- =?us-ascii?Q?MA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0fe26922-a4f1-46a2-3e4e-08ddb3612cbb
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4jGvLJj8GbMqcYUccV8B3mG2iPjm4iNojSDSgcQq7ceHsLotC2Evsa3CYfa1?=
+ =?us-ascii?Q?sAVJt5NVFgK9IY4KyXBYvvMiGfQZ/4BIQJbjbqYl16hqP/PRzLS9+iMNC/RC?=
+ =?us-ascii?Q?b4CKR9OtriSpeNzz/0ddSY2fvgMdG9IrAXMHFy4rfpzxq7OGzVKNQVtBEFHk?=
+ =?us-ascii?Q?wGQC2H1jQH+67cnRS4/q81Wqhay1YvJOyFosl949APKEf8N21UXt06AOlD8/?=
+ =?us-ascii?Q?0iFxwgGlIvNixg3I0BTZDiK1F9RCZyJ791YF7I9uT42+3yt2tqSbcIvmUNF7?=
+ =?us-ascii?Q?mYXtLF/7rNnpdvKCRwJ8UB4xEfEZQWMfl+fZe1y7p5+Iu1CcmoNiFtaR5voY?=
+ =?us-ascii?Q?8aSeTFJUwBUKt1G39uFGfoBu/TdOJD1H67M5bdmnmVyBiySLU9swO5cBLTB3?=
+ =?us-ascii?Q?d4znuokrZPVICHHIYvA3E4ew+b87FE1HAtW3JuihKQ3Pph5yyN75AvC8Dozr?=
+ =?us-ascii?Q?030EjTkdPFHa8+wdzZATdsHDZzUY2UHm10pd5qozJ+Y32mlv2Tm0RChd/r9y?=
+ =?us-ascii?Q?6NZl1MkbE1Bd7PEVzpVV9Nk2upBZdxV4jT3pnM4nT8MW/tBF0oc2uytmHu8x?=
+ =?us-ascii?Q?NLo0g5AysqkfG6m13Hq7iIQasNXIrx3lA2NyEpZgyW/cu5dtShA/xkBD/muv?=
+ =?us-ascii?Q?ymKo52pxIHrVYyFFAntB6CiKrjPAwo0clwpuPG3T2Z+ER14I0Ly/hy6ENkgt?=
+ =?us-ascii?Q?Uh81E6LcMiMrTND6nUgMqyKHKWhWPzW+4cKwtKiGZUvvI7HSr83qnbO0KMgS?=
+ =?us-ascii?Q?8iIYBHZ/F21JhlsxLk6QNXFgjS9rK0htDpSPrVUFe6FmlSUx4SeU4A46kUtB?=
+ =?us-ascii?Q?PjeBEvypkjIBfVpUDnS9TOvsbx7p7cKCupvRs27dOsLCZxK5ks8K8d0Q+x60?=
+ =?us-ascii?Q?2J4w6RbsBG2/Ikgb2uWe5D/spQLIQIKKLfBOLBhE2tlEkcTrbmyANBOLGiCm?=
+ =?us-ascii?Q?KJUd02zAB+jVo5q2hKNOZB1szveC+XxKpPF4US4h6GYIhpKrnD/NP1ii5o3H?=
+ =?us-ascii?Q?FyKOf3P03OaArW7jKA4JAYs56h0A50z9NXUaxym8Fh7iMwdhR7ZLvR/Ou1/d?=
+ =?us-ascii?Q?dB6EpnmT1cUCduDrqqc+WfMdHypISYdX535aqG4+JH8D6Apv5rNWri4nFQ6c?=
+ =?us-ascii?Q?kcSD8jp7UBtJeNBtOhJbvfZ5JPll+1khKYukq5we29T4dZOXamNzhgVhZZkB?=
+ =?us-ascii?Q?o+w2mI8zGkN68YAmJjqrJL+EK8JkoGDD460sOsGRTm2DhHvISXpYRqvAmftW?=
+ =?us-ascii?Q?FbwDtODgapuLlB6pE2uv5d/+omDgS0kOBBDLLjf+3VGhKREAjIUKr8vKlnpj?=
+ =?us-ascii?Q?IWqpMQSxsQmu40ppcoIZ/tbQKtFkVk+rVTCQk7Ck/wFyT5N3S5vSZtXCW+Ft?=
+ =?us-ascii?Q?ScD2IbLmf5+/+kcvHuqk7os59pJ/6dRpkb3cP+/bnEze8pHgaC1/hcRnm4fx?=
+ =?us-ascii?Q?2Dlf6tRS3Llfnw6tYvpzB8Ms+VQheQCyMWkefHpNdprfaxa7VDEtHSYDb1x7?=
+ =?us-ascii?Q?/2ILUFE9F/gwl3fs7DwQ4VKY88LlYBh6IP3ErWlLF9DGP33uPThvwFr/AZs9?=
+ =?us-ascii?Q?pMvobFavtIXLheAz6PTw24jCK4yPT+4eK7XdEOq2WatNwD5npSzdFBeMYZ/U?=
+ =?us-ascii?Q?eg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c0107b0-724b-481c-34c1-08ddb3614bb1
 X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2025 20:53:30.2665 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2025 20:54:22.1049 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sLG7t/DNFksSbat5LPXVz9LKa5KmHiDMF0EvfBTpIXuhtdE3WR0MI18rDGDSb/rBlIIPKfeM15sJaaOFB2m3Aw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: mSndlkAMzuiKfFMqh2BIAHn1KJmkRdosvAPOkywIqRw9Ofbpvtii/FLl8s8+myPSXlIh7U8aEWLXgKuwoi7MUg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6513
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -179,201 +174,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 24, 2025 at 12:39:03PM -0700, Matt Atwood wrote:
-> On Tue, Jun 24, 2025 at 03:25:37PM -0400, Rodrigo Vivi wrote:
-> > On Mon, Jun 23, 2025 at 04:31:30PM -0700, Matt Roper wrote:
-> > > On Mon, Jun 23, 2025 at 05:12:05PM -0400, Rodrigo Vivi wrote:
-> > > > On Fri, Jun 20, 2025 at 02:49:20PM -0700, Matt Atwood wrote:
-> > > > > This workaround only applies to PTL Compute Die A0. However, this
-> > > > > information cannot be determined until after the GT is brought up. This
-> > > > > means that we will assume that it is required for the initial bring up of
-> > > > > the gt. After GT init, the oob workarounds are enabled for the GT. Use
-> > > > > this flag to then manually set the bit in the soc oob bit field to 0
-> > > > > which will help performance after device bring up.
-> > > > > 
-> > > > > Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/xe/xe_pci.c        | 6 ++++++
-> > > > >  drivers/gpu/drm/xe/xe_wa_oob.rules | 1 +
-> > > > >  2 files changed, 7 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> > > > > index ded0f3dc8d73..a624c3fb9498 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_pci.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_pci.c
-> > > > > @@ -34,6 +34,9 @@
-> > > > >  #include "xe_tile.h"
-> > > > >  #include "xe_wa.h"
-> > > > >  
-> > > > > +#include "generated/xe_wa_oob.h"
-> > > > > +#include "generated/xe_soc_wa_oob.h"
-> > > > > +
-> > > > >  enum toggle_d3cold {
-> > > > >  	D3COLD_DISABLE,
-> > > > >  	D3COLD_ENABLE,
-> > > > > @@ -890,6 +893,9 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> > > > >  	drm_dbg(&xe->drm, "d3cold: capable=%s\n",
-> > > > >  		str_yes_no(xe->d3cold.capable));
-> > > > >  
-> > > > > +	if (XE_WA(xe->tiles->media_gt, 15015404425_disable))
-> > > > > +		xe->oob[XE_SOC_WA_OOB_15015404425] = 0;
-> > > > 
-> > > > We are discussing this offline, but I need to make it very clear here
-> > > > that we should not move forward with this as is.
-> > > > 
-> > > > Two unnaceptable points in here:
-> > > > \
-> > > > 1. _disable. We either enable or we don't. If we need to wait for the gmdid,
-> > > > let it be and enable the workaround after that. GMDID should be one of the
-> > > > first things and I confirmed this workaround is so rare that in an a0 situation
-> > > > you could wait to only enable after you read the gmd-id and confirm the
-> > > > media is A0.
-> > > 
-> > > This is exactly what we *can't* do for this workaround.  The requirement
-> > > is that on any impacted platform, every single register read must be
-> > > preceded by four extra dummy writes.  There's no such thing as "early
-> > > enough to ignore" ---
-> > 
-> > What I got from the Architects on this is that it would be safe enough to
-> > read the GMDID without this workaround since the condition for the issue
-> > to manifest is not on a single read like this, although the protection is
-> > global.
-> > 
-> > But okay, let's work with the assumption that it is better to protect
-> > anyway.
-> > 
-> > > it's specifically noted that even pre-OS firmware
-> > > and such needs to be careful about doing this as well.  So this causes a
-> > > bit of a chicken-and-egg issue:  we cannot read the GMD_ID register
-> > > without having the workaround active on impacted platforms, but we
-> > > cannot figure out whether the platform is impacted until after we've
-> > > read that register[*].  We also do a bunch of other register reads
-> > > during early driver probe before the xe_gt is initialized enough to be
-> > > able to service workaround lookup queries.  So there are a few options
-> > > here:
-> > > 
-> > >  * Mark the platform as always being active on PTL, then come back and
-> > >    disable it later if/when we confirm that we're on a stepping that
-> > >    isn't impacted by the issue.  This is pretty simple conceptually, and
-> > >    is quite likely something we'll need in the future for other
-> > >    workarounds.  That's the approach MattA has taken here.
-> > 
-> > ack.
-> > 
-> > > 
-> > >  * Add two separate workarounds in the driver: 15015404425_early and
-> > >    15015404425.  15015404425_early is an SoC workaround that applies
-> > >    unconditionally on PTL, and 15015404425 is a GT workaround that
-> > >    applies only on specific media steppings.  Both do exactly the same
-> > >    thing (4 dummy writes before any register read), but
-> > >    15015404425_early is checked before all early MMIO accesses and
-> > >    15015404425 is checked on all others.  The downside of this approach
-> > >    is that we'd need to use a completely different set of MMIO
-> > >    operations for early driver boot (i.e., no xe_mmio_read32 and such).
-> > > 
-> > >  * Ignore this workaround completely if we can confirm that it only
-> > >    impacts pre-production steppings.  I don't think we have confirmation
-> > >    yet that A-step hardware is preprod-only, so we can't take this easy
-> > >    path yet.
-> > > 
-> > > > 
-> > > > 2. Don't mix SoC with Media. If the Bug is SoC don't wait of the media stepping
-> > > > and check directly for the SoC that needs this. So, don't create an infra that
-> > > > already has an exception in it. And if possible, avoid the infra at all. This
-> > > > might bring even more confusion to the w/a handling.
-> > > > 
-> > > > This w/a in specific here is soc, but it is getting mapped to our media-ip,
-> > > > so let's use the media check...
-> > > 
-> > > I think more explanation needs to be added to the patches to clarify
-> > > exactly what's going on since it's still a bit non-obvious.  The reality
-> > > is that our modern platforms aren't actually "SOCs" at all anymore;
-> > > they're technically MCP's --- Multi Chip Packages with logic (and
-> > > sometimes hardware issues) spread across the various dies.  The hardware
-> > > teams still refer certain things to be "SoC" logic for historical
-> > > reasons, even though that logic is technically distributed across
-> > > multiple chips these days.
-> > 
-> > Well, I still see the glue of all the chips as the SoC. It is easier to
-> > understand.
-> > 
-> > > 
-> > > We absolutely need some kind of "device" workaround framework that isn't
-> > > tied to the GT and that can be used before GTs are even up; we have some
-> > > non-GT workarounds today that we're not really handling properly, and we
-> > > know there are more coming.  I think when this workaround first came up
-> > > I suggested a "device workaround" infrastructure and using the same
-> > > general XE_WA() calls, with a _Generic() implementation to lookup the
-> > > status of a workaround in either the xe_device or the xe_gt depending on
-> > > which is passed (with the xe_device workaround table being initialized
-> > > much earlier in the probe sequence).
-> > 
-> > If we split in device_wa and gt_wa that would make much more sense with
-> > our Xe design indeed.
-> Is the ask here to change the name from XE_SOC_WA -> XE_DEVICE_WA?
+On Tue, Jun 24, 2025 at 10:41:03AM -0700, Matthew Brost wrote:
+> When a user closes an exec queue or interrupts an app with Ctrl-C,
+> this does not warrant wedging the device in mode 2.
+> 
+> Avoid this by skipping the wedge check for killed exec queues in
+> the TDR and LR exec queue cleanup worker.
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-yes, please.
-Then as a follow-up we change the other one from xe_wa to xe_gt_wa...
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-> > 
-> > > 
-> > > Issues outside of the GT can live in different places:  the GCD die, the
-> > > compute (aka CPU) die, the IO die, etc.  Each of these have their own
-> > > steppings, and the MCP itself has a stepping too.  In some of these
-> > > cases, the proper way to determine a stepping is to map PCI revid into a
-> > > die stepping.  In other cases the proper approach is to "fingerprint" a
-> > > die's stepping by inspecting some other IP that lives on the same die
-> > > (similar to how we used to fingerprint the PCH back in the day by
-> > > inspecting the ISA bus device).  For this workaround the stepping we
-> > > care about is the compute (CPU) die stepping, and since standalone media
-> > > happens to live on that same die, the bspec tells us how to figure out
-> > > compute die stepping from media stepping (A-step compute die <=> A-step
-> > > media IP in this case, although that isn't something that's guaranteed
-> > > to always be true).
-> > > 
-> > > 
-> > > [*] An alternative to fingerprinting compute die based on media stepping
-> > >     would probably be to check the CPU stepping through whatever
-> > >     mechanism is used to print the stepping in /proc/cpuinfo.  We'd have
-> > >     to find separate documentation on how to map the numeric value there
-> > >     into somthing like "B0;" I don't know off the top of my head where
-> > >     that documentation would be but the core kernel guys could probably
-> > >     point us in the right direction.
-> > 
-> > Yeap, in this case it would be the combination of the pci id + cpu-revid.
-> > This makes much more sense for this w/a, but it is hard to generalize indeed.
-> > 
-> > But also, any device_wa is hard to generalize anyway, since we won't have
-> > a device stepping or anything like that.
-> > 
-> > So, okay, 15015404425 in xe_device_wa enables it and
-> > 15015404425_disable in xe_gt_wa disables it for MEDIA_STEP(B0, FOREVER)
-> > 
-> > > 
-> > > 
-> > > Matt
-> > > 
-> > > > 
-> > > > > +
-> > > > >  	return 0;
-> > > > >  
-> > > > >  err_driver_cleanup:
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> > > > > index 8c2aa48cb33a..822cbff13819 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-> > > > > +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> > > > > @@ -71,3 +71,4 @@ no_media_l3	MEDIA_VERSION(3000)
-> > > > >  # primary GT GMDID
-> > > > >  14022085890	GRAPHICS_VERSION(2001)
-> > > > >  16026007364 	MEDIA_VERSION(3000)
-> > > > > +15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
-> > > > > -- 
-> > > > > 2.49.0
-> > > > > 
-> > > 
-> > > -- 
-> > > Matt Roper
-> > > Graphics Software Engineer
-> > > Linux GPU Platform Enablement
-> > > Intel Corporation
-> MattA
+> ---
+>  drivers/gpu/drm/xe/xe_guc_submit.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index df7a5a4eec74..72477ccc5c5e 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -908,12 +908,13 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+>  	struct xe_exec_queue *q = ge->q;
+>  	struct xe_guc *guc = exec_queue_to_guc(q);
+>  	struct xe_gpu_scheduler *sched = &ge->sched;
+> -	bool wedged;
+> +	bool wedged = false;
+>  
+>  	xe_gt_assert(guc_to_gt(guc), xe_exec_queue_is_lr(q));
+>  	trace_xe_exec_queue_lr_cleanup(q);
+>  
+> -	wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
+> +	if (!exec_queue_killed(q))
+> +		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
+>  
+>  	/* Kill the run_job / process_msg entry points */
+>  	xe_sched_submission_stop(sched);
+> @@ -1084,7 +1085,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+>  	int err = -ETIME;
+>  	pid_t pid = -1;
+>  	int i = 0;
+> -	bool wedged, skip_timeout_check;
+> +	bool wedged = false, skip_timeout_check;
+>  
+>  	/*
+>  	 * TDR has fired before free job worker. Common if exec queue
+> @@ -1130,7 +1131,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+>  	 * doesn't work for SRIOV. For now assuming timeouts in wedged mode are
+>  	 * genuine timeouts.
+>  	 */
+> -	wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
+> +	if (!exec_queue_killed(q))
+> +		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
+>  
+>  	/* Engine state now stable, disable scheduling to check timestamp */
+>  	if (!wedged && exec_queue_registered(q)) {
+> -- 
+> 2.34.1
+> 
