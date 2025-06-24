@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13461C7EE30
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 15:02:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F2C6C77B7C
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 15:08:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A59E510E5F8;
-	Tue, 24 Jun 2025 15:02:53 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 261CC10E5F5;
- Tue, 24 Jun 2025 15:02:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7634673003369402225=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DF1610E5DC;
+	Tue, 24 Jun 2025 15:08:48 +0000 (UTC)
+Received: from 1538d3639d33 (unknown [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B248510E5DC;
+ Tue, 24 Jun 2025 15:08:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/display/dp=3A_Use_stati?=
- =?utf-8?q?c_values_for_min=5Fhblank?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_CCS_save_restore_for_IGPU?=
+ =?utf-8?q?_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Jun 2025 15:02:52 -0000
-Message-ID: <175077737214.104825.7121018693276524758@1538d3639d33>
+Date: Tue, 24 Jun 2025 15:08:47 -0000
+Message-ID: <175077772772.104499.17368949591810011374@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250624-min_hblank-v1-1-5c100e4a8b05@intel.com>
-In-Reply-To: <20250624-min_hblank-v1-1-5c100e4a8b05@intel.com>
+References: <20250624100010.12254-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250624100010.12254-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,53 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7634673003369402225==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/display/dp: Use static values for min_hblank
-URL   : https://patchwork.freedesktop.org/series/150680/
-State : success
+Series: CCS save restore for IGPU (rev9)
+URL   : https://patchwork.freedesktop.org/series/149108/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201_BAT -> xe-pw-150680v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit acefa578b8c1c905f3a9d5368d27ea207056901d
+Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Date:   Tue Jun 24 15:30:10 2025 +0530
 
-Summary
--------
+    drm/xe/vf: Register CCS read/write contexts with Guc
+    
+    Register read write contexts with newly added flags with GUC and
+    enable the context immediately after registration.
+    Re-register the context with Guc when resuming from runtime suspend as
+    soft reset is applied to Guc during xe_pm_runtime_resume().
+    Make Ring head=tail while unbinding device to avoid issues with VF pause
+    after device is unbinded.
+    
+    Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
++ /mt/dim checkpatch fb5dada21e3cfa26179ca58e1d7c26cdad217201 drm-intel
+6a030fb29dcc drm/xe/vf: Create contexts for CCS read write
+-:198: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#198: 
+new file mode 100644
 
-  **SUCCESS**
+-:444: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id__' - possible side-effects?
+#444: FILE: drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h:9:
++#define for_each_ccs_rw_ctx(id__) \
++	for ((id__) = 0; (id__) < XE_SRIOV_VF_CCS_CTX_COUNT; (id__)++)
 
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8423 -> IGT_8424
-  * Linux: xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201 -> xe-pw-150680v1
-
-  IGT_8423: 8423
-  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201: fb5dada21e3cfa26179ca58e1d7c26cdad217201
-  xe-pw-150680v1: 150680v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150680v1/index.html
-
---===============7634673003369402225==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 1 checks, 399 lines checked
+c4112e013596 drm/xe/vf: Attach and detach CCS copy commands with BO
+acefa578b8c1 drm/xe/vf: Register CCS read/write contexts with Guc
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/display/dp: Use static values for min_hblank</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150680/">https://patchwork.freedesktop.org/series/150680/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150680v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150680v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201_BAT -&gt; xe-pw-150680v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8423 -&gt; IGT_8424</li>
-<li>Linux: xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201 -&gt; xe-pw-150680v1</li>
-</ul>
-<p>IGT_8423: 8423<br />
-  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3297-fb5dada21e3cfa26179ca58e1d7c26cdad217201: fb5dada21e3cfa26179ca58e1d7c26cdad217201<br />
-  xe-pw-150680v1: 150680v1</p>
-
-</body>
-</html>
-
---===============7634673003369402225==--
