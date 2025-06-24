@@ -4,162 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7419DC77B7F
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 20:54:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8671C77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 21:10:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33F7910E12F;
-	Tue, 24 Jun 2025 20:54:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7092210E14B;
+	Tue, 24 Jun 2025 21:10:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BqLancKT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aJQcBKFd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B570C10E12F
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 20:54:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3ADD10E14B
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 21:10:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750798466; x=1782334466;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=TsFixpK9VBXYDqK9V5Qs8YMyccYuMcnJ76Tu+BMiwoY=;
- b=BqLancKTtTfMfLvi6/cD+OqM1jT3nejXMXOxABxTZW9vVQtymzVkDUIP
- 1GMwPuCFcOj1jzBqsH/0HzALBj0v8UyBvhkdbBlq0baULsJA2Io/z1Txg
- plqA0L3kBtuUwrv/w8tNG3gB17ipHY94yNDHywDPAtgUVPMrWiuWdohTP
- VU8vzizz61uJD7z8rNrRuAdVPKrwTediAb/+4NVHCtn1rqezSSszDvlBn
- kGpqfTJxfUqH6XnXirQfIeRLezgDMJlqQOiQ2mqcPFqVlzZeCXHkrmXRo
- 2rbq1b2/YuLtIFSOJdu/+V/UxIMlw4nxaVI+kTYKYkbynI1XwIXY0lwPv g==;
-X-CSE-ConnectionGUID: JLQFoj0QSMeGNGVebIzraw==
-X-CSE-MsgGUID: 2yq5+viKS9GgyzkBDFO+bA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="56730877"
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="56730877"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 13:54:25 -0700
-X-CSE-ConnectionGUID: 4UE7X1UgSWyuWBvZtZ24qg==
-X-CSE-MsgGUID: 3IjOtosSTDWFvClD57eKYw==
+ t=1750799401; x=1782335401;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MAFXbk6yktPcdvzluwgAHo+/H4aLp5cvBjwlwXVey8s=;
+ b=aJQcBKFdD6v+PHtSVd/CgGcdybjwHHI9wEFJ6JXmewxOL2v4mZZRr3nF
+ lkWAQQKYM8P+r/smmEgopn6agV6EREvB3EaEX2f5RESIzynIdjXUolbgT
+ NtKpDGjjkBCG+b8ODTSYTY5DHUbgoL2fxBVVzDfq1Xo+RWK/1Q4ZFJoF7
+ iWWFQCPtcJszO/5SjrBIizqsxW06/KrNVNyS0eVCVjQwIH2eb9rQxLTyy
+ /wKtg28iztujr1/TOXqgNh4ImjlxfL8166GR46WORSEalGLOnvcNOxjQ1
+ C98fMX7HZwGqAqCK9IBN0AYgGUONyPDbjVIzDQx7WfJawZV3VNdW0j3UT w==;
+X-CSE-ConnectionGUID: AH4eOb0xQr+hxY/4rRRX+Q==
+X-CSE-MsgGUID: gQiPtk6EQAe+zyCNn8FRWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="70623770"
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="70623770"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 14:10:00 -0700
+X-CSE-ConnectionGUID: RTdlI9u1TwySucfzBKnByQ==
+X-CSE-MsgGUID: KYUo7sr2SVuD4Tnlx54zlg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="156051752"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 13:54:25 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 24 Jun 2025 13:54:24 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Tue, 24 Jun 2025 13:54:24 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.53)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 24 Jun 2025 13:54:24 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XlPQOUDDAOR2J2gZozw7yHnEyoiP/Dp1DEORBBW8YIBL/gtmxjBKXbluogVsCW96uqgKhuUPJJv2bGmVvADbhR6PsTp8AZocgvWmuVf1a3p18E9wzA9W+uXyEOpZ7qk6TlJJwA4z0TfF886gosCv97gJlqnuJQqrt4bj3ccpfjj3DaHp89IHU5HQlnlb5Yfgcko6DKL+KHbILruKHwX/MnJ2JHyV9Osb07bK7/yxgCQyoZas5MoRV8uraxd6aGOKwEGiXkADWq7L0YsNLRTvezKjpeQI8CCWh9wcC24rIepBFrGn9sxu6Gye+zXIxJDES95mfs7VIlyqF/Tg1rTlzg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4oPC79JShbUJY/CTuSdArgLzx2J431RTtGTT0Q2BL8Y=;
- b=S/1GThbSEZuXzeFGlVQEwqWwXPZFgN6jbRnrc5X7nY7i7drILj8be2hZLZuY/ICagrNb+gYUHHuSnmrFTfvU/cHifnLmMEbAPArnB57Umv/rj/ePfqtfnWwucW3fyprSxB/Su66h5eQr8yj7g2sDlGLJBIdc0BqDNysUQNFWTDi3/zppwUHqfMuixoSvG9VkZUm+cyJONZqHYKc+8V7ryo67E7ljZMhptnU+3vmuJ/5GRDvxpmTtAbcyEa1qQiVAiGGKgIuEvW7Xj+OBo6knW3g/aMRZks8Y0F9e3+zNjbiNzPqL2HjpQ2FE3IHTRWyWURXmFxHp9nQQlkpOm+bXkA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by IA1PR11MB6513.namprd11.prod.outlook.com (2603:10b6:208:3a3::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.28; Tue, 24 Jun
- 2025 20:54:22 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%5]) with mapi id 15.20.8880.015; Tue, 24 Jun 2025
- 20:54:22 +0000
-Date: Tue, 24 Jun 2025 16:54:18 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH] drm/xe: Do not wedge device on killed exec queues
-Message-ID: <aFsQegvdaBkcIZ8n@intel.com>
-References: <20250624174103.2707941-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250624174103.2707941-1-matthew.brost@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0207.namprd05.prod.outlook.com
- (2603:10b6:a03:330::32) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="157792914"
+Received: from gkczarna.igk.intel.com ([10.211.131.163])
+ by orviesa005.jf.intel.com with ESMTP; 24 Jun 2025 14:09:58 -0700
+From: Tomasz Lis <tomasz.lis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v2] drm/xe/vf: Make multi-GT migration less error prone
+Date: Tue, 24 Jun 2025 23:09:57 +0200
+Message-Id: <20250624210957.2607454-1-tomasz.lis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|IA1PR11MB6513:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4c0107b0-724b-481c-34c1-08ddb3614bb1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SS/FQwB+ZovhHfrW+EqTmaOZWWNvAsv1ysy/pGgFA8XDMlr8oywo1b7bt2f9?=
- =?us-ascii?Q?/6anVmXz8u4oQ+0O1rIzQzGaYe2/qKWh018nHKBB4iOu7aagcCoN2SbnGQV5?=
- =?us-ascii?Q?1DRzWtwCZLElv0rB9UnwLyOecuVbmfs99rbSvmBRNv/WLdx8RGRIiuvrKduT?=
- =?us-ascii?Q?EewyoTa11m2OncPJQepx4ur6w8PYJpqC3gmqujdK+dOrE6x1aOpx47TXF8I8?=
- =?us-ascii?Q?uPjVG7jfEF9oKkZj6fLVkxKiCwiVDucpupm0+G5yPXp1V0PO3z1ftgYYYUKd?=
- =?us-ascii?Q?zXVddhDYqA1zMlWe1YAVJzk0oPTxbuWuyr71zxFq+8AWT9kmcTrUo+IQivRk?=
- =?us-ascii?Q?4pH0FxCmO4HN+VXifY/43nrrOJ8vgpfVvMHEgz1ZL4J3sHI1nDxf9cFFDPd8?=
- =?us-ascii?Q?tx7fyw0TnWkpygGxIqtc6feVlAk9l+Y5z5CT51X3lQ65q2ymHy1lF8o9WxWS?=
- =?us-ascii?Q?cHceatAAu7HUo2qziTp3IB4OKJazNAleykZbN6vS04URyok6GGf9KL05Iej6?=
- =?us-ascii?Q?yD7DK2C4QnWQ6XCaVMFQTHwLh0fTxlq7/6Rdj6MZdqiQTRTqnUiphEmgI5dM?=
- =?us-ascii?Q?g2ZV+/Z1pdUEIZtHuItGAkPMutCiyFrvkW1YLHM98K71xSdsEtQleAxDjnDg?=
- =?us-ascii?Q?ktjqGOzbum4PvbSj2kOWBuKC560YaWh8WbIgq2bOWttbmg8yJfZddhw3XHix?=
- =?us-ascii?Q?v7r/56nMCCQejd+n4soyMnxym5i3PnvZu55gQYFGkwTlllR1+mzEpwUHr/PF?=
- =?us-ascii?Q?9OqNTyP8KBVE5H2nSx+STnUlRsLeGFW4rAcVY1rZYCZDFU1twxUgnsD9Zyis?=
- =?us-ascii?Q?nqVEc397qAdxaPoAlnyU+B3EuOT4cLDs5NzGzQyLNqI6Z9R74VdQgSQdfY4M?=
- =?us-ascii?Q?nnw+XGf7jbLl980rvQdgS5KaNxJu1mycxjBxW4gFs4XCdWIvQgQLVFOyXzOe?=
- =?us-ascii?Q?G9rohlwi0bobLmAAUJGfZgmhHwskLC+nS6KsleLvMhSqRdsWxXhr7++TZdOb?=
- =?us-ascii?Q?M2Iu1NgbnzyskzZqdn01xKjqwm0BSYm47nrAtC4SBuhEQdWaoeGcBqShvTHF?=
- =?us-ascii?Q?wms36jEF9p9AxaB0MRIyOK4X+IeHbiMZ/3N5o8+QLUcpOZxUnURDhZDkBWiK?=
- =?us-ascii?Q?Ql4lfFn92d+YWCdsMZKaxaY0rH03fwsGIn96rrN4IzOZ7FeeYDhFL1HNpoT9?=
- =?us-ascii?Q?Exe54FXW5SbOo4UISdwIQATibnh652rIaYTtqv7Pb3o4nzCuJHGKlL+pPak9?=
- =?us-ascii?Q?ULFcvw6hJf3yUvvSler8pt5E1/ZHE7ZIiC8aAGGIeKiI4n6vplvmIjPlq9Cd?=
- =?us-ascii?Q?kginSOxBadAGumcxKyAy7Bdqry7CPg6J6vSPPbQeF6SMRADNcAieXmSsmOvJ?=
- =?us-ascii?Q?sR9NrNaZ+p1SzJVRRVRIO5cd9Zzi+6hf5sj7afHXTwkFDcy6zg=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4jGvLJj8GbMqcYUccV8B3mG2iPjm4iNojSDSgcQq7ceHsLotC2Evsa3CYfa1?=
- =?us-ascii?Q?sAVJt5NVFgK9IY4KyXBYvvMiGfQZ/4BIQJbjbqYl16hqP/PRzLS9+iMNC/RC?=
- =?us-ascii?Q?b4CKR9OtriSpeNzz/0ddSY2fvgMdG9IrAXMHFy4rfpzxq7OGzVKNQVtBEFHk?=
- =?us-ascii?Q?wGQC2H1jQH+67cnRS4/q81Wqhay1YvJOyFosl949APKEf8N21UXt06AOlD8/?=
- =?us-ascii?Q?0iFxwgGlIvNixg3I0BTZDiK1F9RCZyJ791YF7I9uT42+3yt2tqSbcIvmUNF7?=
- =?us-ascii?Q?mYXtLF/7rNnpdvKCRwJ8UB4xEfEZQWMfl+fZe1y7p5+Iu1CcmoNiFtaR5voY?=
- =?us-ascii?Q?8aSeTFJUwBUKt1G39uFGfoBu/TdOJD1H67M5bdmnmVyBiySLU9swO5cBLTB3?=
- =?us-ascii?Q?d4znuokrZPVICHHIYvA3E4ew+b87FE1HAtW3JuihKQ3Pph5yyN75AvC8Dozr?=
- =?us-ascii?Q?030EjTkdPFHa8+wdzZATdsHDZzUY2UHm10pd5qozJ+Y32mlv2Tm0RChd/r9y?=
- =?us-ascii?Q?6NZl1MkbE1Bd7PEVzpVV9Nk2upBZdxV4jT3pnM4nT8MW/tBF0oc2uytmHu8x?=
- =?us-ascii?Q?NLo0g5AysqkfG6m13Hq7iIQasNXIrx3lA2NyEpZgyW/cu5dtShA/xkBD/muv?=
- =?us-ascii?Q?ymKo52pxIHrVYyFFAntB6CiKrjPAwo0clwpuPG3T2Z+ER14I0Ly/hy6ENkgt?=
- =?us-ascii?Q?Uh81E6LcMiMrTND6nUgMqyKHKWhWPzW+4cKwtKiGZUvvI7HSr83qnbO0KMgS?=
- =?us-ascii?Q?8iIYBHZ/F21JhlsxLk6QNXFgjS9rK0htDpSPrVUFe6FmlSUx4SeU4A46kUtB?=
- =?us-ascii?Q?PjeBEvypkjIBfVpUDnS9TOvsbx7p7cKCupvRs27dOsLCZxK5ks8K8d0Q+x60?=
- =?us-ascii?Q?2J4w6RbsBG2/Ikgb2uWe5D/spQLIQIKKLfBOLBhE2tlEkcTrbmyANBOLGiCm?=
- =?us-ascii?Q?KJUd02zAB+jVo5q2hKNOZB1szveC+XxKpPF4US4h6GYIhpKrnD/NP1ii5o3H?=
- =?us-ascii?Q?FyKOf3P03OaArW7jKA4JAYs56h0A50z9NXUaxym8Fh7iMwdhR7ZLvR/Ou1/d?=
- =?us-ascii?Q?dB6EpnmT1cUCduDrqqc+WfMdHypISYdX535aqG4+JH8D6Apv5rNWri4nFQ6c?=
- =?us-ascii?Q?kcSD8jp7UBtJeNBtOhJbvfZ5JPll+1khKYukq5we29T4dZOXamNzhgVhZZkB?=
- =?us-ascii?Q?o+w2mI8zGkN68YAmJjqrJL+EK8JkoGDD460sOsGRTm2DhHvISXpYRqvAmftW?=
- =?us-ascii?Q?FbwDtODgapuLlB6pE2uv5d/+omDgS0kOBBDLLjf+3VGhKREAjIUKr8vKlnpj?=
- =?us-ascii?Q?IWqpMQSxsQmu40ppcoIZ/tbQKtFkVk+rVTCQk7Ck/wFyT5N3S5vSZtXCW+Ft?=
- =?us-ascii?Q?ScD2IbLmf5+/+kcvHuqk7os59pJ/6dRpkb3cP+/bnEze8pHgaC1/hcRnm4fx?=
- =?us-ascii?Q?2Dlf6tRS3Llfnw6tYvpzB8Ms+VQheQCyMWkefHpNdprfaxa7VDEtHSYDb1x7?=
- =?us-ascii?Q?/2ILUFE9F/gwl3fs7DwQ4VKY88LlYBh6IP3ErWlLF9DGP33uPThvwFr/AZs9?=
- =?us-ascii?Q?pMvobFavtIXLheAz6PTw24jCK4yPT+4eK7XdEOq2WatNwD5npSzdFBeMYZ/U?=
- =?us-ascii?Q?eg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c0107b0-724b-481c-34c1-08ddb3614bb1
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2025 20:54:22.1049 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mSndlkAMzuiKfFMqh2BIAHn1KJmkRdosvAPOkywIqRw9Ofbpvtii/FLl8s8+myPSXlIh7U8aEWLXgKuwoi7MUg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6513
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,60 +66,284 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 24, 2025 at 10:41:03AM -0700, Matthew Brost wrote:
-> When a user closes an exec queue or interrupts an app with Ctrl-C,
-> this does not warrant wedging the device in mode 2.
-> 
-> Avoid this by skipping the wedge check for killed exec queues in
-> the TDR and LR exec queue cleanup worker.
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+There is a remote chance that after migration,  some GTs will not
+send the MIGRATED interrupt, or due to current VF KMD state the
+interrupt will not lead to marking the GT for recovery.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Requiring IRQs from all GTs before starting migration introduces
+the possibility that the process will get stalled due to one GuC.
 
-> ---
->  drivers/gpu/drm/xe/xe_guc_submit.c | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index df7a5a4eec74..72477ccc5c5e 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -908,12 +908,13 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
->  	struct xe_exec_queue *q = ge->q;
->  	struct xe_guc *guc = exec_queue_to_guc(q);
->  	struct xe_gpu_scheduler *sched = &ge->sched;
-> -	bool wedged;
-> +	bool wedged = false;
->  
->  	xe_gt_assert(guc_to_gt(guc), xe_exec_queue_is_lr(q));
->  	trace_xe_exec_queue_lr_cleanup(q);
->  
-> -	wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
-> +	if (!exec_queue_killed(q))
-> +		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
->  
->  	/* Kill the run_job / process_msg entry points */
->  	xe_sched_submission_stop(sched);
-> @@ -1084,7 +1085,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->  	int err = -ETIME;
->  	pid_t pid = -1;
->  	int i = 0;
-> -	bool wedged, skip_timeout_check;
-> +	bool wedged = false, skip_timeout_check;
->  
->  	/*
->  	 * TDR has fired before free job worker. Common if exec queue
-> @@ -1130,7 +1131,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->  	 * doesn't work for SRIOV. For now assuming timeouts in wedged mode are
->  	 * genuine timeouts.
->  	 */
-> -	wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
-> +	if (!exec_queue_killed(q))
-> +		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
->  
->  	/* Engine state now stable, disable scheduling to check timestamp */
->  	if (!wedged && exec_queue_registered(q)) {
-> -- 
-> 2.34.1
-> 
+One could argue it is also waste of time to wait for all IRQs,
+but we should get them all IRQs as soon as VGPU starts, so that's
+not really an implactful argument.
+
+Still, not waiting for all GTs makes it easier to handle situations:
+* where one GuC IRQ is missing
+* where state before probe is unclean - getting MIGRATED IRQ as soon
+  as interrupts are enabled
+* where multiple migrations happen close to each other
+
+To help with these cases, this patch alters the post-migration
+recovery so that recovery task is started as soon as one GuC IRQ
+is handled, and other GTs are included in recovery later as the
+subsequent IRQs are serviced.
+
+The post-migration recovery can now be called for any selection of
+GTs, and it will perform recovery on all GTs for which IRQs have
+arrived, even multiple times if necessary.
+
+v2: Typos and style fixes
+
+Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michal Winiarski <michal.winiarski@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Acked-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+---
+ drivers/gpu/drm/xe/xe_sriov_vf.c | 167 ++++++++++++++-----------------
+ 1 file changed, 76 insertions(+), 91 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index 6526fe450e55..57b36ea74a45 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -147,127 +147,111 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
+ 		xe_sriov_info(xe, "migration not supported by this module version\n");
+ }
+ 
+-/**
+- * vf_post_migration_requery_guc - Re-query GuC for current VF provisioning.
+- * @xe: the &xe_device struct instance
+- *
+- * After migration, we need to re-query all VF configuration to make sure
+- * they match previous provisioning. Note that most of VF provisioning
+- * shall be the same, except GGTT range, since GGTT is not virtualized per-VF.
+- *
+- * Returns: 0 if the operation completed successfully, or a negative error
+- * code otherwise.
++static bool gt_vf_post_migration_needed(struct xe_gt *gt)
++{
++	return test_bit(gt->info.id, &gt_to_xe(gt)->sriov.vf.migration.gt_flags);
++}
++
++/*
++ * Notify GuCs marked in flags about resource fixups apply finished.
+  */
+-static int vf_post_migration_requery_guc(struct xe_device *xe)
++static int vf_post_migration_notify_resfix_done(struct xe_device *xe, unsigned long *gt_flags)
+ {
+ 	struct xe_gt *gt;
+ 	unsigned int id;
+-	int err, ret = 0;
++	int err = 0;
+ 
+ 	for_each_gt(gt, xe, id) {
+-		err = xe_gt_sriov_vf_query_config(gt);
+-		ret = ret ?: err;
++		if (!test_bit(id, gt_flags))
++			continue;
++		/* skip asking GuC for RESFIX exit if new recovery request arrived */
++		if (gt_vf_post_migration_needed(gt))
++			continue;
++		err = xe_gt_sriov_vf_notify_resfix_done(gt);
++		if (err)
++			break;
++		clear_bit(id, gt_flags);
+ 	}
+ 
+-	return ret;
++	if (*gt_flags && !err)
++		drm_dbg(&xe->drm, "another recovery imminent, skipped some notifications\n");
++	return err;
+ }
+ 
+-static void vf_post_migration_fixup_ctb(struct xe_device *xe)
++static int vf_get_next_migrated_gt_id(struct xe_device *xe)
+ {
+ 	struct xe_gt *gt;
+ 	unsigned int id;
+ 
+-	xe_assert(xe, IS_SRIOV_VF(xe));
+-
+ 	for_each_gt(gt, xe, id) {
+-		s32 shift = xe_gt_sriov_vf_ggtt_shift(gt);
+-
+-		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
++		if (test_and_clear_bit(id, &xe->sriov.vf.migration.gt_flags))
++			return id;
+ 	}
++	return -1;
+ }
+ 
+-/*
+- * vf_post_migration_imminent - Check if post-restore recovery is coming.
+- * @xe: the &xe_device struct instance
++/**
++ * Perform post-migration fixups on a single GT.
+  *
+- * Return: True if migration recovery worker will soon be running. Any worker currently
+- * executing does not affect the result.
++ * After migration, GuC needs to be re-queried for VF configuration to check
++ * if it matches previous provisioning. Most of VF provisioning shall be the
++ * same, except GGTT range, since GGTT is not virtualized per-VF. If GGTT
++ * range has changed, we have to perform fixups - shift all GGTT references
++ * used anywhere within the driver. After the fixups in this function succeed,
++ * it is allowed to ask the GuC bound to this GT to continue normal operation.
++ *
++ * Returns: 0 if the operation completed successfully, or a negative error
++ * code otherwise.
+  */
+-static bool vf_post_migration_imminent(struct xe_device *xe)
++static int gt_vf_post_migration_fixups(struct xe_gt *gt)
+ {
+-	return xe->sriov.vf.migration.gt_flags != 0 ||
+-	work_pending(&xe->sriov.vf.migration.worker);
+-}
+-
+-static bool vf_post_migration_fixup_ggtt_nodes(struct xe_device *xe)
+-{
+-	bool need_fixups = false;
+-	struct xe_tile *tile;
+-	unsigned int id;
+-
+-	for_each_tile(tile, xe, id) {
+-		struct xe_gt *gt = tile->primary_gt;
+-		s64 shift;
+-
+-		shift = xe_gt_sriov_vf_ggtt_shift(gt);
+-		if (shift) {
+-			need_fixups = true;
+-			xe_tile_sriov_vf_fixup_ggtt_nodes(tile, shift);
+-		}
+-	}
+-	return need_fixups;
+-}
++	s64 shift;
++	int err;
+ 
+-/*
+- * Notify all GuCs about resource fixups apply finished.
+- */
+-static void vf_post_migration_notify_resfix_done(struct xe_device *xe)
+-{
+-	struct xe_gt *gt;
+-	unsigned int id;
++	err = xe_gt_sriov_vf_query_config(gt);
++	if (err)
++		return err;
+ 
+-	for_each_gt(gt, xe, id) {
+-		if (vf_post_migration_imminent(xe))
+-			goto skip;
+-		xe_gt_sriov_vf_notify_resfix_done(gt);
++	shift = xe_gt_sriov_vf_ggtt_shift(gt);
++	if (shift) {
++		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
++		/* FIXME: add the recovery steps */
++		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
+ 	}
+-	return;
+-
+-skip:
+-	drm_dbg(&xe->drm, "another recovery imminent, skipping notifications\n");
++	return 0;
+ }
+ 
+ static void vf_post_migration_recovery(struct xe_device *xe)
+ {
+-	bool need_fixups;
+-	int err;
++	unsigned long fixed_gts = 0;
++	int id, err;
+ 
+ 	drm_dbg(&xe->drm, "migration recovery in progress\n");
+ 	xe_pm_runtime_get(xe);
+-	err = vf_post_migration_requery_guc(xe);
+-	if (vf_post_migration_imminent(xe))
+-		goto defer;
+-	if (unlikely(err))
+-		goto fail;
++
+ 	if (!vf_migration_supported(xe)) {
+ 		xe_sriov_err(xe, "migration not supported by this module version\n");
+ 		err = -ENOTRECOVERABLE;
+ 		goto fail;
+ 	}
+ 
+-	need_fixups = vf_post_migration_fixup_ggtt_nodes(xe);
+-	/* FIXME: add the recovery steps */
+-	if (need_fixups)
+-		vf_post_migration_fixup_ctb(xe);
++	while (id = vf_get_next_migrated_gt_id(xe), id >= 0) {
++		struct xe_gt *gt = xe_device_get_gt(xe, id);
++
++		err = gt_vf_post_migration_fixups(gt);
++		if (err)
++			goto fail;
++
++		set_bit(id, &fixed_gts);
++	}
++
++	err = vf_post_migration_notify_resfix_done(xe, &fixed_gts);
++	if (err)
++		goto fail;
+ 
+-	vf_post_migration_notify_resfix_done(xe);
+ 	xe_pm_runtime_put(xe);
+ 	drm_notice(&xe->drm, "migration recovery ended\n");
+ 	return;
+-defer:
+-	xe_pm_runtime_put(xe);
+-	drm_dbg(&xe->drm, "migration recovery deferred\n");
+-	return;
+ fail:
+ 	xe_pm_runtime_put(xe);
+ 	drm_err(&xe->drm, "migration recovery failed (%pe)\n", ERR_PTR(err));
+@@ -282,18 +266,23 @@ static void migration_worker_func(struct work_struct *w)
+ 	vf_post_migration_recovery(xe);
+ }
+ 
+-static bool vf_ready_to_recovery_on_all_gts(struct xe_device *xe)
++/*
++ * Check if post-restore recovery is coming on any of GTs.
++ * @xe: the &xe_device struct instance
++ *
++ * Return: True if migration recovery worker will soon be running. Any worker currently
++ * executing does not affect the result.
++ */
++static bool vf_ready_to_recovery_on_any_gts(struct xe_device *xe)
+ {
+ 	struct xe_gt *gt;
+ 	unsigned int id;
+ 
+ 	for_each_gt(gt, xe, id) {
+-		if (!test_bit(id, &xe->sriov.vf.migration.gt_flags)) {
+-			xe_gt_sriov_dbg_verbose(gt, "still not ready to recover\n");
+-			return false;
+-		}
++		if (test_bit(id, &xe->sriov.vf.migration.gt_flags))
++			return true;
+ 	}
+-	return true;
++	return false;
+ }
+ 
+ /**
+@@ -308,13 +297,9 @@ void xe_sriov_vf_start_migration_recovery(struct xe_device *xe)
+ 
+ 	xe_assert(xe, IS_SRIOV_VF(xe));
+ 
+-	if (!vf_ready_to_recovery_on_all_gts(xe))
++	if (!vf_ready_to_recovery_on_any_gts(xe))
+ 		return;
+ 
+-	WRITE_ONCE(xe->sriov.vf.migration.gt_flags, 0);
+-	/* Ensure other threads see that no flags are set now. */
+-	smp_mb();
+-
+ 	started = queue_work(xe->sriov.wq, &xe->sriov.vf.migration.worker);
+ 	drm_info(&xe->drm, "VF migration recovery %s\n", started ?
+ 		 "scheduled" : "already in progress");
+-- 
+2.25.1
+
