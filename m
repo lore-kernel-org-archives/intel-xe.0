@@ -4,63 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DF2BC77B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 09:46:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9C58C77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 09:50:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE91410E08F;
-	Tue, 24 Jun 2025 09:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5573410E0BC;
+	Tue, 24 Jun 2025 09:50:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T7dX+dkP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ajM+LpSd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2A3F10E08F
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 09:46:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6943810E0BC;
+ Tue, 24 Jun 2025 09:50:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750758381; x=1782294381;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=CoAG8d120CrOCw0Kh222Gx7ppTU37PgOuBYYWmGMg6k=;
- b=T7dX+dkPwxcAcz31mY0JR2BGS2eoXIEMSIWpvUi7kLo96mnGcWu7uB6h
- xuyF6NyNbNl8Gid2fXNpzu2eDgG8Ng3E69ULMaBPwsluAl7fyHbNvwjt8
- Vr073WLJ2r3v/zfFmhiqgIyM2SWPGJdfV4x9J6EI1fDZJ3xoYUoN1PS2g
- vZaLsmannWG/HDIma53fLYBkh5KwMOPa892CQ/W8P3AEsjWtC1arDhTaO
- lSuk8o2CAcxopNMwTJF0ZH79yuEHvFUxfWn/oWgsOSaQhWpOWim3cceLG
- TzUNOX5T69IEh1mBYij4rsjS8d23W/TAJHCVMTPfXaisKcEcmPV97hqVx w==;
-X-CSE-ConnectionGUID: H7IaO557Q8q7HFTGNUaenA==
-X-CSE-MsgGUID: 6oKpdzI3TquTlwnI8t42lw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="56796236"
-X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="56796236"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 02:46:20 -0700
-X-CSE-ConnectionGUID: FDPbBufKRIuQINH8quoT+w==
-X-CSE-MsgGUID: FXHiYmglRkeT/fWodfxKQA==
+ t=1750758605; x=1782294605;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=mjVq0NTnNDLtgXqCWF7Fs5kCfGyrtZTZtXGA7i5pilY=;
+ b=ajM+LpSd+ow+EtQBZhdXn1Wbl017ajPVqGpf3eNXU7HcgfcFbB56K9Fl
+ B3y5PLstwH4g+2KE3BZv2VcfHhYGbSFKe7+fMOnL10U71oDS3eaqKJqGX
+ biYZBT8Sfr7yzCtk1rsgopNI8Vm81SuYBwu/YZoUcjg6xZX7keEJHmVcw
+ Q5RlDhUX3iErqHLlSMv6UanKzRm0Uh/ZN6cY/friunySwx/msIpOGb4gI
+ i6VrFCHa3NFTGP/tRWyauup9Hcfqswk5/Gt6HxgunwXWj6/DTBFOyUx4Z
+ JSoxThekdOylwQCWjKDkh/p44La0Kfwt1s28Y1OKxnKJzyjuU2iZb+Sjo w==;
+X-CSE-ConnectionGUID: eKbqOXY/ROCjHtwXoQcz4g==
+X-CSE-MsgGUID: DxVB/DvqSqavofHXd6UMmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="53061762"
+X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="53061762"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 02:50:05 -0700
+X-CSE-ConnectionGUID: PFoNtoWbR6CpWyl/3dgQgw==
+X-CSE-MsgGUID: GqBqzqXCQ3604kG6BH11UA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="189064161"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa001.jf.intel.com with ESMTP; 24 Jun 2025 02:46:18 -0700
-Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 57BBE2FC79;
- Tue, 24 Jun 2025 10:46:17 +0100 (IST)
-Message-ID: <33d3faf0-40b3-400a-be2c-7366e28b7f94@intel.com>
-Date: Tue, 24 Jun 2025 11:46:16 +0200
+X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="151463784"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.37])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 02:50:03 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Imre Deak <imre.deak@intel.com>, Arun R Murthy <arun.r.murthy@intel.com>
+Subject: Re: [PATCH] drm/display/dp: Use static values for min_hblank
+In-Reply-To: <20250624-min_hblank-v1-1-5c100e4a8b05@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250624-min_hblank-v1-1-5c100e4a8b05@intel.com>
+Date: Tue, 24 Jun 2025 12:50:00 +0300
+Message-ID: <6ab7f75032c91ba507603aed48f8f924e7bb172b@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] drm/xe: Use dynamic allocation for tile and device
- VRAM region structures
-To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Stuart Summers <stuart.summers@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-References: <20250624092213.2876711-1-piotr.piorkowski@intel.com>
- <20250624092213.2876711-2-piotr.piorkowski@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250624092213.2876711-2-piotr.piorkowski@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,24 +68,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, 24 Jun 2025, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Use recommended static values as per wa_14021694213 for min_hblank to
+> avoid underruns.
 
+Subject prefix should be "drm/i915/dp".
 
-On 24.06.2025 11:22, Piórkowski, Piotr wrote:
-> diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_assert.h
-> index 68fe70ce2be3..cd63cdd2dc78 100644
-> --- a/drivers/gpu/drm/xe/xe_assert.h
-> +++ b/drivers/gpu/drm/xe/xe_assert.h
-> @@ -145,7 +145,7 @@
->  	const struct xe_tile *__tile = (tile);							\
->  	char __buf[10] __maybe_unused;								\
->  	xe_assert_msg(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg,			\
-> -		      __tile->id, ({ string_get_size(__tile->mem.vram.actual_physical_size, 1,	\
-> +		      __tile->id, ({ string_get_size(__tile->mem.vram->actual_physical_size, 1,	\
->  				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
->  })
+> Bspec: 74379
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 68 +++++----------------------------
+>  1 file changed, 10 insertions(+), 58 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index f48912f308df7fd26c9d089e8f1bd096bfc8df95..feac034d1789c05994b210aabbb53d4b407cecf6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3115,68 +3115,20 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
+>  				const struct drm_connector_state *conn_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+> -	const struct drm_display_mode *adjusted_mode =
+> -					&crtc_state->hw.adjusted_mode;
+> -	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> -	int symbol_size = intel_dp_is_uhbr(crtc_state) ? 32 : 8;
+> -	/*
+> -	 * min symbol cycles is 3(BS,VBID, BE) for 128b/132b and
+> -	 * 5(BS, VBID, MVID, MAUD, BE) for 8b/10b
+> -	 */
+> -	int min_sym_cycles = intel_dp_is_uhbr(crtc_state) ? 3 : 5;
+> -	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
+> -	int num_joined_pipes = intel_crtc_num_joined_pipes(crtc_state);
+> -	int min_hblank;
+> -	int max_lane_count = 4;
+> -	int hactive_sym_cycles, htotal_sym_cycles;
+> -	int dsc_slices = 0;
+> -	int link_bpp_x16;
 >  
+>  	if (DISPLAY_VER(display) < 30)
+>  		return 0;
+>  
+> -	/* MIN_HBLANK should be set only for 8b/10b MST or for 128b/132b SST/MST */
 
-this assert will cause NPD on !DGFX, likely you need at least this:
+Has this changed?
 
-__tile->mem.vram ? __tile->mem.vram->actual_physical_size : 0
+> -	if (!is_mst && !intel_dp_is_uhbr(crtc_state))
+> -		return 0;
+> -
+> -	if (crtc_state->dsc.compression_enable) {
+> -		dsc_slices = intel_dp_dsc_get_slice_count(connector,
+> -							  adjusted_mode->crtc_clock,
+> -							  adjusted_mode->crtc_hdisplay,
+> -							  num_joined_pipes);
+> -		if (!dsc_slices) {
+> -			drm_dbg(display->drm, "failed to calculate dsc slice count\n");
+> -			return -EINVAL;
+> -		}
+> -	}
+> -
+> -	if (crtc_state->dsc.compression_enable)
+> -		link_bpp_x16 = crtc_state->dsc.compressed_bpp_x16;
+> -	else
+> -		link_bpp_x16 = fxp_q4_from_int(intel_dp_output_bpp(crtc_state->output_format,
+> -								   crtc_state->pipe_bpp));
+> -
+> -	/* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST & 128b/132b */
+> -	hactive_sym_cycles = drm_dp_link_symbol_cycles(max_lane_count,
+> -						       adjusted_mode->hdisplay,
+> -						       dsc_slices,
+> -						       link_bpp_x16,
+> -						       symbol_size, is_mst);
+> -	htotal_sym_cycles = adjusted_mode->htotal * hactive_sym_cycles /
+> -			     adjusted_mode->hdisplay;
+> -
+> -	min_hblank = htotal_sym_cycles - hactive_sym_cycles;
+> -	/* minimum Hblank calculation: https://groups.vesa.org/wg/DP/document/20494 */
+> -	min_hblank = max(min_hblank, min_sym_cycles);
+> -
+> -	/*
+> -	 * adjust the BlankingStart/BlankingEnd framing control from
+> -	 * the calculated value
+> -	 */
+> -	min_hblank = min_hblank - 2;
+> -
+> -	min_hblank = min(10, min_hblank);
+> -	crtc_state->min_hblank = min_hblank;
+> +	/* min_hblank formula is undergoing a change and the recomendation is to use static value */
+> +	if (intel_dp_is_uhbr(crtc_state)) {
+> +		if (crtc_state->dsc.compression_enable &&
+> +		    crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
+> +		    crtc_state->pipe_bpp == 18)
+> +			crtc_state->min_hblank = 2;
+> +		else
+> +			crtc_state->min_hblank = 3;
+> +	} else
+> +		crtc_state->min_hblank = 10;
 
+Per coding style, the else also needs braces. Checkpatch will tell you
+this, please run it before posting.
+
+This is not new stuff, and it's a waste of both your time and mine to
+accummulate versions on this.
+>  
+>  	return 0;
+>  }
+>
+> ---
+> base-commit: da56936fad6f5e1d5f0cef8b50277bfb071eefe7
+> change-id: 20250624-min_hblank-8af8d2626ff8
+>
+> Best regards,
+
+-- 
+Jani Nikula, Intel
