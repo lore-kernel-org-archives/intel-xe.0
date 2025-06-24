@@ -4,55 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA4EFC77B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 20:09:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B9ACC77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 20:15:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AD4710E126;
-	Tue, 24 Jun 2025 20:09:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 519C910E103;
+	Tue, 24 Jun 2025 20:15:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TecZKj+O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aQd2VzKe";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D722310E11A
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 20:09:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B59D810E103
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 20:15:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750795782; x=1782331782;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pSMoLbDu1UR2a5HRN8By1nHBqwyLZHjzhCzbDHlsw8M=;
- b=TecZKj+OLlnzzWJAuIp9d9+CTItrAT6JD7cnLyJEJGMNfWiORK7F9gX9
- G32mYw3pWC37uQ6+dviXLx7zinDuBeu/7ZsRdkOH6PtQStriF4n0XeyBd
- 1MxyNvoSSUNlJlQQmzU+CSGMsDu6NbeOZOxhQ4vTuFczN8isao+0pK/jK
- 2xhwJOaoYCXGAFHuqhEYcdGjajqK4OJ0dh41ZqXG7Zu+HUAQMtqPbzroe
- POSU42By6Dc0R8eiC8YAfeigPUL0DJdLKX63mHiTPMPLJ9jf35YEwueLw
- kRXC5NvX7eec/At3z/uXgZGTxppAam/iSrNRUwBhYS83zyjAwW1WcDEvs Q==;
-X-CSE-ConnectionGUID: uSBYln6ISoGnKi0KtYNG+g==
-X-CSE-MsgGUID: JfW/qQJcQSy9jonp2uRTlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="52920644"
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="52920644"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 13:09:42 -0700
-X-CSE-ConnectionGUID: ViCt3D5VTNCcwE4Q9Ob8SQ==
-X-CSE-MsgGUID: Q1pLAhB4RH6YFEqlQuG3yw==
+ t=1750796118; x=1782332118;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=FLo3E+9uikdGFwfO7uB4BY+qrJ780tMdaXuACgUlUMM=;
+ b=aQd2VzKerFdj4eLnUQ+DtN3I7pU3qZKJOJk2RTC5vlV51rmPFrvlvaqB
+ SdntY8Z2DqR/Mgd2N92OQqgnXNtaHJ0tVVjoPovLZ5dhBRHG9pdz43DXH
+ s5CrmCSWrfFrTglwxLqhAqQ1U2LTGecochWwqQb/yTBAFD4tRcLoTBXeO
+ 7J0pu9NmohklsGauWksi9yMeaIeF91ecGff4dDXztE7yR43tFTTAKybdu
+ 3Ncm4ahYnPz73Z7dYBd0fet1495znriNo1HabiPf6csmFLtMjVqG9lOCZ
+ jZwuIQFDi1IShDNqSScWl1RHt2C7XqxTlcrUmuMN2L0v5tjzIq/Uzkjta w==;
+X-CSE-ConnectionGUID: kYEVCxf4TjGzlDDzQw47XQ==
+X-CSE-MsgGUID: n6E+DXI8TFCnl5Q4Ffq78A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="55678989"
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="55678989"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 13:15:17 -0700
+X-CSE-ConnectionGUID: yuYZGnmFSqiH3fZGHk560A==
+X-CSE-MsgGUID: 8AndWQx5Q12DGeNdl3YL+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="189195581"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.5.201])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 13:09:41 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 5/5] drm/xe/vf: Store negotiated VF/PF ABI version at device
- level
-Date: Tue, 24 Jun 2025 22:09:23 +0200
-Message-Id: <20250624200923.1348-6-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20250624200923.1348-1-michal.wajdeczko@intel.com>
-References: <20250624200923.1348-1-michal.wajdeczko@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="182898107"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa001.fm.intel.com with ESMTP; 24 Jun 2025 13:15:16 -0700
+Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id DB5D634948;
+ Tue, 24 Jun 2025 21:15:14 +0100 (IST)
+Message-ID: <4715fb2c-8176-4ace-a56c-e6dfc2da08c6@intel.com>
+Date: Tue, 24 Jun 2025 22:15:14 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6] drm/xe/uc: Disable GuC communication on hardware
+ initialization error.
+To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>
+References: <20250624011735.3976-1-zhanjun.dong@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250624011735.3976-1-zhanjun.dong@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,165 +72,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is no need to maintain PF ABI version on per-GT level.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 30 +++++++++++++----------
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h | 12 ---------
- drivers/gpu/drm/xe/xe_sriov_vf_types.h    | 14 +++++++++++
- 3 files changed, 31 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 9b2fc9db55b8..d168264e63ea 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -686,21 +686,22 @@ static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32 *minor)
- 	return 0;
- }
- 
--static void vf_connect_pf(struct xe_gt *gt, u16 major, u16 minor)
-+static void vf_connect_pf(struct xe_device *xe, u16 major, u16 minor)
- {
--	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+	xe_assert(xe, IS_SRIOV_VF(xe));
- 
--	gt->sriov.vf.pf_version.major = major;
--	gt->sriov.vf.pf_version.minor = minor;
-+	xe->sriov.vf.pf_version.major = major;
-+	xe->sriov.vf.pf_version.minor = minor;
- }
- 
--static void vf_disconnect_pf(struct xe_gt *gt)
-+static void vf_disconnect_pf(struct xe_device *xe)
- {
--	vf_connect_pf(gt, 0, 0);
-+	vf_connect_pf(xe, 0, 0);
- }
- 
- static int vf_handshake_with_pf(struct xe_gt *gt)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
- 	u32 major_wanted = GUC_RELAY_VERSION_LATEST_MAJOR;
- 	u32 minor_wanted = GUC_RELAY_VERSION_LATEST_MINOR;
- 	u32 major = major_wanted, minor = minor_wanted;
-@@ -716,13 +717,13 @@ static int vf_handshake_with_pf(struct xe_gt *gt)
- 	}
- 
- 	xe_gt_sriov_dbg(gt, "using VF/PF ABI %u.%u\n", major, minor);
--	vf_connect_pf(gt, major, minor);
-+	vf_connect_pf(xe, major, minor);
- 	return 0;
- 
- failed:
- 	xe_gt_sriov_err(gt, "Unable to confirm VF/PF ABI version %u.%u (%pe)\n",
- 			major, minor, ERR_PTR(err));
--	vf_disconnect_pf(gt);
-+	vf_disconnect_pf(xe);
- 	return err;
- }
- 
-@@ -775,10 +776,12 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
- 
- static bool vf_is_negotiated(struct xe_gt *gt, u16 major, u16 minor)
- {
--	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+	struct xe_device *xe = gt_to_xe(gt);
- 
--	return major == gt->sriov.vf.pf_version.major &&
--	       minor <= gt->sriov.vf.pf_version.minor;
-+	xe_gt_assert(gt, IS_SRIOV_VF(xe));
-+
-+	return major == xe->sriov.vf.pf_version.major &&
-+	       minor <= xe->sriov.vf.pf_version.minor;
- }
- 
- static int vf_prepare_runtime_info(struct xe_gt *gt, unsigned int num_regs)
-@@ -966,7 +969,7 @@ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
- 	struct vf_runtime_reg *rr;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, gt->sriov.vf.pf_version.major);
-+	xe_gt_assert(gt, gt_to_xe(gt)->sriov.vf.pf_version.major);
- 	xe_gt_assert(gt, !reg.vf);
- 
- 	if (reg.addr == GMD_ID.addr) {
-@@ -1073,9 +1076,10 @@ void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p)
-  */
- void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_uc_fw_version *guc_version = &gt->sriov.vf.guc_version;
- 	struct xe_uc_fw_version *wanted = &gt->sriov.vf.wanted_guc_version;
--	struct xe_gt_sriov_vf_relay_version *pf_version = &gt->sriov.vf.pf_version;
-+	struct xe_sriov_vf_relay_version *pf_version = &xe->sriov.vf.pf_version;
- 	struct xe_uc_fw_version ver;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index ef041679e9d4..298dedf4b009 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -9,16 +9,6 @@
- #include <linux/types.h>
- #include "xe_uc_fw_types.h"
- 
--/**
-- * struct xe_gt_sriov_vf_relay_version - PF ABI version details.
-- */
--struct xe_gt_sriov_vf_relay_version {
--	/** @major: major version. */
--	u16 major;
--	/** @minor: minor version. */
--	u16 minor;
--};
--
- /**
-  * struct xe_gt_sriov_vf_selfconfig - VF configuration data.
-  */
-@@ -66,8 +56,6 @@ struct xe_gt_sriov_vf {
- 	struct xe_uc_fw_version guc_version;
- 	/** @self_config: resource configurations. */
- 	struct xe_gt_sriov_vf_selfconfig self_config;
--	/** @pf_version: negotiated VF/PF ABI version. */
--	struct xe_gt_sriov_vf_relay_version pf_version;
- 	/** @runtime: runtime data retrieved from the PF. */
- 	struct xe_gt_sriov_vf_runtime runtime;
- };
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-index 55c2421d4b2e..8300416a6226 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-@@ -6,8 +6,19 @@
- #ifndef _XE_SRIOV_VF_TYPES_H_
- #define _XE_SRIOV_VF_TYPES_H_
- 
-+#include <linux/types.h>
- #include <linux/workqueue_types.h>
- 
-+/**
-+ * struct xe_sriov_vf_relay_version - PF ABI version details.
-+ */
-+struct xe_sriov_vf_relay_version {
-+	/** @major: major version. */
-+	u16 major;
-+	/** @minor: minor version. */
-+	u16 minor;
-+};
-+
- /**
-  * struct xe_device_vf - Xe Virtual Function related data
-  *
-@@ -15,6 +26,9 @@
-  * @XE_SRIOV_MODE_VF mode.
-  */
- struct xe_device_vf {
-+	/** @pf_version: negotiated VF/PF ABI version. */
-+	struct xe_sriov_vf_relay_version pf_version;
-+
- 	/** @migration: VF Migration state data */
- 	struct {
- 		/** @migration.worker: VF migration recovery worker */
--- 
-2.47.1
+On 24.06.2025 03:17, Zhanjun Dong wrote:
+> Disable GuC communication on Xe micro controller hardware initialization
+> error.
+> 
+> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4917
+> 
+> ---
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Stuart Summers <stuart.summers@intel.com>
+> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> 
+> Change list:
+> v6: Skip disable ct on xe_guc_enable_communication error
+> v5: Set wedge is excessive action, revert back to disable ct
+> v4: Fix typo and add new line
+> v3: v2 CI re-run
+> v2: Remove unnecessary jump to err-out
+>     Drop disable ct, switch to set wedge
+> ---
+>  drivers/gpu/drm/xe/xe_guc.c |  5 +++++
+>  drivers/gpu/drm/xe/xe_guc.h |  1 +
+>  drivers/gpu/drm/xe/xe_uc.c  | 19 ++++++++++++++-----
+>  3 files changed, 20 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index 209e5d53c290..9d7175b16cc7 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -1230,6 +1230,11 @@ int xe_guc_enable_communication(struct xe_guc *guc)
+>  	return 0;
+>  }
+>  
+
+each new public function needs to have a proper kernel-doc
+
+> +void xe_guc_disable_communication(struct xe_guc *guc)
+> +{
+> +	xe_guc_ct_disable(&guc->ct);
+> +}
+> +
+>  int xe_guc_suspend(struct xe_guc *guc)
+>  {
+>  	struct xe_gt *gt = guc_to_gt(guc);
+> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+> index 58338be44558..285c19929f8c 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.h
+> +++ b/drivers/gpu/drm/xe/xe_guc.h
+> @@ -33,6 +33,7 @@ int xe_guc_reset(struct xe_guc *guc);
+>  int xe_guc_upload(struct xe_guc *guc);
+>  int xe_guc_min_load_for_hwconfig(struct xe_guc *guc);
+>  int xe_guc_enable_communication(struct xe_guc *guc);
+> +void xe_guc_disable_communication(struct xe_guc *guc);
+>  int xe_guc_suspend(struct xe_guc *guc);
+>  void xe_guc_notify(struct xe_guc *guc);
+>  int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr);
+> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+> index 3a8751a8b92d..d74bfc7a85d1 100644
+> --- a/drivers/gpu/drm/xe/xe_uc.c
+> +++ b/drivers/gpu/drm/xe/xe_uc.c
+> @@ -13,6 +13,7 @@
+>  #include "xe_gt_printk.h"
+>  #include "xe_gt_sriov_vf.h"
+>  #include "xe_guc.h"
+> +#include "xe_guc_ct.h"
+>  #include "xe_guc_pc.h"
+>  #include "xe_guc_engine_activity.h"
+>  #include "xe_huc.h"
+> @@ -161,15 +162,19 @@ static int vf_uc_init_hw(struct xe_uc *uc)
+>  
+>  	err = xe_gt_sriov_vf_connect(uc_to_gt(uc));
+>  	if (err)
+> -		return err;
+> +		goto err_out;
+>  
+>  	uc->guc.submission_state.enabled = true;
+>  
+>  	err = xe_gt_record_default_lrcs(uc_to_gt(uc));
+>  	if (err)
+> -		return err;
+> +		goto err_out;
+>  
+>  	return 0;
+> +
+> +err_out:
+> +	xe_guc_disable_communication(&uc->guc);
+> +	return err;
+>  }
+>  
+>  /*
+> @@ -201,15 +206,15 @@ int xe_uc_init_hw(struct xe_uc *uc)
+>  
+>  	ret = xe_gt_record_default_lrcs(uc_to_gt(uc));
+>  	if (ret)
+> -		return ret;
+> +		goto err_out;
+>  
+>  	ret = xe_guc_post_load_init(&uc->guc);
+>  	if (ret)
+> -		return ret;
+> +		goto err_out;
+>  
+>  	ret = xe_guc_pc_start(&uc->guc.pc);
+>  	if (ret)
+> -		return ret;
+> +		goto err_out;
+>  
+>  	xe_guc_engine_activity_enable_stats(&uc->guc);
+>  
+> @@ -221,6 +226,10 @@ int xe_uc_init_hw(struct xe_uc *uc)
+>  	xe_gsc_load_start(&uc->gsc);
+>  
+>  	return 0;
+> +
+> +err_out:
+> +	xe_guc_disable_communication(&uc->guc);
+> +	return ret;
+>  }
+>  
+>  int xe_uc_fini_hw(struct xe_uc *uc)
+
+what about doing similar cleanup in xe_guc_min_load_for_hwconfig() where
+we also have unbalanced xe_guc_enable_communication() ?
+
 
