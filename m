@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B54FC77B7F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DC96C7EE33
 	for <intel-xe@archiver.kernel.org>; Tue, 24 Jun 2025 20:09:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EB7B10E105;
-	Tue, 24 Jun 2025 20:09:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 430DF10E035;
+	Tue, 24 Jun 2025 20:09:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SlCbfXgh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IHeiKLT/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3F7210E105
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 20:09:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 240E310E035
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Jun 2025 20:09:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750795779; x=1782331779;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kqWupnPWgbY7Yv/LTLfFhJ/wacnXw+WYuo57rzAxEig=;
- b=SlCbfXghDZkmWPGGCOi1Lb/22mhbkHQpU3JtKusJvJMdNLx240/ZROfN
- 2YPnPdMcij72A1wSxx1nttrnNqc5Nk7YeVXAC8EXkwrdTPG57Rj6ptjWM
- KCLew6Q1N6larVZ+3begLIraKQlmujSRaJv3pyycyKoBYC6J6UIRKidM5
- JGVJ7dxsf1i5SORagSwpCJhqyckydkNZHy4D5v4oLsmHlRJGSgq9/msQA
- MUU5AoAobF5+P1DtHYKHBGImUpDNfrTE+7J9ccPNiHmejMXCZAhIA8OgA
- 8sVxTslqU1TetfxvJWH3gQTLW6bghSvN835wXhg9fwv+6al7FOrSY680s Q==;
-X-CSE-ConnectionGUID: nJVi8w0lT3+JYl6odC4Gkw==
-X-CSE-MsgGUID: 3fEFB2dJRdKE9/VfcDyK1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="52920637"
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="52920637"
+ t=1750795775; x=1782331775;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2OUJ+wV8CCibs7ECs1DQZQ2wkjYbkrvv43+65Tus51Y=;
+ b=IHeiKLT/V0FKd8vhzXUPTba7hQSueyXQOm6f3ccq14tM0qdjIYtWmQ5M
+ IlsF0OJ4mkaH9Im0gURAO0iIWgJG/CBE3agLYRuTP70XuzeuNQb82LEfJ
+ WpEVyytD8Wjha8cKWaGM7e5ZydamPr2oEmNHwtsoiuqosdCt1VZtCMR5+
+ DgG42SxwS6OS2zN+wxibtUqjUqrI1yQ1LCD/ksSqR/NoKSv2zO3o3DtjV
+ l4uOR3SZIUoFw5hWaexWCpUULF2pQvBP/ZX53F3HU/ExRjoKfF5+RD+Dn
+ qVwqDs+J2IUPJm6qI1mND+so3bQJPLEaDoEs3WZUlCffIKSOuiPDRKlw1 g==;
+X-CSE-ConnectionGUID: 9XX369RZRE2aZVR/7Ulhsg==
+X-CSE-MsgGUID: KvZqaE5ZQOufl5rkxgRkfw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="52920631"
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="52920631"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 13:09:39 -0700
-X-CSE-ConnectionGUID: WCVATZK6T0qVlqjoH1LzNA==
-X-CSE-MsgGUID: pE5sh8MKS86BFYZWOcPsbA==
+ 24 Jun 2025 13:09:35 -0700
+X-CSE-ConnectionGUID: bsT0o/TCTXiFgMrROA10Bg==
+X-CSE-MsgGUID: uLoLOjVTTmWxnewTB0tLow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="189195561"
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="189195533"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.5.201])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 13:09:38 -0700
+ 24 Jun 2025 13:09:34 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 3/5] drm/xe/pf: Expose basic info about VFs in debugfs
-Date: Tue, 24 Jun 2025 22:09:21 +0200
-Message-Id: <20250624200923.1348-4-michal.wajdeczko@intel.com>
+Subject: [PATCH 0/5] Relax VF/PF version negotiation
+Date: Tue, 24 Jun 2025 22:09:18 +0200
+Message-Id: <20250624200923.1348-1-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20250624200923.1348-1-michal.wajdeczko@intel.com>
-References: <20250624200923.1348-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,127 +64,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have function to print summary about VFs, but we missed
-to add debugfs attribute to make it visible. Do it now.
+It was clarified by the arch team that initial version negotiation
+can be done by the VF just once, by using any available GuC/GT.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c  |  4 +++
- drivers/gpu/drm/xe/xe_sriov_pf.c | 46 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_pf.h |  6 +++++
- 3 files changed, 56 insertions(+)
+Michal Wajdeczko (5):
+  drm/xe: Combine PF and VF device data into union
+  drm/xe: Move PF and VF device types to separate headers
+  drm/xe/pf: Expose basic info about VFs in debugfs
+  drm/xe/pf: Stop requiring VF/PF version negotiation on every GT
+  drm/xe/vf: Store negotiated VF/PF ABI version at device level
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index d83cd6ed3fa8..24a5f99ed52f 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -20,6 +20,7 @@
- #include "xe_pm.h"
- #include "xe_pxp_debugfs.h"
- #include "xe_sriov.h"
-+#include "xe_sriov_pf.h"
- #include "xe_step.h"
- 
- #ifdef CONFIG_DRM_XE_DEBUG
-@@ -273,4 +274,7 @@ void xe_debugfs_register(struct xe_device *xe)
- 	xe_pxp_debugfs_register(xe->pxp);
- 
- 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
-+
-+	if (IS_SRIOV_PF(xe))
-+		xe_sriov_pf_debugfs_register(xe, root);
- }
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
-index 0f721ae17b26..32788b83b8bd 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2023-2024 Intel Corporation
-  */
- 
-+#include <linux/debugfs.h>
-+#include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
- 
- #include "xe_assert.h"
-@@ -102,3 +104,47 @@ void xe_sriov_pf_print_vfs_summary(struct xe_device *xe, struct drm_printer *p)
- 	drm_printf(p, "supported: %u\n", xe->sriov.pf.driver_max_vfs);
- 	drm_printf(p, "enabled: %u\n", pci_num_vf(pdev));
- }
-+
-+static int simple_show(struct seq_file *m, void *data)
-+{
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	struct drm_info_node *node = m->private;
-+	struct dentry *parent = node->dent->d_parent;
-+	struct xe_device *xe = parent->d_inode->i_private;
-+	void (*print)(struct xe_device *, struct drm_printer *) = node->info_ent->data;
-+
-+	if (WARN_ON(!print))
-+		return -EINVAL;
-+
-+	print(xe, &p);
-+	return 0;
-+}
-+
-+static const struct drm_info_list debugfs_list[] = {
-+	{ .name = "vfs", .show = simple_show, .data = xe_sriov_pf_print_vfs_summary },
-+};
-+
-+/**
-+ * xe_sriov_pf_debugfs_register - Register PF debugfs attributes.
-+ * @xe: the &xe_device
-+ * @root: the root &dentry
-+ *
-+ * Prepare debugfs attributes exposed by the PF.
-+ */
-+void xe_sriov_pf_debugfs_register(struct xe_device *xe, struct dentry *root)
-+{
-+	struct drm_minor *minor = xe->drm.primary;
-+	struct dentry *parent;
-+
-+	/*
-+	 *      /sys/kernel/debug/dri/0/
-+	 *      ├── pf
-+	 *      │   ├── ...
-+	 */
-+	parent = debugfs_create_dir("pf", root);
-+	if (IS_ERR(parent))
-+		return;
-+	parent->d_inode->i_private = xe;
-+
-+	drm_debugfs_create_files(debugfs_list, ARRAY_SIZE(debugfs_list), parent, minor);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.h b/drivers/gpu/drm/xe/xe_sriov_pf.h
-index d1220e70e1c0..c392c3fcf085 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf.h
-@@ -8,12 +8,14 @@
- 
- #include <linux/types.h>
- 
-+struct dentry;
- struct drm_printer;
- struct xe_device;
- 
- #ifdef CONFIG_PCI_IOV
- bool xe_sriov_pf_readiness(struct xe_device *xe);
- int xe_sriov_pf_init_early(struct xe_device *xe);
-+void xe_sriov_pf_debugfs_register(struct xe_device *xe, struct dentry *root);
- void xe_sriov_pf_print_vfs_summary(struct xe_device *xe, struct drm_printer *p);
- #else
- static inline bool xe_sriov_pf_readiness(struct xe_device *xe)
-@@ -25,6 +27,10 @@ static inline int xe_sriov_pf_init_early(struct xe_device *xe)
- {
- 	return 0;
- }
-+
-+static inline void xe_sriov_pf_debugfs_register(struct xe_device *xe, struct dentry *root)
-+{
-+}
- #endif
- 
- #endif
+ drivers/gpu/drm/xe/Makefile                   |   3 +-
+ .../xe/tests/xe_gt_sriov_pf_service_test.c    | 232 ------------------
+ .../drm/xe/tests/xe_sriov_pf_service_kunit.c  | 227 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_debugfs.c               |   4 +
+ drivers/gpu/drm/xe/xe_device_types.h          |  12 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c   |   6 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |   5 -
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c   | 164 +------------
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h   |   2 -
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |  30 ++-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h     |  12 -
+ drivers/gpu/drm/xe/xe_sriov_pf.c              |  64 ++++-
+ drivers/gpu/drm/xe/xe_sriov_pf.h              |   6 +
+ drivers/gpu/drm/xe/xe_sriov_pf_service.c      | 213 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_service.h      |  23 ++
+ .../gpu/drm/xe/xe_sriov_pf_service_types.h    |  36 +++
+ drivers/gpu/drm/xe/xe_sriov_pf_types.h        |  45 ++++
+ drivers/gpu/drm/xe/xe_sriov_types.h           |  36 ---
+ drivers/gpu/drm/xe/xe_sriov_vf_types.h        |  41 ++++
+ 19 files changed, 696 insertions(+), 465 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_types.h
+
 -- 
 2.47.1
 
