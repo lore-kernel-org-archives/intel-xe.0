@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89162C77B7C
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 08:13:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26511C7115C
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 08:18:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 376EC10E696;
-	Wed, 25 Jun 2025 08:13:52 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2868A10E695;
- Wed, 25 Jun 2025 08:13:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0543204298025702543=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA39C10E697;
+	Wed, 25 Jun 2025 08:18:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mOLPJ+SV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66B9210E693;
+ Wed, 25 Jun 2025 08:18:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750839488; x=1782375488;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=V70Y4RBzuJP0RMS1V9GIv+d3w48S3K/izsQzGxwG61U=;
+ b=mOLPJ+SVT1V1d8XLgIP0H9R0M+M/5RZkiNG0IFCqxIFIQy76pmPr6eVg
+ PTEpVeljbKJ2n8v8TT+X4ni7kKCtOym+5QiugoaOjOSK+GDuFyiuU4KHE
+ qlyFZ8FGdhmCeVf5BP+9HIA8bGk6hGso6qtpRFxy+ABfbq2J7nB9wskdj
+ u6KEHQzEwASZsQiCTg8M4FquUj2PG6SXz2s/NxaKAvUqx+A2ydxIrPNas
+ UkoEWx1K4F65uJGLiNMqvfwCVgG3kdfEowmggPTc/7OqR0TmjvnFsV9Gj
+ BXdwUq+jKcqUUQWuFHR+L+fkLunb7SSNhmoY85dQwYVyQYTua3VmxDbU7 A==;
+X-CSE-ConnectionGUID: MqZkC3fESQi3lJcDzBjLFQ==
+X-CSE-MsgGUID: KbUg9Q6OT5qwIJZpvo3J1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="63787769"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="63787769"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2025 01:18:08 -0700
+X-CSE-ConnectionGUID: E4yhiYU/TvuDWK58driGOw==
+X-CSE-MsgGUID: 98mlmNXoQ2+59M1W6hNdvA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="156553242"
+Received: from monicael-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.78])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2025 01:18:06 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] Revert "drm/i915/dp: Reject HBR3 when sink doesn't
+ support TPS4"
+In-Reply-To: <aFrXN20jmuP_Hc01@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250620124417.2041233-1-ankit.k.nautiyal@intel.com>
+ <20250620124417.2041233-2-ankit.k.nautiyal@intel.com>
+ <aFlnzzW7HhtcqWs7@intel.com>
+ <5fe0cd00-291b-4e93-a93a-6f8e32db4541@intel.com>
+ <aFrXN20jmuP_Hc01@intel.com>
+Date: Wed, 25 Jun 2025 11:18:03 +0300
+Message-ID: <3d26024d8750cb1c188da77f7d3b07fb5b2cc40b@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_More_missing_XeLP_workaroun?=
- =?utf-8?q?ds_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Jun 2025 08:13:51 -0000
-Message-ID: <175083923115.107248.14745122667987105645@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250613153558.68350-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250613153558.68350-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,145 +71,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0543204298025702543==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 24 Jun 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Jun 24, 2025 at 10:10:53AM +0530, Nautiyal, Ankit K wrote:
+>>=20
+>> On 6/23/2025 8:12 PM, Ville Syrj=C3=A4l=C3=A4 wrote:
+>> > On Fri, Jun 20, 2025 at 06:14:16PM +0530, Ankit Nautiyal wrote:
+>> >> This reverts commit 584cf613c24a4250d9be4819efc841aa2624d5b6.
+>> >> Commit 584cf613c24a ("drm/i915/dp: Reject HBR3 when sink doesn't supp=
+ort
+>> >> TPS4") introduced a blanket rejection of HBR3 link rate when the sink=
+ does
+>> >> not support TPS4. While this was intended to address instability obse=
+rved
+>> >> on certain eDP panels [1], the TPS4 requirement is only mandated for =
+DPRX
+>> >> and not for eDPRX.
+>> > I see no exception given for eDP regarding this rule. The only excepti=
+on
+>> > allowed is that eDP can say DPCD_REV=3D1.4 + TPS4_SUPPORTED=3D0. So I =
+still
+>> > claim that these eDP sinks are violating the spec.
+>>=20
+>> Hmm.. Yes the spec allows eDP sinks to report DPCD_REV=3D1.4 and=20
+>> TPS4_SUPPORTED, so perhaps eDPs claiming HBR3 with DPCD rev other than=20
+>> rev 1.4 and not supporting TPS4 are indeed violating the spec.
+>>=20
+>> Would it make sense to add a condition that checks for DPCD_REV=3D1.4.
+>>=20
+>> Specifically:
+>>=20
+>> if DPCD_REV=3D1.4 and TPS4_SUPPORTED =3D 0, then do not prune the HBR3 r=
+ate?
+>>=20
+>> Or otherway if DPCD_REV!=3D1.4 and TPS4_SUPPORTER =3D 0, prune the HBR3 =
+rate
+>>=20
+>> This way the patch need not be reverted, but modified to address=20
+>> instability issues for eDP panels that are not aligned with the spec.
+>>=20
+>> That said, the gitlab issue#5969 [1] will still need another solution=20
+>> since it seems to have DPCD rev 14 as per logs:
+>>=20
+>> DPCD: 14 1e 44 41 00 00 01 80 02 00 02 00 00 0b 80
+>
+> I think we do need the quirk. But the commit message should IMO be
+> adjusted so that it doesn't claim that these panels are 100% legal.
 
-== Series Details ==
+Right. But are you okay with reverting 584cf613c24a ("drm/i915/dp:
+Reject HBR3 when sink doesn't support TPS4") i.e. allowing HBR3
+*without* TPS4 by default, and quirking the panel that can't handle
+HBR3?
 
-Series: More missing XeLP workarounds (rev5)
-URL   : https://patchwork.freedesktop.org/series/149097/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19_BAT -> xe-pw-149097v5_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-149097v5_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-149097v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-149097v5_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_module_load@load:
-    - bat-lnl-1:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19/bat-lnl-1/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/bat-lnl-1/igt@xe_module_load@load.html
-    - bat-bmg-2:          [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19/bat-bmg-2/igt@xe_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/bat-bmg-2/igt@xe_module_load@load.html
-    - bat-bmg-1:          [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19/bat-bmg-1/igt@xe_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/bat-bmg-1/igt@xe_module_load@load.html
-    - bat-lnl-2:          [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19/bat-lnl-2/igt@xe_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/bat-lnl-2/igt@xe_module_load@load.html
-
-  
+No matter what the spec says, this seems to be common. More regressing
+systems are cropping up, e.g. [1].
 
 
-Build changes
--------------
-
-  * Linux: xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19 -> xe-pw-149097v5
-
-  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19: bd57aee20daefb7b0dfe9017663668c92115ff19
-  xe-pw-149097v5: 149097v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/index.html
-
---===============0543204298025702543==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+[1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14517
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>More missing XeLP workarounds (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149097/">https://patchwork.freedesktop.org/series/149097/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/index.html</a></td></tr>
-
-</table>
 
 
-    <h1>CI Bug Log - changes from xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19_BAT -&gt; xe-pw-149097v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-149097v5_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-149097v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-149097v5_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/bat-lnl-1/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/bat-bmg-2/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19/bat-lnl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v5/bat-lnl-2/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19 -&gt; xe-pw-149097v5</li>
-</ul>
-<p>IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19: bd57aee20daefb7b0dfe9017663668c92115ff19<br />
-  xe-pw-149097v5: 149097v5</p>
-
-</body>
-</html>
-
---===============0543204298025702543==--
+--=20
+Jani Nikula, Intel
