@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E74BC77B7C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D150C7EE2A
 	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 19:33:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E27E310E7D4;
-	Wed, 25 Jun 2025 19:33:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2668110E121;
+	Wed, 25 Jun 2025 19:33:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZFuR8Oc6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JjHzQAZj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA7FC10E121
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 19:33:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF70410E121
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 19:33:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750880024; x=1782416024;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iZBYeV5/+6Lnk5bbjCdZ/K3bDF7aLj2HOwHOEsH5rsY=;
- b=ZFuR8Oc668gbP+Fi9V6bKlYg19ES0YPpr6VmT+3MmrFl2EjuGDoAXabW
- J2GVst52EQUWKsu4JxTPhjmOiQppc746Esve9lYvpPDHPdsq7yrmrV3rV
- yQAW+jcWJHxZb7pbBs5q7PCBPSxHNMNRfnHV5AvkJaWi3+GcfWHx/l1xt
- 1K7uzO/iNCju0KsXMdeOjZdyiu4/CQWeu1bDeidYoSW7Mj40CZAfHm7fX
- Z+nIWUvLac3KESiXD5LD4c47edRRIo4cEj1Uko5z7KT7VAc+OwJh6wOvf
- Q4cVVc/CkLPkpuCord3zksW/iS5xVv42kXE56cwEym/1Hqdvle5fzEvZt A==;
-X-CSE-ConnectionGUID: F6/U/opqSLCcI15JZI9ulw==
-X-CSE-MsgGUID: bY5/m2X+TbysiNq4KmAfPg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53305184"
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="53305184"
+ t=1750880025; x=1782416025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Rabj5AEgzEIkX32aOvH6g7bFIJvOXXgKA+EmGdZXE3Y=;
+ b=JjHzQAZjT2dvuG+xLZT8eddzHW/MWapUC6PSGTl8wsDMF3arJFLVV2Kg
+ RX04D1a/wzBuUT3wCN+m4ibjkTLQyoL89+oLqIT/OEqhUvtOnF8cyKGHx
+ elp59dh9Smj8gaD8vsWUjPFA4DBMD6JQdZ4fvPO8GtU4iX0XAPouJh0Ed
+ OLHQ2B+sSxMfmoxvhuYitWwAJZS4iAuO3osImfVYrCNhAjBQozk0duahf
+ fbW9qjCR7wcjBbZ9/SGLBM/+lWXHxwkNAWr5rGIYjQM+T5hG5KwgSmZXt
+ kpFSdV8X1uUE0Lr/kZ2Kb6HFDRMF8CpQEzXuYVzEIECvCD39JAaazJfdA w==;
+X-CSE-ConnectionGUID: IiXMqAiiTmyLPo+3XKMwww==
+X-CSE-MsgGUID: QGujf/NSTHKjPAC6SseM+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53305187"
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="53305187"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 12:33:43 -0700
-X-CSE-ConnectionGUID: GlV0I0cnTPCWztvTD0EMOg==
-X-CSE-MsgGUID: h/FsKVFcTvGkGHvKtLFU1Q==
+ 25 Jun 2025 12:33:45 -0700
+X-CSE-ConnectionGUID: pattxrDrQo6CdwndPl/28A==
+X-CSE-MsgGUID: KOG7fHO9ROeTS1yO37kBuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="156697187"
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="156697195"
 Received: from msatwood-mobl.jf.intel.com ([10.24.13.181])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 12:33:43 -0700
+ 25 Jun 2025 12:33:45 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com, matthew.d.roper@intel.com,
  rodrigo.vivi@intel.com, Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH v2 0/5] drm/xe: Create and use XE_DEVICE_WA infrastructure
-Date: Wed, 25 Jun 2025 12:33:35 -0700
-Message-ID: <20250625193340.38971-1-matthew.s.atwood@intel.com>
+Subject: [PATCH v3 1/5] drm/xe: add xe_device_wa infrastructure
+Date: Wed, 25 Jun 2025 12:33:36 -0700
+Message-ID: <20250625193340.38971-2-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250625193340.38971-1-matthew.s.atwood@intel.com>
+References: <20250625193340.38971-1-matthew.s.atwood@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,53 +67,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There currently is not a way to apply and track workarounds that are
-needed ahead of GT init. This series adds a bit field to the xe_device
-structure similar to those in the GT structures to apply and track
-workarounds applied at runtime (oobs).
+There are some workarounds that must be applied before gt init,
+wa_150154044425 for example. Instead of sprinkling them conditionally
+throughout the driver as we did for i915 generate an oob.rules file
+reusing the RTP infrastructure to make these easier to track.
 
-Device workarounds in this new infrastructure are tracked in the
-existing sysfs entries in gtX/workarounds.
+v2: rename xe_soc_wa to xe_device_wa
 
-Currently 15015404425 is the only workaround like this, so move it to
-using this new infrastructure.
-
-PTL A0 is impacted by 15015404425, but only applies to Compute Die A0
-stepping. The reality of modern platforms is that we're a Multi Chip
-Package with logic spread acress multiple dies. This information not
-being readily available during PCI probe without a read makes this more
-complicated.
-
-Apply 15015404425 to PTL unconditionally during PCI probe (and GT init).
-After GT init use the Media GT stepping to determine if we can disable
-this workaround.
-
-v2: Change naming from SoC to device, address styling issues, update
-commit messages
-v3: rebase
-
-Matt Atwood (5):
-  drm/xe: add xe_device_wa infrastructure
-  drm/xe: Add infrastructure for Device OOB workarounds
-  drm/xe: Move Wa_15015404425 to use the new EX_DEVICE_WA macro
-  drm/xe: extend Wa_15015404425 to apply to PTL
-  drm/xe: disable wa_15015404425 for PTL B0
-
- drivers/gpu/drm/xe/Makefile               | 11 +++++-
- drivers/gpu/drm/xe/xe_device_types.h      |  9 +++++
- drivers/gpu/drm/xe/xe_device_wa_oob.rules |  2 +
- drivers/gpu/drm/xe/xe_gen_wa_oob.c        | 27 +++++++++----
- drivers/gpu/drm/xe/xe_mmio.c              | 10 ++---
- drivers/gpu/drm/xe/xe_pci.c               | 11 ++++++
- drivers/gpu/drm/xe/xe_rtp.c               |  5 +++
- drivers/gpu/drm/xe/xe_rtp.h               |  3 +-
- drivers/gpu/drm/xe/xe_rtp_types.h         |  2 +
- drivers/gpu/drm/xe/xe_wa.c                | 46 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_wa.h                | 18 +++++++--
- drivers/gpu/drm/xe/xe_wa_oob.rules        |  1 +
- 12 files changed, 127 insertions(+), 18 deletions(-)
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile               | 11 ++++++++-
+ drivers/gpu/drm/xe/xe_device_wa_oob.rules |  0
+ drivers/gpu/drm/xe/xe_gen_wa_oob.c        | 27 ++++++++++++++++-------
+ 3 files changed, 29 insertions(+), 9 deletions(-)
  create mode 100644 drivers/gpu/drm/xe/xe_device_wa_oob.rules
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index eee6bac01a00..64498ce2a839 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -21,6 +21,15 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
+ 		 $(src)/xe_wa_oob.rules
+ 	$(call cmd,wa_oob)
+ 
++generated_device_oob := $(obj)/generated/xe_device_wa_oob.c $(obj)/generated/xe_device_wa_oob.h
++quiet_cmd_device_wa_oob = GEN     $(notdir $(generated_device_oob))
++      cmd_device_wa_oob = mkdir -p $(@D); $^ $(generated_device_oob)
++$(obj)/generated/%_device_wa_oob.c $(obj)/generated/%_device_wa_oob.h: $(obj)/xe_gen_wa_oob \
++		 $(src)/xe_device_wa_oob.rules
++	$(call cmd,device_wa_oob)
++
++
++
+ # Please keep these build lists sorted!
+ 
+ # core driver code
+@@ -339,4 +348,4 @@ $(obj)/%.hdrtest: $(src)/%.h FORCE
+ 	$(call if_changed_dep,hdrtest)
+ 
+ uses_generated_oob := $(addprefix $(obj)/, $(xe-y))
+-$(uses_generated_oob): $(obj)/generated/xe_wa_oob.h
++$(uses_generated_oob): $(obj)/generated/xe_wa_oob.h $(obj)/generated/xe_device_wa_oob.h
+diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+new file mode 100644
+index 000000000000..e69de29bb2d1
+diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+index ed9183599e31..d8bb26317f28 100644
+--- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
++++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+@@ -18,8 +18,8 @@
+ 	" *\n" \
+ 	" * This file was generated from rules: %s\n" \
+ 	" */\n" \
+-	"#ifndef _GENERATED_XE_WA_OOB_\n" \
+-	"#define _GENERATED_XE_WA_OOB_\n" \
++	"#ifndef _GENERATED_%s_\n" \
++	"#define _GENERATED_%s_\n" \
+ 	"\n" \
+ 	"enum {\n"
+ 
+@@ -52,7 +52,7 @@ static char *strip(char *line, size_t linelen)
+ }
+ 
+ #define MAX_LINE_LEN 4096
+-static int parse(FILE *input, FILE *csource, FILE *cheader)
++static int parse(FILE *input, FILE *csource, FILE *cheader, bool device)
+ {
+ 	char line[MAX_LINE_LEN + 1];
+ 	char *name, *prev_name = NULL, *rules;
+@@ -96,7 +96,10 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
+ 		}
+ 
+ 		if (name) {
+-			fprintf(cheader, "\tXE_WA_OOB_%s = %u,\n", name, idx);
++			if (device == false)
++				fprintf(cheader, "\tXE_WA_OOB_%s = %u,\n", name, idx);
++			else
++				fprintf(cheader, "\tXE_DEVICE_WA_OOB_%s = %u,\n", name, idx);
+ 
+ 			/* Close previous entry before starting a new one */
+ 			if (idx)
+@@ -117,8 +120,10 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
+ 	/* Close last entry */
+ 	if (idx)
+ 		fprintf(csource, ") },\n");
+-
+-	fprintf(cheader, "\t_XE_WA_OOB_COUNT = %u\n", idx);
++	if (device == false)
++		fprintf(cheader, "\t_XE_WA_OOB_COUNT = %u\n", idx);
++	else
++		fprintf(cheader, "\t_XE_DEVICE_WA_OOB_COUNT = %u\n", idx);
+ 
+ 	return 0;
+ }
+@@ -157,9 +162,15 @@ int main(int argc, const char *argv[])
+ 		}
+ 	}
+ 
+-	fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn);
++	char *device = strstr(args[ARGS_CHEADER].fn, "device_");
++	if (device == NULL)
++		fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, "XE_WA_OOB", "XE_WA_OOB");
++	else
++		fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, "XE_DEVICE_WA_OOB", "XE_DEVICE_WA_OOB");
++
++	bool prefix = device != NULL ? true : false;
+ 	ret = parse(args[ARGS_INPUT].f, args[ARGS_CSOURCE].f,
+-		    args[ARGS_CHEADER].f);
++		    args[ARGS_CHEADER].f, prefix);
+ 	if (!ret)
+ 		fprintf(args[ARGS_CHEADER].f, FOOTER);
+ 
 -- 
 2.49.0
 
