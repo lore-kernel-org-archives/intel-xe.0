@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C31D3C7EE31
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 20:07:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DD85C7EE39
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 20:07:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7326410E121;
-	Wed, 25 Jun 2025 20:07:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0119B10E7EA;
+	Wed, 25 Jun 2025 20:07:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jy4wlATa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m6mziuF+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A39FA10E00D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D66310E121
  for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 20:07:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1750882075; x=1782418075;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RaOjHtF2WOkMguSjzHnqKMzJNZC9q+sap3rVJjpnTMQ=;
- b=Jy4wlATajI2/KtTFH+igYmClbcI5WEa4KocGpgVtdFX7MKPNTKPFOqpX
- 7fVPf0UC3eamcEW8Vcw6fy689cStRBVSNb2EyL1F93g5uJlV77tATYVDF
- 6j+zK+WjwqQPc233zypHFNLrIkjz3CeGPjQDBFfoXWPJKfisC9NvKgYNo
- MG/Pfqy6tSyGBiLdmFMtNBoZEGQqGNqrTYy0WfuEl7hHf6Hhi7882gmmy
- jyg/DoHleZsHjPSg4ww5Bt0eqakeakLDEOjwU0KXXYufBTZMM2TFtg4pt
- sgfhzyc2WLC5g7AEQEo94P4ANm+2eC12poE2gsRAwqZCGUipm4/ocwCP6 Q==;
-X-CSE-ConnectionGUID: wnfTOCFqTga8SCRYabllYA==
-X-CSE-MsgGUID: gr83lP8pQV25agm1927/hA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="52283723"
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="52283723"
+ bh=Rabj5AEgzEIkX32aOvH6g7bFIJvOXXgKA+EmGdZXE3Y=;
+ b=m6mziuF+lNYTe/z30q6nLGjYKd2wEh4UbbTf+K9sb1wlBuR2kU0X0IpH
+ ie88onmycRxDgjjfoJ5oX9kHg76Tzy/4rJp4kcHDsDww8B9c8d8XpcOvB
+ BUBeWRN49MNqRQbEITZM4whFxI5vfi5chsYSWl4PklA3ggUuDTL9UycVA
+ BY2dSbejUZMdoLt7rECejbe3Zb1Lpt+HuxEU/4SMHwEKoDDLX+J2GGkNY
+ Mc4c/6DV/DBzJateq6vRdIQ1i6SvFcFgfq4TI6QGISJOAUnGOEV9mqTN7
+ 7mKvrR5s1WYoQ9xkyEXosSN7vgi6ChNQmOwYMw3QLP4UVG9BzmjcEoqZw A==;
+X-CSE-ConnectionGUID: VYwXZeWATIaqmZ05iL2p3w==
+X-CSE-MsgGUID: 7C2DTsXCTV+yfqVQNRd14g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="52283722"
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="52283722"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Jun 2025 13:07:55 -0700
-X-CSE-ConnectionGUID: eoaEuKbfQR2hu6e0KRt4Pg==
-X-CSE-MsgGUID: G5rcjvFmR0WQYEdPDv3Ufw==
+X-CSE-ConnectionGUID: K5AJFNWRTdefqdk1Qkqvjw==
+X-CSE-MsgGUID: 3AztxeZYSBunoZy6tWgMTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="158076089"
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="158076084"
 Received: from msatwood-mobl.jf.intel.com ([10.24.13.181])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 13:07:56 -0700
+ 25 Jun 2025 13:07:55 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com, rodrigo.vivi@intel.com,
  lucas.demarchi@intel.com, Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH v4 2/5] drm/xe: Add infrastructure for Device OOB workarounds
-Date: Wed, 25 Jun 2025 13:07:47 -0700
-Message-ID: <20250625200751.205166-3-matthew.s.atwood@intel.com>
+Subject: [PATCH v4 1/5] drm/xe: add xe_device_wa infrastructure
+Date: Wed, 25 Jun 2025 13:07:46 -0700
+Message-ID: <20250625200751.205166-2-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250625200751.205166-1-matthew.s.atwood@intel.com>
 References: <20250625200751.205166-1-matthew.s.atwood@intel.com>
@@ -67,236 +67,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some workarounds need to be able to be applied ahead of any GT
-initialization for example 15015404425. This patch creates XE_DEVICE_WA
-macro, in the same vein as XE_WA. This macro can be used ahead of GT
-initialization, and can be tracked in sysfs. This should alleviate some
-of the complexities that exist in i915.
+There are some workarounds that must be applied before gt init,
+wa_150154044425 for example. Instead of sprinkling them conditionally
+throughout the driver as we did for i915 generate an oob.rules file
+reusing the RTP infrastructure to make these easier to track.
 
-v2: name change SoC to Device, address style issues
+v2: rename xe_soc_wa to xe_device_wa
 
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  9 ++++++
- drivers/gpu/drm/xe/xe_pci.c          |  4 +++
- drivers/gpu/drm/xe/xe_rtp.c          |  5 +++
- drivers/gpu/drm/xe/xe_rtp.h          |  3 +-
- drivers/gpu/drm/xe/xe_rtp_types.h    |  2 ++
- drivers/gpu/drm/xe/xe_wa.c           | 46 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_wa.h           | 18 +++++++++--
- 7 files changed, 83 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/Makefile               | 11 ++++++++-
+ drivers/gpu/drm/xe/xe_device_wa_oob.rules |  0
+ drivers/gpu/drm/xe/xe_gen_wa_oob.c        | 27 ++++++++++++++++-------
+ 3 files changed, 29 insertions(+), 9 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_device_wa_oob.rules
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 6aca4b1a2824..62f09d2923c3 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -360,6 +360,15 @@ struct xe_device {
- 		u8 skip_pcode:1;
- 	} info;
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index eee6bac01a00..64498ce2a839 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -21,6 +21,15 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
+ 		 $(src)/xe_wa_oob.rules
+ 	$(call cmd,wa_oob)
  
-+	/** @xe_active.oob: bitmap with active OOB workarounds */
-+	unsigned long *oob;
-+	/**
-+	 *  @xe_active.oob_initialized: mark oob as initialized to help
-+	 *  detecting misuse of XE_SOC_WA() - it can only be called on
-+	 *  initialization after SOC OOB WAs have been processed
-+	 */
-+	bool oob_initialized;
++generated_device_oob := $(obj)/generated/xe_device_wa_oob.c $(obj)/generated/xe_device_wa_oob.h
++quiet_cmd_device_wa_oob = GEN     $(notdir $(generated_device_oob))
++      cmd_device_wa_oob = mkdir -p $(@D); $^ $(generated_device_oob)
++$(obj)/generated/%_device_wa_oob.c $(obj)/generated/%_device_wa_oob.h: $(obj)/xe_gen_wa_oob \
++		 $(src)/xe_device_wa_oob.rules
++	$(call cmd,device_wa_oob)
 +
- 	/** @survivability: survivability information for device */
- 	struct xe_survivability survivability;
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 824461c31288..a9f708608f3e 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -32,6 +32,7 @@
- #include "xe_step.h"
- #include "xe_survivability_mode.h"
- #include "xe_tile.h"
-+#include "xe_wa.h"
- 
- enum toggle_d3cold {
- 	D3COLD_DISABLE,
-@@ -832,6 +833,9 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (err)
- 		return err;
- 
-+	xe_device_wa_init(xe);
-+	xe_device_wa_process_oob(xe);
 +
- 	err = xe_device_probe_early(xe);
- 	/*
- 	 * In Boot Survivability mode, no drm card is exposed and driver
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 29e694bb1219..2a0b0a1a8969 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -196,6 +196,11 @@ static void rtp_get_context(struct xe_rtp_process_ctx *ctx,
- 		*gt = (*hwe)->gt;
- 		*xe = gt_to_xe(*gt);
- 		break;
-+	case XE_RTP_PROCESS_TYPE_DEVICE:
-+		*hwe = NULL;
-+		*gt = NULL;
-+		*xe = ctx->xe;
-+		break;
++
+ # Please keep these build lists sorted!
+ 
+ # core driver code
+@@ -339,4 +348,4 @@ $(obj)/%.hdrtest: $(src)/%.h FORCE
+ 	$(call if_changed_dep,hdrtest)
+ 
+ uses_generated_oob := $(addprefix $(obj)/, $(xe-y))
+-$(uses_generated_oob): $(obj)/generated/xe_wa_oob.h
++$(uses_generated_oob): $(obj)/generated/xe_wa_oob.h $(obj)/generated/xe_device_wa_oob.h
+diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+new file mode 100644
+index 000000000000..e69de29bb2d1
+diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+index ed9183599e31..d8bb26317f28 100644
+--- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
++++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+@@ -18,8 +18,8 @@
+ 	" *\n" \
+ 	" * This file was generated from rules: %s\n" \
+ 	" */\n" \
+-	"#ifndef _GENERATED_XE_WA_OOB_\n" \
+-	"#define _GENERATED_XE_WA_OOB_\n" \
++	"#ifndef _GENERATED_%s_\n" \
++	"#define _GENERATED_%s_\n" \
+ 	"\n" \
+ 	"enum {\n"
+ 
+@@ -52,7 +52,7 @@ static char *strip(char *line, size_t linelen)
+ }
+ 
+ #define MAX_LINE_LEN 4096
+-static int parse(FILE *input, FILE *csource, FILE *cheader)
++static int parse(FILE *input, FILE *csource, FILE *cheader, bool device)
+ {
+ 	char line[MAX_LINE_LEN + 1];
+ 	char *name, *prev_name = NULL, *rules;
+@@ -96,7 +96,10 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
+ 		}
+ 
+ 		if (name) {
+-			fprintf(cheader, "\tXE_WA_OOB_%s = %u,\n", name, idx);
++			if (device == false)
++				fprintf(cheader, "\tXE_WA_OOB_%s = %u,\n", name, idx);
++			else
++				fprintf(cheader, "\tXE_DEVICE_WA_OOB_%s = %u,\n", name, idx);
+ 
+ 			/* Close previous entry before starting a new one */
+ 			if (idx)
+@@ -117,8 +120,10 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
+ 	/* Close last entry */
+ 	if (idx)
+ 		fprintf(csource, ") },\n");
+-
+-	fprintf(cheader, "\t_XE_WA_OOB_COUNT = %u\n", idx);
++	if (device == false)
++		fprintf(cheader, "\t_XE_WA_OOB_COUNT = %u\n", idx);
++	else
++		fprintf(cheader, "\t_XE_DEVICE_WA_OOB_COUNT = %u\n", idx);
+ 
+ 	return 0;
+ }
+@@ -157,9 +162,15 @@ int main(int argc, const char *argv[])
+ 		}
  	}
- }
  
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index 4fe736a11c42..ac260feaabef 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -422,7 +422,8 @@ struct xe_reg_sr;
- 
- #define XE_RTP_PROCESS_CTX_INITIALIZER(arg__) _Generic((arg__),							\
- 	struct xe_hw_engine * :	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_ENGINE },	\
--	struct xe_gt * :	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_GT })
-+	struct xe_gt * :	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_GT },	\
-+	struct xe_device * :	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_DEVICE })
- 
- void xe_rtp_process_ctx_enable_active_tracking(struct xe_rtp_process_ctx *ctx,
- 					       unsigned long *active_entries,
-diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
-index 1b76b947c706..123579ebf2cf 100644
---- a/drivers/gpu/drm/xe/xe_rtp_types.h
-+++ b/drivers/gpu/drm/xe/xe_rtp_types.h
-@@ -112,12 +112,14 @@ struct xe_rtp_entry {
- enum xe_rtp_process_type {
- 	XE_RTP_PROCESS_TYPE_GT,
- 	XE_RTP_PROCESS_TYPE_ENGINE,
-+	XE_RTP_PROCESS_TYPE_DEVICE,
- };
- 
- struct xe_rtp_process_ctx {
- 	union {
- 		struct xe_gt *gt;
- 		struct xe_hw_engine *hwe;
-+		struct xe_device *xe;
- 	};
- 	enum xe_rtp_process_type type;
- 	unsigned long *active_entries;
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index f51218a7a580..2cb2fab20070 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -11,6 +11,7 @@
- #include <linux/fault-inject.h>
- 
- #include <generated/xe_wa_oob.h>
-+#include <generated/xe_device_wa_oob.h>
- 
- #include "regs/xe_engine_regs.h"
- #include "regs/xe_gt_regs.h"
-@@ -876,6 +877,13 @@ static __maybe_unused const struct xe_rtp_entry oob_was[] = {
- 
- static_assert(ARRAY_SIZE(oob_was) - 1 == _XE_WA_OOB_COUNT);
- 
-+static __maybe_unused const struct xe_rtp_entry device_oob_was[] = {
-+#include <generated/xe_device_wa_oob.c>
-+	{}
-+};
+-	fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn);
++	char *device = strstr(args[ARGS_CHEADER].fn, "device_");
++	if (device == NULL)
++		fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, "XE_WA_OOB", "XE_WA_OOB");
++	else
++		fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, "XE_DEVICE_WA_OOB", "XE_DEVICE_WA_OOB");
 +
-+static_assert(ARRAY_SIZE(device_oob_was) - 1 == _XE_DEVICE_WA_OOB_COUNT);
-+
- __diag_pop();
++	bool prefix = device != NULL ? true : false;
+ 	ret = parse(args[ARGS_INPUT].f, args[ARGS_CSOURCE].f,
+-		    args[ARGS_CHEADER].f);
++		    args[ARGS_CHEADER].f, prefix);
+ 	if (!ret)
+ 		fprintf(args[ARGS_CHEADER].f, FOOTER);
  
- /**
-@@ -895,6 +903,39 @@ void xe_wa_process_oob(struct xe_gt *gt)
- 	xe_rtp_process(&ctx, oob_was);
- }
- 
-+int xe_device_wa_init(struct xe_device *xe)
-+{
-+	unsigned long *p;
-+
-+	p = drmm_kzalloc(&xe->drm,
-+			 sizeof(xe->oob) * BITS_TO_LONGS(ARRAY_SIZE(device_oob_was)),
-+			 GFP_KERNEL);
-+
-+	if (!p)
-+		return -ENOMEM;
-+
-+	xe->oob = p;
-+
-+	return 0;
-+}
-+
-+/**
-+ * xe_device_wa_process_oob - process OOB workaround table
-+ * @xe: xe device instance process workarounds for
-+ *
-+ * Process OOB workaround table for this platform, marking in @xe the
-+ * workarounds that are active.
-+ */
-+void xe_device_wa_process_oob(struct xe_device *xe)
-+{
-+	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(xe);
-+
-+	xe_rtp_process_ctx_enable_active_tracking(&ctx, xe->oob, ARRAY_SIZE(device_oob_was));
-+
-+	xe->oob_initialized = true;
-+	xe_rtp_process(&ctx, device_oob_was);
-+}
-+
- /**
-  * xe_wa_process_gt - process GT workaround table
-  * @gt: GT instance to process workarounds for
-@@ -1000,6 +1041,11 @@ void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p)
- 	for_each_set_bit(idx, gt->wa_active.oob, ARRAY_SIZE(oob_was))
- 		if (oob_was[idx].name)
- 			drm_printf_indent(p, 1, "%s\n", oob_was[idx].name);
-+
-+	drm_printf(p, "\nDevice OOB Workarounds\n");
-+	for_each_set_bit(idx, gt_to_xe(gt)->oob, ARRAY_SIZE(device_oob_was))
-+		if (device_oob_was[idx].name)
-+			drm_printf_indent(p, 1, "%s\n", device_oob_was[idx].name);
- }
- 
- /*
-diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
-index 52337405b5bc..09d065e0abb5 100644
---- a/drivers/gpu/drm/xe/xe_wa.h
-+++ b/drivers/gpu/drm/xe/xe_wa.h
-@@ -14,7 +14,9 @@ struct xe_hw_engine;
- struct xe_tile;
- 
- int xe_wa_init(struct xe_gt *gt);
-+int xe_device_wa_init(struct xe_device *xe);
- void xe_wa_process_oob(struct xe_gt *gt);
-+void xe_device_wa_process_oob(struct xe_device *xe);
- void xe_wa_process_gt(struct xe_gt *gt);
- void xe_wa_process_engine(struct xe_hw_engine *hwe);
- void xe_wa_process_lrc(struct xe_hw_engine *hwe);
-@@ -22,14 +24,24 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *tile);
- void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p);
- 
- /**
-- * XE_WA - Out-of-band workarounds, that don't fit the lifecycle any
-- *         other more specific type
-+ * XE_WA - Out-of-band GT workarounds, that don't fit the lifecycle any
-+ *         other more specific type,
-  * @gt__: gt instance
-- * @id__: XE_OOB_<id__>, as generated by build system in generated/xe_wa_oob.h
-+ * @id__: XE_WA_OOB_<id__>, as generated by build system in generated/xe_wa_oob.h
-  */
- #define XE_WA(gt__, id__) ({						\
- 	xe_gt_assert(gt__, (gt__)->wa_active.oob_initialized);		\
- 	test_bit(XE_WA_OOB_ ## id__, (gt__)->wa_active.oob);		\
- })
- 
-+/**
-+ * XE_DEVICE_WA - Out-of-band Device workarounds, that don't fit the lifecycle any
-+ *         other more specific type
-+ * @xe__: xe_device
-+ * @id__: XE_SOC_WA_OOB_<id__>, as generated by build system in generated/xe_wa_oob.h
-+ */
-+#define XE_DEVICE_WA(xe__, id__) ({					\
-+	xe_assert(xe__, (xe__)->oob_initialized);			\
-+	test_bit(XE_DEVICE_WA_OOB_ ## id__, (xe__)->oob);			\
-+})
- #endif
 -- 
 2.49.0
 
