@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46A47C7EE2A
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 19:27:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E74BC77B7C
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 19:33:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E58A810E7DF;
-	Wed, 25 Jun 2025 19:27:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E27E310E7D4;
+	Wed, 25 Jun 2025 19:33:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T2ToyUjb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZFuR8Oc6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E049410E7E5
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 19:27:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA7FC10E121
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 19:33:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750879641; x=1782415641;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=317cDetMYa+On4fgt3UxFh10PZLmj1IXp+cvDoZqvr0=;
- b=T2ToyUjbcVS8rnis/CH1iw5jzLmGNNay1RC731KBKZWYWoZK0CnInx5P
- jk7sYqt3JkJRikKKjtlBFgkAf+En8xlXC39X2lYcOLNnzrMuSF1mBAf4T
- WVN3RpZl41I8njgHhT4+8gPuOXKVs+cL7VT2dF0G/0VNrvyHWnu7tQ2D8
- QB8wwCqycQiE3mNM/2a4/4nRRja+Utk3IaXRFSpnogPdNBuvew5wp4tZN
- 0mml8I2LNK/+xXW87xfoj3J+w0RRi5qEpA306etQRFWiQJJtgxqcgQ2P5
- XAqbrpP7VgSPjhnQL1o/jd1w6gHyGletdJujVZLDStLoPcZbROHK4YMw7 w==;
-X-CSE-ConnectionGUID: 8AeoGU/ARYGmAdmh3M0ZRA==
-X-CSE-MsgGUID: +v2U9kf3S6qBnb7ZOktiQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53304614"
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="53304614"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ t=1750880024; x=1782416024;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iZBYeV5/+6Lnk5bbjCdZ/K3bDF7aLj2HOwHOEsH5rsY=;
+ b=ZFuR8Oc668gbP+Fi9V6bKlYg19ES0YPpr6VmT+3MmrFl2EjuGDoAXabW
+ J2GVst52EQUWKsu4JxTPhjmOiQppc746Esve9lYvpPDHPdsq7yrmrV3rV
+ yQAW+jcWJHxZb7pbBs5q7PCBPSxHNMNRfnHV5AvkJaWi3+GcfWHx/l1xt
+ 1K7uzO/iNCju0KsXMdeOjZdyiu4/CQWeu1bDeidYoSW7Mj40CZAfHm7fX
+ Z+nIWUvLac3KESiXD5LD4c47edRRIo4cEj1Uko5z7KT7VAc+OwJh6wOvf
+ Q4cVVc/CkLPkpuCord3zksW/iS5xVv42kXE56cwEym/1Hqdvle5fzEvZt A==;
+X-CSE-ConnectionGUID: F6/U/opqSLCcI15JZI9ulw==
+X-CSE-MsgGUID: bY5/m2X+TbysiNq4KmAfPg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53305184"
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="53305184"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 12:27:21 -0700
-X-CSE-ConnectionGUID: ChEarmoXTfyguTvrt6nBwA==
-X-CSE-MsgGUID: wlXsb5NxTmyYbYMjYaYE7g==
+ 25 Jun 2025 12:33:43 -0700
+X-CSE-ConnectionGUID: GlV0I0cnTPCWztvTD0EMOg==
+X-CSE-MsgGUID: h/FsKVFcTvGkGHvKtLFU1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="158068661"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
- by orviesa005.jf.intel.com with ESMTP; 25 Jun 2025 12:27:19 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uUVm9-000TQg-1Q;
- Wed, 25 Jun 2025 19:27:17 +0000
-Date: Thu, 26 Jun 2025 03:26:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- 9127a69c7193ad47047ff968a2de9161d5c93d37
-Message-ID: <202506260324.QSriFkHK-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="156697187"
+Received: from msatwood-mobl.jf.intel.com ([10.24.13.181])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2025 12:33:43 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, matthew.d.roper@intel.com,
+ rodrigo.vivi@intel.com, Matt Atwood <matthew.s.atwood@intel.com>
+Subject: [PATCH v2 0/5] drm/xe: Create and use XE_DEVICE_WA infrastructure
+Date: Wed, 25 Jun 2025 12:33:35 -0700
+Message-ID: <20250625193340.38971-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,79 +65,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: 9127a69c7193ad47047ff968a2de9161d5c93d37  drm/xe/hwmon: Fix xe_hwmon_power_max_write
+There currently is not a way to apply and track workarounds that are
+needed ahead of GT init. This series adds a bit field to the xe_device
+structure similar to those in the GT structures to apply and track
+workarounds applied at runtime (oobs).
 
-elapsed time: 1445m
+Device workarounds in this new infrastructure are tracked in the
+existing sysfs entries in gtX/workarounds.
 
-configs tested: 60
-configs skipped: 1
+Currently 15015404425 is the only workaround like this, so move it to
+using this new infrastructure.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+PTL A0 is impacted by 15015404425, but only applies to Compute Die A0
+stepping. The reality of modern platforms is that we're a Multi Chip
+Package with logic spread acress multiple dies. This information not
+being readily available during PCI probe without a read makes this more
+complicated.
 
-tested configs:
-alpha                             allnoconfig    gcc-15.1.0
-alpha                            allyesconfig    gcc-15.1.0
-arc                               allnoconfig    gcc-15.1.0
-arc                   randconfig-001-20250625    gcc-11.5.0
-arc                   randconfig-002-20250625    gcc-12.4.0
-arm                               allnoconfig    clang-21
-arm                   randconfig-001-20250625    clang-21
-arm                   randconfig-002-20250625    gcc-11.5.0
-arm                   randconfig-003-20250625    gcc-13.3.0
-arm                   randconfig-004-20250625    gcc-15.1.0
-arm64                             allnoconfig    gcc-15.1.0
-arm64                 randconfig-001-20250625    gcc-11.5.0
-arm64                 randconfig-002-20250625    clang-20
-arm64                 randconfig-003-20250625    gcc-12.3.0
-arm64                 randconfig-004-20250625    clang-20
-csky                              allnoconfig    gcc-15.1.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-21
-hexagon                          allyesconfig    clang-21
-i386        buildonly-randconfig-001-20250625    clang-20
-i386        buildonly-randconfig-002-20250625    gcc-12
-i386        buildonly-randconfig-003-20250625    gcc-12
-i386        buildonly-randconfig-004-20250625    gcc-12
-i386        buildonly-randconfig-005-20250625    clang-20
-i386        buildonly-randconfig-006-20250625    clang-20
-loongarch                        allmodconfig    gcc-15.1.0
-loongarch                         allnoconfig    gcc-15.1.0
-m68k                             allmodconfig    gcc-15.1.0
-m68k                              allnoconfig    gcc-15.1.0
-m68k                             allyesconfig    gcc-15.1.0
-microblaze                       allmodconfig    gcc-15.1.0
-microblaze                        allnoconfig    gcc-15.1.0
-microblaze                       allyesconfig    gcc-15.1.0
-mips                              allnoconfig    gcc-15.1.0
-nios2                             allnoconfig    gcc-14.2.0
-openrisc                          allnoconfig    gcc-15.1.0
-parisc                            allnoconfig    gcc-15.1.0
-powerpc                           allnoconfig    gcc-15.1.0
-riscv                             allnoconfig    gcc-15.1.0
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-21
-s390                             allyesconfig    gcc-15.1.0
-sh                               allmodconfig    gcc-15.1.0
-sh                                allnoconfig    gcc-15.1.0
-sh                               allyesconfig    gcc-15.1.0
-sparc                            allmodconfig    gcc-15.1.0
-sparc                             allnoconfig    gcc-15.1.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-21
-um                               allyesconfig    gcc-12
-x86_64                            allnoconfig    clang-20
-x86_64      buildonly-randconfig-001-20250625    gcc-12
-x86_64      buildonly-randconfig-002-20250625    clang-20
-x86_64      buildonly-randconfig-003-20250625    clang-20
-x86_64      buildonly-randconfig-004-20250625    clang-20
-x86_64      buildonly-randconfig-005-20250625    clang-20
-x86_64      buildonly-randconfig-006-20250625    clang-20
-x86_64                              defconfig    gcc-11
-x86_64                          rhel-9.4-rust    clang-18
-xtensa                            allnoconfig    gcc-15.1.0
+Apply 15015404425 to PTL unconditionally during PCI probe (and GT init).
+After GT init use the Media GT stepping to determine if we can disable
+this workaround.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+v2: Change naming from SoC to device, address styling issues, update
+commit messages
+v3: rebase
+
+Matt Atwood (5):
+  drm/xe: add xe_device_wa infrastructure
+  drm/xe: Add infrastructure for Device OOB workarounds
+  drm/xe: Move Wa_15015404425 to use the new EX_DEVICE_WA macro
+  drm/xe: extend Wa_15015404425 to apply to PTL
+  drm/xe: disable wa_15015404425 for PTL B0
+
+ drivers/gpu/drm/xe/Makefile               | 11 +++++-
+ drivers/gpu/drm/xe/xe_device_types.h      |  9 +++++
+ drivers/gpu/drm/xe/xe_device_wa_oob.rules |  2 +
+ drivers/gpu/drm/xe/xe_gen_wa_oob.c        | 27 +++++++++----
+ drivers/gpu/drm/xe/xe_mmio.c              | 10 ++---
+ drivers/gpu/drm/xe/xe_pci.c               | 11 ++++++
+ drivers/gpu/drm/xe/xe_rtp.c               |  5 +++
+ drivers/gpu/drm/xe/xe_rtp.h               |  3 +-
+ drivers/gpu/drm/xe/xe_rtp_types.h         |  2 +
+ drivers/gpu/drm/xe/xe_wa.c                | 46 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa.h                | 18 +++++++--
+ drivers/gpu/drm/xe/xe_wa_oob.rules        |  1 +
+ 12 files changed, 127 insertions(+), 18 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_device_wa_oob.rules
+
+-- 
+2.49.0
+
