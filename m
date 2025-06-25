@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4043CC7115C
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 16:57:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 724D5C7EE2A
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 17:02:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F078C10E7A2;
-	Wed, 25 Jun 2025 16:57:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mNgLB8Ds";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EABD10E7A2;
- Wed, 25 Jun 2025 16:57:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750870627; x=1782406627;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wBhqdHFT6q92MdaZKb3oeHHxeJu1lqs/E+7CU/KnemU=;
- b=mNgLB8Ds2bQQs4PRPvP/CvxKXLcsQqxIgP92RizEQYzIRMyYkTifpe5y
- gnUgf9FiZql14xEsgCaTePt4Xx1XYaJvzpZ9ULDA1fZdryp/QpnK7DacX
- o5o3vJzbY1Vy568WIoI63oQwhRyad/k3F818UJusDWtIV64fBuH0ovZz1
- UbjT8Yv+Ftv5EgKIGxjvBOWmHn27aZCPeVlRZ+XDlxCD9USZQvVN0G08a
- /jFUZHSsHNfyzkXfg1lJoqCWKaeQpJiH13OPsq9M7/LtBWoEwIWD9FNUJ
- Mh4w9ebF9CMKjHyI+LLG8vYcOlNjjbNth6h9vrLlQZLT1GB81CrqWJcfn g==;
-X-CSE-ConnectionGUID: SE0njLpvRBKj+zZT/8tBzQ==
-X-CSE-MsgGUID: nxRgjd4FTvCYUDLgI2g+Dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53214469"
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="53214469"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 09:57:07 -0700
-X-CSE-ConnectionGUID: 3X4X4U68Ttq5Zj9Z5nIKSw==
-X-CSE-MsgGUID: TapVp8apSniM0HuyJr/5Cg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="151696740"
-Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
- by orviesa010-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2025 09:57:04 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- alexander.usyskin@intel.com, gregkh@linuxfoundation.org,
- daniele.ceraolospurio@intel.com
-Subject: [PATCH v4 10/10] drm/xe/xe_late_bind_fw: Select INTEL_MEI_LATE_BIND
- for CI
-Date: Wed, 25 Jun 2025 22:30:15 +0530
-Message-Id: <20250625170015.33912-11-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250625170015.33912-1-badal.nilawar@intel.com>
-References: <20250625170015.33912-1-badal.nilawar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9682E10E79E;
+	Wed, 25 Jun 2025 17:02:00 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67D1F10E79C;
+ Wed, 25 Jun 2025 17:02:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Cleaning_up_code_related_?=
+ =?utf-8?q?to_VRAM_regions_and_its_initialization_-_part_2_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 25 Jun 2025 17:02:00 -0000
+Message-ID: <175087092042.109144.10977513288152177148@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250625150116.3166615-1-piotr.piorkowski@intel.com>
+In-Reply-To: <20250625150116.3166615-1-piotr.piorkowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,28 +36,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not review
+== Series Details ==
 
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
----
- drivers/gpu/drm/xe/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+Series: Cleaning up code related to VRAM regions and its initialization - part 2 (rev8)
+URL   : https://patchwork.freedesktop.org/series/149503/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 30ed74ad29ab..b161e1156c73 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -44,6 +44,7 @@ config DRM_XE
- 	select WANT_DEV_COREDUMP
- 	select AUXILIARY_BUS
- 	select HMM_MIRROR
-+	select INTEL_MEI_LATE_BIND
- 	help
- 	  Driver for Intel Xe2 series GPUs and later. Experimental support
- 	  for Xe series is also available.
--- 
-2.34.1
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3f4825290c7324d26ed45f7ffc647ecacfa725b2
+Author: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Date:   Wed Jun 25 17:01:16 2025 +0200
+
+    drm/xe: Unify the initialization of VRAM regions
+    
+    Currently in the drivers we have defined VRAM regions per device and per
+    tile. Initialization of these regions is done in two completely different
+    ways. To simplify the logic of the code and make it easier to add new
+    regions in the future, let's unify the way we initialize VRAM regions.
+    
+    v2:
+    - fix doc comments in struct xe_vram_region
+    - remove unnecessary includes (Jani)
+    v3:
+    - move code from xe_vram_init_regions_managers to xe_tile_init_noalloc
+      (Matthew)
+    - replace ioremap_wc to devm_ioremap_wc for mapping VRAM BAR
+      (Matthew)
+    - Replace the tile id parameter with vram region in the xe_pf_begin
+      function.
+    
+    Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+    Cc: Stuart Summers <stuart.summers@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch b5a4f1f5ebf74c0b2c583cb7ea8dd768d8f315db drm-intel
+96956a677039 drm/xe: Use devm_ioremap_wc for VRAM mapping and drop manual unmap
+9e630a9de490 drm/xe: Use dynamic allocation for tile and device VRAM region structures
+8be3e0faa1bf drm/xe: Move struct xe_vram_region to a dedicated header
+-:275: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#275: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 265 lines checked
+3f4825290c73 drm/xe: Unify the initialization of VRAM regions
+
 
