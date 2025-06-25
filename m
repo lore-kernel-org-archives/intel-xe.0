@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19972C7115C
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 08:57:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E1B4C7115C
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 09:00:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBE5B10E094;
-	Wed, 25 Jun 2025 08:57:25 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F031410E094;
- Wed, 25 Jun 2025 08:57:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5956455615702437067=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6277F10E6AE;
+	Wed, 25 Jun 2025 09:00:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J4d1O67I";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F1E710E6AE
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 09:00:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750842006; x=1782378006;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=x/bksDZFfdCBN5AI6XiDNCazx5IZegJ7W+lXLCFxJeg=;
+ b=J4d1O67IsTuKmAfSUjMS3KiLdm+ZO3YFlZ3xj3jDLC/PgYKQVIz+ZTBL
+ e8T1MpA864NbkVZIAXyC4G4OfLXWygalvldgzPYnAKuDAxgjniB209kEB
+ WgO0gaswcwKPg8M5jaTiOa5hAf0LLXGN0i2Q+mva1RCGEb/pqZcOhGhTF
+ hmlp77UyVr8LCulYnaejgawA33knrc0mFVVl2KLRFG+Pj2BGZDR+WWIGz
+ 4oDVYcH3CYUwOdBkg8/qGyoJ0193eAnYiUy/ZfcAJsEE1SuVs8N9jzPTi
+ cbtQjXaobo9rvrTnFoM4a2nFQz9QbUzdVijwStAmuNc6UTs6IXLR6xFV4 w==;
+X-CSE-ConnectionGUID: 1YZj/6uFQvmYWPLmpkfQ8Q==
+X-CSE-MsgGUID: hyfBfCa1QC+dzeW2zJ9jnw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="56904422"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="56904422"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2025 02:00:06 -0700
+X-CSE-ConnectionGUID: vzI//C5GQFOKE8dlF31Bzw==
+X-CSE-MsgGUID: kH68RJu5R4avk6xA3pWwkw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="151575960"
+Received: from monicael-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.78])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2025 02:00:03 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>, =?utf-8?Q?Pi=C3=B3rkows?=
+ =?utf-8?Q?ki=2C_Piotr?=
+ <piotr.piorkowski@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Stuart Summers <stuart.summers@intel.com>, Matthew Auld
+ <matthew.auld@intel.com>, Satyanarayana K V P
+ <satyanarayana.k.v.p@intel.com>
+Subject: Re: [PATCH v3 1/2] drm/xe: Use dynamic allocation for tile and
+ device VRAM region structures
+In-Reply-To: <33d3faf0-40b3-400a-be2c-7366e28b7f94@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250624092213.2876711-1-piotr.piorkowski@intel.com>
+ <20250624092213.2876711-2-piotr.piorkowski@intel.com>
+ <33d3faf0-40b3-400a-be2c-7366e28b7f94@intel.com>
+Date: Wed, 25 Jun 2025 12:00:00 +0300
+Message-ID: <7e9a6252c25be63da00605273614edb2ea31c196@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Impleme?=
- =?utf-8?q?nt_wa=5F16011342517_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Jun 2025 08:57:24 -0000
-Message-ID: <175084184497.107248.16579254640814892310@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250625074911.194085-1-nemesa.garg@intel.com>
-In-Reply-To: <20250625074911.194085-1-nemesa.garg@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +72,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5956455615702437067==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 24 Jun 2025, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
+> On 24.06.2025 11:22, Pi=C3=B3rkowski, Piotr wrote:
+>> diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_asse=
+rt.h
+>> index 68fe70ce2be3..cd63cdd2dc78 100644
+>> --- a/drivers/gpu/drm/xe/xe_assert.h
+>> +++ b/drivers/gpu/drm/xe/xe_assert.h
+>> @@ -145,7 +145,7 @@
+>>  	const struct xe_tile *__tile =3D (tile);							\
+>>  	char __buf[10] __maybe_unused;								\
+>>  	xe_assert_msg(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg,=
+			\
+>> -		      __tile->id, ({ string_get_size(__tile->mem.vram.actual_physical=
+_size, 1,	\
+>> +		      __tile->id, ({ string_get_size(__tile->mem.vram->actual_physica=
+l_size, 1,	\
+>>  				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
+>>  })
+>>=20=20
+>
+> this assert will cause NPD on !DGFX, likely you need at least this:
+>
+> __tile->mem.vram ? __tile->mem.vram->actual_physical_size : 0
 
-== Series Details ==
+There'd be other benefits in adding abstractions for this, such as
+making vram an opaque pointer and not requiring its definition be
+included absolutely everywhere via xe_assert.h.
 
-Series: drm/i915/display: Implement wa_16011342517 (rev4)
-URL   : https://patchwork.freedesktop.org/series/149119/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19_BAT -> xe-pw-149119v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
+BR,
+Jani.
 
 
-Build changes
--------------
-
-  * Linux: xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19 -> xe-pw-149119v4
-
-  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19: bd57aee20daefb7b0dfe9017663668c92115ff19
-  xe-pw-149119v4: 149119v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149119v4/index.html
-
---===============5956455615702437067==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Implement wa_16011342517 (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149119/">https://patchwork.freedesktop.org/series/149119/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149119v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149119v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19_BAT -&gt; xe-pw-149119v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19 -&gt; xe-pw-149119v4</li>
-</ul>
-<p>IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3302-bd57aee20daefb7b0dfe9017663668c92115ff19: bd57aee20daefb7b0dfe9017663668c92115ff19<br />
-  xe-pw-149119v4: 149119v4</p>
-
-</body>
-</html>
-
---===============5956455615702437067==--
+--=20
+Jani Nikula, Intel
