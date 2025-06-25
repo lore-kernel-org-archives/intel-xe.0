@@ -4,51 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A7DFC77B7F
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 00:12:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63C7FC77B7F
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 00:15:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A4B10E1B2;
-	Wed, 25 Jun 2025 00:12:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F062B10E1B2;
+	Wed, 25 Jun 2025 00:15:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YfpciR6+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MdTKKlQg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D40DC10E1B2
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 00:12:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EDBC10E1B2
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 00:15:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750810334; x=1782346334;
- h=from:to:cc:subject:date:message-id:mime-version:
+ t=1750810557; x=1782346557;
+ h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=Hn8gwYPndKBCxlpCjYFv3eMX1A5KlQAN9rSCQlahU0I=;
- b=YfpciR6+cqO/LugAi8p/CdXKI53bKGJFgQhMWdhiaR2toLGRHfwXHL12
- SPSNmJNRxCy6ynXiaIf93lYSosbNiR1XODp+I1nZtIFIs0Xt67yhG0DP3
- 5M5arjY4u+10NawHbUzqUPf4X/FNwuyJJyKL3V0hVP/tk0xYS72zmPcFH
- PWM6lTPG5Vf3U3SM72iGg1hifV2Wbiypzd8phGHgCsVT8daTj4/Jm3bep
- TUxaCdFfVfxkDdKQI04YR2kkmkf5M0vBrCKP+aXNq6WPAmVB7OfAOBXbv
- g+0g9GlgZg57wIGPv3P+nL5xRY60ldz1/TniQYO2sWxPFCkVw12d9ZA3r g==;
-X-CSE-ConnectionGUID: Bo8GoTJYRqOL6jQTDwr8Ow==
-X-CSE-MsgGUID: ZdBxVDbSTkCVWk30h147zw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="55695376"
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="55695376"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 17:12:13 -0700
-X-CSE-ConnectionGUID: 86FWhLFFQ22t9kNISvsSOA==
-X-CSE-MsgGUID: 0frazFxuTDuoGDsehpISyA==
+ b=MdTKKlQgi3h6me29GelI9X/EAfDrJ0eaxaXO/C3VLuYcATh1sBAQdMXm
+ mgUFQDv0dJZnU1F0ml0oeYck4nDzCCJS0p3vmUI0dJyO4l6MVEzC5UoVP
+ jjZZ5B/Yx1kV/GgN89tmdossDNkJswC12P73b+z97XPBG2jFzEtP3OwR/
+ VfHiiSPWUklG/IYqXHYD0uR14S/Zf6ZINPnhrSQsqSdOF88hOngQcIayb
+ pXkWw8F+3hkBmguVWdVnSQDrL4kHUnlrFbtm6fCpjLNgrijTI9OhIZ8XA
+ tp9zV0spajg0/zOWMYb5AOwjVQUdH8oK2nJVHWGqoVJAO0Igqrs9cJBUn g==;
+X-CSE-ConnectionGUID: aGMrZ0NpQDKkrgmIDknFIw==
+X-CSE-MsgGUID: cUmx7NdJS8qEcIFIVtc4vw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="56853584"
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="56853584"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 17:15:56 -0700
+X-CSE-ConnectionGUID: CPB71HfORYiI8PculGnuFQ==
+X-CSE-MsgGUID: JtcBI5FkQ6Olp3v+r+3fXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="152581363"
+X-IronPort-AV: E=Sophos;i="6.16,263,1744095600"; d="scan'208";a="156089386"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 17:12:13 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 17:15:55 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- sanirban <sk.anirban@intel.com>, Badal Nilawar <badal.nilawar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH] Revert "drm/xe/ptl: Apply Wa_16026007364"
-Date: Tue, 24 Jun 2025 17:12:03 -0700
-Message-ID: <20250625001202.1616606-2-daniele.ceraolospurio@intel.com>
+Subject: [CI 1/2] Revert "drm/xe/ptl: Apply Wa_16026007364"
+Date: Tue, 24 Jun 2025 17:15:39 -0700
+Message-ID: <20250625001538.1617675-3-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
