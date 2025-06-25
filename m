@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8D3EC7EE39
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 18:08:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA2E9C7EE2A
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 18:08:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A691010E7BA;
-	Wed, 25 Jun 2025 18:08:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6729210E7BE;
+	Wed, 25 Jun 2025 18:08:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DPLgCxez";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MxXBXH1V";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD5710E236
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EDDE10E236
  for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 18:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750874898; x=1782410898;
+ t=1750874897; x=1782410897;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2bEfFrK6Dc5QFNNeFbUhl/Y81879OXdd+wHDx2/cj2M=;
- b=DPLgCxezOJBRQlqDpcosWsdQNbUhcdD0y5bt/UEiGcMaIYhsOizk3Ge/
- y2C7clWdku6RKk90a79ax3UFI1/VoFDiAZmjmpwNT6M3bY1CsUDiKsYW0
- I3l5nhsApD4pT2ja/Cu63SBNoAS+m56BJK6CqyIo6BOShElmFou+/Qd/f
- /Wq7p/t5AuctjW2T5swPX2qCKthY8dOJ6ewvYR4cm3sOC8DykQ2We9MzH
- tQVPmw/TD21dduDKXYhyxKFJGs4iCgLhYpEmWpv0UdC/Q5aD2n/8ibgQ+
- nYONnP0j39IbfW7Oc/rBG+ewd9zAF0oyi4D4tqr8MwVR222oDMKiP3l13 Q==;
-X-CSE-ConnectionGUID: tMCxEPTjQ9GaF1Rzi7i1Dw==
-X-CSE-MsgGUID: s4u8gR0CRBaIUOEn4CNTvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53293588"
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="53293588"
+ bh=vUgKoOjpt3lct2GcWxgRAHlHWyGJftxhdZUt5Ou5V0w=;
+ b=MxXBXH1VBh0btvnw8LaEhVR5hWPIfth7e7D9vU5G5QrffVzuKamIAVtU
+ 7Nug1kbSlvFyv9fSZVlGUcIJdSO4vFfmwlMBHFwPjC0kW2a3cDIZIAG4H
+ EDkW/FCzDH2adw3Mh9lisOeutptkM2DK2U0xFqwIonUpF/PnlhA8dimfu
+ zkeTpjpYBwci5gzhY51YhlYouX6cRMc4n9mspMwuVGaCY3brCmwpe/rCi
+ IHWQ9QN/TC7pn41Z/FzPRdy7qRcDfXqGj5b0kg4xkAXYLJ2iQRD9a/kP3
+ 3UEWqBKSgSpfMmI7cmZOnnd4qfYK6ccn6Xpvaf5nKYe43Vd2ik3ON/j4n g==;
+X-CSE-ConnectionGUID: LMjij1UgSJaBuDYnKW2WGA==
+X-CSE-MsgGUID: NPxFIYlnS52QqSAPPpRSjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53293585"
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="53293585"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Jun 2025 11:08:17 -0700
-X-CSE-ConnectionGUID: 6hjy3pKlRWWsV2ZdeuoPrA==
-X-CSE-MsgGUID: 5hWVoWDmTBGq7OLJfFxf4w==
+X-CSE-ConnectionGUID: ajyVeRioRRG6rNQVnN5X1g==
+X-CSE-MsgGUID: EwZjXA8tRoOt72G+e+5Bsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="175941845"
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="175941842"
 Received: from msatwood-mobl.jf.intel.com ([10.24.13.181])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 11:08:17 -0700
+ 25 Jun 2025 11:08:16 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com, matthew.d.roper@intel.com,
  rodrigo.vivi@intel.com, Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH v2 4/5] drm/xe: extend Wa_15015404425 to apply to PTL
-Date: Wed, 25 Jun 2025 11:08:10 -0700
-Message-ID: <20250625180811.17112-5-matthew.s.atwood@intel.com>
+Subject: [PATCH v2 3/5] drm/xe: Move Wa_15015404425 to use the new
+ EX_DEVICE_WA macro
+Date: Wed, 25 Jun 2025 11:08:09 -0700
+Message-ID: <20250625180811.17112-4-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250625180811.17112-1-matthew.s.atwood@intel.com>
 References: <20250625180811.17112-1-matthew.s.atwood@intel.com>
@@ -67,22 +68,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wa_15015404425 needs to be applied to PTL A0 to B0, a subsequent patch
-will address the complexity required to do this. For now apply to PTL as
-a whole.
+Move Wa_15015404425 to use the new implemented OOB macro XE_DEVICE_WA()
+
+v2: rename from SoC to Device
 
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_wa_oob.rules | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/xe/xe_device_wa_oob.rules |  1 +
+ drivers/gpu/drm/xe/xe_mmio.c              | 10 +++++-----
+ 2 files changed, 6 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-index b7d12ea4d65c..3a0c4ccc4224 100644
+index e69de29bb2d1..b7d12ea4d65c 100644
 --- a/drivers/gpu/drm/xe/xe_device_wa_oob.rules
 +++ b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-@@ -1 +1,2 @@
- 15015404425     PLATFORM(LUNARLAKE)
-+		PLATFORM(PANTHERLAKE)
+@@ -0,0 +1 @@
++15015404425     PLATFORM(LUNARLAKE)
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 7357458bc0d2..4990b3a47afd 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -22,6 +22,9 @@
+ #include "xe_macros.h"
+ #include "xe_sriov.h"
+ #include "xe_trace.h"
++#include "xe_wa.h"
++
++#include "generated/xe_soc_wa_oob.h"
+ 
+ static void tiles_fini(void *arg)
+ {
+@@ -163,9 +166,6 @@ static void mmio_flush_pending_writes(struct xe_mmio *mmio)
+ #define DUMMY_REG_OFFSET	0x130030
+ 	int i;
+ 
+-	if (mmio->tile->xe->info.platform != XE_LUNARLAKE)
+-		return;
+-
+ 	/* 4 dummy writes */
+ 	for (i = 0; i < 4; i++)
+ 		writel(0, mmio->regs + DUMMY_REG_OFFSET);
+@@ -176,8 +176,8 @@ u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
+ 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+ 	u8 val;
+ 
+-	/* Wa_15015404425 */
+-	mmio_flush_pending_writes(mmio);
++	if (XE_DEVICE_WA(mmio->tile->xe, 15015404425))
++		mmio_flush_pending_writes(mmio);
+ 
+ 	val = readb(mmio->regs + addr);
+ 	trace_xe_reg_rw(mmio, false, addr, val, sizeof(val));
 -- 
 2.49.0
 
