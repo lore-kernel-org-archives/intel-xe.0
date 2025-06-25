@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79382C7EE2A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DCC6C77B7C
 	for <intel-xe@archiver.kernel.org>; Wed, 25 Jun 2025 18:08:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E02710E7B5;
-	Wed, 25 Jun 2025 18:08:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A83D10E7B6;
+	Wed, 25 Jun 2025 18:08:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZRlgoinc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OL/BFhFP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAF8510E236
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 18:08:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B79010E236
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Jun 2025 18:08:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750874896; x=1782410896;
+ t=1750874898; x=1782410898;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Rabj5AEgzEIkX32aOvH6g7bFIJvOXXgKA+EmGdZXE3Y=;
- b=ZRlgoincOa1ZAu7oWxlmKDRooNLf3KeHBYQUQwsLdWjOXwpC18fVdgiN
- IQCx3RTSNHLjBvBJpEynoQMLMg+1MucffQ15lhuooJTRKHrYEMGtogIii
- X+WSFuOeDF2pkUL7ctxfk9IrYPgAvg6xwNDUHSXuyJsVNAwCTSk8SNAzR
- NO5caCUCa8buEtJixnSQDAF63l1EJFxxyCWmbGJfFjCe+BtjCSjYmepmj
- XreFYeyTt4mu1kyGxMGIhn0JIdvnKbs4lUvPZ6XZaA6bmXwOMVoJHsz0x
- YsbAtQ7vvkIaOwsQrxveicjV1lWxFbZoG5yTqa/XUywSaaBHGHPkZm33T A==;
-X-CSE-ConnectionGUID: FKqzUxH+QxSgZOcuzy3pUw==
-X-CSE-MsgGUID: 4ZoHm0bURFaFfhrvqLOC6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53293582"
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="53293582"
+ bh=9z1JxGiBhRiXzn7MCBDGOTWHLL3eVZUYprUkr3VnEeo=;
+ b=OL/BFhFPwEwoRpjuqxWKqo0YYY31/7yKqNHB5MDGj6sEcnoWqd2OfX71
+ IsQj4oRmHMyaEh1QldWz7vmq/NK0quoplfycxS08l0myMRaQo6nn73+Wc
+ faEAXYhikq4evCOiBod4RUojnGs2smo8kvzw8iaAlIEMIyL6MJEbUrGuR
+ wAWfIlmrJRSB0+zlY4IWwjPfRQ0F3S2e7pIcg/zE+b3oKDplcnqfET5NE
+ 6Zqhp8NYlSCHuja3rVer/wQrKra9JRekB4e5wp1hALV5vgkmkw1qvpVFS
+ mncrGbmweeFNm8H4Y+le12xbg65KvLY57akLTLDOecPRDMipf3mS33rZJ g==;
+X-CSE-ConnectionGUID: VEo21EuzT/ODp93PXGlElQ==
+X-CSE-MsgGUID: D0YvHi6qTeGT4Eap31KVDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53293590"
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="53293590"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 11:08:16 -0700
-X-CSE-ConnectionGUID: zgZJDgJlQl+kwCA9iIolZw==
-X-CSE-MsgGUID: Fi6caULZQd6qRreW1ZAZUg==
+ 25 Jun 2025 11:08:18 -0700
+X-CSE-ConnectionGUID: I1VXaHiTSbSuBms+/G/2+A==
+X-CSE-MsgGUID: OWGg9lYSTh2osDOFDMS3zQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="175941834"
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; d="scan'208";a="175941849"
 Received: from msatwood-mobl.jf.intel.com ([10.24.13.181])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 11:08:15 -0700
+ 25 Jun 2025 11:08:18 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com, matthew.d.roper@intel.com,
  rodrigo.vivi@intel.com, Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH v2 1/5] drm/xe: add xe_device_wa infrastructure
-Date: Wed, 25 Jun 2025 11:08:07 -0700
-Message-ID: <20250625180811.17112-2-matthew.s.atwood@intel.com>
+Subject: [PATCH v2 5/5] drm/xe: disable wa_15015404425 for PTL B0
+Date: Wed, 25 Jun 2025 11:08:11 -0700
+Message-ID: <20250625180811.17112-6-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250625180811.17112-1-matthew.s.atwood@intel.com>
 References: <20250625180811.17112-1-matthew.s.atwood@intel.com>
@@ -67,117 +67,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are some workarounds that must be applied before gt init,
-wa_150154044425 for example. Instead of sprinkling them conditionally
-throughout the driver as we did for i915 generate an oob.rules file
-reusing the RTP infrastructure to make these easier to track.
+This workaround only applies to PTL Compute Die A0. The reality of
+modern platforms is we're Multi Chip Packages with logic spread across
+multiple dies. Because this information is not available during PCI
+probe it becomes a bit more complicated.
 
-v2: rename xe_soc_wa to xe_device_wa
+This workaround needs to be applied on PTL until we prove that we are
+not Compute Die A0 stepping without reading any MMIOs. So use the new
+XE_DEVICE_WA infrastructure to apply early, until we can determine our
+stepping.
+
+There are at least two ways to determine Compute Die stepping. This
+patch uses the Media GT stepping to map to Compute Die stepping, in this
+case Compute and Media dies step synchronously.
+
+Since we're using the Media GT information to determine Compute Die
+stepping, use the XE_WA and the oob infrastructure to come back and
+toggle the workaround off when we know its safe, and after GT init.
+
+v2: rename SoC to device, avoid null pointer dereference, update commit
+message.
 
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile               | 11 ++++++++-
- drivers/gpu/drm/xe/xe_device_wa_oob.rules |  0
- drivers/gpu/drm/xe/xe_gen_wa_oob.c        | 27 ++++++++++++++++-------
- 3 files changed, 29 insertions(+), 9 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_device_wa_oob.rules
+ drivers/gpu/drm/xe/xe_pci.c        | 7 +++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 1 +
+ 2 files changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index eee6bac01a00..64498ce2a839 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -21,6 +21,15 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
- 		 $(src)/xe_wa_oob.rules
- 	$(call cmd,wa_oob)
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index a9f708608f3e..a294a1b26d8f 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -34,6 +34,9 @@
+ #include "xe_tile.h"
+ #include "xe_wa.h"
  
-+generated_device_oob := $(obj)/generated/xe_device_wa_oob.c $(obj)/generated/xe_device_wa_oob.h
-+quiet_cmd_device_wa_oob = GEN     $(notdir $(generated_device_oob))
-+      cmd_device_wa_oob = mkdir -p $(@D); $^ $(generated_device_oob)
-+$(obj)/generated/%_device_wa_oob.c $(obj)/generated/%_device_wa_oob.h: $(obj)/xe_gen_wa_oob \
-+		 $(src)/xe_device_wa_oob.rules
-+	$(call cmd,device_wa_oob)
++#include "generated/xe_wa_oob.h"
++#include "generated/xe_device_wa_oob.h"
 +
+ enum toggle_d3cold {
+ 	D3COLD_DISABLE,
+ 	D3COLD_ENABLE,
+@@ -896,6 +899,10 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	drm_dbg(&xe->drm, "d3cold: capable=%s\n",
+ 		str_yes_no(xe->d3cold.capable));
+ 
++	if (xe->tiles->media_gt != NULL &&
++	    XE_WA(xe->tiles->media_gt, 15015404425_disable))
++		xe->oob[XE_DEVICE_WA_OOB_15015404425] = 0;
 +
-+
- # Please keep these build lists sorted!
- 
- # core driver code
-@@ -339,4 +348,4 @@ $(obj)/%.hdrtest: $(src)/%.h FORCE
- 	$(call if_changed_dep,hdrtest)
- 
- uses_generated_oob := $(addprefix $(obj)/, $(xe-y))
--$(uses_generated_oob): $(obj)/generated/xe_wa_oob.h
-+$(uses_generated_oob): $(obj)/generated/xe_wa_oob.h $(obj)/generated/xe_device_wa_oob.h
-diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-new file mode 100644
-index 000000000000..e69de29bb2d1
-diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-index ed9183599e31..d8bb26317f28 100644
---- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-+++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-@@ -18,8 +18,8 @@
- 	" *\n" \
- 	" * This file was generated from rules: %s\n" \
- 	" */\n" \
--	"#ifndef _GENERATED_XE_WA_OOB_\n" \
--	"#define _GENERATED_XE_WA_OOB_\n" \
-+	"#ifndef _GENERATED_%s_\n" \
-+	"#define _GENERATED_%s_\n" \
- 	"\n" \
- 	"enum {\n"
- 
-@@ -52,7 +52,7 @@ static char *strip(char *line, size_t linelen)
- }
- 
- #define MAX_LINE_LEN 4096
--static int parse(FILE *input, FILE *csource, FILE *cheader)
-+static int parse(FILE *input, FILE *csource, FILE *cheader, bool device)
- {
- 	char line[MAX_LINE_LEN + 1];
- 	char *name, *prev_name = NULL, *rules;
-@@ -96,7 +96,10 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
- 		}
- 
- 		if (name) {
--			fprintf(cheader, "\tXE_WA_OOB_%s = %u,\n", name, idx);
-+			if (device == false)
-+				fprintf(cheader, "\tXE_WA_OOB_%s = %u,\n", name, idx);
-+			else
-+				fprintf(cheader, "\tXE_DEVICE_WA_OOB_%s = %u,\n", name, idx);
- 
- 			/* Close previous entry before starting a new one */
- 			if (idx)
-@@ -117,8 +120,10 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
- 	/* Close last entry */
- 	if (idx)
- 		fprintf(csource, ") },\n");
--
--	fprintf(cheader, "\t_XE_WA_OOB_COUNT = %u\n", idx);
-+	if (device == false)
-+		fprintf(cheader, "\t_XE_WA_OOB_COUNT = %u\n", idx);
-+	else
-+		fprintf(cheader, "\t_XE_DEVICE_WA_OOB_COUNT = %u\n", idx);
- 
  	return 0;
- }
-@@ -157,9 +162,15 @@ int main(int argc, const char *argv[])
- 		}
- 	}
  
--	fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn);
-+	char *device = strstr(args[ARGS_CHEADER].fn, "device_");
-+	if (device == NULL)
-+		fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, "XE_WA_OOB", "XE_WA_OOB");
-+	else
-+		fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, "XE_DEVICE_WA_OOB", "XE_DEVICE_WA_OOB");
-+
-+	bool prefix = device != NULL ? true : false;
- 	ret = parse(args[ARGS_INPUT].f, args[ARGS_CSOURCE].f,
--		    args[ARGS_CHEADER].f);
-+		    args[ARGS_CHEADER].f, prefix);
- 	if (!ret)
- 		fprintf(args[ARGS_CHEADER].f, FOOTER);
- 
+ err_driver_cleanup:
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 8c2aa48cb33a..822cbff13819 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -71,3 +71,4 @@ no_media_l3	MEDIA_VERSION(3000)
+ # primary GT GMDID
+ 14022085890	GRAPHICS_VERSION(2001)
+ 16026007364 	MEDIA_VERSION(3000)
++15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
 -- 
 2.49.0
 
