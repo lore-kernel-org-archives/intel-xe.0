@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2957BC7EE33
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BF4DC83000
 	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 18:28:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FE2010E8EC;
-	Thu, 26 Jun 2025 18:28:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DC7510E8EA;
+	Thu, 26 Jun 2025 18:28:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SfbNUcht";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i3NueJ8/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8906A10E8EA
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Jun 2025 18:28:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8611E10E2F0
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Jun 2025 18:28:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750962507; x=1782498507;
+ t=1750962506; x=1782498506;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nagqlQKRtIw+zBplhJKtwrAjp5T6w5QwrLB28WYqtms=;
- b=SfbNUchtdIgHS6tzFwdw3NXFlUZylCsKnagzLdjDfhhWzwdcYNAqig4b
- sSifL6dJ0aD39QOnnk8Gg63i+qD/Rq0oz1C1ZZK6i4L8fmU8lmFIbra2g
- ZK0ZDdEs6ZsvpllFrf5ddRHJAsPl749eTJwUzQUFkMvO8NJLHUHS1FzJ+
- mHXKRKRTZDREYvnKsRwzLRrl8jAYdALoNZdldNkLpdp9jIbpznmaLTsB9
- /yJiMCResprS8RjwnPfvmvq8ZpD/rN7jTLANyDLNGgBgA159/xvdhirHo
- nN73CR9X9+UKrGdxLvyXZsD8BVn4GL/Lf9sy6YyCMBih1d2FmD4emP2ty w==;
-X-CSE-ConnectionGUID: zlkuAxWbQ9GEbnDYZRikeQ==
-X-CSE-MsgGUID: jesZOhp1RrCZYNdgGO0sRg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="64626692"
-X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="64626692"
+ bh=iN0a1HacK7Ij0YFYHKeMCi5saRaXNBrxsVXjH+17+aI=;
+ b=i3NueJ8/QnTNbn7WcgMlkjRxa6zV/IGoNUTounMhDRrXuVaneSdcm6Bn
+ wvoGvY0pi/9CCpCzGiPRbGCRn99IjwzZ/uNa8uPqobgd4Kpvjo5F/Ku/e
+ 1Fu8P30IUh7IyKYJGnFtoSWC4CqXTOOBCWltliktMQmakP2WikPy1HXL2
+ ZatrrTiwl1o4gnvo8qzJuq8eXVJ0Y9PUqXoAG73wO1En0jS06qgzsPssV
+ E7LE9ijnO1sgbyArMRVX1Xb7RqI/YmV7xuF8aEdNuFhBlctKyY5IkiJZq
+ 5y4ey/B5Z/CzOp6YTFEp9G34I9dY5Mt5wZK6wzZO7y60auPEM/P7aCEHp g==;
+X-CSE-ConnectionGUID: DnwBijaQTvSzoGxJnSWL1A==
+X-CSE-MsgGUID: eyv0PGqpTt+vmWoC9hEBug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="64626691"
+X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="64626691"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 11:28:25 -0700
-X-CSE-ConnectionGUID: 6yxki+urQkqfkl4HWfhHMA==
-X-CSE-MsgGUID: FEKwL9kjRIarkXcr/5iUDg==
+ 26 Jun 2025 11:28:24 -0700
+X-CSE-ConnectionGUID: 3SW5A+/UT1CLLP5aIkmaiQ==
+X-CSE-MsgGUID: 4koRrjQzTHqRvE97TKUD7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="152766339"
+X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="152766326"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 11:28:25 -0700
+ 26 Jun 2025 11:28:24 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH 3/7] Revert "drm/xe/pvc: Add GuC firmware definition"
-Date: Thu, 26 Jun 2025 11:28:09 -0700
-Message-ID: <20250626182805.1701096-12-daniele.ceraolospurio@intel.com>
+Subject: [PATCH 2/7] Revert "drm/xe/ptl: Add GuC firmware definition"
+Date: Thu, 26 Jun 2025 11:28:08 -0700
+Message-ID: <20250626182805.1701096-11-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250626182805.1701096-9-daniele.ceraolospurio@intel.com>
 References: <20250626182805.1701096-9-daniele.ceraolospurio@intel.com>
@@ -66,7 +66,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit cf3b2c395f5d5ad17c689bf5cdbda537ec62d0cb.
+This reverts commit 738538d0edb88e0c2f758dfc299146087f34826e.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
@@ -74,17 +74,17 @@ Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 6e04032ec3e0..6d0869518652 100644
+index ec946727828f..6e04032ec3e0 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -118,7 +118,6 @@ struct fw_blobs_by_type {
+@@ -115,7 +115,6 @@ struct fw_blobs_by_type {
+ #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
+ 
+ #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
+-	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	ptl,	70, 46, 2))	\
  	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 44, 1))	\
  	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 44, 1))	\
  	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	mtl,	70, 44, 1))	\
--	fw_def(PVC,		GT_TYPE_ANY,	mmp_ver(xe,	guc,	pvc,	70, 44, 1))	\
- 	fw_def(DG2,		GT_TYPE_ANY,	major_ver(i915,	guc,	dg2,	70, 44, 1))	\
- 	fw_def(DG1,		GT_TYPE_ANY,	major_ver(i915,	guc,	dg1,	70, 44, 1))	\
- 	fw_def(ALDERLAKE_N,	GT_TYPE_ANY,	major_ver(i915,	guc,	tgl,	70, 44, 1))	\
 -- 
 2.43.0
 
