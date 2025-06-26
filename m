@@ -4,50 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41A9FC7EE32
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 08:57:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6290C7EE32
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 09:12:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0211310E8D8;
-	Thu, 26 Jun 2025 08:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42F1510E83B;
+	Thu, 26 Jun 2025 09:12:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="FKE5Jb2r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SDkqiwyI";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E4BE10E8D2
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Jun 2025 08:57:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pURS3qYp5Bwsfmkq7FvoBbqxUXT92dxacOS37fXwp6U=; b=FKE5Jb2rBZpkYYTpvAj2Hdk74W
- H89HqmHvDzMwt6FZzC8SyNgvFxeL7HGVrRVrb2viuCRWlEq1WFzjAm7/6+qn88U4L443ehSNhUL41
- 73e6g8WOrmmaI3IMTRkGoj/cg5npxxtNcqptDZYKvSjMfFahfml1KoCu0TnI5NtB+Tvwizz/2yNxw
- XQx4+6BMbNEV4WVx98xjNyLUaz5Bqn1D9MNG9oQSsQN5yCvFqoyRkRw+7VJYsiR6G9NaODcrzd9lG
- RG573NxzfQvs1dHtQsSYFqwR42E4yDu4+dhvr2CXdcaRVX1KJK9alFUFSWRS7ocQVshcJAPuRUzdU
- mU9NnVOw==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uUiPq-008uSd-7Z; Thu, 26 Jun 2025 10:57:06 +0200
-Message-ID: <856c8bb5-c702-4079-b581-da40b743d0b4@igalia.com>
-Date: Thu, 26 Jun 2025 09:57:05 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2423F10E2B5;
+ Thu, 26 Jun 2025 09:12:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750929137; x=1782465137;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=zsmnffpbjrYcjOOdFudwF49wionT85nj91BDORuwcUE=;
+ b=SDkqiwyIixstp+YzE1i0rouZySaEgglgu/jV+Heszi/E8IOvxnvEqgKm
+ Zo8R3tvofFABBPBUcEDs+h2IM4+lGa3zhSovMo+eG9HmxXrpHT4FODpwV
+ z+DD3QL1J+q6rxquMb7QiHOPLbcrOYvSvYwUCmuT0YfrzrhpEKDTuIUy2
+ j/grt6OLzo8BSi60IQNnHMbaosPBDm4sicGOcFZpn9Y5MZMvjgKaY4Ras
+ i+BJhYgppR2G5rnm4mLGdk1mlquq2XCiMT7ZdL+MemO6pjkmlIHVwnGCn
+ svn/bA6o5PN/jwjm7GYwBmzq1MX69yMfZiRlsQRcMzJsN3up7rI6J6kaj A==;
+X-CSE-ConnectionGUID: XLUm0a/4SYyTqrBycPb3dQ==
+X-CSE-MsgGUID: xBMyyhZYTEmwV42fzvWw4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="52941027"
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="52941027"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 02:12:17 -0700
+X-CSE-ConnectionGUID: V3zFRV66QNW7RyeobLZDxA==
+X-CSE-MsgGUID: 8DrNf1KwQLq+gIQnPLPsZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="152977205"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.120])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 02:12:14 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Imre Deak <imre.deak@gmail.com>
+Subject: Re: [PATCH 11/20] drm/i915/dp: Reprobe connector if getting/acking
+ device IRQs fails
+In-Reply-To: <20250626082053.219514-12-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250626082053.219514-1-imre.deak@intel.com>
+ <20250626082053.219514-12-imre.deak@intel.com>
+Date: Thu, 26 Jun 2025 12:12:11 +0300
+Message-ID: <625ce1c9c46ba93027fecadae4803fc86450ad50@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/7] drm/xe/xelp: Implement Wa_16010904313
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
- Matt Roper <matthew.d.roper@intel.com>
-References: <20250625153632.21220-1-tvrtko.ursulin@igalia.com>
- <20250625153632.21220-7-tvrtko.ursulin@igalia.com>
- <o6dw26fxwlpnj7dxpbdt2r62662rbyamjb24dcnvzysf3jh2yi@rnragrribl6k>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <o6dw26fxwlpnj7dxpbdt2r62662rbyamjb24dcnvzysf3jh2yi@rnragrribl6k>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,192 +70,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, 26 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
+> From: Imre Deak <imre.deak@gmail.com>
+>
+> An AUX access failure during HPD IRQ handling should be handled by
+> falling back to a full connector detection, ensure that if the failure
+> happens while reading/acking a device service IRQ.
+>
+> Signed-off-by: Imre Deak <imre.deak@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 21 +++++++++++++++------
+>  1 file changed, 15 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 7793a72983abd..7eb208d2c321b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5393,16 +5393,20 @@ void intel_dp_check_link_state(struct intel_dp *intel_dp)
+>  	intel_encoder_link_check_queue_work(encoder, 0);
+>  }
+>  
+> -static void intel_dp_check_device_service_irq(struct intel_dp *intel_dp)
+> +static bool intel_dp_check_device_service_irq(struct intel_dp *intel_dp)
 
-On 25/06/2025 22:47, Lucas De Marchi wrote:
-> On Wed, Jun 25, 2025 at 04:36:31PM +0100, Tvrtko Ursulin wrote:
->> Add XeLP workaround 16010904313.
->>
->> The description calls for it to be emitted as the indirect context buffer
->> workaround for render and compute, and from the workaround batch buffer
->> for the other engines. Therefore we plug into the previously added
->> respective top level emission functions.
->>
->> The actual command streamer programming sequence differs from what is
->> described in the PRM, in that it assumes the listed LRCA offset was
->> supposed to actually refer to the location of the CTX_TIMESTAMP register
->> instead of LRCA + 0x180c (which is in GPR space). Latter appears to make
->> more sense under the assumption that multiple writes are helping with
->> restoring the CTX_TIMESTAMP register content from the saved context 
->> state.
-> 
-> humn... but i915, which is supposedly doing the right thing,
-> diverges from the PRM by using LRM + LRR + LRR. Here you are doing
+I don't think "check" is very intuitive in function names. Check
+something, but then what? Is it like an assert or does it do something
+active or what?
 
-Matt reported i915 was doing the wrong thing actually, compared to what 
-was documented in the WA database at least. Not that the latter was 
-completely clear, but we had a brief guessing game and I understood the 
-conclusion was 3x LRM to forcefully restore CTX_TIMESTAMP is what made 
-most sense.
+What does a boolean return from a check function mean?
 
-See 
-https://lore.kernel.org/intel-xe/20250523174135.GS5080@mdroper-desk1.amr.corp.intel.com/.
+It's not obvious to the reader at all.
 
-> something different from both. Does gputop show saner values after this?
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+>  	u8 val;
+>  
+>  	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> -			      DP_DEVICE_SERVICE_IRQ_VECTOR, &val) != 1 || !val)
+> -		return;
+> +			      DP_DEVICE_SERVICE_IRQ_VECTOR, &val) != 1)
+> +		return true;
 
-Gputop looks okay to me. Are you saying this WA is fixing something is 
-regularly goes wrong so could be easily observed? I thought it was about 
-a rare failure to restore CTX_TIMESTAMP but that was just a guess to be 
-fair.
+Looks like true means the check failed... while usually true for boolean
+functions means success.
 
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> ---
->> .../gpu/drm/xe/instructions/xe_mi_commands.h  |  1 +
->> drivers/gpu/drm/xe/xe_lrc.c                   | 45 +++++++++++++++++++
->> drivers/gpu/drm/xe/xe_wa_oob.rules            |  1 +
->> 3 files changed, 47 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/ 
->> drivers/gpu/drm/xe/instructions/xe_mi_commands.h
->> index e3f5e8bb3ebc..c47b290e0e9f 100644
->> --- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
->> +++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
->> @@ -65,6 +65,7 @@
->>
->> #define MI_LOAD_REGISTER_MEM        (__MI_INSTR(0x29) | 
->> XE_INSTR_NUM_DW(4))
->> #define   MI_LRM_USE_GGTT        REG_BIT(22)
->> +#define   MI_LRM_ASYNC            REG_BIT(21)
->>
->> #define MI_LOAD_REGISTER_REG        (__MI_INSTR(0x2a) | 
->> XE_INSTR_NUM_DW(3))
->> #define   MI_LRR_DST_CS_MMIO        REG_BIT(19)
->> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
->> index d4f558a863eb..f86a09ed6848 100644
->> --- a/drivers/gpu/drm/xe/xe_lrc.c
->> +++ b/drivers/gpu/drm/xe/xe_lrc.c
->> @@ -52,6 +52,11 @@ lrc_to_xe(struct xe_lrc *lrc)
->> static bool
->> gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class 
->> class)
->> {
->> +    if (XE_WA(gt, 16010904313) &&
->> +        (class == XE_ENGINE_CLASS_RENDER ||
->> +         class == XE_ENGINE_CLASS_COMPUTE))
->> +        return true;
->> +
->>     return false;
->> }
->>
->> @@ -990,6 +995,44 @@ static ssize_t wa_bb_setup_utilization(struct 
->> xe_lrc *lrc, struct xe_hw_engine *
->>     return cmd - batch;
->> }
->>
->> +static ssize_t
->> +xelp_emit_timestamp_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->> +               u32 *batch, size_t max_len)
->> +{
->> +    const u32 ts_addr = __xe_lrc_ctx_timestamp_ggtt_addr(lrc);
->> +    u32 *cmd = batch;
->> +
->> +    if (!XE_WA(lrc->gt, 16010904313) ||
->> +        !(hwe->class == XE_ENGINE_CLASS_RENDER ||
->> +          hwe->class == XE_ENGINE_CLASS_COMPUTE ||
->> +          hwe->class == XE_ENGINE_CLASS_COPY ||
->> +          hwe->class == XE_ENGINE_CLASS_VIDEO_DECODE ||
->> +          hwe->class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
->> +        return 0;
->> +
->> +    if (xe_gt_WARN_ON(lrc->gt, max_len < 12))
->> +        return -ENOSPC;
->> +
->> +    *cmd++ = MI_LOAD_REGISTER_MEM | MI_LRM_USE_GGTT | 
->> MI_LRI_LRM_CS_MMIO |
->> +         MI_LRM_ASYNC;
->> +    *cmd++ = RING_CTX_TIMESTAMP(0).addr;
->> +    *cmd++ = ts_addr;
->> +    *cmd++ = 0;
->> +
->> +    *cmd++ = MI_LOAD_REGISTER_MEM | MI_LRM_USE_GGTT | 
->> MI_LRI_LRM_CS_MMIO |
->> +         MI_LRM_ASYNC;
->> +    *cmd++ = RING_CTX_TIMESTAMP(0).addr;
->> +    *cmd++ = ts_addr;
->> +    *cmd++ = 0;
->> +
->> +    *cmd++ = MI_LOAD_REGISTER_MEM | MI_LRM_USE_GGTT | 
->> MI_LRI_LRM_CS_MMIO;
->> +    *cmd++ = RING_CTX_TIMESTAMP(0).addr;
->> +    *cmd++ = ts_addr;
->> +    *cmd++ = 0;
->> +
->> +    return cmd - batch;
->> +}
->> +
->> struct wa_bo_setup {
->>     ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->>              u32 *batch, size_t max_size);
->> @@ -1061,6 +1104,7 @@ static void finish_wa_bo(struct xe_lrc *lrc,
->> static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
->> {
->>     static const struct wa_bo_setup funcs[] = {
->> +        { .setup = xelp_emit_timestamp_wa },
->>         { .setup = wa_bb_setup_utilization },
-> 
-> I think there's a mix of names here. It seems it would be better to name
-> these like this:
-> 
-> static const struct bo_setup funcs[] = {
->      { .setup = bo_setup_timestamp_wa },
->      { .setup = bo_setup_utilization },
-> }
-> 
-> 
->>     };
->>     unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
->> @@ -1087,6 +1131,7 @@ static int
->> setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
->> {
->>     static struct wa_bo_setup rcs_funcs[] = {
->> +        { .setup = xelp_emit_timestamp_wa },
->>     };
-> 
-> here it would be:
-> 
->       static struct bo_setup rcs_funcs[] = {
->          { .setup = bo_setup_timestamp_wa },
->       };
-> 
-> or drop the bo_ prefix too and just use setup_xyz
+>  
+> -	drm_dp_dpcd_writeb(&intel_dp->aux, DP_DEVICE_SERVICE_IRQ_VECTOR, val);
+> +	if (!val)
+> +		return false;
+> +
+> +	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_DEVICE_SERVICE_IRQ_VECTOR, val) != 1)
+> +		return true;
+>  
+>  	if (val & DP_AUTOMATED_TEST_REQUEST)
+>  		intel_dp_test_request(intel_dp);
 
-No strong opinion from me - I can change it to either. Logic behind 
-xelp_ prefix was that it is a workaround which only applies to those 
-platforms.
+Whoa, it's not a *check* function at all?! It actually *handles* the
+service irqs.
 
-Regards,
+Can we rephrase the function name?
 
-Tvrtko
+int intel_dp_handle_device_service_irq() and int returns maybe?
 
-> 
-> 
-> Lucas De Marchi
-> 
->>     unsigned int offset, num_funcs, written = 0;
->>     struct wa_bo_setup *funcs = NULL;
->> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/ 
->> xe_wa_oob.rules
->> index 8c2aa48cb33a..51967489c564 100644
->> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
->> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
->> @@ -1,4 +1,5 @@
->> 1607983814    GRAPHICS_VERSION_RANGE(1200, 1210)
->> +16010904313    GRAPHICS_VERSION_RANGE(1200, 1210)
->> 22012773006    GRAPHICS_VERSION_RANGE(1200, 1250)
->> 14014475959    GRAPHICS_VERSION_RANGE(1270, 1271), GRAPHICS_STEP(A0, B0)
->>         PLATFORM(DG2)
->> -- 
->> 2.48.0
->>
 
+BR,
+Jani.
+
+> @@ -5412,6 +5416,8 @@ static void intel_dp_check_device_service_irq(struct intel_dp *intel_dp)
+>  
+>  	if (val & DP_SINK_SPECIFIC_IRQ)
+>  		drm_dbg_kms(display->drm, "Sink specific irq unhandled\n");
+> +
+> +	return false;
+>  }
+>  
+>  static bool intel_dp_check_link_service_irq(struct intel_dp *intel_dp)
+> @@ -5476,8 +5482,11 @@ intel_dp_short_pulse(struct intel_dp *intel_dp)
+>  		/* No need to proceed if we are going to do full detect */
+>  		return false;
+>  
+> -	intel_dp_check_device_service_irq(intel_dp);
+> -	reprobe_needed = intel_dp_check_link_service_irq(intel_dp);
+> +	if (intel_dp_check_device_service_irq(intel_dp))
+> +		reprobe_needed = true;
+> +
+> +	if (intel_dp_check_link_service_irq(intel_dp))
+> +		reprobe_needed = true;
+>  
+>  	/* Handle CEC interrupts, if any */
+>  	drm_dp_cec_irq(&intel_dp->aux);
+
+-- 
+Jani Nikula, Intel
