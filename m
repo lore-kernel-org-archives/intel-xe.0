@@ -4,185 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4B6CC7EE31
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 17:09:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAC16C7EE30
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 17:24:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79AED10E2ED;
-	Thu, 26 Jun 2025 17:09:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC3E10E2ED;
+	Thu, 26 Jun 2025 17:24:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mv7h8Re0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QJHNciTi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DE2910E2ED
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Jun 2025 17:09:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 997CF10E8D4;
+ Thu, 26 Jun 2025 17:24:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750957758; x=1782493758;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=5X9R/1csiTC6aknMhff9D0cTTMTHzfBlKANYK0yqapE=;
- b=mv7h8Re0E7gsPeXWNPqExXTyqDJp+WfxXKHm+iYXAaOECR4NNuTVthVq
- RCI0LqtmLVJvvokgUJgOQBmvjBr3kfvwIdmiV0jjmGE6LdRKhIR71114R
- /Vb3aTA3kVfI4zl/g99L3c6a5YTqmLuJG6LW1ErjOzDTJzENYHbn+eAVm
- U+eOvRkrvSf+DguUgZhj/YYuPUKT4muDuDf5npKmjGAkyrtL5tvCDTS/v
- UHycaS3FZSBoEeklBVJWqj36tkNoOzbl01r7GchO7YUPJUDrgFa9wA+Wz
- P5AazHQsSEhN19qVw4NkA4GlCUcP9NETGfBSiYbiu+LZ2TJC3ndkJre1Q g==;
-X-CSE-ConnectionGUID: lBh/HZqmTPebvfiMMJmGZQ==
-X-CSE-MsgGUID: FG01Z9LuS7+G8WLTnHIqDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="52494078"
-X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="52494078"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 10:09:18 -0700
-X-CSE-ConnectionGUID: 9DUHo8dZTn+oGIWWn0V1Fw==
-X-CSE-MsgGUID: nGLjhBiORdWRclgKHmBejw==
+ t=1750958678; x=1782494678;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=JpmuvZSlnITVIjCB9V5WcWqTpT+yZtlF7bOMRTrAxqQ=;
+ b=QJHNciTixWwGbEIKxNg+baVei1KK4cM3LV1D6FWD9wTGUvZMsCk3cjLV
+ cxHAX11P8wh+IluG6szCrjh+GTB2h55HUqF6JFJgDPgZuZ7kdjgh1YHDT
+ bF6fI/cJ+Co2VJATadcPJWhwrKQsa2IWqw+iZ4hmsqQedfP2EmZPnygG9
+ 07Gp1e39dZ9RVSB2k+6RaQrD+l+P00TohkMy4jRGr2hifwcjB26rtuASG
+ wv2PS7X082PvTU0hvUQKqV8j3ITzNtlzhBVeHMjzLyAsiDPZnXjIWcO+o
+ gq3jq/8oVa6Mi5UMCumKPWK0HX0LuYebKJf3iaDDB3U4jZnAdCDc2Rvmq Q==;
+X-CSE-ConnectionGUID: +sBkHqEjQ36S/wgckKaDPw==
+X-CSE-MsgGUID: UQYeLMMGTRWcj5HLtsuHxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53231265"
+X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="53231265"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 10:24:28 -0700
+X-CSE-ConnectionGUID: Nl3DJFKmRVWLzH0rE7AEig==
+X-CSE-MsgGUID: u7imMsh4SICy7FgPi4ps+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="183607755"
+X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="152863828"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 10:09:18 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 10:24:26 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 26 Jun 2025 10:09:17 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.1544.25; Thu, 26 Jun 2025 10:24:25 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Thu, 26 Jun 2025 10:09:17 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.48)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.1544.25 via Frontend Transport; Thu, 26 Jun 2025 10:24:25 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.54) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 26 Jun 2025 10:09:16 -0700
+ 15.2.1544.25; Thu, 26 Jun 2025 10:24:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tAYQX1FSby6YCbZCfvTX/tTLJqn6X5SNkbzjc2+SU2A4YhLjHhZCuqwZ2ujntH3roD1qzdIhuVcx0RCY5EBn9Uhl8eVkv9M3Y1UMOti5CJevbUTGnqGNarjCwqaOQP/Y3xQjp9vX2ek+XwRzH6tkEFLA7sq4t+eIgTzkXfQI9PUWJjuK2feKbq7dD9rSFQLJAtiVqY1xPMDJBnO6A8uVjBBhBWPuvpoqbZjOX0smGA2JtFur7cdmRLU2VpKv2Ers71F+74RTVV3rMHzsRYkSkJqy3zwRcbLXDmII1mxOxubOcHdzd2kPaGnjklpFhgZ2bCQDtY5cpqx4M6nHjk9uuw==
+ b=iQeu8BzOq4TMIQDEWJy+QuVVCGoeALTMxZ5rDI3ndao0r7lNE/hPo5nTAed56fVe/MpDGoYHVt9woKwffjWu/AoCBfq4Lm5tdX+V5XQsJ5tK6Te6Gt/qJdG2nTHvQjjFlPxwf4+iGhVAb25YXF08CcZOCOA5N2UkW5UY0eSJW8Ovz3JUx2H2Xg0sLe2bhpa0HBG+No2qpvf9qfJKhIEsQvtWVynJtBDieModpAo9Wh/0APk4EoCfCQyDCkNvtMsX6WSB8vEnH33Ikw/z7azxOIsXl9MA0QENA1Chr3ASARYPN1KgLH/cTmKiazydH2lI5dG4qSd3lViq7LCLoMOUHg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JM9pLztAFJeP1+fuUQl0fYbIUt7pcVnNh1P0+eqC9n8=;
- b=btrCQrCJ3bHIRtnBV8uSlUpvnkUlAoUcHrwl/inZ3ZxH0GA7gS3ruTADsHpgizIxb7QpHCYGdB+rSNlK+n36h4qLsTvtNQ3JvPOpwdjrqC9kwpcfhyN6FEK9m7QC9VdS4xmfUF9YuqYTnVYkVAXJQ0fD732ZM7jz9V+H9SOJ1r0ONIW7gC7kRHRs/blUasM0SLQ7xYeWPNX+ItUayfdVGEqip+qVsVwHCczeBVXmHgB59LomCH2GJ5nv/JhZMQUswIjed+vp9dPu+NZ1at5VTJNbfkjjz0FmI48qQvAyq1iMV4mFvQpVgHYTvJnONjNtc2wn9claoPNEZlYe8YBhcg==
+ bh=fqAIi8DWHpZixwtGziD03lf4FGUlH3CgCQXcin6PRNs=;
+ b=Z9rRwChfSZZGl401w7/e+NAuFyQ0VgfkzubwHqaBGDDxA2reGbjVZPoFTvTyQnJFWYxJKc1P1QahPtydbfMhvqvxtxlGRsZFSu2tLUdCuxMD2apSrr8KV86iVd/bdIlSsXI/uLcxGPsHEZgszR7SKodVEWBIgkFKUuyi9H/M+Hg3axn6HJ1NgYXzDBOMuCc9KovQI2d3/EkhJtj0V6s4PvgCzDAQo2Ae3zngn1rwCvhpaZDRkX6jN0rhrcM0KLLKAJwTvzX80mabKj3aiuDGekkG3HcdEd400LRvsiR9Fv5sZT+BGvo8hdpzNig0DhlMGlxB6jc5k97i5FfsHWLDRA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- DS7PR11MB6222.namprd11.prod.outlook.com (2603:10b6:8:99::20) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8880.17; Thu, 26 Jun 2025 17:09:14 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::d3ba:63fc:10be:dfca]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::d3ba:63fc:10be:dfca%4]) with mapi id 15.20.8857.026; Thu, 26 Jun 2025
- 17:09:14 +0000
-Message-ID: <fbca33ae-0414-4648-873b-e249ad45de45@intel.com>
-Date: Thu, 26 Jun 2025 22:39:06 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] drm/xe/xe_debugfs: Exposure of G-State and pcie
- link state residency counters through debugfs
-To: Soham Purkait <soham.purkait@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <karthik.poosa@intel.com>, <jonathan.cavitt@intel.com>
-CC: <lucas.demarchi@intel.com>, <ashutosh.dixit@intel.com>,
- <jani.nikula@intel.com>
-References: <20250626131805.3977408-1-soham.purkait@intel.com>
- <20250626131805.3977408-3-soham.purkait@intel.com>
-Content-Language: en-US
-From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <20250626131805.3977408-3-soham.purkait@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MAXP287CA0023.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a00:49::31) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by SA1PR11MB5779.namprd11.prod.outlook.com (2603:10b6:806:22b::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.29; Thu, 26 Jun
+ 2025 17:24:23 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563%5]) with mapi id 15.20.8880.015; Thu, 26 Jun 2025
+ 17:24:23 +0000
+Date: Thu, 26 Jun 2025 13:24:19 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <anshuman.gupta@intel.com>,
+ <alexander.usyskin@intel.com>, <gregkh@linuxfoundation.org>,
+ <daniele.ceraolospurio@intel.com>
+Subject: Re: [PATCH v4 05/10] drm/xe/xe_late_bind_fw: Load late binding
+ firmware
+Message-ID: <aF2CQ_VAT6PSh9Lk@intel.com>
+References: <20250625170015.33912-1-badal.nilawar@intel.com>
+ <20250625170015.33912-6-badal.nilawar@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250625170015.33912-6-badal.nilawar@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0114.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::29) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|DS7PR11MB6222:EE_
-X-MS-Office365-Filtering-Correlation-Id: 415610a3-0c23-4fec-7e68-08ddb4d42d64
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|SA1PR11MB5779:EE_
+X-MS-Office365-Filtering-Correlation-Id: eb3906ea-27b4-4e52-75cb-08ddb4d64b1a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dnp5ekY4YzRaSWpQZHUxWGxZNUllSE1RdmttMXNCY01QNHp6RWJoK2x4c01Q?=
- =?utf-8?B?dlZjeGUvcldzSDBZU0NUQzZlK2F0OWgzeCtTZGUraGhnM0phOUFmSEgveElG?=
- =?utf-8?B?OE52OFc1UFljMEh1bnRLUlVVZnZabXRIVlp1RmkvZ2pTN3NzRnNndnptYjdq?=
- =?utf-8?B?a2tKV3lzT2p4NnFUclg0T0lHV1BoT21ldmlpa0pvYm1qTzJMNVM3aW9KY0ZN?=
- =?utf-8?B?K3BRZnA3SmIycUlMRWZhVmR3Uit4OW1wczI4K0E5L0w1MFc0TjVteSsrZWhr?=
- =?utf-8?B?di9mckVMRG5VdThuUWlEK1l6b2NpbTdZWS8wR0pOa0RhRnRpcXNWUFNhZmJj?=
- =?utf-8?B?Y3RnVk5EQnNxUFlscklRLytuSGRtNEtIQnZ1VnlxVXFqUnZtbmxLVHNSSHVR?=
- =?utf-8?B?ZGx5bjBnViszeHNNLzZFOFl2UzRHZ1hITGZkZldxUFU5NzFjNUw5MGxYMWxl?=
- =?utf-8?B?WnNONmFUOFRpay84cWNpMjVqWmIzdjUwZGUyY25TeDUrLzFCVU5OK2hIRzdE?=
- =?utf-8?B?bXJ3Zzh5dW9nZ2JUNm1lN2xvVFFaNjNOemY0TTRmNnVIUmFUUVFiaXBIZU9K?=
- =?utf-8?B?dUJhWSs4QkUwY1NrM3JXVXR2ZkZIbHg1WDExL0lOK3VVdm82TGJIcjUwNXlS?=
- =?utf-8?B?YUpXZkZxQ2tGL2E4YWVhKzJKeGNIaDdoaVkwTHFzRElHd1o2bG9PQ0RvUHpC?=
- =?utf-8?B?MzF3UzZLN0xBUVFBbXFiV2taWDFqdXkwUVMrVHU1cTdVZ0d4TG9qRlZLNTFZ?=
- =?utf-8?B?SU5IODIyV1BYbEM0b2hydVhtMStXTm5ERDJ0S1grdkRTOXdKcHJPOXIzbTdl?=
- =?utf-8?B?OWFSeHdWTy9POGVjWDd0Q0ZROGVUOVJMQkxKSU85REpwRVZYSFRoN0VZdnJU?=
- =?utf-8?B?anB2Umg1aHF0N0VNRkpvOGZTd2VZZzhwWWJMVUIvNE9lSUVpcTlxZFlYdHZQ?=
- =?utf-8?B?WTlXaXE3QTN2dU0wcURLcENHWVNtOFBzNVh6ZHl0eVZuMUxWU25xMlZPdzFn?=
- =?utf-8?B?SVFVaW1kRXphbTBqRmlIYUZVVUZiNmFUeERlYkFXS3NjVk5CQ2dRWEtCNDgv?=
- =?utf-8?B?VFdSMHFJZmtYbUc1TTN3cDdpS1g0TXd5NDh6bEYrUDdFdVlhL3ZsQ0R2dm5R?=
- =?utf-8?B?YlFyczJ6VjBQTzJIbTI4TDliZUhPWVFnUkNSdnNWYis4SVZzWUFOQk9vNzhz?=
- =?utf-8?B?b2ozTWZiVEVFYzl1VnFDMlV2RUc1VjB5Ukw1bTRKSHdBU1YwR2dsSG8xQVp4?=
- =?utf-8?B?TUxSdUF0ejYzNEI4Zjd3eHkzVGpZbndmUVU3NU1COWY4cURPYXdudkNZQzd6?=
- =?utf-8?B?czhxeitONzFhNGQzZUkvdUpNZnN0Z0JPNU1uNTAwVDVrcGJRaEZIQnVGK1BT?=
- =?utf-8?B?N1ZNbEp6K2l6MG1naUJLQzJyS0xyVmJUUHlxMGxKbEorOVVaMTVjL2VsRFdK?=
- =?utf-8?B?dk4wcVlldFFwb3lKVzNDSzV2SXI3bFJ5U2ZpUzZYZFJmOTNXUnJORU1wTHVx?=
- =?utf-8?B?b2MwN0tINkpZOWNhSFlORUozNlNLLzJIR1hFcFl5TEZlRmExSlFzZmo4YlVh?=
- =?utf-8?B?S0dveTh4NDBvck5PVWM1U25rTFE0cmdpTnNpeWtEWG50ZVJZcElZc0lTMUJU?=
- =?utf-8?B?ZUZXUkJuM0owTnJ0MHp3b0d3a0tlaVJwak02Mkltbmptc2hWVFQzY2RPdncv?=
- =?utf-8?B?SEVHOFdPZlo3SEloREFveTZ2MDVDSEdta1htSElKMUcwdHZ0Z2pMVFozcllF?=
- =?utf-8?B?aFFlcmhvT1E2cFJ3dXNvbFAyekNrd2srRk1tdVA1d2Y2MGxWWS9mU2Vxc1Zm?=
- =?utf-8?B?YkZzSHdscHBLVjByVWVndUxmMHpxUmNGR0NiSzF0YTdpWlRPaHpUUk4vOUIx?=
- =?utf-8?B?WEFCK0VNRHFyNXBVQk1mWTZzUVQ4ZG5WNERZQVRuZENsSFBCWTBGWndxSk5u?=
- =?utf-8?Q?QYpmDvJKvYc=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WksLf3pI4WS7H2BWe9VXvPWQL5/eRrIFiZI+DOtIfQzw6qWQpJ2Rv6YynZ+H?=
+ =?us-ascii?Q?OHhwaVE6SBaetAjFQ+BAiWUMpiiSb+NnYrvNqhxMJcj8O17dMMwkTMqZCvQy?=
+ =?us-ascii?Q?vGYwJ/fqR7HSQhvf4mmTxytT3hDbT0elmd7FFKmgE2piNcastLUT9xIvspFh?=
+ =?us-ascii?Q?MSgogX9vFsjRgl+uHoIlquxMvtI9eszXLZGd28DQF4W9OJuEqRxvd7v96Yn7?=
+ =?us-ascii?Q?EM/Bib7o8ZoXjCLWG2YDZS0mm+KCCUr4VEbTxBMBcpLA1tsGO1Db1zT1YgFM?=
+ =?us-ascii?Q?eRVPsczo9RCldMz1V0MJ+2ieTLQicL6+uZGNTyVsznJvRwmA01mDnJWiEVY+?=
+ =?us-ascii?Q?KZys/ofsIrS9zwIniwXcUfd9cfxVpzZ9RTWj8m+LybutdXYvq5/Y970lG/JG?=
+ =?us-ascii?Q?CcVDr3wORg/q0kdF4tj2eb2YOYRLrJTtylPLn9tHpSSb0WeBJ2gWP/+XuSHr?=
+ =?us-ascii?Q?1L2O5GT+hkDZtdZzxcavKSBZI7IYzaw86T7vSw5ovU2zsqCHryxWHV3pc7BP?=
+ =?us-ascii?Q?Er9vUClKiAXHHXgfAkmpOGyNxh6VoT4ptm2nyGDl1W9S2+zxk6+Rhoo8xMZa?=
+ =?us-ascii?Q?oDk/tyB3moZoRS1xbNNwe2JQDhozfo0TfgWBfnOn0A+9c8tg4x966cuZg6GB?=
+ =?us-ascii?Q?B3231hO0TYvA55AlDq5BJKbl2MxXn9LDGKmo/tq9EiIEbIRIOv2VhxGlGqLf?=
+ =?us-ascii?Q?44IEnQEcJFZbsn561l+FGP/lXP+ZjoLhVNSlzi8gQLoKk+CULUIaS0rIsuB6?=
+ =?us-ascii?Q?v7XVNAT2tzV5qeJVA5Dk0o7XpdpAKET/x45URn2AxEqph5Z1OJWUUp9VDRJw?=
+ =?us-ascii?Q?MhOasCJ5w9PVv3kW/pclD1PL4seLWCEYBATU6NH4KFVclwivZln6jKp4Ahs2?=
+ =?us-ascii?Q?b8SrOtv1jhkH+gMRhAGvQ0Dn+b/yB2VcqWtF/keNQqqaYCkHDCrwrhICsyjd?=
+ =?us-ascii?Q?PPnFoa9iYyIGDW2TIiHCCbh/Bgpndu8VmafqBF68iaaEInLPpKrntkGxqhNE?=
+ =?us-ascii?Q?dM3/d4pU1/0tEDi4r+Rkds2tmdZ0tVnWAHMcWTNxAL9rRx6DkHnzyjZxP+UH?=
+ =?us-ascii?Q?yEgk3pBAIdUsdWN65oHkgdYLHv5zkgy50+k1/llAPII0EHuvjT/LKz4BRXOW?=
+ =?us-ascii?Q?Ukl3aJcu8e/bz1k9pigZsFJVupGHWUVtfCbbbvGqGwv8f1oDA0ym+eyI4m2+?=
+ =?us-ascii?Q?tlUHqc1YRVwhrxiCj29T1B7x2geR9RzHOFu55RjHVSARAItlar26sNh3FUjC?=
+ =?us-ascii?Q?We0HXFUw9qmfjeTLD3Kh7X8w7miZyPJve294EVL8PpQqOs+Ea91ZyfpJfsaE?=
+ =?us-ascii?Q?8xUM0Hi/r7KmUnNo+5nxnZx/sm+T/dLCHO+jKav9SVwniDZAePw06LqnPTlF?=
+ =?us-ascii?Q?p3aFupp9+x/2Jf2kpLLdYq7wHhpz7DOUaEa7+tn6D9Q5BVdcgDR0tg3WDAdq?=
+ =?us-ascii?Q?uCb7UgTXdTs=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YlRKR3d5Q2xZM1Q1RTlJc1owWUNQWjFaNHQ4QUl6azF6MjMxdERDajZEMUxW?=
- =?utf-8?B?ZkIweUwrRlAza1VNa0FvNmxzK29HOHRWN1V1WGdVTzZLYWMxYTF3T2dzbnVx?=
- =?utf-8?B?L3gwcXpEYlVTK2h0N05zcEwrNjhVazNhY0xQVUdKSkxlcHRpOXliOWpQZkM5?=
- =?utf-8?B?dGhJN3YreTNvcE9IM1kzSWhPTndIcjBPUkY5dTRkSFJkU2U0RG9oV3JCaEtY?=
- =?utf-8?B?bUFZZ0xNTmdKTFo2dHNncVZCZ040UlBjZDJORUduanc3bEt3UHQ3TkM4b3B2?=
- =?utf-8?B?QlNCQWNOZEtNWVNMVXNDeUxnUnVqSmg1dHpPbmtiNEJUTnVGVXFNYVd5Nzhh?=
- =?utf-8?B?c1dyMGtScDU5LzliRFpsWG1NUWZyM1FTdmZDVFl5WG01RnNOckFFdms1Snho?=
- =?utf-8?B?MVdQVEEyTTVRTWVRRkVKdGFpcXhoeG9KNGNuNXphT3JBY1g5aE9ueUtuTERu?=
- =?utf-8?B?aUxsL0hHZzlycFVRNTA1Y1Brcjg0eXBsVUFreFFnV2FNMTB3dURjYmhlZVpV?=
- =?utf-8?B?d05sMGFtZlEvbTg0QXNxQ1RrZzJBNmdNYVF6aENXZTBBcDIybU5KdEgzcDZB?=
- =?utf-8?B?UzNXREEvYnFFTldqb0hLUDBiMmZ5MnJOMy93Uk1EQ3pyMStSRGhlNjR2UDQ4?=
- =?utf-8?B?ZGhtMHp1Uzcvc0dNWVFjUEZYT3pMVVFzM1psS0ZaQ01FNGtjanFBTmw1SEgr?=
- =?utf-8?B?UXhxUThTbzVzMTdHcWttRVNZZXgzSEFNbCtmV0JXSStML0hDZFNRUUwzWDlN?=
- =?utf-8?B?RTBscEJPNVdCeW9YWkduZmhkZUQxQVBZcmFCQkxySjJZYkxZWGVUUDVmSURK?=
- =?utf-8?B?M1JDV2c2TWpvWmRzSDRyelZGM1laYkFhakNYTUVuMng3T2FSOEdJeDRadDFy?=
- =?utf-8?B?b3FSVGpBVC9jS0toVmZLUTJLNTkvMkxKZTZ0THFXNm9ab0c5RHJIcEVmYVk5?=
- =?utf-8?B?ZFRzQzVsUkJ1czFQRVVCcnJhaXpiaWw5Z2Jsem9kdEpybTdLOWRuQUJpNko1?=
- =?utf-8?B?QWIyQTFuT2UvN2lMZmNZY2s0L0dQSndCUVVMM0ZqV1NSbG5LeWhpSXpZTmh2?=
- =?utf-8?B?M3dQKzg3QlZTL3F4cFVpQjVMNmtUSUsyZFpJYkcrWmZCVFhONWZVMmEyUkxs?=
- =?utf-8?B?UEJWSCtZRVNaSnJlUHlJZ2ZqM3JIWjNtWWo4em5DN2R2VzVxTEFneDhkWngr?=
- =?utf-8?B?alJ4WE5tb0VTeWVtNU1qMTRCaEVhbVVDUHkrbWNCbjVidkhxQUF3Ump6Y2xm?=
- =?utf-8?B?KzhDeERUMVBDbDBhTExwVm85em5iVE4xbGphUSt6dW1FWkF6cElyc1VlOVBs?=
- =?utf-8?B?aWRDMHdpejlJWUNKMktock4zdU5ObGJhSDg0VGdjUm9xSWJDd3VzZUZUQUNw?=
- =?utf-8?B?WlBuY0N5dEdzYkhwaTlETkhRZFpmdU1nTEs4U0hyaVVsR0d5Mmk5bDVpa2N6?=
- =?utf-8?B?TjArZk4zdWxpYkcyUTBGdDBFWGViTWVEUGEvUVp6Ym5PMnZ3dHNxM1k2dndL?=
- =?utf-8?B?TXMxK3dzdjZpYldKWHJDWUp2N01HaWVMWUUxVzFQQk1hVjJ6TlNSdWdoQzN2?=
- =?utf-8?B?SmxvbzJLclZzalRDYmcrMWxNazE5Y2RZcEJIYkd3cHlQWUl0WjNLUDh3QTFz?=
- =?utf-8?B?L0pHTVVRd1lJb1M2Q01NRHUzcmkvdkpkcEhGR05ia2FKY2l5MkRVdTVmaW1r?=
- =?utf-8?B?TkdpRFFqMWtlYkYzZVJXU3BNcTAwL24yVmFhY3BjT05FOW1BeWQ4SktSc0I0?=
- =?utf-8?B?WHBRaFg1ZnBuWGFFV21XcThBUHFsdkJ6VTVsUmdtWXdBRjdrNzNTcWZQeXNV?=
- =?utf-8?B?SDVnYkNWSElBZ0diU3FzeVc0bi85aVhPcW96TnNKa2U2STNLZmdWa09Dci9O?=
- =?utf-8?B?OUR3U2tjL0RpcmJUS2Y4Ulo5aUlnYmYxYXozcmtCeVBNeVlFUVpzMjErbmZo?=
- =?utf-8?B?T3FWc3o4YmdndUwxU08yaDdXcDdRZkVsYjBYdk0vc3RUa1JadlJJYWVyOTV0?=
- =?utf-8?B?KzBlQzNlcDhTc0RNbW85MkJDcWJXMUNPcGExUFlXTVpTS3lLajdsR3dvT3FM?=
- =?utf-8?B?OGhYTk1ldzQvRjRQMktzdnRWcHM0M1JrNDVPMnozbWxXV3lPSDVjcGJmZGM0?=
- =?utf-8?Q?iuum6ImWaEhC6kf5Dl4NvD8wR?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 415610a3-0c23-4fec-7e68-08ddb4d42d64
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jgJtPxL4phgDHU7T10+V77XmPlwg5pJ4k6b4LnznTtjwi70bTtc8ZxZDSx7K?=
+ =?us-ascii?Q?OMj3zsuPOvYtwipsyNisXqYV1gx05x6S5veeL62+/uYW699EhyuWIaKD+32v?=
+ =?us-ascii?Q?u62ohpTTvHIo2UZaKllCSk6u3CEtbWsm6E8+9kj5rxG2uVVNJrnY3F7AxoSZ?=
+ =?us-ascii?Q?5pJz3Hjv7ge3+1wqJbHvhoJ3tC9SgP6yGLbjsKiwnpqH7MEz/NtCd14t+ZSh?=
+ =?us-ascii?Q?cNIHpPve2OFXIw4g88RmoFPccDL00mvl9p0B85VXJzJ9qBs0Xpl9Ny3RbC9n?=
+ =?us-ascii?Q?xnikektTXFXb7Hfe0Xql5E0+IkLxIiJbNWtQo889qOwGdL9jcAXJ5ysfSvNn?=
+ =?us-ascii?Q?820xwRxX1j7khLXUQdB2DOKR3rGX8gk3tb808ccDMEImESjtSLfKulKpF1WV?=
+ =?us-ascii?Q?sN5jxmoSNT+gCVb4H3oWF/4xC9AagRKnwDLzVfRlzMgHadJf0Ujh9jHNAkFn?=
+ =?us-ascii?Q?9OA8Y3D/jIsrW0PolUdunWb0YSprHHTlu+PyhIfmLtYzOTHI3cb6FfCUkWRe?=
+ =?us-ascii?Q?+ZK6nKMgWdq13nRU0yCXTtjS/M5Z5dYQ+BkOjOpSES2XZgubMmLUX2N2Y4K3?=
+ =?us-ascii?Q?f6EixM9R+GCfPWrZE2v8RdOcoG1GdZjqKp2j9fesn2qGP/ZwmYI9Urg0vxqS?=
+ =?us-ascii?Q?LLpSQ2YBg42o1QkdNcXDXOEJRzwLsd8UGnU0+iJh7fEBkblwuRmV3TpzbL/B?=
+ =?us-ascii?Q?SuTLycOVPhQSCCOi4IGjow0w5I1Vc49n+g/jAopFeKKiJl87AItJ0kHBul5u?=
+ =?us-ascii?Q?i8eBiSkEWTSYF44xQFXq8JF2URZmEGgphSCRL3+sIne7jW2ve1aGNAhgBME3?=
+ =?us-ascii?Q?mllHOHk0aSz3zYXtH0lmZlWKRRGbnDdbdscLgEHxLK1d7kV5N00Btm2kOWE3?=
+ =?us-ascii?Q?PrR/3OgQvdBRsSlPkCrY2/S4InUcu0u7m9GZMlqqUGSCoVVkdzEAZJdI2+DN?=
+ =?us-ascii?Q?bD9cHKFyiCC8tf24nTft7TnRm0CKlkv87qwetkuVaAx6aWuD2qj0s1z+BR+H?=
+ =?us-ascii?Q?DppcyNfbkryyxxTKWtCeeSqbgR9dxkn8bZOQDGxE6gDKBVSxigFtENcU9jse?=
+ =?us-ascii?Q?NwRK63qFFT5VqAjnRwPPkXyZpf6JU2y4df5Nb5iHDjcpTy08F6Uv6aO1y37w?=
+ =?us-ascii?Q?agd4sldc3IejVIh8Bna12v+g4SClW1Tqhasei7lFNm4w5NwWsYQBBNSG85DF?=
+ =?us-ascii?Q?TBVDDxHtQUnQ5Uv68mESSQyhJGBBwEZm6h81p1xO80dIraLE8tyckPbsk0U1?=
+ =?us-ascii?Q?ZL6GVvn5Xaa746Wq/ut2JkWQQwDAMXDpkPFXE2BObS/wQ91bY/RuOVoitzqM?=
+ =?us-ascii?Q?68F5Bxy9aG0a3Oxrs4NMF4VmxQL+t+ijKdf3KlVSH4V4Cx7YcQpx8X2oM88n?=
+ =?us-ascii?Q?J/BlYov0GjRMa/wVgoaWElMJ0fIcDINw36WNR8RqZix2/0dlF6Y0VzPTKc6m?=
+ =?us-ascii?Q?GDeglAi2d+4EEX+ceARO/z6V6v9KTVaezlBo4hUvDs/k4/YTbafvxiXTgwFk?=
+ =?us-ascii?Q?dI8frqiNZXDZ1fR0vl66XQ2Uw24d+H1OBHtU3S5FqunXOwbejzlhgCTCWjnS?=
+ =?us-ascii?Q?VdvDDboe8Opi6muk1JZIzo/1q/czDJw2kbZl5Q69?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb3906ea-27b4-4e52-75cb-08ddb4d64b1a
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2025 17:09:14.5381 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2025 17:24:23.5551 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VBAx+4dDNS5ZeDDt0eWxUcmODvx/EWvqJbMhGxxwLWjpXylTDhsMs9PiVIJ3Y/WioJHs5lMwFeSIgiLmM1lpCQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6222
+X-MS-Exchange-CrossTenant-UserPrincipalName: bLYOIAQQTpj7D1qnoChhdKwbj+gxkFwOxU6KsSbkuh9CTrTzJXgxeQPIZjyrNn1yevfPlI/kUavxjUfSX5tVjg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5779
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -198,169 +179,296 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Soham
-
-On 6/26/2025 6:48 PM, Soham Purkait wrote:
-> Add debug nodes, "dgfx_pkg_residencies" for G-states (G2, G6, G8, G10,
-> ModS) and "dgfx_pcie_link_residencies" for PCIe link states(L0, L1, L1.2)
-> residency counters.
+On Wed, Jun 25, 2025 at 10:30:10PM +0530, Badal Nilawar wrote:
+> Load late binding firmware
 > 
-> v1:
->   - Expose all G-State residency counter values under
->     dgfx_pkg_residencies. (Anshuman)
->   - Include runtime_get/put. (Riana)
 > v2:
->   - Move "dgfx_pkg_residencies" from "gtidle". (Anshuman)
+>  - s/EAGAIN/EBUSY/
+>  - Flush worker in suspend and driver unload (Daniele)
 > v3:
->   - Include debugfs node "dgfx_pcie_link_residencies" for pcie link
->     residency counter values.  (Anshuman)
+>  - Use retry interval of 6s, in steps of 200ms, to allow
+>    other OS components release MEI CL handle (Sasha)
 > v4:
->   - Include check for BMG for and add helper function for repetitive
->     code. (Riana)
->   - Use "drm_debugfs_create_files" to create debugfs. (Karthik)
-> v5:
->   - Reorder commits to reflect the correct dependency hierarchy. (Jonathan)
->   - Simplify commit message and rectify register offsets. (Karthik)
->   - Error handling and return before printing. (Riana)
->   v6:
->   - Remove check for IS_DGFX() as BMG is discrete. (Karthik)
->   
+>  - return -ENODEV if component not added (Daniele)
+>  - parse and print status returned by csc
+>  - Use xe_pm_get_if_in_active (Daniele)
+
+The worker is considered outer bound and it is safe
+to use xe_pm_runtime_get which takes the reference
+and resume synchronously.
+
+Otherwise, if using get_if_active you need to reschedule
+the work or you lose your job.
+
+
 > 
-> Signed-off-by: Soham Purkait <soham.purkait@intel.com>
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Reviewed-by: Karthik Poosa <karthik.poosa@intel.com>
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_debugfs.c | 71 +++++++++++++++++++++++++++++++++
->   1 file changed, 71 insertions(+)
+>  drivers/gpu/drm/xe/xe_late_bind_fw.c       | 149 ++++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_late_bind_fw.h       |   1 +
+>  drivers/gpu/drm/xe/xe_late_bind_fw_types.h |   7 +
+>  3 files changed, 156 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-> index d83cd6ed3fa8..3f276d85c2ba 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -11,16 +11,19 @@
->   
->   #include <drm/drm_debugfs.h>
->   
-> +#include "regs/xe_pmt.h"
->   #include "xe_bo.h"
->   #include "xe_device.h"
->   #include "xe_force_wake.h"
->   #include "xe_gt_debugfs.h"
->   #include "xe_gt_printk.h"
->   #include "xe_guc_ads.h"
-> +#include "xe_mmio.h"
->   #include "xe_pm.h"
->   #include "xe_pxp_debugfs.h"
->   #include "xe_sriov.h"
->   #include "xe_step.h"
-> +#include "xe_vsec.h"
->   
->   #ifdef CONFIG_DRM_XE_DEBUG
->   #include "xe_bo_evict.h"
-> @@ -30,6 +33,23 @@
->   
->   DECLARE_FAULT_ATTR(gt_reset_failure);
->   
-> +static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
-> +				   u32 offset, char *name, struct drm_printer *p)
-> +{
-> +	u64 residency = 0;
-> +	int ret;
+> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> index 32d1436e7191..52243063d98a 100644
+> --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> @@ -16,6 +16,20 @@
+>  #include "xe_late_bind_fw.h"
+>  #include "xe_pcode.h"
+>  #include "xe_pcode_api.h"
+> +#include "xe_pm.h"
 > +
-> +	ret = xe_pmt_telem_read(to_pci_dev(xe->drm.dev),
-> +				xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
-> +				&residency, offset, sizeof(residency));
-> +	if (ret != sizeof(residency)) {
-> +		drm_warn(&xe->drm, "%s counter failed to read, ret %d\n", name, ret);
-> +		return;
+> +/*
+> + * The component should load quite quickly in most cases, but it could take
+> + * a bit. Using a very big timeout just to cover the worst case scenario
+> + */
+> +#define LB_INIT_TIMEOUT_MS 20000
+> +
+> +/*
+> + * Retry interval set to 6 seconds, in steps of 200 ms, to allow time for
+> + * other OS components to release the MEI CL handle
+> + */
+> +#define LB_FW_LOAD_RETRY_MAXCOUNT 30
+> +#define LB_FW_LOAD_RETRY_PAUSE_MS 200
+>  
+>  static const u32 fw_id_to_type[] = {
+>  		[XE_LB_FW_FAN_CONTROL] = CSC_LATE_BINDING_TYPE_FAN_CONTROL,
+> @@ -31,6 +45,30 @@ late_bind_to_xe(struct xe_late_bind *late_bind)
+>  	return container_of(late_bind, struct xe_device, late_bind);
+>  }
+>  
+> +static const char *xe_late_bind_parse_status(uint32_t status)
+> +{
+> +	switch (status) {
+> +	case CSC_LATE_BINDING_STATUS_SUCCESS:
+> +		return "success";
+> +	case CSC_LATE_BINDING_STATUS_4ID_MISMATCH:
+> +		return "4Id Mismatch";
+> +	case CSC_LATE_BINDING_STATUS_ARB_FAILURE:
+> +		return "ARB Failure";
+> +	case CSC_LATE_BINDING_STATUS_GENERAL_ERROR:
+> +		return "General Error";
+> +	case CSC_LATE_BINDING_STATUS_INVALID_PARAMS:
+> +		return "Invalid Params";
+> +	case CSC_LATE_BINDING_STATUS_INVALID_SIGNATURE:
+> +		return "Invalid Signature";
+> +	case CSC_LATE_BINDING_STATUS_INVALID_PAYLOAD:
+> +		return "Invalid Payload";
+> +	case CSC_LATE_BINDING_STATUS_TIMEOUT:
+> +		return "Timeout";
+> +	default:
+> +		return "Unknown error";
+> +	}
+> +}
+> +
+>  static int xe_late_bind_fw_num_fans(struct xe_late_bind *late_bind)
+>  {
+>  	struct xe_device *xe = late_bind_to_xe(late_bind);
+> @@ -44,6 +82,93 @@ static int xe_late_bind_fw_num_fans(struct xe_late_bind *late_bind)
+>  		return 0;
+>  }
+>  
+> +static void xe_late_bind_wait_for_worker_completion(struct xe_late_bind *late_bind)
+> +{
+> +	struct xe_device *xe = late_bind_to_xe(late_bind);
+> +	struct xe_late_bind_fw *lbfw;
+> +	int fw_id;
+> +
+> +	for (fw_id = 0; fw_id < XE_LB_FW_MAX_ID; fw_id++) {
+> +		lbfw = &late_bind->late_bind_fw[fw_id];
+> +		if (lbfw->valid && late_bind->wq) {
+> +			drm_dbg(&xe->drm, "Flush work: load %s firmware\n",
+> +				fw_id_to_name[lbfw->id]);
+> +			flush_work(&lbfw->work);
+> +		}
+> +	}
+> +}
+> +
+> +static void xe_late_bind_work(struct work_struct *work)
+> +{
+> +	struct xe_late_bind_fw *lbfw = container_of(work, struct xe_late_bind_fw, work);
+> +	struct xe_late_bind *late_bind = container_of(lbfw, struct xe_late_bind,
+> +						      late_bind_fw[lbfw->id]);
+> +	struct xe_device *xe = late_bind_to_xe(late_bind);
+> +	int retry = LB_FW_LOAD_RETRY_MAXCOUNT;
+> +	int ret;
+> +	int slept;
+> +
+> +	/* we can queue this before the component is bound */
+> +	for (slept = 0; slept < LB_INIT_TIMEOUT_MS; slept += 100) {
+> +		if (late_bind->component.ops)
+> +			break;
+> +		msleep(100);
 > +	}
 > +
-> +	drm_printf(p, "%s : %llu\n", name, residency);
+> +	if (!xe_pm_runtime_get_if_active(xe))
+> +		return;
+> +
+> +	mutex_lock(&late_bind->mutex);
+> +
+> +	if (!late_bind->component.ops) {
+> +		drm_err(&xe->drm, "Late bind component not bound\n");
+> +		goto out;
+> +	}
+> +
+> +	drm_dbg(&xe->drm, "Load %s firmware\n", fw_id_to_name[lbfw->id]);
+> +
+> +	do {
+> +		ret = late_bind->component.ops->push_config(late_bind->component.mei_dev,
+> +							    lbfw->type, lbfw->flags,
+> +							    lbfw->payload, lbfw->payload_size);
+> +		if (!ret)
+> +			break;
+> +		msleep(LB_FW_LOAD_RETRY_PAUSE_MS);
+> +	} while (--retry && ret == -EBUSY);
+> +
+> +	if (!ret) {
+> +		drm_dbg(&xe->drm, "Load %s firmware successful\n",
+> +			fw_id_to_name[lbfw->id]);
+> +		goto out;
+> +	}
+> +
+> +	if (ret > 0)
+> +		drm_err(&xe->drm, "Load %s firmware failed with err %d, %s\n",
+> +			fw_id_to_name[lbfw->id], ret, xe_late_bind_parse_status(ret));
+> +	else
+> +		drm_err(&xe->drm, "Load %s firmware failed with err %d",
+> +			fw_id_to_name[lbfw->id], ret);
+> +out:
+> +	mutex_unlock(&late_bind->mutex);
+> +	xe_pm_runtime_put(xe);
 > +}
 > +
->   static struct xe_device *node_to_xe(struct drm_info_node *node)
->   {
->   	return to_xe_device(node->minor->dev);
-> @@ -82,11 +102,57 @@ static int sriov_info(struct seq_file *m, void *data)
->   	return 0;
->   }
->   
-> +static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
+> +int xe_late_bind_fw_load(struct xe_late_bind *late_bind)
 > +{
-> +	struct xe_device *xe;
-> +	struct xe_mmio *mmio;
-> +	struct drm_printer p;
+> +	struct xe_late_bind_fw *lbfw;
+> +	int fw_id;
 > +
-> +	xe = node_to_xe(m->private);
-> +	p = drm_seq_file_printer(m);
-> +	xe_pm_runtime_get(xe);
-> +	mmio = xe_root_tile_mmio(xe);
-
-you could use a for loop and local struct to avoid repetition
-
-struct {
-        u32 offset;
-        char *name;
-} residencies[] = { BMG_G2_RESIDENCY_OFFSET, "Package G2", ...
-
-
-Thanks,
-Riana
-
+> +	if (!late_bind->component_added)
+> +		return -ENODEV;
 > +
-> +	read_residency_counter(xe, mmio, BMG_G2_RESIDENCY_OFFSET, "Package G2", &p);
-> +	read_residency_counter(xe, mmio, BMG_G6_RESIDENCY_OFFSET, "Package G6", &p);
-> +	read_residency_counter(xe, mmio, BMG_G8_RESIDENCY_OFFSET, "Package G8", &p);
-> +	read_residency_counter(xe, mmio, BMG_G10_RESIDENCY_OFFSET, "Package G10", &p);
-> +	read_residency_counter(xe, mmio, BMG_MODS_RESIDENCY_OFFSET, "Package ModS", &p);
-> +	xe_pm_runtime_put(xe);
+> +	for (fw_id = 0; fw_id < XE_LB_FW_MAX_ID; fw_id++) {
+> +		lbfw = &late_bind->late_bind_fw[fw_id];
+> +		if (lbfw->valid)
+> +			queue_work(late_bind->wq, &lbfw->work);
+> +	}
 > +	return 0;
 > +}
 > +
-> +static int dgfx_pcie_link_residencies_show(struct seq_file *m, void *data)
-> +{
-> +	struct xe_device *xe;
-> +	struct xe_mmio *mmio;
-> +	struct drm_printer p;
+>  static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
+>  {
+>  	struct xe_device *xe = late_bind_to_xe(late_bind);
+> @@ -99,6 +224,7 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
+>  
+>  	memcpy(lb_fw->payload, fw->data, lb_fw->payload_size);
+>  	release_firmware(fw);
+> +	INIT_WORK(&lb_fw->work, xe_late_bind_work);
+>  	lb_fw->valid = true;
+>  
+>  	return 0;
+> @@ -109,11 +235,16 @@ static int xe_late_bind_fw_init(struct xe_late_bind *late_bind)
+>  	int ret;
+>  	int fw_id;
+>  
+> +	late_bind->wq = alloc_ordered_workqueue("late-bind-ordered-wq", 0);
+> +	if (!late_bind->wq)
+> +		return -ENOMEM;
 > +
-> +	xe = node_to_xe(m->private);
-> +	p = drm_seq_file_printer(m);
-> +	xe_pm_runtime_get(xe);
-> +	mmio = xe_root_tile_mmio(xe);
+>  	for (fw_id = 0; fw_id < XE_LB_FW_MAX_ID; fw_id++) {
+>  		ret = __xe_late_bind_fw_init(late_bind, fw_id);
+>  		if (ret)
+>  			return ret;
+>  	}
 > +
-> +	read_residency_counter(xe, mmio, BMG_PCIE_LINK_L0_RESIDENCY_OFFSET,
-> +			       "PCIE LINK L0 RESIDENCY", &p);
-> +	read_residency_counter(xe, mmio, BMG_PCIE_LINK_L1_RESIDENCY_OFFSET,
-> +			       "PCIE LINK L1 RESIDENCY", &p);
-> +	read_residency_counter(xe, mmio, BMG_PCIE_LINK_L1_2_RESIDENCY_OFFSET,
-> +			       "PCIE LINK L1.2 RESIDENCY", &p);
-> +	xe_pm_runtime_put(xe);
-> +	return 0;
-> +}
+>  	return 0;
+>  }
+>  
+> @@ -137,6 +268,8 @@ static void xe_late_bind_component_unbind(struct device *xe_kdev,
+>  	struct xe_device *xe = kdev_to_xe_device(xe_kdev);
+>  	struct xe_late_bind *late_bind = &xe->late_bind;
+>  
+> +	xe_late_bind_wait_for_worker_completion(late_bind);
 > +
->   static const struct drm_info_list debugfs_list[] = {
->   	{"info", info, 0},
->   	{ .name = "sriov_info", .show = sriov_info, },
->   };
->   
-> +static const struct drm_info_list debugfs_residencies[] = {
-> +	{ .name = "dgfx_pkg_residencies", .show = dgfx_pkg_residencies_show, },
-> +	{ .name = "dgfx_pcie_link_residencies", .show = dgfx_pcie_link_residencies_show, },
-> +};
+>  	mutex_lock(&late_bind->mutex);
+>  	late_bind->component.ops = NULL;
+>  	mutex_unlock(&late_bind->mutex);
+> @@ -152,7 +285,15 @@ static void xe_late_bind_remove(void *arg)
+>  	struct xe_late_bind *late_bind = arg;
+>  	struct xe_device *xe = late_bind_to_xe(late_bind);
+>  
+> +	xe_late_bind_wait_for_worker_completion(late_bind);
 > +
->   static int forcewake_open(struct inode *inode, struct file *file)
->   {
->   	struct xe_device *xe = inode->i_private;
-> @@ -240,6 +306,11 @@ void xe_debugfs_register(struct xe_device *xe)
->   				 ARRAY_SIZE(debugfs_list),
->   				 root, minor);
->   
-> +	if (xe->info.platform == XE_BATTLEMAGE)
-> +		drm_debugfs_create_files(debugfs_residencies,
-> +					 ARRAY_SIZE(debugfs_residencies),
-> +					 root, minor);
+> +	late_bind->component_added = false;
 > +
->   	debugfs_create_file("forcewake_all", 0400, root, xe,
->   			    &forcewake_all_fops);
->   
-
+>  	component_del(xe->drm.dev, &xe_late_bind_component_ops);
+> +	if (late_bind->wq) {
+> +		destroy_workqueue(late_bind->wq);
+> +		late_bind->wq = NULL;
+> +	}
+>  	mutex_destroy(&late_bind->mutex);
+>  }
+>  
+> @@ -183,9 +324,15 @@ int xe_late_bind_init(struct xe_late_bind *late_bind)
+>  		return err;
+>  	}
+>  
+> +	late_bind->component_added = true;
+> +
+>  	err = devm_add_action_or_reset(xe->drm.dev, xe_late_bind_remove, late_bind);
+>  	if (err)
+>  		return err;
+>  
+> -	return xe_late_bind_fw_init(late_bind);
+> +	err = xe_late_bind_fw_init(late_bind);
+> +	if (err)
+> +		return err;
+> +
+> +	return xe_late_bind_fw_load(late_bind);
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.h b/drivers/gpu/drm/xe/xe_late_bind_fw.h
+> index 4c73571c3e62..28d56ed2bfdc 100644
+> --- a/drivers/gpu/drm/xe/xe_late_bind_fw.h
+> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.h
+> @@ -11,5 +11,6 @@
+>  struct xe_late_bind;
+>  
+>  int xe_late_bind_init(struct xe_late_bind *late_bind);
+> +int xe_late_bind_fw_load(struct xe_late_bind *late_bind);
+>  
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+> index 93abf4c51789..f119a75f4c9c 100644
+> --- a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+> @@ -9,6 +9,7 @@
+>  #include <linux/iosys-map.h>
+>  #include <linux/mutex.h>
+>  #include <linux/types.h>
+> +#include <linux/workqueue.h>
+>  
+>  #define MAX_PAYLOAD_SIZE SZ_4K
+>  
+> @@ -38,6 +39,8 @@ struct xe_late_bind_fw {
+>  	u8  *payload;
+>  	/** @late_bind_fw.payload_size: late binding blob payload_size */
+>  	size_t payload_size;
+> +	/** @late_bind_fw.work: worker to upload latebind blob */
+> +	struct work_struct work;
+>  };
+>  
+>  /**
+> @@ -64,6 +67,10 @@ struct xe_late_bind {
+>  	struct mutex mutex;
+>  	/** @late_bind.late_bind_fw: late binding firmware array */
+>  	struct xe_late_bind_fw late_bind_fw[XE_LB_FW_MAX_ID];
+> +	/** @late_bind.wq: workqueue to submit request to download late bind blob */
+> +	struct workqueue_struct *wq;
+> +	/** @late_bind.component_added: whether the component has been added */
+> +	bool component_added;
+>  };
+>  
+>  #endif
+> -- 
+> 2.34.1
+> 
