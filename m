@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E894C7EE31
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 17:43:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B852C7EE30
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 17:44:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44C0910E8DD;
-	Thu, 26 Jun 2025 17:43:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9D8910E8DF;
+	Thu, 26 Jun 2025 17:44:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YhVx564t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GOLouUlQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86B9510E8DD;
- Thu, 26 Jun 2025 17:43:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD25010E8DF;
+ Thu, 26 Jun 2025 17:44:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750959822; x=1782495822;
+ t=1750959847; x=1782495847;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=htabxUoaJCg+sOt9fAgomAyyiujrWH+bdhnHfaEvPeY=;
- b=YhVx564tWk62dSF9Shwn1fYaop9foOfEK0br189eNNsOPX5beBwVNtJY
- 9SweQ3wBK1/gwthmKRsHIPQcFpXuzx0WZLMXyOLS/PWPhrKezs/X0fW0t
- tmL/7wuMrLYhIkQ3nMNzPleqrKcasOjIXDw06oVXk2T9eRB2MQ2A+cRcw
- aLa8hRduCBIdOm4NNs5cuZ/4Ja4Jly+yfm02KTnB+Rouud3k8kQcLxRr1
- SsY5AD28a0rT9f+u1itjZCZWvAzfi05q49J3LXOCSQ+uDEj0FXESApRgx
- ofDs2Ba79lSjONuHJy97IRRLLCBrapzSQjYkH4mwT4W1vvNKuEucKtbqP g==;
-X-CSE-ConnectionGUID: rZwe7FYdQfOdhWjpof4/QA==
-X-CSE-MsgGUID: duzIoc6xTWKxKwIvmg083A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53141123"
-X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="53141123"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 10:43:42 -0700
-X-CSE-ConnectionGUID: i1llbQAPSTq9nR0YQfZ9aQ==
-X-CSE-MsgGUID: Ps1FUWD3Rq2inUA2bYtqGA==
+ bh=DySLMsVEWL+6bKCJw3YqQzAV+Bc0Dd1tjbBaWlyxqZQ=;
+ b=GOLouUlQh4GOpnsckf0snhCw+fswEs5sKmy06vLuJoFXkhXHJM+ixB4p
+ D0reOl41b27VEFZ0EzHTaEQO/l/K/GvV1MYNEGKmSTN2+t1/JqH2Be2io
+ Gc8BKV4lJl/h0oAG/mQmdSHnrs9EK9GZ7LhQbPzysg8laujj2bImXhKKm
+ AIYCt1D63qkBQqZ04dUu6Rwnac/JFXAsB5SPmYp04rUKTW77aJLZCEnmQ
+ WBqbL0Z8tcAMjF3KO/wvcei/yfW7CKEGRyiDxR30ZFDjiLbSKWBX/wGta
+ 5nMxzQSb046QEXN7miKD2Tga5U47xD9YURTm85LEfbENv+U/Ua7ZPm4rb w==;
+X-CSE-ConnectionGUID: fATQ//VlS/GHcxcmhkwZlw==
+X-CSE-MsgGUID: V0pYuFStTMOw2NhEfG7XLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="52387810"
+X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="52387810"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 10:44:07 -0700
+X-CSE-ConnectionGUID: HWSUi21pToGa+HrQxW/4Yw==
+X-CSE-MsgGUID: By0h0CryS9CPvkpwPF+W3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="152207996"
+X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="152869086"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.120])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 10:43:39 -0700
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 10:43:55 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 4/8] drm/i915/cdclk: use intel_de_wait_custom() instead of
+Subject: [PATCH 6/8] drm/i915/power: use intel_de_wait_custom() instead of
  wait_for_us()
-Date: Thu, 26 Jun 2025 20:43:02 +0300
-Message-Id: <f373a3db2a70ec574e48a0908b5f07dc184db4d9.1750959689.git.jani.nikula@intel.com>
+Date: Thu, 26 Jun 2025 20:43:04 +0300
+Message-Id: <9a435b47aa53e10220d0f8ec0fd85a608fcad1cd.1750959689.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1750959689.git.jani.nikula@intel.com>
 References: <cover.1750959689.git.jani.nikula@intel.com>
@@ -74,39 +74,55 @@ Prefer the register read specific wait function over i915 wait_for_us().
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 228aa64c1349..2a2d6714e4f4 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -903,8 +903,10 @@ static void bdw_set_cdclk(struct intel_display *display,
- 	 * According to the spec, it should be enough to poll for this 1 us.
- 	 * However, extensive testing shows that this can take longer.
- 	 */
--	if (wait_for_us(intel_de_read(display, LCPLL_CTL) &
--			LCPLL_CD_SOURCE_FCLK_DONE, 100))
-+	ret = intel_de_wait_custom(display, LCPLL_CTL,
-+				   LCPLL_CD_SOURCE_FCLK_DONE, LCPLL_CD_SOURCE_FCLK_DONE,
-+				   100, 0, NULL);
-+	if (ret)
- 		drm_err(display->drm, "Switching to FCLK failed\n");
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 273054c22325..2c2b23a138cc 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1278,6 +1278,7 @@ static void hsw_disable_lcpll(struct intel_display *display,
+ 			      bool switch_to_fclk, bool allow_power_down)
+ {
+ 	u32 val;
++	int ret;
  
- 	intel_de_rmw(display, LCPLL_CTL,
-@@ -913,8 +915,10 @@ static void bdw_set_cdclk(struct intel_display *display,
- 	intel_de_rmw(display, LCPLL_CTL,
- 		     LCPLL_CD_SOURCE_FCLK, 0);
+ 	assert_can_disable_lcpll(display);
  
--	if (wait_for_us((intel_de_read(display, LCPLL_CTL) &
--			 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
-+	ret = intel_de_wait_custom(display, LCPLL_CTL,
-+				   LCPLL_CD_SOURCE_FCLK_DONE, 0,
-+				   1, 0, NULL);
-+	if (ret)
- 		drm_err(display->drm, "Switching back to LCPLL failed\n");
+@@ -1287,8 +1288,10 @@ static void hsw_disable_lcpll(struct intel_display *display,
+ 		val |= LCPLL_CD_SOURCE_FCLK;
+ 		intel_de_write(display, LCPLL_CTL, val);
  
- 	intel_pcode_write(display->drm, HSW_PCODE_DE_WRITE_FREQ_REQ,
+-		if (wait_for_us(intel_de_read(display, LCPLL_CTL) &
+-				LCPLL_CD_SOURCE_FCLK_DONE, 1))
++		ret = intel_de_wait_custom(display, LCPLL_CTL,
++					   LCPLL_CD_SOURCE_FCLK_DONE, LCPLL_CD_SOURCE_FCLK_DONE,
++					   1, 0, NULL);
++		if (ret)
+ 			drm_err(display->drm, "Switching to FCLK failed\n");
+ 
+ 		val = intel_de_read(display, LCPLL_CTL);
+@@ -1324,6 +1327,7 @@ static void hsw_restore_lcpll(struct intel_display *display)
+ {
+ 	struct drm_i915_private __maybe_unused *dev_priv = to_i915(display->drm);
+ 	u32 val;
++	int ret;
+ 
+ 	val = intel_de_read(display, LCPLL_CTL);
+ 
+@@ -1358,8 +1362,10 @@ static void hsw_restore_lcpll(struct intel_display *display)
+ 	if (val & LCPLL_CD_SOURCE_FCLK) {
+ 		intel_de_rmw(display, LCPLL_CTL, LCPLL_CD_SOURCE_FCLK, 0);
+ 
+-		if (wait_for_us((intel_de_read(display, LCPLL_CTL) &
+-				 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
++		ret = intel_de_wait_custom(display, LCPLL_CTL,
++					   LCPLL_CD_SOURCE_FCLK_DONE, 0,
++					   1, 0, NULL);
++		if (ret)
+ 			drm_err(display->drm,
+ 				"Switching back to LCPLL failed\n");
+ 	}
 -- 
 2.39.5
 
