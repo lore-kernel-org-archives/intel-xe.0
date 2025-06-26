@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 556CAC7EE32
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 11:32:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 683A7C7EE30
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 11:34:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D629B10E89C;
-	Thu, 26 Jun 2025 11:32:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RPwL2HWk";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A82210E279;
- Thu, 26 Jun 2025 11:32:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750937524; x=1782473524;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=gq/bMTMdynRkbjaoBXDaRsNLDVVDk/3ysvYQm1qny/M=;
- b=RPwL2HWkimY0nmn6NYuCRVPs0sfgCbivVo7Bk+ofyQDZnXTc12N6Yae3
- S80IiwljWlawA8JG+Vxa1F7C9e9jJDk9v8DVotFBLWEZDxGTX4QxF+vkb
- AWL+WZ8k1NOHM2ZG8yLy2+ww67NkkZHc86SyY6c3O05jzBJ9SVzUtDh2q
- FKzGii1e4TmeHfRsrtl6DV9EgqOcx78HisJm0+ICjxICE/OjUGPc2xIXr
- t4X6wmsYmGDefZ6aOLyoqA2lVfEZ6UnluAsAJNg676rsZhoxg90ICYI0/
- bv0pfUmsy4B91d4VloKJxZb5Y0IARjE8yV2GD14LDIwlgpz9usHvozJ/O g==;
-X-CSE-ConnectionGUID: +gLoQy5pTnaXjOlvs3deAA==
-X-CSE-MsgGUID: tG4QRk1URMKBnnRdoqiTDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53325190"
-X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="53325190"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 04:32:04 -0700
-X-CSE-ConnectionGUID: uBJcLQ18SIW8E+qm8oC9Sg==
-X-CSE-MsgGUID: CRrVo6QgRWasthqLibG25Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="158251836"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.155])
- by orviesa005.jf.intel.com with SMTP; 26 Jun 2025 04:32:01 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 26 Jun 2025 14:31:59 +0300
-Date: Thu, 26 Jun 2025 14:31:59 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] Revert "drm/i915/dp: Reject HBR3 when sink doesn't
- support TPS4"
-Message-ID: <aF0vr8gQtw2Lfmx4@intel.com>
-References: <20250620124417.2041233-1-ankit.k.nautiyal@intel.com>
- <20250620124417.2041233-2-ankit.k.nautiyal@intel.com>
- <aFlnzzW7HhtcqWs7@intel.com>
- <5fe0cd00-291b-4e93-a93a-6f8e32db4541@intel.com>
- <aFrXN20jmuP_Hc01@intel.com>
- <3d26024d8750cb1c188da77f7d3b07fb5b2cc40b@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1640D10E89D;
+	Thu, 26 Jun 2025 11:34:48 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7737410E89D;
+ Thu, 26 Jun 2025 11:34:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9033048318309675012=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3d26024d8750cb1c188da77f7d3b07fb5b2cc40b@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_drop_a_?=
+ =?utf-8?q?number_of_dependencies_on_i915=5Fdrv=2Eh?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Jun 2025 11:34:46 -0000
+Message-ID: <175093768648.112454.97652910945378065@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250626101636.1896365-1-jani.nikula@intel.com>
+In-Reply-To: <20250626101636.1896365-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,73 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 25, 2025 at 11:18:03AM +0300, Jani Nikula wrote:
-> On Tue, 24 Jun 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Tue, Jun 24, 2025 at 10:10:53AM +0530, Nautiyal, Ankit K wrote:
-> >> 
-> >> On 6/23/2025 8:12 PM, Ville Syrjälä wrote:
-> >> > On Fri, Jun 20, 2025 at 06:14:16PM +0530, Ankit Nautiyal wrote:
-> >> >> This reverts commit 584cf613c24a4250d9be4819efc841aa2624d5b6.
-> >> >> Commit 584cf613c24a ("drm/i915/dp: Reject HBR3 when sink doesn't support
-> >> >> TPS4") introduced a blanket rejection of HBR3 link rate when the sink does
-> >> >> not support TPS4. While this was intended to address instability observed
-> >> >> on certain eDP panels [1], the TPS4 requirement is only mandated for DPRX
-> >> >> and not for eDPRX.
-> >> > I see no exception given for eDP regarding this rule. The only exception
-> >> > allowed is that eDP can say DPCD_REV=1.4 + TPS4_SUPPORTED=0. So I still
-> >> > claim that these eDP sinks are violating the spec.
-> >> 
-> >> Hmm.. Yes the spec allows eDP sinks to report DPCD_REV=1.4 and 
-> >> TPS4_SUPPORTED, so perhaps eDPs claiming HBR3 with DPCD rev other than 
-> >> rev 1.4 and not supporting TPS4 are indeed violating the spec.
-> >> 
-> >> Would it make sense to add a condition that checks for DPCD_REV=1.4.
-> >> 
-> >> Specifically:
-> >> 
-> >> if DPCD_REV=1.4 and TPS4_SUPPORTED = 0, then do not prune the HBR3 rate?
-> >> 
-> >> Or otherway if DPCD_REV!=1.4 and TPS4_SUPPORTER = 0, prune the HBR3 rate
-> >> 
-> >> This way the patch need not be reverted, but modified to address 
-> >> instability issues for eDP panels that are not aligned with the spec.
-> >> 
-> >> That said, the gitlab issue#5969 [1] will still need another solution 
-> >> since it seems to have DPCD rev 14 as per logs:
-> >> 
-> >> DPCD: 14 1e 44 41 00 00 01 80 02 00 02 00 00 0b 80
-> >
-> > I think we do need the quirk. But the commit message should IMO be
-> > adjusted so that it doesn't claim that these panels are 100% legal.
-> 
-> Right. But are you okay with reverting 584cf613c24a ("drm/i915/dp:
-> Reject HBR3 when sink doesn't support TPS4") i.e. allowing HBR3
-> *without* TPS4 by default, and quirking the panel that can't handle
-> HBR3?
+--===============9033048318309675012==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah, I think the revert+quirk for the one known bad system is the way
-to go.
+== Series Details ==
 
-> 
-> No matter what the spec says, this seems to be common. More regressing
-> systems are cropping up, e.g. [1].
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
-> [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14517
-> 
-> 
-> 
-> 
-> -- 
-> Jani Nikula, Intel
+Series: drm/i915/display: drop a number of dependencies on i915_drv.h
+URL   : https://patchwork.freedesktop.org/series/150814/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-3309-d76821a5677456269831568238080f923bc4bf49_BAT -> xe-pw-150814v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3309-d76821a5677456269831568238080f923bc4bf49 -> xe-pw-150814v1
+
+  IGT_8428: 8428
+  xe-3309-d76821a5677456269831568238080f923bc4bf49: d76821a5677456269831568238080f923bc4bf49
+  xe-pw-150814v1: 150814v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150814v1/index.html
+
+--===============9033048318309675012==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: drop a number of dependencies on i915_drv.h</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150814/">https://patchwork.freedesktop.org/series/150814/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150814v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150814v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3309-d76821a5677456269831568238080f923bc4bf49_BAT -&gt; xe-pw-150814v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3309-d76821a5677456269831568238080f923bc4bf49 -&gt; xe-pw-150814v1</li>
+</ul>
+<p>IGT_8428: 8428<br />
+  xe-3309-d76821a5677456269831568238080f923bc4bf49: d76821a5677456269831568238080f923bc4bf49<br />
+  xe-pw-150814v1: 150814v1</p>
+
+</body>
+</html>
+
+--===============9033048318309675012==--
