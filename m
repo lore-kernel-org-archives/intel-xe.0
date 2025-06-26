@@ -4,51 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C25AC77B7F
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 08:46:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 166DFC7EE33
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 08:54:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0F0510E898;
-	Thu, 26 Jun 2025 08:46:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF40C10E8C0;
+	Thu, 26 Jun 2025 08:54:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="f7fpVOx2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ao8Rlwau";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B954C10E898
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Jun 2025 08:46:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=+62N9gt2kZ47iOafLYahz6C4+6DkfI+IAW9WaEI0LmM=; b=f7fpVOx22nZ7SGe2B/7/Ocjo5k
- HCaT+niWNht0ZZO/k7fsH5HDQsIbyBlnC1rhuOgNkoSBSDPFuQebMo/Z3y91JYpMOCfX/GmYufIRJ
- dGb7tOkNtxNqgx1lyl4TNdluEEuZmGtPhmDpGPRbCqYB+bJWYOk81j4hN3T9FBmD5q18Tf7JEYBxT
- 3ugbeYrGPN72XieFfZKttR/+fZW6GRMB6P/PWs760dDZN2WESqcXGBkarh+feqE7BRtJpxjMeYSjB
- WnhswkBQCwlnqw020Pw+irb4DN/wr2xQayCV62vBSWOsb02rbOkI6gOwPaq3JPP8hF0MDr70W6V3+
- hbpAojLw==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uUiFD-008uG8-Tx; Thu, 26 Jun 2025 10:46:07 +0200
-Message-ID: <bdd16d16-97ef-40d0-9a03-610508024aeb@igalia.com>
-Date: Thu, 26 Jun 2025 09:46:07 +0100
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A85110E8C0
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Jun 2025 08:54:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750928074; x=1782464074;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=gd4kSmv9UJpXxBawnEx6tGLPpZdFCIzjpxZowj8jd5I=;
+ b=Ao8RlwauQeK5bCx7zF3bAwZakxd1TgwZqVAFMCQeeEmk7htUWbDf2HCa
+ w7zkvOTky2NpdaO2m4n3xUs49Uu3AFXdEl5vaSJ6cKhUJBiLaGPbXETEo
+ ikdzXUt73VVAzl8v8vdtvm73X+gb5PPyCn3GZLHVypu/CxnVjHEhMzCtH
+ P7FfhArgCTd6yixUSLHOkXbBo2pBFS2Rld7FBStf7I2GJ9PcyYAJKtMqm
+ wufgOKPJwBKNscceh5BZqiBB1xlK608IdqdhdwBLuCq4fwguWEopxdiAU
+ UfZilPfqjgPHtYtlcvbu5mpzTJMoR0g5jPedBxWAbBoqA7MLqpXwWXg7M A==;
+X-CSE-ConnectionGUID: DzMsBKdERyG4UgZ2LeajSQ==
+X-CSE-MsgGUID: lSBEWgLeTuCrWqODkQzaJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="63472267"
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="63472267"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 01:54:32 -0700
+X-CSE-ConnectionGUID: buq+UEgpS7aVqTFii4TlHA==
+X-CSE-MsgGUID: Atnh6RzGSSmiclXG7Inw3w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="151878401"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 01:54:33 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Thu, 26 Jun 2025 01:54:31 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Thu, 26 Jun 2025 01:54:31 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.43)
+ by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Thu, 26 Jun 2025 01:54:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nfU3dijTzOh/CjaMXvo3EMNNBXjIcGPN0JRtn8sZHwrUZiJzZ/FldA6C2mQk5YKl2yWRntEASFDbWGU0pMSoRk5taAUMVPnLagpVDCHfXKyAm/BIkjmnx9/Wg6TnliOGeDEmqge+SmrZiT0+NOBvk3xr75fI/wSSwINeEMktLdBHA+GuHW9xuMnVCVmFHypec/NTVfSJg7eBBVep+bc195CJgStEXTKRB2G6hUUcfj5/9fLKAzSUy9nhQe6xqGWUU04WXE0tbENkeHJwzjYzsYMjzRxJ8SCq+gZZOxn9QI3YgEiNCDTjKS6cDdw9CtPvo/sEFKKPD47eL70OBpaWMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BHWTxDxhfIL6KQ92KFav9gF4KU+jd51QwqPzKfnKktE=;
+ b=XDeMFjglusNjKU2JTjcfekUBqwoVbgpZ7uMce6BaqdUtj106T1+4HPuSecTSscvGB4tPi3j29AipfcBzTeLX0gnjO+7ZVfRptqrwTcQWZSedlskb8KgJVTPvL1bYg17BkS3a0DCICvKF3hKS9y2KI/o1tJ4FX4xPb6wMEvUnxbsdxY9E57fFS4e/1bJ40+xuz/iht4hXaVhT6CytQulyS207ueNap2z07kSqTkeLM80n+OYAVPt8p+sa5U/xbPfR8uodjZ75L+fIG1Xe/BHVO244fjklzPpcU53zHm/NDTwgjvv+IHZ3LpLNcSIS42Clo4epikKtdS/4UpbKZSK9lA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a) by SJ0PR11MB5771.namprd11.prod.outlook.com
+ (2603:10b6:a03:424::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.29; Thu, 26 Jun
+ 2025 08:54:15 +0000
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::2ae2:110b:2487:40ed]) by DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::2ae2:110b:2487:40ed%6]) with mapi id 15.20.8835.018; Thu, 26 Jun 2025
+ 08:54:14 +0000
+Message-ID: <352e6be8-4ddb-4442-8a0b-5f49f63be9c0@intel.com>
+Date: Thu, 26 Jun 2025 14:24:08 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/7] drm/xe: Consolidate LRC offset calculations
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
- Matthew Brost <matthew.brost@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-References: <20250625153632.21220-1-tvrtko.ursulin@igalia.com>
- <20250625153632.21220-2-tvrtko.ursulin@igalia.com>
- <m4m4hvwhkuonvkvemhek6lr5knpvzochdzy6xnlafciqpapsep@ygt65dkcshz5>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <m4m4hvwhkuonvkvemhek6lr5knpvzochdzy6xnlafciqpapsep@ygt65dkcshz5>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 20/20] drm/xe/madvise: Skip vma invalidation if mem
+ attr are unchanged
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <thomas.hellstrom@linux.intel.com>
+References: <20250613125558.2607665-1-himal.prasad.ghimiray@intel.com>
+ <20250613125558.2607665-21-himal.prasad.ghimiray@intel.com>
+ <aFnU+sQWnsk63A9+@lstrano-desk.jf.intel.com>
+Content-Language: en-US
+From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+In-Reply-To: <aFnU+sQWnsk63A9+@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MAXP287CA0023.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a00:49::31) To DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|SJ0PR11MB5771:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1932f234-b0bb-4d31-3502-08ddb48f06de
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WXduRUtiWGtXZHFZK0F5c1dNaHNNME5BOWw3cmVYZmVhd0JYbFllSWhhK0lE?=
+ =?utf-8?B?OFNjT0ZWVi9xRGl5c2MxcXloR204QTdJc1M3T1UydWdybW9leG9vU1J4RXVp?=
+ =?utf-8?B?WUlxUldSNGQ1aTNNRFA2QzRNUmM2S0svcktXTHhNeFNKUEMxWTJ1WHJPeTlv?=
+ =?utf-8?B?UGdLRHc0Y2FPZ291Rk9rdmthWEIvY0tGQlBjVDRDSENKdmdqT0tSUlFKR3Nn?=
+ =?utf-8?B?OHJYSmtQQUZYeDJmUzdmUnRQY1orWFpQc21oL2VLSFZXQTNzTlZ4c3ZwcjNQ?=
+ =?utf-8?B?OHN4aEhRZ05hd2tRZHZ0RHJMOExIM21DQ3VETm1zNkhMZUdXTE00aVQrMGE4?=
+ =?utf-8?B?cVpLMEliNExKekxkM2JOeTBUbEE4ckFqYktOclMwZzB0YS9rL3B0b2tYbFdJ?=
+ =?utf-8?B?R1FTcEtVZzhIcXdxOVV6eXkrU29VbUlxMFVuM3JiTEMvMkt4eEU5elZqeDhy?=
+ =?utf-8?B?bkZwbTdsN09SMGE5ZnZtQ1JVNVo4TjdFTjEwTE1iSzZsWTFadUNub2dYS0Zj?=
+ =?utf-8?B?Vm1jcXRlZUF2YWxPRTZGbWdtYkxFZ0Z4UmNldzVQL2wvZnF5TGVwYjNMeFVh?=
+ =?utf-8?B?dFBiQTd2b2Y2NDFWaWFjckdYazVUd0VNSEc0NDlWZGlmamZmaHlzL3EzcHg1?=
+ =?utf-8?B?OFF6bTJKKy8zYktKbGFYbjVUMFY3NW0rTGZsTXI5bFIzVkZxZkYyU2tSaDhs?=
+ =?utf-8?B?eUxrc1k1RmhRZjhzcktjbllEL3dranI5SExINmpSY2lZRzR3aHdFNlNKMkRO?=
+ =?utf-8?B?aFpWQlVnVGFYQlZ3eTJIWnJrSUV0Wm0rWXN6eXBtZ1ZTQ0QxcUszVUJDbHUy?=
+ =?utf-8?B?SmNwcGF3dC9KVGR4VlFSSi9kQytYVy9zaFVUSDF0NlBIYXRWcnhMTFRGVlVr?=
+ =?utf-8?B?d3JoL2kwaldBMEF1cXkxeTRLUUdjZXY3eU5DVk5YRGpTekk0aUN3VFlVeHly?=
+ =?utf-8?B?WGplNldoN0RsWEtablJlNWNRL1ZoQVdZTHhMc243V1MxTy9oQ1pmRGJsNDh0?=
+ =?utf-8?B?UFpVWWdTcUN3UUc1RnNKaURYUStJdzNPUzY3VCsvT3RHQlVRY1NkekpEN09E?=
+ =?utf-8?B?UzNacTdzNE5XUGFXTjBXWmFJNjhGdjB0NG9wVmFvMnFvVzFQQjUzeDFSa3dJ?=
+ =?utf-8?B?OHcvRk1mR2VjOTZrZnZJc0tTTzh0RDZweUk5Tk1aMGRtZW1MQTNvZmpxM1hx?=
+ =?utf-8?B?OGNqd0ZtRmNPMlc4cFNPU1hadm04VjRBQVg4T0FIZDJvVWZ3cC81OTdLSHZ1?=
+ =?utf-8?B?UWdWeTdFSkdpSHo2c0kzTnp3WWdQL3J1ZVZScDlCMjBNM1dSWC9MVi9MaTBK?=
+ =?utf-8?B?YlRTUUVEZENWbkJoaHZaMXpWWjhSVkxlazFydEErdHpjZEswbHhOWlorYXcw?=
+ =?utf-8?B?ZDJTaS9SdFp3UHFGRFVjc0JXRVZDR2t6U1M1citOS2t3VHJpM2xUS0VOOUov?=
+ =?utf-8?B?Vnlpb0RFbkFYeEswMjQvc2JmUXRBWjlZaDlsS3NnN3E5YUtCYllDVDRZeks5?=
+ =?utf-8?B?WDNxK25ad245eE0xdWE3MWpsV0N5clptVU50VSsrWmJTaU0yNCtHb2FiZDRY?=
+ =?utf-8?B?ZXJYazRQZ3hPSnN1UXBGTTFmMmRiS2NNNGVqTTBKVnpzWitaYnJqdlNsd3ZR?=
+ =?utf-8?B?S1QzbDFkVHNZQVVhVFI4TE16M1hsYVJhOHJseWlTK3BPaHhqWTd2ZVN1ZXVs?=
+ =?utf-8?B?cnc4QnVjZ2Z6SHNnNE1zZzJjd0cxT2ZkYURid082UnNWNHZwU2xxaXhYMmNT?=
+ =?utf-8?B?WHpnSFhEVllEbWtmQ3ZGSkJBeTNZR3NaZy9YQ04yQjJqZUdXZ3MvNzFDNHZq?=
+ =?utf-8?B?a25pcElYWVU1aUhDbk50K3h1SVdSLy9wRmFySzR2SHRWUUJvV2FPQ0lCSlFq?=
+ =?utf-8?B?TFNNYUFDOXE3TS9hbTVHYUpuSzFXREtoZVpETmJJZ1hBUHc9PQ==?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z2hLT3lBYmlZZU5OdnJabEFRTXBSbDJVMm40TWZJa1lVemI5Y3JYcXNENVp3?=
+ =?utf-8?B?c2laNjZGY0dQRCtHcnlYWFd5Wnk2Mlg3QWtPZDVKcDJMd3NVRHRlY053bVRm?=
+ =?utf-8?B?eFlQWktzRk9Tb3JwOFR5cXNiY0NmRU1PbklNVTV5aURXZmd6SFFWUXE4MDhD?=
+ =?utf-8?B?dVIyTUZaczdNU1dFZzRoQWJnMUI5MSs0ZUphU0lNN25HdXpscFFXZEFiRTg0?=
+ =?utf-8?B?WExLZFp5VzhXTTZIRHAyb25PTU96aDNvR2pQMndHd0JZSWxmUHRIaEcvUTcy?=
+ =?utf-8?B?U2d6MEdadlpLNVE3VzBqRSs2VjdTZVJ4bWt0UUtRS2NBeHN4U2FzL2E2cTR6?=
+ =?utf-8?B?VGpzRlNvOGJMSUVkUlh2cGszbU9vVG5hZytoS3EzYTdFYXo4VUVoUFRmVDR0?=
+ =?utf-8?B?blpScmFSamUweFgvRVhLTlZkN2dWVDEyd1dTeHh0d20zTlVsZ2FHV2V6U2px?=
+ =?utf-8?B?MGpXcWFGMXpORVlMNWdNdkwyWFBkMUFrYktsQTd1QzBOUGkxSVhST1QrdTZG?=
+ =?utf-8?B?ZWdacVgyWk1HY3F4NkJvZFJibUZTMzgvVGVEUkZsUE1sUnBXUFRJWUthRkc0?=
+ =?utf-8?B?SVVzdXlMWlUrbEt3S3RDVCszNnZTRFd6WURxbzIvdW02NXdQaVlWTm55cHFX?=
+ =?utf-8?B?c1FqQ2syYXFhR2sraDZ1ckh3bnp2UGtsdjZsUmxxYlVOZW1pUVc4b3hPUlFm?=
+ =?utf-8?B?dTUvQzFrSUZTWjBRTGJoWTFVWkZmbzF0TzQ1UjYxTnJVWGhpYU9jdGN6ME5w?=
+ =?utf-8?B?KytqK0JnNkt1WlVhZGtnL3BMSDdpV0xyUGtGMUY4Z0ZyVU9VVUxmdTM2Yzdq?=
+ =?utf-8?B?N2Q3TW1OSnNyL1V3K0grM3FQYUFyTW9RSzJ1QnBJdVZuVFRsNWdZcXZWdGVF?=
+ =?utf-8?B?WkswU3FWNlp6T2dXNDZKZXFBUXpaWDBxWE9udmpjUHBaL2ptdktrK0JqVFJ5?=
+ =?utf-8?B?Z1NITFg0Mnd0dFZndDE4Umg2NnF0VFFrNVpMcDNyVWFQblAvRW13M1hlTkN2?=
+ =?utf-8?B?aE43aDlFUDhrZjBYVWw5a3Zrd1VHNGNzbGZ0VWgwdDVzUEFXY0p3Ly9QZnJi?=
+ =?utf-8?B?Sk5NV05yZWdzQkFYTU9hdlFsL0tVVVNYRVlzS3F4RGZYYkZTM1EvTjNGL1ZE?=
+ =?utf-8?B?ZFcxVmhKaG9ocHFoMVJrZ044NVdhYnF3TC9ibnNTMFFTcEJxVHBiYW9yMXcx?=
+ =?utf-8?B?Mzc2NnFaWis2VEFjTzdkUzVIdXVaQVhtTHg4UkpmdDg3OVYvcEZ5Ulg3OXlj?=
+ =?utf-8?B?NkNibFBFK2VudDlpNTNnWVFkdGFyMWp6aXNsTU5Mcm1CK3BrUmFyd1NqbVhn?=
+ =?utf-8?B?bGVmTGlaQlppaXZGSDdHWENoTFN6YThiT21RTFBDd29kK1VHbVZMYUJjZVFT?=
+ =?utf-8?B?UTBSSS9BbXVHbXhKUmM4ekkzd0p0QS9ZOVIwUnVRQSt6dlllVEFzTFVwWTRt?=
+ =?utf-8?B?LzMxZTBhaHd6TitJZEsxZFRMRnZZc3VDQm1XeEZhTVZkUzBpVE4zcEVVUFBV?=
+ =?utf-8?B?UG16eWJCVTloQllncklJMGdXZ3l0Uk05Y1JEMDdSbXVBYnZ2YjJRYkhucnpH?=
+ =?utf-8?B?WXMxcWpaSTNtcERXSmVXakh0dHdYV1hmL25JVGN6MTIxTWNIQTc5cmppbHJX?=
+ =?utf-8?B?cVU2dGYrSGJncXFEajlpeURMVUZEcTEwbTh4SXY3cHIxZkY5bE5mZkdjNXAz?=
+ =?utf-8?B?WkRBOGVFaU1SUEFoSGg0YjhVQnNZNE5EcEQ0U2RUQzNyc1JFT0hCZGVXMVRJ?=
+ =?utf-8?B?T2g4THdqRkkwdS83WDNQUXFZNlNDSzUzWTA4cDl5RVhMT0N3U2NMNm9LSTcz?=
+ =?utf-8?B?SXdMTHo3Y0lMMmo0SDN4MmFGdFlJVXU0UHlrdVByajlzZ3U3WTdIL3JVV0Zn?=
+ =?utf-8?B?SlRZZ2xMK21kNWNOOGE2YXhRYzhWN3JwT2VSQSt4TVUxRUY5RDM1aVVpVVUz?=
+ =?utf-8?B?eTVPdERjTzdEUGFNMEJUWkNaeXZyZEg2N2dRclRZOHVDSit0MWQ0eVZtNFM0?=
+ =?utf-8?B?SVQwR3V2L3U3U0ZaSG1qQTFORjJQS3Y1eHJTZGIrQTVETC9PbGYrdXdqY2U3?=
+ =?utf-8?B?OUdTTnM2L1Z6a1dCUHA5UnlFMElkTllxTmZRZXduK2dFMnhuTTNJWlIyMWVl?=
+ =?utf-8?B?dmE1L3hlNGhJZjUyNndMVE14Q3R2WE1iUEFxSS9MdWZxUnJqb041M0E5d2Ju?=
+ =?utf-8?Q?kpEmQwQhtrmYl7ds9zu5mq8=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1932f234-b0bb-4d31-3502-08ddb48f06de
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2025 08:54:14.8471 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qrYwwa+uwICCVnd/LoDGqJWm12hnAJ5XyECi8hzTh1Jfv8OZmzcurxqwqYUxeinslemFbCKreGgcxa7uejamG4myjEgBXcm2FdGrWPd0X4c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5771
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,197 +197,173 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 25/06/2025 20:53, Lucas De Marchi wrote:
-> On Wed, Jun 25, 2025 at 04:36:26PM +0100, Tvrtko Ursulin wrote:
->> Attempt to consolidate the LRC offsets calculations by alignning the
->> recently added wa_bb_offset with the naming scheme in the file and
->> also change the size stored in struct xe_lrc to not include the ring
->> buffer.
+
+On 24-06-2025 03:58, Matthew Brost wrote:
+> On Fri, Jun 13, 2025 at 06:25:58PM +0530, Himal Prasad Ghimiray wrote:
+>> If a VMA within the madvise input range already has the same memory
+>> attribute as the one requested by the user, skip PTE zapping for that
+>> VMA to avoid unnecessary invalidation.
 >>
->> The former makes it somewhat visually easier to follow the layout of the
->> various logical blocks stored in the LRC bo, while the latter reduces the
-> 
-> The intention of not using "lrc" in the WA page was because it's not
-> actually part of the LRC, it's just part of the same BO. However all
-> these calculations with lrc->bo->size vs lrc->size are confusing and I
-> like the consolidation you did here.
-> 
-> I had started an ascii table to document the layout. I will rebase it on
-> top of this later.
-> 
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Thanks! Btw I have also sent this one as standalone yesterday 
-(https://patchwork.freedesktop.org/series/150746/) so if it passes CI 
-you could pull it in. (Only botched one Cc: line which would need manual 
-fixup.)
-
-Regards,
-
-Tvrtko
-
-> thanks
-> Lucas De Marchi
-> 
->> number of sprinkled around calculations.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Suggested-by: Matthew Brost <matthew.brost@intel.com>
+>> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 >> ---
->> drivers/gpu/drm/xe/xe_lrc.c       | 41 ++++++++++++++-----------------
->> drivers/gpu/drm/xe/xe_lrc_types.h |  2 +-
->> 2 files changed, 19 insertions(+), 24 deletions(-)
+>>   drivers/gpu/drm/xe/xe_vm.c         |  1 +
+>>   drivers/gpu/drm/xe/xe_vm_madvise.c | 57 ++++++++++++++++++------------
+>>   drivers/gpu/drm/xe/xe_vm_types.h   |  6 ++++
+>>   3 files changed, 42 insertions(+), 22 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
->> index 37598588a54f..f0c33de4eb6c 100644
->> --- a/drivers/gpu/drm/xe/xe_lrc.c
->> +++ b/drivers/gpu/drm/xe/xe_lrc.c
->> @@ -717,8 +717,12 @@ static u32 
->> __xe_lrc_ctx_timestamp_udw_offset(struct xe_lrc *lrc)
->>
->> static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
->> {
->> -    /* Indirect ring state page is at the very end of LRC */
->> -    return lrc->size - LRC_INDIRECT_RING_STATE_SIZE;
->> +    return lrc->bo->size - LRC_WA_BB_SIZE - 
->> LRC_INDIRECT_RING_STATE_SIZE;
->> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>> index d9ce25f3abf4..56d6c286e3d3 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>> @@ -1226,6 +1226,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+>>   		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
+>>   
+>>   	vma->attr = *attr;
+>> +	vma->skip_invalidation = 0;
+> 
+> This kzalloc'd so not needed.
+> 
+>>   
+>>   	if (bo) {
+>>   		struct drm_gpuvm_bo *vm_bo;
+>> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+>> index 5b96c8fc73a5..06e40ab0970e 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+>> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+>> @@ -88,13 +88,18 @@ static void madvise_preferred_mem_loc(struct xe_device *xe, struct xe_vm *vm,
+>>   	xe_assert(vm->xe, op->type == DRM_XE_VMA_ATTR_PREFERRED_LOC);
+>>   
+>>   	for (i = 0; i < num_vmas; i++) {
+>> -		vmas[i]->attr.preferred_loc.devmem_fd = op->preferred_mem_loc.devmem_fd;
+>> -
+>> -		/* Till multi-device support is not added migration_policy
+>> -		 * is of no use and can be ignored.
+>> -		 */
+>> -		vmas[i]->attr.preferred_loc.migration_policy =
+>> +		if (vmas[i]->attr.preferred_loc.devmem_fd == op->preferred_mem_loc.devmem_fd &&
+>> +		    vmas[i]->attr.preferred_loc.migration_policy ==
+>> +		    op->preferred_mem_loc.migration_policy) {
+>> +			vmas[i]->skip_invalidation = 1;
+> 
+> In the else statement, you need to clear this so subsequent madvise
+> which change properties do issue invalidations.
+
+Missed it. Will fix
+
+> 
+>> +		} else {
+>> +			vmas[i]->attr.preferred_loc.devmem_fd = op->preferred_mem_loc.devmem_fd;
+>> +			/* Till multi-device support is not added migration_policy
+>> +			 * is of no use and can be ignored.
+>> +			 */
+>> +			vmas[i]->attr.preferred_loc.migration_policy =
+>>   						op->preferred_mem_loc.migration_policy;
+>> +		}
+>>   	}
+>>   }
+>>   
+>> @@ -109,7 +114,10 @@ static void madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
+>>   	xe_assert(vm->xe, op->atomic.val <= DRM_XE_VMA_ATOMIC_CPU);
+>>   
+>>   	for (i = 0; i < num_vmas; i++) {
+>> -		vmas[i]->attr.atomic_access = op->atomic.val;
+>> +		if (vmas[i]->attr.atomic_access == op->atomic.val)
+>> +			vmas[i]->skip_invalidation = 1;
+>> +		else
+>> +			vmas[i]->attr.atomic_access = op->atomic.val;
+>>   
+>>   		bo = xe_vma_bo(vmas[i]);
+>>   		if (!bo)
+>> @@ -134,9 +142,12 @@ static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
+>>   
+>>   	xe_assert(vm->xe, op->type == DRM_XE_VMA_ATTR_PAT);
+>>   
+>> -	for (i = 0; i < num_vmas; i++)
+>> -		vmas[i]->attr.pat_index = op->pat_index.val;
+>> -
+>> +	for (i = 0; i < num_vmas; i++) {
+>> +		if (vmas[i]->attr.pat_index == op->pat_index.val)
+>> +			vmas[i]->skip_invalidation = 1;
+>> +		else
+>> +			vmas[i]->attr.pat_index = op->pat_index.val;
+>> +	}
+>>   }
+>>   
+>>   typedef void (*madvise_func)(struct xe_device *xe, struct xe_vm *vm,
+>> @@ -161,23 +172,25 @@ static void xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start, u64 end, u
+>>   				  false, MAX_SCHEDULE_TIMEOUT) <= 0)
+>>   		XE_WARN_ON(1);
+>>   
+>> -	*tile_mask = xe_svm_ranges_zap_ptes_in_range(vm, start, end);
+>> -
+>>   	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
+>>   		struct xe_vma *vma = gpuva_to_vma(gpuva);
+>>   
+>> -		if (xe_vma_is_cpu_addr_mirror(vma))
+>> +		if (vma->skip_invalidation)
+>>   			continue;
+>>   
+>> -		if (xe_vma_is_userptr(vma)) {
+>> -			WARN_ON_ONCE(!dma_resv_test_signaled(xe_vm_resv(xe_vma_vm(vma)),
+>> -							     DMA_RESV_USAGE_BOOKKEEP));
+>> -		}
+>> -
+>> -		for_each_tile(tile, vm->xe, id) {
+>> -			if (xe_pt_zap_ptes(tile, vma)) {
+>> -				*tile_mask |= BIT(id);
+>> -				vma->tile_invalidated |= BIT(id);
+>> +		if (xe_vma_is_cpu_addr_mirror(vma)) {
+>> +			*tile_mask |= xe_svm_ranges_zap_ptes_in_range(vm,
+>> +								      xe_vma_start(vma),
+>> +								      xe_vma_end(vma));
+>> +		} else {
+>> +			if (xe_vma_is_userptr(vma))
+>> +				WARN_ON_ONCE(!dma_resv_test_signaled(xe_vm_resv(xe_vma_vm(vma)),
+>> +								     DMA_RESV_USAGE_BOOKKEEP));
+>> +			for_each_tile(tile, vm->xe, id) {
+>> +				if (xe_pt_zap_ptes(tile, vma)) {
+>> +					*tile_mask |= BIT(id);
+>> +					vma->tile_invalidated |= BIT(id);
+>> +				}
+>>   			}
+>>   		}
+>>   	}
+>> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+>> index c7156f8e2ed2..3b3019ecbfab 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+>> @@ -151,6 +151,12 @@ struct xe_vma {
+>>   	/** @tile_staged: bind is staged for this VMA */
+>>   	u8 tile_staged;
+>>   
+>> +	/**
+>> +	 * @skip_invalidation: Used in madvise to avoid invalidation
+>> +	 * if mem attributes doesn't change
+>> +	 */
+>> +	u32 skip_invalidation;
+> 
+> bool or I think you can safely stuff this into gpuva flags (e.g.,
+> DRM_GPUVA_USERBITS) as this only set / cleared / viewed by a single
+> thread and all other flags are set at init time or bind time (i.e., no
+> races).
+
+would change it to bool.
+
+  If you choose the latter, or regardless, we should probably
+> document the gpuva usage.
+
+do you mean gpuva userbit flags ?
+  >
+> Matt
+> 
 >> +
->> +static inline u32 __xe_lrc_wa_bb_offset(struct xe_lrc *lrc)
->> +{
->> +    return lrc->bo->size - LRC_WA_BB_SIZE;
->> }
->>
->> #define DECL_MAP_ADDR_HELPERS(elem) \
->> @@ -973,11 +977,6 @@ struct wa_bb_setup {
->>              u32 *batch, size_t max_size);
->> };
->>
->> -static size_t wa_bb_offset(struct xe_lrc *lrc)
->> -{
->> -    return lrc->bo->size - LRC_WA_BB_SIZE;
->> -}
->> -
->> static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
->> {
->>     const size_t max_size = LRC_WA_BB_SIZE;
->> @@ -993,7 +992,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct 
->> xe_hw_engine *hwe)
->>             return -ENOMEM;
->>         cmd = buf;
->>     } else {
->> -        cmd = lrc->bo->vmap.vaddr + wa_bb_offset(lrc);
->> +        cmd = lrc->bo->vmap.vaddr + __xe_lrc_wa_bb_offset(lrc);
->>     }
->>
->>     remain = max_size / sizeof(*cmd);
->> @@ -1017,13 +1016,13 @@ static int setup_wa_bb(struct xe_lrc *lrc, 
->> struct xe_hw_engine *hwe)
->>
->>     if (buf) {
->>         xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap,
->> -                 wa_bb_offset(lrc), buf,
->> +                 __xe_lrc_wa_bb_offset(lrc), buf,
->>                  (cmd - buf) * sizeof(*cmd));
->>         kfree(buf);
->>     }
->>
->>     xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR, xe_bo_ggtt_addr(lrc- 
->> >bo) +
->> -                 wa_bb_offset(lrc) + 1);
->> +                 __xe_lrc_wa_bb_offset(lrc) + 1);
->>
->>     return 0;
->>
->> @@ -1040,19 +1039,22 @@ static int xe_lrc_init(struct xe_lrc *lrc, 
->> struct xe_hw_engine *hwe,
->>                u32 init_flags)
->> {
->>     struct xe_gt *gt = hwe->gt;
->> +    const u32 lrc_size = xe_gt_lrc_size(gt, hwe->class);
->> +    const u32 bo_size = ring_size + lrc_size + LRC_WA_BB_SIZE;
->>     struct xe_tile *tile = gt_to_tile(gt);
->>     struct xe_device *xe = gt_to_xe(gt);
->>     struct iosys_map map;
->>     void *init_data = NULL;
->>     u32 arb_enable;
->> -    u32 lrc_size;
->>     u32 bo_flags;
->>     int err;
->>
->>     kref_init(&lrc->refcount);
->>     lrc->gt = gt;
->> +    lrc->size = lrc_size;
->>     lrc->flags = 0;
->> -    lrc_size = ring_size + xe_gt_lrc_size(gt, hwe->class);
->> +    lrc->ring.size = ring_size;
->> +    lrc->ring.tail = 0;
->>     if (xe_gt_has_indirect_ring_state(gt))
->>         lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
->>
->> @@ -1065,17 +1067,12 @@ static int xe_lrc_init(struct xe_lrc *lrc, 
->> struct xe_hw_engine *hwe,
->>      * FIXME: Perma-pinning LRC as we don't yet support moving GGTT 
->> address
->>      * via VM bind calls.
->>      */
->> -    lrc->bo = xe_bo_create_pin_map(xe, tile, NULL,
->> -                       lrc_size + LRC_WA_BB_SIZE,
->> +    lrc->bo = xe_bo_create_pin_map(xe, tile, NULL, bo_size,
->>                        ttm_bo_type_kernel,
->>                        bo_flags);
->>     if (IS_ERR(lrc->bo))
->>         return PTR_ERR(lrc->bo);
->>
->> -    lrc->size = lrc_size;
->> -    lrc->ring.size = ring_size;
->> -    lrc->ring.tail = 0;
->> -
->>     xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
->>                  hwe->fence_irq, hwe->name);
->>
->> @@ -1096,10 +1093,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, 
->> struct xe_hw_engine *hwe,
->>         xe_map_memset(xe, &map, 0, 0, LRC_PPHWSP_SIZE);    /* PPHWSP */
->>         xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
->>                  gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE,
->> -                 xe_gt_lrc_size(gt, hwe->class) - LRC_PPHWSP_SIZE);
->> +                 lrc_size - LRC_PPHWSP_SIZE);
->>     } else {
->> -        xe_map_memcpy_to(xe, &map, 0, init_data,
->> -                 xe_gt_lrc_size(gt, hwe->class));
->> +        xe_map_memcpy_to(xe, &map, 0, init_data, lrc_size);
->>         kfree(init_data);
->>     }
->>
->> @@ -1859,8 +1855,7 @@ struct xe_lrc_snapshot 
->> *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
->>     snapshot->seqno = xe_lrc_seqno(lrc);
->>     snapshot->lrc_bo = xe_bo_get(lrc->bo);
->>     snapshot->lrc_offset = xe_lrc_pphwsp_offset(lrc);
->> -    snapshot->lrc_size = lrc->bo->size - snapshot->lrc_offset -
->> -        LRC_WA_BB_SIZE;
->> +    snapshot->lrc_size = lrc->size;
->>     snapshot->lrc_snapshot = NULL;
->>     snapshot->ctx_timestamp = lower_32_bits(xe_lrc_ctx_timestamp(lrc));
->>     snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
->> diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/ 
->> xe_lrc_types.h
->> index 883e550a9423..2c7c81079801 100644
->> --- a/drivers/gpu/drm/xe/xe_lrc_types.h
->> +++ b/drivers/gpu/drm/xe/xe_lrc_types.h
->> @@ -22,7 +22,7 @@ struct xe_lrc {
->>      */
->>     struct xe_bo *bo;
->>
->> -    /** @size: size of lrc including any indirect ring state page */
->> +    /** @size: size of the lrc and optional indirect ring state */
->>     u32 size;
->>
->>     /** @gt: gt which this LRC belongs to */
+>>   	/**
+>>   	 * @ufence: The user fence that was provided with MAP.
+>>   	 * Needs to be signalled before UNMAP can be processed.
 >> -- 
->> 2.48.0
+>> 2.34.1
 >>
+
+
 
