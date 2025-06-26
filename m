@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6AAFC7EE30
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 18:29:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFE8EC7EE30
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 18:41:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA66010E2F0;
-	Thu, 26 Jun 2025 18:29:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m8FEe+n3";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2439710E2F0;
- Thu, 26 Jun 2025 18:29:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750962566; x=1782498566;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Lp4mxzDInK36sHolafKQ+Jk7x1/+l/ov5hQEFwhdZ/8=;
- b=m8FEe+n3ncUm8iLMCuOQFuTO3HkCqnM8xCk76ekBfn+yik8imJZ+mfDi
- megvC8c/NMqHwh9WwxHXBrMDQBxFu3ic+34LdkmO3cHZRQ6ADnx3bWW30
- m7ni/vIeNWuXzBABem3h/BzwbQkx5q72Yf49ptByzRgIIvPWpt5yJ2pbE
- kqzV89p6y4giYD8Uj9k5qzqCPmC1KdEkSOqmlYLxI4I17sDQnSyaJ5DSQ
- zGy+m8m6gKAKixUjt1nORrqNDiTDYbQ6NAD1+P5fcPYuF/sH8fW1iYy2a
- Gm7PCqQUMz0QoR1ODx1mRHRJK93lCYZHcwX3AoHgcVOM84pL2Pbt1kXTx g==;
-X-CSE-ConnectionGUID: NUjOwoAFQVqTMTeY5Stwmw==
-X-CSE-MsgGUID: 9wbvLYvDQESC8o4ceZH8bQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="64332587"
-X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="64332587"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 11:29:25 -0700
-X-CSE-ConnectionGUID: l7MvYrgjR++SWmlvxN5XIw==
-X-CSE-MsgGUID: m6UrAtI1To6bz4C4N5dCpw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="153089697"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.120])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 11:29:22 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Imre Deak <imre.deak@intel.com>
-Subject: [PATCH] drm/i915/power: use intel_de_wait_for_clear() instead of
- wait_for()
-Date: Thu, 26 Jun 2025 21:29:18 +0300
-Message-Id: <20250626182918.2185836-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BD7310E8DD;
+	Thu, 26 Jun 2025 18:41:28 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3541A10E8DD;
+ Thu, 26 Jun 2025 18:41:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2907051663571432666=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_use_int?=
+ =?utf-8?q?el=5Fde=5Fwait=5F*=28=29_functions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Jun 2025 18:41:27 -0000
+Message-ID: <175096328721.112455.2907998451719047800@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <cover.1750959689.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1750959689.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,60 +36,183 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prefer the register read specific wait function over i915 wait_for_us().
+--===============2907051663571432666==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The existing condition is quite complicated. Simplify by checking for
-requesters first, and determine timeout based on that. Refresh
-requesters in case of timeouts, should one have popped up during the
-wait. The downside is that this does not cut the wait short if
-requesters show up *during* the wait, but we're talking about 1 ms so
-shouldn't be an issue.
+== Series Details ==
 
-Cc: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_display_power_well.c   | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+Series: drm/i915/display: use intel_de_wait_*() functions
+URL   : https://patchwork.freedesktop.org/series/150832/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 5c9ca8141fcc..9d310a33e701 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -308,8 +308,8 @@ static void hsw_wait_for_power_well_disable(struct intel_display *display,
- {
- 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
- 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
--	bool disabled;
- 	u32 reqs;
-+	int ret;
- 
- 	/*
- 	 * Bspec doesn't require waiting for PWs to get disabled, but still do
-@@ -320,12 +320,17 @@ static void hsw_wait_for_power_well_disable(struct intel_display *display,
- 	 * Skip the wait in case any of the request bits are set and print a
- 	 * diagnostic message.
- 	 */
--	wait_for((disabled = !(intel_de_read(display, regs->driver) &
--			       HSW_PWR_WELL_CTL_STATE(pw_idx))) ||
--		 (reqs = hsw_power_well_requesters(display, regs, pw_idx)), 1);
--	if (disabled)
-+	reqs = hsw_power_well_requesters(display, regs, pw_idx);
-+
-+	ret = intel_de_wait_for_clear(display, regs->driver,
-+				      HSW_PWR_WELL_CTL_STATE(pw_idx),
-+				      reqs ? 0 : 1);
-+	if (!ret)
- 		return;
- 
-+	/* Refresh requesters in case they popped up during the wait. */
-+	reqs = hsw_power_well_requesters(display, regs, pw_idx);
-+
- 	drm_dbg_kms(display->drm,
- 		    "%s forced on (bios:%d driver:%d kvmr:%d debug:%d)\n",
- 		    intel_power_well_name(power_well),
--- 
-2.39.5
+== Summary ==
 
+CI Bug Log - changes from xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3_BAT -> xe-pw-150832v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-150832v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-150832v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-150832v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
+    - bat-lnl-1:          [PASS][1] -> [DMESG-WARN][2] +57 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - bat-bmg-2:          [PASS][3] -> [DMESG-WARN][4] +1 other test dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3:
+    - bat-bmg-1:          [PASS][5] -> [DMESG-WARN][6] +64 other tests dmesg-warn
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-150832v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][7] ([Intel XE#4543]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3 -> xe-pw-150832v1
+
+  IGT_8429: 8429
+  xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3: 9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3
+  xe-pw-150832v1: 150832v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/index.html
+
+--===============2907051663571432666==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: use intel_de_wait_*() functions</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150832/">https://patchwork.freedesktop.org/series/150832/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3_BAT -&gt; xe-pw-150832v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-150832v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-150832v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-150832v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">DMESG-WARN</a> +57 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3.html">DMESG-WARN</a> +64 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-150832v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150832v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3 -&gt; xe-pw-150832v1</li>
+</ul>
+<p>IGT_8429: 8429<br />
+  xe-3312-9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3: 9d9fb2ee6bef2f0264eb126a8ae9c839c9d6c9b3<br />
+  xe-pw-150832v1: 150832v1</p>
+
+</body>
+</html>
+
+--===============2907051663571432666==--
