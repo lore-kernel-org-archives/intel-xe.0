@@ -4,45 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 467FAC7EE30
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 11:08:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 838A4C7EE30
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 11:10:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0089C10E89A;
-	Thu, 26 Jun 2025 11:08:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F49510E8A9;
+	Thu, 26 Jun 2025 11:10:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RcjAYub+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XmiNgSkr";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E584610E03E
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Jun 2025 11:07:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=VDD2DrK3omIhxNM/EGy0qURd8alotUaBKxwIN7AK5ZA=; b=RcjAYub+1H9oZrJQa1wGULxANs
- PSd/IqAyjHRiHFcoKfOqB1O8Zj8AS5ZFeUpQtxTiaCRox3hHIrNqp4eljmq2YbhOpngjaK5qLSdZi
- FXM3F43XVfj+0mIWPHn+XkBX84hm8S2FlbI6nQzhJbYqAB3F4/Y44gAMcJEZTYhZi+fPqab4BlLAX
- fbtvhosG0+TIRwATHdouaI6NpFrBvD1znVy8EDwV3WVi2toC6Mj/4JkWd+7d/5BRyTvtqVjWxFNOt
- YiKUgFTiMfGRxbvGE2DMgXmdTbBUF0LUh6Qp3SnSMsz8VydVYe9O307B5QKRZMfljDXWc+7T7JVqZ
- hoZvIeZQ==;
-Received: from [81.79.92.254] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uUkSI-008x2i-7T
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Jun 2025 13:07:46 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 1/5] drm/xe: Consolidate LRC offset calculations
-Date: Thu, 26 Jun 2025 12:07:40 +0100
-Message-ID: <20250626110744.34745-2-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250626110744.34745-1-tvrtko.ursulin@igalia.com>
-References: <20250626110744.34745-1-tvrtko.ursulin@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE5010E89F;
+ Thu, 26 Jun 2025 11:10:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750936203; x=1782472203;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=2rguBp50AVcz9pvMOreJzrU9T1Jhy/V3959mkT3cs3g=;
+ b=XmiNgSkrrKOhJ5oOfE051+1QqIpliVEAsI7wzRICc9RKmG5LsCz9R2+z
+ 0fvsak60mAxEP8B2OSj7Vf4DhPelbA9eA4YiMDuOFTe3yxuvxxd7ENuE6
+ Uxhn/W+lA8bUYPui+jpEhvmoDlB1DGwNUP1HtVwlxyopkxEpv/A8dfkli
+ 8ufgsaLN37XI8rzetaGirl8ZxOsa+QRfZDqvw0qfBuF6/XwaHxrXXdQZp
+ xHGBj+YO4haTqWTjx9gpteumIUC2sGDWslu9Bz7xp7Wy7I4pmXBSOrOq5
+ gZKMOOP4ar43c9PdttchOMZ0ZWst/+TO7NjtWRaU5bBR5AFyhfK2xYKxy g==;
+X-CSE-ConnectionGUID: 1ER/AD1bTdWB4/hFVS6t8A==
+X-CSE-MsgGUID: uKAxoH/KRsGHwsSN6GELng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="64290485"
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="64290485"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 04:10:02 -0700
+X-CSE-ConnectionGUID: DjlUyDArQsOLkFc8xeALnQ==
+X-CSE-MsgGUID: tTOaLAUvSeiax3y8mHn3XA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="152990704"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 04:10:02 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Thu, 26 Jun 2025 04:10:01 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Thu, 26 Jun 2025 04:10:01 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.43)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Thu, 26 Jun 2025 04:10:01 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Lpqfbvc8o50AFxqKlRfY96Ot5TpkLC8Mwi38qf7Wz5e0DFla2sLAla3QBwjVgYhkQlDHwPYYnIV0hptSuYHLd9Qz0ZFzkYXEvYL9RKhg7hUbBX+wlVY0qzk/Lzl6JTKZYVn2PvM0htOuXPNmq8Ph2EYdY2FizXq3QlMwm5/ByLaMSjamp4xyM9wU7Jq9FFBWko3ysPU2SlOQcAki/pFcRYSKwD60Fw0jDKMMQHr8e69hAmv6dC93zvqpwKSWmm0vw9V8I1He4AXeXJOlm9SPGL/ii+6yU24S6W/S4QJ+naPCWBPWAtQg3YpnM7kYjMebzPLCiDHNxU83dauj0xM4gA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DOyb7ch2ExfwPGipM+wwTI9GctQNyCH0WKQUK6tHkSo=;
+ b=QfOkfx/wogHRpUo+MF/8gDSk0e1smDRq/AKUHEuEJdeVQeQZ6zssVljRw8GECN5VUnjoN5m2BBvqO9QVoxFtkT2Ebm3b0sdMdvGmgSKzCeii/mvgCPuwrICt2ZZrn3Sa5eVQEUas6YIpW57F+CmlxmL8pCzuNDaMFRkpLA+32RfYcp9NZm5F1odKosHckmxDUd/3yJt0meWiBvZHFwzbkjH+pJvkl6TzuAjQVu8AhAsvPFlzEVQFZZ7QCPpWjs8cj0Q/uT/uWgzJ3gUC1R3CGC+QHqAxTkny7NKQr+Zclgqq1x9zDgXhRjJZ6jExJ6w0odEzR5A6cDxM2ba/UiRiSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by CH3PR11MB7938.namprd11.prod.outlook.com
+ (2603:10b6:610:12f::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.27; Thu, 26 Jun
+ 2025 11:09:45 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::9c2a:ba60:c5fe:6a64]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::9c2a:ba60:c5fe:6a64%5]) with mapi id 15.20.8857.026; Thu, 26 Jun 2025
+ 11:09:45 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Nikula, Jani" <jani.nikula@intel.com>
+Subject: RE: [PATCH] drm/i915/fb: use struct intel_display for DISPLAY_VER()
+Thread-Topic: [PATCH] drm/i915/fb: use struct intel_display for DISPLAY_VER()
+Thread-Index: AQHb5oOLJRbZHabBzE62/YVPOTX3UbQVSHkQ
+Date: Thu, 26 Jun 2025 11:09:44 +0000
+Message-ID: <DM3PPF208195D8D9F6EC478D135D32524AAE37AA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20250626101712.1898434-1-jani.nikula@intel.com>
+In-Reply-To: <20250626101712.1898434-1-jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|CH3PR11MB7938:EE_
+x-ms-office365-filtering-correlation-id: 6b475390-fef7-47eb-0d14-08ddb4a1f50a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?hUrvf05d38SVuiGhvY4WEugOczUxD+MsYzpXlOdi/95VxtBTtblXygFpSGhE?=
+ =?us-ascii?Q?06lMZqk54BshZB34ntY/JDhILl4VzCdMJprMUKx6H1ZdxTAeiaVyBFKlCGPB?=
+ =?us-ascii?Q?bJ8rRBbdtBsNyj95VeOCo+rMF06Tk3K4u/jh4GxHULysDKyVzNsFjo2a7qAx?=
+ =?us-ascii?Q?IMA3Opx+dryreY5wz3rVzXxEWS3DpCMbANKFa1zasjG/tWtnjbaIqk1+34L9?=
+ =?us-ascii?Q?JgbXuouXAqE7uSq1O+H7I2VK/fRgkn4YODdBROCqlICr7khQllPfQ/wV086D?=
+ =?us-ascii?Q?GGcvmHIPs/3n4WQXlMC/mtOXzqNOhUI0YsnIImkmgbJWR3tuN/wqnA4pPTQ3?=
+ =?us-ascii?Q?yS/eC8QcLb6wIKajoeBQJ2a2hBobZRL+G9n3wnJOeTdhNyhE9Sz0F5H41NCj?=
+ =?us-ascii?Q?o7t7dNtTX0Yu0EvyueDhR+1gw7oqH14eQBMvq9oNk5qOSw5iaEALlpT0t/xL?=
+ =?us-ascii?Q?mLG2evxR704FJrWPcRGwqZbJytWl0S5IfiLHvr5UZMCIaL00948FVqJSla8L?=
+ =?us-ascii?Q?MtQ9nBDawjk7GJgh8RPLQbrAFFcoom9/vLztRQGynLiViK3h7rMY/v7vPLkR?=
+ =?us-ascii?Q?BqHMnXyY6sZP+i0ZeQA0DrP/1BVqOA6HC295aDYFoxP4WgTwygynuSYGD2Df?=
+ =?us-ascii?Q?LmI0hRyqSHXhoR/kskckGzQVfCsGNiCk0pmJTfooGxrVmW7+n7983dWYGvb7?=
+ =?us-ascii?Q?G2FwAbTQOAtMj0HGIgyMIu66oadIEthxukW/wO9hlKibd2H/etzkVkTp+OsZ?=
+ =?us-ascii?Q?s9/otcHTfqq77bDJYkyCHwf0b4I45zSoSrwotuYnIntyhrqM5/aFT56CBYMw?=
+ =?us-ascii?Q?A6Mbqb1JPU+AqFtnwBbifDFj/iy1OYxw/1ZYOF/Sd3Lk6FlVZ4ktj7bxOz2L?=
+ =?us-ascii?Q?BTHE2felBNMGaPFJGl88cMGXLVOTqbTNm6NRPRuUD+nFo8ay20LegVWexH+l?=
+ =?us-ascii?Q?I4pzHD/gLLsOocUvHmmTy78m42SRW2fdUlm9wq3h0gEFYpmDsJBHnTBuMa5K?=
+ =?us-ascii?Q?5ISI9WJ06IZu/eM/3iSocfRPusVfEN6KtJbYxk+Mw7RpjbwyuRmd82pH5vSe?=
+ =?us-ascii?Q?QPY2Aw3hzQFy2zoxlJxHKn9DXYYicUYtdaGb7TswkkMAgP6MJIctZ5lPYgKL?=
+ =?us-ascii?Q?toJKi9/HH/flIBnohb1oVBGnRJBYYdGwzPZ21jWooiZ3RSaBnmqfWK0KKImf?=
+ =?us-ascii?Q?uuf2arqaXyuAlxISI8UcM5VhLeY0BHxoMEph0Owzh6wSjcIdqcRfeJEorzCf?=
+ =?us-ascii?Q?TM7U63VyML0Rjk+kvexoco+D0XVWBsus8L0sApqu4wuqobXtVcfZZMaRKXds?=
+ =?us-ascii?Q?KrKeRSGJv3oUF+I2ianLPlW8CiZXDIvdKuuBxwWcK05dcrnu6/YRsg2h86lQ?=
+ =?us-ascii?Q?qkd5sCqTMCzrjV77LNU/DObE4NB4g5UAy8WY+hYtr92bOs2SYO/LosRNMqXo?=
+ =?us-ascii?Q?q8lQM0CWkDcuwkJGqikvfqdtM6HOeG/3je6Dp2B0tvhaMneC7lqvww=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GJriYJeqhPbOGCtjWNldL0qgKSuZAToljo+gautakcQImmcgicB18SQLm90O?=
+ =?us-ascii?Q?mOSFfWnFuXJ+L4eGScE/B2rISGf947tCuWB0iyy2wwnaFNm8Gaa9iwUhnFOU?=
+ =?us-ascii?Q?/jQhuyeOEHeKx+tezpPzwEQiODXXoEYWQTCX0GJNw/huIWZ26LneVBf+jgbY?=
+ =?us-ascii?Q?UU46wBPstxQbVwsPmv7TJtdblDNW0WQRBx7K07/UtGUzdXVmcwAzX0/jxNGI?=
+ =?us-ascii?Q?U10J7uSvmcP6AvnOB53Imq1X8qWx+CSbBzKknzYHI3V+lXxLek7DkBeevFB6?=
+ =?us-ascii?Q?RLGOH+YXou5c90RnH9U8YVlgLE25EQHOx6XPCpAHHfNif90qZ7vy68A1EBhE?=
+ =?us-ascii?Q?5vmoGIxuFnLt8OqDeae3i9kTPn2FbOyFEzn+te5WMwKXXUOUE1aIownBtOJl?=
+ =?us-ascii?Q?4EMMBV+4mqbEGNdZUYPcIYUfnPAblHtoRJv1W2vMikVbcDa+QqkKKM2feNDH?=
+ =?us-ascii?Q?ShxsesWlJdO6Asrz16eS14RSSUc+jWJZoZ/AJ9RmUBjySI3jwEXNZkdEDqoL?=
+ =?us-ascii?Q?JyBclqbsKubYEbFJLQ+3F1iDxNL6wsYUHjjHkTGULGvuwrBeo1Xhx1Mq0P3L?=
+ =?us-ascii?Q?OxGDKxtoLkiw8/1Sdx9YqI29hfQdEy8GMN3uP4i7YKnFY2iGusDTHJixcGzv?=
+ =?us-ascii?Q?VvS2oYiyfYBbxRtKYwOxhDnTe8M8B8U1IC5UvfGz8TLA3ucnE3TE5gf88+6P?=
+ =?us-ascii?Q?pVTjq9xNvFAl6v7HCuqY+Ws/8JLdOmg9AjyEwvP2FwCoychtpsWLkysDwiB/?=
+ =?us-ascii?Q?GEuWeEkHHB672WlLi0o2TWX6DHwVIym70QawxhJxqL0h8CiEaUtuacRWWUeQ?=
+ =?us-ascii?Q?PCO49/BlYMrqJJ2CKII2qXwZPTWMiItt4dl5JjvP51ZXGtq1RTWZuvYz7yfL?=
+ =?us-ascii?Q?mrbIC9ghZuf5MAhzsUSVBJYm29qS4gS4THbQ6UpkupszUtpgSV0BnDHk6bFF?=
+ =?us-ascii?Q?EoB/Th0GikZD5ygKyr8N0n9/VOII/oMvznaqEzC6c9uK8RgBKEjR3U8+iK4x?=
+ =?us-ascii?Q?CmQziFgYiYym30mlD4LzQjI3g4IJW3wXqSBnTOAqLB8T39IPlHUWexx8jFp6?=
+ =?us-ascii?Q?wjchbH9dSyFaSj6mDAFk5dAeRnKzoso2Piq8E7ZdIZRoQ30CTtD3woaSqSm6?=
+ =?us-ascii?Q?Vzqkgidl6lC2mhz4xG38W7+CxIbxO1KFQNHGX+UnyQCzGaAVpchZV3DLz/rC?=
+ =?us-ascii?Q?3PEynzBmEWIR5BVWzdC0LSVpUjl6uSDzrYVCAz2MnPnPKauQkjaZzelkNM/7?=
+ =?us-ascii?Q?ICZBZ0vx3IoaJAO7IP95Cgx0Ve6pIDXXT8Dq36wMQpHs3jCQy8rDDUv1n9oR?=
+ =?us-ascii?Q?ty+Nc9bhRJEEqYFPR3oJmJd4GgmJCwMuF4gmRscCcF6kjemgt8xgnH6KbHqT?=
+ =?us-ascii?Q?lIxzHK5vw3I9QN1O6omyFyZWZmfuGcCvLc/pJDOqeNQCx/XCtO8Ut7f0JjC9?=
+ =?us-ascii?Q?4J4fgzfgQx0GumGcCfFHopB3uF+8ID1k7AnTXP4vgWIOvlOIqhovUcHQ83yo?=
+ =?us-ascii?Q?2p1cu2N+L/ro3Nv+oFnX009LckjP4/aE8X2miX5IaM1NX+295uBzwzinQvNv?=
+ =?us-ascii?Q?Mk8x+LmLIsUjLNTC7geSGJNDgFdCbLnVGAifBO3K?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b475390-fef7-47eb-0d14-08ddb4a1f50a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jun 2025 11:09:44.9730 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WA9z3E9KZrsmpP3cQ4Zwj02YSW4gjBQt/ZxN87L1tSXf1BhD+2XLYBK/4CcSTeDXCnWTAH9gqDjvN9Ic2HeiVA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7938
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,161 +181,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Attempt to consolidate the LRC offsets calculations by alignning the
-recently added wa_bb_offset with the naming scheme in the file and
-also change the size stored in struct xe_lrc to not include the ring
-buffer.
 
-The former makes it somewhat visually easier to follow the layout of the
-various logical blocks stored in the LRC bo, while the latter reduces the
-number of sprinkled around calculations.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_lrc.c       | 41 ++++++++++++++-----------------
- drivers/gpu/drm/xe/xe_lrc_types.h |  2 +-
- 2 files changed, 19 insertions(+), 24 deletions(-)
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ja=
+ni
+> Nikula
+> Sent: Thursday, June 26, 2025 3:47 PM
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: Nikula, Jani <jani.nikula@intel.com>
+> Subject: [PATCH] drm/i915/fb: use struct intel_display for DISPLAY_VER()
+>=20
+> Convert a leftover struct drm_i915_private use to struct intel_display.
+>=20
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 37598588a54f..f0c33de4eb6c 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -717,8 +717,12 @@ static u32 __xe_lrc_ctx_timestamp_udw_offset(struct xe_lrc *lrc)
- 
- static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
- {
--	/* Indirect ring state page is at the very end of LRC */
--	return lrc->size - LRC_INDIRECT_RING_STATE_SIZE;
-+	return lrc->bo->size - LRC_WA_BB_SIZE - LRC_INDIRECT_RING_STATE_SIZE;
-+}
-+
-+static inline u32 __xe_lrc_wa_bb_offset(struct xe_lrc *lrc)
-+{
-+	return lrc->bo->size - LRC_WA_BB_SIZE;
- }
- 
- #define DECL_MAP_ADDR_HELPERS(elem) \
-@@ -973,11 +977,6 @@ struct wa_bb_setup {
- 			 u32 *batch, size_t max_size);
- };
- 
--static size_t wa_bb_offset(struct xe_lrc *lrc)
--{
--	return lrc->bo->size - LRC_WA_BB_SIZE;
--}
--
- static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- {
- 	const size_t max_size = LRC_WA_BB_SIZE;
-@@ -993,7 +992,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 			return -ENOMEM;
- 		cmd = buf;
- 	} else {
--		cmd = lrc->bo->vmap.vaddr + wa_bb_offset(lrc);
-+		cmd = lrc->bo->vmap.vaddr + __xe_lrc_wa_bb_offset(lrc);
- 	}
- 
- 	remain = max_size / sizeof(*cmd);
-@@ -1017,13 +1016,13 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 
- 	if (buf) {
- 		xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap,
--				 wa_bb_offset(lrc), buf,
-+				 __xe_lrc_wa_bb_offset(lrc), buf,
- 				 (cmd - buf) * sizeof(*cmd));
- 		kfree(buf);
- 	}
- 
- 	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR, xe_bo_ggtt_addr(lrc->bo) +
--			     wa_bb_offset(lrc) + 1);
-+			     __xe_lrc_wa_bb_offset(lrc) + 1);
- 
- 	return 0;
- 
-@@ -1040,19 +1039,22 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 		       u32 init_flags)
- {
- 	struct xe_gt *gt = hwe->gt;
-+	const u32 lrc_size = xe_gt_lrc_size(gt, hwe->class);
-+	const u32 bo_size = ring_size + lrc_size + LRC_WA_BB_SIZE;
- 	struct xe_tile *tile = gt_to_tile(gt);
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct iosys_map map;
- 	void *init_data = NULL;
- 	u32 arb_enable;
--	u32 lrc_size;
- 	u32 bo_flags;
- 	int err;
- 
- 	kref_init(&lrc->refcount);
- 	lrc->gt = gt;
-+	lrc->size = lrc_size;
- 	lrc->flags = 0;
--	lrc_size = ring_size + xe_gt_lrc_size(gt, hwe->class);
-+	lrc->ring.size = ring_size;
-+	lrc->ring.tail = 0;
- 	if (xe_gt_has_indirect_ring_state(gt))
- 		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
- 
-@@ -1065,17 +1067,12 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	 * FIXME: Perma-pinning LRC as we don't yet support moving GGTT address
- 	 * via VM bind calls.
- 	 */
--	lrc->bo = xe_bo_create_pin_map(xe, tile, NULL,
--				       lrc_size + LRC_WA_BB_SIZE,
-+	lrc->bo = xe_bo_create_pin_map(xe, tile, NULL, bo_size,
- 				       ttm_bo_type_kernel,
- 				       bo_flags);
- 	if (IS_ERR(lrc->bo))
- 		return PTR_ERR(lrc->bo);
- 
--	lrc->size = lrc_size;
--	lrc->ring.size = ring_size;
--	lrc->ring.tail = 0;
--
- 	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
- 			     hwe->fence_irq, hwe->name);
- 
-@@ -1096,10 +1093,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 		xe_map_memset(xe, &map, 0, 0, LRC_PPHWSP_SIZE);	/* PPHWSP */
- 		xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
- 				 gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE,
--				 xe_gt_lrc_size(gt, hwe->class) - LRC_PPHWSP_SIZE);
-+				 lrc_size - LRC_PPHWSP_SIZE);
- 	} else {
--		xe_map_memcpy_to(xe, &map, 0, init_data,
--				 xe_gt_lrc_size(gt, hwe->class));
-+		xe_map_memcpy_to(xe, &map, 0, init_data, lrc_size);
- 		kfree(init_data);
- 	}
- 
-@@ -1859,8 +1855,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 	snapshot->seqno = xe_lrc_seqno(lrc);
- 	snapshot->lrc_bo = xe_bo_get(lrc->bo);
- 	snapshot->lrc_offset = xe_lrc_pphwsp_offset(lrc);
--	snapshot->lrc_size = lrc->bo->size - snapshot->lrc_offset -
--		LRC_WA_BB_SIZE;
-+	snapshot->lrc_size = lrc->size;
- 	snapshot->lrc_snapshot = NULL;
- 	snapshot->ctx_timestamp = lower_32_bits(xe_lrc_ctx_timestamp(lrc));
- 	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 883e550a9423..2c7c81079801 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -22,7 +22,7 @@ struct xe_lrc {
- 	 */
- 	struct xe_bo *bo;
- 
--	/** @size: size of lrc including any indirect ring state page */
-+	/** @size: size of the lrc and optional indirect ring state */
- 	u32 size;
- 
- 	/** @gt: gt which this LRC belongs to */
--- 
-2.48.0
+LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_fb.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c
+> b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 763b36c4de10..13cb9588ee3a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -1286,10 +1286,10 @@ bool intel_fb_needs_pot_stride_remap(const
+> struct intel_framebuffer *fb)
+>=20
+>  bool intel_plane_uses_fence(const struct intel_plane_state *plane_state)=
+  {
+> +	struct intel_display *display =3D to_intel_display(plane_state);
+>  	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
+> -	struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
+>=20
+> -	return DISPLAY_VER(dev_priv) < 4 ||
+> +	return DISPLAY_VER(display) < 4 ||
+>  		(plane->fbc && !plane_state->no_fbc_reason &&
+>  		 plane_state->view.gtt.type =3D=3D I915_GTT_VIEW_NORMAL);  }
+> --
+> 2.39.5
 
