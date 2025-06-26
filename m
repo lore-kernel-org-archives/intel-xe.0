@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8A1AC7EE30
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 13:56:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B319CC7EE31
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 13:56:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A37B810E8B7;
-	Thu, 26 Jun 2025 13:56:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7613A10E2B2;
+	Thu, 26 Jun 2025 13:56:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkUKt6c+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cls6/8YN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2712F10E8B7
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Jun 2025 13:56:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8C6810E2B2
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Jun 2025 13:56:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750946189; x=1782482189;
+ t=1750946205; x=1782482205;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=aF3uTK1iO8x8oyAb433tOUT+wof8ZOyY6mEwIXBqq/w=;
- b=RkUKt6c+AZ9dYWYIzIXpNj5srmHT8AE7AYDnbgkT2LK86R3PKOr54mag
- K9C9iZmujgbS6e0rEgopbwJMpHgrsB5FJjefhMokgtdCtxz2ZKba35pcZ
- G3x7Shi7At7gwotKmbkMI0wqwuPgjk51llTxWOOO1r0XAwli93NRPhxzP
- zmd7QZzxE6t03gIsp7e2l2Jpdt47w32m+CV1ShHnlK1jSeMqB3acWSuXI
- Ucm11fbI9kXFivbbN9kEHNRsn9KRJULcn522EQh+3SXglwRwqGQzjdcGt
- Jrj60PPUbPDwjMPYrjNpac52Q/bdOtpl6wtmSJ3WC4gc9/46kN2aKY6Do A==;
-X-CSE-ConnectionGUID: OU3UMa0CQzm/rUvsro7tZA==
-X-CSE-MsgGUID: hSW9fJ/ETymD7IY97tyiOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53316421"
-X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="53316421"
+ bh=FSCdKuBZu83ZlNuhWTKve1fHQ1SiZ+gddU/oetdw40o=;
+ b=Cls6/8YNnpqjvDG3GbAFrcQlKzHrDUjIZ8wn73umrlpkLrTLAYbJKCNg
+ gtTemHySYwS74pk8fnHIKUg5MqdsOw5Nw4BY3Jq9TNgQL1es2wX2X24He
+ 7yzj6345DmbHvxabVk/MbHkCJ2WLsYbNoeFviq85eMPQrltXbD0lWZS/R
+ Px85drQsr/eMTLVj1suyHnwYqXmoq+MB8hhiWdLxzTnbkXIGgT/8EELCk
+ kOiGhNMG8+XkkzCIkOhdq92HRZk/B3Ix7eHtGUU84MSycl1g3nLrWESXq
+ x6WoESDyCMvcdQlugV5xiuJ8OTAC4IG8M+b50Y6oXsShhoGvy5zzPpJQf g==;
+X-CSE-ConnectionGUID: 6kYyKG0NQyWWFOTge5goJw==
+X-CSE-MsgGUID: lP9MVCaFSLev1utmuU9CSw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53316435"
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="53316435"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 06:56:29 -0700
-X-CSE-ConnectionGUID: Bsjc+l4sQBCI2jBr/szA9w==
-X-CSE-MsgGUID: beV7cXG8TJW9NGApDNokAA==
+ 26 Jun 2025 06:56:34 -0700
+X-CSE-ConnectionGUID: 09+Pw5CDQx2o0FEHa7ZAsg==
+X-CSE-MsgGUID: aQiaTLYjRf2OjVS5zgbIZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="152146969"
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="152146975"
 Received: from black.fi.intel.com (HELO black.fi.intel.com.) ([10.237.72.28])
- by fmviesa007.fm.intel.com with ESMTP; 26 Jun 2025 06:56:24 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 26 Jun 2025 06:56:29 -0700
 From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -53,10 +53,11 @@ Cc: Jarkko Nikula <jarkko.nikula@linux.intel.com>,
  "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
  "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
  intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v4 3/4] drm/xe/pm: Wire up suspend/resume for I2C controller
-Date: Thu, 26 Jun 2025 16:56:08 +0300
-Message-ID: <20250626135610.299943-4-heikki.krogerus@linux.intel.com>
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v4 4/4] drm/xe/xe_i2c: Add support for i2c in survivability
+ mode
+Date: Thu, 26 Jun 2025 16:56:09 +0300
+Message-ID: <20250626135610.299943-5-heikki.krogerus@linux.intel.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250626135610.299943-1-heikki.krogerus@linux.intel.com>
 References: <20250626135610.299943-1-heikki.krogerus@linux.intel.com>
@@ -76,155 +77,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Raag Jadav <raag.jadav@intel.com>
+From: Riana Tauro <riana.tauro@intel.com>
 
-Wire up suspend/resume handles for I2C controller to match its power
-state with SGUnit.
+Initialize i2c in survivability mode to allow firmware
+update of Add-In Management Controller (AMC) in survivability mode
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Karthik Poosa <karthik.poosa@intel.com>
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
 Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_i2c_regs.h |  5 +++++
- drivers/gpu/drm/xe/xe_i2c.c           | 29 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_i2c.h           |  4 ++++
- drivers/gpu/drm/xe/xe_pm.c            |  9 +++++++++
- 4 files changed, 47 insertions(+)
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 23 ++++++++++++++--------
+ 1 file changed, 15 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_i2c_regs.h b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-index 92dae4487614..af781c8e4a80 100644
---- a/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
-@@ -2,6 +2,8 @@
- #ifndef _XE_I2C_REGS_H_
- #define _XE_I2C_REGS_H_
- 
-+#include <linux/pci_regs.h>
-+
- #include "xe_reg_defs.h"
- #include "xe_regs.h"
- 
-@@ -12,4 +14,7 @@
- #define REG_SG_REMAP_ADDR_PREFIX	XE_REG(SOC_BASE + 0x0164)
- #define REG_SG_REMAP_ADDR_POSTFIX	XE_REG(SOC_BASE + 0x0168)
- 
-+#define I2C_CONFIG_CMD			XE_REG(I2C_CONFIG_SPACE_OFFSET + PCI_COMMAND)
-+#define I2C_CONFIG_PMCSR		XE_REG(I2C_CONFIG_SPACE_OFFSET + 0x84)
-+
- #endif /* _XE_I2C_REGS_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-index bfbfe1de7f77..0227fcba2168 100644
---- a/drivers/gpu/drm/xe/xe_i2c.c
-+++ b/drivers/gpu/drm/xe/xe_i2c.c
-@@ -227,6 +227,31 @@ static const struct regmap_config i2c_regmap_config = {
- 	.fast_io = true,
- };
- 
-+void xe_i2c_pm_suspend(struct xe_device *xe)
-+{
-+	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+
-+	if (!xe->i2c || xe->i2c->ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
-+		return;
-+
-+	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, PCI_D3hot);
-+	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
-+}
-+
-+void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
-+{
-+	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+
-+	if (!xe->i2c || xe->i2c->ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
-+		return;
-+
-+	if (d3cold)
-+		xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_MEMORY);
-+
-+	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, PCI_D0);
-+	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
-+}
-+
- static void xe_i2c_remove(void *data)
- {
- 	struct xe_i2c *i2c = data;
-@@ -267,6 +292,10 @@ int xe_i2c_probe(struct xe_device *xe)
- 	i2c->mmio = xe_root_tile_mmio(xe);
- 	i2c->drm_dev = xe->drm.dev;
- 	i2c->ep = ep;
-+	xe->i2c = i2c;
-+
-+	/* PCI PM isn't aware of this device, bring it up and match it with SGUnit state. */
-+	xe_i2c_pm_resume(xe, true);
- 
- 	regmap = devm_regmap_init(i2c->drm_dev, NULL, i2c, &i2c_regmap_config);
- 	if (IS_ERR(regmap))
-diff --git a/drivers/gpu/drm/xe/xe_i2c.h b/drivers/gpu/drm/xe/xe_i2c.h
-index 7ea40f4e4aa4..b767ed8ce52b 100644
---- a/drivers/gpu/drm/xe/xe_i2c.h
-+++ b/drivers/gpu/drm/xe/xe_i2c.h
-@@ -50,9 +50,13 @@ struct xe_i2c {
- #if IS_ENABLED(CONFIG_I2C)
- int xe_i2c_probe(struct xe_device *xe);
- void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl);
-+void xe_i2c_pm_suspend(struct xe_device *xe);
-+void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold);
- #else
- static inline int xe_i2c_probe(struct xe_device *xe) { return 0; }
- static inline void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl) { }
-+static inline void xe_i2c_pm_suspend(struct xe_device *xe) { }
-+static inline void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold) { }
- #endif
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 26e95460af87..46471e166b96 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -19,6 +19,7 @@
- #include "xe_ggtt.h"
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+index 1f710b3fc599..3800cc855c22 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+@@ -14,6 +14,7 @@
+ #include "xe_device.h"
  #include "xe_gt.h"
- #include "xe_guc.h"
+ #include "xe_heci_gsc.h"
 +#include "xe_i2c.h"
- #include "xe_irq.h"
- #include "xe_pcode.h"
- #include "xe_pxp.h"
-@@ -146,6 +147,8 @@ int xe_pm_suspend(struct xe_device *xe)
+ #include "xe_mmio.h"
+ #include "xe_pcode_api.h"
+ #include "xe_vsec.h"
+@@ -173,20 +174,26 @@ static int enable_survivability_mode(struct pci_dev *pdev)
+ 	survivability->mode = true;
  
- 	xe_display_pm_suspend_late(xe);
+ 	ret = xe_heci_gsc_init(xe);
+-	if (ret) {
+-		/*
+-		 * But if it fails, device can't enter survivability
+-		 * so move it back for correct error handling
+-		 */
+-		survivability->mode = false;
+-		return ret;
+-	}
++	if (ret)
++		goto err;
  
-+	xe_i2c_pm_suspend(xe);
+ 	xe_vsec_init(xe);
+ 
++	ret = xe_i2c_probe(xe);
++	if (ret)
++		goto err;
 +
- 	drm_dbg(&xe->drm, "Device suspended\n");
+ 	dev_err(dev, "In Survivability Mode\n");
+ 
  	return 0;
- 
-@@ -191,6 +194,8 @@ int xe_pm_resume(struct xe_device *xe)
- 	if (err)
- 		goto err;
- 
-+	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
 +
- 	xe_irq_resume(xe);
++err:
++	/*
++	 * But if it fails, device can't enter survivability
++	 * so move it back for correct error handling
++	 */
++	survivability->mode = false;
++	return ret;
+ }
  
- 	for_each_gt(gt, xe, id)
-@@ -484,6 +489,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 
- 	xe_display_pm_runtime_suspend_late(xe);
- 
-+	xe_i2c_pm_suspend(xe);
-+
- 	xe_rpm_lockmap_release(xe);
- 	xe_pm_write_callback_task(xe, NULL);
- 	return 0;
-@@ -531,6 +538,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 			goto out;
- 	}
- 
-+	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
-+
- 	xe_irq_resume(xe);
- 
- 	for_each_gt(gt, xe, id)
+ /**
 -- 
 2.47.2
 
