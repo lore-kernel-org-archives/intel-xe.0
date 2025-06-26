@@ -4,26 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 735E7C7EE30
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 13:59:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85AE0C7EE30
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Jun 2025 14:06:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 311C010E8B7;
-	Thu, 26 Jun 2025 13:59:25 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D06FA10E8AF;
- Thu, 26 Jun 2025 13:59:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0230480717539380613=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C81710E8C1;
+	Thu, 26 Jun 2025 14:06:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XYF6WMWf";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 568EA10E2B2;
+ Thu, 26 Jun 2025 14:06:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750946809; x=1782482809;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=wuYbMGWhBe2zq4Umy3BxOMaAVNnDoj8+D62cGkTieJM=;
+ b=XYF6WMWfKldfUfTHipZF+H8OlapD57VRTnNxg60DmC2bcfi9AYVblOhZ
+ r1jjn2x9jidlCcjWzoSgVu6dfB+53nccLnrJ4gZx782WMIP+wFX9EhcP2
+ cz8KzWNYR6j5ZuJVD82xc2tUZ+LEHf3DSAHmknJdxK5Z6lNEMcc42HV9w
+ w4n9xTYFA8bKjwP2lneS04vUyNYAar0yPOqXZz/IgSBYeBf+Rmi0zzgS2
+ m5B1TGvRea9N3EnjEJ/U7SFxAurJd/39IAXRTctP1Z3ImZN7fCZuy3hyY
+ kvfPLVG6VT304Q0eJAYgX4IVxnrsnMBm63h9MUs9UEUmJrexOMTT8JCmW g==;
+X-CSE-ConnectionGUID: P5RV0rXPR06avssx4nb8lw==
+X-CSE-MsgGUID: WLAG74M3SyWs9EN+GpCNgg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="52472007"
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="52472007"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 07:06:49 -0700
+X-CSE-ConnectionGUID: XcrjBabRSY2iwmFLirDsEA==
+X-CSE-MsgGUID: XlVUrZz0QkK2VDde7dismg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="189714644"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO fedora) ([10.245.244.148])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 07:06:45 -0700
+Date: Thu, 26 Jun 2025 16:06:32 +0200
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <aF1T6EzzC3xj4K4H@fedora>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_indirect_ctx_testing?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Jun 2025 13:59:23 -0000
-Message-ID: <175094636384.112774.14774953545273671887@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250626110744.34745-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250626110744.34745-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,110 +71,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0230480717539380613==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Simona
 
-== Series Details ==
+The drm-xe-fixes PR for -rc4.
 
-Series: indirect ctx testing
-URL   : https://patchwork.freedesktop.org/series/150821/
-State : success
+Thanks,
+Thomas
 
-== Summary ==
+drm-xe-fixes-2025-06-26:
+UAPI Changes:
+Driver Changes:
+- Missing error check (Haoxiang Li)
+- Fix xe_hwmon_power_max_write (Karthik)
+- Move flushes (Maarten and Matthew Auld)
+- Explicitly exit CT safe mode on unwind (Michal)
+- Process deferred GGTT node removals on device unwind (Michal)
 
-CI Bug Log - changes from xe-3309-d76821a5677456269831568238080f923bc4bf49_BAT -> xe-pw-150821v1_BAT
-====================================================
+The following changes since commit 86731a2a651e58953fc949573895f2fa6d456841:
 
-Summary
--------
+  Linux 6.16-rc3 (2025-06-22 13:30:08 -0700)
 
-  **SUCCESS**
+are available in the Git repository at:
 
-  No regressions found.
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2025-06-26
 
-  
+for you to fetch changes up to af2b588abe006bd55ddd358c4c3b87523349c475:
 
-Participating hosts (9 -> 8)
-------------------------------
+  drm/xe: Process deferred GGTT node removals on device unwind (2025-06-26 15:21:45 +0200)
 
-  Missing    (1): bat-adlp-vm 
+----------------------------------------------------------------
+UAPI Changes:
+Driver Changes:
+- Missing error check (Haoxiang Li)
+- Fix xe_hwmon_power_max_write (Karthik)
+- Move flushes (Maarten and Matthew Auld)
+- Explicitly exit CT safe mode on unwind (Michal)
+- Process deferred GGTT node removals on device unwind (Michal)
 
+----------------------------------------------------------------
+Haoxiang Li (1):
+      drm/xe/display: Add check for alloc_ordered_workqueue()
 
-Changes
--------
+Karthik Poosa (1):
+      drm/xe/hwmon: Fix xe_hwmon_power_max_write
 
-  No changes found
+Maarten Lankhorst (1):
+      drm/xe: Move DSB l2 flush to a more sensible place
 
+Matthew Auld (1):
+      drm/xe: move DPT l2 flush to a more sensible place
 
-Build changes
--------------
+Michal Wajdeczko (2):
+      drm/xe/guc: Explicitly exit CT safe mode on unwind
+      drm/xe: Process deferred GGTT node removals on device unwind
 
-  * IGT: IGT_8428 -> IGT_8429
-  * Linux: xe-3309-d76821a5677456269831568238080f923bc4bf49 -> xe-pw-150821v1
-
-  IGT_8428: 8428
-  IGT_8429: 8429
-  xe-3309-d76821a5677456269831568238080f923bc4bf49: d76821a5677456269831568238080f923bc4bf49
-  xe-pw-150821v1: 150821v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150821v1/index.html
-
---===============0230480717539380613==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>indirect ctx testing</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150821/">https://patchwork.freedesktop.org/series/150821/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150821v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150821v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3309-d76821a5677456269831568238080f923bc4bf49_BAT -&gt; xe-pw-150821v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8428 -&gt; IGT_8429</li>
-<li>Linux: xe-3309-d76821a5677456269831568238080f923bc4bf49 -&gt; xe-pw-150821v1</li>
-</ul>
-<p>IGT_8428: 8428<br />
-  IGT_8429: 8429<br />
-  xe-3309-d76821a5677456269831568238080f923bc4bf49: d76821a5677456269831568238080f923bc4bf49<br />
-  xe-pw-150821v1: 150821v1</p>
-
-</body>
-</html>
-
---===============0230480717539380613==--
+ drivers/gpu/drm/xe/display/xe_display.c    |  2 ++
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 11 ++++------
+ drivers/gpu/drm/xe/display/xe_fb_pin.c     |  5 +++--
+ drivers/gpu/drm/xe/regs/xe_mchbar_regs.h   |  1 +
+ drivers/gpu/drm/xe/xe_ggtt.c               | 11 ++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.c             | 10 +++++----
+ drivers/gpu/drm/xe/xe_hwmon.c              | 34 +++++++++++++-----------------
+ 7 files changed, 42 insertions(+), 32 deletions(-)
