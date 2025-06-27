@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2960AC7EE31
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:43:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39EDDC7EE31
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:47:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9FA310EA2B;
-	Fri, 27 Jun 2025 13:43:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 030E310EA45;
+	Fri, 27 Jun 2025 13:47:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kMgu02cj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mYRLqSz8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EEAC10EA29
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:43:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D866F10EA45
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:47:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751031813; x=1782567813;
+ t=1751032040; x=1782568040;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=eHRtLT0L6jqjKpEVO2rdcpeIi+s8Yo5/LpmI7vRuMgA=;
- b=kMgu02cjSqzaLAc4UfzyaeUDSmh89BSfcTCGXZRjF8IiWSaM/HRjwYFo
- 2PBreIYrSjFCOoXA9oJg5k52LWi2Em5feSferbGOCZzPxCwryPpazSZ4r
- pttM1H1UvWDNLR7/u4NtDVTnt2GFi1UY6ktqE4ItrZ+Vk9ys0S/fEjqyV
- 7GXc2Jik+yMXnPMNaPEHduriOYb5gQT1XCcKGfkNgex17zpjUlZ03RNA/
- IcrabIG3cBNEOCOYGhp9ikm3PEwhbbMj7IA+6g4PjAespndn2bBdEFBTV
- Ggm6GlY3ilYUM79vKElIsWfbGAkYuOW4gEy8zhadXzZQnQONgVRCOmx4p A==;
-X-CSE-ConnectionGUID: 8l1ZLIBPS3CC6+oRsAirXg==
-X-CSE-MsgGUID: AS2uC2p8SeWOtO7wXqbJ5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="78783394"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="78783394"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 06:43:33 -0700
-X-CSE-ConnectionGUID: Vb08AXSJQTGy4PsN6i1/Qw==
-X-CSE-MsgGUID: kDOg7ZKOT0a77DxdI4Q/Vw==
+ bh=FGNwAabhQZ/vEi6IV1mcuhSUJcu4JWPX2VUmMtKeYBo=;
+ b=mYRLqSz8lMwXYa/6hHvSO9YsdcsGG7UpRTckpCvzJo/eyLiWo4r7i/34
+ mDSmQ5+j9ba/Vmu8DT9ln4vuPHiixOIdl8epAtsnQ8MF8uwHHxFTYnC0S
+ Bg1FFI0GxaPef2/yYYQ8s2kN8BwWI8cs10KF0JZwI48ixHjymLHcAoJG/
+ n8SVMHSx9OycQJ3Ny+oq+iQ0GGhoAys8fw9tzF7qQKGRycyPoi5uTFwnJ
+ g3qOuQ56yCOTBZR+8ryijgGJNYzOIPiGoAREkzdtqpZK5Tc1SoexWP4gK
+ bZybLJyzhWp75MhBVPEE87ZzkviLwkDDPYmoKM3ZzHTTAj62MwqPcpYZL g==;
+X-CSE-ConnectionGUID: e2WRPruWQqCLSeCxlJRHww==
+X-CSE-MsgGUID: 40BfAXKVSGWc/IjkmFLJHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="57151032"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="57151032"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 06:47:19 -0700
+X-CSE-ConnectionGUID: 3Hx18DTLQXmK/SaheWwShA==
+X-CSE-MsgGUID: Zav53Nk2S7Ww/5PJdGy66g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="156857503"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="152206606"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.245.93])
  ([10.245.245.93])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 06:43:32 -0700
-Message-ID: <fa353045629412c740bd48d1b5d899e1ee9582c7.camel@linux.intel.com>
-Subject: Re: [PATCH v4 19/20] drm/xe/uapi: Add UAPI for querying VMA count
- and memory attributes
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 06:47:18 -0700
+Message-ID: <0716a0368c6606a473b70b9db023d2b77c495e40.camel@linux.intel.com>
+Subject: Re: [PATCH v4 02/20] drm/xe/uapi: Add madvise interface
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, Himal Prasad Ghimiray
- <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Jun 2025 15:43:29 +0200
-In-Reply-To: <aFoK/ldaqoZFBRw0@lstrano-desk.jf.intel.com>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, Matthew
+ Brost	 <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza
+ <jose.souza@intel.com>
+Date: Fri, 27 Jun 2025 15:47:14 +0200
+In-Reply-To: <53291701-bd80-4813-bc4f-11b8e2ecd8d5@intel.com>
 References: <20250613125558.2607665-1-himal.prasad.ghimiray@intel.com>
- <20250613125558.2607665-20-himal.prasad.ghimiray@intel.com>
- <aFoK/ldaqoZFBRw0@lstrano-desk.jf.intel.com>
+ <20250613125558.2607665-3-himal.prasad.ghimiray@intel.com>
+ <aFjYdUYGIazU3XZZ@lstrano-desk.jf.intel.com>
+ <53291701-bd80-4813-bc4f-11b8e2ecd8d5@intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,462 +74,256 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-06-23 at 19:18 -0700, Matthew Brost wrote:
-> On Fri, Jun 13, 2025 at 06:25:57PM +0530, Himal Prasad Ghimiray
-> wrote:
-> > Introduce the DRM_IOCTL_XE_VM_QUERY_VMAS_ATTRS ioctl to allow
-> > userspace
-> > to query memory attributes of VMAs within a specified virtual
-> > address
-> > range.
-> > If num_vmas =3D=3D 0 and vector_of_vma_mem_attr =3D=3D NULL, the ioctl
-> > returns
-> > the number of VMAs in the specified range.
-> > If num_vmas > 0 and a valid user pointer is provided in
-> > vector_of_vma_mem_attr, the ioctl fills the buffer with memory
-> > attributes for each VMA.
-> > This two-step interface allows userspace to first query the
-> > required
-> > buffer size, then retrieve detailed attributes efficiently.
+On Mon, 2025-06-23 at 11:50 +0530, Ghimiray, Himal Prasad wrote:
+>=20
+>=20
+> On 23-06-2025 10:00, Matthew Brost wrote:
+> > On Fri, Jun 13, 2025 at 06:25:40PM +0530, Himal Prasad Ghimiray
+> > wrote:
+> > > This commit introduces a new madvise interface to support
+> > > driver-specific ioctl operations. The madvise interface allows
+> > > for more
+> > > efficient memory management by providing hints to the driver
+> > > about the
+> > > expected memory usage and pte update policy for gpuvma.
+> > >=20
+> > > v2 (Matthew/Thomas)
+> > > - Drop num_ops support
+> > > - Drop purgeable support
+> > > - Add kernel-docs
+> > > - IOWR/IOW
+> > >=20
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Signed-off-by: Himal Prasad Ghimiray
+> > > <himal.prasad.ghimiray@intel.com>
+> > > Acked-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
+> > > ---
+> > > =C2=A0 include/uapi/drm/xe_drm.h | 118
+> > > ++++++++++++++++++++++++++++++++++++++
+> > > =C2=A0 1 file changed, 118 insertions(+)
+> > >=20
+> > > diff --git a/include/uapi/drm/xe_drm.h
+> > > b/include/uapi/drm/xe_drm.h
+> > > index 6a702ba7817c..b5f8d11faaa8 100644
+> > > --- a/include/uapi/drm/xe_drm.h
+> > > +++ b/include/uapi/drm/xe_drm.h
+> > > @@ -81,6 +81,7 @@ extern "C" {
+> > > =C2=A0=C2=A0 *=C2=A0 - &DRM_IOCTL_XE_EXEC
+> > > =C2=A0=C2=A0 *=C2=A0 - &DRM_IOCTL_XE_WAIT_USER_FENCE
+> > > =C2=A0=C2=A0 *=C2=A0 - &DRM_IOCTL_XE_OBSERVATION
+> > > + *=C2=A0 - &DRM_IOCTL_XE_MADVISE
+> > > =C2=A0=C2=A0 */
+> > > =C2=A0=20
+> > > =C2=A0 /*
+> > > @@ -102,6 +103,7 @@ extern "C" {
+> > > =C2=A0 #define DRM_XE_EXEC			0x09
+> > > =C2=A0 #define DRM_XE_WAIT_USER_FENCE		0x0a
+> > > =C2=A0 #define DRM_XE_OBSERVATION		0x0b
+> > > +#define DRM_XE_MADVISE			0x0c
+> > > =C2=A0=20
+> > > =C2=A0 /* Must be kept compact -- no holes */
+> > > =C2=A0=20
+> > > @@ -117,6 +119,7 @@ extern "C" {
+> > > =C2=A0 #define
+> > > DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, structdrm=
+_xe_exec)
+> > > =C2=A0 #define
+> > > DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT=
+_USER_FENCE,structdrm_xe_wait_user_fence)
+> > > =C2=A0 #define
+> > > DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATI=
+ON,structdrm_xe_observation_param)
+> > > +#define
+> > > DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE,stru=
+ctdrm_xe_madvise)
+> > > =C2=A0=20
+> > > =C2=A0 /**
+> > > =C2=A0=C2=A0 * DOC: Xe IOCTL Extensions
+> > > @@ -1970,6 +1973,121 @@ struct drm_xe_query_eu_stall {
+> > > =C2=A0=C2=A0	__u64 sampling_rates[];
+> > > =C2=A0 };
+> > > =C2=A0=20
+> > > +/**
+> > > + * struct drm_xe_madvise - Input of &DRM_IOCTL_XE_MADVISE
+> > > + *
+> > > + * This structure is used to set memory attributes for a virtual
+> > > address range
+> > > + * in a VM. The type of attribute is specified by @type, and the
+> > > corresponding
+> > > + * union member is used to provide additional parameters for
+> > > @type.
+> > > + *
+> > > + * Supported attribute types:
+> > > + * - DRM_XE_VMA_ATTR_PREFERRED_LOC: Set preferred memory
+> > > location.
+> > > + * - DRM_XE_VMA_ATTR_ATOMIC: Set atomic access policy.
+> > > + * - DRM_XE_VMA_ATTR_PAT: Set page attribute table index.
+> > > + *
+> > > + * Example:
+> > > + *
+> > > + * .. code-block:: C
+> > > + *
+> > > + * struct drm_xe_madvise madvise =3D {
+> > > + * =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .vm_id =3D vm_id=
+,
+> > > + * =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .start =3D 0x100=
+000,
+> > > + * =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .range =3D 0x200=
+0,
+> > > + * =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .type =3D DRM_XE=
+_VMA_ATTR_ATOMIC,
+> > > + * =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .atomic_val =3D =
+DRM_XE_VMA_ATOMIC_DEVICE,
+> > > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > + *
+> > > + * ioctl(fd, DRM_IOCTL_XE_MADVISE, &madvise);
+> > > + *
+> > > + */
+> > > +struct drm_xe_madvise {
+> > > +	/** @extensions: Pointer to the first extension struct,
+> > > if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	/** @start: start of the virtual address range */
+> > > +	__u64 start;
+> > > +
+> > > +	/** @size: size of the virtual address range */
+> > > +	__u64 range;
+> > > +
+> > > +	/** @vm_id: vm_id of the virtual range */
+> > > +	__u32 vm_id;
+> > > +
+> > > +#define DRM_XE_VMA_ATTR_PREFERRED_LOC	0
+> > > +#define DRM_XE_VMA_ATTR_ATOMIC		1
+> > > +#define DRM_XE_VMA_ATTR_PAT		2
+> > > +	/** @type: type of attribute */
+> > > +	__u32 type;
+> > > +
+> > > +	union {
 > >=20
-> > v2 (Matthew Brost)
-> > - Use same ioctl to overload functionality
+> > Nit: I'd make this union is same order as the defines (e.g.,
+> > preferred location
+> > first, atomic second, pat third).
+>=20
+> sure
+>=20
 > >=20
-> > v3
-> > - Add kernel-doc
+> > > +		/**
+> > > +		 * @atomic: Atomic access policy
+> > > +		 *
+> > > +		 * Used when @type =3D=3D DRM_XE_VMA_ATTR_ATOMIC.
+> > > +		 *
+> > > +		 * Supported values for @atomic.val:
+> > > +		 * - DRM_XE_VMA_ATOMIC_UNDEFINED: Undefined or
+> > > default behaviour
+> > > +		 *=C2=A0=C2=A0 Support both GPU and CPU atomic operations
+> > > for system allocator
+> > > +		 *=C2=A0=C2=A0 Support GPU atomic operations for
+> > > normal(bo) allocator
+> > > +		 * - DRM_XE_VMA_ATOMIC_DEVICE: Support GPU
+> > > atomic operations
+> > > +		 * - DRM_XE_VMA_ATOMIC_GLOBAL: Support both GPU
+> > > and CPU atomic operations
+> > > +		 * - DRM_XE_VMA_ATOMIC_CPU: Support CPU atomic
+> > > +		 */
+> > > +		struct {
+> > > +#define DRM_XE_VMA_ATOMIC_UNDEFINED	0
+> > > +#define DRM_XE_VMA_ATOMIC_DEVICE	1
+> > > +#define DRM_XE_VMA_ATOMIC_GLOBAL	2
+> > > +#define DRM_XE_VMA_ATOMIC_CPU		3
+> > > +			/** @atomic.val: value of atomic
+> > > operation */
+> > > +			__u32 val;
+> > > +
+> > > +			/** @atomic.reserved: Reserved */
+> > > +			__u32 reserved;
+> > > +		} atomic;
+> > > +
+> > > +		/**
+> > > +		 * @pat_index: Page attribute table index
+> > > +		 *
+> > > +		 * Used when @type =3D=3D DRM_XE_VMA_ATTR_PAT.
+> > > +		 */
+> > > +		struct {
+> > > +			/** @pat_index.val: PAT index value */
+> > > +			__u32 val;
+> > > +
+> > > +			/** @pat_index.reserved: Reserved */
+> > > +			__u32 reserved;
+> > > +		} pat_index;
+> > > +
+> > > +		/**
+> > > +		 * @preferred_mem_loc: preferred memory location
+> > > +		 *
+> > > +		 * Used when @type =3D=3D
+> > > DRM_XE_VMA_ATTR_PREFERRED_LOC
+> > > +		 *
+> > > +		 * Supported values for
+> > > @preferred_mem_loc.devmem_fd:
+> > > +		 * - DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE: set
+> > > vram of faulting tile as preferred loc
+> > > +		 * - DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM: set
+> > > smem as preferred loc
+> > > +		 *
+> > > +		 * Supported values for
+> > > @preferred_mem_loc.migration_policy:
+> > > +		 * - DRM_XE_MIGRATE_ALL_PAGES
+> > > +		 * - DRM_XE_MIGRATE_ONLY_SYSTEM_PAGES
+> > > +		 */
+> > > +		struct {
+> > > +#define DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE	0
+> > > +#define DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM	-1
+> > > +			/** @preferred_mem_loc.devmem_fd: fd for
+> > > preferred loc */
+> > > +			__u32 devmem_fd;
+> > > +
+> > > +#define DRM_XE_MIGRATE_ALL_PAGES		0
+> > > +#define DRM_XE_MIGRATE_ONLY_SYSTEM_PAGES	1
 > >=20
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Signed-off-by: Himal Prasad Ghimiray
-> > <himal.prasad.ghimiray@intel.com>
+> > I'd double check with Thomas / maintainers if they want this
+> > (migration_policy)
+> > to be included in this version as still more or less unused in this
+> > series.
 
-I think this commit message needs a motivation as to why this can't be
-done in user-space, also given that CPU madvise(2) doesn't have an
-interface like this.
+I think if UMD wants it now to distinguish between VRAM and system
+that's fine. I think we'd want to add another op or an extension for
+multi-device and any advanced migration strategies UMD would want us to
+support. If UMD doesn't use this now at all, we'd need to leave it out
+for now.
 
-Also I think one need to point out in the docs that the result is only
-advisory. When a value is read, it can immediately be changed by
-another thread.
-
-Finally, a VMA is really a KMD thing? I see also that it's mentioned in
-the context of prefetch, but should we try to use the "memory range"
-terminology instead, like madvise(2)?
-
-Thanks,
-Thomas
+/Thomas
 
 
-
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_device.c |=C2=A0=C2=A0 1 +
-> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 89 +++=
-+++++++++++++++++++
-> > =C2=A0drivers/gpu/drm/xe/xe_vm.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 =
-2 +-
-> > =C2=A0include/uapi/drm/xe_drm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 130
-> > +++++++++++++++++++++++++++++++++
-> > =C2=A04 files changed, 221 insertions(+), 1 deletion(-)
+>=20
+> Sure
+>=20
 > >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_device.c
-> > b/drivers/gpu/drm/xe/xe_device.c
-> > index 632d3ab12392..1f9969acbcd9 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.c
-> > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > @@ -199,6 +199,7 @@ static const struct drm_ioctl_desc xe_ioctls[]
-> > =3D {
-> > =C2=A0			=C2=A0 DRM_RENDER_ALLOW),
-> > =C2=A0	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl,
-> > DRM_RENDER_ALLOW),
-> > =C2=A0	DRM_IOCTL_DEF_DRV(XE_MADVISE, xe_vm_madvise_ioctl,
-> > DRM_RENDER_ALLOW),
-> > +	DRM_IOCTL_DEF_DRV(XE_VM_QUERY_VMAS_ATTRS,
-> > xe_vm_query_vmas_attrs_ioctl, DRM_RENDER_ALLOW),
-> > =C2=A0};
-> > =C2=A0
-> > =C2=A0static long xe_drm_ioctl(struct file *file, unsigned int cmd,
-> > unsigned long arg)
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > b/drivers/gpu/drm/xe/xe_vm.c
-> > index 14e554f3f4d5..d9ce25f3abf4 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -2171,6 +2171,95 @@ int xe_vm_destroy_ioctl(struct drm_device
-> > *dev, void *data,
-> > =C2=A0	return err;
-> > =C2=A0}
-> > =C2=A0
-> > +static void xe_vm_query_vmas(struct xe_vm *vm, u32 *num_vmas, u64
-> > start, u64 end)
-> > +{
-> > +	struct drm_gpuva *gpuva;
-> > +
-> > +	lockdep_assert_held(&vm->lock);
-> > +	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end)
-> > +		(*num_vmas)++;
-> > +}
-> > +
-> > +static int get_mem_attrs(struct xe_vm *vm, u32 *num_vmas, u64
-> > start,
-> > +			 u64 end, struct drm_xe_vma_mem_attr
-> > *attrs)
-> > +{
-> > +	struct drm_gpuva *gpuva;
-> > +	int i =3D 0;
-> > +
-> > +	lockdep_assert_held(&vm->lock);
-> > +
-> > +	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end)
-> > {
-> > +		struct xe_vma *vma =3D gpuva_to_vma(gpuva);
-> > +
-> > +		if (i =3D=3D *num_vmas)
-> > +			return -EINVAL;
-> > +
-> > +		attrs[i].start =3D xe_vma_start(vma);
-> > +		attrs[i].end =3D xe_vma_end(vma);
-> > +		attrs[i].atomic.val =3D vma->attr.atomic_access;
-> > +		attrs[i].pat_index.val =3D vma->attr.pat_index;
-> > +		attrs[i].preferred_mem_loc.devmem_fd =3D vma-
-> > >attr.preferred_loc.devmem_fd;
-> > +		attrs[i].preferred_mem_loc.migration_policy =3D vma-
-> > >attr.preferred_loc.migration_policy;
-> > +
-> > +		i++;
-> > +	}
-> > +
-> > +	if (i <=C2=A0 (*num_vmas - 1))
-> > +		*num_vmas =3D i;
-> > +	return 0;
-> > +}
-> > +
-> > +int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void
-> > *data, struct drm_file *file)
-> > +{
-> > +	struct xe_device *xe =3D to_xe_device(dev);
-> > +	struct xe_file *xef =3D to_xe_file(file);
-> > +	struct drm_xe_vma_mem_attr *mem_attrs;
-> > +	struct drm_xe_vm_query_vmas_attr *args =3D data;
-> > +	u64 __user *attrs_user =3D u64_to_user_ptr(args-
-> > >vector_of_vma_mem_attr);
-> > +	struct xe_vm *vm;
-> > +	int err =3D 0;
-> > +
-> > +	if (XE_IOCTL_DBG(xe,
-> > +			 (args->num_vmas =3D=3D 0 && attrs_user) ||
-> > +			(args->num_vmas > 0 && !attrs_user)))
-> > +		return -EINVAL;
-> > +
-> > +	vm =3D xe_vm_lookup(xef, args->vm_id);
-> > +	if (XE_IOCTL_DBG(xe, !vm))
-> > +		return -EINVAL;
-> > +
-> > +	down_read(&vm->lock);
-> > +
-> > +	attrs_user =3D u64_to_user_ptr(args-
-> > >vector_of_vma_mem_attr);
-> > +
-> > +	if (args->num_vmas =3D=3D 0 && !attrs_user) {
-> > +		xe_vm_query_vmas(vm, &args->num_vmas, args->start,
-> > args->start + args->range);
-> > +		goto unlock_vm;
-> > +	}
-> > +
-> > +	mem_attrs =3D kvmalloc_array(args->num_vmas, sizeof(struct
-> > drm_xe_vma_mem_attr),
-> > +				=C2=A0=C2=A0 GFP_KERNEL | __GFP_ACCOUNT |
-> > +				=C2=A0=C2=A0 __GFP_RETRY_MAYFAIL |
-> > __GFP_NOWARN);
-> > +	if (!mem_attrs) {
-> > +		err =3D args->num_vmas > 1 ? -ENOBUFS : -ENOMEM;
-> > +		goto unlock_vm;
-> > +	}
-> > +
-> > +	err =3D get_mem_attrs(vm, &args->num_vmas, args->start,
-> > +			=C2=A0=C2=A0=C2=A0 args->start + args->range, mem_attrs);
-> > +	if (err)
-> > +		goto free_mem_attrs;
-> > +
-> > +	err =3D __copy_to_user(attrs_user, mem_attrs,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 sizeof(struct drm_xe_vma_mem_attr) *
-> > args->num_vmas);
-> > +
-> > +free_mem_attrs:
-> > +	kvfree(mem_attrs);
-> > +unlock_vm:
-> > +	up_read(&vm->lock);
-> > +	return err;
-> > +}
-> > +
-> > =C2=A0static bool vma_matches(struct xe_vma *vma, u64 page_addr)
-> > =C2=A0{
-> > =C2=A0	if (page_addr > xe_vma_end(vma) - 1 ||
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.h
-> > b/drivers/gpu/drm/xe/xe_vm.h
-> > index 1fb639a33ffb..e4a601a3583f 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm.h
-> > @@ -195,7 +195,7 @@ int xe_vm_destroy_ioctl(struct drm_device *dev,
-> > void *data,
-> > =C2=A0			struct drm_file *file);
-> > =C2=A0int xe_vm_bind_ioctl(struct drm_device *dev, void *data,
-> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_file *file);
-> > -
-> > +int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void
-> > *data, struct drm_file *file);
-> > =C2=A0void xe_vm_close_and_put(struct xe_vm *vm);
-> > =C2=A0
-> > =C2=A0static inline bool xe_vm_in_fault_mode(struct xe_vm *vm)
-> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > index 81e90270313d..c0aa7c19870e 100644
-> > --- a/include/uapi/drm/xe_drm.h
-> > +++ b/include/uapi/drm/xe_drm.h
-> > @@ -82,6 +82,7 @@ extern "C" {
-> > =C2=A0 *=C2=A0 - &DRM_IOCTL_XE_WAIT_USER_FENCE
-> > =C2=A0 *=C2=A0 - &DRM_IOCTL_XE_OBSERVATION
-> > =C2=A0 *=C2=A0 - &DRM_IOCTL_XE_MADVISE
-> > + *=C2=A0 - &DRM_IOCTL_XE_VM_QUERY_VMAS_ATTRS
-> > =C2=A0 */
-> > =C2=A0
-> > =C2=A0/*
-> > @@ -104,6 +105,7 @@ extern "C" {
-> > =C2=A0#define DRM_XE_WAIT_USER_FENCE		0x0a
-> > =C2=A0#define DRM_XE_OBSERVATION		0x0b
-> > =C2=A0#define DRM_XE_MADVISE			0x0c
-> > +#define DRM_XE_VM_QUERY_VMAS_ATTRS	0x0d
-> > =C2=A0
-> > =C2=A0/* Must be kept compact -- no holes */
-> > =C2=A0
-> > @@ -120,6 +122,7 @@ extern "C" {
-> > =C2=A0#define
-> > DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_U=
-SER_FENCE,structdrm_xe_wait_user_fence)
-> > =C2=A0#define
-> > DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION=
-,structdrm_xe_observation_param)
-> > =C2=A0#define
-> > DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struc=
-tdrm_xe_madvise)
-> > +#define
-> > DRM_IOCTL_XE_VM_QUERY_VMAS_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_=
-QUERY_VMAS_ATTRS,structdrm_xe_vm_query_vmas_attr)
-> > =C2=A0
-> > =C2=A0/**
-> > =C2=A0 * DOC: Xe IOCTL Extensions
-> > @@ -2093,6 +2096,133 @@ struct drm_xe_madvise {
-> > =C2=A0	__u64 reserved[2];
-> > =C2=A0};
-> > =C2=A0
-> > +/**
-> > + * struct drm_xe_vma_mem_attr - Output of
-> > &DRM_IOCTL_XE_VM_QUERY_VMAS_ATTRS
-> > + *
-> > + * This structure is provided by userspace and filled by KMD in
-> > response to the
-> > + * DRM_IOCTL_XE_VM_QUERY_VMAS_ATTRS ioctl. It describes memory
-> > attributes of
-> > + * a VMA within a specified address range in a VM.
-> > + *
-> > + * The structure includes information such as atomic access
-> > policy, purgeable
-> > + * state, page attribute table (PAT) index, and preferred memory
-> > location.
-> > + * Userspace allocates an array of these structures and passes a
-> > pointer to the
-> > + * ioctl to retrieve attributes for each VMA
-> > + *
-> > + * @extensions: Pointer to the first extension struct, if any
-> > + * @start: Start address of the virtual memory area
-> > + * @end: End address of the virtual memory area
-> > + *
-> > + * @atomic.val: Value of atomic operation policy
-> > + * @atomic.reserved: Reserved, must be zero
-> > + *
-> > + * @purge_state_val.val: Value for DRM_XE_VMA_ATTR_PURGEABLE_STATE
-> > + * @purge_state_val.reserved: Reserved, must be zero
-> > + *
-> > + * @pat_index.val: Page Attribute Table (PAT) index
-> > + * @pat_index.reserved: Reserved, must be zero
-> > + *
-> > + * @preferred_mem_loc.devmem_fd: File descriptor for preferred
-> > device memory
-> > + * @preferred_mem_loc.migration_policy: Migration policy for
-> > memory placement
-> > + *
-> > + */
-> > +struct drm_xe_vma_mem_attr {
-> > +	 /** @extensions: Pointer to the first extension struct,
-> > if any */
-> > +	__u64 extensions;
-> > +
-> > +	/** @start: start of the vma */
-> > +	__u64 start;
-> > +
-> > +	/** @end: end of the vma */
-> > +	__u64 end;
-> > +
-> > +	struct {
-> > +		struct {
-> > +		/** @atomic.val: atomic attribute for vma*/
-> > +			__u32 val;
-> > +
-> > +		/** @atomic.reserved: Reserved */
-> > +			__u32 reserved;
-> > +		} atomic;
-> > +
-> > +		struct {
-> > +			/** @pat_index.val: PAT index of vma */
-> > +			__u32 val;
-> > +
-> > +			/** @pat_index.reserved: Reserved */
-> > +			__u32 reserved;
-> > +		} pat_index;
-> > +
-> > +		/** @preferred_mem_loc: preferred memory location
-> > */
-> > +		struct {
-> > +			/** @preferred_mem_loc.devmem_fd: fd for
-> > preferred loc */
-> > +			__u32 devmem_fd;
-> > +
-> > +			/** @preferred_mem_loc.migration_policy:
-> > Page migration policy */
-> > +			__u32 migration_policy;
-> > +		} preferred_mem_loc;
-> > +	};
->=20
-> I just realized this interface isn=E2=80=99t very future-proof. Let me gi=
-ve
-> an
-> easy example of how this could break. Let=E2=80=99s say we add three more
-> madvise attributes at some point in the future =E2=80=94 we wouldn=E2=80=
-=99t be able
-> to
-> fit those three additional attributes here.
->=20
-> Hmm, maybe in drm_xe_vm_query_vmas_attr we could also return the
-> sizeof
-> a single struct drm_xe_vma_mem_attr entry. That would allow us to
-> grow
-> individual entries indefinitely without breaking userspace, as long
-> as
-> it does something like the code below, and as long as we only grow
-> struct drm_xe_vm_query_vmas_attr by appending new fields (i.e. we
-> never
-> reorder existing ones).
->=20
-> struct drm_xe_vm_query_vmas_attr query =3D {
-> =C2=A0=C2=A0=C2=A0 .vm_id =3D vm,
-> =C2=A0=C2=A0=C2=A0 .start =3D start,
-> =C2=A0=C2=A0=C2=A0 .range =3D range,
-> };
->=20
-> /* First ioctl to get number of VMAs and the size of each attribute
-> */
-> ioctl(fd, DRM_IOCTL_XE_VM_QUERY_VMAS_ATTRS, &query);
->=20
-> /* Allocate buffer for the VMA attributes */
-> void *ptr =3D malloc(query.num_vmas * query.sizeof_vma_mem_attr);
->=20
-> query.vector_of_vma_mem_attr =3D (uintptr_t)ptr;
->=20
-> /* Second ioctl to actually fill the VMA attributes */
-> ioctl(fd, DRM_IOCTL_XE_VM_QUERY_VMAS_ATTRS, &query);
->=20
-> /* Iterate over the returned VMA attributes */
-> for (unsigned int i =3D 0; i < query.num_vmas; ++i) {
-> =C2=A0=C2=A0=C2=A0 struct drm_xe_vma_mem_attr *vma_attr =3D (struct
-> drm_xe_vma_mem_attr *)ptr;
->=20
-> =C2=A0=C2=A0=C2=A0 /* Do something with vma_attr */
->=20
-> =C2=A0=C2=A0=C2=A0 /* Move pointer by one VMA entry */
-> =C2=A0=C2=A0=C2=A0 ptr +=3D query.sizeof_vma_mem_attr;
-> }
->=20
-> I think we need to double-check with the maintainer to see if this
-> type
-> of interface is allowed, but I don=E2=80=99t see any reason why it wouldn=
-=E2=80=99t
-> be.
->=20
-> Matt
->=20
-> > +
-> > +	 /** @reserved: Reserved */
-> > +	__u64 reserved[2];
-> > +};
-> > +
-> > +/**
-> > + * struct drm_xe_vm_query_vmas_attr - Input of
-> > &DRM_IOCTL_XE_VM_QUERY_MEM_ATTRIBUTES
-> > + *
-> > + * This structure is used to query memory attributes of virtual
-> > memory areas
-> > + * (VMAs) within a specified address range in a VM. It provides
-> > detailed
-> > + * information about each VMA, including atomic access policy,
-> > purgeable state,
-> > + * page attribute table (PAT) index, and preferred memory
-> > location.
-> > + *
-> > + * Userspace first calls the ioctl with @num_vmas =3D 0 and
-> > + * @vector_of_vma_mem_attr =3D NULL to retrieve the number of VMAs
-> > in the range.
-> > + * Then, it allocates a buffer of that size and calls the ioctl
-> > again to fill
-> > + * the buffer with VMA attributes.
-> > + *
-> > + * Example:
-> > + *
-> > + * .. code-block:: C
-> > + *
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_xe_vma_mem_attr *attrs;
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0 __u32 num_vmas;
-> > + *
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0 // First call to get number of VMAs
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0 ioctl(fd, DRM_IOCTL_XE_VM_QUERY_VMAS_ATTRS,=
- &query);
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0 num_vmas =3D query.num_vmas;
-> > + *
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0 // Allocate and query attributes
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0 attrs =3D malloc(num_vmas, sizeof(*attrs));
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0 query.vector_of_vma_mem_attr =3D (__u64)(ui=
-ntptr_t)attrs;
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0 query.num_vmas =3D num_vmas;
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0 ioctl(fd, DRM_IOCTL_XE_VM_QUERY_VMAS_ATTRS,=
- &query);
-> > + */
-> > +struct drm_xe_vm_query_vmas_attr {
-> > +	/** @extensions: Pointer to the first extension struct, if
-> > any */
-> > +	__u64 extensions;
-> > +
-> > +	/** @vm_id: vm_id of the virtual range */
-> > +	__u32 vm_id;
-> > +
-> > +	/** @num_vmas: number of vmas in range */
-> > +	__u32 num_vmas;
-> > +
-> > +	/** @start: start of the virtual address range */
-> > +	__u64 start;
-> > +
-> > +	/** @size: size of the virtual address range */
-> > +	__u64 range;
-> > +
-> > +	/**
-> > +	 * @vector_of_ops: userptr to array of struct
-> > +	 * drm_xe_vma_mem_attr
-> > +	 */
-> > +	__u64 vector_of_vma_mem_attr;
-> > +
-> > +	/** @reserved: Reserved */
-> > +	__u64 reserved[2];
-> > +
-> > +};
-> > +
-> > =C2=A0#if defined(__cplusplus)
-> > =C2=A0}
-> > =C2=A0#endif
-> > --=20
-> > 2.34.1
+> > > +			/** @preferred_mem_loc.migration_policy:
+> > > Page migration policy */
+> > > +			__u32 migration_policy;
 > >=20
+> > Could we future proof a little, maybe migration_policy is a __u16
+> > (or __u8?) and
+> > stick a reserved __u16 in here?
+>=20
+> OK
+>=20
+> >=20
+> > Matt
+> >=20
+> > > +		} preferred_mem_loc;
+> > > +	};
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > =C2=A0 #if defined(__cplusplus)
+> > > =C2=A0 }
+> > > =C2=A0 #endif
+> > > --=20
+> > > 2.34.1
+> > >=20
+>=20
+>=20
 
