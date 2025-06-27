@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F0DDC83010
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:34:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B2E4C77B7F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:34:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F15F110EA3A;
-	Fri, 27 Jun 2025 13:34:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4172C10EA3D;
+	Fri, 27 Jun 2025 13:34:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lru7m3vW";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="VfsF0Fvr";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 925B110EA29
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:33:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC6710EA32
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:33:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=rlR6sNxUt4UbbM126tKG72x3ucdE2Bqx4kI8Ki3vCwM=; b=lru7m3vWMLAw+/DiwjN263t/Bp
- MWNYtnBMow4ET5YoLFYSUonZSXzCinkNzAS4VpCRb/BZhPbzgXdw1vb9MYHSCduDnTpuL0FELM3NU
- JQuuN55cIEOxVFpFbyPX5r/op8OcLETrj5KNL/WZN1dxC7VpWqvSBakeleao1xBKqyUq22MiIpLK0
- kNGhalqR9SM4qD2Ze2phnugtO5MjALVfCMttlvpwhb8r2xDMcATyvFymtgbbNMDe6G1LhopZRl/9d
- ECB8T75asedENAxZb/apEmE4iMRlOweQi4ynXLjrPZ1dGFXUD0YsYpm4af3mrJbVXUdhXc0gMaXJm
- 2OJ4NxjQ==;
+ bh=6ULUV/sXP3KUfg2zYOWQR5E3Y1kg+Gp830Sx4ImpxEM=; b=VfsF0Fvr6St5BAg2f6QRztPzPA
+ Pw6uOCTdW7AYt0xsmKuKpBPIcLsMUvnyoPn1I8gEommw6CON3UEennIa3ljaRkh7AtMK4KYpoMnoU
+ oRxQkvCBBArD06pl5N0Xk8qv6/BmRKx5CKN+kz0k0K2sw+BwxlzfmhTjZmNuN5Nc16IQ9GSjvY0+Q
+ CpsA5+TmSz/H6rd9kcAYR+S/jojWeZCE5d0Xv8FK8VYLYPOfc9KQ51HrMjPF4oQJidVdW/WpcXrl0
+ SgDayDXqq5ZA4OPC0xCixkEtgJPbVtezfqwzsCtFIkIJD1011efCRVzYpHX5XFNpn6lEhFIUiAEtp
+ 9ORzmeqQ==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uV9D8-009PoW-SK; Fri, 27 Jun 2025 15:33:46 +0200
+ id 1uV9DJ-009Pqk-UV; Fri, 27 Jun 2025 15:33:58 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v7 02/24] drm/xe: Generalize wa bb emission code
-Date: Fri, 27 Jun 2025 14:33:15 +0100
-Message-ID: <20250627133340.54603-3-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v7 18/24] drm/xe/xelp: Add AuxCCS invalidation to the indirect
+ context workarounds
+Date: Fri, 27 Jun 2025 14:33:31 +0100
+Message-ID: <20250627133340.54603-19-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
 References: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
@@ -58,132 +59,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Generalize the wa bb emission by splitting it into three phases - setup,
-emit and finish, and extract setup and finish steps into helpers.
-
-This will enable using the same infrastructure for emitting the indirect
-context workarounds.
+Following from the i915 reference implementation, we add the AuxCCS
+invalidation to the indirect context workarounds page.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 77 +++++++++++++++++++++++++------------
- 1 file changed, 53 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 47 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index f0c33de4eb6c..58c676afc60f 100644
+index a5c03ad4b8b2..32466ebcaedb 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -972,32 +972,37 @@ static ssize_t wa_bb_setup_utilization(struct xe_lrc *lrc, struct xe_hw_engine *
+@@ -25,6 +25,7 @@
+ #include "xe_map.h"
+ #include "xe_memirq.h"
+ #include "xe_mmio.h"
++#include "xe_ring_ops.h"
+ #include "xe_sriov.h"
+ #include "xe_trace_lrc.h"
+ #include "xe_vm.h"
+@@ -52,11 +53,23 @@ lrc_to_xe(struct xe_lrc *lrc)
+ static bool
+ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
+ {
++	struct xe_device *xe = gt_to_xe(gt);
++
+ 	if (XE_WA(gt, 16010904313) &&
+ 	    (class == XE_ENGINE_CLASS_RENDER ||
+ 	     class == XE_ENGINE_CLASS_COMPUTE))
+ 		return true;
+ 
++	/* AuxCCS invalidation */
++	if (GRAPHICS_VERx100(xe) >= 1200 &&
++	    GRAPHICS_VERx100(xe) <= 1210 &&
++	    (class == XE_ENGINE_CLASS_RENDER ||
++	     class == XE_ENGINE_CLASS_COMPUTE ||
++	     class == XE_ENGINE_CLASS_COPY ||
++	     class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++	     class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
++		return true;
++
+ 	return false;
+ }
+ 
+@@ -1054,6 +1067,31 @@ setup_invalidate_state_cache_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
  	return cmd - batch;
  }
  
--struct wa_bb_setup {
-+struct wa_bo_setup {
++static ssize_t
++setup_invalidate_auxccs_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
++			   u32 *batch, size_t max_len)
++{
++	struct xe_gt *gt = lrc->gt;
++	struct xe_device *xe = gt_to_xe(gt);
++	const unsigned int class = hwe->class;
++	u32 *cmd;
++
++	if (GRAPHICS_VERx100(xe) < 1200 || GRAPHICS_VERx100(xe) > 1210 ||
++	    !(class == XE_ENGINE_CLASS_RENDER ||
++	      class == XE_ENGINE_CLASS_COMPUTE ||
++	      class == XE_ENGINE_CLASS_COPY ||
++	      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++	      class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
++		return 0;
++
++	if (xe_gt_WARN_ON(gt, max_len < 8))
++		return -ENOSPC;
++
++	cmd = xe_emit_aux_table_inv(hwe, batch);
++
++	return cmd - batch;
++}
++
+ struct wa_bo_setup {
  	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
  			 u32 *batch, size_t max_size);
- };
- 
--static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
-+static u32 *
-+setup_wa_bo(struct xe_lrc *lrc,
-+	    struct xe_hw_engine *hwe,
-+	    const size_t max_size,
-+	    unsigned int offset,
-+	    const struct wa_bo_setup *funcs,
-+	    unsigned int num_funcs,
-+	    u32 **free)
+@@ -1154,6 +1192,10 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
  {
--	const size_t max_size = LRC_WA_BB_SIZE;
--	static const struct wa_bb_setup funcs[] = {
--		{ .setup = wa_bb_setup_utilization },
--	};
-+	u32 *cmd, *buf = NULL;
- 	ssize_t remain;
--	u32 *cmd, *buf = NULL;
- 
- 	if (lrc->bo->vmap.is_iomem) {
- 		buf = kmalloc(max_size, GFP_KERNEL);
- 		if (!buf)
--			return -ENOMEM;
-+			return ERR_PTR(-ENOMEM);
- 		cmd = buf;
-+		*free = buf;
- 	} else {
--		cmd = lrc->bo->vmap.vaddr + __xe_lrc_wa_bb_offset(lrc);
-+		cmd = lrc->bo->vmap.vaddr + offset;
-+		*free = NULL;
- 	}
- 
- 	remain = max_size / sizeof(*cmd);
- 
--	for (size_t i = 0; i < ARRAY_SIZE(funcs); i++) {
-+	for (size_t i = 0; i < num_funcs; i++) {
- 		ssize_t len = funcs[i].setup(lrc, hwe, cmd, remain);
- 
- 		remain -= len;
-@@ -1012,23 +1017,47 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 		cmd += len;
- 	}
- 
--	*cmd++ = MI_BATCH_BUFFER_END;
--
--	if (buf) {
--		xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap,
--				 __xe_lrc_wa_bb_offset(lrc), buf,
--				 (cmd - buf) * sizeof(*cmd));
--		kfree(buf);
--	}
--
--	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR, xe_bo_ggtt_addr(lrc->bo) +
--			     __xe_lrc_wa_bb_offset(lrc) + 1);
--
--	return 0;
-+	return cmd;
- 
- fail:
- 	kfree(buf);
--	return -ENOSPC;
-+	return ERR_PTR(-ENOSPC);
-+}
-+
-+static void finish_wa_bo(struct xe_lrc *lrc,
-+			 unsigned int offset,
-+			 u32 *cmd,
-+			 u32 *free)
-+{
-+	if (!free)
-+		return;
-+
-+	xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap, offset, free,
-+			 (cmd - free) * sizeof(*cmd));
-+	kfree(free);
-+}
-+
-+static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
-+{
-+	static const struct wa_bo_setup funcs[] = {
-+		{ .setup = wa_bb_setup_utilization },
+ 	static struct wa_bo_setup rcs_funcs[] = {
+ 		{ .setup = setup_timestamp_wa },
++		{ .setup = setup_invalidate_auxccs_wa },
 +	};
-+	unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
-+	u32 *cmd, *buf = NULL;
-+
-+	cmd = setup_wa_bo(lrc, hwe, LRC_WA_BB_SIZE, offset, funcs,
-+			  ARRAY_SIZE(funcs), &buf);
-+	if (IS_ERR(cmd))
-+		return PTR_ERR(cmd);
-+
-+	*cmd++ = MI_BATCH_BUFFER_END;
-+
-+	finish_wa_bo(lrc, offset, cmd, buf);
-+
-+	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR,
-+			     xe_bo_ggtt_addr(lrc->bo) + offset + 1);
-+
-+	return 0;
- }
++	static struct wa_bo_setup xcs_funcs[] = {
++		{ .setup = setup_invalidate_auxccs_wa },
+ 	};
+ 	unsigned int offset, num_funcs, written = 0;
+ 	struct wa_bo_setup *funcs = NULL;
+@@ -1166,6 +1208,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 	    hwe->class == XE_ENGINE_CLASS_COMPUTE) {
+ 		funcs = rcs_funcs;
+ 		num_funcs = ARRAY_SIZE(rcs_funcs);
++	} else if (hwe->class == XE_ENGINE_CLASS_COPY ||
++		   hwe->class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++		   hwe->class == XE_ENGINE_CLASS_VIDEO_ENHANCE) {
++		funcs = xcs_funcs;
++		num_funcs = ARRAY_SIZE(xcs_funcs);
+ 	}
  
- #define PVC_CTX_ASID		(0x2e + 1)
+ 	if (xe_gt_WARN_ON(lrc->gt, !funcs))
 -- 
 2.48.0
 
