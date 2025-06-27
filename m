@@ -4,23 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F818C77B7F
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 07:41:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0A15C77B7F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 07:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB8DE10E975;
-	Fri, 27 Jun 2025 07:41:26 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 161AF10E974
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 07:41:24 +0000 (UTC)
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH] drm/xe: Fxi typo in Kconfig
-Date: Fri, 27 Jun 2025 09:41:19 +0200
-Message-ID: <20250627074119.347826-1-dev@lankhorst.se>
-X-Mailer: git-send-email 2.49.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 951E510E975;
+	Fri, 27 Jun 2025 07:42:18 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97AF910E974;
+ Fri, 27 Jun 2025 07:42:17 +0000 (UTC)
+Received: from 91-155-254-100.elisa-laajakaista.fi ([91.155.254.100]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1uV3iw-00000008Rli-0A9t; Fri, 27 Jun 2025 10:42:15 +0300
+Message-ID: <af4475cfaf2f155de683cb4d75efb3cd366b168b.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: Imre Deak <imre.deak@gmail.com>
+Date: Fri, 27 Jun 2025 10:42:13 +0300
+In-Reply-To: <20250626082053.219514-2-imre.deak@intel.com>
+References: <20250626082053.219514-1-imre.deak@intel.com>
+ <20250626082053.219514-2-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 01/20] drm/i915/dp_mst: Reprobe connector if the IRQ ESI
+ read failed
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,35 +46,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-doubut -> doubt.
+On Thu, 2025-06-26 at 11:20 +0300, Imre Deak wrote:
+> From: Imre Deak <imre.deak@gmail.com>
+>=20
+> An AUX access failure during HPD IRQ handling should be handled by
+> falling back to a full connector detection, do so.
+>=20
+> Signed-off-by: Imre Deak <imre.deak@gmail.com>
+> ---
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/Kconfig | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 553c29e1030b1..4048a781323b6 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -85,7 +85,7 @@ config DRM_XE_GPUSVM
- 	  Enable this option if you want support for CPU to GPU address
- 	  mirroring.
- 
--	  If in doubut say "Y".
-+	  If in doubt say "Y".
- 
- config DRM_XE_PAGEMAP
- 	bool "Enable device memory pool for SVM"
-@@ -96,7 +96,7 @@ config DRM_XE_PAGEMAP
- 	  Disable this option only if you don't want to expose local device
- 	  memory for SVM. Will reduce KMD memory footprint when disabled.
- 
--	  If in doubut say "Y".
-+	  If in doubt say "Y".
- 
- config DRM_XE_FORCE_PROBE
- 	string "Force probe xe for selected Intel hardware IDs"
--- 
-2.49.0
-
+--
+Cheers,
+Luca.
