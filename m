@@ -4,54 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BA2DC7EE31
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 12:23:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67EBCC77B7F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 12:43:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC6D310E325;
-	Fri, 27 Jun 2025 12:22:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 144A110E9FF;
+	Fri, 27 Jun 2025 12:43:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bURTOblt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jGymb10F";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A53710E325
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 12:22:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E003E10E9FF;
+ Fri, 27 Jun 2025 12:43:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751026978; x=1782562978;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=CzUCRI8WpBRwJ5daPQk1Do8gdyQ/UgqxzzkCvM6OvjQ=;
- b=bURTObltoTSDqsLi3InPsTtoXephHxoEQErH1BNk+EKXhfQ9xFHXAiOC
- qPchuiG7/9VtVLg/ax7J71boAYN/ZZZ9+nAQR7JoyQVydY/Vy1gcFmI4/
- 9BHoJmBE2C1DkvOPJMQB+l0/1zR/ZZa/X7TERGibfGDl2Bc3OsAvJUwzl
- LbN6Pe6Jq8I2RysoalngXCQibZLyWES4nqCLgysKSH4yq/eK6pBmXF/QF
- 8GvjQsKu18NqYmdcXA4z6SN41Ku5PGRpXBCPN1dKgrotgYSVnmcFtXWpV
- dkVxUn3stK1m6OZUHco4qCeJhQjaR+AH+oHPimBUBmi+DViY3pYK0S7dE A==;
-X-CSE-ConnectionGUID: TiVsSCvnQSqleIeRq9XPZQ==
-X-CSE-MsgGUID: VPmYt9W1Q8ek2jEb3JRZWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="52458149"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="52458149"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 05:22:58 -0700
-X-CSE-ConnectionGUID: UT0NApeASTGE37IAXER96A==
-X-CSE-MsgGUID: ODKY3+lfRROZYWOHaWM0rA==
+ t=1751028210; x=1782564210;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=amX9Hn9SZqcN8rl3C6HwI8vOhhkBrCH7Q6cSo++gkFs=;
+ b=jGymb10FXI4OooUrUNPPIulnFipX/cfWqPPEgS+UL1vNmjpt1t5EiNQ5
+ Q2BZwjV1ISa2AkYajWopmgUeRcMp5PoSdBwWBtYUK2JSdNkOLautu6/xP
+ txfG4FcU7wFKX+qbf2RUbQrf9Stwng1XNNS5wzicvUMnuM0tghC+lhcc1
+ AiBgHB2ZgkHktOp7y4R4GQvTYGYIDvq1LrVoxzSsxuYaCPQi3R2lgnHgf
+ lO2k2vfZgtVtG3tR+awTvZQWvH2mNOKkCwv+Nu2uCQhtecd5+pQDWLHA1
+ mtWMO7JAj+f42z+nF11WMPrgYJSB2oWq7xH5onm7T89uBi8ujytaiXkzq Q==;
+X-CSE-ConnectionGUID: vuia8yKHTLCqR7kLKvVHCA==
+X-CSE-MsgGUID: IsreLrjtRfmBvoLAp+Z+uA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="63937720"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="63937720"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 05:43:29 -0700
+X-CSE-ConnectionGUID: 6OPP5vxXRWybhJwHFePztA==
+X-CSE-MsgGUID: DiArT/yrSHWGoaYYfn+u2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="152315409"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
- by orviesa006.jf.intel.com with ESMTP; 27 Jun 2025 05:22:57 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uV86Y-000W9t-1o;
- Fri, 27 Jun 2025 12:22:54 +0000
-Date: Fri, 27 Jun 2025 20:22:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- af2b588abe006bd55ddd358c4c3b87523349c475
-Message-ID: <202506272021.pNnVCHID-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="176476991"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.146])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 05:43:28 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 18/18] drm/i915/ddi: prefer read_poll_timeout() over
+ readx_poll_timeout()
+In-Reply-To: <aF6H5qosTRHtzfJH@ideak-desk>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1751023767.git.jani.nikula@intel.com>
+ <59bcc15dd4debf00ee0c7b430a3b701462ac9de7.1751023767.git.jani.nikula@intel.com>
+ <aF6H5qosTRHtzfJH@ideak-desk>
+Date: Fri, 27 Jun 2025 15:43:25 +0300
+Message-ID: <e964f219f14f46661fd9ff03443a85069480230e@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,143 +70,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: af2b588abe006bd55ddd358c4c3b87523349c475  drm/xe: Process deferred GGTT node removals on device unwind
+On Fri, 27 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
+> On Fri, Jun 27, 2025 at 02:36:32PM +0300, Jani Nikula wrote:
+>> Unify on using read_poll_timeout() throughout instead of mixing with
+>> readx_poll_timeout(). While the latter can be ever so slightly simpler,
+>> they are both complicated enough that it's better to unify on one
+>> approach only.
+>> 
+>> While at it, better separate the handling of error returns from
+>> drm_dp_dpcd_readb() and the actual status byte. This is best achieved by
+>> inlining the read_fec_detected_status() function.
+>> 
+>> Cc: Imre Deak <imre.deak@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_ddi.c | 33 +++++++++---------------
+>>  1 file changed, 12 insertions(+), 21 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index 0405396c7750..fc4587311607 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -2339,34 +2339,25 @@ static void intel_dp_sink_set_fec_ready(struct intel_dp *intel_dp,
+>>  		drm_dbg_kms(display->drm, "Failed to clear FEC detected flags\n");
+>>  }
+>>  
+>> -static int read_fec_detected_status(struct drm_dp_aux *aux)
+>> -{
+>> -	int ret;
+>> -	u8 status;
+>> -
+>> -	ret = drm_dp_dpcd_readb(aux, DP_FEC_STATUS, &status);
+>> -	if (ret < 0)
+>> -		return ret;
+>> -
+>> -	return status;
+>> -}
+>> -
+>>  static int wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
+>>  {
+>>  	struct intel_display *display = to_intel_display(aux->drm_dev);
+>>  	int mask = enabled ? DP_FEC_DECODE_EN_DETECTED : DP_FEC_DECODE_DIS_DETECTED;
+>> -	int status;
+>> -	int err;
+>> +	u8 status = 0;
+>> +	int ret, err;
+>>  
+>> -	err = readx_poll_timeout(read_fec_detected_status, aux, status,
+>> -				 status & mask || status < 0,
+>> -				 10000, 200000);
+>> +	ret = read_poll_timeout(drm_dp_dpcd_readb, err,
+>
+> drm_dp_dpcd_read_byte()? With that it looks ok:
 
-elapsed time: 1347m
+Oh, yes.
 
-configs tested: 124
-configs skipped: 3
+>
+> Reviewed-by: Imre Deak <imre.deak@intel.com>
+>
+>> +				err || (status & mask),
+>> +				10 * 1000, 200 * 1000, false,
+>
+> Nit: there's also USEC_PER_MSEC.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+I considered that, and decided the straight 1000 is more obvious.
 
-tested configs:
-alpha                             allnoconfig    gcc-15.1.0
-alpha                            allyesconfig    gcc-15.1.0
-arc                              alldefconfig    gcc-15.1.0
-arc                              allmodconfig    gcc-15.1.0
-arc                               allnoconfig    gcc-15.1.0
-arc                              allyesconfig    gcc-15.1.0
-arc                         haps_hs_defconfig    gcc-15.1.0
-arc                   randconfig-001-20250626    gcc-12.4.0
-arc                   randconfig-002-20250626    gcc-13.3.0
-arm                              allmodconfig    gcc-15.1.0
-arm                               allnoconfig    clang-21
-arm                              allyesconfig    gcc-15.1.0
-arm                       multi_v4t_defconfig    clang-16
-arm                   randconfig-001-20250626    clang-21
-arm                   randconfig-002-20250626    clang-20
-arm                   randconfig-003-20250626    gcc-10.5.0
-arm                   randconfig-004-20250626    clang-21
-arm                           sama5_defconfig    gcc-15.1.0
-arm                       spear13xx_defconfig    gcc-15.1.0
-arm64                            allmodconfig    clang-19
-arm64                             allnoconfig    gcc-15.1.0
-arm64                 randconfig-001-20250626    clang-21
-arm64                 randconfig-002-20250626    clang-17
-arm64                 randconfig-003-20250626    gcc-8.5.0
-arm64                 randconfig-004-20250626    clang-21
-csky                              allnoconfig    gcc-15.1.0
-csky                  randconfig-001-20250627    gcc-15.1.0
-csky                  randconfig-002-20250627    gcc-15.1.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-21
-hexagon                          allyesconfig    clang-21
-hexagon               randconfig-001-20250627    clang-21
-hexagon               randconfig-002-20250627    clang-21
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    gcc-12
-i386        buildonly-randconfig-001-20250626    clang-20
-i386        buildonly-randconfig-002-20250626    clang-20
-i386        buildonly-randconfig-003-20250626    clang-20
-i386        buildonly-randconfig-004-20250626    clang-20
-i386        buildonly-randconfig-005-20250626    clang-20
-i386        buildonly-randconfig-006-20250626    clang-20
-i386                                defconfig    clang-20
-loongarch                        allmodconfig    gcc-15.1.0
-loongarch                         allnoconfig    gcc-15.1.0
-loongarch             randconfig-001-20250627    gcc-15.1.0
-loongarch             randconfig-002-20250627    gcc-15.1.0
-m68k                             alldefconfig    gcc-15.1.0
-m68k                             allmodconfig    gcc-15.1.0
-m68k                              allnoconfig    gcc-15.1.0
-m68k                             allyesconfig    gcc-15.1.0
-m68k                        mvme147_defconfig    gcc-15.1.0
-m68k                           virt_defconfig    gcc-15.1.0
-microblaze                       allmodconfig    gcc-15.1.0
-microblaze                        allnoconfig    gcc-15.1.0
-microblaze                       allyesconfig    gcc-15.1.0
-mips                              allnoconfig    gcc-15.1.0
-mips                      maltaaprp_defconfig    clang-21
-mips                   sb1250_swarm_defconfig    gcc-15.1.0
-nios2                             allnoconfig    gcc-14.2.0
-nios2                 randconfig-001-20250627    gcc-8.5.0
-nios2                 randconfig-002-20250627    gcc-8.5.0
-openrisc                          allnoconfig    gcc-15.1.0
-openrisc                         allyesconfig    gcc-15.1.0
-openrisc                            defconfig    gcc-15.1.0
-parisc                           allmodconfig    gcc-15.1.0
-parisc                            allnoconfig    gcc-15.1.0
-parisc                           allyesconfig    gcc-15.1.0
-parisc                              defconfig    gcc-15.1.0
-parisc                randconfig-001-20250627    gcc-9.3.0
-parisc                randconfig-002-20250627    gcc-8.5.0
-powerpc                          allmodconfig    gcc-15.1.0
-powerpc                           allnoconfig    gcc-15.1.0
-powerpc                          allyesconfig    clang-21
-powerpc                   currituck_defconfig    clang-21
-powerpc               randconfig-001-20250627    gcc-15.1.0
-powerpc               randconfig-002-20250627    clang-21
-powerpc               randconfig-003-20250627    gcc-15.1.0
-powerpc                     tqm8540_defconfig    gcc-15.1.0
-powerpc64             randconfig-001-20250627    gcc-12.4.0
-powerpc64             randconfig-002-20250627    gcc-10.5.0
-powerpc64             randconfig-003-20250627    gcc-8.5.0
-riscv                            allmodconfig    clang-21
-riscv                             allnoconfig    gcc-15.1.0
-riscv                            allyesconfig    clang-16
-riscv                    nommu_virt_defconfig    clang-21
-riscv                 randconfig-001-20250627    gcc-8.5.0
-riscv                 randconfig-002-20250627    gcc-13.3.0
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-21
-s390                             allyesconfig    gcc-15.1.0
-s390                  randconfig-001-20250627    clang-21
-s390                  randconfig-002-20250627    clang-21
-s390                       zfcpdump_defconfig    clang-21
-sh                               allmodconfig    gcc-15.1.0
-sh                                allnoconfig    gcc-15.1.0
-sh                               allyesconfig    gcc-15.1.0
-sh                    randconfig-001-20250627    gcc-9.3.0
-sh                    randconfig-002-20250627    gcc-15.1.0
-sh                          rsk7264_defconfig    gcc-15.1.0
-sparc                            allmodconfig    gcc-15.1.0
-sparc                             allnoconfig    gcc-15.1.0
-sparc                 randconfig-001-20250627    gcc-11.5.0
-sparc                 randconfig-002-20250627    gcc-8.5.0
-sparc64               randconfig-001-20250627    gcc-11.5.0
-sparc64               randconfig-002-20250627    gcc-8.5.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-21
-um                               allyesconfig    gcc-12
-um                    randconfig-001-20250627    gcc-12
-um                    randconfig-002-20250627    gcc-12
-x86_64                            allnoconfig    clang-20
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20250627    clang-20
-x86_64      buildonly-randconfig-002-20250627    clang-20
-x86_64      buildonly-randconfig-003-20250627    clang-20
-x86_64      buildonly-randconfig-004-20250627    clang-20
-x86_64      buildonly-randconfig-005-20250627    gcc-12
-x86_64      buildonly-randconfig-006-20250627    gcc-12
-x86_64                              defconfig    gcc-11
-x86_64                          rhel-9.4-rust    clang-18
-xtensa                            allnoconfig    gcc-15.1.0
-xtensa                randconfig-001-20250627    gcc-13.3.0
-xtensa                randconfig-002-20250627    gcc-10.5.0
+BR,
+Jani.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+>> +				aux, DP_FEC_STATUS, &status);
+>>  
+>> -	if (err || status < 0) {
+>> +	/* Either can be non-zero, but not both */
+>> +	ret = ret ?: err;
+>> +	if (ret) {
+>>  		drm_dbg_kms(display->drm,
+>> -			    "Failed waiting for FEC %s to get detected: %d (status %d)\n",
+>> -			    str_enabled_disabled(enabled), err, status);
+>> -		return err ? err : status;
+>> +			    "Failed waiting for FEC %s to get detected: %d (status 0x%02x)\n",
+>> +			    str_enabled_disabled(enabled), ret, status);
+>> +		return ret;
+>>  	}
+>>  
+>>  	return 0;
+>> -- 
+>> 2.39.5
+>> 
+
+-- 
+Jani Nikula, Intel
