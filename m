@@ -4,47 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B2E4C77B7F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF94DC7EE31
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:34:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4172C10EA3D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ABAE10EA3E;
 	Fri, 27 Jun 2025 13:34:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="VfsF0Fvr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="diCIfTcA";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC6710EA32
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:33:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=6ULUV/sXP3KUfg2zYOWQR5E3Y1kg+Gp830Sx4ImpxEM=; b=VfsF0Fvr6St5BAg2f6QRztPzPA
- Pw6uOCTdW7AYt0xsmKuKpBPIcLsMUvnyoPn1I8gEommw6CON3UEennIa3ljaRkh7AtMK4KYpoMnoU
- oRxQkvCBBArD06pl5N0Xk8qv6/BmRKx5CKN+kz0k0K2sw+BwxlzfmhTjZmNuN5Nc16IQ9GSjvY0+Q
- CpsA5+TmSz/H6rd9kcAYR+S/jojWeZCE5d0Xv8FK8VYLYPOfc9KQ51HrMjPF4oQJidVdW/WpcXrl0
- SgDayDXqq5ZA4OPC0xCixkEtgJPbVtezfqwzsCtFIkIJD1011efCRVzYpHX5XFNpn6lEhFIUiAEtp
- 9ORzmeqQ==;
-Received: from [81.79.92.254] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uV9DJ-009Pqk-UV; Fri, 27 Jun 2025 15:33:58 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com,
-	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v7 18/24] drm/xe/xelp: Add AuxCCS invalidation to the indirect
- context workarounds
-Date: Fri, 27 Jun 2025 14:33:31 +0100
-Message-ID: <20250627133340.54603-19-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
-References: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5642610EA3D;
+ Fri, 27 Jun 2025 13:34:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751031270; x=1782567270;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=QRg/Zei1BexxRcPkF9RqYWSAq0V6f/MrUnmF+rZpc/M=;
+ b=diCIfTcAszLKZm4brrw+nFOiXLaW5Foiyn0NT8IZsymK6+kAO2w0GBLo
+ atCzTc/Ojl9fngO5uUbK82T4uH6J1gY8rfBRT5Y0U0HQWH3CUvzb3HEXs
+ QKjCFv0r53Kl+hcvnOrEYMSRrDQORjPC5KeUywRRuaFsU1jagkEkeUSKE
+ noQvewWd7vuI995gcGErTJtBK48RzWILxkLUK2sSGXbVNhyynzL6zabB6
+ p8Ic4wuiEVzAnRZhJXT91BgUZh+XXqYEjMsQYorr3prHPlqIkvjlNGse2
+ GV7EBdZI0rQIinKcowUQtNzL7eivOVavwqhoOwLy5EY+2tIYU1DneM57G Q==;
+X-CSE-ConnectionGUID: WcfsWTx3RCu6wKb+uTZRjA==
+X-CSE-MsgGUID: hwW8kAMZQqG73iS8VkWjQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="64699124"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="64699124"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 06:34:30 -0700
+X-CSE-ConnectionGUID: QqtRsua5Tiy/zII1uD/BDA==
+X-CSE-MsgGUID: GFy12A7zRD2T6QbRq2kmOQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="190000355"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.146])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 06:34:26 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Imre
+ Deak <imre.deak@intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Matt Wagantall <mattw@codeaurora.org>, Dejin Zheng
+ <zhengdejin5@gmail.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 18/18] drm/i915/ddi: prefer read_poll_timeout() over
+ readx_poll_timeout()
+In-Reply-To: <aF6UOCLdO0fGHGA9@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1751023767.git.jani.nikula@intel.com>
+ <59bcc15dd4debf00ee0c7b430a3b701462ac9de7.1751023767.git.jani.nikula@intel.com>
+ <aF6UOCLdO0fGHGA9@intel.com>
+Date: Fri, 27 Jun 2025 16:34:23 +0300
+Message-ID: <f922ec0a42855e17228d3f22d7291b389abe2df0@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,105 +74,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Following from the i915 reference implementation, we add the AuxCCS
-invalidation to the indirect context workarounds page.
+On Fri, 27 Jun 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Fri, Jun 27, 2025 at 02:36:32PM +0300, Jani Nikula wrote:
+>> Unify on using read_poll_timeout() throughout instead of mixing with
+>> readx_poll_timeout(). While the latter can be ever so slightly simpler,
+>> they are both complicated enough that it's better to unify on one
+>> approach only.
+>>=20
+>> While at it, better separate the handling of error returns from
+>> drm_dp_dpcd_readb() and the actual status byte. This is best achieved by
+>> inlining the read_fec_detected_status() function.
+>>=20
+>> Cc: Imre Deak <imre.deak@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_ddi.c | 33 +++++++++---------------
+>>  1 file changed, 12 insertions(+), 21 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/=
+i915/display/intel_ddi.c
+>> index 0405396c7750..fc4587311607 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -2339,34 +2339,25 @@ static void intel_dp_sink_set_fec_ready(struct i=
+ntel_dp *intel_dp,
+>>  		drm_dbg_kms(display->drm, "Failed to clear FEC detected flags\n");
+>>  }
+>>=20=20
+>> -static int read_fec_detected_status(struct drm_dp_aux *aux)
+>> -{
+>> -	int ret;
+>> -	u8 status;
+>> -
+>> -	ret =3D drm_dp_dpcd_readb(aux, DP_FEC_STATUS, &status);
+>> -	if (ret < 0)
+>> -		return ret;
+>> -
+>> -	return status;
+>> -}
+>> -
+>>  static int wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
+>>  {
+>>  	struct intel_display *display =3D to_intel_display(aux->drm_dev);
+>>  	int mask =3D enabled ? DP_FEC_DECODE_EN_DETECTED : DP_FEC_DECODE_DIS_D=
+ETECTED;
+>> -	int status;
+>> -	int err;
+>> +	u8 status =3D 0;
+>> +	int ret, err;
+>>=20=20
+>> -	err =3D readx_poll_timeout(read_fec_detected_status, aux, status,
+>> -				 status & mask || status < 0,
+>> -				 10000, 200000);
+>> +	ret =3D read_poll_timeout(drm_dp_dpcd_readb, err,
+>> +				err || (status & mask),
+>> +				10 * 1000, 200 * 1000, false,
+>> +				aux, DP_FEC_STATUS, &status);
+>
+> I think I hate these macros. It's very hard to tell from this
+> soup what is actually being done here.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
----
- drivers/gpu/drm/xe/xe_lrc.c | 47 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+The thing is, I hate __wait_for(), wait_for(), wait_for_us(),
+wait_for_atomic_us(), and wait_for_atomic() even more.
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index a5c03ad4b8b2..32466ebcaedb 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -25,6 +25,7 @@
- #include "xe_map.h"
- #include "xe_memirq.h"
- #include "xe_mmio.h"
-+#include "xe_ring_ops.h"
- #include "xe_sriov.h"
- #include "xe_trace_lrc.h"
- #include "xe_vm.h"
-@@ -52,11 +53,23 @@ lrc_to_xe(struct xe_lrc *lrc)
- static bool
- gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
-+
- 	if (XE_WA(gt, 16010904313) &&
- 	    (class == XE_ENGINE_CLASS_RENDER ||
- 	     class == XE_ENGINE_CLASS_COMPUTE))
- 		return true;
- 
-+	/* AuxCCS invalidation */
-+	if (GRAPHICS_VERx100(xe) >= 1200 &&
-+	    GRAPHICS_VERx100(xe) <= 1210 &&
-+	    (class == XE_ENGINE_CLASS_RENDER ||
-+	     class == XE_ENGINE_CLASS_COMPUTE ||
-+	     class == XE_ENGINE_CLASS_COPY ||
-+	     class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	     class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
-+		return true;
-+
- 	return false;
- }
- 
-@@ -1054,6 +1067,31 @@ setup_invalidate_state_cache_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	return cmd - batch;
- }
- 
-+static ssize_t
-+setup_invalidate_auxccs_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-+			   u32 *batch, size_t max_len)
-+{
-+	struct xe_gt *gt = lrc->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	const unsigned int class = hwe->class;
-+	u32 *cmd;
-+
-+	if (GRAPHICS_VERx100(xe) < 1200 || GRAPHICS_VERx100(xe) > 1210 ||
-+	    !(class == XE_ENGINE_CLASS_RENDER ||
-+	      class == XE_ENGINE_CLASS_COMPUTE ||
-+	      class == XE_ENGINE_CLASS_COPY ||
-+	      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	      class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
-+		return 0;
-+
-+	if (xe_gt_WARN_ON(gt, max_len < 8))
-+		return -ENOSPC;
-+
-+	cmd = xe_emit_aux_table_inv(hwe, batch);
-+
-+	return cmd - batch;
-+}
-+
- struct wa_bo_setup {
- 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 			 u32 *batch, size_t max_size);
-@@ -1154,6 +1192,10 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- {
- 	static struct wa_bo_setup rcs_funcs[] = {
- 		{ .setup = setup_timestamp_wa },
-+		{ .setup = setup_invalidate_auxccs_wa },
-+	};
-+	static struct wa_bo_setup xcs_funcs[] = {
-+		{ .setup = setup_invalidate_auxccs_wa },
- 	};
- 	unsigned int offset, num_funcs, written = 0;
- 	struct wa_bo_setup *funcs = NULL;
-@@ -1166,6 +1208,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	    hwe->class == XE_ENGINE_CLASS_COMPUTE) {
- 		funcs = rcs_funcs;
- 		num_funcs = ARRAY_SIZE(rcs_funcs);
-+	} else if (hwe->class == XE_ENGINE_CLASS_COPY ||
-+		   hwe->class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+		   hwe->class == XE_ENGINE_CLASS_VIDEO_ENHANCE) {
-+		funcs = xcs_funcs;
-+		num_funcs = ARRAY_SIZE(xcs_funcs);
- 	}
- 
- 	if (xe_gt_WARN_ON(lrc->gt, !funcs))
--- 
-2.48.0
+It's also very hard to figure out what is actually going on with
+them. The timeouts are arbitrarily either ms or us. wait_for_us() is
+atomic depending on the timeout. __wait_for() Wmax parameter actually
+isn't the max sleep, it's 2*Wmax-2. Some of them have exponentially
+growing sleeps, while some arbitrarily don't.
 
+It's a fscking mess, and people randomly choose whichever version with
+no idea what's actually going on behind the scenes.
+
+> The 'val', 'op', and 'args' look very disconnected here even though
+> they are always part of the same thing. Is there a reason they can't
+> just be a single 'op' parameter like we have in wait_for() so you can
+> actually see the code?
+>
+> Ie.
+> read_poll_timeout(err =3D drm_dp_dpcd_readb(aux, DP_FEC_STATUS, &status),
+> 		  err || (status & mask),
+>                   10 * 1000, 200 * 1000, false);
+> ?
+
+Internally the macro has:
+
+#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
+				sleep_before_read, args...) \
+
+...
+
+		(val) =3D op(args); \
+
+So you do need to provide an lvalue val, and you need to be able to add
+() after op. I think GCC allows not passing varargs. IOW you'd need to
+implement another macro (which could be used to implement the existing
+one, but not the other way round).
+
+I'm really not enthusiastic about blocking this series waiting on that
+kind of refactoring in iopoll.h which might happen, or might not,
+considering there's no active maintainer for iopoll.h.
+
+So yeah, the interface isn't great, and I'm not claiming it is, but it
+is *one* *single* *documented* *interface* that's used across the
+kernel. On the whole, warts and all, I think it's still much better than
+what we currently have. And it breaks the dependency on i915_utils.h.
+
+I've carefully tried to do the line breaks so that it's always:
+
+        read_poll_timeout(op, val,
+                          cond,
+                          sleep_us, timeout_us, sleep_before_read,
+                          args...);
+
+I think that helps a bit.
+
+
+BR,
+Jani.
+
+
+>
+>>=20=20
+>> -	if (err || status < 0) {
+>> +	/* Either can be non-zero, but not both */
+>> +	ret =3D ret ?: err;
+>> +	if (ret) {
+>>  		drm_dbg_kms(display->drm,
+>> -			    "Failed waiting for FEC %s to get detected: %d (status %d)\n",
+>> -			    str_enabled_disabled(enabled), err, status);
+>> -		return err ? err : status;
+>> +			    "Failed waiting for FEC %s to get detected: %d (status 0x%02x)\n=
+",
+>> +			    str_enabled_disabled(enabled), ret, status);
+>> +		return ret;
+>>  	}
+>>=20=20
+>>  	return 0;
+>> --=20
+>> 2.39.5
+
+--=20
+Jani Nikula, Intel
