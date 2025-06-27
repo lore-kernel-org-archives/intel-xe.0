@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59484C77B7F
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 10:04:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16724C77B7F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 10:04:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 204CF10E9B3;
-	Fri, 27 Jun 2025 10:04:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3C0288284;
+	Fri, 27 Jun 2025 10:04:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cdk/RpMS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NP4XP5Qe";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31B1410E9B0
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 10:04:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8CBD88284
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 10:04:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751018640; x=1782554640;
+ t=1751018662; x=1782554662;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=OaIMNzPlu9XAM79DLd9Dztdiauk6VMtXnausYPy7a10=;
- b=Cdk/RpMSbWHmg/LViwmGmphsIfqXQnNbceQ4ELVjivdY1OZPfvpyHB+z
- MAyqkID7SV9SKadw3KmuAbmUgHWQxPoff5511bzUpX7aaccVkIzVQzoce
- M/kW4hMD0fHuyLX2QcGxj70x1L6W4zWBRbVnT6F8MzvIPzFZykZYdB9kf
- bsdBU3soW1G2EG/GCOPmI4gIP1MGrmJJJqF0qwrSXuRWT0aQLq/fGnbqN
- /VEMJUBfJ+nx2g4RJNtDgvtdYp6CIPzO50626ICejopJtGvM6O83d2iws
- BX0Idh5HMX289OQtA0WqFMzjhRMKpMQcqGIBX3K1dPl8qPkxSBDZ8Eg86 g==;
-X-CSE-ConnectionGUID: HRNfSPVHRaWcleaITQpfVg==
-X-CSE-MsgGUID: gJz64c+3QP2uxsEhwvdpTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="64019089"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="64019089"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 03:04:00 -0700
-X-CSE-ConnectionGUID: qLTYDZPcSaScADLSBQJMnQ==
-X-CSE-MsgGUID: kvQM5d7yQN2sDBoIH18YzQ==
+ bh=NBVl9mD27Wkh1qmXgX7xPrVvZlo+PYqq/bAbY7XJD9g=;
+ b=NP4XP5QebgUKxw3f993k1rJn2o6o6s0jhh2Hm+3UzkQhrmY89KYXpLtD
+ Bk7yMlAYd7EfexReg+BhOCHZy1V5owE0P/hUXvHBhCS6+DpNPfA22Mexo
+ ZVLhs413smnECQBwciPXD2lbNqX+lchBqjQxDCmRr5ENu2pBlQyX2iFl0
+ 6Ex9Tsz4OocOtw1ZycAj+m5XHW+LEyK5cRr8Ywg4mRZAhNHdUJNI3vEWK
+ 0qVG5sv1AqB9W5mJ4IbLgZGByT68UlF1+xD7fScsjN39yEnWQEoxekG7t
+ XboWR2MTQ29mqjYKEDXB8kIu7ECf60V9wrCQrrUNTcCRVPoXMi/DjP9I0 Q==;
+X-CSE-ConnectionGUID: uZDKgg2vQHSBlSsdy9oekw==
+X-CSE-MsgGUID: JBtOjs8cTjWQp2UZj4TWYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="64387189"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="64387189"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 03:04:21 -0700
+X-CSE-ConnectionGUID: RCS4O0zDSpGcCONMo23TKg==
+X-CSE-MsgGUID: cppaHt1yT6uoD2qoSL0Alw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="157314812"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 03:03:59 -0700
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="157052667"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 03:04:18 -0700
 Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Fri, 27 Jun 2025 03:03:59 -0700
+ 15.2.1544.25; Fri, 27 Jun 2025 03:03:56 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Fri, 27 Jun 2025 03:03:59 -0700
+ 15.2.1544.25 via Frontend Transport; Fri, 27 Jun 2025 03:03:56 -0700
 Received: from NAM12-DM6-obe.outbound.protection.outlook.com (40.107.243.69)
  by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Fri, 27 Jun 2025 03:03:58 -0700
+ 15.2.1544.25; Fri, 27 Jun 2025 03:03:55 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HKaZe4wBi03U6kbSkA1jJNDyFfyadeaMau0zRY0MUGIFaBVw0lTzxQM4TposXCpo0GIjUv2Iyxy9roA6F1jrhiizuXBKDB2FrIO38F01COXYpg2kEUSYYFEgofMJ4yMvlW8t+NQwTKwEK7lVQQsjUtHQXFlvAdfJWxFZpYxBGCjyZL+CBZHglH1pkNB4x5Ewz5b9RTqdBOzBXTVkuW/B9k1satZQRpRefy2KPhpaItYNzpq2vjdVQ/DBK+ycuUKEyCMWE6IMspzwUxRd4X0M+7pnit6rFHsHodhUnG40EtiULrGaMB3/7lciC0eE1XO5BFjLcuU9cCzuuubXl+QZFg==
+ b=FGh0yQTBZhqM3LmQA9O1O+1jG3QZVNGuBoRnNJwh+ljrCjm75GX3YsjKdERsMFhxGcI2rECcZSFc2tRjW5hKUOdKlwqgTwRCWOYUGLDOjIGKbeFMr9vJTPJ0mFtBYl8k1oQtYrU4bBWfO0+j0rn0zXH3zwLsnsfGLJc0Q3keN+q0OF8rMG5aBBAXBIRuTHJg9DBQEhVhWrtogll7VeEK5eSK2B6zz5hiNLtThhQupaOTbTiN8GmWeMxLA8rsRi49fJ6SRkQCFxC9sPkbYePjWCGJZrFXI65lA90nBq5YdbBjGHaTGLGRQK5vHWkqgvJFSDIBGvS7Z/1jAcN9XQMHVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M51l9tM1TKXvygp61qSJ32vKUsWAbpJ2nhRpQtc/LSY=;
- b=ZKuFQZsBOk8pV1pYPEZIS7Q3K40pPC9n+Q4ECwzL/PJlMbTACyPfH+GkNVDYgNbjmX3/7xhDB2NIXUgbTAc4+D97PY9L/QaIrkcl+xohBzQvWOfOhIAwjRvdxJIYzbZMaJ2DMRdfWtKwzPjmb4K7AI2zlsnzFOgnSvWlLE5Z/NbD2ICivEocpBAgSToug45BkiOt/8c/V1RyfD28R9x82tK+ZcJFVWoQvfCkdRIq55MyAmc0YNTxAJRGgblwcpZG9ld98Z9dVgGB3AXTWAUqBZXGYlAxEck5pzGfAydjPDK0ggBIOlIXSWMajtqDqYx44xcWhOlhT0CAaKNuCfGP/w==
+ bh=S+q77Blv7TkjBg/sqVAZdSVZT9+b4YxfnNk9PxCddwI=;
+ b=TdVaSFHjGR4fagTw1/fwvGQIs0hgQLnj892/8jVzzr4HBeOeltpD7YqkHFbFeJgylamUh++DOIvNt2Uq2FlVt13u1y1wTvF/5hjU434pfjbZoquF8vFJ9kqNkHJaLuEnDQeq/JLhdYGNTiwHk57ymqyf4bnHGp6GEQhQyMpklWXF6nCD4vy3PTfm6xgV78d8weColrZPxXxf4d4pLtgqd9+KewGvUm7inWZ0/ShcmjKxErRfW8lis7EHX6rJNUiZQq33aUPAGX83XVV9ObMP9Gj1ayTHHcZVez2iVhqm5esQ3Oez5joh7/uoz9geZFEKrN2jHWVF9peXYWV7inorgA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,116 +69,117 @@ Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
  by SN7PR11MB7042.namprd11.prod.outlook.com (2603:10b6:806:299::5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.17; Fri, 27 Jun
- 2025 10:03:32 +0000
+ 2025 10:03:27 +0000
 Received: from MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a%4]) with mapi id 15.20.8857.020; Fri, 27 Jun 2025
- 10:03:32 +0000
+ 10:03:27 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, "Stuart
  Summers" <stuart.summers@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v7 4/4] drm/xe: Unify the initialization of VRAM regions
-Date: Fri, 27 Jun 2025 12:03:08 +0200
-Message-ID: <20250627100308.3401653-5-piotr.piorkowski@intel.com>
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v7 2/4] drm/xe: Use dynamic allocation for tile and device
+ VRAM region structures
+Date: Fri, 27 Jun 2025 12:03:06 +0200
+Message-ID: <20250627100308.3401653-3-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250627100308.3401653-1-piotr.piorkowski@intel.com>
 References: <20250627100308.3401653-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DUZPR01CA0250.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4b5::6) To MN0PR11MB6135.namprd11.prod.outlook.com
+X-ClientProxiedBy: DU2PR04CA0281.eurprd04.prod.outlook.com
+ (2603:10a6:10:28c::16) To MN0PR11MB6135.namprd11.prod.outlook.com
  (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|SN7PR11MB7042:EE_
-X-MS-Office365-Filtering-Correlation-Id: cf18dd8c-09f0-44f0-f435-08ddb561df97
+X-MS-Office365-Filtering-Correlation-Id: a20e082d-c71f-4bf1-3a68-08ddb561dc64
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RFdQanZFclUwNC91WGlRM05VSTBpckNYUElnL2F6Wm03MEwxZlgycXJCTW9q?=
- =?utf-8?B?K1JkcFFJaG15TnFKaHByTHg4dk15em5XTHpDSTRwZ1QxVmV0UlN0dEE5RitX?=
- =?utf-8?B?cS9mbGcvdTlsTmpBNFpsa2pueTVwbzB2blRnYUdNNEJFYURBQTBTM1pUMnhN?=
- =?utf-8?B?d3M4dGRIanQ1VTlEM0Yrd2JtR0VzVFBPRnVtTjVudS8vOW5qUHpxWkJKR3ov?=
- =?utf-8?B?cHlXcFduNys0QkhqTHhlR3RuWlZVMnIzdm1iYk0rb2o1dGxJN3FXQ0tnd0xj?=
- =?utf-8?B?cFIzTWFVZGdQRjFDeDdjS2R1UlVBcGRKWVc4c0hXRDJnQkcwRnliQ254OHhJ?=
- =?utf-8?B?Q0h3NTh1c2tsalo2YmYxZzdMQzhHaXVJNU9XNjdDWiswaUp0OFZIVnRkdHVi?=
- =?utf-8?B?enpDNWxQKy8wQXhlQk1xbE1WSDFJV1dCb2oyNGRqc3RQRHNSemJHNlBPbldE?=
- =?utf-8?B?UjVXUzZjcFcxMXg3RnhnalVrajd6SmdMMThWdGZ5VW1oWnhEYVI2UVpnSlNX?=
- =?utf-8?B?dnlLdWpOTjhUMjU5cDR1K2dDYXc2Ny9Pa2RYOG8xdzhvbFIvaUlVazJzRCtk?=
- =?utf-8?B?WHkvUjJtOGhrc3NJQTI2bGNHWmFnMWlsM3VGMG5Ici93Vk5CWVdWUjFaRzZF?=
- =?utf-8?B?TTNRVDlhQkExdTJVVncxUGNFaXVjbFBBNExvM0ZYNnRmbUgwaGN6Mjg3bXVT?=
- =?utf-8?B?MldBK25TUWVtWjdYTEh4Y2JuSmFQVEZiZWdVUjhxNE9VOUExZlpyK05TZkNL?=
- =?utf-8?B?QlVqZU52UWpLaEUxZVcvWkxKeTFoT3pqMklxeElOdWFCQ1M2RzhHU0EyZkF4?=
- =?utf-8?B?UTU5N0VJbSt0a1FHR0hTZ0UwTmsvOEdtOFlBMFU4TFh4TlErYjNTeG9wNTVK?=
- =?utf-8?B?SDZVMm5UTUFLN1BmcWNyQ3NGbWtpSXU2RWRpM01iWHFZMUkwYnNjV3AzaVh1?=
- =?utf-8?B?dlc3cFJ2RnJSZHY0OWxPNWlrVGdrRkpVdGhaaHF1eFZ6S0NsZm53TEFKbVds?=
- =?utf-8?B?RXRDL3lJUXFFbEswU2h5VFoyRjFYbEpaNmM4SjluRm4zK3JjalZQUFltYWM0?=
- =?utf-8?B?Vk1WYWwvcmNPMnpFRkw4Z3FmMmc0Q3IxZjNQOCtjUVJ3WVZ4QkVLRTlNa3Rw?=
- =?utf-8?B?NzBVTkxTbnREM2tXT1EvL3FiakdmWFBHWDk2QlVjT2s2eUhHVWVWVnVmMG9m?=
- =?utf-8?B?RlJhaURMcmF1c0RwaUlsVXJrM255a09LVHFnYWFXdXRMS0k3ay9LbFNsdFhu?=
- =?utf-8?B?VVBqbEtlZW9zZnZjSVVML0NFR1RtVlVuOGptZXVMRHNSK0o0RVo1NlNlWTRq?=
- =?utf-8?B?QkNLSmtSOWRlak9LTXFiMWd5U3RKMkhWR2dzVnJiQ1d0TnpPMkpiQVBrSll3?=
- =?utf-8?B?bld4RmE4T29PTlN2Zk9MTndvOTRNaS9xR25WenJYd2JWZ01VcFFlQVExZTk2?=
- =?utf-8?B?TWM1QnNlanYwYjJTZlQycWI2N25ubVplSW9QWlAxWFB5aUxsZWxsaVExeWN1?=
- =?utf-8?B?U1FiV2JlZkl1VVVCZDBIYlpZd1FiQUNGYmh4TW9ZUmZ1Q1JaQ2lvQkNJYzRV?=
- =?utf-8?B?eUNOQjNOUlZoaGgwVUx0alFpY2QyNXNNdkZEVzlQYkU3T2hOWEFXTDBWMnQ0?=
- =?utf-8?B?WE5qNXhHcXpLWVNPR2t5RUZiQ1dXajFPb3NaL251RXdTMmtvaG1wM2VTc1dP?=
- =?utf-8?B?Sm1CQXU4SkFPRkNlQzZGTFRhb3VKR1NEcVFSMFAzSnlTTHBPRHJUQ1BJTlls?=
- =?utf-8?B?NzV1RXJrRzE2SUZJUnRkYmQ2VzI5Z09qQlo3S1FlbU9HS1U1c2tuMGU2SS9Y?=
- =?utf-8?B?OVBpTXZQN2RzMTZRUnBPRjNmb3FqUlh2WnNySklEeVBsbG0xYytpdmlvQmtZ?=
- =?utf-8?B?a3A5czZ3N3pIdzAvQmhHYThTZjRrbXdtNW9RSmY4UVdvSmFPQ0NyU1Rza2x0?=
- =?utf-8?Q?14PToKbFmqM=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VFNaWnQ2NUJCeUE1VzBCd3lXMFpoSnJCK05IM1FJQ0NNTjVxRUpmM0F5Zzcz?=
+ =?utf-8?B?ZDlIK1BQSEFPeE5yS0llWFJ2Sm9kTXhuK0EycXdSOU5WMDFhUGdIMG1jVnFF?=
+ =?utf-8?B?eDU0MGx4VnZOTkVRY29xVnd0Qjk2S2VQMTlQVnhCWURzbGZpUmRUd2VZdTNm?=
+ =?utf-8?B?RkdRbWlITUJUNVNoMmhsTk83WU5vMnNLWlRubXBVNThQZW5QVi96K1pJNHlx?=
+ =?utf-8?B?b2dxdVBYYWM4L2FGY29TUnFTaEU2QlRybGNJK0U2dEpkNTZ3Q25mQWl1Qzlx?=
+ =?utf-8?B?YlBWWFZZZEU2RXZyM0pOb2lBQjFIQjc1Q0xLdmFTN29mb2RFNjFGYXRCNC81?=
+ =?utf-8?B?VW42UVBKbWxrTjM1QW10Q21OdjRGV25EMk5vZlBEaHRRNUF1dmdCdU1ITU5H?=
+ =?utf-8?B?SUQxT0ZWSnhRTTA0NlZFTkdXdlBjd1B3MEJlQlYzZnFhU0pPb05STWhWZ2tz?=
+ =?utf-8?B?ZVBlOFdxS1RWQTQ0SnJDV2xFU28yeWJVWlhudjYvMkNCWWV3eGhSaW43SmIy?=
+ =?utf-8?B?OUp2ZXMvWDRKWlFIcVBOQjJORnRkbG55djVzNzNWNk1pOFl4TTdZSUJUcGRu?=
+ =?utf-8?B?OGdEcWdSRkRaOXMrRStOVXROemhhSjgzdXJhTEFGTWVlVlJxcFhVcml3N2Jp?=
+ =?utf-8?B?UUZWdmNHdGlCMDEzdGFNTUpqMzl4Nnd3UDR0ZUNVODVwSkR1dW1MVTc0SU1m?=
+ =?utf-8?B?cE96dW5kUWZHeEZ6TEVwTG9valJOVjk0a0hvZktaai9CcEFHbk0vSFV1YzZH?=
+ =?utf-8?B?Ti9sOGhNWXlxbjBHdDFCNXgwZUhxcjlvQWhTck5tbXBFVWl1WGt1dW9vSlNl?=
+ =?utf-8?B?akVCd1hTVlFvcVF0dy9MWXRMc2xaWlZTRlZTZmZxeDQ4UDdPR3JScnd2TVM2?=
+ =?utf-8?B?OWlzaWpLU01VU1ljMjhuYTNiWmRaVzh3Z3gzN1hjaVVUT3BoUG1kL0Uwd0ZZ?=
+ =?utf-8?B?d09uc2w0QTdNUW02Lys5QTRISzQ5WXpIQTBub3F2TjBxU2ZSMmRxcmRBUFpL?=
+ =?utf-8?B?VnpORjdXR0xjS05rSmNUZE1yWDFTclJtTWZvakpKeWpNc0pFTmJGeXRrQkxl?=
+ =?utf-8?B?UXh2YXJhenFFNXIrTnpCWlEvazVhOTlBMXhwN0dIZi8zT0M1QnJHT3UrZVdE?=
+ =?utf-8?B?R0NNS09Gckt2R1BwY01mQnR2MmRrTk5KTVFlTmt5WUxQR2hHRnZRR1pQeXhY?=
+ =?utf-8?B?MkJ4VUt2UWN6OWFmQ0p3NUxaOVVtRjNHd08rcmU3UzRZYS83cmp2NUtFWEtV?=
+ =?utf-8?B?SUVXTXdIa0VvZ2JvdHhDeDR3K3JUNVZVSERoQ0MxVENWOVNBOU5UTGxzaVpp?=
+ =?utf-8?B?cEdTV2NvalBjQ3hoK25HbUlncUJoL2pVRlRUTzc2WG1tZWZaOFNzdjN5WmVK?=
+ =?utf-8?B?bXdoYXUzSkNrR28wUDM4WVpXWXJIU21YSnJmcXhtNHFOMExKTE1ka3ZBVlEv?=
+ =?utf-8?B?U2dtWTdNcVJpamdQMEluZkRYRVQ0UmVGdlBYQUFHK3I4WWowOVlyc1lPbHN3?=
+ =?utf-8?B?bTc0RHRtYnpNcmpDQnJxSTBsMjZPN3FWUXVmaGprN3BwS1lVN1lsaFdhQWxO?=
+ =?utf-8?B?RERITnN3R2syUTBPQ0ZvcVRCblBvR0Y4enJzNFdPVHVwNjNMaGIvY0swdTRD?=
+ =?utf-8?B?ZFlrMlFFOStpanlCbmUrMURjci9ma0grTGcrTVVuTUVIRVlNM3Y4VEJYZ1JX?=
+ =?utf-8?B?eUFmOXRVMlR4cU1hdWtFK0Z2R2ZOU04vd2Q1Q2YrR29lVVVlSnVKT3ZlYXhs?=
+ =?utf-8?B?eFFyeFhRUDJTZkVWMGx5UytjZlp1MFRVcTExL0xLREE4U1RZL2VnZnVLOFNo?=
+ =?utf-8?B?VG44bjFrVUE0NUIvbHRHUzdJejE0dmlyd0pUZWdDVXBEckwycXlIRWJDWCtR?=
+ =?utf-8?B?TmgzRHhWTkdYbG5CRWNqUUIzUlBTcURaR1hmQWFuc1RkbEVxektzdDdnZU9Z?=
+ =?utf-8?Q?daY+BbNMPCM=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dEJaT21DbmNBWjV3UmJQTVd5dVB6VHp2NDhmOCtRNFp5amR2QW9nSWpUells?=
- =?utf-8?B?U2hpRFpURnl0blNTMXFWRzQrd04zYnRsakt2N21hZi80TmFleTdDSXpOMnNt?=
- =?utf-8?B?TlhCcnZhMEM1TWhUd3p3aUE3V1ZMZEdCQXJLVDBGUXpzUHorSXhwRzgvZEVB?=
- =?utf-8?B?RTFhR0NleHpCZnA0V1dDUGdDUng2bzhPTit0ZmdYRjM2bGpGQ1RJNDFueGZp?=
- =?utf-8?B?RzhCRUpVbnJjeUN6UjlzTGNEVmhOaHk5TUxvMVhrVHdRSmtISmorSWdKRTFT?=
- =?utf-8?B?dkY2MmoyRGhleGF4cGNxOXk5a202RlBRTjQ4S3QrZUVpNU9rbDN1RVM4SVMw?=
- =?utf-8?B?VHIweGYwSTVON0hmTzhGUzcyb2tUUjVFamlXS1o4V0xxQXlnU3hSSHhsN2V4?=
- =?utf-8?B?NXZwMHdqQ0NSTVc0bngrVXlXMkFjK3RTK01PNGlTZ0R4TmdUUElQN2p4TFRp?=
- =?utf-8?B?YzNXVkJUWU9ONDhueTZLalRUZlowRnVBK1lIZmpIUmIvTmdhOXg3VkZxQ0Uy?=
- =?utf-8?B?QW40dFh0WVI5a0dVTGVtSWh3dGtlbnJndVRuNmV6bjNlcUViYTNONkw0d25v?=
- =?utf-8?B?ejBmb2x0Q3JRK1JHQXIvT05GNjk1cE5IL3h6M0VzSVdiWkhkWWZqRXVpcU0r?=
- =?utf-8?B?UUhhOXFFZldVWjlPOUNvKzM0YUc2ajkyNkgveHFtR1VGQ2pGZUdjRlpod285?=
- =?utf-8?B?VzIzbzdSY0kwUnNZREJhdkx5UytqY0tMbDl4SVA4Z2F0THYySDY0R21Gc0FN?=
- =?utf-8?B?Mkg3dW5CMnVSbXBSZjQxd1BpenJLdzJRWERNUXpXR1d3VytXWWdqMXB4cThn?=
- =?utf-8?B?czFxa1M3dVVQTWwvS0t0ZXdDT3Y5ZmRydlV1c3RhYzdZdS9ueTNjeGhZeDRL?=
- =?utf-8?B?MWM2UHFlNFI0ZGtuTjVTcEFFejBvK0V2VzNnZDJZQWZiVXFTeE8rOE14Nk9V?=
- =?utf-8?B?OXM5OVpwNnQ4SUVzQ2NYNXNoTUpXZllpelRObzFTcElYODVyUmdNWC9iWWxh?=
- =?utf-8?B?U04xMFVmbU5iYjZXZzN5S21PVktMb0FCQ0FBVHpvTzF3UUl1Ylo2NDhqdVFN?=
- =?utf-8?B?bGZzMFh4cm9nWXRhdFhQQjZkNTdCbVVyeXVnMW5ZNXlqL2dNUVlzRWtXRHZk?=
- =?utf-8?B?Mlo3dlFVNHVTOXRiR2lCWktiVVNDMHhDK0FTaTUxcU93bVNBaThoUU5LdjFk?=
- =?utf-8?B?MjlRdWNZcnJsRW93aUFzNmdXSlVHWWtoUDFPTXpQYlpSUFFwV2J6UGZaUlZm?=
- =?utf-8?B?V2pFUmR4UFpLZmoybTY3RkZQMWZ3N1lzRWNhMWgwcFlzQ1Z5WWNNOEE2MVFj?=
- =?utf-8?B?c2NyOTkybFljTXFuRE1udUFTd0FSVFJkeGorRi9CYTRYaUxMaWZOM25jWjNy?=
- =?utf-8?B?cEJINXBDYjhnS3VRMlMvYWVudWJxRXcwamhKYTl3dGN3QWJTQkdsQ1lEL2Jr?=
- =?utf-8?B?T1B6eTJJT1plU3dlcHpsM2M4N2hUME5PQ1J1VHNHeUMvN0EwdVMrbjAvd1V1?=
- =?utf-8?B?WHRldjl0OURZUktLU1FiK3dVTTBwNTQ0bm1BWnZ3S2dFUVhnbS9ZSmRieTJF?=
- =?utf-8?B?cmtxZkxCbjlNUkZZMTIvclJvM2l0VE5ZS2kvZFY0QWtPK2gyQWxqcmpYQVo0?=
- =?utf-8?B?elZtV0JIRnJCVllrL21ld3ZDQ203RUd6aGlueG13Vko1RWhxaTMvNTIrVm9h?=
- =?utf-8?B?enlVTXBZeUFUOXRhZFhzS2dza1pnQVBDRVVLQTJHd2tla2ltWUFtdE5OVzFR?=
- =?utf-8?B?ZHlSeURYQmtDbFZKOHhHT3c2N08yL0w2Y21xQnlCMTcxYUdQTnRPVW5SUEho?=
- =?utf-8?B?SUVlbGpYUUt0ZnI5SEgvWVphVmtPRkJtYVYzNWJ5OUtUZ2FpWUREQW5SbWsv?=
- =?utf-8?B?U2x3WmN2Tkd5UElaM0hQcUdJNlZQeGFrby9wbmtmdjhJbWhUbEJZdFpOZDF4?=
- =?utf-8?B?ZFkxcVNZVCtIQ3JMVUt1N1IyTGpVS3NmRFdma2FmR1BCYjVqci9FUFpnRm5t?=
- =?utf-8?B?SUJweTFrSzFMZnJJam1Dd0hqeTdvSm43R1c0QzIxd3Q3SEtkdzdpM3V2K1ZS?=
- =?utf-8?B?RUg2ckpqVm1NdVdDVTZhMjUrdmEzWHZyczk1VlJ0eGQ0SDZ2RXZGc3BHcDZQ?=
- =?utf-8?B?blpRTHU3MncrR3Z4UldJRnlUakN5a2FYSGNkQWJCMGxHU005U3VQaXpyZFlR?=
- =?utf-8?B?S1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf18dd8c-09f0-44f0-f435-08ddb561df97
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dEYrRFFFSXJVdytSYkdNbmVHUXg2MEQrRXRoMjlhSVkxN3VNc1RKVit4M2dP?=
+ =?utf-8?B?dlBJQTAvNFBMdCs0OWVzK0d3Y296N09ET21MRFVBSW5PM0RYcjQrT01HVFpw?=
+ =?utf-8?B?ZWVmQlY1aEd4cUNlaGJkcWNvNzZHOFhxanFzbUxDUnJudnd2MDkyeTFXWEFX?=
+ =?utf-8?B?MkM3Mkxmc1RRUzYxc2lmUStnRGhNSlJsaWMvdUtTcW1QcE1WekZvYVBoaXow?=
+ =?utf-8?B?cjFnc3VrNHFzWk1mVkJLY2hrSUhZZ3RkTEs0N2N5UHQ1ZUJOTm9jbG1PS2Fn?=
+ =?utf-8?B?WDI1a0h1SHNsTGowZmNWQVFkYmZPNGxDaUhacGFZcWhDM0xJa2FPaFVPdGFr?=
+ =?utf-8?B?dWlDSnBvQVg4enNrS3FianQ1bTRCTGhFNnFmT2xQcHMrdUtQR1M3MlNXNzZG?=
+ =?utf-8?B?ZkVYWDdWV2JvbStlUjNYZGZkSnBOTit5ZUFuZFFacEtoanM0WERqZmJWNW1r?=
+ =?utf-8?B?QzBodjNIUHJkaUF6RUVGWGhTRmNPd0ZYNUMwUjdpcmJJeGV3VlV5cUtyTEd4?=
+ =?utf-8?B?ZCt1eXd3NmNpNnRYYXRMdmV5U3g0NUNvbGhyUDYxZHBDVGVWS3ZvYk5Qd0R6?=
+ =?utf-8?B?K3owK0Z1U1RIVm1wcmUzUWppdzZaY1lOT2hicSs0Wmp2YnhhQVdqbU9tK2J2?=
+ =?utf-8?B?a2tTVis3NmhhQWlBTE83UUpVbXZPZDdwb0FRYzJGa0xjeFlSQ084Vk41cWxY?=
+ =?utf-8?B?MENqY3FQM3VOV2ZNUXpkTnYrR1k2WlpvY21XUHAxWU9sYldSQ2E2cGFQRWxj?=
+ =?utf-8?B?bGZsaWFROEl0WVdaSGdxaFJJZ2lxTVcwcFM2NmhTN05ORGE3SURUdlp4RlZm?=
+ =?utf-8?B?OEdaSG5vbDdQYk02Mk10S1A2Q2NsakRpaU9BdEl2QlJkV0FZWVNKUWhOdHdi?=
+ =?utf-8?B?OEc2Z1YxMkxJb1FnRE5FQ0Z5VzU3V085NDJBeTNoRDQ3K1R3WVJOUUhaYmJn?=
+ =?utf-8?B?NW5XWjVZVU1rd3FXS3YwM2x3K29waC83c0lHWDdpaGVBMXVVSlRmZkxXZmZl?=
+ =?utf-8?B?SFJmL2VOcVFoUHFxM0R5M28rOHB2dFRYTG9INWdzZUZ3UkxsbTl6Tjl3YnZk?=
+ =?utf-8?B?UklOcGNQcHVWNmdlSlRhN2RzOCtYMVR5NVFESkk0YXlIdWRXVUg3TEcrZ0F4?=
+ =?utf-8?B?Z2NBbTdJRnR5MmRkWjRGZHRwNzdvSnQ0eGV4Z1pnRGdKcjhYTjRuUlE4RjVV?=
+ =?utf-8?B?L01oSFp4MmFGOUxYeEUxMGVhM1NHZTIyZjBINWV4YXh6SGNFR3UweUhtRDVp?=
+ =?utf-8?B?cUZ5azlaTkFHMWlPZXd6L0JVK0I2SDduUWhGUzY2VHJuWGJacGx5ZmhpdmNU?=
+ =?utf-8?B?c2V3UFU1NVZTR0JLdnlQZmI5VzFEUnZXQnNmNmZtUWJIU3FIMXNJSmN2b09u?=
+ =?utf-8?B?MTNSenBVV3FxRXNXTG9ic0VpaFI5eTNucmh1SFd5TERSZWl5dlVUcHJ3dXlR?=
+ =?utf-8?B?dnhxdFROOVJGTS9ITUMvQ2x4ZjRxUEJueWZMNEdRNkRFcVFPa3FOTlgzY0Nh?=
+ =?utf-8?B?WjhGcUVlOUlpTnpDd1AvM3EwQlVMSHppanplTytCMHNqaVpBdklRWUNRTC8w?=
+ =?utf-8?B?eEoxMmJtQ0EvaS9jOFhLT0tnZFZET3lTYUc5NGc3KzNKZENyQlRkakNCMUtJ?=
+ =?utf-8?B?RERTRVJ1QURCMGZTRy9Pa1p6QWRkMHRVQ29CY1JyclZmWitlT0dsbE9BanNP?=
+ =?utf-8?B?MWpaQ0wxTWRXaVkwQWRHUlpEWmxXWEJtbVRmVU5tM3ZlZEc0YjY1Z2UyNUt2?=
+ =?utf-8?B?TmdKdDNSekZMS2FabGEyZjR2djBqbFJmQVdNL0VIZmVzMy9GcGI4QnFzRnRV?=
+ =?utf-8?B?NjkzMUxjQjVTME5nTGN1Y1dpSXJtdWU2dlRXcVN6TjA1VlpoV1FrK21pM09N?=
+ =?utf-8?B?ay9MckVxMU80blBncmp1ZDZZNVNXc2FoRWM3aUgwSGxVaVkyWTA2UVNYbUtm?=
+ =?utf-8?B?UE45aEx6bXRVR2pKZVVscHcrMERPMlE5aVZkR2hEL1lKbzQ2Mm5keWRwSjFU?=
+ =?utf-8?B?eUh2RUczT2ZZQ1B6R2NMaTFTK2VMTFRqSjYrSkRiSVJqb2ZxMXMxbEFKZWlv?=
+ =?utf-8?B?Ky9sLzE4VFhic21xVUM2TE82NUVIMFJkUFFWYTkxNlRTMTBYYUgzWjVFdlFB?=
+ =?utf-8?B?d084aFVieWg2dlpjNVROZ3JKcWttM0VKTkgvK3Nta1ZRK1hZdzRNbFk4RjZ6?=
+ =?utf-8?B?OXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a20e082d-c71f-4bf1-3a68-08ddb561dc64
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2025 10:03:32.6480 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2025 10:03:27.2025 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OPM2uBqu75w/thPFHEftwPU33zgZmenTPgu9kkKdpsngv9yy/6nFelEqi91/R/BFYCU0MhgwWpZCt74uHVFceZ46k+mxCii/Jy3pp+qini0=
+X-MS-Exchange-CrossTenant-UserPrincipalName: C4SFbmNKzmgAPumGa3yZdmKHiRPec+n85odU+qO19XgJ3DfRfnSgzNZxcTM9CdtrKqcTA8D9Ij4yrNhwdYdw90PGrQIlP6GzIvigJP5nr40=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7042
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -197,498 +198,583 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Currently in the drivers we have defined VRAM regions per device and per
-tile. Initialization of these regions is done in two completely different
-ways. To simplify the logic of the code and make it easier to add new
-regions in the future, let's unify the way we initialize VRAM regions.
-
-v2:
-- fix doc comments in struct xe_vram_region
-- remove unnecessary includes (Jani)
-v3:
-- move code from xe_vram_init_regions_managers to xe_tile_init_noalloc
-  (Matthew)
-- replace ioremap_wc to devm_ioremap_wc for mapping VRAM BAR
-  (Matthew)
-- Replace the tile id parameter with vram region in the xe_pf_begin
-  function.
+In future platforms, we will need to represent the device and tile
+VRAM regions in a more dynamic way, so let's abandon the static
+allocation of these structures and start use a dynamic allocation.
 
 Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Cc: Stuart Summers <stuart.summers@intel.com>
 Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  13 ++-
- drivers/gpu/drm/xe/xe_query.c        |   3 +-
- drivers/gpu/drm/xe/xe_tile.c         |  38 +++----
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  16 ++-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |   3 +-
- drivers/gpu/drm/xe/xe_vram.c         | 149 ++++++++++++++++-----------
- drivers/gpu/drm/xe/xe_vram.h         |   1 +
- drivers/gpu/drm/xe/xe_vram_types.h   |   8 ++
- 8 files changed, 134 insertions(+), 97 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  2 +-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  2 +-
+ drivers/gpu/drm/xe/xe_assert.h                |  4 +-
+ drivers/gpu/drm/xe/xe_device.c                | 19 ++++++
+ drivers/gpu/drm/xe/xe_device_types.h          |  6 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  2 +-
+ drivers/gpu/drm/xe/xe_migrate.c               | 18 +++---
+ drivers/gpu/drm/xe/xe_pci.c                   |  6 ++
+ drivers/gpu/drm/xe/xe_query.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_svm.c                   | 24 ++-----
+ drivers/gpu/drm/xe/xe_tile.c                  | 33 +++++++++-
+ drivers/gpu/drm/xe/xe_tile.h                  |  4 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        |  6 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  4 +-
+ drivers/gpu/drm/xe/xe_vram.c                  | 64 ++++++++++---------
+ 15 files changed, 124 insertions(+), 72 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 3522865c67c9..9cb50e0ed9f5 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -23,6 +23,7 @@
- #include "xe_svm.h"
- #include "xe_trace_bo.h"
- #include "xe_vm.h"
-+#include "xe_vram_types.h"
- 
- struct pagefault {
- 	u64 page_addr;
-@@ -74,7 +75,7 @@ static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
- }
- 
- static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
--		       bool atomic, unsigned int id)
-+		       bool atomic, struct xe_vram_region *vram)
- {
- 	struct xe_bo *bo = xe_vma_bo(vma);
- 	struct xe_vm *vm = xe_vma_vm(vma);
-@@ -84,14 +85,16 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
- 	if (err)
- 		return err;
- 
--	if (atomic && IS_DGFX(vm->xe)) {
-+	if (atomic && vram) {
-+		xe_assert(vm->xe, IS_DGFX(vm->xe));
-+
- 		if (xe_vma_is_userptr(vma)) {
- 			err = -EACCES;
- 			return err;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 5e846f0bec21..dc8547640d44 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -297,7 +297,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 		 * accessible.  This is important on small-bar systems where
+ 		 * only some subset of VRAM is CPU accessible.
+ 		 */
+-		if (tile->mem.vram.io_size < tile->mem.vram.usable_size) {
++		if (tile->mem.vram->io_size < tile->mem.vram->usable_size) {
+ 			ret = -EINVAL;
+ 			goto err;
  		}
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index b2ede3af9345..97b58c0ff39a 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -103,7 +103,7 @@ initial_plane_bo(struct xe_device *xe,
+ 		 * We don't currently expect this to ever be placed in the
+ 		 * stolen portion.
+ 		 */
+-		if (phys_base >= tile0->mem.vram.usable_size) {
++		if (phys_base >= tile0->mem.vram->usable_size) {
+ 			drm_err(&xe->drm,
+ 				"Initial plane programming using invalid range, phys_base=%pa\n",
+ 				&phys_base);
+diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_assert.h
+index 68fe70ce2be3..da357dd42546 100644
+--- a/drivers/gpu/drm/xe/xe_assert.h
++++ b/drivers/gpu/drm/xe/xe_assert.h
+@@ -145,7 +145,9 @@
+ 	const struct xe_tile *__tile = (tile);							\
+ 	char __buf[10] __maybe_unused;								\
+ 	xe_assert_msg(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg,			\
+-		      __tile->id, ({ string_get_size(__tile->mem.vram.actual_physical_size, 1,	\
++		      __tile->id, ({ string_get_size(__tile->mem.vram ?				\
++						     __tile->mem.vram->actual_physical_size :	\
++						     0, 1,					\
+ 				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
+ })
  
- 		/* Migrate to VRAM, move should invalidate the VMA first */
--		err = xe_bo_migrate(bo, XE_PL_VRAM0 + id);
-+		err = xe_bo_migrate(bo, vram->placement);
- 		if (err)
- 			return err;
- 	} else if (bo) {
-@@ -138,7 +141,7 @@ static int handle_vma_pagefault(struct xe_gt *gt, struct xe_vma *vma,
- 	/* Lock VM and BOs dma-resv */
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
--		err = xe_pf_begin(&exec, vma, atomic, tile->id);
-+		err = xe_pf_begin(&exec, vma, atomic, tile->mem.vram);
- 		drm_exec_retry_on_contention(&exec);
- 		if (xe_vm_validate_should_retry(&exec, err, &end))
- 			err = -EAGAIN;
-@@ -572,7 +575,7 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
- 	/* Lock VM and BOs dma-resv */
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
--		ret = xe_pf_begin(&exec, vma, true, tile->id);
-+		ret = xe_pf_begin(&exec, vma, true, tile->mem.vram);
- 		drm_exec_retry_on_contention(&exec);
- 		if (ret)
- 			break;
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index ba9b7482605c..f02987753779 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -27,6 +27,7 @@
- #include "xe_oa.h"
- #include "xe_pxp.h"
- #include "xe_ttm_vram_mgr.h"
-+#include "xe_vram_types.h"
- #include "xe_wa.h"
- 
- static const u16 xe_to_user_engine_class[] = {
-@@ -409,7 +410,7 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
- 			gt_list->gt_list[id].near_mem_regions = 0x1;
- 		else
- 			gt_list->gt_list[id].near_mem_regions =
--				BIT(gt_to_tile(gt)->id) << 1;
-+				BIT(gt_to_tile(gt)->mem.vram->id) << 1;
- 		gt_list->gt_list[id].far_mem_regions = xe->info.mem_region_mask ^
- 			gt_list->gt_list[id].near_mem_regions;
- 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 87217d62d6a4..613c3c52b3ed 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -7,6 +7,7 @@
- 
- #include <drm/drm_managed.h>
- 
-+#include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
-@@ -20,6 +21,7 @@
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vram_types.h"
- #include "xe_wa.h"
-+#include "xe_vram.h"
- 
- /**
-  * DOC: Multi-tile Design
-@@ -113,11 +115,9 @@ int xe_tile_alloc_vram(struct xe_tile *tile)
- 	if (!IS_DGFX(xe))
- 		return 0;
- 
--	vram = drmm_kzalloc(&xe->drm, sizeof(*vram), GFP_KERNEL);
--	if (!vram)
--		return -ENOMEM;
--
--	vram->tile = tile;
-+	vram = xe_vram_region_alloc(xe, tile->id, XE_PL_VRAM0 + tile->id);
-+	if (IS_ERR(vram))
-+		return PTR_ERR(vram);
- 	tile->mem.vram = vram;
- 
- 	return 0;
-@@ -155,21 +155,6 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
- }
- ALLOW_ERROR_INJECTION(xe_tile_init_early, ERRNO); /* See xe_pci_probe() */
- 
--static int tile_ttm_mgr_init(struct xe_tile *tile)
--{
--	struct xe_device *xe = tile_to_xe(tile);
--	int err;
--
--	if (tile->mem.vram->usable_size) {
--		err = xe_ttm_vram_mgr_init(tile, &tile->mem.vram->ttm);
--		if (err)
--			return err;
--		xe->info.mem_region_mask |= BIT(tile->id) << 1;
--	}
--
--	return 0;
--}
--
- /**
-  * xe_tile_init_noalloc - Init tile up to the point where allocations can happen.
-  * @tile: The tile to initialize.
-@@ -187,17 +172,20 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
- int xe_tile_init_noalloc(struct xe_tile *tile)
- {
- 	struct xe_device *xe = tile_to_xe(tile);
--	int err;
--
--	err = tile_ttm_mgr_init(tile);
--	if (err)
--		return err;
- 
- 	xe_wa_apply_tile_workarounds(tile);
- 
- 	if (xe->info.has_usm && IS_DGFX(xe))
- 		xe_devm_add(tile, tile->mem.vram);
- 
-+	if (IS_DGFX(xe) && !ttm_resource_manager_used(&tile->mem.vram->ttm.manager)) {
-+		int err = xe_ttm_vram_mgr_init(xe, tile->mem.vram);
-+
-+		if (err)
-+			return err;
-+		xe->info.mem_region_mask |= BIT(tile->mem.vram->id) << 1;
-+	}
-+
- 	return xe_tile_sysfs_init(tile);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 0b73cb72bad1..19019b032c78 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -685,6 +685,21 @@ static void sriov_update_device_info(struct xe_device *xe)
+ 	}
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 585bc1232658..c00f5782cb63 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -338,12 +338,18 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 	return drmm_add_action_or_reset(&xe->drm, ttm_vram_mgr_fini, mgr);
- }
- 
--int xe_ttm_vram_mgr_init(struct xe_tile *tile, struct xe_ttm_vram_mgr *mgr)
-+/**
-+ * xe_ttm_vram_mgr_init - initialize TTM VRAM region
-+ * @xe: pointer to Xe device
-+ * @vram: pointer to xe_vram_region that contains the memory region attributes
-+ *
-+ * Initialize the Xe TTM for given @vram region using the given parameters.
-+ *
-+ * Returns 0 for success, negative error code otherwise.
-+ */
-+int xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_vram_region *vram)
- {
--	struct xe_device *xe = tile_to_xe(tile);
--	struct xe_vram_region *vram = tile->mem.vram;
--
--	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + tile->id,
-+	return __xe_ttm_vram_mgr_init(xe, &vram->ttm, vram->placement,
- 				      vram->usable_size, vram->io_size,
- 				      PAGE_SIZE);
- }
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-index cc76050e376d..87b7fae5edba 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-@@ -11,11 +11,12 @@
- enum dma_data_direction;
- struct xe_device;
- struct xe_tile;
-+struct xe_vram_region;
- 
- int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 			   u32 mem_type, u64 size, u64 io_size,
- 			   u64 default_page_size);
--int xe_ttm_vram_mgr_init(struct xe_tile *tile, struct xe_ttm_vram_mgr *mgr);
-+int xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_vram_region *vram);
- int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
- 			      struct ttm_resource *res,
- 			      u64 offset, u64 length,
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index cf92a9aa2435..6cf85077d196 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -19,6 +19,7 @@
- #include "xe_mmio.h"
- #include "xe_module.h"
- #include "xe_sriov.h"
-+#include "xe_ttm_vram_mgr.h"
- #include "xe_vram.h"
- #include "xe_vram_types.h"
- 
-@@ -137,7 +138,7 @@ static bool resource_is_valid(struct pci_dev *pdev, int bar)
- 	return true;
- }
- 
--static int determine_lmem_bar_size(struct xe_device *xe)
-+static int determine_lmem_bar_size(struct xe_device *xe, struct xe_vram_region *lmem_bar)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 
-@@ -148,17 +149,16 @@ static int determine_lmem_bar_size(struct xe_device *xe)
- 
- 	resize_vram_bar(xe);
- 
--	xe->mem.vram->io_start = pci_resource_start(pdev, LMEM_BAR);
--	xe->mem.vram->io_size = pci_resource_len(pdev, LMEM_BAR);
--	if (!xe->mem.vram->io_size)
-+	lmem_bar->io_start = pci_resource_start(pdev, LMEM_BAR);
-+	lmem_bar->io_size = pci_resource_len(pdev, LMEM_BAR);
-+	if (!lmem_bar->io_size)
- 		return -EIO;
- 
- 	/* XXX: Need to change when xe link code is ready */
--	xe->mem.vram->dpa_base = 0;
-+	lmem_bar->dpa_base = 0;
- 
- 	/* set up a map to the total memory area. */
--	xe->mem.vram->mapping = devm_ioremap_wc(&pdev->dev, xe->mem.vram->io_start,
--						xe->mem.vram->io_size);
-+	lmem_bar->mapping = devm_ioremap_wc(&pdev->dev, lmem_bar->io_start, lmem_bar->io_size);
- 
- 	return 0;
- }
-@@ -286,6 +286,65 @@ static void vram_fini(void *arg)
- 		tile->mem.vram->mapping = NULL;
- }
- 
-+struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement)
++static int xe_device_vram_alloc(struct xe_device *xe)
 +{
 +	struct xe_vram_region *vram;
-+	struct drm_device *drm = &xe->drm;
 +
-+	xe_assert(xe, id < xe->info.tile_count);
-+
-+	vram = drmm_kzalloc(drm, sizeof(*vram), GFP_KERNEL);
-+	if (!vram)
-+		return NULL;
-+
-+	vram->id = id;
-+	vram->placement = placement;
-+	vram->tile = &xe->tiles[id];
-+
-+	return vram;
-+}
-+
-+static void print_vram_region_info(struct xe_device *xe, struct xe_vram_region *vram)
-+{
-+	struct drm_device *drm = &xe->drm;
-+
-+	if (vram->io_size < vram->usable_size)
-+		drm_info(drm, "Small BAR device\n");
-+
-+	drm_info(drm,
-+		 "VRAM[%u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n",
-+		 vram->id, &vram->actual_physical_size, &vram->usable_size, &vram->io_size);
-+	drm_info(drm, "VRAM[%u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
-+		 vram->id, &vram->dpa_base, vram->dpa_base + (u64)vram->actual_physical_size,
-+		 &vram->io_start, vram->io_start + (u64)vram->io_size);
-+}
-+
-+static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
-+			    struct xe_vram_region *lmem_bar, u64 offset, u64 usable_size,
-+			    u64 region_size, resource_size_t remain_io_size)
-+{
-+	/* Check if VRAM region is already initialized */
-+	if (vram->mapping)
++	if (!IS_DGFX(xe))
 +		return 0;
 +
-+	vram->actual_physical_size = region_size;
-+	vram->io_start = lmem_bar->io_start + offset;
-+	vram->io_size = min_t(u64, usable_size, remain_io_size);
++	vram = drmm_kzalloc(&xe->drm, sizeof(*vram), GFP_KERNEL);
++	if (!vram)
++		return -ENOMEM;
 +
-+	if (!vram->io_size) {
-+		drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
-+		return -ENODEV;
-+	}
++	xe->mem.vram = vram;
++	return 0;
++}
 +
-+	vram->dpa_base = lmem_bar->dpa_base + offset;
-+	vram->mapping = lmem_bar->mapping + offset;
-+	vram->usable_size = usable_size;
+ /**
+  * xe_device_probe_early: Device early probe
+  * @xe: xe device instance
+@@ -729,6 +744,10 @@ int xe_device_probe_early(struct xe_device *xe)
+ 
+ 	xe->wedged.mode = xe_modparam.wedged_mode;
+ 
++	err = xe_device_vram_alloc(xe);
++	if (err)
++		return err;
 +
-+	print_vram_region_info(xe, vram);
+ 	return 0;
+ }
+ ALLOW_ERROR_INJECTION(xe_device_probe_early, ERRNO); /* See xe_pci_probe() */
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 7e4f6d846af6..56219984f347 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -74,6 +74,8 @@ struct xe_pxp;
+  * device, such as HBM memory or CXL extension memory.
+  */
+ struct xe_vram_region {
++	/** @tile: Backpointer to tile */
++	struct xe_tile *tile;
+ 	/** @io_start: IO start address of this VRAM instance */
+ 	resource_size_t io_start;
+ 	/**
+@@ -213,7 +215,7 @@ struct xe_tile {
+ 		 * Although VRAM is associated with a specific tile, it can
+ 		 * still be accessed by all tiles' GTs.
+ 		 */
+-		struct xe_vram_region vram;
++		struct xe_vram_region *vram;
+ 
+ 		/** @mem.ggtt: Global graphics translation table */
+ 		struct xe_ggtt *ggtt;
+@@ -394,7 +396,7 @@ struct xe_device {
+ 	/** @mem: memory info for device */
+ 	struct {
+ 		/** @mem.vram: VRAM info for device */
+-		struct xe_vram_region vram;
++		struct xe_vram_region *vram;
+ 		/** @mem.sys_mgr: system TTM manager */
+ 		struct ttm_resource_manager sys_mgr;
+ 		/** @mem.sys_mgr: system memory shrinker. */
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 3556c41c041b..a33a6f3a6731 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -1574,7 +1574,7 @@ static u64 pf_query_free_lmem(struct xe_gt *gt)
+ {
+ 	struct xe_tile *tile = gt->tile;
+ 
+-	return xe_ttm_vram_get_avail(&tile->mem.vram.ttm.manager);
++	return xe_ttm_vram_get_avail(&tile->mem.vram->ttm.manager);
+ }
+ 
+ static u64 pf_query_max_lmem(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 7acdc4c78866..0fc7875978ce 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -130,9 +130,9 @@ static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr, bool is_comp_pte)
+ 	u64 identity_offset = IDENTITY_OFFSET;
+ 
+ 	if (GRAPHICS_VER(xe) >= 20 && is_comp_pte)
+-		identity_offset += DIV_ROUND_UP_ULL(xe->mem.vram.actual_physical_size, SZ_1G);
++		identity_offset += DIV_ROUND_UP_ULL(xe->mem.vram->actual_physical_size, SZ_1G);
+ 
+-	addr -= xe->mem.vram.dpa_base;
++	addr -= xe->mem.vram->dpa_base;
+ 	return addr + (identity_offset << xe_pt_shift(2));
+ }
+ 
+@@ -142,22 +142,22 @@ static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm,
+ 	u64 pos, ofs, flags;
+ 	u64 entry;
+ 	/* XXX: Unclear if this should be usable_size? */
+-	u64 vram_limit =  xe->mem.vram.actual_physical_size +
+-		xe->mem.vram.dpa_base;
++	u64 vram_limit = xe->mem.vram->actual_physical_size +
++		xe->mem.vram->dpa_base;
+ 	u32 level = 2;
+ 
+ 	ofs = map_ofs + XE_PAGE_SIZE * level + vram_offset * 8;
+ 	flags = vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level,
+ 					    true, 0);
+ 
+-	xe_assert(xe, IS_ALIGNED(xe->mem.vram.usable_size, SZ_2M));
++	xe_assert(xe, IS_ALIGNED(xe->mem.vram->usable_size, SZ_2M));
+ 
+ 	/*
+ 	 * Use 1GB pages when possible, last chunk always use 2M
+ 	 * pages as mixing reserved memory (stolen, WOCPM) with a single
+ 	 * mapping is not allowed on certain platforms.
+ 	 */
+-	for (pos = xe->mem.vram.dpa_base; pos < vram_limit;
++	for (pos = xe->mem.vram->dpa_base; pos < vram_limit;
+ 	     pos += SZ_1G, ofs += 8) {
+ 		if (pos + SZ_1G >= vram_limit) {
+ 			entry = vm->pt_ops->pde_encode_bo(bo, pt_2m_ofs,
+@@ -310,7 +310,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 
+ 		xe_migrate_program_identity(xe, vm, bo, map_ofs, IDENTITY_OFFSET,
+ 					    pat_index, pt30_ofs);
+-		xe_assert(xe, xe->mem.vram.actual_physical_size <=
++		xe_assert(xe, xe->mem.vram->actual_physical_size <=
+ 					(MAX_NUM_PTE - IDENTITY_OFFSET) * SZ_1G);
+ 
+ 		/*
+@@ -320,10 +320,10 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 		if (GRAPHICS_VER(xe) >= 20 && xe_device_has_flat_ccs(xe)) {
+ 			u16 comp_pat_index = xe->pat.idx[XE_CACHE_NONE_COMPRESSION];
+ 			u64 vram_offset = IDENTITY_OFFSET +
+-				DIV_ROUND_UP_ULL(xe->mem.vram.actual_physical_size, SZ_1G);
++				DIV_ROUND_UP_ULL(xe->mem.vram->actual_physical_size, SZ_1G);
+ 			u64 pt31_ofs = bo->size - XE_PAGE_SIZE;
+ 
+-			xe_assert(xe, xe->mem.vram.actual_physical_size <= (MAX_NUM_PTE -
++			xe_assert(xe, xe->mem.vram->actual_physical_size <= (MAX_NUM_PTE -
+ 						IDENTITY_OFFSET - IDENTITY_OFFSET / 2) * SZ_1G);
+ 			xe_migrate_program_identity(xe, vm, bo, map_ofs, vram_offset,
+ 						    comp_pat_index, pt31_ofs);
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 824461c31288..90494f16d3d8 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -714,12 +714,18 @@ static int xe_info_init(struct xe_device *xe,
+ 	 * All of these together determine the overall GT count.
+ 	 */
+ 	for_each_tile(tile, xe, id) {
++		int err;
++
+ 		gt = tile->primary_gt;
+ 		gt->info.id = xe->info.gt_count++;
+ 		gt->info.type = XE_GT_TYPE_MAIN;
+ 		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
+ 		gt->info.engine_mask = graphics_desc->hw_engine_mask;
+ 
++		err = xe_tile_alloc_vram(tile);
++		if (err)
++			return err;
++
+ 		if (MEDIA_VER(xe) < 13 && media_desc)
+ 			gt->info.engine_mask |= media_desc->hw_engine_mask;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index e8e1743dcb1e..ba9b7482605c 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -337,7 +337,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	config->num_params = num_params;
+ 	config->info[DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
+ 		xe->info.devid | (xe->info.revid << 16);
+-	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
++	if (xe->mem.vram)
+ 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
+ 	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index a7ff5975873f..e6871734ffa9 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -306,16 +306,11 @@ static struct xe_vram_region *page_to_vr(struct page *page)
+ 	return container_of(page_pgmap(page), struct xe_vram_region, pagemap);
+ }
+ 
+-static struct xe_tile *vr_to_tile(struct xe_vram_region *vr)
+-{
+-	return container_of(vr, struct xe_tile, mem.vram);
+-}
+-
+ static u64 xe_vram_region_page_to_dpa(struct xe_vram_region *vr,
+ 				      struct page *page)
+ {
+ 	u64 dpa;
+-	struct xe_tile *tile = vr_to_tile(vr);
++	struct xe_tile *tile = vr->tile;
+ 	u64 pfn = page_to_pfn(page);
+ 	u64 offset;
+ 
+@@ -370,7 +365,7 @@ static int xe_svm_copy(struct page **pages, dma_addr_t *dma_addr,
+ 
+ 		if (!vr && spage) {
+ 			vr = page_to_vr(spage);
+-			tile = vr_to_tile(vr);
++			tile = vr->tile;
+ 		}
+ 		XE_WARN_ON(spage && page_to_vr(spage) != vr);
+ 
+@@ -508,7 +503,7 @@ static u64 block_offset_to_pfn(struct xe_vram_region *vr, u64 offset)
+ 
+ static struct drm_buddy *tile_to_buddy(struct xe_tile *tile)
+ {
+-	return &tile->mem.vram.ttm.mm;
++	return &tile->mem.vram->ttm.mm;
+ }
+ 
+ static int xe_svm_populate_devmem_pfn(struct drm_pagemap_devmem *devmem_allocation,
+@@ -522,7 +517,7 @@ static int xe_svm_populate_devmem_pfn(struct drm_pagemap_devmem *devmem_allocati
+ 
+ 	list_for_each_entry(block, blocks, link) {
+ 		struct xe_vram_region *vr = block->private;
+-		struct xe_tile *tile = vr_to_tile(vr);
++		struct xe_tile *tile = vr->tile;
+ 		struct drm_buddy *buddy = tile_to_buddy(tile);
+ 		u64 block_pfn = block_offset_to_pfn(vr, drm_buddy_block_offset(block));
+ 		int i;
+@@ -683,20 +678,15 @@ u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 start, u64 end, struct xe_vma *v
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+-static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
+-{
+-	return &tile->mem.vram;
+-}
+-
+ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 				      unsigned long start, unsigned long end,
+ 				      struct mm_struct *mm,
+ 				      unsigned long timeslice_ms)
+ {
+-	struct xe_tile *tile = container_of(dpagemap, typeof(*tile), mem.vram.dpagemap);
++	struct xe_vram_region *vr = container_of(dpagemap, typeof(*vr), dpagemap);
++	struct xe_tile *tile = vr->tile;
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct device *dev = xe->drm.dev;
+-	struct xe_vram_region *vr = tile_to_vr(tile);
+ 	struct drm_buddy_block *block;
+ 	struct list_head *blocks;
+ 	struct xe_bo *bo;
+@@ -722,7 +712,7 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 
+ 	drm_pagemap_devmem_init(&bo->devmem_allocation, dev, mm,
+ 				&dpagemap_devmem_ops,
+-				&tile->mem.vram.dpagemap,
++				&tile->mem.vram->dpagemap,
+ 				end - start);
+ 
+ 	blocks = &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)->blocks;
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 86e9811e60ba..47cb09edab33 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -95,6 +95,33 @@ static int xe_tile_alloc(struct xe_tile *tile)
+ 	return 0;
+ }
+ 
++/**
++ * xe_tile_alloc_vram - Perform per-tile VRAM structs allocation
++ * @tile: Tile to perform allocations for
++ *
++ * Allocates VRAM per-tile data structures using DRM-managed allocations.
++ * Does not touch the hardware.
++ *
++ * Returns -ENOMEM if allocations fail, otherwise 0.
++ */
++int xe_tile_alloc_vram(struct xe_tile *tile)
++{
++	struct xe_device *xe = tile_to_xe(tile);
++	struct xe_vram_region *vram;
++
++	if (!IS_DGFX(xe))
++		return 0;
++
++	vram = drmm_kzalloc(&xe->drm, sizeof(*vram), GFP_KERNEL);
++	if (!vram)
++		return -ENOMEM;
++
++	vram->tile = tile;
++	tile->mem.vram = vram;
 +
 +	return 0;
 +}
 +
  /**
-  * xe_vram_probe() - Probe VRAM configuration
-  * @xe: the &xe_device
-@@ -297,82 +356,52 @@ static void vram_fini(void *arg)
- int xe_vram_probe(struct xe_device *xe)
- {
- 	struct xe_tile *tile;
--	resource_size_t io_size;
-+	struct xe_vram_region lmem_bar;
-+	resource_size_t remain_io_size;
- 	u64 available_size = 0;
- 	u64 total_size = 0;
--	u64 tile_offset;
--	u64 tile_size;
--	u64 vram_size;
+  * xe_tile_init_early - Initialize the tile and primary GT
+  * @tile: Tile to initialize
+@@ -132,8 +159,8 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
+ 	struct xe_device *xe = tile_to_xe(tile);
  	int err;
- 	u8 id;
  
- 	if (!IS_DGFX(xe))
- 		return 0;
+-	if (tile->mem.vram.usable_size) {
+-		err = xe_ttm_vram_mgr_init(tile, &tile->mem.vram.ttm);
++	if (tile->mem.vram->usable_size) {
++		err = xe_ttm_vram_mgr_init(tile, &tile->mem.vram->ttm);
+ 		if (err)
+ 			return err;
+ 		xe->info.mem_region_mask |= BIT(tile->id) << 1;
+@@ -168,7 +195,7 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	xe_wa_apply_tile_workarounds(tile);
  
--	/* Get the size of the root tile's vram for later accessibility comparison */
--	tile = xe_device_get_root_tile(xe);
--	err = tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
--	if (err)
--		return err;
--
--	err = determine_lmem_bar_size(xe);
-+	err = determine_lmem_bar_size(xe, &lmem_bar);
+ 	if (xe->info.has_usm && IS_DGFX(xe))
+-		xe_devm_add(tile, &tile->mem.vram);
++		xe_devm_add(tile, tile->mem.vram);
+ 
+ 	return xe_tile_sysfs_init(tile);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index 066a3d0cea79..fb0473fa9098 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -14,12 +14,14 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
+ int xe_tile_init_noalloc(struct xe_tile *tile);
+ int xe_tile_init(struct xe_tile *tile);
+ 
++int xe_tile_alloc_vram(struct xe_tile *tile);
++
+ void xe_tile_migrate_wait(struct xe_tile *tile);
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+ static inline struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
+ {
+-	return &tile->mem.vram.dpagemap;
++	return &tile->mem.vram->dpagemap;
+ }
+ #else
+ static inline struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index d9c9d2547aad..19bfc22b9706 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -89,8 +89,8 @@ static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ 	u64 tile_offset;
+ 	u64 tile_size;
+ 
+-	tile_offset = tile->mem.vram.io_start - xe->mem.vram.io_start;
+-	tile_size = tile->mem.vram.actual_physical_size;
++	tile_offset = tile->mem.vram->io_start - xe->mem.vram->io_start;
++	tile_size = tile->mem.vram->actual_physical_size;
+ 
+ 	/* Use DSM base address instead for stolen memory */
+ 	mgr->stolen_base = (xe_mmio_read64_2x32(mmio, DSMBASE) & BDSM_MASK) - tile_offset;
+@@ -107,7 +107,7 @@ static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ 
+ 	/* Verify usage fits in the actual resource available */
+ 	if (mgr->stolen_base + stolen_size <= pci_resource_len(pdev, LMEM_BAR))
+-		mgr->io_base = tile->mem.vram.io_start + mgr->stolen_base;
++		mgr->io_base = tile->mem.vram->io_start + mgr->stolen_base;
+ 
+ 	/*
+ 	 * There may be few KB of platform dependent reserved memory at the end
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 9e375a40aee9..d9afe0e22071 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -340,7 +340,7 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ int xe_ttm_vram_mgr_init(struct xe_tile *tile, struct xe_ttm_vram_mgr *mgr)
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	struct xe_vram_region *vram = &tile->mem.vram;
++	struct xe_vram_region *vram = tile->mem.vram;
+ 
+ 	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + tile->id,
+ 				      vram->usable_size, vram->io_size,
+@@ -392,7 +392,7 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ 	 */
+ 	xe_res_first(res, offset, length, &cursor);
+ 	for_each_sgtable_sg((*sgt), sg, i) {
+-		phys_addr_t phys = cursor.start + tile->mem.vram.io_start;
++		phys_addr_t phys = cursor.start + tile->mem.vram->io_start;
+ 		size_t size = min_t(u64, cursor.size, SZ_2G);
+ 		dma_addr_t addr;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 3a4c84e9efc6..7e3980bcb4e6 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -147,17 +147,17 @@ static int determine_lmem_bar_size(struct xe_device *xe)
+ 
+ 	resize_vram_bar(xe);
+ 
+-	xe->mem.vram.io_start = pci_resource_start(pdev, LMEM_BAR);
+-	xe->mem.vram.io_size = pci_resource_len(pdev, LMEM_BAR);
+-	if (!xe->mem.vram.io_size)
++	xe->mem.vram->io_start = pci_resource_start(pdev, LMEM_BAR);
++	xe->mem.vram->io_size = pci_resource_len(pdev, LMEM_BAR);
++	if (!xe->mem.vram->io_size)
+ 		return -EIO;
+ 
+ 	/* XXX: Need to change when xe link code is ready */
+-	xe->mem.vram.dpa_base = 0;
++	xe->mem.vram->dpa_base = 0;
+ 
+ 	/* set up a map to the total memory area. */
+-	xe->mem.vram.mapping = devm_ioremap_wc(&pdev->dev, xe->mem.vram.io_start,
+-					       xe->mem.vram.io_size);
++	xe->mem.vram->mapping = devm_ioremap_wc(&pdev->dev, xe->mem.vram->io_start,
++						xe->mem.vram->io_size);
+ 
+ 	return 0;
+ }
+@@ -279,10 +279,10 @@ static void vram_fini(void *arg)
+ 	struct xe_tile *tile;
+ 	int id;
+ 
+-	xe->mem.vram.mapping = NULL;
++	xe->mem.vram->mapping = NULL;
+ 
+ 	for_each_tile(tile, xe, id)
+-		tile->mem.vram.mapping = NULL;
++		tile->mem.vram->mapping = NULL;
+ }
+ 
+ /**
+@@ -318,10 +318,10 @@ int xe_vram_probe(struct xe_device *xe)
  	if (err)
  		return err;
-+	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &lmem_bar.io_start, &lmem_bar.io_size);
  
--	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &xe->mem.vram->io_start,
--		 &xe->mem.vram->io_size);
-+	remain_io_size = lmem_bar.io_size;
+-	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
+-		 &xe->mem.vram.io_size);
++	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &xe->mem.vram->io_start,
++		 &xe->mem.vram->io_size);
  
--	io_size = xe->mem.vram->io_size;
--
--	/* tile specific ranges */
+-	io_size = xe->mem.vram.io_size;
++	io_size = xe->mem.vram->io_size;
+ 
+ 	/* tile specific ranges */
  	for_each_tile(tile, xe, id) {
--		err = tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
-+		u64 region_size;
-+		u64 usable_size;
-+		u64 tile_offset;
-+
-+		err = tile_vram_size(tile, &usable_size, &region_size, &tile_offset);
+@@ -329,44 +329,48 @@ int xe_vram_probe(struct xe_device *xe)
  		if (err)
  			return err;
  
--		tile->mem.vram->actual_physical_size = tile_size;
--		tile->mem.vram->io_start = xe->mem.vram->io_start + tile_offset;
--		tile->mem.vram->io_size = min_t(u64, vram_size, io_size);
-+		total_size += region_size;
-+		available_size += usable_size;
+-		tile->mem.vram.actual_physical_size = tile_size;
+-		tile->mem.vram.io_start = xe->mem.vram.io_start + tile_offset;
+-		tile->mem.vram.io_size = min_t(u64, vram_size, io_size);
++		tile->mem.vram->actual_physical_size = tile_size;
++		tile->mem.vram->io_start = xe->mem.vram->io_start + tile_offset;
++		tile->mem.vram->io_size = min_t(u64, vram_size, io_size);
  
--		if (!tile->mem.vram->io_size) {
--			drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
--			return -ENODEV;
--		}
-+		err = vram_region_init(xe, tile->mem.vram, &lmem_bar, tile_offset, usable_size,
-+				       region_size, remain_io_size);
-+		if (err)
-+			return err;
- 
--		tile->mem.vram->dpa_base = xe->mem.vram->dpa_base + tile_offset;
--		tile->mem.vram->usable_size = vram_size;
--		tile->mem.vram->mapping = xe->mem.vram->mapping + tile_offset;
--
--		if (tile->mem.vram->io_size < tile->mem.vram->usable_size)
--			drm_info(&xe->drm, "Small BAR device\n");
--		drm_info(&xe->drm,
--			 "VRAM[%u, %u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n",
--			 id, tile->id, &tile->mem.vram->actual_physical_size,
--			 &tile->mem.vram->usable_size, &tile->mem.vram->io_size);
--		drm_info(&xe->drm, "VRAM[%u, %u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
--			 id, tile->id, &tile->mem.vram->dpa_base,
--			 tile->mem.vram->dpa_base + (u64)tile->mem.vram->actual_physical_size,
--			 &tile->mem.vram->io_start,
--			 tile->mem.vram->io_start + (u64)tile->mem.vram->io_size);
--
--		/* calculate total size using tile size to get the correct HW sizing */
--		total_size += tile_size;
--		available_size += vram_size;
--
--		if (total_size > xe->mem.vram->io_size) {
-+		if (total_size > lmem_bar.io_size) {
- 			drm_info(&xe->drm, "VRAM: %pa is larger than resource %pa\n",
--				 &total_size, &xe->mem.vram->io_size);
-+				 &total_size, &lmem_bar.io_size);
+-		if (!tile->mem.vram.io_size) {
++		if (!tile->mem.vram->io_size) {
+ 			drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
+ 			return -ENODEV;
  		}
  
--		io_size -= min_t(u64, tile_size, io_size);
-+		remain_io_size -= min_t(u64, tile->mem.vram->actual_physical_size, remain_io_size);
+-		tile->mem.vram.dpa_base = xe->mem.vram.dpa_base + tile_offset;
+-		tile->mem.vram.usable_size = vram_size;
+-		tile->mem.vram.mapping = xe->mem.vram.mapping + tile_offset;
++		tile->mem.vram->dpa_base = xe->mem.vram->dpa_base + tile_offset;
++		tile->mem.vram->usable_size = vram_size;
++		tile->mem.vram->mapping = xe->mem.vram->mapping + tile_offset;
+ 
+-		if (tile->mem.vram.io_size < tile->mem.vram.usable_size)
++		if (tile->mem.vram->io_size < tile->mem.vram->usable_size)
+ 			drm_info(&xe->drm, "Small BAR device\n");
+-		drm_info(&xe->drm, "VRAM[%u, %u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n", id,
+-			 tile->id, &tile->mem.vram.actual_physical_size, &tile->mem.vram.usable_size, &tile->mem.vram.io_size);
+-		drm_info(&xe->drm, "VRAM[%u, %u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n", id, tile->id,
+-			 &tile->mem.vram.dpa_base, tile->mem.vram.dpa_base + (u64)tile->mem.vram.actual_physical_size,
+-			 &tile->mem.vram.io_start, tile->mem.vram.io_start + (u64)tile->mem.vram.io_size);
++		drm_info(&xe->drm,
++			 "VRAM[%u, %u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n",
++			 id, tile->id, &tile->mem.vram->actual_physical_size,
++			 &tile->mem.vram->usable_size, &tile->mem.vram->io_size);
++		drm_info(&xe->drm, "VRAM[%u, %u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
++			 id, tile->id, &tile->mem.vram->dpa_base,
++			 tile->mem.vram->dpa_base + (u64)tile->mem.vram->actual_physical_size,
++			 &tile->mem.vram->io_start,
++			 tile->mem.vram->io_start + (u64)tile->mem.vram->io_size);
+ 
+ 		/* calculate total size using tile size to get the correct HW sizing */
+ 		total_size += tile_size;
+ 		available_size += vram_size;
+ 
+-		if (total_size > xe->mem.vram.io_size) {
++		if (total_size > xe->mem.vram->io_size) {
+ 			drm_info(&xe->drm, "VRAM: %pa is larger than resource %pa\n",
+-				 &total_size, &xe->mem.vram.io_size);
++				 &total_size, &xe->mem.vram->io_size);
+ 		}
+ 
+ 		io_size -= min_t(u64, tile_size, io_size);
  	}
  
--	xe->mem.vram->actual_physical_size = total_size;
--
--	drm_info(&xe->drm, "Total VRAM: %pa, %pa\n", &xe->mem.vram->io_start,
--		 &xe->mem.vram->actual_physical_size);
--	drm_info(&xe->drm, "Available VRAM: %pa, %pa\n", &xe->mem.vram->io_start,
--		 &available_size);
-+	err = vram_region_init(xe, xe->mem.vram, &lmem_bar, 0, available_size, total_size,
-+			       lmem_bar.io_size);
-+	if (err)
-+		return err;
+-	xe->mem.vram.actual_physical_size = total_size;
++	xe->mem.vram->actual_physical_size = total_size;
+ 
+-	drm_info(&xe->drm, "Total VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
+-		 &xe->mem.vram.actual_physical_size);
+-	drm_info(&xe->drm, "Available VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
++	drm_info(&xe->drm, "Total VRAM: %pa, %pa\n", &xe->mem.vram->io_start,
++		 &xe->mem.vram->actual_physical_size);
++	drm_info(&xe->drm, "Available VRAM: %pa, %pa\n", &xe->mem.vram->io_start,
+ 		 &available_size);
  
  	return devm_add_action_or_reset(xe->drm.dev, vram_fini, xe);
- }
-diff --git a/drivers/gpu/drm/xe/xe_vram.h b/drivers/gpu/drm/xe/xe_vram.h
-index 9092ae86df22..802bd57e7c96 100644
---- a/drivers/gpu/drm/xe/xe_vram.h
-+++ b/drivers/gpu/drm/xe/xe_vram.h
-@@ -13,5 +13,6 @@ struct xe_vram_region;
- 
- int xe_vram_probe(struct xe_device *xe);
- resource_size_t xe_vram_region_actual_physical_size(struct xe_vram_region *vram);
-+struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vram_types.h b/drivers/gpu/drm/xe/xe_vram_types.h
-index f4e06c9a4648..31c57fd23e27 100644
---- a/drivers/gpu/drm/xe/xe_vram_types.h
-+++ b/drivers/gpu/drm/xe/xe_vram_types.h
-@@ -22,6 +22,12 @@ struct xe_tile;
- struct xe_vram_region {
- 	/** @tile: Backpointer to tile */
- 	struct xe_tile *tile;
-+	/**
-+	 * @id: VRAM region instance id
-+	 *
-+	 * The value should be unique for VRAM region.
-+	 */
-+	u8 id;
- 	/** @io_start: IO start address of this VRAM instance */
- 	resource_size_t io_start;
- 	/**
-@@ -54,6 +60,8 @@ struct xe_vram_region {
- 	void __iomem *mapping;
- 	/** @ttm: VRAM TTM manager */
- 	struct xe_ttm_vram_mgr ttm;
-+	/** @placement: TTM placement dedicated for this region */
-+	u32 placement;
- #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
- 	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
- 	struct dev_pagemap pagemap;
 -- 
 2.34.1
 
