@@ -4,60 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEAA3C7EE2A
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 20:30:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4B79C7EE2A
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 20:43:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 786D010EA7A;
-	Fri, 27 Jun 2025 20:30:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F6BB10EA82;
+	Fri, 27 Jun 2025 20:43:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HNz2C4iP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qyxfc8Ja";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8499E10EA2A
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 20:30:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC7DF10EA7F
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 20:43:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751056245; x=1782592245;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0vc7neUU9iSGqVKX07xqr7RzyoDBDkfTkZNhJNx/0IY=;
- b=HNz2C4iPaKzhLk/OQOZQWAsfpcIkquJhpZH/3asNC/5RYN3vqPfNQEpB
- j77UdH9M/nEWHPjxr7tEibyuzEL7TleVGNjEaPjl2riHd/KsK8OMwBc/C
- PnUxT30qdVdlhUrpM9wZO2v3KuuHFF71e83TJqZ2i/gNb4+f4pc1yp6Am
- dFJV2WqHegYC8zN7ldbI4Rqo7Xas1dD1UimjMS8v68sqDhSSGUEGUdrRO
- zw0fCuZG3gHsBkrk17jpQkKBudEbw5lFVnkS+KkSaDKIG0HFtRYqNHct2
- AJaBIWEa3MJut8AxANMvx5DU0lsXCQmdWmpe5UaWgLEkWJfnjRePXcQLR w==;
-X-CSE-ConnectionGUID: rnx87AUBQBuiWLrSVwtkKA==
-X-CSE-MsgGUID: 5nyOzy0AT0qvYxRSyzGG+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="64068011"
-X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="64068011"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 13:30:45 -0700
-X-CSE-ConnectionGUID: TgIec3qtTJqi613z8SvHHQ==
-X-CSE-MsgGUID: UG3icKjTTiGk4Y80lVQPAg==
+ t=1751057012; x=1782593012;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sl2Azysv1/Px8ZOg98nYDyMUQP6arrHPnLRgrQf3HyU=;
+ b=Qyxfc8JawEK3gJ6+IizlDOJbTiJK2fGw4mPW/G7BdqSf8K1Fq0apvvzv
+ sMH1Gee9xSHa9dX5Z217o8YdyLETmlWk3+9DrDOjTE6XIeUOz4drNqHro
+ ptBfcjsFNKPO9gUj0J1aveTakbBkmnuHdIgJNB2cJPMt3dZpRj5tJpBNq
+ EDnMgo+4KuHz00BysSrg0JnR7vvgvfTXW5H1pwZL/l/H0/G2io1NlBP5q
+ lGizNekK4dox3nkWryx+gKy2oT2oWMHsTuNqCiI/mmIMr+dkUUzbYwDR4
+ 65TgaOZQrp28jn2JqJSRp1PuPielJw1mRyxrigd3bmxJdDICqIzjMwzEA A==;
+X-CSE-ConnectionGUID: D/GmcobzStKSksl/QXt0IQ==
+X-CSE-MsgGUID: kZtcEIhMTaKbjk8TCPzuOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="41003155"
+X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="41003155"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 13:43:32 -0700
+X-CSE-ConnectionGUID: fOiVdfbOQbeGD9qf9kkTSQ==
+X-CSE-MsgGUID: gKLQ1d3DTDWb3XtsF55iLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="157175943"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 13:30:45 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Randy Dunlap <rdunlap@infradead.org>, Jani Nikula <jani.nikula@intel.com>,
- Harry Austen <hpausten@protonmail.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 2/2] drm/xe: Allow dropping kunit dependency as built-in
-Date: Fri, 27 Jun 2025 13:30:35 -0700
-Message-ID: <20250627-xe-kunit-v2-2-756fe5cd56cf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="156938963"
+Received: from mjruhl-desk.amr.corp.intel.com (HELO mjruhl-desk.intel.com)
+ ([10.124.220.252])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 13:43:31 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ hdegoede@redhat.com, ilpo.jarvinen@linux.intel.com,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
+ david.e.box@linux.intel.com
+Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Subject: [PATCH v5 00/12] Crashlog Type1 Version2 support
+Date: Fri, 27 Jun 2025 16:43:09 -0400
+Message-ID: <20250627204321.521628-1-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250627-xe-kunit-v2-0-756fe5cd56cf@intel.com>
-References: <20250627-xe-kunit-v2-0-756fe5cd56cf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.15-dev-a7f9c
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,38 +70,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Harry Austen <hpausten@protonmail.com>
+The Intel BMG GPU device supports the crashlog feature, which was
+exposed in an Xe driver patch (drm/xe/vsec: Support BMG devices),
+however the version of crashlog used by the BMG GPU does not have
+a supporing PMT driver.
 
-Fix Kconfig symbol dependency on KUNIT, which isn't actually required
-for XE to be built-in. However, if KUNIT is enabled, it must be built-in
-too.
+Update the PMT crashlog driver to support the BMG crashlog feature.
 
-Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=m")
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Harry Austen <hpausten@protonmail.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/Kconfig | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+v2:
+ - fix a misconfig for the crashlog DVSEC info in the xe driver
+ - address review comments
+v3:
+ - re-order bug fix patches for stable
+ - added re-order trigger logic patch
+ - added helper patch to address repeated code patterns
+ - address review comments
+v4:
+ - added pcidev to intel_pmt_entry to address null issue
+ - dropped endpoint update patches
+ - patch cleanup and address review comments
+v5:
+ - renamed helpers to avoid namespace issues
+ - separate mutex cleanup from gaurd usage
+ - refactor base paramters to a separate patch (from version struct)
+ - add r/b reviewed patches
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 553c29e1030b1..827bc75b8b48f 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -1,7 +1,8 @@
- # SPDX-License-Identifier: GPL-2.0-only
- config DRM_XE
- 	tristate "Intel Xe2 Graphics"
--	depends on DRM && PCI && (m || (y && KUNIT=y))
-+	depends on DRM && PCI
-+	depends on KUNIT || !KUNIT
- 	depends on INTEL_VSEC || !INTEL_VSEC
- 	depends on X86_PLATFORM_DEVICES || !(X86 && ACPI)
- 	select INTERVAL_TREE
+Michael J. Ruhl (12):
+  platform/x86/intel/pmt: fix a crashlog NULL pointer access
+  drm/xe: Correct BMG VSEC header sizing
+  platform/x86/intel/pmt: white space cleanup
+  platform/x86/intel/pmt: mutex clean up
+  platform/x86/intel/pmt: use guard(mutex)
+  platform/x86/intel/pmt: re-order trigger logic
+  platform/x86/intel/pmt: correct types
+  platform/x86/intel/pmt: decouple sysfs and namespace
+  platform/x86/intel/pmt: add register access helpers
+  platform/x86/intel/pmt: refactor base parameter
+  platform/x86/intel/pmt: use a version struct
+  platform/x86/intel/pmt: support BMG crashlog
+
+ drivers/gpu/drm/xe/xe_vsec.c              |  20 +-
+ drivers/platform/x86/intel/pmt/class.c    |  15 +-
+ drivers/platform/x86/intel/pmt/class.h    |   3 +-
+ drivers/platform/x86/intel/pmt/crashlog.c | 468 ++++++++++++++++++----
+ 4 files changed, 394 insertions(+), 112 deletions(-)
 
 -- 
 2.49.0
