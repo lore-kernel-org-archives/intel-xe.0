@@ -4,57 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 760DEC7EE33
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 08:51:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3A4FC77B7F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 08:57:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA35C10E983;
-	Fri, 27 Jun 2025 08:51:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71C9410E196;
+	Fri, 27 Jun 2025 08:57:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A8AB/lDB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BTCeoC9A";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D39F10E982;
- Fri, 27 Jun 2025 08:51:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1DEF10E196
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 08:56:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751014302; x=1782550302;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rQB1ET568iZW3YnEaR45bf29KM1ljr7cfj6VXtgEb0s=;
- b=A8AB/lDBZgiVrCIVHTBDNWSWdLJbn4LHzp3IhPqaFZIp8O13cF5uhC7v
- oOpZGJuVDhd6ljMBUbkN2GBqMb8lXz3HN+uJ1Kj4OSEPAOptS/lQ2gqlb
- GLF+vEpK6YFgzvjYD5AuZLfUC2fhZRsjh+MpHQNCxfo/fqg1BfgFZoKix
- 6YOpyDjEUmpTVCV/pg69BuQHkH+TAoFGCVvsC3mPHsFLgqbkKwGD/UDmD
- SaVBrcLtHdR6/v3uGQjkSfz9eMXSUxS7VKpZcLTnHJ7U0/9Pd6iWyn5r7
- 6IpuZpEZkxVDO4OzcgP5MvuCRZPBafkQPAb+RQgSqgFa1G4IfYr03wWXm A==;
-X-CSE-ConnectionGUID: vGyEc4M1Q/6MjT/+cfUxRw==
-X-CSE-MsgGUID: or9L72IhSC2+vRi3QhrvzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53266042"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="53266042"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 01:51:39 -0700
-X-CSE-ConnectionGUID: Y/TQ7DKaScu52kTl7VE4hw==
-X-CSE-MsgGUID: FlUkHyA9STuTktIp8KgcqQ==
+ t=1751014619; x=1782550619;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=pA4wEdMhzhMjD2JQqiDWCLEuHRKldKMncnSAa8oDMek=;
+ b=BTCeoC9AA0aTSncYB9Tb0ezPYP3VGtcn0ezbnVr5lv6e7xSVzPsTMz3G
+ B0v8j+nqbBtrDfy7raWUAT5WJlHOi5CjDiIgzg88ZZ7mLjfPHJS5GCNDX
+ DurOUL08vcFWvvrvNPoBd5Ol6xXWjVWxeaIuPBD73b4kPWsf1pOxuFmrJ
+ zJ/KVL2TXJTuvMyhWVeAoKwRvmXbbGw7ngtzbJw+kZfnX/oKmUvevwOxD
+ pUlSCEOpIoEXFwAUUkYuQ4kiJHOWM1QZfJDaI19ML8ei8Vg8/lcXueKZg
+ Tkq0dsySyWdjwHhXCW0Lome/NUAO6s1b1Rcv3rOIEJHtp/O7nqVGqBKTp A==;
+X-CSE-ConnectionGUID: 7rZJQk4lSr2DpJvnAGzQmQ==
+X-CSE-MsgGUID: S1vFU7+FQTyxs9N/gH8S9g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="40944476"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="40944476"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 01:56:58 -0700
+X-CSE-ConnectionGUID: r6ozipmBRMi+gfnWVHw4ug==
+X-CSE-MsgGUID: xrsX3PpvQ4qbui3ltnduZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="157302544"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 01:51:38 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, jani.nikula@linux.intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>, stable@vger.kernel.org
-Subject: [PATCH 1/1] drm/i915/dp: Refine TPS4-based HBR3 rejection and add
- quirk to limit eDP to HBR2
-Date: Fri, 27 Jun 2025 14:10:59 +0530
-Message-ID: <20250627084059.2575794-2-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250627084059.2575794-1-ankit.k.nautiyal@intel.com>
-References: <20250627084059.2575794-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="176431920"
+Received: from kuha.fi.intel.com ([10.237.72.152])
+ by fmviesa002.fm.intel.com with SMTP; 27 Jun 2025 01:56:52 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
+ Fri, 27 Jun 2025 11:56:51 +0300
+Date: Fri, 27 Jun 2025 11:56:51 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
+ Raag Jadav <raag.jadav@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>,
+ "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] drm/xe: Support for I2C attached MCUs
+Message-ID: <aF5c02pfI_3FirXD@kuha.fi.intel.com>
+References: <20250626135610.299943-1-heikki.krogerus@linux.intel.com>
+ <20250626135610.299943-3-heikki.krogerus@linux.intel.com>
+ <aF1XTr2y1EmkRT_8@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aF1XTr2y1EmkRT_8@smile.fi.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,152 +80,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Refine the logic introduced in commit 584cf613c24a ("drm/i915/dp: Reject
-HBR3 when sink doesn't support TPS4") to allow HBR3 on eDP panels that
-report DPCD revision 1.4, even if TPS4 is not supported. This aligns with
-the DisplayPort specification, which does not mandate TPS4 support for eDP
-with DPCD rev 1.4.
+Thanks for the review Andy.
 
-This change avoids regressions on panels that require HBR3 to operate at
-their native resolution but do not advertise TPS4 support.
+On Thu, Jun 26, 2025 at 05:21:02PM +0300, Andy Shevchenko wrote:
+> On Thu, Jun 26, 2025 at 04:56:07PM +0300, Heikki Krogerus wrote:
+> > Adding adaption/glue layer where the I2C host adapter
+> > (Synopsys DesignWare I2C adapter) and the I2C clients (the
+> > microcontroller units) are enumerated.
+> > 
+> > The microcontroller units (MCU) that are attached to the GPU
+> > depend on the OEM. The initially supported MCU will be the
+> > Add-In Management Controller (AMC).
+> 
+> ...
+> 
+> > +static int xe_i2c_register_adapter(struct xe_i2c *i2c)
+> > +{
+> > +	struct pci_dev *pci = to_pci_dev(i2c->drm_dev);
+> > +	struct platform_device *pdev;
+> > +	struct fwnode_handle *fwnode;
+> > +	int ret;
+> > +
+> > +	fwnode = fwnode_create_software_node(xe_i2c_adapter_properties, NULL);
+> > +	if (!fwnode)
+> > +		return -ENOMEM;
+> > +
+> > +	/*
+> > +	 * Not using platform_device_register_full() here because we don't have
+> > +	 * a handle to the platform_device before it returns. xe_i2c_notifier()
+> > +	 * uses that handle, but it may be called before
+> > +	 * platform_device_register_full() is done.
+> > +	 */
+> > +	pdev = platform_device_alloc(adapter_name, pci_dev_id(pci));
+> > +	if (!pdev) {
+> > +		ret = -ENOMEM;
+> > +		goto err_fwnode_remove;
+> > +	}
+> > +
+> > +	if (i2c->adapter_irq) {
+> 
+> > +		struct resource	res = { };
+> > +
+> > +		res.start = i2c->adapter_irq;
+> > +		res.name = "xe_i2c";
+> > +		res.flags = IORESOURCE_IRQ;
+> 
+> 
+> 		struct resource	res;
+> 
+> 		res = DEFINE_RES_IRQ_NAMED(i2c->adapter_irq, "xe_i2c");
 
-Additionally, some ICL/TGL platforms with combo PHY ports suffer from
-signal integrity issues at HBR3. While certain systems include a
-Parade PS8461 mux to mitigate this, its presence cannot be reliably
-detected. Furthermore, broken or missing VBT entries make it unsafe to
-rely on VBT for enforcing link rate limits.
+I have to check what happened during the internal review round,
+because I used that originally. But If there's no real reason not to
+continue with it, then yes, I'll use it of course.
 
-To address the HBR3-related issues on such platforms and eDP panels,
-introduce a device specific quirk to cap the eDP link rate to HBR2
-(540000 kHz). This will override any higher advertised rates from
-the sink or DPCD for specific devices.
+> > +		ret = platform_device_add_resources(pdev, &res, 1);
+> > +		if (ret)
+> > +			goto err_pdev_put;
+> > +	}
+> > +
+> > +	pdev->dev.parent = i2c->drm_dev;
+> > +	pdev->dev.fwnode = fwnode;
+> > +	i2c->adapter_node = fwnode;
+> > +	i2c->pdev = pdev;
+> > +
+> > +	ret = platform_device_add(pdev);
+> > +	if (ret)
+> > +		goto err_pdev_put;
+> > +
+> > +	return 0;
+> > +
+> > +err_pdev_put:
+> > +	platform_device_put(pdev);
+> > +err_fwnode_remove:
+> > +	fwnode_remove_software_node(fwnode);
+> > +
+> > +	return ret;
+> > +}
+> 
+> ...
+> 
+> > +static int xe_i2c_irq_map(struct irq_domain *h, unsigned int virq,
+> > +			  irq_hw_number_t hw_irq_num)
+> > +{
+> > +	irq_set_chip_and_handler(virq, &dummy_irq_chip, handle_simple_irq);
+> 
+> Wondering if you need to setup a custom lockdep class here.
+> 
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static void xe_i2c_remove_irq(struct xe_i2c *i2c)
+> > +{
+> > +	if (i2c->irqdomain) {
+> 
+> 	if (!i2c->irqdomain)
+> 		return;
+> 
+> > +		irq_dispose_mapping(i2c->adapter_irq);
+> > +		irq_domain_remove(i2c->irqdomain);
+> > +	}
+> > +}
+> 
+> ...
+> 
+> > +static void xe_i2c_remove(void *data)
+> > +{
+> > +	struct xe_i2c *i2c = data;
+> > +	int i;
+> 
+> unsigned?
+> 
+> > +	for (i = 0; i < XE_I2C_MAX_CLIENTS; i++)
+> > +		i2c_unregister_device(i2c->client[i]);
+> > +
+> > +	bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
+> > +	xe_i2c_unregister_adapter(i2c);
+> > +	xe_i2c_remove_irq(i2c);
+> > +}
+> 
+> ...
+> 
+> > +int xe_i2c_probe(struct xe_device *xe)
+> > +{
+> > +	struct xe_i2c_endpoint ep;
+> > +	struct regmap *regmap;
+> > +	struct xe_i2c *i2c;
+> > +	int ret;
+> > +
+> > +	xe_i2c_read_endpoint(xe_root_tile_mmio(xe), &ep);
+> > +	if (ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
+> > +		return 0;
+> > +
+> > +	i2c = devm_kzalloc(xe->drm.dev, sizeof(*i2c), GFP_KERNEL);
+> > +	if (!i2c)
+> > +		return -ENOMEM;
+> > +
+> > +	INIT_WORK(&i2c->work, xe_i2c_client_work);
+> > +	i2c->mmio = xe_root_tile_mmio(xe);
+> > +	i2c->drm_dev = xe->drm.dev;
+> > +	i2c->ep = ep;
+> 
+> > +	regmap = devm_regmap_init(i2c->drm_dev, NULL, i2c, &i2c_regmap_config);
+> 
+> Use of i2c->drm_dev makes harder to maintain and understand the code.
+> Managed resources should be carefully attached to the correct device,
+> otherwise it's inevitable object lifetime related issues.
+> 
+> With
+> 
+> 	struct device *dev = xe->drm.dev;
+> 
+> and using local dev, it becomes easier to get and avoid such subtle mistakes.
 
-Currently, the quirk is added for Dell XPS 13 7390 2-in-1 which is
-reported in gitlab issue #5969 [1].
+I have to disagree with you on this one. Local dev pointers create
+problems because of the assumption that there is only a single device
+in the function to deal with (especially if they are named "dev"),
+which is almost never the case - this function is no exception.
 
-[1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
-[2] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14517
+But I'll add the local variable as you requested - I'll just name it
+carefully.
 
-Fixes: 584cf613c24a ("drm/i915/dp: Reject HBR3 when sink doesn't support TPS4")
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Ville Syrj_l_ <ville.syrjala@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v6.15+
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14517
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     | 31 +++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_quirks.c |  9 ++++++
- drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
- 3 files changed, 39 insertions(+), 2 deletions(-)
+This kinda related but off topic. IMO in cases like this the regmap
+should be assigned to the child device that is being created instead
+of the parent device. That is currently prevented by the current
+regmap API - the device has to be fully registered before the regmap
+can be assigned (and I'm not referring to the resource managed devm_*
+API), but I'm not convinced that it has to be like that. The problem
+is that the parent device may have multiple child devices that each
+need a dedicated regmag. So just as a note to self: check if we can
+improve the regmap API.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f48912f308df..362e376fca27 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -171,6 +171,15 @@ int intel_dp_link_symbol_clock(int rate)
- 	return DIV_ROUND_CLOSEST(rate * 10, intel_dp_link_symbol_size(rate));
- }
- 
-+static bool intel_dp_reject_hbr3_due_to_tps4(struct intel_dp *intel_dp)
-+{
-+	/* TPS4 is not mandatory for eDP with DPCD rev 1.4 */
-+	if (intel_dp_is_edp(intel_dp) && intel_dp->dpcd[DP_DPCD_REV] == 0x14)
-+		return false;
-+
-+	return !drm_dp_tps4_supported(intel_dp->dpcd);
-+}
-+
- static int max_dprx_rate(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-@@ -187,13 +196,22 @@ static int max_dprx_rate(struct intel_dp *intel_dp)
- 	 * HBR3 without TPS4, and are unable to produce a stable
- 	 * output. Reject HBR3 when TPS4 is not available.
- 	 */
--	if (max_rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
-+	if (max_rate >= 810000 && intel_dp_reject_hbr3_due_to_tps4(intel_dp)) {
- 		drm_dbg_kms(display->drm,
- 			    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
- 			    encoder->base.base.id, encoder->base.name);
- 		max_rate = 540000;
- 	}
- 
-+	/*
-+	 * Some platforms + eDP panels may not reliably support HBR3
-+	 * due to signal integrity limitations, despite advertising it.
-+	 * Cap the link rate to HBR2 to avoid unstable configurations for the
-+	 * known machines.
-+	 */
-+	if (intel_dp_is_edp(intel_dp) && intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
-+		max_rate = min(max_rate, 540000);
-+
- 	return max_rate;
- }
- 
-@@ -4304,13 +4322,22 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
- 			 * HBR3 without TPS4, and are unable to produce a stable
- 			 * output. Reject HBR3 when TPS4 is not available.
- 			 */
--			if (rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
-+			if (rate >= 810000 && intel_dp_reject_hbr3_due_to_tps4(intel_dp)) {
- 				drm_dbg_kms(display->drm,
- 					    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
- 					    encoder->base.base.id, encoder->base.name);
- 				break;
- 			}
- 
-+			/*
-+			 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
-+			 * even if the sink advertises support. Reject any sink rates above HBR2 on
-+			 * the known machines for stable output.
-+			 */
-+			if (rate >= 810000 &&
-+			    intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
-+				break;
-+
- 			intel_dp->sink_rates[i] = rate;
- 		}
- 		intel_dp->num_sink_rates = i;
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index a32fae510ed2..d2e16b79d6be 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -80,6 +80,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel_dp)
- 	drm_info(display->drm, "Applying Fast Wake sync pulse count quirk\n");
- }
- 
-+static void quirk_edp_limit_rate_hbr2(struct intel_display *display)
-+{
-+	intel_set_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2);
-+	drm_info(display->drm, "Applying eDP Limit rate to HBR2 quirk\n");
-+}
-+
- struct intel_quirk {
- 	int device;
- 	int subsystem_vendor;
-@@ -231,6 +237,9 @@ static struct intel_quirk intel_quirks[] = {
- 	{ 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
- 	/* HP Notebook - 14-r206nv */
- 	{ 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
-+
-+	/* Dell XPS 13 7390 2-in-1 */
-+	{ 0x8a12, 0x1028, 0x08b0, quirk_edp_limit_rate_hbr2 },
- };
- 
- static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index cafdebda7535..06da0e286c67 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -20,6 +20,7 @@ enum intel_quirk_id {
- 	QUIRK_LVDS_SSC_DISABLE,
- 	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
- 	QUIRK_FW_SYNC_LEN,
-+	QUIRK_EDP_LIMIT_RATE_HBR2,
- };
- 
- void intel_init_quirks(struct intel_display *display);
+cheers,
+
 -- 
-2.45.2
-
+heikki
