@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CF3DC7EE3A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCD99C83010
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:33:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5685210EA2D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FCF310EA2B;
 	Fri, 27 Jun 2025 13:33:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MyiXXdUc";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="nM/ns9nw";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE76910EA1F
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:33:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B9CD10EA29
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:33:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,25 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=jxBBUDL1GLKTCgXwD2l2CzxNmakg54HinodSKk05CDE=; b=MyiXXdUcLdoRYfohFleVkuwewe
- ylNZR7FaO9cyEysMKxvJ9r0Jx1Mb9C2lG/BeCuB4amf2MMglwycgDXxVlE/EDI2zDBJ75yJK+xm+Q
- KtVcqbh46muXBlD97VXMFdn/t1D+SaV8oiRlEFNq6NwsBj0+HWuwR2Uq93pHLqZhaOYxB53rr7ntB
- bFeVt1IVP7Uwgu9vli21j1xX88gitnnI3+DX1dJUQSviumXDA8hmrvAIbMN4nvEipPgZb1+q53JST
- RyLKZ3/YC7KGx85YnFEcZ+mK7opuafPSwdHFjFsk07yIKHczMW4rZ/y3Rd0ttPXXBvUwIqpw12SRM
- A8vjbt1w==;
+ bh=okKLyx5LromtVj79C/+pxUwom96ZwvsLF3OuuThg8+c=; b=nM/ns9nwk4jSP0OkXllyPJRZc5
+ cSN+n4E7TZ42Mu4toZCUW8nOesoWyS7pdnmIRFwiTjnWlBMmAU14L0r5cfjxPt3tmLxb3i8bUBhmF
+ 08SjN5JCAcQ+yoWuCmTq6AHM95sXh08GhisImeUTgER0SX4NwjoPR9qEC3FDhXhwsul4B8ybhUdLx
+ 6W0PGvKDH+UTy5wYxnI2lzurEjzWnRniQrJx9TcwyyAZrKGoBfG9p13O0FNHGPvtk3+U0Ij2H6L4P
+ rg3eVttcWPviWqGg/HFG5fnb1guumdhq5vtCOwLHZg3PeA/fsiS1mmN5voI2EQSVigs0xmjzSDICR
+ 9v3Ub6DQ==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uV9DH-009PqA-5p; Fri, 27 Jun 2025 15:33:55 +0200
+ id 1uV9D9-009Poa-Ig; Fri, 27 Jun 2025 15:33:47 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com,
-	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v7 14/24] drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
-Date: Fri, 27 Jun 2025 14:33:27 +0100
-Message-ID: <20250627133340.54603-15-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH v7 03/24] drm/xe: Rename utilisation workaround emission
+ function
+Date: Fri, 27 Jun 2025 14:33:16 +0100
+Message-ID: <20250627133340.54603-4-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
 References: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
@@ -58,37 +60,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Emit MI_FLUSH_DW_CCS when invalidating on auxccs platforms.
+Lucas suggested to consolidate to a slightly different naming scheme which
+will align with the upcoming additions better.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 7 ++++---
+ drivers/gpu/drm/xe/xe_lrc.c | 7 ++++---
  1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 0b4d1c284a9d..2834c0193f87 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -285,15 +285,16 @@ static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
- 			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
- 			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
- 	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
-+	const u32 flags = aux_ccs && class == XE_ENGINE_CLASS_COPY ?
-+			  MI_FLUSH_DW_CCS : 0;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 58c676afc60f..a26ec8b6a3ad 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -944,8 +944,9 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
+  * store it in the PPHSWP.
+  */
+ #define CONTEXT_ACTIVE 1ULL
+-static ssize_t wa_bb_setup_utilization(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+-				       u32 *batch, size_t max_len)
++static ssize_t
++setup_utilization_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe, u32 *batch,
++		     size_t max_len)
+ {
+ 	u32 *cmd = batch;
  
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	if (invalidate_tlb) {
- 		dw[i++] = preparser_disable(true);
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno,
--					MI_INVALIDATE_TLB,
--					dw, i);
-+					seqno, MI_INVALIDATE_TLB | flags, dw,
-+					i);
- 		/* hsdes: 1809175790 */
- 		if (aux_ccs) {
- 			struct xe_reg reg;
+@@ -1040,7 +1041,7 @@ static void finish_wa_bo(struct xe_lrc *lrc,
+ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ {
+ 	static const struct wa_bo_setup funcs[] = {
+-		{ .setup = wa_bb_setup_utilization },
++		{ .setup = setup_utilization_wa },
+ 	};
+ 	unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
+ 	u32 *cmd, *buf = NULL;
 -- 
 2.48.0
 
