@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38322C7EE31
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 08:39:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52C41C77B7F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 08:43:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50B6D10E049;
-	Fri, 27 Jun 2025 08:39:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1860810E978;
+	Fri, 27 Jun 2025 08:43:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QgmrcDYU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SwF4lQBP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE1A210E32A
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 08:39:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37F2310E978
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 08:43:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751013590; x=1782549590;
+ t=1751013796; x=1782549796;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=MMwFHxh37UlcT2hv5pEFV6MfGayngYYFrk3r2EdOHIQ=;
- b=QgmrcDYUC3quMPAhrOu9nFV4ctfDO6BaZrAPcyUGcdJNXLkdTk7VnXX3
- PkZaNR5BK1sJ9tDJBvNeaM9o3Edm2rriSZQnub9UwIJBjdXtGYC4tZtcg
- LnioTEpAkN/gxksBj0+U9oWMYt/7cdjdmaS/L5tQuapCDlXUN0+JfmNVA
- 7wwFLCZLwE9jGG9qjZsP+vcvrtEwrd0gxamxXPDTeeJ7P3/Dc/lJArhCS
- jbdYNce6yusiR//0WBQq1P5mB9/WVAsjyPwKi0ClnQroD+ZglHlESLnaq
- /Zij9Rzv3n2W/piygiSDB/oByMh3UZ4X3y+V9GRdyGyjJmWQfgpAsYUqN Q==;
-X-CSE-ConnectionGUID: N6o6x2T9SN6Q99ncxDuHvw==
-X-CSE-MsgGUID: g3aWozeiRTWwqDVp877BHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="52555631"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="52555631"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 01:39:48 -0700
-X-CSE-ConnectionGUID: IwSflFslQCCpu/8s9aZ4nQ==
-X-CSE-MsgGUID: vfZ6Y5QUT76JiBsDOo/F6A==
+ bh=Ok5zMN7TuzaeKq6xH/bUqbQ9DF2ykVYp7cdPUFYrzyk=;
+ b=SwF4lQBPm528V6kuAp2HjERrZyJGCDXZuvJlGUtvAcFfoRMwF17AKspg
+ ir9GP3b6ppeNELjWVzCAN/xkeqrKtNB9mXAO9YNaitjZ17qCB6qMePTNh
+ 9+GpepQfOFu/xFzAL3mPawsac6dTqVUjoalHON7oryUalYEsnP3YAgOSP
+ eLw6YUYFu4RCwmLkzVazxTEd+7oz725a9RlY+rW23bHWBF/WqP989XHau
+ 4yDCILC3ny7cXkyLphdfs1ffikUW81juzkcQsK08F2SM9Oa8Xuj3X9kX0
+ aR1g8s4Cb1bQs4kRkqf3OhpXxKP6MKIPgJrEwqfMVjMdYiazTT+Vu3z6R w==;
+X-CSE-ConnectionGUID: e/wFVKKWRDiV1blQFuKc3Q==
+X-CSE-MsgGUID: 8yGR6DMPTkeLZrYLU1BeeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="40943604"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="40943604"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 01:43:15 -0700
+X-CSE-ConnectionGUID: BIf4/bceTiWQOX+V/Km3jA==
+X-CSE-MsgGUID: an3EjjIXRIOgUUCBTfRj8w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="152364763"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="156786446"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.245.99])
  ([10.245.245.99])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 01:39:46 -0700
-Message-ID: <8b8f41a4-779d-4b6c-ae5f-ad780474577f@intel.com>
-Date: Fri, 27 Jun 2025 09:39:44 +0100
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 01:43:14 -0700
+Message-ID: <b7d0f51e-cc37-46ff-9401-a7eec5ed63fd@intel.com>
+Date: Fri, 27 Jun 2025 09:43:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Fxi typo in Kconfig
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-References: <20250627074119.347826-1-dev@lankhorst.se>
+Subject: Re: [PATCH v6 1/4] drm/xe: Use devm_ioremap_wc for VRAM mapping and
+ drop manual unmap
+To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20250626071437.3223888-1-piotr.piorkowski@intel.com>
+ <20250626071437.3223888-2-piotr.piorkowski@intel.com>
 Content-Language: en-GB
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250627074119.347826-1-dev@lankhorst.se>
+In-Reply-To: <20250626071437.3223888-2-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,39 +71,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 27/06/2025 08:41, Maarten Lankhorst wrote:
-> doubut -> doubt.
+On 26/06/2025 08:14, Piórkowski, Piotr wrote:
+> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 > 
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-
-In the commit title also s/Fxi/Fix :)
+> Let's replace the manual call to ioremap_wc function with devm_ioremap_wc
+> function, ensuring that VRAM mappings are automatically released when
+> the driver is detached.
+> Since devm_ioremap_wc registers the mapping with the device's managed
+> resources, the explicit iounmap call in vram_fini is no longer needed,
+> so let's remove it.
+> 
+> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
 
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
 > ---
->   drivers/gpu/drm/xe/Kconfig | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/xe/xe_vram.c | 6 ++----
+>   1 file changed, 2 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> index 553c29e1030b1..4048a781323b6 100644
-> --- a/drivers/gpu/drm/xe/Kconfig
-> +++ b/drivers/gpu/drm/xe/Kconfig
-> @@ -85,7 +85,7 @@ config DRM_XE_GPUSVM
->   	  Enable this option if you want support for CPU to GPU address
->   	  mirroring.
+> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+> index e421a74fb87c..3a4c84e9efc6 100644
+> --- a/drivers/gpu/drm/xe/xe_vram.c
+> +++ b/drivers/gpu/drm/xe/xe_vram.c
+> @@ -156,7 +156,8 @@ static int determine_lmem_bar_size(struct xe_device *xe)
+>   	xe->mem.vram.dpa_base = 0;
 >   
-> -	  If in doubut say "Y".
-> +	  If in doubt say "Y".
+>   	/* set up a map to the total memory area. */
+> -	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
+> +	xe->mem.vram.mapping = devm_ioremap_wc(&pdev->dev, xe->mem.vram.io_start,
+> +					       xe->mem.vram.io_size);
 >   
->   config DRM_XE_PAGEMAP
->   	bool "Enable device memory pool for SVM"
-> @@ -96,7 +96,7 @@ config DRM_XE_PAGEMAP
->   	  Disable this option only if you don't want to expose local device
->   	  memory for SVM. Will reduce KMD memory footprint when disabled.
+>   	return 0;
+>   }
+> @@ -278,9 +279,6 @@ static void vram_fini(void *arg)
+>   	struct xe_tile *tile;
+>   	int id;
 >   
-> -	  If in doubut say "Y".
-> +	  If in doubt say "Y".
+> -	if (xe->mem.vram.mapping)
+> -		iounmap(xe->mem.vram.mapping);
+> -
+>   	xe->mem.vram.mapping = NULL;
 >   
->   config DRM_XE_FORCE_PROBE
->   	string "Force probe xe for selected Intel hardware IDs"
+>   	for_each_tile(tile, xe, id)
 
