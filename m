@@ -4,164 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F31EC7EE2A
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 17:32:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74BCEC7EE2A
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 17:32:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2534310EA70;
-	Fri, 27 Jun 2025 17:32:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B55610E33B;
+	Fri, 27 Jun 2025 17:32:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H0PqGnqk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DqS8cCGX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8884B10EA70;
- Fri, 27 Jun 2025 17:32:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4763510E1C1;
+ Fri, 27 Jun 2025 17:32:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751045526; x=1782581526;
+ t=1751045553; x=1782581553;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=QnhIcRsCEWTtHoWEO0aQP3gMkEVE34lW3Rf854aVJD0=;
- b=H0PqGnqkngcRJGYzXxt9Y1HjwGU/wqhmzGGy4VdH8aEcgsu+6+acj28X
- UnamY06g+ZM4fl48yKy3C5run08UbD+2+dZqbasXt9CpBShRHpqzHVMcU
- oPWkBDaEuL6laiVDiyl7WhBXaIx1tq0iFrdclJfSq9/dP0rcfaVFRE1fQ
- ohKcg/yrMmhIa9lKswgcKxHw22mzl+A0YrNKs+7Cj+L/I/eNZkcpSeHN0
- hDFulbrXdOy6DCSV+SW2dpnpFbkeuhPIYZrU1OaYyJLaD3zom7ttPTG+q
- rFqJtnZBL38vNGcaN44e7pjF+YD4yuYbpQWMZDYL5DUFcMj6AGu6SVTxs Q==;
-X-CSE-ConnectionGUID: bvDKMUZAR8miQpmkNNYaYw==
-X-CSE-MsgGUID: k6ylhGPjQ2etZ5UFO+pdkQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="70936537"
-X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="70936537"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 10:32:05 -0700
-X-CSE-ConnectionGUID: m43awmGTRseOFCzaS33suA==
-X-CSE-MsgGUID: UHE1TT2tR0CS86v2xU+gnA==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=JnJoioaeQPUEUWJtCDCX9PdA9dB7so9HZ3moGzT2vTM=;
+ b=DqS8cCGXgx0HXArLeGYOEe72qThOTC1d2K0HO6Y6cZsnDJTbFAJovto1
+ 8y9mjC3xqJsku016WAe2JYyAsA7Vo6v/7ViZLFK72QHveSwqO8KNdovrH
+ ZVyosd5IOH9a6zktJ8PaF1SA33Gr0yPt6Wu3qhjBrKnaJHtp9T85tN1sS
+ A5DLh4A3n4ssGwOo8x97/66PiB1v3u6WPu8C3XQvptcFb3uxpZnFeBtEa
+ SrrA/Pu7Ix6ou31sLydyfLGNfLKq6yL3P0yzC/EqfNhaLwsil94vwfuNA
+ cPpfgg9i0bICKJyXDP7V2yCh8DPEFg3TMT6ocDzVkvsEJEPmYqsd44cNt g==;
+X-CSE-ConnectionGUID: 6AhG+uSwQECiwee6pqZShQ==
+X-CSE-MsgGUID: jEvQijrJRzmB1wlJsPHmWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="53516291"
+X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="53516291"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 10:32:33 -0700
+X-CSE-ConnectionGUID: 0AbqSp5kS12vgkd2n9sVNw==
+X-CSE-MsgGUID: tko0eDXqQTG94z9BaX4ZbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="176531325"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 10:32:02 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Fri, 27 Jun 2025 10:32:00 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Fri, 27 Jun 2025 10:32:00 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (40.107.243.84)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Fri, 27 Jun 2025 10:32:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ioue22hamemG8u5+IvpMkrtcH+LtOy72q4Z7ZlgWFhSXbMIFy1Fjoyx/7AeUm2mgigT7xsZ0Frp9TPzwraTHKL+5bdbTmp1ZBzwwYigksxm9L8hYl9/5/QfdB/glAMPN8a8iY8KKDL8OjiPEC8Jxist+j9qTnV5s/xeX9Y62SA2PT7ayxPkSiXjiJ0vPyfryvx0Zyq7x/tyUFo3zegu2f1pIXolFoQ6q+RwBfWKvDYzQvCVvc4A7ln2pIyCaAeaF6bwKxk4s7745PJcb3FgLuwhuwOtpKZh+V9vo6IxemvgoEIkdIaBAbjjrdHjZv6MMn0Pum5ggE00Eg2HMjdqO3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QnhIcRsCEWTtHoWEO0aQP3gMkEVE34lW3Rf854aVJD0=;
- b=wp+7DN3wr3pdLRY9S8dwkHJd1cXnsWPEEid6E2HeyUqJE3BDVDLKC3xqWv8jUOuhqI6ntNuUctZijbpKN6y9iNz1HKrNjyjju9EdyFk8QqJJTUbqPXIZM/pZcJKh262OQNDA40zDA0+gLkvtTB+ViwDa/jiHbQyYv6xOSwfeTf2kBnmV6S/S2eGutEOEAUOZd4ibRJD51glKvmTxgbvSySMHYTIfS5O7UAqIYH+e1KVidzZ4tYZXy3g2efLJSyNXQzR1OpxT2qkiDJbu7tgS3nHGszM48LdloI6K3r4vWKH3AVdh3DimmiJexNXwLDNuTGM1sDuQS3xg2r99fsgWsg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by PH0PR11MB7660.namprd11.prod.outlook.com (2603:10b6:510:26f::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.21; Fri, 27 Jun
- 2025 17:31:57 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%5]) with mapi id 15.20.8857.022; Fri, 27 Jun 2025
- 17:31:57 +0000
-Date: Fri, 27 Jun 2025 12:31:54 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Dave Airlie <airlied@gmail.com>
-CC: <dri-devel@lists.freedesktop.org>, <tzimmermann@suse.de>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: iosys-map: refactor to reduce struct size
-Message-ID: <atymrskfqxr2rt2qittipf7lgohynge2p6yxlwcph3megmlraa@vjbrnsck2qb5>
-References: <20250522065519.318013-1-airlied@gmail.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20250522065519.318013-1-airlied@gmail.com>
-X-ClientProxiedBy: BYAPR07CA0072.namprd07.prod.outlook.com
- (2603:10b6:a03:60::49) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="158591632"
+Received: from opintica-mobl1 (HELO stinkbox) ([10.245.245.146])
+ by orviesa005.jf.intel.com with SMTP; 27 Jun 2025 10:32:29 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 27 Jun 2025 20:32:28 +0300
+Date: Fri, 27 Jun 2025 20:32:28 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Imre Deak <imre.deak@intel.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Matt Wagantall <mattw@codeaurora.org>,
+ Dejin Zheng <zhengdejin5@gmail.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 18/18] drm/i915/ddi: prefer read_poll_timeout() over
+ readx_poll_timeout()
+Message-ID: <aF7VrBSZQVlaSN6-@intel.com>
+References: <cover.1751023767.git.jani.nikula@intel.com>
+ <59bcc15dd4debf00ee0c7b430a3b701462ac9de7.1751023767.git.jani.nikula@intel.com>
+ <aF6UOCLdO0fGHGA9@intel.com>
+ <f922ec0a42855e17228d3f22d7291b389abe2df0@intel.com>
+ <aF67cxjlfWiWMx-4@intel.com>
+ <1b5d73351eda2d86437a597673bd892baf90fafa@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH0PR11MB7660:EE_
-X-MS-Office365-Filtering-Correlation-Id: 19c85ac3-fc48-4841-c74d-08ddb5a08455
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3nf2RFkEOMCSesDF76qSqOhdcmIW8w1IZU/uuiIg/0zpr6QJAvvzk/hF8xfV?=
- =?us-ascii?Q?F4cO0DF6M4TCI9qSBk+0jMelyw05cHiePUXwWgKkCyWNeWVr86JBdozVKCHH?=
- =?us-ascii?Q?urbdgnFTFBtxCpiRhXr3/DMifbmGcn7YFsTWqsnSf3y9FoAT2EbHQuh8gtyu?=
- =?us-ascii?Q?HQvYOFKWwIV9jNLzGHWKJi5vWRbU8Wro6NDm6/ITOCl6Ri6XA7eOI6HDgTgn?=
- =?us-ascii?Q?3RJ5LH8xQThUZWEZcW4cE9yQ2MuQZcdrjzFA989HQkorirkg6NXb4qKHsHga?=
- =?us-ascii?Q?wchW2k3NIuRltKpFmuANync9TuDJ5/reOeadjIXG3UOB8UsKC84nAwyyL3Va?=
- =?us-ascii?Q?3R7Ev4SDEjceaTTTe9DQgc5trvOmbSzQn5Svf4v9Ly2a721ZwQ0LN0NqRP2X?=
- =?us-ascii?Q?0Fc2op48x/+L7vJMuC+bI8Nduo4cqe1z04ngmNTp5sTYqLvRlx+WpaFamArc?=
- =?us-ascii?Q?wSzYpGhGM2cGWp8EIcXx0QADzJE4DvJNEv34y3mGJJP/I3xKr5pDBeT47gjx?=
- =?us-ascii?Q?jph23POmpx2spLxWmMLbGR/BLaceLDVgRW1ItfB+RC3LG67aAdYXFPtfj4Fs?=
- =?us-ascii?Q?Ec4CNH1zcUgrVblqpCqtihgpWCbmZ03Vm657wKOuJNwv4tlSYAOfGnxpOHn7?=
- =?us-ascii?Q?Al+/Qsq35jL6WFoyG9q9guRrYD8Yi/YlHVUqgz0CAAYGyGxGyRSF1pmVycdO?=
- =?us-ascii?Q?kNL3AWNUn6OS3xx3vvalrJaQ29D8F2wnqCqdiRrf3psAW2PobwS12Xe+kd0n?=
- =?us-ascii?Q?8X59sYt26YEdP0Bh7/6Ha75o/yxRK8IoSVBXOZe6K/6NvNnJeMt4auaimeKN?=
- =?us-ascii?Q?rzC0sirAe+tg55oq2gyXNDg666BcW1+AOszMiF29vOG3UkCx7YN+8C1OT3p4?=
- =?us-ascii?Q?ijfIsldFl/jYmUpboHCDdWT+XFy1dyEWd043TXZG20dm1lXBw6G8bcrAr+lQ?=
- =?us-ascii?Q?XWvFBOaomaxgmS9NU/JGmTExuyJ5n6Pnvom05Aq4tt7+/nq29UkySs8A5gKO?=
- =?us-ascii?Q?ws6a5MkoMQww9P18Sq+ILNN3/c091pzcu378/bEAXRhedZ/A4DsJhFWn5ure?=
- =?us-ascii?Q?SvXnc+lX1fnytLLCyogth/NBz6wXf4ZYuLkjGxrBqKQJZ5lD9bRBmW/cdrmi?=
- =?us-ascii?Q?MmGMtpAYKnwRfvTAHLkfpHXZaMmbSqc/DmyCXJk1Mch7ggnHawNHmxzBQcS7?=
- =?us-ascii?Q?+fEdHQ+pYUp9KIHa5IChSVt0aqWWuVOmUDJMEnYmBeF9P+tqK5lNqXt92AbW?=
- =?us-ascii?Q?wVuS9jTfBDO6fQlzPcoOZ/c8YGq5adZYIRi01qYGjcypHK1pPBT6tnJwo4RY?=
- =?us-ascii?Q?tiFwPxKt80fWfT8xA1Uu9OeMRlLTLSa/FCO1+JPsp6LcEjFyOuc9+uKrUU4O?=
- =?us-ascii?Q?ShfG+ALQohB5lqNiCJNZ7/DBNGpVl0v+JrVihufk5banQpvq4/4Fr7sFU2hD?=
- =?us-ascii?Q?2kaTGAo+1XI=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PUa3CcVkYj+i98+2clE97mFPVD+eAcY6ZHvyoGQ39ecY21R1u4Vf0sIvIUZ8?=
- =?us-ascii?Q?vzhZ0zkGtA68o8H7RRb7b4j0U5f5Z+iufrG9o5MxAELu+AVKm9iYpIH49GjZ?=
- =?us-ascii?Q?FJ4lQ+BpaXNnWAXLAdk+gUHjae6oj9mSUiisncv+ItnGLhdvfxlfuqfON/Xd?=
- =?us-ascii?Q?B5GHrCLbZPHN8tVZmCyFi0Ta43zFrZ9MlIU2SkETXk2STK2+xOWhN41HtSea?=
- =?us-ascii?Q?97zi8/Qu8jEzBMfzL+u40eGD3vd/byZAxWjyW49FqeNB/iq4/QzN721zpjJ8?=
- =?us-ascii?Q?fVZmB9FM3OkSkxmYgRG5h1KrmmHJYHFwnYoNC3ekFgN9Jwh8t4qF0hVpbPo+?=
- =?us-ascii?Q?XY2vKN9Pfw/kGHLOIqyS76FxPfcoaoBuZudUQ/hdNgFbLtBKVnsmGRwLgBDz?=
- =?us-ascii?Q?WJywIHATk/IeUZrGodQpZ2Qm7NbLjyvRONIFzVIkuwiKw4q4Hfnonc/x3Du9?=
- =?us-ascii?Q?v/qIHEiQ4yMTSGaabQyUDv7FXOdDFj2uODqiSWMNA4Bs05HX2LIFv93LSjX5?=
- =?us-ascii?Q?LvqzJ65xmDUER9CULOCde7A/yVJi2K+Trw3zTPxPCLcorpe5hMIMIkrAIyTs?=
- =?us-ascii?Q?C1bu1T9qadQ6VjKtvLY1Wk9EkHKHfrT7Aw/kPtvKStS+086OyCVzQKMypc7/?=
- =?us-ascii?Q?8pV6YgA7W8AgQF6Tzcg7mWf2PajhywW+RjlHDCl+WADx5c0PeCy0tx0776/M?=
- =?us-ascii?Q?azDmH++dMkYJmJh6HCnBOm1FyhsCOJYjzsU4xloc4WKyQzwyIS22UO/WCL8Z?=
- =?us-ascii?Q?PcA+ql1YCliyZUMuKThahpMeDLZ2V/tUAHQsIZSNiDWRHxdKc6MrrIqqIeKn?=
- =?us-ascii?Q?L6qezon/RZ1PLoVdZDD9dVa0W1DxR3n2Fryst2Np0W0qEOMcEz223cA3PkFB?=
- =?us-ascii?Q?9aIfS2F5mzo4uL6JBQlOvBGlqJkX5t8srjjjL3EwMLfZfK9m3pwb+RA/+9sJ?=
- =?us-ascii?Q?4k3NxfirAE+pbQAsS++z5Pq7OeAUWlW829G+HFCTHcuH/FE7r3Ncy6qInZ8W?=
- =?us-ascii?Q?bmlVeO2sFZ4qiLpzkBc/UgmwwtpvY8JIVlsF6YUdT98aCM4geyQC7aQs1D83?=
- =?us-ascii?Q?LAbxDHaeIGAE3fa8jbRjIEENWXjLL391XM20leG8xgkKi46qqO9yQrBB28Ek?=
- =?us-ascii?Q?juRdzN1RGWTOhV4p1RtbXxIv41CbnEch2Xc3264ZmkUGbPYSsTz8VCgqWLJE?=
- =?us-ascii?Q?ssjGIo/NzaVYE0I0LzU/x6johYB9XvKevdYEcpgsTX4YbYwosMJ2aZmKMpAD?=
- =?us-ascii?Q?pDC6sFaHefGqamDWirjLFhwLwDdAlBWQniWqJEITu8NErCgCnzIkAESZO+t9?=
- =?us-ascii?Q?fYvkuGfx16OhEzdb0uN68rcO9871aNNP6ltSQS473k1/29Z2RiuukJC5pv0L?=
- =?us-ascii?Q?6W0VU5PeE8xQwmh+0mL8kJKCVGCwbcH4KIf6BTQC3dy4bcv0qYYjF/ao2R/N?=
- =?us-ascii?Q?ack3tIZZifFAS6lLYrMOUa3xhyLzFAr75MRr0Mn9G868WltgAK1o+aCYV1ID?=
- =?us-ascii?Q?VWAxGSC5qxmHTH7QJwXXdmvHye/9wiJQ4QQSgbsVu6diFDS0oDFUX6d2QjdP?=
- =?us-ascii?Q?1VwZXSaDM++u13+R+FP26EtnSJLU78vEuv1mxceGv5rH5VuWgbtJM8wFZURY?=
- =?us-ascii?Q?Dw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19c85ac3-fc48-4841-c74d-08ddb5a08455
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2025 17:31:57.8218 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nV3Zl3lH2LEEo85+FcMeL++4ACCtoTh8okOKOb+2iNG+1v94q10v1bnxo9COCJyCuA85xzw0q8mQxXhZRJ4Z9zEj6mJYmBH/nrDtYpfAs4U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7660
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1b5d73351eda2d86437a597673bd892baf90fafa@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,33 +79,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 22, 2025 at 04:52:09PM +1000, Dave Airlie wrote:
->Hey iosys_map users :)
->
->I fell down a bit of a refactor hole today, it was just random and
->sometimes you just have to let these things run their course.
->
->I noticed iosys_map has a 7-byte hole in a 16-byte structure, and
->it gets embedded into a bunch of other structs and it offended my
->sensibilities.
->
->This series makes iosys_map be 8-bytes, using the bottom bit of
->the void * to store the is_iomem.
->
->Patch 1: adds new accessors to start hiding internals
->Patches 2-7: refactor all users in-tree to use new internals
->(hopefully got them all)
->Patch8: moves the internals around to catch anything not in-tree.
->Patch9: reimplements iosys_map as 8-bytes by hiding the is_iomem
->inside the pointer.
+On Fri, Jun 27, 2025 at 07:26:22PM +0300, Jani Nikula wrote:
+> On Fri, 27 Jun 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Fri, Jun 27, 2025 at 04:34:23PM +0300, Jani Nikula wrote:
+> >> Internally the macro has:
+> >> 
+> >> #define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
+> >> 				sleep_before_read, args...) \
+> >> 
+> >> ...
+> >> 
+> >> 		(val) = op(args); \
+> >> 
+> >> So you do need to provide an lvalue val, and you need to be able to add
+> >> () after op. I think GCC allows not passing varargs. IOW you'd need to
+> >> implement another macro (which could be used to implement the existing
+> >> one, but not the other way round).
+> >
+> > Just get rid of the 'args' and 'val' and it'll work just fine.
+> > Then it'll be almost identical to wait_for() (basically just missing the
+> > increasing backoff stuff).
+> >
+> > AFAICS this thing was originally added just for reading a single
+> > register and checking some bit/etc, so the name made some sense.
+> > But now we're abusing it for all kinds of random things, so even
+> > the name no longer makes that much sense.
+> 
+> Yeah, evolution not intelligent design.
+> 
+> > So I think just something like this would work fine for us:
+> 
+> LGTM, with the _atomic version for completeness.
 
-Even if not being able to use patch 9, I think there's a value in the
-previous patches to hide the internals. Is this something you're going
-to re-submit without the last one?
+The other differences between wait_for() and read_poll_timeout()
+I see are:
 
-thanks
-Lucas De Marchi
+- read_poll_timeout() always evaluates 'cond' at least twice.
+  For some things I think it would make sense to omit 'op'
+  entirely so we don't have to introduce pointless variables
+  in the caller (eg. poll_timeout(, pipe_scanline_is_moving(...), ...))
 
->
->Dave.
->
+  but the double evaluation of 'cond' there is not desirable.
+  Should be an easy change to make read_poll_timeout() more
+  like wait_for() and stash the return value into a variable.
+
+- ktime_get() vs. ktime_get_raw(). I suppose it doesn't really
+  matter too much which is used?
+
+- 'op' and 'cond' are evaluated twice during the same iteration of
+  the loop for the timeout case in read_poll_timeout(). wait_for()
+  is a bit more optimal here by sampling the timeout first, then
+  doing the 'op'+'cond', and finally checking whether the timeout
+  happened.
+
+  I suppose optimizing the timeout case isn't very critical. Though
+  the code would be a bit less repetitive, with the caveat that we
+  need an extra variable for the timeout result.
+
+- wait_for() has an explicit compiler barrier to make sure 'cond'
+  and the timeout evaluation aren't reordered. Though I think it's
+  in the wrong spot for the cases where 'op' is the one that samples
+  the thing that 'cond' checks.
+
+  However I *think* ktime_get() being a function call should be enough
+  to prevent that reordering from happening?
+
+I guess I'll see what I can cook up to make this stuff
+more agreeable...
+
+-- 
+Ville Syrjälä
+Intel
