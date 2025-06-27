@@ -4,58 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67EBCC77B7F
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 12:43:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53FA1C77B7F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 12:45:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 144A110E9FF;
-	Fri, 27 Jun 2025 12:43:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D3E310EA06;
+	Fri, 27 Jun 2025 12:45:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jGymb10F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CIs50R/Y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E003E10E9FF;
- Fri, 27 Jun 2025 12:43:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9522310EA06
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 12:45:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751028210; x=1782564210;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=amX9Hn9SZqcN8rl3C6HwI8vOhhkBrCH7Q6cSo++gkFs=;
- b=jGymb10FXI4OooUrUNPPIulnFipX/cfWqPPEgS+UL1vNmjpt1t5EiNQ5
- Q2BZwjV1ISa2AkYajWopmgUeRcMp5PoSdBwWBtYUK2JSdNkOLautu6/xP
- txfG4FcU7wFKX+qbf2RUbQrf9Stwng1XNNS5wzicvUMnuM0tghC+lhcc1
- AiBgHB2ZgkHktOp7y4R4GQvTYGYIDvq1LrVoxzSsxuYaCPQi3R2lgnHgf
- lO2k2vfZgtVtG3tR+awTvZQWvH2mNOKkCwv+Nu2uCQhtecd5+pQDWLHA1
- mtWMO7JAj+f42z+nF11WMPrgYJSB2oWq7xH5onm7T89uBi8ujytaiXkzq Q==;
-X-CSE-ConnectionGUID: vuia8yKHTLCqR7kLKvVHCA==
-X-CSE-MsgGUID: IsreLrjtRfmBvoLAp+Z+uA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="63937720"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="63937720"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 05:43:29 -0700
-X-CSE-ConnectionGUID: 6OPP5vxXRWybhJwHFePztA==
-X-CSE-MsgGUID: DiArT/yrSHWGoaYYfn+u2A==
+ t=1751028337; x=1782564337;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=rPpLOEQQwdotiHt6e4oezetzCql9PBIVoPZCc/ss7uc=;
+ b=CIs50R/YZKLjLaDdMxgG7h8EjPvD1UhjzMcYBudZ/laSqZ63kxvDGkf9
+ Z4W7GLkVIF+EbJnxsQp8Jf+F/IDNUjQfg9gYRQkPJAtnyvSQ932CmkHm/
+ kXccvPxN1iASKWTP3U2x/vGeUDghGm/rdU2+hWc4pQlNkOWIv7C8w79AV
+ fHD43ZQR+SZoH9v0UfY/rPYn2ba8wLvKZO0iZo29ahCHnvkEEI7KTLu0b
+ 3DwELEX2ynNiXzGjEFOwLVaqn/dJ5P0/VjRYBuNxlx86G/cFnX+f8obti
+ JE1/e7TtRQXnzTW7equfa0AO+1TZ7nVSKTfgTzQU+uZbVUJ+gkpcEgU2H A==;
+X-CSE-ConnectionGUID: opicgANtTRymy0U1jcqVNw==
+X-CSE-MsgGUID: h7G4YUp+R1+6ANhUNRPkXg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="70771875"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="70771875"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 05:45:37 -0700
+X-CSE-ConnectionGUID: EPtZAuW2QOqH0dRtzoEBFw==
+X-CSE-MsgGUID: 9VdxH/9gSBGf0DL1NQs1lw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="176476991"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.146])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 05:43:28 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 18/18] drm/i915/ddi: prefer read_poll_timeout() over
- readx_poll_timeout()
-In-Reply-To: <aF6H5qosTRHtzfJH@ideak-desk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1751023767.git.jani.nikula@intel.com>
- <59bcc15dd4debf00ee0c7b430a3b701462ac9de7.1751023767.git.jani.nikula@intel.com>
- <aF6H5qosTRHtzfJH@ideak-desk>
-Date: Fri, 27 Jun 2025 15:43:25 +0300
-Message-ID: <e964f219f14f46661fd9ff03443a85069480230e@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="152319927"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 05:45:32 -0700
+Date: Fri, 27 Jun 2025 15:45:28 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
+ "Tauro, Riana" <riana.tauro@intel.com>,
+ "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Karthik Poosa <karthik.poosa@intel.com>
+Subject: Re: [PATCH v4 3/4] drm/xe/pm: Wire up suspend/resume for I2C
+ controller
+Message-ID: <aF6SaLLw7HlSxagh@black.fi.intel.com>
+References: <20250626135610.299943-1-heikki.krogerus@linux.intel.com>
+ <20250626135610.299943-4-heikki.krogerus@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250626135610.299943-4-heikki.krogerus@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,94 +80,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 27 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Fri, Jun 27, 2025 at 02:36:32PM +0300, Jani Nikula wrote:
->> Unify on using read_poll_timeout() throughout instead of mixing with
->> readx_poll_timeout(). While the latter can be ever so slightly simpler,
->> they are both complicated enough that it's better to unify on one
->> approach only.
->> 
->> While at it, better separate the handling of error returns from
->> drm_dp_dpcd_readb() and the actual status byte. This is best achieved by
->> inlining the read_fec_detected_status() function.
->> 
->> Cc: Imre Deak <imre.deak@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_ddi.c | 33 +++++++++---------------
->>  1 file changed, 12 insertions(+), 21 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index 0405396c7750..fc4587311607 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -2339,34 +2339,25 @@ static void intel_dp_sink_set_fec_ready(struct intel_dp *intel_dp,
->>  		drm_dbg_kms(display->drm, "Failed to clear FEC detected flags\n");
->>  }
->>  
->> -static int read_fec_detected_status(struct drm_dp_aux *aux)
->> -{
->> -	int ret;
->> -	u8 status;
->> -
->> -	ret = drm_dp_dpcd_readb(aux, DP_FEC_STATUS, &status);
->> -	if (ret < 0)
->> -		return ret;
->> -
->> -	return status;
->> -}
->> -
->>  static int wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
->>  {
->>  	struct intel_display *display = to_intel_display(aux->drm_dev);
->>  	int mask = enabled ? DP_FEC_DECODE_EN_DETECTED : DP_FEC_DECODE_DIS_DETECTED;
->> -	int status;
->> -	int err;
->> +	u8 status = 0;
->> +	int ret, err;
->>  
->> -	err = readx_poll_timeout(read_fec_detected_status, aux, status,
->> -				 status & mask || status < 0,
->> -				 10000, 200000);
->> +	ret = read_poll_timeout(drm_dp_dpcd_readb, err,
->
-> drm_dp_dpcd_read_byte()? With that it looks ok:
+Hi Heikki,
 
-Oh, yes.
+Thanks for picking this up.
 
->
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
->
->> +				err || (status & mask),
->> +				10 * 1000, 200 * 1000, false,
->
-> Nit: there's also USEC_PER_MSEC.
+On Thu, Jun 26, 2025 at 04:56:08PM +0300, Heikki Krogerus wrote:
+> From: Raag Jadav <raag.jadav@intel.com>
+> 
+> Wire up suspend/resume handles for I2C controller to match its power
+> state with SGUnit.
 
-I considered that, and decided the straight 1000 is more obvious.
+...
 
-BR,
-Jani.
+> diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+> index bfbfe1de7f77..0227fcba2168 100644
+> --- a/drivers/gpu/drm/xe/xe_i2c.c
+> +++ b/drivers/gpu/drm/xe/xe_i2c.c
+> @@ -227,6 +227,31 @@ static const struct regmap_config i2c_regmap_config = {
+>  	.fast_io = true,
+>  };
+>  
+> +void xe_i2c_pm_suspend(struct xe_device *xe)
+> +{
+> +	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+> +
+> +	if (!xe->i2c || xe->i2c->ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
+> +		return;
+> +
+> +	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, PCI_D3hot);
 
->
->> +				aux, DP_FEC_STATUS, &status);
->>  
->> -	if (err || status < 0) {
->> +	/* Either can be non-zero, but not both */
->> +	ret = ret ?: err;
->> +	if (ret) {
->>  		drm_dbg_kms(display->drm,
->> -			    "Failed waiting for FEC %s to get detected: %d (status %d)\n",
->> -			    str_enabled_disabled(enabled), err, status);
->> -		return err ? err : status;
->> +			    "Failed waiting for FEC %s to get detected: %d (status 0x%02x)\n",
->> +			    str_enabled_disabled(enabled), ret, status);
->> +		return ret;
->>  	}
->>  
->>  	return 0;
->> -- 
->> 2.39.5
->> 
+I just realized the power modes will need (__force u32) casting to make
+sparse happy. If you're planning another version, can you please include
+it? If not, we can have a quick fix later on.
 
--- 
-Jani Nikula, Intel
+> +	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
+> +}
+> +
+> +void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
+> +{
+> +	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+> +
+> +	if (!xe->i2c || xe->i2c->ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
+> +		return;
+> +
+> +	if (d3cold)
+> +		xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_MEMORY);
+> +
+> +	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, PCI_D0);
+
+Ditto.
+
+> +	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
+> +}
+
+Raag
