@@ -4,45 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E016FC7EE3A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E01ACC83013
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:34:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9875210EA2A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A288910EA34;
 	Fri, 27 Jun 2025 13:34:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RDLXBE9v";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="TvwRNUbA";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C432910EA2B
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:33:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D326C10E22E
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:34:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=U5nCIrFrwz8c/luiuUKuxCeb9Z0QIanGso/Tng24ELw=; b=RDLXBE9v8ljfH+U4JR8T1770By
- svXNNRsBw8ScvaldA6V+9g/ecBVxtTthRgcX4zs/OZ2nhabF5E83zYZGfXSsOp83MAslvUwKTM76i
- /6/Xn6f32MkDUvQZ/thNpb+sF5oDq/Mtlu8z/gfFXtrzpzc6Z9IuHJDDKJ6WBpRNcrICHUIfXHPCH
- fonZS3bXJ/yTgFI99MDrBzCkFClPjzfHyF+a66Wlpw84aI4X0g3FlMjj1SojHxQTh6ikCccROB/sQ
- UH9n4N57tZ6WAXEtPf+oalxW5Hhb456vu88EN7X9mb94dYTrygt64HsBabRWZ4RgJngIn3FBUpJyP
- 7tVfq+RQ==;
+ bh=Qp0nZDIgcLD1GyC8kuX90VznKe8U4XhA0C+c8oe6dFc=; b=TvwRNUbATZN1nzuTX6P6WTEB5z
+ s/tjAKlRLp1L5C7FQlTbBajDwScGwGh0H1KshPPPZDTPgKtNO2442wUgSqmrBqFm8oedsxLRcDpX1
+ zMZcdl3uomKkWmSiWnL9GtSIVwpv7osHr/5KP6y1KoVBh0jEJHlyboQItqDWKhq+U8HgFyDBRNWGJ
+ w11Uo8DCu/brFSBCxKGU3+0NM8Cp2fT2Kq6ZWB9Ihjtjxmc0aoa0ueeSao90aO0x0Kq4rzlAkxRSr
+ PiQSeqotHe0/2Z1eHz+UejMXG3VGzDt1GmP0OZBTkkPrbYgcv5V3WW3thW3RhPQYbsrII7kkLp+wi
+ 3DDjjy4w==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uV9DF-009Ppd-31; Fri, 27 Jun 2025 15:33:53 +0200
+ id 1uV9DO-009Prf-57; Fri, 27 Jun 2025 15:34:02 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com,
-	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v7 11/24] drm/xe: Flush L3 when flushing render cache
-Date: Fri, 27 Jun 2025 14:33:24 +0100
-Message-ID: <20250627133340.54603-12-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v7 24/24] drm/i915/display: Expose AuxCCS frame buffer
+ modifiers for Xe
+Date: Fri, 27 Jun 2025 14:33:37 +0100
+Message-ID: <20250627133340.54603-25-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
 References: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,51 +62,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I915 sets PIPE_CONTROL_FLUSH_L3 (bit 27) when flushing render caches but
-interesting thing is Tigerlake PRM lists that bit as reserved.
+Now that we have fixed the DPT handling we can undo the nerf which was
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+built for Xe").
+
+Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+
+	[PLANE:32:plane 1A]: type=PRI
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+		hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+
+Display working fine - no artefacts, no DMAR/PIPE faults.
+
+v2:
+ * Adjust patch title. (Rodrigo)
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
-Is xe missing this? Or has this been wrong for so long in i915? Or is this
-an undocumented bit?
----
- drivers/gpu/drm/xe/instructions/xe_gpu_commands.h |  1 +
- drivers/gpu/drm/xe/xe_ring_ops.c                  | 10 ++++++++++
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-index 78c0e87dbd37..27892984403c 100644
---- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-@@ -47,6 +47,7 @@
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 68f18f18bacd..3ff7a7947519 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2909,12 +2909,6 @@ skl_universal_plane_create(struct intel_display *display,
+ 	else
+ 		caps = skl_plane_caps(display, pipe, plane_id);
  
- #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
- #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
-+#define   PIPE_CONTROL_FLUSH_L3                         (1<<27)
- #define   PIPE_CONTROL_AMFS_FLUSH			(1<<25)
- #define   PIPE_CONTROL_GLOBAL_GTT_IVB			(1<<24)
- #define   PIPE_CONTROL_LRI_POST_SYNC			BIT(23)
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index a1289f086191..8f655b6fe913 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -197,6 +197,16 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	if (XE_WA(gt, 1409600907))
- 		flags |= PIPE_CONTROL_DEPTH_STALL;
+-	/* FIXME: xe has problems with AUX */
+-	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(to_i915(display->drm)))
+-		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
+-			  INTEL_PLANE_CAP_CCS_RC_CC |
+-			  INTEL_PLANE_CAP_CCS_MC);
+-
+ 	modifiers = intel_fb_plane_get_modifiers(display, caps);
  
-+	/*
-+	 * L3 fabric flush is needed for AUX CCS invalidation
-+	 * which happens as part of pipe-control so we can
-+	 * ignore PIPE_CONTROL_FLUSH_L3. Also PIPE_CONTROL_FLUSH_L3
-+	 * deals with Protected Memory which is not needed for
-+	 * AUX CCS invalidation and lead to unwanted side effects.
-+	 */
-+	if (GRAPHICS_VERx100(xe) < 1270)
-+		flags |= PIPE_CONTROL_FLUSH_L3;
-+
- 	if (lacks_render)
- 		flags &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
- 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+ 	ret = drm_universal_plane_init(display->drm, &plane->base,
 -- 
 2.48.0
 
