@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B749CC83000
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 20:30:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEAA3C7EE2A
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 20:30:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 760AE10EA6F;
-	Fri, 27 Jun 2025 20:30:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 786D010EA7A;
+	Fri, 27 Jun 2025 20:30:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mx+k4ckk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HNz2C4iP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FB5210EA2A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8499E10EA2A
  for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 20:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1751056245; x=1782592245;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=P9/t5rsH8GtxSHDy24uKuTHhqud3wKZE+R2ARBh3OP0=;
- b=mx+k4ckk4Ivz7EBZFoEZtdfGT7JROptz9hP9cy13VJQF8Ga1sAAtZwSu
- bMQpBALh7JBZAFs3tQd37XopcEMG739xk3d/vxlo1zt78FimG0DvkXE1p
- we+3IXLtVJqOq0fDe5hwOoEXSStKL0rOGs+mmlWfM+0g1WHqixk94CDkb
- 7wSpSz/xRYng/2ztfzMOXLEGiLk+6g/2SSxQJ9AQhLMoDHV17VRwZQdfX
- Rvd3gWrL1RRbUuIX8vGaPHe226GOjFgkzGmxqvb4SluIGvJA1q3pbCUrI
- c47bCdBaGKfotlpABqtT7tdXqiBe77rRjxUKPw0kKG4NLA/MBZJnrtT28 w==;
-X-CSE-ConnectionGUID: JFbcdeu8QfauyYyrimm/aA==
-X-CSE-MsgGUID: 6WuEnaPBSBCvRL37IS8J8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="64068005"
-X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="64068005"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0vc7neUU9iSGqVKX07xqr7RzyoDBDkfTkZNhJNx/0IY=;
+ b=HNz2C4iPaKzhLk/OQOZQWAsfpcIkquJhpZH/3asNC/5RYN3vqPfNQEpB
+ j77UdH9M/nEWHPjxr7tEibyuzEL7TleVGNjEaPjl2riHd/KsK8OMwBc/C
+ PnUxT30qdVdlhUrpM9wZO2v3KuuHFF71e83TJqZ2i/gNb4+f4pc1yp6Am
+ dFJV2WqHegYC8zN7ldbI4Rqo7Xas1dD1UimjMS8v68sqDhSSGUEGUdrRO
+ zw0fCuZG3gHsBkrk17jpQkKBudEbw5lFVnkS+KkSaDKIG0HFtRYqNHct2
+ AJaBIWEa3MJut8AxANMvx5DU0lsXCQmdWmpe5UaWgLEkWJfnjRePXcQLR w==;
+X-CSE-ConnectionGUID: rnx87AUBQBuiWLrSVwtkKA==
+X-CSE-MsgGUID: 5nyOzy0AT0qvYxRSyzGG+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="64068011"
+X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="64068011"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jun 2025 13:30:45 -0700
-X-CSE-ConnectionGUID: 2QS/IT7rQa+vDIV3nC9sdg==
-X-CSE-MsgGUID: 8abQ2Hj/TZKBSIidjk2HpQ==
+X-CSE-ConnectionGUID: TgIec3qtTJqi613z8SvHHQ==
+X-CSE-MsgGUID: UG3icKjTTiGk4Y80lVQPAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="157175937"
+X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="157175943"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 13:30:44 -0700
+ 27 Jun 2025 13:30:45 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -49,13 +49,14 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 0/2] drm/xe: xe with/without kunit
-Date: Fri, 27 Jun 2025 13:30:33 -0700
-Message-ID: <20250627-xe-kunit-v2-0-756fe5cd56cf@intel.com>
+Subject: [PATCH v2 2/2] drm/xe: Allow dropping kunit dependency as built-in
+Date: Fri, 27 Jun 2025 13:30:35 -0700
+Message-ID: <20250627-xe-kunit-v2-2-756fe5cd56cf@intel.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250627-xe-kunit-v2-0-756fe5cd56cf@intel.com>
+References: <20250627-xe-kunit-v2-0-756fe5cd56cf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20250626-xe-kunit-20c0199723b2
 X-Mailer: b4 0.15-dev-a7f9c
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -72,34 +73,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For the second patch, original version is from
-https://lore.kernel.org/intel-xe/20250516104210.17969-1-hpausten@protonmail.com/
+From: Harry Austen <hpausten@protonmail.com>
 
-I took that and kept only the kunit part as mentioned there.
+Fix Kconfig symbol dependency on KUNIT, which isn't actually required
+for XE to be built-in. However, if KUNIT is enabled, it must be built-in
+too.
 
-First patch fixes the bug reported when building with
-
-	CONFIG_DRM_XE=y
-	CONFIG_DRM_I915=y
-
+Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=m")
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Harry Austen <hpausten@protonmail.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-Changes in v2:
-- First patch should be good enough fix, so reword it accordingly
-- Link to v1: https://lore.kernel.org/r/20250626-xe-kunit-v1-0-2440e6d9a4b5@intel.com
----
-Harry Austen (1):
-      drm/xe: Allow dropping kunit dependency as built-in
+ drivers/gpu/drm/xe/Kconfig | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Lucas De Marchi (1):
-      drm/xe: Fix conflicting intel_pcode_* symbols
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 553c29e1030b1..827bc75b8b48f 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -1,7 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ config DRM_XE
+ 	tristate "Intel Xe2 Graphics"
+-	depends on DRM && PCI && (m || (y && KUNIT=y))
++	depends on DRM && PCI
++	depends on KUNIT || !KUNIT
+ 	depends on INTEL_VSEC || !INTEL_VSEC
+ 	depends on X86_PLATFORM_DEVICES || !(X86 && ACPI)
+ 	select INTERVAL_TREE
 
- drivers/gpu/drm/xe/Kconfig    | 3 ++-
- drivers/gpu/drm/xe/xe_pcode.c | 6 +++++-
- 2 files changed, 7 insertions(+), 2 deletions(-)
-
-base-commit: 98f015a92833e2d04fda89e1657a13d7290403e8
-change-id: 20250626-xe-kunit-20c0199723b2
-
-Lucas De Marchi
+-- 
+2.49.0
 
