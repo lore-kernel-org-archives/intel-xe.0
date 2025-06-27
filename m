@@ -4,89 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9C2EC7EE2A
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 15:38:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 009D8C7EE2A
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 15:40:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD3C10E331;
-	Fri, 27 Jun 2025 15:38:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B918410EA5C;
+	Fri, 27 Jun 2025 15:40:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="BR0Cb8Kr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LBwn2uOy";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 748AF10E331
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 15:38:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1751038690;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=PiAx3LmQsmFYawUKhTNqyNq8SoNIeLgUmSoj7+xAyms=;
- b=BR0Cb8KrB+di4Dh0YXmQHu5AKuj1Knzm3Zfa5OQOKzSLMxiEwmr6E5Z9gX6QBDvXnEsubY
- gq0tgepF33Wc328BdLlq7wULyjwz1KN+Ul0Vunnz8ldRRXFdONuhX+B46dMOoswWxpSYEg
- D+H6xIFAZhLaszRivnRlKPRw1HS4FZE=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-524-GrAQxBWfMZysYLgiwpgR9A-1; Fri, 27 Jun 2025 11:38:08 -0400
-X-MC-Unique: GrAQxBWfMZysYLgiwpgR9A-1
-X-Mimecast-MFC-AGG-ID: GrAQxBWfMZysYLgiwpgR9A_1751038688
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-45311704d22so53435e9.2
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 08:38:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751038687; x=1751643487;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=PiAx3LmQsmFYawUKhTNqyNq8SoNIeLgUmSoj7+xAyms=;
- b=GUlSjXKWdt54kBkgQJ53V3HGngak83uqif6fXTzxleo0qd6+3QAf+eJ3ByFWVsAGPb
- sKnFch7pWxarsI+uYu3u76GUAEzM37BiX8YKvW/1itr7tL6ElVQZKqll4S7K2Mmx7vyH
- YBcWWxVmSyHBD9CF51/edVGq6EZN0NqThZm4jh01J3lTp61dgCGWEBMjFs056JBYThzx
- J7CJL8wxNBP04q4HmF6qdbICSRjJQ/jgW8wS6kmyIsile1rCq9VyaBUnVmnHuAQoKTyd
- mrzsn5wmlPzLnTaIZqrTLa7hqyW3Ue5DossjmGlDrQjnMjqZDZX0IFyVjMGPEIhpPisV
- lJmw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW126t0mbgI35gPd3KbiESzF+zYHMMt8N5zBoeBvoHMIHx2nfpzgX+yPnAIaIuUeJKzweFf6CdqGQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz8uCLgfZJqpp8UBuTZ2vTzRMb9reOxHA1uRQKgYspOdrM4srYZ
- OWJ7KXHveEm/4IQoXElU0ixg9n8zS1RuRGM9fUOBKU+rD0vOinhSTJ5BtL/BM7ozQRk+ja28FjI
- kcpoFBuZIHbQwugkfsTaE3PKHcIRb/g/bAQ7I3zpeFf69XFmPQk2qLzADfqDKqfxyHJElmqEj92
- BY
-X-Gm-Gg: ASbGncsh30d65Ox+MfZFUCIS1SPBjuRfOjd73Vk35s7TJoZEachKbWI1eI302DJapF/
- AIx/C5IfeGn7ozE4O9iWq0hbzAhpISY16XD5iMZaLPRkzNaZqw5SZ9GcxPujXcBKs0wj5MAerfV
- ysaCDJley1IBzrryqCxcc+Rp4wSSSdk6def1RGlcsgHZCaevUp35QBgGd7HdLA5Q0PXiTjTM7jF
- NDcBO3tUEGuADhHpsH46KxrjA8WNREQHNewhtzuo1qQ7XUQsGKXyQIVKLZst4sarZ8JSWulsoW9
- oX5NWRFjt7is1WjFzawydnJ03MHXpeyRxmeVfWBdneviU1osIJLzWFFLq31xYQ==
-X-Received: by 2002:a05:600c:8b01:b0:450:d30e:ff96 with SMTP id
- 5b1f17b1804b1-4538ee5dc58mr41341565e9.0.1751038687277; 
- Fri, 27 Jun 2025 08:38:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHFK45o7iHJs2wjikvvTP5NGnuFrD1vN/2KzKnvd/sFD9k/2QSJZOcINnJgCyI6TcBduNdT4Q==
-X-Received: by 2002:a05:600c:8b01:b0:450:d30e:ff96 with SMTP id
- 5b1f17b1804b1-4538ee5dc58mr41341185e9.0.1751038686665; 
- Fri, 27 Jun 2025 08:38:06 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:c:37e0:8998:e0cf:68cc:1b62?
- ([2a01:e0a:c:37e0:8998:e0cf:68cc:1b62])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3a88c7ec69dsm2969946f8f.6.2025.06.27.08.38.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 27 Jun 2025 08:38:06 -0700 (PDT)
-Message-ID: <8ebcbb94-0488-400a-9036-0a1b9fd4c95a@redhat.com>
-Date: Fri, 27 Jun 2025 17:38:04 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6732E10EA5C;
+ Fri, 27 Jun 2025 15:40:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751038841; x=1782574841;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=uqxNoP0aScxvHUJUFb6AHeHCsVbbhBRCbyQSpDhJLZQ=;
+ b=LBwn2uOysz6eHfh4u/eslK4UE7X32rUINF42DgGI8zhvQZtkQeCsG7ED
+ RIn5yIJcYhsCVoRBvb7B6xIKfZrQe4iIAlBxf0GoE6BT+RWRfTYu+9H+z
+ x6r5J9mEKF7Pbw32590Jk1LMN8G1xL2VcTHAyLyxyl4Jy5gfe+zBR/DJB
+ JT34LKqRNUPzJ4ejYxew1mXdCebktVyxyW6kZMyTVtZyAmwKpuuIiQHEq
+ 9Oei/oGDGWbhPfXoVz48fx0yKKgE8PuB6Vo+JrfwM4yIMwKd2ZVWcaG4d
+ KrK05HaKefOYB2afBxsrE4VzNsYP2XfhTa/BcU38b3vuDnbQCjk7Plcin w==;
+X-CSE-ConnectionGUID: mHxSuQEbTKG1vd5V+94d7A==
+X-CSE-MsgGUID: T61m08cWTYWAd9xttQg3dQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="70925828"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="70925828"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 08:40:40 -0700
+X-CSE-ConnectionGUID: mFKKxv6IRjWsuzHEsjJFuQ==
+X-CSE-MsgGUID: 8MXOkRJHRnKxY6VezkdaBg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="158564829"
+Received: from opintica-mobl1 (HELO stinkbox) ([10.245.245.146])
+ by orviesa005.jf.intel.com with SMTP; 27 Jun 2025 08:40:36 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 27 Jun 2025 18:40:35 +0300
+Date: Fri, 27 Jun 2025 18:40:35 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Imre Deak <imre.deak@intel.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Matt Wagantall <mattw@codeaurora.org>,
+ Dejin Zheng <zhengdejin5@gmail.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 18/18] drm/i915/ddi: prefer read_poll_timeout() over
+ readx_poll_timeout()
+Message-ID: <aF67cxjlfWiWMx-4@intel.com>
+References: <cover.1751023767.git.jani.nikula@intel.com>
+ <59bcc15dd4debf00ee0c7b430a3b701462ac9de7.1751023767.git.jani.nikula@intel.com>
+ <aF6UOCLdO0fGHGA9@intel.com>
+ <f922ec0a42855e17228d3f22d7291b389abe2df0@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/display: Make panic support work on vram.
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-References: <20250627151307.23001-4-dev@lankhorst.se>
- <20250627151307.23001-6-dev@lankhorst.se>
-From: Jocelyn Falempe <jfalempe@redhat.com>
-In-Reply-To: <20250627151307.23001-6-dev@lankhorst.se>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: VxP5xh_UKEAyTWFA2XCzHFWdZfOMUJAi4cqb0ZLEQhQ_1751038688
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, fr
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f922ec0a42855e17228d3f22d7291b389abe2df0@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,108 +77,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 27/06/2025 17:13, Maarten Lankhorst wrote:
-> Add a special path for VRAM using xe_res iterators to ensure a panic
-> screen is shown on VRAM as well.
+On Fri, Jun 27, 2025 at 04:34:23PM +0300, Jani Nikula wrote:
+> On Fri, 27 Jun 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Fri, Jun 27, 2025 at 02:36:32PM +0300, Jani Nikula wrote:
+> >> Unify on using read_poll_timeout() throughout instead of mixing with
+> >> readx_poll_timeout(). While the latter can be ever so slightly simpler,
+> >> they are both complicated enough that it's better to unify on one
+> >> approach only.
+> >> 
+> >> While at it, better separate the handling of error returns from
+> >> drm_dp_dpcd_readb() and the actual status byte. This is best achieved by
+> >> inlining the read_fec_detected_status() function.
+> >> 
+> >> Cc: Imre Deak <imre.deak@intel.com>
+> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/display/intel_ddi.c | 33 +++++++++---------------
+> >>  1 file changed, 12 insertions(+), 21 deletions(-)
+> >> 
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> index 0405396c7750..fc4587311607 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> @@ -2339,34 +2339,25 @@ static void intel_dp_sink_set_fec_ready(struct intel_dp *intel_dp,
+> >>  		drm_dbg_kms(display->drm, "Failed to clear FEC detected flags\n");
+> >>  }
+> >>  
+> >> -static int read_fec_detected_status(struct drm_dp_aux *aux)
+> >> -{
+> >> -	int ret;
+> >> -	u8 status;
+> >> -
+> >> -	ret = drm_dp_dpcd_readb(aux, DP_FEC_STATUS, &status);
+> >> -	if (ret < 0)
+> >> -		return ret;
+> >> -
+> >> -	return status;
+> >> -}
+> >> -
+> >>  static int wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
+> >>  {
+> >>  	struct intel_display *display = to_intel_display(aux->drm_dev);
+> >>  	int mask = enabled ? DP_FEC_DECODE_EN_DETECTED : DP_FEC_DECODE_DIS_DETECTED;
+> >> -	int status;
+> >> -	int err;
+> >> +	u8 status = 0;
+> >> +	int ret, err;
+> >>  
+> >> -	err = readx_poll_timeout(read_fec_detected_status, aux, status,
+> >> -				 status & mask || status < 0,
+> >> -				 10000, 200000);
+> >> +	ret = read_poll_timeout(drm_dp_dpcd_readb, err,
+> >> +				err || (status & mask),
+> >> +				10 * 1000, 200 * 1000, false,
+> >> +				aux, DP_FEC_STATUS, &status);
+> >
+> > I think I hate these macros. It's very hard to tell from this
+> > soup what is actually being done here.
 > 
+> The thing is, I hate __wait_for(), wait_for(), wait_for_us(),
+> wait_for_atomic_us(), and wait_for_atomic() even more.
+> 
+> It's also very hard to figure out what is actually going on with
+> them. The timeouts are arbitrarily either ms or us. wait_for_us() is
+> atomic depending on the timeout. __wait_for() Wmax parameter actually
+> isn't the max sleep, it's 2*Wmax-2. Some of them have exponentially
+> growing sleeps, while some arbitrarily don't.
+> 
+> It's a fscking mess, and people randomly choose whichever version with
+> no idea what's actually going on behind the scenes.
+> 
+> > The 'val', 'op', and 'args' look very disconnected here even though
+> > they are always part of the same thing. Is there a reason they can't
+> > just be a single 'op' parameter like we have in wait_for() so you can
+> > actually see the code?
+> >
+> > Ie.
+> > read_poll_timeout(err = drm_dp_dpcd_readb(aux, DP_FEC_STATUS, &status),
+> > 		  err || (status & mask),
+> >                   10 * 1000, 200 * 1000, false);
+> > ?
+> 
+> Internally the macro has:
+> 
+> #define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
+> 				sleep_before_read, args...) \
+> 
+> ...
+> 
+> 		(val) = op(args); \
+> 
+> So you do need to provide an lvalue val, and you need to be able to add
+> () after op. I think GCC allows not passing varargs. IOW you'd need to
+> implement another macro (which could be used to implement the existing
+> one, but not the other way round).
 
-I was considering using a different set_pixel() function for VRAM, but 
-in fact both implementations share a lot of things, so it's better this way.
+Just get rid of the 'args' and 'val' and it'll work just fine.
+Then it'll be almost identical to wait_for() (basically just missing the
+increasing backoff stuff).
 
-vmap and vaddr are a bit redundant, you can rewrite xe_panic_kunmap()
-to use vmap instead, and remove vaddr, like this:
+AFAICS this thing was originally added just for reading a single
+register and checking some bit/etc, so the name made some sense.
+But now we're abusing it for all kinds of random things, so even
+the name no longer makes that much sense.
 
-if (!panic->vmap.is_iomem && panic->vmap.vaddr) {
-	drm_clflush_virt_range(panic->vmap.vaddr, PAGE_SIZE);
-	kunmap_local(panic->vmap.vaddr);
-	iosys_map_clear(&panic->vmap);
-}
+So I think just something like this would work fine for us:
 
-With this change:
-
-Acked-by: Jocelyn Falempe <jfalempe@redhat.com>
-
-
-Best regards,
+diff --git a/include/linux/iopoll.h b/include/linux/iopoll.h
+index 91324c331a4b..9c38fd732028 100644
+--- a/include/linux/iopoll.h
++++ b/include/linux/iopoll.h
+@@ -14,27 +14,24 @@
+ #include <linux/io.h>
+ 
+ /**
+- * read_poll_timeout - Periodically poll an address until a condition is
+- *			met or a timeout occurs
+- * @op: accessor function (takes @args as its arguments)
+- * @val: Variable to read the value into
+- * @cond: Break condition (usually involving @val)
+- * @sleep_us: Maximum time to sleep between reads in us (0 tight-loops). Please
+- *            read usleep_range() function description for details and
++ * poll_timeout - Periodically poll and perform an operaion until
++ *                a condition is met or a timeout occurs
++ *
++ * @op: Operation
++ * @cond: Break condition
++ * @sleep_us: Maximum time to sleep between operations in us (0 tight-loops).
++ *            Please read usleep_range() function description for details and
+  *            limitations.
+  * @timeout_us: Timeout in us, 0 means never timeout
+- * @sleep_before_read: if it is true, sleep @sleep_us before read.
+- * @args: arguments for @op poll
++ * @sleep_before_read: if it is true, sleep @sleep_us before operation.
+  *
+  * When available, you'll probably want to use one of the specialized
+  * macros defined below rather than this macro directly.
+  *
+- * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
+- * case, the last read value at @args is stored in @val. Must not
++ * Returns: 0 on success and -ETIMEDOUT upon a timeout. Must not
+  * be called from atomic context if sleep_us or timeout_us are used.
+  */
+-#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
+-				sleep_before_read, args...) \
++#define poll_timeout(op, cond, sleep_us, timeout_us, sleep_before_read) \
+ ({ \
+ 	u64 __timeout_us = (timeout_us); \
+ 	unsigned long __sleep_us = (sleep_us); \
+@@ -43,12 +40,12 @@
+ 	if (sleep_before_read && __sleep_us) \
+ 		usleep_range((__sleep_us >> 2) + 1, __sleep_us); \
+ 	for (;;) { \
+-		(val) = op(args); \
++		op; \
+ 		if (cond) \
+ 			break; \
+ 		if (__timeout_us && \
+ 		    ktime_compare(ktime_get(), __timeout) > 0) { \
+-			(val) = op(args); \
++			op; \
+ 			break; \
+ 		} \
+ 		if (__sleep_us) \
+@@ -58,6 +55,30 @@
+ 	(cond) ? 0 : -ETIMEDOUT; \
+ })
+ 
++/**
++ * read_poll_timeout - Periodically poll an address until a condition is
++ *                     met or a timeout occurs
++ * @op: accessor function (takes @args as its arguments)
++ * @val: Variable to read the value into
++ * @cond: Break condition (usually involving @val)
++ * @sleep_us: Maximum time to sleep between reads in us (0 tight-loops). Please
++ *            read usleep_range() function description for details and
++ *            limitations.
++ * @timeout_us: Timeout in us, 0 means never timeout
++ * @sleep_before_read: if it is true, sleep @sleep_us before read.
++ * @args: arguments for @op poll
++ *
++ * When available, you'll probably want to use one of the specialized
++ * macros defined below rather than this macro directly.
++ *
++ * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
++ * case, the last read value at @args is stored in @val. Must not
++ * be called from atomic context if sleep_us or timeout_us are used.
++ */
++#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
++			  sleep_before_read, args...) \
++	poll_timeout((val) = op(args), cond, sleep_us, timeout_us, sleep_before_read)
++
+ /**
+  * read_poll_timeout_atomic - Periodically poll an address until a condition is
+  * 				met or a timeout occurs
+-- 
+2.49.0
 
 -- 
-
-Jocelyn
-
-
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> ---
->   drivers/gpu/drm/xe/display/intel_bo.c | 36 +++++++++++++++++++++------
->   1 file changed, 29 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/intel_bo.c b/drivers/gpu/drm/xe/display/intel_bo.c
-> index 910632f57c3d6..03be519207397 100644
-> --- a/drivers/gpu/drm/xe/display/intel_bo.c
-> +++ b/drivers/gpu/drm/xe/display/intel_bo.c
-> @@ -9,6 +9,7 @@
->   #include "intel_display_types.h"
->   
->   #include "xe_bo.h"
-> +#include "xe_res_cursor.h"
->   #include "intel_bo.h"
->   
->   bool intel_bo_is_tiled(struct drm_gem_object *obj)
-> @@ -69,6 +70,9 @@ struct xe_panic_data {
->   	struct page **pages;
->   	int page;
->   	void *vaddr;
-> +
-> +	struct xe_res_cursor res;
-> +	struct iosys_map vmap;
->   };
->   
->   struct xe_framebuffer {
-> @@ -112,15 +116,29 @@ static void xe_panic_page_set_pixel(struct drm_scanout_buffer *sb, unsigned int
->   	new_page = offset >> PAGE_SHIFT;
->   	offset = offset % PAGE_SIZE;
->   	if (new_page != panic->page) {
-> -		xe_panic_kunmap(panic);
-> +		if (xe_bo_is_vram(bo)) {
-> +			/* Display is always mapped on root tile */
-> +			struct xe_vram_region *vram = &xe_bo_device(bo)->mem.vram;
-> +
-> +			if (panic->page < 0 || new_page < panic->page) {
-> +				xe_res_first(bo->ttm.resource, new_page * PAGE_SIZE,
-> +					     bo->ttm.base.size - new_page * PAGE_SIZE, &panic->res);
-> +			} else {
-> +				xe_res_next(&panic->res, PAGE_SIZE * (new_page - panic->page));
-> +			}
-> +			iosys_map_set_vaddr_iomem(&panic->vmap,
-> +						  vram->mapping + panic->res.start);
-> +		} else {
-> +			xe_panic_kunmap(panic);
-> +			panic->vaddr = ttm_bo_kmap_try_from_panic(&bo->ttm,
-> +								  new_page);
-> +			iosys_map_set_vaddr(&panic->vmap, panic->vaddr);
-> +		}
->   		panic->page = new_page;
-> -		panic->vaddr = ttm_bo_kmap_try_from_panic(&bo->ttm,
-> -							  panic->page);
-> -	}
-> -	if (panic->vaddr) {
-> -		u32 *pix = panic->vaddr + offset;
-> -		*pix = color;
->   	}
-> +
-> +	if (iosys_map_is_set(&panic->vmap))
-> +		iosys_map_wr(&panic->vmap, offset, u32, color);
->   }
->   
->   struct intel_framebuffer *intel_bo_alloc_framebuffer(void)
-> @@ -137,6 +155,10 @@ int intel_bo_panic_setup(struct drm_scanout_buffer *sb)
->   {
->   	struct intel_framebuffer *fb = (struct intel_framebuffer *)sb->private;
->   	struct xe_panic_data *panic = to_xe_panic_data(fb);
-> +	struct xe_bo *bo = gem_to_xe_bo(intel_fb_bo(&fb->base));
-> +
-> +	if (xe_bo_is_vram(bo) && !xe_bo_is_visible_vram(bo))
-> +		return -ENODEV;
->   
->   	panic->page = -1;
->   	sb->set_pixel = xe_panic_page_set_pixel;
-
+Ville Syrjälä
+Intel
