@@ -4,70 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FAF9C7EE31
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 12:58:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4AC9C77B7F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:14:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0318110EA15;
-	Fri, 27 Jun 2025 12:58:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 787F810EA17;
+	Fri, 27 Jun 2025 13:14:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S8bRDulS";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="D6dBxsbG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F92310EA15
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 12:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751029087; x=1782565087;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Xs7fsDzv9nj/Wqz0gkonZDBgpUmilrNg7jSH3i0VaIU=;
- b=S8bRDulSiL5yEs/IWGwSAYbP3VjCwXcc9YwF44XQYJcnSpikvEeDRene
- 3YgJ5RGk+fOqWX0PrEvC5BkdCRCqr6WGtuDfI6Zzr75q1XwBcaCAjCyPF
- tnig7mMVq2jtNOTSeu4Q95BnDKRfnMfSCpItHMXt46OvW/9rtZO8LFUWf
- xqOmWKM5CyIVAHJ9iVGMamsHRNgb+dwE1Zug57BgBFHqsXlylu1u5HuYN
- aknKR3/3l+gHxumxVAukshq6wRkff6R6xaPU3MwmO85HT3f1fnlicVnqn
- vTM3e0YXxpFQSdNU9ELfW3PSCiyIxpfM3BLtS0bX1PN2LhgKIxKOPn95U A==;
-X-CSE-ConnectionGUID: 3gMcCRk6T7ynlNJ3wq7g6w==
-X-CSE-MsgGUID: riQCIJEKRZCPh+vMZJ0GFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53422127"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="53422127"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 05:58:07 -0700
-X-CSE-ConnectionGUID: wa5IQcybT6231sVgkaOj6Q==
-X-CSE-MsgGUID: wUkHkpEqRIife2UL4mbufw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="156846790"
-Received: from kuha.fi.intel.com ([10.237.72.152])
- by fmviesa003.fm.intel.com with SMTP; 27 Jun 2025 05:58:01 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Fri, 27 Jun 2025 15:58:00 +0300
-Date: Fri, 27 Jun 2025 15:58:00 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
- "Tauro, Riana" <riana.tauro@intel.com>,
- "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org, Karthik Poosa <karthik.poosa@intel.com>
-Subject: Re: [PATCH v4 3/4] drm/xe/pm: Wire up suspend/resume for I2C
- controller
-Message-ID: <aF6VWADKrLbw1Pbl@kuha.fi.intel.com>
-References: <20250626135610.299943-1-heikki.krogerus@linux.intel.com>
- <20250626135610.299943-4-heikki.krogerus@linux.intel.com>
- <aF6SaLLw7HlSxagh@black.fi.intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EF7510EA17
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:14:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=O3XDPA2Kw9Ivbe+fRnT64W2OQCOdineN97/MEDap0ho=; b=D6dBxsbGdACzw6jkJd0ummipdB
+ ulJ2n5pFX3w4aGaYQ/B2UNNdWhX5hOUeKMuN4lrzcvIMEwdbLmaQxWQBmZ2+AH7RGNZX3zIfLK04x
+ NWU4qja1qyHQq0EQPufls2Eumncw6UcP/ZKzTVPLoeUOhbOUXp2xKQjYWV0BnREwKfeC86h/eyaDy
+ TK6qNnBcxmNpX6zRBmJybIjMBI2+qDG+ggcyxRCu+E/vYcFLOSzpKyNcv3aKW42ntVab9yyXHbFpz
+ i80bhAEcGpeNY4UbPHf14ciGZ/YLgQunlaOdGxU08iOXiV4tGI0HG3xZbvahmUOhw0tlSfPSk0zq0
+ owhvpwnA==;
+Received: from [81.79.92.254] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uV8ue-009PKX-Vw; Fri, 27 Jun 2025 15:14:41 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: intel-xe@lists.freedesktop.org
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH 0/2] Small emit_wa_job() tidy
+Date: Fri, 27 Jun 2025 14:14:36 +0100
+Message-ID: <20250627131438.54398-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aF6SaLLw7HlSxagh@black.fi.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,65 +56,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 27, 2025 at 03:45:28PM +0300, Raag Jadav wrote:
-> Hi Heikki,
-> 
-> Thanks for picking this up.
-> 
-> On Thu, Jun 26, 2025 at 04:56:08PM +0300, Heikki Krogerus wrote:
-> > From: Raag Jadav <raag.jadav@intel.com>
-> > 
-> > Wire up suspend/resume handles for I2C controller to match its power
-> > state with SGUnit.
-> 
-> ...
-> 
-> > diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-> > index bfbfe1de7f77..0227fcba2168 100644
-> > --- a/drivers/gpu/drm/xe/xe_i2c.c
-> > +++ b/drivers/gpu/drm/xe/xe_i2c.c
-> > @@ -227,6 +227,31 @@ static const struct regmap_config i2c_regmap_config = {
-> >  	.fast_io = true,
-> >  };
-> >  
-> > +void xe_i2c_pm_suspend(struct xe_device *xe)
-> > +{
-> > +	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-> > +
-> > +	if (!xe->i2c || xe->i2c->ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
-> > +		return;
-> > +
-> > +	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, PCI_D3hot);
-> 
-> I just realized the power modes will need (__force u32) casting to make
-> sparse happy. If you're planning another version, can you please include
-> it? If not, we can have a quick fix later on.
+I was debugging some unrelated local issue and noticed batch buffer building in
+emit_wa_job() was very verbose (in generated code). I think it can be simplified
+at not much cost.
 
-I can include the casting, np. Is it enough to cast PCI_D3hot?
+Tvrtko Ursulin (2):
+  drm/xe: Simplify batch buffer allocation in emit_wa_job()
+  drm/xe: Waste fewer instructions in emit_wa_job()
 
-thanks,
-
-> > +	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
-> > +}
-> > +
-> > +void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
-> > +{
-> > +	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-> > +
-> > +	if (!xe->i2c || xe->i2c->ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
-> > +		return;
-> > +
-> > +	if (d3cold)
-> > +		xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_MEMORY);
-> > +
-> > +	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, PCI_D0);
-> 
-> Ditto.
-> 
-> > +	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
-> > +}
-> 
-> Raag
+ drivers/gpu/drm/xe/xe_gt.c  | 86 ++++++++++++++++++-------------------
+ drivers/gpu/drm/xe/xe_lrc.c | 12 +++---
+ drivers/gpu/drm/xe/xe_lrc.h |  2 +-
+ 3 files changed, 51 insertions(+), 49 deletions(-)
 
 -- 
-heikki
+2.48.0
+
