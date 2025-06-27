@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33772C83013
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:34:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CF3DC7EE3A
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:33:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9251110EA2F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5685210EA2D;
 	Fri, 27 Jun 2025 13:33:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="NDIKk50a";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MyiXXdUc";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 725FA10EA2A
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:33:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE76910EA1F
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:33:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=KYI0+n8YKU5UVmwULHuVbiLu3eT0RO9K7ttj93DcAzY=; b=NDIKk50a4FNiY0zab3pOTZy0/R
- JYS1A4amxkKz31Srq8YwF8bSLVQelWme0G8B7FNbrYrPqZhseW6ETUXqrE0DQFNmlKpdSf3vCu2nG
- pElS7/97vo3HiBJ8Rf41moWPDeYPiGDHSO0JTIo50s1XCY4F7dYBUPbJX8EmW3W3dEijSg+KC3MN7
- nyXUEi2BUy2Zke1t9RYFmOoInvivC0lz02HRTC8bSgQEhySUHV0uyQJ3vM2Kj87vOy1gcegso2rN0
- 5Fw8rHC/pVH8xAtdJNqJwlTAEZSWAvRg65mNHZUK8v73OZeg1YXoGL9Wd6qDfhBVAdyQlQzrRJcWb
- ADF01DkQ==;
+ bh=jxBBUDL1GLKTCgXwD2l2CzxNmakg54HinodSKk05CDE=; b=MyiXXdUcLdoRYfohFleVkuwewe
+ ylNZR7FaO9cyEysMKxvJ9r0Jx1Mb9C2lG/BeCuB4amf2MMglwycgDXxVlE/EDI2zDBJ75yJK+xm+Q
+ KtVcqbh46muXBlD97VXMFdn/t1D+SaV8oiRlEFNq6NwsBj0+HWuwR2Uq93pHLqZhaOYxB53rr7ntB
+ bFeVt1IVP7Uwgu9vli21j1xX88gitnnI3+DX1dJUQSviumXDA8hmrvAIbMN4nvEipPgZb1+q53JST
+ RyLKZ3/YC7KGx85YnFEcZ+mK7opuafPSwdHFjFsk07yIKHczMW4rZ/y3Rd0ttPXXBvUwIqpw12SRM
+ A8vjbt1w==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uV9DD-009PpI-O3; Fri, 27 Jun 2025 15:33:51 +0200
+ id 1uV9DH-009PqA-5p; Fri, 27 Jun 2025 15:33:55 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
 	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v7 09/24] drm/xe: Use emit_flush_imm_ggtt helper instead of
- open coding
-Date: Fri, 27 Jun 2025 14:33:22 +0100
-Message-ID: <20250627133340.54603-10-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v7 14/24] drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+Date: Fri, 27 Jun 2025 14:33:27 +0100
+Message-ID: <20250627133340.54603-15-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
 References: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
@@ -59,32 +58,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Helper is already there so lets just use it.
+Emit MI_FLUSH_DW_CCS when invalidating on auxccs platforms.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index bc1689db4cd7..b356134aca88 100644
+index 0b4d1c284a9d..2834c0193f87 100644
 --- a/drivers/gpu/drm/xe/xe_ring_ops.c
 +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -417,11 +417,9 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+@@ -285,15 +285,16 @@ static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
+ 			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
+ 	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
++	const u32 flags = aux_ccs && class == XE_ENGINE_CLASS_COPY ?
++			  MI_FLUSH_DW_CCS : 0;
  
- 	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
+ 	i = emit_copy_timestamp(lrc, dw, i);
  
--	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
--		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
--	dw[i++] = xe_lrc_seqno_ggtt_addr(lrc) | MI_FLUSH_DW_USE_GTT;
--	dw[i++] = 0;
--	dw[i++] = seqno; /* value */
-+	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
-+				MI_INVALIDATE_TLB | job->migrate_flush_flags,
-+				dw, i);
- 
- 	i = emit_user_interrupt(dw, i);
- 
+ 	if (invalidate_tlb) {
+ 		dw[i++] = preparser_disable(true);
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno,
+-					MI_INVALIDATE_TLB,
+-					dw, i);
++					seqno, MI_INVALIDATE_TLB | flags, dw,
++					i);
+ 		/* hsdes: 1809175790 */
+ 		if (aux_ccs) {
+ 			struct xe_reg reg;
 -- 
 2.48.0
 
