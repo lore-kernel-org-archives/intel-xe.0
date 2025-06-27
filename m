@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E841EC7EE31
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 007EDC7EE32
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:14:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B295610EA1A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC62210EA1F;
 	Fri, 27 Jun 2025 13:14:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="GwRalMun";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="cAZ7F8uu";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B9CD10EA1A
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:14:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C49D10EA17
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:14:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=iUm0uSXvv9yhb4eNlrBzuB7YICsQLi+LjJm6OCv56QY=; b=GwRalMunRujKbl71WfHIv+qYvW
- f9suN4SbkPp1OlDDpYYyV3WPANPgvFCtMK9LsGtJlf1fR84tCBcsCII9qDvhzq7Hv4np2TIbl43E2
- dDh5ONzCZRns50qG/v0htTBF8KaSTracYSq3Sh4lbne3RbZgDkZ82u9rO6gI7AKvkK+kK0bugca/L
- DyQaWLluY1cWVvsBqaES67TNcEfDEeLezhc+9z4wvuUPznWvqgfqh19mQNsVOwv2QdaLlSHn9dz99
- /oZKQr6YCXKzadXwHG6znNqK+gA0MIOP4rjwSdSbU+GEL+pGIjqLTgr0rTkRlkGlolsdGCWz4hBsD
- F/RBA7OA==;
+ bh=aJPXQUcJ+aLizTZ75yxvgsD8kW/T0b7CA9NApTniHNY=; b=cAZ7F8uuEIlm75avNtYubpKZu+
+ YRFuiOMY7YDza+E2paF4815ko+fAHyBkRwhg+ByjK7oJNOHX6hu/uYntmFxRz7Vm3nAGtpeeDPLJL
+ okxAfOuBzm5VJCeXhObclIHhBy+VZNvB+XKN+U+DJn66CR7O6RMOEfJAgokWCxYvLdAszmPKnhuvW
+ gxqv1o0r9yknJZrhTGyuOd4F5qTciHUUmJRbx+TrOFZBP4oY+kz51oCswG3XsVyeD6h/t+/ts/bxd
+ nLQHPeh9cL4NH6Weck/R1KGWwP7ASD8ssoRTgc+vkt2TE5BZxOYtmBEgvRRbleMGpBQoYbFXN7bsq
+ uhswId4w==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uV8ui-009PKs-Bp; Fri, 27 Jun 2025 15:14:44 +0200
+ id 1uV8uj-009PL4-Rq; Fri, 27 Jun 2025 15:14:45 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
 	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH 1/2] drm/xe: Simplify batch buffer allocation in emit_wa_job()
-Date: Fri, 27 Jun 2025 14:14:37 +0100
-Message-ID: <20250627131438.54398-2-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 2/2] drm/xe: Waste fewer instructions in emit_wa_job()
+Date: Fri, 27 Jun 2025 14:14:38 +0100
+Message-ID: <20250627131438.54398-3-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250627131438.54398-1-tvrtko.ursulin@igalia.com>
 References: <20250627131438.54398-1-tvrtko.ursulin@igalia.com>
@@ -58,35 +58,226 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Code just needs a large enough buffer and it doesn't even check. Lets
-therefore simplify to one allocation path which is guaranteed to be as
-least as big as the current ones.
+I was debugging some unrelated issue and noticed the current code was
+very verbose. We can improve it easily by using the more common batch
+buffer building pattern.
+
+Before:
+
+                        bb->cs[bb->len++] = MI_LOAD_REGISTER_REG | MI_LRR_DST_CS_MMIO;
+     c4d:       41 8b 56 10             mov    0x10(%r14),%edx
+     c51:       49 8b 4e 08             mov    0x8(%r14),%rcx
+     c55:       8d 72 01                lea    0x1(%rdx),%esi
+     c58:       41 89 76 10             mov    %esi,0x10(%r14)
+     c5c:       c7 04 91 01 00 08 15    movl   $0x15080001,(%rcx,%rdx,4)
+                        bb->cs[bb->len++] = entry->reg.addr;
+     c63:       8b 08                   mov    (%rax),%ecx
+     c65:       41 8b 56 10             mov    0x10(%r14),%edx
+     c69:       49 8b 76 08             mov    0x8(%r14),%rsi
+     c6d:       81 e1 ff ff 3f 00       and    $0x3fffff,%ecx
+     c73:       8d 7a 01                lea    0x1(%rdx),%edi
+     c76:       41 89 7e 10             mov    %edi,0x10(%r14)
+     c7a:       89 0c 96                mov    %ecx,(%rsi,%rdx,4)
+ ..etc..
+
+After:
+
+                             *cs++ = MI_LOAD_REGISTER_REG | MI_LRR_DST_CS_MMIO;
+     c52:       41 c7 04 24 01 00 08    movl   $0x15080001,(%r12)
+     c59:       15
+                        *cs++ = entry->reg.addr;
+     c5a:       8b 10                   mov    (%rax),%edx
+ ..etc..
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c  | 77 ++++++++++++++++++++-----------------
+ drivers/gpu/drm/xe/xe_lrc.c | 12 +++---
+ drivers/gpu/drm/xe/xe_lrc.h |  2 +-
+ 3 files changed, 49 insertions(+), 42 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index d397df056e4c..86018fee74d3 100644
+index 86018fee74d3..a5b0db43bcee 100644
 --- a/drivers/gpu/drm/xe/xe_gt.c
 +++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -190,13 +190,8 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_exec_queue *q)
- 	int count_rmw = 0;
- 	int count = 0;
+@@ -182,19 +182,21 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_exec_queue *q)
+ {
+ 	struct xe_reg_sr *sr = &q->hwe->reg_lrc;
+ 	struct xe_reg_sr_entry *entry;
++	int count = 0, count_rmw = 0;
++	struct xe_sched_job *job;
++	struct dma_fence *fence;
+ 	unsigned long idx;
+-	struct xe_sched_job *job;
+ 	struct xe_bb *bb;
+-	struct dma_fence *fence;
+ 	long timeout;
+-	int count_rmw = 0;
+-	int count = 0;
++	u32 *cs;
  
--	if (q->hwe->class == XE_ENGINE_CLASS_RENDER)
--		/* Big enough to emit all of the context's 3DSTATE */
--		bb = xe_bb_new(gt, xe_gt_lrc_size(gt, q->hwe->class), false);
--	else
--		/* Just pick a large BB size */
--		bb = xe_bb_new(gt, SZ_4K, false);
--
-+	/* Just pick a large BB size */
-+	bb = xe_bb_new(gt, xe_gt_lrc_size(gt, q->hwe->class), false);
+ 	/* Just pick a large BB size */
+ 	bb = xe_bb_new(gt, xe_gt_lrc_size(gt, q->hwe->class), false);
  	if (IS_ERR(bb))
  		return PTR_ERR(bb);
  
++	cs = bb->cs;
++
+ 	/* count RMW registers as those will be handled separately */
+ 	xa_for_each(&sr->xa, idx, entry) {
+ 		if (entry->reg.masked || entry->clr_bits == ~0)
+@@ -209,7 +211,7 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_exec_queue *q)
+ 	if (count) {
+ 		/* emit single LRI with all non RMW regs */
+ 
+-		bb->cs[bb->len++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(count);
++		*cs++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(count);
+ 
+ 		xa_for_each(&sr->xa, idx, entry) {
+ 			struct xe_reg reg = entry->reg;
+@@ -224,8 +226,8 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_exec_queue *q)
+ 
+ 			val |= entry->set_bits;
+ 
+-			bb->cs[bb->len++] = reg.addr;
+-			bb->cs[bb->len++] = val;
++			*cs++ = reg.addr;
++			*cs++ = val;
+ 			xe_gt_dbg(gt, "REG[0x%x] = 0x%08x", reg.addr, val);
+ 		}
+ 	}
+@@ -237,46 +239,49 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_exec_queue *q)
+ 			if (entry->reg.masked || entry->clr_bits == ~0)
+ 				continue;
+ 
+-			bb->cs[bb->len++] = MI_LOAD_REGISTER_REG | MI_LRR_DST_CS_MMIO;
+-			bb->cs[bb->len++] = entry->reg.addr;
+-			bb->cs[bb->len++] = CS_GPR_REG(0, 0).addr;
++			*cs++ = MI_LOAD_REGISTER_REG | MI_LRR_DST_CS_MMIO;
++			*cs++ = entry->reg.addr;
++			*cs++ = CS_GPR_REG(0, 0).addr;
+ 
+-			bb->cs[bb->len++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(2) |
+-					    MI_LRI_LRM_CS_MMIO;
+-			bb->cs[bb->len++] = CS_GPR_REG(0, 1).addr;
+-			bb->cs[bb->len++] = entry->clr_bits;
+-			bb->cs[bb->len++] = CS_GPR_REG(0, 2).addr;
+-			bb->cs[bb->len++] = entry->set_bits;
++			*cs++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(2) |
++				MI_LRI_LRM_CS_MMIO;
++			*cs++ = CS_GPR_REG(0, 1).addr;
++			*cs++ = entry->clr_bits;
++			*cs++ = CS_GPR_REG(0, 2).addr;
++			*cs++ = entry->set_bits;
+ 
+-			bb->cs[bb->len++] = MI_MATH(8);
+-			bb->cs[bb->len++] = CS_ALU_INSTR_LOAD(SRCA, REG0);
+-			bb->cs[bb->len++] = CS_ALU_INSTR_LOADINV(SRCB, REG1);
+-			bb->cs[bb->len++] = CS_ALU_INSTR_AND;
+-			bb->cs[bb->len++] = CS_ALU_INSTR_STORE(REG0, ACCU);
+-			bb->cs[bb->len++] = CS_ALU_INSTR_LOAD(SRCA, REG0);
+-			bb->cs[bb->len++] = CS_ALU_INSTR_LOAD(SRCB, REG2);
+-			bb->cs[bb->len++] = CS_ALU_INSTR_OR;
+-			bb->cs[bb->len++] = CS_ALU_INSTR_STORE(REG0, ACCU);
++			*cs++ = MI_MATH(8);
++			*cs++ = CS_ALU_INSTR_LOAD(SRCA, REG0);
++			*cs++ = CS_ALU_INSTR_LOADINV(SRCB, REG1);
++			*cs++ = CS_ALU_INSTR_AND;
++			*cs++ = CS_ALU_INSTR_STORE(REG0, ACCU);
++			*cs++ = CS_ALU_INSTR_LOAD(SRCA, REG0);
++			*cs++ = CS_ALU_INSTR_LOAD(SRCB, REG2);
++			*cs++ = CS_ALU_INSTR_OR;
++			*cs++ = CS_ALU_INSTR_STORE(REG0, ACCU);
+ 
+-			bb->cs[bb->len++] = MI_LOAD_REGISTER_REG | MI_LRR_SRC_CS_MMIO;
+-			bb->cs[bb->len++] = CS_GPR_REG(0, 0).addr;
+-			bb->cs[bb->len++] = entry->reg.addr;
++			*cs++ = MI_LOAD_REGISTER_REG | MI_LRR_SRC_CS_MMIO;
++			*cs++ = CS_GPR_REG(0, 0).addr;
++			*cs++ = entry->reg.addr;
+ 
+ 			xe_gt_dbg(gt, "REG[%#x] = ~%#x|%#x\n",
+ 				  entry->reg.addr, entry->clr_bits, entry->set_bits);
+ 		}
+ 
+ 		/* reset used GPR */
+-		bb->cs[bb->len++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(3) | MI_LRI_LRM_CS_MMIO;
+-		bb->cs[bb->len++] = CS_GPR_REG(0, 0).addr;
+-		bb->cs[bb->len++] = 0;
+-		bb->cs[bb->len++] = CS_GPR_REG(0, 1).addr;
+-		bb->cs[bb->len++] = 0;
+-		bb->cs[bb->len++] = CS_GPR_REG(0, 2).addr;
+-		bb->cs[bb->len++] = 0;
++		*cs++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(3) |
++			MI_LRI_LRM_CS_MMIO;
++		*cs++ = CS_GPR_REG(0, 0).addr;
++		*cs++ = 0;
++		*cs++ = CS_GPR_REG(0, 1).addr;
++		*cs++ = 0;
++		*cs++ = CS_GPR_REG(0, 2).addr;
++		*cs++ = 0;
+ 	}
+ 
+-	xe_lrc_emit_hwe_state_instructions(q, bb);
++	cs = xe_lrc_emit_hwe_state_instructions(q, cs);
++
++	bb->len = cs - bb->cs;
+ 
+ 	job = xe_bb_create_job(q, bb);
+ 	if (IS_ERR(job)) {
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 37598588a54f..8780ea1340d0 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1775,7 +1775,7 @@ static const struct instr_state xe_hpg_svg_state[] = {
+ 	{ .instr = CMD_3DSTATE_DRAWING_RECTANGLE, .num_dw = 4 },
+ };
+ 
+-void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *bb)
++u32 *xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, u32 *cs)
+ {
+ 	struct xe_gt *gt = q->hwe->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -1810,7 +1810,7 @@ void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *b
+ 	if (!state_table) {
+ 		xe_gt_dbg(gt, "No non-register state to emit on graphics ver %d.%02d\n",
+ 			  GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
+-		return;
++		return cs;
+ 	}
+ 
+ 	for (int i = 0; i < state_table_size; i++) {
+@@ -1833,12 +1833,14 @@ void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *b
+ 		    instr == CMD_3DSTATE_DRAWING_RECTANGLE)
+ 			instr = CMD_3DSTATE_DRAWING_RECTANGLE_FAST;
+ 
+-		bb->cs[bb->len] = instr;
++		*cs = instr;
+ 		if (!is_single_dw)
+-			bb->cs[bb->len] |= (num_dw - 2);
++			*cs |= (num_dw - 2);
+ 
+-		bb->len += num_dw;
++		cs += num_dw;
+ 	}
++
++	return cs;
+ }
+ 
+ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index eb6e8de8c939..b6c8053c581b 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -112,7 +112,7 @@ void xe_lrc_dump_default(struct drm_printer *p,
+ 			 struct xe_gt *gt,
+ 			 enum xe_engine_class);
+ 
+-void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *bb);
++u32 *xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, u32 *cs);
+ 
+ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc);
+ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot);
 -- 
 2.48.0
 
