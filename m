@@ -4,73 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EB68C7EE31
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 11:17:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C35AC7EE31
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 11:36:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE86C10E9CA;
-	Fri, 27 Jun 2025 11:17:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6FBC10E9CE;
+	Fri, 27 Jun 2025 11:36:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HwUpA+xb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WNNTlTOc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFD8610E9CA
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 11:17:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC33410E9CE;
+ Fri, 27 Jun 2025 11:36:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751023023; x=1782559023;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=XE+SNt4kCGXPHHVnVBp5uHmdhW6OwyVs1LNsF1QzHQU=;
- b=HwUpA+xb0nv5HIyiuI/OaFoGiI8wbsp7H4wbm5OEnb9QW5daj0JTV72k
- fAULeZXNzjcRSGgEEGDxCYLfcvzAxjSR44x6+RmIMEOaCyUlxC7yapvQJ
- 2Jvwy7kcZnflQjCCTGPboO9I5uLk5j8jTvLoSBrOSNpNpp/qomqoA8ZTB
- pYd50K9lIXqRBTNIhKdYmO8xDnfdpRrVmTdR+a528yagtCpK6Punw/oy2
- QX9whLgbnUm2TGkL1SA85lASJ7Z12ksWpAl49Oq8/E2ln5pEGaZB3A6LA
- 7R3tumFbumsM5NOzF7cQgiZnv4IpMZlrn8Nafr8fPHubvSn4VeqO4u2GT A==;
-X-CSE-ConnectionGUID: THVGJmczQCS25COghZyahg==
-X-CSE-MsgGUID: VtE6WwgoQqOVWy8Lu/0mig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="75881761"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="75881761"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 04:17:02 -0700
-X-CSE-ConnectionGUID: dIAnwJDEQ7WGLe82EQUPNQ==
-X-CSE-MsgGUID: Wx7byjf+QAyzYlBWvWrgKg==
+ t=1751024199; x=1782560199;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RGmq25A3mNZ04s92MLEjDBHT3F+05A/ZCkIqFnmPINQ=;
+ b=WNNTlTOcB37H67RxMbJGvD87yKB/QG+sKPZEyeTznLTsst9Vs4zwtp7r
+ xAEy2ILZ+PdEMTRvWJ5R6fbqFQVNrzyghOVK/rmALToSieoqJUnzLDFbO
+ puTA7zrOb90cyzjhrUJ/8RjoSx9e914h4MEFNc8hDJqsqsxk3iRNkWUSs
+ uty2Ju/iHDTaCaCVGznHvW+Vd+WtRqopBuV7She7EEETI/G1S3ycr4IAW
+ dbzqBr3cJLoEjvyNMjFr11vnafS1+qHfsWd+sgcrfdIR3qxhIOiEW7eUB
+ pjUW4NG0FTyRnl0+iANpbrfHaQYA+j5On3kbIToEwpQNEHRNjG5xz76W+ A==;
+X-CSE-ConnectionGUID: e1bE47/CQyGB659K1yf9iw==
+X-CSE-MsgGUID: t4VM1JynRDWDtJyU5UKpVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53416246"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="53416246"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 04:36:38 -0700
+X-CSE-ConnectionGUID: klyi8gERQEiIYVltVqE/Wg==
+X-CSE-MsgGUID: 0m/38x0cT/SdOG6C2cKbhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="183679231"
-Received: from smile.fi.intel.com ([10.237.72.52])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 04:16:58 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1uV74h-0000000ASge-0kdF; Fri, 27 Jun 2025 14:16:55 +0300
-Date: Fri, 27 Jun 2025 14:16:54 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
- Raag Jadav <raag.jadav@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>,
- "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] drm/xe: Support for I2C attached MCUs
-Message-ID: <aF59pnqrLEzSiKVL@smile.fi.intel.com>
-References: <20250626135610.299943-1-heikki.krogerus@linux.intel.com>
- <20250626135610.299943-3-heikki.krogerus@linux.intel.com>
- <aF1XTr2y1EmkRT_8@smile.fi.intel.com>
- <aF5c02pfI_3FirXD@kuha.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="153310966"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.146])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 04:36:37 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 00/18] drm/i915/display: convert to generic read_poll_timeout()
+Date: Fri, 27 Jun 2025 14:36:14 +0300
+Message-Id: <cover.1751023767.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aF5c02pfI_3FirXD@kuha.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,64 +67,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 27, 2025 at 11:56:51AM +0300, Heikki Krogerus wrote:
-> On Thu, Jun 26, 2025 at 05:21:02PM +0300, Andy Shevchenko wrote:
-> > On Thu, Jun 26, 2025 at 04:56:07PM +0300, Heikki Krogerus wrote:
+Convert waits that are not related to MMIO reads to the generic iopoll.h
+read_poll_timeout() helper.
 
-...
+Together with [1] and [2], this series completely removes the custom
+i915_utils.h wait macro usage from display code, and unifies on the
+kernel generic poll waiter.
 
-> > > +	regmap = devm_regmap_init(i2c->drm_dev, NULL, i2c, &i2c_regmap_config);
-> > 
-> > Use of i2c->drm_dev makes harder to maintain and understand the code.
-> > Managed resources should be carefully attached to the correct device,
-> > otherwise it's inevitable object lifetime related issues.
-> > 
-> > With
-> > 
-> > 	struct device *dev = xe->drm.dev;
-> > 
-> > and using local dev, it becomes easier to get and avoid such subtle mistakes.
-> 
-> I have to disagree with you on this one. Local dev pointers create
-> problems because of the assumption that there is only a single device
-> in the function to deal with (especially if they are named "dev"),
-> which is almost never the case - this function is no exception.
 
-Hmm... In my experience more than 70% of the drivers are okay with this
-approach as they do *not* use multiple device pointers. Usually, if we
-take IIO for the example, they have a physical device, which is depicted
-by the local variable named 'dev' and a Linux IIO device, which is container
-that has struct device inside, but it's not used explicitly, IIO APIs use
-the pointer to the container (and of course its name differs).
+BR,
+Jani.
 
-That said, it seems we have different experience (you are most likely talking
-about USB cases, where that is indeed quite complicated already).
+[1] https://lore.kernel.org/r/cover.1750959689.git.jani.nikula@intel.com
+[2] https://lore.kernel.org/r/20250626192632.2330349-1-jani.nikula@intel.com
 
-> But I'll add the local variable as you requested - I'll just name it
-> carefully.
 
-Sure.
+Jani Nikula (18):
+  drm/i915/hdmi: use generic read_poll_timeout() instead of __wait_for()
+  drm/i915/hdcp: use generic read_poll_timeout() instead of __wait_for()
+  drm/i915/dsi: use generic read_poll_timeout() instead of wait_for_us()
+  drm/i915/dsi-pll: use generic read_poll_timeout() instead of
+    wait_for()
+  drm/i915/gmbus: use generic read_poll_timeout*() instead of
+    wait_for*()
+  drm/i915/wm: use generic read_poll_timeout() instead of wait_for()
+  drm/i915/cdclk: use generic read_poll_timeout() instead of wait_for()
+  drm/i915/power: use generic read_poll_timeout() instead of wait_for()
+  drm/i915/power-well: use generic read_poll_timeout() instead of
+    wait_for() for DKL PHY
+  drm/i915/power-well: use generic read_poll_timeout() instead of
+    wait_for() for VLV/CHV
+  drm/i915/dp: use generic read_poll_timeout() instead of wait_for()
+  drm/i915/dp: use generic read_poll_timeout() instead of wait_for() in
+    link training
+  drm/i915/vblank: use generic read_poll_timeout() instead of wait_for()
+  drm/i915/tc: use generic read_poll_timeout() instead of wait_for()
+  drm/i915/dsb: use generic read_poll_timeout() instead of wait_for()
+  drm/i915/lspcon: use generic read_poll_timeout() instead of wait_for()
+  drm/i915/opregion: use generic read_poll_timeout() instead of
+    wait_for()
+  drm/i915/ddi: prefer read_poll_timeout() over readx_poll_timeout()
 
-...
-
-> This kinda related but off topic. IMO in cases like this the regmap
-> should be assigned to the child device that is being created instead
-> of the parent device. That is currently prevented by the current
-> regmap API - the device has to be fully registered before the regmap
-> can be assigned (and I'm not referring to the resource managed devm_*
-> API), but I'm not convinced that it has to be like that. The problem
-> is that the parent device may have multiple child devices that each
-> need a dedicated regmag. So just as a note to self: check if we can
-> improve the regmap API.
-
-I'm not sure I follow. The (some of) MFD drivers, for instance, work
-with many children and one regmapi that is split over the devices.
-I don't see any issue with that. The problem is when one tries to mix
-regmap and non-regmap approaches in the same (big) driver. That's
-a road to mine field.
+ drivers/gpu/drm/i915/display/i9xx_wm.c        | 18 ++++++--
+ drivers/gpu/drm/i915/display/icl_dsi.c        | 20 +++++++--
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 41 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 33 ++++++--------
+ .../drm/i915/display/intel_display_power.c    |  9 +++-
+ .../i915/display/intel_display_power_well.c   | 43 +++++++++++--------
+ drivers/gpu/drm/i915/display/intel_dp.c       | 23 +++++-----
+ .../drm/i915/display/intel_dp_link_training.c | 19 ++++++--
+ drivers/gpu/drm/i915/display/intel_dsb.c      | 12 +++++-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    | 15 +++++--
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  9 ++--
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 10 ++---
+ drivers/gpu/drm/i915/display/intel_lspcon.c   | 14 ++++--
+ drivers/gpu/drm/i915/display/intel_opregion.c | 11 +++--
+ drivers/gpu/drm/i915/display/intel_tc.c       | 18 +++++++-
+ drivers/gpu/drm/i915/display/intel_vblank.c   | 10 ++++-
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c    | 10 ++++-
+ 17 files changed, 210 insertions(+), 105 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.39.5
 
