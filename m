@@ -4,62 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF94DC7EE31
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:34:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30B59C7EE31
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 13:34:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ABAE10EA3E;
-	Fri, 27 Jun 2025 13:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED49D10EA40;
+	Fri, 27 Jun 2025 13:34:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="diCIfTcA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ZdS+y8pJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5642610EA3D;
- Fri, 27 Jun 2025 13:34:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751031270; x=1782567270;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=QRg/Zei1BexxRcPkF9RqYWSAq0V6f/MrUnmF+rZpc/M=;
- b=diCIfTcAszLKZm4brrw+nFOiXLaW5Foiyn0NT8IZsymK6+kAO2w0GBLo
- atCzTc/Ojl9fngO5uUbK82T4uH6J1gY8rfBRT5Y0U0HQWH3CUvzb3HEXs
- QKjCFv0r53Kl+hcvnOrEYMSRrDQORjPC5KeUywRRuaFsU1jagkEkeUSKE
- noQvewWd7vuI995gcGErTJtBK48RzWILxkLUK2sSGXbVNhyynzL6zabB6
- p8Ic4wuiEVzAnRZhJXT91BgUZh+XXqYEjMsQYorr3prHPlqIkvjlNGse2
- GV7EBdZI0rQIinKcowUQtNzL7eivOVavwqhoOwLy5EY+2tIYU1DneM57G Q==;
-X-CSE-ConnectionGUID: WcfsWTx3RCu6wKb+uTZRjA==
-X-CSE-MsgGUID: hwW8kAMZQqG73iS8VkWjQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="64699124"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="64699124"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 06:34:30 -0700
-X-CSE-ConnectionGUID: QqtRsua5Tiy/zII1uD/BDA==
-X-CSE-MsgGUID: GFy12A7zRD2T6QbRq2kmOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="190000355"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.146])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 06:34:26 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Imre
- Deak <imre.deak@intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Matt Wagantall <mattw@codeaurora.org>, Dejin Zheng
- <zhengdejin5@gmail.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 18/18] drm/i915/ddi: prefer read_poll_timeout() over
- readx_poll_timeout()
-In-Reply-To: <aF6UOCLdO0fGHGA9@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1751023767.git.jani.nikula@intel.com>
- <59bcc15dd4debf00ee0c7b430a3b701462ac9de7.1751023767.git.jani.nikula@intel.com>
- <aF6UOCLdO0fGHGA9@intel.com>
-Date: Fri, 27 Jun 2025 16:34:23 +0300
-Message-ID: <f922ec0a42855e17228d3f22d7291b389abe2df0@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 990ED10E22E
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 13:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=HlLaOLDPHd+jN28FvYuSWkbf7y4OXY+f3dTqmUjy+wo=; b=ZdS+y8pJzsKZbaYUyd8WC22K+d
+ ygbIJ5k+JWVR9HSHT8dOHi8MbdlEeVLbk3PR/6eYlY9E8L6sxt0/YNQ/Yh3+ANnfRbU2FFWL+VEZr
+ vMBuFr8qSeKbD/7K5kXSS5BXAU3/9dfSL+RkIA5j0jNisQAhfWV7JF/TcA5G6JgMz1JunGHmXHhKG
+ EbgsOggykDIK3r9x6m0xmnDr5pOeLVQIFpFTGY8dnaGZOYQ+wc2o1U925qv65srCAKIcjs15M905J
+ pABWxnPYjBRurus4F/j+ztMkFa9AuMVc3p0AbzP6/uzLT5D9pRhq3O2nnvBJOaselOar+i8Or5E3F
+ 3tgTEXzQ==;
+Received: from [81.79.92.254] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uV9DN-009PrW-Ei; Fri, 27 Jun 2025 15:34:01 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: intel-xe@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Subject: [PATCH v7 23/24] drm/xe/display: Add support for AuxCCS
+Date: Fri, 27 Jun 2025 14:33:36 +0100
+Message-ID: <20250627133340.54603-24-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
+References: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,146 +59,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 27 Jun 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Jun 27, 2025 at 02:36:32PM +0300, Jani Nikula wrote:
->> Unify on using read_poll_timeout() throughout instead of mixing with
->> readx_poll_timeout(). While the latter can be ever so slightly simpler,
->> they are both complicated enough that it's better to unify on one
->> approach only.
->>=20
->> While at it, better separate the handling of error returns from
->> drm_dp_dpcd_readb() and the actual status byte. This is best achieved by
->> inlining the read_fec_detected_status() function.
->>=20
->> Cc: Imre Deak <imre.deak@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_ddi.c | 33 +++++++++---------------
->>  1 file changed, 12 insertions(+), 21 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/=
-i915/display/intel_ddi.c
->> index 0405396c7750..fc4587311607 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -2339,34 +2339,25 @@ static void intel_dp_sink_set_fec_ready(struct i=
-ntel_dp *intel_dp,
->>  		drm_dbg_kms(display->drm, "Failed to clear FEC detected flags\n");
->>  }
->>=20=20
->> -static int read_fec_detected_status(struct drm_dp_aux *aux)
->> -{
->> -	int ret;
->> -	u8 status;
->> -
->> -	ret =3D drm_dp_dpcd_readb(aux, DP_FEC_STATUS, &status);
->> -	if (ret < 0)
->> -		return ret;
->> -
->> -	return status;
->> -}
->> -
->>  static int wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
->>  {
->>  	struct intel_display *display =3D to_intel_display(aux->drm_dev);
->>  	int mask =3D enabled ? DP_FEC_DECODE_EN_DETECTED : DP_FEC_DECODE_DIS_D=
-ETECTED;
->> -	int status;
->> -	int err;
->> +	u8 status =3D 0;
->> +	int ret, err;
->>=20=20
->> -	err =3D readx_poll_timeout(read_fec_detected_status, aux, status,
->> -				 status & mask || status < 0,
->> -				 10000, 200000);
->> +	ret =3D read_poll_timeout(drm_dp_dpcd_readb, err,
->> +				err || (status & mask),
->> +				10 * 1000, 200 * 1000, false,
->> +				aux, DP_FEC_STATUS, &status);
->
-> I think I hate these macros. It's very hard to tell from this
-> soup what is actually being done here.
+Add support for mapping the auxiliary CCS buffer into the DPT page tables.
 
-The thing is, I hate __wait_for(), wait_for(), wait_for_us(),
-wait_for_atomic_us(), and wait_for_atomic() even more.
+This will allow for more power efficiency by enabling the render
+compression frame buffer modifiers such as
+I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
 
-It's also very hard to figure out what is actually going on with
-them. The timeouts are arbitrarily either ms or us. wait_for_us() is
-atomic depending on the timeout. __wait_for() Wmax parameter actually
-isn't the max sleep, it's 2*Wmax-2. Some of them have exponentially
-growing sleeps, while some arbitrarily don't.
+We do this by refactoring the code a bit so handling for the linear
+auxiliary frame buffer can be added in a tidy way. Also replace some
+hardcoded constants and tighten the loops a bit.
 
-It's a fscking mess, and people randomly choose whichever version with
-no idea what's actually going on behind the scenes.
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 106 ++++++++++++++++++-------
+ 1 file changed, 79 insertions(+), 27 deletions(-)
 
-> The 'val', 'op', and 'args' look very disconnected here even though
-> they are always part of the same thing. Is there a reason they can't
-> just be a single 'op' parameter like we have in wait_for() so you can
-> actually see the code?
->
-> Ie.
-> read_poll_timeout(err =3D drm_dp_dpcd_readb(aux, DP_FEC_STATUS, &status),
-> 		  err || (status & mask),
->                   10 * 1000, 200 * 1000, false);
-> ?
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 70c8f1e727f6..d1293147db19 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -52,33 +52,95 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+ }
+ 
+-static void
+-write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+-		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
+-		   u32 dst_stride)
++static unsigned int
++write_dpt_padding(struct iosys_map *map, unsigned int dest, unsigned int pad)
++{
++	while (pad--) {
++		iosys_map_wr(map, dest, u64, 0);
++		dest += sizeof(u64);
++	}
++
++	return dest;
++}
++
++static unsigned int
++write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
++			  unsigned int dest,
++			  const struct intel_remapped_plane_info *plane)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+-	u32 column, row;
+-	u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
++	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
++						 xe->pat.idx[XE_CACHE_NONE]);
++	u64 src = xe_bo_addr(bo, plane->offset * XE_PAGE_SIZE, XE_PAGE_SIZE);
++	unsigned int size = plane->size;
++
++	while (size--) {
++		iosys_map_wr(map, dest, u64, src | pte);
++		dest += sizeof(u64);
++		src += XE_PAGE_SIZE;
++	}
+ 
+-	for (row = 0; row < height; row++) {
+-		u32 src_idx = src_stride * row + bo_ofs;
++	return dest;
++}
+ 
+-		for (column = 0; column < width; column++) {
+-			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
+-			iosys_map_wr(map, *dpt_ofs, u64, pte | addr);
++static unsigned int
++write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
++			 unsigned int dest,
++			 const struct intel_remapped_plane_info *plane)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
++						 xe->pat.idx[XE_CACHE_NONE]);
++	u64 src = xe_bo_addr(bo, plane->offset * XE_PAGE_SIZE, XE_PAGE_SIZE);
++	const unsigned int next_row = (plane->src_stride - plane->width) *
++				      XE_PAGE_SIZE;
++	unsigned int column, row;
+ 
+-			*dpt_ofs += 8;
+-			src_idx++;
++	for (row = 0; row < plane->height; row++, src += next_row) {
++		for (column = 0; column < plane->width; column++) {
++			iosys_map_wr(map, dest, u64, src | pte);
++			dest += sizeof(u64);
++			src += XE_PAGE_SIZE;
+ 		}
+ 
+ 		/* The DE ignores the PTEs for the padding tiles */
+-		*dpt_ofs += (dst_stride - width) * 8;
++		dest = write_dpt_padding(map, dest,
++					 plane->dst_stride - plane->width);
+ 	}
+ 
+-	/* Align to next page */
+-	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
++	return dest;
++}
++
++static void
++write_dpt_remapped(struct xe_bo *bo,
++		   const struct intel_remapped_info *remap_info,
++		   struct iosys_map *map)
++{
++	unsigned int i, dest = 0;
++
++	for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++) {
++		const struct intel_remapped_plane_info *plane =
++						&remap_info->plane[i];
++
++		if (!plane->width && !plane->height && !plane->linear)
++			continue;
++
++		if (remap_info->plane_alignment) {
++			const unsigned int index = dest / sizeof(u64);
++			const unsigned int pad =
++				ALIGN(index, remap_info->plane_alignment) -
++				index;
++
++			dest = write_dpt_padding(map, dest, pad);
++		}
++
++		if (plane->linear)
++			dest = write_dpt_remapped_linear(bo, map, dest, plane);
++		else
++			dest = write_dpt_remapped_tiled(bo, map, dest, plane);
++	}
+ }
+ 
+ static void gt_flush_ggtt_writes(struct xe_gt *gt)
+@@ -180,17 +242,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte | addr);
+ 		}
+ 	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
+-		const struct intel_remapped_info *remap_info = &view->remapped;
+-		u32 i, dpt_ofs = 0;
+-
+-		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
+-			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
+-					   remap_info->plane[i].offset,
+-					   remap_info->plane[i].width,
+-					   remap_info->plane[i].height,
+-					   remap_info->plane[i].src_stride,
+-					   remap_info->plane[i].dst_stride);
+-
++		write_dpt_remapped(bo, &view->remapped, &dpt->vmap);
+ 	} else {
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 		u32 i, dpt_ofs = 0;
+-- 
+2.48.0
 
-Internally the macro has:
-
-#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
-				sleep_before_read, args...) \
-
-...
-
-		(val) =3D op(args); \
-
-So you do need to provide an lvalue val, and you need to be able to add
-() after op. I think GCC allows not passing varargs. IOW you'd need to
-implement another macro (which could be used to implement the existing
-one, but not the other way round).
-
-I'm really not enthusiastic about blocking this series waiting on that
-kind of refactoring in iopoll.h which might happen, or might not,
-considering there's no active maintainer for iopoll.h.
-
-So yeah, the interface isn't great, and I'm not claiming it is, but it
-is *one* *single* *documented* *interface* that's used across the
-kernel. On the whole, warts and all, I think it's still much better than
-what we currently have. And it breaks the dependency on i915_utils.h.
-
-I've carefully tried to do the line breaks so that it's always:
-
-        read_poll_timeout(op, val,
-                          cond,
-                          sleep_us, timeout_us, sleep_before_read,
-                          args...);
-
-I think that helps a bit.
-
-
-BR,
-Jani.
-
-
->
->>=20=20
->> -	if (err || status < 0) {
->> +	/* Either can be non-zero, but not both */
->> +	ret =3D ret ?: err;
->> +	if (ret) {
->>  		drm_dbg_kms(display->drm,
->> -			    "Failed waiting for FEC %s to get detected: %d (status %d)\n",
->> -			    str_enabled_disabled(enabled), err, status);
->> -		return err ? err : status;
->> +			    "Failed waiting for FEC %s to get detected: %d (status 0x%02x)\n=
-",
->> +			    str_enabled_disabled(enabled), ret, status);
->> +		return ret;
->>  	}
->>=20=20
->>  	return 0;
->> --=20
->> 2.39.5
-
---=20
-Jani Nikula, Intel
