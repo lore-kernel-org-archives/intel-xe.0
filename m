@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5515EC7EE31
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 12:49:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AC39C7EE32
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Jun 2025 12:49:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 197AC10EA0F;
-	Fri, 27 Jun 2025 12:49:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E295910EA12;
+	Fri, 27 Jun 2025 12:49:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LiJ3kbaP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IpQTfxKf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC38210EA0F
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 12:49:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22FBE10EA10
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Jun 2025 12:49:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751028567; x=1782564567;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=pJC6JjZdmzpoh/3umQMD/FDEW5Gkz9zb++hbgLxK+bs=;
- b=LiJ3kbaPGEdHv4d0lpzZnwAq65k8tw+R0hKFhP5Ifsorr/HvdahA2q4Y
- qqIji1Fou7ls0mZLCcZduJ7HHercXiyWfhbZsMWD5IRM6nSxq+1RnCZFU
- 2F9ckAB++KyiCqd7+lcnteL64JDA7G0y3LH6ydwoQVZZ2hBOxOYftm9vu
- 9d+CNa622/aD2nUofcIhHg8AnWrVcPVV7TnjT78b8zAfOLQoMIZCBmjC8
- YODyt5l6p82S/+fCWJiIetcwP7JbYvm/sj9UaxZjZxBZQsANXo+ILO9iN
- xTEURrBqNgqkFX+r9fiWkiKCrFQU/xw3e8zTlSMiW1LTEdp0Z+lqjcD+2 w==;
-X-CSE-ConnectionGUID: 6U8Y/VOfQvibvFJcBH92aw==
-X-CSE-MsgGUID: dQo/+9LFQJKBVr272lgzjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="64031901"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="64031901"
+ t=1751028568; x=1782564568;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9ovzUwwsty+qv2VLLqAvM3xG7gB0HVKfmp2qbbbUkpQ=;
+ b=IpQTfxKfUnScwDgBcJ/vFx3R9J1Jwedw3bknF9MXKjLTm+i/r+IIS+QI
+ buzGbcf4pPyAEQREnq4QYQ+jZiFPRnnOgwliMURedpnxs9R+PVrlSbT0a
+ c60FvEvcyZIuNgPgCEUvDYRQ9kRr1bUSf9vnWx/8rZXyJjwfxnT5vz2Ht
+ A/A1lTHqpww4xKmtJ2spvZq2b7+bmQhdDIU/Fn/trg38f1B1OJXmA0PV5
+ 9MLQEjt0h9MW6h5PxIQbbOYKl31usr2vR9RlDAnlNVjxygfv7sLqcin69
+ hz94yXkeAZ7o5y61D4o5C41CunTCsM0/uYmMQa8kRDJkgVAqvEZt6V9IZ w==;
+X-CSE-ConnectionGUID: MjIm/PWISJqeE4tCEcJ9nw==
+X-CSE-MsgGUID: Q1YPUEvsTLyl2gk3v+35lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="64031904"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="64031904"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 05:49:27 -0700
-X-CSE-ConnectionGUID: HodEJSiCSRy1Vr7GGsijUA==
-X-CSE-MsgGUID: Pux9mEHLS/y+zX23h+4M0Q==
+ 27 Jun 2025 05:49:28 -0700
+X-CSE-ConnectionGUID: I2tJXdsuQWeMBuJ7NjdzYQ==
+X-CSE-MsgGUID: Ux91/ZRGTgGqomEPwO1VxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="152969685"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="152969691"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.5.201])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 05:49:25 -0700
+ 27 Jun 2025 05:49:27 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 0/7] Relax VF/PF version negotiation
-Date: Fri, 27 Jun 2025 14:49:09 +0200
-Message-Id: <20250627124916.1392-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v2 1/7] drm/xe: Combine PF and VF device data into union
+Date: Fri, 27 Jun 2025 14:49:10 +0200
+Message-Id: <20250627124916.1392-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20250627124916.1392-1-michal.wajdeczko@intel.com>
+References: <20250627124916.1392-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,63 +68,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It was clarified by the arch team that initial version negotiation
-can be done by the VF just once, by using any available GuC/GT.
+There is no need to keep PF and VF data fields fully separate
+since we can be only in one mode at the time. Move them into
+a anonymous union to save few bytes.
 
-v1: https://patchwork.freedesktop.org/series/150711/#rev1
-v2:
- - don't WARN on missed mandatory print func (Piotr)
- - use gt_is_main/tile_is_root helpers (Piotr)
- - drop leftover test include (Piotr)
- - add more asserts (Piotr)
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-Michal Wajdeczko (7):
-  drm/xe: Combine PF and VF device data into union
-  drm/xe: Move PF and VF device types to separate headers
-  drm/xe: Introduce xe_tile_is_root helper
-  drm/xe: Introduce xe_gt_is_main_type helper
-  drm/xe/pf: Expose basic info about VFs in debugfs
-  drm/xe/pf: Stop requiring VF/PF version negotiation on every GT
-  drm/xe/vf: Store negotiated VF/PF ABI version at device level
-
- drivers/gpu/drm/xe/Makefile                   |   3 +-
- .../xe/tests/xe_gt_sriov_pf_service_test.c    | 232 ------------------
- .../drm/xe/tests/xe_sriov_pf_service_kunit.c  | 227 +++++++++++++++++
- drivers/gpu/drm/xe/xe_bb.c                    |   2 +-
- drivers/gpu/drm/xe/xe_debugfs.c               |   4 +
- drivers/gpu/drm/xe/xe_device.h                |   5 +
- drivers/gpu/drm/xe/xe_device_types.h          |  12 +-
- drivers/gpu/drm/xe/xe_force_wake.c            |   2 +-
- drivers/gpu/drm/xe/xe_gsc_proxy.c             |   2 +-
- drivers/gpu/drm/xe/xe_gt.c                    |  12 +-
- drivers/gpu/drm/xe/xe_gt.h                    |   5 +
- drivers/gpu/drm/xe/xe_gt_idle.c               |   2 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  30 +--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c   |   6 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |   9 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c   | 166 +------------
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h   |   2 -
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |  36 +--
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h     |  12 -
- drivers/gpu/drm/xe/xe_irq.c                   |   6 +-
- drivers/gpu/drm/xe/xe_oa.c                    |   6 +-
- drivers/gpu/drm/xe/xe_sriov_pf.c              |  61 ++++-
- drivers/gpu/drm/xe/xe_sriov_pf.h              |   6 +
- drivers/gpu/drm/xe/xe_sriov_pf_service.c      | 216 ++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_pf_service.h      |  23 ++
- .../gpu/drm/xe/xe_sriov_pf_service_types.h    |  36 +++
- drivers/gpu/drm/xe/xe_sriov_pf_types.h        |  45 ++++
- drivers/gpu/drm/xe/xe_sriov_types.h           |  36 ---
- drivers/gpu/drm/xe/xe_sriov_vf_types.h        |  41 ++++
- 29 files changed, 741 insertions(+), 504 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service.c
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 6aca4b1a2824..962acd451734 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -406,10 +406,12 @@ struct xe_device {
+ 		/** @sriov.__mode: SR-IOV mode (Don't access directly!) */
+ 		enum xe_sriov_mode __mode;
+ 
+-		/** @sriov.pf: PF specific data */
+-		struct xe_device_pf pf;
+-		/** @sriov.vf: VF specific data */
+-		struct xe_device_vf vf;
++		union {
++			/** @sriov.pf: PF specific data */
++			struct xe_device_pf pf;
++			/** @sriov.vf: VF specific data */
++			struct xe_device_vf vf;
++		};
+ 
+ 		/** @sriov.wq: workqueue used by the virtualization workers */
+ 		struct workqueue_struct *wq;
 -- 
 2.47.1
 
