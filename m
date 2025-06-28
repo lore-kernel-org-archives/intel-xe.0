@@ -4,44 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DCC8C7EE2A
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Jun 2025 02:56:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0657C7EE2A
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Jun 2025 02:56:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 819EA10E058;
-	Sat, 28 Jun 2025 02:56:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB7B010E0C8;
+	Sat, 28 Jun 2025 02:56:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="O/CaStsZ";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="bB5Dkimb";
 	dkim-atps=neutral
 Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2AAC10E058
- for <intel-xe@lists.freedesktop.org>; Sat, 28 Jun 2025 02:56:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9779810E0C8
+ for <intel-xe@lists.freedesktop.org>; Sat, 28 Jun 2025 02:56:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
  In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
  :Reply-To:Content-ID:Content-Description;
- bh=MUkd/n07sYxLp0tygVU+UyzFBGK+s6E2xhkuUJ8VpP8=; b=O/CaStsZw79P9He9+4pyHCXH8o
- 6DAFR+WnUZIHmEzAbrmu0V/IuvYE2tTNhZc/dHcKfS7T/JDwh2kThgTlz/S9NhHMbovQFZNF/+5aV
- FZqEQZ+zz5InU8N/cTdzjcehTQhkyZv30PymbMKgY2ajLpIMC3tpDlbvQuy/oWW9X8nMtAq+tZ1yO
- WBtS3BTVIkJb0htfYb5xndHwomSrDVb0w/OreGkm04FtvIDasTxT690tNAXRR7WC165m9gzm9xAbv
- r8alnMtVMh/dWPxdRqdfdCns52crmpIKhqBCtqh+iIrhsSNLuKK8z0/K9VchhzemTa7aElJ41ivk5
- 5VijUANA==;
+ bh=0HJb919E0V/OlbAjA38o3SKM8D14Aaorr7GdwKuRljg=; b=bB5DkimbiF9cn7ZwkdqSyC4Klm
+ 0EgyWqLy18SJGQGahb3OA5lCRH+CaLXrHGedULfbHJbQgGSGKAdFeyGj6kQhpCJd1/2k31EkgyqRe
+ 8qhORd86DGoB7XrgwlcxKWKP0hlWJ0YQ7lkSFX+dr4pB4i8zw8UUcEIDaogHukTfR9ztL3DupL2mh
+ Rv9XHL6uN2Prc7dESMw+c1C/bB9KtpTwL0Wmm4pGvGoA2WWiBr0byeIjZNZpO5JxOskLHyxtHTZy1
+ rfp77G135+15PqdBgK71m8NvLe6GFYBAvq4+GvNn/wp3+9alpSF04Z8fFvLoVVDH9h4JYARd2ZKB2
+ yHjOe9Fg==;
 Received: from [50.53.25.54] (helo=[192.168.254.17])
  by casper.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1uVLjO-0000000FYyE-1ynE; Sat, 28 Jun 2025 02:55:54 +0000
-Message-ID: <27d0c458-1a05-4fb1-af2e-6f8ea6a4d9e8@infradead.org>
-Date: Fri, 27 Jun 2025 19:55:52 -0700
+ id 1uVLjm-0000000FZ0K-2VDD; Sat, 28 Jun 2025 02:56:18 +0000
+Message-ID: <c495e59e-f1a8-41b5-a6de-cd26bd4eccb7@infradead.org>
+Date: Fri, 27 Jun 2025 19:56:16 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] drm/xe: Fix conflicting intel_pcode_* symbols
+Subject: Re: [PATCH v2 2/2] drm/xe: Allow dropping kunit dependency as built-in
 To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>, Harry Austen <hpausten@protonmail.com>
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Harry Austen <hpausten@protonmail.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 References: <20250627-xe-kunit-v2-0-756fe5cd56cf@intel.com>
- <20250627-xe-kunit-v2-1-756fe5cd56cf@intel.com>
+ <20250627-xe-kunit-v2-2-756fe5cd56cf@intel.com>
 Content-Language: en-US
 From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20250627-xe-kunit-v2-1-756fe5cd56cf@intel.com>
+In-Reply-To: <20250627-xe-kunit-v2-2-756fe5cd56cf@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,51 +63,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 6/27/25 1:30 PM, Lucas De Marchi wrote:
-> If CONFIG_DRM_XE_DISPLAY is set, the xe module can only be built as
-> module to avoid duplicate symbols from i915. The interface for pcode was
-> added without considering that, so the build breaks if both xe and i915
-> are built-in.
+> From: Harry Austen <hpausten@protonmail.com>
 > 
-> Since the intel_pcode_* functions should only be called from the display
-> side (xe side should call the xe interface directly) and there's already
-> a protection in Kconfig to avoid the problematic configuration, ifdef it
-> out in case CONFIG_DRM_XE_DISPLAY is disabled.
+> Fix Kconfig symbol dependency on KUNIT, which isn't actually required
+> for XE to be built-in. However, if KUNIT is enabled, it must be built-in
+> too.
 > 
-> Closes: https://lore.kernel.org/r/3667a992-a24b-4e49-aab2-5ca73f2c0a56@infradead.org
-> Fixes: d9465cc8ac2d ("drm/xe/pcode: add struct drm_device based interface")
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=m")
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Signed-off-by: Harry Austen <hpausten@protonmail.com>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
+Acked-by: Randy Dunlap <rdunlap@infradead.org>
 Tested-by: Randy Dunlap <rdunlap@infradead.org>
 
 Thanks.
 
 > ---
->  drivers/gpu/drm/xe/xe_pcode.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/xe/Kconfig | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> index 87323ad0cbbb2..6a7ddb9005f99 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-> @@ -337,7 +337,9 @@ int xe_pcode_probe_early(struct xe_device *xe)
->  }
->  ALLOW_ERROR_INJECTION(xe_pcode_probe_early, ERRNO); /* See xe_pci_probe */
->  
-> -/* Helpers with drm device */
-> +/* Helpers with drm device. These should only be called by the display side */
-> +#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-> +
->  int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
->  {
->  	struct xe_device *xe = to_xe_device(drm);
-> @@ -362,3 +364,5 @@ int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
->  
->  	return xe_pcode_request(tile, mbox, request, reply_mask, reply, timeout_base_ms);
->  }
-> +
-> +#endif
+> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+> index 553c29e1030b1..827bc75b8b48f 100644
+> --- a/drivers/gpu/drm/xe/Kconfig
+> +++ b/drivers/gpu/drm/xe/Kconfig
+> @@ -1,7 +1,8 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  config DRM_XE
+>  	tristate "Intel Xe2 Graphics"
+> -	depends on DRM && PCI && (m || (y && KUNIT=y))
+> +	depends on DRM && PCI
+> +	depends on KUNIT || !KUNIT
+>  	depends on INTEL_VSEC || !INTEL_VSEC
+>  	depends on X86_PLATFORM_DEVICES || !(X86 && ACPI)
+>  	select INTERVAL_TREE
 > 
 
 -- 
