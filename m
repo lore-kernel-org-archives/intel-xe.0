@@ -4,44 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B4BBC83026
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Jun 2025 12:19:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECB3BC7EE39
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Jun 2025 12:33:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46E2410E037;
-	Sat, 28 Jun 2025 12:19:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B49410E037;
+	Sat, 28 Jun 2025 12:33:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="cta7eDaC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dvtMGnKr";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B83E110E037;
- Sat, 28 Jun 2025 12:19:50 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 7D5454358D;
- Sat, 28 Jun 2025 12:19:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13674C4CEEA;
- Sat, 28 Jun 2025 12:19:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1751113186;
- bh=QhnZ7KS4dcO10Zf6dRimAYrqaLaH9hV/1OodxZ6Dess=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=cta7eDaCVajo/VmSdGNFM/pCfNX/Dk1Y42mL+oXVgdXNLJtzfRA1lLbDbaMrmUY9B
- g1xuCPTWvARXXN2lPpD+SzQHGvHuoehp4iRySbidQhJPbg+oD8X6xJcLNxWywl2n26
- 8q0ahpA27J+GlksGUam3PbikcXxgJ0hww1kpjRdE=
-Date: Sat, 28 Jun 2025 14:19:43 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Badal Nilawar <badal.nilawar@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, alexander.usyskin@intel.com,
- daniele.ceraolospurio@intel.com
-Subject: Re: [PATCH v4 02/10] mei: late_bind: add late binding component driver
-Message-ID: <2025062808-grant-award-ee22@gregkh>
-References: <20250625170015.33912-1-badal.nilawar@intel.com>
- <20250625170015.33912-3-badal.nilawar@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CACFC10E037
+ for <intel-xe@lists.freedesktop.org>; Sat, 28 Jun 2025 12:33:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751113985; x=1782649985;
+ h=message-id:date:mime-version:subject:from:to:references:
+ in-reply-to:content-transfer-encoding;
+ bh=QIj30dJDLsR5jjNASqUpdNhQ0zi2KE2ZczRbYDag/FA=;
+ b=dvtMGnKrcVF+O3eSOvDbFkMnPa8YArtK6lIMmYfj9QHZp12eHwJyDC3M
+ KgO+gNxHd3mLRHTWJ8MYg1ma25I3C4j++EEYzKj/U3A+MntEcgKq1ra3B
+ Sz/XY3gXaqwIdHeGGmVTXbhfdzZf2YIn+vg6ujU+Y/gzhbwXqnai52PUl
+ 7Z7MJVgCx71/0D13bgQ+JcmRJQIbhh/u6HIuOkoCpVVtKtIb/bRgkybqr
+ 4a2RV404bRzlsAujSNktxzaCOjOjctvPuWRnd9H8cmyPRqFXC6dxN0Acl
+ MPWQyozvR9G42jsdltd7WWq3EK9gEdFhTmwR630xAZ9pxHPHHF+I6sAlr Q==;
+X-CSE-ConnectionGUID: oYBGXcwoR1u889NxFrVvCg==
+X-CSE-MsgGUID: Qup6em5nToCSwV1gpc9Nyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11478"; a="64006587"
+X-IronPort-AV: E=Sophos;i="6.16,273,1744095600"; d="scan'208";a="64006587"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2025 05:33:04 -0700
+X-CSE-ConnectionGUID: x1B/VfryRjOFnhaITVxoNQ==
+X-CSE-MsgGUID: gDEkEGGETkWVjGfMNX2oMA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,273,1744095600"; d="scan'208";a="158748468"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa005.jf.intel.com with ESMTP; 28 Jun 2025 05:33:01 -0700
+Received: from [10.245.96.176] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.96.176])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 439401258A;
+ Sat, 28 Jun 2025 13:33:00 +0100 (IST)
+Message-ID: <d65a39d2-cd0a-4e00-b4c5-a72ba662b271@intel.com>
+Date: Sat, 28 Jun 2025 14:32:59 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250625170015.33912-3-badal.nilawar@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/6] drm/xe/guc: Add log init config abi definitions
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-xe@lists.freedesktop.org
+References: <20250423215821.3078428-1-zhanjun.dong@intel.com>
+ <20250423215821.3078428-2-zhanjun.dong@intel.com>
+ <dcdb889f-34fb-4ac0-adf3-b28803fd854f@intel.com>
+Content-Language: en-US
+In-Reply-To: <dcdb889f-34fb-4ac0-adf3-b28803fd854f@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,19 +72,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 25, 2025 at 10:30:07PM +0530, Badal Nilawar wrote:
-> +/**
-> + * struct late_bind_component_ops - ops for Late Binding services.
-> + * @owner: Module providing the ops
-> + * @push_config: Sends a config to FW.
-> + */
-> +struct late_bind_component_ops {
-> +	struct module *owner;
 
-I don't think you ever set this field, so why is it here?
 
-Or did I miss it somewhere?
+On 28.06.2025 14:19, Michal Wajdeczko wrote:
+> 
+> 
+> On 23.04.2025 23:58, Zhanjun Dong wrote:
+>> Add GuC log init config (LIC) ABI definitions.
+>>
+>> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/abi/guc_log_lic_abi.h | 117 +++++++++++++++++++++++
+> 
+> since LIC already refers to LOG (LOG-init-config) then maybe names
+> should follow GUC_LIC naming? here: guc_lic_abi.h
+> 
+>>  1 file changed, 117 insertions(+)
+>>  create mode 100644 drivers/gpu/drm/xe/abi/guc_log_lic_abi.h
+>>
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_log_lic_abi.h b/drivers/gpu/drm/xe/abi/guc_log_lic_abi.h
+>> new file mode 100644
+>> index 000000000000..48302bfcab2b
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/abi/guc_log_lic_abi.h
+>> @@ -0,0 +1,117 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2025 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _ABI_GUC_LOG_LIC_ABI_H_
+>> +#define _ABI_GUC_LOG_LIC_ABI_H_
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_LENGTH		4096
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_LOG		0
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_CRASH		1
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_CAPTURE	2
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_INIT		3
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT		4
+> 
+> are above definitions really related to the LIC?
+> 
+>> +
+>> +#define GUC_LOG_INIT_CONFIG_LIC_MAGIC			0x8086900D
+> 
+> move closer to guc_log_init_config
+> 
+>> +#define GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MAJOR	0x0001
+>> +#define GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MINOR	0x0000
+> 
+> move closer to guc_lic_format_version and make them 1u and 0u
+> 
+>> +
+>> +/** enum guc_log_lic_type - Log Init Config KLV IDs. */
+> 
+> if those are really KLVs, not TLVs as wrongly(?) described once in the
+> spec, then maybe this enum shall be named as guc_log_lic_klv_id with:
+> 
+> GUC_LOG_LIC_KLV_GUC_SW_VERSION
+> GUC_LOG_LIC_KLV_GUC_DEVICE_ID
+> GUC_LOG_LIC_KLV_TSC_FREQUENCY
+> GUC_LOG_LIC_KLV_GMD_ID
+> 
+>> +enum guc_log_lic_type {
+>> +	/**
+>> +	 * @GUC_LOG_LIC_TYPE_GUC_SW_VERSION: GuC firmware version. Value
+>> +	 * is a 32 bit number represented by guc_sw_version.
+>> +	 */
+>> +	GUC_LOG_LIC_TYPE_GUC_SW_VERSION = 0x1,
+>> +	/**
+>> +	 * @GUC_LOG_LIC_TYPE_GUC_DEVICE_ID: GuC device id. Value is a 32
+>> +	 * bit.
+>> +	 */
+>> +	GUC_LOG_LIC_TYPE_GUC_DEVICE_ID = 0x2,
+>> +	/**
+>> +	 * @GUC_LOG_LIC_TYPE_TSC_FREQUENCY : GuC timestamp counter
+>> +	 * frequency. Value is a 32 bit number representing frequency in
+>> +	 * kilohertz. This timestamp is utilized in log entries, timer and
+> 
+> s/kilohertz/kHz
+> 
+>> +	 * for engine utilization tracking.
+>> +	 */
+>> +	GUC_LOG_LIC_TYPE_TSC_FREQUENCY = 0x3,
+>> +	/**
+>> +	 * @GUC_LOG_LIC_TYPE_GMD_ID: HW GMD ID. Value is a 32 bit number
+>> +	 * representing graphics, media and display HW architecture IDs.
+>> +	 */
+>> +	GUC_LOG_LIC_TYPE_GMD_ID = 0x4,
+>> +	/**
+>> +	 * @GUC_LOG_LIC_TYPE_BUILD_PLATFORM_ID: GuC build platform ID.
+>> +	 * Value is 32 bits.
+>> +	 */
+>> +	GUC_LOG_LIC_TYPE_BUILD_PLATFORM_ID = 0x5,
+>> +};
+>> +
+>> +/**
+>> + * struct guc_sw_version - This structure describes the full version of a
+>> + * software component.
+>> + */
+>> +struct guc_sw_version {
+>> +	/** @dw0: A 32 bits dword, contains multiple bit fields */
+>> +	u32 dw0;
+>> +	/*  Patch version */
+>> +#define GUC_SW_VERSION_PATCH_VERSION		GENMASK(7, 0)
+>> +	/*  Minor version */
+>> +#define GUC_SW_VERSION_MINOR_VERSION		GENMASK(15, 8)
+>> +	/*  Major version */
+>> +#define GUC_SW_VERSION_MAJOR_VERSION		GENMASK(23, 16)
+>> +	/*  Branch ID */
+>> +#define GUC_SW_VERSION_BRANCH_ID		GENMASK(31, 24)
+> 
+> drop useless comments (patch major ...
+> 
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_lic_format_version - Log Init Config Structure Version.
+>> + * Major-Minor is not a fractional number (i.e. Ver 1.3 would be older
+>> + * than 1.12)
+>> + */
+>> +struct guc_lic_format_version {
+>> +	/** @dw0: A 32 bits dword, contains multiple bit fields */
+>> +	u32 dw0;
+>> +	/*
+>> +	 *  Log-Init-Config structure minor version. Must be
+>> +	 * GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MINOR
+>> +	 */
+>> +#define GUC_LIC_FORMAT_VERSION_MINOR_VERSION		GENMASK(15, 0)
+>> +	/*
+>> +	 *  Log-Init-Config structure major version. Must be
+>> +	 * GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MAJOR
+>> +	 */
+>> +#define GUC_LIC_FORMAT_VERSION_MAJOR_VERSION		GENMASK(31, 16)
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_log_init_config - GuC Log-Init-Config structure.
+>> + * This is populated by the GUC at log init time and is located in the log
+>> + * buffer as per the Log Buffer Layout (In Memory). The array of guc log
+>> + * buffer states plus this structure must not exceed 4KB
+>> + */
+>> +struct guc_log_init_config {
 
-thanks,
+missed to add - there is a lot of inconsistency in the naming (likely
+due to a spec):
 
-greg k-h
+guc_log_init_config
+        ^no lic
+
+guc_lic_format_version
+   ^no log
+
+guc_log_lic_type
+
+GUC_LOG_INIT_CONFIG_LIC_MAGIC
+        ^full name  ^
+                    ^then lic again
+GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MINOR
+        ^full name, no lic
+
+so maybe:
+
+guc_log_lic_buffer
+guc_log_lic_version
+guc_log_lic_klv_id
+
+GUC_LOG_LIC_MAGIC
+GUC_LOG_LIC_VERSION_MINOR
+
+maybe the spec needs some tuning/updates?
+
+>> +	/**
+>> +	 * @magic: A magic number set by GuC to identify that this
+>> +	 * structure contains valid information: magic = 0x8086900D.
+> 
+> nit: you may want to add reference to GUC_LOG_INIT_CONFIG_LIC_MAGIC
+> 
+>> +	 * Used to verify the information in this structure is valid.
+>> +	 */
+>> +	u32 magic;
+> 
+> maybe GUC_LOG_INIT_CONFIG_LIC_MAGIC definition can be put here?
+> 
+>> +	/**
+>> +	 * @ver: The version of the this structure. Detail description
+>> +	 * is guc_lic_format_version
+> 
+> drop 'Detail ...' since this struct is documented
+> 
+>> +	 */
+>> +	struct guc_lic_format_version ver;
+> 
+> this could be named in full 'version'
+> 
+>> +	/** @dw_size: Number of Dws the `data` array contains. */
+>> +	u32 dw_size;
+>> +	/**
+>> +	 * @data: Array of dwords representing a list of LIC KLVs of
+>> +	 * type guc_klv_generic with keys represented by guc_log_lic_type
+>> +	 */
+>> +	u32 data[] __counted_by(dw_size);
+>> +} __packed;
+>> +
+>> +#endif
+> 
+
