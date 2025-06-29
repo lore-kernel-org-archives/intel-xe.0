@@ -4,60 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E281AC54ED1
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Jun 2025 14:46:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51A45C7EE30
+	for <intel-xe@archiver.kernel.org>; Sun, 29 Jun 2025 06:59:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D35410E15C;
-	Sat, 28 Jun 2025 14:46:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A27610E009;
+	Sun, 29 Jun 2025 06:59:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kscy7RCu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LVRZCuzb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A227E10E15C
- for <intel-xe@lists.freedesktop.org>; Sat, 28 Jun 2025 14:46:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32C9F10E009
+ for <intel-xe@lists.freedesktop.org>; Sun, 29 Jun 2025 06:58:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751121992; x=1782657992;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=VNAL27kf1TWx7kXucoTwBfSMaGCrq2HDK3FENV/6jYQ=;
- b=kscy7RCu/sM+TSqQ6rxfjuEbAZIlMF42ehEq1upmW5cEBSy1nZiSSeQJ
- QHRlWfgLNbuGOXWa94N32EoZ0cB7U59x/GMtfolFK79IK3S9oaBcnpnyJ
- Ig9ki6aL1gwMTRqvFTbsI6b3ZdyYUPg4RPxz2ZXfkPyuVwa+m6iSsaoEo
- CtZAOp2X8w3BYusjUj/wCOjbteoTzg+sEovqj6lFQ8ODmvu8FgoogJ7or
- wKsx/r5W8YFkLDtPPf4OhGeq63w9dao/eqICzAgirvRXjHWdWYDXb5J1P
- bM/MMCsYyQ8dstGytSx1uPNDwtxa4ch4l+tUADp07O0T/i2DCLSveZpbe g==;
-X-CSE-ConnectionGUID: bKMNNSyjS4Kuyf26DAZQ7Q==
-X-CSE-MsgGUID: nQyHPNSQToK99fjDSeAIwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11478"; a="53507799"
-X-IronPort-AV: E=Sophos;i="6.16,273,1744095600"; d="scan'208";a="53507799"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2025 07:46:32 -0700
-X-CSE-ConnectionGUID: lCzeAKq0SE+zpok4z06hCQ==
-X-CSE-MsgGUID: vkbz/eSqRh+2yIn1NeaIww==
+ t=1751180343; x=1782716343;
+ h=date:from:to:cc:subject:message-id;
+ bh=btMnAq6g4NPTBhZ74iQBoRCQJNtjUQkIFRhgjzw627k=;
+ b=LVRZCuzbi6eosi7k25JrK9VsMmuy9STnFUgMoH+Iwxjdg0y/ZW0HCOd8
+ /ag3eKLqPBIgKRGFO3xcvxyK/HCAEFSFtl8Qq9a0KMkQqRJtz/WEqsOVG
+ fm40VnHuSNOtc61Xtu/tfp2de4CgY/YEvgeNzjuCY9wL1fxV4+L+7TKVe
+ sK9KK4vz+bWJeZbMuty2r8boBNk7jjRBnCx4ZVjcT8X1TGFqdiJUntzyQ
+ nym3o0W1tuGZ2f6V9THfh8arW8EmflyBmtHS2+ckIbh4VTuTe2VM62ZCu
+ wzkZrSAILt/unYsWYpjUjEKvOIg26puqkGybm0V2YEEI38Cok3NqwWFNV Q==;
+X-CSE-ConnectionGUID: 8JTPIUOPTPSUHd30BTdgDg==
+X-CSE-MsgGUID: nyQCACsOQGqawwqjRPf+ug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11478"; a="53522773"
+X-IronPort-AV: E=Sophos;i="6.16,274,1744095600"; d="scan'208";a="53522773"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2025 23:58:56 -0700
+X-CSE-ConnectionGUID: f1sRhlCqROav8a8dzI7s1A==
+X-CSE-MsgGUID: byQg0CLxTM+Gp8Dv1GzaFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,273,1744095600"; d="scan'208";a="152555474"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa006.jf.intel.com with ESMTP; 28 Jun 2025 07:46:31 -0700
-Received: from [10.245.96.176] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.96.176])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 0FCA11258A;
- Sat, 28 Jun 2025 15:46:29 +0100 (IST)
-Message-ID: <d1207c05-35c4-4c2b-9012-635231c8cb08@intel.com>
-Date: Sat, 28 Jun 2025 16:46:28 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/6] drm/xe/guc: Add GuC log event buffer output in LFD
- format
-To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-xe@lists.freedesktop.org
-References: <20250423215821.3078428-1-zhanjun.dong@intel.com>
- <20250423215821.3078428-6-zhanjun.dong@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250423215821.3078428-6-zhanjun.dong@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-IronPort-AV: E=Sophos;i="6.16,274,1744095600"; d="scan'208";a="153878647"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+ by fmviesa010.fm.intel.com with ESMTP; 28 Jun 2025 23:58:55 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1uVm05-000Xja-0g;
+ Sun, 29 Jun 2025 06:58:53 +0000
+Date: Sun, 29 Jun 2025 14:58:14 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ a559434880b320b83733d739733250815aecf1b0
+Message-ID: <202506291405.y5IelpHx-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,174 +64,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: a559434880b320b83733d739733250815aecf1b0  drm/xe: Allow dropping kunit dependency as built-in
 
+elapsed time: 927m
 
-On 23.04.2025 23:58, Zhanjun Dong wrote:
-> Add GuC log event buffer output in LFD format.
-> 
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_log.c | 87 +++++++++++++++++++++++++++++++--
->  1 file changed, 84 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-> index 3fdf3823e2d0..5aa9b9dbe3f3 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-> @@ -33,6 +33,7 @@ struct guc_log_buffer_entry_list {
->  };
->  
->  struct guc_log_init_config_save {
-> +	u32 version;
->  	/*
->  	 * Array of init config KLVs.
->  	 * Range from GUC_LOG_LIC_TYPE_FIRST to GUC_LOG_LIC_TYPE_LAST
-> @@ -336,7 +337,6 @@ static int xe_guc_log_add_os_id(void *buf, int buf_size, u32 id)
->  		return -ENOMEM;
->  
->  	strscpy(os_id->build_version, version, info_len);
-> -
+configs tested: 118
+configs skipped: 6
 
-unrelated change
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
->  	return xe_guc_log_add_typed_payload(buf, buf_size, GUC_LFD_TYPE_OS_ID,
->  					   info_len + sizeof(*os_id), os_id);
->  }
-> @@ -366,6 +366,7 @@ static void xe_guc_log_load_lic(void *guc_log, struct guc_log_init_config_save *
->  	int i = 0;
->  
->  	memset(config, 0, sizeof(struct guc_log_init_config_save));
-> +	config->version = p->version;
->  	while (p) {
->  		for (i = 0; i < GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT; i++) {
->  			if (p->marker[0] == entry_markers[i].key[0] &&
-> @@ -380,8 +381,7 @@ static void xe_guc_log_load_lic(void *guc_log, struct guc_log_init_config_save *
->  					p++;
->  				} else {
->  					/* Load log init config */
-> -					xe_guc_log_loop_log_init((void *)p,
-> -								 config);
-> +					xe_guc_log_loop_log_init((void *)p, config);
+tested configs:
+alpha                             allnoconfig    gcc-15.1.0
+alpha                            allyesconfig    gcc-15.1.0
+arc                              allmodconfig    gcc-15.1.0
+arc                               allnoconfig    gcc-15.1.0
+arc                              allyesconfig    gcc-15.1.0
+arc                        nsim_700_defconfig    gcc-15.1.0
+arc                   randconfig-001-20250629    gcc-8.5.0
+arc                   randconfig-002-20250629    gcc-13.3.0
+arm                               allnoconfig    clang-21
+arm                              allyesconfig    gcc-15.1.0
+arm                   randconfig-001-20250629    clang-21
+arm                   randconfig-002-20250629    gcc-12.4.0
+arm                   randconfig-003-20250629    gcc-8.5.0
+arm                   randconfig-004-20250629    gcc-12.4.0
+arm64                            allmodconfig    clang-19
+arm64                             allnoconfig    gcc-15.1.0
+arm64                 randconfig-001-20250629    gcc-13.3.0
+arm64                 randconfig-002-20250629    clang-19
+arm64                 randconfig-003-20250629    gcc-14.3.0
+arm64                 randconfig-004-20250629    gcc-11.5.0
+csky                              allnoconfig    gcc-15.1.0
+csky                  randconfig-001-20250629    gcc-15.1.0
+csky                  randconfig-002-20250629    gcc-15.1.0
+hexagon                          allmodconfig    clang-17
+hexagon                           allnoconfig    clang-21
+hexagon                          allyesconfig    clang-21
+hexagon               randconfig-001-20250629    clang-21
+hexagon               randconfig-002-20250629    clang-17
+i386                             allmodconfig    gcc-12
+i386                              allnoconfig    gcc-12
+i386                             allyesconfig    gcc-12
+i386        buildonly-randconfig-001-20250629    clang-20
+i386        buildonly-randconfig-002-20250629    clang-20
+i386        buildonly-randconfig-003-20250629    clang-20
+i386        buildonly-randconfig-004-20250629    gcc-12
+i386        buildonly-randconfig-005-20250629    clang-20
+i386        buildonly-randconfig-006-20250629    clang-20
+i386                                defconfig    clang-20
+loongarch                        allmodconfig    gcc-15.1.0
+loongarch                         allnoconfig    gcc-15.1.0
+loongarch                 loongson3_defconfig    gcc-15.1.0
+loongarch             randconfig-001-20250629    gcc-15.1.0
+loongarch             randconfig-002-20250629    gcc-15.1.0
+m68k                             allmodconfig    gcc-15.1.0
+m68k                              allnoconfig    gcc-15.1.0
+m68k                             allyesconfig    gcc-15.1.0
+microblaze                        allnoconfig    gcc-15.1.0
+microblaze                       allyesconfig    gcc-15.1.0
+mips                              allnoconfig    gcc-15.1.0
+mips                        bcm63xx_defconfig    clang-21
+nios2                             allnoconfig    gcc-14.2.0
+nios2                 randconfig-001-20250629    gcc-9.3.0
+nios2                 randconfig-002-20250629    gcc-8.5.0
+openrisc                          allnoconfig    gcc-15.1.0
+openrisc                         allyesconfig    gcc-15.1.0
+parisc                           alldefconfig    gcc-15.1.0
+parisc                           allmodconfig    gcc-15.1.0
+parisc                            allnoconfig    gcc-15.1.0
+parisc                           allyesconfig    gcc-15.1.0
+parisc                randconfig-001-20250629    gcc-10.5.0
+parisc                randconfig-002-20250629    gcc-14.3.0
+powerpc                     akebono_defconfig    clang-21
+powerpc                          allmodconfig    gcc-15.1.0
+powerpc                           allnoconfig    gcc-15.1.0
+powerpc                          allyesconfig    clang-21
+powerpc                     ep8248e_defconfig    gcc-15.1.0
+powerpc                      ppc6xx_defconfig    gcc-15.1.0
+powerpc               randconfig-001-20250629    clang-21
+powerpc               randconfig-002-20250629    gcc-13.3.0
+powerpc               randconfig-003-20250629    gcc-11.5.0
+powerpc                     redwood_defconfig    clang-21
+powerpc                     tqm8555_defconfig    gcc-15.1.0
+powerpc64             randconfig-001-20250629    clang-21
+powerpc64             randconfig-002-20250629    gcc-8.5.0
+powerpc64             randconfig-003-20250629    clang-20
+riscv                            allmodconfig    clang-21
+riscv                             allnoconfig    gcc-15.1.0
+riscv                            allyesconfig    clang-16
+riscv                 randconfig-001-20250629    clang-17
+riscv                 randconfig-002-20250629    gcc-13.3.0
+s390                             allmodconfig    clang-18
+s390                              allnoconfig    clang-21
+s390                             allyesconfig    gcc-15.1.0
+s390                  randconfig-001-20250629    clang-21
+s390                  randconfig-002-20250629    clang-21
+sh                               allmodconfig    gcc-15.1.0
+sh                                allnoconfig    gcc-15.1.0
+sh                               allyesconfig    gcc-15.1.0
+sh                          r7785rp_defconfig    gcc-15.1.0
+sh                    randconfig-001-20250629    gcc-15.1.0
+sh                    randconfig-002-20250629    gcc-15.1.0
+sh                          rsk7269_defconfig    gcc-15.1.0
+sh                        sh7763rdp_defconfig    gcc-15.1.0
+sparc                            allmodconfig    gcc-15.1.0
+sparc                             allnoconfig    gcc-15.1.0
+sparc                 randconfig-001-20250629    gcc-10.3.0
+sparc                 randconfig-002-20250629    gcc-8.5.0
+sparc64               randconfig-001-20250629    gcc-8.5.0
+sparc64               randconfig-002-20250629    gcc-13.3.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-21
+um                               allyesconfig    gcc-12
+um                    randconfig-001-20250629    gcc-11
+um                    randconfig-002-20250629    gcc-12
+x86_64                            allnoconfig    clang-20
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20250629    gcc-12
+x86_64      buildonly-randconfig-002-20250629    gcc-12
+x86_64      buildonly-randconfig-003-20250629    clang-20
+x86_64      buildonly-randconfig-004-20250629    gcc-12
+x86_64      buildonly-randconfig-005-20250629    gcc-12
+x86_64      buildonly-randconfig-006-20250629    gcc-12
+x86_64                              defconfig    gcc-11
+x86_64                          rhel-9.4-rust    clang-18
+xtensa                            allnoconfig    gcc-15.1.0
+xtensa                  audio_kc705_defconfig    gcc-15.1.0
+xtensa                randconfig-001-20250629    gcc-8.5.0
+xtensa                randconfig-002-20250629    gcc-8.5.0
 
-unrelated change
-
->  
->  					/* Init config is the last */
->  					return;
-> @@ -417,6 +417,86 @@ xe_guc_log_output_lfd_init(char *buf, struct xe_guc_log_snapshot *snapshot,
->  	return index;
->  }
->  
-> +static void
-> +xe_guc_log_print_over_chunks(struct drm_printer *p, struct xe_guc_log_snapshot *snapshot,
-> +			     u32 from, u32 to)
-
-guc_log_snapshot_print_chunks(
-			struct xe_guc_log_snapshot *snapshot,
-			u32 from, u32 to,
-			struct drm_printer *p)
-
-> +{
-> +	int chunk_from = from % GUC_LOG_CHUNK_SIZE;
-> +	int chunk_id = from / GUC_LOG_CHUNK_SIZE;
-> +	int to_chunk_id = to / GUC_LOG_CHUNK_SIZE;
-> +	int chunk_to = to % GUC_LOG_CHUNK_SIZE;
-> +	int pos = from;
-> +
-> +	do {
-> +		size_t size = (to_chunk_id > chunk_id ? GUC_LOG_CHUNK_SIZE : chunk_to) - chunk_from;
-> +
-> +		xe_print_blob_ascii85(p, NULL, 0, snapshot->copy[chunk_id], chunk_from, size);
-> +		pos += size;
-> +		chunk_id++;
-> +		chunk_from = 0;
-> +	} while (pos < to);
-> +}
-> +
-> +static void
-> +xe_guc_log_lfd_print_from_chunks(struct drm_printer *p, struct xe_guc_log_snapshot *snapshot,
-> +				 struct guc_log_buffer_entry_list *entry)
-
-I'm not sure if having this function helps,
-IMO better to keep this code at the caller, where you are already
-accessing the data from the 'entry' in "Calculate data length"
-
-> +{
-> +	/* Output data from guc log chunks directly */
-> +	if (entry->rd_ptr < entry->wr_ptr) {
-> +		xe_guc_log_print_over_chunks(p, snapshot,
-> +					     entry->offset + entry->rd_ptr,
-> +					     entry->offset + entry->wr_ptr);
-> +	} else {
-> +		/* print from rd to buf end 1st */
-> +		xe_guc_log_print_over_chunks(p, snapshot,
-> +					     entry->offset + entry->rd_ptr,
-> +					     entry->offset + entry->buf_size);
-> +
-> +		/* print from buf start to wr */
-> +		xe_guc_log_print_over_chunks(p, snapshot, entry->offset,
-> +					     entry->offset + entry->wr_ptr);
-> +	}
-> +}
-> +
-> +static inline int
-> +xe_guc_log_add_log_event(struct drm_printer *p, char *buf, struct xe_guc_log_snapshot *snapshot,
-> +			 struct guc_log_init_config_save *config)
-
-guc_log_snapshot_print_events(
-			struct xe_guc_log_snapshot *snapshot,
-			const struct guc_log_init_config_save *config,
-			char *buf,
-			struct drm_printer *p)
-
-but do we really need this 'buf' ?
-those lfd headers are quite small and could be defined on stack
-
-> +{
-> +	struct guc_logfile_lfd_data *lfd = (void *)buf;
-> +	struct guc_lfd_data_log_events_buf *events_buf;
-> +	struct guc_log_buffer_entry_list *entry;
-> +	u32 data_len;
-> +	int index;
-> +
-> +	memset(buf, 0, GUC_LOG_CHUNK_SIZE);
-> +	entry = &config->entry[GUC_LOG_BUFFER_STATE_HEADER_ENTRY_LOG];
-> +
-> +	/* Skip empty log */
-> +	if (entry->rd_ptr == entry->wr_ptr)
-> +		return 0;
-> +
-> +	index = xe_guc_log_add_lfd_header(buf, GUC_LOG_CHUNK_SIZE);
-> +	lfd->dw0 |= FIELD_PREP(GUC_LOGFILE_LFD_DESC_TYPE, GUC_LFD_TYPE_LOG_EVENTS_BUFFER);
-> +	events_buf = (void *)&lfd->data;
-> +	events_buf->log_events_format_version = config->version;
-> +
-> +	/* Adjust to log_format_buf */
-> +	data_len = offsetof(struct guc_lfd_data_log_events_buf, log_format_buf);
-> +	index += data_len;
-> +
-> +	/* Calculate data length */
-> +	data_len += (entry->wr_ptr + entry->buf_size - entry->rd_ptr) % entry->buf_size;
-> +	/* make length u32 aligned */
-> +	lfd->desc_dw_size = DIV_ROUND_UP(data_len, sizeof(u32));
-> +
-> +	/* Output GUC_LFD_TYPE_LOG_EVENTS_BUFFER header */
-> +	xe_print_blob_ascii85(p, NULL, 0, buf, 0, (size_t)index);
-> +
-> +	xe_guc_log_lfd_print_from_chunks(p, snapshot, entry);
-> +	/* log event buffer content did not use buf, exclude from size count */
-> +	return index;
-> +}
-> +
->  static void
->  xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
->  			      struct xe_guc_log *log)
-> @@ -441,6 +521,7 @@ xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_p
->  		goto lfd_out;
->  
->  	xe_print_blob_ascii85(p, "[LOG].data", 0, lfd_buf, 0, (size_t)index);
-> +	index = xe_guc_log_add_log_event(p, lfd_buf, snapshot, &config);
->  
->  lfd_out:
->  	drm_printf(p, "\n");
-
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
