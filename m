@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75119C8302F
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 22:39:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2E81C83030
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 22:43:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38E5410E07A;
-	Mon, 30 Jun 2025 22:39:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B85810E07A;
+	Mon, 30 Jun 2025 22:43:41 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A60410E07A;
- Mon, 30 Jun 2025 22:39:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4692592859138622812=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D48110E07A;
+ Mon, 30 Jun 2025 22:43:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Set_RCS/CCS_y?=
- =?utf-8?q?ield_policy?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_helper_for_disp?=
+ =?utf-8?q?lay_workarounds_and_add_Wa=5F16025573575?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Jun 2025 22:39:02 -0000
-Message-ID: <175132314216.121988.16480720849571552146@1538d3639d33>
+Date: Mon, 30 Jun 2025 22:43:40 -0000
+Message-ID: <175132342057.121988.11802361118423675028@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250627234626.1869996-2-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20250627234626.1869996-2-daniele.ceraolospurio@intel.com>
+References: <20250630054918.2823537-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250630054918.2823537-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,125 +40,45 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4692592859138622812==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/guc: Set RCS/CCS yield policy
-URL   : https://patchwork.freedesktop.org/series/150910/
-State : success
+Series: Introduce helper for display workarounds and add Wa_16025573575
+URL   : https://patchwork.freedesktop.org/series/150935/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86_BAT -> xe-pw-150910v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 37c14fdc8239f3ef00c4603413ee6af1120d1177
+Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Mon Jun 30 11:19:18 2025 +0530
 
-Summary
--------
+    drm/i915/gmbus: Add Wa_16025573575 for PTL for bit-bashing
+    
+    As per Wa_16025573575 for PTL, set the GPIO masks bit before starting
+    bit-bashing and maintain value through the bit-bashing sequence.
+    After bit-bashing sequence is done, clear the GPIO masks bits.
+    
+    v2:
+    -Use new helper for display workarounds. (Jani)
+    -Use a separate if-block for the workaround. (Gustavo)
+    
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch d9007d535ea106181346f9988c97aa73a9cdfb86 drm-intel
+164179ba682e drm/i915/display_wa: Add helpers to check wa
+-:58: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/i915/display/intel_display_wa.h:32:
++#define intel_display_wa(__display, __wa) __intel_display_wa((__display), _intel_display_wa_expand(__wa))
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-150910v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * IGT: IGT_8431 -> IGT_8432
-  * Linux: xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86 -> xe-pw-150910v1
-
-  IGT_8431: 8431
-  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86: d9007d535ea106181346f9988c97aa73a9cdfb86
-  xe-pw-150910v1: 150910v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v1/index.html
-
---===============4692592859138622812==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+37c14fdc8239 drm/i915/gmbus: Add Wa_16025573575 for PTL for bit-bashing
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Set RCS/CCS yield policy</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150910/">https://patchwork.freedesktop.org/series/150910/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86_BAT -&gt; xe-pw-150910v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-150910v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8431 -&gt; IGT_8432</li>
-<li>Linux: xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86 -&gt; xe-pw-150910v1</li>
-</ul>
-<p>IGT_8431: 8431<br />
-  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86: d9007d535ea106181346f9988c97aa73a9cdfb86<br />
-  xe-pw-150910v1: 150910v1</p>
-
-</body>
-</html>
-
---===============4692592859138622812==--
