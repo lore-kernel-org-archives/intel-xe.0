@@ -4,45 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC69EC83030
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:23:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEAD9C83033
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:25:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4CB010E431;
-	Mon, 30 Jun 2025 12:23:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 421F010E43E;
+	Mon, 30 Jun 2025 12:25:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="s8Lvdrm0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kIWlVYly";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21D8D10E431
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:22:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=kLurOXLGwX3TbxXChuoER0DhX6ZBWec/iloOkESeLkk=; b=s8Lvdrm059BQ9m7/1EBwKWCraA
- jPs/kxIOasVAOPs+xgoIA8xtPcz/JxKwCv9X7XbKnJr0bhh2NfkrPF0y04bSvS2MvTbuxurBaesUk
- jshRgs25SvmO8oSjJSgrLXDQsIg1mjmxRAvyPIEYkACJtvOY7E0w0D9ymVBdJpUTtweJfgFCoSvpH
- 7cZC+gjnFeL7zeEfNPcuLobKJ0cWBoAIpsQXiZ/IiB9iOOmUHUzjaJ1j1FNkILS40bh0NeVcV8oia
- ocMEOkB8NgcYySXC9uCY6s2+4OvxXAcbNLWqMU6L9kjaiPI8ZYpqffSiMIAFOEafPOUj/EhUBrXNa
- 3m0viZGA==;
-Received: from [81.79.92.254] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uWDXC-00ATAe-E7; Mon, 30 Jun 2025 14:22:54 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v7 8/8] drm/xe/xelp: Add Wa_18022495364
-Date: Mon, 30 Jun 2025 13:22:44 +0100
-Message-ID: <20250630122244.7949-9-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250630122244.7949-1-tvrtko.ursulin@igalia.com>
-References: <20250630122244.7949-1-tvrtko.ursulin@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9BAC10E437;
+ Mon, 30 Jun 2025 12:25:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751286314; x=1782822314;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=B17Lz6iS+XNf2+SXhmDAR++RiOz8OiNUqhD1qPqv2+M=;
+ b=kIWlVYlyPzlm9dDrMqmVJ4mcyZMPZQby4TDE1iJhuwiJv8bpH3y24d9V
+ FmNEQ7rfQe1KoYHY9HIl4RQc3tEJIKV1WAIAXxfJ7qhqkDjIlAYPAlDNB
+ Pi/fKdzCYUCDfzd1OeP2DhjcPaeI2tBEunNxzzrhT+UKP/cxAR/MZ7nvc
+ uCsdIf1ZhKZeSCHYPc9cE1HsS+R5oKpxSrLUsyolrZQ4nl/oT5ieBk/uu
+ DPULPn83kzhGXANpnRdTRHvd4X/T41kGAwUJS0yZ41Rkk+WlcEDU44qKh
+ Jqp1pqb+HlvRDOlqfTRnpRubDGLiO2utv86ytFkyv3QLGTq9TRxUh6Hul A==;
+X-CSE-ConnectionGUID: pnYBDmF9QLCywsm14u6Myw==
+X-CSE-MsgGUID: QEPX3x79Q42renXt3I8/5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="57187214"
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="57187214"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2025 05:25:13 -0700
+X-CSE-ConnectionGUID: FO7gbKeJQ8uQmBsLSA2ZGA==
+X-CSE-MsgGUID: FwZHbGnYT6OnhpqmZMAPwA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="157468848"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2025 05:25:08 -0700
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, arun.r.murthy@intel.com
+Subject: [PATCH]  drm/i915/display: Optimize panel power-on  wait time
+Date: Mon, 30 Jun 2025 17:53:39 +0530
+Message-ID: <20250630122339.3007880-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -59,81 +65,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add Wa_18022495364 as a context workaround batch buffer workaround.
+ The current wait_panel_on() uses intel_de_wait() with a long timeout
+ (5000ms), which is suboptimal on Xe platforms where the underlying
+ xe_mmio_wait32() employs an exponential backoff strategy. This leads
+ to unnecessary delays during resume or power-on  when the panel becomes
+ ready earlier than the full timeout.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+ This patch splits the total wait time into two pases
+    - First wait for the typical panel-on time(180ms)
+    - If panel is not ready , continue polling in short 20ms intervals
+      until the maximum timeout (5000ms) is reached
+
+Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  3 +++
- drivers/gpu/drm/xe/xe_lrc.c              | 21 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules       |  1 +
- 3 files changed, 25 insertions(+)
+ drivers/gpu/drm/i915/display/intel_pps.c | 61 +++++++++++++++++++++++-
+ 1 file changed, 60 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 7ade41e2b7b3..f4c3e1187a00 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -111,6 +111,9 @@
- #define   PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS	REG_BIT(14)
- #define   CS_PRIORITY_MEM_READ			REG_BIT(7)
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index bff81fb5c316..57a062c8038d 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -598,8 +598,67 @@ void intel_pps_check_power_unlocked(struct intel_dp *intel_dp)
+ #define IDLE_CYCLE_MASK		(PP_ON | PP_SEQUENCE_MASK | PP_CYCLE_DELAY_ACTIVE | PP_SEQUENCE_STATE_MASK)
+ #define IDLE_CYCLE_VALUE	(0     | PP_SEQUENCE_NONE | 0                     | PP_SEQUENCE_STATE_OFF_IDLE)
  
-+#define CS_DEBUG_MODE2(base)			XE_REG((base) + 0xd8, XE_REG_OPTION_MASKED)
-+#define   INSTRUCTION_STATE_CACHE_INVALIDATE	REG_BIT(6)
++#define PANEL_TYPICAL_ON_TIME_MS		(180)
++#define PANEL_MAXIMUM_ON_TIME_MS		(5000)
 +
- #define FF_SLICE_CS_CHICKEN1(base)		XE_REG((base) + 0xe0, XE_REG_OPTION_MASKED)
- #define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
+ static void intel_pps_verify_state(struct intel_dp *intel_dp);
  
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index aee86486a0c9..3d49377e59f5 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1034,6 +1034,26 @@ setup_timestamp_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe, u32 *batch,
- 	return cmd - batch;
- }
- 
-+static ssize_t
-+setup_invalidate_state_cache_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-+				u32 *batch, size_t max_len)
++/*
++ * Panel power-on typically completes within ~200ms. Using a large timeout
++ * (5000ms) with intel_de_wait() results in unnecessary delays,
++ * especially under Xe, where xe_mmio_wait32() uses an exponential backoff.
++ *
++ * To optimize resume and power-on latency, we first wait for the typical
++ * completion window, then perform short polling loops thereafter.
++ * This reduces worst-case latency while still ensuring correctness.
++ */
++static void wait_panel_on_status(struct intel_dp *intel_dp)
 +{
-+	u32 *cmd = batch;
++	struct intel_display *display = to_intel_display(intel_dp);
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
++	i915_reg_t pp_stat_reg, pp_ctrl_reg;
++	u32 mask = IDLE_ON_MASK;
++	u32 value = IDLE_ON_VALUE;
++	int elapsed  = PANEL_TYPICAL_ON_TIME_MS;
 +
-+	if (!XE_WA(lrc->gt, 18022495364) ||
-+	    hwe->class != XE_ENGINE_CLASS_RENDER)
-+		return 0;
++	lockdep_assert_held(&display->pps.mutex);
 +
-+	if (xe_gt_WARN_ON(lrc->gt, max_len < 3))
-+		return -ENOSPC;
++	intel_pps_verify_state(intel_dp);
 +
-+	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
-+	*cmd++ = CS_DEBUG_MODE1(0).addr;
-+	*cmd++ = _MASKED_BIT_ENABLE(INSTRUCTION_STATE_CACHE_INVALIDATE);
++	pp_stat_reg = _pp_stat_reg(intel_dp);
++	pp_ctrl_reg = _pp_ctrl_reg(intel_dp);
 +
-+	return cmd - batch;
++	drm_dbg_kms(display->drm,
++		    "[ENCODER:%d:%s] %s mask: 0x%08x value: 0x%08x PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
++		    dig_port->base.base.base.id, dig_port->base.base.name,
++		    pps_name(intel_dp),
++		    mask, value,
++		    intel_de_read(display, pp_stat_reg),
++		    intel_de_read(display, pp_ctrl_reg));
++
++	/* Wait for typical panel on time first */
++	if (intel_de_wait(display, pp_stat_reg, mask, value, PANEL_TYPICAL_ON_TIME_MS) == 0)
++		goto panel_wait_complete;
++
++	/* Wait for maxtime in 20ms intervals */
++	while (elapsed < PANEL_MAXIMUM_ON_TIME_MS) {
++		if (intel_de_wait(display, pp_stat_reg, mask, value, 20) == 0)
++			goto panel_wait_complete;
++
++		elapsed += 20;
++	}
++
++	drm_err(display->drm,
++		"[ENCODER:%d:%s] %s panel status timeout: PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
++		dig_port->base.base.base.id, dig_port->base.base.name,
++		pps_name(intel_dp),
++		intel_de_read(display, pp_stat_reg),
++		intel_de_read(display, pp_ctrl_reg));
++
++panel_wait_complete:
++	drm_dbg_kms(display->drm, "Wait complete\n");
 +}
 +
- struct wa_bo_setup {
- 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 			 u32 *batch, size_t max_size);
-@@ -1106,6 +1126,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ static void wait_panel_status(struct intel_dp *intel_dp,
+ 			      u32 mask, u32 value)
  {
- 	static const struct wa_bo_setup funcs[] = {
- 		{ .setup = setup_timestamp_wa },
-+		{ .setup = setup_invalidate_state_cache_wa },
- 		{ .setup = setup_utilization_wa },
- 	};
- 	unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index bf798f3b8f93..8ee1c71499fc 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -1,5 +1,6 @@
- 1607983814	GRAPHICS_VERSION_RANGE(1200, 1210)
- 16010904313	GRAPHICS_VERSION_RANGE(1200, 1210)
-+18022495364	GRAPHICS_VERSION_RANGE(1200, 1210)
- 22012773006	GRAPHICS_VERSION_RANGE(1200, 1250)
- 14014475959	GRAPHICS_VERSION_RANGE(1270, 1271), GRAPHICS_STEP(A0, B0)
- 		PLATFORM(DG2)
+@@ -642,7 +701,7 @@ static void wait_panel_on(struct intel_dp *intel_dp)
+ 		    "[ENCODER:%d:%s] %s wait for panel power on\n",
+ 		    dig_port->base.base.base.id, dig_port->base.base.name,
+ 		    pps_name(intel_dp));
+-	wait_panel_status(intel_dp, IDLE_ON_MASK, IDLE_ON_VALUE);
++	wait_panel_on_status(intel_dp);
+ }
+ 
+ static void wait_panel_off(struct intel_dp *intel_dp)
 -- 
-2.48.0
+2.43.0
 
