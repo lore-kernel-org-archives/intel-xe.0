@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79B3BC83029
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B46CC83033
 	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 17:34:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E37F10E4A8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45B9410E4AB;
 	Mon, 30 Jun 2025 17:34:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KJhhZrCG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="neZbmbB9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8387010E4A8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC6CF10E4AB
  for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 17:34:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1751304886; x=1782840886;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PoXlRtQkf6AOs5J9y5hOJQ2B5a9oTo9WWL66J1suhzY=;
- b=KJhhZrCG4jtg5B9QvhCpqADnsCAQW2GTPMkjmaQWS2LT9ftHTSH3okRO
- 8zs0lz00nVYIL1sdMxsLbyCG/dg+oSpCQZFo71XE7SIyHekftCHcI/Kpx
- oUXejipi9Inq0KTJhFmRq/xYmXCGutT6jlkd8ATtp/Rtd17ZxNMrGpH28
- w/dCFJDrhRnfxniDpH00uJHx74qxo4CxR9q5ed4G7dt7fvBAEXMMSnxhV
- SBEqRzTPn90FI0eJNCF4e2aWbKz19B3h7ysU+cBZisnq8uZs2w0ejYl6d
- bb+O5JbWdHKMavkHfqipe0PcoKgWVGmUVgH4wKLIBxmV8/c0L5QS1vJYw Q==;
-X-CSE-ConnectionGUID: JOQxDScqRiGZCwQ+utMWmQ==
-X-CSE-MsgGUID: UJacaCE8TZOQT3nEyKjgDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="57223397"
-X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="57223397"
+ bh=nGcgaR0fCjaXHDPnM7dO46bLK89wr6U4n9bfbAw3YbQ=;
+ b=neZbmbB9hqAAbmZf3v2mLgDewww1naVxLwHKgdHcK8Jvpgs3PLzkFd2z
+ uXWWfzMY+HavPpydWGOjAJFkFgrWT1hCGlKcIaCTzsQcXNC9t8Pq6iYdJ
+ j2Z2JKB+829Q5VZcUwhauHswyLw0/WJffB40gzyfIqQSKrgzkM17POxVB
+ IqMx0Xk6EnDZ3TaakDLaHpWyVm3HH1znod7iqNTXBP2j+iTQ3bC4T3Gg7
+ H80SYcCAwwlZYab4BXT9zbMmRDnqmuuq7yWLjZvU9zgnSQHl7/V4GZrY8
+ 8eIFZ8TcGC3AoRKqJx/guhUnOdV2Y3eLDbaw2q5ujnUINfxK5Y/zAwdX5 g==;
+X-CSE-ConnectionGUID: GqW0xluxTaagM15QpGOUIg==
+X-CSE-MsgGUID: pn6msBL7Smubh5p0yC/8cA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="57223398"
+X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="57223398"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Jun 2025 10:34:46 -0700
-X-CSE-ConnectionGUID: DEBiPi1xQp2e+KzM6ar4pQ==
-X-CSE-MsgGUID: /dXo9bKARAmvMDtSlVNgwQ==
+X-CSE-ConnectionGUID: AEFZJ3Z0QI2ku9jjcmgBkQ==
+X-CSE-MsgGUID: a2xCcKUCRoGz+Wtz6q8z5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="184543711"
+X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="184543702"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Jun 2025 10:34:44 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
-Subject: [PATCH v3 3/6] drm/xe/tests/pci: Ensure all platforms have a valid
- GT/tile count
-Date: Mon, 30 Jun 2025 10:34:42 -0700
-Message-ID: <20250630173438.2342706-11-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com,
+	Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v3 1/6] drm/xe: Export xe_step_name for kunit tests
+Date: Mon, 30 Jun 2025 10:34:40 -0700
+Message-ID: <20250630173438.2342706-9-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250630173438.2342706-8-matthew.d.roper@intel.com>
 References: <20250630173438.2342706-8-matthew.d.roper@intel.com>
@@ -68,217 +67,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a simple kunit test to ensure each platform's GT per tile count is
-non-zero and does not exceed the global XE_MAX_GT_PER_TILE definition.
+xe_step_name() is used by xe_assert(), so adding assertions to functions
+like xe_device_get_gt() will result in
 
-We need to move 'struct xe_subplatform_desc' from the .c file to the
-types header to ensure it is accessible from the kunit test.
+  ERROR: modpost: "xe_step_name" [drivers/gpu/drm/xe/tests/xe_test.ko] undefined!
 
-v2:
- - Rebase on latest xe_pci test rework from Michal and convert to
-   a parameterized test that runs on each PCI ID supported by the
-   driver.
+while building the kunit tests.  Export xe_step_name to avoid these
+build failures when adding assertions.
 
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Ravi Kumar Vodapalli<ravi.kumar.vodapalli@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_pci.c      | 31 +++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.c | 12 ++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h |  1 +
- drivers/gpu/drm/xe/xe_pci.c            | 39 ------------------------
- drivers/gpu/drm/xe/xe_pci_types.h      | 41 ++++++++++++++++++++++++++
- 5 files changed, 85 insertions(+), 39 deletions(-)
+ drivers/gpu/drm/xe/xe_step.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index baccb657bd05..9c715e59f030 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -21,6 +21,18 @@ static void xe_ip_kunit_desc(const struct xe_ip *param, char *desc)
- KUNIT_ARRAY_PARAM(graphics_ip, graphics_ips, xe_ip_kunit_desc);
- KUNIT_ARRAY_PARAM(media_ip, media_ips, xe_ip_kunit_desc);
+diff --git a/drivers/gpu/drm/xe/xe_step.c b/drivers/gpu/drm/xe/xe_step.c
+index c77b5c317fa0..10e88f2c9615 100644
+--- a/drivers/gpu/drm/xe/xe_step.c
++++ b/drivers/gpu/drm/xe/xe_step.c
+@@ -5,6 +5,7 @@
  
-+static void xe_pci_id_kunit_desc(const struct pci_device_id *param, char *desc)
-+{
-+	const struct xe_device_desc *dev_desc =
-+		(const struct xe_device_desc *)param->driver_data;
-+
-+	if (dev_desc)
-+		snprintf(desc, KUNIT_PARAM_DESC_SIZE, "0x%X (%s)",
-+			 param->device, dev_desc->platform_name);
-+}
-+
-+KUNIT_ARRAY_PARAM(pci_id, pciidlist, xe_pci_id_kunit_desc);
-+
- /**
-  * xe_pci_graphics_ip_gen_param - Generate graphics struct xe_ip parameters
-  * @prev: the pointer to the previous parameter to iterate from or NULL
-@@ -55,6 +67,25 @@ const void *xe_pci_media_ip_gen_param(const void *prev, char *desc)
+ #include "xe_step.h"
+ 
++#include <kunit/visibility.h>
+ #include <linux/bitfield.h>
+ 
+ #include "xe_device.h"
+@@ -255,3 +256,4 @@ const char *xe_step_name(enum xe_step step)
+ 		return "**";
+ 	}
  }
- EXPORT_SYMBOL_IF_KUNIT(xe_pci_media_ip_gen_param);
- 
-+/**
-+ * xe_pci_id_gen_param - Generate struct pci_device_id parameters
-+ * @prev: the pointer to the previous parameter to iterate from or NULL
-+ * @desc: output buffer with minimum size of KUNIT_PARAM_DESC_SIZE
-+ *
-+ * This function prepares struct pci_device_id parameter.
-+ *
-+ * To be used only as a parameter generator function in &KUNIT_CASE_PARAM.
-+ *
-+ * Return: pointer to the next parameter or NULL if no more parameters
-+ */
-+const void *xe_pci_id_gen_param(const void *prev, char *desc)
-+{
-+	const struct pci_device_id *pci = pci_id_gen_params(prev, desc);
-+
-+	return pci->driver_data ? pci : NULL;
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_pci_id_gen_param);
-+
- static void fake_read_gmdid(struct xe_device *xe, enum xe_gmdid_type type,
- 			    u32 *ver, u32 *revid)
- {
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.c b/drivers/gpu/drm/xe/tests/xe_pci_test.c
-index 95fed41f7ff2..37b344df2dc3 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.c
-@@ -44,9 +44,21 @@ static void check_media_ip(struct kunit *test)
- 	KUNIT_ASSERT_EQ(test, mask, 0);
- }
- 
-+static void check_platform_gt_count(struct kunit *test)
-+{
-+	const struct pci_device_id *pci = test->param_value;
-+	const struct xe_device_desc *desc =
-+		(const struct xe_device_desc *)pci->driver_data;
-+	int max_gt = desc->max_gt_per_tile;
-+
-+	KUNIT_ASSERT_GT(test, max_gt, 0);
-+	KUNIT_ASSERT_LE(test, max_gt, XE_MAX_GT_PER_TILE);
-+}
-+
- static struct kunit_case xe_pci_tests[] = {
- 	KUNIT_CASE_PARAM(check_graphics_ip, xe_pci_graphics_ip_gen_param),
- 	KUNIT_CASE_PARAM(check_media_ip, xe_pci_media_ip_gen_param),
-+	KUNIT_CASE_PARAM(check_platform_gt_count, xe_pci_id_gen_param),
- 	{}
- };
- 
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-index 3a1df7a5e291..ce4d2b86b778 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-@@ -27,6 +27,7 @@ int xe_pci_fake_device_init(struct xe_device *xe);
- 
- const void *xe_pci_graphics_ip_gen_param(const void *prev, char *desc);
- const void *xe_pci_media_ip_gen_param(const void *prev, char *desc);
-+const void *xe_pci_id_gen_param(const void *prev, char *desc);
- const void *xe_pci_live_device_gen_param(const void *prev, char *desc);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 316031854c26..658bfbddf9a8 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -38,45 +38,6 @@ enum toggle_d3cold {
- 	D3COLD_ENABLE,
- };
- 
--struct xe_subplatform_desc {
--	enum xe_subplatform subplatform;
--	const char *name;
--	const u16 *pciidlist;
--};
--
--struct xe_device_desc {
--	/* Should only ever be set for platforms without GMD_ID */
--	const struct xe_ip *pre_gmdid_graphics_ip;
--	/* Should only ever be set for platforms without GMD_ID */
--	const struct xe_ip *pre_gmdid_media_ip;
--
--	const char *platform_name;
--	const struct xe_subplatform_desc *subplatforms;
--
--	enum xe_platform platform;
--
--	u8 dma_mask_size;
--	u8 max_remote_tiles:2;
--	u8 max_gt_per_tile:2;
--
--	u8 require_force_probe:1;
--	u8 is_dgfx:1;
--
--	u8 has_display:1;
--	u8 has_fan_control:1;
--	u8 has_gsc_nvm:1;
--	u8 has_heci_gscfi:1;
--	u8 has_heci_cscfi:1;
--	u8 has_llc:1;
--	u8 has_mbx_power_limits:1;
--	u8 has_pxp:1;
--	u8 has_sriov:1;
--	u8 needs_scratch:1;
--	u8 skip_guc_pc:1;
--	u8 skip_mtcfg:1;
--	u8 skip_pcode:1;
--};
--
- __diag_push();
- __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index ca6b10d35573..4de6f69ed975 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -8,6 +8,47 @@
- 
- #include <linux/types.h>
- 
-+#include "xe_platform_types.h"
-+
-+struct xe_subplatform_desc {
-+	enum xe_subplatform subplatform;
-+	const char *name;
-+	const u16 *pciidlist;
-+};
-+
-+struct xe_device_desc {
-+	/* Should only ever be set for platforms without GMD_ID */
-+	const struct xe_ip *pre_gmdid_graphics_ip;
-+	/* Should only ever be set for platforms without GMD_ID */
-+	const struct xe_ip *pre_gmdid_media_ip;
-+
-+	const char *platform_name;
-+	const struct xe_subplatform_desc *subplatforms;
-+
-+	enum xe_platform platform;
-+
-+	u8 dma_mask_size;
-+	u8 max_remote_tiles:2;
-+	u8 max_gt_per_tile:2;
-+
-+	u8 require_force_probe:1;
-+	u8 is_dgfx:1;
-+
-+	u8 has_display:1;
-+	u8 has_fan_control:1;
-+	u8 has_gsc_nvm:1;
-+	u8 has_heci_gscfi:1;
-+	u8 has_heci_cscfi:1;
-+	u8 has_llc:1;
-+	u8 has_mbx_power_limits:1;
-+	u8 has_pxp:1;
-+	u8 has_sriov:1;
-+	u8 needs_scratch:1;
-+	u8 skip_guc_pc:1;
-+	u8 skip_mtcfg:1;
-+	u8 skip_pcode:1;
-+};
-+
- struct xe_graphics_desc {
- 	u8 va_bits;
- 	u8 vm_max_level;
++EXPORT_SYMBOL_IF_KUNIT(xe_step_name);
 -- 
 2.49.0
 
