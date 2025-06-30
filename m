@@ -4,27 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8140C83029
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 13:56:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6B13C83029
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 14:05:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B9D410E45B;
-	Mon, 30 Jun 2025 13:56:32 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64F3710E45B;
- Mon, 30 Jun 2025 13:56:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1256245713401191678=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A34610E441;
+	Mon, 30 Jun 2025 14:05:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="KBmql+Fx";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3361A10E21F;
+ Mon, 30 Jun 2025 14:05:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=NsoRSXh/tF63PrYJexdAXdZ1iyK7cA3n0ECT2UqM9gs=; b=KBmql+FxfDgi4UGUkuxAaDOdbz
+ ZR1L6ZpXCt3JvvywEu3kqpSxdOD6Iod9ValT7qglwtcVp1pKqgK5N9IDfqt+WkDZkcRvLl8MXxVMK
+ sNChfg8iePJMjiPYghqjq6hPdzveEbMypthA3ofnVvDyyr8eutjmPxThBStCz483+b97G3aO0b83t
+ U6ZHWyXe4VFj90q3/q/hgaIM4E8EsjDqqX8T5sNLMlz/Qn30Pb0k6S1OaxcUBgXrTI8PUgSY3ZVES
+ zI6UrlwS79eBa8aWEzqmkPQFR8Fk3t/J77xTm5dOBYG0L8qR3orgwPYWw/EGzdi5rtGlH0vN9t4mr
+ Sw0Z+D4w==;
+Received: from [189.7.87.79] (helo=[192.168.0.7])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uWF7a-00AVLt-5J; Mon, 30 Jun 2025 16:04:34 +0200
+Message-ID: <4487245c-17d0-4e4a-b3fb-209a95c60664@igalia.com>
+Date: Mon, 30 Jun 2025 11:04:25 -0300
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Revert_patch_to_reject_HBR3?=
- =?utf-8?q?_for_all_eDP_panels_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Jun 2025 13:56:31 -0000
-Message-ID: <175129179140.120493.17779933373359174616@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250627084059.2575794-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250627084059.2575794-1-ankit.k.nautiyal@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/8] drm/sched: Make timeout KUnit tests faster
+To: phasta@kernel.org, Matthew Brost <matthew.brost@intel.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Simona Vetter <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, Melissa Wen <mwen@igalia.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20250618-sched-skip-reset-v3-0-8be5cca2725d@igalia.com>
+ <20250618-sched-skip-reset-v3-3-8be5cca2725d@igalia.com>
+ <2670247a8982f794a508f4cf3ae43ad7ac66862a.camel@mailbox.org>
+ <27c7fef3-ce37-48b9-bf63-3b3417618835@igalia.com>
+ <8e727f9644df9ba7d8c5f3966e146e5eb0684121.camel@mailbox.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <8e727f9644df9ba7d8c5f3966e146e5eb0684121.camel@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +74,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1256245713401191678==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Philipp,
 
-== Series Details ==
+On 30/06/25 09:20, Philipp Stanner wrote:
+> On Mon, 2025-06-30 at 09:05 -0300, Maíra Canal wrote:
+>> Hi Philipp,
+>>
+>> On 30/06/25 08:53, Philipp Stanner wrote:
+>>> On Wed, 2025-06-18 at 11:47 -0300, Maíra Canal wrote:
+>>>> As more KUnit tests are introduced to evaluate the basic
+>>>> capabilities
+>>>> of
+>>>> the `timedout_job()` hook, the test suite will continue to
+>>>> increase
+>>>> in
+>>>> duration. To reduce the overall running time of the test suite,
+>>>> decrease
+>>>> the scheduler's timeout for the timeout tests.
+>>>>
+>>>> Before this commit:
+>>>>
+>>>> [15:42:26] Elapsed time: 15.637s total, 0.002s configuring,
+>>>> 10.387s
+>>>> building, 5.229s running
+>>>>
+>>>> After this commit:
+>>>>
+>>>> [15:45:26] Elapsed time: 9.263s total, 0.002s configuring, 5.168s
+>>>> building, 4.037s running
+>>>
+>>> I guess those times were measured with the entire series?
+>>
+>> No, they were measured without the new test that I introduced in the
+>> next patch.
+>>
+>>>
+>>> It's not clear to me whether this patch is independent from the
+>>> series.
+>>> I suppose it is. We should aim towards having series's narrowly
+>>> focused
+>>> topic-wise, but I get why you included it here.
+>>
+>>   From my perspective, this patch is a preparation to the next one. As
+>> I'll introduce another timeout-related test in the next patch, I was
+>> trying to ensure that we will keep the time-budget reasonable.
+>>
+>>>
+>>> That said, is there a specific reason for you aiming at ~10s
+>>> (9.263)?
+>>> That's only a bit faster than the 15.637.
+>>>
+>>
+>> Actually, the only thing that this patch affects is the runtime. So,
+>> it
+>> went from 5.229s to 4.037s (-22.8%). However, as we add more and more
+>> timeout tests, the absolute difference would get more significant.
+> 
+> I understand that. My point is that the decrease of total run time that
+> you state in your commit message doesn't sound that significant to me.
+> ~10s is still pretty long.
+> 
+>>
+>>> Couldn't it make sense, as you're at it already, to speed this up
+>>> to
+>>> just a few seconds, like 3-5? Then it should really be quiet IRW
+>>> that
+>>> topic for a while.
+>>
+>> I believe that further decreasing the timeout could lead to racy
+>> scenarios and flaky tests.
+> 
+> That doesn't make sense to me. What could race with what? I guess you
+> mean the completion's timeout racing with the signaling timer.
 
-Series: Revert patch to reject HBR3 for all eDP panels (rev3)
-URL   : https://patchwork.freedesktop.org/series/150568/
-State : success
+I discussed a bit about it with Tvrtko in v1 [1][2].
 
-== Summary ==
+[1] 
+https://lore.kernel.org/all/7cc3cc3d-7f67-4c69-bccb-32133e1d7cba@igalia.com/
+[2] 
+https://lore.kernel.org/all/146f3943-0a94-4399-9f49-be8228a86828@igalia.com/
 
-CI Bug Log - changes from xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd_BAT -> xe-pw-150568v3_BAT
-====================================================
+Best Regards,
+- Maíra
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
+> 
+> Anyways, I'm personally not suffering from the tests being too slow. So
+> just take this as ideas. I'm fine with it being merged as it is now.
+> 
+> 
+> P.
+> 
+>>
+>> Best Regards,
+>> - Maíra
+>>
+>>>
+>>>
+>>> P.
+>>>
 
 
-Build changes
--------------
-
-  * Linux: xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd -> xe-pw-150568v3
-
-  IGT_8431: 8431
-  xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd: 078be02b4585b9a9703401d89a3ac93e2d15a6bd
-  xe-pw-150568v3: 150568v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150568v3/index.html
-
---===============1256245713401191678==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Revert patch to reject HBR3 for all eDP panels (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150568/">https://patchwork.freedesktop.org/series/150568/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150568v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150568v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd_BAT -&gt; xe-pw-150568v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd -&gt; xe-pw-150568v3</li>
-</ul>
-<p>IGT_8431: 8431<br />
-  xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd: 078be02b4585b9a9703401d89a3ac93e2d15a6bd<br />
-  xe-pw-150568v3: 150568v3</p>
-
-</body>
-</html>
-
---===============1256245713401191678==--
