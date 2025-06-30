@@ -4,44 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9365EC8302F
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:47:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFB0BC8302F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:47:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FDE110E437;
-	Mon, 30 Jun 2025 12:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7392910E43D;
+	Mon, 30 Jun 2025 12:47:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pU9TsrV9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bDjRXbls";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D045F10E437
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:47:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C26D10E43C
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:47:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=V6MJIuPUhliB/XARFr7CB0rwJFSK4sAWV84//1ucz4g=; b=pU9TsrV9DowUrlosHxpO1XWVnE
- iGxKi5K/ifOAO/SBVj+bRpL2232FHNB4EV29QuOVcLAayFA3WnNl/p7Zz7w2OoaosXWSH7LhVnphY
- rOQ5bPlRnZvCcHvSVTfFNv7RGm81Fw+0H4SNh+M+JfXA1GGklyM5KIBkQt2Z+/aAqZztngZjvnDys
- k9V6eH0klNiWNZTKS1Oh4DR5FIDshzmUmjyhHtKnLAWDQbpfkVeedLBnFAVJDw03qfaKy5C6vVv68
- S49FwlzVlNHvIbyp7eiqnM7ELWOpj5KMJbz8NbD6n2dXeZH2UX2pUXDeuNTBQFF6R58qRwEYcf8rA
- Du+mRfHg==;
+ bh=RzYYHQ/v+qOiawb3ciIEj04BNKDNT1DYgDvfKRK5QbM=; b=bDjRXblsSLgMx9KYbIOdRVSbVV
+ NVvuYZrsTfHO48hj+QoVt/7c/pqHHa3pO0eLHw3zS67+wZwq/yunGSAxe0XYhLHg5vF1QifR5qNCt
+ A8XtM+VjN2gPexf6K7hASyr3rCUPD1Rk6TTBCyRSpAgvLzQlpBtKMHheI5hie9Hl3EJob8/JOAOHD
+ 3epOPqn1QXvJGjzs9ZV0F9KKxzLIvbKzpYt12iu+YVlGAURf6gHgV86o8fomCT5fdlkvKt+D77EY9
+ 9bwn8ELB27lmkQjaI5m0PLhBhXUPb2GXxHllkr22LBXdFh3MhjN9Xj319H6jFZ0yz9VKgt6vgMNB1
+ 58EFiLhQ==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uWDuj-00ATeP-Vo; Mon, 30 Jun 2025 14:47:14 +0200
+ id 1uWDum-00ATeh-TC; Mon, 30 Jun 2025 14:47:16 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com,
-	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v8 00/24] AuxCCS handling and render compression modifiers
-Date: Mon, 30 Jun 2025 13:46:46 +0100
-Message-ID: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v8 04/24] drm/xe: Return number of written dwords from
+ workaround batch buffer emission
+Date: Mon, 30 Jun 2025 13:46:50 +0100
+Message-ID: <20250630124711.8209-5-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
+References: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,108 +59,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A series to fix and add xe support for AuxCSS framebuffers via DPT.
+Indirect context setup will need to get to the number of written dwords.
+Lets add it as an output parameter so it can be accessed from the caller
+regardless of whether code is writing directly or via an shadow buffer.
 
-Currently the auxiliary buffer data isn't mapped into the page tables at all so
-cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-had to disable the support.
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_lrc.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-On top of that there are missing flushes, invalidations and similar.
-
-Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
-
-  [PLANE:32:plane 1A]: type=PRI
-          uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-          hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-
-Display working fine - no artefacts, no DMAR/PIPE faults.
-
-*** NOTE ***
- The first 8 patches are not really the AuxCCS work. They are a different series
- which adds plumbing for the indirect context workarounds, hence the AuxCCS work
- depends on it.
-
- For strictly AuxCCS work you can start reading from patch 9.
-*** NOTE ***
-
-v2:
- * More patches added to fix kms_flip_tiling.
-
-v3:
- * Rebased after some cleanup patches from v2 were merged.
- * Added people to Cc as suggested by Rodrigo.
- * Adjusted last patch title. (Rodrigo)
- * Apply GGTT flushing only to iomapped system memory buffers.
-
-v4:
- * Added patch for potentially misplaced Wa_14016712196.
- * Fixed (hopefully) MAX_JOB_SIZE_DW on Meteorlake.
-
-v5:
- * Split out ring emission changes to smaller patches.
- * Fixed MAX_JOB_SIZE_DW even more.
- * Don't emit MI_FLUSH_DW_CCS on !BCS. This should fix Meteorlake.
-
- v6:
- * Added AuxCCS invalidation to indirect context workarounds.
- * Also added the indirect context handling and some other workarounds. They are
-   unrelated but the series depends on it.
- * Dropped DPT pin alignment reduction since BMG appears not to be liking it for
-   some reason.
-
-v7:
- * Rebased on top of recent xe_fb_pin.c refactoring and also the indirect
-   context workarounds series.
-
-v8:
- * Rebased for bo->size removal.
- * Corrected PIPE_CONTROL_FLUSH_L3 to bit 30. (Jose)
-
-Tvrtko Ursulin (24):
-  drm/xe: Consolidate LRC offset calculations
-  drm/xe: Generalize wa bb emission code
-  drm/xe: Rename utilisation workaround emission function
-  drm/xe: Return number of written dwords from workaround batch buffer
-    emission
-  drm/xe: Allow specifying number of extra dwords at the end of wa bb
-    emission
-  drm/xe: Add plumbing for indirect context workarounds
-  drm/xe/xelp: Implement Wa_16010904313
-  drm/xe/xelp: Add Wa_18022495364
-  drm/xe: Use emit_flush_imm_ggtt helper instead of open coding
-  drm/xe/xelpg: Flush CCS when flushing caches
-  drm/xe: Flush L3 when flushing render cache
-  drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
-  drm/xe/xelp: Support auxccs invalidation on blitter
-  drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
-  drm/xe/xelp: Wait for AuxCCS invalidation to complete
-  drm/xe/xelp: Add AuxCCS invalidation to the buffer migration path
-  drm/xe: Export xe_emit_aux_table_inv
-  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
-    workarounds
-  drm/xe: Use fb cached min alignment
-  drm/xe: Flush GGTT writes after populating DPT
-  drm/xe: Handle DPT in system memory
-  drm/xe: Force flush system memory AuxCCS framebuffers before scan out
-  drm/xe/display: Add support for AuxCCS
-  drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
-
- .../drm/i915/display/skl_universal_plane.c    |   6 -
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 177 ++++++++--
- .../gpu/drm/xe/instructions/xe_gpu_commands.h |   2 +
- .../gpu/drm/xe/instructions/xe_mi_commands.h  |   7 +
- drivers/gpu/drm/xe/regs/xe_engine_regs.h      |   3 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h       |   4 +
- drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
- drivers/gpu/drm/xe/xe_lrc.c                   | 317 +++++++++++++++---
- drivers/gpu/drm/xe/xe_lrc_types.h             |   5 +-
- drivers/gpu/drm/xe/xe_ring_ops.c              | 210 +++++++-----
- drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
- drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
- drivers/gpu/drm/xe/xe_wa_oob.rules            |   2 +
- 14 files changed, 571 insertions(+), 182 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 7c7f6dae158c..5709c0c679af 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -985,7 +985,8 @@ setup_wa_bo(struct xe_lrc *lrc,
+ 	    unsigned int offset,
+ 	    const struct wa_bo_setup *funcs,
+ 	    unsigned int num_funcs,
+-	    u32 **free)
++	    u32 **free,
++	    unsigned int *written)
+ {
+ 	u32 *cmd, *buf = NULL;
+ 	ssize_t remain;
+@@ -1016,6 +1017,8 @@ setup_wa_bo(struct xe_lrc *lrc,
+ 			goto fail;
+ 
+ 		cmd += len;
++		if (written)
++			*written += len;
+ 	}
+ 
+ 	return cmd;
+@@ -1027,14 +1030,14 @@ setup_wa_bo(struct xe_lrc *lrc,
+ 
+ static void finish_wa_bo(struct xe_lrc *lrc,
+ 			 unsigned int offset,
+-			 u32 *cmd,
++			 unsigned int written,
+ 			 u32 *free)
+ {
+ 	if (!free)
+ 		return;
+ 
+ 	xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap, offset, free,
+-			 (cmd - free) * sizeof(*cmd));
++			 written * sizeof(u32));
+ 	kfree(free);
+ }
+ 
+@@ -1044,16 +1047,18 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 		{ .setup = setup_utilization_wa },
+ 	};
+ 	unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
++	unsigned int written = 0;
+ 	u32 *cmd, *buf = NULL;
+ 
+ 	cmd = setup_wa_bo(lrc, hwe, LRC_WA_BB_SIZE, offset, funcs,
+-			  ARRAY_SIZE(funcs), &buf);
++			  ARRAY_SIZE(funcs), &buf, &written);
+ 	if (IS_ERR(cmd))
+ 		return PTR_ERR(cmd);
+ 
+ 	*cmd++ = MI_BATCH_BUFFER_END;
++	written++;
+ 
+-	finish_wa_bo(lrc, offset, cmd, buf);
++	finish_wa_bo(lrc, offset, written, buf);
+ 
+ 	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR,
+ 			     xe_bo_ggtt_addr(lrc->bo) + offset + 1);
 -- 
 2.48.0
 
