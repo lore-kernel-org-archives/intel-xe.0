@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E4D3C8302D
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 18:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C8E0C83029
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 18:46:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF65510E4B3;
-	Mon, 30 Jun 2025 18:28:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OrOZbBta";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C46C10E4B3
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 18:28:18 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 3A40C61126;
- Mon, 30 Jun 2025 18:28:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41EC0C4CEE3;
- Mon, 30 Jun 2025 18:28:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1751308096;
- bh=GxFRzmBGBJNDKvWM2J16xINJw3wVBq57APedjAYERKM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=OrOZbBtaR5et9OF5MMll1PiXsSoC/iWUBWENE8TDF+RRDj8fWvByQsGR8BY43IBit
- t65TYX/GHdnAJJsWu5vSVlnPcUBy+wMiCDac3gnJGGbX9UKSHbETSh+F5kLyFF3tuR
- bb2ws+vm26QYpYAZ4P0meeaezswCL5NxOo3+/qy1kBIfuco4WVzDN7FsxgM7fXffEe
- kCZt3AqfovytODIL4ATDg1FxTOErXTgH/40D8/cpreMO+rpPtLRHeIIQfqvctPoaUt
- CePQxpSG7FkiTO1KEP44gJASGi5nJMO42sDhYgr/Q7amLEoDfuOe7vyHhoMj1TL1eI
- odbLtJzLnBsSw==
-Date: Mon, 30 Jun 2025 20:28:12 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Jarkko Nikula <jarkko.nikula@linux.intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>, Raag Jadav <raag.jadav@intel.com>, 
- "Tauro, Riana" <riana.tauro@intel.com>, "Adatrao,
- Srinivasa" <srinivasa.adatrao@intel.com>, 
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>, intel-xe@lists.freedesktop.org,
- linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] i2c: designware: Add quirk for Intel Xe
-Message-ID: <gljpd4foldjwairaca7ip2qqpdl7ipto77wsqwhbfamv6kdd3v@2doqwso7ccx3>
-References: <20250627135314.873972-1-heikki.krogerus@linux.intel.com>
- <20250627135314.873972-2-heikki.krogerus@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3277D10E053;
+	Mon, 30 Jun 2025 18:46:08 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2A1E10E053;
+ Mon, 30 Jun 2025 18:46:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9091458753304370959=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250627135314.873972-2-heikki.krogerus@linux.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/tests=3A_Add_legacy_?=
+ =?utf-8?q?IP_descriptors_to_param_generators?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 30 Jun 2025 18:46:06 -0000
+Message-ID: <175130916672.121655.12774591899931335528@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250627181110.1436-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250627181110.1436-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,24 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Heikki,
+--===============9091458753304370959==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 27, 2025 at 04:53:11PM +0300, Heikki Krogerus wrote:
-> The regmap is coming from the parent also in case of Xe
-> GPUs. Reusing the Wangxun quirk for that.
+== Series Details ==
 
-What I don't like, though, is that there is no mention of the
-change in the probe in the commit log.
+Series: drm/xe/tests: Add legacy IP descriptors to param generators
+URL   : https://patchwork.freedesktop.org/series/150895/
+State : success
 
-Besides, are these changes related? Can we have them split in two
-different patches? I guess this would also make Andy's point
-about the extra churn.
+== Summary ==
 
-Andi
+CI Bug Log - changes from xe-3324-f286b243950bff50335f38f30ee72e82cb33c60f_BAT -> xe-pw-150895v1_BAT
+====================================================
 
-> Originally-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Acked-by: Jarkko Nikula <jarkko.nikula@linux.intel.com>
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-150895v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3324-f286b243950bff50335f38f30ee72e82cb33c60f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150895v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3324-f286b243950bff50335f38f30ee72e82cb33c60f -> xe-pw-150895v1
+
+  IGT_8431: 8431
+  xe-3324-f286b243950bff50335f38f30ee72e82cb33c60f: f286b243950bff50335f38f30ee72e82cb33c60f
+  xe-pw-150895v1: 150895v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150895v1/index.html
+
+--===============9091458753304370959==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/tests: Add legacy IP descriptors to param generators</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150895/">https://patchwork.freedesktop.org/series/150895/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150895v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150895v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3324-f286b243950bff50335f38f30ee72e82cb33c60f_BAT -&gt; xe-pw-150895v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-150895v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3324-f286b243950bff50335f38f30ee72e82cb33c60f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150895v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3324-f286b243950bff50335f38f30ee72e82cb33c60f -&gt; xe-pw-150895v1</li>
+</ul>
+<p>IGT_8431: 8431<br />
+  xe-3324-f286b243950bff50335f38f30ee72e82cb33c60f: f286b243950bff50335f38f30ee72e82cb33c60f<br />
+  xe-pw-150895v1: 150895v1</p>
+
+</body>
+</html>
+
+--===============9091458753304370959==--
