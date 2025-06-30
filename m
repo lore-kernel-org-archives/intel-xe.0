@@ -4,73 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F23B3C8302D
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 14:16:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7524BC83029
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 14:42:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B844610E444;
-	Mon, 30 Jun 2025 14:16:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E71410E474;
+	Mon, 30 Jun 2025 14:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NFMFuzaO";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="BGEqDHh6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21BC610E444
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 14:16:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751293011; x=1782829011;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=OzPYGM4z9O73qf5/x0rNrOGtpP0MsiPbpJZyM0orLTE=;
- b=NFMFuzaOcrhWaK9s8IOKDOkIRE5uzWVcN/lo/dlEdoGkdik9SnW21Vw6
- /rCJ/hgubR0LVwoivhZzvRKx5Ud8dOchPLuupx0ea4gAJesxg4GeDGzo5
- lvYEQ9zxAGN27JSokyV4x2/NPzhWxe4RX3EMNjnwGgqgEoFLMCQmNdO9W
- xwKDrjBEnbrJ9ZIhCRVGzolCma2rertwmMN+rpOidGtmKIY0VGhuJ0afu
- 9W8ndSKAEpJh8ova5waKAfBlgNCG5foRO5wURAaT8IqHlMEtSit6B0IA6
- THS9cryIx1F0fWn03KRoi2Zf2X0jLfp5zPe24CABWEnHmPJwCkRMBaxF2 Q==;
-X-CSE-ConnectionGUID: r4xEqRIGQP2OWpUGHoM5cg==
-X-CSE-MsgGUID: c5NHy0eORxeKt1yJmT5jlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="70953175"
-X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="70953175"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2025 07:16:51 -0700
-X-CSE-ConnectionGUID: 58+RhZqhRG+b0WD5ZFiBsw==
-X-CSE-MsgGUID: YYmDo1P1T2mvWYNOXes65w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="184493720"
-Received: from kuha.fi.intel.com ([10.237.72.152])
- by orviesa002.jf.intel.com with SMTP; 30 Jun 2025 07:16:45 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Mon, 30 Jun 2025 17:16:44 +0300
-Date: Mon, 30 Jun 2025 17:16:44 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE5110E477
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 14:42:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1751294532;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=WSmEPnYFlo3nEKMgNzDLaZnUOSU1hoz+IcjIPvr6Ofs=;
+ b=BGEqDHh6/3MY6UKtnxHayGXGOFmUMry2xb3LLjWApksgGLWt+KfVQenLWH1vU/pV4jSDyf
+ prTEJnMkY6RWFirIVobbO4PpWljemr21cfnSh4reGW0PqQqg98Xvm9IxmJv40FOdZQ3arA
+ 3X0pp/9Zr8HFnrz8FUI4H9W2fR+POgo=
+Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-502-8ST2s3RlM9mDsD8Auc01bg-1; Mon,
+ 30 Jun 2025 10:42:08 -0400
+X-MC-Unique: 8ST2s3RlM9mDsD8Auc01bg-1
+X-Mimecast-MFC-AGG-ID: 8ST2s3RlM9mDsD8Auc01bg_1751294526
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 919F71955ED4; Mon, 30 Jun 2025 14:42:05 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.44.34.121])
+ by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 5F33319560AB; Mon, 30 Jun 2025 14:41:58 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
- Raag Jadav <raag.jadav@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>,
- "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] i2c: designware: Add quirk for Intel Xe
-Message-ID: <aGKcTCSL4QMkx86I@kuha.fi.intel.com>
-References: <20250627135314.873972-1-heikki.krogerus@linux.intel.com>
- <20250627135314.873972-2-heikki.krogerus@linux.intel.com>
- <aF6nEOVhLURyf616@smile.fi.intel.com> <aF8N0dYk_WAJjvVu@intel.com>
- <aGI9C6MR8qhe0MHR@smile.fi.intel.com>
- <aGJGWFOpccaNzpni@kuha.fi.intel.com>
- <aGJg0FZK__xYGP7C@smile.fi.intel.com>
- <aGJ8GZXEzJo1IVXM@kuha.fi.intel.com>
- <aGKOSIfS2kTqeHLt@smile.fi.intel.com>
+Cc: Jocelyn Falempe <jfalempe@redhat.com>,
+	kernel test robot <lkp@intel.com>
+Subject: [PATCH] drm/ttm: Remove unneeded blank line in comment
+Date: Mon, 30 Jun 2025 16:41:08 +0200
+Message-ID: <20250630144154.44661-1-jfalempe@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aGKOSIfS2kTqeHLt@smile.fi.intel.com>
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,67 +79,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 30, 2025 at 04:16:56PM +0300, Andy Shevchenko wrote:
-> On Mon, Jun 30, 2025 at 02:59:21PM +0300, Heikki Krogerus wrote:
-> > On Mon, Jun 30, 2025 at 01:02:56PM +0300, Andy Shevchenko wrote:
-> > > On Mon, Jun 30, 2025 at 11:10:00AM +0300, Heikki Krogerus wrote:
-> > > > On Mon, Jun 30, 2025 at 10:30:19AM +0300, Andy Shevchenko wrote:
-> > > > > On Fri, Jun 27, 2025 at 05:32:01PM -0400, Rodrigo Vivi wrote:
-> > > > > > On Fri, Jun 27, 2025 at 05:13:36PM +0300, Andy Shevchenko wrote:
-> > > > > > > On Fri, Jun 27, 2025 at 04:53:11PM +0300, Heikki Krogerus wrote:
-> 
-> ...
-> 
-> > > > > > > >  static int dw_i2c_plat_probe(struct platform_device *pdev)
-> > > > > > > >  {
-> > > > > > > > +	u32 flags = (uintptr_t)device_get_match_data(&pdev->dev);
-> > > > > > > 
-> > > > > > > > -	dev->flags = (uintptr_t)device_get_match_data(device);
-> > > > > > > >  	if (device_property_present(device, "wx,i2c-snps-model"))
-> > > > > > > > -		dev->flags = MODEL_WANGXUN_SP | ACCESS_POLLING;
-> > > > > > > > +		flags = MODEL_WANGXUN_SP | ACCESS_POLLING;
-> > > > > > > >  
-> > > > > > > >  	dev->dev = device;
-> > > > > > > >  	dev->irq = irq;
-> > > > > > > > +	dev->flags = flags;
-> > > > > > > 
-> > > > > > > Maybe I'm missing something, but why do we need these (above) changes?
-> > > > > > 
-> > > > > > in between, it is introduced a new one:
-> > > > > > flags |= ACCESS_POLLING;
-> > > > > > 
-> > > > > > So, the initialization moved up, before the ACCESS_POLLING, and
-> > > > > > it let the assignment to the last, along with the group.
-> > > > > 
-> > > > > I still don't get. The cited code is complete equivalent.
-> > > > 
-> > > > This was requested by Jarkko.
-> > > 
-> > > Okay, but why? Sounds to me like unneeded churn. Can't we do this later when
-> > > required?
-> > 
-> > You need to ask why from Jarkko - I did not really question him on
-> > this one. Unfortunately his on vacation at the moment.
-> 
-> Yeah :-(
-> 
-> > I can drop this, but then I'll have to drop also Jarkko's ACK.
-> 
-> I can give mine if it helps. The code as far as I can see is 100% equivalent.
-> 
-> > I think we already agreed that this function, and probable the entire
-> > file, need to be refactored a bit, so would you mind much if we just
-> > went ahead with this as it is?
-> > 
-> > I'm asking that also because I don't have means or time to test this
-> > anymore before I start my vacation.
-> 
-> I see, then we may ask Andi and Wolfram on this. I slightly prefer to have
-> no additional churn added without a good reason.
+There is an unneeded blank line in the documentation of the function
+ttm_bo_kmap_try_from_panic().
 
-OK. I'll fix this.
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202506290453.NeTXAb7S-lkp@intel.com/
+Fixes: 718370ff28328 ("drm/ttm: Add ttm_bo_kmap_try_from_panic()")
+Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+---
 
-thanks,
+Can this be merged through the drm-intel-next, as this is were the
+offending commit was merged.
 
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index ad95e8b9852b..16cb4065214d 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -382,7 +382,6 @@ static int ttm_bo_kmap_ttm(struct ttm_buffer_object *bo,
+ }
+ 
+ /**
+- *
+  * ttm_bo_kmap_try_from_panic
+  *
+  * @bo: The buffer object
+
+base-commit: d5bafb1c294cf99cc5991f7fdecc79898f9b8d0e
 -- 
-heikki
+2.49.0
+
