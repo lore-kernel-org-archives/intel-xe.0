@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7524BC83029
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 14:42:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE808C83029
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 14:48:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E71410E474;
-	Mon, 30 Jun 2025 14:42:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="BGEqDHh6";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE5110E477
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 14:42:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1751294532;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=WSmEPnYFlo3nEKMgNzDLaZnUOSU1hoz+IcjIPvr6Ofs=;
- b=BGEqDHh6/3MY6UKtnxHayGXGOFmUMry2xb3LLjWApksgGLWt+KfVQenLWH1vU/pV4jSDyf
- prTEJnMkY6RWFirIVobbO4PpWljemr21cfnSh4reGW0PqQqg98Xvm9IxmJv40FOdZQ3arA
- 3X0pp/9Zr8HFnrz8FUI4H9W2fR+POgo=
-Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-502-8ST2s3RlM9mDsD8Auc01bg-1; Mon,
- 30 Jun 2025 10:42:08 -0400
-X-MC-Unique: 8ST2s3RlM9mDsD8Auc01bg-1
-X-Mimecast-MFC-AGG-ID: 8ST2s3RlM9mDsD8Auc01bg_1751294526
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 919F71955ED4; Mon, 30 Jun 2025 14:42:05 +0000 (UTC)
-Received: from hydra.redhat.com (unknown [10.44.34.121])
- by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 5F33319560AB; Mon, 30 Jun 2025 14:41:58 +0000 (UTC)
-From: Jocelyn Falempe <jfalempe@redhat.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Jocelyn Falempe <jfalempe@redhat.com>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH] drm/ttm: Remove unneeded blank line in comment
-Date: Mon, 30 Jun 2025 16:41:08 +0200
-Message-ID: <20250630144154.44661-1-jfalempe@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88B4610E478;
+	Mon, 30 Jun 2025 14:48:23 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7374910E240;
+ Mon, 30 Jun 2025 14:48:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5535775390149628677=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
+Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgU21hbGwgZW1pdF93YV9qb2IoKSB0?=
+ =?utf-8?b?aWR5?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 30 Jun 2025 14:48:21 -0000
+Message-ID: <175129490146.120494.6985055209424582870@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250627131438.54398-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250627131438.54398-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,38 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is an unneeded blank line in the documentation of the function
-ttm_bo_kmap_try_from_panic().
+--===============5535775390149628677==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202506290453.NeTXAb7S-lkp@intel.com/
-Fixes: 718370ff28328 ("drm/ttm: Add ttm_bo_kmap_try_from_panic()")
-Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
----
+== Series Details ==
 
-Can this be merged through the drm-intel-next, as this is were the
-offending commit was merged.
+Series: Small emit_wa_job() tidy
+URL   : https://patchwork.freedesktop.org/series/150878/
+State : success
 
- drivers/gpu/drm/ttm/ttm_bo_util.c | 1 -
- 1 file changed, 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index ad95e8b9852b..16cb4065214d 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -382,7 +382,6 @@ static int ttm_bo_kmap_ttm(struct ttm_buffer_object *bo,
- }
- 
- /**
-- *
-  * ttm_bo_kmap_try_from_panic
-  *
-  * @bo: The buffer object
+CI Bug Log - changes from xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd_BAT -> xe-pw-150878v1_BAT
+====================================================
 
-base-commit: d5bafb1c294cf99cc5991f7fdecc79898f9b8d0e
--- 
-2.49.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd -> xe-pw-150878v1
+
+  IGT_8431: 8431
+  xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd: 078be02b4585b9a9703401d89a3ac93e2d15a6bd
+  xe-pw-150878v1: 150878v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150878v1/index.html
+
+--===============5535775390149628677==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Small emit_wa_job() tidy</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150878/">https://patchwork.freedesktop.org/series/150878/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150878v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150878v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd_BAT -&gt; xe-pw-150878v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd -&gt; xe-pw-150878v1</li>
+</ul>
+<p>IGT_8431: 8431<br />
+  xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd: 078be02b4585b9a9703401d89a3ac93e2d15a6bd<br />
+  xe-pw-150878v1: 150878v1</p>
+
+</body>
+</html>
+
+--===============5535775390149628677==--
