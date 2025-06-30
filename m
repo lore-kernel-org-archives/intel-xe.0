@@ -4,50 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83C18C8302D
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:43:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9365EC8302F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:47:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49D1410E440;
-	Mon, 30 Jun 2025 12:43:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FDE110E437;
+	Mon, 30 Jun 2025 12:47:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="C/QxFthI";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pU9TsrV9";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88BAC10E437
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:43:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D045F10E437
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:47:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XrnxDOc70n46cafx4Mb9CP0YMvzQYk2yYg+s0DMSUX4=; b=C/QxFthIDOZC2lmmvumZoXr65A
- o8Fn09Gl508pmIM9Ko6I6/6euemJRSHPJAXP0g2RMq48JQZM7Ox4nbNPEatORt4UpHkvD1D4Rbf2K
- c/jy8gjd8w3wBNvt5hQLVj8luWTTv6ZWsZYCyNyXTuhNv0vigYAQMbEeI2WSykrDkzV59nQJQMBUb
- wzKAjLFDutLCqBOT+0+/AinedA+Il0R8sR0gIQool+GDBL0isOBSfYR74QuI05u2BPgCpu/t3Jxst
- nsLcbSGWZ2s6ZAgdVudHq24HYk7IDHHFdzV0XfeJIkPcRCd+iaEPeC2GiZLKVk2D5y/n+TiyfpkVL
- b87WQNrA==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=V6MJIuPUhliB/XARFr7CB0rwJFSK4sAWV84//1ucz4g=; b=pU9TsrV9DowUrlosHxpO1XWVnE
+ iGxKi5K/ifOAO/SBVj+bRpL2232FHNB4EV29QuOVcLAayFA3WnNl/p7Zz7w2OoaosXWSH7LhVnphY
+ rOQ5bPlRnZvCcHvSVTfFNv7RGm81Fw+0H4SNh+M+JfXA1GGklyM5KIBkQt2Z+/aAqZztngZjvnDys
+ k9V6eH0klNiWNZTKS1Oh4DR5FIDshzmUmjyhHtKnLAWDQbpfkVeedLBnFAVJDw03qfaKy5C6vVv68
+ S49FwlzVlNHvIbyp7eiqnM7ELWOpj5KMJbz8NbD6n2dXeZH2UX2pUXDeuNTBQFF6R58qRwEYcf8rA
+ Du+mRfHg==;
+Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uWDqo-00ATZt-Le; Mon, 30 Jun 2025 14:43:10 +0200
-Message-ID: <bdcc81af-4eba-4129-a945-e45a71f79285@igalia.com>
-Date: Mon, 30 Jun 2025 13:43:10 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 11/24] drm/xe: Flush L3 when flushing render cache
-To: "Souza, Jose" <jose.souza@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "kernel-dev@igalia.com" <kernel-dev@igalia.com>
-References: <20250627133340.54603-1-tvrtko.ursulin@igalia.com>
- <20250627133340.54603-12-tvrtko.ursulin@igalia.com>
- <371c413dbaeb584cf56264bd7d1d44d0ca284ec5.camel@intel.com>
- <3bbea88dc4e95e6e976f0143a38ae40b813a9728.camel@intel.com>
-Content-Language: en-GB
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uWDuj-00ATeP-Vo; Mon, 30 Jun 2025 14:47:14 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <3bbea88dc4e95e6e976f0143a38ae40b813a9728.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: intel-xe@lists.freedesktop.org
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v8 00/24] AuxCCS handling and render compression modifiers
+Date: Mon, 30 Jun 2025 13:46:46 +0100
+Message-ID: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,122 +57,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+A series to fix and add xe support for AuxCSS framebuffers via DPT.
 
-On 27/06/2025 19:57, Souza, Jose wrote:
-> On Fri, 2025-06-27 at 11:23 -0700, José Roberto de Souza wrote:
->> On Fri, 2025-06-27 at 14:33 +0100, Tvrtko Ursulin wrote:
->>> I915 sets PIPE_CONTROL_FLUSH_L3 (bit 27) when flushing render caches but
->>> interesting thing is Tigerlake PRM lists that bit as reserved.
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>> ---
->>> Is xe missing this? Or has this been wrong for so long in i915? Or is this
->>> an undocumented bit?
->>> ---
->>>   drivers/gpu/drm/xe/instructions/xe_gpu_commands.h |  1 +
->>>   drivers/gpu/drm/xe/xe_ring_ops.c                  | 10 ++++++++++
->>>   2 files changed, 11 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
->>> index 78c0e87dbd37..27892984403c 100644
->>> --- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
->>> +++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
->>> @@ -47,6 +47,7 @@
->>>   
->>>   #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
->>>   #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
->>> +#define   PIPE_CONTROL_FLUSH_L3                         (1<<27)
->>
->> On spec this bit is Protected Memory Disable. I think what you want is bit 30.
-> 
-> That is also wrong on i915 oO.
+Currently the auxiliary buffer data isn't mapped into the page tables at all so
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+had to disable the support.
 
-Yeah, most of the series is me copying "reference" implementation from i915.
+On top of that there are missing flushes, invalidations and similar.
 
-But you are right, bit 27 appears wrong, and the history of the whole 
-area is a bit confusing.
+Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
 
-The existing PIPE_CONTROL_FLUSH_L3 definition was added back in 2015 in:
+  [PLANE:32:plane 1A]: type=PRI
+          uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+          hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
 
-0160f055393f ("drm/i915/gen8: Add WaClearSlmSpaceAtContextSwitch 
-workaround")
+Display working fine - no artefacts, no DMAR/PIPE faults.
 
-But if I look at the public PRMs for BDW and CHV bit 27 is reserved MBZ. 
-Bit 30 is the same. Was it something undocumented? I don't know.
+*** NOTE ***
+ The first 8 patches are not really the AuxCCS work. They are a different series
+ which adds plumbing for the indirect context workarounds, hence the AuxCCS work
+ depends on it.
 
-Furthermore, the public PRM has no mention of 
-WaClearSlmSpaceAtContextSwitch. It has this 
-WaFlushCoherentL3CacheLinesAtContextSwitch which is not quite the thing:
+ For strictly AuxCCS work you can start reading from patch 9.
+*** NOTE ***
 
-"""
-Coherent L3 cache lines are not getting flushed during context switch 
-which is causing
-issues like corruption. Need to set bit 21 of MMIO b118, then send PC 
-with DC flush and
-then reset bit 21 of MMIO b118. This programming sequence needs to be 
-part of the indirect
-context WA BB.
-"""
+v2:
+ * More patches added to fix kms_flip_tiling.
 
-This WA was later extnded to KBL:
+v3:
+ * Rebased after some cleanup patches from v2 were merged.
+ * Added people to Cc as suggested by Rodrigo.
+ * Adjusted last patch title. (Rodrigo)
+ * Apply GGTT flushing only to iomapped system memory buffers.
 
-066d46288851 ("drm/i915/kbl: Add WaClearSlmSpaceAtContextSwitch")
+v4:
+ * Added patch for potentially misplaced Wa_14016712196.
+ * Fixed (hopefully) MAX_JOB_SIZE_DW on Meteorlake.
 
-But KBL public PRM is the same - I don't see any WA which mention SLM or 
-bit 30. And bits 27 and 30 are still reserved.
+v5:
+ * Split out ring emission changes to smaller patches.
+ * Fixed MAX_JOB_SIZE_DW even more.
+ * Don't emit MI_FLUSH_DW_CCS on !BCS. This should fix Meteorlake.
 
-There is a new bit 26 (Flush LLC) on SKL and KBL but we do not use it or 
-define it.
+ v6:
+ * Added AuxCCS invalidation to indirect context workarounds.
+ * Also added the indirect context handling and some other workarounds. They are
+   unrelated but the series depends on it.
+ * Dropped DPT pin alignment reduction since BMG appears not to be liking it for
+   some reason.
 
-That also feels odd.
+v7:
+ * Rebased on top of recent xe_fb_pin.c refactoring and also the indirect
+   context workarounds series.
 
-And finally L3 flushing was added to the plain ring programming in:
+v8:
+ * Rebased for bo->size removal.
+ * Corrected PIPE_CONTROL_FLUSH_L3 to bit 30. (Jose)
 
-0c7c0c8e6f09 ("drm/i915/gen12: Flush L3")
+Tvrtko Ursulin (24):
+  drm/xe: Consolidate LRC offset calculations
+  drm/xe: Generalize wa bb emission code
+  drm/xe: Rename utilisation workaround emission function
+  drm/xe: Return number of written dwords from workaround batch buffer
+    emission
+  drm/xe: Allow specifying number of extra dwords at the end of wa bb
+    emission
+  drm/xe: Add plumbing for indirect context workarounds
+  drm/xe/xelp: Implement Wa_16010904313
+  drm/xe/xelp: Add Wa_18022495364
+  drm/xe: Use emit_flush_imm_ggtt helper instead of open coding
+  drm/xe/xelpg: Flush CCS when flushing caches
+  drm/xe: Flush L3 when flushing render cache
+  drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+  drm/xe/xelp: Support auxccs invalidation on blitter
+  drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+  drm/xe/xelp: Wait for AuxCCS invalidation to complete
+  drm/xe/xelp: Add AuxCCS invalidation to the buffer migration path
+  drm/xe: Export xe_emit_aux_table_inv
+  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
+    workarounds
+  drm/xe: Use fb cached min alignment
+  drm/xe: Flush GGTT writes after populating DPT
+  drm/xe: Handle DPT in system memory
+  drm/xe: Force flush system memory AuxCCS framebuffers before scan out
+  drm/xe/display: Add support for AuxCCS
+  drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
 
-As you discovered this is most likely wrong since bspec say bit 30 on 
-TGL is L3 Fabric Flush.
+ .../drm/i915/display/skl_universal_plane.c    |   6 -
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 177 ++++++++--
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |   2 +
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   7 +
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h      |   3 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h       |   4 +
+ drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
+ drivers/gpu/drm/xe/xe_lrc.c                   | 317 +++++++++++++++---
+ drivers/gpu/drm/xe/xe_lrc_types.h             |   5 +-
+ drivers/gpu/drm/xe/xe_ring_ops.c              | 210 +++++++-----
+ drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
+ drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+ drivers/gpu/drm/xe/xe_wa_oob.rules            |   2 +
+ 14 files changed, 571 insertions(+), 182 deletions(-)
 
-So more questions than answers and it looks access to internal docs will 
-be required to get to the bottom of it all.
-
-> Will give some testing here and submit a i915 patch.
-
-I at least tried changing it to bit 30 on ADL but that on it's own 
-appeared to make no positive improvement to the transient cache dirt in 
-some AuxCCS IGTs. It still requires the large hammer of "drm/xe: Force 
-flush system memory AuxCCS framebuffers before scan out".
-
-I am curious to what your testing will show with the use cases you have 
-in mind.
-
-Regards,
-
-Tvrtko
-
->>
->>>   #define   PIPE_CONTROL_AMFS_FLUSH			(1<<25)
->>>   #define   PIPE_CONTROL_GLOBAL_GTT_IVB			(1<<24)
->>>   #define   PIPE_CONTROL_LRI_POST_SYNC			BIT(23)
->>> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
->>> index a1289f086191..8f655b6fe913 100644
->>> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
->>> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
->>> @@ -197,6 +197,16 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
->>>   	if (XE_WA(gt, 1409600907))
->>>   		flags |= PIPE_CONTROL_DEPTH_STALL;
->>>   
->>> +	/*
->>> +	 * L3 fabric flush is needed for AUX CCS invalidation
->>> +	 * which happens as part of pipe-control so we can
->>> +	 * ignore PIPE_CONTROL_FLUSH_L3. Also PIPE_CONTROL_FLUSH_L3
->>> +	 * deals with Protected Memory which is not needed for
->>> +	 * AUX CCS invalidation and lead to unwanted side effects.
->>> +	 */
->>> +	if (GRAPHICS_VERx100(xe) < 1270)
->>> +		flags |= PIPE_CONTROL_FLUSH_L3;
->>> +
->>>   	if (lacks_render)
->>>   		flags &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
->>>   	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+-- 
+2.48.0
 
