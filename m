@@ -4,46 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89BA3C83F01
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:47:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B22DC8302F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:56:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 477BE10E44F;
-	Mon, 30 Jun 2025 12:47:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="XhYKXufD";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6147F10E446
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:47:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=zjrogzRg7KT13dPvWXzHC+YGx98QIkjvRitWbpaYAKg=; b=XhYKXufD1OKI/UAszQvSHgS1oE
- 07HpQXPUp2lbdR4boqbYadWDXFq7pJdq1zgZVdLbfa7VJI4N6wuzKXjWuy6qibVVTS5iuCJxwE/CQ
- W2tw1yv+T2i8NrEoUWBQAG2MxBFBGDK25wlxVyCyX5P5qiycVPU4YcOS41+sy8KgxjdsbLFseo/D9
- BUAGLMICQYEwtJeFVsqKRCe7TfN8oKEDr1R6EfZPI/N6x60nCudAbST4SRz+bCGmOrcscmSSJtRKD
- owI8zYb97Pms0qZy211kQyqJ2YN9d0APzqhr2TRlhyQs3h3hSEndXFaFI0TqSEs4hSgOc3aGTasXW
- 9LrApDiQ==;
-Received: from [81.79.92.254] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uWDux-00ATgv-R5; Mon, 30 Jun 2025 14:47:27 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Maarten Lankhort <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v8 19/24] drm/xe: Use fb cached min alignment
-Date: Mon, 30 Jun 2025 13:47:05 +0100
-Message-ID: <20250630124711.8209-20-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
-References: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6375510E227;
+	Mon, 30 Jun 2025 12:56:40 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C66D10E227;
+ Mon, 30 Jun 2025 12:56:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3702901467266991078=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fxi_typo_in_Kconf?=
+ =?utf-8?q?ig?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 30 Jun 2025 12:56:38 -0000
+Message-ID: <175128819863.120494.1270238005215262327@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250627074119.347826-1-dev@lankhorst.se>
+In-Reply-To: <20250627074119.347826-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,50 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of just looking at the first plane use the fb cached overall
-minimum alignment.
+--===============3702901467266991078==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This aligns with how the i915 version of intel_plane_pin_fb works.
+== Series Details ==
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Maarten Lankhort <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 11 ++++-------
- 1 file changed, 4 insertions(+), 7 deletions(-)
+Series: drm/xe: Fxi typo in Kconfig
+URL   : https://patchwork.freedesktop.org/series/150856/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index c38fba18effe..ecc9566d5783 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -412,12 +412,9 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 		       const struct intel_plane_state *old_plane_state)
- {
- 	struct drm_framebuffer *fb = new_plane_state->hw.fb;
--	struct drm_gem_object *obj = intel_fb_bo(fb);
--	struct xe_bo *bo = gem_to_xe_bo(obj);
--	struct i915_vma *vma;
- 	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
--	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
--	unsigned int alignment = plane->min_alignment(plane, fb, 0);
-+	struct xe_bo *bo = gem_to_xe_bo(intel_fb_bo(fb));
-+	struct i915_vma *vma;
- 
- 	if (reuse_vma(new_plane_state, old_plane_state))
- 		return 0;
-@@ -425,8 +422,8 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 	/* We reject creating !SCANOUT fb's, so this is weird.. */
- 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
- 
--	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt, alignment);
--
-+	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt,
-+			      intel_fb->min_alignment);
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
- 
--- 
-2.48.0
+== Summary ==
 
+CI Bug Log - changes from xe-3320-0097539331ac0b7f5f0633992d34a8149f7246e8_BAT -> xe-pw-150856v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8430 -> IGT_8431
+  * Linux: xe-3320-0097539331ac0b7f5f0633992d34a8149f7246e8 -> xe-pw-150856v1
+
+  IGT_8430: 4351ec818f4bd363ad0594a008d11ba3963e1f05 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8431: 8431
+  xe-3320-0097539331ac0b7f5f0633992d34a8149f7246e8: 0097539331ac0b7f5f0633992d34a8149f7246e8
+  xe-pw-150856v1: 150856v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150856v1/index.html
+
+--===============3702901467266991078==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fxi typo in Kconfig</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150856/">https://patchwork.freedesktop.org/series/150856/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150856v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150856v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3320-0097539331ac0b7f5f0633992d34a8149f7246e8_BAT -&gt; xe-pw-150856v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8430 -&gt; IGT_8431</li>
+<li>Linux: xe-3320-0097539331ac0b7f5f0633992d34a8149f7246e8 -&gt; xe-pw-150856v1</li>
+</ul>
+<p>IGT_8430: 4351ec818f4bd363ad0594a008d11ba3963e1f05 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8431: 8431<br />
+  xe-3320-0097539331ac0b7f5f0633992d34a8149f7246e8: 0097539331ac0b7f5f0633992d34a8149f7246e8<br />
+  xe-pw-150856v1: 150856v1</p>
+
+</body>
+</html>
+
+--===============3702901467266991078==--
