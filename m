@@ -4,71 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F33EAC83030
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 11:59:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 733A7C8302F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:06:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B90F710E216;
-	Mon, 30 Jun 2025 11:59:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC91D10E420;
+	Mon, 30 Jun 2025 12:06:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LGZMiKQc";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="TO6TC3pL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3753210E216
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 11:59:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751284768; x=1782820768;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=PSmMpH9CH+p3L8SXyMXOWEil3/qqIcHitztY6zSNvkQ=;
- b=LGZMiKQcfTqDzvcPLuIhz6JjNENaB1oqm4rZD6OMQbJ7KTnOVFgbdr7F
- nV0EPeuJZEE+4xOzs1z5M33QEkKsfFMJkd1jv6vRSvLP51DBXlOzXjvUK
- j+0DAIU0tRUgyhtj37sM5wwv179QmStMvD9AOSGULMbGELF8KuUPjR4AM
- qVGwSX5U+1cJyTLS05rJSWmBDyomJxUiktUcipwYy45B5Q/Fah/mo6aJx
- Hbk81Rz4RGk0jjaNbiEh7XDDWlwjJfL0xjQDOxfF+9dALnC2DSwk7+jx2
- aDr83E0cVyFQUIb/KxOzrk41SQ6Vyp6IQLpcox/pjLs8c/kD/qpvOiz71 Q==;
-X-CSE-ConnectionGUID: Zk8wfXSYSlm43hvkX4SB7w==
-X-CSE-MsgGUID: yaN5RUldTweeY+ROnCKM9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11479"; a="52737863"
-X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="52737863"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2025 04:59:27 -0700
-X-CSE-ConnectionGUID: CcwZZ7rATIKhWRjrylVmew==
-X-CSE-MsgGUID: 7abXUxSOQ1iqzD67eoF71w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="157989007"
-Received: from kuha.fi.intel.com ([10.237.72.152])
- by orviesa004.jf.intel.com with SMTP; 30 Jun 2025 04:59:23 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Mon, 30 Jun 2025 14:59:21 +0300
-Date: Mon, 30 Jun 2025 14:59:21 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
- Raag Jadav <raag.jadav@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>,
- "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] i2c: designware: Add quirk for Intel Xe
-Message-ID: <aGJ8GZXEzJo1IVXM@kuha.fi.intel.com>
-References: <20250627135314.873972-1-heikki.krogerus@linux.intel.com>
- <20250627135314.873972-2-heikki.krogerus@linux.intel.com>
- <aF6nEOVhLURyf616@smile.fi.intel.com> <aF8N0dYk_WAJjvVu@intel.com>
- <aGI9C6MR8qhe0MHR@smile.fi.intel.com>
- <aGJGWFOpccaNzpni@kuha.fi.intel.com>
- <aGJg0FZK__xYGP7C@smile.fi.intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6CF610E434;
+ Mon, 30 Jun 2025 12:06:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=CK6H37qy+MtP48/QHQbXPjvWYoze/2sbuXupit5KHZ0=; b=TO6TC3pLdVCABrphOZcEr4ToYO
+ pzRtnEJpjoPY20NYh3Rxaj3jxDom9eNZs+OXWUy5dpi3CoDMtoDpdeB4H/Fl3tQ+Qx7lzIC9cNopF
+ LskK2PSoF1igaQYK36ou7z3bZy1qVd07zADy0rEmS8r1p9e6U3uGjDOfp3opRsN49RX6bgibeiLRG
+ bk+AxtJqkLOhmvTTw156Fkb1GTfgGBZlrx3exJ51vth0gPyONxlilgLxL0bWAEnAwol0G6pxahfp2
+ bNSKCH32doLI0IcmFOPtb9meoLFnMMDWewvnDp8RgsOMHnlfUv/PgzgvGkPOe9pguoxAE9khNEeTf
+ kMaB8FKw==;
+Received: from [189.7.87.79] (helo=[192.168.0.7])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uWDGX-00ASms-37; Mon, 30 Jun 2025 14:05:41 +0200
+Message-ID: <27c7fef3-ce37-48b9-bf63-3b3417618835@igalia.com>
+Date: Mon, 30 Jun 2025 09:05:31 -0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aGJg0FZK__xYGP7C@smile.fi.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/8] drm/sched: Make timeout KUnit tests faster
+To: phasta@kernel.org, Matthew Brost <matthew.brost@intel.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Simona Vetter <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, Melissa Wen <mwen@igalia.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20250618-sched-skip-reset-v3-0-8be5cca2725d@igalia.com>
+ <20250618-sched-skip-reset-v3-3-8be5cca2725d@igalia.com>
+ <2670247a8982f794a508f4cf3ae43ad7ac66862a.camel@mailbox.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <2670247a8982f794a508f4cf3ae43ad7ac66862a.camel@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,55 +75,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 30, 2025 at 01:02:56PM +0300, Andy Shevchenko wrote:
-> On Mon, Jun 30, 2025 at 11:10:00AM +0300, Heikki Krogerus wrote:
-> > On Mon, Jun 30, 2025 at 10:30:19AM +0300, Andy Shevchenko wrote:
-> > > On Fri, Jun 27, 2025 at 05:32:01PM -0400, Rodrigo Vivi wrote:
-> > > > On Fri, Jun 27, 2025 at 05:13:36PM +0300, Andy Shevchenko wrote:
-> > > > > On Fri, Jun 27, 2025 at 04:53:11PM +0300, Heikki Krogerus wrote:
+Hi Philipp,
+
+On 30/06/25 08:53, Philipp Stanner wrote:
+> On Wed, 2025-06-18 at 11:47 -0300, Maíra Canal wrote:
+>> As more KUnit tests are introduced to evaluate the basic capabilities
+>> of
+>> the `timedout_job()` hook, the test suite will continue to increase
+>> in
+>> duration. To reduce the overall running time of the test suite,
+>> decrease
+>> the scheduler's timeout for the timeout tests.
+>>
+>> Before this commit:
+>>
+>> [15:42:26] Elapsed time: 15.637s total, 0.002s configuring, 10.387s
+>> building, 5.229s running
+>>
+>> After this commit:
+>>
+>> [15:45:26] Elapsed time: 9.263s total, 0.002s configuring, 5.168s
+>> building, 4.037s running
 > 
-> ...
+> I guess those times were measured with the entire series?
+
+No, they were measured without the new test that I introduced in the
+next patch.
+
 > 
-> > > > > >  static int dw_i2c_plat_probe(struct platform_device *pdev)
-> > > > > >  {
-> > > > > > +	u32 flags = (uintptr_t)device_get_match_data(&pdev->dev);
-> > > > > 
-> > > > > > -	dev->flags = (uintptr_t)device_get_match_data(device);
-> > > > > >  	if (device_property_present(device, "wx,i2c-snps-model"))
-> > > > > > -		dev->flags = MODEL_WANGXUN_SP | ACCESS_POLLING;
-> > > > > > +		flags = MODEL_WANGXUN_SP | ACCESS_POLLING;
-> > > > > >  
-> > > > > >  	dev->dev = device;
-> > > > > >  	dev->irq = irq;
-> > > > > > +	dev->flags = flags;
-> > > > > 
-> > > > > Maybe I'm missing something, but why do we need these (above) changes?
-> > > > 
-> > > > in between, it is introduced a new one:
-> > > > flags |= ACCESS_POLLING;
-> > > > 
-> > > > So, the initialization moved up, before the ACCESS_POLLING, and
-> > > > it let the assignment to the last, along with the group.
-> > > 
-> > > I still don't get. The cited code is complete equivalent.
-> > 
-> > This was requested by Jarkko.
+> It's not clear to me whether this patch is independent from the series.
+> I suppose it is. We should aim towards having series's narrowly focused
+> topic-wise, but I get why you included it here.
+
+ From my perspective, this patch is a preparation to the next one. As
+I'll introduce another timeout-related test in the next patch, I was
+trying to ensure that we will keep the time-budget reasonable.
+
 > 
-> Okay, but why? Sounds to me like unneeded churn. Can't we do this later when
-> required?
+> That said, is there a specific reason for you aiming at ~10s (9.263)?
+> That's only a bit faster than the 15.637.
+> 
 
-You need to ask why from Jarkko - I did not really question him on
-this one. Unfortunately his on vacation at the moment. I can drop
-this, but then I'll have to drop also Jarkko's ACK.
+Actually, the only thing that this patch affects is the runtime. So, it
+went from 5.229s to 4.037s (-22.8%). However, as we add more and more
+timeout tests, the absolute difference would get more significant.
 
-I think we already agreed that this function, and probable the entire
-file, need to be refactored a bit, so would you mind much if we just
-went ahead with this as it is?
+> Couldn't it make sense, as you're at it already, to speed this up to
+> just a few seconds, like 3-5? Then it should really be quiet IRW that
+> topic for a while.
 
-I'm asking that also because I don't have means or time to test this
-anymore before I start my vacation.
+I believe that further decreasing the timeout could lead to racy
+scenarios and flaky tests.
 
-thanks,
+Best Regards,
+- Maíra
 
--- 
-heikki
+> 
+> 
+> P.
+> 
+>>
+>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
+>> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> ---
+>>   drivers/gpu/drm/scheduler/tests/tests_basic.c | 8 +++++---
+>>   1 file changed, 5 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/scheduler/tests/tests_basic.c
+>> b/drivers/gpu/drm/scheduler/tests/tests_basic.c
+>> index
+>> 7230057e0594c6246f02608f07fcb1f8d738ac75..41c648782f4548e202bd8711b45
+>> d28eead9bd0b2 100644
+>> --- a/drivers/gpu/drm/scheduler/tests/tests_basic.c
+>> +++ b/drivers/gpu/drm/scheduler/tests/tests_basic.c
+>> @@ -5,6 +5,8 @@
+>>   
+>>   #include "sched_tests.h"
+>>   
+>> +#define MOCK_TIMEOUT (HZ / 5)
+>> +
+>>   /*
+>>    * DRM scheduler basic tests should check the basic functional
+>> correctness of
+>>    * the scheduler, including some very light smoke testing. More
+>> targeted tests,
+>> @@ -28,7 +30,7 @@ static void drm_sched_basic_exit(struct kunit
+>> *test)
+>>   
+>>   static int drm_sched_timeout_init(struct kunit *test)
+>>   {
+>> -	test->priv = drm_mock_sched_new(test, HZ);
+>> +	test->priv = drm_mock_sched_new(test, MOCK_TIMEOUT);
+>>   
+>>   	return 0;
+>>   }
+>> @@ -227,14 +229,14 @@ static void drm_sched_basic_timeout(struct
+>> kunit *test)
+>>   	done = drm_mock_sched_job_wait_scheduled(job, HZ);
+>>   	KUNIT_ASSERT_TRUE(test, done);
+>>   
+>> -	done = drm_mock_sched_job_wait_finished(job, HZ / 2);
+>> +	done = drm_mock_sched_job_wait_finished(job, MOCK_TIMEOUT /
+>> 2);
+>>   	KUNIT_ASSERT_FALSE(test, done);
+>>   
+>>   	KUNIT_ASSERT_EQ(test,
+>>   			job->flags & DRM_MOCK_SCHED_JOB_TIMEDOUT,
+>>   			0);
+>>   
+>> -	done = drm_mock_sched_job_wait_finished(job, HZ);
+>> +	done = drm_mock_sched_job_wait_finished(job, MOCK_TIMEOUT);
+>>   	KUNIT_ASSERT_FALSE(test, done);
+>>   
+>>   	KUNIT_ASSERT_EQ(test,
+>>
+> 
+
