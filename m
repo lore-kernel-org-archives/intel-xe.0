@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AD3BC83029
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 17:34:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 457BAC83029
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 17:34:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D775310E4AD;
-	Mon, 30 Jun 2025 17:34:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F90F10E4B7;
+	Mon, 30 Jun 2025 17:34:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a5i9RhNV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BsUalUhm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64B7210E4A9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9ECC10E4AB
  for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 17:34:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751304886; x=1782840886;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lMWFKnrQkQ5fWtZFzAXZTT0EIz7qyRjWgbaZSTw04SQ=;
- b=a5i9RhNVu1VrU0tu13fAhBX4lFkKcmCwVuPBfquYzOa/BjZ1UMT1CXQb
- VrT/aV8zEOy7Ly7WhWuvTShsg7zYpgddO+te+AYLArx/thKldnhSWvacY
- 25QKMm+MhkK4ComQBvTbBLlIyf9J7+lkfEs1L/fEXShYS1Ok12fSRUvQL
- 1y5TXANa4ehLk8sROecfbAydWgDbleepLn2T8/+PZYw1RVFg06Gh1Lgh4
- bv89w328VJQhHI09R4SIH/re4ynUQWjurJgltElrEZXMNL16smuCw1WXp
- t+37YFlCyGQPtdQau896ib3P6pEQFLg9KNCcOa8JpEg4gcuhV3vkVVLz2 Q==;
-X-CSE-ConnectionGUID: galJZfmERwetgJQ8YERxWw==
-X-CSE-MsgGUID: KfsFgW1gQJK62PAxSGGusg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="57223395"
-X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="57223395"
+ t=1751304887; x=1782840887;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NpW+10hDUTrD7KnQ8MtO3iTS0ByBjfp78umdiDsWEJc=;
+ b=BsUalUhmxrSD6htCukOzGKupaOK3OAuq/JV8PBlokoQ+yegqqmJ/2Ad7
+ 2NTLkj6QNbFN3otK57opykbiokXItv3mJ7NvSiGd057saijTcVsodeEGl
+ vxKUbSjO6PFkFbc6ElAF4bUZff80S4MEJVRdEUKmHnwJZIUXNbSAgLH7o
+ DCFuk1WaBU4Ajiscw+ScThPabXwge0LlBkMt5agkXGnkdSMbI12/sbqnq
+ 5vxqo5Eut3UhhZpYcb8ieF4xQnd8uB1HVFbofNeFdcZriKOmz7M+SBqMA
+ cb5ToSg4lkIm2PnSVWVREWPPaKY9yMpqSj07c0SfYEouWXqOQAdlrPVrb w==;
+X-CSE-ConnectionGUID: hRXxtw6eRBGXeKrsA1e3mg==
+X-CSE-MsgGUID: 20u58SOITCa1vdNlZWc8DA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="57223400"
+X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="57223400"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Jun 2025 10:34:46 -0700
-X-CSE-ConnectionGUID: osj4IA17SxKcp3p8KdJKeg==
-X-CSE-MsgGUID: DV8fD+tRT3y64Q4a+wgf8w==
+X-CSE-ConnectionGUID: 8RHXWEJPSd6GWZoS2jqEWQ==
+X-CSE-MsgGUID: 0txdgxi8QgqZj4XrQXt7ew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="184543699"
+X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="184543719"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2025 10:34:43 -0700
+ 30 Jun 2025 10:34:44 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v3 0/6] Future-proof for multi-tile + multi-GT cases
-Date: Mon, 30 Jun 2025 10:34:39 -0700
-Message-ID: <20250630173438.2342706-8-matthew.d.roper@intel.com>
+Subject: [PATCH v3 5/6] drm/xe: Don't compare GT ID to GT count when
+ determining valid GTs
+Date: Mon, 30 Jun 2025 10:34:44 -0700
+Message-ID: <20250630173438.2342706-13-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250630173438.2342706-8-matthew.d.roper@intel.com>
+References: <20250630173438.2342706-8-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,61 +67,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Today all of our platforms fall into one of three cases:
- * Single tile platforms with a single (primary) GT
- * Single tile platforms with two GTs (primary + media)
- * Two-tile platforms with a single GT (primary) in each
+On current platforms with multiple GTs, all of the GT IDs are
+consecutive; as a result we know that the GT IDs range from 0 to
+gt_count-1 and can determine if a GT ID is valid by comparing against
+the count.  The consecutive nature of GT IDs may not hold true on future
+platforms if/when we have platforms that are both multi-tile and have
+multiple GTs within each tile.  Once such platforms exist, it's quite
+possible that we could wind up with something like a GT list composed of
+IDs 0, 2, and 3 with no GT 1 (which would be a 2-tile platform with
+media only on the second tile).
 
-Our numbering of GTs has been a bit inconsistent between platforms
-(e.g., GT1 is the media GT on some platforms, but the second tile's
-primary GT on others).  In the future we'll likely have platforms that
-are both multi-tile and multi-GT, which will make the situation more
-confusing.  We could also wind up with more than just two types of GTs
-at some point in the future.
+To future-proof the code we should stop comparing against the GT count
+to determine whether a GT ID is valid or not.  Instead we should do an
+actual lookup of the ID to determine whether the GT exists.  This also
+means that our GT loop macro should not end at the GT count, but should
+rather examine the entire space up to (# of tiles) * (max GT per tile)
+to ensure it doesn't stop prematurely.
 
-Going forward we should standardize the way we assign uapi GT IDs to
-internal GT structures.  Let's declare that for userspace GT ID n,
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h     | 6 +-----
+ drivers/gpu/drm/xe/xe_eu_stall.c   | 6 ++++--
+ drivers/gpu/drm/xe/xe_exec_queue.c | 2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c  | 3 ++-
+ 4 files changed, 8 insertions(+), 9 deletions(-)
 
-  GT[n]'s tile             = n / (max gt per tile)
-  GT[n]'s slot within tile = n % (max gt per tile)
-
-If we allow 'max gt per tile' to vary by platform, we can support any
-possible future tile/GT combinations (even if new types of GTs show up)
-without changing any behavior of our existing platforms.
-
-v2:
- - Rebase on top of the latest xe_pci test updates from Michal.  Convert
-   the kunit test into a parameterized test that will run against each
-   PCI ID supported by the driver.
-v3:
- - Rebase again
- - Add an additional patch at the end of the series to ensure
-   the GT query list is filled out properly.
-
-Matt Roper (6):
-  drm/xe: Export xe_step_name for kunit tests
-  drm/xe: Track maximum GTs per tile on a per-platform basis
-  drm/xe/tests/pci: Ensure all platforms have a valid GT/tile count
-  drm/xe: Assign GT IDs properly on multi-tile + multi-GT platforms
-  drm/xe: Don't compare GT ID to GT count when determining valid GTs
-  drm/xe/xe_query: Use separate iterator while filling GT list
-
- drivers/gpu/drm/xe/tests/xe_pci.c      | 31 ++++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.c | 12 +++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h |  1 +
- drivers/gpu/drm/xe/xe_device.h         | 47 ++++++++----------
- drivers/gpu/drm/xe/xe_device_types.h   |  2 +
- drivers/gpu/drm/xe/xe_eu_stall.c       |  6 ++-
- drivers/gpu/drm/xe/xe_exec_queue.c     |  2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c      |  3 +-
- drivers/gpu/drm/xe/xe_mmio.c           |  8 ---
- drivers/gpu/drm/xe/xe_pci.c            | 69 ++++++++------------------
- drivers/gpu/drm/xe/xe_pci_types.h      | 41 +++++++++++++++
- drivers/gpu/drm/xe/xe_pmu.c            |  4 +-
- drivers/gpu/drm/xe/xe_query.c          | 27 +++++-----
- drivers/gpu/drm/xe/xe_step.c           |  2 +
- 14 files changed, 154 insertions(+), 101 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 4e719d398c88..f0eb8150f185 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -127,12 +127,8 @@ static inline bool xe_device_uc_enabled(struct xe_device *xe)
+ 	for ((id__) = 1; (id__) < (xe__)->info.tile_count; (id__)++) \
+ 		for_each_if((tile__) = &(xe__)->tiles[(id__)])
+ 
+-/*
+- * FIXME: This only works for now since multi-tile and standalone media
+- * happen to be mutually exclusive.  Future platforms may change this...
+- */
+ #define for_each_gt(gt__, xe__, id__) \
+-	for ((id__) = 0; (id__) < (xe__)->info.gt_count; (id__)++) \
++	for ((id__) = 0; (id__) < (xe__)->info.tile_count * (xe__)->info.max_gt_per_tile; (id__)++) \
+ 		for_each_if((gt__) = xe_device_get_gt((xe__), (id__)))
+ 
+ static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index 96732613b4b7..af7916315ac6 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -258,11 +258,13 @@ static int set_prop_eu_stall_wait_num_reports(struct xe_device *xe, u64 value,
+ static int set_prop_eu_stall_gt_id(struct xe_device *xe, u64 value,
+ 				   struct eu_stall_open_properties *props)
+ {
+-	if (value >= xe->info.gt_count) {
++	struct xe_gt *gt = xe_device_get_gt(xe, value);
++
++	if (!gt) {
+ 		drm_dbg(&xe->drm, "Invalid GT ID %llu for EU stall sampling\n", value);
+ 		return -EINVAL;
+ 	}
+-	props->gt = xe_device_get_gt(xe, value);
++	props->gt = gt;
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index fee22358cc09..8991b4aed440 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -610,7 +610,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, err))
+ 		return -EFAULT;
+ 
+-	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
++	if (XE_IOCTL_DBG(xe, !xe_device_get_gt(xe, eci[0].gt_id)))
+ 		return -EINVAL;
+ 
+ 	if (args->flags & DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 3439c8522d01..796ba8c34a16 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -1059,12 +1059,13 @@ struct xe_hw_engine *
+ xe_hw_engine_lookup(struct xe_device *xe,
+ 		    struct drm_xe_engine_class_instance eci)
+ {
++	struct xe_gt *gt = xe_device_get_gt(xe, eci.gt_id);
+ 	unsigned int idx;
+ 
+ 	if (eci.engine_class >= ARRAY_SIZE(user_to_xe_engine_class))
+ 		return NULL;
+ 
+-	if (eci.gt_id >= xe->info.gt_count)
++	if (!gt)
+ 		return NULL;
+ 
+ 	idx = array_index_nospec(eci.engine_class,
 -- 
 2.49.0
 
