@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A116CC8302D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7EB8C83033
 	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 17:34:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D3BC10E4BA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69A8D10E4B4;
 	Mon, 30 Jun 2025 17:34:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aNZMTgOa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A9eKUNDq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14C9810E4A8
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 17:34:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB0DB10E4A8
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 17:34:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751304887; x=1782840887;
+ t=1751304886; x=1782840886;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=krLWMEYmq5qQGHkg0AwaVdejTLQFBURdrtvVxGfyVXo=;
- b=aNZMTgOai5Vf7aLaNApvHaz72djR77msvqyGUY1IIvalWDGHsCAO1X/N
- 4TKQCcgM0qu/nIm5Y987iojsj0ob1/WviBk8TZYTU15+oQIRyTVSne0tJ
- Wqaefe+dd/ED7WwWSYwJNHOkPIAbfUiO3D8viSRzV99nGLSrlT6woxEv5
- qbhreqwZ76H0PvvIBCE1h1Oe/uCs4Xxvc5H+sMr965xaf3uG0dwXJBx0R
- jOwxpBRFOck3aFMyOOevhL4flLMkQpyPXyaWUFDPtjgyJ+UY/1BnxaohZ
- ITWoGWUmOEr/hKr3a4owswSUpP/W7YK3JHX/K5fxVJhFtINgJtwBbS3ZM w==;
-X-CSE-ConnectionGUID: MAoij3JiQXqvMZpiJ+ELaw==
-X-CSE-MsgGUID: rU+CQF9tS7+ryMwIneZqBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="57223401"
-X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="57223401"
+ bh=c7sKoLo9vx+4cuW2ZZT4my7IGpPwTuLhYsAzocIk15I=;
+ b=A9eKUNDqCvDl/tupzY18+2h5f7nEVj8jlMkyg6WJ91Hp37Qn4r2BIKG2
+ F/JCV1CUmwfFQAPaOYtqq9AwgwpIEawzBc0P0woJauGQTgzp/FsiVl35K
+ c1VXTbc6RCH/KT94k8aP7ybyuerET9BOjD6AMPcw/uXDM/ydEjbURAjOn
+ BIls/pho98I4QeU0wHhdTSaO7eBP3r08kmeYdCvk+qErS5eEuzr1Qqop7
+ VIXnbQYfjEgu05uFSwEBClkpKLVBSpEczzvadiT2+MfUtLIHRXs6nL0Zo
+ 3EDXHUJlxo6t3ezOM+bsLlVMx7YUdFs8aWJygSzxF163s35IZ+hdHSwAi A==;
+X-CSE-ConnectionGUID: F9CbsbCJT+SPFuj/9oYHPQ==
+X-CSE-MsgGUID: VeseSx9SSKmjDrJGmAHv8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="57223399"
+X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="57223399"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Jun 2025 10:34:46 -0700
-X-CSE-ConnectionGUID: 65eeSCMXQoGrGv0ZHDenwg==
-X-CSE-MsgGUID: eOM24/2YSHuHyUEBDCr9hQ==
+X-CSE-ConnectionGUID: N1WnLZdDQrmjB4WR5wzgBg==
+X-CSE-MsgGUID: ZdPhce0jREykLRcrkiB3aQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="184543722"
+X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; d="scan'208";a="184543716"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2025 10:34:45 -0700
+ 30 Jun 2025 10:34:44 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v3 6/6] drm/xe/xe_query: Use separate iterator while filling
- GT list
-Date: Mon, 30 Jun 2025 10:34:45 -0700
-Message-ID: <20250630173438.2342706-14-matthew.d.roper@intel.com>
+Subject: [PATCH v3 4/6] drm/xe: Assign GT IDs properly on multi-tile +
+ multi-GT platforms
+Date: Mon, 30 Jun 2025 10:34:43 -0700
+Message-ID: <20250630173438.2342706-12-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250630173438.2342706-8-matthew.d.roper@intel.com>
 References: <20250630173438.2342706-8-matthew.d.roper@intel.com>
@@ -67,73 +67,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The 'id' value updated by for_each_gt() is the uapi GT ID of the GTs
-being iterated over, and may skip over values if a GT is not present on
-the device.  Use a separate iterator for GT list array assignments to
-ensure that the array will be filled properly on future platforms where
-index in the GT query list may not match the uapi ID.
+Although "multi-tile" and "multiple GTs per tile" are mutually-exclusive
+characteristics on all of our platforms today, this may not always be
+true.  Assign GT IDs according to xe->info.max_gt_per_tile in a way that
+should work even if future platforms have different configurations.
+
+This patch should not change the behavior of current platforms; it only
+future-proofs for potential future designs.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 25 +++++++++++++------------
- 1 file changed, 13 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio.c |  8 --------
+ drivers/gpu/drm/xe/xe_pci.c  | 14 ++++----------
+ 2 files changed, 4 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index e615b0916217..c3e0a22f09f0 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -368,6 +368,7 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
- 	struct drm_xe_query_gt_list __user *query_ptr =
- 		u64_to_user_ptr(query->data);
- 	struct drm_xe_query_gt_list *gt_list;
-+	int iter = 0;
- 	u8 id;
- 
- 	if (query->size == 0) {
-@@ -385,12 +386,12 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
- 
- 	for_each_gt(gt, xe, id) {
- 		if (xe_gt_is_media_type(gt))
--			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_MEDIA;
-+			gt_list->gt_list[iter].type = DRM_XE_QUERY_GT_TYPE_MEDIA;
- 		else
--			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_MAIN;
--		gt_list->gt_list[id].tile_id = gt_to_tile(gt)->id;
--		gt_list->gt_list[id].gt_id = gt->info.id;
--		gt_list->gt_list[id].reference_clock = gt->info.reference_clock;
-+			gt_list->gt_list[iter].type = DRM_XE_QUERY_GT_TYPE_MAIN;
-+		gt_list->gt_list[iter].tile_id = gt_to_tile(gt)->id;
-+		gt_list->gt_list[iter].gt_id = gt->info.id;
-+		gt_list->gt_list[iter].reference_clock = gt->info.reference_clock;
- 		/*
- 		 * The mem_regions indexes in the mask below need to
- 		 * directly identify the struct
-@@ -406,18 +407,18 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
- 		 * assumption.
- 		 */
- 		if (!IS_DGFX(xe))
--			gt_list->gt_list[id].near_mem_regions = 0x1;
-+			gt_list->gt_list[iter].near_mem_regions = 0x1;
- 		else
--			gt_list->gt_list[id].near_mem_regions =
-+			gt_list->gt_list[iter].near_mem_regions =
- 				BIT(gt_to_tile(gt)->id) << 1;
--		gt_list->gt_list[id].far_mem_regions = xe->info.mem_region_mask ^
--			gt_list->gt_list[id].near_mem_regions;
-+		gt_list->gt_list[iter].far_mem_regions = xe->info.mem_region_mask ^
-+			gt_list->gt_list[iter].near_mem_regions;
- 
--		gt_list->gt_list[id].ip_ver_major =
-+		gt_list->gt_list[iter].ip_ver_major =
- 			REG_FIELD_GET(GMD_ID_ARCH_MASK, gt->info.gmdid);
--		gt_list->gt_list[id].ip_ver_minor =
-+		gt_list->gt_list[iter].ip_ver_minor =
- 			REG_FIELD_GET(GMD_ID_RELEASE_MASK, gt->info.gmdid);
--		gt_list->gt_list[id].ip_ver_rev =
-+		gt_list->gt_list[iter].ip_ver_rev =
- 			REG_FIELD_GET(GMD_ID_REVID, gt->info.gmdid);
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 7357458bc0d2..b65d888ee8e4 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -82,14 +82,6 @@ static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
+ 			drm_info(&xe->drm, "tile_count: %d, reduced_tile_count %d\n",
+ 				 xe->info.tile_count, tile_count);
+ 			xe->info.tile_count = tile_count;
+-
+-			/*
+-			 * FIXME: Needs some work for standalone media, but
+-			 * should be impossible with multi-tile for now:
+-			 * multi-tile platform with standalone media doesn't
+-			 * exist
+-			 */
+-			xe->info.gt_count = xe->info.tile_count;
+ 		}
  	}
  
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 658bfbddf9a8..bccd81e19bb0 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -694,10 +694,11 @@ static int xe_info_init(struct xe_device *xe,
+ 	 */
+ 	for_each_tile(tile, xe, id) {
+ 		gt = tile->primary_gt;
+-		gt->info.id = xe->info.gt_count++;
+ 		gt->info.type = XE_GT_TYPE_MAIN;
++		gt->info.id = tile->id * xe->info.max_gt_per_tile;
+ 		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
+ 		gt->info.engine_mask = graphics_desc->hw_engine_mask;
++		xe->info.gt_count++;
+ 
+ 		if (MEDIA_VER(xe) < 13 && media_desc)
+ 			gt->info.engine_mask |= media_desc->hw_engine_mask;
+@@ -715,17 +716,10 @@ static int xe_info_init(struct xe_device *xe,
+ 
+ 		gt = tile->media_gt;
+ 		gt->info.type = XE_GT_TYPE_MEDIA;
++		gt->info.id = tile->id * xe->info.max_gt_per_tile + 1;
+ 		gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
+ 		gt->info.engine_mask = media_desc->hw_engine_mask;
+-
+-		/*
+-		 * FIXME: At the moment multi-tile and standalone media are
+-		 * mutually exclusive on current platforms.  We'll need to
+-		 * come up with a better way to number GTs if we ever wind
+-		 * up with platforms that support both together.
+-		 */
+-		drm_WARN_ON(&xe->drm, id != 0);
+-		gt->info.id = xe->info.gt_count++;
++		xe->info.gt_count++;
+ 	}
+ 
+ 	return 0;
 -- 
 2.49.0
 
