@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE808C83029
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 14:48:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2651C8302B
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 14:53:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88B4610E478;
-	Mon, 30 Jun 2025 14:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99CE110E478;
+	Mon, 30 Jun 2025 14:53:28 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7374910E240;
- Mon, 30 Jun 2025 14:48:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5535775390149628677=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 974A210E478;
+ Mon, 30 Jun 2025 14:53:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgU21hbGwgZW1pdF93YV9qb2IoKSB0?=
- =?utf-8?b?aWR5?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_i2c_support_=28?=
+ =?utf-8?q?rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+To: "Heikki Krogerus" <heikki.krogerus@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Jun 2025 14:48:21 -0000
-Message-ID: <175129490146.120494.6985055209424582870@1538d3639d33>
+Date: Mon, 30 Jun 2025 14:53:27 -0000
+Message-ID: <175129520761.120494.6814783758798584599@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250627131438.54398-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250627131438.54398-1-tvrtko.ursulin@igalia.com>
+References: <20250627135314.873972-1-heikki.krogerus@linux.intel.com>
+In-Reply-To: <20250627135314.873972-1-heikki.krogerus@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,62 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5535775390149628677==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Small emit_wa_job() tidy
-URL   : https://patchwork.freedesktop.org/series/150878/
-State : success
+Series: drm/xe: i2c support (rev5)
+URL   : https://patchwork.freedesktop.org/series/149699/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd_BAT -> xe-pw-150878v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ee28bd924445e52b139132363abca7326f7b107b
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Fri Jun 27 16:53:14 2025 +0300
 
-Summary
--------
+    drm/xe/xe_i2c: Add support for i2c in survivability mode
+    
+    Initialize i2c in survivability mode to allow firmware
+    update of Add-In Management Controller (AMC) in
+    survivability mode.
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+    Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+    Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
++ /mt/dim checkpatch ac0c6f9ab46132d8a40c616bd1e9210db4ffe600 drm-intel
+3a1e5941fa28 i2c: designware: Add quirk for Intel Xe
+-:9: WARNING:BAD_SIGN_OFF: Non-standard signature: Originally-by:
+#9: 
+Originally-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 56 lines checked
+2846b0559f40 drm/xe: Support for I2C attached MCUs
+-:14: WARNING:BAD_SIGN_OFF: Non-standard signature: Originally-by:
+#14: 
+Originally-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-  No regressions found.
+-:43: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#43: 
+new file mode 100644
 
-  
+-:152: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/xe_i2c.c', please use '//' instead
+#152: FILE: drivers/gpu/drm/xe/xe_i2c.c:1:
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
 
-Participating hosts (9 -> 8)
-------------------------------
+-:152: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#152: FILE: drivers/gpu/drm/xe/xe_i2c.c:1:
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
 
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd -> xe-pw-150878v1
-
-  IGT_8431: 8431
-  xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd: 078be02b4585b9a9703401d89a3ac93e2d15a6bd
-  xe-pw-150878v1: 150878v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150878v1/index.html
-
---===============5535775390149628677==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 4 warnings, 0 checks, 457 lines checked
+0092c72b3097 drm/xe/pm: Wire up suspend/resume for I2C controller
+ee28bd924445 drm/xe/xe_i2c: Add support for i2c in survivability mode
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Small emit_wa_job() tidy</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150878/">https://patchwork.freedesktop.org/series/150878/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150878v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150878v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd_BAT -&gt; xe-pw-150878v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd -&gt; xe-pw-150878v1</li>
-</ul>
-<p>IGT_8431: 8431<br />
-  xe-3321-078be02b4585b9a9703401d89a3ac93e2d15a6bd: 078be02b4585b9a9703401d89a3ac93e2d15a6bd<br />
-  xe-pw-150878v1: 150878v1</p>
-
-</body>
-</html>
-
---===============5535775390149628677==--
