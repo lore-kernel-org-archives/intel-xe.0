@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38AD4C8303C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89BA3C83F01
 	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:47:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBF9210E44B;
-	Mon, 30 Jun 2025 12:47:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 477BE10E44F;
+	Mon, 30 Jun 2025 12:47:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="iWbRKjBD";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="XhYKXufD";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19B7310E43C
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:47:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6147F10E446
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:47:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Qxn7XisEc4qgwTl0IV0z8UcA4nh2R2NGznhcEN2W9Lo=; b=iWbRKjBD1iJhBR7pJFWmYxpNgN
- OVm1XOMz7QjoJrdKLLuK6IwjKyUNE7PQVZJwB0Ov/lZhQJOJ7ruocJag8aD8IN64v1fkmi8VTh1X2
- E9RMVS0+aow5oSyClrf2SnAEgpKirsHfb7f4J48wMa9pX6phdGY3XDTVE3Q+ZWNDE1oAUNAmf+Hun
- Bj+YlMUAudkEh1L7YEA1doB7FJ8MTMrwC5S/yhQpG6EiDM/WktainItOQSChjluO5Hq/cxRrb1+0y
- ik3i1fZUF8WBdM9qHrf0LsQBLbb7ztlRfuM8qawxgGSb505GdnyVH4JjIWTtErmcV+FEaiT1uQoAp
- 3zBpHXVA==;
+ bh=zjrogzRg7KT13dPvWXzHC+YGx98QIkjvRitWbpaYAKg=; b=XhYKXufD1OKI/UAszQvSHgS1oE
+ 07HpQXPUp2lbdR4boqbYadWDXFq7pJdq1zgZVdLbfa7VJI4N6wuzKXjWuy6qibVVTS5iuCJxwE/CQ
+ W2tw1yv+T2i8NrEoUWBQAG2MxBFBGDK25wlxVyCyX5P5qiycVPU4YcOS41+sy8KgxjdsbLFseo/D9
+ BUAGLMICQYEwtJeFVsqKRCe7TfN8oKEDr1R6EfZPI/N6x60nCudAbST4SRz+bCGmOrcscmSSJtRKD
+ owI8zYb97Pms0qZy211kQyqJ2YN9d0APzqhr2TRlhyQs3h3hSEndXFaFI0TqSEs4hSgOc3aGTasXW
+ 9LrApDiQ==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uWDul-00ATeV-BS; Mon, 30 Jun 2025 14:47:15 +0200
+ id 1uWDux-00ATgv-R5; Mon, 30 Jun 2025 14:47:27 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v8 02/24] drm/xe: Generalize wa bb emission code
-Date: Mon, 30 Jun 2025 13:46:48 +0100
-Message-ID: <20250630124711.8209-3-tvrtko.ursulin@igalia.com>
+ Maarten Lankhort <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v8 19/24] drm/xe: Use fb cached min alignment
+Date: Mon, 30 Jun 2025 13:47:05 +0100
+Message-ID: <20250630124711.8209-20-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
 References: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
@@ -58,132 +58,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Generalize the wa bb emission by splitting it into three phases - setup,
-emit and finish, and extract setup and finish steps into helpers.
+Instead of just looking at the first plane use the fb cached overall
+minimum alignment.
 
-This will enable using the same infrastructure for emitting the indirect
-context workarounds.
+This aligns with how the i915 version of intel_plane_pin_fb works.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Maarten Lankhort <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 77 +++++++++++++++++++++++++------------
- 1 file changed, 53 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index d2ad8fe737eb..c07fe23e5e73 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -972,32 +972,37 @@ static ssize_t wa_bb_setup_utilization(struct xe_lrc *lrc, struct xe_hw_engine *
- 	return cmd - batch;
- }
- 
--struct wa_bb_setup {
-+struct wa_bo_setup {
- 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 			 u32 *batch, size_t max_size);
- };
- 
--static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
-+static u32 *
-+setup_wa_bo(struct xe_lrc *lrc,
-+	    struct xe_hw_engine *hwe,
-+	    const size_t max_size,
-+	    unsigned int offset,
-+	    const struct wa_bo_setup *funcs,
-+	    unsigned int num_funcs,
-+	    u32 **free)
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index c38fba18effe..ecc9566d5783 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -412,12 +412,9 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+ 		       const struct intel_plane_state *old_plane_state)
  {
--	const size_t max_size = LRC_WA_BB_SIZE;
--	static const struct wa_bb_setup funcs[] = {
--		{ .setup = wa_bb_setup_utilization },
--	};
-+	u32 *cmd, *buf = NULL;
- 	ssize_t remain;
--	u32 *cmd, *buf = NULL;
+ 	struct drm_framebuffer *fb = new_plane_state->hw.fb;
+-	struct drm_gem_object *obj = intel_fb_bo(fb);
+-	struct xe_bo *bo = gem_to_xe_bo(obj);
+-	struct i915_vma *vma;
+ 	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
+-	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
+-	unsigned int alignment = plane->min_alignment(plane, fb, 0);
++	struct xe_bo *bo = gem_to_xe_bo(intel_fb_bo(fb));
++	struct i915_vma *vma;
  
- 	if (lrc->bo->vmap.is_iomem) {
- 		buf = kmalloc(max_size, GFP_KERNEL);
- 		if (!buf)
--			return -ENOMEM;
-+			return ERR_PTR(-ENOMEM);
- 		cmd = buf;
-+		*free = buf;
- 	} else {
--		cmd = lrc->bo->vmap.vaddr + __xe_lrc_wa_bb_offset(lrc);
-+		cmd = lrc->bo->vmap.vaddr + offset;
-+		*free = NULL;
- 	}
+ 	if (reuse_vma(new_plane_state, old_plane_state))
+ 		return 0;
+@@ -425,8 +422,8 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+ 	/* We reject creating !SCANOUT fb's, so this is weird.. */
+ 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
  
- 	remain = max_size / sizeof(*cmd);
- 
--	for (size_t i = 0; i < ARRAY_SIZE(funcs); i++) {
-+	for (size_t i = 0; i < num_funcs; i++) {
- 		ssize_t len = funcs[i].setup(lrc, hwe, cmd, remain);
- 
- 		remain -= len;
-@@ -1012,23 +1017,47 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 		cmd += len;
- 	}
- 
--	*cmd++ = MI_BATCH_BUFFER_END;
+-	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt, alignment);
 -
--	if (buf) {
--		xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap,
--				 __xe_lrc_wa_bb_offset(lrc), buf,
--				 (cmd - buf) * sizeof(*cmd));
--		kfree(buf);
--	}
--
--	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR, xe_bo_ggtt_addr(lrc->bo) +
--			     __xe_lrc_wa_bb_offset(lrc) + 1);
--
--	return 0;
-+	return cmd;
++	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt,
++			      intel_fb->min_alignment);
+ 	if (IS_ERR(vma))
+ 		return PTR_ERR(vma);
  
- fail:
- 	kfree(buf);
--	return -ENOSPC;
-+	return ERR_PTR(-ENOSPC);
-+}
-+
-+static void finish_wa_bo(struct xe_lrc *lrc,
-+			 unsigned int offset,
-+			 u32 *cmd,
-+			 u32 *free)
-+{
-+	if (!free)
-+		return;
-+
-+	xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap, offset, free,
-+			 (cmd - free) * sizeof(*cmd));
-+	kfree(free);
-+}
-+
-+static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
-+{
-+	static const struct wa_bo_setup funcs[] = {
-+		{ .setup = wa_bb_setup_utilization },
-+	};
-+	unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
-+	u32 *cmd, *buf = NULL;
-+
-+	cmd = setup_wa_bo(lrc, hwe, LRC_WA_BB_SIZE, offset, funcs,
-+			  ARRAY_SIZE(funcs), &buf);
-+	if (IS_ERR(cmd))
-+		return PTR_ERR(cmd);
-+
-+	*cmd++ = MI_BATCH_BUFFER_END;
-+
-+	finish_wa_bo(lrc, offset, cmd, buf);
-+
-+	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR,
-+			     xe_bo_ggtt_addr(lrc->bo) + offset + 1);
-+
-+	return 0;
- }
- 
- #define PVC_CTX_ASID		(0x2e + 1)
 -- 
 2.48.0
 
