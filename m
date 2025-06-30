@@ -4,54 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CE13C8302D
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 09:12:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FFF9C8302D
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 09:29:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5642610E3D6;
-	Mon, 30 Jun 2025 09:12:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5F1A10E224;
+	Mon, 30 Jun 2025 09:29:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GkM5jVkf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GLX7oQvY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7694710E3D6
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 09:12:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 020A810E224
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 09:29:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751274774; x=1782810774;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dBqAUwwMO408ZPgCkqjY8TuwV1K44sXP5gORyh2wpwQ=;
- b=GkM5jVkfUULV7Jzqr6sKIjf6vi+jqfmHFzmwVPdimanIXHp0csBDqj1Q
- aQeesDU5FMO7SpKKyEVZ6bQtVkhtu/KaBCeJBXuhgiUvi7QeNFrEBrcfM
- w7jnlWD9JJ8Wtt+mqv577Nz6Nn6nGYdQhP+6xdQgC4kUe8e30anGPDxzx
- x5oveWET5K/vdYYloLF0qOmMBqWEI45FqpBHOx3IamWbf7M0VpTOmDqdm
- birmaw6xc4RjC0VUlO3A9AZJaMYi4OF5mMld33Quy0ztnqx0ejcwDt/Uw
- 8/p5cXRtMfJ+w6KPx0AabkGQ2qCmnjNbIWOa8b4VsM1GcDHbxqraWmINB w==;
-X-CSE-ConnectionGUID: B+WrLn9ARx6UZ3pW6Hlnbw==
-X-CSE-MsgGUID: gq89RpCvQReTjfiBTRqgjQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11479"; a="70927915"
-X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="70927915"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2025 02:12:54 -0700
-X-CSE-ConnectionGUID: b4MXx61FRGeTfrThzrh/sw==
-X-CSE-MsgGUID: lsX6IkGxQNuqWdqmR1/khg==
+ t=1751275748; x=1782811748;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=hjHmh1x3LHSxiHJHwSYt2mDw6VTgEyuQJvBe3qr0u0E=;
+ b=GLX7oQvYlHm1TsDNm1MLAo0CttOnX7LxGaZmoDxCYGgTHuwkpq485lyZ
+ JamfFB4hjkMiby7JNhgoc5ATaevVSqzUVu27007Ii64aoFn9C1X4MbhCW
+ nFEGfj45qbmkur597bH3ylJsExCWJoN+2WqDlfKnWu8I/9QbdKLyFipJM
+ I3DPtX1G+JZXYywmN3YezmR65LIOs7HFBjtiZH4EQjfOgDN1btpnWsJ/N
+ eR9Opt2/hfPUHJ1LiWi20drxXs/7mVKKahIeaA+ZnRIKy4pMqY9Wl6cAz
+ irx6LNEK9buOi5QB09FUYOnVZtkOadfWM1D7B4YUuuEYtW0TFkxE1CjX7 g==;
+X-CSE-ConnectionGUID: 6kZQWklHRX6D3yTkRFkVmw==
+X-CSE-MsgGUID: rWuQKfTMR1maL6+WHXVMpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11479"; a="41122823"
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="41122823"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2025 02:29:08 -0700
+X-CSE-ConnectionGUID: /v5dCSGZSGCqsXnD5ZH/Vg==
+X-CSE-MsgGUID: GJwE85ORQsqPDhCYTvmC+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="153591507"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2025 02:12:53 -0700
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
- umesh.nerlige.ramappa@intel.com, sk.anirban@intel.com,
- soham.purkait@intel.com
-Subject: [PATCH] drm/xe/xe_pmu: Validate gt in event supported
-Date: Mon, 30 Jun 2025 15:07:41 +0530
-Message-ID: <20250630093741.2435281-1-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="157951058"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.65])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2025 02:29:04 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Mon, 30 Jun 2025 12:29:00 +0300 (EEST)
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ Hans de Goede <hdegoede@redhat.com>, lucas.demarchi@intel.com, 
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com, 
+ airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com, 
+ Tejas Upadhyay <tejas.upadhyay@intel.com>, stable@vger.kernel.org
+Subject: Re: [PATCH v5 01/12] platform/x86/intel/pmt: fix a crashlog NULL
+ pointer access
+In-Reply-To: <20250627204321.521628-2-michael.j.ruhl@intel.com>
+Message-ID: <e860ab9b-4f75-b6ef-3b82-f4e45f478d03@linux.intel.com>
+References: <20250627204321.521628-1-michael.j.ruhl@intel.com>
+ <20250627204321.521628-2-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,34 +72,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Validate gt instead of checking gt_id is lesser
-than max gts per tile
+On Fri, 27 Jun 2025, Michael J. Ruhl wrote:
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
----
- drivers/gpu/drm/xe/xe_pmu.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+> Usage of the intel_pmt_read() for binary sysfs, requires a pcidev. The
+> current use of the endpoint value is only valid for telemetry endpoint
+> usage.
+> 
+> Without the ep, the crashlog usage causes the following NULL pointer
+> exception:
+> 
+> BUG: kernel NULL pointer dereference, address: 0000000000000000
+> Oops: Oops: 0000 [#1] SMP NOPTI
+> RIP: 0010:intel_pmt_read+0x3b/0x70 [pmt_class]
+> Code:
+> Call Trace:
+>  <TASK>
+>  ? sysfs_kf_bin_read+0xc0/0xe0
+>  kernfs_fop_read_iter+0xac/0x1a0
+>  vfs_read+0x26d/0x350
+>  ksys_read+0x6b/0xe0
+>  __x64_sys_read+0x1d/0x30
+>  x64_sys_call+0x1bc8/0x1d70
+>  do_syscall_64+0x6d/0x110
 
-diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-index 69df0e3520a5..cab51d826345 100644
---- a/drivers/gpu/drm/xe/xe_pmu.c
-+++ b/drivers/gpu/drm/xe/xe_pmu.c
-@@ -157,10 +157,13 @@ static bool event_gt_forcewake(struct perf_event *event)
- 	return true;
- }
- 
--static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
-+static bool event_supported(struct xe_pmu *pmu, unsigned int gt_id,
- 			    unsigned int id)
- {
--	if (gt >= XE_MAX_GT_PER_TILE)
-+	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
-+	struct xe_gt *gt = xe_device_get_gt(xe, gt_id);
-+
-+	if (!gt)
- 		return false;
- 
- 	return id < sizeof(pmu->supported_events) * BITS_PER_BYTE &&
+Can you confirm, if this was possible to trigger only after this series 
+has been applied, not with the current mainline code?
+
 -- 
-2.47.1
+ i.
 
+> Augment struct intel_pmt_entry with a pointer to the pcidev to avoid
+> the NULL pointer exception.
+> 
+> Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> Fixes: 416eeb2e1fc7 ("platform/x86/intel/pmt: telemetry: Export API to read telemetry")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> ---
+>  drivers/platform/x86/intel/pmt/class.c | 3 ++-
+>  drivers/platform/x86/intel/pmt/class.h | 1 +
+>  2 files changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
+> index 7233b654bbad..d046e8752173 100644
+> --- a/drivers/platform/x86/intel/pmt/class.c
+> +++ b/drivers/platform/x86/intel/pmt/class.c
+> @@ -97,7 +97,7 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
+>  	if (count > entry->size - off)
+>  		count = entry->size - off;
+>  
+> -	count = pmt_telem_read_mmio(entry->ep->pcidev, entry->cb, entry->header.guid, buf,
+> +	count = pmt_telem_read_mmio(entry->pcidev, entry->cb, entry->header.guid, buf,
+>  				    entry->base, off, count);
+>  
+>  	return count;
+> @@ -252,6 +252,7 @@ static int intel_pmt_populate_entry(struct intel_pmt_entry *entry,
+>  		return -EINVAL;
+>  	}
+>  
+> +	entry->pcidev = pci_dev;
+>  	entry->guid = header->guid;
+>  	entry->size = header->size;
+>  	entry->cb = ivdev->priv_data;
+> diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
+> index b2006d57779d..f6ce80c4e051 100644
+> --- a/drivers/platform/x86/intel/pmt/class.h
+> +++ b/drivers/platform/x86/intel/pmt/class.h
+> @@ -39,6 +39,7 @@ struct intel_pmt_header {
+>  
+>  struct intel_pmt_entry {
+>  	struct telem_endpoint	*ep;
+> +	struct pci_dev		*pcidev;
+>  	struct intel_pmt_header	header;
+>  	struct bin_attribute	pmt_bin_attr;
+>  	struct kobject		*kobj;
+> 
