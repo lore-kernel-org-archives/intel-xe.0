@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDDA5C8302D
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:47:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CCA0C8302F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:47:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7484810E43E;
-	Mon, 30 Jun 2025 12:47:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9D510E43F;
+	Mon, 30 Jun 2025 12:47:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="npRUrL5Y";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="UIZ3K9ub";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4AEB10E43C
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:47:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57B2110E43C
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:47:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,25 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=4HmI5D2ge+7xkAY2lMzhj/Ntf3Zl6YgjgP4hwH0KmOY=; b=npRUrL5YXLM+frkhmQgjwbUjz/
- IiAh8HkABUhG5G06Bsc8KalnzexO81HJtvITUJVsIgwQ5X5jqLChCZ1uDzJwUJ1Vz1fg1+Q3UR4re
- Z/QcXEi054uNKNDBBeQ7b+lqvF7Gp1qlb83OYxaRAn4zDkeCA9I2yDaGgJqmqbhILMEbG2wtAJb20
- qSU8AE+2Ttb10m1S/Lsr3P+mb6CtEn1avD6iu6Q5F0lP5yZ4mdXw3xPs5OCfp5JSIKx+vXilWjbk0
- 4djNx460rrYwLd/3HwHrRmJeIfbfa62kkFsNp2EPsu5N3Sepw2rSH6FVs/PeQT/1Y9Bdqg3JrhnoH
- 9bF9KMJA==;
+ bh=PQL0yVwlu4/MIVUMAdCJ9AM1kS4BtCPMQ6Reg43JIKw=; b=UIZ3K9ubhYeNYrDwr615TjlYes
+ C6xStFmgCl0oQ/b75khoBUs7l7KqfTo+KinQ+k3VAJ3as5H0CyCcsWOERMA8m55tWY5fqWVlkjEmq
+ g8NdIbo1nYuCzDOhcLSCcvExAHydNRuvtIIfUCl3uv+LT1Z+iWnwfR2Fk+/QGbw71FL4PYlMS+6Sf
+ vH2HQf8UCNtgmqmWl7JNhBsLK58J3VU5hHPMiAsH1WmfQLpGEnIaMKDpL5trlq2bdWnc5gfvkbHG9
+ V6UIPEBcFtHtbdQ/6BTD6pwPehcKu3KZ+Wx4s+vuNqwwjSPPlXGVUcUDRSn7+5MY+9Y1zBdxKBSPY
+ MF/5XjCA==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uWDuk-00ATeT-LO; Mon, 30 Jun 2025 14:47:14 +0200
+ id 1uWDus-00ATfj-Jy; Mon, 30 Jun 2025 14:47:22 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v8 01/24] drm/xe: Consolidate LRC offset calculations
-Date: Mon, 30 Jun 2025 13:46:47 +0100
-Message-ID: <20250630124711.8209-2-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v8 12/24] drm/xe/xelp: Quiesce memory traffic before
+ invalidating auxccs
+Date: Mon, 30 Jun 2025 13:46:58 +0100
+Message-ID: <20250630124711.8209-13-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
 References: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
@@ -60,161 +59,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Attempt to consolidate the LRC offsets calculations by alignning the
-recently added wa_bb_offset with the naming scheme in the file and
-also change the size stored in struct xe_lrc to not include the ring
-buffer.
-
-The former makes it somewhat visually easier to follow the layout of the
-various logical blocks stored in the LRC bo, while the latter reduces the
-number of sprinkled around calculations.
+According to i915 before invalidating auxccs we must quiesce the memory
+traffic by an extra flush.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c       | 41 ++++++++++++++-----------------
- drivers/gpu/drm/xe/xe_lrc_types.h |  2 +-
- 2 files changed, 19 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c       | 14 ++++++++++----
+ drivers/gpu/drm/xe/xe_ring_ops_types.h |  2 +-
+ 2 files changed, 11 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index c92e7eff79f7..d2ad8fe737eb 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -717,8 +717,12 @@ static u32 __xe_lrc_ctx_timestamp_udw_offset(struct xe_lrc *lrc)
- 
- static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
- {
--	/* Indirect ring state page is at the very end of LRC */
--	return lrc->size - LRC_INDIRECT_RING_STATE_SIZE;
-+	return xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE - LRC_INDIRECT_RING_STATE_SIZE;
-+}
-+
-+static inline u32 __xe_lrc_wa_bb_offset(struct xe_lrc *lrc)
-+{
-+	return xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE;
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 8f655b6fe913..66bdfa94fe64 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -172,7 +172,8 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+ 	return i;
  }
  
- #define DECL_MAP_ADDR_HELPERS(elem) \
-@@ -973,11 +977,6 @@ struct wa_bb_setup {
- 			 u32 *batch, size_t max_size);
- };
- 
--static size_t wa_bb_offset(struct xe_lrc *lrc)
--{
--	return xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE;
--}
--
- static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+-static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
++static int emit_render_cache_flush(struct xe_sched_job *job, bool flush_l3,
++				   u32 *dw, int i)
  {
- 	const size_t max_size = LRC_WA_BB_SIZE;
-@@ -993,7 +992,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 			return -ENOMEM;
- 		cmd = buf;
- 	} else {
--		cmd = lrc->bo->vmap.vaddr + wa_bb_offset(lrc);
-+		cmd = lrc->bo->vmap.vaddr + __xe_lrc_wa_bb_offset(lrc);
- 	}
- 
- 	remain = max_size / sizeof(*cmd);
-@@ -1017,13 +1016,13 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 
- 	if (buf) {
- 		xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap,
--				 wa_bb_offset(lrc), buf,
-+				 __xe_lrc_wa_bb_offset(lrc), buf,
- 				 (cmd - buf) * sizeof(*cmd));
- 		kfree(buf);
- 	}
- 
- 	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR, xe_bo_ggtt_addr(lrc->bo) +
--			     wa_bb_offset(lrc) + 1);
-+			     __xe_lrc_wa_bb_offset(lrc) + 1);
- 
- 	return 0;
- 
-@@ -1040,19 +1039,22 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 		       u32 init_flags)
- {
- 	struct xe_gt *gt = hwe->gt;
-+	const u32 lrc_size = xe_gt_lrc_size(gt, hwe->class);
-+	const u32 bo_size = ring_size + lrc_size + LRC_WA_BB_SIZE;
- 	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct xe_gt *gt = job->q->gt;
  	struct xe_device *xe = gt_to_xe(gt);
- 	struct iosys_map map;
- 	void *init_data = NULL;
- 	u32 arb_enable;
--	u32 lrc_size;
- 	u32 bo_flags;
- 	int err;
- 
- 	kref_init(&lrc->refcount);
- 	lrc->gt = gt;
-+	lrc->size = lrc_size;
- 	lrc->flags = 0;
--	lrc_size = ring_size + xe_gt_lrc_size(gt, hwe->class);
-+	lrc->ring.size = ring_size;
-+	lrc->ring.tail = 0;
- 	if (xe_gt_has_indirect_ring_state(gt))
- 		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
- 
-@@ -1065,17 +1067,12 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	 * FIXME: Perma-pinning LRC as we don't yet support moving GGTT address
- 	 * via VM bind calls.
+@@ -204,7 +205,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ 	 * deals with Protected Memory which is not needed for
+ 	 * AUX CCS invalidation and lead to unwanted side effects.
  	 */
--	lrc->bo = xe_bo_create_pin_map(xe, tile, NULL,
--				       lrc_size + LRC_WA_BB_SIZE,
-+	lrc->bo = xe_bo_create_pin_map(xe, tile, NULL, bo_size,
- 				       ttm_bo_type_kernel,
- 				       bo_flags);
- 	if (IS_ERR(lrc->bo))
- 		return PTR_ERR(lrc->bo);
+-	if (GRAPHICS_VERx100(xe) < 1270)
++	if (flush_l3 && GRAPHICS_VERx100(xe) < 1270)
+ 		flags |= PIPE_CONTROL_FLUSH_L3;
  
--	lrc->size = lrc_size;
--	lrc->ring.size = ring_size;
--	lrc->ring.tail = 0;
--
- 	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
- 			     hwe->fence_irq, hwe->name);
+ 	if (lacks_render)
+@@ -367,10 +368,15 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
++	const bool aux_ccs = has_aux_ccs(xe);
+ 	u32 mask_flags = 0;
  
-@@ -1096,10 +1093,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 		xe_map_memset(xe, &map, 0, 0, LRC_PPHWSP_SIZE);	/* PPHWSP */
- 		xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
- 				 gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE,
--				 xe_gt_lrc_size(gt, hwe->class) - LRC_PPHWSP_SIZE);
-+				 lrc_size - LRC_PPHWSP_SIZE);
- 	} else {
--		xe_map_memcpy_to(xe, &map, 0, init_data,
--				 xe_gt_lrc_size(gt, hwe->class));
-+		xe_map_memcpy_to(xe, &map, 0, init_data, lrc_size);
- 		kfree(init_data);
- 	}
+ 	i = emit_copy_timestamp(lrc, dw, i);
  
-@@ -1859,8 +1855,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 	snapshot->seqno = xe_lrc_seqno(lrc);
- 	snapshot->lrc_bo = xe_bo_get(lrc->bo);
- 	snapshot->lrc_offset = xe_lrc_pphwsp_offset(lrc);
--	snapshot->lrc_size = xe_bo_size(lrc->bo) - snapshot->lrc_offset -
--		LRC_WA_BB_SIZE;
-+	snapshot->lrc_size = lrc->size;
- 	snapshot->lrc_snapshot = NULL;
- 	snapshot->ctx_timestamp = lower_32_bits(xe_lrc_ctx_timestamp(lrc));
- 	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 883e550a9423..2c7c81079801 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -22,7 +22,7 @@ struct xe_lrc {
- 	 */
- 	struct xe_bo *bo;
++	/* hsdes: 1809175790 */
++	if (aux_ccs)
++		i = emit_render_cache_flush(job, false, dw, i);
++
+ 	dw[i++] = preparser_disable(true);
+ 	if (lacks_render)
+ 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
+@@ -381,7 +387,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
  
--	/** @size: size of lrc including any indirect ring state page */
-+	/** @size: size of the lrc and optional indirect ring state */
- 	u32 size;
+ 	/* hsdes: 1809175790 */
+-	if (has_aux_ccs(xe))
++	if (aux_ccs)
+ 		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
  
- 	/** @gt: gt which this LRC belongs to */
+ 	dw[i++] = preparser_disable(false);
+@@ -391,7 +397,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 
+ 	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+ 
+-	i = emit_render_cache_flush(job, dw, i);
++	i = emit_render_cache_flush(job, true, dw, i);
+ 
+ 	if (job->user_fence.used)
+ 		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index d7e3e150a9a5..477dc7defd72 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
+ 
+ struct xe_sched_job;
+ 
+-#define MAX_JOB_SIZE_DW 58
++#define MAX_JOB_SIZE_DW 70
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
+ /**
 -- 
 2.48.0
 
