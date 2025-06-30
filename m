@@ -4,16 +4,16 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80633C83037
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B0D4C83036
 	for <intel-xe@archiver.kernel.org>; Mon, 30 Jun 2025 12:47:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47B3E10E444;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36A6010E442;
 	Mon, 30 Jun 2025 12:47:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="n8HNH5cz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Au9widHA";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44B2610E43C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA06510E43C
  for <intel-xe@lists.freedesktop.org>; Mon, 30 Jun 2025 12:47:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -22,24 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=i4lWzc9KTv2k4rvOevtC4lUdkiapnM7Yht71mIHsorI=; b=n8HNH5czIN3I0AAFI+u1NuJVRo
- dhVqyG1Dsi8kj0xHCe4oQrZ/i6pcNbjv1rmEMJdH0++gDrh9AdN01jlBKrT7lmYD3UxwxbBpKx88W
- E1fBL703VyUX6yfhkD3yNLOyrMX4UeNVB4iKCEC4eG8mfNrjDoy+mrup/7KMvHbmt/PnNQRc3bUsd
- xNdu41dsbnXkxR5N78UpfGBvv7dOTmBiNZ5EDjuUQq8vt/mueuwDO/a81fDDEGqfxLryn3C9TACT2
- JxI3jTXtPDR71REJCjl6CvAM0kc4lpYl6E0fM77ee8vIW2KLF3Y4vRmMDWj9Bx2xiKUPbNOq0MKTa
- psIFuHzw==;
+ bh=yOktQwBWzQBvon+MdKfa378BfqdXt0kVUPA+XGtbV0c=; b=Au9widHAguMi4AwLPIJUD+Pda8
+ a3cCBQYh72M+huN4e8Yf4T7zYVdMVuywuA/eAeiHUsYze14A5X4v0eZVVdlqEzZire4xOEvKr9cki
+ 9H0XlJnt/PU9y0B9i/kRASOyU8QCWONPIhDqMXBS2S02+0hPM+SdqqMmsyQlMXXdnVWEJhmsOTFhr
+ w0moWYEGtNKuPLMNJeA0yTRl17aE3gY+FIQoS5SdXJbjt/m2wXa+Nj4tc11tifetJpXa+RacuF6V3
+ RfbaBzVW8ATkpN7JUbdC7so1EFrxx3EVVf/e6GX55CLHvYnY7senwyo9Phl9bgod/2xSwL16T0jp+
+ ejUhYnqw==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uWDuq-00ATfL-IH; Mon, 30 Jun 2025 14:47:20 +0200
+ id 1uWDur-00ATfR-7k; Mon, 30 Jun 2025 14:47:21 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v8 09/24] drm/xe: Use emit_flush_imm_ggtt helper instead of
- open coding
-Date: Mon, 30 Jun 2025 13:46:55 +0100
-Message-ID: <20250630124711.8209-10-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v8 10/24] drm/xe/xelpg: Flush CCS when flushing caches
+Date: Mon, 30 Jun 2025 13:46:56 +0100
+Message-ID: <20250630124711.8209-11-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
 References: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
@@ -59,33 +58,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Helper is already there so lets just use it.
+According to i915 PIPE_CONTROL0_CCS_FLUSH needs to be set when flushing
+render caches on gfx ip 12.70+.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/instructions/xe_gpu_commands.h | 1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c                  | 7 ++++++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+index 8cfcd3360896..78c0e87dbd37 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+@@ -43,6 +43,7 @@
+ 
+ #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
+ #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
++#define   PIPE_CONTROL0_CCS_FLUSH                       BIT(13) /* MTL+ */
+ 
+ #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
+ #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
 diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index bc1689db4cd7..b356134aca88 100644
+index b356134aca88..a1289f086191 100644
 --- a/drivers/gpu/drm/xe/xe_ring_ops.c
 +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -417,11 +417,9 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+@@ -175,13 +175,18 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ {
+ 	struct xe_gt *gt = job->q->gt;
++	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
++	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
+ 	u32 flags;
  
- 	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
+ 	if (XE_WA(gt, 14016712196))
+ 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+ 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
  
--	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
--		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
--	dw[i++] = xe_lrc_seqno_ggtt_addr(lrc) | MI_FLUSH_DW_USE_GTT;
--	dw[i++] = 0;
--	dw[i++] = seqno; /* value */
-+	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
-+				MI_INVALIDATE_TLB | job->migrate_flush_flags,
-+				dw, i);
++	if (GRAPHICS_VERx100(xe) >= 1270)
++		bit_group_0 |= PIPE_CONTROL0_CCS_FLUSH;
++
+ 	flags = (PIPE_CONTROL_CS_STALL |
+ 		 PIPE_CONTROL_TILE_CACHE_FLUSH |
+ 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+@@ -197,7 +202,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+ 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
  
- 	i = emit_user_interrupt(dw, i);
+-	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
++	return emit_pipe_control(dw, i, bit_group_0, flags, 0, 0);
+ }
  
+ static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
 -- 
 2.48.0
 
