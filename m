@@ -4,27 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52272C8302F
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 08:53:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39FC6C7EE30
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 08:56:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF6910E53E;
-	Tue,  1 Jul 2025 08:53:49 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 371A710E53E;
- Tue,  1 Jul 2025 08:53:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7486160766533744111=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D357C10E53E;
+	Tue,  1 Jul 2025 08:56:09 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F1E110E53E;
+ Tue,  1 Jul 2025 08:56:09 +0000 (UTC)
+Received: from 91-155-254-100.elisa-laajakaista.fi ([91.155.254.100]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1uWWmc-00000008ZNU-14rO; Tue, 01 Jul 2025 11:56:06 +0300
+Message-ID: <db38e689792d0eca0229f06c654506820d6187b2.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: Imre Deak <imre.deak@gmail.com>
+Date: Tue, 01 Jul 2025 11:56:05 +0300
+In-Reply-To: <20250626082053.219514-8-imre.deak@intel.com>
+References: <20250626082053.219514-1-imre.deak@intel.com>
+ <20250626082053.219514-8-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uc=3A_Disable_GuC_co?=
- =?utf-8?q?mmunication_on_hardware_initialization_error=2E_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Jul 2025 08:53:48 -0000
-Message-ID: <175136002821.122985.12098813802486299338@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250701021340.1597839-1-zhanjun.dong@intel.com>
-In-Reply-To: <20250701021340.1597839-1-zhanjun.dong@intel.com>
+Subject: Re: [PATCH 07/20] drm/i915/dp: Don't clobber the encoder state in
+ the HPD IRQ handler
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +43,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7486160766533744111==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 2025-06-26 at 11:20 +0300, Imre Deak wrote:
+> From: Imre Deak <imre.deak@gmail.com>
+>=20
+> The intel_dp_get_dpcd() function called from an HPD IRQ handler reads
+> out the DPRX capabilities from the sink and updates these in the
+> intel_dp encoder state. Since the IRQ handler can run in parallel with
+> the encoder/connector detection (intel_dp_detect()) which also calls
+> intel_dp_get_dpcd(), the encoder state can get corrupted, since the two
+> updates happen in a racy way.
+>=20
+> Fix the above by checking only for any change in the sink count value in
+> the HPD IRQ handler, without updating the encoder state.
+>=20
+> Note that any state change in the sink requiring an update of the
+> encoder state is handled via the sink's SINK_COUNT change,
+> RX_CAPS_CHANGED, DOWNSTREAM_PORT_STATUS_CHANGED signaling, which all
+> should result in a full connector detection.
+>=20
+> Signed-off-by: Imre Deak <imre.deak@gmail.com>
+> ---
 
-== Series Details ==
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-Series: drm/xe/uc: Disable GuC communication on hardware initialization error. (rev5)
-URL   : https://patchwork.freedesktop.org/series/150488/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8_BAT -> xe-pw-150488v5_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8 -> xe-pw-150488v5
-
-  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8: e6e27e79a726f8bf333d13521aba32f6466035a8
-  xe-pw-150488v5: 150488v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150488v5/index.html
-
---===============7486160766533744111==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uc: Disable GuC communication on hardware initialization error. (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150488/">https://patchwork.freedesktop.org/series/150488/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150488v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150488v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8_BAT -&gt; xe-pw-150488v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8 -&gt; xe-pw-150488v5</li>
-</ul>
-<p>IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8: e6e27e79a726f8bf333d13521aba32f6466035a8<br />
-  xe-pw-150488v5: 150488v5</p>
-
-</body>
-</html>
-
---===============7486160766533744111==--
+--
+Cheers,
+Luca.
