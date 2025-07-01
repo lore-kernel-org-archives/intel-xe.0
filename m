@@ -4,69 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ABA0C8302F
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 07:45:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFBE3C7EE30
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 07:51:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E10DD10E26D;
-	Tue,  1 Jul 2025 07:45:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EI28J6jf";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE15910E26D
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Jul 2025 07:45:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751355943; x=1782891943;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=WaOTPXDOyXamFIF5gpJvhYL4L6gdolAygZ+SPRNtOgc=;
- b=EI28J6jfAJBnuGpwn8Yx+dRdkc0zFu44V2Zlgalxem2K9/mV0qJh1gOk
- 0ntvSfwc+Buzq0lkH8LrwloL6se2FePvv0MzTwdU8hnscd8NXKycquUXr
- mTZFpOTlGpx7e0ydusYYgDf9vPoyFPgPe5yVArak9JqzfB5h7I6IDDR4B
- Ew3GQiKXD2xzcqviCur2Vr1MnUlLxwiq2a+dUg3RBM16/68nagGiErPqj
- ChuMdGuxNCWtg/xyBsHoKjrn5SBeBZXdZA3Nk4x6ipOZcZSFBHx1C+2U3
- J/RIAEz5YtGShL9EIATrxpSArxaySLsLGhmSAyvtMhhM5fG3hB64GskPN g==;
-X-CSE-ConnectionGUID: Q+qamqi5SKadPCdIhAoIEw==
-X-CSE-MsgGUID: 0sIYgokgRg6AVooDl6n4Lw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="53469627"
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="53469627"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2025 00:45:43 -0700
-X-CSE-ConnectionGUID: Zpkqcd5iTdm04AVh9hqdyg==
-X-CSE-MsgGUID: 8cqIeScNSdiGEsZ+NLaUjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="153083489"
-Received: from kuha.fi.intel.com ([10.237.72.152])
- by orviesa010.jf.intel.com with SMTP; 01 Jul 2025 00:45:38 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Tue, 01 Jul 2025 10:45:36 +0300
-Date: Tue, 1 Jul 2025 10:45:36 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>, Raag Jadav <raag.jadav@intel.com>,
- "Tauro, Riana" <riana.tauro@intel.com>,
- "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] i2c: designware: Add quirk for Intel Xe
-Message-ID: <aGOSIB_H70IAWH3g@kuha.fi.intel.com>
-References: <20250627135314.873972-1-heikki.krogerus@linux.intel.com>
- <20250627135314.873972-2-heikki.krogerus@linux.intel.com>
- <gljpd4foldjwairaca7ip2qqpdl7ipto77wsqwhbfamv6kdd3v@2doqwso7ccx3>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D57A10E517;
+	Tue,  1 Jul 2025 07:51:07 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D95F310E26D;
+ Tue,  1 Jul 2025 07:51:05 +0000 (UTC)
+Received: from 91-155-254-100.elisa-laajakaista.fi ([91.155.254.100]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1uWVlV-00000008ZFZ-3SDi; Tue, 01 Jul 2025 10:51:02 +0300
+Message-ID: <a1a0e21f601d7b6cd097dde22e425d77c170dea1.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: Imre Deak <imre.deak@gmail.com>
+Date: Tue, 01 Jul 2025 10:50:52 +0300
+In-Reply-To: <20250626082053.219514-4-imre.deak@intel.com>
+References: <20250626082053.219514-1-imre.deak@intel.com>
+ <20250626082053.219514-4-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <gljpd4foldjwairaca7ip2qqpdl7ipto77wsqwhbfamv6kdd3v@2doqwso7ccx3>
+Subject: Re: [PATCH 03/20] drm/i915/dp_mst: Reuse
+ intel_dp_check_link_state() in the HPD IRQ handler
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,22 +46,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 30, 2025 at 08:28:12PM +0200, Andi Shyti wrote:
-> Hi Heikki,
-> 
-> On Fri, Jun 27, 2025 at 04:53:11PM +0300, Heikki Krogerus wrote:
-> > The regmap is coming from the parent also in case of Xe
-> > GPUs. Reusing the Wangxun quirk for that.
-> 
-> What I don't like, though, is that there is no mention of the
-> change in the probe in the commit log.
-> 
-> Besides, are these changes related? Can we have them split in two
-> different patches? I guess this would also make Andy's point
-> about the extra churn.
+On Thu, 2025-06-26 at 11:20 +0300, Imre Deak wrote:
+> From: Imre Deak <imre.deak@gmail.com>
+>=20
+> Use intel_dp_check_link_state() in the MST HPD IRQ handler instead of
+> open-coding it.
+>=20
+> Signed-off-by: Imre Deak <imre.deak@gmail.com>
 
-I think you are right about splitting the patch. I'll do just that.
-Thanks for the review Andi.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
--- 
-heikki
+--
+Cheers,
+Luca.
+
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 34 +++----------------------
+>  1 file changed, 4 insertions(+), 30 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index ac7e08f485309..285cd9a5d4a7b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5065,24 +5065,6 @@ intel_dp_mst_hpd_irq(struct intel_dp *intel_dp, u8=
+ *esi, u8 *ack)
+>  	}
+>  }
+> =20
+> -static bool intel_dp_mst_link_status(struct intel_dp *intel_dp)
+> -{
+> -	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
+> -	u8 link_status[DP_LINK_STATUS_SIZE] =3D {};
+> -	const size_t esi_link_status_size =3D DP_LINK_STATUS_SIZE - 2;
+> -
+> -	if (drm_dp_dpcd_read(&intel_dp->aux, DP_LANE0_1_STATUS_ESI, link_status=
+,
+> -			     esi_link_status_size) !=3D esi_link_status_size) {
+> -		drm_err(display->drm,
+> -			"[ENCODER:%d:%s] Failed to read link status\n",
+> -			encoder->base.base.id, encoder->base.name);
+> -		return false;
+> -	}
+> -
+> -	return intel_dp_link_ok(intel_dp, link_status);
+> -}
+> -
+>  /**
+>   * intel_dp_check_mst_status - service any pending MST interrupts, check=
+ link status
+>   * @intel_dp: Intel DP struct
+> @@ -5101,9 +5083,6 @@ static bool
+>  intel_dp_check_mst_status(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+> -	struct intel_encoder *encoder =3D &dig_port->base;
+> -	bool link_ok =3D true;
+>  	bool reprobe_needed =3D false;
+> =20
+>  	for (;;) {
+> @@ -5120,12 +5099,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_d=
+p)
+> =20
+>  		drm_dbg_kms(display->drm, "DPRX ESI: %4ph\n", esi);
+> =20
+> -		if (intel_dp_mst_active_streams(intel_dp) > 0 && link_ok &&
+> -		    esi[3] & LINK_STATUS_CHANGED) {
+> -			if (!intel_dp_mst_link_status(intel_dp))
+> -				link_ok =3D false;
+> -			ack[3] |=3D LINK_STATUS_CHANGED;
+> -		}
+> +		ack[3] |=3D esi[3] & LINK_STATUS_CHANGED;
+> =20
+>  		intel_dp_mst_hpd_irq(intel_dp, esi, ack);
+> =20
+> @@ -5144,10 +5118,10 @@ intel_dp_check_mst_status(struct intel_dp *intel_=
+dp)
+> =20
+>  		if (ack[1] & (DP_DOWN_REP_MSG_RDY | DP_UP_REQ_MSG_RDY))
+>  			drm_dp_mst_hpd_irq_send_new_request(&intel_dp->mst.mgr);
+> -	}
+> =20
+> -	if (!link_ok || intel_dp->link.force_retrain)
+> -		intel_encoder_link_check_queue_work(encoder, 0);
+> +		if ((ack[3] & LINK_STATUS_CHANGED) || intel_dp->link.force_retrain)
+> +			intel_dp_check_link_state(intel_dp);
+> +	}
+> =20
+>  	return !reprobe_needed;
+>  }
