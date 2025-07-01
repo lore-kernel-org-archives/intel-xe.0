@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C0B6C83F03
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 20:13:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5BF0C83F04
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 20:13:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7C2110E63C;
-	Tue,  1 Jul 2025 20:13:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 825C410E63D;
+	Tue,  1 Jul 2025 20:13:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RKCyhDhh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dNj7nC+X";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97A9410E135
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Jul 2025 20:13:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1950D10E135
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Jul 2025 20:13:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1751400812; x=1782936812;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2pgA/J1IP3fC2613zgDIbV2L6uaXM6vhH7kWQSbuxiw=;
- b=RKCyhDhhRV87V3BS6yI6gd/CqyAhMek5/rsijZtlQAz62+SOufze9SGJ
- pspW2n0/EqMSg0wPjRejhEo2jlmlOPp38ceflbG9Hxm1bxA+5QyRIQjX6
- uWhikaVeuBVDw3bCmNTpVNJEvbG8cwD5k4unoV7wuLuIa3GnH+H4qVKyE
- AFfUMWZcf/UKx1MCUg5PX2RZTf2qKGNnaWZod6aVh12j31fgByQKBV49g
- oAGUyD5PFzejLz0uwg7ECiULvdaYptQpts4uVON59PV1vpBM8iOeTo28s
- T3c8NWilXIWzRy9dIBjmigbnpO7KHIOzKr7YoOGIC728HOafxTiH2txS8 Q==;
-X-CSE-ConnectionGUID: NDZKbBCQQPiF8vrgWs7DUA==
-X-CSE-MsgGUID: t2mZYzheQ/+L7R3oKk8KvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53545992"
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="53545992"
+ bh=0Qgl5UvrIkkD7wZuTJ45scVB/5PMhqg+n0XaL6jxMuY=;
+ b=dNj7nC+X8oC91Sh1YzhcEHqxIQMO32n3+CzHn+GvVvPOtFCCk7ttEMZA
+ 9379ixdr5V9csui4OXVNU/FV+bT+oUBYKhc2ADy+fRnTo5buABrhFTS6g
+ SaUYo5ubaTfCIekuBV4NPEJVdUpZjOLfLFz2GRXkIOZytgQLmDKTGg4xL
+ D1rEjPRND7KG/4lYNK1cn5kTdkSOeegu4i8GHLZ8IvkzKIxcCIojHJ+6I
+ soVLuXYoBp8EXQ3KX4sS6SxboqsJOn7N7vhd8VlHsF6b5AunxPW17vOCh
+ t2BElCL2CLni855FvaMHuBQVALgnZ4snW4QUVJPvmWeTzibYSLL5Txmvq w==;
+X-CSE-ConnectionGUID: vYe/iHD9S9uaxLvySQusbA==
+X-CSE-MsgGUID: OC9CHyJ4QzCq6vucff89XA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53545998"
+X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="53545998"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2025 13:13:31 -0700
-X-CSE-ConnectionGUID: 8YUeaOTlRC2h9HcFAhD9sQ==
-X-CSE-MsgGUID: 6LrqoLpdRcuxm5A4hMhKTQ==
+ 01 Jul 2025 13:13:32 -0700
+X-CSE-ConnectionGUID: OgMqg4LcTdGq04ZQGzviPA==
+X-CSE-MsgGUID: 9G9AVbmISyaSAMzIPq5n6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="177539667"
+X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="177539685"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Jul 2025 13:13:31 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
-	Riana Tauro <riana.tauro@intel.com>
-Subject: [PATCH v4 1/7] drm/xe/pmu: Fix GT sanity check in event_supported()
-Date: Tue,  1 Jul 2025 13:13:22 -0700
-Message-ID: <20250701201320.2514369-10-matthew.d.roper@intel.com>
+	Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: [PATCH v4 7/7] drm/xe/xe_query: Use separate iterator while filling
+ GT list
+Date: Tue,  1 Jul 2025 13:13:28 -0700
+Message-ID: <20250701201320.2514369-16-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250701201320.2514369-9-matthew.d.roper@intel.com>
 References: <20250701201320.2514369-9-matthew.d.roper@intel.com>
@@ -67,39 +68,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-event_supported() tries to ensure that the GT ID passed is valid by
-comparing against XE_MAX_GT_PER_TILE.  However this does not account
-for cases where a GT ID is within the proper range, but still references
-a non-existent / fused-off GT (e.g., GT ID = 1 on a PVC platform with
-only a single tile).  Switch the check to an actual GT lookup
-so that EINVAL will be returned properly for all non-existent GTs.
+The 'id' value updated by for_each_gt() is the uapi GT ID of the GTs
+being iterated over, and may skip over values if a GT is not present on
+the device.  Use a separate iterator for GT list array assignments to
+ensure that the array will be filled properly on future platforms where
+index in the GT query list may not match the uapi ID.
 
-Cc: Riana Tauro <riana.tauro@intel.com>
+v2:
+ - Include the missing increment of the iterator.  (Jonathan)
+
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pmu.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_query.c | 27 +++++++++++++++------------
+ 1 file changed, 15 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-index 69df0e3520a5..cab51d826345 100644
---- a/drivers/gpu/drm/xe/xe_pmu.c
-+++ b/drivers/gpu/drm/xe/xe_pmu.c
-@@ -157,10 +157,13 @@ static bool event_gt_forcewake(struct perf_event *event)
- 	return true;
- }
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index e615b0916217..d517ec9ddcbf 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -368,6 +368,7 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
+ 	struct drm_xe_query_gt_list __user *query_ptr =
+ 		u64_to_user_ptr(query->data);
+ 	struct drm_xe_query_gt_list *gt_list;
++	int iter = 0;
+ 	u8 id;
  
--static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
-+static bool event_supported(struct xe_pmu *pmu, unsigned int gt_id,
- 			    unsigned int id)
- {
--	if (gt >= XE_MAX_GT_PER_TILE)
-+	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
-+	struct xe_gt *gt = xe_device_get_gt(xe, gt_id);
+ 	if (query->size == 0) {
+@@ -385,12 +386,12 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
+ 
+ 	for_each_gt(gt, xe, id) {
+ 		if (xe_gt_is_media_type(gt))
+-			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_MEDIA;
++			gt_list->gt_list[iter].type = DRM_XE_QUERY_GT_TYPE_MEDIA;
+ 		else
+-			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_MAIN;
+-		gt_list->gt_list[id].tile_id = gt_to_tile(gt)->id;
+-		gt_list->gt_list[id].gt_id = gt->info.id;
+-		gt_list->gt_list[id].reference_clock = gt->info.reference_clock;
++			gt_list->gt_list[iter].type = DRM_XE_QUERY_GT_TYPE_MAIN;
++		gt_list->gt_list[iter].tile_id = gt_to_tile(gt)->id;
++		gt_list->gt_list[iter].gt_id = gt->info.id;
++		gt_list->gt_list[iter].reference_clock = gt->info.reference_clock;
+ 		/*
+ 		 * The mem_regions indexes in the mask below need to
+ 		 * directly identify the struct
+@@ -406,19 +407,21 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
+ 		 * assumption.
+ 		 */
+ 		if (!IS_DGFX(xe))
+-			gt_list->gt_list[id].near_mem_regions = 0x1;
++			gt_list->gt_list[iter].near_mem_regions = 0x1;
+ 		else
+-			gt_list->gt_list[id].near_mem_regions =
++			gt_list->gt_list[iter].near_mem_regions =
+ 				BIT(gt_to_tile(gt)->id) << 1;
+-		gt_list->gt_list[id].far_mem_regions = xe->info.mem_region_mask ^
+-			gt_list->gt_list[id].near_mem_regions;
++		gt_list->gt_list[iter].far_mem_regions = xe->info.mem_region_mask ^
++			gt_list->gt_list[iter].near_mem_regions;
+ 
+-		gt_list->gt_list[id].ip_ver_major =
++		gt_list->gt_list[iter].ip_ver_major =
+ 			REG_FIELD_GET(GMD_ID_ARCH_MASK, gt->info.gmdid);
+-		gt_list->gt_list[id].ip_ver_minor =
++		gt_list->gt_list[iter].ip_ver_minor =
+ 			REG_FIELD_GET(GMD_ID_RELEASE_MASK, gt->info.gmdid);
+-		gt_list->gt_list[id].ip_ver_rev =
++		gt_list->gt_list[iter].ip_ver_rev =
+ 			REG_FIELD_GET(GMD_ID_REVID, gt->info.gmdid);
 +
-+	if (!gt)
- 		return false;
++		iter++;
+ 	}
  
- 	return id < sizeof(pmu->supported_events) * BITS_PER_BYTE &&
+ 	if (copy_to_user(query_ptr, gt_list, size)) {
 -- 
 2.49.0
 
