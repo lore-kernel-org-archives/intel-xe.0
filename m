@@ -4,135 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF07CC7EE30
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 11:05:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8216C7EE30
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 11:11:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9115610E58C;
-	Tue,  1 Jul 2025 11:05:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="HxGCbSNY";
-	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69CF710E595
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Jul 2025 11:05:45 +0000 (UTC)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5619qDUH028446
- for <intel-xe@lists.freedesktop.org>; Tue, 1 Jul 2025 11:05:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- ZogMt6KKsiaz5/xedtL9aHF64V+0fejV+AuVX29tpF8=; b=HxGCbSNYdM9dEslB
- SjttVn99Amwenu1R7wnkDaKhJaGda/8kM8YFf53/KU128vsYXxNaf/6p19urg5Hm
- mYCDLIZ9YNp0bV30kTJ+Rt4Foy0l704s9vQWadf1pTdTdPoXhVRtrebwpprrgpCi
- UY3DodkPK3T9pc+OLDNmF4JSjRfRTeHRljUvYejXugYVPq2SzWPo2HounfW42x9K
- v188gBN9G0wwqxoqbexRfJGHSn+RRnABE9Pa5gYXip7lwwcUgs+8NTYf5SI0+Mbu
- YEfwZlOmCdqKzcOvF6RoyxB1GUM8rC9ES7eG3VmqFoaRNnK+/03UvbjwbEYabwFJ
- l02HNw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j7bvrj6f-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Tue, 01 Jul 2025 11:05:44 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id
- af79cd13be357-7d40185a630so662919185a.2
- for <intel-xe@lists.freedesktop.org>; Tue, 01 Jul 2025 04:05:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751367943; x=1751972743;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ZogMt6KKsiaz5/xedtL9aHF64V+0fejV+AuVX29tpF8=;
- b=RstGcqebHVxXj96/s9JY1m9g//maGqDq2xti22w2sm7gFgS69D00xlTHKOAiipJAwW
- 18kdo8vx1W3opfKdyO4TG/SHamQUFLK4MIA2UJI6BMOSNUvpDEf74QD+MgDUHtSMaOod
- y0UrnahRjo4idB5rovrfmrwoiuYJfelRbwQpu/34651JTRFOAmsFekguTEz9LbVHqA9S
- gzHzM7Rca/otakOoJsplvK7q+imfEBg+PIiqhhXq0KgDoSqBwVBOd9lPuAtb9vp0LWtC
- 9sZeGLV2XxuEkzaVWQcxvBo47tAn+a14Xlb9HYn9X/vnDzAXbz8vFx7El7ZG0j2q/bVt
- ltRw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWqv/20qCXJUFr/eRl0uRh9OO+vx4q56sBxOonwTDkRLyXUgwVJdViLnEAtVT5RznEtpUm76rO8Eg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx1n5RLnRrgBgf/Jc7JSt+Gyz5YOIvV3ms2mMH0Rp3+BlF/hpFC
- fNiPiDONVYXe51COVwBdKu6oYjqwkgEVj5kOzeVzYTt+f/9+g7xXV6JzLqdKvjLKFLwrAakScZA
- GvzQEgpAJB9T++zsl+TFr/yQeM3IfjmAj4mfmpFlIdgnuonjpHmDOu62EZigarb7goiLANA==
-X-Gm-Gg: ASbGnctIEfGeJPta4+AFV7qRRl9m5ZVv3n5rvRw9IRagLC4VRxzHDSgWfymILIMake+
- /Wm8hormx4S/BcJ5/fQiCIzHXnMM5xHko+rUea2mvy5lbK2lfjGAYFkWVphqMyt1r4v/Oo28sva
- TWawAXflV/4+LKBzlG34I3sR7cmi0jppnIX/08EMRrXiQ4QKjeTiF7TJjqpTBYOFJgdcNW6BinC
- 0e/Zghbob90QXRbyKSHOIbprkTh4tOSfvX8UPTtZ9H9J0zwkycsEeP2BBR7XAPxJl1YVZcaG/Tv
- eYfOn0CjkX8StblmPJH/ZueyKBhQUZBk3IIrjS32h1n26cio4tcVkQjAOjR6UK8qvGnQb7GuJHa
- +ayNTj3XOFV5KNKovOBZVmuoLGLUXkzsGxRc=
-X-Received: by 2002:a05:620a:84c3:b0:7c5:5a51:d2d1 with SMTP id
- af79cd13be357-7d44398f399mr2458871785a.55.1751367943318; 
- Tue, 01 Jul 2025 04:05:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEkaK5r4kmwq1bTXLA+Z1Z3MCVlUfECWUH1iOnueMEvJSOkDSVRInqR72D3IhCu8jIVuwHmSw==
-X-Received: by 2002:a05:620a:84c3:b0:7c5:5a51:d2d1 with SMTP id
- af79cd13be357-7d44398f399mr2458863485a.55.1751367942731; 
- Tue, 01 Jul 2025 04:05:42 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5550b24048dsm1783299e87.28.2025.07.01.04.05.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Jul 2025 04:05:41 -0700 (PDT)
-Date: Tue, 1 Jul 2025 14:05:39 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Russell King <linux@armlinux.org.uk>, Inki Dae <inki.dae@samsung.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH v2 05/19] drm: Allow the caller to pass in the format
- info to drm_helper_mode_fill_fb_struct()
-Message-ID: <t6yywwa4z42d3knc3ihr4d4hzenhtzm5noln5y57uwzlotdkxq@6neoszj33sgx>
-References: <20250701090722.13645-1-ville.syrjala@linux.intel.com>
- <20250701090722.13645-6-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93C5E10E287;
+	Tue,  1 Jul 2025 11:11:06 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C6B510E287;
+ Tue,  1 Jul 2025 11:11:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8086006884480791067=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250701090722.13645-6-ville.syrjala@linux.intel.com>
-X-Proofpoint-GUID: 84IDWjgKSgI-gfGd2KzP9y7eq5mwjPjH
-X-Authority-Analysis: v=2.4 cv=RJCzH5i+ c=1 sm=1 tr=0 ts=6863c108 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
- a=Wb1JkmetP80A:10 a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=p4Kof4svB8ImVrqtDUEA:9
- a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10 a=zZCYzV9kfG8A:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-ORIG-GUID: 84IDWjgKSgI-gfGd2KzP9y7eq5mwjPjH
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA2NyBTYWx0ZWRfX3wjaVvzOaPCp
- 8hotNFi3arW2twHdd6UgMhWehH88lzV0xbU9p6MseTmkW0dJNxpzT0qve22T0qoGN9MyfhAKk5q
- XG9Gbbo2jrm1SAvDDBujqQc4+o94dwN3gFQkUg7gL68+AFESIiIkSKIrsiGVafRi80EK7dx2x7i
- tpbq/ZjZM0nn2wZItAPcICpYSeXCtV9NUfY57Y5D8lDOVohutZC4S5Tw/AesjLJvycQUNbJOPbv
- pkBCwh5kLebleMsOAiI5/J8x2YAXhtIPmjxaZSaGeCeWGTGshYNYTjdfiNiwSeXRjfuRKxJPjp7
- hgrgKMB50IChvkGyPO3h9XcGPS7rXAzzgpgomHdP5IRpVUZzJYwlwZvP7U2Q3gPa7iWJXe84lh3
- Wv42Nf2ehqMp2oLWlbNusL7mAj9HMgmTekRHIQUEn3zqqCDs/c5paX9G76ldC5HWjJFaNuYQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=603 adultscore=0
- malwarescore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 phishscore=0
- bulkscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507010067
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Eliminate_redundant_?=
+ =?utf-8?q?drm=5Fformat=5Finfo_lookups_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 01 Jul 2025 11:11:05 -0000
+Message-ID: <175136826510.123583.14756767474077252538@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250701090722.13645-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250701090722.13645-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,24 +36,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 01, 2025 at 12:07:08PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Soon all drivers should have the format info already available in the
-> places where they call drm_helper_mode_fill_fb_struct(). Allow it to
-> be passed along into drm_helper_mode_fill_fb_struct() instead of doing
-> yet another redundant lookup.
-> 
-> Start by always passing in NULL and still doing the extra lookup.
-> The actual changes to avoid the lookup will follow.
-> 
+--===============8086006884480791067==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+== Series Details ==
+
+Series: drm: Eliminate redundant drm_format_info lookups (rev7)
+URL   : https://patchwork.freedesktop.org/series/147542/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3328-9f3690735949ad5f24ece89cf2e91c2750ea580f_BAT -> xe-pw-147542v7_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-147542v7_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:
+    - bat-lnl-2:          [PASS][1] -> [ABORT][2] ([Intel XE#4624] / [Intel XE#4966])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3328-9f3690735949ad5f24ece89cf2e91c2750ea580f/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v7/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
+
+  
+  [Intel XE#4624]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624
+  [Intel XE#4966]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4966
 
 
--- 
-With best wishes
-Dmitry
+Build changes
+-------------
+
+  * Linux: xe-3328-9f3690735949ad5f24ece89cf2e91c2750ea580f -> xe-pw-147542v7
+
+  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3328-9f3690735949ad5f24ece89cf2e91c2750ea580f: 9f3690735949ad5f24ece89cf2e91c2750ea580f
+  xe-pw-147542v7: 147542v7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v7/index.html
+
+--===============8086006884480791067==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Eliminate redundant drm_format_info lookups (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147542/">https://patchwork.freedesktop.org/series/147542/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3328-9f3690735949ad5f24ece89cf2e91c2750ea580f_BAT -&gt; xe-pw-147542v7_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-147542v7_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3328-9f3690735949ad5f24ece89cf2e91c2750ea580f/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v7/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624">Intel XE#4624</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4966">Intel XE#4966</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3328-9f3690735949ad5f24ece89cf2e91c2750ea580f -&gt; xe-pw-147542v7</li>
+</ul>
+<p>IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3328-9f3690735949ad5f24ece89cf2e91c2750ea580f: 9f3690735949ad5f24ece89cf2e91c2750ea580f<br />
+  xe-pw-147542v7: 147542v7</p>
+
+</body>
+</html>
+
+--===============8086006884480791067==--
