@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1EA0C7EE30
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0063FC8303F
 	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 20:13:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60A2910E135;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B3EB10E60B;
 	Tue,  1 Jul 2025 20:13:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W0Sk0Kxq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PP2XNGrh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC84810E135
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Jul 2025 20:13:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BACC610E616
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Jul 2025 20:13:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751400811; x=1782936811;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KEtENZtNU/NhChOgVaeK6u1Iy62Y+cKkNdKu9oXHFNY=;
- b=W0Sk0KxqhEAKfNSENqzyR2LBWNsVEBAw+eiWa6IVN6df47TuHrKLsp4M
- FpAzDHBWiV2zm8y/w7jntIJSomHwzozbZYs+9YMrRoDVmC23eizsnNujR
- P7yipl0KQWg3tWUX65A7lZGh9NdRx5Ac2ZBwO9W3I/r21ARP82i/f1UzM
- 2kEeFCoR8Q4nWI8uoee91J3NT1DWh1YnZs2g3bKrBB5HveVTrcXPz/diG
- K5XH5IuWIMnKni1wT19KXMiOWhqpucsIKYeCbbqyG+5X8E3bvMlSRn/Il
- WFL/marH9VsbcpBOmxYKdWO0Gf9VbUCuBm1wfX45vrDCMAGnE9fP9WLgA Q==;
-X-CSE-ConnectionGUID: YAd9Vig8TMi/SIi7qTHqdQ==
-X-CSE-MsgGUID: 9+soAIBAS0WMpdJqK03nVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53545986"
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="53545986"
+ t=1751400812; x=1782936812;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=i0a7TcdB+BeZj+YFbU4HblUsGibzD5sR0ZJlej7vEvg=;
+ b=PP2XNGrhOOxN8Mj2Iz+mHA8LtdooWQ2L5B3uT7Rqgz7k8ey9pkjmaPws
+ e7vAiQYpxA0xblogc9lltbNa1JALWbf/28X3gH7EvLUFpbJ6GPDWJSlCL
+ 5+RRRXJwbD8isIi+g6feg6+XMYegL5mTMmMfeDLzWdGEfWnhg4jfLAoJs
+ E6lIHYaBuX15nIpTTJS7ljwNLApU3/3J5PlCUPw2VjMaq2PW9KyGWl2sQ
+ 1yA1onheNFY8/6VRO/ucYravHw0KzfFFdEMTvxQznmAM0vGn5xGO4myrz
+ G/ei6ZiIAG/ue/YHttZjo3PzsxLBq1PtPQ8l1xzL6dO37046iN5lrhRfP w==;
+X-CSE-ConnectionGUID: VdVakM6hRIan9R0ODKMICw==
+X-CSE-MsgGUID: iij2HBaETpqEzepPkbfYww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53545993"
+X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="53545993"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2025 13:13:30 -0700
-X-CSE-ConnectionGUID: BpRcPwx8TfajDJPjNWt6ew==
-X-CSE-MsgGUID: qavskWL4QFuYKaRVDZV+9Q==
+ 01 Jul 2025 13:13:31 -0700
+X-CSE-ConnectionGUID: AyWtkSH9QkmlHRWbmdvtEg==
+X-CSE-MsgGUID: oGl9rcDBSqq1N2sL1G8k0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="177539663"
+X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="177539670"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2025 13:13:30 -0700
+ 01 Jul 2025 13:13:31 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH v4 0/7] Future-proof for multi-tile + multi-GT cases
-Date: Tue,  1 Jul 2025 13:13:21 -0700
-Message-ID: <20250701201320.2514369-9-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com, Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v4 2/7] drm/xe: Export xe_step_name for kunit tests
+Date: Tue,  1 Jul 2025 13:13:23 -0700
+Message-ID: <20250701201320.2514369-11-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250701201320.2514369-9-matthew.d.roper@intel.com>
+References: <20250701201320.2514369-9-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,68 +67,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Today all of our platforms fall into one of three cases:
- * Single tile platforms with a single (primary) GT
- * Single tile platforms with two GTs (primary + media)
- * Two-tile platforms with a single GT (primary) in each
+xe_step_name() is used by xe_assert(), so adding assertions to functions
+like xe_device_get_gt() will result in
 
-Our numbering of GTs has been a bit inconsistent between platforms
-(e.g., GT1 is the media GT on some platforms, but the second tile's
-primary GT on others).  In the future we'll likely have platforms that
-are both multi-tile and multi-GT, which will make the situation more
-confusing.  We could also wind up with more than just two types of GTs
-at some point in the future.
+  ERROR: modpost: "xe_step_name" [drivers/gpu/drm/xe/tests/xe_test.ko] undefined!
 
-Going forward we should standardize the way we assign uapi GT IDs to
-internal GT structures.  Let's declare that for userspace GT ID n,
+while building the kunit tests.  Export xe_step_name to avoid these
+build failures when adding assertions.
 
-  GT[n]'s tile             = n / (max gt per tile)
-  GT[n]'s slot within tile = n % (max gt per tile)
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_step.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-If we allow 'max gt per tile' to vary by platform, we can support any
-possible future tile/GT combinations (even if new types of GTs show up)
-without changing any behavior of our existing platforms.
-
-v2:
- - Rebase on top of the latest xe_pci test updates from Michal.  Convert
-   the kunit test into a parameterized test that will run against each
-   PCI ID supported by the driver.
-v3:
- - Rebase again
- - Add an additional patch at the end of the series to ensure
-   the GT query list is filled out properly.
-v4:
- - If MTCFG makes us go back and reduce the tile count, also reduce
-   gt_count in an equivalent manner to prune any GTs that would have
-   belonged to the removed tiles.  (PVC CI)
- - Add additional patch at beginning of series to fix PMU GT check
-   before starting refactoring.  (Riana)
-
-Matt Roper (7):
-  drm/xe/pmu: Fix GT sanity check in event_supported()
-  drm/xe: Export xe_step_name for kunit tests
-  drm/xe: Track maximum GTs per tile on a per-platform basis
-  drm/xe/tests/pci: Ensure all platforms have a valid GT/tile count
-  drm/xe: Assign GT IDs properly on multi-tile + multi-GT platforms
-  drm/xe: Don't compare GT ID to GT count when determining valid GTs
-  drm/xe/xe_query: Use separate iterator while filling GT list
-
- drivers/gpu/drm/xe/tests/xe_pci.c      | 31 ++++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.c | 12 +++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h |  1 +
- drivers/gpu/drm/xe/xe_device.h         | 47 ++++++++----------
- drivers/gpu/drm/xe/xe_device_types.h   |  2 +
- drivers/gpu/drm/xe/xe_eu_stall.c       |  6 ++-
- drivers/gpu/drm/xe/xe_exec_queue.c     |  2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c      |  3 +-
- drivers/gpu/drm/xe/xe_mmio.c           | 16 +++---
- drivers/gpu/drm/xe/xe_pci.c            | 69 ++++++++------------------
- drivers/gpu/drm/xe/xe_pci_types.h      | 41 +++++++++++++++
- drivers/gpu/drm/xe/xe_pmu.c            |  7 ++-
- drivers/gpu/drm/xe/xe_query.c          | 29 ++++++-----
- drivers/gpu/drm/xe/xe_step.c           |  2 +
- 14 files changed, 168 insertions(+), 100 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_step.c b/drivers/gpu/drm/xe/xe_step.c
+index c77b5c317fa0..10e88f2c9615 100644
+--- a/drivers/gpu/drm/xe/xe_step.c
++++ b/drivers/gpu/drm/xe/xe_step.c
+@@ -5,6 +5,7 @@
+ 
+ #include "xe_step.h"
+ 
++#include <kunit/visibility.h>
+ #include <linux/bitfield.h>
+ 
+ #include "xe_device.h"
+@@ -255,3 +256,4 @@ const char *xe_step_name(enum xe_step step)
+ 		return "**";
+ 	}
+ }
++EXPORT_SYMBOL_IF_KUNIT(xe_step_name);
 -- 
 2.49.0
 
