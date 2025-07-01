@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96A9FC8302F
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 09:28:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67DDBC8302F
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 09:38:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F191810E2B5;
-	Tue,  1 Jul 2025 09:28:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mMA2XlzF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16B5810E277;
- Tue,  1 Jul 2025 09:28:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751362129; x=1782898129;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=IEYe84dwUhMoyEcezM2sHTfy7XHYs29+emKtPby1CD4=;
- b=mMA2XlzFoB90clFYTPr5rLzycMjnWk58V3TXsznhXoUL6OLfa4z5X64M
- B6e6/qmWgy0GbzATTh9TsRZ0eVbNvtR5zoBLtywK4TLkutZOBiAwoUxVw
- 7LdBo33H4a2HAaLxNdli4ZauQcL5dyyA95Vm4LwSLxM6X9RzSUZgezHho
- 645bTvEYK7mhmohpK/OOxJwb0jiMCc87P3cm7ifx6Riop9NJn42WC7jeD
- O3Ctxqrq/kO3uGwn4KAUjFmT4bkPvjbUW8Yx3U3c+ro2kHGBgj9iXjH+g
- GnlN9/AFvhWfNmXttdonMZGYW9uDwDvu4IkBeyBNXDaagNEylMdJnegSA A==;
-X-CSE-ConnectionGUID: rE3HF30kQ1qMfKixSZ/Sfw==
-X-CSE-MsgGUID: 0e7yLthGTKi6m0X//Klw4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="53724330"
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="53724330"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2025 02:28:48 -0700
-X-CSE-ConnectionGUID: oIoN2FVeQii2fG/HK8pHow==
-X-CSE-MsgGUID: rwROTJ6vT0WiWY0OnTKcSg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="184648493"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.239])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2025 02:28:45 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
- arun.r.murthy@intel.com, lucas.demarchi@intel.com, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH]  drm/i915/display: Optimize panel power-on  wait time
-In-Reply-To: <20250630122339.3007880-1-dibin.moolakadan.subrahmanian@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250630122339.3007880-1-dibin.moolakadan.subrahmanian@intel.com>
-Date: Tue, 01 Jul 2025 12:28:41 +0300
-Message-ID: <b5a84286f9729e9d92e08596bfbeb4e9c77f6dc1@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2058C10E060;
+	Tue,  1 Jul 2025 09:38:34 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E50B10E060;
+ Tue,  1 Jul 2025 09:38:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3974548876322586420=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Fix_RGB?=
+ =?utf-8?q?_limited_range_handling_for_DP?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 01 Jul 2025 09:38:32 -0000
+Message-ID: <175136271257.123583.7041181546517679500@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250701081756.2821286-1-uma.shankar@intel.com>
+In-Reply-To: <20250701081756.2821286-1-uma.shankar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,130 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 30 Jun 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
->  The current wait_panel_on() uses intel_de_wait() with a long timeout
->  (5000ms), which is suboptimal on Xe platforms where the underlying
->  xe_mmio_wait32() employs an exponential backoff strategy. This leads
->  to unnecessary delays during resume or power-on  when the panel becomes
->  ready earlier than the full timeout.
->
->  This patch splits the total wait time into two pases
->     - First wait for the typical panel-on time(180ms)
->     - If panel is not ready , continue polling in short 20ms intervals
->       until the maximum timeout (5000ms) is reached
+--===============3974548876322586420==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I'm *very* reluctant to merge any new custom wait hacks. I'm in the
-process of *removing* a plethora of them [1][2][3].
+== Series Details ==
 
-I think the question is, should xe_mmio_wait32() (and the i915
-counterpart) and the intel_de_wait*() functions be migrated to an
-interface similar to read_poll_timeout(), i.e. provide sleep and timeout
-separately, no exponential backoff. And implement the waits using
-read_poll_timeout(), or whatever Ville ends up with [4].
+Series: drm/i915/display: Fix RGB limited range handling for DP
+URL   : https://patchwork.freedesktop.org/series/150993/
+State : success
 
+== Summary ==
 
-[1] https://lore.kernel.org/r/cover.1750959689.git.jani.nikula@intel.com
-[2] https://lore.kernel.org/r/20250626192632.2330349-1-jani.nikula@intel.com
-[3] https://lore.kernel.org/r/cover.1751023767.git.jani.nikula@intel.com
-[4] https://lore.kernel.org/r/aF67cxjlfWiWMx-4@intel.com
+CI Bug Log - changes from xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8_BAT -> xe-pw-150993v1_BAT
+====================================================
 
-> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_pps.c | 61 +++++++++++++++++++++++-
->  1 file changed, 60 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index bff81fb5c316..57a062c8038d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -598,8 +598,67 @@ void intel_pps_check_power_unlocked(struct intel_dp *intel_dp)
->  #define IDLE_CYCLE_MASK		(PP_ON | PP_SEQUENCE_MASK | PP_CYCLE_DELAY_ACTIVE | PP_SEQUENCE_STATE_MASK)
->  #define IDLE_CYCLE_VALUE	(0     | PP_SEQUENCE_NONE | 0                     | PP_SEQUENCE_STATE_OFF_IDLE)
->  
-> +#define PANEL_TYPICAL_ON_TIME_MS		(180)
-> +#define PANEL_MAXIMUM_ON_TIME_MS		(5000)
-> +
->  static void intel_pps_verify_state(struct intel_dp *intel_dp);
->  
-> +/*
-> + * Panel power-on typically completes within ~200ms. Using a large timeout
-> + * (5000ms) with intel_de_wait() results in unnecessary delays,
-> + * especially under Xe, where xe_mmio_wait32() uses an exponential backoff.
-> + *
-> + * To optimize resume and power-on latency, we first wait for the typical
-> + * completion window, then perform short polling loops thereafter.
-> + * This reduces worst-case latency while still ensuring correctness.
-> + */
-> +static void wait_panel_on_status(struct intel_dp *intel_dp)
-> +{
-> +	struct intel_display *display = to_intel_display(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	i915_reg_t pp_stat_reg, pp_ctrl_reg;
-> +	u32 mask = IDLE_ON_MASK;
-> +	u32 value = IDLE_ON_VALUE;
-> +	int elapsed  = PANEL_TYPICAL_ON_TIME_MS;
-> +
-> +	lockdep_assert_held(&display->pps.mutex);
-> +
-> +	intel_pps_verify_state(intel_dp);
-> +
-> +	pp_stat_reg = _pp_stat_reg(intel_dp);
-> +	pp_ctrl_reg = _pp_ctrl_reg(intel_dp);
-> +
-> +	drm_dbg_kms(display->drm,
-> +		    "[ENCODER:%d:%s] %s mask: 0x%08x value: 0x%08x PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
-> +		    dig_port->base.base.base.id, dig_port->base.base.name,
-> +		    pps_name(intel_dp),
-> +		    mask, value,
-> +		    intel_de_read(display, pp_stat_reg),
-> +		    intel_de_read(display, pp_ctrl_reg));
-> +
-> +	/* Wait for typical panel on time first */
-> +	if (intel_de_wait(display, pp_stat_reg, mask, value, PANEL_TYPICAL_ON_TIME_MS) == 0)
-> +		goto panel_wait_complete;
-> +
-> +	/* Wait for maxtime in 20ms intervals */
-> +	while (elapsed < PANEL_MAXIMUM_ON_TIME_MS) {
-> +		if (intel_de_wait(display, pp_stat_reg, mask, value, 20) == 0)
-> +			goto panel_wait_complete;
-> +
-> +		elapsed += 20;
-> +	}
+Summary
+-------
 
-That's just not how time works in the kernel. Please let's not reinvent
-wheels.
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
 
 
-BR,
-Jani.
+Changes
+-------
 
-> +
-> +	drm_err(display->drm,
-> +		"[ENCODER:%d:%s] %s panel status timeout: PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
-> +		dig_port->base.base.base.id, dig_port->base.base.name,
-> +		pps_name(intel_dp),
-> +		intel_de_read(display, pp_stat_reg),
-> +		intel_de_read(display, pp_ctrl_reg));
-> +
-> +panel_wait_complete:
-> +	drm_dbg_kms(display->drm, "Wait complete\n");
-> +}
-> +
->  static void wait_panel_status(struct intel_dp *intel_dp,
->  			      u32 mask, u32 value)
->  {
-> @@ -642,7 +701,7 @@ static void wait_panel_on(struct intel_dp *intel_dp)
->  		    "[ENCODER:%d:%s] %s wait for panel power on\n",
->  		    dig_port->base.base.base.id, dig_port->base.base.name,
->  		    pps_name(intel_dp));
-> -	wait_panel_status(intel_dp, IDLE_ON_MASK, IDLE_ON_VALUE);
-> +	wait_panel_on_status(intel_dp);
->  }
->  
->  static void wait_panel_off(struct intel_dp *intel_dp)
+  No changes found
 
--- 
-Jani Nikula, Intel
+
+Build changes
+-------------
+
+  * Linux: xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8 -> xe-pw-150993v1
+
+  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8: e6e27e79a726f8bf333d13521aba32f6466035a8
+  xe-pw-150993v1: 150993v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150993v1/index.html
+
+--===============3974548876322586420==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Fix RGB limited range handling for DP</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150993/">https://patchwork.freedesktop.org/series/150993/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150993v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150993v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8_BAT -&gt; xe-pw-150993v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8 -&gt; xe-pw-150993v1</li>
+</ul>
+<p>IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3327-e6e27e79a726f8bf333d13521aba32f6466035a8: e6e27e79a726f8bf333d13521aba32f6466035a8<br />
+  xe-pw-150993v1: 150993v1</p>
+
+</body>
+</html>
+
+--===============3974548876322586420==--
