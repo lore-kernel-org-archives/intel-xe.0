@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7EE2C83F05
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 20:13:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12A79C83038
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 20:18:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6252A10E655;
-	Tue,  1 Jul 2025 20:13:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n2cDbj/W";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFC2310E616
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Jul 2025 20:13:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751400812; x=1782936812;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EjXVqx9/0vDQO1MF3bMyhGhh7kHAuHxdqmflhfzgb1g=;
- b=n2cDbj/W6t6T42JrSOSkEg3OgaJnCpHH1Lf7rEUGjna2js/KfTeePrHT
- Bwfb0UWkr2leVpBBwmd9hZTz9qQ7dIL2UmTemHmQyYBrihqWQCJhMAxjy
- 55oQSfIxBVo8GpCh9m+jpoAG3O0HVlqFvGb0/DZ1F15dvgmrZnoGs8UqS
- nDO711MLbZcw+Rd8GZ3M/RP2rUaLmpwAFxZSyb8vJ8+cfOb2NJUqywUTy
- HFfwWQKypv99oSsQXTf5tQjAScA2vYOMb1ZWpGbQPgScgn+MDMDJBCXC2
- uxm68ARs7DsLAxpvwVEIPLQByqz8j9wry4ZmjmGfQrOvRyjxq23wg0klr A==;
-X-CSE-ConnectionGUID: x+vv2WgGRpyouL4TFfaB5g==
-X-CSE-MsgGUID: 39FcIRHkRuSe9T3Fd1qWkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53545996"
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="53545996"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2025 13:13:32 -0700
-X-CSE-ConnectionGUID: nq+MSdmLQHqKJDT8jrUWJg==
-X-CSE-MsgGUID: gXMe08dvShmk4t6Qyn2zMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="177539680"
-Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2025 13:13:31 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
- Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
-Subject: [PATCH v4 5/7] drm/xe: Assign GT IDs properly on multi-tile +
- multi-GT platforms
-Date: Tue,  1 Jul 2025 13:13:26 -0700
-Message-ID: <20250701201320.2514369-14-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250701201320.2514369-9-matthew.d.roper@intel.com>
-References: <20250701201320.2514369-9-matthew.d.roper@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F3710E089;
+	Tue,  1 Jul 2025 20:18:49 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBBC410E089;
+ Tue,  1 Jul 2025 20:18:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Future-proof_for_multi-ti?=
+ =?utf-8?q?le_+_multi-GT_cases_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 01 Jul 2025 20:18:48 -0000
+Message-ID: <175140112883.125972.12939611242767326555@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250701201320.2514369-9-matthew.d.roper@intel.com>
+In-Reply-To: <20250701201320.2514369-9-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,106 +36,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Although "multi-tile" and "multiple GTs per tile" are mutually-exclusive
-characteristics on all of our platforms today, this may not always be
-true.  Assign GT IDs according to xe->info.max_gt_per_tile in a way that
-should work even if future platforms have different configurations.
+== Series Details ==
 
-This patch should not change the behavior of current platforms; it only
-future-proofs for potential future designs.
+Series: Future-proof for multi-tile + multi-GT cases (rev6)
+URL   : https://patchwork.freedesktop.org/series/150192/
+State : warning
 
-v2:
- - Re-calculate gt_count if tile count gets reduced by MTCFG.  (PVC CI)
+== Summary ==
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Ravi Kumar Vodapalli<ravi.kumar.vodapalli@intel.com>
----
- drivers/gpu/drm/xe/xe_mmio.c | 16 ++++++++++------
- drivers/gpu/drm/xe/xe_pci.c  | 14 ++++----------
- 2 files changed, 14 insertions(+), 16 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6b7dab2f63477790c1c12c9056be542b8c18beff
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Tue Jul 1 13:13:28 2025 -0700
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 7357458bc0d2..751586d6806a 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -55,6 +55,7 @@ static void tiles_fini(void *arg)
- static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
- {
- 	struct xe_tile *tile;
-+	struct xe_gt *gt;
- 	u8 id;
- 
- 	/*
-@@ -67,7 +68,7 @@ static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
- 	/* Possibly override number of tile based on configuration register */
- 	if (!xe->info.skip_mtcfg) {
- 		struct xe_mmio *mmio = xe_root_tile_mmio(xe);
--		u8 tile_count;
-+		u8 tile_count, gt_count;
- 		u32 mtcfg;
- 
- 		/*
-@@ -84,12 +85,15 @@ static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
- 			xe->info.tile_count = tile_count;
- 
- 			/*
--			 * FIXME: Needs some work for standalone media, but
--			 * should be impossible with multi-tile for now:
--			 * multi-tile platform with standalone media doesn't
--			 * exist
-+			 * We've already setup gt_count according to the full
-+			 * tile count.  Re-calculate it to only include the GTs
-+			 * that belong to the remaining tile(s).
- 			 */
--			xe->info.gt_count = xe->info.tile_count;
-+			gt_count = 0;
-+			for_each_gt(gt, xe, id)
-+				if (gt->info.id < tile_count * xe->info.max_gt_per_tile)
-+					gt_count++;
-+			xe->info.gt_count = gt_count;
- 		}
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 658bfbddf9a8..bccd81e19bb0 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -694,10 +694,11 @@ static int xe_info_init(struct xe_device *xe,
- 	 */
- 	for_each_tile(tile, xe, id) {
- 		gt = tile->primary_gt;
--		gt->info.id = xe->info.gt_count++;
- 		gt->info.type = XE_GT_TYPE_MAIN;
-+		gt->info.id = tile->id * xe->info.max_gt_per_tile;
- 		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
- 		gt->info.engine_mask = graphics_desc->hw_engine_mask;
-+		xe->info.gt_count++;
- 
- 		if (MEDIA_VER(xe) < 13 && media_desc)
- 			gt->info.engine_mask |= media_desc->hw_engine_mask;
-@@ -715,17 +716,10 @@ static int xe_info_init(struct xe_device *xe,
- 
- 		gt = tile->media_gt;
- 		gt->info.type = XE_GT_TYPE_MEDIA;
-+		gt->info.id = tile->id * xe->info.max_gt_per_tile + 1;
- 		gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
- 		gt->info.engine_mask = media_desc->hw_engine_mask;
--
--		/*
--		 * FIXME: At the moment multi-tile and standalone media are
--		 * mutually exclusive on current platforms.  We'll need to
--		 * come up with a better way to number GTs if we ever wind
--		 * up with platforms that support both together.
--		 */
--		drm_WARN_ON(&xe->drm, id != 0);
--		gt->info.id = xe->info.gt_count++;
-+		xe->info.gt_count++;
- 	}
- 
- 	return 0;
--- 
-2.49.0
+    drm/xe/xe_query: Use separate iterator while filling GT list
+    
+    The 'id' value updated by for_each_gt() is the uapi GT ID of the GTs
+    being iterated over, and may skip over values if a GT is not present on
+    the device.  Use a separate iterator for GT list array assignments to
+    ensure that the array will be filled properly on future platforms where
+    index in the GT query list may not match the uapi ID.
+    
+    v2:
+     - Include the missing increment of the iterator.  (Jonathan)
+    
+    Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
++ /mt/dim checkpatch 7ddeefa7a07703fa5bc377a25003af7bcff1532b drm-intel
+836d3c80c0c7 drm/xe/pmu: Fix GT sanity check in event_supported()
+cdc8434596c5 drm/xe: Export xe_step_name for kunit tests
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+  ERROR: modpost: "xe_step_name" [drivers/gpu/drm/xe/tests/xe_test.ko] undefined!
+
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+74dbe788159d drm/xe: Track maximum GTs per tile on a per-platform basis
+c5c4e35dffbc drm/xe/tests/pci: Ensure all platforms have a valid GT/tile count
+620bcf37575e drm/xe: Assign GT IDs properly on multi-tile + multi-GT platforms
+e2f6c657d399 drm/xe: Don't compare GT ID to GT count when determining valid GTs
+-:41: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#41: FILE: drivers/gpu/drm/xe/xe_device.h:131:
++	for ((id__) = 0; (id__) < (xe__)->info.tile_count * (xe__)->info.max_gt_per_tile; (id__)++) \
+
+total: 0 errors, 1 warnings, 0 checks, 50 lines checked
+6b7dab2f6347 drm/xe/xe_query: Use separate iterator while filling GT list
+
 
