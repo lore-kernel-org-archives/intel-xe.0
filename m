@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01FDFC7EE30
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 07:26:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3188C8302F
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 07:31:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7ECF10E514;
-	Tue,  1 Jul 2025 07:26:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E1C210E517;
+	Tue,  1 Jul 2025 07:31:40 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0E8E10E514;
- Tue,  1 Jul 2025 07:26:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4340180271830219180=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0DA010E517;
+ Tue,  1 Jul 2025 07:31:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_xe/uc=3A_PTL_firmware_defs_?=
- =?utf-8?q?+_recommendation_bump_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Future-proof_for_multi-ti?=
+ =?utf-8?q?le_+_multi-GT_cases_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Jul 2025 07:26:39 -0000
-Message-ID: <175135479978.122632.9166124161061308540@1538d3639d33>
+Date: Tue, 01 Jul 2025 07:31:38 -0000
+Message-ID: <175135509897.122633.2183495554930588349@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250626182805.1701096-9-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20250626182805.1701096-9-daniele.ceraolospurio@intel.com>
+References: <20250630173438.2342706-8-matthew.d.roper@intel.com>
+In-Reply-To: <20250630173438.2342706-8-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,56 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4340180271830219180==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: xe/uc: PTL firmware defs + recommendation bump (rev2)
-URL   : https://patchwork.freedesktop.org/series/150834/
-State : success
+Series: Future-proof for multi-tile + multi-GT cases (rev4)
+URL   : https://patchwork.freedesktop.org/series/150192/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3326-2180444bb7f18fb5bab882ad682a1f2f068e8535_BAT -> xe-pw-150834v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e20a6116a385364f1fad8374f25dbf8fb5391147
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Mon Jun 30 15:15:16 2025 -0700
 
-Summary
--------
+    drm/xe/xe_query: Use separate iterator while filling GT list
+    
+    The 'id' value updated by for_each_gt() is the uapi GT ID of the GTs
+    being iterated over, and may skip over values if a GT is not present on
+    the device.  Use a separate iterator for GT list array assignments to
+    ensure that the array will be filled properly on future platforms where
+    index in the GT query list may not match the uapi ID.
+    
+    v2:
+     - Include the missing increment of the iterator.  (Jonathan)
+    
+    Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch e6e27e79a726f8bf333d13521aba32f6466035a8 drm-intel
+b49c223441fd drm/xe: Export xe_step_name for kunit tests
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+  ERROR: modpost: "xe_step_name" [drivers/gpu/drm/xe/tests/xe_test.ko] undefined!
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+37a3f8ac3faa drm/xe: Track maximum GTs per tile on a per-platform basis
+36e930fe4fe0 drm/xe/tests/pci: Ensure all platforms have a valid GT/tile count
+4c4b7962bcee drm/xe: Assign GT IDs properly on multi-tile + multi-GT platforms
+bae9661d504f drm/xe: Don't compare GT ID to GT count when determining valid GTs
+-:41: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#41: FILE: drivers/gpu/drm/xe/xe_device.h:131:
++	for ((id__) = 0; (id__) < (xe__)->info.tile_count * (xe__)->info.max_gt_per_tile; (id__)++) \
 
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3326-2180444bb7f18fb5bab882ad682a1f2f068e8535 -> xe-pw-150834v2
-
-  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3326-2180444bb7f18fb5bab882ad682a1f2f068e8535: 2180444bb7f18fb5bab882ad682a1f2f068e8535
-  xe-pw-150834v2: 150834v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150834v2/index.html
-
---===============4340180271830219180==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 50 lines checked
+e20a6116a385 drm/xe/xe_query: Use separate iterator while filling GT list
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>xe/uc: PTL firmware defs + recommendation bump (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150834/">https://patchwork.freedesktop.org/series/150834/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150834v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150834v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3326-2180444bb7f18fb5bab882ad682a1f2f068e8535_BAT -&gt; xe-pw-150834v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3326-2180444bb7f18fb5bab882ad682a1f2f068e8535 -&gt; xe-pw-150834v2</li>
-</ul>
-<p>IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3326-2180444bb7f18fb5bab882ad682a1f2f068e8535: 2180444bb7f18fb5bab882ad682a1f2f068e8535<br />
-  xe-pw-150834v2: 150834v2</p>
-
-</body>
-</html>
-
---===============4340180271830219180==--
