@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C610AC8302F
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 03:09:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 601B2C83030
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 03:15:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 816F110E4E1;
-	Tue,  1 Jul 2025 03:09:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0355810E4E1;
+	Tue,  1 Jul 2025 03:15:04 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 183BE10E4E1;
- Tue,  1 Jul 2025 03:09:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7813504184412237376=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B99310E25D;
+ Tue,  1 Jul 2025 03:15:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Optimiz?=
- =?utf-8?q?e_panel_power-on_wait_time?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
+ =?utf-8?q?r_compression_modifiers_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Jul 2025 03:09:51 -0000
-Message-ID: <175133939107.122429.2483490787233144773@1538d3639d33>
+Date: Tue, 01 Jul 2025 03:15:02 -0000
+Message-ID: <175133970261.122429.1028484266895687272@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250630122339.3007880-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20250630122339.3007880-1-dibin.moolakadan.subrahmanian@intel.com>
+References: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250630124711.8209-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,197 +40,94 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7813504184412237376==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: Optimize panel power-on wait time
-URL   : https://patchwork.freedesktop.org/series/150958/
-State : success
+Series: AuxCCS handling and render compression modifiers (rev8)
+URL   : https://patchwork.freedesktop.org/series/144186/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86_BAT -> xe-pw-150958v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bf45724a0dd92a3cdb62584bfa927c6a1b4bf87d
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Mon Jun 30 13:47:10 2025 +0100
 
-Summary
--------
+    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+    
+    Now that we have fixed the DPT handling we can undo the nerf which was
+    done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+    built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+    
+    Display working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 2180444bb7f18fb5bab882ad682a1f2f068e8535 drm-intel
+f1f7697d019d drm/xe: Consolidate LRC offset calculations
+91a27d644345 drm/xe: Generalize wa bb emission code
+22f6d4da1790 drm/xe: Rename utilisation workaround emission function
+cd87097bc8fb drm/xe: Return number of written dwords from workaround batch buffer emission
+71405c9764f3 drm/xe: Allow specifying number of extra dwords at the end of wa bb emission
+b7c6a374b378 drm/xe: Add plumbing for indirect context workarounds
+de0341f1707b drm/xe/xelp: Implement Wa_16010904313
+2d849d755b16 drm/xe/xelp: Add Wa_18022495364
+eb0d5471da2e drm/xe: Use emit_flush_imm_ggtt helper instead of open coding
+287bf02bd992 drm/xe/xelpg: Flush CCS when flushing caches
+795b1360e872 drm/xe: Flush L3 when flushing render cache
+-:19: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#19: FILE: drivers/gpu/drm/xe/instructions/xe_gpu_commands.h:48:
++#define   PIPE_CONTROL_FLUSH_L3                         (1<<30)
+                                                           ^
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 1 checks, 23 lines checked
+68d7614b1dd5 drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+03b169db6175 drm/xe/xelp: Support auxccs invalidation on blitter
+2b85f30340a5 drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+45f9892200e4 drm/xe/xelp: Wait for AuxCCS invalidation to complete
+e6070aba6912 drm/xe/xelp: Add AuxCCS invalidation to the buffer migration path
+4ce320a495c5 drm/xe: Export xe_emit_aux_table_inv
+6872bbd62775 drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+c14c1280a23d drm/xe: Use fb cached min alignment
+64c5e6965734 drm/xe: Flush GGTT writes after populating DPT
+-:72: WARNING:MEMORY_BARRIER: memory barrier without comment
+#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:114:
++	wmb();
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+1d03158a56a6 drm/xe: Handle DPT in system memory
+f6eb0d023e41 drm/xe: Force flush system memory AuxCCS framebuffers before scan out
+6f738052998f drm/xe/display: Add support for AuxCCS
+bf45724a0dd9 drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#10: 
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
 
-  
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
 
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-New tests
----------
-
-  New tests have been introduced between xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86_BAT and xe-pw-150958v1_BAT:
-
-### New IGT tests (7) ###
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.13] s
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.15] s
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.09] s
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-d-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.09] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-a-dp-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.66] s
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.58] s
-
-  * igt@kms_pipe_crc_basic@read-crc@pipe-a-dp-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.60] s
-
-  
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8431 -> IGT_8432
-  * Linux: xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86 -> xe-pw-150958v1
-
-  IGT_8431: 8431
-  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86: d9007d535ea106181346f9988c97aa73a9cdfb86
-  xe-pw-150958v1: 150958v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v1/index.html
-
---===============7813504184412237376==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 1 warnings, 0 checks, 12 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Optimize panel power-on wait time</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150958/">https://patchwork.freedesktop.org/series/150958/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86_BAT -&gt; xe-pw-150958v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86_BAT and xe-pw-150958v1_BAT:</p>
-<h3>New IGT tests (7)</h3>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.13] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.15] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.09] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-d-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.09] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-a-dp-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.66] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.58] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc@pipe-a-dp-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.60] s</li>
-</ul>
-</li>
-</ul>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8431 -&gt; IGT_8432</li>
-<li>Linux: xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86 -&gt; xe-pw-150958v1</li>
-</ul>
-<p>IGT_8431: 8431<br />
-  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3325-d9007d535ea106181346f9988c97aa73a9cdfb86: d9007d535ea106181346f9988c97aa73a9cdfb86<br />
-  xe-pw-150958v1: 150958v1</p>
-
-</body>
-</html>
-
---===============7813504184412237376==--
