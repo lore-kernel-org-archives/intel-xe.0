@@ -4,69 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B21EC7EE30
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 12:55:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79E31C83038
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Jul 2025 12:56:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62A8C10E288;
-	Tue,  1 Jul 2025 12:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F9DA10E288;
+	Tue,  1 Jul 2025 12:56:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E3XnNBvb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="StgKtGEg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0607C10E288
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Jul 2025 12:55:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF91F10E288
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Jul 2025 12:56:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751374515; x=1782910515;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=+yY+3KSt3ynAhcXYbFssvIUhcWthWIfrF7Ct2jTDnvE=;
- b=E3XnNBvbwc5PMaWc6qqXuJQiGubgUQUNv0tA4bVkmzHlcTAghMvoWLqT
- dsHRC/GW+LzorjKGBaLSLFNL0drM7NnsrS6gTOLo/lXWpjzlLtNDV4etc
- OHyqtNLzKj+7Dt+V8WTOQIk9R0gEEGscZmSyF8ArETb1mkcUE81YnlE5Q
- 4U9fwVnQwdB75PUfmBthzaseVhTOCInfKQx9dvAUFUTvap0uKz1WgPr+s
- mReNnUuQzzA1Fh5oXgH74q5QH208v9Bkujh35tLgW1PZda7VZGgWx+uNp
- IBoZ7TV7fng7M4fmzHxP0E+hM2fJI9pnfa9vS/qDZjY79wuWcUzAdNLvw w==;
-X-CSE-ConnectionGUID: A+3PmmxARCqlZKqo5yGkqA==
-X-CSE-MsgGUID: H8fviiJ8RjanAqkboK0rhQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53508847"
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="53508847"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2025 05:55:14 -0700
-X-CSE-ConnectionGUID: Ttnvo9hlSQCNzeMQoACEKQ==
-X-CSE-MsgGUID: 1FfFZIGZQ+mRVtirxIX0NA==
+ t=1751374616; x=1782910616;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cuTU/YeZbDiaDWSbveRXnYLES5HIDl9LVZVfVSuPE9k=;
+ b=StgKtGEgJcF59CTGYtEfrjoy9qAno02433x/Pg1bygCFwuiqvZQoOGrf
+ GRAAoR0Lxa9rKqWKd4TCLOw+1xABfvC5Xlljz8BYms8SDKaoFxD6lpt2X
+ QLfH9Ltp/nNm5vf5z183PTuyloVP8qdBftRzr7pcz0p+ZjZS0JNXyM2GI
+ dS12fpmLunVtiuMo45NBP1gggajJdDDmZuufD3LtWePQsmpwDVRXWMk9p
+ ZPH3K198iuf+HnzKDlKBEWNV7eSBS5+qTPyII51OESSEvida+6muj3jhq
+ fh6cL2fjNPRADNRu+tHoultLT6M0b9Riyi04dAhBtO2zPQccCWKmEgwpX g==;
+X-CSE-ConnectionGUID: /p9/IexsTzq6kvv3vi8pOg==
+X-CSE-MsgGUID: kVCpQz9pSXyhsvh1Kc7xKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53745194"
+X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="53745194"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2025 05:56:55 -0700
+X-CSE-ConnectionGUID: ypQWTdTgSomv4+Nepg3aHQ==
+X-CSE-MsgGUID: MF2KqlGLSpG1Yp7JcRIWXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="154081383"
-Received: from kuha.fi.intel.com ([10.237.72.152])
- by fmviesa009.fm.intel.com with SMTP; 01 Jul 2025 05:55:09 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Tue, 01 Jul 2025 15:55:08 +0300
-Date: Tue, 1 Jul 2025 15:55:08 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>, Andi Shyti <andi.shyti@kernel.org>,
- Raag Jadav <raag.jadav@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>,
- "Adatrao, Srinivasa" <srinivasa.adatrao@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/5] i2c: designware: Use polling by default when
- there is no irq resource
-Message-ID: <aGParHQ3GSdAA8rL@kuha.fi.intel.com>
-References: <20250701122252.2590230-1-heikki.krogerus@linux.intel.com>
- <20250701122252.2590230-2-heikki.krogerus@linux.intel.com>
- <aGPXwll6Hh2cZfnp@smile.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="153236547"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.96.176])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2025 05:56:54 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v3 0/7] Relax VF/PF version negotiation
+Date: Tue,  1 Jul 2025 14:56:39 +0200
+Message-Id: <20250701125646.1568-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aGPXwll6Hh2cZfnp@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,53 +65,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 01, 2025 at 03:42:42PM +0300, Andy Shevchenko wrote:
-> On Tue, Jul 01, 2025 at 03:22:48PM +0300, Heikki Krogerus wrote:
-> > The irq resource itself can be used as a generic way to
-> > determine when polling is needed.
-> > 
-> > This not only removes the need for special additional device
-> > properties that would soon be needed when the platform may
-> > or may not have the irq, but it also removes the need to
-> > check the platform in the first place in order to determine
-> > is polling needed or not.
-> 
-> > Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> > ---
-> > Hi guys,
-> > 
-> > I found the thread with Jarkko's comments from my archives. He wanted
-> > the local flags variable to be added because he wants the order of the
-> > calls to remain as it is now - the device is allocated only after the
-> > irq is checked.
-> 
-> Yes, thanks.
-> 
-> ...
-> 
-> > +	u32 flags = (uintptr_t)device_get_match_data(&pdev->dev);
-> 
-> > +	irq = platform_get_irq_optional(pdev, 0);
-> > +	if (irq == -ENXIO)
-> > +		flags |= ACCESS_POLLING;
-> > +	else if (irq < 0)
-> >  		return irq;
-> 
-> >  	if (device_property_present(device, "wx,i2c-snps-model"))
-> > +		flags = MODEL_WANGXUN_SP | ACCESS_POLLING;
-> 
-> Now I'm a bit puzzled why do we need to add this flag explicitly here?
-> Does Wnagxun provides an IRQ and chooses at the same time to poll?
-> Shouldn't this patch rather fix that?
+It was clarified by the arch team that initial version negotiation
+can be done by the VF just once, by using any available GuC/GT.
 
-No. I do not want to touch the behavior here. The flags were
-overwritten and continue to be overwritten.
+v1: https://patchwork.freedesktop.org/series/150711/#rev1
+v2: https://patchwork.freedesktop.org/series/150711/#rev2
+ - don't WARN on missed mandatory print func (Piotr)
+ - use gt_is_main/tile_is_root helpers (Piotr)
+ - drop leftover test include (Piotr)
+ - add more asserts (Piotr)
+v3: rebased
 
-I will propose an improvement for that together with some other
-modifications to this file later, but those are out side the scope of
-this series.
+Michal Wajdeczko (7):
+  drm/xe: Combine PF and VF device data into union
+  drm/xe: Move PF and VF device types to separate headers
+  drm/xe: Introduce xe_tile_is_root helper
+  drm/xe: Introduce xe_gt_is_main_type helper
+  drm/xe/pf: Expose basic info about VFs in debugfs
+  drm/xe/pf: Stop requiring VF/PF version negotiation on every GT
+  drm/xe/vf: Store negotiated VF/PF ABI version at device level
 
-thanks,
+ drivers/gpu/drm/xe/Makefile                   |   3 +-
+ .../xe/tests/xe_gt_sriov_pf_service_test.c    | 232 ------------------
+ .../drm/xe/tests/xe_sriov_pf_service_kunit.c  | 227 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_bb.c                    |   2 +-
+ drivers/gpu/drm/xe/xe_debugfs.c               |   4 +
+ drivers/gpu/drm/xe/xe_device.h                |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h          |  12 +-
+ drivers/gpu/drm/xe/xe_force_wake.c            |   2 +-
+ drivers/gpu/drm/xe/xe_gsc_proxy.c             |   2 +-
+ drivers/gpu/drm/xe/xe_gt.c                    |  12 +-
+ drivers/gpu/drm/xe/xe_gt.h                    |   5 +
+ drivers/gpu/drm/xe/xe_gt_idle.c               |   2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  30 +--
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c   |   6 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |   9 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c   | 166 +------------
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h   |   2 -
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |  34 +--
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h     |  12 -
+ drivers/gpu/drm/xe/xe_irq.c                   |   6 +-
+ drivers/gpu/drm/xe/xe_oa.c                    |   6 +-
+ drivers/gpu/drm/xe/xe_sriov_pf.c              |  61 ++++-
+ drivers/gpu/drm/xe/xe_sriov_pf.h              |   6 +
+ drivers/gpu/drm/xe/xe_sriov_pf_service.c      | 216 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_service.h      |  23 ++
+ .../gpu/drm/xe/xe_sriov_pf_service_types.h    |  36 +++
+ drivers/gpu/drm/xe/xe_sriov_pf_types.h        |  45 ++++
+ drivers/gpu/drm/xe/xe_sriov_types.h           |  36 ---
+ drivers/gpu/drm/xe/xe_sriov_vf_types.h        |  41 ++++
+ 29 files changed, 740 insertions(+), 503 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_types.h
 
 -- 
-heikki
+2.47.1
+
