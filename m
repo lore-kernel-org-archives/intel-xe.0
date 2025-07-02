@@ -4,64 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79598C8303C
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 21:29:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B545CC8303C
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 21:33:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33D6710E0B1;
-	Wed,  2 Jul 2025 21:29:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7615510E764;
+	Wed,  2 Jul 2025 21:33:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PjhXcPNu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GUKPTYMj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35C7510E0B1;
- Wed,  2 Jul 2025 21:29:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ACFF10E764
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 21:33:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751491783; x=1783027783;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=qGZLQ4lwHYpahuqhKTKlGW/UjrVgli2lynXGh7kgM1M=;
- b=PjhXcPNusyx2l3eHvjQn6+Mb739j16SI6sKac8HusnQ9vJTiRTM4BGMJ
- VuihctUEPdecl2PyLgqa+ifqg9S/Mmu/vhHm3LncNjlxBv+oFLOV+V69l
- sJgrH+sWZ3y+PxfdlGAGopIiVrBFrdoozYMnyEDQAyA+dKvyAQlGB7w3/
- uucfBz/KiBt9zKcCXefyMpok1LP/4TobouRPnchvWg77cVOYQ+f7gOSxf
- 3k+CFTr6wsirjMTK9kL3CEEhxuC9pBHX8V0QL7Dmyl2nDR48A1QGA9MfC
- dxoxM8JT4Tsl9N2ttyEOiMJxMVeHHhIWwtnulXox+0vlxNNCkOvTbA42u w==;
-X-CSE-ConnectionGUID: kG2ERVlRRASqBG9ddmCyQQ==
-X-CSE-MsgGUID: 916f/xLrSAua7XN3mGRpUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="53916359"
-X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="53916359"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 14:29:42 -0700
-X-CSE-ConnectionGUID: VUP3VsBmRHmwQsoUo+Lqxw==
-X-CSE-MsgGUID: d48LDm47RwuJLvumahN6Rw==
+ t=1751492016; x=1783028016;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bM8Ilm7zlLz4nyOQVQ0rFWngJaEftRUsX+Vdg/DZhmY=;
+ b=GUKPTYMjtvK6BM4x4oT6cO3m21cWfNWm+jDTS1d1OY5KIYzNdZxarby4
+ bSYcH+wS0kZoWe3wGuuQH7MUOwHhoES79+RKct7LD6HrPZEnZjWcMI+rN
+ ktS2//mCxmlfAfg7UMKL3pEsgFSj1VPafa+zxihvM/4eaSB7pSfd4rzOQ
+ HN7WVLdID5+hU44/VUFxg+wL9yNWOG/F0TLHac5dJPRuEXmzYSeL/x1Gy
+ 1nuQqIp6fupWYKE3NmkaZL68oez/cqZAYjuuZsLxka/ByxRJnBY2rLRqv
+ SoXvTO8aWmMVOwuyRbnSFZNw/OLXvTh2ugdiS80on354qMZ++7rSlFuMJ w==;
+X-CSE-ConnectionGUID: wavojf4bR4avVUy2OAy5+w==
+X-CSE-MsgGUID: Jfs8kohiTQmF4NkrOkw1GA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="64049794"
+X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="64049794"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 14:33:35 -0700
+X-CSE-ConnectionGUID: 8LMnPBsSQmyiHKX1mriYVA==
+X-CSE-MsgGUID: cB3GfCdxT62gX/Rgz21c6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="159875632"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.30])
- by orviesa005.jf.intel.com with SMTP; 02 Jul 2025 14:29:39 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 03 Jul 2025 00:29:37 +0300
-Date: Thu, 3 Jul 2025 00:29:37 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, gustavo.sousa@intel.com,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH 1/2] drm/i915/display_wa: Add helpers to check wa
-Message-ID: <aGWkwQZB_hSsjgQ4@intel.com>
-References: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
- <20250702084620.3837426-2-ankit.k.nautiyal@intel.com>
- <aGWLMinfzWd9IkFJ@intel.com>
- <fsyfxqbrzc5zogoyqew6xs7frdosjeewl4wj43yrduaetzdtlf@wm5utoxy2xeh>
+X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="153637921"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 14:33:33 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: francois.dugast@intel.com
+Subject: [PATCH] drm/xe: Allocate PF queue size on pow2 boundary
+Date: Wed,  2 Jul 2025 14:35:11 -0700
+Message-Id: <20250702213511.3226167-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <fsyfxqbrzc5zogoyqew6xs7frdosjeewl4wj43yrduaetzdtlf@wm5utoxy2xeh>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,99 +64,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jul 02, 2025 at 03:25:21PM -0500, Lucas De Marchi wrote:
-> On Wed, Jul 02, 2025 at 10:40:34PM +0300, Ville Syrjälä wrote:
-> >On Wed, Jul 02, 2025 at 02:16:18PM +0530, Ankit Nautiyal wrote:
-> >> Introduce a generic helper to check display workarounds using an enum.
-> >>
-> >> Convert Wa_16023588340 to use the new interface, simplifying WA checks
-> >> and making future additions easier.
-> >>
-> >> v2: Use drm_WARN instead of MISSING_CASE and simplify intel_display_wa
-> >> macro. (Jani)
-> >>
-> >> Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_display_wa.c | 15 +++++++++++++++
-> >>  drivers/gpu/drm/i915/display/intel_display_wa.h |  9 +++++++++
-> >>  drivers/gpu/drm/i915/display/intel_fbc.c        |  2 +-
-> >>  3 files changed, 25 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> >> index f57280e9d041..f5e8d58d9a68 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> >> @@ -3,6 +3,8 @@
-> >>   * Copyright © 2023 Intel Corporation
-> >>   */
-> >>
-> >> +#include "drm/drm_print.h"
-> >> +
-> >>  #include "i915_reg.h"
-> >>  #include "intel_de.h"
-> >>  #include "intel_display_core.h"
-> >> @@ -39,3 +41,16 @@ void intel_display_wa_apply(struct intel_display *display)
-> >>  	else if (DISPLAY_VER(display) == 11)
-> >>  		gen11_display_wa_apply(display);
-> >>  }
-> >> +
-> >> +bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa)
-> >> +{
-> >> +	switch (wa) {
-> >> +	case INTEL_DISPLAY_WA_16023588340:
-> >> +		return intel_display_needs_wa_16023588340(display);
-> >> +	default:
-> >> +		drm_WARN(display->drm, 1, "Missing Wa number: %d\n", wa);
-> >> +		break;
-> >> +	}
-> >> +
-> >> +	return false;
-> >> +}
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> >> index babd9d16603d..146ee70d66f7 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> >> @@ -21,4 +21,13 @@ static inline bool intel_display_needs_wa_16023588340(struct intel_display *disp
-> >>  bool intel_display_needs_wa_16023588340(struct intel_display *display);
-> >>  #endif
-> >>
-> >> +enum intel_display_wa {
-> >> +	INTEL_DISPLAY_WA_16023588340,
-> >
-> >How is anyone supposed to keep track of these random numbers
-> >and what they mean?
-> 
-> they mean there's a h/w workaround that requires that and this is the id
-> if you need to find more details about it or what platforms/IPs use
-> that.
+CIRC_SPACE does not work unless the size argument is a power of 2,
+allocate PF queue size on power of 2 boundary.
 
-I don't want to go look up all the details in the common case.
-I just want to read the code and see that it generally makes
-sense without having to trawl through the spec/hsd for an
-hour every time.
+Cc: stable@vger.kernel.org
+Fixes: 3338e4f90c14 ("drm/xe: Use topology to determine page fault queue size")
+Fixes: 29582e0ea75c ("drm/xe: Add page queue multiplier")
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-> 
-> >
-> >The only time I want to see these numbers is if I really have to
-> >open the spec/hsd for it to double check some details. Othwerwise
-> >it just seems like pointless noise that makes it harder to follow
-> >the code/figure out what the heck is going on.
-> 
-> what is the alternative? The current status quo checking by platform
-> and/or IP version, dissociated from the WA numbers?
-
-I find it easiest if everything is in one place. I think every
-w/a generally should have these:
-- which hardware is affected
-- what other runtime conditions are required to hit the issue
-- what is being done to avoid the issue
-- a short human readable explanation of the issue
-- the w/a number for looking up futher details
-
-Splitting it all up into random bits and pieces just means more
-jumping around all the time, which I find annoying at best.
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 3522865c67c9..5a75d56d8558 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -419,6 +419,7 @@ static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
+ #define PF_MULTIPLIER	8
+ 	pf_queue->num_dw =
+ 		(num_eus + XE_NUM_HW_ENGINES) * PF_MSG_LEN_DW * PF_MULTIPLIER;
++	pf_queue->num_dw = roundup_pow_of_two(pf_queue->num_dw);
+ #undef PF_MULTIPLIER
+ 
+ 	pf_queue->gt = gt;
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
