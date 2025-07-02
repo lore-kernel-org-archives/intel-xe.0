@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 429DEC7EE30
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 09:29:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65611C7EE30
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 09:30:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75B3010E671;
-	Wed,  2 Jul 2025 09:29:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CGaAEAiJ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB17B10E070;
- Wed,  2 Jul 2025 09:29:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751448562; x=1782984562;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=1t5qCkUmvwdVE/CwWvq+JZiX08/MVXkGddQ1AvMhmJ4=;
- b=CGaAEAiJgouX4YnanEYbQa6ynfcre1Q5Rd5QC705pas1eE6aZ8TvSfdt
- wZSK0QXT52VuxYaeRKTu4w0dKPzyoz8Stblxsyn6LmkY62LUOUHXJ9pY4
- iP56J3M+ZqWB9g+aqK++OJ+nA5DIncprwRU9xB7z62qw951Cl09NwtvME
- 9zQ038JSAKRloKYA1f9G+adyu7NP1WlIccyKs6Q93PmmKEHkab+UJ10OS
- Ih1p+KS/cmVfu1jyLfnZo2s2wkZo5idk0vcdUjtLALtA5uoVr+5dcz32H
- HAWIQPkm2bleY44BnwPSjUgIIFZ777RQ+Wkrp3MR2Cjm6ryxq7KqKTOr9 w==;
-X-CSE-ConnectionGUID: iCBy7r3/TYuLqo9uWj/BLw==
-X-CSE-MsgGUID: spOp8ghDT8SsALNruVuhYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53451137"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="53451137"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 02:29:17 -0700
-X-CSE-ConnectionGUID: XgCqnSoKTKuUIRrVk6Ma2w==
-X-CSE-MsgGUID: nRYl0kXBS+62irG7KIgrwQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="159730692"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.29])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 02:29:10 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, gustavo.sousa@intel.com, Ankit Nautiyal
- <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 1/2] drm/i915/display_wa: Add helpers to check wa
-In-Reply-To: <20250702084620.3837426-2-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
- <20250702084620.3837426-2-ankit.k.nautiyal@intel.com>
-Date: Wed, 02 Jul 2025 12:29:05 +0300
-Message-ID: <3629b8ed33726fffd08182fa8d91c9464b0b26a0@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1094810E671;
+	Wed,  2 Jul 2025 09:30:36 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE33E10E671;
+ Wed,  2 Jul 2025 09:30:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1141753650761122538=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Cleaning_up_code_related_to?=
+ =?utf-8?q?_VRAM_regions_and_its_initialization_-_part_2_=28rev11=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Jul 2025 09:30:34 -0000
+Message-ID: <175144863477.127473.9675343945504089812@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250702084424.3609863-1-piotr.piorkowski@intel.com>
+In-Reply-To: <20250702084424.3609863-1-piotr.piorkowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,104 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 02 Jul 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Introduce a generic helper to check display workarounds using an enum.
->
-> Convert Wa_16023588340 to use the new interface, simplifying WA checks
-> and making future additions easier.
->
-> v2: Use drm_WARN instead of MISSING_CASE and simplify intel_display_wa
-> macro. (Jani)
->
-> Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_wa.c | 15 +++++++++++++++
->  drivers/gpu/drm/i915/display/intel_display_wa.h |  9 +++++++++
->  drivers/gpu/drm/i915/display/intel_fbc.c        |  2 +-
->  3 files changed, 25 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gp=
-u/drm/i915/display/intel_display_wa.c
-> index f57280e9d041..f5e8d58d9a68 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> @@ -3,6 +3,8 @@
->   * Copyright =C2=A9 2023 Intel Corporation
->   */
->=20=20
-> +#include "drm/drm_print.h"
+--===============1141753650761122538==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The headers in include/ are always included with <>,
-i.e. <drm/drm_print.h>.
+== Series Details ==
 
-With that,
+Series: Cleaning up code related to VRAM regions and its initialization - part 2 (rev11)
+URL   : https://patchwork.freedesktop.org/series/149503/
+State : success
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+== Summary ==
+
+CI Bug Log - changes from xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd_BAT -> xe-pw-149503v11_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
-> +
->  #include "i915_reg.h"
->  #include "intel_de.h"
->  #include "intel_display_core.h"
-> @@ -39,3 +41,16 @@ void intel_display_wa_apply(struct intel_display *disp=
-lay)
->  	else if (DISPLAY_VER(display) =3D=3D 11)
->  		gen11_display_wa_apply(display);
->  }
-> +
-> +bool __intel_display_wa(struct intel_display *display, enum intel_displa=
-y_wa wa)
-> +{
-> +	switch (wa) {
-> +	case INTEL_DISPLAY_WA_16023588340:
-> +		return intel_display_needs_wa_16023588340(display);
-> +	default:
-> +		drm_WARN(display->drm, 1, "Missing Wa number: %d\n", wa);
-> +		break;
-> +	}
-> +
-> +	return false;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gp=
-u/drm/i915/display/intel_display_wa.h
-> index babd9d16603d..146ee70d66f7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> @@ -21,4 +21,13 @@ static inline bool intel_display_needs_wa_16023588340(=
-struct intel_display *disp
->  bool intel_display_needs_wa_16023588340(struct intel_display *display);
->  #endif
->=20=20
-> +enum intel_display_wa {
-> +	INTEL_DISPLAY_WA_16023588340,
-> +};
-> +
-> +bool __intel_display_wa(struct intel_display *display, enum intel_displa=
-y_wa wa);
-> +
-> +#define intel_display_wa(__display, __wa) \
-> +	__intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa)
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index 6e26cb4c5724..e2e03af520b2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -1464,7 +1464,7 @@ static int intel_fbc_check_plane(struct intel_atomi=
-c_state *state,
->  		return 0;
->  	}
->=20=20
-> -	if (intel_display_needs_wa_16023588340(display)) {
-> +	if (intel_display_wa(display, 16023588340)) {
->  		plane_state->no_fbc_reason =3D "Wa_16023588340";
->  		return 0;
->  	}
+Changes
+-------
 
---=20
-Jani Nikula, Intel
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd -> xe-pw-149503v11
+
+  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd: 149b15e02e6496a37621cd5bf8a28f7d8c1869cd
+  xe-pw-149503v11: 149503v11
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v11/index.html
+
+--===============1141753650761122538==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Cleaning up code related to VRAM regions and its initialization - part 2 (rev11)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149503/">https://patchwork.freedesktop.org/series/149503/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v11/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v11/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd_BAT -&gt; xe-pw-149503v11_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd -&gt; xe-pw-149503v11</li>
+</ul>
+<p>IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd: 149b15e02e6496a37621cd5bf8a28f7d8c1869cd<br />
+  xe-pw-149503v11: 149503v11</p>
+
+</body>
+</html>
+
+--===============1141753650761122538==--
