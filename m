@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EAE0C7EE30
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 10:24:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A8F9C83013
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 10:25:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30E0E10E320;
-	Wed,  2 Jul 2025 10:24:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EED310E6CA;
+	Wed,  2 Jul 2025 10:25:15 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F34AB10E320;
- Wed,  2 Jul 2025 10:24:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9706B10E320;
+ Wed,  2 Jul 2025 10:25:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Plane_Color_Pipeline_supp?=
- =?utf-8?q?ort_for_Intel_platforms_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_Plane_Color_Pipeline_support_f?=
+ =?utf-8?q?or_Intel_platforms_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Shankar, Uma" <uma.shankar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Jul 2025 10:24:03 -0000
-Message-ID: <175145184399.127473.4701099547201620986@1538d3639d33>
+Date: Wed, 02 Jul 2025 10:25:13 -0000
+Message-ID: <175145191361.127473.2690146485432344901@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250702091936.3004854-1-uma.shankar@intel.com>
 In-Reply-To: <20250702091936.3004854-1-uma.shankar@intel.com>
@@ -44,986 +44,1203 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Plane Color Pipeline support for Intel platforms (rev4)
 URL   : https://patchwork.freedesktop.org/series/141788/
-State : warning
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-f8ff75ae1d2127635239b134695774ed4045d05b
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit cbf896bafe1ccc52440a3dae4d973890a201328a
-Author: Uma Shankar <uma.shankar@intel.com>
-Date:   Wed Jul 2 14:49:36 2025 +0530
-
-    drm/doc/rfc: Add documentation for multi-segmented 1D LUT
-    
-    Add documentation to explain properties of the exposed hardware
-    1D LUT blocks, its identification and computation of the LUT samples
-    based on the number of samples, their distribution and precison.
-    
-    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-    Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-+ /mt/dim checkpatch b8e85a966e982941b8c00783d4d45bfdcdcff768 drm-intel
-65dd1b112abb drm: AMD series squashed
--:49: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#49: 
-new file mode 100644
-
--:681: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#681: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:526:
-+	uint32_t r, g, b;
-
--:740: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "gamma"
-#740: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:730:
-+							 gamma, gamma != NULL);
-
--:748: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "gamma"
-#748: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:738:
-+		res = mod_color_calculate_regamma_params(func, gamma, gamma != NULL,
-
--:758: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#758: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:748:
-+
-+
-
--:794: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "gamma"
-#794: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:850:
-+	res = mod_color_calculate_degamma_params(caps, func, gamma, gamma != NULL);
-
--:844: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#844: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:968:
-+				       uint32_t lut3d_size,
-
--:855: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#855: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:979:
-+
-+
-
--:896: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#896: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1429:
-+__set_colorop_in_tf_1d_curve(struct dc_plane_state *dc_plane_state,
-+		       struct drm_colorop_state *colorop_state)
-
--:976: CHECK:SPACING: No space is necessary after a cast
-#976: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1509:
-+			ctm = blob ? (struct drm_color_ctm_3x4 *) blob->data : NULL;
-
--:1032: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#1032: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1565:
-+	uint32_t shaper_size;
-
--:1048: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#1048: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1581:
-+		tf->tf = default_tf = amdgpu_colorop_tf_to_dc_tf(colorop_state->curve_1d_type);
-
--:1078: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "shaper_lut"
-#1078: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1611:
-+		shaper_size = shaper_lut != NULL ? shaper_size : 0;
-
--:1104: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#1104: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1637:
-+				uint32_t drm_lut3d_size,
-
--:1120: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#1120: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1653:
-+
-+}
-
--:1134: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#1134: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1667:
-+	uint32_t lut3d_size;
-
--:1155: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "lut3d"
-#1155: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1688:
-+		lut3d_size = lut3d != NULL ? lut3d_size : 0;
-
--:1184: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#1184: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1717:
-+	uint32_t blend_size;
-
--:1201: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#1201: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1734:
-+		tf->tf = default_tf = amdgpu_colorop_tf_to_dc_tf(colorop_state->curve_1d_type);
-
--:1229: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "blend_lut"
-#1229: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1762:
-+		blend_size = blend_lut != NULL ? blend_size : 0;
-
--:1248: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1248: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1824:
-+amdgpu_dm_plane_set_colorop_properties(struct drm_plane_state *plane_state,
-+		       struct dc_plane_state *dc_plane_state)
-
--:1416: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
-#1416: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:66:
-+	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
-
--:1434: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
-#1434: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:84:
-+	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
-
--:1444: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#1444: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:94:
-+	drm_colorop_set_next_property(ops[i-1], ops[i]);
- 	                                   ^
-
--:1449: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
-#1449: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:99:
-+	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
-
--:1459: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#1459: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:109:
-+	drm_colorop_set_next_property(ops[i-1], ops[i]);
- 	                                   ^
-
--:1465: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
-#1465: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:115:
-+		ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
-
--:1472: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1472: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:122:
-+		ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane,
-+						amdgpu_dm_supported_shaper_tfs,
-
--:1477: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#1477: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:127:
-+		drm_colorop_set_next_property(ops[i-1], ops[i]);
- 		                                   ^
-
--:1482: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
-#1482: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:132:
-+		ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
-
--:1489: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1489: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:139:
-+		ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, MAX_COLOR_LUT_ENTRIES,
-+							DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-
--:1494: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#1494: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:144:
-+		drm_colorop_set_next_property(ops[i-1], ops[i]);
- 		                                   ^
-
--:1499: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
-#1499: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:149:
-+		ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
-
--:1506: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1506: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:156:
-+		ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane, LUT3D_SIZE,
-+					DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
-
--:1511: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#1511: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:161:
-+		drm_colorop_set_next_property(ops[i-1], ops[i]);
- 		                                   ^
-
--:1516: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
-#1516: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:166:
-+	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
-
--:1528: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#1528: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:178:
-+	drm_colorop_set_next_property(ops[i-1], ops[i]);
- 	                                   ^
-
--:1533: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
-#1533: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:183:
-+	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
-
--:1545: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#1545: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:195:
-+	drm_colorop_set_next_property(ops[i-1], ops[i]);
- 	                                   ^
-
--:1667: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around pipelines[len]
-#1667: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c:1805:
-+		ret = amdgpu_dm_initialize_default_pipeline(plane, &(pipelines[len]));
-
--:1753: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#1753: FILE: drivers/gpu/drm/drm_atomic.c:591:
- 
-+
-
--:1810: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#1810: FILE: drivers/gpu/drm/drm_atomic.c:780:
- 
-+
-
--:1813: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1813: FILE: drivers/gpu/drm/drm_atomic.c:783:
-+static void drm_atomic_colorop_print_state(struct drm_printer *p,
-+		const struct drm_colorop_state *state)
-
--:2003: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#2003: FILE: drivers/gpu/drm/drm_atomic_uapi.c:261:
- 
-+
-
--:2032: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#2032: FILE: drivers/gpu/drm/drm_atomic_uapi.c:290:
-+
-+
-
--:2119: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2119: FILE: drivers/gpu/drm/drm_atomic_uapi.c:740:
-+static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
-+		struct drm_colorop_state *state, struct drm_file *file_priv,
-
--:2148: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2148: FILE: drivers/gpu/drm/drm_atomic_uapi.c:769:
-+drm_atomic_colorop_get_property(struct drm_colorop *colorop,
-+		const struct drm_colorop_state *state,
-
--:2151: WARNING:BRACES: braces {} are not necessary for any arm of this statement
-#2151: FILE: drivers/gpu/drm/drm_atomic_uapi.c:772:
-+	if (property == colorop->type_property) {
-[...]
-+	} else if (property == colorop->bypass_property) {
-[...]
-+	} else if (property == colorop->lut1d_interpolation_property) {
-[...]
-+	} else if (property == colorop->curve_1d_type_property) {
-[...]
-+	} else if (property == colorop->multiplier_property) {
-[...]
-+	} else if (property == colorop->lut_size_property) {
-[...]
-+	} else if (property == colorop->lut3d_interpolation_property) {
-[...]
-+	} else if (property == colorop->data_property) {
-[...]
-+	} else {
-[...]
-
--:2188: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2188: FILE: drivers/gpu/drm/drm_atomic_uapi.c:1068:
-+		ret = drm_atomic_colorop_get_property(colorop,
-+				colorop->state, property, val);
-
--:2218: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2218: FILE: drivers/gpu/drm/drm_atomic_uapi.c:1287:
-+		ret = drm_atomic_colorop_set_property(colorop,
-+				colorop_state, file_priv,
-
--:2373: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#2373: FILE: drivers/gpu/drm/drm_colorop.c:86:
-+
-+
-
--:2381: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2381: FILE: drivers/gpu/drm/drm_colorop.c:94:
-+static int drm_plane_colorop_init(struct drm_device *dev, struct drm_colorop *colorop,
-+			    struct drm_plane *plane, enum drm_colorop_type type, uint32_t flags)
-
--:2426: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2426: FILE: drivers/gpu/drm/drm_colorop.c:139:
-+		drm_object_attach_property(&colorop->base,
-+					colorop->bypass_property,
-
--:2535: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#2535: FILE: drivers/gpu/drm/drm_colorop.c:248:
-+
-+
-
--:2583: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#2583: FILE: drivers/gpu/drm/drm_colorop.c:296:
-+					enum drm_colorop_lut1d_interpolation_type lut1d_interpolation,
-
--:2679: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#2679: FILE: drivers/gpu/drm/drm_colorop.c:392:
-+				 uint32_t lut_size,
-
--:2748: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#2748: FILE: drivers/gpu/drm/drm_colorop.c:461:
-+
-+
-
--:2773: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2773: FILE: drivers/gpu/drm/drm_colorop.c:486:
-+		drm_object_property_get_default_value(&colorop->base,
-+						colorop->curve_1d_type_property,
-
--:3479: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#3479: FILE: drivers/gpu/drm/vkms/tests/vkms_color_test.c:344:
-+
-+
-
--:3554: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#3554: FILE: drivers/gpu/drm/vkms/tests/vkms_color_test.c:419:
-+
-+
-
--:3574: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#3574: FILE: drivers/gpu/drm/vkms/tests/vkms_color_test.c:439:
-+
-+}
-
--:3629: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
-#3629: FILE: drivers/gpu/drm/vkms/vkms_colorop.c:29:
-+	if (!ops[i]) {
-+		drm_err(dev, "KMS: Failed to allocate colorop\n");
-
--:3647: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
-#3647: FILE: drivers/gpu/drm/vkms/vkms_colorop.c:47:
-+	if (!ops[i]) {
-+		drm_err(dev, "KMS: Failed to allocate colorop\n");
-
--:3663: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
-#3663: FILE: drivers/gpu/drm/vkms/vkms_colorop.c:63:
-+	if (!ops[i]) {
-+		drm_err(dev, "KMS: Failed to allocate colorop\n");
-
--:3679: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
-#3679: FILE: drivers/gpu/drm/vkms/vkms_colorop.c:79:
-+	if (!ops[i]) {
-+		drm_err(dev, "KMS: Failed to allocate colorop\n");
-
--:3842: CHECK:SPACING: No space is necessary after a cast
-#3842: FILE: drivers/gpu/drm/vkms/vkms_composer.c:188:
-+					 (struct drm_color_ctm_3x4 *) colorop_state->data->data);
-
--:4883: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#4883: FILE: include/drm/drm_atomic.h:779:
-+drm_atomic_get_old_colorop_state(struct drm_atomic_state *state,
-+			       struct drm_colorop *colorop)
-
--:4898: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#4898: FILE: include/drm/drm_atomic.h:794:
-+drm_atomic_get_new_colorop_state(struct drm_atomic_state *state,
-+			       struct drm_colorop *colorop)
-
--:4932: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#4932: FILE: include/drm/drm_atomic.h:1061:
-+#define for_each_oldnew_colorop_in_state(__state, colorop, old_colorop_state, new_colorop_state, __i) \
-
--:4932: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#4932: FILE: include/drm/drm_atomic.h:1061:
-+#define for_each_oldnew_colorop_in_state(__state, colorop, old_colorop_state, new_colorop_state, __i) \
-+	for ((__i) = 0;							\
-+	     (__i) < (__state)->dev->mode_config.num_colorop;		\
-+	     (__i)++)							\
-+		for_each_if ((__state)->colorops[__i].ptr &&		\
-+			     ((colorop) = (__state)->colorops[__i].ptr,	\
-+			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
-+			      (old_colorop_state) = (__state)->colorops[__i].old_state,\
-+			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:4932: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
-#4932: FILE: include/drm/drm_atomic.h:1061:
-+#define for_each_oldnew_colorop_in_state(__state, colorop, old_colorop_state, new_colorop_state, __i) \
-+	for ((__i) = 0;							\
-+	     (__i) < (__state)->dev->mode_config.num_colorop;		\
-+	     (__i)++)							\
-+		for_each_if ((__state)->colorops[__i].ptr &&		\
-+			     ((colorop) = (__state)->colorops[__i].ptr,	\
-+			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
-+			      (old_colorop_state) = (__state)->colorops[__i].old_state,\
-+			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
-
--:4932: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'colorop' - possible side-effects?
-#4932: FILE: include/drm/drm_atomic.h:1061:
-+#define for_each_oldnew_colorop_in_state(__state, colorop, old_colorop_state, new_colorop_state, __i) \
-+	for ((__i) = 0;							\
-+	     (__i) < (__state)->dev->mode_config.num_colorop;		\
-+	     (__i)++)							\
-+		for_each_if ((__state)->colorops[__i].ptr &&		\
-+			     ((colorop) = (__state)->colorops[__i].ptr,	\
-+			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
-+			      (old_colorop_state) = (__state)->colorops[__i].old_state,\
-+			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
-
--:4932: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
-#4932: FILE: include/drm/drm_atomic.h:1061:
-+#define for_each_oldnew_colorop_in_state(__state, colorop, old_colorop_state, new_colorop_state, __i) \
-+	for ((__i) = 0;							\
-+	     (__i) < (__state)->dev->mode_config.num_colorop;		\
-+	     (__i)++)							\
-+		for_each_if ((__state)->colorops[__i].ptr &&		\
-+			     ((colorop) = (__state)->colorops[__i].ptr,	\
-+			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
-+			      (old_colorop_state) = (__state)->colorops[__i].old_state,\
-+			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
-
--:4936: WARNING:SPACING: space prohibited between function name and open parenthesis '('
-#4936: FILE: include/drm/drm_atomic.h:1065:
-+		for_each_if ((__state)->colorops[__i].ptr &&		\
-
--:4942: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#4942: FILE: include/drm/drm_atomic.h:1071:
-+
-+
-
--:4954: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#4954: FILE: include/drm/drm_atomic.h:1083:
-+#define for_each_new_colorop_in_state(__state, colorop, new_colorop_state, __i) \
-+	for ((__i) = 0;							\
-+	     (__i) < (__state)->dev->mode_config.num_colorop;	\
-+	     (__i)++)							\
-+		for_each_if ((__state)->colorops[__i].ptr &&		\
-+			     ((colorop) = (__state)->colorops[__i].ptr,	\
-+			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
-+			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:4954: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
-#4954: FILE: include/drm/drm_atomic.h:1083:
-+#define for_each_new_colorop_in_state(__state, colorop, new_colorop_state, __i) \
-+	for ((__i) = 0;							\
-+	     (__i) < (__state)->dev->mode_config.num_colorop;	\
-+	     (__i)++)							\
-+		for_each_if ((__state)->colorops[__i].ptr &&		\
-+			     ((colorop) = (__state)->colorops[__i].ptr,	\
-+			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
-+			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
-
--:4954: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'colorop' - possible side-effects?
-#4954: FILE: include/drm/drm_atomic.h:1083:
-+#define for_each_new_colorop_in_state(__state, colorop, new_colorop_state, __i) \
-+	for ((__i) = 0;							\
-+	     (__i) < (__state)->dev->mode_config.num_colorop;	\
-+	     (__i)++)							\
-+		for_each_if ((__state)->colorops[__i].ptr &&		\
-+			     ((colorop) = (__state)->colorops[__i].ptr,	\
-+			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
-+			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
-
--:4954: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
-#4954: FILE: include/drm/drm_atomic.h:1083:
-+#define for_each_new_colorop_in_state(__state, colorop, new_colorop_state, __i) \
-+	for ((__i) = 0;							\
-+	     (__i) < (__state)->dev->mode_config.num_colorop;	\
-+	     (__i)++)							\
-+		for_each_if ((__state)->colorops[__i].ptr &&		\
-+			     ((colorop) = (__state)->colorops[__i].ptr,	\
-+			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
-+			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
-
--:4958: WARNING:SPACING: space prohibited between function name and open parenthesis '('
-#4958: FILE: include/drm/drm_atomic.h:1087:
-+		for_each_if ((__state)->colorops[__i].ptr &&		\
-
--:5056: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#5056: FILE: include/drm/drm_colorop.h:35:
-+#define DRM_COLOROP_FLAG_ALLOW_BYPASS	(1<<0)	/* Allow bypass on the drm_colorop */
-                                      	  ^
-
--:5155: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#5155: FILE: include/drm/drm_colorop.h:134:
-+
-+
-
--:5177: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
-#5177: FILE: include/drm/drm_colorop.h:156:
-+	uint64_t multiplier;
-
--:5297: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#5297: FILE: include/drm/drm_colorop.h:276:
-+	uint32_t lut_size;
-
--:5383: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#5383: FILE: include/drm/drm_colorop.h:362:
-+static inline struct drm_colorop *drm_colorop_find(struct drm_device *dev,
-+		struct drm_file *file_priv,
-
--:5398: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#5398: FILE: include/drm/drm_colorop.h:377:
-+					enum drm_colorop_lut1d_interpolation_type lut1d_interpolation,
-
--:5406: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#5406: FILE: include/drm/drm_colorop.h:385:
-+				 uint32_t lut_size,
-
--:5437: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#5437: FILE: include/drm/drm_colorop.h:416:
-+
-+
-
--:5458: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#5458: FILE: include/drm/drm_colorop.h:437:
-+const char *drm_get_colorop_lut1d_interpolation_name(enum drm_colorop_lut1d_interpolation_type type);
-
--:5459: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#5459: FILE: include/drm/drm_colorop.h:438:
-+const char *drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_interpolation_type type);
-
--:5506: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#5506: FILE: include/drm/drm_fixed.h:97:
-+
-+}
-
-total: 2 errors, 13 warnings, 76 checks, 5484 lines checked
-38209d4942f9 drm: Add Color lut range attributes
-d7d397a93ffd drm: Add Color ops capability property
-e4d8c3a6ca37 drm: Add 1D LUT multi-segmented color op
--:23: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#23: FILE: drivers/gpu/drm/drm_atomic.c:804:
-+		drm_printf(p, "\thw cap blob id=%d\n", state->hw_caps ? state->hw_caps->base.id : 0);
-
-total: 0 errors, 1 warnings, 0 checks, 42 lines checked
-ac97ea6ca6e0 drm: Define helper to initialize segmented 1D LUT
-d0b9bb6e6866 drm: Add helper to extract lut from struct drm_color_lut_32
-c9d46c0caee0 drm/i915: Add identifiers for intel color blocks
-6b966b17c32b drm/i915: Add intel_color_op
--:19: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
-#19: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1563:
-+#define intel_fb_obj(x) ((x) ? to_intel_bo((x)->obj[0]) : NULL)
-
-total: 0 errors, 0 warnings, 1 checks, 31 lines checked
-00b536b727db drm/i915/color: Add helper to create intel colorop
-970d29d23499 drm/i915/color: Create a transfer function color pipeline
-2d77e789bd11 drm/i915/color: Add and attach COLORPIPELINE plane property
-81231d39bbee drm/i915/color: Add framework to program CSC
-fad6843deaed drm/i915/color: Add callbacks to set plane CTM
-8cf5b85bcc44 drm/i915/color: Add new color callbacks for Xelpd
-5b08e7bb5b90 drm/i915/color: Preserve sign bit when int_bits is Zero
-593815e8aed1 drm/i915/color: Add plane CTM callback for D13 and beyond
-23c076497b5e drm/i915: Add register definitions for Plane Degamma
--:35: ERROR:CODE_INDENT: code indent should use tabs where possible
-#35: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:302:
-+                                               _PLANE_PRE_CSC_GAMC_INDEX_ENH_1_B)$
-
--:35: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#35: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:302:
-+                                               _PLANE_PRE_CSC_GAMC_INDEX_ENH_1_B)$
-
--:37: ERROR:CODE_INDENT: code indent should use tabs where possible
-#37: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:304:
-+                                               _PLANE_PRE_CSC_GAMC_INDEX_ENH_2_B)$
-
--:37: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#37: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:304:
-+                                               _PLANE_PRE_CSC_GAMC_INDEX_ENH_2_B)$
-
--:38: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#38: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:305:
-+#define PLANE_PRE_CSC_GAMC_INDEX_ENH(pipe, plane, i)   \
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe), \
-+               _PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe))
-
--:39: ERROR:CODE_INDENT: code indent should use tabs where possible
-#39: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:306:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe), \$
-
--:39: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#39: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:306:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe), \$
-
--:40: ERROR:CODE_INDENT: code indent should use tabs where possible
-#40: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:307:
-+               _PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe))$
-
--:40: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#40: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:307:
-+               _PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe))$
-
--:48: ERROR:CODE_INDENT: code indent should use tabs where possible
-#48: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:315:
-+                                               _PLANE_PRE_CSC_GAMC_DATA_ENH_1_B)$
-
--:48: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#48: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:315:
-+                                               _PLANE_PRE_CSC_GAMC_DATA_ENH_1_B)$
-
--:50: ERROR:CODE_INDENT: code indent should use tabs where possible
-#50: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:317:
-+                                               _PLANE_PRE_CSC_GAMC_DATA_ENH_2_B)$
-
--:50: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#50: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:317:
-+                                               _PLANE_PRE_CSC_GAMC_DATA_ENH_2_B)$
-
--:51: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#51: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:318:
-+#define PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, i)    \
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe), \
-+               _PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe))
-
--:52: ERROR:CODE_INDENT: code indent should use tabs where possible
-#52: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:319:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe), \$
-
--:52: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#52: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:319:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe), \$
-
--:53: ERROR:CODE_INDENT: code indent should use tabs where possible
-#53: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:320:
-+               _PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe))$
-
--:53: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#53: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:320:
-+               _PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe))$
-
--:60: ERROR:CODE_INDENT: code indent should use tabs where possible
-#60: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:327:
-+                                               _PLANE_PRE_CSC_GAMC_INDEX_1_B)$
-
--:60: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#60: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:327:
-+                                               _PLANE_PRE_CSC_GAMC_INDEX_1_B)$
-
--:62: ERROR:CODE_INDENT: code indent should use tabs where possible
-#62: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:329:
-+                                               _PLANE_PRE_CSC_GAMC_INDEX_2_B)$
-
--:62: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#62: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:329:
-+                                               _PLANE_PRE_CSC_GAMC_INDEX_2_B)$
-
--:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#63: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:330:
-+#define PLANE_PRE_CSC_GAMC_INDEX(pipe, plane, i)       \
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_1(pipe), \
-+               _PLANE_PRE_CSC_GAMC_INDEX_2(pipe))
-
--:64: ERROR:CODE_INDENT: code indent should use tabs where possible
-#64: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:331:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_1(pipe), \$
-
--:64: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#64: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:331:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_1(pipe), \$
-
--:65: ERROR:CODE_INDENT: code indent should use tabs where possible
-#65: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:332:
-+               _PLANE_PRE_CSC_GAMC_INDEX_2(pipe))$
-
--:65: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#65: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:332:
-+               _PLANE_PRE_CSC_GAMC_INDEX_2(pipe))$
-
--:72: ERROR:CODE_INDENT: code indent should use tabs where possible
-#72: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:339:
-+                                               _PLANE_PRE_CSC_GAMC_DATA_1_B)$
-
--:72: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#72: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:339:
-+                                               _PLANE_PRE_CSC_GAMC_DATA_1_B)$
-
--:74: ERROR:CODE_INDENT: code indent should use tabs where possible
-#74: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:341:
-+                                               _PLANE_PRE_CSC_GAMC_DATA_2_B)$
-
--:74: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#74: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:341:
-+                                               _PLANE_PRE_CSC_GAMC_DATA_2_B)$
-
--:75: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#75: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:342:
-+#define PLANE_PRE_CSC_GAMC_DATA(pipe, plane, i)        \
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_1(pipe), \
-+               _PLANE_PRE_CSC_GAMC_DATA_2(pipe))
-
--:76: ERROR:CODE_INDENT: code indent should use tabs where possible
-#76: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:343:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_1(pipe), \$
-
--:76: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#76: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:343:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_1(pipe), \$
-
--:77: ERROR:CODE_INDENT: code indent should use tabs where possible
-#77: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:344:
-+               _PLANE_PRE_CSC_GAMC_DATA_2(pipe))$
-
--:77: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#77: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:344:
-+               _PLANE_PRE_CSC_GAMC_DATA_2(pipe))$
-
-total: 16 errors, 16 warnings, 4 checks, 65 lines checked
-b7641c3999b6 drm/i915/color: Add framework to program PRE/POST CSC LUT
-f07ead561c4d drm/i915: Add register definitions for Plane Post CSC
--:34: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#34: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:302:
-+#define _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe)    _PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1_A, \
-
--:35: ERROR:CODE_INDENT: code indent should use tabs where possible
-#35: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:303:
-+                                                       _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1_B)$
-
--:35: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#35: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:303:
-+                                                       _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1_B)$
-
--:36: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#36: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:304:
-+#define _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe)    _PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2_A, \
-
--:37: ERROR:CODE_INDENT: code indent should use tabs where possible
-#37: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:305:
-+                                                       _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2_B)$
-
--:37: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#37: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:305:
-+                                                       _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2_B)$
-
--:38: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#38: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:306:
-+#define PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, i)     \
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe), \
-+               _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe))
-
--:39: ERROR:CODE_INDENT: code indent should use tabs where possible
-#39: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:307:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe), \$
-
--:39: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#39: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:307:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe), \$
-
--:40: ERROR:CODE_INDENT: code indent should use tabs where possible
-#40: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:308:
-+               _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe))$
-
--:40: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#40: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:308:
-+               _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe))$
-
--:46: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#46: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:314:
-+#define _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe)     _PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1_A, \
-
--:47: ERROR:CODE_INDENT: code indent should use tabs where possible
-#47: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:315:
-+                                                       _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1_B)$
-
--:47: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#47: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:315:
-+                                                       _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1_B)$
-
--:48: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#48: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:316:
-+#define _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe)     _PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2_A, \
-
--:49: ERROR:CODE_INDENT: code indent should use tabs where possible
-#49: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:317:
-+                                                       _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2_B)$
-
--:49: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#49: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:317:
-+                                                       _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2_B)$
-
--:50: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#50: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:318:
-+#define PLANE_POST_CSC_GAMC_SEG0_DATA_ENH(pipe, plane, i)      \
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe), \
-+               _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe))
-
--:51: ERROR:CODE_INDENT: code indent should use tabs where possible
-#51: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:319:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe), \$
-
--:51: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#51: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:319:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe), \$
-
--:52: ERROR:CODE_INDENT: code indent should use tabs where possible
-#52: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:320:
-+               _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe))$
-
--:52: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#52: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:320:
-+               _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe))$
-
--:59: ERROR:CODE_INDENT: code indent should use tabs where possible
-#59: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:327:
-+                                               _PLANE_POST_CSC_GAMC_INDEX_ENH_1_B)$
-
--:59: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#59: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:327:
-+                                               _PLANE_POST_CSC_GAMC_INDEX_ENH_1_B)$
-
--:61: ERROR:CODE_INDENT: code indent should use tabs where possible
-#61: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:329:
-+                                               _PLANE_POST_CSC_GAMC_INDEX_ENH_2_B)$
-
--:61: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#61: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:329:
-+                                               _PLANE_POST_CSC_GAMC_INDEX_ENH_2_B)$
-
--:62: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#62: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:330:
-+#define PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, i)  \
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe), \
-+               _PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe))
-
--:63: ERROR:CODE_INDENT: code indent should use tabs where possible
-#63: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:331:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe), \$
-
--:63: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#63: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:331:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe), \$
-
--:64: ERROR:CODE_INDENT: code indent should use tabs where possible
-#64: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:332:
-+               _PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe))$
-
--:64: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#64: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:332:
-+               _PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe))$
-
--:71: ERROR:CODE_INDENT: code indent should use tabs where possible
-#71: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:339:
-+                                               _PLANE_POST_CSC_GAMC_DATA_ENH_1_B)$
-
--:71: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#71: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:339:
-+                                               _PLANE_POST_CSC_GAMC_DATA_ENH_1_B)$
-
--:73: ERROR:CODE_INDENT: code indent should use tabs where possible
-#73: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:341:
-+                                               _PLANE_POST_CSC_GAMC_DATA_ENH_2_B)$
-
--:73: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#73: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:341:
-+                                               _PLANE_POST_CSC_GAMC_DATA_ENH_2_B)$
-
--:74: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#74: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:342:
-+#define PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, i)   \
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe), \
-+               _PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe))
-
--:75: ERROR:CODE_INDENT: code indent should use tabs where possible
-#75: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:343:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe), \$
-
--:75: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#75: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:343:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe), \$
-
--:76: ERROR:CODE_INDENT: code indent should use tabs where possible
-#76: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:344:
-+               _PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe))$
-
--:76: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#76: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:344:
-+               _PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe))$
-
--:83: ERROR:CODE_INDENT: code indent should use tabs where possible
-#83: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:351:
-+                                               _PLANE_POST_CSC_GAMC_INDEX_1_B)$
-
--:83: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#83: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:351:
-+                                               _PLANE_POST_CSC_GAMC_INDEX_1_B)$
-
--:85: ERROR:CODE_INDENT: code indent should use tabs where possible
-#85: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:353:
-+                                               _PLANE_POST_CSC_GAMC_INDEX_2_B)$
-
--:85: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#85: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:353:
-+                                               _PLANE_POST_CSC_GAMC_INDEX_2_B)$
-
--:86: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#86: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:354:
-+#define PLANE_POST_CSC_GAMC_INDEX(pipe, plane, i)      \
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_1(pipe), \
-+               _PLANE_POST_CSC_GAMC_INDEX_2(pipe))
-
--:87: ERROR:CODE_INDENT: code indent should use tabs where possible
-#87: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:355:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_1(pipe), \$
-
--:87: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#87: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:355:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_1(pipe), \$
-
--:88: ERROR:CODE_INDENT: code indent should use tabs where possible
-#88: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:356:
-+               _PLANE_POST_CSC_GAMC_INDEX_2(pipe))$
-
--:88: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#88: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:356:
-+               _PLANE_POST_CSC_GAMC_INDEX_2(pipe))$
-
--:95: ERROR:CODE_INDENT: code indent should use tabs where possible
-#95: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:363:
-+                                               _PLANE_POST_CSC_GAMC_DATA_1_B)$
-
--:95: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#95: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:363:
-+                                               _PLANE_POST_CSC_GAMC_DATA_1_B)$
-
--:97: ERROR:CODE_INDENT: code indent should use tabs where possible
-#97: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:365:
-+                                               _PLANE_POST_CSC_GAMC_DATA_2_B)$
-
--:97: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#97: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:365:
-+                                               _PLANE_POST_CSC_GAMC_DATA_2_B)$
-
--:98: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#98: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:366:
-+#define PLANE_POST_CSC_GAMC_DATA(pipe, plane, i)       \
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_1(pipe), \
-+               _PLANE_POST_CSC_GAMC_DATA_2(pipe))
-
--:99: ERROR:CODE_INDENT: code indent should use tabs where possible
-#99: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:367:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_1(pipe), \$
-
--:99: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#99: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:367:
-+               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_1(pipe), \$
-
--:100: ERROR:CODE_INDENT: code indent should use tabs where possible
-#100: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:368:
-+               _PLANE_POST_CSC_GAMC_DATA_2(pipe))$
-
--:100: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#100: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:368:
-+               _PLANE_POST_CSC_GAMC_DATA_2(pipe))$
-
-total: 24 errors, 28 warnings, 6 checks, 86 lines checked
-93cc2a346165 drm/i915/color: Program Pre-CSC registers
-576089137c34 drm/i915/xelpd: Program Plane Post CSC Registers
-132ec6a8c393 drm/i915/color: Enable Plane Color Pipelines
-7275766e5631 drm/i915/color: Create color pipeline with multisegmented LUT
-cbf896bafe1c drm/doc/rfc: Add documentation for multi-segmented 1D LUT
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[10:24:05] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[10:24:09] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
+[10:24:36] Starting KUnit Kernel (1/1)...
+[10:24:36] ============================================================
+Running tests with:
+$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
+[10:24:36] ================== guc_buf (11 subtests) ===================
+[10:24:36] [PASSED] test_smallest
+[10:24:36] [PASSED] test_largest
+[10:24:36] [PASSED] test_granular
+[10:24:36] [PASSED] test_unique
+[10:24:36] [PASSED] test_overlap
+[10:24:36] [PASSED] test_reusable
+[10:24:36] [PASSED] test_too_big
+[10:24:36] [PASSED] test_flush
+[10:24:36] [PASSED] test_lookup
+[10:24:36] [PASSED] test_data
+[10:24:36] [PASSED] test_class
+[10:24:36] ===================== [PASSED] guc_buf =====================
+[10:24:36] =================== guc_dbm (7 subtests) ===================
+[10:24:36] [PASSED] test_empty
+[10:24:36] [PASSED] test_default
+[10:24:36] ======================== test_size  ========================
+[10:24:36] [PASSED] 4
+[10:24:36] [PASSED] 8
+[10:24:36] [PASSED] 32
+[10:24:36] [PASSED] 256
+[10:24:36] ==================== [PASSED] test_size ====================
+[10:24:36] ======================= test_reuse  ========================
+[10:24:36] [PASSED] 4
+[10:24:36] [PASSED] 8
+[10:24:36] [PASSED] 32
+[10:24:36] [PASSED] 256
+[10:24:36] =================== [PASSED] test_reuse ====================
+[10:24:36] =================== test_range_overlap  ====================
+[10:24:36] [PASSED] 4
+[10:24:36] [PASSED] 8
+[10:24:36] [PASSED] 32
+[10:24:36] [PASSED] 256
+[10:24:36] =============== [PASSED] test_range_overlap ================
+[10:24:36] =================== test_range_compact  ====================
+[10:24:36] [PASSED] 4
+[10:24:36] [PASSED] 8
+[10:24:36] [PASSED] 32
+[10:24:36] [PASSED] 256
+[10:24:36] =============== [PASSED] test_range_compact ================
+[10:24:36] ==================== test_range_spare  =====================
+[10:24:36] [PASSED] 4
+[10:24:36] [PASSED] 8
+[10:24:36] [PASSED] 32
+[10:24:36] [PASSED] 256
+[10:24:36] ================ [PASSED] test_range_spare =================
+[10:24:36] ===================== [PASSED] guc_dbm =====================
+[10:24:36] =================== guc_idm (6 subtests) ===================
+[10:24:36] [PASSED] bad_init
+[10:24:36] [PASSED] no_init
+[10:24:36] [PASSED] init_fini
+[10:24:36] [PASSED] check_used
+[10:24:36] [PASSED] check_quota
+[10:24:36] [PASSED] check_all
+[10:24:36] ===================== [PASSED] guc_idm =====================
+[10:24:36] ================== no_relay (3 subtests) ===================
+[10:24:36] [PASSED] xe_drops_guc2pf_if_not_ready
+[10:24:36] [PASSED] xe_drops_guc2vf_if_not_ready
+[10:24:36] [PASSED] xe_rejects_send_if_not_ready
+[10:24:36] ==================== [PASSED] no_relay =====================
+[10:24:36] ================== pf_relay (14 subtests) ==================
+[10:24:36] [PASSED] pf_rejects_guc2pf_too_short
+[10:24:36] [PASSED] pf_rejects_guc2pf_too_long
+[10:24:36] [PASSED] pf_rejects_guc2pf_no_payload
+[10:24:36] [PASSED] pf_fails_no_payload
+[10:24:36] [PASSED] pf_fails_bad_origin
+[10:24:36] [PASSED] pf_fails_bad_type
+[10:24:36] [PASSED] pf_txn_reports_error
+[10:24:36] [PASSED] pf_txn_sends_pf2guc
+[10:24:36] [PASSED] pf_sends_pf2guc
+[10:24:36] [SKIPPED] pf_loopback_nop
+[10:24:36] [SKIPPED] pf_loopback_echo
+[10:24:36] [SKIPPED] pf_loopback_fail
+[10:24:36] [SKIPPED] pf_loopback_busy
+[10:24:36] [SKIPPED] pf_loopback_retry
+[10:24:36] ==================== [PASSED] pf_relay =====================
+[10:24:36] ================== vf_relay (3 subtests) ===================
+[10:24:36] [PASSED] vf_rejects_guc2vf_too_short
+[10:24:36] [PASSED] vf_rejects_guc2vf_too_long
+[10:24:36] [PASSED] vf_rejects_guc2vf_no_payload
+[10:24:36] ==================== [PASSED] vf_relay =====================
+[10:24:36] ================= pf_service (11 subtests) =================
+[10:24:36] [PASSED] pf_negotiate_any
+[10:24:36] [PASSED] pf_negotiate_base_match
+[10:24:36] [PASSED] pf_negotiate_base_newer
+[10:24:36] [PASSED] pf_negotiate_base_next
+[10:24:36] [SKIPPED] pf_negotiate_base_older
+[10:24:36] [PASSED] pf_negotiate_base_prev
+[10:24:36] [PASSED] pf_negotiate_latest_match
+[10:24:36] [PASSED] pf_negotiate_latest_newer
+[10:24:36] [PASSED] pf_negotiate_latest_next
+[10:24:36] [SKIPPED] pf_negotiate_latest_older
+[10:24:36] [SKIPPED] pf_negotiate_latest_prev
+[10:24:36] =================== [PASSED] pf_service ====================
+[10:24:36] ===================== lmtt (1 subtest) =====================
+[10:24:36] ======================== test_ops  =========================
+[10:24:36] [PASSED] 2-level
+[10:24:36] [PASSED] multi-level
+[10:24:36] ==================== [PASSED] test_ops =====================
+[10:24:36] ====================== [PASSED] lmtt =======================
+[10:24:36] =================== xe_mocs (2 subtests) ===================
+[10:24:36] ================ xe_live_mocs_kernel_kunit  ================
+[10:24:36] =========== [SKIPPED] xe_live_mocs_kernel_kunit ============
+[10:24:36] ================ xe_live_mocs_reset_kunit  =================
+[10:24:36] ============ [SKIPPED] xe_live_mocs_reset_kunit ============
+[10:24:36] ==================== [SKIPPED] xe_mocs =====================
+[10:24:36] ================= xe_migrate (2 subtests) ==================
+[10:24:36] ================= xe_migrate_sanity_kunit  =================
+[10:24:36] ============ [SKIPPED] xe_migrate_sanity_kunit =============
+[10:24:36] ================== xe_validate_ccs_kunit  ==================
+[10:24:36] ============= [SKIPPED] xe_validate_ccs_kunit ==============
+[10:24:36] =================== [SKIPPED] xe_migrate ===================
+[10:24:36] ================== xe_dma_buf (1 subtest) ==================
+[10:24:36] ==================== xe_dma_buf_kunit  =====================
+[10:24:36] ================ [SKIPPED] xe_dma_buf_kunit ================
+[10:24:36] =================== [SKIPPED] xe_dma_buf ===================
+[10:24:36] ================= xe_bo_shrink (1 subtest) =================
+[10:24:36] =================== xe_bo_shrink_kunit  ====================
+[10:24:36] =============== [SKIPPED] xe_bo_shrink_kunit ===============
+[10:24:36] ================== [SKIPPED] xe_bo_shrink ==================
+[10:24:36] ==================== xe_bo (2 subtests) ====================
+[10:24:36] ================== xe_ccs_migrate_kunit  ===================
+[10:24:36] ============== [SKIPPED] xe_ccs_migrate_kunit ==============
+[10:24:36] ==================== xe_bo_evict_kunit  ====================
+[10:24:36] =============== [SKIPPED] xe_bo_evict_kunit ================
+[10:24:36] ===================== [SKIPPED] xe_bo ======================
+[10:24:36] ==================== args (11 subtests) ====================
+[10:24:36] [PASSED] count_args_test
+[10:24:36] [PASSED] call_args_example
+[10:24:36] [PASSED] call_args_test
+[10:24:36] [PASSED] drop_first_arg_example
+[10:24:36] [PASSED] drop_first_arg_test
+[10:24:36] [PASSED] first_arg_example
+[10:24:36] [PASSED] first_arg_test
+[10:24:36] [PASSED] last_arg_example
+[10:24:36] [PASSED] last_arg_test
+[10:24:36] [PASSED] pick_arg_example
+[10:24:36] [PASSED] sep_comma_example
+[10:24:36] ====================== [PASSED] args =======================
+[10:24:36] =================== xe_pci (2 subtests) ====================
+[10:24:36] ==================== check_graphics_ip  ====================
+[10:24:36] [PASSED] 12.70 Xe_LPG
+[10:24:36] [PASSED] 12.71 Xe_LPG
+[10:24:36] [PASSED] 12.74 Xe_LPG+
+[10:24:36] [PASSED] 20.01 Xe2_HPG
+[10:24:36] [PASSED] 20.02 Xe2_HPG
+[10:24:36] [PASSED] 20.04 Xe2_LPG
+[10:24:36] [PASSED] 30.00 Xe3_LPG
+[10:24:36] [PASSED] 30.01 Xe3_LPG
+[10:24:36] [PASSED] 30.03 Xe3_LPG
+[10:24:36] ================ [PASSED] check_graphics_ip ================
+[10:24:36] ===================== check_media_ip  ======================
+[10:24:36] [PASSED] 13.00 Xe_LPM+
+[10:24:36] [PASSED] 13.01 Xe2_HPM
+[10:24:36] [PASSED] 20.00 Xe2_LPM
+[10:24:36] [PASSED] 30.00 Xe3_LPM
+[10:24:36] [PASSED] 30.02 Xe3_LPM
+stty: 'standard input': Inappropriate ioctl for device
+[10:24:36] ================= [PASSED] check_media_ip ==================
+[10:24:36] ===================== [PASSED] xe_pci ======================
+[10:24:36] =================== xe_rtp (2 subtests) ====================
+[10:24:36] =============== xe_rtp_process_to_sr_tests  ================
+[10:24:36] [PASSED] coalesce-same-reg
+[10:24:36] [PASSED] no-match-no-add
+[10:24:36] [PASSED] match-or
+[10:24:36] [PASSED] match-or-xfail
+[10:24:36] [PASSED] no-match-no-add-multiple-rules
+[10:24:36] [PASSED] two-regs-two-entries
+[10:24:36] [PASSED] clr-one-set-other
+[10:24:36] [PASSED] set-field
+[10:24:36] [PASSED] conflict-duplicate
+[10:24:36] [PASSED] conflict-not-disjoint
+[10:24:36] [PASSED] conflict-reg-type
+[10:24:36] =========== [PASSED] xe_rtp_process_to_sr_tests ============
+[10:24:36] ================== xe_rtp_process_tests  ===================
+[10:24:36] [PASSED] active1
+[10:24:36] [PASSED] active2
+[10:24:36] [PASSED] active-inactive
+[10:24:36] [PASSED] inactive-active
+[10:24:36] [PASSED] inactive-1st_or_active-inactive
+[10:24:36] [PASSED] inactive-2nd_or_active-inactive
+[10:24:36] [PASSED] inactive-last_or_active-inactive
+[10:24:36] [PASSED] inactive-no_or_active-inactive
+[10:24:36] ============== [PASSED] xe_rtp_process_tests ===============
+[10:24:36] ===================== [PASSED] xe_rtp ======================
+[10:24:36] ==================== xe_wa (1 subtest) =====================
+[10:24:36] ======================== xe_wa_gt  =========================
+[10:24:36] [PASSED] TIGERLAKE (B0)
+[10:24:36] [PASSED] DG1 (A0)
+[10:24:36] [PASSED] DG1 (B0)
+[10:24:36] [PASSED] ALDERLAKE_S (A0)
+[10:24:36] [PASSED] ALDERLAKE_S (B0)
+[10:24:36] [PASSED] ALDERLAKE_S (C0)
+[10:24:36] [PASSED] ALDERLAKE_S (D0)
+[10:24:36] [PASSED] ALDERLAKE_P (A0)
+[10:24:36] [PASSED] ALDERLAKE_P (B0)
+[10:24:36] [PASSED] ALDERLAKE_P (C0)
+[10:24:36] [PASSED] ALDERLAKE_S_RPLS (D0)
+[10:24:36] [PASSED] ALDERLAKE_P_RPLU (E0)
+[10:24:36] [PASSED] DG2_G10 (C0)
+[10:24:36] [PASSED] DG2_G11 (B1)
+[10:24:36] [PASSED] DG2_G12 (A1)
+[10:24:36] [PASSED] METEORLAKE (g:A0, m:A0)
+[10:24:36] [PASSED] METEORLAKE (g:A0, m:A0)
+[10:24:36] [PASSED] METEORLAKE (g:A0, m:A0)
+[10:24:36] [PASSED] LUNARLAKE (g:A0, m:A0)
+[10:24:36] [PASSED] LUNARLAKE (g:B0, m:A0)
+[10:24:36] [PASSED] BATTLEMAGE (g:A0, m:A1)
+[10:24:36] ==================== [PASSED] xe_wa_gt =====================
+[10:24:36] ====================== [PASSED] xe_wa ======================
+[10:24:36] ============================================================
+[10:24:36] Testing complete. Ran 145 tests: passed: 129, skipped: 16
+[10:24:36] Elapsed time: 31.376s total, 4.190s configuring, 26.870s building, 0.298s running
+
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
+[10:24:36] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[10:24:38] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
+[10:25:00] Starting KUnit Kernel (1/1)...
+[10:25:00] ============================================================
+Running tests with:
+$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
+[10:25:00] == drm_test_atomic_get_connector_for_encoder (1 subtest) ===
+[10:25:00] [PASSED] drm_test_drm_atomic_get_connector_for_encoder
+[10:25:00] ==== [PASSED] drm_test_atomic_get_connector_for_encoder ====
+[10:25:00] =========== drm_validate_clone_mode (2 subtests) ===========
+[10:25:00] ============== drm_test_check_in_clone_mode  ===============
+[10:25:00] [PASSED] in_clone_mode
+[10:25:00] [PASSED] not_in_clone_mode
+[10:25:00] ========== [PASSED] drm_test_check_in_clone_mode ===========
+[10:25:00] =============== drm_test_check_valid_clones  ===============
+[10:25:00] [PASSED] not_in_clone_mode
+[10:25:00] [PASSED] valid_clone
+[10:25:00] [PASSED] invalid_clone
+[10:25:00] =========== [PASSED] drm_test_check_valid_clones ===========
+[10:25:00] ============= [PASSED] drm_validate_clone_mode =============
+[10:25:00] ============= drm_validate_modeset (1 subtest) =============
+[10:25:00] [PASSED] drm_test_check_connector_changed_modeset
+[10:25:00] ============== [PASSED] drm_validate_modeset ===============
+[10:25:00] ====== drm_test_bridge_get_current_state (2 subtests) ======
+[10:25:00] [PASSED] drm_test_drm_bridge_get_current_state_atomic
+[10:25:00] [PASSED] drm_test_drm_bridge_get_current_state_legacy
+[10:25:00] ======== [PASSED] drm_test_bridge_get_current_state ========
+[10:25:00] ====== drm_test_bridge_helper_reset_crtc (3 subtests) ======
+[10:25:00] [PASSED] drm_test_drm_bridge_helper_reset_crtc_atomic
+[10:25:00] [PASSED] drm_test_drm_bridge_helper_reset_crtc_atomic_disabled
+[10:25:00] [PASSED] drm_test_drm_bridge_helper_reset_crtc_legacy
+[10:25:00] ======== [PASSED] drm_test_bridge_helper_reset_crtc ========
+[10:25:00] ============== drm_bridge_alloc (2 subtests) ===============
+[10:25:00] [PASSED] drm_test_drm_bridge_alloc_basic
+[10:25:00] [PASSED] drm_test_drm_bridge_alloc_get_put
+[10:25:00] ================ [PASSED] drm_bridge_alloc =================
+[10:25:00] ================== drm_buddy (7 subtests) ==================
+[10:25:00] [PASSED] drm_test_buddy_alloc_limit
+[10:25:00] [PASSED] drm_test_buddy_alloc_optimistic
+[10:25:00] [PASSED] drm_test_buddy_alloc_pessimistic
+[10:25:00] [PASSED] drm_test_buddy_alloc_pathological
+[10:25:00] [PASSED] drm_test_buddy_alloc_contiguous
+[10:25:00] [PASSED] drm_test_buddy_alloc_clear
+[10:25:00] [PASSED] drm_test_buddy_alloc_range_bias
+[10:25:00] ==================== [PASSED] drm_buddy ====================
+[10:25:00] ============= drm_cmdline_parser (40 subtests) =============
+[10:25:00] [PASSED] drm_test_cmdline_force_d_only
+[10:25:00] [PASSED] drm_test_cmdline_force_D_only_dvi
+[10:25:00] [PASSED] drm_test_cmdline_force_D_only_hdmi
+[10:25:00] [PASSED] drm_test_cmdline_force_D_only_not_digital
+[10:25:00] [PASSED] drm_test_cmdline_force_e_only
+[10:25:00] [PASSED] drm_test_cmdline_res
+[10:25:00] [PASSED] drm_test_cmdline_res_vesa
+[10:25:00] [PASSED] drm_test_cmdline_res_vesa_rblank
+[10:25:00] [PASSED] drm_test_cmdline_res_rblank
+[10:25:00] [PASSED] drm_test_cmdline_res_bpp
+[10:25:00] [PASSED] drm_test_cmdline_res_refresh
+[10:25:00] [PASSED] drm_test_cmdline_res_bpp_refresh
+[10:25:00] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
+[10:25:00] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
+[10:25:00] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
+[10:25:00] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
+[10:25:00] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
+[10:25:00] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
+[10:25:00] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
+[10:25:00] [PASSED] drm_test_cmdline_res_margins_force_on
+[10:25:00] [PASSED] drm_test_cmdline_res_vesa_margins
+[10:25:00] [PASSED] drm_test_cmdline_name
+[10:25:00] [PASSED] drm_test_cmdline_name_bpp
+[10:25:00] [PASSED] drm_test_cmdline_name_option
+[10:25:00] [PASSED] drm_test_cmdline_name_bpp_option
+[10:25:00] [PASSED] drm_test_cmdline_rotate_0
+[10:25:00] [PASSED] drm_test_cmdline_rotate_90
+[10:25:00] [PASSED] drm_test_cmdline_rotate_180
+[10:25:00] [PASSED] drm_test_cmdline_rotate_270
+[10:25:00] [PASSED] drm_test_cmdline_hmirror
+[10:25:00] [PASSED] drm_test_cmdline_vmirror
+[10:25:00] [PASSED] drm_test_cmdline_margin_options
+[10:25:00] [PASSED] drm_test_cmdline_multiple_options
+[10:25:00] [PASSED] drm_test_cmdline_bpp_extra_and_option
+[10:25:00] [PASSED] drm_test_cmdline_extra_and_option
+[10:25:00] [PASSED] drm_test_cmdline_freestanding_options
+[10:25:00] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
+[10:25:00] [PASSED] drm_test_cmdline_panel_orientation
+[10:25:00] ================ drm_test_cmdline_invalid  =================
+[10:25:00] [PASSED] margin_only
+[10:25:00] [PASSED] interlace_only
+[10:25:00] [PASSED] res_missing_x
+[10:25:00] [PASSED] res_missing_y
+[10:25:00] [PASSED] res_bad_y
+[10:25:00] [PASSED] res_missing_y_bpp
+[10:25:00] [PASSED] res_bad_bpp
+[10:25:00] [PASSED] res_bad_refresh
+[10:25:00] [PASSED] res_bpp_refresh_force_on_off
+[10:25:00] [PASSED] res_invalid_mode
+[10:25:00] [PASSED] res_bpp_wrong_place_mode
+[10:25:00] [PASSED] name_bpp_refresh
+[10:25:00] [PASSED] name_refresh
+[10:25:00] [PASSED] name_refresh_wrong_mode
+[10:25:00] [PASSED] name_refresh_invalid_mode
+[10:25:00] [PASSED] rotate_multiple
+[10:25:00] [PASSED] rotate_invalid_val
+[10:25:00] [PASSED] rotate_truncated
+[10:25:00] [PASSED] invalid_option
+[10:25:00] [PASSED] invalid_tv_option
+[10:25:00] [PASSED] truncated_tv_option
+[10:25:00] ============ [PASSED] drm_test_cmdline_invalid =============
+[10:25:00] =============== drm_test_cmdline_tv_options  ===============
+[10:25:00] [PASSED] NTSC
+[10:25:00] [PASSED] NTSC_443
+[10:25:00] [PASSED] NTSC_J
+[10:25:00] [PASSED] PAL
+[10:25:00] [PASSED] PAL_M
+[10:25:00] [PASSED] PAL_N
+[10:25:00] [PASSED] SECAM
+[10:25:00] [PASSED] MONO_525
+[10:25:00] [PASSED] MONO_625
+[10:25:00] =========== [PASSED] drm_test_cmdline_tv_options ===========
+[10:25:00] =============== [PASSED] drm_cmdline_parser ================
+[10:25:00] ========== drmm_connector_hdmi_init (20 subtests) ==========
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_valid
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_bpc_8
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_bpc_10
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_bpc_12
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_bpc_invalid
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_bpc_null
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_formats_empty
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_formats_no_rgb
+[10:25:00] === drm_test_connector_hdmi_init_formats_yuv420_allowed  ===
+[10:25:00] [PASSED] supported_formats=0x9 yuv420_allowed=1
+[10:25:00] [PASSED] supported_formats=0x9 yuv420_allowed=0
+[10:25:00] [PASSED] supported_formats=0x3 yuv420_allowed=1
+[10:25:00] [PASSED] supported_formats=0x3 yuv420_allowed=0
+[10:25:00] === [PASSED] drm_test_connector_hdmi_init_formats_yuv420_allowed ===
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_null_ddc
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_null_product
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_null_vendor
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_product_length_exact
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_product_length_too_long
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_product_valid
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_vendor_length_exact
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_vendor_length_too_long
+[10:25:00] [PASSED] drm_test_connector_hdmi_init_vendor_valid
+[10:25:00] ========= drm_test_connector_hdmi_init_type_valid  =========
+[10:25:00] [PASSED] HDMI-A
+[10:25:00] [PASSED] HDMI-B
+[10:25:00] ===== [PASSED] drm_test_connector_hdmi_init_type_valid =====
+[10:25:00] ======== drm_test_connector_hdmi_init_type_invalid  ========
+[10:25:00] [PASSED] Unknown
+[10:25:00] [PASSED] VGA
+[10:25:00] [PASSED] DVI-I
+[10:25:00] [PASSED] DVI-D
+[10:25:00] [PASSED] DVI-A
+[10:25:00] [PASSED] Composite
+[10:25:00] [PASSED] SVIDEO
+[10:25:00] [PASSED] LVDS
+[10:25:00] [PASSED] Component
+[10:25:00] [PASSED] DIN
+[10:25:00] [PASSED] DP
+[10:25:00] [PASSED] TV
+[10:25:00] [PASSED] eDP
+[10:25:00] [PASSED] Virtual
+[10:25:00] [PASSED] DSI
+[10:25:00] [PASSED] DPI
+[10:25:00] [PASSED] Writeback
+[10:25:00] [PASSED] SPI
+[10:25:00] [PASSED] USB
+[10:25:00] ==== [PASSED] drm_test_connector_hdmi_init_type_invalid ====
+[10:25:00] ============ [PASSED] drmm_connector_hdmi_init =============
+[10:25:00] ============= drmm_connector_init (3 subtests) =============
+[10:25:00] [PASSED] drm_test_drmm_connector_init
+[10:25:00] [PASSED] drm_test_drmm_connector_init_null_ddc
+[10:25:00] ========= drm_test_drmm_connector_init_type_valid  =========
+[10:25:00] [PASSED] Unknown
+[10:25:00] [PASSED] VGA
+[10:25:00] [PASSED] DVI-I
+[10:25:00] [PASSED] DVI-D
+[10:25:00] [PASSED] DVI-A
+[10:25:00] [PASSED] Composite
+[10:25:00] [PASSED] SVIDEO
+[10:25:00] [PASSED] LVDS
+[10:25:00] [PASSED] Component
+[10:25:00] [PASSED] DIN
+[10:25:00] [PASSED] DP
+[10:25:00] [PASSED] HDMI-A
+[10:25:00] [PASSED] HDMI-B
+[10:25:00] [PASSED] TV
+[10:25:00] [PASSED] eDP
+[10:25:00] [PASSED] Virtual
+[10:25:00] [PASSED] DSI
+[10:25:00] [PASSED] DPI
+[10:25:00] [PASSED] Writeback
+[10:25:00] [PASSED] SPI
+[10:25:00] [PASSED] USB
+[10:25:00] ===== [PASSED] drm_test_drmm_connector_init_type_valid =====
+[10:25:00] =============== [PASSED] drmm_connector_init ===============
+[10:25:00] ========= drm_connector_dynamic_init (6 subtests) ==========
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_init
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_init_null_ddc
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_init_not_added
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_init_properties
+[10:25:00] ===== drm_test_drm_connector_dynamic_init_type_valid  ======
+[10:25:00] [PASSED] Unknown
+[10:25:00] [PASSED] VGA
+[10:25:00] [PASSED] DVI-I
+[10:25:00] [PASSED] DVI-D
+[10:25:00] [PASSED] DVI-A
+[10:25:00] [PASSED] Composite
+[10:25:00] [PASSED] SVIDEO
+[10:25:00] [PASSED] LVDS
+[10:25:00] [PASSED] Component
+[10:25:00] [PASSED] DIN
+[10:25:00] [PASSED] DP
+[10:25:00] [PASSED] HDMI-A
+[10:25:00] [PASSED] HDMI-B
+[10:25:00] [PASSED] TV
+[10:25:00] [PASSED] eDP
+[10:25:00] [PASSED] Virtual
+[10:25:00] [PASSED] DSI
+[10:25:00] [PASSED] DPI
+[10:25:00] [PASSED] Writeback
+[10:25:00] [PASSED] SPI
+[10:25:00] [PASSED] USB
+[10:25:00] = [PASSED] drm_test_drm_connector_dynamic_init_type_valid ==
+[10:25:00] ======== drm_test_drm_connector_dynamic_init_name  =========
+[10:25:00] [PASSED] Unknown
+[10:25:00] [PASSED] VGA
+[10:25:00] [PASSED] DVI-I
+[10:25:00] [PASSED] DVI-D
+[10:25:00] [PASSED] DVI-A
+[10:25:00] [PASSED] Composite
+[10:25:00] [PASSED] SVIDEO
+[10:25:00] [PASSED] LVDS
+[10:25:00] [PASSED] Component
+[10:25:00] [PASSED] DIN
+[10:25:00] [PASSED] DP
+[10:25:00] [PASSED] HDMI-A
+[10:25:00] [PASSED] HDMI-B
+[10:25:00] [PASSED] TV
+[10:25:00] [PASSED] eDP
+[10:25:00] [PASSED] Virtual
+[10:25:00] [PASSED] DSI
+[10:25:00] [PASSED] DPI
+[10:25:00] [PASSED] Writeback
+[10:25:00] [PASSED] SPI
+[10:25:00] [PASSED] USB
+[10:25:00] ==== [PASSED] drm_test_drm_connector_dynamic_init_name =====
+[10:25:00] =========== [PASSED] drm_connector_dynamic_init ============
+[10:25:00] ==== drm_connector_dynamic_register_early (4 subtests) =====
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_early_on_list
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_early_defer
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_early_no_init
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_early_no_mode_object
+[10:25:00] ====== [PASSED] drm_connector_dynamic_register_early =======
+[10:25:00] ======= drm_connector_dynamic_register (7 subtests) ========
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_on_list
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_no_defer
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_no_init
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_mode_object
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_sysfs
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_sysfs_name
+[10:25:00] [PASSED] drm_test_drm_connector_dynamic_register_debugfs
+[10:25:00] ========= [PASSED] drm_connector_dynamic_register ==========
+[10:25:00] = drm_connector_attach_broadcast_rgb_property (2 subtests) =
+[10:25:00] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property
+[10:25:00] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property_hdmi_connector
+[10:25:00] === [PASSED] drm_connector_attach_broadcast_rgb_property ===
+[10:25:00] ========== drm_get_tv_mode_from_name (2 subtests) ==========
+[10:25:00] ========== drm_test_get_tv_mode_from_name_valid  ===========
+[10:25:00] [PASSED] NTSC
+[10:25:00] [PASSED] NTSC-443
+[10:25:00] [PASSED] NTSC-J
+[10:25:00] [PASSED] PAL
+[10:25:00] [PASSED] PAL-M
+[10:25:00] [PASSED] PAL-N
+[10:25:00] [PASSED] SECAM
+[10:25:00] [PASSED] Mono
+[10:25:00] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
+[10:25:00] [PASSED] drm_test_get_tv_mode_from_name_truncated
+[10:25:00] ============ [PASSED] drm_get_tv_mode_from_name ============
+[10:25:00] = drm_test_connector_hdmi_compute_mode_clock (12 subtests) =
+[10:25:00] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb
+[10:25:00] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc
+[10:25:00] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc_vic_1
+[10:25:00] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc
+[10:25:00] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc_vic_1
+[10:25:00] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_double
+[10:25:00] = drm_test_connector_hdmi_compute_mode_clock_yuv420_valid  =
+[10:25:00] [PASSED] VIC 96
+[10:25:00] [PASSED] VIC 97
+[10:25:00] [PASSED] VIC 101
+[10:25:00] [PASSED] VIC 102
+[10:25:00] [PASSED] VIC 106
+[10:25:00] [PASSED] VIC 107
+[10:25:00] === [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_valid ===
+[10:25:00] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_10_bpc
+[10:25:00] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_12_bpc
+[10:25:00] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_8_bpc
+[10:25:00] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_10_bpc
+[10:25:00] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_12_bpc
+[10:25:00] === [PASSED] drm_test_connector_hdmi_compute_mode_clock ====
+[10:25:00] == drm_hdmi_connector_get_broadcast_rgb_name (2 subtests) ==
+[10:25:00] === drm_test_drm_hdmi_connector_get_broadcast_rgb_name  ====
+[10:25:00] [PASSED] Automatic
+[10:25:00] [PASSED] Full
+[10:25:00] [PASSED] Limited 16:235
+[10:25:00] === [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name ===
+[10:25:00] [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name_invalid
+[10:25:00] ==== [PASSED] drm_hdmi_connector_get_broadcast_rgb_name ====
+[10:25:00] == drm_hdmi_connector_get_output_format_name (2 subtests) ==
+[10:25:00] === drm_test_drm_hdmi_connector_get_output_format_name  ====
+[10:25:00] [PASSED] RGB
+[10:25:00] [PASSED] YUV 4:2:0
+[10:25:00] [PASSED] YUV 4:2:2
+[10:25:00] [PASSED] YUV 4:4:4
+[10:25:00] === [PASSED] drm_test_drm_hdmi_connector_get_output_format_name ===
+[10:25:00] [PASSED] drm_test_drm_hdmi_connector_get_output_format_name_invalid
+[10:25:00] ==== [PASSED] drm_hdmi_connector_get_output_format_name ====
+[10:25:00] ============= drm_damage_helper (21 subtests) ==============
+[10:25:00] [PASSED] drm_test_damage_iter_no_damage
+[10:25:00] [PASSED] drm_test_damage_iter_no_damage_fractional_src
+[10:25:00] [PASSED] drm_test_damage_iter_no_damage_src_moved
+[10:25:00] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
+[10:25:00] [PASSED] drm_test_damage_iter_no_damage_not_visible
+[10:25:00] [PASSED] drm_test_damage_iter_no_damage_no_crtc
+[10:25:00] [PASSED] drm_test_damage_iter_no_damage_no_fb
+[10:25:00] [PASSED] drm_test_damage_iter_simple_damage
+[10:25:00] [PASSED] drm_test_damage_iter_single_damage
+[10:25:00] [PASSED] drm_test_damage_iter_single_damage_intersect_src
+[10:25:00] [PASSED] drm_test_damage_iter_single_damage_outside_src
+[10:25:00] [PASSED] drm_test_damage_iter_single_damage_fractional_src
+[10:25:00] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
+[10:25:00] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
+[10:25:00] [PASSED] drm_test_damage_iter_single_damage_src_moved
+[10:25:00] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
+[10:25:00] [PASSED] drm_test_damage_iter_damage
+[10:25:00] [PASSED] drm_test_damage_iter_damage_one_intersect
+[10:25:00] [PASSED] drm_test_damage_iter_damage_one_outside
+[10:25:00] [PASSED] drm_test_damage_iter_damage_src_moved
+[10:25:00] [PASSED] drm_test_damage_iter_damage_not_visible
+[10:25:00] ================ [PASSED] drm_damage_helper ================
+[10:25:00] ============== drm_dp_mst_helper (3 subtests) ==============
+[10:25:00] ============== drm_test_dp_mst_calc_pbn_mode  ==============
+[10:25:00] [PASSED] Clock 154000 BPP 30 DSC disabled
+[10:25:00] [PASSED] Clock 234000 BPP 30 DSC disabled
+[10:25:00] [PASSED] Clock 297000 BPP 24 DSC disabled
+[10:25:00] [PASSED] Clock 332880 BPP 24 DSC enabled
+[10:25:00] [PASSED] Clock 324540 BPP 24 DSC enabled
+[10:25:00] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
+[10:25:00] ============== drm_test_dp_mst_calc_pbn_div  ===============
+[10:25:00] [PASSED] Link rate 2000000 lane count 4
+[10:25:00] [PASSED] Link rate 2000000 lane count 2
+[10:25:00] [PASSED] Link rate 2000000 lane count 1
+[10:25:00] [PASSED] Link rate 1350000 lane count 4
+[10:25:00] [PASSED] Link rate 1350000 lane count 2
+[10:25:00] [PASSED] Link rate 1350000 lane count 1
+[10:25:00] [PASSED] Link rate 1000000 lane count 4
+[10:25:00] [PASSED] Link rate 1000000 lane count 2
+[10:25:00] [PASSED] Link rate 1000000 lane count 1
+[10:25:00] [PASSED] Link rate 810000 lane count 4
+[10:25:00] [PASSED] Link rate 810000 lane count 2
+[10:25:00] [PASSED] Link rate 810000 lane count 1
+[10:25:00] [PASSED] Link rate 540000 lane count 4
+[10:25:00] [PASSED] Link rate 540000 lane count 2
+[10:25:00] [PASSED] Link rate 540000 lane count 1
+[10:25:00] [PASSED] Link rate 270000 lane count 4
+[10:25:00] [PASSED] Link rate 270000 lane count 2
+[10:25:00] [PASSED] Link rate 270000 lane count 1
+[10:25:00] [PASSED] Link rate 162000 lane count 4
+[10:25:00] [PASSED] Link rate 162000 lane count 2
+[10:25:00] [PASSED] Link rate 162000 lane count 1
+[10:25:00] ========== [PASSED] drm_test_dp_mst_calc_pbn_div ===========
+[10:25:00] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
+[10:25:00] [PASSED] DP_ENUM_PATH_RESOURCES with port number
+[10:25:00] [PASSED] DP_POWER_UP_PHY with port number
+[10:25:00] [PASSED] DP_POWER_DOWN_PHY with port number
+[10:25:00] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
+[10:25:00] [PASSED] DP_ALLOCATE_PAYLOAD with port number
+[10:25:00] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
+[10:25:00] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
+[10:25:00] [PASSED] DP_QUERY_PAYLOAD with port number
+[10:25:00] [PASSED] DP_QUERY_PAYLOAD with VCPI
+[10:25:00] [PASSED] DP_REMOTE_DPCD_READ with port number
+[10:25:00] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
+[10:25:00] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
+[10:25:00] [PASSED] DP_REMOTE_DPCD_WRITE with port number
+[10:25:00] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
+[10:25:00] [PASSED] DP_REMOTE_DPCD_WRITE with data array
+[10:25:00] [PASSED] DP_REMOTE_I2C_READ with port number
+[10:25:00] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
+[10:25:00] [PASSED] DP_REMOTE_I2C_READ with transactions array
+[10:25:00] [PASSED] DP_REMOTE_I2C_WRITE with port number
+[10:25:00] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
+[10:25:00] [PASSED] DP_REMOTE_I2C_WRITE with data array
+[10:25:00] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
+[10:25:00] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
+[10:25:00] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
+[10:25:00] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
+[10:25:00] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
+[10:25:00] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
+[10:25:00] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
+[10:25:00] ================ [PASSED] drm_dp_mst_helper ================
+[10:25:00] ================== drm_exec (7 subtests) ===================
+[10:25:00] [PASSED] sanitycheck
+[10:25:00] [PASSED] test_lock
+[10:25:00] [PASSED] test_lock_unlock
+[10:25:00] [PASSED] test_duplicates
+[10:25:00] [PASSED] test_prepare
+[10:25:00] [PASSED] test_prepare_array
+[10:25:00] [PASSED] test_multiple_loops
+[10:25:00] ==================== [PASSED] drm_exec =====================
+[10:25:00] =========== drm_format_helper_test (17 subtests) ===========
+[10:25:00] ============== drm_test_fb_xrgb8888_to_gray8  ==============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
+[10:25:00] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
+[10:25:00] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
+[10:25:00] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
+[10:25:00] ============ drm_test_fb_xrgb8888_to_argb1555  =============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
+[10:25:00] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
+[10:25:00] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
+[10:25:00] ============= drm_test_fb_xrgb8888_to_bgr888  ==============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ========= [PASSED] drm_test_fb_xrgb8888_to_bgr888 ==========
+[10:25:00] ============ drm_test_fb_xrgb8888_to_argb8888  =============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
+[10:25:00] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
+[10:25:00] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
+[10:25:00] ============== drm_test_fb_xrgb8888_to_mono  ===============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
+[10:25:00] ==================== drm_test_fb_swab  =====================
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ================ [PASSED] drm_test_fb_swab =================
+[10:25:00] ============ drm_test_fb_xrgb8888_to_xbgr8888  =============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ======== [PASSED] drm_test_fb_xrgb8888_to_xbgr8888 =========
+[10:25:00] ============ drm_test_fb_xrgb8888_to_abgr8888  =============
+[10:25:00] [PASSED] single_pixel_source_buffer
+[10:25:00] [PASSED] single_pixel_clip_rectangle
+[10:25:00] [PASSED] well_known_colors
+[10:25:00] [PASSED] destination_pitch
+[10:25:00] ======== [PASSED] drm_test_fb_xrgb8888_to_abgr8888 =========
+[10:25:00] ================= drm_test_fb_clip_offset  =================
+[10:25:00] [PASSED] pass through
+[10:25:00] [PASSED] horizontal offset
+[10:25:00] [PASSED] vertical offset
+[10:25:00] [PASSED] horizontal and vertical offset
+[10:25:00] [PASSED] horizontal offset (custom pitch)
+[10:25:00] [PASSED] vertical offset (custom pitch)
+[10:25:00] [PASSED] horizontal and vertical offset (custom pitch)
+[10:25:00] ============= [PASSED] drm_test_fb_clip_offset =============
+[10:25:00] =================== drm_test_fb_memcpy  ====================
+[10:25:00] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
+[10:25:00] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
+[10:25:00] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
+[10:25:00] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
+[10:25:00] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
+[10:25:00] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
+[10:25:00] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
+[10:25:00] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
+[10:25:00] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
+[10:25:00] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
+[10:25:00] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
+[10:25:00] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
+[10:25:00] =============== [PASSED] drm_test_fb_memcpy ================
+[10:25:00] ============= [PASSED] drm_format_helper_test ==============
+[10:25:00] ================= drm_format (18 subtests) =================
+[10:25:00] [PASSED] drm_test_format_block_width_invalid
+[10:25:00] [PASSED] drm_test_format_block_width_one_plane
+[10:25:00] [PASSED] drm_test_format_block_width_two_plane
+[10:25:00] [PASSED] drm_test_format_block_width_three_plane
+[10:25:00] [PASSED] drm_test_format_block_width_tiled
+[10:25:00] [PASSED] drm_test_format_block_height_invalid
+[10:25:00] [PASSED] drm_test_format_block_height_one_plane
+[10:25:00] [PASSED] drm_test_format_block_height_two_plane
+[10:25:00] [PASSED] drm_test_format_block_height_three_plane
+[10:25:00] [PASSED] drm_test_format_block_height_tiled
+[10:25:00] [PASSED] drm_test_format_min_pitch_invalid
+[10:25:00] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
+[10:25:00] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
+[10:25:00] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
+[10:25:00] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
+[10:25:00] [PASSED] drm_test_format_min_pitch_two_plane
+[10:25:00] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
+[10:25:00] [PASSED] drm_test_format_min_pitch_tiled
+[10:25:00] =================== [PASSED] drm_format ====================
+[10:25:00] ============== drm_framebuffer (10 subtests) ===============
+[10:25:00] ========== drm_test_framebuffer_check_src_coords  ==========
+[10:25:00] [PASSED] Success: source fits into fb
+[10:25:00] [PASSED] Fail: overflowing fb with x-axis coordinate
+[10:25:00] [PASSED] Fail: overflowing fb with y-axis coordinate
+[10:25:00] [PASSED] Fail: overflowing fb with source width
+[10:25:00] [PASSED] Fail: overflowing fb with source height
+[10:25:00] ====== [PASSED] drm_test_framebuffer_check_src_coords ======
+[10:25:00] [PASSED] drm_test_framebuffer_cleanup
+[10:25:00] =============== drm_test_framebuffer_create  ===============
+[10:25:00] [PASSED] ABGR8888 normal sizes
+[10:25:00] [PASSED] ABGR8888 max sizes
+[10:25:00] [PASSED] ABGR8888 pitch greater than min required
+[10:25:00] [PASSED] ABGR8888 pitch less than min required
+[10:25:00] [PASSED] ABGR8888 Invalid width
+[10:25:00] [PASSED] ABGR8888 Invalid buffer handle
+[10:25:00] [PASSED] No pixel format
+[10:25:00] [PASSED] ABGR8888 Width 0
+[10:25:00] [PASSED] ABGR8888 Height 0
+[10:25:00] [PASSED] ABGR8888 Out of bound height * pitch combination
+[10:25:00] [PASSED] ABGR8888 Large buffer offset
+[10:25:00] [PASSED] ABGR8888 Buffer offset for inexistent plane
+[10:25:00] [PASSED] ABGR8888 Invalid flag
+[10:25:00] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
+[10:25:00] [PASSED] ABGR8888 Valid buffer modifier
+[10:25:00] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
+[10:25:00] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
+[10:25:00] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
+[10:25:00] [PASSED] NV12 Normal sizes
+[10:25:00] [PASSED] NV12 Max sizes
+[10:25:00] [PASSED] NV12 Invalid pitch
+[10:25:00] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
+[10:25:00] [PASSED] NV12 different  modifier per-plane
+[10:25:00] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
+[10:25:00] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
+[10:25:00] [PASSED] NV12 Modifier for inexistent plane
+[10:25:00] [PASSED] NV12 Handle for inexistent plane
+[10:25:00] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
+[10:25:00] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
+[10:25:00] [PASSED] YVU420 Normal sizes
+[10:25:00] [PASSED] YVU420 Max sizes
+[10:25:00] [PASSED] YVU420 Invalid pitch
+[10:25:00] [PASSED] YVU420 Different pitches
+[10:25:00] [PASSED] YVU420 Different buffer offsets/pitches
+[10:25:00] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
+[10:25:00] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
+[10:25:00] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
+[10:25:00] [PASSED] YVU420 Valid modifier
+[10:25:00] [PASSED] YVU420 Different modifiers per plane
+[10:25:00] [PASSED] YVU420 Modifier for inexistent plane
+[10:25:00] [PASSED] YUV420_10BIT Invalid modifier(DRM_FORMAT_MOD_LINEAR)
+[10:25:00] [PASSED] X0L2 Normal sizes
+[10:25:00] [PASSED] X0L2 Max sizes
+[10:25:00] [PASSED] X0L2 Invalid pitch
+[10:25:00] [PASSED] X0L2 Pitch greater than minimum required
+[10:25:00] [PASSED] X0L2 Handle for inexistent plane
+[10:25:00] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
+[10:25:00] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
+[10:25:00] [PASSED] X0L2 Valid modifier
+[10:25:00] [PASSED] X0L2 Modifier for inexistent plane
+[10:25:00] =========== [PASSED] drm_test_framebuffer_create ===========
+[10:25:00] [PASSED] drm_test_framebuffer_free
+[10:25:00] [PASSED] drm_test_framebuffer_init
+[10:25:00] [PASSED] drm_test_framebuffer_init_bad_format
+[10:25:00] [PASSED] drm_test_framebuffer_init_dev_mismatch
+[10:25:00] [PASSED] drm_test_framebuffer_lookup
+[10:25:00] [PASSED] drm_test_framebuffer_lookup_inexistent
+[10:25:00] [PASSED] drm_test_framebuffer_modifiers_not_supported
+[10:25:00] ================= [PASSED] drm_framebuffer =================
+[10:25:00] ================ drm_gem_shmem (8 subtests) ================
+[10:25:00] [PASSED] drm_gem_shmem_test_obj_create
+[10:25:00] [PASSED] drm_gem_shmem_test_obj_create_private
+[10:25:00] [PASSED] drm_gem_shmem_test_pin_pages
+[10:25:00] [PASSED] drm_gem_shmem_test_vmap
+[10:25:00] [PASSED] drm_gem_shmem_test_get_pages_sgt
+[10:25:00] [PASSED] drm_gem_shmem_test_get_sg_table
+[10:25:00] [PASSED] drm_gem_shmem_test_madvise
+[10:25:00] [PASSED] drm_gem_shmem_test_purge
+[10:25:00] ================== [PASSED] drm_gem_shmem ==================
+[10:25:00] === drm_atomic_helper_connector_hdmi_check (27 subtests) ===
+[10:25:00] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode
+[10:25:00] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode_vic_1
+[10:25:00] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode
+[10:25:00] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode_vic_1
+[10:25:00] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode
+[10:25:00] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode_vic_1
+[10:25:00] ====== drm_test_check_broadcast_rgb_cea_mode_yuv420  =======
+[10:25:00] [PASSED] Automatic
+[10:25:00] [PASSED] Full
+[10:25:00] [PASSED] Limited 16:235
+[10:25:00] == [PASSED] drm_test_check_broadcast_rgb_cea_mode_yuv420 ===
+[10:25:00] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_changed
+[10:25:00] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_not_changed
+[10:25:00] [PASSED] drm_test_check_disable_connector
+[10:25:00] [PASSED] drm_test_check_hdmi_funcs_reject_rate
+[10:25:00] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_rgb
+[10:25:00] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_yuv420
+[10:25:00] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_ignore_yuv422
+[10:25:00] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_ignore_yuv420
+[10:25:00] [PASSED] drm_test_check_driver_unsupported_fallback_yuv420
+[10:25:00] [PASSED] drm_test_check_output_bpc_crtc_mode_changed
+[10:25:00] [PASSED] drm_test_check_output_bpc_crtc_mode_not_changed
+[10:25:00] [PASSED] drm_test_check_output_bpc_dvi
+[10:25:00] [PASSED] drm_test_check_output_bpc_format_vic_1
+[10:25:00] [PASSED] drm_test_check_output_bpc_format_display_8bpc_only
+[10:25:00] [PASSED] drm_test_check_output_bpc_format_display_rgb_only
+[10:25:00] [PASSED] drm_test_check_output_bpc_format_driver_8bpc_only
+[10:25:00] [PASSED] drm_test_check_output_bpc_format_driver_rgb_only
+[10:25:00] [PASSED] drm_test_check_tmds_char_rate_rgb_8bpc
+[10:25:00] [PASSED] drm_test_check_tmds_char_rate_rgb_10bpc
+[10:25:00] [PASSED] drm_test_check_tmds_char_rate_rgb_12bpc
+[10:25:00] ===== [PASSED] drm_atomic_helper_connector_hdmi_check ======
+[10:25:00] === drm_atomic_helper_connector_hdmi_reset (6 subtests) ====
+[10:25:00] [PASSED] drm_test_check_broadcast_rgb_value
+[10:25:00] [PASSED] drm_test_check_bpc_8_value
+[10:25:00] [PASSED] drm_test_check_bpc_10_value
+[10:25:00] [PASSED] drm_test_check_bpc_12_value
+[10:25:00] [PASSED] drm_test_check_format_value
+[10:25:00] [PASSED] drm_test_check_tmds_char_value
+[10:25:00] ===== [PASSED] drm_atomic_helper_connector_hdmi_reset ======
+[10:25:00] = drm_atomic_helper_connector_hdmi_mode_valid (4 subtests) =
+[10:25:00] [PASSED] drm_test_check_mode_valid
+[10:25:00] [PASSED] drm_test_check_mode_valid_reject
+[10:25:00] [PASSED] drm_test_check_mode_valid_reject_rate
+[10:25:00] [PASSED] drm_test_check_mode_valid_reject_max_clock
+[10:25:00] === [PASSED] drm_atomic_helper_connector_hdmi_mode_valid ===
+[10:25:00] ================= drm_managed (2 subtests) =================
+[10:25:00] [PASSED] drm_test_managed_release_action
+[10:25:00] [PASSED] drm_test_managed_run_action
+[10:25:00] =================== [PASSED] drm_managed ===================
+[10:25:00] =================== drm_mm (6 subtests) ====================
+[10:25:00] [PASSED] drm_test_mm_init
+[10:25:00] [PASSED] drm_test_mm_debug
+[10:25:00] [PASSED] drm_test_mm_align32
+[10:25:00] [PASSED] drm_test_mm_align64
+[10:25:00] [PASSED] drm_test_mm_lowest
+[10:25:00] [PASSED] drm_test_mm_highest
+[10:25:00] ===================== [PASSED] drm_mm ======================
+[10:25:00] ============= drm_modes_analog_tv (5 subtests) =============
+[10:25:00] [PASSED] drm_test_modes_analog_tv_mono_576i
+[10:25:00] [PASSED] drm_test_modes_analog_tv_ntsc_480i
+[10:25:00] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
+[10:25:00] [PASSED] drm_test_modes_analog_tv_pal_576i
+[10:25:00] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
+[10:25:00] =============== [PASSED] drm_modes_analog_tv ===============
+[10:25:00] ============== drm_plane_helper (2 subtests) ===============
+[10:25:00] =============== drm_test_check_plane_state  ================
+[10:25:00] [PASSED] clipping_simple
+[10:25:00] [PASSED] clipping_rotate_reflect
+[10:25:00] [PASSED] positioning_simple
+[10:25:00] [PASSED] upscaling
+[10:25:00] [PASSED] downscaling
+[10:25:00] [PASSED] rounding1
+[10:25:00] [PASSED] rounding2
+[10:25:00] [PASSED] rounding3
+[10:25:00] [PASSED] rounding4
+[10:25:00] =========== [PASSED] drm_test_check_plane_state ============
+[10:25:00] =========== drm_test_check_invalid_plane_state  ============
+[10:25:00] [PASSED] positioning_invalid
+[10:25:00] [PASSED] upscaling_invalid
+[10:25:00] [PASSED] downscaling_invalid
+[10:25:00] ======= [PASSED] drm_test_check_invalid_plane_state ========
+[10:25:00] ================ [PASSED] drm_plane_helper =================
+[10:25:00] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
+[10:25:00] ====== drm_test_connector_helper_tv_get_modes_check  =======
+[10:25:00] [PASSED] None
+[10:25:00] [PASSED] PAL
+[10:25:00] [PASSED] NTSC
+[10:25:00] [PASSED] Both, NTSC Default
+[10:25:00] [PASSED] Both, PAL Default
+[10:25:00] [PASSED] Both, NTSC Default, with PAL on command-line
+[10:25:00] [PASSED] Both, PAL Default, with NTSC on command-line
+[10:25:00] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
+[10:25:00] ======== [PASSED] drm_connector_helper_tv_get_modes ========
+[10:25:00] ================== drm_rect (9 subtests) ===================
+[10:25:00] [PASSED] drm_test_rect_clip_scaled_div_by_zero
+[10:25:00] [PASSED] drm_test_rect_clip_scaled_not_clipped
+[10:25:00] [PASSED] drm_test_rect_clip_scaled_clipped
+[10:25:00] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
+[10:25:00] ================= drm_test_rect_intersect  =================
+[10:25:00] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
+[10:25:00] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
+[10:25:00] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
+[10:25:00] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
+[10:25:00] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
+[10:25:00] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
+[10:25:00] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
+[10:25:00] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
+[10:25:00] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
+[10:25:00] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
+[10:25:00] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
+[10:25:00] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
+[10:25:00] [PASSED] far away: 1x1+0+0 x 1x1+3+6
+[10:25:00] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
+[10:25:00] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
+[10:25:00] ============= [PASSED] drm_test_rect_intersect =============
+[10:25:00] ================ drm_test_rect_calc_hscale  ================
+[10:25:00] [PASSED] normal use
+[10:25:00] [PASSED] out of max range
+[10:25:00] [PASSED] out of min range
+[10:25:00] [PASSED] zero dst
+[10:25:00] [PASSED] negative src
+[10:25:00] [PASSED] negative dst
+[10:25:00] ============ [PASSED] drm_test_rect_calc_hscale ============
+[10:25:00] ================ drm_test_rect_calc_vscale  ================
+[10:25:00] [PASSED] normal use
+[10:25:00] [PASSED] out of max range
+[10:25:00] [PASSED] out of min range
+[10:25:00] [PASSED] zero dst
+[10:25:00] [PASSED] negative src
+[10:25:00] [PASSED] negative dst
+[10:25:00] ============ [PASSED] drm_test_rect_calc_vscale ============
+[10:25:00] ================== drm_test_rect_rotate  ===================
+[10:25:00] [PASSED] reflect-x
+[10:25:00] [PASSED] reflect-y
+[10:25:00] [PASSED] rotate-0
+[10:25:00] [PASSED] rotate-90
+[10:25:00] [PASSED] rotate-180
+[10:25:00] [PASSED] rotate-270
+stty: 'standard input': Inappropriate ioctl for device
+[10:25:00] ============== [PASSED] drm_test_rect_rotate ===============
+[10:25:00] ================ drm_test_rect_rotate_inv  =================
+[10:25:00] [PASSED] reflect-x
+[10:25:00] [PASSED] reflect-y
+[10:25:00] [PASSED] rotate-0
+[10:25:00] [PASSED] rotate-90
+[10:25:00] [PASSED] rotate-180
+[10:25:00] [PASSED] rotate-270
+[10:25:00] ============ [PASSED] drm_test_rect_rotate_inv =============
+[10:25:00] ==================== [PASSED] drm_rect =====================
+[10:25:00] ============ drm_sysfb_modeset_test (1 subtest) ============
+[10:25:00] ============ drm_test_sysfb_build_fourcc_list  =============
+[10:25:00] [PASSED] no native formats
+[10:25:00] [PASSED] XRGB8888 as native format
+[10:25:00] [PASSED] remove duplicates
+[10:25:00] [PASSED] convert alpha formats
+[10:25:00] [PASSED] random formats
+[10:25:00] ======== [PASSED] drm_test_sysfb_build_fourcc_list =========
+[10:25:00] ============= [PASSED] drm_sysfb_modeset_test ==============
+[10:25:00] ================== drm_fixp (2 subtests) ===================
+[10:25:00] [PASSED] drm_test_int2fixp
+[10:25:00] [PASSED] drm_test_sm2fixp
+[10:25:00] ==================== [PASSED] drm_fixp =====================
+[10:25:00] ============================================================
+[10:25:00] Testing complete. Ran 618 tests: passed: 618
+[10:25:00] Elapsed time: 23.528s total, 1.673s configuring, 21.683s building, 0.144s running
+
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/ttm/tests/.kunitconfig
+[10:25:00] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[10:25:02] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
+[10:25:09] Starting KUnit Kernel (1/1)...
+[10:25:09] ============================================================
+Running tests with:
+$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
+[10:25:09] ================= ttm_device (5 subtests) ==================
+[10:25:09] [PASSED] ttm_device_init_basic
+[10:25:09] [PASSED] ttm_device_init_multiple
+[10:25:09] [PASSED] ttm_device_fini_basic
+[10:25:09] [PASSED] ttm_device_init_no_vma_man
+[10:25:09] ================== ttm_device_init_pools  ==================
+[10:25:09] [PASSED] No DMA allocations, no DMA32 required
+[10:25:09] [PASSED] DMA allocations, DMA32 required
+[10:25:09] [PASSED] No DMA allocations, DMA32 required
+[10:25:09] [PASSED] DMA allocations, no DMA32 required
+[10:25:09] ============== [PASSED] ttm_device_init_pools ==============
+[10:25:09] =================== [PASSED] ttm_device ====================
+[10:25:09] ================== ttm_pool (8 subtests) ===================
+[10:25:09] ================== ttm_pool_alloc_basic  ===================
+[10:25:09] [PASSED] One page
+[10:25:09] [PASSED] More than one page
+[10:25:09] [PASSED] Above the allocation limit
+[10:25:09] [PASSED] One page, with coherent DMA mappings enabled
+[10:25:09] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
+[10:25:09] ============== [PASSED] ttm_pool_alloc_basic ===============
+[10:25:09] ============== ttm_pool_alloc_basic_dma_addr  ==============
+[10:25:09] [PASSED] One page
+[10:25:09] [PASSED] More than one page
+[10:25:09] [PASSED] Above the allocation limit
+[10:25:09] [PASSED] One page, with coherent DMA mappings enabled
+[10:25:09] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
+[10:25:09] ========== [PASSED] ttm_pool_alloc_basic_dma_addr ==========
+[10:25:09] [PASSED] ttm_pool_alloc_order_caching_match
+[10:25:09] [PASSED] ttm_pool_alloc_caching_mismatch
+[10:25:09] [PASSED] ttm_pool_alloc_order_mismatch
+[10:25:09] [PASSED] ttm_pool_free_dma_alloc
+[10:25:09] [PASSED] ttm_pool_free_no_dma_alloc
+[10:25:09] [PASSED] ttm_pool_fini_basic
+[10:25:09] ==================== [PASSED] ttm_pool =====================
+[10:25:09] ================ ttm_resource (8 subtests) =================
+[10:25:09] ================= ttm_resource_init_basic  =================
+[10:25:09] [PASSED] Init resource in TTM_PL_SYSTEM
+[10:25:09] [PASSED] Init resource in TTM_PL_VRAM
+[10:25:09] [PASSED] Init resource in a private placement
+[10:25:09] [PASSED] Init resource in TTM_PL_SYSTEM, set placement flags
+[10:25:09] ============= [PASSED] ttm_resource_init_basic =============
+[10:25:09] [PASSED] ttm_resource_init_pinned
+[10:25:09] [PASSED] ttm_resource_fini_basic
+[10:25:09] [PASSED] ttm_resource_manager_init_basic
+[10:25:09] [PASSED] ttm_resource_manager_usage_basic
+[10:25:09] [PASSED] ttm_resource_manager_set_used_basic
+[10:25:09] [PASSED] ttm_sys_man_alloc_basic
+[10:25:09] [PASSED] ttm_sys_man_free_basic
+[10:25:09] ================== [PASSED] ttm_resource ===================
+[10:25:09] =================== ttm_tt (15 subtests) ===================
+[10:25:09] ==================== ttm_tt_init_basic  ====================
+[10:25:09] [PASSED] Page-aligned size
+[10:25:09] [PASSED] Extra pages requested
+[10:25:09] ================ [PASSED] ttm_tt_init_basic ================
+[10:25:09] [PASSED] ttm_tt_init_misaligned
+[10:25:09] [PASSED] ttm_tt_fini_basic
+[10:25:09] [PASSED] ttm_tt_fini_sg
+[10:25:09] [PASSED] ttm_tt_fini_shmem
+[10:25:09] [PASSED] ttm_tt_create_basic
+[10:25:09] [PASSED] ttm_tt_create_invalid_bo_type
+[10:25:09] [PASSED] ttm_tt_create_ttm_exists
+[10:25:09] [PASSED] ttm_tt_create_failed
+[10:25:09] [PASSED] ttm_tt_destroy_basic
+[10:25:09] [PASSED] ttm_tt_populate_null_ttm
+[10:25:09] [PASSED] ttm_tt_populate_populated_ttm
+[10:25:09] [PASSED] ttm_tt_unpopulate_basic
+[10:25:09] [PASSED] ttm_tt_unpopulate_empty_ttm
+[10:25:09] [PASSED] ttm_tt_swapin_basic
+[10:25:09] ===================== [PASSED] ttm_tt ======================
+[10:25:09] =================== ttm_bo (14 subtests) ===================
+[10:25:09] =========== ttm_bo_reserve_optimistic_no_ticket  ===========
+[10:25:09] [PASSED] Cannot be interrupted and sleeps
+[10:25:09] [PASSED] Cannot be interrupted, locks straight away
+[10:25:09] [PASSED] Can be interrupted, sleeps
+[10:25:09] ======= [PASSED] ttm_bo_reserve_optimistic_no_ticket =======
+[10:25:09] [PASSED] ttm_bo_reserve_locked_no_sleep
+[10:25:09] [PASSED] ttm_bo_reserve_no_wait_ticket
+[10:25:10] [PASSED] ttm_bo_reserve_double_resv
+[10:25:10] [PASSED] ttm_bo_reserve_interrupted
+[10:25:10] [PASSED] ttm_bo_reserve_deadlock
+[10:25:10] [PASSED] ttm_bo_unreserve_basic
+[10:25:10] [PASSED] ttm_bo_unreserve_pinned
+[10:25:10] [PASSED] ttm_bo_unreserve_bulk
+[10:25:10] [PASSED] ttm_bo_put_basic
+[10:25:10] [PASSED] ttm_bo_put_shared_resv
+[10:25:10] [PASSED] ttm_bo_pin_basic
+[10:25:10] [PASSED] ttm_bo_pin_unpin_resource
+[10:25:10] [PASSED] ttm_bo_multiple_pin_one_unpin
+[10:25:10] ===================== [PASSED] ttm_bo ======================
+[10:25:10] ============== ttm_bo_validate (22 subtests) ===============
+[10:25:10] ============== ttm_bo_init_reserved_sys_man  ===============
+[10:25:10] [PASSED] Buffer object for userspace
+[10:25:10] [PASSED] Kernel buffer object
+[10:25:10] [PASSED] Shared buffer object
+[10:25:10] ========== [PASSED] ttm_bo_init_reserved_sys_man ===========
+[10:25:10] ============== ttm_bo_init_reserved_mock_man  ==============
+[10:25:10] [PASSED] Buffer object for userspace
+[10:25:10] [PASSED] Kernel buffer object
+[10:25:10] [PASSED] Shared buffer object
+[10:25:10] ========== [PASSED] ttm_bo_init_reserved_mock_man ==========
+[10:25:10] [PASSED] ttm_bo_init_reserved_resv
+[10:25:10] ================== ttm_bo_validate_basic  ==================
+[10:25:10] [PASSED] Buffer object for userspace
+[10:25:10] [PASSED] Kernel buffer object
+[10:25:10] [PASSED] Shared buffer object
+[10:25:10] ============== [PASSED] ttm_bo_validate_basic ==============
+[10:25:10] [PASSED] ttm_bo_validate_invalid_placement
+[10:25:10] ============= ttm_bo_validate_same_placement  ==============
+[10:25:10] [PASSED] System manager
+[10:25:10] [PASSED] VRAM manager
+[10:25:10] ========= [PASSED] ttm_bo_validate_same_placement ==========
+[10:25:10] [PASSED] ttm_bo_validate_failed_alloc
+[10:25:10] [PASSED] ttm_bo_validate_pinned
+[10:25:10] [PASSED] ttm_bo_validate_busy_placement
+[10:25:10] ================ ttm_bo_validate_multihop  =================
+[10:25:10] [PASSED] Buffer object for userspace
+[10:25:10] [PASSED] Kernel buffer object
+[10:25:10] [PASSED] Shared buffer object
+[10:25:10] ============ [PASSED] ttm_bo_validate_multihop =============
+[10:25:10] ========== ttm_bo_validate_no_placement_signaled  ==========
+[10:25:10] [PASSED] Buffer object in system domain, no page vector
+[10:25:10] [PASSED] Buffer object in system domain with an existing page vector
+[10:25:10] ====== [PASSED] ttm_bo_validate_no_placement_signaled ======
+[10:25:10] ======== ttm_bo_validate_no_placement_not_signaled  ========
+[10:25:10] [PASSED] Buffer object for userspace
+[10:25:10] [PASSED] Kernel buffer object
+[10:25:10] [PASSED] Shared buffer object
+[10:25:10] ==== [PASSED] ttm_bo_validate_no_placement_not_signaled ====
+[10:25:10] [PASSED] ttm_bo_validate_move_fence_signaled
+[10:25:10] ========= ttm_bo_validate_move_fence_not_signaled  =========
+[10:25:10] [PASSED] Waits for GPU
+[10:25:10] [PASSED] Tries to lock straight away
+[10:25:10] ===== [PASSED] ttm_bo_validate_move_fence_not_signaled =====
+[10:25:10] [PASSED] ttm_bo_validate_swapout
+[10:25:10] [PASSED] ttm_bo_validate_happy_evict
+[10:25:10] [PASSED] ttm_bo_validate_all_pinned_evict
+[10:25:10] [PASSED] ttm_bo_validate_allowed_only_evict
+[10:25:10] [PASSED] ttm_bo_validate_deleted_evict
+[10:25:10] [PASSED] ttm_bo_validate_busy_domain_evict
+[10:25:10] [PASSED] ttm_bo_validate_evict_gutting
+[10:25:10] [PASSED] ttm_bo_validate_recrusive_evict
+stty: 'standard input': Inappropriate ioctl for device
+[10:25:10] ================= [PASSED] ttm_bo_validate =================
+[10:25:10] ============================================================
+[10:25:10] Testing complete. Ran 102 tests: passed: 102
+[10:25:10] Elapsed time: 10.039s total, 1.626s configuring, 7.746s building, 0.583s running
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
