@@ -4,61 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70BE0C8303C
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 23:33:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D04C2C8303C
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 23:40:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D7EE10E0C7;
-	Wed,  2 Jul 2025 23:33:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BDAE10E0D1;
+	Wed,  2 Jul 2025 23:40:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XDyjxHrC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WxqW7veO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 134CE10E0C7
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 23:33:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE3BC10E0D1
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 23:40:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751499224; x=1783035224;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=nb67R8mTAqLee0bGwTy2p1mM3bW9sNGJGhesygKCY0A=;
- b=XDyjxHrCrF9Czf4T+ZxcEOd/yd4E+rtarzKqKpvvA41EUCOYSMLrKPt+
- iGFzOLKqqzeXZ1RundW9TY7JvVs6u/DCXfNxzTgGmG+IgNqFx2vIiPe+H
- HaywybCXM+n5cWRKF6nacsF+Cn4Zvgv7sdkd830jeuzxXsARsdS1SF2+B
- +VIXmUEIJFe6ltPpbF453i0aIKdU5BBClPCh/a81NY8HWnme7DdoF1U4r
- sKggEn6iSt78sPTHnhLLOq9P9I4lz8NWUOe3+C7Riq5ozpKL7FeFLeGSJ
- yNoqesjPWqMuzFAn98NJPstaPSEMo3jEb+nfxHLsznwehTpEYbLCNaVsu g==;
-X-CSE-ConnectionGUID: vkIul7guRqal9dGJbVoStA==
-X-CSE-MsgGUID: KSut70hvQGmhGTAGl+SF6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="71244298"
-X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="71244298"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 16:33:36 -0700
-X-CSE-ConnectionGUID: COKopxrwSoGF43P86VtfIg==
-X-CSE-MsgGUID: Y0nhqa1ORK6Q3SBT7cTrKw==
+ t=1751499642; x=1783035642;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=cSDoG33bIEcs1eowsRc7ccUW6w009+m8KjNBCbK4SpA=;
+ b=WxqW7veOaY7ubAACARcXm5f3jUvFTcXRMppYCP3xIyVAzgplFJ5pYfsp
+ luoBM7/wr1M/j/eywx1pZbhLhWuFgyttO3mwuVe3DJSNwByLEQtAWfrAG
+ ZW2xEnICyZbm2sxcc0ZJ0NqAonIqo22CsBOcw/4Ui/I338bUwuKtDBiQW
+ 6WQipKDoTmrusmjFsSC3ZJteU0S/0TYQVE3I+KOLxhbYeOScDlgX5tFWO
+ vVhFS5XYlHdZ7h2NqegxqxsBV2AvbPKFjxa99hGRK3SLlUW3ynXI/Oo9K
+ 7V+wnItyWWFC78hdCCwy8AiUfRDoG9o6FQtHtqMMUyfbLrLkeb4Z4Ybiq Q==;
+X-CSE-ConnectionGUID: /NOpd2dFRSumay19eQ79FQ==
+X-CSE-MsgGUID: QO23wsPaSlOTkqJYkw9PmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="57489470"
+X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="57489470"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 16:40:42 -0700
+X-CSE-ConnectionGUID: 6KgeuJ1jSFuOKlp35ci/4Q==
+X-CSE-MsgGUID: x4/37gO3SvaLPKUX9wkllQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="153848731"
-Received: from lkp-server01.sh.intel.com (HELO 0b2900756c14) ([10.239.97.150])
- by fmviesa007.fm.intel.com with ESMTP; 02 Jul 2025 16:33:34 -0700
-Received: from kbuild by 0b2900756c14 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uX6xH-0001Dz-2Q;
- Wed, 02 Jul 2025 23:33:31 +0000
-Date: Thu, 3 Jul 2025 07:33:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, riana.tauro@intel.com,
- anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
- raag.jadav@intel.com, umesh.nerlige.ramappa@intel.com,
- frank.scarbrough@intel.com, sk.anirban@intel.com
-Subject: Re: [PATCH v3 3/7] drm/xe/xe_survivability: Add support for Runtime
- survivability mode
-Message-ID: <202507030724.ANdFmYRE-lkp@intel.com>
-References: <20250702141118.3564242-4-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="153624523"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 16:40:43 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com,
+	maarten.lankhorst@linux.intel.com
+Subject: [PATCH v2 1/9] drm/xe: Explicitly mark migration queues with flag
+Date: Wed,  2 Jul 2025 16:42:14 -0700
+Message-Id: <20250702234222.3278264-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250702234222.3278264-1-matthew.brost@intel.com>
+References: <20250702234222.3278264-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250702141118.3564242-4-riana.tauro@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,33 +67,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Riana,
+Rather than inferring if an exec queue is a migration queue for a flag,
+explicitly mark migration queues with a flag.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec_queue_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_migrate.c          | 6 ++++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-[auto build test WARNING on drm-xe/drm-xe-next]
-[also build test WARNING on linus/master v6.16-rc4 next-20250702]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Riana-Tauro/drm-Add-a-vendor-specific-recovery-method-to-device-wedged-uevent/20250703-014925
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20250702141118.3564242-4-riana.tauro%40intel.com
-patch subject: [PATCH v3 3/7] drm/xe/xe_survivability: Add support for Runtime survivability mode
-config: arc-randconfig-002-20250703 (https://download.01.org/0day-ci/archive/20250703/202507030724.ANdFmYRE-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 12.4.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250703/202507030724.ANdFmYRE-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507030724.ANdFmYRE-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: drivers/gpu/drm/xe/xe_survivability_mode.c:272 function parameter 'type' not described in 'xe_survivability_mode_enable'
-
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index cc1cffb5c87f..abdf4a57e6e2 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -87,6 +87,8 @@ struct xe_exec_queue {
+ #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
+ /* flag to indicate low latency hint to guc */
+ #define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
++/* for migration (kernel copy, clear, bind) jobs */
++#define EXEC_QUEUE_FLAG_MIGRATE			BIT(6)
+ 
+ 	/**
+ 	 * @flags: flags for this exec queue, should statically setup aside from ban
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 0838582537e8..b5f85162b9ed 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -437,12 +437,14 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+ 		m->q = xe_exec_queue_create(xe, vm, logical_mask, 1, hwe,
+ 					    EXEC_QUEUE_FLAG_KERNEL |
+ 					    EXEC_QUEUE_FLAG_PERMANENT |
+-					    EXEC_QUEUE_FLAG_HIGH_PRIORITY, 0);
++					    EXEC_QUEUE_FLAG_HIGH_PRIORITY |
++					    EXEC_QUEUE_FLAG_MIGRATE, 0);
+ 	} else {
+ 		m->q = xe_exec_queue_create_class(xe, primary_gt, vm,
+ 						  XE_ENGINE_CLASS_COPY,
+ 						  EXEC_QUEUE_FLAG_KERNEL |
+-						  EXEC_QUEUE_FLAG_PERMANENT, 0);
++						  EXEC_QUEUE_FLAG_PERMANENT |
++						  EXEC_QUEUE_FLAG_MIGRATE, 0);
+ 	}
+ 	if (IS_ERR(m->q)) {
+ 		xe_vm_close_and_put(vm);
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
