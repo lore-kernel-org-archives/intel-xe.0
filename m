@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5F00C77B7C
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 19:40:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6BF0C77B7C
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 19:45:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 149E310E484;
-	Wed,  2 Jul 2025 19:40:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X87gHWYS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4E2010E33F;
- Wed,  2 Jul 2025 19:40:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751485237; x=1783021237;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/b6Q3XHmYCWdwTuNMrmZMv27f/8Nwdt6Y/pl4qWA7V4=;
- b=X87gHWYS65YqYdFard3fey9BtjaFBLAALwzF0okvvwtXBvxgPQUHCAz2
- rE4D7tbjZjmJvfOCah3dg+jI4dyAq3aeoWcJ0Uafw1NsgnYQodslBz8Xl
- 51yoB35zgvYGp2aimuQcQh2/+RMiB1IWgzhbVxT1iXC4mD6hhYO80SQog
- 2v/dd3zklWLnS6ZrWW36NaJx/RW2/4mQjeLvmWnLBEBhlElwMR2mRodMu
- 6TRK+oJHQcvHWXHFwVJdNWqHE8+GqNiaYteaTRU0EmKELVx+prJLKbxAR
- J23FYgzf+e4Mk0W+s/INYZjkLO2ZEnlJWxOODnm04b5teC9jSCDS44V3s w==;
-X-CSE-ConnectionGUID: M9lIy/KqSa62sj41C8i1Dw==
-X-CSE-MsgGUID: wkQBcKYTQB6vck7b6y2ptg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="57472571"
-X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="57472571"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 12:40:37 -0700
-X-CSE-ConnectionGUID: B07tIWP5REukFJF4YITPwQ==
-X-CSE-MsgGUID: AOZog8T/TBOG2b34SZUf4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="159856904"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.30])
- by orviesa005.jf.intel.com with SMTP; 02 Jul 2025 12:40:35 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 02 Jul 2025 22:40:34 +0300
-Date: Wed, 2 Jul 2025 22:40:34 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, gustavo.sousa@intel.com,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH 1/2] drm/i915/display_wa: Add helpers to check wa
-Message-ID: <aGWLMinfzWd9IkFJ@intel.com>
-References: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
- <20250702084620.3837426-2-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74C6A10E796;
+	Wed,  2 Jul 2025 19:45:08 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EE9010E77F;
+ Wed,  2 Jul 2025 19:45:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250702084620.3837426-2-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Create_and_use_XE=5FDEVIC?=
+ =?utf-8?q?E=5FWA_infrastructure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Atwood" <matthew.s.atwood@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Jul 2025 19:45:07 -0000
+Message-ID: <175148550738.129325.300168631827152373@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250702193036.1417416-1-matthew.s.atwood@intel.com>
+In-Reply-To: <20250702193036.1417416-1-matthew.s.atwood@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,104 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jul 02, 2025 at 02:16:18PM +0530, Ankit Nautiyal wrote:
-> Introduce a generic helper to check display workarounds using an enum.
-> 
-> Convert Wa_16023588340 to use the new interface, simplifying WA checks
-> and making future additions easier.
-> 
-> v2: Use drm_WARN instead of MISSING_CASE and simplify intel_display_wa
-> macro. (Jani)
-> 
-> Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_wa.c | 15 +++++++++++++++
->  drivers/gpu/drm/i915/display/intel_display_wa.h |  9 +++++++++
->  drivers/gpu/drm/i915/display/intel_fbc.c        |  2 +-
->  3 files changed, 25 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> index f57280e9d041..f5e8d58d9a68 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> @@ -3,6 +3,8 @@
->   * Copyright © 2023 Intel Corporation
->   */
->  
-> +#include "drm/drm_print.h"
-> +
->  #include "i915_reg.h"
->  #include "intel_de.h"
->  #include "intel_display_core.h"
-> @@ -39,3 +41,16 @@ void intel_display_wa_apply(struct intel_display *display)
->  	else if (DISPLAY_VER(display) == 11)
->  		gen11_display_wa_apply(display);
->  }
-> +
-> +bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa)
-> +{
-> +	switch (wa) {
-> +	case INTEL_DISPLAY_WA_16023588340:
-> +		return intel_display_needs_wa_16023588340(display);
-> +	default:
-> +		drm_WARN(display->drm, 1, "Missing Wa number: %d\n", wa);
-> +		break;
-> +	}
-> +
-> +	return false;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> index babd9d16603d..146ee70d66f7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> @@ -21,4 +21,13 @@ static inline bool intel_display_needs_wa_16023588340(struct intel_display *disp
->  bool intel_display_needs_wa_16023588340(struct intel_display *display);
->  #endif
->  
-> +enum intel_display_wa {
-> +	INTEL_DISPLAY_WA_16023588340,
+== Series Details ==
 
-How is anyone supposed to keep track of these random numbers
-and what they mean?
+Series: Create and use XE_DEVICE_WA infrastructure
+URL   : https://patchwork.freedesktop.org/series/151087/
+State : warning
 
-The only time I want to see these numbers is if I really have to
-open the spec/hsd for it to double check some details. Othwerwise
-it just seems like pointless noise that makes it harder to follow
-the code/figure out what the heck is going on.
+== Summary ==
 
-> +};
-> +
-> +bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa);
-> +
-> +#define intel_display_wa(__display, __wa) \
-> +	__intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa)
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index 6e26cb4c5724..e2e03af520b2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -1464,7 +1464,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
->  		return 0;
->  	}
->  
-> -	if (intel_display_needs_wa_16023588340(display)) {
-> +	if (intel_display_wa(display, 16023588340)) {
->  		plane_state->no_fbc_reason = "Wa_16023588340";
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f09e1793bb36553bf17d08206fc1fc8b41dd2d05
+Author: Matt Atwood <matthew.s.atwood@intel.com>
+Date:   Wed Jul 2 12:30:36 2025 -0700
 
-This here for instance is completely useless. I have no idea what that
-w/a is about or why it requires FBC to be disabled. And if I jump into
-intel_display_needs_wa_16023588340() I am none the wiser.
+    drm/xe: disable wa_15015404425 for PTL B0
+    
+    Wa_15015404425 only needs to be applied on PTL platforms with an A step
+    compute die. There is no way to map PCI revid to the compute die
+    stepping. The easiest way to figure out compute die stepping our end is
+    to map the media IP's stepping to the compute die. For PTL, compute die
+    has an A stepping if and only if the media IP's stepping is also A-step
+    (This relationship is determined on a per platform basis and just
+    happens to be this way on PTL).
+    
+    In addition this workaround is a chicken-and-egg problem. Wa_15015404425
+    requires that all register reads be preceded by four dummy MMIO writes
+    (including during early driver  init and even pre-OS firmware). The
+    driver needs to perform some MMIO reads during init which include the
+    GMD_ID register that contains the Media IPs stepping. To handle this in
+    the safest manner assume the workaround applies to all of PTL during
+    driver probe and deactivate the workaround after.
+    
+    The overall solution becomes a set of two workarounds:
+    
+    * 15015404425 - a Device OOB workaround that's always active for PTL
+    * 15015404425_disable - a GT OOB workaround that applies to PTL
+      platfroms with a B0 or later stepping
+    
+    The first of these workarounds issues dummy MMIO writes we do when
+    reading registers. The second guards logic that disables the first once
+    we have the necessary information later in the probe process.
+    
+    v2: rename SoC to device, avoid null pointer dereference, update commit
+    message.
+    v3: rebase
+    v5: move disable check into xe_device_probe to avoid linking in xe_wa
+    into xe_pci, reword commit message
+    
+    Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
++ /mt/dim checkpatch 94631e6b7f655b1922e3227970cd6180200694af drm-intel
+d95a896ea644 drm/xe: add xe_device_wa infrastructure
+-:43: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#43: 
+new file mode 100644
 
->  		return 0;
->  	}
-> -- 
-> 2.45.2
+-:90: WARNING:STRNCPY: Prefer strscpy, strscpy_pad, or __nonstring over strncpy - see: https://github.com/KSPP/linux/issues/90
+#90: FILE: drivers/gpu/drm/xe/xe_gen_wa_oob.c:128:
++	if (!strncpy(prefix, fn, size - 1))
 
--- 
-Ville Syrjälä
-Intel
+total: 0 errors, 2 warnings, 0 checks, 101 lines checked
+581744fccdcf drm/xe: add new type to RTP context
+-:98: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#98: FILE: drivers/gpu/drm/xe/xe_rtp.h:425:
++	struct xe_gt * :	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_GT },	\
+
+-:99: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#99: FILE: drivers/gpu/drm/xe/xe_rtp.h:426:
++	struct xe_device * :	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_DEVICE })
+
+total: 0 errors, 2 warnings, 0 checks, 91 lines checked
+90ae50cf3180 drm/xe: Add infrastructure for Device OOB workarounds
+-:133: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#133: FILE: drivers/gpu/drm/xe/xe_wa.c:900:
++	xe_rtp_process_ctx_enable_active_tracking(&ctx, xe->wa_active.oob, ARRAY_SIZE(device_oob_was));
+
+-:224: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'xe__' - possible side-effects?
+#224: FILE: drivers/gpu/drm/xe/xe_wa.h:43:
++#define XE_DEVICE_WA(xe__, id__) ({					\
++	xe_assert(xe__, (xe__)->wa_active.oob_initialized);			\
++	test_bit(XE_DEVICE_WA_OOB_ ## id__, (xe__)->wa_active.oob);		\
++})
+
+total: 0 errors, 1 warnings, 1 checks, 181 lines checked
+13f61557eea9 drm/xe: Move Wa_15015404425 to use the new XE_DEVICE_WA macro
+b1c4255c2e2e drm/xe: extend Wa_15015404425 to apply to PTL
+f09e1793bb36 drm/xe: disable wa_15015404425 for PTL B0
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'xe__' - possible side-effects?
+#71: FILE: drivers/gpu/drm/xe/xe_wa.h:48:
++#define XE_DEVICE_WA_DISABLE(xe__, id__) ({				\
++	xe_assert(xe__, (xe__)->wa_active.oob_initialized);			\
++	clear_bit(XE_DEVICE_WA_OOB_ ## id__, (xe__)->wa_active.oob);		\
++})
+
+total: 0 errors, 0 warnings, 1 checks, 31 lines checked
+
+
