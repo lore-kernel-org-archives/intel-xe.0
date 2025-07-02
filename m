@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 101ABC8303C
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 11:07:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49EA5C8303C
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 11:08:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C68D810E6EF;
-	Wed,  2 Jul 2025 11:07:52 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69CDB10E6EF;
- Wed,  2 Jul 2025 11:07:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2767088515030622348=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBCB10E6F0;
+	Wed,  2 Jul 2025 11:08:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ks6SUZYB";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6257110E6F3
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 11:08:22 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 6694E61427
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 11:08:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0602EC4CEF5
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 11:08:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1751454501;
+ bh=pGAsTwO4nedv4ZptOpPXY0xiBm1d9gCL8IfkcvWQVIM=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=Ks6SUZYBQhwE27ILoyNKcU94ZusLykB6qbwxZtjuinKo8gIxJi7VBzDXzv+DTcr4v
+ L4o8S46mr4M68cT8nI0t7N8AXCDMZD2SzV4f/K04P769URLWERtg3l93vwvlJMeGnJ
+ CUDrP2S6mU8IgrS01gnNvBRS7lJmxBKQ8QNFU9ThnRAsc4QqIc/6oEuPLTwutakM0D
+ 7ltx0V9vBftux18n8G6ifb8zWwhOAWocXws/sxwE8dk25QT+qgNKrVpyUufq4MreU2
+ MBAkri1KWjjK1Rt5MsDSQ9A8fxdGhy3ys7yK0n9qMAqIKQiWw6bfPblGssWN9ehmzI
+ Ln11vTxi+LOyA==
+Received: by mail-oo1-f45.google.com with SMTP id
+ 006d021491bc7-6119cd1a154so2034438eaf.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 02 Jul 2025 04:08:21 -0700 (PDT)
+X-Gm-Message-State: AOJu0YwtSZl6ZB+RSWD9fTBLe3IgAbVMg2Cltdlg/EWcKJVRyFLF2AjV
+ OoBvE6Yui2UAkpjF+XraHYYfWg5EuE1DXZiagFTsK+ZXWeki6O+Gsq521S55EM7cj5fZW3Sk9cb
+ Em2DnVxzwsipxq9Clca0Sx1uNjz2CTYA=
+X-Google-Smtp-Source: AGHT+IHkIVCnmJgkGAu7G1qnWZGAGZtxEA3UbZ+srtYNJgnEnqT01JZaI/4hnS1PgFDjZXHE0guv+7GKe7AGEeeYKPY=
+X-Received: by 2002:a05:6820:150f:b0:611:e31c:5d23 with SMTP id
+ 006d021491bc7-612010c1539mr1515499eaf.4.1751454500115; Wed, 02 Jul 2025
+ 04:08:20 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Plane_Color_Pipeline_suppor?=
- =?utf-8?q?t_for_Intel_platforms_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Jul 2025 11:07:51 -0000
-Message-ID: <175145447142.127999.16421446423280308716@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250702091936.3004854-1-uma.shankar@intel.com>
-In-Reply-To: <20250702091936.3004854-1-uma.shankar@intel.com>
+References: <20250529111654.3140766-1-badal.nilawar@intel.com>
+ <20250529111654.3140766-2-badal.nilawar@intel.com>
+In-Reply-To: <20250529111654.3140766-2-badal.nilawar@intel.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Wed, 2 Jul 2025 13:08:08 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0h7BENMDCOHVD6ZdF7o1OwE=RAOzkC0+r+G=-3qpjfn0Q@mail.gmail.com>
+X-Gm-Features: Ac12FXxPFu3QcdhDxeEnqZD1NVDJtj98rI7oLIBr9DAoZ9EA3vlsdPhbwF6SqU8
+Message-ID: <CAJZ5v0h7BENMDCOHVD6ZdF7o1OwE=RAOzkC0+r+G=-3qpjfn0Q@mail.gmail.com>
+Subject: Re: [PATCH v4 01/11] PCI/ACPI: Add D3cold Aux Power Limit_DSM method
+To: Badal Nilawar <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org, 
+ linux-pci@vger.kernel.org, anshuman.gupta@intel.com, rafael@kernel.org, 
+ lenb@kernel.org, bhelgaas@google.com, ilpo.jarvinen@linux.intel.com, 
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com, varun.gupta@intel.com, 
+ ville.syrjala@linux.intel.com, uma.shankar@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,316 +69,202 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2767088515030622348==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, May 29, 2025 at 1:14=E2=80=AFPM Badal Nilawar <badal.nilawar@intel.=
+com> wrote:
+>
+> From: Anshuman Gupta <anshuman.gupta@intel.com>
+>
+> Implement _DSM method 0Ah according to PCI firmware specifications,
+> section 4.6.10 Rev 3.3., to request auxilary power needed for the
+> device when in D3Cold.
+>
+> Note that this implementation assumes only a single device below the
+> Downstream Port will request for Aux Power Limit under a given
+> Root Port because it does not track and aggregate requests
+> from all child devices below the Downstream Port as required
+> by Section 4.6.10 Rev 3.3.
+>
+> One possible mitigation would be only allowing only first PCIe
+> Non-Bridge Endpoint Function 0 driver to call_DSM method 0Ah.
+>
+> Signed-off-by: Varun Gupta <varun.gupta@intel.com>
 
-== Series Details ==
+What's this S-o-b for?
 
-Series: Plane Color Pipeline support for Intel platforms (rev4)
-URL   : https://patchwork.freedesktop.org/series/141788/
-State : success
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+> V2(Bjorn/Rafael):
+>   - Call acpi_dsm_check() to find method 0Ah supported
+>   - Return retry interval to caller
+> V3(Kuppuswamy)
+>   - Add NULL check for retry interval
+> ---
+>  drivers/pci/pci-acpi.c   | 87 ++++++++++++++++++++++++++++++++++++++++
+>  include/linux/pci-acpi.h |  8 ++++
+>  2 files changed, 95 insertions(+)
+>
+> diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+> index af370628e583..87f30910a5f1 100644
+> --- a/drivers/pci/pci-acpi.c
+> +++ b/drivers/pci/pci-acpi.c
+> @@ -1421,6 +1421,93 @@ static void pci_acpi_optimize_delay(struct pci_dev=
+ *pdev,
+>         ACPI_FREE(obj);
+>  }
+>
+> +/**
+> + * pci_acpi_request_d3cold_aux_power - Request aux power while device is=
+ in D3Cold
+> + * @dev: PCI device instance
+> + * @requested_power: Requested auxiliary power in milliwatts
+> + * @retry_interval: Retry interval returned by platform to retry auxilia=
+ry
+> + *                  power request
+> + *
+> + * This function sends a request to the host BIOS via root port ACPI _DS=
+M Function 0Ah
+> + * for the auxiliary power needed by the PCI device when it is in D3Cold=
+.
+> + * It checks and evaluates the _DSM (Device Specific Method) to request =
+the auxiliary
+> + * power and handles the response accordingly.
+> + *
+> + * This function shall be only called by 1st non-bridge Endpoint driver
+> + * on Function 0. For a Multi-Function Device, the driver for Function 0=
+ is
+> + * required to report an aggregate power requirement covering all
+> + * functions contained within the device.
+> + *
+> + * Return: Returns 0 on success and errno on failure.
+> + */
+> +int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested=
+_power,
+> +                                     u32 *retry_interval)
+> +{
+> +       union acpi_object in_obj =3D {
+> +               .integer.type =3D ACPI_TYPE_INTEGER,
+> +               .integer.value =3D requested_power,
+> +       };
+> +
+> +       union acpi_object *out_obj;
+> +       acpi_handle handle;
+> +       int result, ret =3D -EINVAL;
+> +
+> +       if (!dev || !retry_interval)
+> +               return -EINVAL;
+> +
+> +       handle =3D ACPI_HANDLE(&dev->dev);
+> +       if (!handle)
+> +               return -EINVAL;
+> +
+> +       if (!acpi_check_dsm(handle, &pci_acpi_dsm_guid, 4, 1 << DSM_PCI_D=
+3COLD_AUX_POWER_LIMIT)) {
+> +               pci_dbg(dev, "ACPI _DSM 0%Xh not supported\n", DSM_PCI_D3=
+COLD_AUX_POWER_LIMIT);
+> +               return -ENODEV;
+> +       }
+> +
+> +       out_obj =3D acpi_evaluate_dsm_typed(handle, &pci_acpi_dsm_guid, 4=
+,
+> +                                         DSM_PCI_D3COLD_AUX_POWER_LIMIT,
+> +                                         &in_obj, ACPI_TYPE_INTEGER);
+> +       if (!out_obj)
+> +               return -EINVAL;
+> +
+> +       result =3D out_obj->integer.value;
+> +       if (retry_interval)
+> +               *retry_interval =3D 0;
+> +
+> +       switch (result) {
+> +       case 0x0:
 
-== Summary ==
+It would be better to use an enum for the possible return values.
 
-CI Bug Log - changes from xe-3334-b96850785acbd7f0221629625724533cefc2481e_BAT -> xe-pw-141788v4_BAT
-====================================================
+> +               pci_dbg(dev, "D3cold Aux Power %u mW request denied\n",
+> +                       requested_power);
+> +               break;
+> +       case 0x1:
+> +               pci_info(dev, "D3cold Aux Power request granted: %u mW\n"=
+,
+> +                        requested_power);
+> +               ret =3D 0;
+> +               break;
+> +       case 0x2:
+> +               pci_info(dev, "D3cold Aux Power: Main power won't be remo=
+ved\n");
+> +               ret =3D -EBUSY;
+> +               break;
+> +       default:
+> +               if (result >=3D 0x11 && result <=3D 0x1F) {
 
-Summary
--------
+if (!(result & ~0x1F))
 
-  **SUCCESS**
+I think, and it would be better to use a symbol for this mask (and below to=
+o).
 
-  No regressions found.
+> +                       if (retry_interval) {
 
-  
+This has been checked already and is guaranteed to be nonzero at this point=
+.
 
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141788v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-lnl-2:          NOTRUN -> [SKIP][1] ([Intel XE#1466] / [Intel XE#2235])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-lnl-2:          NOTRUN -> [SKIP][2] ([Intel XE#2235] / [Intel XE#2482]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-lnl-2:          NOTRUN -> [SKIP][3] ([Intel XE#2235] / [Intel XE#352]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-lnl-2:          NOTRUN -> [SKIP][4] ([Intel XE#2235] / [Intel XE#2548])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-lnl-2:          NOTRUN -> [SKIP][5] ([Intel XE#1470] / [Intel XE#2235] / [Intel XE#2853])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-lnl-2:          NOTRUN -> [SKIP][6] ([Intel XE#2235]) +13 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-lnl-2:          NOTRUN -> [SKIP][7] ([Intel XE#2850] / [Intel XE#929]) +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-off:
-    - bat-lnl-2:          NOTRUN -> [SKIP][8] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-lnl-2:          NOTRUN -> [SKIP][9] ([Intel XE#688]) +11 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-lnl-2:          NOTRUN -> [SKIP][10] ([Intel XE#2229]) +2 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-lnl-2:          NOTRUN -> [SKIP][11] ([Intel XE#1416])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-lnl-2:          NOTRUN -> [SKIP][12] ([Intel XE#1420] / [Intel XE#2838])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-lnl-2:          NOTRUN -> [SKIP][13] ([Intel XE#977])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-lnl-2:          NOTRUN -> [SKIP][14] ([Intel XE#2236] / [Intel XE#979])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-lnl-2:          NOTRUN -> [SKIP][15] ([Intel XE#3342])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  
-#### Possible fixes ####
-
-  * igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:
-    - bat-lnl-2:          [ABORT][16] ([Intel XE#4624] / [Intel XE#4966]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3334-b96850785acbd7f0221629625724533cefc2481e/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [DMESG-WARN][18] ([Intel XE#4543]) -> [PASS][19] +1 other test pass
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3334-b96850785acbd7f0221629625724533cefc2481e/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
-  [Intel XE#1416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#1466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466
-  [Intel XE#1470]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2235]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
-  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#2853]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/352
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#4624]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624
-  [Intel XE#4966]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4966
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
-
-
-Build changes
--------------
-
-  * Linux: xe-3334-b96850785acbd7f0221629625724533cefc2481e -> xe-pw-141788v4
-
-  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3334-b96850785acbd7f0221629625724533cefc2481e: b96850785acbd7f0221629625724533cefc2481e
-  xe-pw-141788v4: 141788v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/index.html
-
---===============2767088515030622348==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Plane Color Pipeline support for Intel platforms (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141788/">https://patchwork.freedesktop.org/series/141788/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3334-b96850785acbd7f0221629625724533cefc2481e_BAT -&gt; xe-pw-141788v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141788v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466">Intel XE#1466</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/352">Intel XE#352</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470">Intel XE#1470</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853">Intel XE#2853</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416">Intel XE#1416</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:</p>
-<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3334-b96850785acbd7f0221629625724533cefc2481e/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624">Intel XE#4624</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4966">Intel XE#4966</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3334-b96850785acbd7f0221629625724533cefc2481e/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3334-b96850785acbd7f0221629625724533cefc2481e -&gt; xe-pw-141788v4</li>
-</ul>
-<p>IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3334-b96850785acbd7f0221629625724533cefc2481e: b96850785acbd7f0221629625724533cefc2481e<br />
-  xe-pw-141788v4: 141788v4</p>
-
-</body>
-</html>
-
---===============2767088515030622348==--
+> +                               *retry_interval =3D result & 0xF;
+> +                               pci_warn(dev, "D3cold Aux Power request n=
+eeds retry interval: %u seconds\n",
+> +                                        *retry_interval);
+> +                               ret =3D -EAGAIN;
+> +                       }
+> +               } else {
+> +                       pci_err(dev, "D3cold Aux Power: Reserved or unsup=
+ported response: 0x%x\n",
+> +                               result);
+> +               }
+> +               break;
+> +       }
+> +
+> +       ACPI_FREE(out_obj);
+> +       return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(pci_acpi_request_d3cold_aux_power);
+> +
+>  static void pci_acpi_set_external_facing(struct pci_dev *dev)
+>  {
+>         u8 val;
+> diff --git a/include/linux/pci-acpi.h b/include/linux/pci-acpi.h
+> index 078225b514d4..6079306ad754 100644
+> --- a/include/linux/pci-acpi.h
+> +++ b/include/linux/pci-acpi.h
+> @@ -121,6 +121,7 @@ extern const guid_t pci_acpi_dsm_guid;
+>  #define DSM_PCI_DEVICE_NAME                    0x07
+>  #define DSM_PCI_POWER_ON_RESET_DELAY           0x08
+>  #define DSM_PCI_DEVICE_READINESS_DURATIONS     0x09
+> +#define DSM_PCI_D3COLD_AUX_POWER_LIMIT         0x0A
+>
+>  #ifdef CONFIG_PCIE_EDR
+>  void pci_acpi_add_edr_notifier(struct pci_dev *pdev);
+> @@ -132,10 +133,17 @@ static inline void pci_acpi_remove_edr_notifier(str=
+uct pci_dev *pdev) { }
+>
+>  int pci_acpi_set_companion_lookup_hook(struct acpi_device *(*func)(struc=
+t pci_dev *));
+>  void pci_acpi_clear_companion_lookup_hook(void);
+> +int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested=
+_power,
+> +                                     u32 *retry_interval);
+>
+>  #else  /* CONFIG_ACPI */
+>  static inline void acpi_pci_add_bus(struct pci_bus *bus) { }
+>  static inline void acpi_pci_remove_bus(struct pci_bus *bus) { }
+> +static inline int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev,=
+ u32 requested_power,
+> +                                                   u32 *retry_interval)
+> +{
+> +       return -EOPNOTSUPP;
+> +}
+>  #endif /* CONFIG_ACPI */
+>
+>  #endif /* _PCI_ACPI_H_ */
+> --
