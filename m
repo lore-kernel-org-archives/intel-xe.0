@@ -4,59 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A34E4C83F05
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 14:12:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56D80C83F04
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 14:26:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60CE810E719;
-	Wed,  2 Jul 2025 14:12:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11FF410E298;
+	Wed,  2 Jul 2025 14:26:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dwAPIyVY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X0bH96fx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6938010E717;
- Wed,  2 Jul 2025 14:12:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF0D410E298
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 14:26:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751465570; x=1783001570;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=tTVKzZpEnc7zeJ0EyQEnBhBVZ0c91y5ihShsNJAt4TA=;
- b=dwAPIyVY8cI5uxsdl7xemjrqfJgsafP49iTZERHq07hXOu5p2fbfUG7x
- odfTpliJkVcpFwkXP1wriPI5+0p7S+R6UVZMGzkUGTmLmlrTLednelN/6
- 8oAYoKOrA9d696ZpMIxDV9Qxg00D6YgEC/SWlsH9Y0gjzAcIkgRSRWP0/
- QxRouv1kYdFx6qRuI7qhtm4u8t/lOatUQnd1BaoiLlT8B+gsG2CQ4v2wu
- Zih/nsJwuHIbzwyl9dCKQrFt/np315khDDdREiaET5UAwxJB6Ae0SWpQ/
- 3RVuJzgrzKvS3MuGlIFPK2FyE5FUpQUSPs5BfXkymvVyQ+vRYBs+4uqym A==;
-X-CSE-ConnectionGUID: V6U7HbGTTiW5dt/NYNjFdA==
-X-CSE-MsgGUID: 1C2QKBpkTqCtTmPpYvInhQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="64009118"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64009118"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 07:12:50 -0700
-X-CSE-ConnectionGUID: Bl4kLbN8TYuEfK6iVaoptA==
-X-CSE-MsgGUID: +7amJITWRvG7SO/ep4wRIw==
+ t=1751466363; x=1783002363;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VA5xthg9dPrTPeeGXrZjuj2UGmZFBUchuMH66WJDgXk=;
+ b=X0bH96fxtIpYHc6JVNYCc+Z2D72OOs2OU9buCz5PuQw/usx98/GdScqs
+ 1zN4ByY+GvBvjoI+YT5U2cZzYUIKoifFEk6yTPvqc6LqcxmtliWe0YDV7
+ K6C0SZPxGOPptgObzVYm6FBH5f+CYwhy4PqF78AoWgLvnOH/TcCUAsQz5
+ jaVrT9UjZ3s4geZ2NTGlikYz6hT7+xbYMIXuHtukriUqmvPjs5MRdv77I
+ XVFdyFy7re86p5Q8isECIPYvCD1V3DepCkwDX0+KqgOHM5hu3PxDRM3CY
+ +nOsX3EGtIXL72q2v2qiVBSKOUeDZR5DpRZkCzzUUR8q4G3LfFpvZVF9g g==;
+X-CSE-ConnectionGUID: sq0qq/nIQUGxR0WUkkbBtQ==
+X-CSE-MsgGUID: XHDlqH9bTm6vHzhlOylo7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="64814438"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64814438"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 07:25:18 -0700
+X-CSE-ConnectionGUID: YWPDYAevSsuaZ6eytcaesQ==
+X-CSE-MsgGUID: SoZSaMERSDK3AMXwjRLyCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="154433102"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.29])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 07:12:46 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, Ankit Nautiyal
- <ankit.k.nautiyal@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 1/2] drm/i915/display_wa: Add helpers to check wa
-In-Reply-To: <175146302838.3748.9114348489206219151@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
- <20250702084620.3837426-2-ankit.k.nautiyal@intel.com>
- <175146302838.3748.9114348489206219151@intel.com>
-Date: Wed, 02 Jul 2025 17:12:43 +0300
-Message-ID: <45e9d0aa40e0f9bf9dac03054e7a46c52623ba84@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="158658536"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.112.168])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 07:25:16 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe/guc: Don't allocate temporary policies object
+Date: Wed,  2 Jul 2025 16:25:04 +0200
+Message-Id: <20250702142504.1656-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,134 +65,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 02 Jul 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Ankit Nautiyal (2025-07-02 05:46:18-03:00)
->>Introduce a generic helper to check display workarounds using an enum.
->>
->>Convert Wa_16023588340 to use the new interface, simplifying WA checks
->>and making future additions easier.
->>
->>v2: Use drm_WARN instead of MISSING_CASE and simplify intel_display_wa
->>macro. (Jani)
->>
->>Suggested-by: Jani Nikula <jani.nikula@intel.com>
->>Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>---
->> drivers/gpu/drm/i915/display/intel_display_wa.c | 15 +++++++++++++++
->> drivers/gpu/drm/i915/display/intel_display_wa.h |  9 +++++++++
->> drivers/gpu/drm/i915/display/intel_fbc.c        |  2 +-
->> 3 files changed, 25 insertions(+), 1 deletion(-)
->>
->>diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gp=
-u/drm/i915/display/intel_display_wa.c
->>index f57280e9d041..f5e8d58d9a68 100644
->>--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
->>+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
->>@@ -3,6 +3,8 @@
->>  * Copyright =C2=A9 2023 Intel Corporation
->>  */
->>=20
->>+#include "drm/drm_print.h"
->>+
->> #include "i915_reg.h"
->> #include "intel_de.h"
->> #include "intel_display_core.h"
->>@@ -39,3 +41,16 @@ void intel_display_wa_apply(struct intel_display *disp=
-lay)
->>         else if (DISPLAY_VER(display) =3D=3D 11)
->>                 gen11_display_wa_apply(display);
->> }
->>+
->>+bool __intel_display_wa(struct intel_display *display, enum intel_displa=
-y_wa wa)
->>+{
->>+        switch (wa) {
->>+        case INTEL_DISPLAY_WA_16023588340:
->>+                return intel_display_needs_wa_16023588340(display);
->>+        default:
->>+                drm_WARN(display->drm, 1, "Missing Wa number: %d\n", wa);
->
-> Hm... I wonder how useful the message would be if we just show the enum
-> value. For example, if the next workaround that we added was
-> INTEL_DISPLAY_WA_99999999999 and we had it missing here, I think we
-> would get the following warning message:
->
->     "Missing Wa number: 1"
->
-> Perhaps the enum identifier could be found in the callstack that is
-> presented with the warning, but I'm wondering if we could do better
-> here.
->
-> Not sure there is a good solution without requiring extra memory to map
-> each enum member to its corresponding the workaround number.
+Since we are already using reusable buffer objects from the GuC
+buffer cache, we can directly write into their CPU pointers and
+spare unnecessary temporary allocation.
 
-The solution would be to make the function:
+While around, also make sure to clear obtained buffer, to avoid
+sending some stale data.
 
-bool __intel_display_wa(struct intel_display *display, enum intel_display_w=
-a wa, const char *name);
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ads.c | 27 +++++++++------------------
+ 1 file changed, 9 insertions(+), 18 deletions(-)
 
-and the macro:
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index b4d81f4bd548..131cfc56be00 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -995,16 +995,6 @@ static int guc_ads_action_update_policies(struct xe_guc_ads *ads, u32 policy_off
+ 	return xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
+ }
+ 
+-static int guc_ads_update_policies(struct xe_guc_ads *ads, const struct guc_policies *policies)
+-{
+-	CLASS(xe_guc_buf_from_data, buf)(&ads_to_guc(ads)->buf, policies, sizeof(*policies));
+-
+-	if (!xe_guc_buf_is_valid(buf))
+-		return -ENOBUFS;
+-
+-	return guc_ads_action_update_policies(ads, xe_guc_buf_flush(buf));
+-}
+-
+ /**
+  * xe_guc_ads_scheduler_policy_toggle_reset - Toggle reset policy
+  * @ads: Additional data structures object
+@@ -1015,13 +1005,16 @@ static int guc_ads_update_policies(struct xe_guc_ads *ads, const struct guc_poli
+  */
+ int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads)
+ {
+-	struct xe_device *xe = ads_to_xe(ads);
+ 	struct guc_policies *policies;
+-	int ret;
++	struct xe_guc *guc = ads_to_guc(ads);
++	struct xe_device *xe = ads_to_xe(ads);
++	CLASS(xe_guc_buf, buf)(&guc->buf, sizeof(*policies));
+ 
+-	policies = kmalloc(sizeof(*policies), GFP_KERNEL);
+-	if (!policies)
+-		return -ENOMEM;
++	if (!xe_guc_buf_is_valid(buf))
++		return -ENOBUFS;
++
++	policies = xe_guc_buf_cpu_ptr(buf);
++	memset(policies, 0, sizeof(*policies));
+ 
+ 	policies->dpc_promote_time = ads_blob_read(ads, policies.dpc_promote_time);
+ 	policies->max_num_work_items = ads_blob_read(ads, policies.max_num_work_items);
+@@ -1031,7 +1024,5 @@ int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads)
+ 	else
+ 		policies->global_flags &= ~GLOBAL_POLICY_DISABLE_ENGINE_RESET;
+ 
+-	ret = guc_ads_update_policies(ads, policies);
+-	kfree(policies);
+-	return ret;
++	return guc_ads_action_update_policies(ads, xe_guc_buf_flush(buf));
+ }
+-- 
+2.47.1
 
-#define intel_display_wa(__display, __wa) \
-	__intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa, __stringify(__wa))
-
-and then you could debug log the name.
-
-Worth it? Not sure.
-
-
-BR,
-Jani.
-
-
->
-> --
-> Gustavo Sousa
->
->>+                break;
->>+        }
->>+
->>+        return false;
->>+}
->>diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gp=
-u/drm/i915/display/intel_display_wa.h
->>index babd9d16603d..146ee70d66f7 100644
->>--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
->>+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
->>@@ -21,4 +21,13 @@ static inline bool intel_display_needs_wa_16023588340(=
-struct intel_display *disp
->> bool intel_display_needs_wa_16023588340(struct intel_display *display);
->> #endif
->>=20
->>+enum intel_display_wa {
->>+        INTEL_DISPLAY_WA_16023588340,
->>+};
->>+
->>+bool __intel_display_wa(struct intel_display *display, enum intel_displa=
-y_wa wa);
->>+
->>+#define intel_display_wa(__display, __wa) \
->>+        __intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa)
->>+
->> #endif
->>diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
->>index 6e26cb4c5724..e2e03af520b2 100644
->>--- a/drivers/gpu/drm/i915/display/intel_fbc.c
->>+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
->>@@ -1464,7 +1464,7 @@ static int intel_fbc_check_plane(struct intel_atomi=
-c_state *state,
->>                 return 0;
->>         }
->>=20
->>-        if (intel_display_needs_wa_16023588340(display)) {
->>+        if (intel_display_wa(display, 16023588340)) {
->>                 plane_state->no_fbc_reason =3D "Wa_16023588340";
->>                 return 0;
->>         }
->>--=20
->>2.45.2
->>
-
---=20
-Jani Nikula, Intel
