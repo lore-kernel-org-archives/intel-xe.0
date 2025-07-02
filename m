@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D70E7C83F04
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 16:39:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 183E5C83F04
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 16:47:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD0810E744;
-	Wed,  2 Jul 2025 16:39:53 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08DC310E744;
- Wed,  2 Jul 2025 16:39:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4847084693000084559=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C316210E74D;
+	Wed,  2 Jul 2025 16:47:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B7vSOJYD";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72F9E10E74D;
+ Wed,  2 Jul 2025 16:47:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751474875; x=1783010875;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bJ/kR0mO6yP1Fm6QjMsMwfrHw2ayxOxCh+oR/JaHtAg=;
+ b=B7vSOJYDR8oPIP4g0Cr2jDNcqtDrnj4HgByvaXiEAWF3nLrDaV25HYYA
+ 3SA4w/QNk9TdoMIKo0fEOXMsDKZYiM25Pw6Q+QZ4tu7qBpDXLwmI1fMHw
+ k8MuqCPvGKT7uqmI+2tF+w4YMUm7EPZqOmMaSlk2SVSGtBst9H8e4hj1j
+ pd1LoHienpUNGch6V7lej1BT+LQj/uAl9eHTEZRksTIvZ+mX7REkf0lVr
+ 9/KK3e1lF98U0tGAR2Qfk7AHjUq3N8vBxUpI6+1FggrLFmGQvv0c4N3TE
+ mAb5nR4IKGiuWRZgeWXYWUKgU3wsQpXAFRH8YjUf67k1jxhCzl1UKkGhG w==;
+X-CSE-ConnectionGUID: FTXsFRvvQzeCSdyygXcPuA==
+X-CSE-MsgGUID: lmQ5Zw5YQGGci/hBQfCotA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="64380736"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64380736"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 09:47:55 -0700
+X-CSE-ConnectionGUID: /Rwme+E6Tx+TW0jmpdo/qQ==
+X-CSE-MsgGUID: 5nx2uR9uRJ++d9783IMXDQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="153535576"
+Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
+ by orviesa010-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 09:47:53 -0700
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ alexander.usyskin@intel.com, gregkh@linuxfoundation.org,
+ daniele.ceraolospurio@intel.com
+Subject: [PATCH v5 00/10] Introducing firmware late binding
+Date: Wed,  2 Jul 2025 22:22:06 +0530
+Message-Id: <20250702165216.557074-1-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Handle_Firmware_reported_Ha?=
- =?utf-8?q?rdware_Errors_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Jul 2025 16:39:53 -0000
-Message-ID: <175147439302.128480.2650647892459125583@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250702141118.3564242-1-riana.tauro@intel.com>
-In-Reply-To: <20250702141118.3564242-1-riana.tauro@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,78 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4847084693000084559==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Introducing firmware late binding feature to enable firmware loading
+for the devices, such as the fan controller and voltage regulator,
+during the driver probe.
+Typically, firmware for these devices are part of IFWI flash image but
+can be replaced at probe after OEM tuning.
 
-== Series Details ==
+v2:
+ - Dropped voltage regulator specific code as binaries for it will not
+   be available for upstreaming as of now.
+ - Address review comments
+v3:
+ - Dropped fwctl patch for now
+ - Added new patch to extract binary version
+ - Address v2 review comments
+v4:
+ - Address v3 review comments
+v5:
+ xe_kmd:
+ - Dropped mutex is worker flush in unbind blocking component
+   removal while fw download is in progress
+ - Handled the fw load in all 3 scenarios (probe, system resume, rpm resume)
+   by holding rpm wake ref in outer bounds of worker.
+ mei:
+ - Most of the review comments
 
-Series: Handle Firmware reported Hardware Errors (rev3)
-URL   : https://patchwork.freedesktop.org/series/149756/
-State : success
+Alexander Usyskin (2):
+  mei: bus: add mei_cldev_mtu interface
+  mei: late_bind: add late binding component driver
 
-== Summary ==
+Badal Nilawar (8):
+  drm/xe/xe_late_bind_fw: Introducing xe_late_bind_fw
+  drm/xe/xe_late_bind_fw: Initialize late binding firmware
+  drm/xe/xe_late_bind_fw: Load late binding firmware
+  drm/xe/xe_late_bind_fw: Reload late binding fw in rpm resume
+  drm/xe/xe_late_bind_fw: Reload late binding fw during system resume
+  drm/xe/xe_late_bind_fw: Introduce debug fs node to disable late
+    binding
+  drm/xe/xe_late_bind_fw: Extract and print version info
+  drm/xe/xe_late_bind_fw: Select INTEL_MEI_LATE_BIND for CI
 
-CI Bug Log - changes from xe-3335-e46fcd77ceacb06a5411cb77b7344d6b82e1ab72_BAT -> xe-pw-149756v3_BAT
-====================================================
+ drivers/gpu/drm/xe/Kconfig                  |   1 +
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c             |  41 ++
+ drivers/gpu/drm/xe/xe_device.c              |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   6 +
+ drivers/gpu/drm/xe/xe_late_bind_fw.c        | 454 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_late_bind_fw.h        |  17 +
+ drivers/gpu/drm/xe/xe_late_bind_fw_types.h  |  77 ++++
+ drivers/gpu/drm/xe/xe_pci.c                 |   3 +
+ drivers/gpu/drm/xe/xe_pm.c                  |   8 +
+ drivers/gpu/drm/xe/xe_uc_fw_abi.h           |  66 +++
+ drivers/misc/mei/Kconfig                    |   1 +
+ drivers/misc/mei/Makefile                   |   1 +
+ drivers/misc/mei/bus.c                      |  13 +
+ drivers/misc/mei/late_bind/Kconfig          |  13 +
+ drivers/misc/mei/late_bind/Makefile         |   9 +
+ drivers/misc/mei/late_bind/mei_late_bind.c  | 272 ++++++++++++
+ include/drm/intel/i915_component.h          |   1 +
+ include/drm/intel/late_bind_mei_interface.h |  64 +++
+ include/linux/mei_cl_bus.h                  |   1 +
+ 20 files changed, 1054 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw.c
+ create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw.h
+ create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+ create mode 100644 drivers/misc/mei/late_bind/Kconfig
+ create mode 100644 drivers/misc/mei/late_bind/Makefile
+ create mode 100644 drivers/misc/mei/late_bind/mei_late_bind.c
+ create mode 100644 include/drm/intel/late_bind_mei_interface.h
 
-Summary
--------
+-- 
+2.34.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3335-e46fcd77ceacb06a5411cb77b7344d6b82e1ab72 -> xe-pw-149756v3
-
-  IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3335-e46fcd77ceacb06a5411cb77b7344d6b82e1ab72: e46fcd77ceacb06a5411cb77b7344d6b82e1ab72
-  xe-pw-149756v3: 149756v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149756v3/index.html
-
---===============4847084693000084559==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Handle Firmware reported Hardware Errors (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149756/">https://patchwork.freedesktop.org/series/149756/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149756v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149756v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3335-e46fcd77ceacb06a5411cb77b7344d6b82e1ab72_BAT -&gt; xe-pw-149756v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3335-e46fcd77ceacb06a5411cb77b7344d6b82e1ab72 -&gt; xe-pw-149756v3</li>
-</ul>
-<p>IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3335-e46fcd77ceacb06a5411cb77b7344d6b82e1ab72: e46fcd77ceacb06a5411cb77b7344d6b82e1ab72<br />
-  xe-pw-149756v3: 149756v3</p>
-
-</body>
-</html>
-
---===============4847084693000084559==--
