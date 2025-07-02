@@ -4,62 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EA14C83013
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 10:43:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D61A3C83F05
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 11:00:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D8FC10E335;
-	Wed,  2 Jul 2025 10:43:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90DEE10E6D4;
+	Wed,  2 Jul 2025 11:00:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MVB3+HFm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YAZdm7e8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D07A10E335
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 10:43:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751453002; x=1782989002;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=mGhrxCOELuHaBhcAhSyhbVKglMm5Pp0XntZ4NfcbPI8=;
- b=MVB3+HFmfV7vFYaIyYmrqFl1+M6DUcByfUEki1PfieoARQuBMezEXg+e
- C4eqan1PR3FEWtPF3bGH/eduYunIeKF9mr0Z/fRfw8mWB38qxw43/FVkI
- 9QFFWG1wkXv4idgxQd/j/o/5pBuan5vdINKX0yLa1oaTMB/NZjNQALFpY
- z7DL0wrV7CIyOKGGCJxirI47LCjtV0hofNqKBOB9SEvulkeZTSIjh82hO
- CtKlwJkAfCC7iQNK5zq8N2z4q3BsCFGYu0RQKzP7CIm9RK6Z/ej8skbt/
- AKvE4RQzadzoHonLNJVwIfd8HoAgYF4pOgRnysOgRs0o/LGDQBtJyKR6W A==;
-X-CSE-ConnectionGUID: 36Or1ldXQHW0Fc7CJUzcnA==
-X-CSE-MsgGUID: 0uKSWJbRTze01ID39bGV3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="71169203"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="71169203"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 03:43:22 -0700
-X-CSE-ConnectionGUID: 8kF3aQrBTNy/8VeSIx7JpQ==
-X-CSE-MsgGUID: b1+IeYggTIaAKodcQskyiA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="153499437"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa006.jf.intel.com with ESMTP; 02 Jul 2025 03:43:21 -0700
-Received: from [10.245.112.168] (unknown [10.245.112.168])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 75A442819E;
- Wed,  2 Jul 2025 11:43:19 +0100 (IST)
-Message-ID: <9cfb8a29-8f54-4b2c-a872-0bdfb9cd727b@intel.com>
-Date: Wed, 2 Jul 2025 12:43:18 +0200
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BE5810E6D1;
+ Wed,  2 Jul 2025 11:00:32 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id
+ 5b1f17b1804b1-4539cd7990cso18848225e9.0; 
+ Wed, 02 Jul 2025 04:00:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1751454031; x=1752058831; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=/u1TiJkRcIrwSUE5tAC+RVsrI6uEdQeH3tbAzyZ69ds=;
+ b=YAZdm7e86oPkdMhTuh7t8HSr7B4u2Fva8bfKSAA24NyofsnmLYtIjb7a5aOR7SFiJM
+ Qs2ec2Ho6FubiUoU6yeGgI9skjwBpkVodekCDVPmfS1KE9vKIpbMKoshTvCyoa20WGy9
+ ay9G8SVVqbhHbxL+Sm+L9bLcUyWhFhEkmbRBJ7RviKZiGiPusyVTRxeEg7kN2y+yUibO
+ ImW2f/JqA6ZMOxFLOcJfTacdVQ/JrV2AnuERv6q46IrdpzS7o9v23d4Wm0eRKqSDC1gI
+ PaqohwnrVa/TmgfxBtb3P0XHbFgg9wh9sNdhW3VvKwvavhJ0HTUg8vKpbEIQFbZO14r2
+ y9zQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1751454031; x=1752058831;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=/u1TiJkRcIrwSUE5tAC+RVsrI6uEdQeH3tbAzyZ69ds=;
+ b=IvakBqu0/8q0iMPObnsI1VrgGlOSXEQJiwYEuhTt8t+khidx6SKBUkOSySfAFAXJ4s
+ 65pBd1s7h1BFVWaCjpEBJX+YTF5jXPHNT3Dq2BADH+ejSeRTqkDb33lcgOuYk+ZBYNRr
+ dJaXc/83hw/orJ9HcyTAxCRueel0RQ7AHUmAQl00JX0W0I3EWxlGjwBFuhcuG4STEyS1
+ nSloJQzSegNPN9l8mTrrNL6syReara33H+BW7lek6TxaAHFbwxmkz+bxagL2vzxKC0ub
+ O4ai+cMq2y6D1xutmqVXqU8IYM8q4k5WuEtddxB+1lEwr5XIIZlQWZaSRl+Cu5hgRaDc
+ an5g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVQhAdG10GlNHSFv06yFufmpZUx/NkArIUgxCpvA26Uqnj7W/wm9TvQX79lZ0dF/Sa8Vv/pi05b@lists.freedesktop.org,
+ AJvYcCXFkPdlSizG9EQQxvTwNcAnM0JVK8HRtssIXZMHgZwIQVEVsoGldpDVov1y2Vu1w8DikGArj6bGypNy@lists.freedesktop.org,
+ AJvYcCXiTONFy51uJ1RAJWt7QndQhgqdICFKj6tZLY5eIy0EzxIsNYmXuc5pqZcyGmk2vCeycD86HRVqCnw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzAem9SDXzA9scBAFsWVn80luperyR2+VZi+1tdP2uSfrc8ILVK
+ CY8ozmOYsHosirfTJ0+yTj0Wa6ZO/nN7ynR43NFWwvA6EQlxP65ENh94
+X-Gm-Gg: ASbGnctzR/WkTFn93n9IgZj7Pjsj+67yCNQOjUwlMxla9DoImtzU3IlVjhmkRUPNK7j
+ bYwYvXyDjQZIKKDYiIvrPqa7gKEu54izMxcgKdXVcCvqIQry0ca46+ZNglp7Hct/gUp5eqdLWNe
+ eu8tuWPDzTGG7UVfAsK39ECnuICQ88PwKynKq0PLp/TdgxhYEiRGyzqIbkt0hW1IG8L+ifHPVMu
+ RBnIj5scwMbEho2WRJFVDnMFdYn1bUF3/9QH3ELstT1Be3ut+j5pBPtEE0UcbhDW/o3efwVp7eq
+ kqd71yMFY7pDNP9vV19gj8nELBLRc0N71hbqu9HKYpBRylJ3VWaUSZQsv1y2Zc+j0AfCnSBdDWM
+ y
+X-Google-Smtp-Source: AGHT+IHwnbU1S8GOvGpp8OtzutoIfRwWg11XK/OPkH80Sp2G0Q8UqC9hWCLGktIoe+LlYTD8wSprXg==
+X-Received: by 2002:a05:600c:5249:b0:43c:f3e1:a729 with SMTP id
+ 5b1f17b1804b1-454a3c555aemr18163725e9.12.1751454030702; 
+ Wed, 02 Jul 2025 04:00:30 -0700 (PDT)
+Received: from able.fritz.box ([2a00:e180:158b:1e00:ab87:1cdf:ca26:fa8c])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-453823b913esm220664735e9.33.2025.07.02.04.00.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 02 Jul 2025 04:00:30 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: thomas.hellstrom@linux.intel.com, matthew.brost@intel.com,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Subject: Switching TTM over to GEM refcounts v2
+Date: Wed,  2 Jul 2025 13:00:26 +0200
+Message-Id: <20250702110028.2521-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/tests: Add legacy IP descriptors to param
- generators
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
-References: <20250627181110.1436-1-michal.wajdeczko@intel.com>
- <qtzn3rwxvu4yoi7oxfpv34auqwenqxlfhfjqoxi7jfdzqapkxp@zrgntsdh7hiy>
- <dc5022e74e3d3ea117e979516f4795abdea2ac47@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <dc5022e74e3d3ea117e979516f4795abdea2ac47@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,87 +89,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi everyone,
+
+v2 of this patch set. I've either pushed or removed the other
+patches from v1, so only two remain.
+
+Pretty straight forward conversation and shouldn't result in any visible
+technical difference.
+
+Please review and/or comment.
+
+Regards,
+Christian.
 
 
-On 02.07.2025 10:35, Jani Nikula wrote:
-> On Tue, 01 Jul 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On Fri, Jun 27, 2025 at 08:11:10PM +0200, Michal Wajdeczko wrote:
->>> Recently introduced kunit parameter generators where based on
->>> the existing arrays which have only GDMID-bsaed IP and didn't
->>> take into account legacy IP definitions from pre-GMDID era.
->>>
->>> Add test only arrays with legacy IPs (as those will not change)
->>> and extend param generators to start iterating over them.
->>>
->>> [ ] =================== xe_pci (2 subtests) ====================
->>> [ ] ==================== check_graphics_ip  ====================
->>> [ ] [PASSED] 12.00 Xe_LP
->>> [ ] [PASSED] 12.10 Xe_LP+
->>> [ ] [PASSED] 12.55 Xe_HPG
->>> [ ] [PASSED] 12.60 Xe_HPC
->>> [ ] [PASSED] 12.70 Xe_LPG
->>> [ ] [PASSED] 12.71 Xe_LPG
->>> [ ] [PASSED] 12.74 Xe_LPG+
->>> [ ] [PASSED] 20.01 Xe2_HPG
->>> [ ] [PASSED] 20.02 Xe2_HPG
->>> [ ] [PASSED] 20.04 Xe2_LPG
->>> [ ] [PASSED] 30.00 Xe3_LPG
->>> [ ] [PASSED] 30.01 Xe3_LPG
->>> [ ] [PASSED] 30.03 Xe3_LPG
->>> [ ] ================ [PASSED] check_graphics_ip ================
->>> [ ] ===================== check_media_ip  ======================
->>> [ ] [PASSED] 12.00 Xe_M
->>> [ ] [PASSED] 12.55 Xe_HPM
->>> [ ] [PASSED] 13.00 Xe_LPM+
->>> [ ] [PASSED] 13.01 Xe2_HPM
->>> [ ] [PASSED] 20.00 Xe2_LPM
->>> [ ] [PASSED] 30.00 Xe3_LPM
->>> [ ] [PASSED] 30.02 Xe3_LPM
->>> [ ] ================= [PASSED] check_media_ip ==================
->>> [ ] ===================== [PASSED] xe_pci ======================
->>>
->>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>> ---
->>> drivers/gpu/drm/xe/tests/xe_pci.c | 33 +++++++++++++++++++++++++++++++
->>> 1 file changed, 33 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
->>> index baccb657bd05..c5acee52b458 100644
->>> --- a/drivers/gpu/drm/xe/tests/xe_pci.c
->>> +++ b/drivers/gpu/drm/xe/tests/xe_pci.c
->>> @@ -12,12 +12,31 @@
->>> #include <kunit/test-bug.h>
->>> #include <kunit/visibility.h>
->>>
-
-/**
- * IS_ARRAY_ROW - checks if @row pointer points to entry in the @array
- * @arr: the array
- * @row: the pointer to the row in the array
- */
-
->>> +#define IS_ARRAY_ROW(arr, row) ((typeof(&(arr)[0]))(row) - (arr) < ARRAY_SIZE(arr))
-
-...
-
->>> const void *xe_pci_graphics_ip_gen_param(const void *prev, char *desc)
->>> {
->>> +	const void *next = legacy_graphics_ip_gen_params(prev, desc);
->>> +
->>> +	if (next)
->>> +		return next;
->>> +	if (IS_ARRAY_ROW(legacy_graphics_ips, prev))
-> 
-> I don't understand what "is array row" means.
-
-do you want me to include some kind of the kernel-doc (see above) for
-this helper macro used only here as a trick to combine two gen_params?
-
-or maybe do you prefer 'entry' instead of 'row' name?
-
-> 
-> BR,
-> Jani.
-> 
