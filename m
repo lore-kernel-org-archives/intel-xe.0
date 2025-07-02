@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 978CBC83F05
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 09:08:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04313C83013
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 09:08:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42B8710E689;
-	Wed,  2 Jul 2025 09:08:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B76CD10E694;
+	Wed,  2 Jul 2025 09:08:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AFj6dRzG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JN75fcWx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8340C10E648;
- Wed,  2 Jul 2025 09:08:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5BA910E694;
+ Wed,  2 Jul 2025 09:08:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751447302; x=1782983302;
+ t=1751447306; x=1782983306;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VIXmDBr3wDRbJ5D72Tu1fShjoH1EX0oJ+kZLQ4j36zs=;
- b=AFj6dRzG9aJ68f7QgOqspZnEJJeRNfV6amH7ILgT72vHcxDIysD4UwjL
- VGUtVs+avUGVS2BEOlam0rub3FHZIrMKtGqxOccnj65CgbI8aJMdvcNuR
- Yap6tSMfuruWh1/IumqZtcuOfOoYeyfcYkDPgQ1sdyd5jjLX1w4XiQV+1
- czpcKIKkIOvGg85ClPnmlNdW6b+GaqOwImUZ6Ae3RGx/lnVE68uK15QsO
- 8ZSX0z2LxzaCudZJN3p8cxPAN4Vruy3wD6jWrj0kGvrY43HrnWrDtDiDr
- f2vHJPURwlOL9RA7RBvR9xmYfpnzeLIh8cLhQB7jNATXjYAIROL+ZV3+u A==;
-X-CSE-ConnectionGUID: xXlQ3B2ASz2KNOPQZSi8Rg==
-X-CSE-MsgGUID: CgtbZcbETcCcrhr21OcY3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="64427133"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64427133"
+ bh=1FZJPIszIbveP4/cEIP9e7uZaTmsEv/87tnmoxOsTHY=;
+ b=JN75fcWxKau8ZgIJimaoxrUi8U+rAbF7Cg9kvFRkWCxM3jT1Z6HoLAQb
+ GKsJtpyLz0Lb+2aFe2OA2HLi4R7HCjvhiWUHt+1PebDEeSMVkFLfCbe0F
+ +JIwKDFNHKoq099GNuZJLkR1fMAGHvwtn/LeHDphiI4iQYviKeVXOUQM+
+ PMs/sYK2Kd24JTphHYyhJjMAwdxmz08CNgcpcY3lBhvefecjjUHVWikyN
+ +B+5LAkOI10eLTYPhD9vTOEeCJPUB/DW7CSspeSkqT+uZ2r5uv2OvEe0M
+ HKc3b7Z3Kb3nXfkobhsO1iNIUtQq8r4mZC/oq5I5MehoZimfOR7jub0Gv w==;
+X-CSE-ConnectionGUID: a6+u+O2rRmmfYJB5JKBtCw==
+X-CSE-MsgGUID: uLakkOb8Sg+r7cLBFdVScQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="64427157"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64427157"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 02:08:18 -0700
-X-CSE-ConnectionGUID: /lT1y/wmTqCimoBN1Brizw==
-X-CSE-MsgGUID: ql2BGsooScySF7V+dn+9yQ==
+ 02 Jul 2025 02:08:26 -0700
+X-CSE-ConnectionGUID: jJDOBFjrRJGNdZTwxYJr4A==
+X-CSE-MsgGUID: qwNOC+3dSoWupx6VD7CJYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="159536573"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="159536608"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa004.fm.intel.com with ESMTP; 02 Jul 2025 02:08:14 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 02 Jul 2025 02:08:22 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
@@ -48,9 +48,9 @@ Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
  mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
  shashank.sharma@amd.com, swati2.sharma@intel.com, alex.hung@amd.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v5 11/24] drm/i915/color: Add and attach COLORPIPELINE plane property
-Date: Wed,  2 Jul 2025 14:49:23 +0530
-Message-ID: <20250702091936.3004854-12-uma.shankar@intel.com>
+Subject: [v5 13/24] drm/i915/color: Add callbacks to set plane CTM
+Date: Wed,  2 Jul 2025 14:49:25 +0530
+Message-ID: <20250702091936.3004854-14-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20250702091936.3004854-1-uma.shankar@intel.com>
 References: <20250702091936.3004854-1-uma.shankar@intel.com>
@@ -72,88 +72,52 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-Add supported color pipelines and attach it to plane.
+Add callback to intel color functions for setting plane CTM.
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+v2: adapt to struct intel_display
+v3: add dsb support
+
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c | 42 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_color.h |  3 ++
- 2 files changed, 45 insertions(+)
+ drivers/gpu/drm/i915/display/intel_color.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 90ac6530d1a5..363c9590c5c1 100644
+index 7c53572f729b..f7237d00be7a 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.c
 +++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -4050,6 +4050,48 @@ int intel_plane_tf_pipeline_init(struct drm_plane *plane, struct drm_prop_enum_l
- 	return 0;
+@@ -33,6 +33,7 @@
+ #include "intel_dsb.h"
+ #include "intel_vrr.h"
+ #include "skl_universal_plane.h"
++#include "skl_universal_plane_regs.h"
+ 
+ #define PLANE_DEGAMMA_SIZE 128
+ #define PLANE_GAMMA_SIZE 32
+@@ -91,6 +92,10 @@ struct intel_color_funcs {
+ 	 * Read config other than LUTs and CSCs, before them. Optional.
+ 	 */
+ 	void (*get_config)(struct intel_crtc_state *crtc_state);
++
++	/* Plane CSC*/
++	void (*load_plane_csc_matrix)(struct intel_dsb *dsb,
++				      const struct intel_plane_state *plane_state);
+ };
+ 
+ #define CTM_COEFF_SIGN	(1ULL << 63)
+@@ -3971,7 +3976,10 @@ static void
+ intel_color_load_plane_csc_matrix(struct intel_dsb *dsb,
+ 				  const struct intel_plane_state *plane_state)
+ {
+-	/* CTM programming */
++	struct intel_display *display = to_intel_display(plane_state);
++
++	if (display->funcs.color->load_plane_csc_matrix)
++		display->funcs.color->load_plane_csc_matrix(dsb, plane_state);
  }
  
-+int intel_plane_color_init(struct drm_plane *plane)
-+{
-+	struct drm_device *dev = plane->dev;
-+	struct intel_display *display = to_intel_display(dev);
-+	struct drm_property *prop;
-+	struct drm_prop_enum_list pipelines[MAX_COLOR_PIPELINES];
-+	int len = 0;
-+	int ret;
-+
-+	/* Currently expose pipeline only for HDR planes*/
-+	if (!icl_is_hdr_plane(display, to_intel_plane(plane)->id))
-+		return 0;
-+
-+	/* Add "Bypass" (i.e. NULL) pipeline */
-+	pipelines[len].type = 0;
-+	pipelines[len].name = "Bypass";
-+	len++;
-+
-+	/* Add pipeline consisting of transfer functions */
-+	ret = intel_plane_tf_pipeline_init(plane, &pipelines[len]);
-+	if (ret)
-+		return ret;
-+	len++;
-+
-+	/* Create COLOR_PIPELINE property and attach */
-+	prop = drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC,
-+					"COLOR_PIPELINE",
-+					pipelines, len);
-+	if (!prop)
-+		return -ENOMEM;
-+
-+	plane->color_pipeline_property = prop;
-+
-+	drm_object_attach_property(&plane->base, prop, 0);
-+
-+	/* TODO check if needed */
-+	if (plane->state)
-+		plane->state->color_pipeline = NULL;
-+
-+	return 0;
-+}
-+
- void intel_color_crtc_init(struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_color.h b/drivers/gpu/drm/i915/display/intel_color.h
-index ce9db761c6e2..c2561b86bb26 100644
---- a/drivers/gpu/drm/i915/display/intel_color.h
-+++ b/drivers/gpu/drm/i915/display/intel_color.h
-@@ -18,6 +18,8 @@ struct drm_plane;
- struct drm_prop_enum_list;
- enum intel_color_block;
- 
-+#define MAX_COLOR_PIPELINES 5
-+
- void intel_color_init_hooks(struct intel_display *display);
- int intel_color_init(struct intel_display *display);
- void intel_color_crtc_init(struct intel_crtc *crtc);
-@@ -46,5 +48,6 @@ void intel_color_assert_luts(const struct intel_crtc_state *crtc_state);
- struct intel_plane_colorop *intel_colorop_alloc(void);
- struct intel_plane_colorop *intel_plane_colorop_create(enum intel_color_block id);
- int intel_plane_tf_pipeline_init(struct drm_plane *plane, struct drm_prop_enum_list *list);
-+int intel_plane_color_init(struct drm_plane *plane);
- 
- #endif /* __INTEL_COLOR_H__ */
+ void intel_color_plane_program_pipeline(struct intel_dsb *dsb,
 -- 
 2.42.0
 
