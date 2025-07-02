@@ -4,66 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C514C83038
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 19:25:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39C9FC83038
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 19:30:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6172910E06F;
-	Wed,  2 Jul 2025 19:25:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F261010E77B;
+	Wed,  2 Jul 2025 19:30:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gxlc3tZx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SVHSvoQC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F315710E06F;
- Wed,  2 Jul 2025 19:25:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27AFE10E062
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 19:30:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751484358; x=1783020358;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=xbnClmeLVszI77Sta207iU95kn9BNqONLpAvumHEJ1U=;
- b=gxlc3tZxFayvrMO9FYnp6pg2LbplTIwyfpUnUnnDwLXRlONM0VlwK0tj
- hWvtjN6iWt0neZFmTMZ0mChfBRoSr8FtsIRSJN+ZsDWrnd+fi1bXkwbi7
- aXxwaNjNcaq9zMsK+Bnwa2gH+8p5fJCrpFPuLWpXG+XLnMR6Nscm4foKm
- /Sxuzhqi4qS1IAimL3ttUKW5yESb9xu/tgpRkAbXZ3V5TXUOtiBAT0XZX
- iYO13LFWilfRlZbcztVsfj3BxIUMcXiaRc2n5dyNRVeoULwulKZwkB5e7
- T7LVq2SACOTLY18LHnym+FUGd1ZUeso4gAVN83TyJAbC0rSh12SH6w6e6 Q==;
-X-CSE-ConnectionGUID: yPzjuuMXR8GWn2qpTQu3eA==
-X-CSE-MsgGUID: UxZ6m3HaR2uIf6wNf8HIPw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="41424326"
-X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="41424326"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 12:25:49 -0700
-X-CSE-ConnectionGUID: XVYm5J/ETgmiB5TPi5dqRg==
-X-CSE-MsgGUID: CkIXr0nBSGiVE5Zjg83M/w==
+ t=1751484640; x=1783020640;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=IhnD0+uIzX2ZLIdHaEDw2OTsUccMpSEMymojhTyEuwI=;
+ b=SVHSvoQCQZxCqNH720R1DRfip8BCUyPbFoSZjOArRxN7bS9uWCD4Yr/l
+ 3g3Ys0zy82fa65H7zuIvKtm7lDVOE3/NlaBgY6flWCXxLFhCnQ/uTBPTV
+ LkmlXFlqP4VbFFqJgrBnTdv8yV0PW5gQQ6CnZol21HoGytcyylRLwRgKv
+ NSw8MX0v4NKpIRsv4f7lMnjmY+0IIoiawCYMqxFIPRjnVzNfn4Hb7aGmR
+ KXH2g9eDrhNkZBCHB95lNgB+zok5vxg2q21W4VZcece8sFpyKhN8PZW4J
+ Sx9e+/a3+OyLOehraE94dQ0tlxmBu5RSwbVYu9pG/VrDLv56wqCUG00aM g==;
+X-CSE-ConnectionGUID: 5vdCg7rfT0mfOvQnEAbbjQ==
+X-CSE-MsgGUID: 0dM9CrXvTiCseOvu6vCZbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="64039093"
+X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="64039093"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 12:30:40 -0700
+X-CSE-ConnectionGUID: HcNdZZObQAq9xIFKc+gfSw==
+X-CSE-MsgGUID: edHbfsZtQ7OiuoHMIR8SNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="159854326"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.30])
- by orviesa005.jf.intel.com with SMTP; 02 Jul 2025 12:25:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 02 Jul 2025 22:25:44 +0300
-Date: Wed, 2 Jul 2025 22:25:44 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>
-Cc: "Shankar, Uma" <uma.shankar@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "seanpaul@google.com" <seanpaul@google.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- "markyacoub@google.com" <markyacoub@google.com>
-Subject: Re: [PATCH] drm/i915/display: Fix RGB limited range handling for DP
-Message-ID: <aGWHuOniPesg63U_@intel.com>
-References: <20250701081756.2821286-1-uma.shankar@intel.com>
- <aGOdDnjfj7NJs1aV@intel.com>
- <DM4PR11MB6360159E89ED014F3EBEB8ACF441A@DM4PR11MB6360.namprd11.prod.outlook.com>
- <6e87afb3d644361e273e5c8c1b96367b7a5968da.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="153615517"
+Received: from msatwood-mobl.jf.intel.com ([10.24.13.181])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 12:30:40 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	rodrigo.vivi@intel.com
+Cc: matthew.d.roper@intel.com, lucas.demarchi@intel.com,
+ Matt Atwood <matthew.s.atwood@intel.com>
+Subject: [PATCH v5 1/6] drm/xe: add xe_device_wa infrastructure
+Date: Wed,  2 Jul 2025 12:30:31 -0700
+Message-ID: <20250702193036.1417416-2-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250702193036.1417416-1-matthew.s.atwood@intel.com>
+References: <20250702193036.1417416-1-matthew.s.atwood@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6e87afb3d644361e273e5c8c1b96367b7a5968da.camel@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,132 +68,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 01, 2025 at 05:38:21PM +0000, Almahallawy, Khaled wrote:
-> Thank you for your patch. This fix enables us to pass the DP1.4 Link
-> Layer Test "4.2.2.8 EDID Read on IRQ HPD Event after Branch Device
-> Detection," which was failing due to the following error:
-> 
-> "0003.610.625: Main Stream Attributes do not match expected values:
-> 0003.610.669:   Received 28h color format differs from expected 20h."
+There are some workarounds that must be applied before gt init,
+wa_150154044425 for example. Instead of sprinkling them conditionally
+throughout the driver as we did for i915 generate an oob.rules file
+reusing the RTP infrastructure to make these easier to track.
 
-If the test needs full range then set full range in the test.
+v2: rename xe_soc_wa to xe_device_wa
+v5: derive prefix from argument rather then hard coding the values.
 
-> 
-> Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
-> 
-> On Tue, 2025-07-01 at 14:15 +0000, Shankar, Uma wrote:
-> > 
-> > 
-> > > -----Original Message-----
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > Sent: Tuesday, July 1, 2025 2:02 PM
-> > > To: Shankar, Uma <uma.shankar@intel.com>
-> > > Cc: intel-gfx@lists.freedesktop.org;
-> > > intel-xe@lists.freedesktop.org; Borah,
-> > > Chaitanya Kumar <chaitanya.kumar.borah@intel.com>; Almahallawy,
-> > > Khaled
-> > > <khaled.almahallawy@intel.com>
-> > > Subject: Re: [PATCH] drm/i915/display: Fix RGB limited range
-> > > handling for DP
-> > > 
-> > > On Tue, Jul 01, 2025 at 01:47:56PM +0530, Uma Shankar wrote:
-> > > > RGB limited range should be selected only if explicitly asked by
-> > > > userspace by the broadcast RGB property with LIMITED_RANGE. This
-> > > > is
-> > > > mostly enabled in case of CEA modes.
-> > > > 
-> > > > Display port by default uses Full Range, fixed the same. This
-> > > > will
-> > > > help set correct MSA information for colorimetry. Fixes a CTS
-> > > > issue
-> > > > wrt colorimetry.
-> > > 
-> > > If the CTS is expecting that then it's not following the actual DP
-> > > spec.
-> > > Originally the spec required limited range output for cea modes,
-> > > but later version
-> > > relaxed it to "should" and also notes that full range may also be
-> > > used. Presumably
-> > > it was realized that existing implementations had no consitency
-> > > here and so both
-> > > behaviours must be allowed.
-> > 
-> > Hi Ville,
-> > Yes, there has been a flip flop. Ideally both should be allowed as
-> > spec is not enforcing.
-> > 
-> > However, we can default to FULL RANGE and do Limited range if
-> > userspace explicitly asks for it
-> > using the broadcast RGB property. DP mostly have the FULL RANGE while
-> > limited range is more
-> > in the HDMI TVs. This will make CTS also happy. What do you suggest ?
-> > 
-> > Regards,
-> > Uma Shankar
-> > 
-> > > > 
-> > > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_dp.c | 21 +++++++------------
-> > > > --
-> > > >  1 file changed, 7 insertions(+), 14 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > index f48912f308df..8758b9d60d5e 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > @@ -2708,8 +2708,6 @@ bool intel_dp_limited_color_range(const
-> > > > struct
-> > > > intel_crtc_state *crtc_state,  {
-> > > >  	const struct intel_digital_connector_state
-> > > > *intel_conn_state =
-> > > >  		to_intel_digital_connector_state(conn_state);
-> > > > -	const struct drm_display_mode *adjusted_mode =
-> > > > -		&crtc_state->hw.adjusted_mode;
-> > > > 
-> > > >  	/*
-> > > >  	 * Our YCbCr output is always limited range.
-> > > > @@ -2721,18 +2719,13 @@ bool intel_dp_limited_color_range(const
-> > > > struct
-> > > intel_crtc_state *crtc_state,
-> > > >  	if (crtc_state->output_format !=
-> > > > INTEL_OUTPUT_FORMAT_RGB)
-> > > >  		return false;
-> > > > 
-> > > > -	if (intel_conn_state->broadcast_rgb ==
-> > > INTEL_BROADCAST_RGB_AUTO) {
-> > > > -		/*
-> > > > -		 * See:
-> > > > -		 * CEA-861-E - 5.1 Default Encoding Parameters
-> > > > -		 * VESA DisplayPort Ver.1.2a - 5.1.1.1 Video
-> > > > Colorimetry
-> > > > -		 */
-> > > > -		return crtc_state->pipe_bpp != 18 &&
-> > > > -
-> > > > 			drm_default_rgb_quant_range(adjusted_mode) ==
-> > > > -			HDMI_QUANTIZATION_RANGE_LIMITED;
-> > > > -	} else {
-> > > > -		return intel_conn_state->broadcast_rgb ==
-> > > > -			INTEL_BROADCAST_RGB_LIMITED;
-> > > > +	switch (intel_conn_state->broadcast_rgb) {
-> > > > +	case INTEL_BROADCAST_RGB_LIMITED:
-> > > > +		return true;
-> > > > +	case INTEL_BROADCAST_RGB_FULL:
-> > > > +	case INTEL_BROADCAST_RGB_AUTO:
-> > > > +	default:
-> > > > +		return false;
-> > > >  	}
-> > > >  }
-> > > > 
-> > > > --
-> > > > 2.42.0
-> > > 
-> > > --
-> > > Ville Syrjälä
-> > > Intel
-> 
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile               | 11 ++++++-
+ drivers/gpu/drm/xe/xe_device_wa_oob.rules |  0
+ drivers/gpu/drm/xe/xe_gen_wa_oob.c        | 38 ++++++++++++++++++-----
+ 3 files changed, 41 insertions(+), 8 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_device_wa_oob.rules
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 1d97e5b63f4e..48d4aa9d4ecc 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -21,6 +21,15 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
+ 		 $(src)/xe_wa_oob.rules
+ 	$(call cmd,wa_oob)
+ 
++generated_device_oob := $(obj)/generated/xe_device_wa_oob.c $(obj)/generated/xe_device_wa_oob.h
++quiet_cmd_device_wa_oob = GEN     $(notdir $(generated_device_oob))
++      cmd_device_wa_oob = mkdir -p $(@D); $^ $(generated_device_oob)
++$(obj)/generated/%_device_wa_oob.c $(obj)/generated/%_device_wa_oob.h: $(obj)/xe_gen_wa_oob \
++		 $(src)/xe_device_wa_oob.rules
++	$(call cmd,device_wa_oob)
++
++
++
+ # Please keep these build lists sorted!
+ 
+ # core driver code
+@@ -340,4 +349,4 @@ $(obj)/%.hdrtest: $(src)/%.h FORCE
+ 	$(call if_changed_dep,hdrtest)
+ 
+ uses_generated_oob := $(addprefix $(obj)/, $(xe-y))
+-$(uses_generated_oob): $(obj)/generated/xe_wa_oob.h
++$(uses_generated_oob): $(obj)/generated/xe_wa_oob.h $(obj)/generated/xe_device_wa_oob.h
+diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+new file mode 100644
+index 000000000000..e69de29bb2d1
+diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+index ed9183599e31..341840926f60 100644
+--- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
++++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+@@ -18,8 +18,8 @@
+ 	" *\n" \
+ 	" * This file was generated from rules: %s\n" \
+ 	" */\n" \
+-	"#ifndef _GENERATED_XE_WA_OOB_\n" \
+-	"#define _GENERATED_XE_WA_OOB_\n" \
++	"#ifndef _GENERATED_%s_\n" \
++	"#define _GENERATED_%s_\n" \
+ 	"\n" \
+ 	"enum {\n"
+ 
+@@ -52,7 +52,7 @@ static char *strip(char *line, size_t linelen)
+ }
+ 
+ #define MAX_LINE_LEN 4096
+-static int parse(FILE *input, FILE *csource, FILE *cheader)
++static int parse(FILE *input, FILE *csource, FILE *cheader, char *prefix)
+ {
+ 	char line[MAX_LINE_LEN + 1];
+ 	char *name, *prev_name = NULL, *rules;
+@@ -96,7 +96,7 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
+ 		}
+ 
+ 		if (name) {
+-			fprintf(cheader, "\tXE_WA_OOB_%s = %u,\n", name, idx);
++			fprintf(cheader, "\t%s_%s = %u,\n", prefix, name, idx);
+ 
+ 			/* Close previous entry before starting a new one */
+ 			if (idx)
+@@ -118,7 +118,26 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
+ 	if (idx)
+ 		fprintf(csource, ") },\n");
+ 
+-	fprintf(cheader, "\t_XE_WA_OOB_COUNT = %u\n", idx);
++	fprintf(cheader, "\t_%s_COUNT = %u\n", prefix, idx);
++
++	return 0;
++}
++
++static int fn_to_prefix(const char *fn, char *prefix, size_t size)
++{
++	if (!strncpy(prefix, fn, size - 1))
++		return -ENAMETOOLONG;
++
++	for (char *p = prefix; *p; p++) {
++		switch (*p) {
++		case '.':
++			*p = '\0';
++			return 0;
++		default:
++			*p = toupper(*p);
++			break;
++		}
++	}
+ 
+ 	return 0;
+ }
+@@ -141,6 +160,7 @@ int main(int argc, const char *argv[])
+ 		[ARGS_CHEADER] = { .fn = argv[3], .mode = "w" },
+ 	};
+ 	int ret = 1;
++	char prefix[128];
+ 
+ 	if (argc < 3) {
+ 		fprintf(stderr, "ERROR: wrong arguments\n");
+@@ -148,6 +168,9 @@ int main(int argc, const char *argv[])
+ 		return 1;
+ 	}
+ 
++	if (fn_to_prefix(basename(args[ARGS_CHEADER].fn), prefix, sizeof(prefix)) < 0)
++		return 1;
++
+ 	for (int i = 0; i < _ARGS_COUNT; i++) {
+ 		args[i].f = fopen(args[i].fn, args[i].mode);
+ 		if (!args[i].f) {
+@@ -157,9 +180,10 @@ int main(int argc, const char *argv[])
+ 		}
+ 	}
+ 
+-	fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn);
++	fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, prefix, prefix);
++
+ 	ret = parse(args[ARGS_INPUT].f, args[ARGS_CSOURCE].f,
+-		    args[ARGS_CHEADER].f);
++		    args[ARGS_CHEADER].f, prefix);
+ 	if (!ret)
+ 		fprintf(args[ARGS_CHEADER].f, FOOTER);
+ 
 -- 
-Ville Syrjälä
-Intel
+2.49.0
+
