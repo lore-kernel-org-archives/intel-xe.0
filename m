@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0797DC83013
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 08:45:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5055C7EE30
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 08:45:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD6B710E108;
-	Wed,  2 Jul 2025 08:45:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF1510E108;
+	Wed,  2 Jul 2025 08:45:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aU/9ttq/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C0b8mGWH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86DDC10E108
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 08:45:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3392510E316
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 08:45:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751445910; x=1782981910;
- h=from:to:cc:subject:date:message-id:
- content-transfer-encoding:mime-version;
- bh=cJkGi2VIG3ugkujpZJ2v2yjt5x9Q+RkBJBBj96LB8Os=;
- b=aU/9ttq/PDr3/WXjMKqNqyrf7rfS72LwJZmLwMMiaY8elb9OLdcWCAAO
- pPeaN2aP/c5/51qevT3TXd3vkQAP+9cF3aVxthhGUGWsqAKxhHfkrR9K3
- uxnizajgHb4fKxTWmQThT1ifbgA5Zoux0KAoEb+FA8nG33I3S56Z2FUqR
- ZTnS9fs6cQ6evdUw4eMSRMON08hs917BjRJN2+0YRT9AUk6x05kttxCo5
- oAZXH4LVZO/Hx+7n404bJlreh2IfQnQYQ9yAggMSeszh/S8gsqJxx34A+
- HoCrSGRvz3p34+DiAh21u1sZ9lthYjBdLnv7TaqeMDyjHvaksDkguOyGk A==;
-X-CSE-ConnectionGUID: tnxVQdp+Qw2DrhsMyD8FdA==
-X-CSE-MsgGUID: erwQPHg9RUmiXjnD0SjFVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53597952"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="53597952"
+ t=1751445945; x=1782981945;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=wtsiFp2LaAZehmouKcz89kKUUb0TKVE3BtT79VKf9jk=;
+ b=C0b8mGWHmvL/CavwbSJopQOx5KGPd55OhMRIpGCJMZNluUCwyHg48jMF
+ uJoI8EQZJAHtB2sVInlGIgylv9hAWdqm1w7yGbRedoBYEoWbR30ZTuDKK
+ 2z0bOFkgN5rs6RdzxHAVysH69J5ZA+kVudOsYqrUcJcPNOfy1qFgYQINA
+ FiWOwtt5mbJXhPvryrFmXyru+EtAh5pv1/7n9QQz2xTdZ10Zug5w67z+s
+ fIC4kOmobmw+MdEKmSXzvDqGjzlshjRbqe81B5STsJJAqq6AzgZSQRyKv
+ ihUo6wdAkC2lOYQAjZ4nFlIw5IRjTB6d01Jg9/f99KoZcwlOKYbiS448X g==;
+X-CSE-ConnectionGUID: MA3EhTddSUa4Vg0LnQDG9A==
+X-CSE-MsgGUID: wari0QkrTW6RMgWtB4pl7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53597998"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="53597998"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 01:45:04 -0700
-X-CSE-ConnectionGUID: c1baBWbXQnCgStYg4X3FAg==
-X-CSE-MsgGUID: 2OaTs5l1TNKJv3zbLlhBcg==
+ 02 Jul 2025 01:45:44 -0700
+X-CSE-ConnectionGUID: j35ydayFSu6E4jLqpeLkSQ==
+X-CSE-MsgGUID: jH4gSqb2SvCvuHx8yRRiPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="159531367"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="159531589"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 01:45:02 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ 02 Jul 2025 01:45:41 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 2 Jul 2025 01:45:01 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.1544.25; Wed, 2 Jul 2025 01:45:40 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Wed, 2 Jul 2025 01:45:01 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (40.107.102.89)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.1544.25 via Frontend Transport; Wed, 2 Jul 2025 01:45:40 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (40.107.100.67)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 2 Jul 2025 01:45:01 -0700
+ 15.2.1544.25; Wed, 2 Jul 2025 01:45:40 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AUyFZnk25KzRW7somBnnIYYDgozhTSpgE9HZClX9dQNEHni2q2sdkLTuZP6/mZf52ycfCLlgx0PrNANfb46XcV43+MQIvjbWExXOGGosgvL83ssH9Px3/1UZUBVf0VqKqOUkXrcvQnzchBDoLGNpD4ewCTt9CmuLzVXz3tqZP9S3JdB/dBXcGNWiuUKbw4d0euK2mWHEEZz2EM+esDVM/Lrs9OXict/TLRdHGRS5YJkXGU5hGLBVKc/5ncXhmQDl5n14L4v2f/DdgcClLKZ5d5yneo9mnnDF6E3OeBc2YR88rjy8V9Zpka4icPSomk1GhNPZwiWY8KmpyXcvK0Q3bg==
+ b=wc2tNzXi8UmW4Dr2wE0hMA0kh0VjRWoNf3R9s+2yPERa/qXG+9FuKmLtXuSkar5BEQmUx1P1SzJDV34hZzVt/nALyP+uSK1eCRAjUZBxl9EsTJyUpijlyUT4lUx3f40LgDTzd5FDS/auxw1cAWbzrY4PKqy+mPiy+iA5xA0IZ58MFx6x+TxtcCUPYGT5Zgvz0yqW6I1pdDQKH4WtBE5MvjMbICEZFPP3mHi9FKM646Ab+Iysxl6jepT1WuSjfMnUzH83PibQXHMMVI2DsEMSVVn6gnrykk2kRpsCewLHpPkJ2lSLSFI36zIJ5ukg/ktOGemCkc7ZClzdnecvAiKchQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8ts7L3ffFknMSPV+7XgECtQY7F3RjeJqBsakScYR0iw=;
- b=YhVqnMvZoDKC495r4bjqUJgcPnI1r9YQNirAurbTOLePX2WEZtZb+U8kXDQ+6gMxjJK0F4QoAXECYZ6Ne4hUY5O2NpQEdX1lkN4B94cRRkaQoINxUUyPI1YzBuZucEiEHKqo/VxXOmziiWeGUPlvVdRXG/yaH4n8GBZO079Kv22kytBrsnTQJPfp7178T8LgAgifjNYyJRZ1WPB8SouQ4GTaHiWX0s0JIM296MbX5jhf3RLDsckHlFUgPaHNfqNYbliVZAj9vLtG3oHsycyqPYdVlD4OXbJzoeDBc8A+hW5nCKiF1cdLZ8M9KoAJngDJOW60JCz+0Fuq9Gh9uSwZTQ==
+ bh=KKLzdoa05Q+v8tuNq6OeZr6+TafwzZKDBLwTOl80RSE=;
+ b=ddyDekMPSI/ehghCHNOliqhbpPTerz7kJ3/0LWL2mFKUgp7I9MJsh/nePg79sAva8aEq2ZuDFJ9MNAAavP1a7bMxkMkaXRBsykysdCnfNrTtcZtC2rPQDATY5wVPASa6WqKmEb6uHNc5mjMe5azgxEibKIiqJ8Dzniv043P0jnoQehBb3otkBb4BmbxJCqtB3lKAGTe6fmEajkv/wZ1X5XsYOga/214zi1TVPMuM7geVHPFXY9gwydVODWSOtHqrsSuIo5LY6Fw67D1DoI2m8G0u+RfHWnj1pha5gUP+lqWUJvLY5N4Duiv2F+6LZrjTvYT8vsbmBbGLEusJBINeXg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,113 +69,116 @@ Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
  by LV3PR11MB8482.namprd11.prod.outlook.com (2603:10b6:408:1bb::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.32; Wed, 2 Jul
- 2025 08:44:59 +0000
+ 2025 08:45:08 +0000
 Received: from MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a%4]) with mapi id 15.20.8857.020; Wed, 2 Jul 2025
- 08:44:59 +0000
+ 08:45:08 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v8 0/4] Cleaning up code related to VRAM regions and its
- initialization - part 2
-Date: Wed, 2 Jul 2025 10:44:20 +0200
-Message-ID: <20250702084424.3609863-1-piotr.piorkowski@intel.com>
+CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, "Jani
+ Nikula" <jani.nikula@intel.com>
+Subject: [PATCH v8 3/4] drm/xe: Move struct xe_vram_region to a dedicated
+ header
+Date: Wed, 2 Jul 2025 10:44:23 +0200
+Message-ID: <20250702084424.3609863-4-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250702084424.3609863-1-piotr.piorkowski@intel.com>
+References: <20250702084424.3609863-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: WA0P291CA0016.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1::28) To MN0PR11MB6135.namprd11.prod.outlook.com
+X-ClientProxiedBy: WA2P291CA0042.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1f::14) To MN0PR11MB6135.namprd11.prod.outlook.com
  (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|LV3PR11MB8482:EE_
-X-MS-Office365-Filtering-Correlation-Id: 537b005e-2404-4059-33e4-08ddb944ba5a
+X-MS-Office365-Filtering-Correlation-Id: 93e05e16-678d-40f0-c7ba-08ddb944bf71
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aDdKOXBhNGRWTHM2TUxlR2ovdTlQQUtkL1htSEZwMEQzN0l3MkNhWmxzaHRa?=
- =?utf-8?B?UVdaUHNHSURTc09aWld6NVJxT3J3SnZ5U0YxVWdPcUhDV2h4ckZGMmNGZHZS?=
- =?utf-8?B?VnNKd3RLYmJnMUltZEVuVzZDTDJMYzg4ZVFPVm95WFA4OVYwSTA1SEhiRU1i?=
- =?utf-8?B?YWE3NmRPQ3NnL3Y0MWFBVUd4d3ZOcUpiaWxjRnV0QXo1RlpSeTF0ZTJkY3RV?=
- =?utf-8?B?ZUYveHJsN2kzNmlOOWZMeTlrMGdCWlVxVmVaSDJmdGFoV3JOSWpsNktzaEVR?=
- =?utf-8?B?bmVQMmEySkpzQVExWGpQZnZEZDIyNHc2UHpGZmFiem1nbUowalJrUXpITHBF?=
- =?utf-8?B?TWUzNlJBY2sydi9BbDR0VVc0U0swTFZPUDkxQ3JKTVRTektkN0JZQy96NGx3?=
- =?utf-8?B?K3J6Q2sya3V5VFRNUnkybE9aK3ZBWEpSY2M3bVhUdGNibmQ5Q0pnSmd3Rndx?=
- =?utf-8?B?c2xDZnVPYjJYMExNdDJCcktwNEtDbWp2R0RXZ3M1Zyt5ZzJDeTJ6NFk3aUxT?=
- =?utf-8?B?aEF1dDBhelBQVEN3WnNnZmlZVmJRMjRuK3pUYnIrUmtrMU53dmN4Rm5sc0FD?=
- =?utf-8?B?Y3czWE5UaWFpemdpTFNORTFpZUo2NkQ1L2ZEejRucnhIOWEwU2JWSXZLWXds?=
- =?utf-8?B?YjFPK1QxRHRlQnhtLyt4d0Q4Q0JLN1BqRXpMQmd2eWI2d2I2VUs1MTJTNTVk?=
- =?utf-8?B?MENheERBVkd2aklZYjBVMlAwcTVwR0xGaUZRU1VScXBWTjdvNWU4WkFTUG5L?=
- =?utf-8?B?bFBUK3BORk52bnVPem0wODdWMkhuNkpDbVJyVmE5di94c2JQVFNLUWFvT24w?=
- =?utf-8?B?MVBaTmxTVnlKNXRDS0g1cWhxSy9CM1ZkNjhXMXNhY0Erd2VwdHhySUpRRXBj?=
- =?utf-8?B?VERDWTJMQjk5VXUrQW9ZVXl5MDVlVDVVcHAzTk1hNElaUE1JRXRUemk1bVRn?=
- =?utf-8?B?dGFteHNtZGpLYmxqMzNDWjV6SmhudmxQMXNTR3pPTXFoNVE1anN3UW11cVAv?=
- =?utf-8?B?RXFZd3I2U2dhWFpBUEpYR3BqVUlYbHRuWHRiN3hWZWlRSlVIZDhlMncvQk85?=
- =?utf-8?B?eFg2VDJxUUN3Vk1ia0NTNzlkNEEwUXdRVHhHaEJxTWdmRGRUMGVVRjI5ZHFJ?=
- =?utf-8?B?OVBaRHFCclBYVzB0NWpLeHRLeHQyMGxGQlpLb1hHVVlrZHQ2MlM4S2dNN2s0?=
- =?utf-8?B?U2JLVTh5QnNUWUlXUDVaMTZMaE1rWUJBSmM4RWRScXdjZEx0N1hvVThCVWEw?=
- =?utf-8?B?RSs0aWx4TGtrd2FYY2xFbEZ2UWVzcGVIRHhUd1hXTHlwR09PRlNVbEo0bFNH?=
- =?utf-8?B?KzZuZnZRekl6S3pZS1F2V2JQUis5L1RRL0VkbzdaeHhDSnZYYmZ1VStxUGNq?=
- =?utf-8?B?MUFPRXI3V20wZXRuU3FTOWhCVVJiOHhWeHZmQ0dsRWFJOEwrOEdtY1pxSDdr?=
- =?utf-8?B?UTQvSzc4TFJySmFtaU82MXovM0FEZC9hMHRUbDJONS9RazVBd1ArWnJKTGc1?=
- =?utf-8?B?L2dlSFIyaURteGVMZTFOV3FHNWpLZnMrdGtETVBxbUJQSGY1TDllQlhsRnJh?=
- =?utf-8?B?SWo5Z0V0VUxLOU1YU09qcmRuYkJMTTZoSVlKcW05L0VWQ0xhL1lTSzgzREJT?=
- =?utf-8?B?a0hIK0pyMFgwSGUzL2pDRzU1Y0JQWVl6R0VtOEhtNG5qeXZMMTd3V0h1Z244?=
- =?utf-8?B?ZUtLcDVaVkczYTVyTXVuaVJVVzljRDY5QXl0UkhnZUlEa1RmV3RvZDE5ODZm?=
- =?utf-8?B?OWM4cHNENkkyTTNSNkFLWCtKN3E0WjY0Y1lJazg3cG5GZmVaZVZQcnZvbEt5?=
- =?utf-8?B?d2FlckU3VjFaSkI4Mm5iUXlhWEF6OHRmMmd1d0R5U252Y1JXZzJUZ2FreEgr?=
- =?utf-8?B?WEJpWkg1MHJzSVg5NTJQQ3JFSHlEZHhSMHpzTnRQYzlya3Jzakhrdk1GQmFQ?=
- =?utf-8?Q?DQjAekDzlPk=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Ukd4bjFQUzFPNWptRFdwOXM3RE5ZMDV5VjJVL3dHTy9qaEhWeWMxNHpaNmJ4?=
+ =?utf-8?B?RUYyMTdnNGFSaUQ3bm5DcXZoaTM3SzlDMkNQczFFMFBITVRGMjBWMWhCTVl1?=
+ =?utf-8?B?ZWtrckNYSHNySG5VOE4ycmF3WEg3emxXMi9wSDBTOXQzSkRyQjVPSkNPaWVT?=
+ =?utf-8?B?UUttREJQWTY3bEVrdHhZUk9oZmJBUDVGaXBVOTRnQnN3RzZ2M29EQjh5VWF5?=
+ =?utf-8?B?RVZFc1VsTTdjbERVby9IMnpPd0Z2bFBObjRlekZES0NvYTRMNWRsNktrZFJz?=
+ =?utf-8?B?NktzdEhGRFJ4czhvYXNMS3k0TitHdVBuKzRKMERMU1Nrc3J4YksyN092TXhM?=
+ =?utf-8?B?eDJiVW1JVGtORVpHU0p1d3VUeEhuc0E3YVFJUFJCQkVYZUkyVDdmc0VuaVVo?=
+ =?utf-8?B?L1RFMnZmZkJvc3pFQ2J3Uzc1bmQ5YkQ4Q0FZeGlHSGpjOUs4aGFoa3lseE9P?=
+ =?utf-8?B?MnZrc3JPZWswZWFQSTV1TVQrSTdBQ1BxdTFDcm03czZHaFRXdkl1Q0xpVFNE?=
+ =?utf-8?B?SUdwWXZMWjU1OXV5Q2svcXhFYWk4OVZrN1FDWEhqWDdCb3dENVFvOWtUSVk1?=
+ =?utf-8?B?Wit2ZW5kZ3dXY256Z25xSWhINENMRit3YTR6dG1JWDExS1ZpSThBUVBRTjVl?=
+ =?utf-8?B?Y3JaNFd6dis2dGgrUWgrL09mQmVQM0JyR3JqeWoxTzVMcTJrbjMxVnRBY2Fv?=
+ =?utf-8?B?UTdlMmFXZXpVSWJnNTNGeGllbEFxM1E4cGpnZE13MTd3V2xTYkM0UXBLMEVq?=
+ =?utf-8?B?Z0ZVOUlFVWRNZlpHdVVDc2JGeW9PVTIyb1N1aWV3dnBYWjgwcW9YTlNudHRN?=
+ =?utf-8?B?cWNrbTMxR0tLd0p6bEMxbzNHTzdKa3dQRzBtTkVmb2NuU0lxcUdMYU1JWmFZ?=
+ =?utf-8?B?eWx2TEIvNkNpZnlpNWN1b1pvMGdrWFZnZzhwTVMvd2pwcHoyQ1ZVeXh2ZDVj?=
+ =?utf-8?B?bVBUaXBTTmZtR2p1cjBrWlZvY2VOMVhRSnczcjdyaGl0NFkvQ3Mwc0pZNnJQ?=
+ =?utf-8?B?dDNkWmR2NGZXU1RVRm5na3VXZmJLeU5sSk1udFAzb2lpVmsrenhLUmc1TEZh?=
+ =?utf-8?B?NGVnY1dYaTExbHpRaTd6WWRFSmxHYVFrcEd4MnEwWktuVGlsM1RRRUozQ3JX?=
+ =?utf-8?B?TkJqdmJNWlJjNExuUzhiWG9BdEljbzhIbmFINmUwTituKzUvRi94YjNZYnBY?=
+ =?utf-8?B?RW5SNUZsT1RiUTgxSVY2U2lXTURVWnFLM2EydUFEb0l1bUxUaGpNZVdQTmNn?=
+ =?utf-8?B?Q3djcks1Q3IzUTBGaFpGclF3dUgzRGQ5ZE9vUkZhRWphTkt2OXVSbTN3OHA3?=
+ =?utf-8?B?ZXlpdWR6dFZTNk8vVnVGZWV1Qjc4N3BGRlBEWEhOTHdkOUI2T2tpQW9OcG9q?=
+ =?utf-8?B?ZVljMnVkMTRJaC9nKzA4ZU82alhnK2c2dVIvMHBDVEVtMXgxK2NPV3A3VjZL?=
+ =?utf-8?B?VTdrT2hwcEVwWWJ3b2w1VWw4ejI4aGk4a3djeG9RdkFXNWxiek9YTkdrRVMx?=
+ =?utf-8?B?aGtBRXAvR0NxZklFQXcxcFZ4T1lFUXlDOE9Cdjh2RDQ0Y245emtoV1ZjbjZX?=
+ =?utf-8?B?MGZPVVg4V3BOd3FVTkczZW1MeFF3Q1FqN1JMSUFtaHlsallTeHRDSzJnMWFs?=
+ =?utf-8?B?c1dFUVNSd0VnOFpaVXpHZFNFeUhOYWdVdEZIK1VnTVgvZWdxZnF4QU1HTGNZ?=
+ =?utf-8?B?TDJDbklYT2hMUFhkeGxNMktvZ2Q0bGxmOERTUEQ5VXZpeDVsOXdUcFlQOE1p?=
+ =?utf-8?B?OVVhTm15alZLVVpVL0hBbmZoNklrWTBVMzFpODdqVXovU0IwYksvVGRDdVBa?=
+ =?utf-8?B?Zm1XUEk1SDlSK0ZaUmc5cWhmTDU0SURlWE56U0V5T2plSG56QVRIY0JpZ010?=
+ =?utf-8?B?WGlEb0ZuNUtvVFYrRXNaeXVKM0tMcVNpc09IN1FpRmNPTXN5b0RkZUUwV1h2?=
+ =?utf-8?Q?q3Fh8Vhr7T8=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TzBqd0V4andkSGdZemtEYzFzRnlrWUhEWWRzKzFTREQzL1JJc3VuQkRqR2xz?=
- =?utf-8?B?Z1g3VENiU3JtVnp6V0R6MDZ3N1pCK3Azb1lKUDdkUWZCTzZmd0QwUFpNK29C?=
- =?utf-8?B?Z2FqR1JXZGdYRVZzVU9zbVJQSHhtbmpWZFg1aGxiQ2VLYUxqVmRoVHVlWCtW?=
- =?utf-8?B?em1mL3BQOVJNNUxweHU4alhuTHVnSDlzamo4VjRhRjRkaWxYZ05LN3ZRK2Rw?=
- =?utf-8?B?clM0czZqczRCdis4cm1hdjRqRUJJTXBMNWN2dnR3OXBFR3Q5cUNLWndEci9r?=
- =?utf-8?B?eXRydXRJWWhKdVJpYjFJR2x1MHNocW4zLzlBTVR2enJYQm9VVkYzTjRUQmFT?=
- =?utf-8?B?Rkw4U0JqeWFsY3hBUUVuN1krSURXQzRQbmkzNUNjNGtKRUF1bHdnbnR2UVlC?=
- =?utf-8?B?V3U3RERTa0dXak4vMUpDbHhhbmdnci85TXByd3pwT0JQbzEwbXBUdk9OUGFq?=
- =?utf-8?B?QlV1enhGWnV3bjJ6NTBHNGNWQVNOTGRjUzJLcyszSVZKTjQwL0R2Q250M2Ey?=
- =?utf-8?B?MW40Q0xWQk1tdWg0c3lwMkpGUnoxYmV0K3BrdmdEc254YjNGOVkwMVBLVlNE?=
- =?utf-8?B?blRxSGFxRGxKK1YxTjZEbktDR3NUUS9zMXd2NUMzazRvZGJDeFJnTCtKYVhl?=
- =?utf-8?B?VC8wU0RFbzVVTWRKMStvTkF6aS9TUnF4ekhKc0w4Ri9TdTgrVmlrZXZuTlBN?=
- =?utf-8?B?M05LcHA0ME56KytYMFJ0LzIzcG1vYUJlbjhWbldiRXF0SW1nOGpWM3FBY3Ir?=
- =?utf-8?B?WWlIQmdXRmxVSkxTNmVLWkNRSVBHQU9CREF1RE9wdVlFQ25Gc1pQY240N3Iz?=
- =?utf-8?B?NlBlRFRLRlJETkd5UGxBa1owMEJwNy8xUEhqcmo1dlNNanNRcDRaVVR3NVZm?=
- =?utf-8?B?QUNmZEZhbmcrMjVCeGdEZjV3NWpqczJsSDczUXU3VEhSMXJndTFpandOTDdi?=
- =?utf-8?B?ZFh4b1lERDhMWHNwbWFhcVhtQXdvVTFtVU5YM3FKMTJtT2lhZ0tGRjJZNkdB?=
- =?utf-8?B?blpqang0bTlVTUx1OS8xYWozNWZZM0UzTmxNZGFBdVFJRkVpQVdVamlxVisx?=
- =?utf-8?B?MjAwb2V0QXhIR3g3OStDdmhKSGFOTUIvcFlnZkFzbVNLN20reDl4OXpFMXYz?=
- =?utf-8?B?eFdmZ01lOWhzNXBkYmVoVC9lQk1UZUtLNDJ5Z3FDalJ2ejl4cVloZUVTQ1p6?=
- =?utf-8?B?eHNja0xaVk11MFdTYUYwdGczd01Wc3FnRmRNNzhWdmw2NTRDb0Y0bFlhNExR?=
- =?utf-8?B?eS9uUWVoZmN4aVQwODhkKzRraWQydlEyWjhXVGFLS09hWEhNUUhrUG5Vemcz?=
- =?utf-8?B?N3EySGttcFdoRTY4OUMvYW9CL3VvWWh5bE11LzdxNzR4REdWQ09YWktOL0Va?=
- =?utf-8?B?VnYxMFJWQWtmRGJCSkg1bXpmZTF3VG93dUtLMnNrWDJPVVFvNUNGUmcxb1Zr?=
- =?utf-8?B?VFNHWkY5V3F2amtGVUZEZHR5dW1pWFZqeWpEcjlOZWJDUm1uOGhCZzM2Si9I?=
- =?utf-8?B?N1BTSmM1OXhRa2psV3ZqZm53MUw1eWp1dWdoNFhLc1dCTHVyYmRDSS90NHQw?=
- =?utf-8?B?ODVsTm9tT1FTRW1sc1BMVFB5MExOeFI4Qzluc3NIckxHSHNFelNXejE5Y0cz?=
- =?utf-8?B?NFBVNU9OZ1lIL2NWQjFGRXZyN01YRVoxTUN6NzRteGFiN1BsVzE5Wjl1alll?=
- =?utf-8?B?eFlWcys4NEVIUGQrWDhhRTc2MU45RHhCYm85LzYxZWxNYVVYcHFPZzFSL1Zu?=
- =?utf-8?B?RllzbmxRUDZIY1g4VXR3dHM1Z29DV3NDTTVaZlJLek5FRTlTZ0xqcTc3N0s0?=
- =?utf-8?B?TXdic0pyL1RMd3VoSFJtT0pxendaWVhyeUVCbkhaM3lwYUdyQ29ielZnTWFU?=
- =?utf-8?B?S2krZzJCeWUwb28yNGxaSTlLa3hmdzBjTnJrQ1NPNXZFWisrd3Q4VDh4OWJM?=
- =?utf-8?B?clJldG5rSTJhblMzc3hSV1ZNT21SWElMdE9XYTRxRGNQblBPYXdrWDVDMGds?=
- =?utf-8?B?L0lHUmdQamJ5WjdWc2w3Z0l5cmRNNlRFMHZzUmd6Y1ppT0lwYUlQMjZjS2Yy?=
- =?utf-8?B?dlUxTUNVNDRsUEsxbnZYazBad0pkTkR3R05VNU83dFFQODBmOHl5aWN5SGJU?=
- =?utf-8?B?VlNnbW5WZWJTM2V0T0NmNmxJcUlLQkx4Uyt6ckdaZDUyUlllTHRJRENZV0V4?=
- =?utf-8?B?dUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 537b005e-2404-4059-33e4-08ddb944ba5a
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Tm9jNEgyTHBXK3o1cGJrZGNYSDNVVnRUWE9SaFF6TDcxVWFkZmRqenpZcGFy?=
+ =?utf-8?B?QnJvYnlEK0V4cUU5RStVYWRxRGFoOTRxUDRBZGpEM01jeG9WK3lqUEJwSFo2?=
+ =?utf-8?B?Q3U5U0k5SXU0TTR0OWg2ckszV2ZvL2JqNXdGVkhpMDFSeXBZMElkUzR1eWJm?=
+ =?utf-8?B?YnpkSjk0OFZncFRmUmJyNDhkcm1COXVtZE9kRUNXOWdyemVKN2hXRzRoVEVJ?=
+ =?utf-8?B?SGhJU3VIam1ZNi9CRk83ZzVvdWluWWIya2JkbWpOZlVZQlM2MmJ4U2ptVDB0?=
+ =?utf-8?B?cW92c1QxQ0NHM1hrKzlGVGREV1c3MStGdCtLS0hVeGVaUXNYUDFGUUNtRU9j?=
+ =?utf-8?B?OWxDY3dpUVYxMVNyQ0NqVDd6aHcxazRnYkIydldweXk4d0o0amVrenNnTnQz?=
+ =?utf-8?B?aWxtZ1AxOGJUdENKNStWRGYvc2djQlNybHBWaUtoenhEY0pocjNBWUZNeTE1?=
+ =?utf-8?B?aWJsZ3R2M1pTYjV2aWo4Y2VzRnQ4WHJyUVJkejdCRDRSZm5KdUlZVjg1bVBo?=
+ =?utf-8?B?M09Pa1lDZmVEa0lIZ0RtS2RQTW1Ja3JiemZadmlKWUlNcko5TEdjUWZtanpD?=
+ =?utf-8?B?T0xtWHZUOVZXVFZOTS9sVmNxYTY4d3dHK1NYcUx6aWpkTk1YcWx2RS9GZy9R?=
+ =?utf-8?B?YW14V29FMXozMkk1SVhYOWtsNU5OR0JXNFlMcTVyeGxUZThaK25ibHh6RFM2?=
+ =?utf-8?B?QllqeGYzcDNnNjNCOXdjVUhxblNhcVU5b0Q1TWFiV1NNV1JmWFFqNjRTZ2hO?=
+ =?utf-8?B?eXBsakEzSHZldDU5aXBvdWdNUjFZTFJhNExEVWhpbFYwbEF5SFFJaWdsYldP?=
+ =?utf-8?B?NnZwSTU2Y2xSZWFxYzJHV29sWGl0eU9maFhPTFZ5MHpxUzRvT0Uxc0pHUmhz?=
+ =?utf-8?B?NGJMRFV0T2ZHay9hbUM3ZitGeWtCOWRlQ0ozNlZDOUVrVWx1TklzL25hMGlW?=
+ =?utf-8?B?ZFFicmxkQUxBblZMMWdreG1oeHRSaHpuYlZmMDQzT0M4dFhLc0ZMTGZUb0Vm?=
+ =?utf-8?B?WHdadGNuNG9ZVG51c3M4UTVZUjJwOVZNVjFmQytURzB2U3JBTHN5RDUzS2Q4?=
+ =?utf-8?B?SFliVkpvOVRsYis0blpWMzYyNHpwYUJqbU1BYlIxa0d6QzdFZWx3RUNXeVNN?=
+ =?utf-8?B?OWFxV0ExMGtnOFVybk04N0NmQ001TVdjbnZGRGpJK3QycWUra2hQanY0WmJU?=
+ =?utf-8?B?RmpmcVdpQTlJM0lnb3ZSR3JxU2V5ZCt5OUNSdXRSWU9HRUVYdTliQnBaajA5?=
+ =?utf-8?B?OURrN3AvUmlTc1p5VGl2QWx3YmNwY3FZMDFSekI0WEptMmJWZ1RaMVl5bnVF?=
+ =?utf-8?B?TnVNV2lMb3BWc0xiWUdDVW11dlNFQUZiWVB5djdWdWpXR3hETHpJU0NTejNr?=
+ =?utf-8?B?ZVB4Zm44aXB6TmNHcFp2RStHVGRSRmVzZjR1QW8zcjc0VVV5dUIwdEl6RXp3?=
+ =?utf-8?B?eDJ4UGoxRFB4Vlgra0Z2YjdZRTBUN1NTM2lPa0FtQWpXTWFiYTF1eDBGd3RI?=
+ =?utf-8?B?R3pWbFprdFVVeFpwaHNGN3BzeEh5MTNESHRiTU9UMWlFN2hiRlA4dWQyY1gv?=
+ =?utf-8?B?enh2cWR3aGdjV1FRN21pTEVqSmFwQjIvS1M1YVU5RmJGbVRlVG0xT2FFamNq?=
+ =?utf-8?B?U3FZWkErT1I1UllvcnBZc0YyTWoyUFZRamVqY1N4ZWJYMTFwdXpRZzlJQW5m?=
+ =?utf-8?B?dE44cWs0ZWtDWEl2Z3VUSWlWZXM2c1dWVnFndVJ5Ly9LQ3I4NmhiczhBOWVz?=
+ =?utf-8?B?bTFCRGRrL2E2U0UwUmxTU0VpUVZPK3dQaURjbm5QME9DUkVKbngxTktmczJm?=
+ =?utf-8?B?NVpWcTFibFJjTnFLc1FQbHpFckl6NHc0RTFlZ0V6K2NjZnBjNVZ6YnFjZ2Vn?=
+ =?utf-8?B?Q0RKaG5DRW9ZMitvOWZmSGpDbC8zSkFwWExNU2Rkc0sweGlpMzhGanU1d0xL?=
+ =?utf-8?B?TTVLdFBrK0t3UnpDelZPRitFd2R5NjhVaTNGOU14MTQ3bEg1SzJXaVFuWWxP?=
+ =?utf-8?B?TFk5K2txSkJFNzRUaUQreTB0Wjd2MThVQkk2aCtHYkVDdCtjM29LYVlPNkIy?=
+ =?utf-8?B?R2ZVMGI5SU5PUEZ1cDZuRUlEaWYzWXNCdS9BNEl5Zm9kYTlnZlRrWFNEdzNH?=
+ =?utf-8?B?dWpCSS94S1p1c3R2akhTK3FPS21lc0tDMlpKNkNCZzNibFNNM0syNnZNVEFU?=
+ =?utf-8?B?bWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93e05e16-678d-40f0-c7ba-08ddb944bf71
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2025 08:44:59.2721 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2025 08:45:07.9018 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DGtqCnp5y2oh1k8S/AuTCy/heaubmayejRdtoAbfZnZspENcIXN1IWH86tiDxnq5dit+rC9Jktk3HVyylRIaRyp1pjGnWdoMJbX9a2fb07Q=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1sfcWjC0se8CpMAMWLKRS8D3c/xvlwHtGy4pVaZrpDxrkotgdLblWq4ZvvkWsm2Ft96RmoYJdfU89JMMczY981WVJ3TKXcSFPsgSAhrZ+r8=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8482
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -194,78 +197,353 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-As a follow-up to the earlier VRAM region cleanups, this patch series
-focuses on further improving the flexibility and clarity of
-the Xe driver's VRAM management.
+Let's move the xe_vram_region structure to a new header dedicated to VRAM
+to improve modularity and avoid unnecessary dependencies when only
+VRAM-related structures are needed.
 
-This series focuses on preparing the VRAM region handling code for future
-platforms, where a more dynamic representation of device and tile VRAM
-regions will be required. Static allocation of these structures is replaced
-with dynamic allocation to increase flexibility and improve maintainability.
-Additionally, the initialization logic for device-wide and tile-local VRAM
-regions is unified, replacing the previously separate code paths. This
-simplification improves code clarity and facilitates future extensions
-involving additional VRAM region types.
+v2: Fix build if CONFIG_DRM_XE_DEVMEM_MIRROR is enabled
+v3: Fix build if CONFIG_DRM_XE_DISPLAY is enabled
 
-v2:
-- fix doc comments in struct xe_vram_region
-- remove unnecessary includes (Jani)
-v3:
-- move code from xe_vram_init_regions_managers to xe_tile_init_noalloc
-  (Matthew)
-- replace ioremap_wc to devm_ioremap_wc for mapping VRAM BAR
-  (Matthew)
-- Replace the tile id parameter with vram region in the xe_pf_begin
-  function.
-v4:
-- add new patch "Use devm_ioremap_wc for VRAM mapping and drop manual
-  unmap" (Matthew)
-- add new patch "Move struct xe_vram_region to a dedicated header" (Jani)
-- fix null pointer dereference in xe_assert when VRAM region for tile
-  hasn't been initialized (Michal)
-v5:
-- Fix build if CONFIG_DRM_XE_DEVMEM_MIRROR is enabled
-v6:
-- Fix build if CONFIG_DRM_XE_DISPLAY is enabled
-v7:
-- rebase after new changes related to SVM
-v8:
-- rebase
-- add a helpers for accessing fields of the xe_vram_region structure in
-  patch "drm/xe: Use dynamic allocation for tile and device VRAM region
-    structures"
-
-Piotr Piórkowski (4):
-  drm/xe: Use devm_ioremap_wc for VRAM mapping and drop manual unmap
-  drm/xe: Use dynamic allocation for tile and device VRAM region
-    structures
-  drm/xe: Move struct xe_vram_region to a dedicated header
-  drm/xe: Unify the initialization of VRAM regions
-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |   5 +-
- drivers/gpu/drm/xe/display/xe_plane_initial.c |   3 +-
- drivers/gpu/drm/xe/xe_assert.h                |   4 +-
- drivers/gpu/drm/xe/xe_bo.c                    |   1 +
- drivers/gpu/drm/xe/xe_bo_types.h              |   1 +
- drivers/gpu/drm/xe/xe_device.c                |  20 ++
- drivers/gpu/drm/xe/xe_device_types.h          |  62 +-----
- drivers/gpu/drm/xe/xe_gt_pagefault.c          |  13 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |   3 +-
- drivers/gpu/drm/xe/xe_migrate.c               |  25 ++-
- drivers/gpu/drm/xe/xe_pci.c                   |   6 +
- drivers/gpu/drm/xe/xe_query.c                 |   5 +-
- drivers/gpu/drm/xe/xe_svm.c                   |  27 +--
- drivers/gpu/drm/xe/xe_tile.c                  |  58 +++--
- drivers/gpu/drm/xe/xe_tile.h                  |  13 +-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        |  10 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  22 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h          |   3 +-
- drivers/gpu/drm/xe/xe_vram.c                  | 205 +++++++++++++-----
- drivers/gpu/drm/xe/xe_vram.h                  |  11 +
- drivers/gpu/drm/xe/xe_vram_types.h            |  82 +++++++
- 21 files changed, 376 insertions(+), 203 deletions(-)
+Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Suggested-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  1 +
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  1 +
+ drivers/gpu/drm/xe/xe_bo.c                    |  1 +
+ drivers/gpu/drm/xe/xe_bo_types.h              |  1 +
+ drivers/gpu/drm/xe/xe_device.c                |  1 +
+ drivers/gpu/drm/xe/xe_device_types.h          | 60 +--------------
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  1 +
+ drivers/gpu/drm/xe/xe_svm.c                   |  3 +-
+ drivers/gpu/drm/xe/xe_tile.c                  |  1 +
+ drivers/gpu/drm/xe/xe_tile.h                  | 11 ---
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  1 +
+ drivers/gpu/drm/xe/xe_vram.c                  |  1 +
+ drivers/gpu/drm/xe/xe_vram_types.h            | 74 +++++++++++++++++++
+ 13 files changed, 86 insertions(+), 71 deletions(-)
  create mode 100644 drivers/gpu/drm/xe/xe_vram_types.h
 
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 2187b2de64e1..f2cfba674899 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -16,6 +16,7 @@
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
+ #include "xe_pm.h"
++#include "xe_vram_types.h"
+ 
+ static void
+ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 873f4e18cb2a..a47e3275acb0 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -22,6 +22,7 @@
+ #include "intel_plane_initial.h"
+ #include "xe_bo.h"
+ #include "xe_wa.h"
++#include "xe_vram_types.h"
+ 
+ #include <generated/xe_wa_oob.h>
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 7f8470b22dc9..a35a9e0dbfae 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -34,6 +34,7 @@
+ #include "xe_trace_bo.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vm.h"
++#include "xe_vram_types.h"
+ 
+ const char *const xe_mem_type_to_name[TTM_NUM_MEM_TYPES]  = {
+ 	[XE_PL_SYSTEM] = "system",
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index ff560d82496f..57d34698139e 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -9,6 +9,7 @@
+ #include <linux/iosys-map.h>
+ 
+ #include <drm/drm_gpusvm.h>
++#include <drm/drm_pagemap.h>
+ #include <drm/ttm/ttm_bo.h>
+ #include <drm/ttm/ttm_device.h>
+ #include <drm/ttm/ttm_placement.h>
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 19019b032c78..4bd0619574ff 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -63,6 +63,7 @@
+ #include "xe_ttm_sys_mgr.h"
+ #include "xe_vm.h"
+ #include "xe_vram.h"
++#include "xe_vram_types.h"
+ #include "xe_vsec.h"
+ #include "xe_wait_user_fence.h"
+ #include "xe_wa.h"
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index bd8aa742618b..619728bba77a 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -10,7 +10,6 @@
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+-#include <drm/drm_pagemap.h>
+ #include <drm/ttm/ttm_device.h>
+ 
+ #include "xe_devcoredump_types.h"
+@@ -24,7 +23,6 @@
+ #include "xe_sriov_types.h"
+ #include "xe_step_types.h"
+ #include "xe_survivability_mode_types.h"
+-#include "xe_ttm_vram_mgr_types.h"
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+ #define TEST_VM_OPS_ERROR
+@@ -36,6 +34,7 @@ struct intel_dg_nvm_dev;
+ struct xe_ggtt;
+ struct xe_pat_ops;
+ struct xe_pxp;
++struct xe_vram;
+ 
+ #define XE_BO_INVALID_OFFSET	LONG_MAX
+ 
+@@ -68,63 +67,6 @@ struct xe_pxp;
+ 		 const struct xe_tile * : (const struct xe_device *)((tile__)->xe),	\
+ 		 struct xe_tile * : (tile__)->xe)
+ 
+-/**
+- * struct xe_vram_region - memory region structure
+- * This is used to describe a memory region in xe
+- * device, such as HBM memory or CXL extension memory.
+- */
+-struct xe_vram_region {
+-	/** @tile: Back pointer to tile */
+-	struct xe_tile *tile;
+-	/** @io_start: IO start address of this VRAM instance */
+-	resource_size_t io_start;
+-	/**
+-	 * @io_size: IO size of this VRAM instance
+-	 *
+-	 * This represents how much of this VRAM we can access
+-	 * via the CPU through the VRAM BAR. This can be smaller
+-	 * than @usable_size, in which case only part of VRAM is CPU
+-	 * accessible (typically the first 256M). This
+-	 * configuration is known as small-bar.
+-	 */
+-	resource_size_t io_size;
+-	/** @dpa_base: This memory regions's DPA (device physical address) base */
+-	resource_size_t dpa_base;
+-	/**
+-	 * @usable_size: usable size of VRAM
+-	 *
+-	 * Usable size of VRAM excluding reserved portions
+-	 * (e.g stolen mem)
+-	 */
+-	resource_size_t usable_size;
+-	/**
+-	 * @actual_physical_size: Actual VRAM size
+-	 *
+-	 * Actual VRAM size including reserved portions
+-	 * (e.g stolen mem)
+-	 */
+-	resource_size_t actual_physical_size;
+-	/** @mapping: pointer to VRAM mappable space */
+-	void __iomem *mapping;
+-	/** @ttm: VRAM TTM manager */
+-	struct xe_ttm_vram_mgr ttm;
+-#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+-	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
+-	struct dev_pagemap pagemap;
+-	/**
+-	 * @dpagemap: The struct drm_pagemap of the ZONE_DEVICE memory
+-	 * pages of this tile.
+-	 */
+-	struct drm_pagemap dpagemap;
+-	/**
+-	 * @hpa_base: base host physical address
+-	 *
+-	 * This is generated when remap device memory as ZONE_DEVICE
+-	 */
+-	resource_size_t hpa_base;
+-#endif
+-};
+-
+ /**
+  * struct xe_mmio - register mmio structure
+  *
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index e69a05126dae..275ab5f03291 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -33,6 +33,7 @@
+ #include "xe_migrate.h"
+ #include "xe_sriov.h"
+ #include "xe_ttm_vram_mgr.h"
++#include "xe_vram_types.h"
+ #include "xe_wopcm.h"
+ 
+ #define make_u64_from_u32(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index e6871734ffa9..ee015e3f5d9e 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -17,6 +17,7 @@
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_vm.h"
+ #include "xe_vm_types.h"
++#include "xe_vram_types.h"
+ 
+ static bool xe_svm_range_in_vram(struct xe_svm_range *range)
+ {
+@@ -1006,7 +1007,7 @@ int xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range *range,
+ 	xe_assert(tile_to_xe(tile), range->base.flags.migrate_devmem);
+ 	range_debug(range, "ALLOCATE VRAM");
+ 
+-	dpagemap = xe_tile_local_pagemap(tile);
++	dpagemap = &tile->mem.vram->dpagemap;
+ 	return drm_pagemap_populate_mm(dpagemap, xe_svm_range_start(range),
+ 				       xe_svm_range_end(range),
+ 				       range->base.gpusvm->mm,
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 858ce0183aaa..bd2ff91a7d1c 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -20,6 +20,7 @@
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_wa.h"
+ #include "xe_vram.h"
++#include "xe_vram_types.h"
+ 
+ /**
+  * DOC: Multi-tile Design
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index fb0473fa9098..8dd87ccb2aca 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -18,15 +18,4 @@ int xe_tile_alloc_vram(struct xe_tile *tile);
+ 
+ void xe_tile_migrate_wait(struct xe_tile *tile);
+ 
+-#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+-static inline struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
+-{
+-	return &tile->mem.vram->dpagemap;
+-}
+-#else
+-static inline struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
+-{
+-	return NULL;
+-}
+-#endif
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 3de2df47959b..8f9b8a1d2c05 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -15,6 +15,7 @@
+ #include "xe_gt.h"
+ #include "xe_res_cursor.h"
+ #include "xe_ttm_vram_mgr.h"
++#include "xe_vram_types.h"
+ 
+ static inline struct drm_buddy_block *
+ xe_ttm_vram_mgr_first_block(struct list_head *list)
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 71f463f2c3be..35fd7f5d7cff 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -20,6 +20,7 @@
+ #include "xe_module.h"
+ #include "xe_sriov.h"
+ #include "xe_vram.h"
++#include "xe_vram_types.h"
+ 
+ #define BAR_SIZE_SHIFT 20
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vram_types.h b/drivers/gpu/drm/xe/xe_vram_types.h
+new file mode 100644
+index 000000000000..a01838236036
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_vram_types.h
+@@ -0,0 +1,74 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_VRAM_TYPES_H_
++#define _XE_VRAM_TYPES_H_
++
++#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
++#include <drm/drm_pagemap.h>
++#endif
++
++#include "xe_ttm_vram_mgr_types.h"
++
++struct xe_tile;
++
++/**
++ * struct xe_vram_region - memory region structure
++ * This is used to describe a memory region in xe
++ * device, such as HBM memory or CXL extension memory.
++ */
++struct xe_vram_region {
++	/** @tile: Back pointer to tile */
++	struct xe_tile *tile;
++	/** @io_start: IO start address of this VRAM instance */
++	resource_size_t io_start;
++	/**
++	 * @io_size: IO size of this VRAM instance
++	 *
++	 * This represents how much of this VRAM we can access
++	 * via the CPU through the VRAM BAR. This can be smaller
++	 * than @usable_size, in which case only part of VRAM is CPU
++	 * accessible (typically the first 256M). This
++	 * configuration is known as small-bar.
++	 */
++	resource_size_t io_size;
++	/** @dpa_base: This memory regions's DPA (device physical address) base */
++	resource_size_t dpa_base;
++	/**
++	 * @usable_size: usable size of VRAM
++	 *
++	 * Usable size of VRAM excluding reserved portions
++	 * (e.g stolen mem)
++	 */
++	resource_size_t usable_size;
++	/**
++	 * @actual_physical_size: Actual VRAM size
++	 *
++	 * Actual VRAM size including reserved portions
++	 * (e.g stolen mem)
++	 */
++	resource_size_t actual_physical_size;
++	/** @mapping: pointer to VRAM mappable space */
++	void __iomem *mapping;
++	/** @ttm: VRAM TTM manager */
++	struct xe_ttm_vram_mgr ttm;
++#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
++	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
++	struct dev_pagemap pagemap;
++	/**
++	 * @dpagemap: The struct drm_pagemap of the ZONE_DEVICE memory
++	 * pages of this tile.
++	 */
++	struct drm_pagemap dpagemap;
++	/**
++	 * @hpa_base: base host physical address
++	 *
++	 * This is generated when remap device memory as ZONE_DEVICE
++	 */
++	resource_size_t hpa_base;
++#endif
++};
++
++#endif
 -- 
 2.34.1
 
