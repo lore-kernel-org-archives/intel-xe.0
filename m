@@ -4,87 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B34C9C8303C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0342C83F03
 	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 18:54:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5BB10E33C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DE4D10E764;
 	Wed,  2 Jul 2025 18:54:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eBcm0c0S";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="hIr+wojs";
 	dkim-atps=neutral
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C784910E00D;
- Mon, 30 Jun 2025 20:52:21 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-3a536ecbf6fso2865542f8f.2; 
- Mon, 30 Jun 2025 13:52:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751316740; x=1751921540; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=AVzYd4Tl2gpultj1nN0TR0VicNkFT38l1p0mf0zbhn8=;
- b=eBcm0c0SgF8RQ1E1u1l8kEBeHxKBqB5LVAAvyZwo4SrWcfhG6cto0BeZbH3z8w8tzZ
- bUnsKgCo9K/sG05FUQJLkgUliifDkpUSA4xYEwaZJFsOMi5zKA57LX+ciGmAIWpLqcen
- 9VxpzPtVFnWO7bwFOheYhp5Xp+A4LYUuo7ZCzrQBgGtrUeNLkiTNp4Cs0IodbYOxxeWx
- tISYkgs/tNlrRb/VdbOGAE5l9W/wPPJ4jep5ODvH4i+HeLzjIGexONZL6iR7HXyzQQij
- RtpmXzc+BFQEh5LLpY9nGEpV7BlAGXn8IDj+jGipCEvI2vdoccOVrK1Bd8KS3gQwRThq
- IPlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751316740; x=1751921540;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=AVzYd4Tl2gpultj1nN0TR0VicNkFT38l1p0mf0zbhn8=;
- b=uAlG4YSHgqk/kZp94B4OcCuh/mX+Mq7JHIdTg2ccGm7+TTjgJQV9gjAhmnu3h1rkrw
- LE0S4heLbBVeav+Xu+gcWeQFxzXlP+4+rkVRpNjP11nWY54Y0rHA2XQYoHMyh2W56nMG
- xGWXgYJiTXKELFIgEpWCcb1PHTQzEvJgCyV3U+PLW+sPM+j8qvp55yycxoAxgdz3bBnF
- ch7gATJ2fumA6HRdV1ew2zGeye0K1bxPxoLc9UMn1QKrmGM7Ww0FKxWtrbv7SshRfQKP
- nD1DVxAUmnj3X6NVCJYNi0XhbDJgSQGpwhbfIi7mu6P0QLy7TQQX6RLe462jqYPRrQud
- JqiA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV7yU6s1WuvYGJCJPuSwjCK/KsBM0xrgvBAZhRYYvEGFu++xMda8E8tHL5fZdty0+hYJ9pkNe3ud24=@lists.freedesktop.org,
- AJvYcCVVlXQgfJQ/TBHYr60e1+r1gMtLvfwmrrcjoQOZRIUAvbC1GrPZXLEFCbkVfL5BKjQnczWmlRE+snw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwOwqbZupAtQGj/5VClPjLFtD+l8+t8GxpwiWtr6uYuXeSov1iC
- h5cN4BMWwf89d5scvPh3RyU2c+u2GnpbOFPLqUjzcaSm87WXDbdFb/Fg
-X-Gm-Gg: ASbGncu3q/U7Igc/zty3nKIabt9eEUnp6icsjubcqLYWUMXcjhCNjg/s3hctOpVcYFt
- Rz5wtFG6qZ9dV7H/3wjy1pOVW/GilbI4RwpJt7OVZBlrmylzqNIN2oI/xqG5aBS0uMHEH84wfoA
- Cl+DCpn3223LYOZhPqyrkNpOdSi18nIMWgSdm2lhyXoddRDi1AjbVq4artUZaBIBN2MtzViIHMJ
- eiCmvb4ipe4mGBtKBuQLpMs4eItG8hnWXaCMmGHrTM9ZQZL0Y1MWE/pljiZRg79hCq8AK15zO7N
- csvDHGdVpaTFep9GyPHnqupWxuMWvt+eaPFUM2Wq0ihdobwtVByAPj/P1/0isAcIz6dZhpH+moq
- 4WDv9aZSJ83o0/lVubA==
-X-Google-Smtp-Source: AGHT+IEFvhQ3DTRLYUvObs/6Q4XMPW+98gFdO8K5H8wccOv0hl+MsyFbeGywTiTBWhgruq8DPrYGvg==
-X-Received: by 2002:a05:6000:4404:b0:3a5:2ec5:35ba with SMTP id
- ffacd0b85a97d-3a8ffbd4bc3mr7478685f8f.30.1751316739739; 
- Mon, 30 Jun 2025 13:52:19 -0700 (PDT)
-Received: from pumpkin (host-92-21-58-28.as13285.net. [92.21.58.28])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4538a40766csm147053875e9.32.2025.06.30.13.52.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Jun 2025 13:52:19 -0700 (PDT)
-Date: Mon, 30 Jun 2025 21:52:18 +0100
-From: David Laight <david.laight.linux@gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Imre Deak
- <imre.deak@intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Matt
- Wagantall <mattw@codeaurora.org>, Dejin Zheng <zhengdejin5@gmail.com>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 18/18] drm/i915/ddi: prefer read_poll_timeout() over
- readx_poll_timeout()
-Message-ID: <20250630215218.1aa32a1f@pumpkin>
-In-Reply-To: <1b5d73351eda2d86437a597673bd892baf90fafa@intel.com>
-References: <cover.1751023767.git.jani.nikula@intel.com>
- <59bcc15dd4debf00ee0c7b430a3b701462ac9de7.1751023767.git.jani.nikula@intel.com>
- <aF6UOCLdO0fGHGA9@intel.com>
- <f922ec0a42855e17228d3f22d7291b389abe2df0@intel.com>
- <aF67cxjlfWiWMx-4@intel.com>
- <1b5d73351eda2d86437a597673bd892baf90fafa@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9755D10E0F0;
+ Wed,  2 Jul 2025 14:41:45 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bXMzV0hT6z9tfD;
+ Wed,  2 Jul 2025 16:41:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1751467302; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=hglbfCzFrOAybwh1qJpoXMsHMDVKvyjTRSRyDb3vwuI=;
+ b=hIr+wojs6dElPlj6XfkFrj+vduMR0k51igAK4XB/SCOkr/fI1ysPl+twvSJp0aQhofPrCZ
+ FxvoHTa7dDlMSFmqFYuuG8rFfTFQVRaWdZCbzv9SGChx8EQtjPqLxUXE8UB92AAukveBJE
+ niiwnOFI3CBK/a6hodotzO2H9K1DCgG265kACgaqs14ppGO4nF7UGD+I7cQBAy8t/uwU5u
+ PFDecqjiHHY0Ln1VcEjjJHkqYQ4VKbB3RoqBNmau7VqlpyZHhgQTlNiB1Bo8HPifqrVvt4
+ cA6JIxQAdu0NsyhqrngWdzBlWhq1lSgvSvIEDs/OUOJ8nO7nK8+nMTSw4VndmA==
+Message-ID: <0ce7780150d1f45af52d5281c732ef8e08dcc0fa.camel@mailbox.org>
+Subject: Re: [PATCH v3 3/8] drm/sched: Make timeout KUnit tests faster
+From: Philipp Stanner <phasta@mailbox.org>
+To: =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, phasta@kernel.org, 
+ Matthew Brost <matthew.brost@intel.com>, Danilo Krummrich
+ <dakr@kernel.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <ckoenig.leichtzumerken@gmail.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>, Simona Vetter <simona@ffwll.ch>, David Airlie
+ <airlied@gmail.com>, Melissa Wen <mwen@igalia.com>,  Lucas Stach
+ <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>,  Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, Rob Herring
+ <robh@kernel.org>, Steven Price <steven.price@arm.com>,  Liviu Dudau
+ <liviu.dudau@arm.com>
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Wed, 02 Jul 2025 16:41:32 +0200
+In-Reply-To: <4487245c-17d0-4e4a-b3fb-209a95c60664@igalia.com>
+References: <20250618-sched-skip-reset-v3-0-8be5cca2725d@igalia.com>
+ <20250618-sched-skip-reset-v3-3-8be5cca2725d@igalia.com>
+ <2670247a8982f794a508f4cf3ae43ad7ac66862a.camel@mailbox.org>
+ <27c7fef3-ce37-48b9-bf63-3b3417618835@igalia.com>
+ <8e727f9644df9ba7d8c5f3966e146e5eb0684121.camel@mailbox.org>
+ <4487245c-17d0-4e4a-b3fb-209a95c60664@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MBO-RS-ID: 4385639048a2885b595
+X-MBO-RS-META: kh4rhjjewhrrbft7n7t8xhfybqy8n4bf
 X-Mailman-Approved-At: Wed, 02 Jul 2025 18:54:43 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -97,101 +78,133 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 27 Jun 2025 19:26:22 +0300
-Jani Nikula <jani.nikula@intel.com> wrote:
+On Mon, 2025-06-30 at 11:04 -0300, Ma=C3=ADra Canal wrote:
+> Hi Philipp,
+>=20
+> On 30/06/25 09:20, Philipp Stanner wrote:
+> > On Mon, 2025-06-30 at 09:05 -0300, Ma=C3=ADra Canal wrote:
+> > > Hi Philipp,
+> > >=20
+> > > On 30/06/25 08:53, Philipp Stanner wrote:
+> > > > On Wed, 2025-06-18 at 11:47 -0300, Ma=C3=ADra Canal wrote:
+> > > > > As more KUnit tests are introduced to evaluate the basic
+> > > > > capabilities
+> > > > > of
+> > > > > the `timedout_job()` hook, the test suite will continue to
+> > > > > increase
+> > > > > in
+> > > > > duration. To reduce the overall running time of the test
+> > > > > suite,
+> > > > > decrease
+> > > > > the scheduler's timeout for the timeout tests.
+> > > > >=20
+> > > > > Before this commit:
+> > > > >=20
+> > > > > [15:42:26] Elapsed time: 15.637s total, 0.002s configuring,
+> > > > > 10.387s
+> > > > > building, 5.229s running
+> > > > >=20
+> > > > > After this commit:
+> > > > >=20
+> > > > > [15:45:26] Elapsed time: 9.263s total, 0.002s configuring,
+> > > > > 5.168s
+> > > > > building, 4.037s running
+> > > >=20
+> > > > I guess those times were measured with the entire series?
+> > >=20
+> > > No, they were measured without the new test that I introduced in
+> > > the
+> > > next patch.
+> > >=20
+> > > >=20
+> > > > It's not clear to me whether this patch is independent from the
+> > > > series.
+> > > > I suppose it is. We should aim towards having series's narrowly
+> > > > focused
+> > > > topic-wise, but I get why you included it here.
+> > >=20
+> > > =C2=A0=C2=A0From my perspective, this patch is a preparation to the n=
+ext
+> > > one. As
+> > > I'll introduce another timeout-related test in the next patch, I
+> > > was
+> > > trying to ensure that we will keep the time-budget reasonable.
+> > >=20
+> > > >=20
+> > > > That said, is there a specific reason for you aiming at ~10s
+> > > > (9.263)?
+> > > > That's only a bit faster than the 15.637.
+> > > >=20
+> > >=20
+> > > Actually, the only thing that this patch affects is the runtime.
+> > > So,
+> > > it
+> > > went from 5.229s to 4.037s (-22.8%). However, as we add more and
+> > > more
+> > > timeout tests, the absolute difference would get more
+> > > significant.
+> >=20
+> > I understand that. My point is that the decrease of total run time
+> > that
+> > you state in your commit message doesn't sound that significant to
+> > me.
+> > ~10s is still pretty long.
+> >=20
+> > >=20
+> > > > Couldn't it make sense, as you're at it already, to speed this
+> > > > up
+> > > > to
+> > > > just a few seconds, like 3-5? Then it should really be quiet
+> > > > IRW
+> > > > that
+> > > > topic for a while.
+> > >=20
+> > > I believe that further decreasing the timeout could lead to racy
+> > > scenarios and flaky tests.
+> >=20
+> > That doesn't make sense to me. What could race with what? I guess
+> > you
+> > mean the completion's timeout racing with the signaling timer.
+>=20
+> I discussed a bit about it with Tvrtko in v1 [1][2].
+>=20
+> [1]=20
+> https://lore.kernel.org/all/7cc3cc3d-7f67-4c69-bccb-32133e1d7cba@igalia.c=
+om/
+> [2]=20
+> https://lore.kernel.org/all/146f3943-0a94-4399-9f49-be8228a86828@igalia.c=
+om/
 
-> On Fri, 27 Jun 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
-om> wrote:
-> > On Fri, Jun 27, 2025 at 04:34:23PM +0300, Jani Nikula wrote: =20
-> >> Internally the macro has:
-> >>=20
-> >> #define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
-> >> 				sleep_before_read, args...) \
-> >>=20
-> >> ...
-> >>=20
-> >> 		(val) =3D op(args); \
-> >>=20
-> >> So you do need to provide an lvalue val, and you need to be able to add
-> >> () after op. I think GCC allows not passing varargs. IOW you'd need to
-> >> implement another macro (which could be used to implement the existing
-> >> one, but not the other way round). =20
-> >
-> > Just get rid of the 'args' and 'val' and it'll work just fine.
-> > Then it'll be almost identical to wait_for() (basically just missing the
-> > increasing backoff stuff).
-> >
-> > AFAICS this thing was originally added just for reading a single
-> > register and checking some bit/etc, so the name made some sense.
-> > But now we're abusing it for all kinds of random things, so even
-> > the name no longer makes that much sense. =20
->=20
-> Yeah, evolution not intelligent design.
->=20
-> > So I think just something like this would work fine for us: =20
->=20
-> LGTM, with the _atomic version for completeness.
->=20
-> Want to send it to lkml?
->=20
->=20
-> BR,
-> Jani.
->=20
->=20
-> >
-> > diff --git a/include/linux/iopoll.h b/include/linux/iopoll.h
-> > index 91324c331a4b..9c38fd732028 100644
-> > --- a/include/linux/iopoll.h
-> > +++ b/include/linux/iopoll.h
-> > @@ -14,27 +14,24 @@
-> >  #include <linux/io.h>
-> > =20
-> >  /**
-> > - * read_poll_timeout - Periodically poll an address until a condition =
-is
-> > - *			met or a timeout occurs
-> > - * @op: accessor function (takes @args as its arguments)
-> > - * @val: Variable to read the value into
-> > - * @cond: Break condition (usually involving @val)
-> > - * @sleep_us: Maximum time to sleep between reads in us (0 tight-loops=
-). Please
-> > - *            read usleep_range() function description for details and
-> > + * poll_timeout - Periodically poll and perform an operaion until
-> > + *                a condition is met or a timeout occurs
-> > + *
-> > + * @op: Operation
-> > + * @cond: Break condition
-> > + * @sleep_us: Maximum time to sleep between operations in us (0 tight-=
-loops).
-> > + *            Please read usleep_range() function description for deta=
-ils and
-> >   *            limitations.
-> >   * @timeout_us: Timeout in us, 0 means never timeout
-> > - * @sleep_before_read: if it is true, sleep @sleep_us before read.
-> > - * @args: arguments for @op poll
-> > + * @sleep_before_read: if it is true, sleep @sleep_us before operation.
-> >   *
-> >   * When available, you'll probably want to use one of the specialized
-> >   * macros defined below rather than this macro directly.
-> >   *
-> > - * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
-> > - * case, the last read value at @args is stored in @val. Must not
-> > + * Returns: 0 on success and -ETIMEDOUT upon a timeout. Must not
-> >   * be called from atomic context if sleep_us or timeout_us are used.
-> >   */
-> > -#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
-> > -				sleep_before_read, args...) \
-> > +#define poll_timeout(op, cond, sleep_us, timeout_us, sleep_before_read=
-) \
 
-I might name it poll_timeout_us(...) so that the units are obvious
-at the call site.
-There are so many different units for timeouts its is worth always
-appending _sec, _ms, _us (etc) just to avoid all the silly bugs.
+Thx, thought about it, makes sense.
 
-	David
+Acked-by: Philipp Stanner <phasta@kernel.org>
+
+>=20
+> Best Regards,
+> - Ma=C3=ADra
+>=20
+> >=20
+> > Anyways, I'm personally not suffering from the tests being too
+> > slow. So
+> > just take this as ideas. I'm fine with it being merged as it is
+> > now.
+> >=20
+> >=20
+> > P.
+> >=20
+> > >=20
+> > > Best Regards,
+> > > - Ma=C3=ADra
+> > >=20
+> > > >=20
+> > > >=20
+> > > > P.
+> > > >=20
+>=20
+>=20
 
