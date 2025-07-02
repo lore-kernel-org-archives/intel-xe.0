@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22AC2C83F07
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B15EAC83F0C
 	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 23:40:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF0D10E7B5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EBB710E7B8;
 	Wed,  2 Jul 2025 23:40:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B50F+N3K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C3wDRHTX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCCF410E7B3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEE0010E0D1
  for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 23:40:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1751499643; x=1783035643;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8OBaAZnJ10rXg6uG/Dc//rmKrgGfhHZllrKcYrlaky8=;
- b=B50F+N3KE/dxUuyB5nUuxY8ywRFXeIsjjwlUwYkirrWpoI4m3bwbpebp
- 8IxB5k4cmQspb1aeRtlvq4qDcgGYvnPVc2NQuVXUNw5yA2z90akcJ/B7s
- PYni5hWak1fKmm33P/Hfe7FtQfDBFOcOFNFSRv0NV/ru9fegRdtBVgQHH
- 40irsWIXBV1uTmUXIrhgsy8E1sY2UFTThs7kXS43e1Y+GMCASrM1gj0XJ
- 8rj/j2CqtlD3eQRDCGO/5rY8zl3Jy19ZmnLvF587MEpOszr7Elr1SKWt2
- dEgID9sE1hzBonHE79FHmsqpRsjA+qA/lGk4qhEm6nLVEjlIKNyqDYWDi A==;
-X-CSE-ConnectionGUID: YJCIv68HTlKrx6FdVA2ilg==
-X-CSE-MsgGUID: s2zmoeLKSc6r10ghqQ1QcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="57489471"
-X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="57489471"
+ bh=aRRSL/imw7Rqt/ig4YNA+hzWEjR1KBMhSSU7JEU1Ae8=;
+ b=C3wDRHTXGWc+kX74x8N6UPqnOwvm9NNdfFduk8YBjkDqMW8wWBP/ZRo5
+ LzBUgHNv9LOb+vpg9GKQojY4dJiZDKxaRxOnCNKKJVrgBY3OgtTaTJSM/
+ W165xxCm1o6en2NKxIE51hrgyqoaMsI1NhOi5GMPKBhKofFhN2chZrumr
+ ihA+ts3n5WEEVfyAxEIHWBFF8/OoefDKxWQXTJ61nU6zbDwZOGaZsIKfw
+ s8bY9EtCnXjnlTUyRtAybfTE7z4f2ThBARLXC7wB9cKAbRbEV7AoJRixw
+ 2rfQkeznBBL+j5kHSAoYOzZfLsfyQxABUIVPEvEM/E5GQG4/K3IGawUTI w==;
+X-CSE-ConnectionGUID: xUTI+7SUSeKmRxuXdYhBfQ==
+X-CSE-MsgGUID: kjAqfb/zT6mV6KiQFOPrdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="57489472"
+X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="57489472"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Jul 2025 16:40:42 -0700
-X-CSE-ConnectionGUID: vJUjNLA9RVahRmxWv7mZmQ==
-X-CSE-MsgGUID: SlOtI5ERQLGZiu9+ErgkfQ==
+X-CSE-ConnectionGUID: j/LHbipXSgShND4CZw/VTA==
+X-CSE-MsgGUID: 2oV8GZMXT6mIEqCYMYh0sQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="153624526"
+X-IronPort-AV: E=Sophos;i="6.16,282,1744095600"; d="scan'208";a="153624529"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Jul 2025 16:40:43 -0700
@@ -45,14 +45,13 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com,
 	maarten.lankhorst@linux.intel.com
-Subject: [PATCH v2 2/9] drm/xe: Add generic dependecy jobs / scheduler
-Date: Wed,  2 Jul 2025 16:42:15 -0700
-Message-Id: <20250702234222.3278264-3-matthew.brost@intel.com>
+Subject: [PATCH v2 3/9] drm: Simplify drmm_alloc_ordered_workqueue return
+Date: Wed,  2 Jul 2025 16:42:16 -0700
+Message-Id: <20250702234222.3278264-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250702234222.3278264-1-matthew.brost@intel.com>
 References: <20250702234222.3278264-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,251 +67,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add generic dependecy jobs / scheduler which serves as wrapper for DRM
-scheduler. Useful when we want delay a generic operation until a
-dma-fence signals.
+Rather than returning ERR_PTR or NULL on failure, replace the NULL
+return with ERR_PTR(-ENOMEM). This simplifies error handling at the
+caller. While here, add kernel documentation for
+drmm_alloc_ordered_workqueue.
 
-Existing use cases could be destroying of resources based fences /
-dma-resv, the preempt rebind worker, and pipelined GT TLB invalidations.
-
-Written in such a way it could be moved to DRM subsystem if needed.
-
+Cc: Louis Chauvet <louis.chauvet@bootlin.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile           |   1 +
- drivers/gpu/drm/xe/xe_dep_job_types.h |  29 ++++++
- drivers/gpu/drm/xe/xe_dep_scheduler.c | 145 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_dep_scheduler.h |  21 ++++
- 4 files changed, 196 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_dep_job_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_dep_scheduler.c
- create mode 100644 drivers/gpu/drm/xe/xe_dep_scheduler.h
+ drivers/gpu/drm/vkms/vkms_crtc.c |  2 --
+ include/drm/drm_managed.h        | 15 +++++++++++++--
+ 2 files changed, 13 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 1d97e5b63f4e..0edcfc770c0d 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -28,6 +28,7 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
- xe-y += xe_bb.o \
- 	xe_bo.o \
- 	xe_bo_evict.o \
-+	xe_dep_scheduler.o \
- 	xe_devcoredump.o \
- 	xe_device.o \
- 	xe_device_sysfs.o \
-diff --git a/drivers/gpu/drm/xe/xe_dep_job_types.h b/drivers/gpu/drm/xe/xe_dep_job_types.h
-new file mode 100644
-index 000000000000..c6a484f24c8c
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_dep_job_types.h
-@@ -0,0 +1,29 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef _XE_DEP_JOB_TYPES_H_
-+#define _XE_DEP_JOB_TYPES_H_
-+
-+#include <drm/gpu_scheduler.h>
-+
-+struct xe_dep_job;
-+
-+/** struct xe_dep_job_ops - Generic Xe dependency job operations */
-+struct xe_dep_job_ops {
-+	/** @run_job: Run generic Xe dependency job */
-+	struct dma_fence *(*run_job)(struct xe_dep_job *job);
-+	/** @free_job: Free generic Xe dependency job */
-+	void (*free_job)(struct xe_dep_job *job);
-+};
-+
-+/** struct xe_dep_job - Generic dependency Xe job */
-+struct xe_dep_job {
-+	/** @drm: base DRM scheduler job */
-+	struct drm_sched_job drm;
-+	/** @ops: dependency job operations */
-+	const struct xe_dep_job_ops *ops;
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_dep_scheduler.c b/drivers/gpu/drm/xe/xe_dep_scheduler.c
-new file mode 100644
-index 000000000000..fbd55577d787
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_dep_scheduler.c
-@@ -0,0 +1,145 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#include <linux/slab.h>
-+
-+#include <drm/gpu_scheduler.h>
-+
-+#include "xe_dep_job_types.h"
-+#include "xe_dep_scheduler.h"
-+#include "xe_device_types.h"
-+
+diff --git a/drivers/gpu/drm/vkms/vkms_crtc.c b/drivers/gpu/drm/vkms/vkms_crtc.c
+index 8c9898b9055d..e60573e0f3e9 100644
+--- a/drivers/gpu/drm/vkms/vkms_crtc.c
++++ b/drivers/gpu/drm/vkms/vkms_crtc.c
+@@ -302,8 +302,6 @@ struct vkms_output *vkms_crtc_init(struct drm_device *dev, struct drm_plane *pri
+ 	vkms_out->composer_workq = drmm_alloc_ordered_workqueue(dev, "vkms_composer", 0);
+ 	if (IS_ERR(vkms_out->composer_workq))
+ 		return ERR_CAST(vkms_out->composer_workq);
+-	if (!vkms_out->composer_workq)
+-		return ERR_PTR(-ENOMEM);
+ 
+ 	return vkms_out;
+ }
+diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+index 53017cc609ac..72bfac002c06 100644
+--- a/include/drm/drm_managed.h
++++ b/include/drm/drm_managed.h
+@@ -129,14 +129,25 @@ void __drmm_mutex_release(struct drm_device *dev, void *res);
+ 
+ void __drmm_workqueue_release(struct drm_device *device, void *wq);
+ 
 +/**
-+ * DOC: Xe Dependency Scheduler
++ * drmm_alloc_ordered_workqueue - &drm_device managed alloc_ordered_workqueue()
++ * @dev: DRM device
++ * @fmt: printf format for the name of the workqueue
++ * @flags: WQ_* flags (only WQ_FREEZABLE and WQ_MEM_RECLAIM are meaningful)
++ * @args: args for @fmt
 + *
-+ * The Xe dependency scheduler is a simple wrapper built around the DRM
-+ * scheduler to execute jobs once their dependencies are resolved (i.e., all
-+ * input fences specified as dependencies are signaled). The jobs that are
-+ * executed contain virtual functions to run (execute) and free the job,
-+ * allowing a single dependency scheduler to handle jobs performing different
-+ * operations.
++ * This is a &drm_device-managed version of alloc_ordered_workqueue(). The
++ * allocated workqueue is automatically destroyed on the final drm_dev_put().
 + *
-+ * Example use cases include deferred resource freeing, TLB invalidations after
-+ * bind jobs, etc.
++ * Returns: workqueue on success, negative ERR_PTR otherwise.
 + */
-+
-+/** struct xe_dep_scheduler - Generic Xe dependency scheduler */
-+struct xe_dep_scheduler {
-+	/** @sched: DRM GPU scheduler */
-+	struct drm_gpu_scheduler sched;
-+	/** @entity: DRM scheduler entity  */
-+	struct drm_sched_entity entity;
-+	/** @rcu: For safe freeing of exported dma fences */
-+	struct rcu_head rcu;
-+};
-+
-+static struct dma_fence *xe_dep_scheduler_run_job(struct drm_sched_job *drm_job)
-+{
-+	struct xe_dep_job *dep_job =
-+		container_of(drm_job, typeof(*dep_job), drm);
-+
-+	return dep_job->ops->run_job(dep_job);
-+}
-+
-+static void xe_dep_scheduler_free_job(struct drm_sched_job *drm_job)
-+{
-+	struct xe_dep_job *dep_job =
-+		container_of(drm_job, typeof(*dep_job), drm);
-+
-+	dep_job->ops->free_job(dep_job);
-+}
-+
-+static const struct drm_sched_backend_ops sched_ops = {
-+	.run_job = xe_dep_scheduler_run_job,
-+	.free_job = xe_dep_scheduler_free_job,
-+};
-+
-+/**
-+ * xe_dep_scheduler_create() - Generic Xe dependency scheduler create
-+ * @xe: Xe device
-+ * @submit_wq: Submit workqueue struct (can be NULL)
-+ * @name: Name of dependency scheduler
-+ * @job_limit: Max dependency jobs that can be scheduled
-+ *
-+ * Create a generic Xe dependency scheduler and initialize internal DRM
-+ * scheduler objects.
-+ *
-+ * Return: Generic Xe dependency scheduler object or ERR_PTR
-+ */
-+struct xe_dep_scheduler *
-+xe_dep_scheduler_create(struct xe_device *xe,
-+			struct workqueue_struct *submit_wq,
-+			const char *name, u32 job_limit)
-+{
-+	struct xe_dep_scheduler *dep_scheduler;
-+	struct drm_gpu_scheduler *sched;
-+	const struct drm_sched_init_args args = {
-+		.ops = &sched_ops,
-+		.submit_wq = submit_wq,
-+		.num_rqs = 1,
-+		.credit_limit = job_limit,
-+		.timeout = MAX_SCHEDULE_TIMEOUT,
-+		.name = name,
-+		.dev = xe->drm.dev,
-+	};
-+	int err;
-+
-+	dep_scheduler = kzalloc(sizeof(*dep_scheduler), GFP_KERNEL);
-+	if (!dep_scheduler)
-+		return ERR_PTR(-ENOMEM);
-+
-+	err = drm_sched_init(&dep_scheduler->sched, &args);
-+	if (err)
-+		goto err_free;
-+
-+	sched = &dep_scheduler->sched;
-+	err = drm_sched_entity_init(&dep_scheduler->entity, 0,
-+				    (struct drm_gpu_scheduler **)&sched, 1,
-+				    NULL);
-+	if (err)
-+		goto err_sched;
-+
-+	init_rcu_head(&dep_scheduler->rcu);
-+
-+	return dep_scheduler;
-+
-+err_sched:
-+	drm_sched_fini(&dep_scheduler->sched);
-+err_free:
-+	kfree(dep_scheduler);
-+
-+	return ERR_PTR(err);
-+}
-+
-+/**
-+ * xe_dep_scheduler_fini() - Generic Xe dependency scheduler finalize
-+ * @dep_scheduler: Generic Xe dependency scheduler object
-+ *
-+ * Finalize internal DRM scheduler objects and free generic Xe dependency
-+ * scheduler object
-+ */
-+void xe_dep_scheduler_fini(struct xe_dep_scheduler *dep_scheduler)
-+{
-+	drm_sched_entity_fini(&dep_scheduler->entity);
-+	drm_sched_fini(&dep_scheduler->sched);
-+	/*
-+	 * RCU free due sched being exported via DRM scheduler fences
-+	 * (timeline name).
-+	 */
-+	kfree_rcu(dep_scheduler, rcu);
-+}
-+
-+/**
-+ * xe_dep_scheduler_entity() - Retrieve a generic Xe dependency scheduler
-+ *                             DRM scheduler entity
-+ * @dep_scheduler: Generic Xe dependency scheduler object
-+ *
-+ * Return: The generic Xe dependency scheduler's DRM scheduler entity
-+ */
-+struct drm_sched_entity *
-+xe_dep_scheduler_entity(struct xe_dep_scheduler *dep_scheduler)
-+{
-+	return &dep_scheduler->entity;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_dep_scheduler.h b/drivers/gpu/drm/xe/xe_dep_scheduler.h
-new file mode 100644
-index 000000000000..853961eec64b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_dep_scheduler.h
-@@ -0,0 +1,21 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#include <linux/types.h>
-+
-+struct drm_sched_entity;
-+struct workqueue_struct;
-+struct xe_dep_scheduler;
-+struct xe_device;
-+
-+struct xe_dep_scheduler *
-+xe_dep_scheduler_create(struct xe_device *xe,
-+			struct workqueue_struct *submit_wq,
-+			const char *name, u32 job_limit);
-+
-+void xe_dep_scheduler_fini(struct xe_dep_scheduler *dep_scheduler);
-+
-+struct drm_sched_entity *
-+xe_dep_scheduler_entity(struct xe_dep_scheduler *dep_scheduler);
+ #define drmm_alloc_ordered_workqueue(dev, fmt, flags, args...)					\
+ 	({											\
+ 		struct workqueue_struct *wq = alloc_ordered_workqueue(fmt, flags, ##args);	\
+ 		wq ? ({										\
+ 			int ret = drmm_add_action_or_reset(dev, __drmm_workqueue_release, wq);	\
+ 			ret ? ERR_PTR(ret) : wq;						\
+-		}) :										\
+-			wq;									\
++		}) : ERR_PTR(-ENOMEM);								\
+ 	})
+ 
+ #endif
 -- 
 2.34.1
 
