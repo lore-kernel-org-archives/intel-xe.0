@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2F43C83F04
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 13:46:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6438C77B7C
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 13:47:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8436510E242;
-	Wed,  2 Jul 2025 13:46:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A188310E71B;
+	Wed,  2 Jul 2025 13:47:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ItOjm1RC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JozgGACt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F253D10E712
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 13:46:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85E8010E712
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 13:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751464016; x=1783000016;
+ t=1751464021; x=1783000021;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=x3r3H+vf/40UJJQ1G0cnBRwDf+xltz8YgTgY0j0s1N4=;
- b=ItOjm1RC6R6slw+Mq89zZgK3KYxDgdRbuaAIECCFfNBA3yTe5sJjbG23
- Sf2jmJnDEBcsxvNVRr4Zhqqjed8UemwCWIcPkoJbjtcdHqkOvsxxIIsG8
- hXFWIsUwevEJqloqDje5yRzgnlhQq74Fd1QSR3JTw8xGKyRilpdi3noJV
- peYY3gSHvAXrG+RekKu9RBExV8LyjSVF0wQLNELKs5fdnkxowTGfs5wpE
- 38t8pjhT83oJGuHu8QWzZiwwRIdGBHzo5d7nbGZhGV6bOHj+DERrK5xDm
- R6OiMSyu8owsDkaKrFGfkQNORXFNF6ZiZWvmd1tJ+QXDtvsI8zl+Ir9fo g==;
-X-CSE-ConnectionGUID: 5LCD4Eu1RlOE72oPs2I2sQ==
-X-CSE-MsgGUID: ZfbiBXywRlGiZcZw755DEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="71186076"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="71186076"
+ bh=MSDefot7apAqwV955TYz2uw3WTj0+AGRFPKUeopFpso=;
+ b=JozgGACtN68UOkfi3+p9mTZbXWpbpVlzfO02QNQfL0mSnGfCTAMZ2+3D
+ tYi5I260tWI0A8a/TH+EsEOSg8CnHEEIbdFFmOtCzLx93Z90xKkPMKEyA
+ s3E3plUUxiI9PF0JPq8S9tNPgOy2VjoLxtgdhasOkeQMyxpns5TstEAPJ
+ xBvAb92UTr9BW5FVQbDbgu7cDPiYHeNCVNRT/ntzEoeBqXsuD49ENpBb+
+ 8Z8nnVjh5SLYh9xqATvnIQ5RMKHHkJVX+nKiUvMVmCBRvaBFTHjFFid3t
+ 4TX0NknEKntT1pUnnycxK5E9qI09DuVYGmG9QaE/NPielOflE2dUAnN6X Q==;
+X-CSE-ConnectionGUID: Lw8hpFtzT/23cJfExePHMQ==
+X-CSE-MsgGUID: rJEsb+FbQSWzjYL1w7CoCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="71186087"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="71186087"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 06:46:56 -0700
-X-CSE-ConnectionGUID: qfaIvNTpTNSNf3RxRa4qPw==
-X-CSE-MsgGUID: Lp4BdzVwQAKpFzIk3CEf+g==
+ 02 Jul 2025 06:47:01 -0700
+X-CSE-ConnectionGUID: lxqHQ/ecRh+62lP6HvHkKA==
+X-CSE-MsgGUID: zaOUKqa7Rze6s+ixTnWRsQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="177755999"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="177756005"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 06:46:52 -0700
+ 02 Jul 2025 06:46:57 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
  raag.jadav@intel.com, umesh.nerlige.ramappa@intel.com,
  frank.scarbrough@intel.com, sk.anirban@intel.com
-Subject: [PATCH v3 3/7] drm/xe/xe_survivability: Add support for Runtime
- survivability mode
-Date: Wed,  2 Jul 2025 19:41:13 +0530
-Message-ID: <20250702141118.3564242-4-riana.tauro@intel.com>
+Subject: [PATCH v3 4/7] drm/xe/doc: Document device wedged and runtime
+ survivability
+Date: Wed,  2 Jul 2025 19:41:14 +0530
+Message-ID: <20250702141118.3564242-5-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250702141118.3564242-1-riana.tauro@intel.com>
 References: <20250702141118.3564242-1-riana.tauro@intel.com>
@@ -70,145 +70,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Certain runtime firmware errors can cause the device to be wedged
-requiring a firmware flash to restore normal operation.
-Runtime Survivability Mode indicates that a firmware flash is necessary to
-recover the device.
-
-The below sysfs is an indication that device is in survivability mode
-
-/sys/bus/pci/devices/<device>/surivability_mode
+Add documentation for vendor specific device wedged recovery method
+and runtime survivability.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c                |  2 +-
- drivers/gpu/drm/xe/xe_survivability_mode.c    | 26 ++++++++++++++++---
- drivers/gpu/drm/xe/xe_survivability_mode.h    |  4 ++-
- .../gpu/drm/xe/xe_survivability_mode_types.h  |  8 ++++++
- 4 files changed, 35 insertions(+), 5 deletions(-)
+ Documentation/gpu/xe/index.rst             |  1 +
+ Documentation/gpu/xe/xe_device.rst         | 10 +++++++
+ Documentation/gpu/xe/xe_pcode.rst          |  6 +++--
+ drivers/gpu/drm/xe/xe_device.c             | 16 +++++++++++
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 31 +++++++++++++++++-----
+ 5 files changed, 56 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_device.rst
 
+diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
+index 42ba6c263cd0..88b22fad880e 100644
+--- a/Documentation/gpu/xe/index.rst
++++ b/Documentation/gpu/xe/index.rst
+@@ -25,5 +25,6 @@ DG2, etc is provided to prototype the driver.
+    xe_tile
+    xe_debugging
+    xe_devcoredump
++   xe_device
+    xe-drm-usage-stats.rst
+    xe_configfs
+diff --git a/Documentation/gpu/xe/xe_device.rst b/Documentation/gpu/xe/xe_device.rst
+new file mode 100644
+index 000000000000..f9b962169919
+--- /dev/null
++++ b/Documentation/gpu/xe/xe_device.rst
+@@ -0,0 +1,10 @@
++.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++.. _xe-device-wedging:
++
++==================
++Xe Device Wedging
++==================
++
++.. kernel-doc:: drivers/gpu/drm/xe/xe_device.c
++   :doc: Device Wedging
+diff --git a/Documentation/gpu/xe/xe_pcode.rst b/Documentation/gpu/xe/xe_pcode.rst
+index 5937ef3599b0..2a43601123cb 100644
+--- a/Documentation/gpu/xe/xe_pcode.rst
++++ b/Documentation/gpu/xe/xe_pcode.rst
+@@ -13,9 +13,11 @@ Internal API
+ .. kernel-doc:: drivers/gpu/drm/xe/xe_pcode.c
+    :internal:
+ 
++.. _xe-survivability-mode:
++
+ ==================
+-Boot Survivability
++Survivability Mode
+ ==================
+ 
+ .. kernel-doc:: drivers/gpu/drm/xe/xe_survivability_mode.c
+-   :doc: Xe Boot Survivability
++   :doc: Survivability Mode
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 4a38486dccc8..5defa54ccd26 100644
+index 5defa54ccd26..d6b680abc3ae 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -716,7 +716,7 @@ int xe_device_probe_early(struct xe_device *xe)
- 		 * possible, but still return the previous error for error
- 		 * propagation
- 		 */
--		err = xe_survivability_mode_enable(xe);
-+		err = xe_survivability_mode_enable(xe, XE_SURVIVABILITY_TYPE_BOOT);
- 		if (err)
- 			return err;
- 
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 1f710b3fc599..e1adcb33c9b0 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -129,7 +129,10 @@ static ssize_t survivability_mode_show(struct device *dev,
- 	struct xe_survivability_info *info = survivability->info;
- 	int index = 0, count = 0;
- 
--	for (index = 0; index < MAX_SCRATCH_MMIO; index++) {
-+	count += sysfs_emit_at(buff, count, "Survivability mode: %s\n",
-+			       survivability->type ? "Runtime" : "Boot");
-+
-+	for (index = 0; survivability->boot_status && index < MAX_SCRATCH_MMIO; index++) {
- 		if (info[index].reg)
- 			count += sysfs_emit_at(buff, count, "%s: 0x%x - 0x%x\n", info[index].name,
- 					       info[index].reg, info[index].value);
-@@ -169,6 +172,10 @@ static int enable_survivability_mode(struct pci_dev *pdev)
- 	if (ret)
- 		return ret;
- 
-+	/* Only create sysfs for runtime survivability mode */
-+	if (xe_survivability_mode_is_runtime(xe))
-+		return 0;
-+
- 	/* Make sure xe_heci_gsc_init() knows about survivability mode */
- 	survivability->mode = true;
- 
-@@ -189,6 +196,17 @@ static int enable_survivability_mode(struct pci_dev *pdev)
- 	return 0;
+@@ -1119,6 +1119,22 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+ 	xe_pm_runtime_put(xe);
  }
  
 +/**
-+ * xe_survivability_mode_is_runtime - check if survivability mode is runtime
-+ * @xe: xe device instance
++ * DOC: Device Wedging
 + *
-+ * Returns true if in runtime survivability mode, false otherwise
++ * Xe driver uses device wedged uevent as documented in Documentation/gpu/drm-uapi.rst.
++ *
++ * When device is in wedged state, every IOCTL will be blocked and GT cannot be
++ * used. Certain critical errors like gt reset failure, firmware failures can cause
++ * the device to be wedged. The default recovery mechanism for a wedged state
++ * is re-probe (unbind + bind)
++ *
++ * However, CSC firmware errors require a firmware flash to restore normal device
++ * operation. Since firmware flash is a vendor-specific action ``WEDGED=vendor-specific``
++ * recovery method along with :ref:`runtime survivability mode <xe-survivability-mode>`
++ * is used to notify userspace.
 + */
-+bool xe_survivability_mode_is_runtime(struct xe_device *xe)
-+{
-+	return xe->survivability.type == XE_SURVIVABILITY_TYPE_RUNTIME;
-+}
 +
  /**
-  * xe_survivability_mode_is_enabled - check if survivability mode is enabled
+  * xe_device_declare_wedged - Declare device wedged
   * @xe: xe device instance
-@@ -251,16 +269,18 @@ bool xe_survivability_mode_is_requested(struct xe_device *xe)
-  * Return: 0 if survivability mode is enabled or not requested; negative error
-  * code otherwise.
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+index e1adcb33c9b0..0dc8fd77a9f4 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+@@ -21,15 +21,18 @@
+ #define MAX_SCRATCH_MMIO 8
+ 
+ /**
+- * DOC: Xe Boot Survivability
++ * DOC: Survivability Mode
+  *
+- * Boot Survivability is a software based workflow for recovering a system in a failed boot state
++ * Survivability Mode is a software based workflow for recovering a system in a failed boot state
+  * Here system recoverability is concerned with recovering the firmware responsible for boot.
+  *
+- * This is implemented by loading the driver with bare minimum (no drm card) to allow the firmware
+- * to be flashed through mei and collect telemetry. The driver's probe flow is modified
+- * such that it enters survivability mode when pcode initialization is incomplete and boot status
+- * denotes a failure.
++ * Boot Survivability
++ * ===================
++ *
++ * Boot Survivability is implemented by loading the driver with bare minimum (no drm card) to allow
++ * the firmware to be flashed through mei and collect telemetry. The driver's probe flow is
++ * modified such that it enters survivability mode when pcode initialization is incomplete and boot
++ * status denotes a failure.
+  *
+  * Survivability mode can also be entered manually using the survivability mode attribute available
+  * through configfs which is beneficial in several usecases. It can be used to address scenarios
+@@ -55,6 +58,22 @@
+  *	Provides history of previous failures
+  * Auxiliary Information
+  *	Certain failures may have information in addition to postcode information
++ *
++ * Runtime Survivability
++ * =====================
++ *
++ * Certain runtime firmware errors can cause the device to enter a non-recoverable state
++ * (:ref:`xe-device-wedging`) requiring a firmware flash to restore normal operation.
++ * Runtime Survivability Mode indicates that a firmware flash is necessary to recover the device and
++ * is indicated by the presence of survivability mode sysfs::
++ *
++ *	/sys/bus/pci/devices/<device>/surivability_mode
++ *
++ * Survivability mode sysfs provides information about the type of survivability mode.
++ *
++ * When such errors occur, userspace is notified with the drm device wedged uevent and runtime
++ * survivability mode. User can then initiate a firmware flash to restore device to normal
++ * operation.
   */
--int xe_survivability_mode_enable(struct xe_device *xe)
-+int xe_survivability_mode_enable(struct xe_device *xe, const enum xe_survivability_type type)
- {
- 	struct xe_survivability *survivability = &xe->survivability;
- 	struct xe_survivability_info *info;
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
  
--	if (!xe_survivability_mode_is_requested(xe))
-+	if (!xe_survivability_mode_is_requested(xe) &&
-+	    type != XE_SURVIVABILITY_TYPE_RUNTIME)
- 		return 0;
- 
- 	survivability->size = MAX_SCRATCH_MMIO;
-+	survivability->type = type;
- 
- 	info = devm_kcalloc(xe->drm.dev, survivability->size, sizeof(*info),
- 			    GFP_KERNEL);
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.h b/drivers/gpu/drm/xe/xe_survivability_mode.h
-index 02231c2bf008..559d1e99b03a 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.h
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.h
-@@ -9,9 +9,11 @@
- #include <linux/types.h>
- 
- struct xe_device;
-+enum xe_survivability_type;
- 
--int xe_survivability_mode_enable(struct xe_device *xe);
-+int xe_survivability_mode_enable(struct xe_device *xe, const enum xe_survivability_type);
- bool xe_survivability_mode_is_enabled(struct xe_device *xe);
-+bool xe_survivability_mode_is_runtime(struct xe_device *xe);
- bool xe_survivability_mode_is_requested(struct xe_device *xe);
- 
- #endif /* _XE_SURVIVABILITY_MODE_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode_types.h b/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-index 19d433e253df..01f07d9c4124 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-@@ -9,6 +9,11 @@
- #include <linux/limits.h>
- #include <linux/types.h>
- 
-+enum xe_survivability_type {
-+	XE_SURVIVABILITY_TYPE_BOOT,
-+	XE_SURVIVABILITY_TYPE_RUNTIME,
-+};
-+
- struct xe_survivability_info {
- 	char name[NAME_MAX];
- 	u32 reg;
-@@ -30,6 +35,9 @@ struct xe_survivability {
- 
- 	/** @mode: boolean to indicate survivability mode */
- 	bool mode;
-+
-+	/** @type: survivability mode type (boot or runtime) */
-+	enum xe_survivability_type type;
- };
- 
- #endif /* _XE_SURVIVABILITY_MODE_TYPES_H_ */
+ static u32 aux_history_offset(u32 reg_value)
 -- 
 2.47.1
 
