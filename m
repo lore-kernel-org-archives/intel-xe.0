@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF324C7EE30
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 09:08:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFE98C7EE30
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 09:08:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8383A10E63C;
-	Wed,  2 Jul 2025 09:08:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 277C810E683;
+	Wed,  2 Jul 2025 09:08:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W+p3H1U5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mUmP52aL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09DA910E63D;
- Wed,  2 Jul 2025 09:08:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3167210E668;
+ Wed,  2 Jul 2025 09:08:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751447301; x=1782983301;
+ t=1751447303; x=1782983303;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=O5ZRMVtdUEt+P9LYpOXOYp5eU7EzjXRFvfdRcJbuSz0=;
- b=W+p3H1U5OV4A55bANhHG0xEx80GYOPSAGBd88eG1e22B61YNnecWxIeW
- 2+yf8tFRBK1vrA9psI1e/wToIsxd9/ccDoOJIwN9k2vMFuWRufeHBKQQU
- aHiXoYwIRSI10ZiQ/ay3SRTQk6EdFt2jROkirlTh4c9mtggrTNkU1feuM
- P0f1cmpj6Cs1vP35NJtHsxU2DcsN7kxbNaoPoLxwSFLW6NCKAP2UIp1xU
- t5eSqHxqpMKgFiVxBF1XVgJUd9y7ph1+ABNIjC5I8qa9jB9cQatGNM2yQ
- Kgij7o7xjE+oG5rYmu/LbBGF6VnGtXufl2zKVZh2XTFlB/B9BOolqjsDt g==;
-X-CSE-ConnectionGUID: 9Ujkn/NwTVyUMAAsZQ22Xg==
-X-CSE-MsgGUID: MpqQtX/6Q1yq9iEXnfpy8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="64427114"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64427114"
+ bh=atvjfh29FvoRURe37UCeqGEzIFvStcVFeITG8BYb8Bg=;
+ b=mUmP52aLFGlDnhuq9415g0Oro5a3im60XMfRhMUsAh9WNvU586zMePRs
+ B2+H64200gScWUd3ajXu1VWZZNhvNsN20RY/V1JyMFLg30MPslu7qC42P
+ pppipwpAVVxxcyMFkNOnZfs7fvUz/7AHU6cFWUAj2rua/GMFS+E5EBol9
+ ts99A8Q/xrnmiAttdSr34Q7BV9zOnhednxSXhhJtY70VMJH5ktZI58NVV
+ IbTqPlfZ19CfqXPZxn19EjWNyaZB38BK2LGRBKQ/qjNeXkwA54UikY73o
+ IayBjr4lM3UdHl9OG8mOoRXfQ3XlJ6SPzxLZ5Yj1t+gP8/c6HDHv3VXXt w==;
+X-CSE-ConnectionGUID: l/QuMGKwT2uV0+v/DmW6Ag==
+X-CSE-MsgGUID: qBy9tIaYRTG8UOqNLkWLxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="64427144"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64427144"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 02:08:14 -0700
-X-CSE-ConnectionGUID: Gi29V++9RAiCTN3aAk7vpA==
-X-CSE-MsgGUID: i7CRFyxxSwGAYnqzDHpmTg==
+ 02 Jul 2025 02:08:22 -0700
+X-CSE-ConnectionGUID: kIOt/FgcRLemOmS6ImMb8g==
+X-CSE-MsgGUID: 1wUgYRWBTleuLo7tQznrDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="159536533"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="159536589"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa004.fm.intel.com with ESMTP; 02 Jul 2025 02:08:10 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 02 Jul 2025 02:08:18 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
@@ -48,9 +48,9 @@ Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
  mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
  shashank.sharma@amd.com, swati2.sharma@intel.com, alex.hung@amd.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v5 10/24] drm/i915/color: Create a transfer function color pipeline
-Date: Wed,  2 Jul 2025 14:49:22 +0530
-Message-ID: <20250702091936.3004854-11-uma.shankar@intel.com>
+Subject: [v5 12/24] drm/i915/color: Add framework to program CSC
+Date: Wed,  2 Jul 2025 14:49:24 +0530
+Message-ID: <20250702091936.3004854-13-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20250702091936.3004854-1-uma.shankar@intel.com>
 References: <20250702091936.3004854-1-uma.shankar@intel.com>
@@ -72,110 +72,133 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-Add a color pipeline with three colorops in the sequence
+Add framework to program CSC. It enables copying of matrix from uapi
+to intel plane state. Also adding helper functions which will eventually
+program values to hardware.
 
-	1D LUT - 3x4 CTM - 1D LUT
-
-This pipeline can be used to do any color space conversion or HDR
-tone mapping
-
-v2: Change namespace to drm_plane_colorop*
-v3: Use simpler/pre-existing colorops for first iteration
-
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c | 49 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_color.h |  3 ++
- 2 files changed, 52 insertions(+)
+ drivers/gpu/drm/i915/display/intel_color.c    | 14 +++++++
+ drivers/gpu/drm/i915/display/intel_color.h    |  4 +-
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_plane.c    | 39 +++++++++++++++++++
+ 4 files changed, 57 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 5f38a5ff541c..90ac6530d1a5 100644
+index 363c9590c5c1..7c53572f729b 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.c
 +++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -32,6 +32,10 @@
- #include "intel_display_types.h"
- #include "intel_dsb.h"
- #include "intel_vrr.h"
-+#include "skl_universal_plane.h"
-+
-+#define PLANE_DEGAMMA_SIZE 128
-+#define PLANE_GAMMA_SIZE 32
+@@ -3967,6 +3967,20 @@ static const struct intel_color_funcs ilk_color_funcs = {
+ };
  
- struct intel_color_funcs {
- 	int (*color_check)(struct intel_atomic_state *state,
-@@ -4001,6 +4005,51 @@ struct intel_plane_colorop *intel_plane_colorop_create(enum intel_color_block id
- 	return colorop;
- }
- 
-+int intel_plane_tf_pipeline_init(struct drm_plane *plane, struct drm_prop_enum_list *list)
+ /* TODO: Move to another file */
++static void
++intel_color_load_plane_csc_matrix(struct intel_dsb *dsb,
++				  const struct intel_plane_state *plane_state)
 +{
-+	struct intel_plane_colorop *colorop;
-+	struct drm_device *dev = plane->dev;
-+	int ret;
-+	struct drm_colorop *prev_op;
-+
-+	colorop = intel_plane_colorop_create(CB_PLANE_PRE_CSC_LUT);
-+
-+	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
-+						  PLANE_DEGAMMA_SIZE,
-+						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-+						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+
-+	if (ret)
-+		return ret;
-+
-+	list->type = colorop->base.base.id;
-+	list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", colorop->base.base.id);
-+
-+	/* TODO: handle failures and clean up*/
-+	prev_op = &colorop->base;
-+
-+	colorop = intel_plane_colorop_create(CB_PLANE_CSC);
-+	ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
-+					     DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+	if (ret)
-+		return ret;
-+
-+	drm_colorop_set_next_property(prev_op, &colorop->base);
-+	prev_op = &colorop->base;
-+
-+	colorop = intel_plane_colorop_create(CB_PLANE_POST_CSC_LUT);
-+	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
-+						  PLANE_GAMMA_SIZE,
-+						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-+						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+	if (ret)
-+		return ret;
-+
-+	drm_colorop_set_next_property(prev_op, &colorop->base);
-+
-+	return 0;
++	/* CTM programming */
 +}
 +
- void intel_color_crtc_init(struct intel_crtc *crtc)
++void intel_color_plane_program_pipeline(struct intel_dsb *dsb,
++					const struct intel_plane_state *plane_state)
++{
++	if (plane_state->hw.ctm)
++		intel_color_load_plane_csc_matrix(dsb, plane_state);
++}
++
+ struct intel_plane_colorop *intel_colorop_alloc(void)
  {
- 	struct intel_display *display = to_intel_display(crtc);
+ 	struct intel_plane_colorop *colorop;
 diff --git a/drivers/gpu/drm/i915/display/intel_color.h b/drivers/gpu/drm/i915/display/intel_color.h
-index f3c7cd694b99..ce9db761c6e2 100644
+index c2561b86bb26..420d596dbbae 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.h
 +++ b/drivers/gpu/drm/i915/display/intel_color.h
-@@ -14,6 +14,8 @@ struct intel_crtc;
+@@ -13,6 +13,7 @@ struct intel_crtc_state;
+ struct intel_crtc;
  struct intel_display;
  struct intel_dsb;
++struct intel_plane_state;
  struct drm_property_blob;
-+struct drm_plane;
-+struct drm_prop_enum_list;
- enum intel_color_block;
- 
- void intel_color_init_hooks(struct intel_display *display);
-@@ -43,5 +45,6 @@ bool intel_color_lut_equal(const struct intel_crtc_state *crtc_state,
- void intel_color_assert_luts(const struct intel_crtc_state *crtc_state);
- struct intel_plane_colorop *intel_colorop_alloc(void);
+ struct drm_plane;
+ struct drm_prop_enum_list;
+@@ -49,5 +50,6 @@ struct intel_plane_colorop *intel_colorop_alloc(void);
  struct intel_plane_colorop *intel_plane_colorop_create(enum intel_color_block id);
-+int intel_plane_tf_pipeline_init(struct drm_plane *plane, struct drm_prop_enum_list *list);
- 
+ int intel_plane_tf_pipeline_init(struct drm_plane *plane, struct drm_prop_enum_list *list);
+ int intel_plane_color_init(struct drm_plane *plane);
+-
++void intel_color_plane_program_pipeline(struct intel_dsb *dsb,
++					const struct intel_plane_state *plane_state);
  #endif /* __INTEL_COLOR_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 4b5124a08cc9..c709df0cea9e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -634,6 +634,7 @@ struct intel_plane_state {
+ 		enum drm_color_encoding color_encoding;
+ 		enum drm_color_range color_range;
+ 		enum drm_scaling_filter scaling_filter;
++		struct drm_property_blob *ctm;
+ 	} hw;
+ 
+ 	struct i915_vma *ggtt_vma;
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+index 36fb07471deb..cc8f3e15c82e 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_plane.c
+@@ -380,6 +380,43 @@ intel_plane_copy_uapi_plane_damage(struct intel_plane_state *new_plane_state,
+ 		*damage = drm_plane_state_src(&new_uapi_plane_state->uapi);
+ }
+ 
++static void
++intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
++				 struct intel_plane_colorop *intel_colorop,
++				 struct drm_property_blob *blob)
++{
++	if (intel_colorop->id == CB_PLANE_CSC)
++		drm_property_replace_blob(&plane_state->hw.ctm, blob);
++}
++
++static void
++intel_plane_copy_uapi_to_hw_state_color(struct intel_plane_state *plane_state,
++					const struct intel_plane_state *from_plane_state,
++					struct intel_crtc *crtc)
++{
++	struct drm_colorop *iter_colorop, *colorop;
++	struct drm_colorop_state *new_colorop_state;
++	struct drm_atomic_state *state = plane_state->uapi.state;
++	struct intel_plane_colorop *intel_colorop;
++	struct drm_property_blob *blob;
++	int i = 0;
++
++	iter_colorop = plane_state->uapi.color_pipeline;
++
++	while (iter_colorop) {
++		for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
++			if (new_colorop_state->colorop == iter_colorop) {
++				blob = new_colorop_state->bypass ? NULL : new_colorop_state->data;
++				intel_colorop = to_intel_plane_colorop(colorop);
++				intel_plane_colorop_replace_blob(plane_state,
++								 intel_colorop,
++								 blob);
++			}
++		}
++		iter_colorop = iter_colorop->next;
++	}
++}
++
+ void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
+ 				       const struct intel_plane_state *from_plane_state,
+ 				       struct intel_crtc *crtc)
+@@ -408,6 +445,8 @@ void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
+ 
+ 	plane_state->uapi.src = drm_plane_state_src(&from_plane_state->uapi);
+ 	plane_state->uapi.dst = drm_plane_state_dest(&from_plane_state->uapi);
++
++	intel_plane_copy_uapi_to_hw_state_color(plane_state, from_plane_state, crtc);
+ }
+ 
+ void intel_plane_copy_hw_state(struct intel_plane_state *plane_state,
 -- 
 2.42.0
 
