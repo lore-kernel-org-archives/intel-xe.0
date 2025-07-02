@@ -4,60 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03FFFC83013
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 09:01:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA7DCC83013
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 09:07:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D38910E34C;
-	Wed,  2 Jul 2025 09:01:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7C510E60E;
+	Wed,  2 Jul 2025 09:07:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T8YiXoSF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kraPVEgo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0F6510E049;
- Wed,  2 Jul 2025 09:01:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D86ED10E60E;
+ Wed,  2 Jul 2025 09:07:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751446908; x=1782982908;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=0XAcxxWXBgypEQKQFwOY5odP7NKGj5+UWFxTHIayjDA=;
- b=T8YiXoSFhjAygKLleucumJRiO4fSPzX7ptdLnPe07i7XPpxymyVZa4X6
- IeNpVJPqbeM3m9B9KRwI14F7NdtLmkSdXrnhF3GP9InDT2Q9s964q6T3r
- jWE0sGZnfgx1TVA/QAVHmRy+IqBmlnxLCJZ9XIed4x9OBxXC67EPDCylS
- AeWJyBoh9F1e+9uGY7N67aTQeP6pm1kP4aBkK/o5z8dDY7fqz0Ze7KgHO
- jCwjYPiRmeTlLAes0z2hHroH8K9lQ+2SfTKE1BIxHXWPvXmfhO78FLS8S
- zBt+b5etCfKns0MM0lCBJ0jzTT4IoEAMEyRBE3QQFRNyHDNyYgSkbFFtF A==;
-X-CSE-ConnectionGUID: sEkVx2EDQA2TvjkC8OwfhQ==
-X-CSE-MsgGUID: UIw49n2sSgqXlTj0/7/W9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53448552"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="53448552"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 02:01:48 -0700
-X-CSE-ConnectionGUID: wzHyjItVQJW63aFBrSNgmg==
-X-CSE-MsgGUID: x5QKprFYTSGm6qAmykOjTw==
+ t=1751447255; x=1782983255;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZsZVfldGjleN+SqR1tG+j1r9lz3LEzZRWhU7aC14rII=;
+ b=kraPVEgoTgBzO/3bLGJu2jsDtmmtG85PGbwO85PUcUhJmXeGyRydakgj
+ YqUzXyX+/VNaf5LGfz/9inS4pzcGagA/9a0eC1h85RktN1gu15sEl5Nn/
+ ywhkOMGV8cLk4gIzhYuoxu+clsG3vGtp4TNFzIhRH4ktd45WDRIq3DsD1
+ rghvbbQydSt5JH6VGi5pluFDLpqy41JFK6fv2TznP7fnpeUSJ3Zbx7TuJ
+ U4yoNQalTGMCS1mh3LffHjSJCdGsOpMes5LWKOmbxqwivTyHWiJnvpu0b
+ eycC7AVtTQCnYAMjObfBGyYUFSwuWGrhPTGbrCGCGE+zDC4WvN8cJ7YE2 g==;
+X-CSE-ConnectionGUID: iqIDxFxiRk6K9q1Z9vQNKw==
+X-CSE-MsgGUID: XwOkKuHvR3iy71CZWRhlxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="64426934"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64426934"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 02:07:34 -0700
+X-CSE-ConnectionGUID: ZRQaB3GfTa68lXEVbs1WPQ==
+X-CSE-MsgGUID: n6Qfz1RrQoa8jMIwwYy+8w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="191188801"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.29])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 02:01:45 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
- arun.r.murthy@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH]  drm/i915/display: Optimize panel power-on  wait time
-In-Reply-To: <w22u6gjs6uuzfkksxrp6cjlkli2jzanqodb7ukyptlsv4a2kvk@kni4djwoeefx>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250630122339.3007880-1-dibin.moolakadan.subrahmanian@intel.com>
- <b5a84286f9729e9d92e08596bfbeb4e9c77f6dc1@intel.com>
- <w22u6gjs6uuzfkksxrp6cjlkli2jzanqodb7ukyptlsv4a2kvk@kni4djwoeefx>
-Date: Wed, 02 Jul 2025 12:01:42 +0300
-Message-ID: <fe44d12c701c3d410de6e0ebc1f08bae2eec10a1@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="159536323"
+Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
+ by fmviesa004.fm.intel.com with ESMTP; 02 Jul 2025 02:07:26 -0700
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
+ pekka.paalanen@collabora.com, contact@emersion.fr, harry.wentland@amd.com,
+ mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
+ shashank.sharma@amd.com, swati2.sharma@intel.com, alex.hung@amd.com,
+ Uma Shankar <uma.shankar@intel.com>, Alexander Goins <agoins@nvidia.com>,
+ Joshua Ashton <joshua@froggi.es>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
+ Aleix Pol <aleixpol@kde.org>, Xaver Hugl <xaver.hugl@gmail.com>,
+ Victoria Brekenfeld <victoria@system76.com>, Sima <daniel@ffwll.ch>,
+ Naseer Ahmed <quic_naseer@quicinc.com>,
+ Christopher Braga <quic_cbraga@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Arthur Grillo <arthurgrillo@riseup.net>, Hector Martin <marcan@marcan.st>,
+ Liviu Dudau <Liviu.Dudau@arm.com>,
+ Sasha McIntosh <sashamcintosh@google.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [v5 00/24] Plane Color Pipeline support for Intel platforms
+Date: Wed,  2 Jul 2025 14:49:12 +0530
+Message-ID: <20250702091936.3004854-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,66 +80,188 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 01 Jul 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Tue, Jul 01, 2025 at 12:28:41PM +0300, Jani Nikula wrote:
->>On Mon, 30 Jun 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
->>>  The current wait_panel_on() uses intel_de_wait() with a long timeout
->>>  (5000ms), which is suboptimal on Xe platforms where the underlying
->>>  xe_mmio_wait32() employs an exponential backoff strategy. This leads
->>>  to unnecessary delays during resume or power-on  when the panel becomes
->>>  ready earlier than the full timeout.
->>>
->>>  This patch splits the total wait time into two pases
->>>     - First wait for the typical panel-on time(180ms)
->>>     - If panel is not ready , continue polling in short 20ms intervals
->>>       until the maximum timeout (5000ms) is reached
->>
->>I'm *very* reluctant to merge any new custom wait hacks. I'm in the
->>process of *removing* a plethora of them [1][2][3].
->
-> good riddance
+This series intends to add support for Plane Color Management for
+Intel platforms. This is based on the design which has been agreed
+upon by the community. Series implementing the design for generic
+DRM core has been sent out by Alex Hung and Harry Wentland and is under
+review below:
+https://patchwork.freedesktop.org/series/123446/
 
-Yay!
+The base work of above series is squashed under 1 patch and support
+for Intel platform is added on top of it.
+Any reviews on the original core design is expected to be done in 
+Harry's series to avoid any forking of the discussion.
 
->>
->>I think the question is, should xe_mmio_wait32() (and the i915
->>counterpart) and the intel_de_wait*() functions be migrated to an
->>interface similar to read_poll_timeout(), i.e. provide sleep and timeout
->>separately, no exponential backoff. And implement the waits using
->>read_poll_timeout(), or whatever Ville ends up with [4].
->
-> I saw your patch series and I'm eagerly waiting it to either propagate
-> it in xe or have someone merge such a patch.  I'm not sure about
-> removing the exponential backoff is a good thing overall, but if it's
-> needed then it needs to be justified to add a new function to pair with
-> read_poll_timeout(), not a custom driver function.
+Changes added on core design:
 
-While I'm negative about the patch at hand, the underlying problem is
-very real.
+Implemented a HW capability property to expose segmented luts.
+drm: Add Color lut range attributes
+drm: Add Color ops capability property
+drm: Define helper to initialize segmented 1D LUT
 
-I think at the very least the exponential sleep backoff needs an upper
-bound that's relative to the timeout. Maybe 10-25% of timeout?
+This helps in generically defining the hardware lut capabilities,
+lut distribution, precision, segmented or PWL LUTS.
 
-With the example case of 5 second timeout, the exponential backoff
-starting from 10 us leads to a dozen polls before reaching 100 ms
-elapsed time, but then polls at approximately 1 s, 2 s, 4 s, and 8 s
-elapsed time. Longer timeouts are of course rare, but they exhibit
-increasingly worse behaviour.
+On top of this base work for DRM core plane color pipeline design,
+implementation is done for Intel hardware platforms.
 
-So if what we're waiting takes 2.1 seconds, the next check will be about
-2 seconds later. Similarly, if it takes 4.1 seconds, the next check will
-be about 4 seconds later, in this case exceeding the timeout by 3
-seconds.
+IGT Changes to validate the same have been implemented and can be found
+below:
+https://patchwork.freedesktop.org/series/150455/
 
-Anyway, if xe_mmio_wait32() remains as it is, with read_poll_timeout()
-it's trivial to do the wait in the intel_de_*() macros, in display side,
-with sleeps and timeouts defined in display. Because for most things the
-really quick fast polls are useless in display.
+Changes in v5:
+   - Exposing CTM as 3x4 instead of 3x3 using post offsets.
+   - Exposing single segmented 1D LUT color op along with multi
+     segmented lut in 2 different color pipelines
+   - Add helper to extract LUT data from 32 bit samples
+   - Enabled uapi to hardware state copy in driver
+   - Add DSB support to program color Luts 
+   - Fix some miscellaneous issues
 
+Changes in v4:
+  - Rebase
 
-BR,
-Jani.
+Changes in v3:
+   - Rebased on latest plane color pipeline series (v7) from AMD
+   - Updated documentation for 3x3 CTM colorop (Dmitry)
+   - Fixed documentation for multi segmented 1D lut (Dmitry)
+   - Squashed changes for 1d LUT helpers (Dmitry)
 
+Changes in v2:
+   - Added documentation for hardware capability detection for segmented luts
+   - Added documentation for lut computation in userspace based on
+     hardware caps
+   - Updated drm_color_lut_range data structure and handling
+   - Enhanced the structure to avoid ambiguity and cater to varying
+     hardware implementations of 1D Lut blocks
+   - replaced drm_color_lut_ext with drm_color_lut32
+   - Changed namespace for drm_color_lut_range flags (Sebastien)
+   - Program super fine post csc gamma lut segment for Intel hardware
+
+ToDo:
+   - Implement Checks for sanity of hardware capability structure
+   - Implement and Enhance Checks for user data for Lut Blob
+   - Implement post blending color API's
+
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+Cc: Simon Ser <contact@emersion.fr>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Melissa Wen <mwen@igalia.com>
+Cc: Jonas Ådahl <jadahl@redhat.com>
+Cc: Sebastian Wick <sebastian.wick@redhat.com>
+Cc: Shashank Sharma <shashank.sharma@amd.com>
+Cc: Alexander Goins <agoins@nvidia.com>
+Cc: Joshua Ashton <joshua@froggi.es>
+Cc: Michel Dänzer <mdaenzer@redhat.com>
+Cc: Aleix Pol <aleixpol@kde.org>
+Cc: Xaver Hugl <xaver.hugl@gmail.com>
+Cc: Victoria Brekenfeld <victoria@system76.com>
+Cc: Sima <daniel@ffwll.ch>
+Cc: Naseer Ahmed <quic_naseer@quicinc.com>
+Cc: Christopher Braga <quic_cbraga@quicinc.com>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: Arthur Grillo <arthurgrillo@riseup.net>
+Cc: Hector Martin <marcan@marcan.st>
+Cc: Liviu Dudau <Liviu.Dudau@arm.com>
+Cc: Sasha McIntosh <sashamcintosh@google.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: Swati Sharma <swati2.sharma@intel.com>
+
+Chaitanya Kumar Borah (16):
+  drm: Add 1D LUT multi-segmented color op
+  drm: Add helper to extract lut from struct drm_color_lut_32
+  drm/i915: Add identifiers for intel color blocks
+  drm/i915: Add intel_color_op
+  drm/i915/color: Add helper to create intel colorop
+  drm/i915/color: Create a transfer function color pipeline
+  drm/i915/color: Add and attach COLORPIPELINE plane property
+  drm/i915/color: Add framework to program CSC
+  drm/i915/color: Add callbacks to set plane CTM
+  drm/i915/color: Add new color callbacks for Xelpd
+  drm/i915/color: Preserve sign bit when int_bits is Zero
+  drm/i915/color: Add framework to program PRE/POST CSC LUT
+  drm/i915/color: Program Pre-CSC registers
+  drm/i915/xelpd: Program Plane Post CSC Registers
+  drm/i915/color: Enable Plane Color Pipelines
+  drm/i915/color: Create color pipeline with multisegmented LUT
+
+Harry Wentland (1):
+  [NOT FOR REVIEW] drm: AMD series squashed
+
+Uma Shankar (7):
+  drm: Add Color lut range attributes
+  drm: Add Color ops capability property
+  drm: Define helper to initialize segmented 1D LUT
+  drm/i915/color: Add plane CTM callback for D13 and beyond
+  drm/i915: Add register definitions for Plane Degamma
+  drm/i915: Add register definitions for Plane Post CSC
+  drm/doc/rfc: Add documentation for multi-segmented 1D LUT
+
+ Documentation/gpu/drm-kms.rst                 |  15 +
+ Documentation/gpu/rfc/color_pipeline.rst      | 518 +++++++++++
+ Documentation/gpu/rfc/index.rst               |   3 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ .../gpu/drm/amd/display/amdgpu_dm/Makefile    |   3 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   4 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 762 ++++++++++++++++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 205 +++++
+ .../amd/display/amdgpu_dm/amdgpu_dm_colorop.h |  36 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  15 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  39 +
+ drivers/gpu/drm/drm_atomic.c                  | 174 +++-
+ drivers/gpu/drm/drm_atomic_helper.c           |  12 +
+ drivers/gpu/drm/drm_atomic_state_helper.c     |   5 +
+ drivers/gpu/drm/drm_atomic_uapi.c             | 187 ++++
+ drivers/gpu/drm/drm_color_mgmt.c              |  43 +
+ drivers/gpu/drm/drm_colorop.c                 | 667 +++++++++++++++
+ drivers/gpu/drm/drm_ioctl.c                   |   7 +
+ drivers/gpu/drm/drm_mode_config.c             |   7 +
+ drivers/gpu/drm/drm_plane.c                   |  59 ++
+ drivers/gpu/drm/i915/display/intel_color.c    | 693 ++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_color.h    |  14 +-
+ .../drm/i915/display/intel_display_limits.h   |  13 +
+ .../drm/i915/display/intel_display_types.h    |  20 +
+ drivers/gpu/drm/i915/display/intel_plane.c    |  43 +
+ .../drm/i915/display/skl_universal_plane.c    |  17 +
+ .../i915/display/skl_universal_plane_regs.h   | 127 +++
+ drivers/gpu/drm/tests/Makefile                |   3 +-
+ drivers/gpu/drm/tests/drm_fixp_test.c         |  71 ++
+ drivers/gpu/drm/vkms/Makefile                 |   4 +-
+ drivers/gpu/drm/vkms/tests/Makefile           |   2 +-
+ drivers/gpu/drm/vkms/tests/vkms_color_test.c  | 459 ++++++++++
+ drivers/gpu/drm/vkms/vkms_colorop.c           | 115 +++
+ drivers/gpu/drm/vkms/vkms_composer.c          | 134 ++-
+ drivers/gpu/drm/vkms/vkms_composer.h          |  27 +
+ drivers/gpu/drm/vkms/vkms_drv.h               |   6 +
+ drivers/gpu/drm/vkms/vkms_luts.c              | 808 ++++++++++++++++++
+ drivers/gpu/drm/vkms/vkms_luts.h              |  12 +
+ drivers/gpu/drm/vkms/vkms_plane.c             |   1 +
+ include/drm/drm_atomic.h                      | 111 +++
+ include/drm/drm_atomic_uapi.h                 |   3 +
+ include/drm/drm_color_mgmt.h                  |  29 +
+ include/drm/drm_colorop.h                     | 463 ++++++++++
+ include/drm/drm_file.h                        |   7 +
+ include/drm/drm_fixed.h                       |  18 +
+ include/drm/drm_mode_config.h                 |  18 +
+ include/drm/drm_plane.h                       |  19 +
+ include/uapi/drm/amdgpu_drm.h                 |   9 -
+ include/uapi/drm/drm.h                        |  15 +
+ include/uapi/drm/drm_mode.h                   | 207 +++++
+ 50 files changed, 6173 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/gpu/rfc/color_pipeline.rst
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.h
+ create mode 100644 drivers/gpu/drm/drm_colorop.c
+ create mode 100644 drivers/gpu/drm/tests/drm_fixp_test.c
+ create mode 100644 drivers/gpu/drm/vkms/tests/vkms_color_test.c
+ create mode 100644 drivers/gpu/drm/vkms/vkms_colorop.c
+ create mode 100644 drivers/gpu/drm/vkms/vkms_composer.h
+ create mode 100644 drivers/gpu/drm/vkms/vkms_luts.c
+ create mode 100644 drivers/gpu/drm/vkms/vkms_luts.h
+ create mode 100644 include/drm/drm_colorop.h
 
 -- 
-Jani Nikula, Intel
+2.42.0
+
