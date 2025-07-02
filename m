@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B7C7C83038
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 17:18:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3A9DC77B7C
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 17:48:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1C0810E0B7;
-	Wed,  2 Jul 2025 17:18:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NLRU0rsy";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A6BB10E0B7
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 17:18:56 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 42CEF5C6C93;
- Wed,  2 Jul 2025 17:18:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CE86C4CEE7;
- Wed,  2 Jul 2025 17:18:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1751476734;
- bh=8h5GbKdkae9i6ZkZEjnm4Lxi6OfPqqiK/ol2Xrklaag=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=NLRU0rsywuoBmH8y6P1v4kfDw9ZRazFWEd2K6Q5H7u4pKgYfjhhQNDmcNsiTIFK9J
- /Go0ys/I3yvuOGyJcuYHv1nwslY+mU+XPio/+aW4PZ9o4/E50wpdweRPjVfWz8zKvC
- edm78aK1NERBhoFqeOyl/rO5frW81GPht01XKibzF49due1PXzyLF4Z8Mhu9GYlrnJ
- lh9DXFwACxuTmbU7XFLC1cVQ/ZcAg/tfbWIunm6pZXiwRZwUJ6J9ek5uNyzXjRqif2
- T+IvUFvRaoDQ1Nw59ucfA/jN8fFTy/f5Ehq8JSEv9CQ3Xloucc2cW97oT99o1w4iWG
- ELYaAHlkJdbAg==
-Date: Wed, 2 Jul 2025 19:18:50 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Jarkko Nikula <jarkko.nikula@linux.intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>, Raag Jadav <raag.jadav@intel.com>, 
- "Tauro, Riana" <riana.tauro@intel.com>, "Adatrao,
- Srinivasa" <srinivasa.adatrao@intel.com>, 
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>, intel-xe@lists.freedesktop.org,
- linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/5] drm/xe: i2c support
-Message-ID: <s7kfne6budueamqqbshbrrtql6awrp7mvfhqlkrvtyhqjqsech@qemfad4phmlj>
-References: <20250701122252.2590230-1-heikki.krogerus@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C7D510E09C;
+	Wed,  2 Jul 2025 17:48:30 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FB1710E09C;
+ Wed,  2 Jul 2025 17:48:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0897698784889598915=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250701122252.2590230-1-heikki.krogerus@linux.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Don=27t_alloc?=
+ =?utf-8?q?ate_temporary_policies_object?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Jul 2025 17:48:29 -0000
+Message-ID: <175147850938.128480.13809081962284794820@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250702142504.1656-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250702142504.1656-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,25 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Heikki,
+--===============0897698784889598915==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> Heikki Krogerus (3):
->   i2c: designware: Use polling by default when there is no irq resource
->   i2c: designware: Add quirk for Intel Xe
+== Series Details ==
 
-I think you could have kept Jarkko's ack here. Up to you.
+Series: drm/xe/guc: Don't allocate temporary policies object
+URL   : https://patchwork.freedesktop.org/series/151075/
+State : success
 
-Anyone against me taking the two above already?
+== Summary ==
 
-Andi
+CI Bug Log - changes from xe-3336-94631e6b7f655b1922e3227970cd6180200694af_BAT -> xe-pw-151075v1_BAT
+====================================================
 
->   drm/xe: Support for I2C attached MCUs
-> 
-> Raag Jadav (1):
->   drm/xe/pm: Wire up suspend/resume for I2C controller
-> 
-> Riana Tauro (1):
->   drm/xe/xe_i2c: Add support for i2c in survivability mode
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-151075v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3336-94631e6b7f655b1922e3227970cd6180200694af/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151075v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3336-94631e6b7f655b1922e3227970cd6180200694af -> xe-pw-151075v1
+
+  IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3336-94631e6b7f655b1922e3227970cd6180200694af: 94631e6b7f655b1922e3227970cd6180200694af
+  xe-pw-151075v1: 151075v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151075v1/index.html
+
+--===============0897698784889598915==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Don&#x27;t allocate temporary policies object</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151075/">https://patchwork.freedesktop.org/series/151075/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151075v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151075v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3336-94631e6b7f655b1922e3227970cd6180200694af_BAT -&gt; xe-pw-151075v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-151075v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3336-94631e6b7f655b1922e3227970cd6180200694af/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151075v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3336-94631e6b7f655b1922e3227970cd6180200694af -&gt; xe-pw-151075v1</li>
+</ul>
+<p>IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3336-94631e6b7f655b1922e3227970cd6180200694af: 94631e6b7f655b1922e3227970cd6180200694af<br />
+  xe-pw-151075v1: 151075v1</p>
+
+</body>
+</html>
+
+--===============0897698784889598915==--
