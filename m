@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20A5DC83013
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 05:04:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92C9DC83013
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 05:09:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8B2010E28D;
-	Wed,  2 Jul 2025 05:04:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F11710E0A0;
+	Wed,  2 Jul 2025 05:09:51 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B945D10E28D;
- Wed,  2 Jul 2025 05:04:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3224171043859552217=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B88A510E0DA;
+ Wed,  2 Jul 2025 05:09:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Revert_=22drm/xe/xe2=3A_Ena?=
- =?utf-8?q?ble_Indirect_Ring_State_support_for_Xe2=22?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Future-proof_for_multi-ti?=
+ =?utf-8?q?le_+_multi-GT_cases_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Jul 2025 05:04:50 -0000
-Message-ID: <175143269075.126506.8425429667363613713@1538d3639d33>
+Date: Wed, 02 Jul 2025 05:09:49 -0000
+Message-ID: <175143298973.126395.14327267026124683058@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250702035846.3178344-1-matthew.brost@intel.com>
-In-Reply-To: <20250702035846.3178344-1-matthew.brost@intel.com>
+References: <20250701201320.2514369-9-matthew.d.roper@intel.com>
+In-Reply-To: <20250701201320.2514369-9-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,58 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3224171043859552217==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Revert "drm/xe/xe2: Enable Indirect Ring State support for Xe2"
-URL   : https://patchwork.freedesktop.org/series/151046/
-State : success
+Series: Future-proof for multi-tile + multi-GT cases (rev7)
+URL   : https://patchwork.freedesktop.org/series/150192/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd_BAT -> xe-pw-151046v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c2f9f94c064c00789ed4d3c1724da3a3f2feef61
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Tue Jul 1 13:13:28 2025 -0700
 
-Summary
--------
+    drm/xe/xe_query: Use separate iterator while filling GT list
+    
+    The 'id' value updated by for_each_gt() is the uapi GT ID of the GTs
+    being iterated over, and may skip over values if a GT is not present on
+    the device.  Use a separate iterator for GT list array assignments to
+    ensure that the array will be filled properly on future platforms where
+    index in the GT query list may not match the uapi ID.
+    
+    v2:
+     - Include the missing increment of the iterator.  (Jonathan)
+    
+    Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
++ /mt/dim checkpatch 149b15e02e6496a37621cd5bf8a28f7d8c1869cd drm-intel
+b6e30b66f307 drm/xe/pmu: Fix GT sanity check in event_supported()
+a4b29c8acab0 drm/xe: Export xe_step_name for kunit tests
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+  ERROR: modpost: "xe_step_name" [drivers/gpu/drm/xe/tests/xe_test.ko] undefined!
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+817a704822b7 drm/xe: Track maximum GTs per tile on a per-platform basis
+3ef9cbc0e5d5 drm/xe/tests/pci: Ensure all platforms have a valid GT/tile count
+c49877f0fa90 drm/xe: Assign GT IDs properly on multi-tile + multi-GT platforms
+0fe9f5ebbde9 drm/xe: Don't compare GT ID to GT count when determining valid GTs
+-:41: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#41: FILE: drivers/gpu/drm/xe/xe_device.h:131:
++	for ((id__) = 0; (id__) < (xe__)->info.tile_count * (xe__)->info.max_gt_per_tile; (id__)++) \
 
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd -> xe-pw-151046v1
-
-  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd: 149b15e02e6496a37621cd5bf8a28f7d8c1869cd
-  xe-pw-151046v1: 151046v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151046v1/index.html
-
---===============3224171043859552217==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 50 lines checked
+c2f9f94c064c drm/xe/xe_query: Use separate iterator while filling GT list
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Revert &quot;drm/xe/xe2: Enable Indirect Ring State support for Xe2&quot;</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151046/">https://patchwork.freedesktop.org/series/151046/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151046v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151046v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd_BAT -&gt; xe-pw-151046v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd -&gt; xe-pw-151046v1</li>
-</ul>
-<p>IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3333-149b15e02e6496a37621cd5bf8a28f7d8c1869cd: 149b15e02e6496a37621cd5bf8a28f7d8c1869cd<br />
-  xe-pw-151046v1: 151046v1</p>
-
-</body>
-</html>
-
---===============3224171043859552217==--
