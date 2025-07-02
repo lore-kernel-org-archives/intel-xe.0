@@ -4,68 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5B8FC83F04
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 14:04:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A34E4C83F05
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Jul 2025 14:12:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7213D10E713;
-	Wed,  2 Jul 2025 14:04:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60CE810E719;
+	Wed,  2 Jul 2025 14:12:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nDIzrr6W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dwAPIyVY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 494A610E713
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Jul 2025 14:04:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6938010E717;
+ Wed,  2 Jul 2025 14:12:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751465044; x=1783001044;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=0MhlDQpiMGUkq4C8swXflDQe3D138a9T5O+UEquFdkM=;
- b=nDIzrr6WZ3yNs8YSjJD27PBeIwo/OTbVW2EjltVGR9c+abfrU+A6GgDc
- ryOZW7TOS9UBFK+upk2PLG1POb5iW8RNYpG71mDPEvHVAf/NLy2atFiAr
- 8+Ahas6eddAfFDXQ7SUu2+CeoaJc4BeRnH31Pq3LdzSmyKZjNFB+rCwNj
- t0I4Ql806qtm2RZJGbgnQf2PgDLVBn4bgt/inQJVTZ2EiG5t15yX/sDai
- iF++aorK6SVESwqXauNGBt0mn9v0ZsAU9AA5N6STZKl9SUEfZVHpRl3Os
- nq4Faw+B4AmA0urlkjv8gsKSJrgeIvqrEIfkooQnSXo+7DThhUhoAkUSQ w==;
-X-CSE-ConnectionGUID: T/EdXPnoS2S/zjvnVW3wzQ==
-X-CSE-MsgGUID: zPGf7b3YSVuSTJHxXm0hIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="64007798"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64007798"
+ t=1751465570; x=1783001570;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=tTVKzZpEnc7zeJ0EyQEnBhBVZ0c91y5ihShsNJAt4TA=;
+ b=dwAPIyVY8cI5uxsdl7xemjrqfJgsafP49iTZERHq07hXOu5p2fbfUG7x
+ odfTpliJkVcpFwkXP1wriPI5+0p7S+R6UVZMGzkUGTmLmlrTLednelN/6
+ 8oAYoKOrA9d696ZpMIxDV9Qxg00D6YgEC/SWlsH9Y0gjzAcIkgRSRWP0/
+ QxRouv1kYdFx6qRuI7qhtm4u8t/lOatUQnd1BaoiLlT8B+gsG2CQ4v2wu
+ Zih/nsJwuHIbzwyl9dCKQrFt/np315khDDdREiaET5UAwxJB6Ae0SWpQ/
+ 3RVuJzgrzKvS3MuGlIFPK2FyE5FUpQUSPs5BfXkymvVyQ+vRYBs+4uqym A==;
+X-CSE-ConnectionGUID: V6U7HbGTTiW5dt/NYNjFdA==
+X-CSE-MsgGUID: 1C2QKBpkTqCtTmPpYvInhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="64009118"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64009118"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 07:04:01 -0700
-X-CSE-ConnectionGUID: RIKC5saoTcWylZFYvMd+Sw==
-X-CSE-MsgGUID: 2OiPCNNORn+h4W0DRD7rSA==
+ 02 Jul 2025 07:12:50 -0700
+X-CSE-ConnectionGUID: Bl4kLbN8TYuEfK6iVaoptA==
+X-CSE-MsgGUID: +7amJITWRvG7SO/ep4wRIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="154430767"
-Received: from linux.intel.com ([10.54.29.200])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 07:04:00 -0700
-Received: from [10.124.222.214] (unknown [10.124.222.214])
- by linux.intel.com (Postfix) with ESMTP id EE48920B58A2;
- Wed,  2 Jul 2025 07:03:58 -0700 (PDT)
-Message-ID: <83851fe3-58e4-41a0-b7cd-daee2d8d69aa@linux.intel.com>
-Date: Wed, 2 Jul 2025 07:03:58 -0700
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="154433102"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.29])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 07:12:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, Ankit Nautiyal
+ <ankit.k.nautiyal@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 1/2] drm/i915/display_wa: Add helpers to check wa
+In-Reply-To: <175146302838.3748.9114348489206219151@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
+ <20250702084620.3837426-2-ankit.k.nautiyal@intel.com>
+ <175146302838.3748.9114348489206219151@intel.com>
+Date: Wed, 02 Jul 2025 17:12:43 +0300
+Message-ID: <45e9d0aa40e0f9bf9dac03054e7a46c52623ba84@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 02/11] PCI/ACPI: Per root port allow one Aux power
- limit request
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Badal Nilawar <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org,
- linux-acpi@vger.kernel.org, linux-pci@vger.kernel.org,
- anshuman.gupta@intel.com, lenb@kernel.org, bhelgaas@google.com,
- ilpo.jarvinen@linux.intel.com, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, varun.gupta@intel.com,
- ville.syrjala@linux.intel.com, uma.shankar@intel.com
-References: <20250529111654.3140766-1-badal.nilawar@intel.com>
- <20250529111654.3140766-3-badal.nilawar@intel.com>
- <98fc8402-0bda-4333-8407-75c7a6472375@linux.intel.com>
- <CAJZ5v0hm_UyEEXz+1LYGwGXNi908vYgKw0CD3C=wmBvT=vAh0Q@mail.gmail.com>
-Content-Language: en-US
-From: Sathyanarayanan Kuppuswamy <sathyanarayanan.kuppuswamy@linux.intel.com>
-In-Reply-To: <CAJZ5v0hm_UyEEXz+1LYGwGXNi908vYgKw0CD3C=wmBvT=vAh0Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,131 +71,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 7/2/25 4:11 AM, Rafael J. Wysocki wrote:
-> On Thu, May 29, 2025 at 11:41 PM Sathyanarayanan Kuppuswamy
-> <sathyanarayanan.kuppuswamy@linux.intel.com> wrote:
+On Wed, 02 Jul 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Ankit Nautiyal (2025-07-02 05:46:18-03:00)
+>>Introduce a generic helper to check display workarounds using an enum.
 >>
->> On 5/29/25 4:16 AM, Badal Nilawar wrote:
->>> For given root port allow one Aux power limit request.
->>>
->>> Cc: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
->>> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
->>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
->>> ---
->>>    drivers/acpi/scan.c     |  1 +
->>>    drivers/pci/pci-acpi.c  | 25 ++++++++++++++++++++++++-
->>>    include/acpi/acpi_bus.h |  2 ++
->>>    3 files changed, 27 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
->>> index fb1fe9f3b1a3..9ae7be9db01a 100644
->>> --- a/drivers/acpi/scan.c
->>> +++ b/drivers/acpi/scan.c
->>> @@ -745,6 +745,7 @@ int acpi_device_add(struct acpi_device *device)
->>>        INIT_LIST_HEAD(&device->physical_node_list);
->>>        INIT_LIST_HEAD(&device->del_list);
->>>        mutex_init(&device->physical_node_lock);
->>> +     mutex_init(&device->power.aux_pwr_lock);
->>>
->>>        mutex_lock(&acpi_device_lock);
->>>
->>> diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
->>> index 87f30910a5f1..d33efba4ca94 100644
->>> --- a/drivers/pci/pci-acpi.c
->>> +++ b/drivers/pci/pci-acpi.c
->>> @@ -1451,6 +1451,7 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
->>>        union acpi_object *out_obj;
->>>        acpi_handle handle;
->>>        int result, ret = -EINVAL;
->>> +     struct acpi_device *adev;
->>>
->>>        if (!dev || !retry_interval)
->>>                return -EINVAL;
->>> @@ -1464,11 +1465,27 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
->>>                return -ENODEV;
->>>        }
->>>
->>> +     adev = ACPI_COMPANION(&dev->dev);
->>> +     if (!adev)
->>> +             return -EINVAL;
->>> +
->>> +     mutex_lock(&adev->power.aux_pwr_lock);
->>> +
->>> +     /* Check if aux power already granted */
->>> +     if (adev->power.aux_power_limit) {
->>> +             pci_info(dev, "D3cold Aux Power request already granted: %u mW\n",
->>> +                      adev->power.aux_power_limit);
->>> +             mutex_unlock(&adev->power.aux_pwr_lock);
->>> +             return -EPERM;
->>> +     }
->>> +
->>>        out_obj = acpi_evaluate_dsm_typed(handle, &pci_acpi_dsm_guid, 4,
->>>                                          DSM_PCI_D3COLD_AUX_POWER_LIMIT,
->>>                                          &in_obj, ACPI_TYPE_INTEGER);
->>> -     if (!out_obj)
->>> +     if (!out_obj) {
->>> +             mutex_unlock(&adev->power.aux_pwr_lock);
->>>                return -EINVAL;
->>> +     }
->>>
->>>        result = out_obj->integer.value;
->>>        if (retry_interval)
->>> @@ -1478,14 +1495,17 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
->>>        case 0x0:
->>>                pci_dbg(dev, "D3cold Aux Power %u mW request denied\n",
->>>                        requested_power);
->>> +             adev->power.aux_power_limit = 0;
->>>                break;
->>>        case 0x1:
->>>                pci_info(dev, "D3cold Aux Power request granted: %u mW\n",
->>>                         requested_power);
->>> +             adev->power.aux_power_limit = requested_power;
->>>                ret = 0;
->>>                break;
->>>        case 0x2:
->>>                pci_info(dev, "D3cold Aux Power: Main power won't be removed\n");
->>> +             adev->power.aux_power_limit = 0;
->>>                ret = -EBUSY;
->>>                break;
->>>        default:
->>> @@ -1500,9 +1520,12 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
->>>                        pci_err(dev, "D3cold Aux Power: Reserved or unsupported response: 0x%x\n",
->>>                                result);
->>>                }
->>> +             adev->power.aux_power_limit = 0;
->>>                break;
->>>        }
->>>
->>> +     mutex_unlock(&adev->power.aux_pwr_lock);
->>> +
->>>        ACPI_FREE(out_obj);
->>>        return ret;
->>>    }
->>> diff --git a/include/acpi/acpi_bus.h b/include/acpi/acpi_bus.h
->>> index aad1a95e6863..c4ce3d84be00 100644
->>> --- a/include/acpi/acpi_bus.h
->>> +++ b/include/acpi/acpi_bus.h
->>> @@ -294,6 +294,8 @@ struct acpi_device_power {
->>>        struct acpi_device_power_flags flags;
->>>        struct acpi_device_power_state states[ACPI_D_STATE_COUNT];      /* Power states (D0-D3Cold) */
->>>        u8 state_for_enumeration; /* Deepest power state for enumeration */
->>> +     u32 aux_power_limit;            /* aux power limit granted by bios */
->>> +     struct mutex aux_pwr_lock;      /* prevent concurrent aux power limit requests */
+>>Convert Wa_16023588340 to use the new interface, simplifying WA checks
+>>and making future additions easier.
 >>
->> Do you need a new lock ?
-> Yes.
+>>v2: Use drm_WARN instead of MISSING_CASE and simplify intel_display_wa
+>>macro. (Jani)
+>>
+>>Suggested-by: Jani Nikula <jani.nikula@intel.com>
+>>Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>---
+>> drivers/gpu/drm/i915/display/intel_display_wa.c | 15 +++++++++++++++
+>> drivers/gpu/drm/i915/display/intel_display_wa.h |  9 +++++++++
+>> drivers/gpu/drm/i915/display/intel_fbc.c        |  2 +-
+>> 3 files changed, 25 insertions(+), 1 deletion(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gp=
+u/drm/i915/display/intel_display_wa.c
+>>index f57280e9d041..f5e8d58d9a68 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+>>@@ -3,6 +3,8 @@
+>>  * Copyright =C2=A9 2023 Intel Corporation
+>>  */
+>>=20
+>>+#include "drm/drm_print.h"
+>>+
+>> #include "i915_reg.h"
+>> #include "intel_de.h"
+>> #include "intel_display_core.h"
+>>@@ -39,3 +41,16 @@ void intel_display_wa_apply(struct intel_display *disp=
+lay)
+>>         else if (DISPLAY_VER(display) =3D=3D 11)
+>>                 gen11_display_wa_apply(display);
+>> }
+>>+
+>>+bool __intel_display_wa(struct intel_display *display, enum intel_displa=
+y_wa wa)
+>>+{
+>>+        switch (wa) {
+>>+        case INTEL_DISPLAY_WA_16023588340:
+>>+                return intel_display_needs_wa_16023588340(display);
+>>+        default:
+>>+                drm_WARN(display->drm, 1, "Missing Wa number: %d\n", wa);
 >
->> Is it possible to reuse existing mutex like device_lock()?
-> No.
+> Hm... I wonder how useful the message would be if we just show the enum
+> value. For example, if the next workaround that we added was
+> INTEL_DISPLAY_WA_99999999999 and we had it missing here, I think we
+> would get the following warning message:
 >
-> Doing such things results in code where nobody knows what the given
-> lock scope is.
+>     "Missing Wa number: 1"
+>
+> Perhaps the enum identifier could be found in the callstack that is
+> presented with the warning, but I'm wondering if we could do better
+> here.
+>
+> Not sure there is a good solution without requiring extra memory to map
+> each enum member to its corresponding the workaround number.
 
-Got it. Thanks for the clarification.
+The solution would be to make the function:
+
+bool __intel_display_wa(struct intel_display *display, enum intel_display_w=
+a wa, const char *name);
+
+and the macro:
+
+#define intel_display_wa(__display, __wa) \
+	__intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa, __stringify(__wa))
+
+and then you could debug log the name.
+
+Worth it? Not sure.
 
 
--- 
-Sathyanarayanan Kuppuswamy
-Linux Kernel Developer
+BR,
+Jani.
 
+
+>
+> --
+> Gustavo Sousa
+>
+>>+                break;
+>>+        }
+>>+
+>>+        return false;
+>>+}
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gp=
+u/drm/i915/display/intel_display_wa.h
+>>index babd9d16603d..146ee70d66f7 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
+>>+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+>>@@ -21,4 +21,13 @@ static inline bool intel_display_needs_wa_16023588340(=
+struct intel_display *disp
+>> bool intel_display_needs_wa_16023588340(struct intel_display *display);
+>> #endif
+>>=20
+>>+enum intel_display_wa {
+>>+        INTEL_DISPLAY_WA_16023588340,
+>>+};
+>>+
+>>+bool __intel_display_wa(struct intel_display *display, enum intel_displa=
+y_wa wa);
+>>+
+>>+#define intel_display_wa(__display, __wa) \
+>>+        __intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa)
+>>+
+>> #endif
+>>diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+>>index 6e26cb4c5724..e2e03af520b2 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_fbc.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+>>@@ -1464,7 +1464,7 @@ static int intel_fbc_check_plane(struct intel_atomi=
+c_state *state,
+>>                 return 0;
+>>         }
+>>=20
+>>-        if (intel_display_needs_wa_16023588340(display)) {
+>>+        if (intel_display_wa(display, 16023588340)) {
+>>                 plane_state->no_fbc_reason =3D "Wa_16023588340";
+>>                 return 0;
+>>         }
+>>--=20
+>>2.45.2
+>>
+
+--=20
+Jani Nikula, Intel
