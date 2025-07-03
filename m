@@ -4,55 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30F69C83F07
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BBB0C83F0C
 	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 12:58:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBF2410E01F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEFB810E196;
 	Mon,  7 Jul 2025 12:58:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="i/Mqu74A";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="L8pmihiZ";
 	dkim-atps=neutral
 Received: from bali.collaboradmins.com (bali.collaboradmins.com
  [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A681C10E8A5;
- Thu,  3 Jul 2025 15:31:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FB6410E8DE;
+ Thu,  3 Jul 2025 20:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1751556691;
+ s=mail; t=1751576023;
  bh=LM2qFcNqZHKhjcBXVtExdepMcEbEni0Jn8+DH0K6CI4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=i/Mqu74ABjKGpAOC5hcsMvdChwF9++j7IPATKGNnCY7j5nPzc3Y8CXHQzGeOioces
- Rijo0zs7iqf6aLGKRPOujIzw+4VQy4Ema97tzPg1dGZZldxpdn8JnHItu8o6ZeV5Im
- MV0Xes+l/5Zyk14MZaHkXnYx30A7hkUoElT54XrV2fWKOz3BJq5BwDCtZI0NgCqafJ
- e0fcXxjzVArdi3qFlmdKVNcSCUKkRVFSeb1FBvEiJPoBQGcicGZA7+Pdc4jTJH8PDK
- cYHFjsi/ruhiTGeW/4d2xXzFXcGnZvVYsfZ3nRXG4Dx+YemeMCe3jhoZMp0JdpRsNu
- bWlABbqemlUCA==
+ b=L8pmihiZwDdP9QlkxEoKDRhTnh7ZNMBA2lvozt44L3mWmrXhqxcp2iq6NlL28XcD+
+ P4BkhBgBoKSFwFI/TZ9Sj2aliv6DaOChsou8pH/nYKeoawnM64yES4p8SFQJo+iNg6
+ JiekDXPCxsx2uOIBHOq+OwyqVeMM/B1gQ3OLo6j6eakkl3HiP9kcB2LHsxrFzrAAVJ
+ idKB5hGeZNbNZ3PfGUagMNCLQwXwAYITMWtw7U+YfRClWme4+2OzRyAObDhoPSM+U8
+ CIZOg2KUwuz4Q+BRuim+op37a1x6wFRuYIteheGeaRVqbvooQkIaUTZ6pTVm6I0tzF
+ ju7Wdp5OrB2/g==
 Received: from debian-rockchip-rock5b-rk3588.. (unknown [90.168.160.154])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested) (Authenticated sender: nanokatze)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 3201D17E080D;
- Thu,  3 Jul 2025 17:31:30 +0200 (CEST)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 2FD9D17E0FD3;
+ Thu,  3 Jul 2025 22:53:42 +0200 (CEST)
 From: Caterina Shablia <caterina.shablia@collabora.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Frank Binns <frank.binns@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>,
+ "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
+ "Frank Binns" <frank.binns@imgtec.com>,
+ "Matt Coster" <matt.coster@imgtec.com>,
+ "Karol Herbst" <kherbst@redhat.com>, "Lyude Paul" <lyude@redhat.com>,
+ "Danilo Krummrich" <dakr@kernel.org>,
+ "Boris Brezillon" <boris.brezillon@collabora.com>,
+ "Steven Price" <steven.price@arm.com>, "Liviu Dudau" <liviu.dudau@arm.com>,
+ "Lucas De Marchi" <lucas.demarchi@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: kernel@collabora.com, Caterina Shablia <caterina.shablia@collabora.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 3/7] drm/gpuvm: Pass map arguments through a struct
-Date: Thu,  3 Jul 2025 15:28:56 +0000
-Message-ID: <20250703152908.16702-5-caterina.shablia@collabora.com>
+ "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Asahi Lina <lina@asahilina.net>,
+ Caterina Shablia <caterina.shablia@collabora.com>
+Subject: [PATCH v3 3/7] drm/gpuvm: Pass map arguments through a struct
+Date: Thu,  3 Jul 2025 20:52:55 +0000
+Message-ID: <20250703205308.19419-4-caterina.shablia@collabora.com>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250703152908.16702-2-caterina.shablia@collabora.com>
-References: <20250703152908.16702-2-caterina.shablia@collabora.com>
+In-Reply-To: <20250703205308.19419-1-caterina.shablia@collabora.com>
+References: <20250703205308.19419-1-caterina.shablia@collabora.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 07 Jul 2025 12:58:43 +0000
