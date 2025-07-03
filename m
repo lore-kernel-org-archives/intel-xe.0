@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DC3EC8303C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D81FC83F12
 	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 12:58:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C020710E464;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD01F10E463;
 	Mon,  7 Jul 2025 12:58:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="ijADUnub";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="V6qo6dkb";
 	dkim-atps=neutral
 Received: from bali.collaboradmins.com (bali.collaboradmins.com
  [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD74210E8D2;
- Thu,  3 Jul 2025 20:53:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3843810E8E7;
+ Thu,  3 Jul 2025 20:53:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1751576017;
- bh=OIk9l0FOEp7+ye4kPRY6W7rKZcEBc03NnC+TtauGJG8=;
+ s=mail; t=1751576026;
+ bh=jgZFgX8f1lmIrMc9XkXVrobKxZOqQe3AE+a8f3uEcYA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ijADUnub30K7IRNCkHWfKf33cDoz2Dz0FwOW7vGLgntpTKHiJneOaom4XHJCF3007
- 7e3QORyb61K0i5ew2+H5eR/lgqZUzVvkt4p9qoK5cr8pP2/ofK0Foyq2IlLAxYIzOK
- c0ievSIQBkSCguebiAhdXj/bQy8YZbJMwrYQdJfNNF3FbExYrIeI2u9dEpylQfniJs
- 6SIeQTKp4lkdGbrxAJs56Brrzb2gA6z9oS1lsgJJwBQALm+ekbup4/iPQV1qX5DF6J
- xKoswO/Z2eVLEM1CNQQbIWKxlorDP8EvWbjmxX26svH49Annz5IKIQ/VyELCfoDEBH
- snz+FZtXQ3A+g==
+ b=V6qo6dkbkEJOl5hWDh+etUczmeETldR4Wy+P460ffyH3z9OXF0VZ92sGe97hBOgWm
+ IDQdnmqpGerZBZA2lcPh+RmRyOTRUX3iprX+eyNX4TDXnU5bZh9fuco1sAc4cguuT3
+ WLYrKQRI2lz8zhbpoc1iaJbENE2lDR23jQ184SOWWFAMj3WQE770JRVBjA8ly+3l/y
+ ONmbU+a/syIpu27ZzBtUPZxJeLKEaj6pw4QGvlriYwUYJnNqZMHteyvoAHOXMSpZGq
+ rnVCSQoElp2cFuYPWUTbIAx4Ldi4w19t4CeesI4Swz1ySoSS6JWwVKpqFUV+x8vNN2
+ buXwoGyTu56Bw==
 Received: from debian-rockchip-rock5b-rk3588.. (unknown [90.168.160.154])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested) (Authenticated sender: nanokatze)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 1E52A17E0E12;
- Thu,  3 Jul 2025 22:53:36 +0200 (CEST)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 9D3D717E1014;
+ Thu,  3 Jul 2025 22:53:44 +0200 (CEST)
 From: Caterina Shablia <caterina.shablia@collabora.com>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
  "Maxime Ripard" <mripard@kernel.org>,
@@ -50,9 +50,10 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Asahi Lina <lina@asahilina.net>,
  Caterina Shablia <caterina.shablia@collabora.com>
-Subject: [PATCH v3 1/7] drm/panthor: Add support for atomic page table updates
-Date: Thu,  3 Jul 2025 20:52:53 +0000
-Message-ID: <20250703205308.19419-2-caterina.shablia@collabora.com>
+Subject: [PATCH v3 4/7] drm/gpuvm: Add a helper to check if two VA can be
+ merged
+Date: Thu,  3 Jul 2025 20:52:56 +0000
+Message-ID: <20250703205308.19419-5-caterina.shablia@collabora.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250703205308.19419-1-caterina.shablia@collabora.com>
 References: <20250703205308.19419-1-caterina.shablia@collabora.com>
@@ -75,160 +76,105 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Boris Brezillon <boris.brezillon@collabora.com>
 
-Move the lock/flush_mem operations around the gpuvm_sm_map() calls so
-we can implement true atomic page updates, where any access in the
-locked range done by the GPU has to wait for the page table updates
-to land before proceeding.
-
-This is needed for vkQueueBindSparse(), so we can replace the dummy
-page mapped over the entire object by actual BO backed pages in an atomic
-way.
+We are going to add flags/properties that will impact the VA merging
+ability. Instead of sprinkling tests all over the place in
+__drm_gpuvm_sm_map(), let's add a helper aggregating all these checks
+can call it for every existing VA we walk through in the
+__drm_gpuvm_sm_map() loop.
 
 Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
 Signed-off-by: Caterina Shablia <caterina.shablia@collabora.com>
 ---
- drivers/gpu/drm/panthor/panthor_mmu.c | 65 +++++++++++++++++++++++++--
- 1 file changed, 62 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/drm_gpuvm.c | 47 +++++++++++++++++++++++++++++--------
+ 1 file changed, 37 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
-index b39ea6acc6a9..1e58948587a9 100644
---- a/drivers/gpu/drm/panthor/panthor_mmu.c
-+++ b/drivers/gpu/drm/panthor/panthor_mmu.c
-@@ -387,6 +387,15 @@ struct panthor_vm {
- 	 * flagged as faulty as a result.
- 	 */
- 	bool unhandled_fault;
-+
-+	/** @locked_region: Information about the currently locked region currently. */
-+	struct {
-+		/** @locked_region.start: Start of the locked region. */
-+		u64 start;
-+
-+		/** @locked_region.size: Size of the locked region. */
-+		u64 size;
-+	} locked_region;
- };
- 
- /**
-@@ -775,6 +784,10 @@ int panthor_vm_active(struct panthor_vm *vm)
- 	}
- 
- 	ret = panthor_mmu_as_enable(vm->ptdev, vm->as.id, transtab, transcfg, vm->memattr);
-+	if (!ret && vm->locked_region.size) {
-+		lock_region(ptdev, vm->as.id, vm->locked_region.start, vm->locked_region.size);
-+		ret = wait_ready(ptdev, vm->as.id);
-+	}
- 
- out_make_active:
- 	if (!ret) {
-@@ -902,6 +915,9 @@ static int panthor_vm_unmap_pages(struct panthor_vm *vm, u64 iova, u64 size)
- 	struct io_pgtable_ops *ops = vm->pgtbl_ops;
- 	u64 offset = 0;
- 
-+	drm_WARN_ON(&ptdev->base,
-+		    (iova < vm->locked_region.start) ||
-+		    (iova + size > vm->locked_region.start + vm->locked_region.size));
- 	drm_dbg(&ptdev->base, "unmap: as=%d, iova=%llx, len=%llx", vm->as.id, iova, size);
- 
- 	while (offset < size) {
-@@ -915,13 +931,12 @@ static int panthor_vm_unmap_pages(struct panthor_vm *vm, u64 iova, u64 size)
- 				iova + offset + unmapped_sz,
- 				iova + offset + pgsize * pgcount,
- 				iova, iova + size);
--			panthor_vm_flush_range(vm, iova, offset + unmapped_sz);
- 			return  -EINVAL;
- 		}
- 		offset += unmapped_sz;
- 	}
- 
--	return panthor_vm_flush_range(vm, iova, size);
-+	return 0;
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index ae201d45e6b8..2df04dfcb6ef 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -2098,12 +2098,48 @@ op_unmap_cb(const struct drm_gpuvm_ops *fn, void *priv,
+ 	return fn->sm_step_unmap(&op, priv);
  }
  
++static bool can_merge(struct drm_gpuvm *gpuvm, const struct drm_gpuva *a,
++		      const struct drm_gpuva *b)
++{
++	/* Only GEM-based mappings can be merged, and they must point to
++	 * the same GEM object.
++	 */
++	if (a->gem.obj != b->gem.obj || !a->gem.obj)
++		return false;
++
++	/* Let's keep things simple for now and force all flags to match. */
++	if (a->flags != b->flags)
++		return false;
++
++	/* Order VAs for the rest of the checks. */
++	if (a->va.addr > b->va.addr)
++		swap(a, b);
++
++	/* We assume the caller already checked that VAs overlap or are
++	 * contiguous.
++	 */
++	if (drm_WARN_ON(gpuvm->drm, b->va.addr > a->va.addr + a->va.range))
++		return false;
++
++	/* We intentionally ignore u64 underflows because all we care about
++	 * here is whether the VA diff matches the GEM offset diff.
++	 */
++	return b->va.addr - a->va.addr == b->gem.offset - a->gem.offset;
++}
++
  static int
-@@ -938,6 +953,10 @@ panthor_vm_map_pages(struct panthor_vm *vm, u64 iova, int prot,
- 	if (!size)
- 		return 0;
- 
-+	drm_WARN_ON(&ptdev->base,
-+		    (iova < vm->locked_region.start) ||
-+		    (iova + size > vm->locked_region.start + vm->locked_region.size));
-+
- 	for_each_sgtable_dma_sg(sgt, sgl, count) {
- 		dma_addr_t paddr = sg_dma_address(sgl);
- 		size_t len = sg_dma_len(sgl);
-@@ -985,7 +1004,7 @@ panthor_vm_map_pages(struct panthor_vm *vm, u64 iova, int prot,
- 		offset = 0;
- 	}
- 
--	return panthor_vm_flush_range(vm, start_iova, iova - start_iova);
-+	return 0;
- }
- 
- static int flags_to_prot(u32 flags)
-@@ -1654,6 +1673,38 @@ static const char *access_type_name(struct panthor_device *ptdev,
- 	}
- }
- 
-+static int panthor_vm_lock_region(struct panthor_vm *vm, u64 start, u64 size)
-+{
-+	struct panthor_device *ptdev = vm->ptdev;
-+	int ret;
-+
-+	mutex_lock(&ptdev->mmu->as.slots_lock);
-+	drm_WARN_ON(&ptdev->base, vm->locked_region.start || vm->locked_region.size);
-+	vm->locked_region.start = start;
-+	vm->locked_region.size = size;
-+	if (vm->as.id >= 0) {
-+		lock_region(ptdev, vm->as.id, start, size);
-+		ret = wait_ready(ptdev, vm->as.id);
-+	}
-+	mutex_unlock(&ptdev->mmu->as.slots_lock);
-+
-+	return ret;
-+}
-+
-+static void panthor_vm_unlock_region(struct panthor_vm *vm)
-+{
-+	struct panthor_device *ptdev = vm->ptdev;
-+
-+	mutex_lock(&ptdev->mmu->as.slots_lock);
-+	if (vm->as.id >= 0) {
-+		write_cmd(ptdev, vm->as.id, AS_COMMAND_FLUSH_MEM);
-+		drm_WARN_ON(&ptdev->base, wait_ready(ptdev, vm->as.id));
-+	}
-+	vm->locked_region.start = 0;
-+	vm->locked_region.size = 0;
-+	mutex_unlock(&ptdev->mmu->as.slots_lock);
-+}
-+
- static void panthor_mmu_irq_handler(struct panthor_device *ptdev, u32 status)
+ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 		   const struct drm_gpuvm_ops *ops, void *priv,
+ 		   const struct drm_gpuvm_map_req *req)
  {
- 	bool has_unhandled_faults = false;
-@@ -2179,6 +2230,11 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct panthor_vm_op_ctx *op,
+ 	struct drm_gpuva *va, *next;
++	struct drm_gpuva reqva = {
++		.va.addr = req->va.addr,
++		.va.range = req->va.range,
++		.gem.offset = req->gem.offset,
++		.gem.obj = req->gem.obj,
++		.flags = req->flags,
++	};
+ 	u64 req_end = req->va.addr + req->va.range;
+ 	int ret;
  
- 	mutex_lock(&vm->op_lock);
- 	vm->op_ctx = op;
-+
-+	ret = panthor_vm_lock_region(vm, op->va.addr, op->va.range);
-+	if (ret)
-+		goto out;
-+
- 	switch (op_type) {
- 	case DRM_PANTHOR_VM_BIND_OP_TYPE_MAP:
- 		if (vm->unusable) {
-@@ -2199,6 +2255,9 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct panthor_vm_op_ctx *op,
- 		break;
- 	}
+@@ -2116,12 +2152,9 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 		u64 addr = va->va.addr;
+ 		u64 range = va->va.range;
+ 		u64 end = addr + range;
+-		bool merge = !!va->gem.obj;
++		bool merge = can_merge(gpuvm, va, &reqva);
  
-+	panthor_vm_unlock_region(vm);
-+
-+out:
- 	if (ret && flag_vm_unusable_on_failure)
- 		vm->unusable = true;
+ 		if (addr == req->va.addr) {
+-			merge &= obj == req->gem.obj &&
+-				 offset == req->gem.offset;
+-
+ 			if (end == req_end) {
+ 				ret = op_unmap_cb(ops, priv, va, merge);
+ 				if (ret)
+@@ -2163,8 +2196,6 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 			};
+ 			struct drm_gpuva_op_unmap u = { .va = va };
  
-
-base-commit: 026a60e3c1c55845bd9fdaa202dad81c3f95ae6b
+-			merge &= obj == req->gem.obj &&
+-				 offset + ls_range == req->gem.offset;
+ 			u.keep = merge;
+ 
+ 			if (end == req_end) {
+@@ -2196,10 +2227,6 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 				break;
+ 			}
+ 		} else if (addr > req->va.addr) {
+-			merge &= obj == req->gem.obj &&
+-				 offset == req->gem.offset +
+-					   (addr - req->va.addr);
+-
+ 			if (end == req_end) {
+ 				ret = op_unmap_cb(ops, priv, va, merge);
+ 				if (ret)
 -- 
 2.47.2
 
