@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787E1C83F03
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 14:57:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E257AC77B7C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 15:01:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF8F10E874;
-	Thu,  3 Jul 2025 14:57:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ROvmzRdd";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5F2510E86D
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 14:57:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751554640; x=1783090640;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0Hrnoos3SlkkNs/UzuSY9G0rlAImptiFSQIwJZO0Sak=;
- b=ROvmzRdd3AmtCNELfR6vmjAP3yKMxOB7e9mz5bFq4rXChqSbzTbPLwuR
- UpSl8esvLdK7RcaFlQTTWXMHhzYJZjE22avfUHNWQHYhv2WWqGxIhxLKG
- cRI9R5hVDToUUJCLaioCgW/pWtRzohbqOInI0QtFJlH3hKWIOFC06HltL
- jPO1pNN20Fnj8mzLd1yjvzTbPJc1oexGxuY0xNTZX0SI2LqAe6LHxUgYk
- n1hAZ/C+oe0cfTS9ZUqTAe5n/vgy1wo2hPMvElad9x3PWptYGVga1UOFO
- xCEO7Bv9fHiNpsz5YpZ9rI1uXkGWiRvYVz6mYOBCaG070owqVONpg72zY w==;
-X-CSE-ConnectionGUID: jjNEDn6YRuigYQbPLEutWA==
-X-CSE-MsgGUID: d4kcN+fVQq2bFM8H7+jRAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="53109755"
-X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="53109755"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 07:57:20 -0700
-X-CSE-ConnectionGUID: ER5kJ+c8TXG5JTKnadX1dg==
-X-CSE-MsgGUID: sSFB9NJFT2mTVtptZnbk1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="185336036"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.112.168])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 07:57:18 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lukasz Laguna <lukasz.laguna@intel.com>
-Subject: [PATCH v2 2/2] drm/xe/pf: Print configuration KLVs using debug printer
-Date: Thu,  3 Jul 2025 16:57:09 +0200
-Message-Id: <20250703145709.1832-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20250604190021.725-3-michal.wajdeczko@intel.com>
-References: <20250604190021.725-3-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7C7010E868;
+	Thu,  3 Jul 2025 15:01:49 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9B3B10E868;
+ Thu,  3 Jul 2025 15:01:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1651027348452804530=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_LMTT_invalidation_=28rev3?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 03 Jul 2025 15:01:48 -0000
+Message-ID: <175155490875.131399.5930060709519288551@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250702223041.1700-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250702223041.1700-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,51 +36,137 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While we print VF's configuration KLVs only under DEBUG_SRIOV
-config, we should be doing it at debug level, not info level.
+--===============1651027348452804530==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lukasz Laguna <lukasz.laguna@intel.com>
----
-v2: update xe_gt_sriov_pf_config_restore (Lukasz)
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index d186f780885d..d0cf1d80be07 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -104,13 +104,13 @@ static int pf_push_vf_buf_klvs(struct xe_gt *gt, unsigned int vfid, u32 num_klvs
- 	}
- 
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV)) {
--		struct drm_printer p = xe_gt_info_printer(gt);
-+		struct drm_printer p = xe_gt_dbg_printer(gt);
- 		void *klvs = xe_guc_buf_cpu_ptr(buf);
- 		char name[8];
- 
--		xe_gt_sriov_info(gt, "pushed %s config with %u KLV%s:\n",
--				 xe_sriov_function_name(vfid, name, sizeof(name)),
--				 num_klvs, str_plural(num_klvs));
-+		xe_gt_sriov_dbg(gt, "pushed %s config with %u KLV%s:\n",
-+				xe_sriov_function_name(vfid, name, sizeof(name)),
-+				num_klvs, str_plural(num_klvs));
- 		xe_guc_klv_print(klvs, num_dwords, &p);
- 	}
- 
-@@ -2349,7 +2349,7 @@ int xe_gt_sriov_pf_config_restore(struct xe_gt *gt, unsigned int vfid,
- 		return -EINVAL;
- 
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV)) {
--		struct drm_printer p = xe_gt_info_printer(gt);
-+		struct drm_printer p = xe_gt_dbg_printer(gt);
- 
- 		drm_printf(&p, "restoring VF%u config:\n", vfid);
- 		xe_guc_klv_print(buf, size / sizeof(u32), &p);
--- 
-2.47.1
+Series: LMTT invalidation (rev3)
+URL   : https://patchwork.freedesktop.org/series/151092/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407_BAT -> xe-pw-151092v3_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-151092v3_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-151092v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-151092v3_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407/bat-adlp-7/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151092v3/bat-adlp-7/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
+
+  
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8434 -> IGT_8436
+  * Linux: xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407 -> xe-pw-151092v3
+
+  IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8436: 3b7595f0e7f95de6d79e7ae6bb72e86b0a08a08c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407: d04a54cd3b99001adbc4cd3305b44f9f3e658407
+  xe-pw-151092v3: 151092v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151092v3/index.html
+
+--===============1651027348452804530==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>LMTT invalidation (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151092/">https://patchwork.freedesktop.org/series/151092/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151092v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151092v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407_BAT -&gt; xe-pw-151092v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-151092v3_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-151092v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-151092v3_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407/bat-adlp-7/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151092v3/bat-adlp-7/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8434 -&gt; IGT_8436</li>
+<li>Linux: xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407 -&gt; xe-pw-151092v3</li>
+</ul>
+<p>IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8436: 3b7595f0e7f95de6d79e7ae6bb72e86b0a08a08c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407: d04a54cd3b99001adbc4cd3305b44f9f3e658407<br />
+  xe-pw-151092v3: 151092v3</p>
+
+</body>
+</html>
+
+--===============1651027348452804530==--
