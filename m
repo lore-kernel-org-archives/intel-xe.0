@@ -4,56 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39FD0C77B7C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 14:18:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B0F5C77B7C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 14:20:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 036C58914B;
-	Thu,  3 Jul 2025 14:18:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 116AE88697;
+	Thu,  3 Jul 2025 14:20:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fmsI+uO5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GI7JCFIo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9419B8914B
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 14:18:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7166288697;
+ Thu,  3 Jul 2025 14:20:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751552324; x=1783088324;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=oVTo4j/P8j8EiR6qBNTG6U55plHr5py/eb4GSZspJBE=;
- b=fmsI+uO5OYIb4WuNwPGZdxNRtTc1KbAlmAyNxRrKM8nHSQMQkFLdDOPc
- U07Izannfq74qAXFMf0iF4ACM7dcmzb2l+9FDFfWRbZ/p1kM1F5xxBhjE
- /upDzv3XqHYi/pJ0d5uPJQb1tyan5Vl1zhxL5TWAv17Tasy/oUoiAnB3X
- Io+mSSv1wao0m+3obvs2SyNt7NfNHZDxmTGJmf6IsxXPZXGtmhtB6bill
- InaAsf9gle+W4Zxi3jnBx+Lt8A+6wHzWJu28COwhXRTnsNPEOKliAOOaA
- XXEiRhV94iKz+svAVVWE1zZwcNuk6hxMYTgXzBNk5UW7BRgtkqQFklF69 w==;
-X-CSE-ConnectionGUID: t1Z9MdT1SAO0p6v43jw8Gg==
-X-CSE-MsgGUID: 5KEUgfQpTr6WP41dNt3bAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="57554012"
-X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="57554012"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 07:18:31 -0700
-X-CSE-ConnectionGUID: 3DohUY1PR5yW0d3DljOdMw==
-X-CSE-MsgGUID: YDeIc1n5Rf6BGUAfXEpLVw==
+ t=1751552451; x=1783088451;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kX8SkCf8xMjYKKI8aJSC3xRY9ikotsqs2xcM99rhiPc=;
+ b=GI7JCFIoW8HpmSJBt43l8vg38mbI0HOCbBTvRUqiansQt45MJk+m73+/
+ BPgvLsnSKjSx+xY3KMd0vfCsMNKYF7ZXhgy3iGDAwcDy+2J/wsN0AJ4/5
+ bOfkMbBubapsbiEDeqeNXFP1AC3GAWYOb/9jw3PXbzJOLz6cGHbieUWEn
+ O1DqwBO76VO680lPw0j0YlpP7Q/sYtlJVK6wIyYFShp1ytTMyEdprJVFf
+ 6oPBvqXz0rRvV8rzach0PfBUdPq0LmrH4MDM4G3UClSsc49pW5ij5bmLp
+ rc9eLBXSnVmSIMndoeHyP3rRjZ2wx+dIUmmQRElL8Ya/ZtSaFr1U4RnBR w==;
+X-CSE-ConnectionGUID: 4xEm2mIwQGClwTXrYJ5m7Q==
+X-CSE-MsgGUID: jZo+42ayQ/GxOw4gYg6OOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="64479727"
+X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="64479727"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2025 07:20:51 -0700
+X-CSE-ConnectionGUID: sJAaaEEkQHSRPdXt6TNyhA==
+X-CSE-MsgGUID: VrjMTD/UTxeTHKBorCcmgw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="154019163"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.112.168])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 07:18:29 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v3 2/3] drm/xe/pf: Invalidate LMTT during LMEM unprovisioning
-Date: Thu,  3 Jul 2025 16:18:20 +0200
-Message-Id: <20250703141820.1788-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20250702223041.1700-3-michal.wajdeczko@intel.com>
-References: <20250702223041.1700-3-michal.wajdeczko@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="185396192"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orviesa002.jf.intel.com with ESMTP; 03 Jul 2025 07:20:49 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: imre.deak@intel.com, ankit.k.nautiyal@intel.com,
+ chaitanya.kumar.borah@intel.com
+Subject: [PATCH] drm/i915/dp: Fallback to DSC for HDR content if needed
+Date: Thu,  3 Jul 2025 19:32:52 +0530
+Message-Id: <20250703140252.3547953-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,189 +65,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Invalidate LMTT immediately after removing VF's LMTT page tables
-and clearing root PTE in the LMTT PD to avoid any invalid access
-by the hardware (and VF) due to stale data.
+If user-space has enabled HDR by passing HDR metadata and we can't support
+10bpc fallback to DSC.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
-Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
----
-v2: drop unused num_fences (CI)
-v3: rebase (drm-tip)
----
- drivers/gpu/drm/xe/xe_device.h              |  4 ++
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 35 +++++++++++++
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  2 +
- drivers/gpu/drm/xe/xe_lmtt.c                | 54 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lmtt.h                |  1 +
- 5 files changed, 96 insertions(+)
+Now that we need the helper to determine the presence of HDR metadata at
+multiple places make it non static.
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index f0eb8150f185..bc802e066a7d 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -131,6 +131,10 @@ static inline bool xe_device_uc_enabled(struct xe_device *xe)
- 	for ((id__) = 0; (id__) < (xe__)->info.tile_count * (xe__)->info.max_gt_per_tile; (id__)++) \
- 		for_each_if((gt__) = xe_device_get_gt((xe__), (id__)))
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c          | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.h          |  1 +
+ .../drm/i915/display/intel_dp_aux_backlight.c    | 13 -------------
+ 3 files changed, 17 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f48912f308df..abbba159e479 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1774,6 +1774,9 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
+ 	     bpp -= 2 * 3) {
+ 		int link_bpp = intel_dp_output_bpp(pipe_config->output_format, bpp);
  
-+#define for_each_gt_on_tile(gt__, tile__, id__) \
-+	for_each_gt((gt__), (tile__)->xe, (id__)) \
-+		for_each_if((gt__)->tile == (tile__))
++		if (intel_dp_in_hdr_mode(conn_state) && bpp < 30)
++			return -EINVAL;
 +
- static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
- {
- 	return &gt->pm.fw;
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 6088df8e159c..4fdd5b300265 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -330,6 +330,41 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
- 	return 0;
+ 		mode_rate = intel_dp_link_required(clock, link_bpp);
+ 
+ 		for (i = 0; i < intel_dp->num_common_rates; i++) {
+@@ -2910,6 +2913,19 @@ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
+ 	}
  }
  
-+static int send_tlb_invalidation_all(struct xe_gt *gt,
-+				     struct xe_gt_tlb_invalidation_fence *fence)
++bool
++intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state)
 +{
-+	u32 action[] = {
-+		XE_GUC_ACTION_TLB_INVALIDATION_ALL,
-+		0,  /* seqno, replaced in send_tlb_invalidation */
-+		MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL),
-+	};
++	struct hdr_output_metadata *hdr_metadata;
 +
-+	return send_tlb_invalidation(&gt->uc.guc, fence, action, ARRAY_SIZE(action));
++	if (!conn_state->hdr_output_metadata)
++		return false;
++
++	hdr_metadata = conn_state->hdr_output_metadata->data;
++
++	return hdr_metadata->hdmi_metadata_type1.eotf == HDMI_EOTF_SMPTE_ST2084;
 +}
 +
-+/**
-+ * xe_gt_tlb_invalidation_all_async - Invalidate all TLBs across PF and all VFs.
-+ * @gt: the &xe_gt structure
-+ * @fence: the &xe_gt_tlb_invalidation_fence to be signaled on completion
-+ *
-+ * Send a request to invalidate all TLBs across PF and all VFs.
-+ *
-+ * Return: 0 on success, negative error code on error
-+ */
-+int xe_gt_tlb_invalidation_all_async(struct xe_gt *gt,
-+				     struct xe_gt_tlb_invalidation_fence *fence)
-+{
-+	int err;
-+
-+	xe_gt_assert(gt, gt == fence->gt);
-+
-+	err = send_tlb_invalidation_all(gt, fence);
-+	if (err)
-+		xe_gt_err(gt, "TLB invalidation request failed (%pe)", ERR_PTR(err));
-+
-+	return err;
-+}
-+
- /*
-  * Ensure that roundup_pow_of_two(length) doesn't overflow.
-  * Note that roundup_pow_of_two() operates on unsigned long,
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-index 31072dbcad8e..40648f952aee 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-@@ -20,6 +20,8 @@ int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt);
- void xe_gt_tlb_invalidation_reset(struct xe_gt *gt);
- int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
- void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm *vm);
-+int xe_gt_tlb_invalidation_all_async(struct xe_gt *gt,
-+				     struct xe_gt_tlb_invalidation_fence *fence);
- int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
- 				 struct xe_gt_tlb_invalidation_fence *fence,
- 				 u64 start, u64 end, u32 asid);
-diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
-index b56437a816e4..0e842939b027 100644
---- a/drivers/gpu/drm/xe/xe_lmtt.c
-+++ b/drivers/gpu/drm/xe/xe_lmtt.c
-@@ -11,6 +11,7 @@
+ static void
+ intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
+ 					    struct intel_crtc_state *crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 0657f5681196..5def589e3c0e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -214,5 +214,6 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
  
- #include "xe_assert.h"
- #include "xe_bo.h"
-+#include "xe_gt_tlb_invalidation.h"
- #include "xe_lmtt.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
-@@ -216,6 +217,58 @@ void xe_lmtt_init_hw(struct xe_lmtt *lmtt)
- 	lmtt_setup_dir_ptr(lmtt);
+ int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
+ void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
++bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
+ 
+ #endif /* __INTEL_DP_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index 41228478b21c..12084a542fc5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -225,19 +225,6 @@ intel_dp_aux_hdr_set_aux_backlight(const struct drm_connector_state *conn_state,
+ 			connector->base.base.id, connector->base.name);
  }
  
-+static int lmtt_invalidate_hw(struct xe_lmtt *lmtt)
-+{
-+	struct xe_gt_tlb_invalidation_fence fences[XE_MAX_GT_PER_TILE];
-+	struct xe_gt_tlb_invalidation_fence *fence = fences;
-+	struct xe_tile *tile = lmtt_to_tile(lmtt);
-+	struct xe_gt *gt;
-+	int result = 0;
-+	int err;
-+	u8 id;
-+
-+	for_each_gt_on_tile(gt, tile, id) {
-+		xe_gt_tlb_invalidation_fence_init(gt, fence, true);
-+		err = xe_gt_tlb_invalidation_all_async(gt, fence);
-+		result = result ?: err;
-+		fence++;
-+	}
-+
-+	lmtt_debug(lmtt, "num_fences=%d err=%d\n", (int)(fence - fences), result);
-+
-+	/*
-+	 * It is fine to wait for all fences, even for those which covers the
-+	 * invalidation request that failed, as such fence should be already
-+	 * marked as signaled.
-+	 */
-+	fence = fences;
-+	for_each_gt_on_tile(gt, tile, id)
-+		xe_gt_tlb_invalidation_fence_wait(fence++);
-+
-+	return result;
-+}
-+
-+/**
-+ * xe_lmtt_invalidate_hw - Invalidate LMTT hardware.
-+ * @lmtt: the &xe_lmtt to invalidate
-+ *
-+ * Send requests to all GuCs on this tile to invalidate all TLBs.
-+ *
-+ * This function should be called only when running as a PF driver.
-+ */
-+void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt)
-+{
-+	struct xe_device *xe = lmtt_to_xe(lmtt);
-+	int err;
-+
-+	lmtt_assert(lmtt, IS_SRIOV_PF(xe));
-+
-+	err = lmtt_invalidate_hw(lmtt);
-+	if (err)
-+		xe_sriov_warn(xe, "LMTT%u invalidation failed (%pe)",
-+			      lmtt_to_tile(lmtt)->id, ERR_PTR(err));
-+}
-+
- static void lmtt_write_pte(struct xe_lmtt *lmtt, struct xe_lmtt_pt *pt,
- 			   u64 pte, unsigned int idx)
+-static bool
+-intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state)
+-{
+-	struct hdr_output_metadata *hdr_metadata;
+-
+-	if (!conn_state->hdr_output_metadata)
+-		return false;
+-
+-	hdr_metadata = conn_state->hdr_output_metadata->data;
+-
+-	return hdr_metadata->hdmi_metadata_type1.eotf == HDMI_EOTF_SMPTE_ST2084;
+-}
+-
+ static void
+ intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32 level)
  {
-@@ -265,6 +318,7 @@ static void lmtt_drop_pages(struct xe_lmtt *lmtt, unsigned int vfid)
- 		return;
- 
- 	lmtt_write_pte(lmtt, pd, LMTT_PTE_INVALID, vfid);
-+	lmtt_invalidate_hw(lmtt);
- 
- 	lmtt_assert(lmtt, pd->level > 0);
- 	lmtt_assert(lmtt, pt->level == pd->level - 1);
-diff --git a/drivers/gpu/drm/xe/xe_lmtt.h b/drivers/gpu/drm/xe/xe_lmtt.h
-index cb10ef994db6..75a234fbf367 100644
---- a/drivers/gpu/drm/xe/xe_lmtt.h
-+++ b/drivers/gpu/drm/xe/xe_lmtt.h
-@@ -15,6 +15,7 @@ struct xe_lmtt_ops;
- #ifdef CONFIG_PCI_IOV
- int xe_lmtt_init(struct xe_lmtt *lmtt);
- void xe_lmtt_init_hw(struct xe_lmtt *lmtt);
-+void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt);
- int xe_lmtt_prepare_pages(struct xe_lmtt *lmtt, unsigned int vfid, u64 range);
- int xe_lmtt_populate_pages(struct xe_lmtt *lmtt, unsigned int vfid, struct xe_bo *bo, u64 offset);
- void xe_lmtt_drop_pages(struct xe_lmtt *lmtt, unsigned int vfid);
 -- 
-2.47.1
+2.25.1
 
