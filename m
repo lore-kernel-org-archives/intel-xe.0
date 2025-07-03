@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0772EC83F03
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 20:56:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD832C83030
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 21:03:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C435410E8EB;
-	Thu,  3 Jul 2025 20:56:51 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A8EB10E8DB;
- Thu,  3 Jul 2025 20:56:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1435052893846269889=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2B3310E8E7;
+	Thu,  3 Jul 2025 21:03:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ejdq2ZTO";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0566910E8DB;
+ Thu,  3 Jul 2025 21:03:00 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8238144CC1;
+ Thu,  3 Jul 2025 21:02:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58AA4C4CEE3;
+ Thu,  3 Jul 2025 21:02:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1751576579;
+ bh=7b7hqvr7EkwfaZqRMejuBUVtedc1L2nVgXoTo0R1Zzs=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=ejdq2ZTOFm5fL7nxl9fCsWQLRsYAt6UpXS4AUnX5W3AN3CK/NtF3aSnyov0qrlFvb
+ HjG+91AOeJKLWszNYZW6MwxiIqHbayl0raNPV5mhm12DWtv2rERHr6v/rvJE40KN1t
+ aWjfX0W31XD0bPSOPZuYtYOHKjLLEpRrHJvQCsui3r/HyU15+4vfdp2mdvenVIRymA
+ yXtkpRv5BuODJw8/D3j+Bjlaly2/kfnSEiekJLEB11jpGtR6WgVkezMcHSkppTDa6p
+ 3TwbVR4NGxBre++XRhQlYACbf5Lmvt15ekENxB62a4Est2cHVwmt5G/JVZ9aFoyK5t
+ hqdV7BkOJyw7A==
+Message-ID: <a2b6a13c-4f64-43b2-8299-df9b785ba023@kernel.org>
+Date: Thu, 3 Jul 2025 23:02:53 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introducing_firmware_late_b?=
- =?utf-8?q?inding?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 03 Jul 2025 20:56:50 -0000
-Message-ID: <175157621010.132864.13637800105580509923@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250703193106.954536-1-badal.nilawar@intel.com>
-In-Reply-To: <20250703193106.954536-1-badal.nilawar@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/7] drm/panthor: support repeated mappings
+To: Caterina Shablia <caterina.shablia@collabora.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Asahi Lina <lina@asahilina.net>
+References: <20250703205308.19419-1-caterina.shablia@collabora.com>
+From: Danilo Krummrich <dakr@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20250703205308.19419-1-caterina.shablia@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +65,11 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1435052893846269889==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 7/3/25 10:52 PM, Caterina Shablia wrote:
+> This patch series adds OP_MAP_REPEAT flag, which lets the user map a BO
+> region over an address range repeatedly with just one map operation.
 
-== Series Details ==
-
-Series: Introducing firmware late binding
-URL   : https://patchwork.freedesktop.org/series/151140/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-3343-310881baa8e5c97ebd7cc0c6eb01ab6672d8cf43_BAT -> xe-pw-151140v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8437 -> IGT_8438
-  * Linux: xe-3343-310881baa8e5c97ebd7cc0c6eb01ab6672d8cf43 -> xe-pw-151140v1
-
-  IGT_8437: edd059dcd65215c4deda2a59e47357148e856d51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8438: 8438
-  xe-3343-310881baa8e5c97ebd7cc0c6eb01ab6672d8cf43: 310881baa8e5c97ebd7cc0c6eb01ab6672d8cf43
-  xe-pw-151140v1: 151140v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151140v1/index.html
-
---===============1435052893846269889==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introducing firmware late binding</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151140/">https://patchwork.freedesktop.org/series/151140/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151140v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151140v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3343-310881baa8e5c97ebd7cc0c6eb01ab6672d8cf43_BAT -&gt; xe-pw-151140v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8437 -&gt; IGT_8438</li>
-<li>Linux: xe-3343-310881baa8e5c97ebd7cc0c6eb01ab6672d8cf43 -&gt; xe-pw-151140v1</li>
-</ul>
-<p>IGT_8437: edd059dcd65215c4deda2a59e47357148e856d51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8438: 8438<br />
-  xe-3343-310881baa8e5c97ebd7cc0c6eb01ab6672d8cf43: 310881baa8e5c97ebd7cc0c6eb01ab6672d8cf43<br />
-  xe-pw-151140v1: 151140v1</p>
-
-</body>
-</html>
-
---===============1435052893846269889==--
+Thanks for resending, will take a look soon!
