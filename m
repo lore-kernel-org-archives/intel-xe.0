@@ -4,187 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89E0AC83F04
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 08:28:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3120C83030
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 08:28:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8090910E174;
-	Thu,  3 Jul 2025 08:28:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C29510E7EB;
+	Thu,  3 Jul 2025 08:28:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="elbKaMK6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="St5j/qHd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E716610E167;
- Thu,  3 Jul 2025 08:28:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C3A410E804
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 08:28:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751531320; x=1783067320;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=oopVDK4pmqhmOjMxjyWvHTzuw1/UzaGBLBMwPd0j5fs=;
- b=elbKaMK6ZVDBrLjffnceV8XD18C8SQglDFe0d+WIMl+jxd8Dn3vff4nK
- MGpckW7j9dfmHbtO2GXLex5oqvlTPpE1PDA4wBk6SGQeI+3FTgyzv7/X+
- Y82jYAWcIwEvW+y9XNhhGpS3vHcBD/y2h6fH5EDyZYKRxifaQ2sbG0EBQ
- QwVLfc4fWyilOoo8ggpKHlG6AcFWkTZALMOMjRntPVs1FrJqIAFUt+pht
- hgbwq0In14iB3yoyJA2Lmr1tTQ274xYaNkYUb1SwzksDuLtDhZvpeEYrl
- lRgnmXes0y8RO1gtp6Uwhn5abxOMJCi/U7nxOIV4GfEUh+P03+QvVk23h A==;
-X-CSE-ConnectionGUID: NkJ1L8eKS/O+7aVaradW/Q==
-X-CSE-MsgGUID: OO1CsD6HS3G8YJFUhXtb8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="71417295"
-X-IronPort-AV: E=Sophos;i="6.16,283,1744095600"; d="scan'208";a="71417295"
+ t=1751531328; x=1783067328;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=sj35D4miDRrWs164HT2RapX9Tb3tUZfok/Aqd5qmt3M=;
+ b=St5j/qHdTDCudEi64R0NYlarbQsnQz5VmcWfE3yLvRae2Wm2eOM/QQQU
+ FcKbyWBzLt/2UK4HvFH9+TrQ15OmHV1LEc41bQwq8W3OVJReaA145Zu1Q
+ dX9aiXnhZN2+Sq7IAO79TPvq3T0vytQvfcxJldaUtCu4ZruCC2Cb6Aqyw
+ I9+juu/oaCSrv6XoYVPihp1+V7KkS9ahAcbxjS3G4GK9nFCmmlXeb6Pfe
+ sqvGyiYlOVS4RdYj2NQK9paaUw2duboPVf2O3/9KFFxb+GBQDlJfNVcOT
+ KehAKIejuc4JPBox8JTqa9cfqLUbS73ybRuohCJ7PC4uQgNc/NndFRTg6 A==;
+X-CSE-ConnectionGUID: RsD5eu7oQreCPxjQZHe6uA==
+X-CSE-MsgGUID: ZAJeJRpAQ9+aAXB9YuY/Ew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="71417323"
+X-IronPort-AV: E=Sophos;i="6.16,283,1744095600"; d="scan'208";a="71417323"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 01:28:40 -0700
-X-CSE-ConnectionGUID: 7y2yo9iARLO1OatJdDUzZQ==
-X-CSE-MsgGUID: uXGM9abPTEiTD5IYTWhmCQ==
+ 03 Jul 2025 01:28:48 -0700
+X-CSE-ConnectionGUID: t4nJba3ZSMiIHK4ZtwupIw==
+X-CSE-MsgGUID: V/HUUUAWSRWUYncXcwl7cw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,283,1744095600"; d="scan'208";a="159815839"
+X-IronPort-AV: E=Sophos;i="6.16,283,1744095600"; d="scan'208";a="159815875"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 01:28:38 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ 03 Jul 2025 01:28:48 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 3 Jul 2025 01:28:38 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.1544.25; Thu, 3 Jul 2025 01:28:47 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Thu, 3 Jul 2025 01:28:38 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.60) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.1544.25 via Frontend Transport; Thu, 3 Jul 2025 01:28:47 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.70) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 3 Jul 2025 01:28:37 -0700
+ 15.2.1544.25; Thu, 3 Jul 2025 01:28:47 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CcJxweyAsXFc2Z209KLR1tIHYlFmDyUkxSq8jfMRUntp2GWl8IJW6cdD6vmrlY5QCwRWDAtWc0pE7ZzemHPZu+XMm0skSYFHckWZyEnTLAhbmB1BZrDIBaPpD/20Ny3dKVnj6MNY4uV5usZU6OeBdbl3RBHwd1qsH/+BSi7U5RBYtIrq3SCik/8UwUBG9fM62mktU74gCq/tsRgOvKjtjhfLCg6NMBeDMnf3elfj8PAGO4x2MGnsddcfLjfwgvisL7zP8ealruYY/vD1lJIwlNVKKMw3eW9etxRzwhjRUedy6l6ldhn0U8uU3Dt+U2udg3pV/BXZWiXJ1nIOR12QJQ==
+ b=KpNFdSeaUb0ukebHh8DCLh/L5qDpaH6QORY5fPOF/HgR9YxDva6Z/ij7aDg7QwRmeAEgeTtWbve5KBR+EgdbyKYY86MM/gbMaaN/z6F1bJG+zEDVW+krTgBa7+/6bNQKlzCT7ufwJbn8TO61m53iQbpbnvyWXxKosZu3X5+IsJDCCt0nY0Q5oGMcBqvfpGNWfjvXvQLetY8xzmwdhKUbemdqn2F3dg+LAipaHOmEymoEpEc8BNBp0T2cOS8hueGqlkWiGhtXZX0u8WAymO/EWTaOJrmkGYcEByLq16RwhauYJsmUNeW0syWGXUwCSy1h7R16RWRXWjxQQGD9tqMZ9A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/MWb1viIY2rCNNXtBVIykAlZ6tg+QndDLuhTNpuDCJ8=;
- b=JWf+U368x6cG/7jg1PZOHfjxmy+ziEb2DcVXcFuWVY/Boqela34i5+A95DIij+/7PVtmQzs19i+3lC0c5RO9Y/3lsqGHYxmwhcMpV7zr8D985Tklis3CtS3w5DXcyRNzcpOCzgIJuFxNZ9hY+jwSOyA3TzkdmQhemNY0WZHxv0J0rG5yu2hKRA7WOx6akA/NPGJIenm82EEhGqB+sh8sPU5D6zNvYeuYNY8Xd0unPVqqjqK2d7k/crAcMS/PI4jsbTM3WR2DKXa+IbGB8eElNsdcNlBf5lYLKiFS7EhTxtoDR3LdXkIYcSqjq+uGNl/fb/GIyVs/mmvP7sc2OQy/Bg==
+ bh=00Cbkb5VrVuqMjmeKNhRvE3R5Dlqony5FarPc0PBRW8=;
+ b=GJMWkmSTs4H5GvUO5bgcpvGk5FCmfaV9wps1OGSv7DLy0QFsVFIAeS9F++TGMOZ7bcF+W9yt6v0evDNb5VXnfA7nxHUdP0sXhuPg/qtzUDNYrqZP7inzuoVN38xtAM7xajbGi1Jh0fAEkOIK47vYpZ4CcJpeJ1twgISaQHFzbhIhKPvhFBzPqz5PVUGiabaf0q2hS2IfFPq6rxPAA895f6r5clc8u+i/1+HZms6gQ5DvNzGAjYvVZVb1vYNG1ZnrXcc8X0lR/zawm4jFCPwIqut6fJ7eHYSMsQ+InrXIzA9i3esxSEGT5yFCQ2f6sksfl2KCt3vGJVXQ1um0gfVA8g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
- by DM6PR11MB4673.namprd11.prod.outlook.com (2603:10b6:5:2a4::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.20; Thu, 3 Jul
- 2025 08:28:22 +0000
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::e656:9300:fc6a:1b5a]) by DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::e656:9300:fc6a:1b5a%6]) with mapi id 15.20.8880.034; Thu, 3 Jul 2025
- 08:28:22 +0000
-Message-ID: <91eb3ff6-1b47-4ca3-acb3-566a97eb6d35@intel.com>
-Date: Thu, 3 Jul 2025 13:58:13 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/display: Optimize panel power-on wait time
-To: Jani Nikula <jani.nikula@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <ankit.k.nautiyal@intel.com>, <uma.shankar@intel.com>,
- <arun.r.murthy@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20250630122339.3007880-1-dibin.moolakadan.subrahmanian@intel.com>
- <b5a84286f9729e9d92e08596bfbeb4e9c77f6dc1@intel.com>
- <w22u6gjs6uuzfkksxrp6cjlkli2jzanqodb7ukyptlsv4a2kvk@kni4djwoeefx>
- <fe44d12c701c3d410de6e0ebc1f08bae2eec10a1@intel.com>
-Content-Language: en-US
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <fe44d12c701c3d410de6e0ebc1f08bae2eec10a1@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by IA1PR11MB7385.namprd11.prod.outlook.com (2603:10b6:208:423::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.34; Thu, 3 Jul
+ 2025 08:28:44 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a%4]) with mapi id 15.20.8857.020; Thu, 3 Jul 2025
+ 08:28:44 +0000
+Date: Thu, 3 Jul 2025 10:28:42 +0200
+From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, =?utf-8?Q?Micha=C5=82?= Winiarski
+ <michal.winiarski@intel.com>, Lukasz Laguna <lukasz.laguna@intel.com>
+Subject: Re: [PATCH] drm/xe/pf: Clear all LMTT pages on alloc
+Message-ID: <20250703082842.6l452pp52ndx2vt2@intel.com>
+References: <20250701220052.1612-1-michal.wajdeczko@intel.com>
+ <20250702080231.givgpmcdn7qxjlrp@intel.com>
+ <11cc0374-959c-4bee-848a-815fe33de4a0@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0035.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:81::6) To DM4PR11MB7183.namprd11.prod.outlook.com
- (2603:10b6:8:111::10)
+In-Reply-To: <11cc0374-959c-4bee-848a-815fe33de4a0@intel.com>
+X-ClientProxiedBy: LO6P265CA0020.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:2ff::11) To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|DM6PR11MB4673:EE_
-X-MS-Office365-Filtering-Correlation-Id: b63e9536-3cce-45ae-88c2-08ddba0b925b
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|IA1PR11MB7385:EE_
+X-MS-Office365-Filtering-Correlation-Id: 733cb759-0320-4103-b6fb-08ddba0b9fd4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VUFnZGRlQ2FBVkJOUE96REd5RjhuaG9tSFV3bk1sWitTdUZFbUo1bHBhbGdE?=
- =?utf-8?B?UEsrMkprYnl6NVhVUDhjK2RzTW4yUXAzT3NEeFNzVlFwWUVLQ2hrMDZYVEhv?=
- =?utf-8?B?VEtucFRaMm5oOEhmLzJuWVFZb3VsdTlNMEM3MnVldzFHV0R4WXcwcFQ3TkM0?=
- =?utf-8?B?VUc3WXh6TFNld1lqVEtTRTh4ZFhtOEV6OHlmR25NR3gzRGtqVXZzVVF1NXBK?=
- =?utf-8?B?ekxPM2twL0ZsYUlTUzd4UFdZcXlMMXR3Wlh2MHN2Ky9YandOYWFXZEFYcmpM?=
- =?utf-8?B?VTg2M2hwNnpHRHFoN1J4Uk5iMVc5N0tLdytFOEduU0I4dEVLZGhIVDllcmxQ?=
- =?utf-8?B?QmxQRGZ4NmZZc0JmZnpUL0Fjak9zNHNUMnI3MEVNWHBLT2lnSnQ1Z2psMnRk?=
- =?utf-8?B?M2FNdHFCS0ovUjViNUFFYjhlWHVoSDZLUEVzaDQzUDdSQ20rWnMzMG5hRzUw?=
- =?utf-8?B?eWxYUkV3STM4MGxNcW5qenpyY0xNSkRkNG5Pc3BWNll4bmNPUWhKZ2dnbWpE?=
- =?utf-8?B?M1Vhc0ozTkVlU3N1NVhTa3d0YUZKYStiMjJOSTB6MjBiWTlrSzRrb0pTQ1gw?=
- =?utf-8?B?SExDd0kyaTk2RUZuRHZaUWV6S0M3ZW4wSTJDYjVSaUxoMHkySVNqdHFoZGtn?=
- =?utf-8?B?dkhEbndNVWQrcXFaOTRFdjUvcXhSR1lVaWlZSVJ0Z1dlR3FxcEdScXU5M0hp?=
- =?utf-8?B?dG1EUlY5c1BYVkMyMkV0SnlFTFlha2xMWjNvL0wxNCt1U1ovakVnd2ZEUlY0?=
- =?utf-8?B?K0JPcE9RQUxBNE5kUzQ0Y1F3VHFDRGlDVi9ndG9UeVVkMExZUXNCYnA0Y0tX?=
- =?utf-8?B?M05QRUtXdzNuT0NWM0JFUFdtSDVsTExKb1hVL2NCVHJXT0RqSm5ZazBGSDYr?=
- =?utf-8?B?SGtUdGgvTUxIWXgvWkU0N005ZDNxMWF5UGIzb0owQVFJbElJNUk1SnFTeDBY?=
- =?utf-8?B?N2dYbXQ2WURIWmlaVkhlWXd1Mmd5cDV5YVJWZ3F5ckxpeDR5WnVuVGFtdXF6?=
- =?utf-8?B?Uk80dHQ5Sncyc2RRN0tUTERTc3NOQXV2Zi9JTDhqYUthcituNDVUdjNxQlBI?=
- =?utf-8?B?czliM3NnMFVidkE5MnYvSm50WE9xejIreFJXalBvaUI4blZsYmFnMjJUd1Fv?=
- =?utf-8?B?d0lPcmNyV3ppZkc2SlBZVFQ5YVV4UzZTdFg5c0d1V3orbDBUMERBTkxYeXBO?=
- =?utf-8?B?bG1QQzA2Um5iY3VMTTNuUmE4RWJCS2JtZ21ndG5hY1hsenVkRnYwWkVjYXhE?=
- =?utf-8?B?MUFQc05Ba3hHenBCV2lONlFoSEJUMllpZEJrbjNqNThQRWVDeUZDeFN6ZEFy?=
- =?utf-8?B?RERpTmJvM2xYNVJCcVpIRG5RaFk2aUdzdVR5SnY3cVpVQVRzTFF0NUlsOHd1?=
- =?utf-8?B?dTZ1aUF6dWZpenZmRGVhZXBUR0V6N1BndUMvUnp4RlF2ZDhJV2g0a2tLdlFs?=
- =?utf-8?B?S0xqVHcxcCtLb3FkaDRDWU13aVA4ZXZrLzRpRE8xa0F1bTJ4RDgzK0lJOEpr?=
- =?utf-8?B?c1I3RkkwMnhtOWM0Z1RZc3NoZktNVURqakZ4eUR0SnFvVWFVRWtIYXhDMHVN?=
- =?utf-8?B?NXFOb0VKZEtCN2JSMU9NR1I5OHJzbW93dU9FOGkxQUR0OS9ib1N6WE1ITUJK?=
- =?utf-8?B?eXpkMUltakhGYUlEaGVxa3dJSmhhdWdFWENtOXR3Zjd4Tkc2WGFRcUljcDFj?=
- =?utf-8?B?eXVGYWMrY0xLdmh0VFVkMlR3MW9Sc1ErK2pPaVZlR2ZqUm1nblU5b09RQkE3?=
- =?utf-8?B?QXlRTGYrU0NQR0wwOHdCNXBwVXJuSk80Y1pKcWtGcWIvKysySHRVck00bG52?=
- =?utf-8?B?Q3RaMnNTMjlIZWhMSldxWDF6L0lVb05IMTVXeEg1YisrUmlsTjYrbGhyelZO?=
- =?utf-8?B?cXZmUGFBQkc2TjgrdnRDTXFlL0xYYW9hSWhMb3p6R2lNYlBrdlkwRlc5OTNj?=
- =?utf-8?Q?Fave4QXM6iI=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?alRnUHYxemt4R0NOUVhUNmxmSjNkWk4raGlGaHZmZVRrWmxrdUZnV05pSktF?=
+ =?utf-8?B?K2crWXllbFlzZGg5M1c4WEQyRjlYWm5EdDIwREQwS21wQjE3cHl4RXZsTTVS?=
+ =?utf-8?B?MG9UT3o0M3Vvdk5JM0xOVUE5RnAwUHpoSGhocUxYQnB0bFErVnZ4clJiU2xF?=
+ =?utf-8?B?cmFsNlFZSkFlQlBRbmVnV0lQRzUwdk02cWlDTUFwVWlFdElFYWVLV1pCeFdZ?=
+ =?utf-8?B?QXM0NlZQSzNsb3dDZGMzOStVSnN3UzZoL2EyLzlFZndWeVJCcWlLNDVvdHht?=
+ =?utf-8?B?U0NJTldudGE2U24zQXZpMVJBOGdreEJBZU5OQjRpeGNSSGRmUmUrZ0l2cHdK?=
+ =?utf-8?B?aWg4U1ZPQThUcTR5emdNWmNBYnJ0NU1WWW5uQUE2MGl4eElnNW5hSjcyYzJH?=
+ =?utf-8?B?TzNOcWlQbjFtam9rbFRVck5xTkoyQ2hOTEQ3OUgrNE42QjR6OWFObTlQTnF1?=
+ =?utf-8?B?Rm84Wi9DRURlZS9pUVBoR2VoYnl4QjFQRXBGRndmMWJoUDRRRFE4Mks1K2FS?=
+ =?utf-8?B?R3JVRDBlV2d3VTdkSmZtdXBZOW1wRWZqb2g3aUN3WDdXa2ZtUWxuM1V0OUpU?=
+ =?utf-8?B?eGdHbHJMbzhBN2ZCUGFNYnRWRDJMNmphUFF5aVA3dE5KWlFEaDRvcDkvV2oz?=
+ =?utf-8?B?QTRrdEVUOVdFS3hpVVZpaEhlMGFqOVNlYnBhcUN5K3VrSFZmUHlKd3NsbVFv?=
+ =?utf-8?B?aXJDRVQyNE91NFZaM2VjaFkzWGNBWndzQW1FRGszb3BWOWlleDFud1gwUFdB?=
+ =?utf-8?B?MkRrdUE0aW50Y2xvTkVxV2k1QWxNY0N5SGRmZVYzTTNxRVByWXVYS1RxRHdv?=
+ =?utf-8?B?Vm8xYnZuNmsvY01JWTQ0ZnNobmxVU0ZTTEJ0SVlicTMxY3EzK1EzVDRaeTJV?=
+ =?utf-8?B?dnd3VVNTL1F3YnF1dVdBSy91d29vMVhxZm5jMThrQU9yRktlYXFEclpjVmI0?=
+ =?utf-8?B?S0NKM0xjRW9acktqSUMxRnQzN2F5WHRacnEwbEdhSGZVTVNJU3hYVDhNMGV1?=
+ =?utf-8?B?bFlNV0Y1VTBoMDR4bDN6Wnc4VXI4bFlMbkQ4LzF6MTdlQTErTVFCTnlkSjZY?=
+ =?utf-8?B?WUxaU215SURZYlB5VmlsODdXZ2IxWnhPeXo5dkJEQzIxZEdlMXlFUHJWVXhy?=
+ =?utf-8?B?Q2N4M281d2N0K0ZRUDNIRjZmUXdzMXNwck51Y1lJU3FPYm1XcGJYQzNxL0tC?=
+ =?utf-8?B?czNTS0VPNml2ZjZ4dE9LR3FwbjFsMVNlY2dQcnFheTAzcEJDM2wxcDZOeFBn?=
+ =?utf-8?B?T0dpUGl0VjUvNjYxVWpqbGE0dXJueFlZUEtoZU9zd2g5dnlWNk1CQWQ3QzJv?=
+ =?utf-8?B?VzZsODVnRkNHbjlFUW45NFZDWkJpSnZrWWpocFVJenVPMGZRREVqbldtNlJO?=
+ =?utf-8?B?ME5IU3cxM0ZBazFjSXY1TmZOd1FLWnRhVUdDTUVWbm95dkpGRlowN1gxZ3JY?=
+ =?utf-8?B?Y2hjbkhDSnhLRnlHRUJpRXIrUkJaUUJlL1BqNVpnUk4yeXkrNUJGbjc3SURD?=
+ =?utf-8?B?dmcwaFB5dEdWK0xoQ0xyTDhMWWZ2dExseUlGMmhIYUlQWXZMZmQvWS9uYnpy?=
+ =?utf-8?B?OXBPWW1DQjl1MFFCWUdRZ25RZjg5OXZQWmJVb3drT0VHVXlha2w2cWo2MEF6?=
+ =?utf-8?B?YXRWbVlpMTlhSTl2OGpINkxabUFwdTQvRkVOajV2ZWdGRmRVTzNyMitMN2Er?=
+ =?utf-8?B?YlZReVYzbEM0LzJBbFF5SXd3K2tHdVQvTlc5NXB3dElzL3RXRjIvazVEUW1k?=
+ =?utf-8?B?UnBjaUdiL21ZUHJEMGEwRVR4dktGU2IyUzlHWHhYZkg5eStCYkl6SGlVakdL?=
+ =?utf-8?B?bWVwSlRnS1Yza2hpQUE2RzdWb0NEMEFBeUtpczlnRWxMQUtteUpiK2pGZC9l?=
+ =?utf-8?B?TUZWemNlb0FRUGd3QUowajJDMk56d1RNS0RFR3k0MnEyby83VEVRWE5yR3Z1?=
+ =?utf-8?Q?7naE2YSRTpc=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bk1LcDY3djVmakRjbXk1VEc1eHlRK1JYQ1JQckVXeXR3TXJzZmhtRVFZUVI5?=
- =?utf-8?B?NVFoUUJpUDBSRVJTRzNqa0N6WlAveVlXRFlUaktqd3RNZ0tWVEFNTzhUUy9G?=
- =?utf-8?B?OXJaYm9VdkozNVVPczVEck5EMDFwQXozejRhMlp2d2hhQm4vYXBRRXp5ZFpF?=
- =?utf-8?B?UjkwZG5JTzdaSkFhYWhHSlZUdG1PZ1VCc2gzNzZObmtTczF0OVQ1WHdMc0xF?=
- =?utf-8?B?K1AvMktjVUpuZUw1VWsrSnZzcGVWSWZCeG84bEtVeC94azVIb00veXAxL28z?=
- =?utf-8?B?YVdITlZUVk5zRndFR294K3ZaeDd2aW5zQUFNdWJVZjdFTnVNTno1VEpWc1dO?=
- =?utf-8?B?dVovaWRHMnBIL2J2SUVxZDlVWnk4OS9zdDdDTFo3ckdpOFBnTmFaaUtRby9o?=
- =?utf-8?B?ais4L1RtVi85VVRLRytXTDFyTW55dHR3MTl1MTc0UUhkbUxwaXBnU0wxMlRQ?=
- =?utf-8?B?c2RQQ1g2bE9GL2VBcVErZWRkY20zcm1pMmdzQnV1MWUzU0JXY2M0RDJDb1pm?=
- =?utf-8?B?b0F4b1RyTWZYRWFBMC94Skk2L09qSllMV01kb1FJbnc1UWkvNnpPWENNWmh0?=
- =?utf-8?B?NDd1aHlNNHBiQ0NLQ1d5WnYxZHZRdWhTb1hhbk9ucGxrakRPcWg0aklXMHpv?=
- =?utf-8?B?Q0Q3WnFFbFFaYytFck5yWC9XZ1YwdjVNRU5vNVQwUmQzUXJXOEdXcUZpSkEy?=
- =?utf-8?B?bk1DR3Ird05hYkdjeDl4ZnpsUU5wZ2xhaDE4SzNGaFlJRjE3QUZ0dm1KU0JO?=
- =?utf-8?B?UzZSa0JzTitGNG90Ulcxck94VjRPR3o4aElNbktnczU1SG9ZOXA5VitEWFRS?=
- =?utf-8?B?UHY3OUxwNVdBeFJSUWRkZ1JKWkVkdVdBTEJidWdkTEd0Wk9Gd3U5Y0Q1TzJP?=
- =?utf-8?B?bmVsRXdEN2VNUENWUGJWbkU4SjNUZUJvNFRlcFd3cm9jUUg1V00wZWE3cWkx?=
- =?utf-8?B?ZkNscW1iUklBd05VOFFseTZSSkxwWmllMU0zcGtQdDBRc0Z6MkJYQlFqYkNB?=
- =?utf-8?B?U1hybUhmMzBRemZpYUxGcVQwUWZ3cUcxbjBBZ3lSbUp5VGFGQkpPWjdNU1Rq?=
- =?utf-8?B?V3puMWs0Z0R4M2FPL2x2NlJIWGl5QXNlcnV2OTgyN2ZLTVdKZGdxM1N3L1RV?=
- =?utf-8?B?WThUUU5Bd1ZoVUVJSVdsMFhkbmYyb0R1ZmR3UnE4SEg5cVR0d0h4cjZBZXVR?=
- =?utf-8?B?LzhWNG9sc1A2LzhManE5Q0RDdUFVVVl1ZkE1L3NNM3FCejBSd3Fud01DQkkw?=
- =?utf-8?B?cFh1K3lCdVFkbTFNWTFiOXFpVUdhdWdLWXluMyt5L3kwUTg0eEFWblNHR2cv?=
- =?utf-8?B?QUU1emEzZk9COUN1enF4eUxNeVVyQkZjMnE4dUdNaFMzUkZmNkN4ZEUzb3B2?=
- =?utf-8?B?alpEVit6OHl0ZUNSY0s3bUdlUk9hWlZ1Y2gzWDRuVnc1ZVJWS1cvNWNkbnY5?=
- =?utf-8?B?QjFnMjluVWtDdXp5M1hSZkQydFVKdHlpN3RoUnhiREp0Q2dtd3Rzb1V1U2hj?=
- =?utf-8?B?eEtYVGFiWU14Q2ZTTFFpcElPZXU3SmhwS3BJazBXbXRxUXNoUFZTVm51eG81?=
- =?utf-8?B?YzhiMUtzNVJCNXFnV3FlbVpBVU1PRGFiVndjRWhWc0FJSDRNNm5ZdWt6YU1q?=
- =?utf-8?B?NTNCT3g1QnFGRzIwS2FUcHYrTms1TTNDSnN5Z0lkM0ZZVXRrclFVWmJsdlhN?=
- =?utf-8?B?dXpnTm1NaUR3K1dvdmovMkNaZURYWG1hU0ZmcDdDODNsMEQ1WU5kT3pQYUpu?=
- =?utf-8?B?Vm91U3V5NU1VUmg2ZHBCZFNjVlFzbXVlc0dxaW5seVB4Y0UrNThmTkhQNXVV?=
- =?utf-8?B?emlIYkpyYS9tSTd2M2VkblFtL2Fqem5vemREQ3hnZEtmNGN1UHJiWDNLalFR?=
- =?utf-8?B?OFdza0pMcit0aC9uRi8xMnZ0WittWksxWEdNYzhiRng2azVjdjNXRzZQSHpl?=
- =?utf-8?B?MDZqUXFpM0Zub1l4TTdzbFpOMUZPSi82WmJxY2gxMVY4bElWb0xBaGlMNXRm?=
- =?utf-8?B?SytBeUtkWE05S2hWdC93cXBNTnR2S3BjeEYvcEExSTVFekNuMW9WSmJHSzkr?=
- =?utf-8?B?VXVYMjFwUkNLOTVCTkxuVzdPaUhuQXJtdmNxQXoyMUtEa1l1Q1hmeVhpRklv?=
- =?utf-8?B?RGh1WmFnVjlPbHRMMHZMeFkxNVRxRkNocHJrd3pJay9RZWJ6UUpVQ0RSOTFk?=
- =?utf-8?Q?2SJ6jXW7xr8coX2seVA7aABB02d5rXdBJrWHgHQ8rR0j?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b63e9536-3cce-45ae-88c2-08ddba0b925b
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S1h5VDNoaEU1SEdBSS8zVFZIOFROMEdYdlVIemxBTjd5SjlDQlQvTTRRS0Zv?=
+ =?utf-8?B?WTFPOWV2Q3N1RjZkQWIyZW1WcVQ1c3pLTkliTjMveWdFa2RGMHBkNm9KKzFX?=
+ =?utf-8?B?ZE1BK1lIT3hBNWFtMDVDaml0UXFCOGxWR1NLQjh1L0lGbWhib1N2OUNQMTFo?=
+ =?utf-8?B?MW05bFdUR2wrd3RFY3dZZ0xramt1ZWhvVEhxQ0tPMS9vMFZLL1duRlFvdDUw?=
+ =?utf-8?B?cEVNRkNlLzdJc3ZvczZhZVpCNVo2OHVQTmtJNWFnMXA0Tm8wT2VndTh1UUxG?=
+ =?utf-8?B?VG1Cdkk2WVZuM0lTRlR4cEZZYnNwN1FMdXE0dmtWWVBCQXlScFpUMWZLVElU?=
+ =?utf-8?B?U0RKVEp6dUJiUk9zT0pUdTJBenNKcUtiRFRpeUx1eXRMTmdQK3phTndBQjhj?=
+ =?utf-8?B?ZHlESjY5b21GUU0vRzMwWlc2N21TTm1tYkQ4V1JhdkQzTG8rOVRvRlZuR21n?=
+ =?utf-8?B?ZlprS3FtdmZaSTJaZWxwc2hsa1paTWhsK1dkN3Nudm5CbG5Lbm9mYXpNcUdU?=
+ =?utf-8?B?bTlZRDM4V2JZc2g5Ykgxdk9XN0R5R0xVaGtralE4eGxPYm5NNlhrMWg5Lzgr?=
+ =?utf-8?B?c3M4OUJibnd1bHFKUHBIZnJyRXl4WTQ3cENWV0pwUVlrdVRJRUNkWDEveGU5?=
+ =?utf-8?B?OHlXTlFIYm8zL08zbHJZYUxJZ0NJajFoVDc4c2NkOW44UjlzYlo5WW5zTm03?=
+ =?utf-8?B?UlpIeWNYbTMvek9ibjI2VTBTSGIxK3A4MEsyZHhUVWxuLzZGTUl6YjRIWWJk?=
+ =?utf-8?B?aWRBQTR2SEZyVWY1OHFSYlhnQk9GN0lDVm44eXpkbkFSQU5wQmZvM0svNWM0?=
+ =?utf-8?B?UkFoci9HbVVPMkhCRzI2UEg1N0tBMEdCZWF1clNRb01TQkIwRFdjNm1GNG96?=
+ =?utf-8?B?WDVMeTEzQlRERXYxNkNUUlJRT2lORTF5VGlNMXRKZW1udERqZzZjbitqcUdr?=
+ =?utf-8?B?d1JrcHVOanpKMDhoTVNOS3lJeDFiT0lKZVVVVCthYVRkZ2E0K1gvbmYwdk15?=
+ =?utf-8?B?bUxjV2pab1hoVk8zMVhObldxcjNtRyt0QUQ0aWZickpSR1ptUWoxcURHdTR3?=
+ =?utf-8?B?b2xCWWl5N1dIZGlPT1VST2wzNzJtb2Z2SFFycEhKWHBkeHNHNzd6UjhqU0tL?=
+ =?utf-8?B?VUV0eTM4NnVVYXMveTk2Qk9yS05LMncvbGg2dURaQ0F5enNHcUpiRGw4SUlX?=
+ =?utf-8?B?MHdra2pFOTZ0eloxZ1d3djNuUWpEQnc2SlZEYWduZVMxaDZ3VjIrMFhNeVN2?=
+ =?utf-8?B?UG5wM3E0Qm1aMGx5WG1HbCtQc0RUYzZ4N08rQjZPMmI2bUl5ekVjb1Evc1NZ?=
+ =?utf-8?B?SlEyellwSUhjUWNMTUFUT3MzT2RUdysxaVZsVWNON0dET0pEMUZUL2RiWkMv?=
+ =?utf-8?B?eUs5WE1sZ2kwUFZmWFU4YlZNSDlHZmtPNTAzc2c5a05KR1RnbG0vNnlBUEdW?=
+ =?utf-8?B?K1ZRY0Rhd1h6QjJ0a0QyN1pSem1jUzdveGZsaHNsbHJJakRtNTBwQ3F1UFFn?=
+ =?utf-8?B?NU15RUk1OWRaVzNldkVnWXlMWU1oU3EyMlRHWnhLRWMralZIMUMwamtYTS9k?=
+ =?utf-8?B?WCtNUEoyak54NzlscGtuQXdhOVZoU3phbW5zd2VSV1Rpb0E2eVNIRlhHZlk5?=
+ =?utf-8?B?U093RG5QajYwUGxsNUM1OFI2YkJ3SDJOYjJtUXorSVI3d1B2aExuU2tiTnJL?=
+ =?utf-8?B?VzZZVENjMlczbC8ySVpKdkJwd2RqUE1qSkZWRVd2R3RxNmhwN3MrV2lxeXFr?=
+ =?utf-8?B?VHhkaUFxTGw5bGdGdy80Q0tWMGJ6UlFYL0JmeTFvcHFnR2xwcDIrbFJqdCtI?=
+ =?utf-8?B?UlIzcm9xQm5sSEtSbTdBUTJxUjJlREppTzhjOXYxYUNOdVYwYm9lVWlFcjJq?=
+ =?utf-8?B?T0hhdGlKam5TeUhzMjRmNEhhbFpxdWZuaTJXZGxhUFlXZ3BDVWFCMElySU9o?=
+ =?utf-8?B?TGwxcTJJalpXTjhYS2x2VjdIYitRSUxIYXpiMjB0YlBpaXMxdWNtcWxBTWFQ?=
+ =?utf-8?B?MDgwaTJSMnJxdzNtcit6NUpHb00rSHFBTmdHRUxzbHp4cFBxSlUzcGRPRjI5?=
+ =?utf-8?B?T21uZk1RTDc2U1hPV2RKMTNaZC9SN0k1WXJmSzhaWUhVS2E2ZmV1QnN1OXRO?=
+ =?utf-8?B?Vjl3ME9iQTNHTGJvWmFRT3FkU1c0RVdJQmtkd0dyL1V2UU1tVkV3NEZET3dt?=
+ =?utf-8?B?cGc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 733cb759-0320-4103-b6fb-08ddba0b9fd4
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2025 08:28:22.3853 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2025 08:28:44.6348 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I7TqoKcTrEHOa3gP92R3/ttxmQmNnJMtzh9DX/+vNqNxdn8yu4NdyY9x3b4kIw+jL3ahfINLmGwjpx6YbML5OJ5+TYBEy2V5hXAf1DXqFMaW8iwBA/LpWy5DqT8lf9My
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4673
+X-MS-Exchange-CrossTenant-UserPrincipalName: q8kEoS8jCk+ubuAAiytHUuM271Tzr8i8nBu4PFqMbCd6tj8XFPya1mUgEVQK4No5HI9F64HlHjpDVXmelO9OChgEGdJRxBQ5HXjRB3/mweg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7385
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,77 +196,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on śro [2025-lip-02 11:37:08 +0200]:
+> 
+> 
+> On 02.07.2025 10:02, Piotr Piórkowski wrote:
+> > Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on śro [2025-lip-02 00:00:52 +0200]:
+> >> Our LMEM buffer objects are not cleared by default on alloc
+> >> and during VF provisioning we only setup LMTT PTEs for the
+> >> actually provisioned LMEM range. But beyond that valid range
+> >> we might leave some stale data that could either point to some
+> >> other VFs allocations or even to the PF pages.
+> >>
+> >> Explicitly clear all new LMTT page to avoid the risk that a
+> >> malicious VF would try to exploit that gap.
+> >>
+> >> While around add asserts to catch any undesired PTE overwrites
+> >> and low-level debug traces to track LMTT PT life-cycle.
+> >>
+> >> Fixes: b1d204058218 ("drm/xe/pf: Introduce Local Memory Translation Table")
+> >> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> >> Cc: Michał Winiarski <michal.winiarski@intel.com>
+> >> Cc: Lukasz Laguna <lukasz.laguna@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/xe/xe_lmtt.c | 11 +++++++++++
+> >>  1 file changed, 11 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
+> >> index b56437a816e4..381f576036d0 100644
+> >> --- a/drivers/gpu/drm/xe/xe_lmtt.c
+> >> +++ b/drivers/gpu/drm/xe/xe_lmtt.c
+> >> @@ -78,6 +78,9 @@ static struct xe_lmtt_pt *lmtt_pt_alloc(struct xe_lmtt *lmtt, unsigned int level
+> >>  	}
+> >>  
+> >>  	lmtt_assert(lmtt, xe_bo_is_vram(bo));
+> >> +	lmtt_debug(lmtt, "level=%u addr=%#llx\n", level, (u64)xe_bo_main_addr(bo, XE_PAGE_SIZE));
+> >> +
+> >> +	xe_map_memset(lmtt_to_xe(lmtt), &bo->vmap, 0, 0, xe_bo_size(bo));
+> > 
+> > We have a dedicated macro LMTT_PTE_INVALID
+> > Maybe it's worth using it here.
+> 
+> this would require to introduce  {xe,iosys}_map_memset64() helpers
+> 
+> but at this point we only care about BO being zeroed, not filled with
+> any specific value (like LMTT_PTE_INVALID which accidentally is also 0)
+> 
+> > 
+> > I wonder why we care about cleaning LMTT only during allocation and
+> > not in lmtt_drop_pages and lmtt_destroy_pt.
+> 
+> because at lmtt_drop_pages() we explicitly remove all references to
+> existing PTs by resetting root entry at the PD level, so HW can't walk
+> those pages anymore
+> 
+> > To be precise, in lmtt_drop_pages we do lmtt_write_pte(lmtt, pd, LMTT_PTE_INVALID, vfid),
+> > but from what I understand, this is missing at the lmtt_destroy_pt level.
+> 
+> the designed flow is:
+>  - call xe_lmtt_prepare_pages() to build PT tree with clear leaf PTs
+>  - call xe_lmtt_populate_pages() to populate leaf PT with PTEs
+>  - call xe_lmtt_populate_pages() to populate leaf PT with PTEs
+>  - ...
+>  - call xe_lmtt_drop_pages() to remove whole PT tree
+> 
+> since currently there is no way to selectively unmap any address range
+> or change the back-end BOs, thus there is no point in doing selective
+> clear of any PTE, except at the top level PD, which we do
 
-On 02-07-2025 14:31, Jani Nikula wrote:
-> On Tue, 01 Jul 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On Tue, Jul 01, 2025 at 12:28:41PM +0300, Jani Nikula wrote:
->>> On Mon, 30 Jun 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
->>>>   The current wait_panel_on() uses intel_de_wait() with a long timeout
->>>>   (5000ms), which is suboptimal on Xe platforms where the underlying
->>>>   xe_mmio_wait32() employs an exponential backoff strategy. This leads
->>>>   to unnecessary delays during resume or power-on  when the panel becomes
->>>>   ready earlier than the full timeout.
->>>>
->>>>   This patch splits the total wait time into two pases
->>>>      - First wait for the typical panel-on time(180ms)
->>>>      - If panel is not ready , continue polling in short 20ms intervals
->>>>        until the maximum timeout (5000ms) is reached
->>> I'm *very* reluctant to merge any new custom wait hacks. I'm in the
->>> process of *removing* a plethora of them [1][2][3].
->> good riddance
-> Yay!
->
->>> I think the question is, should xe_mmio_wait32() (and the i915
->>> counterpart) and the intel_de_wait*() functions be migrated to an
->>> interface similar to read_poll_timeout(), i.e. provide sleep and timeout
->>> separately, no exponential backoff. And implement the waits using
->>> read_poll_timeout(), or whatever Ville ends up with [4].
->> I saw your patch series and I'm eagerly waiting it to either propagate
->> it in xe or have someone merge such a patch.  I'm not sure about
->> removing the exponential backoff is a good thing overall, but if it's
->> needed then it needs to be justified to add a new function to pair with
->> read_poll_timeout(), not a custom driver function.
-> While I'm negative about the patch at hand, the underlying problem is
-> very real.
->
-> I think at the very least the exponential sleep backoff needs an upper
-> bound that's relative to the timeout. Maybe 10-25% of timeout?
->
-> With the example case of 5 second timeout, the exponential backoff
-> starting from 10 us leads to a dozen polls before reaching 100 ms
-> elapsed time, but then polls at approximately 1 s, 2 s, 4 s, and 8 s
-> elapsed time. Longer timeouts are of course rare, but they exhibit
-> increasingly worse behaviour.
->
-> So if what we're waiting takes 2.1 seconds, the next check will be about
-> 2 seconds later. Similarly, if it takes 4.1 seconds, the next check will
-> be about 4 seconds later, in this case exceeding the timeout by 3
-> seconds.
->
-> Anyway, if xe_mmio_wait32() remains as it is, with read_poll_timeout()
-> it's trivial to do the wait in the intel_de_*() macros, in display side,
-> with sleeps and timeouts defined in display. Because for most things the
-> really quick fast polls are useless in display.
->
-This exponential sleep back-off is causing around 120ms additional  
-delay in resume compared to  i915.
+Thanks for your explanation
+In that case, it looks fine to me:
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-how about polling as below , use intel_de_read and read_poll_timeout
+> 
+> > 
+> > Thanks,
+> > Piotr
+> >>  
+> >>  	pt->level = level;
+> >>  	pt->bo = bo;
+> >> @@ -91,6 +94,9 @@ static struct xe_lmtt_pt *lmtt_pt_alloc(struct xe_lmtt *lmtt, unsigned int level
+> >>  
+> >>  static void lmtt_pt_free(struct xe_lmtt_pt *pt)
+> >>  {
+> >> +	lmtt_debug(&pt->bo->tile->sriov.pf.lmtt, "level=%u addr=%llx\n",
+> >> +		   pt->level, (u64)xe_bo_main_addr(pt->bo, XE_PAGE_SIZE));
+> >> +
+> >>  	xe_bo_unpin_map_no_vm(pt->bo);
+> >>  	kfree(pt);
+> >>  }
+> >> @@ -226,9 +232,14 @@ static void lmtt_write_pte(struct xe_lmtt *lmtt, struct xe_lmtt_pt *pt,
+> >>  
+> >>  	switch (lmtt->ops->lmtt_pte_size(level)) {
+> >>  	case sizeof(u32):
+> >> +		lmtt_assert(lmtt, !overflows_type(pte, u32));
+> >> +		lmtt_assert(lmtt, !pte || !iosys_map_rd(&pt->bo->vmap, idx * sizeof(u32), u32));
+> >> +
+> >>  		xe_map_wr(lmtt_to_xe(lmtt), &pt->bo->vmap, idx * sizeof(u32), u32, pte);
+> >>  		break;
+> >>  	case sizeof(u64):
+> >> +		lmtt_assert(lmtt, !pte || !iosys_map_rd(&pt->bo->vmap, idx * sizeof(u64), u64));
+> >> +
+> >>  		xe_map_wr(lmtt_to_xe(lmtt), &pt->bo->vmap, idx * sizeof(u64), u64, pte);
+> >>  		break;
+> >>  	default:
+> >> -- 
+> >> 2.47.1
+> >>
+> > 
+> 
 
-     ret = read_poll_timeout(intel_de_read, reg_val,
-                     ((reg_val & mask) == value),
-                     (20 * 1000),                        // poll every 20ms
-                     (PANEL_MAXIMUM_ON_TIME_MS * 1000),  // total 
-timeout (us)
-                     true,
-                     display, pp_stat_reg);
-
-Regards,
-
-Dibin
-
-> BR,
-> Jani.
-
->
->
+-- 
