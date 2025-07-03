@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32189C83030
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 21:12:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B96FFC83F03
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 21:12:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB2E610E8EF;
-	Thu,  3 Jul 2025 21:12:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8380E10E8ED;
+	Thu,  3 Jul 2025 21:12:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j/vLtrDV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HtJmzjY/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0658010E8EF
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 21:12:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6E9410E8F2
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 21:12:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751577137; x=1783113137;
+ t=1751577140; x=1783113140;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9ZOuxYhkBiPpkd4QPKWvOeEWr4LBtt2gcd1tso0s8mk=;
- b=j/vLtrDV5lGZZ9H6Mgrkvp/HGQ9iBZ2VMc2v4XmW2Ma8ZUqosmjRgUHL
- FWk/aEPIoAchVeQSaHuvOKTVNMBhQFL2kqY2mkE+cIrLTu51auVgUrvh2
- v2VxIJb15PHM3l4OOO82PMysplwtxA7xpjY3XstPmSjw+MEaE0o9zmDC4
- v9ej7ty2Yt1cy6w3C0JotNsbgE1DG2BtNQ5/LAiSYD4wOtsnvT+DNgRGz
- tG1ErPQGZ3JswhJfMeu9uHh6UwgHcG8+Itv/P2R0xubr1CqWKiw0uxuHe
- iCVd0n7q7Z0jfcst7lZH+KEeN1EvuFL4IwJsgUJfCx1KLmGD9VWdkT5Vh g==;
-X-CSE-ConnectionGUID: nJd85oPDRxKtz5M2yTET2Q==
-X-CSE-MsgGUID: /G+QfVQITE66/XlPU2Z9Sw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="79353002"
-X-IronPort-AV: E=Sophos;i="6.16,285,1744095600"; d="scan'208";a="79353002"
+ bh=Qi8VA7IyqSTyswM7OG5Q49zNovGlyjja/KwiWAM4/W0=;
+ b=HtJmzjY/R25bjLkfL1jYraVfGZziTyEej+MlrUCbRqakJuobS++oTZVt
+ OxAy9WEp2UF7Io2i9lOcY/hmWhC6AsD5l5e11/RF0TGcMQ2SgWwIAOIIz
+ n0RTPEg2skTGcciWgOvFtegZH2JA4JV/Dp1tH3Yl5J2nrbi3vtY2E0S7U
+ gKtW6/auAzKVV74pGIK8DF4PxHjeLo+wdvC39c2UfrYQfPDVFcttSTdaU
+ D0k/o0/hV9A14YlQug3oIFErPRx3lnj2OSLz8v8Oe+KAmT8Ez9ewPAnAz
+ hfMOZFbajrcUflrGiBlkuJAzg0/eSL2VpKRn+LnycdA+AORCJrP+CzAW+ g==;
+X-CSE-ConnectionGUID: aB7ZNM5kT+20nBEq+Mhulg==
+X-CSE-MsgGUID: B5gcd9U2TD+9Xna6GwrdMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="79353008"
+X-IronPort-AV: E=Sophos;i="6.16,285,1744095600"; d="scan'208";a="79353008"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 14:12:17 -0700
-X-CSE-ConnectionGUID: vDUboYbzSMWfwB/0ONxfmg==
-X-CSE-MsgGUID: 0/ztsyJ1S1CylS9MLo0tvA==
+ 03 Jul 2025 14:12:20 -0700
+X-CSE-ConnectionGUID: CoI5qBEYT0eTvtpG4Y/SKw==
+X-CSE-MsgGUID: j77FCaf/RJ+9CUQ/XJn8Lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,285,1744095600"; d="scan'208";a="154240025"
+X-IronPort-AV: E=Sophos;i="6.16,285,1744095600"; d="scan'208";a="154240033"
 Received: from mjruhl-desk.amr.corp.intel.com (HELO mjruhl-desk.intel.com)
  ([10.124.223.97])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 14:12:15 -0700
+ 03 Jul 2025 14:12:18 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hdegoede@redhat.com, ilpo.jarvinen@linux.intel.com,
@@ -49,13 +49,14 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
  david.e.box@linux.intel.com
 Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: [PATCH v6 02/12] drm/xe: Correct BMG VSEC header sizing
-Date: Thu,  3 Jul 2025 17:11:40 -0400
-Message-ID: <20250703211150.135320-3-michael.j.ruhl@intel.com>
+Subject: [PATCH v6 03/12] platform/x86/intel/pmt: white space cleanup
+Date: Thu,  3 Jul 2025 17:11:41 -0400
+Message-ID: <20250703211150.135320-4-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250703211150.135320-1-michael.j.ruhl@intel.com>
 References: <20250703211150.135320-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,59 +72,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The intel_vsec_header information for the crashlog feature is
-incorrect.
+Noticed two white space issues; cleaned them.
 
-Update the VSEC header with correct sizing and count.
-
-Since the crashlog entries are "merged" (num_entries = 2), the
-separate capabilities entries must be merged as well.
-
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Fixes: 0c45e76fcc62 ("drm/xe/vsec: Support BMG devices")
+Reviewed-by: David E. Box <david.e.box@linux.intel.com>
+Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vsec.c | 20 +++++---------------
- 1 file changed, 5 insertions(+), 15 deletions(-)
+ drivers/platform/x86/intel/pmt/crashlog.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 3e573b0b7ebd..67238fc57a4d 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -32,28 +32,18 @@ static struct intel_vsec_header bmg_telemetry = {
- 	.offset = BMG_DISCOVERY_OFFSET,
- };
+diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
+index 6a9eb3c4b313..d40c8e212733 100644
+--- a/drivers/platform/x86/intel/pmt/crashlog.c
++++ b/drivers/platform/x86/intel/pmt/crashlog.c
+@@ -143,7 +143,7 @@ enable_show(struct device *dev, struct device_attribute *attr, char *buf)
  
--static struct intel_vsec_header bmg_punit_crashlog = {
--	.length = 0x10,
-+static struct intel_vsec_header bmg_crashlog = {
-+	.length = 0x18,
- 	.id = VSEC_ID_CRASHLOG,
--	.num_entries = 1,
--	.entry_size = 4,
-+	.num_entries = 2,
-+	.entry_size = 6,
- 	.tbir = 0,
- 	.offset = BMG_DISCOVERY_OFFSET + 0x60,
- };
+ static ssize_t
+ enable_store(struct device *dev, struct device_attribute *attr,
+-	    const char *buf, size_t count)
++	     const char *buf, size_t count)
+ {
+ 	struct crashlog_entry *entry;
+ 	bool enabled;
+@@ -177,7 +177,7 @@ trigger_show(struct device *dev, struct device_attribute *attr, char *buf)
  
--static struct intel_vsec_header bmg_oobmsm_crashlog = {
--	.length = 0x10,
--	.id = VSEC_ID_CRASHLOG,
--	.num_entries = 1,
--	.entry_size = 4,
--	.tbir = 0,
--	.offset = BMG_DISCOVERY_OFFSET + 0x78,
--};
--
- static struct intel_vsec_header *bmg_capabilities[] = {
- 	&bmg_telemetry,
--	&bmg_punit_crashlog,
--	&bmg_oobmsm_crashlog,
-+	&bmg_crashlog,
- 	NULL
- };
- 
+ static ssize_t
+ trigger_store(struct device *dev, struct device_attribute *attr,
+-	    const char *buf, size_t count)
++	      const char *buf, size_t count)
+ {
+ 	struct crashlog_entry *entry;
+ 	bool trigger;
 -- 
 2.49.0
 
