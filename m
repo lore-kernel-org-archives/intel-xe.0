@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45884C83030
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 22:44:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FE00C83F03
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 22:49:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBB610E1DD;
-	Thu,  3 Jul 2025 22:44:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E40C610E14F;
+	Thu,  3 Jul 2025 22:49:52 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF34610E1DD;
- Thu,  3 Jul 2025 22:44:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8700821793236235411=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06ED610E906;
+ Thu,  3 Jul 2025 22:49:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uc=3A_Disable_GuC_co?=
- =?utf-8?q?mmunication_on_hardware_initialization_error=2E_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_LRC_refactors?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 03 Jul 2025 22:44:41 -0000
-Message-ID: <175158268196.131399.10740141602360959115@1538d3639d33>
+Date: Thu, 03 Jul 2025 22:49:51 -0000
+Message-ID: <175158299102.131399.5008068359815576531@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250703213845.2259302-1-zhanjun.dong@intel.com>
-In-Reply-To: <20250703213845.2259302-1-zhanjun.dong@intel.com>
+References: <20250703-lrc-refactors-v1-0-6aa22f174041@intel.com>
+In-Reply-To: <20250703-lrc-refactors-v1-0-6aa22f174041@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +39,81 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8700821793236235411==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/uc: Disable GuC communication on hardware initialization error. (rev6)
-URL   : https://patchwork.freedesktop.org/series/150488/
-State : success
+Series: drm/xe: LRC refactors
+URL   : https://patchwork.freedesktop.org/series/151152/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3344-05fd9cf9ba87dcf4428adbca5237845f2c04d8ac_BAT -> xe-pw-150488v6_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 305c85360916b124e2cd93ed233df6cc7d56d799
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Thu Jul 3 15:41:16 2025 -0700
 
-Summary
--------
+    drm/xe: Waste fewer instructions in emit_wa_job()
+    
+    I was debugging some unrelated issue and noticed the current code was
+    very verbose. We can improve it easily by using the more common batch
+    buffer building pattern.
+    
+    Before:
+                    bb->cs[bb->len++] = MI_LOAD_REGISTER_REG | MI_LRR_DST_CS_MMIO;
+         c4d:       41 8b 56 10             mov    0x10(%r14),%edx
+         c51:       49 8b 4e 08             mov    0x8(%r14),%rcx
+         c55:       8d 72 01                lea    0x1(%rdx),%esi
+         c58:       41 89 76 10             mov    %esi,0x10(%r14)
+         c5c:       c7 04 91 01 00 08 15    movl   $0x15080001,(%rcx,%rdx,4)
+                            bb->cs[bb->len++] = entry->reg.addr;
+         c63:       8b 08                   mov    (%rax),%ecx
+         c65:       41 8b 56 10             mov    0x10(%r14),%edx
+         c69:       49 8b 76 08             mov    0x8(%r14),%rsi
+         c6d:       81 e1 ff ff 3f 00       and    $0x3fffff,%ecx
+         c73:       8d 7a 01                lea    0x1(%rdx),%edi
+         c76:       41 89 7e 10             mov    %edi,0x10(%r14)
+         c7a:       89 0c 96                mov    %ecx,(%rsi,%rdx,4)
+     ..etc..
+    
+    After:
+                    *cs++ = MI_LOAD_REGISTER_REG | MI_LRR_DST_CS_MMIO;
+         c52:       41 c7 04 24 01 00 08    movl   $0x15080001,(%r12)
+         c59:       15
+                            *cs++ = entry->reg.addr;
+         c5a:       8b 10                   mov    (%rax),%edx
+     ..etc..
+    
+    Resulting in the following binary change:
+    
+            add/remove: 0/0 grow/shrink: 0/2 up/down: 0/-348 (-348)
+            Function                                     old     new   delta
+            xe_gt_record_default_lrcs.cold               304     296      -8
+            xe_gt_record_default_lrcs                   2200    1860    -340
+            Total: Before=13554, After=13206, chg -2.57%
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 5bf9f9da41be2c8562f5d95aba623d27cb2aecf9 drm-intel
+6af7e5f55281 drm/xe/lrc: Reduce scope of empty lrc data
+5d1424e058d9 drm/xe: Count dwords before allocating
+d0cd1b0fba3a drm/xe/gt: Extract emit_job_sync()
+4b5e71dcc1c9 drm/xe/lrc: Add table with LRC layout
+f1d4a216d666 drm/xe/lrc: Remove leftover TODO
+8bcd747d5f0f drm/xe/gt: Drop third submission for default context
+305c85360916 drm/xe: Waste fewer instructions in emit_wa_job()
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+                bb->cs[bb->len++] = MI_LOAD_REGISTER_REG | MI_LRR_DST_CS_MMIO;
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3344-05fd9cf9ba87dcf4428adbca5237845f2c04d8ac -> xe-pw-150488v6
-
-  IGT_8438: 8438
-  xe-3344-05fd9cf9ba87dcf4428adbca5237845f2c04d8ac: 05fd9cf9ba87dcf4428adbca5237845f2c04d8ac
-  xe-pw-150488v6: 150488v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150488v6/index.html
-
---===============8700821793236235411==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uc: Disable GuC communication on hardware initialization error. (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150488/">https://patchwork.freedesktop.org/series/150488/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150488v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150488v6/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 152 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-3344-05fd9cf9ba87dcf4428adbca5237845f2c04d8ac_BAT -&gt; xe-pw-150488v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3344-05fd9cf9ba87dcf4428adbca5237845f2c04d8ac -&gt; xe-pw-150488v6</li>
-</ul>
-<p>IGT_8438: 8438<br />
-  xe-3344-05fd9cf9ba87dcf4428adbca5237845f2c04d8ac: 05fd9cf9ba87dcf4428adbca5237845f2c04d8ac<br />
-  xe-pw-150488v6: 150488v6</p>
-
-</body>
-</html>
-
---===============8700821793236235411==--
