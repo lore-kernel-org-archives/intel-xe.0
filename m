@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55008C83030
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 09:42:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9FF6C77B7C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 10:23:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1045E10E7F7;
-	Thu,  3 Jul 2025 09:42:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70BC710E180;
+	Thu,  3 Jul 2025 10:23:01 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9B5C10E1BC;
- Thu,  3 Jul 2025 09:42:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE5510E180;
+ Thu,  3 Jul 2025 10:23:00 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============8686861229572720716=="
+ boundary="===============1203348544234578754=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Remove_unused_code_in_devco?=
- =?utf-8?q?redump=5Fsnapshot=28=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_Future-proof_for_multi-til?=
+ =?utf-8?q?e_+_multi-GT_cases_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 03 Jul 2025 09:42:08 -0000
-Message-ID: <175153572875.131125.9735732807841336967@1538d3639d33>
+Date: Thu, 03 Jul 2025 10:23:00 -0000
+Message-ID: <175153818036.131094.16804026090065883491@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250703083202.3462887-4-shuicheng.lin@intel.com>
-In-Reply-To: <20250703083202.3462887-4-shuicheng.lin@intel.com>
+References: <20250630173438.2342706-8-matthew.d.roper@intel.com>
+In-Reply-To: <20250630173438.2342706-8-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,59 +40,26 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8686861229572720716==
+--===============1203348544234578754==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: Remove unused code in devcoredump_snapshot()
-URL   : https://patchwork.freedesktop.org/series/151111/
-State : success
+Series: Future-proof for multi-tile + multi-GT cases (rev5)
+URL   : https://patchwork.freedesktop.org/series/150192/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407_BAT -> xe-pw-151111v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8434 -> IGT_8436
-  * Linux: xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407 -> xe-pw-151111v1
-
-  IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8436: 3b7595f0e7f95de6d79e7ae6bb72e86b0a08a08c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407: d04a54cd3b99001adbc4cd3305b44f9f3e658407
-  xe-pw-151111v1: 151111v1
+ERROR: The runconfig 'xe-3330-a7091520e1e57b88990d2f3b92a20c7df416f416_FULL' does not exist in the database
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151111v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150192v5/index.html
 
---===============8686861229572720716==
+--===============1203348544234578754==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,34 +79,18 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>Remove unused code in devcoredump_snapshot()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151111/">https://patchwork.freedesktop.org/series/151111/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+<tr><td><b>Series:</b></td><td>Future-proof for multi-tile + multi-GT cases (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150192/">https://patchwork.freedesktop.org/series/150192/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151111v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151111v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150192v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150192v5/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407_BAT -&gt; xe-pw-151111v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8434 -&gt; IGT_8436</li>
-<li>Linux: xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407 -&gt; xe-pw-151111v1</li>
-</ul>
-<p>IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8436: 3b7595f0e7f95de6d79e7ae6bb72e86b0a08a08c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407: d04a54cd3b99001adbc4cd3305b44f9f3e658407<br />
-  xe-pw-151111v1: 151111v1</p>
+    <p>ERROR: The runconfig 'xe-3330-a7091520e1e57b88990d2f3b92a20c7df416f416_FULL' does not exist in the database</p>
 
 </body>
 </html>
 
---===============8686861229572720716==--
+--===============1203348544234578754==--
