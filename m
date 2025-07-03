@@ -4,48 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AF58C8303C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30A74C83F07
 	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 12:58:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E99C10E46D;
-	Mon,  7 Jul 2025 12:58:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1E9910E45D;
+	Mon,  7 Jul 2025 12:58:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="F4ulFDGP";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="nnxA36hi";
 	dkim-atps=neutral
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
- [157.90.84.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D113210E09E;
- Fri,  4 Jul 2025 19:20:25 +0000 (UTC)
-Received: from wse-pc.fritz.box (pd9e59880.dip0.t-ipconnect.de
- [217.229.152.128]) (Authenticated sender: wse@tuxedocomputers.com)
- by mail.tuxedocomputers.com (Postfix) with ESMTPA id CECFC2FC00A2;
- Fri,  4 Jul 2025 21:20:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
- s=default; t=1751656823;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=hfOhpq8fyOjaZ56cdFC/wn/8XOnBTOc0qDrbyCqpV9k=;
- b=F4ulFDGP6WyMJHaMAse7nkNMyECngO4ZXyITARDd188ZhSZYDkUaic7mBEfNfE+5w3UK3f
- O4nqweDNvunSUChrr9HOLaD7ySmR4jX05FFg4NwEJwn5MZCak+lzNdV1RabvS0/t60YlLJ
- XsBK6FnA9G9xEzTP1ZtiFnum+E80sX4=
-Authentication-Results: mail.tuxedocomputers.com;
- auth=pass smtp.auth=wse@tuxedocomputers.com
- smtp.mailfrom=wse@tuxedocomputers.com
-From: Werner Sembach <wse@tuxedocomputers.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: Werner Sembach <wse@tuxedocomputers.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 0/1] drm/i915/display: Avoid unsupported 300Hz output mode
- on a TUXEDO device
-Date: Fri,  4 Jul 2025 21:03:45 +0200
-Message-ID: <20250704192007.526044-1-wse@tuxedocomputers.com>
-X-Mailer: git-send-email 2.43.0
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76ABD10E1C6;
+ Thu,  3 Jul 2025 20:53:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1751576015;
+ bh=MzhB8SgpO91E94cGPaUZXDiJCZRh8U3Yn6qnM9Wvq5g=;
+ h=From:To:Cc:Subject:Date:From;
+ b=nnxA36hiHrNJo1j5cIfU+mxZubuP2518ohigVkwP/vIK2h5cQwSz3li5FcgJnehOT
+ DKvz+GrrfuNAuYfD6NQNSRPX6VknUlwFyTATwe8wlrPwwWuypzwShCAXvwqlyYA0w4
+ NtWRd6klBn7AS/W0u0MeDVmPV9q6NnS6QBJxwO2wS4N7jWACA5KsuA/WO3BNsVZBSE
+ EskIiDwcptrrfUuWOeMc1fTf0vSLxXtp6/JH2eLo0kKvdUwQSXWpMk8Q7jA/YMPkNf
+ RtsyvvG7h5emqXZffvMwroQi5Yhs1s9+CDUZm4tN8vIaAW7/XYJCqivJEI13I0VH4e
+ rQgFrzmCt7SXw==
+Received: from debian-rockchip-rock5b-rk3588.. (unknown [90.168.160.154])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: nanokatze)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id B028117E0B1E;
+ Thu,  3 Jul 2025 22:53:33 +0200 (CEST)
+From: Caterina Shablia <caterina.shablia@collabora.com>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>,
+ "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
+ "Frank Binns" <frank.binns@imgtec.com>,
+ "Matt Coster" <matt.coster@imgtec.com>,
+ "Karol Herbst" <kherbst@redhat.com>, "Lyude Paul" <lyude@redhat.com>,
+ "Danilo Krummrich" <dakr@kernel.org>,
+ "Boris Brezillon" <boris.brezillon@collabora.com>,
+ "Steven Price" <steven.price@arm.com>, "Liviu Dudau" <liviu.dudau@arm.com>,
+ "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Asahi Lina <lina@asahilina.net>,
+ Caterina Shablia <caterina.shablia@collabora.com>
+Subject: [PATCH v3 0/7] drm/panthor: support repeated mappings
+Date: Thu,  3 Jul 2025 20:52:52 +0000
+Message-ID: <20250703205308.19419-1-caterina.shablia@collabora.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 07 Jul 2025 12:58:43 +0000
@@ -63,28 +71,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-RFC because I'm not sure if this is the right approach.
+This patch series adds OP_MAP_REPEAT flag, which lets the user map a BO
+region over an address range repeatedly with just one map operation.
 
-The flicker manifests ever few seconds 1-3 black frames in quick
-succession.
+Sparse resources in the Vulkan API let the user leave regions of a
+resource unmapped (from the API perspective.) Accesses to such regions
+must not result in program termination, but loads produce undefined
+values.
 
-On windows 300Hz can not be selected for the iGPU, but the panel advertises
-it.
+To implement this feature on Mali hardware, Vulkan sparse unmap is
+implemented by mapping the specified region to a "dummy bo" so that the
+accesses do not fault. A newly created sparse resource starts off
+unmapped, and therefore also has to be mapped to the "dummy bo".  This
+"dummy bo" is small (a page size) in comparison to the sizes of va
+ranges that we might want to map to it, and a large number of vm_bind
+ops can be necessary. For example, if the user were to create a
+100e6-byte sparse resident resource, we'd have to poke VM_BIND with
+ceil(100e6/0x1000)=24415 map operations.
 
-A cleaner solution would probably to go over the pixel clock, but for this
-device there is only one 300Hz mode in the panels edid and that is at the
-nativ resolution. Chroma subsampling was not tested as linux afaik offers
-no way to easily enforce it for intel gpus.
+OP_MAP_REPEAT addresses this particular inefficiency by letting us
+implement a single Vulkan sparse unmap operation and sparse resident
+resource initialization with just one map operation.
 
-Tim Guttzeit (1):
-  drm/i915/display: Avoid unsupported output mode with 300Hz on TUXEDO
-    device
+The panvk changes making use of this uapi can be found at
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/35287
 
- drivers/gpu/drm/i915/display/intel_dp.c     |  5 ++++
- drivers/gpu/drm/i915/display/intel_quirks.c | 30 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
- 3 files changed, 36 insertions(+)
+No changes in v3.
 
+Changes in v2:
+- Make panthor use this stuff.
+- Make it possible to express a repeated mappina of any suitably sized
+  and aligned range of a BO, rather than strictly the page size -sized
+  prefix, generalizing the API. Rename DRM_GPUVA_SINGLE_PAGE to
+  DRM_GPUVA_REPEAT.
+- Clean up parts of drm/gpuvm affected by these changes.
+
+Link to v1: https://lore.kernel.org/lkml/20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net/
+
+Asahi Lina (2):
+  drm/gpuvm: Add a flags field to drm_gpuvm_map_req/drm_gpuva_op_map
+  drm/gpuvm: Add DRM_GPUVA_REPEAT flag and logic
+
+Boris Brezillon (5):
+  drm/panthor: Add support for atomic page table updates
+  drm/gpuvm: Kill drm_gpuva_init()
+  drm/gpuvm: Pass map arguments through a struct
+  drm/gpuvm: Add a helper to check if two VA can be merged
+  drm/panthor: Add support for repeated mappings
+
+ drivers/gpu/drm/drm_gpuvm.c            | 182 ++++++++++++++++++-------
+ drivers/gpu/drm/imagination/pvr_vm.c   |  15 +-
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c |  11 +-
+ drivers/gpu/drm/panthor/panthor_drv.c  |   3 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c  | 154 +++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.c             |  13 +-
+ include/drm/drm_gpuvm.h                | 101 +++++++++++---
+ include/uapi/drm/panthor_drm.h         |  23 ++++
+ 8 files changed, 408 insertions(+), 94 deletions(-)
+
+
+base-commit: 026a60e3c1c55845bd9fdaa202dad81c3f95ae6b
 -- 
-2.43.0
+2.47.2
 
