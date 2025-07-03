@@ -4,27 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4898C83030
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 10:49:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0378C83030
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 11:14:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CEE110E800;
-	Thu,  3 Jul 2025 10:49:20 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4560D10E7F0;
- Thu,  3 Jul 2025 10:49:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7786451425930128112=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60D2D10E168;
+	Thu,  3 Jul 2025 11:14:45 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C225110E168;
+ Thu,  3 Jul 2025 11:14:44 +0000 (UTC)
+Received: from 91-155-254-100.elisa-laajakaista.fi ([91.155.254.100]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1uXHtm-00000008dT9-0gC9; Thu, 03 Jul 2025 14:14:40 +0300
+Message-ID: <07607f3e85b2b43fd3ae6acb3c9dde59d6adc365.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: imre.deak@intel.com, Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Imre
+ Deak	 <imre.deak@gmail.com>
+Date: Thu, 03 Jul 2025 14:14:36 +0300
+In-Reply-To: <aF62jKhFTwMp4eKz@ideak-desk>
+References: <20250626082053.219514-1-imre.deak@intel.com>
+ <20250626082053.219514-3-imre.deak@intel.com>
+ <88efe57deeb6cb0cec213a43aab010a5f53e7577@intel.com>
+ <aF62jKhFTwMp4eKz@ideak-desk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/i915/display=3A_Add_no?=
- =?utf-8?q?=5Fpsr=5Freason_to_PSR_debugfs_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 03 Jul 2025 10:49:19 -0000
-Message-ID: <175153975927.131125.5015297146046920577@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250701170234.443586-1-michal.grzelak@intel.com>
-In-Reply-To: <20250701170234.443586-1-michal.grzelak@intel.com>
+Subject: Re: [PATCH 02/20] drm/i915/dp_mst: Verify the link status always
+ the same way
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +45,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7786451425930128112==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 2025-06-27 at 18:19 +0300, Imre Deak wrote:
+> On Thu, Jun 26, 2025 at 11:31:31AM +0300, Jani Nikula wrote:
+> > On Thu, 26 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > > From: Imre Deak <imre.deak@gmail.com>
+> > >=20
+> > > The MST link status should be always verified from the same DPCD
+> > > registers after link training. Atm, both the legacy (0x202 - 0x205) a=
+nd
+> > > the ESI (0x200C - 0x200F) link status registers are used. Use always =
+the
+> > > latter ESI version of link status registers.
+> > >=20
+> > > Signed-off-by: Imre Deak <imre.deak@gmail.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_dp.c | 20 ++++++++++++++++++--
+> > >  1 file changed, 18 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
+m/i915/display/intel_dp.c
+> > > index 3f911c930a30b..ac7e08f485309 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > @@ -5176,6 +5176,23 @@ intel_dp_handle_hdmi_link_status_change(struct=
+ intel_dp *intel_dp)
+> > >  	}
+> > >  }
+> > > =20
+> > > +static bool
+> > > +intel_dp_read_link_status(struct intel_dp *intel_dp, u8 link_status[=
+DP_LINK_STATUS_SIZE])
+> > > +{
+> > > +	bool ret;
+> > > +
+> > > +	memset(link_status, 0, DP_LINK_STATUS_SIZE);
+> > > +
+> > > +	if (intel_dp_mst_active_streams(intel_dp) > 0)
+> > > +		ret =3D drm_dp_dpcd_read_data(&intel_dp->aux, DP_LANE0_1_STATUS_ES=
+I,
+> > > +					    link_status, DP_LINK_STATUS_SIZE - 2) =3D=3D 0;
+> > > +	else
+> > > +		ret =3D drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, DP_PHY_DP=
+RX,
+> > > +						       link_status) =3D=3D 0;
+> >=20
+> > Please propagate the int instead of having "=3D=3D 0" at the end of the
+> > assignment.
+> >=20
+> > I'm increasingly critical of bool returns for success/failure, because
+> > they don't really mix well with 0 for success and negative values for
+> > error.
+>=20
+> Ok will do that.
+>=20
+> Both ways are used all around, but I suppose propagating the error code
+> should be the default choice. An exception being adding a new variant
+> of an already existing function with a bool success/failure return type
+> where the new variant should do the same.
 
-== Series Details ==
+I agree that here it makes sense to propagate the error.  There's no
+reason to swallow it.
 
-Series: drm/i915/display: Add no_psr_reason to PSR debugfs (rev5)
-URL   : https://patchwork.freedesktop.org/series/148957/
-State : failure
+With that change:
 
-== Summary ==
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-ERROR: The runconfig 'xe-3330-a7091520e1e57b88990d2f3b92a20c7df416f416_FULL' does not exist in the database
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v5/index.html
-
---===============7786451425930128112==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Add no_psr_reason to PSR debugfs (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148957/">https://patchwork.freedesktop.org/series/148957/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v5/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-3330-a7091520e1e57b88990d2f3b92a20c7df416f416_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============7786451425930128112==--
+--
+Cheers,
+Luca.
