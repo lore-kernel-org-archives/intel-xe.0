@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F084C83030
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 08:21:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EDA3C83F0C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 08:21:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC02010E174;
-	Thu,  3 Jul 2025 08:21:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBB3110E7ED;
+	Thu,  3 Jul 2025 08:21:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="XdvIG08v";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Sp4ex5oW";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC2910E7ED
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 08:21:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4B7510E195
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 08:21:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=VCAGr6Lt0L546D9Y/qLOVukw6UYGMMSkEiNkfVPDYec=; b=XdvIG08v2WjfefS0hfjbR2d/er
- lH95yFVZpBst7KqffitpulC1/HNcf26+GpLsoJE2iH2qtpNDITJTe9kF92GnmCC6p3w19+qC1ee/s
- +XkogiOu9al0aCdv/5KXMpR5VYxjrvMHtOLwf98AZzF+iY2QsfMeXeoA3D+qhe10YoJ/jbyqiPlSG
- +UxgP5bPLkxqPAoZ1XWhGfKp16upnrxrC2ka1g55z4MexUO0mV+hVHw/1zJLGlIMPH4tlPXY90mws
- FFOwpBNjxHRoXcDZyVm20xR54P7PpoNJGKBR0Z3OENBHr9v4V6DBzjAVnRNxeWVDA7FpQqts/4WEV
- GLf0+CjA==;
+ bh=vBbeYhptTS11keMLRrnrNL0maWlXI0pj8RosDSDEpZs=; b=Sp4ex5oWxAARIm4hXEQ+zitE1W
+ ZOMl7GaaCfoD8qU+EQAxz35pAgcFi3ospu3/mu9zyZxjKlndZF2+QhP0hRFkACbi1nXMEefsFCzLK
+ Cac5/jL7Py2rh+xT4SgvNEHkSoemDM0RGnVMcVD0hfsDn1TxfSFnt6QDgCEI3jr2nrEbwiWdh8zM6
+ xEp1CeCQfvpGDuawejS86id+1WxH4jLTaxrtWjAoHEQD9s7ZDD44+wz2u91MVrTpHDyERhWAhRo8Y
+ ZYoJjJ0eReyv/Ub6+BDvwQcI7n/LSTf82Px4U8TTchzVU5ls9ok5SlQcmQg4zMZAvimwauizFi8MW
+ OtOuZa2Q==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uXFBp-00Boeb-O9; Thu, 03 Jul 2025 10:21:05 +0200
+ id 1uXFBm-00BoeI-Um; Thu, 03 Jul 2025 10:21:03 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v8 5/7] drm/xe: Add plumbing for indirect context workarounds
-Date: Thu,  3 Jul 2025 09:20:57 +0100
-Message-ID: <20250703082059.61597-6-tvrtko.ursulin@igalia.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v8 1/7] drm/xe: Generalize wa bb emission code
+Date: Thu,  3 Jul 2025 09:20:53 +0100
+Message-ID: <20250703082059.61597-2-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
 References: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
@@ -59,188 +58,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some upcoming workarounds need to be emitted from the indirect workaround
-context so lets add some plumbing where they will be able to easily slot
-in.
+Generalize the wa bb emission by splitting it into three phases - setup,
+emit and finish, and extract setup and finish steps into helpers.
 
-No functional changes for now since everything is still deactivated.
+This will enable using the same infrastructure for emitting the indirect
+context workarounds.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  4 ++
- drivers/gpu/drm/xe/xe_lrc.c             | 80 ++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_lrc_types.h       |  3 +-
- 3 files changed, 84 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 75 +++++++++++++++++++++++++------------
+ 1 file changed, 51 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-index 994af591a2e8..cfa6db15488e 100644
---- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-+++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-@@ -12,6 +12,8 @@
- #define CTX_RING_START			(0x08 + 1)
- #define CTX_RING_CTL			(0x0a + 1)
- #define CTX_BB_PER_CTX_PTR		(0x12 + 1)
-+#define CTX_CS_INDIRECT_CTX		(0x14 + 1)
-+#define CTX_CS_INDIRECT_CTX_OFFSET	(0x16 + 1)
- #define CTX_TIMESTAMP			(0x22 + 1)
- #define CTX_TIMESTAMP_UDW		(0x24 + 1)
- #define CTX_INDIRECT_RING_STATE		(0x26 + 1)
-@@ -36,4 +38,6 @@
- #define INDIRECT_CTX_RING_START_UDW	(0x08 + 1)
- #define INDIRECT_CTX_RING_CTL		(0x0a + 1)
- 
-+#define CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT	0xd
-+
- #endif
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index e278c12a41f9..70db4c5764e6 100644
+index d2ad8fe737eb..5b05a730a0f2 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -39,6 +39,7 @@
- #define LRC_ENGINE_INSTANCE			GENMASK_ULL(53, 48)
- 
- #define LRC_PPHWSP_SIZE				SZ_4K
-+#define LRC_INDIRECT_CTX_SIZE			SZ_4K
- #define LRC_INDIRECT_RING_STATE_SIZE		SZ_4K
- #define LRC_WA_BB_SIZE				SZ_4K
- 
-@@ -48,6 +49,12 @@ lrc_to_xe(struct xe_lrc *lrc)
- 	return gt_to_xe(lrc->fence_ctx.gt);
+@@ -972,32 +972,37 @@ static ssize_t wa_bb_setup_utilization(struct xe_lrc *lrc, struct xe_hw_engine *
+ 	return cmd - batch;
  }
  
-+static bool
-+gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
-+{
-+	return false;
+-struct wa_bb_setup {
++struct bo_setup {
+ 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 			 u32 *batch, size_t max_size);
+ };
+ 
+-static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
++static u32 *
++setup_bo(struct xe_lrc *lrc,
++	 struct xe_hw_engine *hwe,
++	 const size_t max_size,
++	 unsigned int offset,
++	 const struct bo_setup *funcs,
++	 unsigned int num_funcs,
++	 u32 **free)
+ {
+-	const size_t max_size = LRC_WA_BB_SIZE;
+-	static const struct wa_bb_setup funcs[] = {
+-		{ .setup = wa_bb_setup_utilization },
+-	};
++	u32 *cmd, *buf = NULL;
+ 	ssize_t remain;
+-	u32 *cmd, *buf = NULL;
+ 
+ 	if (lrc->bo->vmap.is_iomem) {
+ 		buf = kmalloc(max_size, GFP_KERNEL);
+ 		if (!buf)
+-			return -ENOMEM;
++			return ERR_PTR(-ENOMEM);
+ 		cmd = buf;
++		*free = buf;
+ 	} else {
+-		cmd = lrc->bo->vmap.vaddr + __xe_lrc_wa_bb_offset(lrc);
++		cmd = lrc->bo->vmap.vaddr + offset;
++		*free = NULL;
+ 	}
+ 
+ 	remain = max_size / sizeof(*cmd);
+ 
+-	for (size_t i = 0; i < ARRAY_SIZE(funcs); i++) {
++	for (size_t i = 0; i < num_funcs; i++) {
+ 		ssize_t len = funcs[i].setup(lrc, hwe, cmd, remain);
+ 
+ 		remain -= len;
+@@ -1012,23 +1017,45 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 		cmd += len;
+ 	}
+ 
+-	*cmd++ = MI_BATCH_BUFFER_END;
+-
+-	if (buf) {
+-		xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap,
+-				 __xe_lrc_wa_bb_offset(lrc), buf,
+-				 (cmd - buf) * sizeof(*cmd));
+-		kfree(buf);
+-	}
+-
+-	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR, xe_bo_ggtt_addr(lrc->bo) +
+-			     __xe_lrc_wa_bb_offset(lrc) + 1);
+-
+-	return 0;
++	return cmd;
+ 
+ fail:
+ 	kfree(buf);
+-	return -ENOSPC;
++	return ERR_PTR(-ENOSPC);
 +}
 +
- size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -717,7 +724,18 @@ static u32 __xe_lrc_ctx_timestamp_udw_offset(struct xe_lrc *lrc)
- 
- static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
- {
--	return xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE - LRC_INDIRECT_RING_STATE_SIZE;
-+	u32 offset = xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE -
-+		     LRC_INDIRECT_RING_STATE_SIZE;
++static void
++finish_bo(struct xe_lrc *lrc, unsigned int offset, u32 *cmd, u32 *free)
++{
++	if (!free)
++		return;
 +
-+	if (lrc->flags & XE_LRC_FLAG_INDIRECT_CTX)
-+		offset -= LRC_INDIRECT_CTX_SIZE;
-+
-+	return offset;
++	xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap, offset, free,
++			 (cmd - free) * sizeof(*cmd));
++	kfree(free);
 +}
 +
-+static inline u32 __xe_lrc_indirect_ctx_offset(struct xe_lrc *lrc)
++static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
 +{
-+	return xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE - LRC_INDIRECT_CTX_SIZE;
- }
- 
- static inline u32 __xe_lrc_wa_bb_offset(struct xe_lrc *lrc)
-@@ -1065,6 +1083,54 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	return 0;
- }
- 
-+static int
-+setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
-+{
-+	static struct bo_setup rcs_funcs[] = {
++	static const struct bo_setup funcs[] = {
++		{ .setup = wa_bb_setup_utilization },
 +	};
-+	unsigned int offset, num_funcs, written = 0;
-+	struct bo_setup *funcs = NULL;
++	unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
 +	u32 *cmd, *buf = NULL;
 +
-+	if (!(lrc->flags & XE_LRC_FLAG_INDIRECT_CTX))
-+		return 0;
-+
-+	if (hwe->class == XE_ENGINE_CLASS_RENDER ||
-+	    hwe->class == XE_ENGINE_CLASS_COMPUTE) {
-+		funcs = rcs_funcs;
-+		num_funcs = ARRAY_SIZE(rcs_funcs);
-+	}
-+
-+	if (xe_gt_WARN_ON(lrc->gt, !funcs))
-+		return 0;
-+
-+	offset = __xe_lrc_indirect_ctx_offset(lrc);
-+
-+	cmd = setup_bo(lrc, hwe, LRC_INDIRECT_CTX_SIZE, 15, offset, funcs,
-+		       num_funcs, &buf, &written);
++	cmd = setup_bo(lrc, hwe, LRC_WA_BB_SIZE, offset, funcs,
++		       ARRAY_SIZE(funcs), &buf);
 +	if (IS_ERR(cmd))
 +		return PTR_ERR(cmd);
 +
-+	/* Align to 64B cacheline. */
-+	while ((unsigned long)cmd & 0x3f) {
-+		*cmd++ = MI_NOOP;
-+		written++;
-+	}
++	*cmd++ = MI_BATCH_BUFFER_END;
 +
-+	finish_bo(lrc, offset, written, buf);
++	finish_bo(lrc, offset, cmd, buf);
 +
-+	xe_lrc_write_ctx_reg(lrc,
-+			     CTX_CS_INDIRECT_CTX,
-+			     (xe_bo_ggtt_addr(lrc->bo) + offset) |
-+			     /* Size in CLs. */
-+			     (written * sizeof(u32) / 64));
-+	xe_lrc_write_ctx_reg(lrc,
-+			     CTX_CS_INDIRECT_CTX_OFFSET,
-+			     CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT << 6);
++	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR,
++			     xe_bo_ggtt_addr(lrc->bo) + offset + 1);
 +
 +	return 0;
-+}
-+
+ }
+ 
  #define PVC_CTX_ASID		(0x2e + 1)
- #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
- 
-@@ -1074,7 +1140,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- {
- 	struct xe_gt *gt = hwe->gt;
- 	const u32 lrc_size = xe_gt_lrc_size(gt, hwe->class);
--	const u32 bo_size = ring_size + lrc_size + LRC_WA_BB_SIZE;
-+	u32 bo_size = ring_size + lrc_size + LRC_WA_BB_SIZE;
- 	struct xe_tile *tile = gt_to_tile(gt);
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct iosys_map map;
-@@ -1089,6 +1155,12 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	lrc->flags = 0;
- 	lrc->ring.size = ring_size;
- 	lrc->ring.tail = 0;
-+
-+	if (gt_engine_needs_indirect_ctx(gt, hwe->class)) {
-+		lrc->flags |= XE_LRC_FLAG_INDIRECT_CTX;
-+		bo_size += LRC_INDIRECT_CTX_SIZE;
-+	}
-+
- 	if (xe_gt_has_indirect_ring_state(gt))
- 		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
- 
-@@ -1213,6 +1285,10 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	if (err)
- 		goto err_lrc_finish;
- 
-+	err = setup_indirect_ctx(lrc, hwe);
-+	if (err)
-+		goto err_lrc_finish;
-+
- 	return 0;
- 
- err_lrc_finish:
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 2c7c81079801..e9883706e004 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -29,7 +29,8 @@ struct xe_lrc {
- 	struct xe_gt *gt;
- 
- 	/** @flags: LRC flags */
--#define XE_LRC_FLAG_INDIRECT_RING_STATE		0x1
-+#define XE_LRC_FLAG_INDIRECT_CTX		0x1
-+#define XE_LRC_FLAG_INDIRECT_RING_STATE		0x2
- 	u32 flags;
- 
- 	/** @refcount: ref count of this lrc */
 -- 
 2.48.0
 
