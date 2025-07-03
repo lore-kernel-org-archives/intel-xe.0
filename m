@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30A74C83F07
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 12:58:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 544A5C8303C
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 12:58:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1E9910E45D;
-	Mon,  7 Jul 2025 12:58:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 132E510E46C;
+	Mon,  7 Jul 2025 12:58:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="nnxA36hi";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="fzd2QFXh";
 	dkim-atps=neutral
 Received: from bali.collaboradmins.com (bali.collaboradmins.com
  [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76ABD10E1C6;
- Thu,  3 Jul 2025 20:53:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0132110E8D2;
+ Thu,  3 Jul 2025 20:53:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1751576015;
- bh=MzhB8SgpO91E94cGPaUZXDiJCZRh8U3Yn6qnM9Wvq5g=;
- h=From:To:Cc:Subject:Date:From;
- b=nnxA36hiHrNJo1j5cIfU+mxZubuP2518ohigVkwP/vIK2h5cQwSz3li5FcgJnehOT
- DKvz+GrrfuNAuYfD6NQNSRPX6VknUlwFyTATwe8wlrPwwWuypzwShCAXvwqlyYA0w4
- NtWRd6klBn7AS/W0u0MeDVmPV9q6NnS6QBJxwO2wS4N7jWACA5KsuA/WO3BNsVZBSE
- EskIiDwcptrrfUuWOeMc1fTf0vSLxXtp6/JH2eLo0kKvdUwQSXWpMk8Q7jA/YMPkNf
- RtsyvvG7h5emqXZffvMwroQi5Yhs1s9+CDUZm4tN8vIaAW7/XYJCqivJEI13I0VH4e
- rQgFrzmCt7SXw==
+ s=mail; t=1751576019;
+ bh=tFEfKWU89/mON7YzWM3EMlN8oEIpH8lGXHI+RwQ0Q3c=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=fzd2QFXhRlH7v2l+sgWCVFrVH8lxts1QlAtA/LpMypDi4qBBtwK+hhSX4m0nAZphZ
+ n/pRd7DnqOlqIACIur5Lq2oiRJ3BdLTx8lFVIfAnu0gLtMj6oJ0R3q3uORoG8osod2
+ k3GuHrAEUH7g/3S5KAyHlllPufWhy0M7PDkaQ0IcUIGY/UYjjDeo9QDarv3aDsy+l6
+ oZnEa7wuDKZd2ylYTYaLg+eH03uhTYM6ia/JHSStzfx9UJgDDroCzHaz8nDvyBP07N
+ yswFX6CTWDQ8OtuVa7RMqt1py+etjg7hq6xBEF3mdiw16At+GrSV/GIHEihbOvhCqj
+ hsSq3jDQNbPVQ==
 Received: from debian-rockchip-rock5b-rk3588.. (unknown [90.168.160.154])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested) (Authenticated sender: nanokatze)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id B028117E0B1E;
- Thu,  3 Jul 2025 22:53:33 +0200 (CEST)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 6F6A917E0EB8;
+ Thu,  3 Jul 2025 22:53:38 +0200 (CEST)
 From: Caterina Shablia <caterina.shablia@collabora.com>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
  "Maxime Ripard" <mripard@kernel.org>,
@@ -50,10 +50,12 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Asahi Lina <lina@asahilina.net>,
  Caterina Shablia <caterina.shablia@collabora.com>
-Subject: [PATCH v3 0/7] drm/panthor: support repeated mappings
-Date: Thu,  3 Jul 2025 20:52:52 +0000
-Message-ID: <20250703205308.19419-1-caterina.shablia@collabora.com>
+Subject: [PATCH v3 2/7] drm/gpuvm: Kill drm_gpuva_init()
+Date: Thu,  3 Jul 2025 20:52:54 +0000
+Message-ID: <20250703205308.19419-3-caterina.shablia@collabora.com>
 X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250703205308.19419-1-caterina.shablia@collabora.com>
+References: <20250703205308.19419-1-caterina.shablia@collabora.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 07 Jul 2025 12:58:43 +0000
@@ -71,66 +73,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch series adds OP_MAP_REPEAT flag, which lets the user map a BO
-region over an address range repeatedly with just one map operation.
+From: Boris Brezillon <boris.brezillon@collabora.com>
 
-Sparse resources in the Vulkan API let the user leave regions of a
-resource unmapped (from the API perspective.) Accesses to such regions
-must not result in program termination, but loads produce undefined
-values.
+drm_gpuva_init() only has one internal user, and given we are about to
+add new optional fields, it only add maintenance burden for no real
+benefit, so let's kill the thing now.
 
-To implement this feature on Mali hardware, Vulkan sparse unmap is
-implemented by mapping the specified region to a "dummy bo" so that the
-accesses do not fault. A newly created sparse resource starts off
-unmapped, and therefore also has to be mapped to the "dummy bo".  This
-"dummy bo" is small (a page size) in comparison to the sizes of va
-ranges that we might want to map to it, and a large number of vm_bind
-ops can be necessary. For example, if the user were to create a
-100e6-byte sparse resident resource, we'd have to poke VM_BIND with
-ceil(100e6/0x1000)=24415 map operations.
+Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+Signed-off-by: Caterina Shablia <caterina.shablia@collabora.com>
+---
+ include/drm/drm_gpuvm.h | 15 ++++-----------
+ 1 file changed, 4 insertions(+), 11 deletions(-)
 
-OP_MAP_REPEAT addresses this particular inefficiency by letting us
-implement a single Vulkan sparse unmap operation and sparse resident
-resource initialization with just one map operation.
-
-The panvk changes making use of this uapi can be found at
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/35287
-
-No changes in v3.
-
-Changes in v2:
-- Make panthor use this stuff.
-- Make it possible to express a repeated mappina of any suitably sized
-  and aligned range of a BO, rather than strictly the page size -sized
-  prefix, generalizing the API. Rename DRM_GPUVA_SINGLE_PAGE to
-  DRM_GPUVA_REPEAT.
-- Clean up parts of drm/gpuvm affected by these changes.
-
-Link to v1: https://lore.kernel.org/lkml/20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net/
-
-Asahi Lina (2):
-  drm/gpuvm: Add a flags field to drm_gpuvm_map_req/drm_gpuva_op_map
-  drm/gpuvm: Add DRM_GPUVA_REPEAT flag and logic
-
-Boris Brezillon (5):
-  drm/panthor: Add support for atomic page table updates
-  drm/gpuvm: Kill drm_gpuva_init()
-  drm/gpuvm: Pass map arguments through a struct
-  drm/gpuvm: Add a helper to check if two VA can be merged
-  drm/panthor: Add support for repeated mappings
-
- drivers/gpu/drm/drm_gpuvm.c            | 182 ++++++++++++++++++-------
- drivers/gpu/drm/imagination/pvr_vm.c   |  15 +-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c |  11 +-
- drivers/gpu/drm/panthor/panthor_drv.c  |   3 +-
- drivers/gpu/drm/panthor/panthor_mmu.c  | 154 +++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vm.c             |  13 +-
- include/drm/drm_gpuvm.h                | 101 +++++++++++---
- include/uapi/drm/panthor_drm.h         |  23 ++++
- 8 files changed, 408 insertions(+), 94 deletions(-)
-
-
-base-commit: 026a60e3c1c55845bd9fdaa202dad81c3f95ae6b
+diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+index 2a9629377633..6fdf2aff3e90 100644
+--- a/include/drm/drm_gpuvm.h
++++ b/include/drm/drm_gpuvm.h
+@@ -160,15 +160,6 @@ struct drm_gpuva *drm_gpuva_find_first(struct drm_gpuvm *gpuvm,
+ struct drm_gpuva *drm_gpuva_find_prev(struct drm_gpuvm *gpuvm, u64 start);
+ struct drm_gpuva *drm_gpuva_find_next(struct drm_gpuvm *gpuvm, u64 end);
+ 
+-static inline void drm_gpuva_init(struct drm_gpuva *va, u64 addr, u64 range,
+-				  struct drm_gem_object *obj, u64 offset)
+-{
+-	va->va.addr = addr;
+-	va->va.range = range;
+-	va->gem.obj = obj;
+-	va->gem.offset = offset;
+-}
+-
+ /**
+  * drm_gpuva_invalidate() - sets whether the backing GEM of this &drm_gpuva is
+  * invalidated
+@@ -1079,8 +1070,10 @@ void drm_gpuva_ops_free(struct drm_gpuvm *gpuvm,
+ static inline void drm_gpuva_init_from_op(struct drm_gpuva *va,
+ 					  struct drm_gpuva_op_map *op)
+ {
+-	drm_gpuva_init(va, op->va.addr, op->va.range,
+-		       op->gem.obj, op->gem.offset);
++	va->va.addr = op->va.addr;
++	va->va.range = op->va.range;
++	va->gem.obj = op->gem.obj;
++	va->gem.offset = op->gem.offset;
+ }
+ 
+ /**
 -- 
 2.47.2
 
