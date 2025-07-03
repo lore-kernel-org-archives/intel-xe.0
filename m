@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF1F0C83F04
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 08:54:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43459C83030
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 09:02:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 732B410E7EF;
-	Thu,  3 Jul 2025 08:54:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="oRCon1P0";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03A5610E182;
- Thu,  3 Jul 2025 08:54:35 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 657525C5B83;
- Thu,  3 Jul 2025 08:54:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22672C4CEE3;
- Thu,  3 Jul 2025 08:54:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1751532874;
- bh=KKCoa8ZEKyAgTGtUdYcs/H499nZ8jzQ5MZpVycHoq9s=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=oRCon1P09cbpMGzSi5vN/6yKXcDJES1dbP2AyN9ML4KEblruP/GOKEQJmSkKJ6YOK
- 8FtIN2niRou7npVNXu/yx4U+QX4or212BR4I35776XFmECGisC0buj2T6l0c6Ush5e
- sBPpOfBskTMEhkRvasza6mRZtO/vWjtcM6Gh+4G4jGHm02FudT0NV0DKJ+dV9XZp8P
- MvegoHfRJHJ1ccz6DnWNce70OARatl2E4N7w4ZZmr6PUaCwdLbs1w1JT4jUZh3faoY
- z8LneOSGnJDpkDmX3V60pQ4ldpFK0rOHE3rtnS1vlchmmeCFYldh8P25axPl1XTiZD
- J6zoHCKrWu9Jw==
-Date: Thu, 3 Jul 2025 10:54:27 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Caterina Shablia <caterina.shablia@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Frank Binns <frank.binns@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>, Lyude Paul <lyude@redhat.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, kernel@collabora.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 3/7] drm/gpuvm: Pass map arguments through a struct
-Message-ID: <aGZFQxVqKak1V9xk@pollux>
-References: <20250702233621.12990-1-caterina.shablia@collabora.com>
- <20250702233621.12990-4-caterina.shablia@collabora.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06C2710E7F3;
+	Thu,  3 Jul 2025 09:02:10 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D8A610E7F1;
+ Thu,  3 Jul 2025 09:02:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6148461865313203680=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250702233621.12990-4-caterina.shablia@collabora.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_More_missing_XeLP_workaroun?=
+ =?utf-8?q?ds_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 03 Jul 2025 09:02:08 -0000
+Message-ID: <175153332844.131094.2855827224853734442@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,24 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jul 02, 2025 at 11:36:05PM +0000, Caterina Shablia wrote:
-> From: Boris Brezillon <boris.brezillon@collabora.com>
-> 
-> We are about to pass more arguments to drm_gpuvm_sm_map[_ops_create](),
-> so, before we do that, let's pass arguments through a struct instead
-> of changing each call site every time a new optional argument is added.
-> 
-> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
-> Signed-off-by: Caterina Shablia <caterina.shablia@collabora.com>
+--===============6148461865313203680==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Can you please copy me in on all GPUVM patches, not only this one?
+== Series Details ==
 
-I looked at this patch series on lore [1], but for some reason it only shows the
-first 4 patches.
+Series: More missing XeLP workarounds (rev9)
+URL   : https://patchwork.freedesktop.org/series/149097/
+State : success
 
-Can you please resend?
+== Summary ==
 
-[1] https://lore.kernel.org/all/20250702233621.12990-5-caterina.shablia@collabora.com/#t
+CI Bug Log - changes from xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407_BAT -> xe-pw-149097v9_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8434 -> IGT_8436
+  * Linux: xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407 -> xe-pw-149097v9
+
+  IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8436: 3b7595f0e7f95de6d79e7ae6bb72e86b0a08a08c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407: d04a54cd3b99001adbc4cd3305b44f9f3e658407
+  xe-pw-149097v9: 149097v9
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v9/index.html
+
+--===============6148461865313203680==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>More missing XeLP workarounds (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149097/">https://patchwork.freedesktop.org/series/149097/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149097v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407_BAT -&gt; xe-pw-149097v9_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8434 -&gt; IGT_8436</li>
+<li>Linux: xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407 -&gt; xe-pw-149097v9</li>
+</ul>
+<p>IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8436: 3b7595f0e7f95de6d79e7ae6bb72e86b0a08a08c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3339-d04a54cd3b99001adbc4cd3305b44f9f3e658407: d04a54cd3b99001adbc4cd3305b44f9f3e658407<br />
+  xe-pw-149097v9: 149097v9</p>
+
+</body>
+</html>
+
+--===============6148461865313203680==--
