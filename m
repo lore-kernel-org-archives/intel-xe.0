@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EDA3C83F0C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 08:21:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B7E1C83F09
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 08:21:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBB3110E7ED;
-	Thu,  3 Jul 2025 08:21:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0D7C10E7E6;
+	Thu,  3 Jul 2025 08:21:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Sp4ex5oW";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="CG+FGB7y";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4B7510E195
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 08:21:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D707A10E195
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 08:21:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=vBbeYhptTS11keMLRrnrNL0maWlXI0pj8RosDSDEpZs=; b=Sp4ex5oWxAARIm4hXEQ+zitE1W
- ZOMl7GaaCfoD8qU+EQAxz35pAgcFi3ospu3/mu9zyZxjKlndZF2+QhP0hRFkACbi1nXMEefsFCzLK
- Cac5/jL7Py2rh+xT4SgvNEHkSoemDM0RGnVMcVD0hfsDn1TxfSFnt6QDgCEI3jr2nrEbwiWdh8zM6
- xEp1CeCQfvpGDuawejS86id+1WxH4jLTaxrtWjAoHEQD9s7ZDD44+wz2u91MVrTpHDyERhWAhRo8Y
- ZYoJjJ0eReyv/Ub6+BDvwQcI7n/LSTf82Px4U8TTchzVU5ls9ok5SlQcmQg4zMZAvimwauizFi8MW
- OtOuZa2Q==;
+ bh=Wbqpw7PyVc2VVUvB1vKBa5GF4Ankapa2pJ41Iu4ORMI=; b=CG+FGB7y79gjqWxWnpDZsOSWtc
+ g3XJ5THVi5MdYZtCZGagf/V0j6JBnDPHRCN8hVanhJpRYGT/6BJyi1NEPIg2TlfTODXiJNKrH56T6
+ lsBLcBTDY0GtIAm1MI9zsGxlEhyXgW5iRX2PokEWOxeGt3t6NSYjcvjjSArw6SYJbk5SmW+jVjtjX
+ AzZnGdc5bmpwExC919Zq5n6An+/VU4Xtioq7Dtqb6narHG296LkahZ+J4j49N1aczsK0Tgsaeq4Ti
+ jkGegyE1yUJd+AllvMcCOC7lwAAxj3swkTpbIWmctGZ/gWlw6CiogQP5W724sF2i8blppqcD6t08m
+ 3YvomhnA==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uXFBm-00BoeI-Um; Thu, 03 Jul 2025 10:21:03 +0200
+ id 1uXFBr-00Boeq-3v; Thu, 03 Jul 2025 10:21:07 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v8 1/7] drm/xe: Generalize wa bb emission code
-Date: Thu,  3 Jul 2025 09:20:53 +0100
-Message-ID: <20250703082059.61597-2-tvrtko.ursulin@igalia.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH v8 7/7] drm/xe/xelp: Add Wa_18022495364
+Date: Thu,  3 Jul 2025 09:20:59 +0100
+Message-ID: <20250703082059.61597-8-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
 References: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
@@ -58,130 +59,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Generalize the wa bb emission by splitting it into three phases - setup,
-emit and finish, and extract setup and finish steps into helpers.
-
-This will enable using the same infrastructure for emitting the indirect
-context workarounds.
+Add Wa_18022495364 as a context workaround batch buffer workaround.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 75 +++++++++++++++++++++++++------------
- 1 file changed, 51 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  3 +++
+ drivers/gpu/drm/xe/xe_lrc.c              | 21 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules       |  1 +
+ 3 files changed, 25 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 7ade41e2b7b3..f4c3e1187a00 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -111,6 +111,9 @@
+ #define   PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS	REG_BIT(14)
+ #define   CS_PRIORITY_MEM_READ			REG_BIT(7)
+ 
++#define CS_DEBUG_MODE2(base)			XE_REG((base) + 0xd8, XE_REG_OPTION_MASKED)
++#define   INSTRUCTION_STATE_CACHE_INVALIDATE	REG_BIT(6)
++
+ #define FF_SLICE_CS_CHICKEN1(base)		XE_REG((base) + 0xe0, XE_REG_OPTION_MASKED)
+ #define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
+ 
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index d2ad8fe737eb..5b05a730a0f2 100644
+index 759f9b125c56..07375c3709e6 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -972,32 +972,37 @@ static ssize_t wa_bb_setup_utilization(struct xe_lrc *lrc, struct xe_hw_engine *
+@@ -1034,6 +1034,26 @@ setup_timestamp_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe, u32 *batch,
  	return cmd - batch;
  }
  
--struct wa_bb_setup {
-+struct bo_setup {
++static ssize_t
++setup_invalidate_state_cache_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
++				u32 *batch, size_t max_len)
++{
++	u32 *cmd = batch;
++
++	if (!XE_WA(lrc->gt, 18022495364) ||
++	    hwe->class != XE_ENGINE_CLASS_RENDER)
++		return 0;
++
++	if (xe_gt_WARN_ON(lrc->gt, max_len < 3))
++		return -ENOSPC;
++
++	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
++	*cmd++ = CS_DEBUG_MODE1(0).addr;
++	*cmd++ = _MASKED_BIT_ENABLE(INSTRUCTION_STATE_CACHE_INVALIDATE);
++
++	return cmd - batch;
++}
++
+ struct bo_setup {
  	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
  			 u32 *batch, size_t max_size);
- };
- 
--static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
-+static u32 *
-+setup_bo(struct xe_lrc *lrc,
-+	 struct xe_hw_engine *hwe,
-+	 const size_t max_size,
-+	 unsigned int offset,
-+	 const struct bo_setup *funcs,
-+	 unsigned int num_funcs,
-+	 u32 **free)
+@@ -1105,6 +1125,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
  {
--	const size_t max_size = LRC_WA_BB_SIZE;
--	static const struct wa_bb_setup funcs[] = {
--		{ .setup = wa_bb_setup_utilization },
--	};
-+	u32 *cmd, *buf = NULL;
- 	ssize_t remain;
--	u32 *cmd, *buf = NULL;
- 
- 	if (lrc->bo->vmap.is_iomem) {
- 		buf = kmalloc(max_size, GFP_KERNEL);
- 		if (!buf)
--			return -ENOMEM;
-+			return ERR_PTR(-ENOMEM);
- 		cmd = buf;
-+		*free = buf;
- 	} else {
--		cmd = lrc->bo->vmap.vaddr + __xe_lrc_wa_bb_offset(lrc);
-+		cmd = lrc->bo->vmap.vaddr + offset;
-+		*free = NULL;
- 	}
- 
- 	remain = max_size / sizeof(*cmd);
- 
--	for (size_t i = 0; i < ARRAY_SIZE(funcs); i++) {
-+	for (size_t i = 0; i < num_funcs; i++) {
- 		ssize_t len = funcs[i].setup(lrc, hwe, cmd, remain);
- 
- 		remain -= len;
-@@ -1012,23 +1017,45 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 		cmd += len;
- 	}
- 
--	*cmd++ = MI_BATCH_BUFFER_END;
--
--	if (buf) {
--		xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap,
--				 __xe_lrc_wa_bb_offset(lrc), buf,
--				 (cmd - buf) * sizeof(*cmd));
--		kfree(buf);
--	}
--
--	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR, xe_bo_ggtt_addr(lrc->bo) +
--			     __xe_lrc_wa_bb_offset(lrc) + 1);
--
--	return 0;
-+	return cmd;
- 
- fail:
- 	kfree(buf);
--	return -ENOSPC;
-+	return ERR_PTR(-ENOSPC);
-+}
-+
-+static void
-+finish_bo(struct xe_lrc *lrc, unsigned int offset, u32 *cmd, u32 *free)
-+{
-+	if (!free)
-+		return;
-+
-+	xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap, offset, free,
-+			 (cmd - free) * sizeof(*cmd));
-+	kfree(free);
-+}
-+
-+static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
-+{
-+	static const struct bo_setup funcs[] = {
-+		{ .setup = wa_bb_setup_utilization },
-+	};
-+	unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
-+	u32 *cmd, *buf = NULL;
-+
-+	cmd = setup_bo(lrc, hwe, LRC_WA_BB_SIZE, offset, funcs,
-+		       ARRAY_SIZE(funcs), &buf);
-+	if (IS_ERR(cmd))
-+		return PTR_ERR(cmd);
-+
-+	*cmd++ = MI_BATCH_BUFFER_END;
-+
-+	finish_bo(lrc, offset, cmd, buf);
-+
-+	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR,
-+			     xe_bo_ggtt_addr(lrc->bo) + offset + 1);
-+
-+	return 0;
- }
- 
- #define PVC_CTX_ASID		(0x2e + 1)
+ 	static const struct bo_setup funcs[] = {
+ 		{ .setup = setup_timestamp_wa },
++		{ .setup = setup_invalidate_state_cache_wa },
+ 		{ .setup = setup_utilization_wa },
+ 	};
+ 	unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index bf798f3b8f93..8ee1c71499fc 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -1,5 +1,6 @@
+ 1607983814	GRAPHICS_VERSION_RANGE(1200, 1210)
+ 16010904313	GRAPHICS_VERSION_RANGE(1200, 1210)
++18022495364	GRAPHICS_VERSION_RANGE(1200, 1210)
+ 22012773006	GRAPHICS_VERSION_RANGE(1200, 1250)
+ 14014475959	GRAPHICS_VERSION_RANGE(1270, 1271), GRAPHICS_STEP(A0, B0)
+ 		PLATFORM(DG2)
 -- 
 2.48.0
 
