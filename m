@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B0F5C77B7C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 14:20:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6369C77B7C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 14:23:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 116AE88697;
-	Thu,  3 Jul 2025 14:20:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GI7JCFIo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7166288697;
- Thu,  3 Jul 2025 14:20:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751552451; x=1783088451;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kX8SkCf8xMjYKKI8aJSC3xRY9ikotsqs2xcM99rhiPc=;
- b=GI7JCFIoW8HpmSJBt43l8vg38mbI0HOCbBTvRUqiansQt45MJk+m73+/
- BPgvLsnSKjSx+xY3KMd0vfCsMNKYF7ZXhgy3iGDAwcDy+2J/wsN0AJ4/5
- bOfkMbBubapsbiEDeqeNXFP1AC3GAWYOb/9jw3PXbzJOLz6cGHbieUWEn
- O1DqwBO76VO680lPw0j0YlpP7Q/sYtlJVK6wIyYFShp1ytTMyEdprJVFf
- 6oPBvqXz0rRvV8rzach0PfBUdPq0LmrH4MDM4G3UClSsc49pW5ij5bmLp
- rc9eLBXSnVmSIMndoeHyP3rRjZ2wx+dIUmmQRElL8Ya/ZtSaFr1U4RnBR w==;
-X-CSE-ConnectionGUID: 4xEm2mIwQGClwTXrYJ5m7Q==
-X-CSE-MsgGUID: jZo+42ayQ/GxOw4gYg6OOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="64479727"
-X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="64479727"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 07:20:51 -0700
-X-CSE-ConnectionGUID: sJAaaEEkQHSRPdXt6TNyhA==
-X-CSE-MsgGUID: VrjMTD/UTxeTHKBorCcmgw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="185396192"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa002.jf.intel.com with ESMTP; 03 Jul 2025 07:20:49 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: imre.deak@intel.com, ankit.k.nautiyal@intel.com,
- chaitanya.kumar.borah@intel.com
-Subject: [PATCH] drm/i915/dp: Fallback to DSC for HDR content if needed
-Date: Thu,  3 Jul 2025 19:32:52 +0530
-Message-Id: <20250703140252.3547953-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7066110E115;
+	Thu,  3 Jul 2025 14:23:51 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9528210E856;
+ Thu,  3 Jul 2025 14:23:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_LMTT_invalidation_=28rev3?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 03 Jul 2025 14:23:49 -0000
+Message-ID: <175155262960.131399.8927136785623410335@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250702223041.1700-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250702223041.1700-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,91 +36,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If user-space has enabled HDR by passing HDR metadata and we can't support
-10bpc fallback to DSC.
+== Series Details ==
 
-Now that we need the helper to determine the presence of HDR metadata at
-multiple places make it non static.
+Series: LMTT invalidation (rev3)
+URL   : https://patchwork.freedesktop.org/series/151092/
+State : warning
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c          | 16 ++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h          |  1 +
- .../drm/i915/display/intel_dp_aux_backlight.c    | 13 -------------
- 3 files changed, 17 insertions(+), 13 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f48912f308df..abbba159e479 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1774,6 +1774,9 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
- 	     bpp -= 2 * 3) {
- 		int link_bpp = intel_dp_output_bpp(pipe_config->output_format, bpp);
- 
-+		if (intel_dp_in_hdr_mode(conn_state) && bpp < 30)
-+			return -EINVAL;
-+
- 		mode_rate = intel_dp_link_required(clock, link_bpp);
- 
- 		for (i = 0; i < intel_dp->num_common_rates; i++) {
-@@ -2910,6 +2913,19 @@ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
- 	}
- }
- 
-+bool
-+intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state)
-+{
-+	struct hdr_output_metadata *hdr_metadata;
-+
-+	if (!conn_state->hdr_output_metadata)
-+		return false;
-+
-+	hdr_metadata = conn_state->hdr_output_metadata->data;
-+
-+	return hdr_metadata->hdmi_metadata_type1.eotf == HDMI_EOTF_SMPTE_ST2084;
-+}
-+
- static void
- intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
- 					    struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 0657f5681196..5def589e3c0e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -214,5 +214,6 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
- 
- int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
- void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
-+bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
- 
- #endif /* __INTEL_DP_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 41228478b21c..12084a542fc5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -225,19 +225,6 @@ intel_dp_aux_hdr_set_aux_backlight(const struct drm_connector_state *conn_state,
- 			connector->base.base.id, connector->base.name);
- }
- 
--static bool
--intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state)
--{
--	struct hdr_output_metadata *hdr_metadata;
--
--	if (!conn_state->hdr_output_metadata)
--		return false;
--
--	hdr_metadata = conn_state->hdr_output_metadata->data;
--
--	return hdr_metadata->hdmi_metadata_type1.eotf == HDMI_EOTF_SMPTE_ST2084;
--}
--
- static void
- intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32 level)
- {
--- 
-2.25.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f8ff75ae1d2127635239b134695774ed4045d05b
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b8b96ddb7a331d28b806c1af235b0e0ed94a9d85
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Thu Jul 3 00:30:41 2025 +0200
+
+    drm/xe/pf: Invalidate LMTT after completing changes
+    
+    Once we finish populating all leaf pages in the VF's LMTT we should
+    make sure that hardware will not access any stale data. Explicitly
+    force LMTT invalidation (as it was already planned in the past).
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Michał Winiarski <michal.winiarski@intel.com>
+    Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
++ /mt/dim checkpatch d04a54cd3b99001adbc4cd3305b44f9f3e658407 drm-intel
+0f7d90616af0 drm/xe/pf: Force GuC virtualization mode
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#17: 
+ [ ] xe 0000:4d:00.0: [drm] *ERROR* GT0: FAST_REQ H2G fence 0x804e failed! e=0x30, h=0
+
+total: 0 errors, 1 warnings, 0 checks, 52 lines checked
+732ec78abc69 drm/xe/pf: Invalidate LMTT during LMEM unprovisioning
+-:25: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#25: FILE: drivers/gpu/drm/xe/xe_device.h:134:
++#define for_each_gt_on_tile(gt__, tile__, id__) \
++	for_each_gt((gt__), (tile__)->xe, (id__)) \
++		for_each_if((gt__)->tile == (tile__))
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt__' - possible side-effects?
+#25: FILE: drivers/gpu/drm/xe/xe_device.h:134:
++#define for_each_gt_on_tile(gt__, tile__, id__) \
++	for_each_gt((gt__), (tile__)->xe, (id__)) \
++		for_each_if((gt__)->tile == (tile__))
+
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'tile__' - possible side-effects?
+#25: FILE: drivers/gpu/drm/xe/xe_device.h:134:
++#define for_each_gt_on_tile(gt__, tile__, id__) \
++	for_each_gt((gt__), (tile__)->xe, (id__)) \
++		for_each_if((gt__)->tile == (tile__))
+
+total: 1 errors, 0 warnings, 2 checks, 138 lines checked
+b8b96ddb7a33 drm/xe/pf: Invalidate LMTT after completing changes
+
 
