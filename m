@@ -4,45 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B7E1C83F09
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86985C83F0A
 	for <intel-xe@archiver.kernel.org>; Thu,  3 Jul 2025 08:21:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0D7C10E7E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE7E710E7EB;
 	Thu,  3 Jul 2025 08:21:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="CG+FGB7y";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="gGeKv26O";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D707A10E195
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 08:21:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B48AD10E174
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Jul 2025 08:21:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Wbqpw7PyVc2VVUvB1vKBa5GF4Ankapa2pJ41Iu4ORMI=; b=CG+FGB7y79gjqWxWnpDZsOSWtc
- g3XJ5THVi5MdYZtCZGagf/V0j6JBnDPHRCN8hVanhJpRYGT/6BJyi1NEPIg2TlfTODXiJNKrH56T6
- lsBLcBTDY0GtIAm1MI9zsGxlEhyXgW5iRX2PokEWOxeGt3t6NSYjcvjjSArw6SYJbk5SmW+jVjtjX
- AzZnGdc5bmpwExC919Zq5n6An+/VU4Xtioq7Dtqb6narHG296LkahZ+J4j49N1aczsK0Tgsaeq4Ti
- jkGegyE1yUJd+AllvMcCOC7lwAAxj3swkTpbIWmctGZ/gWlw6CiogQP5W724sF2i8blppqcD6t08m
- 3YvomhnA==;
+ bh=NA+0e+4Bcd6ewvxQwZKSriWAVUu+3K9tKuACJvvQv/s=; b=gGeKv26OLCMqclJHSt/3grcRf1
+ nqwpcfs4sWr7ZcwOTlzpiYKBsSFJC7UNhMwBb10qavCu4PX4+EryEv/NVhhMTeG/OAZos8k7wM8RC
+ PzhuwY/83NjoXyYhC4MpebJlm1p/e0BM8ghg8dAk0jhge9uPo6/mRDq9X+OL7HhLofouNICHhgX5P
+ H7BzQqjX44DcxKKk5bvr1LEFsPei78z2zh+9engkZ3TJc78xVUy4H1yQogc8WP2Tq0x8euWE0NnmD
+ Q0/bhR2u39VZCqKau5BcNujjfQlMP34W0476p98YuGF4kQfvxqzqmDDhuRjD09WPNvHsFP+81+uXw
+ Axa7x6Pg==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uXFBr-00Boeq-3v; Thu, 03 Jul 2025 10:21:07 +0200
+ id 1uXFBm-00BoeF-81; Thu, 03 Jul 2025 10:21:02 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v8 7/7] drm/xe/xelp: Add Wa_18022495364
-Date: Thu,  3 Jul 2025 09:20:59 +0100
-Message-ID: <20250703082059.61597-8-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v8 0/7] More missing XeLP workarounds
+Date: Thu,  3 Jul 2025 09:20:52 +0100
+Message-ID: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
-References: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -59,81 +57,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add Wa_18022495364 as a context workaround batch buffer workaround.
+Some more missing XeLP workarounds. This time including some which need to go
+into indirect context, which also means some plumbing had to be added.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Includes a fix to use iosys helpers for existing wa bb emission since there is a
+code dependency on it.
+
+v2:
+ * Use iosys helpers.
+ * Split indirect context plumbing as a separate patch.
+ * Tweak where and how Wa_16010904313 is emitted.
+ * Move Wa_18022495364 into the wa_bb.
+
+ v3:
+ * Rewrite on top of Lucas' wa bb changes - use same infrastructure.
+
+v4:
+ * Rework due 3a1edef8f4b5 ("drm/xe: Make WA BB part of LRC BO").
+
+v5:
+ * Fix indirect ring state offset calculation.
+ * Removed extra space in one patch.
+
+v6:
+ * Fixed indirect ctx MI_NOOP padding to 64B cacheline.
+ * Do not add negative errors codes to reported emitted counts.
+ * Renamed workaround emission functions. (Lucas)
+
+v7:
+ * Rebase for removal of bo->size.
+
+v8:
+ * Rename bo emission helpers. (Lucas)
+ * Drop XELP prefix from LRC layout define. (Lucas)
+ * Drop first patch from the series as it was merged.
+
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  3 +++
- drivers/gpu/drm/xe/xe_lrc.c              | 21 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules       |  1 +
- 3 files changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 7ade41e2b7b3..f4c3e1187a00 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -111,6 +111,9 @@
- #define   PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS	REG_BIT(14)
- #define   CS_PRIORITY_MEM_READ			REG_BIT(7)
- 
-+#define CS_DEBUG_MODE2(base)			XE_REG((base) + 0xd8, XE_REG_OPTION_MASKED)
-+#define   INSTRUCTION_STATE_CACHE_INVALIDATE	REG_BIT(6)
-+
- #define FF_SLICE_CS_CHICKEN1(base)		XE_REG((base) + 0xe0, XE_REG_OPTION_MASKED)
- #define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 759f9b125c56..07375c3709e6 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1034,6 +1034,26 @@ setup_timestamp_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe, u32 *batch,
- 	return cmd - batch;
- }
- 
-+static ssize_t
-+setup_invalidate_state_cache_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-+				u32 *batch, size_t max_len)
-+{
-+	u32 *cmd = batch;
-+
-+	if (!XE_WA(lrc->gt, 18022495364) ||
-+	    hwe->class != XE_ENGINE_CLASS_RENDER)
-+		return 0;
-+
-+	if (xe_gt_WARN_ON(lrc->gt, max_len < 3))
-+		return -ENOSPC;
-+
-+	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
-+	*cmd++ = CS_DEBUG_MODE1(0).addr;
-+	*cmd++ = _MASKED_BIT_ENABLE(INSTRUCTION_STATE_CACHE_INVALIDATE);
-+
-+	return cmd - batch;
-+}
-+
- struct bo_setup {
- 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 			 u32 *batch, size_t max_size);
-@@ -1105,6 +1125,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- {
- 	static const struct bo_setup funcs[] = {
- 		{ .setup = setup_timestamp_wa },
-+		{ .setup = setup_invalidate_state_cache_wa },
- 		{ .setup = setup_utilization_wa },
- 	};
- 	unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index bf798f3b8f93..8ee1c71499fc 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -1,5 +1,6 @@
- 1607983814	GRAPHICS_VERSION_RANGE(1200, 1210)
- 16010904313	GRAPHICS_VERSION_RANGE(1200, 1210)
-+18022495364	GRAPHICS_VERSION_RANGE(1200, 1210)
- 22012773006	GRAPHICS_VERSION_RANGE(1200, 1250)
- 14014475959	GRAPHICS_VERSION_RANGE(1270, 1271), GRAPHICS_STEP(A0, B0)
- 		PLATFORM(DG2)
+Tvrtko Ursulin (7):
+  drm/xe: Generalize wa bb emission code
+  drm/xe: Rename utilisation workaround emission function
+  drm/xe: Return number of written dwords from workaround batch buffer
+    emission
+  drm/xe: Allow specifying number of extra dwords at the end of wa bb
+    emission
+  drm/xe: Add plumbing for indirect context workarounds
+  drm/xe/xelp: Implement Wa_16010904313
+  drm/xe/xelp: Add Wa_18022495364
+
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   1 +
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h      |   3 +
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h       |   4 +
+ drivers/gpu/drm/xe/xe_lrc.c                   | 238 +++++++++++++++---
+ drivers/gpu/drm/xe/xe_lrc_types.h             |   3 +-
+ drivers/gpu/drm/xe/xe_wa_oob.rules            |   2 +
+ 6 files changed, 219 insertions(+), 32 deletions(-)
+
 -- 
 2.48.0
 
