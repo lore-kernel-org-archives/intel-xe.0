@@ -4,54 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 565CCC83F03
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 12:29:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C25F8C83F03
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 12:35:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18F1110EA18;
-	Fri,  4 Jul 2025 12:29:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5716010EA1E;
+	Fri,  4 Jul 2025 12:35:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="tJVIjRfb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VAm1Wklo";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DD8410EA19;
- Fri,  4 Jul 2025 12:29:13 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 5DF0161463;
- Fri,  4 Jul 2025 12:29:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B62A7C4CEEE;
- Fri,  4 Jul 2025 12:29:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1751632152;
- bh=J468UNvVT2VopBBdD6PHPtiMhQWjyLRoH/R1Ni39bMY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=tJVIjRfbT0xhg12wLclCyNmCYVVaSHttLBj3ltCRY7nMLj+8Q3zRjtnQzI4K9YH7Q
- RqDEkhTe3ZEkHBt0uUe+6fVt+lftt30vn7xX09SH2w56HGY8rFGvUAPvTClIqs7377
- v0YNFJQYOa/NArRfM8xpCzxKxHaUUYtXFym7rmtQ=
-Date: Fri, 4 Jul 2025 14:29:09 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Cc: "Nilawar, Badal" <badal.nilawar@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "Usyskin, Alexander" <alexander.usyskin@intel.com>,
- "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-Subject: Re: [PATCH v6 02/10] mei: late_bind: add late binding component driver
-Message-ID: <2025070434-oversleep-amnesty-b4fd@gregkh>
-References: <20250703193106.954536-1-badal.nilawar@intel.com>
- <20250703193106.954536-3-badal.nilawar@intel.com>
- <2025070421-cattishly-buffed-d992@gregkh>
- <0b40eadc-c763-4cbc-910d-cbeb03b432d4@intel.com>
- <2025070452-rendering-passover-9f8c@gregkh>
- <fe774af5-76fb-4056-9eae-e2ccb0e0f078@intel.com>
- <2025070445-brilliant-savor-a98e@gregkh>
- <CY5PR11MB62115F7951B6045CF254B6A19542A@CY5PR11MB6211.namprd11.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9B0710EA18;
+ Fri,  4 Jul 2025 12:35:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751632522; x=1783168522;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=yWfDdZuxP19c25STbPLGzt/GvpHbQ49XXjWq1OiFibs=;
+ b=VAm1WklowyZTpebYFsD7ca9H9aIQbXPTyIbywGkYzNL/S4s42AjhYwNk
+ KnUjgSIWsNa+M3cWXlNCytKoP2J6o9MoOjy9mpqrkJVzOXMsZk3otg9vx
+ CJC0328dSyrvpiYHrVzscoyiZ+JeggfLOlmaVf8dK4796x/W/Mc1blw+K
+ aY2NsPCKFEqFzKDxNLmOJsGZRR/Equ/Jwo/oIrIjMgKy03ct7/WxSbhXT
+ Ym4OK8vC0iz884ogSFpOWVk1abdOivZcXgML27KBwFusL4rhK6Rjf2UKB
+ SC9TCLH6qyokj7hJgUa/IRcPqpTP3/PqJoMyd/hhcedLvr2DAm8RA54q+ w==;
+X-CSE-ConnectionGUID: zhfeAMlcRXS2j5SUTVeBXA==
+X-CSE-MsgGUID: cgQpR6xzRqyf5cq7v4gCkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="56591518"
+X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; d="scan'208";a="56591518"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2025 05:35:22 -0700
+X-CSE-ConnectionGUID: L4/RD0YbR5C5RnFEQ9t6sw==
+X-CSE-MsgGUID: srdX4L28RvW+ZP2tRzWKkg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; d="scan'208";a="155212424"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.102])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2025 05:35:17 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
+ pekka.paalanen@collabora.com, contact@emersion.fr, harry.wentland@amd.com,
+ mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
+ shashank.sharma@amd.com, swati2.sharma@intel.com, alex.hung@amd.com, Uma
+ Shankar <uma.shankar@intel.com>
+Subject: Re: [v5 07/24] drm/i915: Add identifiers for intel color blocks
+In-Reply-To: <20250702091936.3004854-8-uma.shankar@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250702091936.3004854-1-uma.shankar@intel.com>
+ <20250702091936.3004854-8-uma.shankar@intel.com>
+Date: Fri, 04 Jul 2025 15:35:13 +0300
+Message-ID: <dfb22329c12ef1429cac39fead4ef5a377dbb351@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CY5PR11MB62115F7951B6045CF254B6A19542A@CY5PR11MB6211.namprd11.prod.outlook.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,99 +73,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 04, 2025 at 12:21:42PM +0000, Gupta, Anshuman wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Greg KH <gregkh@linuxfoundation.org>
-> > Sent: Friday, July 4, 2025 5:31 PM
-> > To: Nilawar, Badal <badal.nilawar@intel.com>
-> > Cc: intel-xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-
-> > kernel@vger.kernel.org; Gupta, Anshuman <anshuman.gupta@intel.com>;
-> > Vivi, Rodrigo <rodrigo.vivi@intel.com>; Usyskin, Alexander
-> > <alexander.usyskin@intel.com>; Ceraolo Spurio, Daniele
-> > <daniele.ceraolospurio@intel.com>
-> > Subject: Re: [PATCH v6 02/10] mei: late_bind: add late binding component
-> > driver
-> > 
-> > On Fri, Jul 04, 2025 at 05:18:46PM +0530, Nilawar, Badal wrote:
-> > >
-> > > On 04-07-2025 16:04, Greg KH wrote:
-> > > > On Fri, Jul 04, 2025 at 03:59:40PM +0530, Nilawar, Badal wrote:
-> > > > > On 04-07-2025 10:44, Greg KH wrote:
-> > > > > > On Fri, Jul 04, 2025 at 01:00:58AM +0530, Badal Nilawar wrote:
-> > > > > > > From: Alexander Usyskin <alexander.usyskin@intel.com>
-> > > > > > >
-> > > > > > > Add late binding component driver.
-> > > > > > > It allows pushing the late binding configuration from, for
-> > > > > > > example, the Xe graphics driver to the Intel discrete graphics card's
-> > CSE device.
-> > > > > > >
-> > > > > > > Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
-> > > > > > > Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> > > > > > > Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > > > > > > ---
-> > > > > > >    drivers/misc/mei/Kconfig                    |   1 +
-> > > > > > >    drivers/misc/mei/Makefile                   |   1 +
-> > > > > > >    drivers/misc/mei/late_bind/Kconfig          |  13 +
-> > > > > > >    drivers/misc/mei/late_bind/Makefile         |   9 +
-> > > > > > >    drivers/misc/mei/late_bind/mei_late_bind.c  | 272
-> > > > > > > ++++++++++++++++++++
-> > > > > > Why do you have a whole subdir for a single .c file?  What's
-> > > > > > wrong with just keepign it in drivers/misc/mei/ ?
-> > > > > There is separate subdir for each component used by i915/xe, so
-> > > > > one was created for late_bind as well. Should we still drop late_bind
-> > subdir?
-> > > > >
-> > > > > cd drivers/misc/mei/
-> > > > >        gsc_proxy/ hdcp/      late_bind/ pxp/
-> > > > For "modules" that are just a single file, yeah, that's silly, don't
-> > > > do that.
-> > > Another reason to maintain the sub_dir is to accommodate additional
-> > > files for future platforms. If you still insist, I'll remove the sub_dir.
-> > 
-> > Move files around when it happens, for now, it's silly and not needed.
-> > 
-> > > > > > > + * @payload_size: size of the payload data in bytes
-> > > > > > > + * @payload: data to be sent to the firmware  */ struct
-> > > > > > > +csc_heci_late_bind_req {
-> > > > > > > +	struct mkhi_msg_hdr header;
-> > > > > > > +	u32 type;
-> > > > > > > +	u32 flags;
-> > > > > > > +	u32 reserved[2];
-> > > > > > > +	u32 payload_size;
-> > > > > > As these cross the kernel boundry, they should be the correct
-> > > > > > type (__u32), but really, please define the endiness of them
-> > > > > > (__le32) and use the proper macros for that.
-> > > > > If we go with __le32 then while populating elements of structure
-> > > > > csc_heci_late_bind_req  I will be using cpu_to_le32().
-> > > > >
-> > > > > When mapping the response buffer from the firmware with struct
-> > > > > csc_heci_late_bind_rsp, there's no need to use le32_to_cpu() since
-> > > > > the response will already be in little-endian format.
-> > > > How do you know?  Where is that defined?  Where did the conversion
-> > > > happen?
-> > >
-> > > Sorry, I got confused. Conversion is needed when assigning the
-> > > response structure elements.
-> > >
-> > > e.g ret = (int)(le32_to_cpu)rsp.status;
-> > 
-> > But these are read directly from the hardware?  If not, why are they marked as
-> > packed?
-> Yes, these are read from firmware, that is the reason they marked as __packed.
-> IMHO, don't we need change the explicit endianness of response status to address your comment.
-> Are we missing something here?
+On Wed, 02 Jul 2025, Uma Shankar <uma.shankar@intel.com> wrote:
+> From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+>
+> Add macros to identify intel color blocks. It will help
+> in mapping drm_color_ops to intel color HW blocks
+>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_limits.h | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_limits.h b/drivers/gpu/drm/i915/display/intel_display_limits.h
+> index f0fa27e365ab..97c960cc16aa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_limits.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_limits.h
+> @@ -138,4 +138,17 @@ enum hpd_pin {
+>  	HPD_NUM_PINS
+>  };
+>  
+> +/*
+> + * Intel Color Blocks
+> + *
+> + */
+> +
 
-Yes.  The firmware defines these values as __le32, right?  And if you
-read a chunk of memory and cast it into this structure, those fields
-are now also __le32, right?  So to read them in the driver you need to
-then call le32_to_cpu() on those values.
+How does the comment help anything? The name of the struct is
+intel_color_block.
 
-Just like data on the USB bus, or any other hardware type.  You must
-define what endian the data is in and then convert it to "native" before
-accessing it properly.
+> +enum intel_color_block {
+> +	CB_PLANE_PRE_CSC_LUT,
+> +	CB_PLANE_CSC,
+> +	CB_PLANE_POST_CSC_LUT,
+> +
+> +	I915_MAX_CB
 
-thanks,
+Why I915? This has less and less to do with i915 nowadays. Maybe all of
+these should be INTEL_ prefixed?
 
-greg k-h
+> +};
+> +
+>  #endif /* __INTEL_DISPLAY_LIMITS_H__ */
+
+-- 
+Jani Nikula, Intel
