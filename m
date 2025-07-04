@@ -4,54 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30852C83F03
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 10:35:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C89CC83F03
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 10:41:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9F1410E9E5;
-	Fri,  4 Jul 2025 10:35:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 275B310E9E5;
+	Fri,  4 Jul 2025 10:41:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vd6df5nb";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PrrknH1O";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B197910E9E5
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Jul 2025 10:35:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751625341; x=1783161341;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4EhNp/j395K7B7WPp4sHKRkecn5iPs7Qf+MsTn7p13o=;
- b=Vd6df5nbc/kFCWCEu5QmQx7gPfvdH6rGXU61HgPpe7IFSpbbCa3IEbuV
- dBrye1z5u5/4gpGC8TX7eV+fr8ZkfbLhAxJpZ/moSEqAUMYgvaWsHYy38
- adUguvpwALD69lqIuO1M+CHmFYqBe4BSMIKhLbBt1crHEoM4ziuL0yV2/
- F6IcIyFAjR4QkGd1edRo1pJKVkbD2669xcfU2jeNlkayQ/6zJtBR7snML
- o+cwcvhNfybJmafsuEGMJkYVy61tzqIrDfscUAH8aM2EMBLRU1uu7ueNb
- o+PuCK3D56Ai/k25mxM0rSh2X3jPKOFz/gmrMgpCgLWdHX20Qnkuz7fCm A==;
-X-CSE-ConnectionGUID: xwhwAjzLSp+VsUrIjHPMUA==
-X-CSE-MsgGUID: W6GX/KsGTomiORRgCnpDGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="54077987"
-X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; d="scan'208";a="54077987"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2025 03:35:41 -0700
-X-CSE-ConnectionGUID: bcpStWiNRHiKGhqJEhUDdQ==
-X-CSE-MsgGUID: l4IrQYpKQn29LRZgD2xfeA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; d="scan'208";a="160128298"
-Received: from unknown (HELO rvodapal-mobl.iind.intel.com) ([10.190.239.40])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2025 03:35:39 -0700
-From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: balasubramani.vivekanandan@intel.com,
-	"Vodapalli, Ravi Kumar" <ravi.kumar.vodapalli@intel.com>,
-	Vodapalli@freedesktop.org
-Subject: [PATCH] drm/xe/bmg: Add one additional PCI ID
-Date: Fri,  4 Jul 2025 16:05:27 +0530
-Message-Id: <20250704103527.100178-1-ravi.kumar.vodapalli@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5578710E9E5
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Jul 2025 10:41:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=/MC1T94oE9ggsp0u7nxpPESJHr2NOnhneKV3P6UOigY=; b=PrrknH1O8FnrR1lzLOGCBVQEUW
+ yR48BaN7xVSt+2MPVe5cxnl51Z53wkSSmZYG2J2fiGnPVhcMn5uSRWtUOqvdVhM1Y6sdbL1DfwW+c
+ ONS5yJ9rA3Z3FgZhxxyOX5jf2ahX50XpOxXAsjmHZVUEr/irrnOYbIaQDZpZoWkfGFxQDgK33FovS
+ uyXcNM6LYVUPB2DoI1+5Sh07Fy+9CV64mQ4uTjTaYsbWEst6m7FX7xd9kpnET+FK1/vmOShzH5fmv
+ e4fWU1uRVoLsXI7cnO7GEhrOEwhXz0eIijU47PF+pRY4irFrHgcZ4+FvYjXc9WJRkMoueHLAeEidt
+ V00Mr0gw==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uXdr4-00COLE-DR; Fri, 04 Jul 2025 12:41:18 +0200
+Message-ID: <e81ce1b2-f7d2-4639-b840-f56e1dada189@igalia.com>
+Date: Fri, 4 Jul 2025 11:41:17 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/7] drm/xe/lrc: Add table with LRC layout
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: <20250703-lrc-refactors-v1-0-6aa22f174041@intel.com>
+ <20250703-lrc-refactors-v1-4-6aa22f174041@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250703-lrc-refactors-v1-4-6aa22f174041@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,29 +61,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: "Vodapalli, Ravi Kumar" <ravi.kumar.vodapalli@intel.com>
 
-One additional PCI ID is added in Bspec for BMG, Add it so that
-driver recognizes this device with this new ID.
+On 03/07/2025 23:41, Lucas De Marchi wrote:
+> Add a table to document the LRC's BO layout to make it easier to
+> visualize how each region stacks on top of each other.
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_lrc.c | 21 +++++++++++++++++++++
+>   1 file changed, 21 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index 7cde827ddbec9..75f4678cb090a 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -42,6 +42,27 @@
+>   #define LRC_INDIRECT_RING_STATE_SIZE		SZ_4K
+>   #define LRC_WA_BB_SIZE				SZ_4K
+>   
+> +/*
+> + * Layout of the LRC and associated data allocated as
+> + * lrc->bo:
+> + *
+> + *   Region                       Size
+> + *  +============================+=================+ <- __xe_lrc_ring_offset()
+> + *  | Ring                       | ring_size, see  |
+> + *  |                            | xe_lrc_init()   |
+> + *  +============================+=================+ <- __xe_lrc_pphwsp_offset()
+> + *  | PPHWSP (includes SW state) | 4K              |
+> + *  +----------------------------+-----------------+ <- __xe_lrc_ring_offset()
+> + *  | Engine Context Image       | n * 4K, see     |
+> + *  |                            | xe_gt_lrc_size()|
+> + *  +----------------------------+-----------------+ <- __xe_lrc_indirect_ring_offset()
+> + *  | Indirect Ring State Page   | 0 or 4k, see    |
+> + *  |                            | xe_gt_lrc_size()|
+> + *  +============================+=================+ <- __xe_lrc_wa_bb_offset()
+> + *  | WA BB Per Ctx              | 4k              |
+> + *  +============================+=================+ <- xe_bo_size(lrc->bo)
+> + */
 
-Bspec: 68090
-Signed-off-by: Vodapalli, Ravi Kumar <ravi.kumar.vodapalli@intel.com>
----
- include/drm/intel/pciids.h | 1 +
- 1 file changed, 1 insertion(+)
+I assume '---' separates parts which are considered engine lrc state, 
+while '===' is for other data which happens to be in the same BO. So for 
+indirect ctx I will use '==='. Just unsure if indirect ring state should 
+in that case also be '==='? Looks like LRC image points to it's ggtt 
+address which would suggest it is equally separate.
 
-diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-index a0180d10e260..76f8d26f9cc9 100644
---- a/include/drm/intel/pciids.h
-+++ b/include/drm/intel/pciids.h
-@@ -846,6 +846,7 @@
- /* BMG */
- #define INTEL_BMG_IDS(MACRO__, ...) \
- 	MACRO__(0xE202, ## __VA_ARGS__), \
-+	MACRO__(0xE209, ## __VA_ARGS__), \
- 	MACRO__(0xE20B, ## __VA_ARGS__), \
- 	MACRO__(0xE20C, ## __VA_ARGS__), \
- 	MACRO__(0xE20D, ## __VA_ARGS__), \
--- 
-2.34.1
+> +
+>   static struct xe_device *
+>   lrc_to_xe(struct xe_lrc *lrc)
+>   {
+> 
+
+Modulo the above:
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+
+Regards,
+
+Tvrtko
 
