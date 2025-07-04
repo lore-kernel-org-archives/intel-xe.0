@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBAE2C83F03
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 12:28:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 565CCC83F03
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 12:29:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F4CC10EA0C;
-	Fri,  4 Jul 2025 12:28:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18F1110EA18;
+	Fri,  4 Jul 2025 12:29:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XhMIY7Kv";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="tJVIjRfb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05C7310EA0C
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Jul 2025 12:28:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751632108; x=1783168108;
- h=from:to:cc:subject:in-reply-to:date:message-id: mime-version;
- bh=zkKtA2XbXK0fE3bC68AbQmmnY5m/To7OSCIOACSO4uw=;
- b=XhMIY7Kvr0fvawVSuOlpiIKgIBamWkMZgOb5xOG1LXwcoX8S11fOa2zU
- RVkf0cY59A1tIX2a1zjmtsqlIacKFmHOlFvKG/b5VEU+vJvSFvKNuDGhZ
- OupOEaFalyLVYNBOv/D+B5/HqZF/rUoQpuOlsoVJbl2diThVqgQ6mjfR5
- g4H446V+rgFPlxkxXZKPE5g79pO9Mxyc1f5hFE8h684Cw3u/zQPrY8RKL
- BQKdMCLYq90zSIS84XdRCTcQQcTzv5XE/iXfwUk10Hxq8al//abRmSSOn
- jz6QC7+cyFAquP+rPPsk5PEij3F4aT7UpQt3fjbR5PYVsk7DFYgjw7z/w A==;
-X-CSE-ConnectionGUID: BC7LUA+hT5mMxFnPlDiKYA==
-X-CSE-MsgGUID: BhXlGzJgRDuGlysuOF5YRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="54085771"
-X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; d="scan'208";a="54085771"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2025 05:28:27 -0700
-X-CSE-ConnectionGUID: /sSwazriRdK78WoktFwTuw==
-X-CSE-MsgGUID: bVctPbgiSoyMifDEMm+RWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; d="scan'208";a="155395736"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.102])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2025 05:28:24 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH] drm/xe/tests: Add legacy IP descriptors to param
- generators
-In-Reply-To: <9cfb8a29-8f54-4b2c-a872-0bdfb9cd727b@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Fri, 04 Jul 2025 15:28:21 +0300
-Message-ID: <5eceba4a1631d59635d885afeae93452a5be3a8f@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DD8410EA19;
+ Fri,  4 Jul 2025 12:29:13 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 5DF0161463;
+ Fri,  4 Jul 2025 12:29:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B62A7C4CEEE;
+ Fri,  4 Jul 2025 12:29:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1751632152;
+ bh=J468UNvVT2VopBBdD6PHPtiMhQWjyLRoH/R1Ni39bMY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=tJVIjRfbT0xhg12wLclCyNmCYVVaSHttLBj3ltCRY7nMLj+8Q3zRjtnQzI4K9YH7Q
+ RqDEkhTe3ZEkHBt0uUe+6fVt+lftt30vn7xX09SH2w56HGY8rFGvUAPvTClIqs7377
+ v0YNFJQYOa/NArRfM8xpCzxKxHaUUYtXFym7rmtQ=
+Date: Fri, 4 Jul 2025 14:29:09 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Cc: "Nilawar, Badal" <badal.nilawar@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "Usyskin, Alexander" <alexander.usyskin@intel.com>,
+ "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+Subject: Re: [PATCH v6 02/10] mei: late_bind: add late binding component driver
+Message-ID: <2025070434-oversleep-amnesty-b4fd@gregkh>
+References: <20250703193106.954536-1-badal.nilawar@intel.com>
+ <20250703193106.954536-3-badal.nilawar@intel.com>
+ <2025070421-cattishly-buffed-d992@gregkh>
+ <0b40eadc-c763-4cbc-910d-cbeb03b432d4@intel.com>
+ <2025070452-rendering-passover-9f8c@gregkh>
+ <fe774af5-76fb-4056-9eae-e2ccb0e0f078@intel.com>
+ <2025070445-brilliant-savor-a98e@gregkh>
+ <CY5PR11MB62115F7951B6045CF254B6A19542A@CY5PR11MB6211.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CY5PR11MB62115F7951B6045CF254B6A19542A@CY5PR11MB6211.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,99 +66,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 02 Jul 2025, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
-> On 02.07.2025 10:35, Jani Nikula wrote:
->> On Tue, 01 Jul 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>> On Fri, Jun 27, 2025 at 08:11:10PM +0200, Michal Wajdeczko wrote:
->>>> Recently introduced kunit parameter generators where based on
->>>> the existing arrays which have only GDMID-bsaed IP and didn't
->>>> take into account legacy IP definitions from pre-GMDID era.
->>>>
->>>> Add test only arrays with legacy IPs (as those will not change)
->>>> and extend param generators to start iterating over them.
->>>>
->>>> [ ] =================== xe_pci (2 subtests) ====================
->>>> [ ] ==================== check_graphics_ip  ====================
->>>> [ ] [PASSED] 12.00 Xe_LP
->>>> [ ] [PASSED] 12.10 Xe_LP+
->>>> [ ] [PASSED] 12.55 Xe_HPG
->>>> [ ] [PASSED] 12.60 Xe_HPC
->>>> [ ] [PASSED] 12.70 Xe_LPG
->>>> [ ] [PASSED] 12.71 Xe_LPG
->>>> [ ] [PASSED] 12.74 Xe_LPG+
->>>> [ ] [PASSED] 20.01 Xe2_HPG
->>>> [ ] [PASSED] 20.02 Xe2_HPG
->>>> [ ] [PASSED] 20.04 Xe2_LPG
->>>> [ ] [PASSED] 30.00 Xe3_LPG
->>>> [ ] [PASSED] 30.01 Xe3_LPG
->>>> [ ] [PASSED] 30.03 Xe3_LPG
->>>> [ ] ================ [PASSED] check_graphics_ip ================
->>>> [ ] ===================== check_media_ip  ======================
->>>> [ ] [PASSED] 12.00 Xe_M
->>>> [ ] [PASSED] 12.55 Xe_HPM
->>>> [ ] [PASSED] 13.00 Xe_LPM+
->>>> [ ] [PASSED] 13.01 Xe2_HPM
->>>> [ ] [PASSED] 20.00 Xe2_LPM
->>>> [ ] [PASSED] 30.00 Xe3_LPM
->>>> [ ] [PASSED] 30.02 Xe3_LPM
->>>> [ ] ================= [PASSED] check_media_ip ==================
->>>> [ ] ===================== [PASSED] xe_pci ======================
->>>>
->>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>>> ---
->>>> drivers/gpu/drm/xe/tests/xe_pci.c | 33 +++++++++++++++++++++++++++++++
->>>> 1 file changed, 33 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
->>>> index baccb657bd05..c5acee52b458 100644
->>>> --- a/drivers/gpu/drm/xe/tests/xe_pci.c
->>>> +++ b/drivers/gpu/drm/xe/tests/xe_pci.c
->>>> @@ -12,12 +12,31 @@
->>>> #include <kunit/test-bug.h>
->>>> #include <kunit/visibility.h>
->>>>
->
-> /**
->  * IS_ARRAY_ROW - checks if @row pointer points to entry in the @array
->  * @arr: the array
->  * @row: the pointer to the row in the array
->  */
->
->>>> +#define IS_ARRAY_ROW(arr, row) ((typeof(&(arr)[0]))(row) - (arr) < ARRAY_SIZE(arr))
->
-> ...
->
->>>> const void *xe_pci_graphics_ip_gen_param(const void *prev, char *desc)
->>>> {
->>>> +	const void *next = legacy_graphics_ip_gen_params(prev, desc);
->>>> +
->>>> +	if (next)
->>>> +		return next;
->>>> +	if (IS_ARRAY_ROW(legacy_graphics_ips, prev))
->> 
->> I don't understand what "is array row" means.
->
-> do you want me to include some kind of the kernel-doc (see above) for
-> this helper macro used only here as a trick to combine two gen_params?
->
-> or maybe do you prefer 'entry' instead of 'row' name?
+On Fri, Jul 04, 2025 at 12:21:42PM +0000, Gupta, Anshuman wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Greg KH <gregkh@linuxfoundation.org>
+> > Sent: Friday, July 4, 2025 5:31 PM
+> > To: Nilawar, Badal <badal.nilawar@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-
+> > kernel@vger.kernel.org; Gupta, Anshuman <anshuman.gupta@intel.com>;
+> > Vivi, Rodrigo <rodrigo.vivi@intel.com>; Usyskin, Alexander
+> > <alexander.usyskin@intel.com>; Ceraolo Spurio, Daniele
+> > <daniele.ceraolospurio@intel.com>
+> > Subject: Re: [PATCH v6 02/10] mei: late_bind: add late binding component
+> > driver
+> > 
+> > On Fri, Jul 04, 2025 at 05:18:46PM +0530, Nilawar, Badal wrote:
+> > >
+> > > On 04-07-2025 16:04, Greg KH wrote:
+> > > > On Fri, Jul 04, 2025 at 03:59:40PM +0530, Nilawar, Badal wrote:
+> > > > > On 04-07-2025 10:44, Greg KH wrote:
+> > > > > > On Fri, Jul 04, 2025 at 01:00:58AM +0530, Badal Nilawar wrote:
+> > > > > > > From: Alexander Usyskin <alexander.usyskin@intel.com>
+> > > > > > >
+> > > > > > > Add late binding component driver.
+> > > > > > > It allows pushing the late binding configuration from, for
+> > > > > > > example, the Xe graphics driver to the Intel discrete graphics card's
+> > CSE device.
+> > > > > > >
+> > > > > > > Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> > > > > > > Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> > > > > > > Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > > > > > ---
+> > > > > > >    drivers/misc/mei/Kconfig                    |   1 +
+> > > > > > >    drivers/misc/mei/Makefile                   |   1 +
+> > > > > > >    drivers/misc/mei/late_bind/Kconfig          |  13 +
+> > > > > > >    drivers/misc/mei/late_bind/Makefile         |   9 +
+> > > > > > >    drivers/misc/mei/late_bind/mei_late_bind.c  | 272
+> > > > > > > ++++++++++++++++++++
+> > > > > > Why do you have a whole subdir for a single .c file?  What's
+> > > > > > wrong with just keepign it in drivers/misc/mei/ ?
+> > > > > There is separate subdir for each component used by i915/xe, so
+> > > > > one was created for late_bind as well. Should we still drop late_bind
+> > subdir?
+> > > > >
+> > > > > cd drivers/misc/mei/
+> > > > >        gsc_proxy/ hdcp/      late_bind/ pxp/
+> > > > For "modules" that are just a single file, yeah, that's silly, don't
+> > > > do that.
+> > > Another reason to maintain the sub_dir is to accommodate additional
+> > > files for future platforms. If you still insist, I'll remove the sub_dir.
+> > 
+> > Move files around when it happens, for now, it's silly and not needed.
+> > 
+> > > > > > > + * @payload_size: size of the payload data in bytes
+> > > > > > > + * @payload: data to be sent to the firmware  */ struct
+> > > > > > > +csc_heci_late_bind_req {
+> > > > > > > +	struct mkhi_msg_hdr header;
+> > > > > > > +	u32 type;
+> > > > > > > +	u32 flags;
+> > > > > > > +	u32 reserved[2];
+> > > > > > > +	u32 payload_size;
+> > > > > > As these cross the kernel boundry, they should be the correct
+> > > > > > type (__u32), but really, please define the endiness of them
+> > > > > > (__le32) and use the proper macros for that.
+> > > > > If we go with __le32 then while populating elements of structure
+> > > > > csc_heci_late_bind_req  I will be using cpu_to_le32().
+> > > > >
+> > > > > When mapping the response buffer from the firmware with struct
+> > > > > csc_heci_late_bind_rsp, there's no need to use le32_to_cpu() since
+> > > > > the response will already be in little-endian format.
+> > > > How do you know?  Where is that defined?  Where did the conversion
+> > > > happen?
+> > >
+> > > Sorry, I got confused. Conversion is needed when assigning the
+> > > response structure elements.
+> > >
+> > > e.g ret = (int)(le32_to_cpu)rsp.status;
+> > 
+> > But these are read directly from the hardware?  If not, why are they marked as
+> > packed?
+> Yes, these are read from firmware, that is the reason they marked as __packed.
+> IMHO, don't we need change the explicit endianness of response status to address your comment.
+> Are we missing something here?
 
-Lucas already reviewed it, so who am I to argue...
+Yes.  The firmware defines these values as __le32, right?  And if you
+read a chunk of memory and cast it into this structure, those fields
+are now also __le32, right?  So to read them in the driver you need to
+then call le32_to_cpu() on those values.
 
-...but I think it's a bit clumsy check if 'row' points anywhere in the
-memory occupied by 'arr', not just at an element. And it completely
-casts away the type of row, you could pass it, say, 5. Something like
-this feels safer:
+Just like data on the USB bus, or any other hardware type.  You must
+define what endian the data is in and then convert it to "native" before
+accessing it properly.
 
-	const typeof(&(arr)[0]) __p = row;
+thanks,
 
-But up to Lucas, really.
-
-
-BR,
-Jani.
-
--- 
-Jani Nikula, Intel
+greg k-h
