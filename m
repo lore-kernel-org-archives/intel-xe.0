@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A56A4C83F04
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 01:16:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15986C83F04
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 02:05:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BE3310E91E;
-	Fri,  4 Jul 2025 01:16:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD63610E920;
+	Fri,  4 Jul 2025 02:05:15 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E563610E91E;
- Fri,  4 Jul 2025 01:16:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA36D10E920;
+ Fri,  4 Jul 2025 02:05:14 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============1208344716452375673=="
+ boundary="===============0027353728692199234=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_Introduce_helper_for_displ?=
- =?utf-8?q?ay_workarounds_and_add_Wa=5F16025573575_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_Plane_Color_Pipeline_suppo?=
+ =?utf-8?q?rt_for_Intel_platforms_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 04 Jul 2025 01:16:42 -0000
-Message-ID: <175159180293.131399.7454979159558205779@1538d3639d33>
+Date: Fri, 04 Jul 2025 02:05:14 -0000
+Message-ID: <175159471475.132864.12256498134498474495@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
+References: <20250702091936.3004854-1-uma.shankar@intel.com>
+In-Reply-To: <20250702091936.3004854-1-uma.shankar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,15 +40,15 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1208344716452375673==
+--===============0027353728692199234==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: Introduce helper for display workarounds and add Wa_16025573575 (rev2)
-URL   : https://patchwork.freedesktop.org/series/150935/
+Series: Plane Color Pipeline support for Intel platforms (rev4)
+URL   : https://patchwork.freedesktop.org/series/141788/
 State : failure
 
 == Summary ==
@@ -57,9 +57,9 @@ ERROR: The runconfig 'xe-3334-b96850785acbd7f0221629625724533cefc2481e_FULL' doe
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150935v2/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/index.html
 
---===============1208344716452375673==
+--===============0027353728692199234==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,11 +79,11 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>Introduce helper for display workarounds and add Wa_16025573575 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150935/">https://patchwork.freedesktop.org/series/150935/</a></td></tr>
+<tr><td><b>Series:</b></td><td>Plane Color Pipeline support for Intel platforms (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141788/">https://patchwork.freedesktop.org/series/141788/</a></td></tr>
 <tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150935v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150935v2/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v4/index.html</a></td></tr>
 
 </table>
 
@@ -93,4 +93,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============1208344716452375673==--
+--===============0027353728692199234==--
