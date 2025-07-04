@@ -4,49 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95D63C83F03
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 11:21:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D58EC8303D
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 11:23:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 406E510E9F3;
-	Fri,  4 Jul 2025 11:21:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A67110E9FD;
+	Fri,  4 Jul 2025 11:23:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pxJFyYR4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l3N0YDej";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C712310E9F3
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Jul 2025 11:21:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=gkCpOcT4QrRYj6E8BxjO5UyDY6upqYHPHk5Q+zFM0fg=; b=pxJFyYR4D9Dt9Y7rcaZOnbTRZC
- mSk6p0a1cXRnK8EVuxSFiswdXSYYwdQRkVSG4GsiKkCQaESXIeDBCN0AxEFIuvraaYnHZjK1GlCEj
- LMrDUzeZ/35IW7VSB9dqjb55gfAXbfxky70MrJADLhAoGXwKnIRHVaTUCpnGyJMqWVlFXbEWQlMa0
- yfnsZfM088AlMdWK9+4tjXJMKKJIVBrNjgjc4D8/X7hqjMR1AYk3x5UIH9ClZXhEhpRQ/Mm055zVe
- CGNueXSn6r9n1h9kg1Zmf55YCEYOc61MiAkKo896T2Hb8c4vnS/8hELisoja3KEe5an86GT9fmkeW
- zK5akSSw==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uXeUI-00CPCz-T3; Fri, 04 Jul 2025 13:21:50 +0200
-Message-ID: <32e154a8-4c01-47eb-8ac9-bbdb42a3eeb5@igalia.com>
-Date: Fri, 4 Jul 2025 12:21:50 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5398610E9F3
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Jul 2025 11:23:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751628231; x=1783164231;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=loaghuG+eiNHO9OfDBkNOr02/rjbFbd+4UWIYhNtta8=;
+ b=l3N0YDejlBoXdZ5WF87BqJytyPsfXT3NrgQT7pLqT+WayK/dRsrTrH2j
+ uRDPOSv2ln83/AHQDvpRlVbpuag/CSFa3hl3YbmR3ShS4Qmw2Tj/LSZtC
+ gOrM4wDRy2Mi7F43HGr6uhMuSMODRZ7j8CDRRx/Ufuia6Z6ynJ6o/wplT
+ 9x7zijhBnlXJtfvNe9XcqLrHNh7QpEzSECMTAvbpcC7XWLd6hWy7V+uz1
+ +Xv6ZQ6lDjXHh2siqiINGn4f1Oo/v0S8Jeth4IG7nGlG8bcDxx40VenG3
+ VFcDEpiHQpxqqLD7NC/FmP0WA7pyvRoHK8JaSY7/tD7KLteFPhOKg2rHI w==;
+X-CSE-ConnectionGUID: Z4rrr0hXT7GovoRSCuMqXA==
+X-CSE-MsgGUID: kEJDtfxWR2SmWwId2HGbQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="64208920"
+X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; d="scan'208";a="64208920"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2025 04:23:51 -0700
+X-CSE-ConnectionGUID: MttH2MhESvSx/tmH7DjCmQ==
+X-CSE-MsgGUID: EPZW9UNXTymKa1mhorJeXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; d="scan'208";a="185578368"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa001.fm.intel.com with ESMTP; 04 Jul 2025 04:23:48 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: lucas.demarchi@intel.com,
+	rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2] drm/xe: Expose fan control and voltage regulator
+ information
+Date: Fri,  4 Jul 2025 16:53:05 +0530
+Message-Id: <20250704112305.2479800-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] drm/xe/gt: Drop third submission for default context
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20250703-lrc-refactors-v1-0-6aa22f174041@intel.com>
- <20250703-lrc-refactors-v1-6-6aa22f174041@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250703-lrc-refactors-v1-6-6aa22f174041@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,47 +67,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Expose sysfs attributes for late binding features which provide information
+about their support, provisioning and bound version to the user.
 
-On 03/07/2025 23:41, Lucas De Marchi wrote:
-> There's no need to submit the nop job again on the first queue. Any
-> state needed is already saved when the first LRC is switched out. The
-> comment is a little misleading regarding indirect W/A: first of all
-> there's still no indirect W/A enabled and secondly, even after they are,
-> there's no need to submit this job again for having their state
-> propagated: the indirect W/A will actually run on every LRC switch.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_gt.c | 8 --------
->   1 file changed, 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 67425e37c2187..439e7c703ed84 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -361,14 +361,6 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
->   			goto put_nop_q;
->   		}
->   
-> -		/* Reload golden LRC to record the effect of any indirect W/A */
-> -		err = emit_nop_job(gt, q);
-> -		if (err) {
-> -			xe_gt_err(gt, "hwe %s: emit_nop_job failed (%pe) guc_id=%u\n",
-> -				  hwe->name, ERR_PTR(err), q->guc->id);
-> -			goto put_nop_q;
-> -		}
-> -
->   		xe_map_memcpy_from(xe, default_lrc,
->   				   &q->lrc[0]->bo->vmap,
->   				   xe_lrc_pphwsp_offset(q->lrc[0]),
-> 
+v2: s/late_bind_fan_info/lb_fan_control_info (Badal)
+    s/late_bind_vr_info/lb_voltage_regulator_info (Badal)
+    s/LATE_BINDING/PCODE_LATE_BINDING (Badal)
+    Add VERSION_MASK macros (Badal)
 
-Wasn't it also racy to memcpy from q's LRC without guaranteeing context 
-save had completed? I don't think dma_fence_wait in emit_nop_job 
-guarantees it. If that is so this patch should actually have Fixes: 
-added and commit message adjusted accordingly.
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 121 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pcode_api.h    |  15 ++++
+ 2 files changed, 135 insertions(+), 1 deletion(-)
 
-Regards,
-
-Tvrtko
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index b9440f8c781e..8a1bb2b7c951 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -24,6 +24,15 @@
+  *
+  * vram_d3cold_threshold - Report/change vram used threshold(in MB) below
+  * which vram save/restore is permissible during runtime D3cold entry/exit.
++ *
++ * lb_fan_control_info - Fan control information of the device in comma
++ * separated format as ``<supported>,<provisioned>,<version>`` with optional
++ * ``<version>`` field which is available only if provisioned by late binding.
++ *
++ * lb_voltage_regulator_info - Voltage regulator information of the device in
++ * comma separated format as ``<supported>,<provisioned>,<version>`` with
++ * optional ``<version>`` field which is available only if provisioned by late
++ * binding.
+  */
+ 
+ static ssize_t
+@@ -65,6 +74,110 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
+ 
+ static DEVICE_ATTR_RW(vram_d3cold_threshold);
+ 
++static ssize_t
++lb_fan_control_info_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++	struct xe_tile *root = xe_device_get_root_tile(xe);
++	u32 cap, ver_low = FAN_TABLE, ver_high = FAN_TABLE;
++	bool supported, provisioned;
++	int ret, len = 0;
++
++	xe_pm_runtime_get(xe);
++
++	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
++			    &cap, NULL);
++	if (ret)
++		goto out;
++
++	supported = REG_FIELD_GET(V1_FAN_SUPPORTED, cap);
++	provisioned = REG_FIELD_GET(V1_FAN_PROVISIONED, cap);
++
++	if (provisioned) {
++		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_LOW, 0),
++				    &ver_low, NULL);
++		if (ret)
++			goto out;
++
++		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_HIGH, 0),
++				    &ver_high, NULL);
++		if (ret)
++			goto out;
++	}
++
++	len += sysfs_emit_at(buf, len, "%u", supported);
++	len += sysfs_emit_at(buf, len, ",%u", provisioned);
++
++	if (provisioned)
++		len += sysfs_emit_at(buf, len, ",%u.%u.%u.%u",
++				     REG_FIELD_GET(MAJOR_VERSION_MASK, ver_low),
++				     REG_FIELD_GET(MINOR_VERSION_MASK, ver_low),
++				     REG_FIELD_GET(HOTFIX_VERSION_MASK, ver_high),
++				     REG_FIELD_GET(BUILD_VERSION_MASK, ver_high));
++
++	len += sysfs_emit_at(buf, len, "\n");
++out:
++	xe_pm_runtime_put(xe);
++
++	return ret ?: len;
++}
++static DEVICE_ATTR_ADMIN_RO(lb_fan_control_info);
++
++static ssize_t
++lb_voltage_regulator_info_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++	struct xe_tile *root = xe_device_get_root_tile(xe);
++	u32 cap, ver_low = VR_CONFIG, ver_high = VR_CONFIG;
++	bool supported, provisioned;
++	int ret, len = 0;
++
++	xe_pm_runtime_get(xe);
++
++	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
++			    &cap, NULL);
++	if (ret)
++		goto out;
++
++	supported = REG_FIELD_GET(VR_PARAMS_SUPPORTED, cap);
++	provisioned = REG_FIELD_GET(VR_PARAMS_PROVISIONED, cap);
++
++	if (provisioned) {
++		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_LOW, 0),
++				    &ver_low, NULL);
++		if (ret)
++			goto out;
++
++		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_HIGH, 0),
++				    &ver_high, NULL);
++		if (ret)
++			goto out;
++	}
++
++	len += sysfs_emit_at(buf, len, "%u", supported);
++	len += sysfs_emit_at(buf, len, ",%u", provisioned);
++
++	if (provisioned)
++		len += sysfs_emit_at(buf, len, ",%u.%u.%u.%u",
++				     REG_FIELD_GET(MAJOR_VERSION_MASK, ver_low),
++				     REG_FIELD_GET(MINOR_VERSION_MASK, ver_low),
++				     REG_FIELD_GET(HOTFIX_VERSION_MASK, ver_high),
++				     REG_FIELD_GET(BUILD_VERSION_MASK, ver_high));
++
++	len += sysfs_emit_at(buf, len, "\n");
++out:
++	xe_pm_runtime_put(xe);
++
++	return ret ?: len;
++}
++static DEVICE_ATTR_ADMIN_RO(lb_voltage_regulator_info);
++
++static const struct attribute *late_bind_attrs[] = {
++	&dev_attr_lb_fan_control_info.attr,
++	&dev_attr_lb_voltage_regulator_info.attr,
++	NULL
++};
++
+ /**
+  * DOC: PCIe Gen5 Limitations
+  *
+@@ -151,8 +264,10 @@ static void xe_device_sysfs_fini(void *arg)
+ 	if (xe->d3cold.capable)
+ 		sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
+ 
+-	if (xe->info.platform == XE_BATTLEMAGE)
++	if (xe->info.platform == XE_BATTLEMAGE) {
+ 		sysfs_remove_files(&xe->drm.dev->kobj, auto_link_downgrade_attrs);
++		sysfs_remove_files(&xe->drm.dev->kobj, late_bind_attrs);
++	}
+ }
+ 
+ int xe_device_sysfs_init(struct xe_device *xe)
+@@ -170,6 +285,10 @@ int xe_device_sysfs_init(struct xe_device *xe)
+ 		ret = sysfs_create_files(&dev->kobj, auto_link_downgrade_attrs);
+ 		if (ret)
+ 			return ret;
++
++		ret = sysfs_create_files(&dev->kobj, late_bind_attrs);
++		if (ret)
++			return ret;
+ 	}
+ 
+ 	return devm_add_action_or_reset(dev, xe_device_sysfs_fini, xe);
+diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+index 0befdea77db1..92bfcba51e19 100644
+--- a/drivers/gpu/drm/xe/xe_pcode_api.h
++++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+@@ -50,6 +50,21 @@
+ #define	READ_PL_FROM_FW				0x1
+ #define	READ_PL_FROM_PCODE			0x0
+ 
++#define   PCODE_LATE_BINDING			0x5C
++#define     GET_CAPABILITY_STATUS		0x0
++#define       V1_FAN_SUPPORTED			REG_BIT(0)
++#define       VR_PARAMS_SUPPORTED		REG_BIT(3)
++#define       V1_FAN_PROVISIONED		REG_BIT(16)
++#define       VR_PARAMS_PROVISIONED		REG_BIT(19)
++#define     GET_VERSION_LOW			0x1
++#define     GET_VERSION_HIGH			0x2
++#define       MAJOR_VERSION_MASK		REG_GENMASK(31, 16)
++#define       MINOR_VERSION_MASK		REG_GENMASK(15, 0)
++#define       HOTFIX_VERSION_MASK		REG_GENMASK(31, 16)
++#define       BUILD_VERSION_MASK		REG_GENMASK(15, 0)
++#define       FAN_TABLE				1
++#define       VR_CONFIG				2
++
+ #define   PCODE_FREQUENCY_CONFIG		0x6e
+ /* Frequency Config Sub Commands (param1) */
+ #define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
+-- 
+2.34.1
 
