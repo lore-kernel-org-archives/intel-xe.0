@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73584C8303D
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 21:02:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 973E8C8303D
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 21:02:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1A410E0E5;
-	Fri,  4 Jul 2025 21:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FCEA10E37E;
+	Fri,  4 Jul 2025 21:02:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BqFLmDO6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Umnn5OeC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA8C010E37C
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Jul 2025 21:02:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA3D310E37A
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Jul 2025 21:02:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751662967; x=1783198967;
+ t=1751662969; x=1783198969;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=S2ZHv1AomkUvJUQNbNMl7kWdWa/21Ecu3nF7/eSkLIc=;
- b=BqFLmDO63TI9r1775mhmh2Y1y9uh6Fnx2mrbt7IAWQd+vEj3z9wpeASE
- s3UL6PgOJ3daxyCCE+ibwaTz7OfOK5uHBPU3I2ae81zDhStO0QloPVjDP
- PuyGdJCSuqU2LuJJqOD25TttIxPi8t3tG6wcs/xhu1Digm7AUXkGvM0nU
- GVZsoIEv2YufIqULx9fEWWVGIKuDHFUkSnmuJxKjjWcnL6z7L3NnDsbf6
- J+Iw4NnzvXTuZltSG6bSsyntb8Dyvt+r7AuGT8gCerMCD55/Ed+CDkUgI
- HRGBL8YySdTUNu7UjF+y2kzADQ35LRiiG3fd5koEx0cVpWFKAN/tUr9Pv w==;
-X-CSE-ConnectionGUID: RbQVHzKhQkSPp7aF0dJPyg==
-X-CSE-MsgGUID: +VNKSIVeQSKr9YsJe7CS1A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11484"; a="54111450"
-X-IronPort-AV: E=Sophos;i="6.16,288,1744095600"; d="scan'208";a="54111450"
+ bh=SSJwRxMWfWcNonWwt1f4/7pYJGLP+7oNpGienF99XK4=;
+ b=Umnn5OeC9sc9wKYJQmv0y5raF612BN5JCp0j4LEhR1nK1JfUiZkAHl8s
+ q346TN4ba1jGoq1Y43CvHA4FUtcUeCrfDXmgAK7a+jaZNlzY/33B4zPqO
+ vUaeKqEpmPWSDAFcQABpULRI2Y5fXkCr0ArpmNzaevmmJXbqR3cGwURu1
+ ijDJEfKe0TjDIQI3xvH23i2bWQfJv6SQP6HAqpcK4E3RIDx4qCqTOQIO3
+ Mkil3aF5de2cjpt5qPj8RQzq6QyR+070XLcLIAeM78/WXnEURYFrtWdvd
+ vKGSUuN6u/WqnhQew5e9eWOl5B9Xz5N48DRvKoVtGIUAvmRLQKDyydF+h g==;
+X-CSE-ConnectionGUID: DtCRRdINTCivPuhaf4x7yg==
+X-CSE-MsgGUID: Y+vCBvm7QbyRXheb0thkYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11484"; a="54111453"
+X-IronPort-AV: E=Sophos;i="6.16,288,1744095600"; d="scan'208";a="54111453"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2025 14:02:47 -0700
-X-CSE-ConnectionGUID: 9ZyG8UpyRa2rbywxvLB0Fg==
-X-CSE-MsgGUID: ibg7F+lZQ5mFiw/FWQU89w==
+ 04 Jul 2025 14:02:49 -0700
+X-CSE-ConnectionGUID: Ag2AQJspTyqxVQwUytq02w==
+X-CSE-MsgGUID: f4tA8CZ2T5assst46axzQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,288,1744095600"; d="scan'208";a="154840058"
+X-IronPort-AV: E=Sophos;i="6.16,288,1744095600"; d="scan'208";a="154840061"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa007.jf.intel.com with ESMTP; 04 Jul 2025 14:02:45 -0700
+ by orviesa007.jf.intel.com with ESMTP; 04 Jul 2025 14:02:47 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
@@ -47,10 +47,10 @@ Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v6 7/9] drm/xe/vf: Post migration,
- repopulate ring area for pending request
-Date: Fri,  4 Jul 2025 23:02:26 +0200
-Message-Id: <20250704210228.825843-8-tomasz.lis@intel.com>
+Subject: [PATCH v6 8/9] drm/xe/vf: Refresh utilization buffer during migration
+ recovery
+Date: Fri,  4 Jul 2025 23:02:27 +0200
+Message-Id: <20250704210228.825843-9-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250704210228.825843-1-tomasz.lis@intel.com>
 References: <20250704210228.825843-1-tomasz.lis@intel.com>
@@ -70,132 +70,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The commands within ring area allocated for a request may contain
-references to GGTT. These references require update after VF
-migration, in order to continue any preempted LRCs, or jobs which
-were emitted to the ring but not sent to GuC yet.
+The WA buffer we use to capture context utilization contains GGTT
+references. This means its instructions have to be either fixed or
+re-emitted during VF post-migration recovery.
 
-This change calls the emit function again for all such jobs,
-as part of post-migration recovery.
+This patch adds re-emitting content of the utilization WA BB during
+the recovery.
 
-v2: Moved few functions to better files
-v3: Take job_list_lock
+The way we write to vram requires scratch buffer to be used before
+the whole block is memcopied. We are re-using a scratch buffer
+introduced in earlier part of the recovery.
+
+v2: Notable rebase after "Prepare WA BB setup for more users" patch
 
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Michal Winiarski <michal.winiarski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue.h |  2 ++
- drivers/gpu/drm/xe/xe_guc_submit.c | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h |  2 ++
+ drivers/gpu/drm/xe/xe_exec_queue.c |  1 +
+ drivers/gpu/drm/xe/xe_lrc.c        | 54 ++++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_lrc.h        |  4 +++
  drivers/gpu/drm/xe/xe_sriov_vf.c   |  2 +-
- 5 files changed, 53 insertions(+), 1 deletion(-)
+ 4 files changed, 42 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index ceafbd6e2032..bd8de62cb228 100644
+index bd8de62cb228..ca8132c09efb 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -1044,3 +1044,27 @@ void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+@@ -1042,6 +1042,7 @@ void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+ 	for (i = 0; i < q->width; ++i) {
+ 		xe_lrc_update_memirq_regs_with_address(q->lrc[i], q->hwe, scratch);
  		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
++		xe_lrc_setup_wa_bb_with_scratch(q->lrc[i], q->hwe, scratch);
  	}
  }
-+
+ 
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 8d6cecca1e86..ca7541eba92a 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -40,7 +40,6 @@
+ 
+ #define LRC_PPHWSP_SIZE				SZ_4K
+ #define LRC_INDIRECT_RING_STATE_SIZE		SZ_4K
+-#define LRC_WA_BB_SIZE				SZ_4K
+ 
+ static struct xe_device *
+ lrc_to_xe(struct xe_lrc *lrc)
+@@ -1025,25 +1024,27 @@ struct wa_bb_setup {
+ 			 u32 *batch, size_t max_size);
+ };
+ 
+-static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
 +/**
-+ * xe_exec_queue_jobs_ring_restore - Re-emit ring commands of requests pending on given queue.
-+ * @q: the &xe_exec_queue struct instance
++ * xe_lrc_setup_wa_bb_with_scratch - Execute all wa bb setup callbacks.
++ * @lrc: the &xe_lrc struct instance
++ * @hwe: the &xe_hw_engine struct instance
++ * @scratch: preallocated scratch buffer for temporary storage
++ * Return: 0 on success, negative error code on failure
 + */
-+void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q)
-+{
-+	struct xe_gpu_scheduler *sched = &q->guc->sched;
-+	struct xe_sched_job *job;
-+
-+	/*
-+	 * This routine is used within VF migration recovery. This means
-+	 * using the lock here, introduces a restriction: in no place we
-+	 * can wait for any GFX HW response when that lock is taken.
-+	 */
-+	spin_lock(&sched->base.job_list_lock);
-+	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
-+		if (xe_sched_job_is_error(job))
-+			continue;
-+
-+		q->ring_ops->emit_job(job);
-+	}
-+	spin_unlock(&sched->base.job_list_lock);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index da720197929b..0ffc0cb03aa6 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -92,4 +92,6 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
++int xe_lrc_setup_wa_bb_with_scratch(struct xe_lrc *lrc, struct xe_hw_engine *hwe, u32 *scratch)
+ {
+-	const size_t max_size = LRC_WA_BB_SIZE;
+ 	static const struct wa_bb_setup funcs[] = {
+ 		{ .setup = wa_bb_setup_utilization },
+ 	};
+ 	ssize_t remain;
+-	u32 *cmd, *buf = NULL;
++	u32 *cmd;
  
- void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
+-	if (lrc->bo->vmap.is_iomem) {
+-		buf = kmalloc(max_size, GFP_KERNEL);
+-		if (!buf)
+-			return -ENOMEM;
+-		cmd = buf;
+-	} else {
++	if (lrc->bo->vmap.is_iomem)
++		cmd = scratch;
++	else
+ 		cmd = lrc->bo->vmap.vaddr + __xe_lrc_wa_bb_offset(lrc);
+-	}
  
-+void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 72369b78cbf5..37584a064574 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -777,6 +777,30 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
- 	return fence;
+-	remain = max_size / sizeof(*cmd);
++	remain = LRC_WA_BB_SIZE / sizeof(*cmd);
+ 
+ 	for (size_t i = 0; i < ARRAY_SIZE(funcs); i++) {
+ 		ssize_t len = funcs[i].setup(lrc, hwe, cmd, remain);
+@@ -1062,12 +1063,10 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 
+ 	*cmd++ = MI_BATCH_BUFFER_END;
+ 
+-	if (buf) {
++	if (lrc->bo->vmap.is_iomem)
+ 		xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap,
+-				 __xe_lrc_wa_bb_offset(lrc), buf,
+-				 (cmd - buf) * sizeof(*cmd));
+-		kfree(buf);
+-	}
++				 __xe_lrc_wa_bb_offset(lrc), scratch,
++				 (cmd - scratch) * sizeof(*cmd));
+ 
+ 	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR, xe_bo_ggtt_addr(lrc->bo) +
+ 			     __xe_lrc_wa_bb_offset(lrc) + 1);
+@@ -1075,10 +1074,29 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 	return 0;
+ 
+ fail:
+-	kfree(buf);
+ 	return -ENOSPC;
  }
  
-+/**
-+ * xe_guc_jobs_ring_rebase - Re-emit ring commands of requests pending
-+ * on all queues under a guc.
-+ * @guc: the &xe_guc struct instance
-+ */
-+void xe_guc_jobs_ring_rebase(struct xe_guc *guc)
++static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
 +{
-+	struct xe_exec_queue *q;
-+	unsigned long index;
++	const size_t max_size = LRC_WA_BB_SIZE;
++	u32 *buf = NULL;
++	int ret;
 +
-+	/*
-+	 * This routine is used within VF migration recovery. This means
-+	 * using the lock here, introduces a restriction: in no place we
-+	 * can wait for any GFX HW response when that lock is taken.
-+	 */
-+	mutex_lock(&guc->submission_state.lock);
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
-+		if (exec_queue_killed_or_banned_or_wedged(q))
-+			continue;
-+		xe_exec_queue_jobs_ring_restore(q);
++	if (lrc->bo->vmap.is_iomem) {
++		buf = kmalloc(max_size, GFP_KERNEL);
++		if (!buf)
++			return -ENOMEM;
 +	}
-+	mutex_unlock(&guc->submission_state.lock);
++
++	ret = xe_lrc_setup_wa_bb_with_scratch(lrc, hwe, buf);
++
++	if (lrc->bo->vmap.is_iomem)
++		kfree(buf);
++
++	return ret;
 +}
 +
- static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
- {
- 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index 811cd9c0bf79..c0a1b2467d75 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -34,6 +34,8 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
- int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
- int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ #define PVC_CTX_ASID		(0x2e + 1)
+ #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
  
-+void xe_guc_jobs_ring_rebase(struct xe_guc *guc);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index a6205077f024..04e222e23d8d 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -42,6 +42,8 @@ struct xe_lrc_snapshot {
+ #define LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR (0x34 * 4)
+ #define LRC_PPHWSP_PXP_INVAL_SCRATCH_ADDR (0x40 * 4)
+ 
++#define LRC_WA_BB_SIZE SZ_4K
 +
- struct xe_guc_submit_exec_queue_snapshot *
- xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
- void
+ #define XE_LRC_CREATE_RUNALONE 0x1
+ #define XE_LRC_CREATE_PXP 0x2
+ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+@@ -129,6 +131,8 @@ u32 xe_lrc_ctx_timestamp_udw_ggtt_addr(struct xe_lrc *lrc);
+ u64 xe_lrc_ctx_timestamp(struct xe_lrc *lrc);
+ u32 xe_lrc_ctx_job_timestamp_ggtt_addr(struct xe_lrc *lrc);
+ u32 xe_lrc_ctx_job_timestamp(struct xe_lrc *lrc);
++int xe_lrc_setup_wa_bb_with_scratch(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
++				    u32 *scratch);
+ 
+ /**
+  * xe_lrc_update_timestamp - readout LRC timestamp and update cached value
 diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index 43ac73e432d4..a219395c15de 100644
+index a219395c15de..a4927b0792b5 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -284,7 +284,7 @@ static int gt_vf_post_migration_fixups(struct xe_gt *gt)
- 		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
- 		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
- 		xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
--		/* FIXME: add the recovery steps */
-+		xe_guc_jobs_ring_rebase(&gt->uc.guc);
- 		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
- 	}
+@@ -247,7 +247,7 @@ static int vf_get_next_migrated_gt_id(struct xe_device *xe)
  
+ static size_t post_migration_scratch_size(struct xe_device *xe)
+ {
+-	return xe_lrc_reg_size(xe);
++	return max(xe_lrc_reg_size(xe), LRC_WA_BB_SIZE);
+ }
+ 
+ /**
 -- 
 2.25.1
 
