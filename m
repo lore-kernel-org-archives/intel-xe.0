@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7251C8303D
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 15:58:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5E87C8303D
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Jul 2025 16:46:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFA110E2BA;
-	Fri,  4 Jul 2025 15:58:48 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55F2710E2BA;
- Fri,  4 Jul 2025 15:58:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3203677066688087862=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 804A710E091;
+	Fri,  4 Jul 2025 16:46:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aMJPCia5";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE9AF10E04F;
+ Fri,  4 Jul 2025 16:46:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751647577; x=1783183577;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Xz+BIWfy+iqBB+Sy7bC9qdoFxADPQTx8PM1maWvJsDU=;
+ b=aMJPCia5lTIe51rRMr0NuyJGikHqWsQmENOqbXkvso/WdLYivKw7jbKZ
+ wgiaMV62chg0Nn0dTaSjz0yFlN9n+LPl3r/jTT0umbFopJ4em5K4iJ+9d
+ asmqqh0rRhOmjA0wC/lCcOfYnuLsSEIULR3GDEEQspY+x4miLyImLl+RE
+ TPLzHa546r9RHOV5+p8QMdU1/EKRzWO/Bb99Ttz8djidunqGeVCAflQ3Q
+ 6HB246xu9309xd8S652D21hC9nrl1IadWQQQ0BMZF+J1VKlWEJ1Qo8RT4
+ 1pD1Zx6dqk4cbKlfxA/IVPkkYatOGuu6SIAe6hZnDYn30aypGjiRi64M1 Q==;
+X-CSE-ConnectionGUID: OYXE3sScTaakAfQyZAlXgA==
+X-CSE-MsgGUID: 0JRm3d8iQtewdkjtUNOW9g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11484"; a="57755766"
+X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; d="scan'208";a="57755766"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2025 09:46:16 -0700
+X-CSE-ConnectionGUID: zpZdKF4YQB2uVvGpkmOozg==
+X-CSE-MsgGUID: HNY+mPyTRWyMC514adz6fQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; d="scan'208";a="154424639"
+Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
+ by orviesa009-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2025 09:46:14 -0700
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ alexander.usyskin@intel.com, gregkh@linuxfoundation.org,
+ daniele.ceraolospurio@intel.com
+Subject: [PATCH v7 00/10] Introducing firmware late binding
+Date: Fri,  4 Jul 2025 22:20:28 +0530
+Message-Id: <20250704165038.1464460-1-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/display=3A_Increase_DP?=
- =?utf-8?q?=5FRECEIVER=5FCAP=5FSIZE_from_15_to_16_bytes?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 04 Jul 2025 15:58:47 -0000
-Message-ID: <175164472734.136031.287274203532314763@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250702223903.3801654-1-khaled.almahallawy@intel.com>
-In-Reply-To: <20250702223903.3801654-1-khaled.almahallawy@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +64,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3203677066688087862==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Introducing firmware late binding feature to enable firmware loading
+for the devices, such as the fan controller and voltage regulator,
+during the driver probe.
+Typically, firmware for these devices are part of IFWI flash image but
+can be replaced at probe after OEM tuning.
 
-== Series Details ==
+v2:
+ - Dropped voltage regulator specific code as binaries for it will not
+   be available for upstreaming as of now.
+ - Address review comments
+v3:
+ - Dropped fwctl patch for now
+ - Added new patch to extract binary version
+ - Address v2 review comments
+v4:
+ - Address v3 review comments
+v5:
+ xe_kmd:
+ - Dropped mutex is worker flush in unbind blocking component
+   removal while fw download is in progress
+ - Handled the fw load in all 3 scenarios (probe, system resume, rpm resume)
+   by holding rpm wake ref in outer bounds of worker.
+ mei:
+ - Most of the review comments
+v6:
+ - rebased
+ - Disabled fw load upon error
+v7:
+ xe_kmd:
+ - resolved kernel doc warnings
+ mei:
+ - Address v6 review comments (greg kh)
 
-Series: drm/display: Increase DP_RECEIVER_CAP_SIZE from 15 to 16 bytes
-URL   : https://patchwork.freedesktop.org/series/151096/
-State : failure
+Alexander Usyskin (2):
+  mei: bus: add mei_cldev_mtu interface
+  mei: late_bind: add late binding component driver
 
-== Summary ==
+Badal Nilawar (8):
+  drm/xe/xe_late_bind_fw: Introducing xe_late_bind_fw
+  drm/xe/xe_late_bind_fw: Initialize late binding firmware
+  drm/xe/xe_late_bind_fw: Load late binding firmware
+  drm/xe/xe_late_bind_fw: Reload late binding fw in rpm resume
+  drm/xe/xe_late_bind_fw: Reload late binding fw during system resume
+  drm/xe/xe_late_bind_fw: Introduce debug fs node to disable late
+    binding
+  drm/xe/xe_late_bind_fw: Extract and print version info
+  drm/xe/xe_late_bind_fw: Select INTEL_MEI_LATE_BIND for CI
 
-ERROR: The runconfig 'xe-3338-339a9f6176f6e176caa8e631859c73b34ffb07d6_FULL' does not exist in the database
+ drivers/gpu/drm/xe/Kconfig                  |   1 +
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c             |  41 ++
+ drivers/gpu/drm/xe/xe_device.c              |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   6 +
+ drivers/gpu/drm/xe/xe_late_bind_fw.c        | 462 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_late_bind_fw.h        |  17 +
+ drivers/gpu/drm/xe/xe_late_bind_fw_types.h  |  75 ++++
+ drivers/gpu/drm/xe/xe_pci.c                 |   2 +
+ drivers/gpu/drm/xe/xe_pci_types.h           |   1 +
+ drivers/gpu/drm/xe/xe_pm.c                  |   8 +
+ drivers/gpu/drm/xe/xe_uc_fw_abi.h           |  66 +++
+ drivers/misc/mei/Kconfig                    |  11 +
+ drivers/misc/mei/Makefile                   |   1 +
+ drivers/misc/mei/bus.c                      |  13 +
+ drivers/misc/mei/mei_late_bind.c            | 271 ++++++++++++
+ include/drm/intel/i915_component.h          |   1 +
+ include/drm/intel/late_bind_mei_interface.h |  62 +++
+ include/linux/mei_cl_bus.h                  |   1 +
+ 19 files changed, 1045 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw.c
+ create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw.h
+ create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+ create mode 100644 drivers/misc/mei/mei_late_bind.c
+ create mode 100644 include/drm/intel/late_bind_mei_interface.h
 
-== Logs ==
+-- 
+2.34.1
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151096v1/index.html
-
---===============3203677066688087862==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/display: Increase DP_RECEIVER_CAP_SIZE from 15 to 16 bytes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151096/">https://patchwork.freedesktop.org/series/151096/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151096v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151096v1/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-3338-339a9f6176f6e176caa8e631859c73b34ffb07d6_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============3203677066688087862==--
