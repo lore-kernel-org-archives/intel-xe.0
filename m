@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3927C8303C
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 18:48:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B003C8303C
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 18:54:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADDB410E50C;
-	Mon,  7 Jul 2025 18:48:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31F5A10E50C;
+	Mon,  7 Jul 2025 18:54:13 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 564AC10E50C;
- Mon,  7 Jul 2025 18:48:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5199373832989654461=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 778E510E50C;
+ Mon,  7 Jul 2025 18:54:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introducing_firmware_late_b?=
- =?utf-8?q?inding_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/panthor=3A_support_re?=
+ =?utf-8?q?peated_mappings_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
+To: "Caterina Shablia" <caterina.shablia@collabora.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Jul 2025 18:48:51 -0000
-Message-ID: <175191413134.140981.10594714938041608780@1538d3639d33>
+Date: Mon, 07 Jul 2025 18:54:12 -0000
+Message-ID: <175191445248.141239.3423173618577504923@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250704165038.1464460-1-badal.nilawar@intel.com>
-In-Reply-To: <20250704165038.1464460-1-badal.nilawar@intel.com>
+References: <20250707170442.1437009-1-caterina.shablia@collabora.com>
+In-Reply-To: <20250707170442.1437009-1-caterina.shablia@collabora.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,47 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5199373832989654461==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Introducing firmware late binding (rev3)
-URL   : https://patchwork.freedesktop.org/series/151202/
-State : success
+Series: drm/panthor: support repeated mappings (rev2)
+URL   : https://patchwork.freedesktop.org/series/151264/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7_BAT -> xe-pw-151202v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+43254c2aa575037fc031c7ac21b0d031c700b2bf
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 86cb3bd359371456e56b1163b89748cdf09e0f25
+Author: Boris Brezillon <boris.brezillon@collabora.com>
+Date:   Mon Jul 7 17:04:33 2025 +0000
 
-Summary
--------
+    drm/panthor: Add support for repeated mappings
+    
+    This allows us to optimize mapping of a relatively small
+    portion of a BO over and over in a large VA range, which
+    is useful to support Vulkan sparse bindings in an efficient
+    way.
+    
+    Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+    Co-developed-by: Caterina Shablia <caterina.shablia@collabora.com>
+    Signed-off-by: Caterina Shablia <caterina.shablia@collabora.com>
++ /mt/dim checkpatch b9993cff911b1dd0abde4929435cc1eeb79e1c8f drm-intel
+0b3ffd077d9f drm/panthor: Add support for atomic page table updates
+8d73950ebff2 drm/gpuvm: Kill drm_gpuva_init()
+3a7847d428de drm/gpuvm: Pass map arguments through a struct
+cbd0f4101a91 drm/gpuvm: Add a helper to check if two VA can be merged
+a58b40d4be38 drm/gpuvm: Add a flags field to drm_gpuvm_map_req/drm_gpuva_op_map
+c8f532ad85a1 drm/gpuvm: Add DRM_GPUVA_REPEAT flag and logic
+-:273: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email subaddress mismatch: 'From: Asahi Lina <lina+kernel@asahilina.net>' != 'Signed-off-by: Asahi Lina <lina@asahilina.net>'
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-151202v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151202v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7 -> xe-pw-151202v3
-
-  IGT_8445: 8445
-  xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7: 17e70ec7d93c01d943dba448b407ec3dc74e3ea7
-  xe-pw-151202v3: 151202v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151202v3/index.html
-
---===============5199373832989654461==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 223 lines checked
+86cb3bd35937 drm/panthor: Add support for repeated mappings
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introducing firmware late binding (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151202/">https://patchwork.freedesktop.org/series/151202/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151202v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151202v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7_BAT -&gt; xe-pw-151202v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-151202v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151202v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7 -&gt; xe-pw-151202v3</li>
-</ul>
-<p>IGT_8445: 8445<br />
-  xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7: 17e70ec7d93c01d943dba448b407ec3dc74e3ea7<br />
-  xe-pw-151202v3: 151202v3</p>
-
-</body>
-</html>
-
---===============5199373832989654461==--
