@@ -4,80 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48FE0C71130
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 18:07:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4670AC71130
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 18:16:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0646F10E06B;
-	Mon,  7 Jul 2025 18:07:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1BBB10E506;
+	Mon,  7 Jul 2025 18:16:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="W0DQ/8uP";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NR9nM3fg";
 	dkim-atps=neutral
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
- [209.85.216.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8A4610E06B
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Jul 2025 18:07:40 +0000 (UTC)
-Received: by mail-pj1-f41.google.com with SMTP id
- 98e67ed59e1d1-313bb9b2f5bso3124569a91.3
- for <intel-xe@lists.freedesktop.org>; Mon, 07 Jul 2025 11:07:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1751911660; x=1752516460;
- darn=lists.freedesktop.org; 
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
- :date:message-id:reply-to;
- bh=0pCU08s8pyzb8vKED/GFzcPYQp4EDazDQK60prRI+oo=;
- b=W0DQ/8uPq9Pz3JuaKjWQ8Xim0SbXv4BEbQCX9kmG8Ho7dd7RHlCJsIRLQuBpmZE/zj
- w2v+50mlrpEBtYbIwkyfyHEOC+OOkEPSwfM097UEdRlvU4xnBuesx7j3mDyi6YTpMPc2
- vjCilAhnCikwsdWzmpGmdegX7CD7R6NySAIjE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751911660; x=1752516460;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=0pCU08s8pyzb8vKED/GFzcPYQp4EDazDQK60prRI+oo=;
- b=Ralx2RlNvf2bvaZevBXuo/a2wRUTPVNjeQqUt8pFlMK+uskyuqvd4k64OniLjVNk/0
- AjRB0U7nQUrAseGvX5JCUMFNY7TzqVFA9aHNvnn6bv/bitXLN4cNkBJPOcpl6RTrjA6j
- 37FrfvFPDkaI1AZJ/6QQhlb7M1vUqUsaFyct69DzCvKIqIngNO9JEY0SuMCYrhsioJVF
- XhmSv+ITQ+cd4sMKiZ7+iGwTrbT6RrRDSDztneZ11GDMTAZFQz1WGAlqcatmkRqykqhi
- FXUFzfQxA8XTPMoC57GZVirbWkEIl4EHSbIIQUJh92DvQs04RFe6ytRPorJTKq30Xo/5
- aLOA==
-X-Gm-Message-State: AOJu0YzqWY19td1Z+7X7XbcZUB9FQ7rIAt/GxtDaH/YnIVLMufF9tEnX
- Vc8JAP9BpyojI9xUrXenrKlSw1gr+aqgVUb5kjLfZcfcqP13eiQConOXf+7qnA7O/PCYa/OS7Hg
- GVWU=
-X-Gm-Gg: ASbGncu6t9dDHdrVwXZJ5e4Hb6Nz/lds9vigikD8oubTNFOwQgmLMaTKEulOih8zEJt
- 0Zzxw1knexDOR2AphSOarcNr9+T1YpeNbTVoIQUaewkW3L04n4K9BiGwP4WTCDPHYBaRmIHqGAr
- hRC8vt7W7pTjYifW/Xm7zPKtO39HzoLbDHEXUoXzYxTLwDUym9saXdFSrhIkieYb9nirJRp8EIg
- 8WcbUncTCcWzzqxzvf2Dnb4J/0wEpSsyaNhwZRpCDkckShmesEtApcInOOhy1WPCxGVqCsIN5Fk
- NZDnAsuF4fZWvVlK6UiYT1P/xRLQOMEn6GCJAGz7EUMEVqBiMBo+SK01egsO7lCFJOHAWH3zaR/
- mwubxN/j/Nfx6b6HqEa7XOpz2/p1DFUJuVD8RdRYLXUNDhgwF
-X-Google-Smtp-Source: AGHT+IGZ/Bql/c5VIs4UhzQl9SzztuAqHC//i8P6Z0HTDq4hADTsBo2RdoTip59/92a0ZMlSNbE2/w==
-X-Received: by 2002:a17:90a:cb10:b0:308:7270:d6ea with SMTP id
- 98e67ed59e1d1-31c20e7f994mr470317a91.30.1751911660204; 
- Mon, 07 Jul 2025 11:07:40 -0700 (PDT)
-Received: from justonli3.c.googlers.com
- (206.138.168.34.bc.googleusercontent.com. [34.168.138.206])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-31a9cc6a184sm13124042a91.20.2025.07.07.11.07.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Jul 2025 11:07:39 -0700 (PDT)
-Message-ID: <c764ba5c74447ed98f2b17d2b219f62ae79c7e30.camel@chromium.org>
-Subject: Re: [PATCH v4 2/2] drm/xe/bo: add GPU memory trace points
-From: Juston Li <justonli@chromium.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Tvrtko
- Ursulin <tursulin@ursulin.net>, Yiwei Zhang <zzyiwei@google.com>, Rodrigo
- Vivi	 <rodrigo.vivi@intel.com>
-Date: Mon, 07 Jul 2025 11:07:39 -0700
-In-Reply-To: <37a5f250-1c19-4b95-882b-b4ef3e5c6268@igalia.com>
-References: <20250611225145.1739201-1-justonli@chromium.org>
- <20250611225145.1739201-2-justonli@chromium.org>
- <mrfsys5djmsbotxlaahed5ogmofn4pkmgqfhl47rj3bwxdtlbv@7xbekwpkte57>
- <37a5f250-1c19-4b95-882b-b4ef3e5c6268@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+build1 
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2088.outbound.protection.outlook.com [40.107.94.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20A1610E09C;
+ Mon,  7 Jul 2025 18:16:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xudCv8T82hU9WdZhqJ++UiDQQh7Ey4Kx2lv1fW0ZB1kB/4/lq1+yEVmNEv0S9piGoNa4U4P1V10hGtpxE2TmTLdgVBtDwO30/qiGghIxTL8/tlaKkvjrAK8cL0XC1EC6/1/j4h5fUy/s5byqyy3F6AAjelXf25+1amloiDbWA36Gma4y1vN+FVo5Uo6nvvM4rWWuajkgNeCrGOdM4UGpVebzzJ0PEsTRUGvPtgfXyyTmCbeAt+snlU5HXZzVfi/EixF47AbMpboaG0FjUxneKbQGZG4ndzeYBU+D0Smk5xXZmbAisS8QtAXMvoA7YhP5mQy/VlvNe7DvJXnEIWilng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zfC6RXCD8q4pAJdanGl1VwzzfwhMFERO7/qvP+eQwhA=;
+ b=TbG6G2rt5BWc0bFDnXNqxJW7OKLJPAVJGFfubk6eZIOUv7zdcdWKphMvMXT0QLf90lbg6KLj41+fnZf2mPi49CAsSjB/3NfgilcfqA7/tjwiNWpIPc4a33LhljGaGm2ggs1E2+uaQUPodBHpRAtMInbHWsJMpWiJ/CN9z9ZtenCKjnNVXo3AnT7pMT//r8WDpVkAHQEg1VLPeKJkTem+7W0yfifpDkGTN7KdeQGs/3X+0Ko0125HpUHwCyBAnyIqpZPhVrJGFA2yhcpK4jp6n/XVH7NPKtOCcbzEsK99nBpbEDT8nedannZaGDk7w2SeV2TV50VgYIz9eneEGWJZVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zfC6RXCD8q4pAJdanGl1VwzzfwhMFERO7/qvP+eQwhA=;
+ b=NR9nM3fgySw7kVYgzT7088oXx0BVue2pUCJLtZMSoQ41fm8eweIRNQxl29ragoLuxS6oaOzzqHjWnCbIGca8W40OoQ2W2AWQlq/XjWjZNT2WsvMTXLzi/eRgJcdTt+sbWFbzaSL6BZjJTYHRxd0niWhomu7WXFHofOcNwRxM1mc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CH3PR12MB8481.namprd12.prod.outlook.com (2603:10b6:610:157::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.24; Mon, 7 Jul
+ 2025 18:16:14 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8901.024; Mon, 7 Jul 2025
+ 18:16:14 +0000
+Message-ID: <147f8f31-cac3-41b0-86dd-28850c0b2e10@amd.com>
+Date: Mon, 7 Jul 2025 20:16:10 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/ttm: rename ttm_bo_put to _fini
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: thomas.hellstrom@linux.intel.com, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+References: <20250702110028.2521-1-christian.koenig@amd.com>
+ <20250702110028.2521-2-christian.koenig@amd.com>
+ <aGWsVBA45EVO/yhM@lstrano-desk.jf.intel.com>
+ <4a115c5b-8e91-4ce9-88c7-cf3f3f9d3aa4@amd.com>
+ <aGv0+LabWlFujT9w@lstrano-desk.jf.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <aGv0+LabWlFujT9w@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0009.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c8::11) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH3PR12MB8481:EE_
+X-MS-Office365-Filtering-Correlation-Id: 97c1667c-f888-410b-9e79-08ddbd825bd5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VDVQaUpVclJ6Mi9Fck5oMngxNXNoVkFLVWsxbmMrY1NqK3RvV0Uzc29odWp4?=
+ =?utf-8?B?MGxYWkxJZGppOWZjbTZtTFl4SHJmNkI2b3hPbnBzNm9scFpUV3QwSHpETDlY?=
+ =?utf-8?B?QlNBL0lHMmhnbkxhdFQ0UDRlZ0dBNmtwVFprYS9ZNGNnVDV1Smc0SkN0Snp4?=
+ =?utf-8?B?bVJ5L2N1NU84Zk40MEtBeVJRSGMvb2VidXpKN09IaVRKRCtDUnFzWFRISXFR?=
+ =?utf-8?B?M1JpcGlLTnpiZ3FSL3h4NUpVdlJZMmNWNFhDMDg4bzU3WXB0OHI4TEVoN2Q1?=
+ =?utf-8?B?N0VpKzYwM1UvZlMwUC9Qa3poalBSQ2Myc3Z6YUN5bUt2aEJJOE5tRDR5OUNN?=
+ =?utf-8?B?bHRtMS9yZXhQS0ZvWVc4R0tFeGFnTzVodGNRZGVEcW5kM0tuOTJERjV6ejJh?=
+ =?utf-8?B?SkU2TFp3Q3BnQ3labW9iWmlRWEFtOUQ4c2FBclE1aUdXVFl6TmxZaUQ3SzZK?=
+ =?utf-8?B?Y3JZbXU5djM1QWEvZjBQUEszTFlSbnFITjFsSkVZeVhUeThEREt3SlBSQ0NB?=
+ =?utf-8?B?RFY5Z1NiL0hmRjVaVzFrWVlTb3FxZm1WZVlKRDRTRUFTRkI1cWR4MzB2QjlS?=
+ =?utf-8?B?dXlyTkRnZE1EN25xcE9XelkrekpzRHU3ci9MSm5Lb29MSUVORTgzM0NBQnc1?=
+ =?utf-8?B?eTNVS0FtY0QveFJrMi8wbmxCQkFLSk5ROEFvWENURStZMXNVUjRTOUpmY2Nx?=
+ =?utf-8?B?YlZITEhpOVBMbU42b1RieXZPOTdXSU1VWkhmK3I2U1ZSVHdIcjEzSms5d2dZ?=
+ =?utf-8?B?TTlsMFlENCs0amVDdzZaMVBadkZEVzFYQVNFdXpDUzFFeU9sQ21VR2ZSdWxG?=
+ =?utf-8?B?dVhwN0lodkEwME9RL3RjY293dXlYOTJwNjB6YllyenpJZCsxVFl3d21LMkJB?=
+ =?utf-8?B?NEdTYlZUZ0NYQ3VsWUpJZ2tuL2xnbktzR0RBd1piOVN3K3ZHcFNUTm5VRFAx?=
+ =?utf-8?B?dHZ3cDgvZXNiQkxvM0M1a1o3VGNqczdka3dyVVpMbmlQWmJBTnNjTkVKTmgr?=
+ =?utf-8?B?V0pNYUdkcUt3TnF5L2Z1OVZnTG9YVnpPdVZ3cU91R3NFVGZPYys2R2JBRVdP?=
+ =?utf-8?B?L1JOZU4yOEFVWlVIUzYvZjBLM1lRTHd3SElNRE5HSmZSZGMvMmlmNzVPUG9w?=
+ =?utf-8?B?VGkycjRNWEdVejQvbHQzRWc1NDR5d1R6NzUwTnNmSGNuelgrK0M2bG55NzJY?=
+ =?utf-8?B?bU5peDh6RXN0RVNDeHNEb0hMdXlibHNRbi95Q1duVndCdFRRU1BrQ1pCaTN4?=
+ =?utf-8?B?YUlHVlBRa2gveTRTV0cvbm8zUHBqWlFscUJMczBRN25EcXJ4TjNiT28xUHk0?=
+ =?utf-8?B?WC9jSzFiM0R0UkZzMVlMMk1aT2FwTytaTmhtZUhiaFZndTlTc2l4NFJJZW9q?=
+ =?utf-8?B?VDNhZytpK0E0TVZITmJzUVlZRnJtRXZzY2JiRGhkd05UUmFRZWFlTVRhbHV2?=
+ =?utf-8?B?WTN0eXk2eUNBbXlKMUhBemJUVis1dGFGNVhld2x5bmdzZlR4eDk5d2o0MWV1?=
+ =?utf-8?B?QVB5ZXV2bVpBL0NxVzNlWndRbzB2TmU2d2kxK2hOSTZUNXJWVkFQendrbEVv?=
+ =?utf-8?B?eTVhQm5SR2M0ekd6Vm44dUZ4WVNjYmlYeWRnSWYweWQyWDJkRTJPVVlWTlNQ?=
+ =?utf-8?B?RGlZN0VaeUVyaUhwcStZUHBCbzVsSTNxSGkvVGJSc0hsTTM3d3lMNVFmaVFu?=
+ =?utf-8?B?QUR6SjIxcVhObFZTR09LMzBaKzROUVM1Q1IwOG1kb2NsRzgyS0o0L1kxMUp2?=
+ =?utf-8?B?MnZ5MGFNVE1aSTZyNXFFdFV0UW5zeUpjL3dGdGFGcVdtdEMyTmt2OU5GcXVQ?=
+ =?utf-8?B?RldmZUtaREdIWE0yWHRudGpqUlVVelhCeng5aHUyT2R6Mnh6RDg1NHRudzdj?=
+ =?utf-8?B?UDRvQUxsNUJQbFJOeDEzckJDbVV2MzFtM3laTE1XWjZYOG1MYTlyYmpvZnUw?=
+ =?utf-8?Q?/WRFxe4LBl0=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eHROQzlwWDhJN09Vd1VySHVRT1Nncm5rMEtrVkp3RDJYNVlqK3Eydkp2YlQx?=
+ =?utf-8?B?ZkdYc21EMHdTSHpSY09aN2k2UVY0L3FmaHpOamU0cVZjb1NsVXpkZzdHYTVr?=
+ =?utf-8?B?OWdaUXRLa2M0Qmp1WGlGUUFtZ3dQWm93MU51Q01IbU1yK3JHQnczaDNKcUpG?=
+ =?utf-8?B?WnNjUzl2NjlMenhzaEJJUG9oeFFUWHRqYVFzZ3hPdm44TXlyVEJoQTA4eHNQ?=
+ =?utf-8?B?R2ZiTjNCN0ZmdmVzazdmdG5QdXExME5xbURTVmUvNTNsR241eVhyVEdoZ2pK?=
+ =?utf-8?B?bG5sUDJSWm53S3hZa0F1WlEyU3gvZm5oaVN4SWVabVlIcG04dGtsa3B6Kys0?=
+ =?utf-8?B?RHJyZDdIRENXWnU0VjZkaTNwZmUveUV3ZHJkczEvQ2NPcVNnOHRzMXZpZjcz?=
+ =?utf-8?B?dTEralBNSGRtOEg4Wi9nOGN3b1V4L2RkeGI3K3llaE1JTFhZNStXK3RPUFJW?=
+ =?utf-8?B?VGRKOW01SWVKY24yOXk2cWNJRWwrSjBDbzZSeWQram14TnUrdkI0aGZSRWlM?=
+ =?utf-8?B?U2pLRFhLem1SNTFoOGR3VFZ3c2xmU0xrZllwWFl3eUF2aVVTTVM5WGVSSlFn?=
+ =?utf-8?B?bHdubHlCZk4wVWRYNms2WG85akd5SStMZ0ZycElzdm1MTk9McFpyNXd0bDd0?=
+ =?utf-8?B?S2RSNUV1Z0NPRFZnNUtWdjNzYmpQajBZU2dxUWpuMmZSWWl2MEJaZmdCSmdR?=
+ =?utf-8?B?ZXp6ZnRSQm93ZUZ5cloyTThBdE4yYnA4TCtsK0c0LzVFeFY3OWR2VnJZZnls?=
+ =?utf-8?B?UW5LdWQzWkhPeXA3d25hdzYrelFDc0svL2trNjZiV3htbU1pTlRJSC9FZmxy?=
+ =?utf-8?B?aXBxbHRuZUlOM3BVMCtmb0xtV2tNUXhNTThmbmVoaVhiZWowQXp3TDkrM2Fo?=
+ =?utf-8?B?dDQ4U2dETFJUR040aFU5ZUhmWUZIdHZOZ05Lc01LT0F5TCsvMytSaTZTYWFm?=
+ =?utf-8?B?ZHdrS1Vyc3ZwcW5zZGd5a3FaTUM2Nkg1enJUcHB4a3h5RmkwTi9sTVpYL0dj?=
+ =?utf-8?B?bkNGcmtqcVg3RUdFOGVzWWtUSnhvcmNPeUFwQUlmNS9nQ2NZUnNVQ0s5em1K?=
+ =?utf-8?B?OEE1U3MxcXBLTjBxQ09rS2JVazV6alNqOGpENkNXTmUxY1p0ZmZtMEJKbmdj?=
+ =?utf-8?B?RU0zNFBvTGhtOXdFTUtJWlBJNkthaFFXOU1yVWpkbGhTUG5IRW5adW40Q1VM?=
+ =?utf-8?B?SkZxY2dTT3dORkFYOUQyZGo1TWh2MUJuRS81bkZNcWFwbnRTamFDVHk0eG5R?=
+ =?utf-8?B?cFd5WkJvRU9rTFBSaGJMZ25YMmxaaXpGUGVSVTIwYm9HVnN3MU1uRnpBbTFr?=
+ =?utf-8?B?NFBXLzRSYk9GdmJmMDVIMWpNaWM1R3ZENlZlNU5iczU0UUMrZnZ5V1dMa1RO?=
+ =?utf-8?B?SG93YndhTTlkRThYOG1JNlZ0NzhwT0tYOTFwdkdEMlB1S0dLSVJON1ByTS9x?=
+ =?utf-8?B?dkw5UFBPeWM5QmVKc3gvbldDeFVDR25yQ1FoOGtzOE5acm5XYVovb1U4eUNy?=
+ =?utf-8?B?TkNPSHdNcnVxUVpCdFN3cDF2ajFXT0xrZ3ZBYVJicjhsT0E2bjhyQ2JaNnlq?=
+ =?utf-8?B?WGRoSGRLaWZjc0o5ZjdoVXNGdTJOUFl2NXFialpoRlJtY2l5N2daRFphYzY0?=
+ =?utf-8?B?bXp5Wms2NElOM0laMXRoTHo1VlhDbnMxajdJS3BrUGhWT3hoQytxbE0raklr?=
+ =?utf-8?B?KzFvcGdiV1Yxa0FYalBDWGZISzR6enZrSHJDaWdWaXBKd2ROV2NHdHYwc2g3?=
+ =?utf-8?B?K2p4dWpVbFUxZVFiRnNDTXQvUlFUQ2h1dVgya0NNdTkvTVcwZ2xoL3UxcVFP?=
+ =?utf-8?B?MW5xSGZuQ1phdlU4bVk5T0ZpSE9QQUtrMTZjL2FrRCtNdjZHZUc1SlBEWTV2?=
+ =?utf-8?B?UzIyb2owbjhyU3NicTJCa0hmenAyL3dIeGxPdlQvOXc4a2FlTm44SDlhd0Vp?=
+ =?utf-8?B?NU9ZUmVQWUlaaG5WbDQyUTFtbGk2L3pRaThyVTNtR0tXVWNCcXZMS2xpU0FE?=
+ =?utf-8?B?VFZvRmJPVUh1R3g3WWtFenhySG01cVBBV1pCbW1VVDZpNCtKNmRlMWlaVlVP?=
+ =?utf-8?B?cldQTnMvVks1UEVKamszdllGMWhuOFNvOHRCWHJUSENMZmVKYWZiZXlvU3BY?=
+ =?utf-8?Q?KmRr+SDIs8IjIDQFqzxafSvg0?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97c1667c-f888-410b-9e79-08ddbd825bd5
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2025 18:16:14.2243 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vYpYOiseVoGUT84Dc8SC31mhtvHqTBLk0MJoJHkkgUkBEM1DfIqVwDDlH2Wo4A/1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8481
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,263 +165,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-06-12 at 17:46 +0100, Tvrtko Ursulin wrote:
->=20
-> On 12/06/2025 06:40, Lucas De Marchi wrote:
-> > On Wed, Jun 11, 2025 at 03:51:24PM -0700, Juston Li wrote:
-> > > Add TRACE_GPU_MEM tracepoints for tracking global and per-process
-> > > GPU
-> > > memory usage.
-> > >=20
-> > > These are required by VSR on Android 12+ for reporting GPU driver
-> > > memory
-> > > allocations.
-> > >=20
-> > > v3:
-> > > - Use now configurable CONFIG_TRACE_GPU_MEM instead of adding a
-> > > =C2=A0 per-driver Kconfig (Lucas)
-> > >=20
-> > > v2:
-> > > - Use u64 as preferred by checkpatch (Tvrtko)
-> > > - Fix errors in comments/Kconfig description (Tvrtko)
-> > > - drop redundant "CONFIG" in Kconfig
-> > >=20
-> > > Signed-off-by: Juston Li <justonli@chromium.org>
-> > > Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> > > ---
-> > > drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 47
-> > > ++++++++++++++++++++++++++++
-> > > drivers/gpu/drm/xe/xe_device_types.h | 16 ++++++++++
-> > > 2 files changed, 63 insertions(+)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > index 4e39188a021ab..89a3d23e3b800 100644
-> > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > @@ -19,6 +19,8 @@
-> > >=20
-> > > #include <kunit/static_stub.h>
-> > >=20
-> > > +#include <trace/events/gpu_mem.h>
-> > > +
-> > > #include "xe_device.h"
-> > > #include "xe_dma_buf.h"
-> > > #include "xe_drm_client.h"
-> > > @@ -418,6 +420,35 @@ static void
-> > > xe_ttm_tt_account_subtract(struct=20
-> > > xe_device *xe, struct ttm_tt *tt)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_shrinker_mod_pages(xe->=
-mem.shrinker, -(long)tt-
-> > > >num_pages, 0);
-> > > }
-> > >=20
-> > > +#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
-> > > +static void update_global_total_pages(struct ttm_device
-> > > *ttm_dev,=20
-> > > long num_pages)
-> > > +{
-> > > +=C2=A0=C2=A0=C2=A0 struct xe_device *xe =3D ttm_to_xe_device(ttm_dev=
-);
-> > > +=C2=A0=C2=A0=C2=A0 u64 global_total_pages =3D
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 atomic64_add_return(num_p=
-ages, &xe->global_total_pages);
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0 trace_gpu_mem_total(0, 0, global_total_pages << P=
-AGE_SHIFT);
-> > > +}
-> > > +
-> > > +static void update_process_mem(struct drm_file *file, ssize_t
-> > > size)
-> > > +{
-> > > +=C2=A0=C2=A0=C2=A0 struct xe_file *xef =3D to_xe_file(file);
-> > > +=C2=A0=C2=A0=C2=A0 u64 process_mem =3D atomic64_add_return(size, &xe=
-f-
-> > > >process_mem);
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0 rcu_read_lock(); /* Locks file->pid! */
-> > > +=C2=A0=C2=A0=C2=A0 trace_gpu_mem_total(0, pid_nr(rcu_dereference(fil=
-e->pid)),=20
-> > > process_mem);
-> >=20
-> > Isn't the first arg supposed to be the gpu id? Doesn't this become
-> > invalid when I have e.g. LNL + BMG and the trace is enabled?
->=20
-> Good point.
->=20
-> u32 gpu_id does not seem possible to map to anything useful.
->=20
-> Shall we replace it with a string obtained from dev_name(struct
-> device=20
-> *) ? As only Android parses them I think we can get still away with=20
-> changing the tracepoints ABI.
->=20
-> >=20
-> > > +=C2=A0=C2=A0=C2=A0 rcu_read_unlock();
-> > > +}
-> > > +#else
-> > > +static inline void update_global_total_pages(struct ttm_device=20
-> > > *ttm_dev, long num_pages)
-> > > +{
-> > > +}
-> > > +
-> > > +static inline void update_process_mem(struct drm_file *file,
-> > > ssize_t=20
-> > > size)
-> > > +{
-> > > +}
-> > > +#endif
-> > > +
-> > > static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object
-> > > *ttm_bo,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 page_fl=
-ags)
-> > > {
-> > > @@ -525,6 +556,7 @@ static int xe_ttm_tt_populate(struct
-> > > ttm_device=20
-> > > *ttm_dev, struct ttm_tt *tt,
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0xe_tt->purgeable =3D false;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0xe_ttm_tt_account_add(ttm_to_xe_device(ttm_de=
-v), tt);
-> > > +=C2=A0=C2=A0=C2=A0 update_global_total_pages(ttm_dev, tt->num_pages)=
-;
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0return 0;
-> > > }
-> > > @@ -541,6 +573,7 @@ static void xe_ttm_tt_unpopulate(struct
-> > > ttm_device=20
-> > > *ttm_dev, struct ttm_tt *tt)
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0ttm_pool_free(&ttm_dev->pool, tt);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0xe_ttm_tt_account_subtract(xe, tt);
-> > > +=C2=A0=C2=A0=C2=A0 update_global_total_pages(ttm_dev, -(long)tt->num=
-_pages);
-> > > }
-> > >=20
-> > > static void xe_ttm_tt_destroy(struct ttm_device *ttm_dev, struct=20
-> > > ttm_tt *tt)
-> > > @@ -1653,6 +1686,15 @@ static void xe_gem_object_free(struct=20
-> > > drm_gem_object *obj)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0ttm_bo_put(container_of(obj, struct ttm_buffe=
-r_object,
-> > > base));
-> > > }
-> > >=20
-> > > +#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
-> > > +static int xe_gem_object_open(struct drm_gem_object *obj,
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_file *file_priv)
-> > > +{
-> > > +=C2=A0=C2=A0=C2=A0 update_process_mem(file_priv, obj->size);
-> > > +=C2=A0=C2=A0=C2=A0 return 0;
-> > > +}
-> > > +#endif
-> > > +
-> > > static void xe_gem_object_close(struct drm_gem_object *obj,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 struct drm_file *file_priv)
-> > > {
-> > > @@ -1665,6 +1707,8 @@ static void xe_gem_object_close(struct=20
-> > > drm_gem_object *obj,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_set_bulk_move(&bo->=
-ttm, NULL);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_unlock(bo);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0}
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0 update_process_mem(file_priv, -obj->size);
-> > > }
-> > >=20
-> > > static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
-> > > @@ -1762,6 +1806,9 @@ static const struct vm_operations_struct=20
-> > > xe_gem_vm_ops =3D {
-> > >=20
-> > > static const struct drm_gem_object_funcs xe_gem_object_funcs =3D {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0.free =3D xe_gem_object_free,
-> > > +#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
-> > > +=C2=A0=C2=A0=C2=A0 .open =3D xe_gem_object_open,
-> > > +#endif
-> > > =C2=A0=C2=A0=C2=A0=C2=A0.close =3D xe_gem_object_close,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0.mmap =3D drm_gem_ttm_mmap,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0.export =3D xe_gem_prime_export,
-> > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h
-> > > b/drivers/gpu/drm/=20
-> > > xe/xe_device_types.h
-> > > index e5d02a47a5287..b797e766ccbc2 100644
-> > > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > > @@ -641,6 +641,14 @@ struct xe_device {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int fsb_freq, mem=
-_freq, is_ddr3;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0};
-> > > #endif
-> > > +
-> > > +#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
-> > > +=C2=A0=C2=A0=C2=A0 /**
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 * @global_total_pages: global GPU page usag=
-e tracked for
-> > > gpu_mem
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 * tracepoints
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 */
-> > > +=C2=A0=C2=A0=C2=A0 atomic64_t global_total_pages;
-> > > +#endif
-> > > };
-> > >=20
-> > > /**
-> > > @@ -702,6 +710,14 @@ struct xe_file {
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0/** @refcount: ref count of this xe file */
-> > > =C2=A0=C2=A0=C2=A0=C2=A0struct kref refcount;
-> > > +
-> > > +#if IS_ENABLED(CONFIG_TRACE_GPU_MEM)
-> > > +=C2=A0=C2=A0=C2=A0 /**
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 * @process_mem: per-process GPU memory usag=
-e tracked for
-> > > gpu_mem
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 * tracepoints
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 */
-> > > +=C2=A0=C2=A0=C2=A0 atomic64_t process_mem;
-> >=20
-> > so... this is not per-process, it's actually "per dev node" open.
-> > Does
-> > this map correctly to the intended use and how it's handled in msm?
->=20
-> Per struct drm_file. Yes it is the same, both do it via=20
-> drm_gem_object_funcs->open/close.
+On 07.07.25 18:25, Matthew Brost wrote:
+> On Mon, Jul 07, 2025 at 02:38:07PM +0200, Christian König wrote:
+>> On 03.07.25 00:01, Matthew Brost wrote:
+>>>> diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
+>>>> index 6c77550c51af..5426b435f702 100644
+>>>> --- a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
+>>>> +++ b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
+>>>> @@ -379,7 +379,7 @@ static void ttm_bo_unreserve_bulk(struct kunit *test)
+>>>>  	dma_resv_fini(resv);
+>>>>  }
+>>>>  
+>>>> -static void ttm_bo_put_basic(struct kunit *test)
+>>>> +static void ttm_bo_fini_basic(struct kunit *test)
+>>>>  {
+>>>>  	struct ttm_test_devices *priv = test->priv;
+>>>>  	struct ttm_buffer_object *bo;
+>>>> @@ -410,7 +410,7 @@ static void ttm_bo_put_basic(struct kunit *test)
+>>>>  	dma_resv_unlock(bo->base.resv);
+>>>>  	KUNIT_EXPECT_EQ(test, err, 0);
+>>>>  
+>>>> -	ttm_bo_put(bo);
+>>>> +	ttm_bo_fini(bo);
+>>>
+>>> Intel's CI [1], see Kunit tab, is indicating an issue with the
+>>> selftests.
+>>
+>> Even without any change the ttm_bo_validate subtest is crashing for me and I was about to disable those crashing tests.
+>>
+>> My guess is that the test never worked 100% reliable and relies on some incorrect assumptions.
+>>
+> 
+> Hmm, this seems to work in our CI pretty reliably but in general I am
+> not a fan of selftests, particularly ones so fragile that any small
+> change of behavior breaks the tests. If this is indeed one of cases
+> (testing really specific behavior), fine with disabling it.
 
-Sorry this went over my head previously :)
+The ttm_bo_validate_test is crashing 100% reliable on my build box.
 
-It turns out this does cause issues; Since process_mem is getting
-tracked per drm_file, a process with multiple drm_file opens will emit
-traces mapping to the same PID entry causing it to overwrite each
-other. Eg we actually end up showing the process_mem from the most
-recent drm_file trace emitted for that PID, not the collective total of
-all drm_file's for that PID...
+Skimming over the code I've found at least one incorrect use of locks, but that doesn't seem to fix it.
 
-We'd probably need to add a new field to the ABI; ~ctx_id and let
-userspace combine them to get the actual process total.
+Going to take a closer look tomorrow.
 
-For now though, it turns out the Android requirement will be satisfied
-with just the global_total so for v5 I'll drop process_mem tracking and
-evaluate how to add it back later as we have to worry about backwards-
-compat for the gpu_trace ABI on Android.
+Regards,
+Christian.
 
-Regards
-Juston
+> 
+>>> Unsure if this suggestion would fix the kunit failure, but
+>>> would it not be better to just ref count gem BOs in the kunit tests and
+>>> create a mock drm_gem_object_funcs ops in in which free calls
+>>> ttm_bo_fini? Then in selftests replace ttm_bo_fini with
+>>> drm_gem_object_put?
+>>
+>> Yeah that is one possible solution I had in mind as well, but I thought about disabling the failed test first and then discussion with Thomas what to do about it.
+>>
+> 
+> See above. Yea it Intel's main (IGTs) CI work, I'd say there is about
+> 99% confidence that the changes you are making haven't broke anything.
+> 
+> Matt
+>  
+>> Christian.
+>>
+>>>
+>>> Matt 
 
-> Regards,
->=20
-> Tvrtko
->=20
-> >=20
-> > Lucas De Marchi
-> >=20
-> > > +#endif
-> > > };
-> > >=20
-> > > #endif
-> > > --=20
-> > > 2.50.0.rc1.591.g9c95f17f64-goog
-> > >=20
