@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E25BC71130
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 18:44:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3927C8303C
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 18:48:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 027FA10E270;
-	Mon,  7 Jul 2025 18:44:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cfNPh7c9";
-	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6954B10E0F4;
- Mon,  7 Jul 2025 18:44:57 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 22EB1A542A3;
- Mon,  7 Jul 2025 18:44:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAC67C4CEF8;
- Mon,  7 Jul 2025 18:44:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1751913895;
- bh=IEs4sSynAoScWDVRSCa0ozaZpBNNh2MVii6T5gbzRTk=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
- b=cfNPh7c9YgEHCn2RNd3HvFOYnaxMXXqwoTkbnAJn2FrL5v4RnpLcP8Itb6ghE2DE5
- 57lZEWlCnDngTsy4sM97ghVKBgcRKosVRrAg60UE5KQ0iZfzg2GENU7/bRYicgOQV3
- SCJFHJY+qYyRmO6xKJPxLBLZTxnxucTEVPCsb2BwtDPOBPz8TeydcRAjWdMtk8rQLr
- QWzSqoSvNMSdymEiEuei7PJtUTcuL3M9VReqmrQs+ZHmYM2xhNLB5DmLY2hyEopvWQ
- A+ox+XQqcJK5xp/91eTFzcIr9hEA0ml0TvMrY1T8tKlWVOtvkDD67Jh4AVm8Bvf8PO
- zvEliEp+cqPew==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 07 Jul 2025 20:44:49 +0200
-Message-Id: <DB61N61AKIJ3.FG7GUJBG386P@kernel.org>
-Subject: Re: [PATCH v4 3/7] drm/gpuvm: Pass map arguments through a struct
-Cc: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Frank
- Binns" <frank.binns@imgtec.com>, "Matt Coster" <matt.coster@imgtec.com>,
- "Karol Herbst" <kherbst@redhat.com>, "Lyude Paul" <lyude@redhat.com>,
- "Boris Brezillon" <boris.brezillon@collabora.com>, "Steven Price"
- <steven.price@arm.com>, "Liviu Dudau" <liviu.dudau@arm.com>, "Lucas De
- Marchi" <lucas.demarchi@intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, "Rodrigo Vivi"
- <rodrigo.vivi@intel.com>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <asahi@lists.linux.dev>, "Asahi Lina"
- <lina@asahilina.net>
-To: "Caterina Shablia" <caterina.shablia@collabora.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20250707170442.1437009-1-caterina.shablia@collabora.com>
- <20250707170442.1437009-4-caterina.shablia@collabora.com>
-In-Reply-To: <20250707170442.1437009-4-caterina.shablia@collabora.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADDB410E50C;
+	Mon,  7 Jul 2025 18:48:52 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 564AC10E50C;
+ Mon,  7 Jul 2025 18:48:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5199373832989654461=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introducing_firmware_late_b?=
+ =?utf-8?q?inding_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Jul 2025 18:48:51 -0000
+Message-ID: <175191413134.140981.10594714938041608780@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250704165038.1464460-1-badal.nilawar@intel.com>
+In-Reply-To: <20250704165038.1464460-1-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,44 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon Jul 7, 2025 at 7:04 PM CEST, Caterina Shablia wrote:
-> +/**
-> + * struct drm_gpuvm_map_req - arguments passed to drm_gpuvm_sm_map[_ops_=
-create]()
-> + */
-> +struct drm_gpuvm_map_req {
-> +	/** @va: virtual address related fields */
-> +	struct {
-> +		/** @va.addr: start of the virtual address range to map to */
-> +		u64 addr;
-> +
-> +		/** @va.size: size of the virtual address range to map to */
-> +		u64 range;
-> +	} va;
-> +
-> +	/** @gem: GEM related fields */
-> +	struct {
-> +		/**
-> +		 * @obj: GEM object to map.
-> +		 *
-> +		 * Can be NULL if the virtual range is not backed by a GEM object.
-> +		 */
-> +		struct drm_gem_object *obj;
-> +
-> +		/** @offset: offset in the GEM */
-> +		u64 offset;
-> +	} gem;
-> +};
+--===============5199373832989654461==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Can't we just use struct drm_gpuva_op_map instead? The structure is identic=
-al
-and represents exactly what we want, a map operation.
+== Series Details ==
 
-Let's use that instead of redefining an identical structure.
+Series: Introducing firmware late binding (rev3)
+URL   : https://patchwork.freedesktop.org/series/151202/
+State : success
 
-With that,
+== Summary ==
 
-	Acked-by: Danilo Krummrich <dakr@kernel.org>
+CI Bug Log - changes from xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7_BAT -> xe-pw-151202v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-151202v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151202v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7 -> xe-pw-151202v3
+
+  IGT_8445: 8445
+  xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7: 17e70ec7d93c01d943dba448b407ec3dc74e3ea7
+  xe-pw-151202v3: 151202v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151202v3/index.html
+
+--===============5199373832989654461==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introducing firmware late binding (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151202/">https://patchwork.freedesktop.org/series/151202/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151202v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151202v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7_BAT -&gt; xe-pw-151202v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-151202v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151202v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7 -&gt; xe-pw-151202v3</li>
+</ul>
+<p>IGT_8445: 8445<br />
+  xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7: 17e70ec7d93c01d943dba448b407ec3dc74e3ea7<br />
+  xe-pw-151202v3: 151202v3</p>
+
+</body>
+</html>
+
+--===============5199373832989654461==--
