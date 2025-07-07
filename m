@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C01D3C8303C
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 19:35:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB641C71130
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 19:41:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 696D510E547;
-	Mon,  7 Jul 2025 19:35:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97B6E10E55C;
+	Mon,  7 Jul 2025 19:41:00 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2382F10E547;
- Mon,  7 Jul 2025 19:35:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7381328820651187884=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4972F10E55C;
+ Mon,  7 Jul 2025 19:40:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/panthor=3A_support_repe?=
- =?utf-8?q?ated_mappings_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introducing_firmware_late?=
+ =?utf-8?q?_binding?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Caterina Shablia" <caterina.shablia@collabora.com>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Jul 2025 19:35:42 -0000
-Message-ID: <175191694213.141533.17039793638597744470@1538d3639d33>
+Date: Mon, 07 Jul 2025 19:40:59 -0000
+Message-ID: <175191725928.141533.7382750968707801258@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250707170442.1437009-1-caterina.shablia@collabora.com>
-In-Reply-To: <20250707170442.1437009-1-caterina.shablia@collabora.com>
+References: <20250707191237.1782824-1-badal.nilawar@intel.com>
+In-Reply-To: <20250707191237.1782824-1-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,54 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7381328820651187884==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/panthor: support repeated mappings (rev2)
-URL   : https://patchwork.freedesktop.org/series/151264/
-State : success
+Series: Introducing firmware late binding
+URL   : https://patchwork.freedesktop.org/series/151290/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7_BAT -> xe-pw-151264v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+43254c2aa575037fc031c7ac21b0d031c700b2bf
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a421e9007b865d01061777b69ffee11d4c8c8e99
+Author: Badal Nilawar <badal.nilawar@intel.com>
+Date:   Tue Jul 8 00:42:37 2025 +0530
 
-Summary
--------
+    drm/xe/xe_late_bind_fw: Extract and print version info
+    
+    Extract and print version info of the late binding binary.
+    
+    v2: Some refinements (Daniele)
+    
+    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+    Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
++ /mt/dim checkpatch b9993cff911b1dd0abde4929435cc1eeb79e1c8f drm-intel
+9bd36bfbe1b4 mei: bus: add mei_cldev_mtu interface
+fe01864d3f09 mei: late_bind: add late binding component driver
+-:49: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#49: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 364 lines checked
+c911f53dbadd drm/xe/xe_late_bind_fw: Introducing xe_late_bind_fw
+-:93: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#93: 
+new file mode 100644
 
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7 -> xe-pw-151264v2
-
-  IGT_8445: 8445
-  xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7: 17e70ec7d93c01d943dba448b407ec3dc74e3ea7
-  xe-pw-151264v2: 151264v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151264v2/index.html
-
---===============7381328820651187884==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 201 lines checked
+d8addbc00d34 drm/xe/xe_late_bind_fw: Initialize late binding firmware
+aa4bcd84f24a drm/xe/xe_late_bind_fw: Load late binding firmware
+da592fe7516b drm/xe/xe_late_bind_fw: Reload late binding fw in rpm resume
+0cfe675d38aa drm/xe/xe_late_bind_fw: Reload late binding fw during system resume
+dd6ab7a623c1 drm/xe/xe_late_bind_fw: Introduce debug fs node to disable late binding
+a421e9007b86 drm/xe/xe_late_bind_fw: Extract and print version info
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/panthor: support repeated mappings (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151264/">https://patchwork.freedesktop.org/series/151264/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151264v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151264v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7_BAT -&gt; xe-pw-151264v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7 -&gt; xe-pw-151264v2</li>
-</ul>
-<p>IGT_8445: 8445<br />
-  xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7: 17e70ec7d93c01d943dba448b407ec3dc74e3ea7<br />
-  xe-pw-151264v2: 151264v2</p>
-
-</body>
-</html>
-
---===============7381328820651187884==--
