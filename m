@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81669C71130
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 19:08:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D696C8303C
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 19:10:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45DA110E556;
-	Mon,  7 Jul 2025 19:08:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hl0pbQOU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9B4510E553;
- Mon,  7 Jul 2025 19:08:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751915322; x=1783451322;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3PmdhLvdY41V0PizQMRAIJgMLKgL29UIW+nOPM8t0Is=;
- b=hl0pbQOU62zbY/JPvlJHwo0EF+QpCC1gJI1dPsKzsma66ycw29myzgab
- TJJDf0fAuK3UVe2HrCLwT2sAC6biWPVPL0iUIyY/o1pUdhf6j4duBM1/+
- 6xR1T09qSBpQ7KbJ/fXCj0KintOQxOlENvHzOaG+hcNOtyu8FzYmcUXr6
- YICakeHFcZ8h3ND86BV0+NLNdAiT0Wrsukmv9DW1Ttl3+gsfbAt1EMxZD
- 6vYk+X7/6HJOpJEjSjbcGMmR1Beo8CW2Vtw/fMgbWKubLNCiBD9mZXvD8
- 5dOkaAjPqtaf4d/VTpSBU1WbnrOUM3j4mmC8L8t4FexguRa4ZQnXi/Da8 w==;
-X-CSE-ConnectionGUID: mLKuT9XeQOKM5+tCH9NOnQ==
-X-CSE-MsgGUID: xLF0i6tYSa+Vol0nVbUPVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="57945710"
-X-IronPort-AV: E=Sophos;i="6.16,295,1744095600"; d="scan'208";a="57945710"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2025 12:08:42 -0700
-X-CSE-ConnectionGUID: lT5ACKOcRI+A/pezEv6qCg==
-X-CSE-MsgGUID: LpHWIg+ARV+dRHXuLSPesw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,295,1744095600"; d="scan'208";a="154707547"
-Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
- by orviesa010-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2025 12:08:39 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- alexander.usyskin@intel.com, gregkh@linuxfoundation.org,
- daniele.ceraolospurio@intel.com
-Subject: [PATCH v7 9/9] drm/xe/xe_late_bind_fw: Extract and print version info
-Date: Tue,  8 Jul 2025 00:42:37 +0530
-Message-Id: <20250707191237.1782824-10-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250707191237.1782824-1-badal.nilawar@intel.com>
-References: <20250707191237.1782824-1-badal.nilawar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1262C10E521;
+	Mon,  7 Jul 2025 19:10:58 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA7110E521;
+ Mon,  7 Jul 2025 19:10:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/panthor=3A_support_r?=
+ =?utf-8?q?epeated_mappings_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Caterina Shablia" <caterina.shablia@collabora.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Jul 2025 19:10:56 -0000
+Message-ID: <175191545651.141533.12727095203240720440@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250707170442.1437009-1-caterina.shablia@collabora.com>
+In-Reply-To: <20250707170442.1437009-1-caterina.shablia@collabora.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,266 +36,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extract and print version info of the late binding binary.
+== Series Details ==
 
-v2: Some refinements (Daniele)
+Series: drm/panthor: support repeated mappings (rev2)
+URL   : https://patchwork.freedesktop.org/series/151264/
+State : warning
 
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/xe/xe_late_bind_fw.c       | 124 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_late_bind_fw_types.h |   3 +
- drivers/gpu/drm/xe/xe_uc_fw_abi.h          |  66 +++++++++++
- 3 files changed, 193 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-index 3228864716b5..19e8de114d0c 100644
---- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
-+++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-@@ -45,6 +45,121 @@ late_bind_to_xe(struct xe_late_bind *late_bind)
- 	return container_of(late_bind, struct xe_device, late_bind);
- }
- 
-+static struct xe_device *
-+late_bind_fw_to_xe(struct xe_late_bind_fw *lb_fw)
-+{
-+	return container_of(lb_fw, struct xe_device, late_bind.late_bind_fw[lb_fw->id]);
-+}
-+
-+/* Refer to the "Late Bind based Firmware Layout" documentation entry for details */
-+static int parse_cpd_header(struct xe_late_bind_fw *lb_fw,
-+			    const void *data, size_t size, const char *manifest_entry)
-+{
-+	struct xe_device *xe = late_bind_fw_to_xe(lb_fw);
-+	const struct gsc_cpd_header_v2 *header = data;
-+	const struct gsc_manifest_header *manifest;
-+	const struct gsc_cpd_entry *entry;
-+	size_t min_size = sizeof(*header);
-+	u32 offset;
-+	int i;
-+
-+	/* manifest_entry is mandatory */
-+	xe_assert(xe, manifest_entry);
-+
-+	if (size < min_size || header->header_marker != GSC_CPD_HEADER_MARKER)
-+		return -ENOENT;
-+
-+	if (header->header_length < sizeof(struct gsc_cpd_header_v2)) {
-+		drm_err(&xe->drm, "%s late binding fw: Invalid CPD header length %u!\n",
-+			fw_id_to_name[lb_fw->id], header->header_length);
-+		return -EINVAL;
-+	}
-+
-+	min_size = header->header_length + sizeof(struct gsc_cpd_entry) * header->num_of_entries;
-+	if (size < min_size) {
-+		drm_err(&xe->drm, "%s late binding fw: too small! %zu < %zu\n",
-+			fw_id_to_name[lb_fw->id], size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	/* Look for the manifest first */
-+	entry = (void *)header + header->header_length;
-+	for (i = 0; i < header->num_of_entries; i++, entry++)
-+		if (strcmp(entry->name, manifest_entry) == 0)
-+			offset = entry->offset & GSC_CPD_ENTRY_OFFSET_MASK;
-+
-+	if (!offset) {
-+		drm_err(&xe->drm, "%s late binding fw: Failed to find manifest_entry\n",
-+			fw_id_to_name[lb_fw->id]);
-+		return -ENODATA;
-+	}
-+
-+	min_size = offset + sizeof(struct gsc_manifest_header);
-+	if (size < min_size) {
-+		drm_err(&xe->drm, "%s late binding fw: too small! %zu < %zu\n",
-+			fw_id_to_name[lb_fw->id], size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	manifest = data + offset;
-+
-+	lb_fw->version = manifest->fw_version;
-+
-+	return 0;
-+}
-+
-+/* Refer to the "Late Bind based Firmware Layout" documentation entry for details */
-+static int parse_lb_layout(struct xe_late_bind_fw *lb_fw,
-+			   const void *data, size_t size, const char *fpt_entry)
-+{
-+	struct xe_device *xe = late_bind_fw_to_xe(lb_fw);
-+	const struct csc_fpt_header *header = data;
-+	const struct csc_fpt_entry *entry;
-+	size_t min_size = sizeof(*header);
-+	u32 offset;
-+	int i;
-+
-+	/* fpt_entry is mandatory */
-+	xe_assert(xe, fpt_entry);
-+
-+	if (size < min_size || header->header_marker != CSC_FPT_HEADER_MARKER)
-+		return -ENOENT;
-+
-+	if (header->header_length < sizeof(struct csc_fpt_header)) {
-+		drm_err(&xe->drm, "%s late binding fw: Invalid FPT header length %u!\n",
-+			fw_id_to_name[lb_fw->id], header->header_length);
-+		return -EINVAL;
-+	}
-+
-+	min_size = header->header_length + sizeof(struct csc_fpt_entry) * header->num_of_entries;
-+	if (size < min_size) {
-+		drm_err(&xe->drm, "%s late binding fw: too small! %zu < %zu\n",
-+			fw_id_to_name[lb_fw->id], size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	/* Look for the cpd header first */
-+	entry = (void *)header + header->header_length;
-+	for (i = 0; i < header->num_of_entries; i++, entry++)
-+		if (strcmp(entry->name, fpt_entry) == 0)
-+			offset = entry->offset;
-+
-+	if (!offset) {
-+		drm_err(&xe->drm, "%s late binding fw: Failed to find fpt_entry\n",
-+			fw_id_to_name[lb_fw->id]);
-+		return -ENODATA;
-+	}
-+
-+	min_size = offset + sizeof(struct gsc_cpd_header_v2);
-+	if (size < min_size) {
-+		drm_err(&xe->drm, "%s late binding fw: too small! %zu < %zu\n",
-+			fw_id_to_name[lb_fw->id], size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	return parse_cpd_header(lb_fw, data + offset, size - offset, "LTES.man");
-+}
-+
- static const char *xe_late_bind_parse_status(uint32_t status)
- {
- 	switch (status) {
-@@ -222,6 +337,10 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
- 		return -ENODATA;
- 	}
- 
-+	ret = parse_lb_layout(lb_fw, fw->data, fw->size, "LTES");
-+	if (ret)
-+		return ret;
-+
- 	lb_fw->payload_size = fw->size;
- 	lb_fw->payload = drmm_kzalloc(&xe->drm, lb_fw->payload_size, GFP_KERNEL);
- 	if (!lb_fw->payload) {
-@@ -229,6 +348,11 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
- 		return -ENOMEM;
- 	}
- 
-+	drm_info(&xe->drm, "Using %s firmware from %s version %u.%u.%u.%u\n",
-+		 fw_id_to_name[lb_fw->id], lb_fw->blob_path,
-+		 lb_fw->version.major, lb_fw->version.minor,
-+		 lb_fw->version.hotfix, lb_fw->version.build);
-+
- 	memcpy((void *)lb_fw->payload, fw->data, lb_fw->payload_size);
- 	release_firmware(fw);
- 	INIT_WORK(&lb_fw->work, xe_late_bind_work);
-diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-index 9399d425d80b..4404112fd8a7 100644
---- a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-+++ b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-@@ -10,6 +10,7 @@
- #include <linux/mutex.h>
- #include <linux/types.h>
- #include <linux/workqueue.h>
-+#include "xe_uc_fw_abi.h"
- 
- #define XE_LB_MAX_PAYLOAD_SIZE SZ_4K
- 
-@@ -39,6 +40,8 @@ struct xe_late_bind_fw {
- 	size_t payload_size;
- 	/** @work: worker to upload latebind blob */
- 	struct work_struct work;
-+	/** @version: late binding blob manifest version */
-+	struct gsc_version version;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw_abi.h b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-index 87ade41209d0..78782d105fa9 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-@@ -318,4 +318,70 @@ struct gsc_manifest_header {
- 	u32 exponent_size; /* in dwords */
- } __packed;
- 
-+/**
-+ * DOC: Late binding Firmware Layout
-+ *
-+ * The Late binding binary starts with FPT header, which contains locations
-+ * of various partitions of the binary. Here we're interested in finding out
-+ * manifest version. To the manifest version, we need to locate CPD header
-+ * one of the entry in CPD header points to manifest header. Manifest header
-+ * contains the version.
-+ *
-+ *      +================================================+
-+ *      |  FPT Header                                    |
-+ *      +================================================+
-+ *      |  FPT entries[]                                 |
-+ *      |      entry1                                    |
-+ *      |      ...                                       |
-+ *      |      entryX                                    |
-+ *      |          "LTES"                                |
-+ *      |          ...                                   |
-+ *      |          offset  >-----------------------------|------o
-+ *      +================================================+      |
-+ *                                                              |
-+ *      +================================================+      |
-+ *      |  CPD Header                                    |<-----o
-+ *      +================================================+
-+ *      |  CPD entries[]                                 |
-+ *      |      entry1                                    |
-+ *      |      ...                                       |
-+ *      |      entryX                                    |
-+ *      |          "LTES.man"                            |
-+ *      |           ...                                  |
-+ *      |           offset  >----------------------------|------o
-+ *      +================================================+      |
-+ *                                                              |
-+ *      +================================================+      |
-+ *      |  Manifest Header                               |<-----o
-+ *      |      ...                                       |
-+ *      |      FW version                                |
-+ *      |      ...                                       |
-+ *      +================================================+
-+ */
-+
-+/* FPT Headers */
-+struct csc_fpt_header {
-+	u32 header_marker;
-+#define CSC_FPT_HEADER_MARKER 0x54504624
-+	u32 num_of_entries;
-+	u8 header_version;
-+	u8 entry_version;
-+	u8 header_length; /* in bytes */
-+	u8 flags;
-+	u16 ticks_to_add;
-+	u16 tokens_to_add;
-+	u32 uma_size;
-+	u32 crc32;
-+	struct gsc_version fitc_version;
-+} __packed;
-+
-+struct csc_fpt_entry {
-+	u8 name[4]; /* partition name */
-+	u32 reserved1;
-+	u32 offset; /* offset from beginning of CSE region */
-+	u32 length; /* partition length in bytes */
-+	u32 reserved2[3];
-+	u32 partition_flags;
-+} __packed;
-+
- #endif
--- 
-2.34.1
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast b9993cff911b1dd0abde4929435cc1eeb79e1c8f
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
