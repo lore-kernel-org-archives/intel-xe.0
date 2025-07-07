@@ -4,162 +4,175 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82C69C71130
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 21:35:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C973EC71130
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 21:36:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E9AF10E03B;
-	Mon,  7 Jul 2025 21:35:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E9FE10E03B;
+	Mon,  7 Jul 2025 21:36:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZTruMlC/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UWcnYtmw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 513F910E03B
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Jul 2025 21:35:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE50610E03B
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Jul 2025 21:36:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751924115; x=1783460115;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=YTNkMGINRqoVjSlG5MpjJ1OyXNjQ8BJIdq5AJ/fs1Rs=;
- b=ZTruMlC/TlnJ9M7sr3ThbWqUkSaRR7clE3i4XWPiolBE/nRe4u8v+bEz
- vqWRjnCf1YIJtDnjELnQg2cGePGxqbCX8NbVFBsn5i+w5PTMAYOvd7Lrm
- IXyooG1XJ+5gujCsICtfxrx4qkteuDW36iDiW8eOzYDgBKijUfe7U+4kt
- bz7hphBa6x/nxw4OkGi4ZX30HzHZ8v4ShpOLpqZDrmRq2m1WyWAGY8TIa
- RtafxzZZ/F0AXmuE7Wf2tIpRLNa51ODKTpFybGmZ2v1I5m/xDHEBcOY0G
- JMsqYPhuymmaeDwDwAurI4qjXXPnEBcczRjUeo+6rOpqU9BEzXVS2PqRM A==;
-X-CSE-ConnectionGUID: byl6w/6bTymw1xviO4SZqA==
-X-CSE-MsgGUID: cbsFeHHsRXSAl5RoFGJDvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="64844969"
-X-IronPort-AV: E=Sophos;i="6.16,295,1744095600"; d="scan'208";a="64844969"
+ t=1751924164; x=1783460164;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=IpRsoJKQiusDIXL44BYUd+hQrKCwQiK5g97BiJaElpM=;
+ b=UWcnYtmw97aNi0U/mjzf8sluOAX2uzRlQzSNkpXB85sn5zGtpauHVFGf
+ mRs1CZ+vzOt/1b11GTutWwp/raB74o8kZhftWjkN+9Bq0uV32LWE2S2Rt
+ REPZGGs0wpJ2I09sOWY38aLWkYEuTURKAhCbiqcKI65RjNEDlzHiTwg27
+ X0SRRhQZVrMrkBZhKYhPlZsI0y7xHxKEqYdiQmOEVP3ophnr0IwvCPsDP
+ 8RSnetvXMU7oJJtLIAYz1IWpHMV6SpExdDOHnpmXDRlf9Jw+Stm709PFn
+ PcEu5BUIspoMoNvjJicL9G6rXYPhFccmQWxveHDROz0ojfC2DBIUxSXC8 g==;
+X-CSE-ConnectionGUID: n4nFl/KIS0akr/wMgJioCA==
+X-CSE-MsgGUID: 5ra31HvvSP2HPd29dL+S4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="64845154"
+X-IronPort-AV: E=Sophos;i="6.16,295,1744095600"; d="scan'208";a="64845154"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2025 14:35:15 -0700
-X-CSE-ConnectionGUID: a6pTIEDdRc2L/RigOAEXWw==
-X-CSE-MsgGUID: F12HY0rdR9SZe2TzCADSog==
+ 07 Jul 2025 14:36:03 -0700
+X-CSE-ConnectionGUID: g3E0WFnzS8id69fZAu9diw==
+X-CSE-MsgGUID: zIi80bRyQyq1x1LZAqMw7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,295,1744095600"; d="scan'208";a="186272089"
+X-IronPort-AV: E=Sophos;i="6.16,295,1744095600"; d="scan'208";a="186272373"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2025 14:35:15 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ 07 Jul 2025 14:36:03 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 7 Jul 2025 14:35:14 -0700
+ 15.2.1544.25; Mon, 7 Jul 2025 14:36:02 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Mon, 7 Jul 2025 14:35:14 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.82)
+ 15.2.1544.25 via Frontend Transport; Mon, 7 Jul 2025 14:36:02 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.62)
  by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 7 Jul 2025 14:35:12 -0700
+ 15.2.1544.25; Mon, 7 Jul 2025 14:36:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=By7G5LNplckH8EdycYRCOTVEYu8fSWw/12jEHkvKqcz5PdbVbWMUZa7ainl9whAhvrqao6rA9r53ISMIsAzeZ2sWlcNpjChVc2f6/j7MDUQvqNl3iYGVJZCG4+pwX4PmeT02UgFMslk+VsKIMsStN/Rjh9UDSiFmwaYlB3Jo2y264ajeiN6VVA3nbot2vsKAkYh2PQnfdABIUSQJFg1S0aDEy/dIHU7j0BNuRcR5oSxu6KKx87oNyMrePSMycpEkQiagVQ9EEPOmvX6aueLIhxcNXzCnipBO5SDgb1LcHft2o/JqZVTkzxCQqi5j78wWEeCZOzh1HUO5dq7GFZ5wJw==
+ b=AaKGl5E05yAXuF1w1TzQ3VD5Usu0mKuW01Fhj1oGJMZQpK/KGnrk5WvLKBpBnnm+6+X/kE51hP258OxNs3rhFVppypwzzNToe5Swk395pYtC9NG+kn3M9w2DJkqtvogPyidqnhpBPd4KpjN15npbgCH6YH1PV759UVCO4hnZC8MjwHepJaU8Oz2yl9fAHmQ3nZ8L8wnweoGcRRFUjcHRS6qMElWvnZPk1wNGpFYntezho8nPcDP9MOySXUvRj+PVjdGwSYhskFV4lfwkc7bxq3SLIugg8WKLLlSgiCbT57OndGTrjdWRw4ZMbk0zrcnP6FukBZd8dsZhGq3O8p+bQw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0utC+s6Qk9gyyG+jl6DW4Yrlr3vSOmtprnZnhHwn7/k=;
- b=tjdgsaKv7ljqjpC39XZLd6WfWzDXco71czYyeWYlErGNHKBZvOHY8z8mffKqjG6boByNLDSyLOHyteKGmuKfz9g3p39TOLd5pZB7E1AG5lpQ5ORIXkNZQmjsHBNJKrvpR772yo4fGfAC6VAPOixfb5oO22MhrHI+u+d5qYFWNVUKNcJD5xI30o5aJe1x+rdWHELNiGHo4nBrgbysJPpQ0of88D1ms1eyH3GoZmunKHfdn9VqUpwn8yHOur8ex1u6QDA+GOCnE+fl0kfDxCl1YCjhksw+AUlf9JDMjKNrvjEmQN2NR8YsHqOiKpAxlSimOwa6kRkk55DxSoEareInOg==
+ bh=GlEO5GER8ddKRHUKnhuwAvsy3aIoZlXvAFqiJ1wftoA=;
+ b=SzVqLLC/RIUzQXELx50eCn8443wdjU8FH5E22iXjeJjvEMTY488K1/J5aM2qxpdoNlyHt+daFR0AGFDCnD8/Jq0BIGfbgAZXockg8rLDWTns8Q3y4UlxvVbPsfZj3enSibdX72qmusyL2h2a+tkCcjLUzWjlDTwfX8qnbQpbZ7K3k47ZCW9VcgCcEIfAolZa/XQ3r9NGUYdB2MnSuKreZkShL0mf2rKo3RRpMnWuodKlNY9sywTzPioCExWm/ZXifzqJLXJje0x5QhTdUvtz7NNBZqBbYsw9Obed00K3xASNewAVvsRjN47ihXDY9guBYE2+zTLSRF0bzPdENDMqDA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by LV3PR11MB8508.namprd11.prod.outlook.com (2603:10b6:408:1b4::8)
+Received: from IA1PR11MB6418.namprd11.prod.outlook.com (2603:10b6:208:3aa::18)
+ by MW5PR11MB5906.namprd11.prod.outlook.com (2603:10b6:303:1a0::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.20; Mon, 7 Jul
- 2025 21:34:57 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%5]) with mapi id 15.20.8901.023; Mon, 7 Jul 2025
- 21:34:57 +0000
-Date: Mon, 7 Jul 2025 17:34:52 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe/ptl: Drop force_probe requirement
-Message-ID: <aGw9fMCuksw-pPoE@intel.com>
-References: <20250707201959.319406-1-matthew.s.atwood@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250707201959.319406-1-matthew.s.atwood@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0090.namprd03.prod.outlook.com
- (2603:10b6:a03:331::35) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.22; Mon, 7 Jul
+ 2025 21:35:57 +0000
+Received: from IA1PR11MB6418.namprd11.prod.outlook.com
+ ([fe80::68b8:5391:865e:a83]) by IA1PR11MB6418.namprd11.prod.outlook.com
+ ([fe80::68b8:5391:865e:a83%3]) with mapi id 15.20.8901.024; Mon, 7 Jul 2025
+ 21:35:57 +0000
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: =?iso-8859-1?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+CC: "platform-driver-x86@vger.kernel.org"
+ <platform-driver-x86@vger.kernel.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>, "De
+ Marchi, Lucas" <lucas.demarchi@intel.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>, "airlied@gmail.com" <airlied@gmail.com>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "david.e.box@linux.intel.com"
+ <david.e.box@linux.intel.com>
+Subject: RE: [PATCH v6 12/12] platform/x86/intel/pmt: support BMG crashlog
+Thread-Topic: [PATCH v6 12/12] platform/x86/intel/pmt: support BMG crashlog
+Thread-Index: AQHb7F8+zWS0yGVMiEi7Pidei81MWrQmsiaAgACCxaA=
+Date: Mon, 7 Jul 2025 21:35:57 +0000
+Message-ID: <IA1PR11MB6418DD7383375F0720715270C14FA@IA1PR11MB6418.namprd11.prod.outlook.com>
+References: <20250703211150.135320-1-michael.j.ruhl@intel.com>
+ <20250703211150.135320-13-michael.j.ruhl@intel.com>
+ <57cdcf8f-865c-9de1-5adc-7996237dd9da@linux.intel.com>
+In-Reply-To: <57cdcf8f-865c-9de1-5adc-7996237dd9da@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6418:EE_|MW5PR11MB5906:EE_
+x-ms-office365-filtering-correlation-id: 6698f4e0-4206-48bf-ecee-08ddbd9e42b7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?qxz5fuO3ywb9W1eRwtcHUfaoKqSuZ0GA+poLZ5RX8NACrexvBFgYF672ar?=
+ =?iso-8859-1?Q?KxJ46vfcj6bBP63fSlhhNzMWWBAyhPyn7ZYhflacG0M6FQ3FatMg1R3FXr?=
+ =?iso-8859-1?Q?NQrgUu7/mM+r7sPvEdUvrRghngzAEcOPMd6jR/52pqkOs2Al7M5eaEh/Kl?=
+ =?iso-8859-1?Q?l3SKc0AKN0GUkHNhnjU5GF5Sk4lTsOnRRnQl54i8e0BT9CCYkq1mCc3eEx?=
+ =?iso-8859-1?Q?IWG4hZ2ZMQnmcBAAfK0972jNiCoFUw4+jxpj5KforNSRKFFppoxQGc/rv8?=
+ =?iso-8859-1?Q?ltyq2kM6vaXv0zIhwD4iqAmvXI94vWk2gwMt67mkzFR/mixLH0t6Iz4VqP?=
+ =?iso-8859-1?Q?WOFzxlB7P63JOkkvx5GsMzlmauqYOW9fpmDxRBgR26+D8t59Sl7aZBoErx?=
+ =?iso-8859-1?Q?5QqD4lDrr8eQ4HuShxZP6NNZxB87acgQKXm29mMW6VB823rPE8XzU9hSjJ?=
+ =?iso-8859-1?Q?vk7E+Ly2zHURRLcS3OWvjQEUCkJyLhLyC4qzeOdJD4C9mHAm/TuXrtVOj7?=
+ =?iso-8859-1?Q?LG3fE/tvH+zNZ1ozKMcCAvWnI8Q3YZrquKwKBfoXaqz8Y5L2SmDncvFMY/?=
+ =?iso-8859-1?Q?b5P1Q9JE0+6++R1BpAz0/x7UgWApzir8JeYXQEkt4+u+CCtfcd0E3VwYJZ?=
+ =?iso-8859-1?Q?sCmffCMD3yd8Io4iLsCTcYLPtGPpC9ZU+XwdKElW0MFTcb+ZzykSl0w5ei?=
+ =?iso-8859-1?Q?zhMybEY0EsfwDxZ5lb+Nk7aQ4jCWYAKSG3GYIIPRXCX8G9ik387yq2XNBs?=
+ =?iso-8859-1?Q?LFJwL/Hm/8boFpsghGaGpXeLJINo4DlQGv9jwGEZlQOtNAT1g3/vUCmwrt?=
+ =?iso-8859-1?Q?lZqgU9woT4TgPwdqWEgC8vGqL/FFRZ9tOTPehRwLywkv30TUwvbwkT149E?=
+ =?iso-8859-1?Q?DdBsvgiePFFKyPKchjhJk/4uLS1qTqSyI1xcNTrhrHlnqNAjW+Tmkrc/Q0?=
+ =?iso-8859-1?Q?xNnKwEo9/3qBfQsLn5jroChttorJOjVV04vJ9AzX6eSA1QbczJZlPF+7o5?=
+ =?iso-8859-1?Q?gBwvx6S17EkfoZSKMGrFZ6dNzPSOeO0PaxnuN99W0L7zn9euTMCsf4uB38?=
+ =?iso-8859-1?Q?dMLggSR4cpVo/tAnB3/KikOeaALE47W2cSyqMoYmNJh3M6HWM3oJdhlUT6?=
+ =?iso-8859-1?Q?LlUvdWP2xvvuSPCR2StuTzL5wETkLsJfofMbeqJp4Lu8o5uCOV7UPtE9KQ?=
+ =?iso-8859-1?Q?iAoy35s/MMC7q9N4CnL7oShXL7ZoTJynu8wU6QJ4t/dW+oIQGaVnnGoDHu?=
+ =?iso-8859-1?Q?T4GNF/wX3TXU/GO3razSAxE07glFSRxB0Ci6zTYFsyJLI2bzEvnf7P90ME?=
+ =?iso-8859-1?Q?msJHEMJA6QMW/4KpWWVEnaAKTNrVBiEt+UcnHgOuqpq2eQWMqI/djuA0DP?=
+ =?iso-8859-1?Q?QFneNq2QFGwMjBx7m74O+qQID9U4i7nDDkv4NvNR/yYdiJTcu+BLmy1Jw/?=
+ =?iso-8859-1?Q?kIo2lS7klIGWTO3Zeuyc9VQPI4DHXwAXmiz0x2JtvjO68zPdxSTR/zQbWg?=
+ =?iso-8859-1?Q?oj/5cJCcHm64ukHvAB51Yd3kxCZHBakJ9ioyUks2eL0A=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6418.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?5tWCcxOd/EtXUohYfHRZnSRcNp1qymw0L+4mRLFAvDPEJDM9vVgzXSnn/U?=
+ =?iso-8859-1?Q?c++rj2tM239JcA77S7ZsElJATAb+MQpvEdGCg/1jwxS78XQUTuV5VUZoJy?=
+ =?iso-8859-1?Q?F3Zq/Le7ROnrfuJ4wH/JtFziog42q+tstkAbMsbl/jt2mLj+ZoB/RyOKmD?=
+ =?iso-8859-1?Q?SHfIucwqGOAkMgneraXWrmpZnYFKt8LpeUfgLCEFvsCQFVUhMMapHPIaT9?=
+ =?iso-8859-1?Q?fteJeKTCR8hx/TcvRsukuSJL4AU+tDW1uOIPzYKylGOjYq2E6YWlIY2SYX?=
+ =?iso-8859-1?Q?gkD4Rs8qh1lFD7JcNthII38ZvCiHk3kLk/eBrT6+RbuRjagdOMwCHjOluA?=
+ =?iso-8859-1?Q?ALnVGF4djMvfCvxpQ8aDiUvqaekVw783JPufD3TYCKOpN3+ucznL3JFO+a?=
+ =?iso-8859-1?Q?t5W4qYssqV+fxX7uLViNeZp48VEBxltya/BZ86ztSc6ydqMznWNtcAUQj5?=
+ =?iso-8859-1?Q?IqTuQbphwKYr1g2hfQxuuaAsa8v9kCcK3jZmW7iiEVBglWZNA+6oq01Voe?=
+ =?iso-8859-1?Q?IBsDIq4I8SLmcsdU7S7T2lCX3d3mL875LEp9r2ah0nC/aMbKAyPgDH1VFg?=
+ =?iso-8859-1?Q?r8Fc7MSFyvvUih9XfKpl6EcDHhb3UfIxngobvcp+cznQU6dk1Uy8s05fa+?=
+ =?iso-8859-1?Q?/is1j+XxEoXpry+4C8ZbBp/8Gc4L6nNeE6F1tgu1b2gDnn4YaoDuoQB2X3?=
+ =?iso-8859-1?Q?BOReg2E3xssrSgX/BIggOxcd20zAds8oa3RQijAtUfmuodt7/CSrtB93gM?=
+ =?iso-8859-1?Q?h+C590weMC9A69FNGkl2CJwupKz8CP4G5BTMo9KiclOxDXabLJ04FC3Rv9?=
+ =?iso-8859-1?Q?9z8gdO1bOYT+yWtXsf7Jevhmo+gm+UOd6F3H274tPGzhRA2lhMHj5REdYe?=
+ =?iso-8859-1?Q?zWw430KmFbchMkll4Ghgx4NtxC/GtesBzTItPtTuBUxKqMW7BYcWqsGEpf?=
+ =?iso-8859-1?Q?AXNFVcklF3DUhfHm7lWzE2uYn8oHKsSI/GGukld8u5z/TQaQxTigyrfYVn?=
+ =?iso-8859-1?Q?AZFdd/nyZp2+3elWxr/X3Btycp++WzNvgFF+qdXWMHZBQTdSbi2sosr8eH?=
+ =?iso-8859-1?Q?XLTw4qA2P2S+72/NLXbs89G62+zKzngk9vbsofKZ8j3LOiQVNc7WSeS61u?=
+ =?iso-8859-1?Q?UrE4c2CauoevXmWvGudZe24ydlLzvK/NFGahzqYycGsOmqmn56Q6u2bT/j?=
+ =?iso-8859-1?Q?YWPDgeyrZWTqnAWLJsTBMvUoOpg+dc/IJC+x6P5YpmuRvA11lfATl82yDl?=
+ =?iso-8859-1?Q?hJLglFcH/6/adv7tV+wVBZfDBIqPjyFVcmYJ454y0/UpJMakSdBr7sRPVf?=
+ =?iso-8859-1?Q?e7LmZg+IXlDhKueXYPqFXYWPXDvP2k/fbKwKVi/RYWIgX/NkWiuuRPp4dk?=
+ =?iso-8859-1?Q?k94ExPeI44S4OeUDGSoFCNuZCKhMxn3pvPUgSrTvGoK/NeJw96UuAoq1Rw?=
+ =?iso-8859-1?Q?HaFR1TjJLLDAXwnJEQMPREouwUMycfVhjGMgPpuhixqnVR4vuYXYTx61lW?=
+ =?iso-8859-1?Q?q2uaPpGShaTSZoj/3sRbENeqgRV0wYmaeEx0o8MXzvxMYssFrWoOBNSkAT?=
+ =?iso-8859-1?Q?fs2eeW0b1SV3WNvctMxL4ZAmcIsxh/6XnoDiu+jgQmnFV5hrfpFSaMfYan?=
+ =?iso-8859-1?Q?y4u04Ryr981mrvOwd3YkHZWiU4bi7JbS5k?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|LV3PR11MB8508:EE_
-X-MS-Office365-Filtering-Correlation-Id: 996f5487-f307-4d92-261c-08ddbd9e1e7a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?G3RslA43i2SmXwAitw9TKbvSKuLiQSTofWQlK9ruWosWGfzchQpSf5RLMc4z?=
- =?us-ascii?Q?TwQJedjmJF+SjmBN03EdEYJe85NfxlQ+GsoInndAx+CkwAmhO53PdGrL0IqM?=
- =?us-ascii?Q?XEgIpv1HqMBTKf3foguBEoL1IX4Fk2gzxwGvaBEauKBs/OlUnf6NrH2pTWsj?=
- =?us-ascii?Q?IzAaTxbFL9BwTKrlXLdhuU4n9aQZi29r4UsYc0EFeEpeGqfBAKoMGaNyFNc6?=
- =?us-ascii?Q?j5EYFFZc7f+j8cLByeHuG9u+kvtA8qdvdR9bXMm4TtjHN6ZAuDRL1waTwS75?=
- =?us-ascii?Q?ZBpgqlgkx3tCmqtJtLzahqlTWUUo/0weMnkzTFZWp02MfOvNQQ+fwxCDEBbU?=
- =?us-ascii?Q?7TN2Qr7xt2GSssEP4SL4eHhwPEzs2OyrGBwA/7ECklISZ++S+X4ghI1rTxTC?=
- =?us-ascii?Q?TIH+bcqClhok+lDOhJN5Nhupe6/9/UCMcXZGk1mUW5mPS2dcBhpbwpCq6W7e?=
- =?us-ascii?Q?20izbjD8VBGoiTA+tTIACdBnqIVJH9OGJYb7Q6OUEY2mi6E/nGPPDSZZe0qN?=
- =?us-ascii?Q?IdsDmflL/VkUx+YjLbiJSLAckYP9enySoumCNlw0OzGCuiCe1n3rJVRJS2yZ?=
- =?us-ascii?Q?xlXKuebDL6SpK3aoI1hGZrYprJK7A+mX5M1jraEW+ge1z/j5rsCMH7oMaqQf?=
- =?us-ascii?Q?9Vp+29fwLc2k55l85V2ZCM+ajEnih0qF3eFASdhX7cUu3FQe+mCNQxGIHVoj?=
- =?us-ascii?Q?b8T+i4Boy8wa8p1npoDFBOcAoGH+JaTctqECfEvOsmB7xHO3/EE0tB4gjYKx?=
- =?us-ascii?Q?litKGL63SxCVpDAa0T50qtR6K5/PiCDR7OXGK4u1MJ4ydZLyEOHMpxMxobpG?=
- =?us-ascii?Q?jkdkJvBjBw6YSyhvFUbikqY4V+hqxsuSM748u9qwRimUjWNGVSIZ+GAtW4dG?=
- =?us-ascii?Q?pVxMwXH+5Eha4tj4sJB3qE39DvieycEYmDkYWOA4kmX2ajbH3FGMcVrAWWbL?=
- =?us-ascii?Q?0+Vngmku9h1jiFGwvj3Y4NbDlD0IRpGhlaEg7zvFWcz9Q4vxhV1VizuT9aiE?=
- =?us-ascii?Q?4UW2KhtWu9AEoDzAssWxeS31UwDnNHIQ/Ti1dYn8nuthf/tHlnCpsF2sR0zZ?=
- =?us-ascii?Q?8iUhb4zlgClE7FI3UIwAfskXC/5G3nftE2iUmFdYD3OOT6bSIw86hiEvDuPX?=
- =?us-ascii?Q?WNpU+EbQUCljEuro6Uj+x1aInOw+1K8qVgMYDmwqpBZZh4XKYOca7mg9Rik8?=
- =?us-ascii?Q?rWo0bQVR4R47E7VUf8SUHSrU4psymBwcMBviKknhuFNX1MVQogIutPClrSR2?=
- =?us-ascii?Q?254J12WW2X+V4F4J/L2466L4FrXbTIjNVDnpKdys93W1w7rAn00f2utK6QRQ?=
- =?us-ascii?Q?awbm1QdebTmqGnqrrCQE1ax/hToQ6IvLFLyC+Fv+rd+J4S0VP3EYrz7bpMK/?=
- =?us-ascii?Q?UdRZ7aaJavcDpxwL/VmsrXFedaiD1wp2/11pUaknpO2tDcxZ0uhUw+exm7SL?=
- =?us-ascii?Q?CxwX8VI/xjc=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CdUJMSiXYL/uk38IkMm6ZaYbQPmz9IE4f50wH3nP1k+Kp2GlW/5EG8dOtMQ8?=
- =?us-ascii?Q?9aqsMT4ryv2odKIi1Iirg57f8Co78WpxGbFS9jaaz0DLcKFUsrz5kMiXsLkm?=
- =?us-ascii?Q?yQREmaA4l4pIsUpMeHz2GWD3nAnLetGrTnL8hAs4PV4Ycffn2U0UqM/cWS5v?=
- =?us-ascii?Q?/RrvWhLEPyKQxVgokCHT5SOA9TyzoXQ8XmdkDlmIaJwQ1KO/je+687YNXIXR?=
- =?us-ascii?Q?D21JLPsvLMfnL3mbYS/uTKExRh+mmY/9dm0Mqug0nvpbWybtQrwnK2zzZVev?=
- =?us-ascii?Q?DuMVhZQdoOO1wNQnRkQfoalLZ/g6nmk7JMm+BfOIdLmFL4y85yHEfoK/0jbr?=
- =?us-ascii?Q?X0kc65X6BejUnsUxchEObHH+RLFDsXRPu9tz80sqZowR+wuAtp1S2cXCMFgM?=
- =?us-ascii?Q?nHA0AQgIHBaL2pnq85C0FXoGfIZRKhERgNhzQNDoFybG6AZxilHI9I1DL6Tm?=
- =?us-ascii?Q?uxYM51q1dmq5TqadwqRk1Y/I6jKFp8oxHMyV3cnn1Lvrmk+9yzL2V56RyVR+?=
- =?us-ascii?Q?tsOTbabHzfFvvAUEIlB5uj0GeMGw4H7d5P8mJognCMh9w/9A0ViM8aDd+Zk0?=
- =?us-ascii?Q?I7FCZI0qmxhIjetVHWIEf0PAI0jzLNXEnGv6rDLlzCjqNXUluf87+5qUNOob?=
- =?us-ascii?Q?XDod0ugqmzM7eyoyqex/5rJjwyDZmWO44EK+IPlJgEoamUErVzz9pddvIol7?=
- =?us-ascii?Q?wRAnlAlrHUtlO7SP9Mt5uhN7GqLMnfoJsfesyNSjCCS5y+sTCZPOheVeLW0C?=
- =?us-ascii?Q?WmZC2ZAkLr9UNFr2kqXcT1DP6w9tBF6VMefR2Qm73QmfdYssG/Eh7BixZEDf?=
- =?us-ascii?Q?EZX2YfC1mX6h7oxAUz9P1c7kmzwUBxvFY11CJxhkc1Ijfn9a1UVtK/UMdg8M?=
- =?us-ascii?Q?aKZrzK19HHvRcu4aqaGjF34fc5DBLjs99votf296F5nljICEuaHVT50DFn0d?=
- =?us-ascii?Q?jAm4Ilqs4x2sJw1jJ4khDznjNiGyQnqtww/QCw/vxLYe5Eat096CRCzsVXPs?=
- =?us-ascii?Q?pADcHLUYGg5ZNAuak3sclw7Sd1MKSbLk/+pI4yrRI3mfvDFKkpONYxRYKK0v?=
- =?us-ascii?Q?WoA/9ktVr7B57WlS41AMZuLVYB8/KiPCI3TsH09Q+f3Hppg9CT1yF6hzQdiA?=
- =?us-ascii?Q?7WdGYLRuDDlnNeOOkul8Hc6JOZE6IzFMVX77+0FEGRrzVoSqx+Xs9N8uiwGD?=
- =?us-ascii?Q?VuODVZHZqLyT860eHqDhsXOugsmM/dRnw07FLKry41K7Y95E6ndlVN5Ko6yq?=
- =?us-ascii?Q?GIRZRORIuxcZmOhBLrM+0PXmQo05l7BNz89pFhprWomLsgl2mcvIVs+x+mH1?=
- =?us-ascii?Q?46WPS9nCau4EauqDuBGRQadUtVXRgITKOI4Fgqt3GeDrtiODhpmRHA0o3A1f?=
- =?us-ascii?Q?86yIZj0JUeP0ugTbNm1AMSh2iH8ju43D2b8bgfSqUAxbNewfg2+OFGVFFjzL?=
- =?us-ascii?Q?d0aIKu6EO1WzuUebX3vJDQjJO4NbZl8CAmG4Zhr3uyuZ9EzTzWzHsM9cKFqX?=
- =?us-ascii?Q?0axB/U14yBgwv8O4duUmp6C/JKZL/EPWY1sZKNt9YiCa+4F7ZVDr1HP57jIQ?=
- =?us-ascii?Q?3F+U1b+kyKf3OOGd9jCtYrGfO4/R+9BqQaVHd/T30nUrwiWzqR+u6QHNWGLb?=
- =?us-ascii?Q?cw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 996f5487-f307-4d92-261c-08ddbd9e1e7a
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2025 21:34:57.2604 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I7AFzs7kljTnM3oQN7UlAS3sf8nmqktmZ1dAMXjUojuA5haXV61rv/KcZFKIUiF2up03Mc1VIcm81eXswBqjPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8508
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6418.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6698f4e0-4206-48bf-ecee-08ddbd9e42b7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2025 21:35:57.8096 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0fsvPkUX7GguY7AwUttHlGsJ1VAL+4x9/umM/unI7q3q6pjPOAiX6mTPBf2eCHglq48Pv9hSo9XJJI3kaPYZhW74/RCC/81M7AtlzFS1pgQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5906
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,39 +188,452 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jul 07, 2025 at 01:19:59PM -0700, Matt Atwood wrote:
-> Panther Lake has proven to be stable through testing and use.
-> 
-> Remove the force_probe requirement and enable the platform by default.
-> 
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> ---
-> Panther Lake is running internal CI for the moment, but running upstream
-> branches. Tests show all greens and work in progress to get the machines
-> approved for moving to the upstream CI.
+>-----Original Message-----
+>From: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
+>Sent: Monday, July 7, 2025 9:46 AM
+>To: Ruhl, Michael J <michael.j.ruhl@intel.com>
+>Cc: platform-driver-x86@vger.kernel.org; intel-xe@lists.freedesktop.org; H=
+ans
+>de Goede <hdegoede@redhat.com>; De Marchi, Lucas
+><lucas.demarchi@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+>thomas.hellstrom@linux.intel.com; airlied@gmail.com; simona@ffwll.ch;
+>david.e.box@linux.intel.com
+>Subject: Re: [PATCH v6 12/12] platform/x86/intel/pmt: support BMG crashlog
+>
+>On Thu, 3 Jul 2025, Michael J. Ruhl wrote:
+>
+>> The Battlemage GPU has the type 1 version 2 crashlog feature.
+>>
+>> Update the crashlog driver to support this crashlog version.
+>>
+>> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+>> ---
+>>  drivers/platform/x86/intel/pmt/crashlog.c | 268 ++++++++++++++++++++-
+>-
+>>  1 file changed, 255 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c
+>b/drivers/platform/x86/intel/pmt/crashlog.c
+>> index edc41144909c..35c19e9a2bb6 100644
+>> --- a/drivers/platform/x86/intel/pmt/crashlog.c
+>> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
+>> @@ -53,20 +53,52 @@
+>>  #define TYPE1_VER0_COMPLETE		BIT(31)
+>>  #define TYPE1_VER0_TRIGGER_MASK		GENMASK(31, 28)
+>>
+>> +/*
+>> + * Type 1 Version 2
+>> + * status and control are two different registers
+>> + */
+>> +#define TYPE1_VER2_STATUS_OFFSET	0x00
+>> +#define TYPE1_VER2_CONTROL_OFFSET	0x14
+>> +
+>> +/* status register */
+>> +#define TYPE1_VER2_CLEAR_SUPPORT	BIT(20)
+>> +#define TYPE1_VER2_REARMED		BIT(25)
+>> +#define TYPE1_VER2_ERROR		BIT(26)
+>> +#define TYPE1_VER2_CONSUMED		BIT(27)
+>> +#define TYPE1_VER2_DISABLED		BIT(28)
+>> +#define TYPE1_VER2_CLEARED		BIT(29)
+>> +#define TYPE1_VER2_IN_PROGRESS		BIT(30)
+>> +#define TYPE1_VER2_COMPLETE		BIT(31)
+>> +
+>> +/* control register */
+>> +#define TYPE1_VER2_CONSUME		BIT(25)
+>> +#define TYPE1_VER2_REARM		BIT(28)
+>> +#define TYPE1_VER2_EXECUTE		BIT(29)
+>> +#define TYPE1_VER2_CLEAR		BIT(30)
+>> +#define TYPE1_VER2_DISABLE		BIT(31)
+>> +#define TYPE1_VER2_TRIGGER_MASK
+>	(TYPE1_VER2_EXECUTE | TYPE1_VER2_CLEAR | TYPE1_VER2_DISABLE)
+>
+>Please use \ to split this on multiple lines.
 
-I was happy with the internal CI views that I saw last Friday.
-And I was almost acking this patch to move it through, but it
-looks we got some regression there that is blocking fw loading.
-So, let's keep the force_probe protection in place while the issue
-is investigated and getting fixed.
+Will do.
 
-> 
->  drivers/gpu/drm/xe/xe_pci.c | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index e9c5d3150efc..ffd6ad569b7c 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -341,7 +341,6 @@ static const struct xe_device_desc ptl_desc = {
->  	.has_display = true,
->  	.has_sriov = true,
->  	.max_gt_per_tile = 2,
-> -	.require_force_probe = true,
->  	.needs_scratch = true,
->  };
->  
-> -- 
-> 2.49.0
-> 
+>>  /* After offset, order alphabetically, not bit ordered */
+>>  struct crashlog_status {
+>>  	u32 offset;
+>> +	u32 clear_supported;
+>>  	u32 cleared;
+>>  	u32 complete;
+>> +	u32 consumed;
+>>  	u32 disabled;
+>> +	u32 error;
+>> +	u32 in_progress;
+>> +	u32 rearmed;
+>>  };
+>>
+>>  struct crashlog_control {
+>>  	u32 offset;
+>>  	u32 trigger_mask;
+>>  	u32 clear;
+>> +	u32 consume;
+>>  	u32 disable;
+>>  	u32 manual;
+>> +	u32 rearm;
+>>  };
+>>
+>>  struct crashlog_info {
+>> @@ -87,6 +119,26 @@ static const struct crashlog_info crashlog_type1_ver=
+0
+>=3D {
+>>  	.control.manual =3D TYPE1_VER0_EXECUTE,
+>>  };
+>>
+>> +const struct crashlog_info crashlog_type1_ver2 =3D {
+>> +	.status.offset =3D TYPE1_VER2_STATUS_OFFSET,
+>> +	.status.clear_supported =3D TYPE1_VER2_CLEAR_SUPPORT,
+>> +	.status.cleared =3D TYPE1_VER2_CLEARED,
+>> +	.status.complete =3D TYPE1_VER2_COMPLETE,
+>> +	.status.consumed =3D TYPE1_VER2_CONSUMED,
+>> +	.status.disabled =3D TYPE1_VER2_DISABLED,
+>> +	.status.error =3D TYPE1_VER2_ERROR,
+>> +	.status.in_progress =3D TYPE1_VER2_IN_PROGRESS,
+>> +	.status.rearmed =3D TYPE1_VER2_REARMED,
+>> +
+>> +	.control.offset =3D TYPE1_VER2_CONTROL_OFFSET,
+>> +	.control.trigger_mask =3D TYPE1_VER2_TRIGGER_MASK,
+>> +	.control.clear =3D TYPE1_VER2_CLEAR,
+>> +	.control.consume =3D TYPE1_VER2_CONSUME,
+>> +	.control.disable =3D TYPE1_VER2_DISABLE,
+>> +	.control.manual =3D TYPE1_VER2_EXECUTE,
+>> +	.control.rearm =3D TYPE1_VER2_REARM,
+>> +};
+>> +
+>>  struct crashlog_entry {
+>>  	/* entry must be first member of struct */
+>>  	struct intel_pmt_entry		entry;
+>> @@ -143,19 +195,23 @@ static bool pmt_crashlog_disabled(struct
+>crashlog_entry *crashlog)
+>>  	return pmt_crashlog_rc(crashlog, crashlog->info->status.disabled);
+>>  }
+>>
+>> -static bool pmt_crashlog_supported(struct intel_pmt_entry *entry)
+>> +static bool pmt_crashlog_supported(struct intel_pmt_entry *entry, u32
+>*crash_type, u32 *version)
+>>  {
+>>  	u32 discovery_header =3D readl(entry->disc_table + CONTROL_OFFSET);
+>> -	u32 crash_type, version;
+>>
+>> -	crash_type =3D GET_TYPE(discovery_header);
+>> -	version =3D GET_VERSION(discovery_header);
+>> +	*crash_type =3D GET_TYPE(discovery_header);
+>> +	*version =3D GET_VERSION(discovery_header);
+>>
+>>  	/*
+>> -	 * Currently we only recognize OOBMSM version 0 devices.
+>> -	 * We can ignore all other crashlog devices in the system.
+>> +	 * Currently we only recognize OOBMSM (type 1) and version 0 or 2
+>> +	 * devices.
+>> +	 *
+>> +	 * Ignore all other crashlog devices in the system.
+>>  	 */
+>> -	return crash_type =3D=3D CRASH_TYPE_OOBMSM && version =3D=3D 0;
+>> +	if (*crash_type =3D=3D CRASH_TYPE_OOBMSM && (*version =3D=3D 0 ||
+>*version =3D=3D 2))
+>> +		return true;
+>> +
+>> +	return false;
+>>  }
+>>
+>>  static void pmt_crashlog_set_disable(struct crashlog_entry *crashlog, b=
+ool
+>disable)
+>> @@ -173,9 +229,118 @@ static void pmt_crashlog_set_execute(struct
+>crashlog_entry *crashlog)
+>>  	pmt_crashlog_rmw(crashlog, crashlog->info->control.manual,
+>CRASHLOG_SET_BIT);
+>>  }
+>>
+>> +static bool pmt_crashlog_cleared(struct crashlog_entry *crashlog)
+>> +{
+>> +	/* return current value of the crashlog cleared flag */
+>> +	return pmt_crashlog_rc(crashlog, crashlog->info->status.cleared);
+>> +}
+>> +
+>> +static bool pmt_crashlog_consumed(struct crashlog_entry *crashlog)
+>> +{
+>> +	/* return current value of the crashlog consumedflag */
+>
+>Missing space.
+>
+>But I'm not convived thes comments really help that much. ...If you still
+>want to keep them, make these two comments, at minimum, function
+>comments
+>instead.
+
+I will remove them.
+
+>
+>Ah, there are a few more below, the same applies to them.
+>
+>> +	return pmt_crashlog_rc(crashlog, crashlog->info->status.consumed);
+>> +}
+>> +
+>> +static void pmt_crashlog_set_consumed(struct crashlog_entry *crashlog)
+>> +{
+>> +	pmt_crashlog_rmw(crashlog, crashlog->info->control.consume,
+>CRASHLOG_SET_BIT);
+>> +}
+>> +
+>> +static bool pmt_crashlog_error(struct crashlog_entry *crashlog)
+>> +{
+>> +	/* return current value of the crashlog error flag */
+>> +	return pmt_crashlog_rc(crashlog, crashlog->info->status.error);
+>> +}
+>> +
+>> +static bool pmt_crashlog_rearm(struct crashlog_entry *crashlog)
+>> +{
+>> +	/* return current value of the crashlog reamed flag */
+>
+>rearmed
+>
+>> +	return pmt_crashlog_rc(crashlog, crashlog->info->status.rearmed);
+>> +}
+>> +
+>> +static void pmt_crashlog_set_rearm(struct crashlog_entry *crashlog)
+>> +{
+>> +	pmt_crashlog_rmw(crashlog, crashlog->info->control.rearm,
+>CRASHLOG_SET_BIT);
+>> +}
+>> +
+>>  /*
+>>   * sysfs
+>>   */
+>> +static ssize_t
+>> +clear_show(struct device *dev, struct device_attribute *attr, char *buf=
+)
+>> +{
+>> +	struct crashlog_entry *crashlog =3D dev_get_drvdata(dev);
+>> +	bool cleared =3D pmt_crashlog_cleared(crashlog);
+>> +
+>> +	return sysfs_emit(buf, "%d\n", cleared);
+>> +}
+>> +
+>> +static ssize_t
+>> +clear_store(struct device *dev, struct device_attribute *attr,
+>> +	    const char *buf, size_t count)
+>> +{
+>> +	struct crashlog_entry *crashlog;
+>> +	bool clear;
+>> +	int result;
+>> +
+>> +	crashlog =3D dev_get_drvdata(dev);
+>> +
+>> +	result =3D kstrtobool(buf, &clear);
+>> +	if (result)
+>> +		return result;
+>> +
+>> +	/* set bit only */
+>> +	if (!clear)
+>> +		return -EINVAL;
+>> +
+>> +	guard(mutex)(&crashlog->control_mutex);
+>> +
+>> +	pmt_crashlog_set_clear(crashlog);
+>> +
+>> +	return count;
+>> +}
+>> +static DEVICE_ATTR_RW(clear);
+>> +
+>> +static ssize_t
+>> +consumed_show(struct device *dev, struct device_attribute *attr, char *=
+buf)
+>> +{
+>> +	struct crashlog_entry *crashlog =3D dev_get_drvdata(dev);
+>> +	bool consumed =3D pmt_crashlog_consumed(crashlog);
+>> +
+>> +	return sysfs_emit(buf, "%d\n", consumed);
+>> +}
+>> +
+>> +static ssize_t consumed_store(struct device *dev, struct device_attribu=
+te
+>*attr,
+>> +			      const char *buf, size_t count)
+>> +{
+>> +	struct crashlog_entry *crashlog;
+>> +	bool consumed;
+>> +	int result;
+>> +
+>> +	crashlog =3D dev_get_drvdata(dev);
+>> +
+>> +	result =3D kstrtobool(buf, &consumed);
+>> +	if (result)
+>> +		return result;
+>> +
+>> +	/* set bit only */
+>> +	if (!consumed)
+>> +		return -EINVAL;
+>> +
+>> +	guard(mutex)(&crashlog->control_mutex);
+>> +
+>> +	if (pmt_crashlog_disabled(crashlog))
+>> +		return -EBUSY;
+>> +
+>> +	if (!pmt_crashlog_complete(crashlog))
+>> +		return -EEXIST;
+>> +
+>> +	pmt_crashlog_set_consumed(crashlog);
+>> +
+>> +	return count;
+>> +}
+>> +static DEVICE_ATTR_RW(consumed);
+>> +
+>>  static ssize_t
+>>  enable_show(struct device *dev, struct device_attribute *attr, char *bu=
+f)
+>>  {
+>> @@ -207,6 +372,50 @@ enable_store(struct device *dev, struct
+>device_attribute *attr,
+>>  }
+>>  static DEVICE_ATTR_RW(enable);
+>>
+>> +static ssize_t
+>> +error_show(struct device *dev, struct device_attribute *attr, char *buf=
+)
+>> +{
+>> +	struct crashlog_entry *crashlog =3D dev_get_drvdata(dev);
+>> +	bool error =3D pmt_crashlog_error(crashlog);
+>> +
+>> +	return sysfs_emit(buf, "%d\n", error);
+>> +}
+>> +static DEVICE_ATTR_RO(error);
+>> +
+>> +static ssize_t
+>> +rearm_show(struct device *dev, struct device_attribute *attr, char *buf=
+)
+>> +{
+>> +	struct crashlog_entry *crashlog =3D dev_get_drvdata(dev);
+>> +	int rearmed =3D pmt_crashlog_rearm(crashlog);
+>> +
+>> +	return sysfs_emit(buf, "%d\n", rearmed);
+>> +}
+>> +
+>> +static ssize_t rearm_store(struct device *dev, struct device_attribute =
+*attr,
+>> +			   const char *buf, size_t count)
+>> +{
+>> +	struct crashlog_entry *crashlog;
+>> +	bool rearm;
+>> +	int result;
+>> +
+>> +	crashlog =3D dev_get_drvdata(dev);
+>> +
+>> +	result =3D kstrtobool(buf, &rearm);
+>> +	if (result)
+>> +		return result;
+>> +
+>> +	/* set only */
+>> +	if (!rearm)
+>> +		return -EINVAL;
+>> +
+>> +	guard(mutex)(&crashlog->control_mutex);
+>> +
+>> +	pmt_crashlog_set_rearm(crashlog);
+>> +
+>> +	return count;
+>> +}
+>> +static DEVICE_ATTR_RW(rearm);
+>> +
+>>  static ssize_t
+>>  trigger_show(struct device *dev, struct device_attribute *attr, char *b=
+uf)
+>>  {
+>> @@ -254,30 +463,63 @@ trigger_store(struct device *dev, struct
+>device_attribute *attr,
+>>  }
+>>  static DEVICE_ATTR_RW(trigger);
+>>
+>> -static struct attribute *pmt_crashlog_attrs[] =3D {
+>> +static struct attribute *pmt_crashlog_type1_ver0_attrs[] =3D {
+>>  	&dev_attr_enable.attr,
+>>  	&dev_attr_trigger.attr,
+>>  	NULL
+>>  };
+>>
+>> -static const struct attribute_group pmt_crashlog_group =3D {
+>> -	.attrs	=3D pmt_crashlog_attrs,
+>> +static struct attribute *pmt_crashlog_type1_ver2_attrs[] =3D {
+>> +	&dev_attr_clear.attr,
+>> +	&dev_attr_consumed.attr,
+>> +	&dev_attr_enable.attr,
+>> +	&dev_attr_error.attr,
+>> +	&dev_attr_rearm.attr,
+>> +	&dev_attr_trigger.attr,
+>> +	NULL
+>> +};
+>> +
+>> +static const struct attribute_group pmt_crashlog_type1_ver0_group =3D {
+>> +	.attrs	=3D pmt_crashlog_type1_ver0_attrs,
+>>  };
+>>
+>> +static const struct attribute_group pmt_crashlog_type1_ver2_group =3D {
+>> +	.attrs =3D pmt_crashlog_type1_ver2_attrs,
+>> +};
+>> +
+>> +static const struct crashlog_info *select_crashlog_info(u32 type, u32
+>version)
+>> +{
+>> +	if (version =3D=3D 0)
+>> +		return &crashlog_type1_ver0;
+>> +
+>> +	return &crashlog_type1_ver2;
+>> +}
+>> +
+>> +static const struct attribute_group *select_sysfs_grp(u32 type, u32 ver=
+sion)
+>> +{
+>> +	if (version =3D=3D 0)
+>> +		return &pmt_crashlog_type1_ver2_group;
+>> +
+>> +	return &pmt_crashlog_type1_ver2_group;
+>> +}
+>> +
+>>  static int pmt_crashlog_header_decode(struct intel_pmt_entry *entry,
+>>  				      struct device *dev)
+>>  {
+>>  	void __iomem *disc_table =3D entry->disc_table;
+>>  	struct intel_pmt_header *header =3D &entry->header;
+>>  	struct crashlog_entry *crashlog;
+>> +	u32 version;
+>> +	u32 type;
+>>
+>> -	if (!pmt_crashlog_supported(entry))
+>> +	if (!pmt_crashlog_supported(entry, &type, &version))
+>>  		return 1;
+>>
+>>  	/* initialize the crashlog struct */
+>>  	crashlog =3D container_of(entry, struct crashlog_entry, entry);
+>>  	mutex_init(&crashlog->control_mutex);
+>> -	crashlog->info =3D &crashlog_type1_ver0;
+>> +
+>> +	crashlog->info =3D select_crashlog_info(type, version);
+>>
+>>  	header->access_type =3D GET_ACCESS(readl(disc_table));
+>>  	header->guid =3D readl(disc_table + GUID_OFFSET);
+>> @@ -286,7 +528,7 @@ static int pmt_crashlog_header_decode(struct
+>intel_pmt_entry *entry,
+>>  	/* Size is measured in DWORDS, but accessor returns bytes */
+>>  	header->size =3D GET_SIZE(readl(disc_table + SIZE_OFFSET));
+>>
+>> -	entry->attr_grp =3D &pmt_crashlog_group;
+>> +	entry->attr_grp =3D select_sysfs_grp(type, version);
+>
+>Can't you have this as crashlog->info->attr_grp so you don't need a
+>function for selecting it?
+
+Yes, that makes a lot of sense.  Updated.
+
+Thank you for the comments!
+
+M
+
+>>
+>>  	return 0;
+>>  }
+>>
+>
+>--
+> i.
+
