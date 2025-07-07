@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45D1DC71130
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 23:11:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59159C83030
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 23:51:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E20C710E033;
-	Mon,  7 Jul 2025 23:11:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bFE5N8Fa";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21D3E10E033
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Jul 2025 23:11:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751929871; x=1783465871;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nhwgY/nagVWBZPr/nR5f2NGxHd46+jFtTsgEyhPfc0M=;
- b=bFE5N8FaOdWhWiAXciFx9v5OImjSlAwXAlNuSRwSMD3dhjxz0mK1Jl83
- t1o/0NyN9i1GZB6keVCEGbJv6FHJeBJ7/dwTFkinWKCr+llHVidURwCgx
- UDiN2tA0FBuO1Te0ci8OEc4guygKDDyH1wKn9BgEinhKgzruI/+ykt75M
- QVMMH8TkoSvAGhMGph0GMveQfxaJ1YZUF8BlIvDds8U23M27TZKvO5Co4
- PbDRvb8M8sSvoXn6dx5bltkud1cFvAYucHBbfMyhopzH3BKFbj6f2Cs8+
- t+hCsqnozlhr5r89vRPyodfCVqTBk2SsbejpdXm36+/vmEa0BZ+8/Vukc g==;
-X-CSE-ConnectionGUID: l6VkF0pEQWin4P0aRF0J3Q==
-X-CSE-MsgGUID: rnWRuHtqS2+K8w2T7EmuCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="41783593"
-X-IronPort-AV: E=Sophos;i="6.16,295,1744095600"; d="scan'208";a="41783593"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2025 16:11:11 -0700
-X-CSE-ConnectionGUID: KlHctXehRSuj2icL/mpqQw==
-X-CSE-MsgGUID: ezs+OX+OQliArqnRxJejJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,295,1744095600"; d="scan'208";a="156081418"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by fmviesa010.fm.intel.com with ESMTP; 07 Jul 2025 16:11:10 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Stuart Summers <stuart.summers@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v9] drm/xe/uc: Disable GuC communication on hardware
- initialization error.
-Date: Mon,  7 Jul 2025 19:11:08 -0400
-Message-Id: <20250707231108.3217573-1-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id E568810E0AC;
+	Mon,  7 Jul 2025 23:51:01 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48BB010E0AC;
+ Mon,  7 Jul 2025 23:51:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1342228392712095149=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/pat=3A_Use_XE=5FWA_i?=
+ =?utf-8?q?n_xe=5Fpat=5Finit=5Fearly?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Jul 2025 23:51:00 -0000
+Message-ID: <175193226027.141900.2466980164443286963@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250707222111.3214505-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20250707222111.3214505-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,120 +36,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Disable GuC communication on Xe micro controller hardware initialization
-error.
+--===============1342228392712095149==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4917
+== Series Details ==
 
----
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Series: drm/xe/pat: Use XE_WA in xe_pat_init_early
+URL   : https://patchwork.freedesktop.org/series/151299/
+State : failure
 
-Change list:
-v9: Switched to xe_guc_sanitize
-v8: Fix kernel-doc style
-    Add error handling in vf_guc_min_load_for_hwconfig
-v7: Add kernel-doc for xe_guc_disable_communication
-    Unset submission_state.enabled as well
-v6: Skip disable ct on xe_guc_enable_communication error
-v5: Set wedge is excessive action, revert back to disable ct
-v4: Fix typo and add new line
-v3: v2 CI re-run
-v2: Remove unnecessary jump to err-out
-    Drop disable ct, switch to set wedge
----
- drivers/gpu/drm/xe/xe_guc.c |  8 ++++++--
- drivers/gpu/drm/xe/xe_uc.c  | 18 +++++++++++++-----
- 2 files changed, 19 insertions(+), 7 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 8573957facae..b1d1d6da3758 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1219,13 +1219,17 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
- 
- 	ret = xe_gt_sriov_vf_connect(gt);
- 	if (ret)
--		return ret;
-+		goto err_out;
- 
- 	ret = xe_gt_sriov_vf_query_runtime(gt);
- 	if (ret)
--		return ret;
-+		goto err_out;
- 
- 	return 0;
-+
-+err_out:
-+	xe_guc_sanitize(guc);
-+	return ret;
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 6431ba3a2c53..3e0c3af235f2 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -158,7 +158,7 @@ static int vf_uc_load_hw(struct xe_uc *uc)
- 
- 	err = xe_gt_sriov_vf_connect(uc_to_gt(uc));
- 	if (err)
--		return err;
-+		goto err_out;
- 
- 	uc->guc.submission_state.enabled = true;
- 
-@@ -168,9 +168,13 @@ static int vf_uc_load_hw(struct xe_uc *uc)
- 
- 	err = xe_gt_record_default_lrcs(uc_to_gt(uc));
- 	if (err)
--		return err;
-+		goto err_out;
- 
- 	return 0;
-+
-+err_out:
-+	xe_guc_sanitize(&uc->guc);
-+	return err;
- }
- 
- /*
-@@ -202,15 +206,15 @@ int xe_uc_load_hw(struct xe_uc *uc)
- 
- 	ret = xe_gt_record_default_lrcs(uc_to_gt(uc));
- 	if (ret)
--		return ret;
-+		goto err_out;
- 
- 	ret = xe_guc_post_load_init(&uc->guc);
- 	if (ret)
--		return ret;
-+		goto err_out;
- 
- 	ret = xe_guc_pc_start(&uc->guc.pc);
- 	if (ret)
--		return ret;
-+		goto err_out;
- 
- 	xe_guc_engine_activity_enable_stats(&uc->guc);
- 
-@@ -222,6 +226,10 @@ int xe_uc_load_hw(struct xe_uc *uc)
- 	xe_gsc_load_start(&uc->gsc);
- 
- 	return 0;
-+
-+err_out:
-+	xe_guc_sanitize(&uc->guc);
-+	return ret;
- }
- 
- int xe_uc_reset_prepare(struct xe_uc *uc)
--- 
-2.34.1
+CI Bug Log - changes from xe-3367-02069d358330d2c30eb66590736f360964d88612_BAT -> xe-pw-151299v1_BAT
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-151299v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-151299v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-151299v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-lnl-1:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3367-02069d358330d2c30eb66590736f360964d88612/bat-lnl-1/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/bat-lnl-1/igt@xe_module_load@load.html
+    - bat-bmg-2:          [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3367-02069d358330d2c30eb66590736f360964d88612/bat-bmg-2/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/bat-bmg-2/igt@xe_module_load@load.html
+    - bat-bmg-1:          [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3367-02069d358330d2c30eb66590736f360964d88612/bat-bmg-1/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/bat-bmg-1/igt@xe_module_load@load.html
+    - bat-lnl-2:          [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3367-02069d358330d2c30eb66590736f360964d88612/bat-lnl-2/igt@xe_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/bat-lnl-2/igt@xe_module_load@load.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-3367-02069d358330d2c30eb66590736f360964d88612 -> xe-pw-151299v1
+
+  IGT_8445: 8445
+  xe-3367-02069d358330d2c30eb66590736f360964d88612: 02069d358330d2c30eb66590736f360964d88612
+  xe-pw-151299v1: 151299v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/index.html
+
+--===============1342228392712095149==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pat: Use XE_WA in xe_pat_init_early</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151299/">https://patchwork.freedesktop.org/series/151299/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3367-02069d358330d2c30eb66590736f360964d88612_BAT -&gt; xe-pw-151299v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-151299v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-151299v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-151299v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3367-02069d358330d2c30eb66590736f360964d88612/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/bat-lnl-1/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3367-02069d358330d2c30eb66590736f360964d88612/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/bat-bmg-2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3367-02069d358330d2c30eb66590736f360964d88612/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3367-02069d358330d2c30eb66590736f360964d88612/bat-lnl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151299v1/bat-lnl-2/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3367-02069d358330d2c30eb66590736f360964d88612 -&gt; xe-pw-151299v1</li>
+</ul>
+<p>IGT_8445: 8445<br />
+  xe-3367-02069d358330d2c30eb66590736f360964d88612: 02069d358330d2c30eb66590736f360964d88612<br />
+  xe-pw-151299v1: 151299v1</p>
+
+</body>
+</html>
+
+--===============1342228392712095149==--
