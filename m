@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1699C8303C
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 17:42:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00971C8303C
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 17:43:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 574B210E505;
-	Mon,  7 Jul 2025 17:42:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jxOD9PBB";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D99910E505
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Jul 2025 17:42:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751910145; x=1783446145;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Uc2FXcVu38lWizGnDl7VscK1yR0lsm65b7wALxxPcPs=;
- b=jxOD9PBBvWI6KDhvxoXgMiDjnkGnTrQxbfSV870auvb0HOOMOXVZ3+eS
- M31aQtyVxVsBH02Ez/PPIiDCgaQr6owPSFIknlGbhj0rkE1oyxZVYxk5j
- cTtFtnue0987LcNjLea+2p7jxfEVAuIJspliKJZaWUoV+GEPSUrGy/JFe
- Bm0+yNWwiDxbEg7nbqINkJnH5G/UoKIA1gq2MviMrqAQ0Vp3PWQrzkbdG
- ie5t8VS0N0EC3Xp9G5iR7X+8aWIgd2MVDerMNhhVSglGO5Z4jYd/0JAes
- Ij68kRMdGTwRWpXYKyasyQws1sYdDKB3Nf1aNfZq3gP9GvMXaeVAolVIS Q==;
-X-CSE-ConnectionGUID: 9gw/am2BQGS8HnHieuk4JA==
-X-CSE-MsgGUID: XUev0zM1SOykXoaGSjwlGA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="53852602"
-X-IronPort-AV: E=Sophos;i="6.16,294,1744095600"; d="scan'208";a="53852602"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2025 10:42:24 -0700
-X-CSE-ConnectionGUID: ph6CKKJMSXWyywUS6sHMqw==
-X-CSE-MsgGUID: jtItrW18T42R5uJg8lIWeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,294,1744095600"; d="scan'208";a="155400424"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa007.jf.intel.com with ESMTP; 07 Jul 2025 10:42:22 -0700
-Received: from [10.245.96.176] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.96.176])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 643BD32CB1;
- Mon,  7 Jul 2025 18:42:21 +0100 (IST)
-Message-ID: <db1cddee-96cb-48f4-8034-d95117256fce@intel.com>
-Date: Mon, 7 Jul 2025 19:42:20 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC41410E505;
+	Mon,  7 Jul 2025 17:43:20 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94A8F10E505;
+ Mon,  7 Jul 2025 17:43:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8258871625258450284=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/pm: Correct comment of xe_pm_set_vram_threshold()
-To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20250707021510.3525028-2-shuicheng.lin@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250707021510.3525028-2-shuicheng.lin@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Allow_a?=
+ =?utf-8?q?sync_flips_on_planes_with_no_framebuffer_changes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Naveen Kumar" <naveen1.kumar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Jul 2025 17:43:19 -0000
+Message-ID: <175191019959.140955.4221217010209563333@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250707154121.74969-1-naveen1.kumar@intel.com>
+In-Reply-To: <20250707154121.74969-1-naveen1.kumar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,47 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8258871625258450284==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/display: Allow async flips on planes with no framebuffer changes
+URL   : https://patchwork.freedesktop.org/series/151279/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7_BAT -> xe-pw-151279v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
-On 07.07.2025 04:15, Shuicheng Lin wrote:
-> The parameter threshold is with size in mb, not in bits.
+Changes
+-------
 
-s/mb/MiB
+  No changes found
 
-> Correct it to avoid any confusion.
-> 
-> Fixes: 30c399529f4c ("drm/xe: Document Xe PM component")
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_pm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index bcfda545e74f..c7622e1c614b 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -754,7 +754,7 @@ void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
->  /**
->   * xe_pm_set_vram_threshold - Set a vram threshold for allowing/blocking D3Cold
 
-while around, please s/vram/VRAM
+Build changes
+-------------
 
->   * @xe: xe device instance
-> - * @threshold: VRAM size in bites for the D3cold threshold
-> + * @threshold: VRAM size in mb for the D3cold threshold
+  * Linux: xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7 -> xe-pw-151279v1
 
-s/mb/MiB
+  IGT_8445: 8445
+  xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7: 17e70ec7d93c01d943dba448b407ec3dc74e3ea7
+  xe-pw-151279v1: 151279v1
 
->   *
->   * Returns 0 for success, negative error code otherwise.
+== Logs ==
 
-and also please fix return section according to [1]
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151279v1/index.html
 
-[1] https://docs.kernel.org/doc-guide/kernel-doc.html#return-values
+--===============8258871625258450284==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
->   */
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Allow async flips on planes with no framebuffer changes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151279/">https://patchwork.freedesktop.org/series/151279/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151279v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151279v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7_BAT -&gt; xe-pw-151279v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7 -&gt; xe-pw-151279v1</li>
+</ul>
+<p>IGT_8445: 8445<br />
+  xe-3365-17e70ec7d93c01d943dba448b407ec3dc74e3ea7: 17e70ec7d93c01d943dba448b407ec3dc74e3ea7<br />
+  xe-pw-151279v1: 151279v1</p>
+
+</body>
+</html>
+
+--===============8258871625258450284==--
