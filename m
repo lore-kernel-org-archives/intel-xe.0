@@ -4,60 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A147BC83F12
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 17:05:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45E38C71130
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Jul 2025 17:36:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56A0310E508;
-	Mon,  7 Jul 2025 17:05:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB2E98825B;
+	Mon,  7 Jul 2025 17:36:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="ghNAlyIp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EHiLapT3";
 	dkim-atps=neutral
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F171A10E4FB;
- Mon,  7 Jul 2025 17:05:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1751907914;
- bh=4ZCZQkyTb+SlHV2coiacmUH1fpzz9WLEXU3y+sU4p2k=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ghNAlyIpJPqzidm+VRdktp31HxW+FbhFfOzT2HhW3mZPBgDUzJjtuw5vDHjexhz3Y
- FcXFTslLzvUBTL5snHlOeWmfZg6rypsgTDzY15qxQedxwSfya2yAwqaTvwkJdcVFoJ
- xVlM3PVSHK2Ih2AlRa6MQawtZ15RpLsYAi1120CEkBZ7aO3EuShDix1Goa8wm/J7Wz
- qMaeyrQTK15i65KLQav6MZTyACKcwAPxpf3/oG/mGpy76wiIfkFcBoBanaQZw0nlFX
- kZBrZjfhSE9MfbuXuDGRTAZt7qK343QCgPRBVIrQTdzCAwdwTIfXb3xfEkkZOFXPZE
- v0yr1l/7hlYtQ==
-Received: from debian-rockchip-rock5b-rk3588.. (unknown [90.168.160.154])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: nanokatze)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 6A7EE17E046D;
- Mon,  7 Jul 2025 19:05:13 +0200 (CEST)
-From: Caterina Shablia <caterina.shablia@collabora.com>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
- "Frank Binns" <frank.binns@imgtec.com>,
- "Matt Coster" <matt.coster@imgtec.com>,
- "Karol Herbst" <kherbst@redhat.com>, "Lyude Paul" <lyude@redhat.com>,
- "Danilo Krummrich" <dakr@kernel.org>,
- "Boris Brezillon" <boris.brezillon@collabora.com>,
- "Steven Price" <steven.price@arm.com>, "Liviu Dudau" <liviu.dudau@arm.com>,
- "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- asahi@lists.linux.dev, Asahi Lina <lina@asahilina.net>,
- Caterina Shablia <caterina.shablia@collabora.com>
-Subject: [PATCH v4 7/7] drm/panthor: Add support for repeated mappings
-Date: Mon,  7 Jul 2025 17:04:33 +0000
-Message-ID: <20250707170442.1437009-8-caterina.shablia@collabora.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250707170442.1437009-1-caterina.shablia@collabora.com>
-References: <20250707170442.1437009-1-caterina.shablia@collabora.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53F8A8825B
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Jul 2025 17:36:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751909795; x=1783445795;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=UjGhQfsu6bz3ObTXEA7SbmZob4rwKHYPNthb1EBpp6s=;
+ b=EHiLapT3KdXTApOpxmh8tDyst5fMP34mUMnKSxE+uERrSvl5c+tf/SYl
+ dzfrghWXF14JslD9qD5JHnPAwwqf1+7ZdInR9g3yJWSbSThhUeMb3rv/r
+ +NL9bhxal9Hyy++/8YozogOpqte3roNdjD/ze3EO6TFYUmtYHFy5WP3zi
+ neRRSvLeNBQAqIJgygEyXGqFvyGEfbQrlsvBnC4S0lW4ubbLGD8CLopkS
+ 9IUxSpNEl7vQb/K9Bb7Kx6DQPuo+BiE6gLwLkM3r+9+ceNGk+1fWk2rBj
+ QR5lXBSNvtJxi5UEspH96YqVzyoVktlHC0nkH9PhXbZLBtnU5OtBM+i2C w==;
+X-CSE-ConnectionGUID: NnASBzYkSSOA/1InQgYcug==
+X-CSE-MsgGUID: p/1zA5ijTrSZOKuS6bDciQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="54110692"
+X-IronPort-AV: E=Sophos;i="6.16,294,1744095600"; d="scan'208";a="54110692"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2025 10:36:34 -0700
+X-CSE-ConnectionGUID: iNs4zyrJSbyB/88v8rpyEw==
+X-CSE-MsgGUID: gWp7z20PQkmcKPZtyNYOOA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,294,1744095600"; d="scan'208";a="159817638"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa004.jf.intel.com with ESMTP; 07 Jul 2025 10:36:32 -0700
+Received: from [10.245.96.176] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.96.176])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 717DE32CB0;
+ Mon,  7 Jul 2025 18:36:30 +0100 (IST)
+Message-ID: <3a784641-2436-4ead-88e2-88ef33fd39ac@intel.com>
+Date: Mon, 7 Jul 2025 19:36:29 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8] drm/xe/uc: Disable GuC communication on hardware
+ initialization error.
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
+ "Dong, Zhanjun" <zhanjun.dong@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ Matthew Brost <matthew.brost@intel.com>
+Cc: "Summers, Stuart" <stuart.summers@intel.com>
+References: <20250703213845.2259302-1-zhanjun.dong@intel.com>
+ <CH0PR11MB54443606D202241399E6692EE54FA@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <CH0PR11MB54443606D202241399E6692EE54FA@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,242 +76,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Boris Brezillon <boris.brezillon@collabora.com>
 
-This allows us to optimize mapping of a relatively small
-portion of a BO over and over in a large VA range, which
-is useful to support Vulkan sparse bindings in an efficient
-way.
 
-Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
-Co-developed-by: Caterina Shablia <caterina.shablia@collabora.com>
-Signed-off-by: Caterina Shablia <caterina.shablia@collabora.com>
----
- drivers/gpu/drm/panthor/panthor_drv.c |  3 +-
- drivers/gpu/drm/panthor/panthor_mmu.c | 78 ++++++++++++++++++++++++---
- include/uapi/drm/panthor_drm.h        | 23 ++++++++
- 3 files changed, 95 insertions(+), 9 deletions(-)
+On 07.07.2025 15:56, Cavitt, Jonathan wrote:
+> -----Original Message-----
+> From: Dong, Zhanjun <zhanjun.dong@intel.com> 
+> Sent: Thursday, July 3, 2025 2:39 PM
+> To: intel-xe@lists.freedesktop.org
+> Cc: Dong, Zhanjun <zhanjun.dong@intel.com>; Wajdeczko, Michal <Michal.Wajdeczko@intel.com>; Summers, Stuart <stuart.summers@intel.com>; Cavitt, Jonathan <jonathan.cavitt@intel.com>
+> Subject: [PATCH v8] drm/xe/uc: Disable GuC communication on hardware initialization error.
+>>
+>> Disable GuC communication on Xe micro controller hardware initialization
+>> error.
+>>
+>> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4917
+>>
+>> ---
+>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Stuart Summers <stuart.summers@intel.com>
+>> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+>>
+>> Change list:
+>> v8: Fix kernel-doc style
+>>     Add error handling in vf_guc_min_load_for_hwconfig
+>> v7: Add kernel-doc for xe_guc_disable_communication
+>>     Unset submission_state.enabled as well
+>> v6: Skip disable ct on xe_guc_enable_communication error
+>> v5: Set wedge is excessive action, revert back to disable ct
+>> v4: Fix typo and add new line
+>> v3: v2 CI re-run
+>> v2: Remove unnecessary jump to err-out
+>>     Drop disable ct, switch to set wedge
+>> ---
+>>  drivers/gpu/drm/xe/xe_guc.c | 20 ++++++++++++++++++--
+>>  drivers/gpu/drm/xe/xe_guc.h |  1 +
+>>  drivers/gpu/drm/xe/xe_uc.c  | 19 ++++++++++++++-----
+>>  3 files changed, 33 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>> index 8573957facae..6643a2cb898b 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>> @@ -1219,13 +1219,17 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
+>>  
+>>  	ret = xe_gt_sriov_vf_connect(gt);
+>>  	if (ret)
+>> -		return ret;
+>> +		goto err_out;
+>>  
+>>  	ret = xe_gt_sriov_vf_query_runtime(gt);
+>>  	if (ret)
+>> -		return ret;
+>> +		goto err_out;
+>>  
+>>  	return 0;
+>> +
+>> +err_out:
+>> +	xe_guc_disable_communication(guc);
+>> +	return ret;
+>>  }
+>>  
+>>  /**
+>> @@ -1337,6 +1341,18 @@ int xe_guc_enable_communication(struct xe_guc *guc)
+>>  	return 0;
+>>  }
+>>  
+>> +/**
+>> + * xe_guc_disable_communication() - Disable GuC communication
+>> + * @guc: The GuC object
+>> + *
+>> + * This function will disable the GuC communication.
+>> + */
+>> +void xe_guc_disable_communication(struct xe_guc *guc)
+>> +{
+>> +	guc->submission_state.enabled = false;
+>> +	xe_guc_ct_disable(&guc->ct);
+> 
+> Didn't this used to just be a wrapper for xe_guc_ct_disable?
+> 
+> ... Well, I suppose needing to set the submission state enabled to false
+> would also be a rather important step, so it's probably good that was added.
 
-diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/panthor/panthor_drv.c
-index 1116f2d2826e..585c07b07c42 100644
---- a/drivers/gpu/drm/panthor/panthor_drv.c
-+++ b/drivers/gpu/drm/panthor/panthor_drv.c
-@@ -1608,6 +1608,7 @@ static void panthor_debugfs_init(struct drm_minor *minor)
-  * - 1.3 - adds DRM_PANTHOR_GROUP_STATE_INNOCENT flag
-  * - 1.4 - adds DRM_IOCTL_PANTHOR_BO_SET_LABEL ioctl
-  * - 1.5 - adds DRM_PANTHOR_SET_USER_MMIO_OFFSET ioctl
-+ * - 1.6 - adds DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT flag
-  */
- static const struct drm_driver panthor_drm_driver = {
- 	.driver_features = DRIVER_RENDER | DRIVER_GEM | DRIVER_SYNCOBJ |
-@@ -1621,7 +1622,7 @@ static const struct drm_driver panthor_drm_driver = {
- 	.name = "panthor",
- 	.desc = "Panthor DRM driver",
- 	.major = 1,
--	.minor = 5,
-+	.minor = 6,
- 
- 	.gem_create_object = panthor_gem_create_object,
- 	.gem_prime_import_sg_table = drm_gem_shmem_prime_import_sg_table,
-diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
-index f0a22b775958..4ce9fff67d69 100644
---- a/drivers/gpu/drm/panthor/panthor_mmu.c
-+++ b/drivers/gpu/drm/panthor/panthor_mmu.c
-@@ -202,6 +202,9 @@ struct panthor_vm_op_ctx {
- 		/** @map.bo_offset: Offset in the buffer object. */
- 		u64 bo_offset;
- 
-+		/** @map.bo_repeat_range: Repeated BO range. */
-+		u32 bo_repeat_range;
-+
- 		/**
- 		 * @map.sgt: sg-table pointing to pages backing the GEM object.
- 		 *
-@@ -1007,6 +1010,26 @@ panthor_vm_map_pages(struct panthor_vm *vm, u64 iova, int prot,
- 	return 0;
- }
- 
-+static int
-+panthor_vm_repeated_map_pages(struct panthor_vm *vm, u64 iova, int prot,
-+			      struct sg_table *sgt, u64 offset, u64 size,
-+			      u64 count)
-+{
-+	/* FIXME: we really need to optimize this at the io_pgtable level. */
-+	for (u64 i = 0; i < count; i++) {
-+		int ret;
-+
-+		ret = panthor_vm_map_pages(vm, iova + (size * i), prot,
-+					   sgt, offset, size);
-+		if (ret) {
-+			panthor_vm_unmap_pages(vm, iova, size * (i - 1));
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int flags_to_prot(u32 flags)
- {
- 	int prot = 0;
-@@ -1203,12 +1226,14 @@ panthor_vm_op_ctx_prealloc_vmas(struct panthor_vm_op_ctx *op_ctx)
- 	(DRM_PANTHOR_VM_BIND_OP_MAP_READONLY | \
- 	 DRM_PANTHOR_VM_BIND_OP_MAP_NOEXEC | \
- 	 DRM_PANTHOR_VM_BIND_OP_MAP_UNCACHED | \
-+	 DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT | \
- 	 DRM_PANTHOR_VM_BIND_OP_TYPE_MASK)
- 
- static int panthor_vm_prepare_map_op_ctx(struct panthor_vm_op_ctx *op_ctx,
- 					 struct panthor_vm *vm,
- 					 struct panthor_gem_object *bo,
- 					 u64 offset,
-+					 u32 repeat_range,
- 					 u64 size, u64 va,
- 					 u32 flags)
- {
-@@ -1224,9 +1249,22 @@ static int panthor_vm_prepare_map_op_ctx(struct panthor_vm_op_ctx *op_ctx,
- 	    (flags & DRM_PANTHOR_VM_BIND_OP_TYPE_MASK) != DRM_PANTHOR_VM_BIND_OP_TYPE_MAP)
- 		return -EINVAL;
- 
--	/* Make sure the VA and size are aligned and in-bounds. */
--	if (size > bo->base.base.size || offset > bo->base.base.size - size)
--		return -EINVAL;
-+	if (!(flags & DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT)) {
-+		/* Make sure the VA and size are in-bounds. */
-+		if (size > bo->base.base.size || offset > bo->base.base.size - size)
-+			return -EINVAL;
-+	} else {
-+		/* Make sure the repeat_range is in-bounds. */
-+		if (repeat_range > bo->base.base.size || offset > bo->base.base.size - repeat_range)
-+			return -EINVAL;
-+
-+		/* Make sure size is a multiple of repeat_range */
-+
-+		u64 repeat_count = size;
-+
-+		if (do_div(repeat_count, repeat_range))
-+			return -EINVAL;
-+	}
- 
- 	/* If the BO has an exclusive VM attached, it can't be mapped to other VMs. */
- 	if (bo->exclusive_vm_root_gem &&
-@@ -1295,6 +1333,7 @@ static int panthor_vm_prepare_map_op_ctx(struct panthor_vm_op_ctx *op_ctx,
- 		drm_gem_shmem_unpin(&bo->base);
- 
- 	op_ctx->map.bo_offset = offset;
-+	op_ctx->map.bo_repeat_range = repeat_range;
- 
- 	/* L1, L2 and L3 page tables.
- 	 * We could optimize L3 allocation by iterating over the sgt and merging
-@@ -2112,9 +2151,22 @@ static int panthor_gpuva_sm_step_map(struct drm_gpuva_op *op, void *priv)
- 
- 	panthor_vma_init(vma, op_ctx->flags & PANTHOR_VM_MAP_FLAGS);
- 
--	ret = panthor_vm_map_pages(vm, op->map.va.addr, flags_to_prot(vma->flags),
--				   op_ctx->map.sgt, op->map.gem.offset,
--				   op->map.va.range);
-+	if (op_ctx->flags & DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT) {
-+		u64 repeat_count = op->map.va.range;
-+
-+		do_div(repeat_count, op->map.gem.range);
-+		ret = panthor_vm_repeated_map_pages(vm, op->map.va.addr,
-+						    flags_to_prot(vma->flags),
-+						    op_ctx->map.sgt,
-+						    op->map.gem.offset,
-+						    op->map.gem.range,
-+						    repeat_count);
-+	} else {
-+		ret = panthor_vm_map_pages(vm, op->map.va.addr,
-+					   flags_to_prot(vma->flags),
-+					   op_ctx->map.sgt, op->map.gem.offset,
-+					   op->map.va.range);
-+	}
- 	if (ret)
- 		return ret;
- 
-@@ -2237,7 +2289,7 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct panthor_vm_op_ctx *op,
- 
- 	switch (op_type) {
- 	case DRM_PANTHOR_VM_BIND_OP_TYPE_MAP: {
--		const struct drm_gpuvm_map_req map_req = {
-+		struct drm_gpuvm_map_req map_req = {
- 			.va.addr = op->va.addr,
- 			.va.range = op->va.range,
- 			.gem.obj = op->map.vm_bo->obj,
-@@ -2249,6 +2301,11 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct panthor_vm_op_ctx *op,
- 			break;
- 		}
- 
-+		if (op->flags & DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT) {
-+			map_req.flags |= DRM_GPUVA_REPEAT;
-+			map_req.gem.range = op->map.bo_repeat_range;
-+		}
-+
- 		ret = drm_gpuvm_sm_map(&vm->base, vm, &map_req);
- 		break;
- 	}
-@@ -2497,6 +2554,7 @@ panthor_vm_bind_prepare_op_ctx(struct drm_file *file,
- 		ret = panthor_vm_prepare_map_op_ctx(op_ctx, vm,
- 						    gem ? to_panthor_bo(gem) : NULL,
- 						    op->bo_offset,
-+						    op->bo_repeat_range,
- 						    op->size,
- 						    op->va,
- 						    op->flags);
-@@ -2698,7 +2756,11 @@ int panthor_vm_map_bo_range(struct panthor_vm *vm, struct panthor_gem_object *bo
- 	struct panthor_vm_op_ctx op_ctx;
- 	int ret;
- 
--	ret = panthor_vm_prepare_map_op_ctx(&op_ctx, vm, bo, offset, size, va, flags);
-+	/* TODO: would be nice to replace with assert instead */
-+	if (flags & DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT)
-+		return -EINVAL;
-+
-+	ret = panthor_vm_prepare_map_op_ctx(&op_ctx, vm, bo, offset, 0, size, va, flags);
- 	if (ret)
- 		return ret;
- 
-diff --git a/include/uapi/drm/panthor_drm.h b/include/uapi/drm/panthor_drm.h
-index e1f43deb7eca..ad278bc234b0 100644
---- a/include/uapi/drm/panthor_drm.h
-+++ b/include/uapi/drm/panthor_drm.h
-@@ -496,6 +496,17 @@ enum drm_panthor_vm_bind_op_flags {
- 	 */
- 	DRM_PANTHOR_VM_BIND_OP_MAP_UNCACHED = 1 << 2,
- 
-+	/**
-+	 * @DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT: Repeat a BO range
-+	 *
-+	 * Only valid with DRM_PANTHOR_VM_BIND_OP_TYPE_MAP.
-+	 *
-+	 * When this is set, a BO range is repeated over the VA range.
-+	 * drm_panthor_vm_bind_op::bo_repeat_range defines the size of the
-+	 * BO range to repeat.
-+	 */
-+	DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT = 1 << 3,
-+
- 	/**
- 	 * @DRM_PANTHOR_VM_BIND_OP_TYPE_MASK: Mask used to determine the type of operation.
- 	 */
-@@ -560,6 +571,18 @@ struct drm_panthor_vm_bind_op {
- 	 */
- 	struct drm_panthor_obj_array syncs;
- 
-+	/**
-+	 * @bo_repeat_range: The size of the range to be repeated.
-+	 *
-+	 * Must be zero if DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT is not set in
-+	 * flags.
-+	 *
-+	 * Size must be a multiple of bo_repeat_range.
-+	 */
-+	__u32 bo_repeat_range;
-+
-+	/** @pad: Padding field. MBZ. */
-+	__u32 pad;
- };
- 
- /**
--- 
-2.47.2
+hmm, while it might be a required step for shutdown, putting it here
+looks like a random choice, it's unbalanced what "enable_communication"
+did and also looks like a violation of the layering, as guc_submit code
+has its own files and we shouldn't touch internals from the outside
+
++ @Matt
+
+> 
+> Everything else is LGTM, so
+> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> -Jonathan Cavitt
+> 
+>> +}
+>> +
+>>  int xe_guc_suspend(struct xe_guc *guc)
+>>  {
+>>  	struct xe_gt *gt = guc_to_gt(guc);
+>> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+>> index 22cf019a11bf..20823b821f7d 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc.h
+>> @@ -34,6 +34,7 @@ int xe_guc_reset(struct xe_guc *guc);
+>>  int xe_guc_upload(struct xe_guc *guc);
+>>  int xe_guc_min_load_for_hwconfig(struct xe_guc *guc);
+>>  int xe_guc_enable_communication(struct xe_guc *guc);
+>> +void xe_guc_disable_communication(struct xe_guc *guc);
+>>  int xe_guc_opt_in_features_enable(struct xe_guc *guc);
+>>  int xe_guc_suspend(struct xe_guc *guc);
+>>  void xe_guc_notify(struct xe_guc *guc);
+>> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+>> index 6431ba3a2c53..1012fe84b379 100644
+>> --- a/drivers/gpu/drm/xe/xe_uc.c
+>> +++ b/drivers/gpu/drm/xe/xe_uc.c
+>> @@ -13,6 +13,7 @@
+>>  #include "xe_gt_printk.h"
+>>  #include "xe_gt_sriov_vf.h"
+>>  #include "xe_guc.h"
+>> +#include "xe_guc_ct.h"
+>>  #include "xe_guc_pc.h"
+>>  #include "xe_guc_engine_activity.h"
+>>  #include "xe_huc.h"
+>> @@ -158,7 +159,7 @@ static int vf_uc_load_hw(struct xe_uc *uc)
+>>  
+>>  	err = xe_gt_sriov_vf_connect(uc_to_gt(uc));
+>>  	if (err)
+>> -		return err;
+>> +		goto err_out;
+>>  
+>>  	uc->guc.submission_state.enabled = true;
+>>  
+>> @@ -168,9 +169,13 @@ static int vf_uc_load_hw(struct xe_uc *uc)
+>>  
+>>  	err = xe_gt_record_default_lrcs(uc_to_gt(uc));
+>>  	if (err)
+>> -		return err;
+>> +		goto err_out;
+>>  
+>>  	return 0;
+>> +
+>> +err_out:
+>> +	xe_guc_disable_communication(&uc->guc);
+>> +	return err;
+>>  }
+>>  
+>>  /*
+>> @@ -202,15 +207,15 @@ int xe_uc_load_hw(struct xe_uc *uc)
+>>  
+>>  	ret = xe_gt_record_default_lrcs(uc_to_gt(uc));
+>>  	if (ret)
+>> -		return ret;
+>> +		goto err_out;
+>>  
+>>  	ret = xe_guc_post_load_init(&uc->guc);
+>>  	if (ret)
+>> -		return ret;
+>> +		goto err_out;
+>>  
+>>  	ret = xe_guc_pc_start(&uc->guc.pc);
+>>  	if (ret)
+>> -		return ret;
+>> +		goto err_out;
+>>  
+>>  	xe_guc_engine_activity_enable_stats(&uc->guc);
+>>  
+>> @@ -222,6 +227,10 @@ int xe_uc_load_hw(struct xe_uc *uc)
+>>  	xe_gsc_load_start(&uc->gsc);
+>>  
+>>  	return 0;
+>> +
+>> +err_out:
+>> +	xe_guc_disable_communication(&uc->guc);
+>> +	return ret;
+>>  }
+>>  
+>>  int xe_uc_reset_prepare(struct xe_uc *uc)
+>> -- 
+>> 2.34.1
+>>
+>>
 
