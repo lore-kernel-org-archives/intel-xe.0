@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FB0EC83F1F
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Jul 2025 09:52:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 517E0C83F0F
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Jul 2025 09:56:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2212710E5D3;
-	Tue,  8 Jul 2025 09:52:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="VO/5OHgf";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 312B510E5F3;
- Tue,  8 Jul 2025 09:52:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=55N7Ac7EUDE+b1x2jjVf8N52rBWuXlgp0ZS3+CaHt5o=; b=VO/5OHgf+E1ra3D//7L2GPCp1T
- zGzVL7mSve0IOlTv5qwX5gcxNpxoz3pBdisWT+aJKuXzVnjh99ZESuMyxjfsiRmYSn9k29bVlaiFa
- eHv/o0Hvyo5rXXeb6QaGNYj/i751NjHtGNf+ystGezeH5EOhH8OEsuCE/15TCSbwsgNvYFYirSOch
- g/gAEk7bd80Nzwj03jM1tr5Xw2yhGttxNz4JTPwWEQLLmYqC0y4vhn+HoJuGk55KLu29VJ5j+RiZQ
- eMosb0jlSEMKFGDrbFAvlYe5BjF1Oc2N+n7mGGYAtp5Sw9bX5IR07Io870Hn42Krj73FnbytIhA4G
- +zXd+3zg==;
-Received: from [84.65.48.237] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uZ4zY-00Dx5I-F3; Tue, 08 Jul 2025 11:52:00 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Philipp Stanner <phasta@kernel.org>
-Subject: [PATCH v6 14/15] drm/sched: Queue all free credits in one worker
- invocation
-Date: Tue,  8 Jul 2025 10:51:46 +0100
-Message-ID: <20250708095147.73366-15-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250708095147.73366-1-tvrtko.ursulin@igalia.com>
-References: <20250708095147.73366-1-tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E36D10E5DD;
+	Tue,  8 Jul 2025 09:56:19 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8555910E5DD;
+ Tue,  8 Jul 2025 09:56:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0376813315401641058=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Dont_skip_TLB_inv?=
+ =?utf-8?q?alidations_on_VF?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 08 Jul 2025 09:56:17 -0000
+Message-ID: <175196857752.142631.13482848249502727731@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250708090156.741440-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20250708090156.741440-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,225 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is no reason to queue just a single job if scheduler can take more
-and re-queue the worker to queue more. We can simply feed the hardware
-with as much as it can take in one go and hopefully win some latency.
+--===============0376813315401641058==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Philipp Stanner <phasta@kernel.org>
----
- drivers/gpu/drm/scheduler/sched_internal.h |   2 -
- drivers/gpu/drm/scheduler/sched_main.c     | 132 ++++++++++-----------
- drivers/gpu/drm/scheduler/sched_rq.c       |  12 +-
- 3 files changed, 64 insertions(+), 82 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm/scheduler/sched_internal.h
-index 15d78abc48df..1a5c2f255223 100644
---- a/drivers/gpu/drm/scheduler/sched_internal.h
-+++ b/drivers/gpu/drm/scheduler/sched_internal.h
-@@ -22,8 +22,6 @@ struct drm_sched_entity_stats {
- 	u64		vruntime;
- };
- 
--bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
--			 struct drm_sched_entity *entity);
- void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
- 
- void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index 35025edea669..1fb3f1da4821 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -95,35 +95,6 @@ static u32 drm_sched_available_credits(struct drm_gpu_scheduler *sched)
- 	return credits;
- }
- 
--/**
-- * drm_sched_can_queue -- Can we queue more to the hardware?
-- * @sched: scheduler instance
-- * @entity: the scheduler entity
-- *
-- * Return true if we can push at least one more job from @entity, false
-- * otherwise.
-- */
--bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
--			 struct drm_sched_entity *entity)
--{
--	struct drm_sched_job *s_job;
--
--	s_job = drm_sched_entity_queue_peek(entity);
--	if (!s_job)
--		return false;
--
--	/* If a job exceeds the credit limit, truncate it to the credit limit
--	 * itself to guarantee forward progress.
--	 */
--	if (s_job->credits > sched->credit_limit) {
--		dev_WARN(sched->dev,
--			 "Jobs may not exceed the credit limit, truncate.\n");
--		s_job->credits = sched->credit_limit;
--	}
--
--	return drm_sched_available_credits(sched) >= s_job->credits;
--}
--
- /**
-  * drm_sched_run_job_queue - enqueue run-job work
-  * @sched: scheduler instance
-@@ -940,54 +911,77 @@ static void drm_sched_run_job_work(struct work_struct *w)
- {
- 	struct drm_gpu_scheduler *sched =
- 		container_of(w, struct drm_gpu_scheduler, work_run_job);
-+	u32 job_credits, submitted_credits = 0;
- 	struct drm_sched_entity *entity;
--	struct dma_fence *fence;
- 	struct drm_sched_fence *s_fence;
- 	struct drm_sched_job *sched_job;
--	int r;
-+	struct dma_fence *fence;
- 
--	/* Find entity with a ready job */
--	entity = drm_sched_rq_select_entity(sched, sched->rq);
--	if (IS_ERR_OR_NULL(entity))
--		return;	/* No more work */
-+	while (!READ_ONCE(sched->pause_submit)) {
-+		/* Find entity with a ready job */
-+		entity = drm_sched_rq_select_entity(sched, sched->rq);
-+		if (!entity)
-+			break;	/* No more work */
-+
-+		sched_job = drm_sched_entity_queue_peek(entity);
-+		if (!sched_job) {
-+			complete_all(&entity->entity_idle);
-+			continue;
-+		}
-+
-+		job_credits = sched_job->credits;
-+		/*
-+		 * If a job exceeds the credit limit truncate it to guarantee
-+		 * forward progress.
-+		 */
-+		if (dev_WARN_ONCE(sched->dev, job_credits > sched->credit_limit,
-+				  "Jobs may not exceed the credit limit, truncating.\n"))
-+			job_credits = sched_job->credits = sched->credit_limit;
-+
-+		if (job_credits > drm_sched_available_credits(sched)) {
-+			complete_all(&entity->entity_idle);
-+			break;
-+		}
-+
-+		sched_job = drm_sched_entity_pop_job(entity);
-+		if (!sched_job) {
-+			/* Top entity is not yet runnable after all */
-+			complete_all(&entity->entity_idle);
-+			continue;
-+		}
-+
-+		s_fence = sched_job->s_fence;
-+		drm_sched_job_begin(sched_job);
-+		trace_drm_sched_job_run(sched_job, entity);
-+		submitted_credits += job_credits;
-+		atomic_add(job_credits, &sched->credit_count);
-+
-+		fence = sched->ops->run_job(sched_job);
-+		drm_sched_fence_scheduled(s_fence, fence);
-+
-+		if (!IS_ERR_OR_NULL(fence)) {
-+			int r;
-+
-+			/* Drop for original kref_init of the fence */
-+			dma_fence_put(fence);
-+
-+			r = dma_fence_add_callback(fence, &sched_job->cb,
-+						   drm_sched_job_done_cb);
-+			if (r == -ENOENT)
-+				drm_sched_job_done(sched_job, fence->error);
-+			else if (r)
-+				DRM_DEV_ERROR(sched->dev,
-+					      "fence add callback failed (%d)\n", r);
-+		} else {
-+			drm_sched_job_done(sched_job, IS_ERR(fence) ?
-+						      PTR_ERR(fence) : 0);
-+		}
- 
--	sched_job = drm_sched_entity_pop_job(entity);
--	if (!sched_job) {
- 		complete_all(&entity->entity_idle);
--		drm_sched_run_job_queue(sched);
--		return;
- 	}
- 
--	s_fence = sched_job->s_fence;
--
--	atomic_add(sched_job->credits, &sched->credit_count);
--	drm_sched_job_begin(sched_job);
--
--	trace_drm_sched_job_run(sched_job, entity);
--	/*
--	 * The run_job() callback must by definition return a fence whose
--	 * refcount has been incremented for the scheduler already.
--	 */
--	fence = sched->ops->run_job(sched_job);
--	complete_all(&entity->entity_idle);
--	drm_sched_fence_scheduled(s_fence, fence);
--
--	if (!IS_ERR_OR_NULL(fence)) {
--		r = dma_fence_add_callback(fence, &sched_job->cb,
--					   drm_sched_job_done_cb);
--		if (r == -ENOENT)
--			drm_sched_job_done(sched_job, fence->error);
--		else if (r)
--			DRM_DEV_ERROR(sched->dev, "fence add callback failed (%d)\n", r);
--
--		dma_fence_put(fence);
--	} else {
--		drm_sched_job_done(sched_job, IS_ERR(fence) ?
--				   PTR_ERR(fence) : 0);
--	}
--
--	wake_up(&sched->job_scheduled);
--	drm_sched_run_job_queue(sched);
-+	if (submitted_credits)
-+		wake_up(&sched->job_scheduled);
- }
- 
- static struct workqueue_struct *drm_sched_alloc_wq(const char *name)
-diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/scheduler/sched_rq.c
-index e22f9ff88822..f0afdc0bd417 100644
---- a/drivers/gpu/drm/scheduler/sched_rq.c
-+++ b/drivers/gpu/drm/scheduler/sched_rq.c
-@@ -197,9 +197,7 @@ void drm_sched_rq_pop_entity(struct drm_sched_entity *entity)
-  *
-  * Find oldest waiting ready entity.
-  *
-- * Return an entity if one is found; return an error-pointer (!NULL) if an
-- * entity was ready, but the scheduler had insufficient credits to accommodate
-- * its job; return NULL, if no ready entity was found.
-+ * Return an entity if one is found or NULL if no ready entity was found.
-  */
- struct drm_sched_entity *
- drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched,
-@@ -213,14 +211,6 @@ drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched,
- 
- 		entity = rb_entry(rb, struct drm_sched_entity, rb_tree_node);
- 		if (drm_sched_entity_is_ready(entity)) {
--			/* If we can't queue yet, preserve the current entity in
--			 * terms of fairness.
--			 */
--			if (!drm_sched_can_queue(sched, entity)) {
--				spin_unlock(&rq->lock);
--				return ERR_PTR(-ENOSPC);
--			}
--
- 			reinit_completion(&entity->entity_idle);
- 			break;
- 		}
--- 
-2.48.0
+Series: drm/xe: Dont skip TLB invalidations on VF
+URL   : https://patchwork.freedesktop.org/series/151319/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3368-8b32b5509128873da8ecfc06beefcb58927eb50b_BAT -> xe-pw-151319v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 7)
+------------------------------
+
+  Missing    (2): bat-lnl-2 bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3368-8b32b5509128873da8ecfc06beefcb58927eb50b -> xe-pw-151319v1
+
+  IGT_8445: 8445
+  xe-3368-8b32b5509128873da8ecfc06beefcb58927eb50b: 8b32b5509128873da8ecfc06beefcb58927eb50b
+  xe-pw-151319v1: 151319v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151319v1/index.html
+
+--===============0376813315401641058==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Dont skip TLB invalidations on VF</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151319/">https://patchwork.freedesktop.org/series/151319/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151319v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151319v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3368-8b32b5509128873da8ecfc06beefcb58927eb50b_BAT -&gt; xe-pw-151319v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 7)</h2>
+<p>Missing    (2): bat-lnl-2 bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3368-8b32b5509128873da8ecfc06beefcb58927eb50b -&gt; xe-pw-151319v1</li>
+</ul>
+<p>IGT_8445: 8445<br />
+  xe-3368-8b32b5509128873da8ecfc06beefcb58927eb50b: 8b32b5509128873da8ecfc06beefcb58927eb50b<br />
+  xe-pw-151319v1: 151319v1</p>
+
+</body>
+</html>
+
+--===============0376813315401641058==--
