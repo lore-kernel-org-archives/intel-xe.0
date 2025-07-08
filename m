@@ -4,28 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7ED6C83F09
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Jul 2025 15:28:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AB5BC83F09
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Jul 2025 15:31:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F41B10E115;
-	Tue,  8 Jul 2025 15:28:08 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC1C810E115;
- Tue,  8 Jul 2025 15:28:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8257055500885184591=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C73410E115;
+	Tue,  8 Jul 2025 15:31:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PH2ZYKxc";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 513BE10E115;
+ Tue,  8 Jul 2025 15:31:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=ZnslGj8hpWFrD+pF+EEY5yHgX3shuD6O/nGEm2OTsdw=; b=PH2ZYKxcf7MyUy96//Xa7DQCPt
+ Jqvmp8WXneMstcG0AVuAwvg/UnjYTeSb43wrEXevsHfjbizCZ/B7nd5zbqKDSX9BHo/NdOPosucEo
+ 63D9j+fT410e8/CZf2p5TjAB1x3jcBG4xCIMemKz9HywEFlHeelKIGI6wKKXREPh57rXPj2yaidNF
+ J+Am0+tPd/a7b5r8OZAv4UIpxU76k8H+AXuE8p7Z84a4fFcQywW6yhfKYBeg0uM+Re1T9+lj95ZkR
+ wcBAJCc1hB3U4ihbPCHqB2x9QGQ46Hsfuc34f3Xv/hz+2J1svU5JCwIDwlH2GO0gaq30u5EdaLpXC
+ EuLW2bZA==;
+Received: from [84.65.48.237] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uZAI8-00E4sQ-C8; Tue, 08 Jul 2025 17:31:32 +0200
+Message-ID: <45c0665d-6b1b-4ba0-a770-8120cfed951e@igalia.com>
+Date: Tue, 8 Jul 2025 16:31:31 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
- =?utf-8?q?=2C1/4=5D_iopoll=3A_Generalize_read=5Fpoll=5Ftimeout=28=29_into_p?=
- =?utf-8?q?oll=5Ftimeout=5Fus=28=29_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 08 Jul 2025 15:28:07 -0000
-Message-ID: <175198848776.144352.18120540621360253670@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250702223439.19752-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250702223439.19752-1-ville.syrjala@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 14/15] drm/sched: Queue all free credits in one worker
+ invocation
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com, Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
+References: <20250708095147.73366-1-tvrtko.ursulin@igalia.com>
+ <20250708095147.73366-15-tvrtko.ursulin@igalia.com>
+ <cb140d4e-01cd-4cd7-bd7c-5c10b44cf98f@amd.com>
+ <95da8a36-8231-4578-ae74-35c8ba7f6972@igalia.com>
+ <93c27eec-3c4b-4897-ae85-a2eed266a6b7@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <93c27eec-3c4b-4897-ae85-a2eed266a6b7@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,302 +64,290 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8257055500885184591==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 08/07/2025 14:02, Christian König wrote:
+> On 08.07.25 14:54, Tvrtko Ursulin wrote:
+>>
+>> On 08/07/2025 13:37, Christian König wrote:
+>>> On 08.07.25 11:51, Tvrtko Ursulin wrote:
+>>>> There is no reason to queue just a single job if scheduler can take more
+>>>> and re-queue the worker to queue more.
+>>>
+>>> That's not correct. This was intentionally avoided.
+>>>
+>>> If more than just the scheduler is using the single threaded workqeueu other workers, especially the timeout worker, can jump in and execute first.
+>>>
+>>> We explicitely removed submitting more than one job in each worker run.
+>>
+>> I wanted to ask why, but then I had a look to see if anyone actually does this. And I did not find any driver sharing a single threaded workqueue between submit and timeout.
+>>
+>> The only driver which even passes in the same workqueue for both is PVR, but it is not a single threaded one.
+>>
+>> Or perhaps I misunderstood what you said. Could you please clarify either way?
+> 
+> You correctly understood that.
+> 
+> The argument was that submitting more than one job in a worker is simply not beneficial and other work items can jump in and execute.
+> 
+> I have no idea if that is actually used or not. You would need to dig up the discussion when we switched from a kernel thread to work items for the full background.
+> 
+> But in general to do as less work as possible in each worker and then re-submit it is usually a good idea.
 
-Series: series starting with [v2,1/4] iopoll: Generalize read_poll_timeout() into poll_timeout_us() (rev2)
-URL   : https://patchwork.freedesktop.org/series/151093/
-State : success
+ From the point of view that the single work item invocation shouldn't 
+hog the worker, if the worker is shared, I agree. But what we also want 
+is to feed the GPU as fast as possible, ie. put the CPU to sleep as 
+quickly as possible.
 
-== Summary ==
+If we consider drivers with dedicated workqueues per hardware engine, or 
+even per userspace context, then especially in those cases I don't see 
+what is the benefit of playing the wq re-queue games.
 
-CI Bug Log - changes from xe-3369-53bebc799dad6c4f1fea22b98cff5041533a987d_BAT -> xe-pw-151093v2_BAT
-====================================================
+Anyway, I can park this patch for now, I *think* it will be easy to drop 
+and will just need to rebase 15/15 to cope.
 
-Summary
--------
+In the meantime I have collected some stats when running Cyberpunk 2077 
+benchmark on amdgpu, just to remind myself that it does happen more than 
+one job can be ready to be passed on to the GPU. Stats of number of 
+submitted jobs per worker invocation (with this patch):
 
-  **SUCCESS**
+		1	2	3	4	5
+gfx_0.0.0	21315	541	9849	171	0
+comp_1.3.0	3093	9	2	0	0
+comp_1.1.0	3501	46	2	1	0
+comp_1.0.1	3451	46	2	0	0
+sdma0		4400	746	279	481	7
 
-  No regressions found.
+This is for userspace contexts only. Quite a good number of three jobs 
+submitted per worker invocation.
 
-  
+Kernel sdma appears to favour deeper queues even more but I forgot to 
+log above 2 jobs per worker invocation:
 
-Participating hosts (9 -> 8)
-------------------------------
+	1	2	
+sdma0	8009	1913
 
-  Missing    (1): bat-adlp-vm 
+I can try to measure the latencies of worker re-queue approach. Another 
+interesting thing would be C-state residencies and CPU power. But given 
+how when the scheduler went from kthread to wq and lost the ability the 
+queue more than one job, I don't think back then anyone measured this? 
+In which case I suspect we even don't know if some latency or efficiency 
+was lost.
 
-Known issues
-------------
+Regards,
 
-  Here are the changes found in xe-pw-151093v2_BAT that come from known issues:
+Tvrtko
 
-### IGT changes ###
+>>>> We can simply feed the hardware
+>>>> with as much as it can take in one go and hopefully win some latency.
+>>>>
+>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>> Cc: Christian König <christian.koenig@amd.com>
+>>>> Cc: Danilo Krummrich <dakr@kernel.org>
+>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>> Cc: Philipp Stanner <phasta@kernel.org>
+>>>> ---
+>>>>    drivers/gpu/drm/scheduler/sched_internal.h |   2 -
+>>>>    drivers/gpu/drm/scheduler/sched_main.c     | 132 ++++++++++-----------
+>>>>    drivers/gpu/drm/scheduler/sched_rq.c       |  12 +-
+>>>>    3 files changed, 64 insertions(+), 82 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm/scheduler/sched_internal.h
+>>>> index 15d78abc48df..1a5c2f255223 100644
+>>>> --- a/drivers/gpu/drm/scheduler/sched_internal.h
+>>>> +++ b/drivers/gpu/drm/scheduler/sched_internal.h
+>>>> @@ -22,8 +22,6 @@ struct drm_sched_entity_stats {
+>>>>        u64        vruntime;
+>>>>    };
+>>>>    -bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
+>>>> -             struct drm_sched_entity *entity);
+>>>>    void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
+>>>>      void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
+>>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+>>>> index 35025edea669..1fb3f1da4821 100644
+>>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>>>> @@ -95,35 +95,6 @@ static u32 drm_sched_available_credits(struct drm_gpu_scheduler *sched)
+>>>>        return credits;
+>>>>    }
+>>>>    -/**
+>>>> - * drm_sched_can_queue -- Can we queue more to the hardware?
+>>>> - * @sched: scheduler instance
+>>>> - * @entity: the scheduler entity
+>>>> - *
+>>>> - * Return true if we can push at least one more job from @entity, false
+>>>> - * otherwise.
+>>>> - */
+>>>> -bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
+>>>> -             struct drm_sched_entity *entity)
+>>>> -{
+>>>> -    struct drm_sched_job *s_job;
+>>>> -
+>>>> -    s_job = drm_sched_entity_queue_peek(entity);
+>>>> -    if (!s_job)
+>>>> -        return false;
+>>>> -
+>>>> -    /* If a job exceeds the credit limit, truncate it to the credit limit
+>>>> -     * itself to guarantee forward progress.
+>>>> -     */
+>>>> -    if (s_job->credits > sched->credit_limit) {
+>>>> -        dev_WARN(sched->dev,
+>>>> -             "Jobs may not exceed the credit limit, truncate.\n");
+>>>> -        s_job->credits = sched->credit_limit;
+>>>> -    }
+>>>> -
+>>>> -    return drm_sched_available_credits(sched) >= s_job->credits;
+>>>> -}
+>>>> -
+>>>>    /**
+>>>>     * drm_sched_run_job_queue - enqueue run-job work
+>>>>     * @sched: scheduler instance
+>>>> @@ -940,54 +911,77 @@ static void drm_sched_run_job_work(struct work_struct *w)
+>>>>    {
+>>>>        struct drm_gpu_scheduler *sched =
+>>>>            container_of(w, struct drm_gpu_scheduler, work_run_job);
+>>>> +    u32 job_credits, submitted_credits = 0;
+>>>>        struct drm_sched_entity *entity;
+>>>> -    struct dma_fence *fence;
+>>>>        struct drm_sched_fence *s_fence;
+>>>>        struct drm_sched_job *sched_job;
+>>>> -    int r;
+>>>> +    struct dma_fence *fence;
+>>>>    -    /* Find entity with a ready job */
+>>>> -    entity = drm_sched_rq_select_entity(sched, sched->rq);
+>>>> -    if (IS_ERR_OR_NULL(entity))
+>>>> -        return;    /* No more work */
+>>>> +    while (!READ_ONCE(sched->pause_submit)) {
+>>>> +        /* Find entity with a ready job */
+>>>> +        entity = drm_sched_rq_select_entity(sched, sched->rq);
+>>>> +        if (!entity)
+>>>> +            break;    /* No more work */
+>>>> +
+>>>> +        sched_job = drm_sched_entity_queue_peek(entity);
+>>>> +        if (!sched_job) {
+>>>> +            complete_all(&entity->entity_idle);
+>>>> +            continue;
+>>>> +        }
+>>>> +
+>>>> +        job_credits = sched_job->credits;
+>>>> +        /*
+>>>> +         * If a job exceeds the credit limit truncate it to guarantee
+>>>> +         * forward progress.
+>>>> +         */
+>>>> +        if (dev_WARN_ONCE(sched->dev, job_credits > sched->credit_limit,
+>>>> +                  "Jobs may not exceed the credit limit, truncating.\n"))
+>>>> +            job_credits = sched_job->credits = sched->credit_limit;
+>>>> +
+>>>> +        if (job_credits > drm_sched_available_credits(sched)) {
+>>>> +            complete_all(&entity->entity_idle);
+>>>> +            break;
+>>>> +        }
+>>>> +
+>>>> +        sched_job = drm_sched_entity_pop_job(entity);
+>>>> +        if (!sched_job) {
+>>>> +            /* Top entity is not yet runnable after all */
+>>>> +            complete_all(&entity->entity_idle);
+>>>> +            continue;
+>>>> +        }
+>>>> +
+>>>> +        s_fence = sched_job->s_fence;
+>>>> +        drm_sched_job_begin(sched_job);
+>>>> +        trace_drm_sched_job_run(sched_job, entity);
+>>>> +        submitted_credits += job_credits;
+>>>> +        atomic_add(job_credits, &sched->credit_count);
+>>>> +
+>>>> +        fence = sched->ops->run_job(sched_job);
+>>>> +        drm_sched_fence_scheduled(s_fence, fence);
+>>>> +
+>>>> +        if (!IS_ERR_OR_NULL(fence)) {
+>>>> +            int r;
+>>>> +
+>>>> +            /* Drop for original kref_init of the fence */
+>>>> +            dma_fence_put(fence);
+>>>> +
+>>>> +            r = dma_fence_add_callback(fence, &sched_job->cb,
+>>>> +                           drm_sched_job_done_cb);
+>>>> +            if (r == -ENOENT)
+>>>> +                drm_sched_job_done(sched_job, fence->error);
+>>>> +            else if (r)
+>>>> +                DRM_DEV_ERROR(sched->dev,
+>>>> +                          "fence add callback failed (%d)\n", r);
+>>>> +        } else {
+>>>> +            drm_sched_job_done(sched_job, IS_ERR(fence) ?
+>>>> +                              PTR_ERR(fence) : 0);
+>>>> +        }
+>>>>    -    sched_job = drm_sched_entity_pop_job(entity);
+>>>> -    if (!sched_job) {
+>>>>            complete_all(&entity->entity_idle);
+>>>> -        drm_sched_run_job_queue(sched);
+>>>> -        return;
+>>>>        }
+>>>>    -    s_fence = sched_job->s_fence;
+>>>> -
+>>>> -    atomic_add(sched_job->credits, &sched->credit_count);
+>>>> -    drm_sched_job_begin(sched_job);
+>>>> -
+>>>> -    trace_drm_sched_job_run(sched_job, entity);
+>>>> -    /*
+>>>> -     * The run_job() callback must by definition return a fence whose
+>>>> -     * refcount has been incremented for the scheduler already.
+>>>> -     */
+>>>> -    fence = sched->ops->run_job(sched_job);
+>>>> -    complete_all(&entity->entity_idle);
+>>>> -    drm_sched_fence_scheduled(s_fence, fence);
+>>>> -
+>>>> -    if (!IS_ERR_OR_NULL(fence)) {
+>>>> -        r = dma_fence_add_callback(fence, &sched_job->cb,
+>>>> -                       drm_sched_job_done_cb);
+>>>> -        if (r == -ENOENT)
+>>>> -            drm_sched_job_done(sched_job, fence->error);
+>>>> -        else if (r)
+>>>> -            DRM_DEV_ERROR(sched->dev, "fence add callback failed (%d)\n", r);
+>>>> -
+>>>> -        dma_fence_put(fence);
+>>>> -    } else {
+>>>> -        drm_sched_job_done(sched_job, IS_ERR(fence) ?
+>>>> -                   PTR_ERR(fence) : 0);
+>>>> -    }
+>>>> -
+>>>> -    wake_up(&sched->job_scheduled);
+>>>> -    drm_sched_run_job_queue(sched);
+>>>> +    if (submitted_credits)
+>>>> +        wake_up(&sched->job_scheduled);
+>>>>    }
+>>>>      static struct workqueue_struct *drm_sched_alloc_wq(const char *name)
+>>>> diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/scheduler/sched_rq.c
+>>>> index e22f9ff88822..f0afdc0bd417 100644
+>>>> --- a/drivers/gpu/drm/scheduler/sched_rq.c
+>>>> +++ b/drivers/gpu/drm/scheduler/sched_rq.c
+>>>> @@ -197,9 +197,7 @@ void drm_sched_rq_pop_entity(struct drm_sched_entity *entity)
+>>>>     *
+>>>>     * Find oldest waiting ready entity.
+>>>>     *
+>>>> - * Return an entity if one is found; return an error-pointer (!NULL) if an
+>>>> - * entity was ready, but the scheduler had insufficient credits to accommodate
+>>>> - * its job; return NULL, if no ready entity was found.
+>>>> + * Return an entity if one is found or NULL if no ready entity was found.
+>>>>     */
+>>>>    struct drm_sched_entity *
+>>>>    drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched,
+>>>> @@ -213,14 +211,6 @@ drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched,
+>>>>              entity = rb_entry(rb, struct drm_sched_entity, rb_tree_node);
+>>>>            if (drm_sched_entity_is_ready(entity)) {
+>>>> -            /* If we can't queue yet, preserve the current entity in
+>>>> -             * terms of fairness.
+>>>> -             */
+>>>> -            if (!drm_sched_can_queue(sched, entity)) {
+>>>> -                spin_unlock(&rq->lock);
+>>>> -                return ERR_PTR(-ENOSPC);
+>>>> -            }
+>>>> -
+>>>>                reinit_completion(&entity->entity_idle);
+>>>>                break;
+>>>>            }
+>>>
+>>
+> 
 
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-lnl-2:          NOTRUN -> [SKIP][1] ([Intel XE#1466] / [Intel XE#2235])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-lnl-2:          NOTRUN -> [SKIP][2] ([Intel XE#2235] / [Intel XE#2482]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-lnl-2:          NOTRUN -> [SKIP][3] ([Intel XE#2235] / [Intel XE#352]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-lnl-2:          NOTRUN -> [SKIP][4] ([Intel XE#2235] / [Intel XE#2548])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-lnl-2:          NOTRUN -> [SKIP][5] ([Intel XE#1470] / [Intel XE#2235] / [Intel XE#2853])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-lnl-2:          NOTRUN -> [SKIP][6] ([Intel XE#2235]) +13 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-lnl-2:          NOTRUN -> [SKIP][7] ([Intel XE#2850] / [Intel XE#929]) +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-off:
-    - bat-lnl-2:          NOTRUN -> [SKIP][8] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-lnl-2:          NOTRUN -> [SKIP][9] ([Intel XE#688]) +11 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-lnl-2:          NOTRUN -> [SKIP][10] ([Intel XE#2229]) +2 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-lnl-2:          NOTRUN -> [SKIP][11] ([Intel XE#1416])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-lnl-2:          NOTRUN -> [SKIP][12] ([Intel XE#1420] / [Intel XE#2838])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-lnl-2:          NOTRUN -> [SKIP][13] ([Intel XE#977])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-lnl-2:          NOTRUN -> [SKIP][14] ([Intel XE#2236] / [Intel XE#979])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-lnl-2:          NOTRUN -> [SKIP][15] ([Intel XE#3342])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  
-#### Possible fixes ####
-
-  * igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:
-    - bat-lnl-2:          [ABORT][16] ([Intel XE#4624] / [Intel XE#4966]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3369-53bebc799dad6c4f1fea22b98cff5041533a987d/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
-
-  
-  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
-  [Intel XE#1416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#1466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466
-  [Intel XE#1470]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2235]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
-  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#2853]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/352
-  [Intel XE#4624]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624
-  [Intel XE#4966]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4966
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
-
-
-Build changes
--------------
-
-  * Linux: xe-3369-53bebc799dad6c4f1fea22b98cff5041533a987d -> xe-pw-151093v2
-
-  IGT_8445: 8445
-  xe-3369-53bebc799dad6c4f1fea22b98cff5041533a987d: 53bebc799dad6c4f1fea22b98cff5041533a987d
-  xe-pw-151093v2: 151093v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/index.html
-
---===============8257055500885184591==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/4] iopoll: Generalize read_poll_timeout() into poll_timeout_us() (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151093/">https://patchwork.freedesktop.org/series/151093/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3369-53bebc799dad6c4f1fea22b98cff5041533a987d_BAT -&gt; xe-pw-151093v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-151093v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466">Intel XE#1466</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/352">Intel XE#352</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470">Intel XE#1470</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853">Intel XE#2853</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416">Intel XE#1416</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3369-53bebc799dad6c4f1fea22b98cff5041533a987d/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624">Intel XE#4624</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4966">Intel XE#4966</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151093v2/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3369-53bebc799dad6c4f1fea22b98cff5041533a987d -&gt; xe-pw-151093v2</li>
-</ul>
-<p>IGT_8445: 8445<br />
-  xe-3369-53bebc799dad6c4f1fea22b98cff5041533a987d: 53bebc799dad6c4f1fea22b98cff5041533a987d<br />
-  xe-pw-151093v2: 151093v2</p>
-
-</body>
-</html>
-
---===============8257055500885184591==--
