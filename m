@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C7ECC71130
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Jul 2025 01:37:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D822EC83030
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Jul 2025 02:16:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39A7010E57E;
-	Tue,  8 Jul 2025 01:37:24 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C16D610E119;
- Tue,  8 Jul 2025 01:37:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3592228710519914604=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72B2E10E0FF;
+	Tue,  8 Jul 2025 02:16:38 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HH5g6+3z";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBA3710E0FF
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Jul 2025 02:16:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751940997; x=1783476997;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ESA0SfhQro13l+PYvM7krFTooOsYwlGOIBdzoVOvFYc=;
+ b=HH5g6+3z5H9YHoW6qii51Eh0XbS9lgxgD/Mx+fpFUMGPPNGR3faXrpr8
+ efdjCOdIfsStEJzcjoOGJjY8zkA9JscSDt8OkPQIJBEGKV0rpSPxVMBvh
+ xhf4CvPDdr9Vi4+spxCUaePnS+CqlLQ/by7Ahi+BDWWmi1iWziNGJHBXg
+ iS05/p/DXDTwSNvjJSeKlVZEkphNEbAVPdiMdJ7P64tbPfno3NmkkBm44
+ 0sScODRF17j6qjO9Dm3TDTzFafWJZdhObwdLlc+JbHX/ISeMap7gPgJ4V
+ Drt0KoI0xIQUnrSVVrrtkmKSjqWu1N+3tmy8VQRWkfd5WheE7P6Rx5FCF w==;
+X-CSE-ConnectionGUID: MVZOEe9xRiWHihyFiZ5EuQ==
+X-CSE-MsgGUID: MpEg1S91R66LHZyHoyDWHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="64863312"
+X-IronPort-AV: E=Sophos;i="6.16,296,1744095600"; d="scan'208";a="64863312"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2025 19:16:33 -0700
+X-CSE-ConnectionGUID: c2E412kTQmGnyTeRVZD4bg==
+X-CSE-MsgGUID: GvGTEDeuTNiRXsJb6TLfiQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,296,1744095600"; d="scan'208";a="159909927"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by orviesa004.jf.intel.com with ESMTP; 07 Jul 2025 19:16:32 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v2] drm/xe/pm: Correct comment of xe_pm_set_vram_threshold()
+Date: Tue,  8 Jul 2025 02:14:51 +0000
+Message-ID: <20250708021450.3602087-2-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250707021510.3525028-2-shuicheng.lin@intel.com>
+References: <20250707021510.3525028-2-shuicheng.lin@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uc=3A_Disable_GuC_co?=
- =?utf-8?q?mmunication_on_hardware_initialization_error=2E_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 08 Jul 2025 01:37:23 -0000
-Message-ID: <175193864378.141890.12484192049939334847@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250707231108.3217573-1-zhanjun.dong@intel.com>
-In-Reply-To: <20250707231108.3217573-1-zhanjun.dong@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3592228710519914604==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The parameter threshold is with size in MiB, not in bits.
+Correct it to avoid any confusion.
 
-== Series Details ==
+v2: s/mb/MiB, s/vram/VRAM, fix return section. (Michal)
 
-Series: drm/xe/uc: Disable GuC communication on hardware initialization error. (rev7)
-URL   : https://patchwork.freedesktop.org/series/150488/
-State : success
+Fixes: 30c399529f4c ("drm/xe: Document Xe PM component")
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pm.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index bcfda545e74f..ad263de44111 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -752,11 +752,13 @@ void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
+ }
+ 
+ /**
+- * xe_pm_set_vram_threshold - Set a vram threshold for allowing/blocking D3Cold
++ * xe_pm_set_vram_threshold - Set a VRAM threshold for allowing/blocking D3Cold
+  * @xe: xe device instance
+- * @threshold: VRAM size in bites for the D3cold threshold
++ * @threshold: VRAM size in MiB for the D3cold threshold
+  *
+- * Returns 0 for success, negative error code otherwise.
++ * Return:
++ * * 0		- success
++ * * -EINVAL	- invalid argument
+  */
+ int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold)
+ {
+-- 
+2.49.0
 
-CI Bug Log - changes from xe-3367-02069d358330d2c30eb66590736f360964d88612_BAT -> xe-pw-150488v7_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3367-02069d358330d2c30eb66590736f360964d88612 -> xe-pw-150488v7
-
-  IGT_8445: 8445
-  xe-3367-02069d358330d2c30eb66590736f360964d88612: 02069d358330d2c30eb66590736f360964d88612
-  xe-pw-150488v7: 150488v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150488v7/index.html
-
---===============3592228710519914604==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uc: Disable GuC communication on hardware initialization error. (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150488/">https://patchwork.freedesktop.org/series/150488/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150488v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150488v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3367-02069d358330d2c30eb66590736f360964d88612_BAT -&gt; xe-pw-150488v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3367-02069d358330d2c30eb66590736f360964d88612 -&gt; xe-pw-150488v7</li>
-</ul>
-<p>IGT_8445: 8445<br />
-  xe-3367-02069d358330d2c30eb66590736f360964d88612: 02069d358330d2c30eb66590736f360964d88612<br />
-  xe-pw-150488v7: 150488v7</p>
-
-</body>
-</html>
-
---===============3592228710519914604==--
