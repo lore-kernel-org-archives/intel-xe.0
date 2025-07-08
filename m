@@ -4,77 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1113BC8303C
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Jul 2025 13:03:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99167C8303C
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Jul 2025 13:05:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A425B10E637;
-	Tue,  8 Jul 2025 13:03:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5904E10E637;
+	Tue,  8 Jul 2025 13:05:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="JdFEu7PE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IjSXxQIP";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 843CD10E633;
- Tue,  8 Jul 2025 13:03:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=CyMyoOzxPeWjgAxgKPF6kohtSbJRtTIW2hnbquSOXqk=; b=JdFEu7PEjSL5zluijTDqwm7bFA
- KDlzpRB62hDf7FTri4sgFMFKZ9IAbPwIbYxurQtIBHxzwiWvg5jpYcdIw5ZV6JcMx18tCRGq54vWL
- K8zJscgwk4rVzcCcRm85O7NyKIaWwzFgKqUUD09LpuHl8Kw5Vc2NFrjxyc4gUZnr8kkxmIhhJFAzi
- WJdR3Rqn1sgRx4mr0s0c/UH5926jQuHMDLbdyLOnd/A/M7EZNEgwT9GQk9TkS5fSAvboLI2hv7Jv1
- nNXvHxy60BlEKNAApOnC74HQN94woOay2aU4owCh1Ue/GWN7kAGbHNIRnUnwCZRuHk+y1l+jvswqS
- DYPnZUTw==;
-Received: from [84.65.48.237] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uZ7xn-00E173-9x; Tue, 08 Jul 2025 15:02:23 +0200
-Message-ID: <b5d0921c-7cbf-4d55-aa47-c35cd7861c02@igalia.com>
-Date: Tue, 8 Jul 2025 14:02:20 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E91A10E62E;
+ Tue,  8 Jul 2025 13:05:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751979904; x=1783515904;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ilN6vjbJSkuHjDSmQUw9LmWsdBHCZh+72e0HSo2s4EI=;
+ b=IjSXxQIPhhCnVHpdUHxQTNWVAjUnSuuV9zlnJnFDi4m2nRP1Vp0hD0OZ
+ hf6jguDJ2OKk0GvSfv/bd+STWEP85O/8bi9GR0P5nssF/r/Q+uYvspdzy
+ gGW5e+UlyBBsJ+UXjpxFRRlkEWBBepZv6tGpq2rYtjbBOOctSsb19ibW0
+ xFr+Q7cOqOL3fThwCi5P9lbsWDX6myCV5BP7yvIMD37oWD94elkajWf4l
+ glpgypNw4fmp+81sX41RpwRyLloJcOg+Nb5PE+wbCYXSt8x4qQroyVBZb
+ r1orTibdQJNzrSC0/Id7th5+Pt5aKyWAifquaorTxbecHVsm59hIfVeK2 Q==;
+X-CSE-ConnectionGUID: +gosYFLiRbCUocJM5ZOvTg==
+X-CSE-MsgGUID: K/jvrt4pQ6O2CI5AoKJjGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="41840012"
+X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="41840012"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2025 06:05:04 -0700
+X-CSE-ConnectionGUID: SAYJBaFmT7mi9AMOhzKPqQ==
+X-CSE-MsgGUID: FT5Vhl36QpSm00nZOdaa7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="154901383"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.245.245.8])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2025 06:05:01 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Petri Latvala <adrinael@adrinael.net>, Arkadiusz Hiler <arek@hiler.eu>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v2] runner: Relax timeout reduction on soft lockup
+Date: Tue,  8 Jul 2025 15:04:15 +0200
+Message-ID: <20250708130437.917619-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.50.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] drm/sched: Use struct for drm_sched_init() params
-To: Philipp Stanner <phasta@kernel.org>, Min Ma <min.ma@amd.com>,
- Lizhi Hou <lizhi.hou@amd.com>, Oded Gabbay <ogabbay@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Qiang Yu <yuq825@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Matthew Brost <matthew.brost@intel.com>,
- Melissa Wen <mwen@igalia.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
- <mcanal@igalia.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sunil Khatri <sunil.khatri@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
- Yunxiang Li <Yunxiang.Li@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
- lima@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Christian Gmeiner <cgmeiner@igalia.com>
-References: <20250211111422.21235-2-phasta@kernel.org>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250211111422.21235-2-phasta@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,116 +68,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+In case of soft lockups, it might be helpful from root cause analysis
+perspective to see if the test was still able to complete despite
+triggering the soft lockup warning, or if that soft lockup seems not
+recoverable without killing the test. For that to be possible, igt_runner
+should not kill the test too promptly if a soft lockup related kernel
+taint is detected.
 
+On kernel taints, igt_runner now decreases per test and inactivity
+timeouts by a factor of 10.  Let it check if the taint is caused by a
+soft lockup and decrease the timeouts only by the factor of 2 in those
+cases.
 
-On 11/02/2025 11:14, Philipp Stanner wrote:
-> drm_sched_init() has a great many parameters and upcoming new
-> functionality for the scheduler might add even more. Generally, the
-> great number of parameters reduces readability and has already caused
-> one missnaming, addressed in:
-> 
-> commit 6f1cacf4eba7 ("drm/nouveau: Improve variable name in
-> nouveau_sched_init()").
-> 
-> Introduce a new struct for the scheduler init parameters and port all
-> users.
-> 
-> Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
-> Acked-by: Matthew Brost <matthew.brost@intel.com> # for Xe
-> Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com> # for Panfrost and Panthor
-> Reviewed-by: Christian Gmeiner <cgmeiner@igalia.com> # for Etnaviv
-> Reviewed-by: Frank Binns <frank.binns@imgtec.com> # for Imagination
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com> # for Sched
-> Reviewed-by: Maíra Canal <mcanal@igalia.com> # for v3d
-> ---
-> Changes in v4:
->    - Add forgotten driver accel/amdxdna. (Me)
->    - Rephrase the "init to NULL" comments. (Tvrtko)
->    - Apply RBs by Tvrtko and Maira.
->    - Terminate the last struct members with a comma, so that future
->      fields can be added with a minimal patch diff. (Me)
-> 
-> Changes in v3:
->    - Various formatting requirements.
-> 
-> Changes in v2:
->    - Point out that the hang-limit is deprecated. (Christian)
->    - Initialize the structs to 0 at declaration. (Planet Earth)
->    - Don't set stuff explicitly to 0 / NULL. (Tvrtko)
->    - Make the structs const where possible. (Boris)
->    - v3d: Use just 1, universal, function for sched-init. (Maíra)
-> ---
+v2: Define symbols for taint bits and use them (Kamil)
 
-8><
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ lib/igt_taints.c  |  8 ++++----
+ lib/igt_taints.h  |  6 ++++++
+ runner/executor.c | 14 ++++++++++----
+ 3 files changed, 20 insertions(+), 8 deletions(-)
 
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
-> index 9b8e82fb8bc4..5657106c2f7d 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_job.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
-> @@ -836,8 +836,16 @@ static irqreturn_t panfrost_job_irq_handler(int irq, void *data)
->   
->   int panfrost_job_init(struct panfrost_device *pfdev)
->   {
-> +	struct drm_sched_init_args args = {
-> +		.ops = &panfrost_sched_ops,
-> +		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
-> +		.credit_limit = 2,
-> +		.timeout = msecs_to_jiffies(JOB_TIMEOUT_MS),
-> +		.timeout_wq = pfdev->reset.wq,
-
-^^^
-
-> +		.name = "pan_js",
-> +		.dev = pfdev->dev,
-> +	};
->   	struct panfrost_job_slot *js;
-> -	unsigned int nentries = 2;
->   	int ret, j;
->   
->   	/* All GPUs have two entries per queue, but without jobchain
-> @@ -845,7 +853,7 @@ int panfrost_job_init(struct panfrost_device *pfdev)
->   	 * so let's just advertise one entry in that case.
->   	 */
->   	if (!panfrost_has_hw_feature(pfdev, HW_FEATURE_JOBCHAIN_DISAMBIGUATION))
-> -		nentries = 1;
-> +		args.credit_limit = 1;
->   
->   	pfdev->js = js = devm_kzalloc(pfdev->dev, sizeof(*js), GFP_KERNEL);
->   	if (!js)
-
-Stumbled on this while looking at drm_sched_init() workqueue usage.
-
-I think this patch might need a fixup. Because somewhere around here in 
-the code there is this:
-
-	pfdev->reset.wq = alloc_ordered_workqueue("panfrost-reset", 0);
-	if (!pfdev->reset.wq)
-		return -ENOMEM;
-
-Which means that after the patch panfrost is using system_wq for the 
-timeout handler instead the one it creates.
-
-> @@ -875,13 +883,7 @@ int panfrost_job_init(struct panfrost_device *pfdev)
->   	for (j = 0; j < NUM_JOB_SLOTS; j++) {
->   		js->queue[j].fence_context = dma_fence_context_alloc(1);
->   
-> -		ret = drm_sched_init(&js->queue[j].sched,
-> -				     &panfrost_sched_ops, NULL,
-> -				     DRM_SCHED_PRIORITY_COUNT,
-> -				     nentries, 0,
-> -				     msecs_to_jiffies(JOB_TIMEOUT_MS),
-> -				     pfdev->reset.wq,
-> -				     NULL, "pan_js", pfdev->dev);
-> +		ret = drm_sched_init(&js->queue[j].sched, &args);
-
-^^^
-
->   		if (ret) {
->   			dev_err(pfdev->dev, "Failed to create scheduler: %d.", ret);
->   			goto err_sched;
-
-Regards,
-
-Tvrtko
+diff --git a/lib/igt_taints.c b/lib/igt_taints.c
+index 6b36d11cba..1d238fd2af 100644
+--- a/lib/igt_taints.c
++++ b/lib/igt_taints.c
+@@ -13,10 +13,10 @@ static const struct {
+ 	int bad;
+ 	const char *explanation;
+ } abort_taints[] = {
+-  { 4, 1, "TAINT_MACHINE_CHECK: Processor reported a Machine Check Exception."},
+-  { 5, 1, "TAINT_BAD_PAGE: Bad page reference or an unexpected page flags." },
+-  { 7, 1, "TAINT_DIE: Kernel has died - BUG/OOPS." },
+-  { 9, 1, "TAINT_WARN: WARN_ON has happened." },
++  { TAINT_MACHINE_CHECK, 1, "TAINT_MACHINE_CHECK: Processor reported a Machine Check Exception."},
++  { TAINT_BAD_PAGE,	 1, "TAINT_BAD_PAGE: Bad page reference or an unexpected page flags." },
++  { TAINT_DIE,		 1, "TAINT_DIE: Kernel has died - BUG/OOPS." },
++  { TAINT_WARN,		 1, "TAINT_WARN: WARN_ON has happened." },
+   { -1 }
+ };
+ 
+diff --git a/lib/igt_taints.h b/lib/igt_taints.h
+index be4195c5aa..50c4cf16f8 100644
+--- a/lib/igt_taints.h
++++ b/lib/igt_taints.h
+@@ -6,6 +6,12 @@
+ #ifndef __IGT_TAINTS_H__
+ #define __IGT_TAINTS_H__
+ 
++#define	TAINT_MACHINE_CHECK	 4
++#define	TAINT_BAD_PAGE		 5
++#define	TAINT_DIE		 7
++#define	TAINT_WARN		 9
++#define	TAINT_SOFT_LOCKUP	14
++
+ unsigned long igt_kernel_tainted(unsigned long *taints);
+ const char *igt_explain_taints(unsigned long *taints);
+ 
+diff --git a/runner/executor.c b/runner/executor.c
+index 13180a0a46..847abe481a 100644
+--- a/runner/executor.c
++++ b/runner/executor.c
+@@ -871,10 +871,15 @@ static const char *need_to_timeout(struct settings *settings,
+ 	if (settings->abort_mask & ABORT_TAINT &&
+ 	    is_tainted(taints)) {
+ 		/* list of timeouts that may postpone immediate kill on taint */
+-		if (settings->per_test_timeout || settings->inactivity_timeout)
+-			decrease = 10;
+-		else
++		if (settings->per_test_timeout || settings->inactivity_timeout) {
++			if (is_tainted(taints) == (1 << TAINT_WARN) &&
++			    taints & (1 << TAINT_SOFT_LOCKUP))
++				decrease = 2;
++			else
++				decrease = 10;
++		} else {
+ 			return "Killing the test because the kernel is tainted.\n";
++		}
+ 	}
+ 
+ 	if (settings->per_test_timeout != 0 &&
+@@ -1526,8 +1531,9 @@ static int monitor_output(pid_t child,
+ 			sigfd = -1; /* we are dying, no signal handling for now */
+ 		}
+ 
++		igt_kernel_tainted(&taints);
+ 		timeout_reason = need_to_timeout(settings, killed,
+-						 igt_kernel_tainted(&taints),
++						 taints,
+ 						 igt_time_elapsed(&time_last_activity, &time_now),
+ 						 igt_time_elapsed(&time_last_subtest, &time_now),
+ 						 igt_time_elapsed(&time_killed, &time_now),
+-- 
+2.50.0
 
