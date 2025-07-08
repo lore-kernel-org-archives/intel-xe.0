@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ED07C8303C
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Jul 2025 16:03:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB5CEC83F09
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Jul 2025 16:03:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B83B610E6A8;
-	Tue,  8 Jul 2025 16:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34E1B10E6AE;
+	Tue,  8 Jul 2025 16:03:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g5Ug+z/w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LZbk7QiD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86EB710E6A7;
- Tue,  8 Jul 2025 16:03:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C0D910E6AB;
+ Tue,  8 Jul 2025 16:03:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751990634; x=1783526634;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=16+eCXmH+sTe2FswPiM2lgVcpBsXo5yOfk9Ka8nRVys=;
- b=g5Ug+z/wTcthPIDkWkA50UbH4/mnq278HRgkznYxChaGd0f+P+1AF1iF
- 9wC5u2eorbgGh7NMX0M9zc+eSHqFuF4ItF7JqRacQyKOBcdf6nuGiEjkj
- M0ohGyBZxUfd/jlA/0x3VzzAIVS3nC5T3d2BwT9GRlNBu6z/iQKrVR5MS
- pficYJ9Aj6GoVRuiVh8MbPveu8O5Xr7lHxMElwEl5+WY6LRLxs+z/647X
- zLmubdDt+1RIeYYPnJhOHlLpSd7BQBWcLuz9USaCQekHL1UnLL+wEvUs9
- e3ytC+wPUnJAUXGA13da5OGwaGYcA4LMmUd3LozEAc6onJAl1AbE51fpG w==;
-X-CSE-ConnectionGUID: v3Ed5bJUT1KtNi+LjV+s4g==
-X-CSE-MsgGUID: ZtYOfkQGT/+U1yyxzeiB0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="58039062"
-X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="58039062"
+ t=1751990635; x=1783526635;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=uNEtzMeuix2Z9vV5PckaqhqfKjmIixNxSDmDhmjQbGA=;
+ b=LZbk7QiDBUvx+Rucl1JzW9ofST+rjVZY5UIvEVrCHla6R5t4OnePe9Y7
+ DKaFt9OJu8BpKqwTVSxDyPIl3LQ29oO73dr9v7fNWduLDhh1Sbqk4LheQ
+ MdMxjrc/j9tyDqgfqro+KUG8s3HKGGhuWvw7pTkYgTviJZm/5WCItCagv
+ kRAY5ZUOo1qNsZ8exA3fdq4b0gTDXdsc/jbehiZCCjEciJ4IxAJsSR2Hm
+ pGU/f1KfsjWc4ZOuf1YEH+lrzjv9d/XTpMkov3lrm6VP8hEhfnoNCEW3Z
+ U0Q5GeL1WWvD0FJhTVOIrqRTM73BkFxu1M4Ef682NN+KqKxkfi1w6fQ8v Q==;
+X-CSE-ConnectionGUID: vtYaeZatTY+iq2HFRzo3UA==
+X-CSE-MsgGUID: IF4W8c3dQF2NCnf3f9/3pQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="58039065"
+X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="58039065"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Jul 2025 09:03:42 -0700
-X-CSE-ConnectionGUID: OgjdjCk8RkaqggjUziBLuQ==
-X-CSE-MsgGUID: JChOydP5RPOG8D6ctz0YsQ==
+X-CSE-ConnectionGUID: UID3ui/jTaezyKcKGKaKNw==
+X-CSE-MsgGUID: qEexugEhRbivuoBlv7oCpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="161179664"
+X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="161179641"
 Received: from johunt-mobl9.ger.corp.intel.com (HELO stinkbox)
  ([10.245.245.55])
- by orviesa005.jf.intel.com with SMTP; 08 Jul 2025 09:03:22 -0700
+ by orviesa005.jf.intel.com with SMTP; 08 Jul 2025 09:03:32 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 08 Jul 2025 19:03:20 +0300
+ Tue, 08 Jul 2025 19:03:31 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>,
- "Jason A. Donenfeld" <Jason@zx2c4.com>
-Subject: [PATCH 1/4] drm/i915/display: Disable wakeref asserts around GU_MISC
- irq handling
-Date: Tue,  8 Jul 2025 19:03:17 +0300
-Message-ID: <20250708160320.5653-1-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 4/4] drm/i915/opregion: Flush asle_work during runtime suspend
+Date: Tue,  8 Jul 2025 19:03:20 +0300
+Message-ID: <20250708160320.5653-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250708160320.5653-1-ville.syrjala@linux.intel.com>
+References: <20250708160320.5653-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -71,47 +71,33 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The GU_MISC/GSE interrupt may be raised even when we're not
-holding a runtime PM wakeref. Disable the asserts while
-processing GU_MISC irqs. Previously this was covered by
-the use of raw_reg_{read,write}() which lack the assert.
+For good measure make sure asle_work has finished whatever it
+was doing before we runtime suspend the device.
 
-Not having an assert is fine since we synchronize irqs
-during runtime suspend.
+This probably isn't really necessary as long asle_work only
+pokes at the mailbox as it should remain accessible even if
+the device has been suspended. But seems better to play it
+safe in case there is ever any need to do more stuff in
+asle_work.
 
-Arguably this stuff shouldn't really be in the display code
-since GU_MISC is for Gunit interrupts. But I suppose as long
-as we only care about the GSE interrupt bit it doesn't really
-matter that the code is misplaced.
-
-Cc: Jani Nikula <jani.nikula@intel.com>
-Reported-by: Jason A. Donenfeld <Jason@zx2c4.com>
-Closes: https://lore.kernel.org/intel-gfx/aG0tWkfmxWtxl_xc@zx2c4.com/
-Fixes: 8d9908e8fe9c ("drm/i915/display: remove small micro-optimizations in irq handling")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_irq.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_opregion.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index fb25ec8adae3..68157f177b6a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1506,10 +1506,14 @@ u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl)
- 	if (!(master_ctl & GEN11_GU_MISC_IRQ))
- 		return 0;
- 
-+	intel_display_rpm_assert_block(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+index e99616ea2ae6..08d36411668d 100644
+--- a/drivers/gpu/drm/i915/display/intel_opregion.c
++++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+@@ -1294,6 +1294,8 @@ void intel_opregion_runtime_suspend(struct intel_display *display)
+ 		 */
+ 		intel_opregion_notify_adapter(display, PCI_D1);
+ 	}
 +
- 	iir = intel_de_read(display, GEN11_GU_MISC_IIR);
- 	if (likely(iir))
- 		intel_de_write(display, GEN11_GU_MISC_IIR, iir);
- 
-+	intel_display_rpm_assert_unblock(display);
-+
- 	return iir;
++	flush_work(&opregion->asle_work);
  }
  
+ void intel_opregion_unregister(struct intel_display *display)
 -- 
 2.49.0
 
