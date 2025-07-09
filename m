@@ -4,49 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6A4AC83F09
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 07:50:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91ED7C83F03
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 07:58:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D8EC10E043;
-	Wed,  9 Jul 2025 07:50:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54D2110E043;
+	Wed,  9 Jul 2025 07:58:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="sZro8grJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KqPv54Lt";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8790810E043
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 07:50:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=cqpDgxK+oJUK8U+Mjh3fn7n7K6lN/KQHzXv/1OYOM8k=; b=sZro8grJopomW1n5e4g0SKWsfs
- E6tGmdow2LS2D4XRHLZntWoym63t9HzSPdF/QZEFJU0eNrL+/vWhMTlNo8vt2/en+5GXvdq0zulLA
- PFcwt7ghcO8y60CS1Wq1BMd3QjZVg/XUDmqlKDVFsbREqnxXxpkZjK8wTV1NbOSeupWTLcVwRwb94
- ylFAHTqNzQ6fWBavnKVmgpYUPYSZolHWXo5D0izfHatRCCG27ygkxLpRl9LfeFB1V41lrUIx882Nm
- c4I5i/05q6r8xUa72ikosOpCYSD8gZAFY1z8V8L/QBEwkqRAa6RRugkV92HyU3L1r/nqiVfjqRpJP
- ikd/jh8w==;
-Received: from [84.65.48.237] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uZPZD-00EMpp-Mb; Wed, 09 Jul 2025 09:50:11 +0200
-Message-ID: <fbcfa852-52b7-4379-b1fe-8970dae86bb3@igalia.com>
-Date: Wed, 9 Jul 2025 08:50:11 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA73610E043;
+ Wed,  9 Jul 2025 07:58:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752047890; x=1783583890;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5q/TVrDVJWg3lwQINuVc+n7n6IpcJXlUrmoswB+FUNY=;
+ b=KqPv54LtGuTNPtl50iWvlmC/NleF1xtG1/yLenM7s/PoyF6ZRm0vrhAq
+ dLN53GOUqlOo+kStagt+sICvQdDPE94FfnUPEsCvwaGB3JXo4dbH/7Quv
+ AGNLp4C7bDGfslc5c2PXzRTeGwTu251DE2ZnzkDjpORrauWnGbMgU3FIN
+ Q0rJsYhN0iz/ZJdmzOBjnCtMR8GT2qsEXTT8Zx4PpyKOySGOyzvYKvSrv
+ jnU2di/RuuyzHLkVy9SgiXcqVzrp+vbMRNDx4Np/9kS+og8kv0RlDXwCJ
+ sEIyiIkVS7ZsQaotfsEyb2oWPCQNDVd24qIZbzVbiTGlG9MPqa8/Lnkbn A==;
+X-CSE-ConnectionGUID: HfWzMAp1TtK8/a4P33HJ0g==
+X-CSE-MsgGUID: 4Hu/VAeuRUK76AO8OPFWmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="65649493"
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="65649493"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2025 00:58:10 -0700
+X-CSE-ConnectionGUID: eqJhCJ+YQx6Za0BRktOdqA==
+X-CSE-MsgGUID: IMaL/0YxQ1qFy+Wv87ItuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="156289387"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.245.175])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2025 00:58:08 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 0/2] Enable_psr kernel parameter changes
+Date: Wed,  9 Jul 2025 10:57:56 +0300
+Message-ID: <20250709075758.2510714-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 4/7] drm/xe: Allow specifying number of extra dwords at
- the end of wa bb emission
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
-References: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
- <20250703082059.61597-5-tvrtko.ursulin@igalia.com>
- <n6f2fvsjh6rjlniapfjzyumhxhcwpk2ybaanw7vm3tabw4zciy@4yrhtybyesm5>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <n6f2fvsjh6rjlniapfjzyumhxhcwpk2ybaanw7vm3tabw4zciy@4yrhtybyesm5>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,66 +68,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Currently disabling PSR2 via enable_psr module parameter causes Panel
+Replay being disabled as well. This patch changes this by still allowing
+Panel Replay even if PSR2 is disabled.
 
-On 08/07/2025 23:11, Lucas De Marchi wrote:
-> On Thu, Jul 03, 2025 at 09:20:56AM +0100, Tvrtko Ursulin wrote:
->> Indirect context setup will need more than one.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->> drivers/gpu/drm/xe/xe_lrc.c | 8 ++++----
->> 1 file changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
->> index 7f8911a10cc9..e278c12a41f9 100644
->> --- a/drivers/gpu/drm/xe/xe_lrc.c
->> +++ b/drivers/gpu/drm/xe/xe_lrc.c
->> @@ -982,6 +982,7 @@ static u32 *
->> setup_bo(struct xe_lrc *lrc,
->>      struct xe_hw_engine *hwe,
->>      const size_t max_size,
->> +     unsigned int reserve_dw,
->>      unsigned int offset,
->>      const struct bo_setup *funcs,
->>      unsigned int num_funcs,
-> 
-> one by one these arguments make sense. Together they are pretty hard to
-> add a call to this function. We will probably need to change this to
-> keep the state separate or something like that.
+After this patch enable_psr module parameter values are:
 
-Yes it is not the prettiest. From what we talked before I understood you 
-are okay to leave the conversion to a struct state for later, but if you 
-want I can try something straight away.
+-1 = PSR1 : yes, PSR2 = yes, Panel Replay : yes
+ 0 = PSR1 : no,  PSR2 = no,  Panel Replay : no
+ 1 = PSR1 : yes, PSR2 = no,  Panel Replay : yes
+ 2 = PSR1 : yes, PSR2 = yes, Panel Replay : no
+ 3 = PSR1 : yes, PSR2 = no,  Panel Replay : no
 
-Regards,
+I.e. values different than -1 and 0 are handled as bitmasks where BIT0
+disables PSR2 and BIT1 disables Panel Replay. Enable_psr parameter
+doesn't impact Early Transport anymore.
 
-Tvrtko
+v2:
+  - make it more clear that enable_psr is bitmask for disabling different
+    PSR modes
 
->> @@ -1010,10 +1011,9 @@ setup_bo(struct xe_lrc *lrc,
->>         remain -= len;
->>
->>         /*
->> -         * There should always be at least 1 additional dword for
->> -         * the end marker
->> +         * Caller has asked for at least reserve_dw to remain unused.
->>          */
->> -        if (len < 0 || xe_gt_WARN_ON(lrc->gt, remain < 1))
->> +        if (len < 0 || xe_gt_WARN_ON(lrc->gt, remain < reserve_dw))
->>             goto fail;
->>
->>         cmd += len;
->> @@ -1049,7 +1049,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, 
->> struct xe_hw_engine *hwe)
->>     unsigned int written = 0;
->>     u32 *cmd, *buf = NULL;
->>
->> -    cmd = setup_bo(lrc, hwe, LRC_WA_BB_SIZE, offset, funcs,
->> +    cmd = setup_bo(lrc, hwe, LRC_WA_BB_SIZE, 1, offset, funcs,
->>                ARRAY_SIZE(funcs), &buf, &written);
->>     if (IS_ERR(cmd))
->>         return PTR_ERR(cmd);
->> -- 
->> 2.48.0
->>
+Jouni Högander (2):
+  drm/i915/psr: Do not disable Early Transport when enable_psr is set
+  drm/i915/psr: Do not disable Panel Replay if PSR2 is disabled
+
+ .../drm/i915/display/intel_display_params.c   |  6 ++--
+ drivers/gpu/drm/i915/display/intel_psr.c      | 35 +++++++++----------
+ 2 files changed, 20 insertions(+), 21 deletions(-)
+
+-- 
+2.43.0
 
