@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCC85C83F09
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 10:55:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6638C83F09
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 10:55:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8713210E79D;
-	Wed,  9 Jul 2025 10:55:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6C9110E79B;
+	Wed,  9 Jul 2025 10:55:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FB/KuNr1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ANdnnMo2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 950B810E79B
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 10:55:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D7FB10E79B
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 10:55:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752058543; x=1783594543;
+ t=1752058549; x=1783594549;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eW3867kGjGs/IaEf5K/LZake/RG9hfVJiYWBtLq3IeQ=;
- b=FB/KuNr1fXoqNOwFlpp4LnNq10uoxyTDfyKvMckiTsJzRa3mIzPnvo98
- 9ztnTUh4oh6tf0OjoklyCZbe84qPidrvHSOdQuC5oTvqN84w4Hr8xBd/q
- khIUmvsPUEEjy+0eXV4V8NfNsfYSEIdNELxRe/15EWucarOB+VPj9mb1t
- SUDf06HiEm1aKXCXNjOB8CH3fZk0U449T16eM+VBz7zcRW81ra6IYjgVk
- fCHYyHyFvKj0z9QgOzDsloZCk4VoKOf1651v2/Wcj5LjnbFyIlTU/7J0A
- fMWOqYu9a38pw0U3RTaN27oSbDpElzyhoP6WJDUkdzW3Wq+Au4P7n8rq4 w==;
-X-CSE-ConnectionGUID: 9PZUj7lrS2K9EcoGUraTQw==
-X-CSE-MsgGUID: Qg1Do2Y/RoeM5vbWmV1dzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="54288457"
-X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="54288457"
+ bh=CQ28BT7M3+xpefoYZdm4ij8llev4o8kxLvlxB+XMDn8=;
+ b=ANdnnMo2tKv2iOZBGCxEAgvrM9CcfuL53wvGKDIZuDWB4esk3Mud0Eyl
+ xLbEnAKuBjKHx5h2HNakCE+kVqhnraQpK/7gUVEwlnJGU4yctOh3I1NXQ
+ 6NTw/lkhwNdVNxEZCXLU/eg3ONYrKlXB9VJ7OIrQZj0a+YIFMC89yzxVP
+ ykZ3c5qjQ5PF6SSdkDduvdR1VhD73SVRIEcDfy2ISNTJQzbjRJ9jTNhea
+ jVsIRbpC+poHPgRj+Pq9P6ISEvjzvTAU8rySfgAMbT6H82dIlwKw7J96T
+ 1nyRIz9bfyXpdayLV/ItX97vL9pj5YGm7/8+nYYeT//ioUJ/QCUScoOyG w==;
+X-CSE-ConnectionGUID: 4eKKVX4xSJ65WmIKLNIE4A==
+X-CSE-MsgGUID: Rj3OWT6QQvqQ2wCQDIXcmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="54288469"
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="54288469"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2025 03:55:43 -0700
-X-CSE-ConnectionGUID: AqPopOIrQEmJzOcZQHpfyw==
-X-CSE-MsgGUID: X6hl5HpKSa+fwUDee1oA2Q==
+ 09 Jul 2025 03:55:49 -0700
+X-CSE-ConnectionGUID: l7m1HYvxRQanIFbOYrWLrg==
+X-CSE-MsgGUID: PiPI8W5ZShuJ1VwHI9eBmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="192936313"
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="192936333"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2025 03:55:40 -0700
+ 09 Jul 2025 03:55:46 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
  raag.jadav@intel.com, umesh.nerlige.ramappa@intel.com,
- frank.scarbrough@intel.com, sk.anirban@intel.com,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v4 2/9] drm/xe: Set GT as wedged before sending wedged uevent
-Date: Wed,  9 Jul 2025 16:50:14 +0530
-Message-ID: <20250709112024.1053710-3-riana.tauro@intel.com>
+ frank.scarbrough@intel.com, sk.anirban@intel.com
+Subject: [PATCH v4 3/9] drm/xe: Add a helper function to set recovery method
+Date: Wed,  9 Jul 2025 16:50:15 +0530
+Message-ID: <20250709112024.1053710-4-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250709112024.1053710-1-riana.tauro@intel.com>
 References: <20250709112024.1053710-1-riana.tauro@intel.com>
@@ -70,51 +69,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Userspace should be notified after setting the device as wedged.
-Re-order function calls to set gt wedged before sending uevent.
+Add a helper function to set recovery method. The recovery
+method has to be set before declaring the device wedged and sending the
+drm wedged uevent. If no method is set, default unbind/re-bind method
+will be set
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Suggested-by: Raag Jadav <raag.jadav@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c       | 26 +++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_device.h       |  1 +
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ 3 files changed, 24 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 0b73cb72bad1..8a5bb7b6d09b 100644
+index 8a5bb7b6d09b..70e8bd4d5fd3 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1123,8 +1123,10 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+@@ -1119,13 +1119,26 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+ 	xe_pm_runtime_put(xe);
+ }
+ 
++/**
++ * xe_device_set_wedged_method - Set wedged recovery method
++ * @xe: xe device instance
++ * @method: recovery method to set
++ *
++ * Set wedged recovery method to be sent in drm wedged uevent.
++ */
++void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method)
++{
++	xe->wedged.method = method;
++}
++
+ /**
   * xe_device_declare_wedged - Declare device wedged
   * @xe: xe device instance
   *
-- * This is a final state that can only be cleared with a module
-+ * This is a final state that can only be cleared with the recovery method
-+ * specified in the drm wedged uevent. The default recovery method is
-  * re-probe (unbind + bind).
-+ *
+  * This is a final state that can only be cleared with the recovery method
+- * specified in the drm wedged uevent. The default recovery method is
+- * re-probe (unbind + bind).
++ * specified in the drm wedged uevent. The method needs to be set using
++ * xe_device_set_wedged_method before declaring the device as wedged or the
++ * default method of reprobe (unbind/re-bind) will be sent
+  *
   * In this state every IOCTL will be blocked so the GT cannot be used.
   * In general it will be called upon any critical error such as gt reset
-  * failure or guc loading failure. Userspace will be notified of this state
-@@ -1158,13 +1160,15 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 			"IOCTLs and executions are blocked. Only a rebind may clear the failure\n"
- 			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
- 			dev_name(xe->drm.dev));
-+	}
-+
-+	for_each_gt(gt, xe, id)
-+		xe_gt_declare_wedged(gt);
+@@ -1166,9 +1179,12 @@ void xe_device_declare_wedged(struct xe_device *xe)
+ 		xe_gt_declare_wedged(gt);
  
-+	if (xe_device_wedged(xe)) {
+ 	if (xe_device_wedged(xe)) {
++		/* If no wedge recovery method is set, use default */
++		if (!xe->wedged.method)
++			xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
++						    DRM_WEDGE_RECOVERY_BUS_RESET);
++
  		/* Notify userspace of wedged device */
- 		drm_dev_wedged_event(&xe->drm,
- 				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET,
- 				     NULL);
+-		drm_dev_wedged_event(&xe->drm,
+-				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET,
+-				     NULL);
++		drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
  	}
--
--	for_each_gt(gt, xe, id)
--		xe_gt_declare_wedged(gt);
  }
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index f0eb8150f185..c2a67db3ab72 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -183,6 +183,7 @@ static inline bool xe_device_wedged(struct xe_device *xe)
+ 	return atomic_read(&xe->wedged.flag);
+ }
+ 
++void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
+ void xe_device_declare_wedged(struct xe_device *xe);
+ 
+ struct xe_file *xe_file_get(struct xe_file *xef);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 78c4acafd268..ca300338e8c2 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -572,6 +572,8 @@ struct xe_device {
+ 		atomic_t flag;
+ 		/** @wedged.mode: Mode controlled by kernel parameter and debugfs */
+ 		int mode;
++		/** @wedged.method: Recovery method to be sent in the drm device wedged uevent */
++		unsigned long method;
+ 	} wedged;
+ 
+ 	/** @bo_device: Struct to control async free of BOs */
 -- 
 2.47.1
 
