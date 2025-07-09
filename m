@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C6ACC83F09
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 07:48:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6A4AC83F09
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 07:50:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7D7E10E043;
-	Wed,  9 Jul 2025 07:48:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D8EC10E043;
+	Wed,  9 Jul 2025 07:50:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="KPaSKw3a";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="sZro8grJ";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB26210E043
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 07:48:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8790810E043
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 07:50:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
@@ -22,30 +22,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pe+Kev3qB6PF6YiajdBxJZRj4dgj7WHYRCnh5P3VPnM=; b=KPaSKw3aD782/D2yMBhWaIyFtc
- ZxizADa0obfD4aHsHH8dW3rz4pvxpmrpCrw9A6m5CWV2+meKEOrJxQVfHGHH/dd3hXQAAm/Vqklsr
- tAavc7SHVMX+82OExRGNfPfJbIb5UsF3ZmKBzY8h3WXtF4VbRxIyVRax6yD+yc6RiZFWKoRcf43Sa
- FlWv6msN0+MKwMMWXyGffW0aYFQGaIkPC2jTX7LnQ05BPnfEGPbPzF+F8ZdIJSIUdk0riRJtdHc3I
- Wx0NRJgD41EGyXmQkhZq7SQEE/FZMLpvkSd8JapZBEhHVreAfMK9iVoU/JxEJSGYpTTbYarC4LCst
- GriQOUzg==;
+ bh=cqpDgxK+oJUK8U+Mjh3fn7n7K6lN/KQHzXv/1OYOM8k=; b=sZro8grJopomW1n5e4g0SKWsfs
+ E6tGmdow2LS2D4XRHLZntWoym63t9HzSPdF/QZEFJU0eNrL+/vWhMTlNo8vt2/en+5GXvdq0zulLA
+ PFcwt7ghcO8y60CS1Wq1BMd3QjZVg/XUDmqlKDVFsbREqnxXxpkZjK8wTV1NbOSeupWTLcVwRwb94
+ ylFAHTqNzQ6fWBavnKVmgpYUPYSZolHWXo5D0izfHatRCCG27ygkxLpRl9LfeFB1V41lrUIx882Nm
+ c4I5i/05q6r8xUa72ikosOpCYSD8gZAFY1z8V8L/QBEwkqRAa6RRugkV92HyU3L1r/nqiVfjqRpJP
+ ikd/jh8w==;
 Received: from [84.65.48.237] (helo=[192.168.0.101])
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uZPXy-00EMnO-Sz; Wed, 09 Jul 2025 09:48:54 +0200
-Message-ID: <b462e838-55e5-4578-8b40-77f74c13d6ed@igalia.com>
-Date: Wed, 9 Jul 2025 08:48:54 +0100
+ id 1uZPZD-00EMpp-Mb; Wed, 09 Jul 2025 09:50:11 +0200
+Message-ID: <fbcfa852-52b7-4379-b1fe-8970dae86bb3@igalia.com>
+Date: Wed, 9 Jul 2025 08:50:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/7] drm/xe: Return number of written dwords from
- workaround batch buffer emission
+Subject: Re: [PATCH v8 4/7] drm/xe: Allow specifying number of extra dwords at
+ the end of wa bb emission
 To: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
 References: <20250703082059.61597-1-tvrtko.ursulin@igalia.com>
- <20250703082059.61597-4-tvrtko.ursulin@igalia.com>
- <gmq72whamose6gbfnbb7j4wlcjueg4sf3jyby4xbtxhvsakinm@66ts3yntuvzf>
+ <20250703082059.61597-5-tvrtko.ursulin@igalia.com>
+ <n6f2fvsjh6rjlniapfjzyumhxhcwpk2ybaanw7vm3tabw4zciy@4yrhtybyesm5>
 Content-Language: en-GB
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <gmq72whamose6gbfnbb7j4wlcjueg4sf3jyby4xbtxhvsakinm@66ts3yntuvzf>
+In-Reply-To: <n6f2fvsjh6rjlniapfjzyumhxhcwpk2ybaanw7vm3tabw4zciy@4yrhtybyesm5>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,93 +64,63 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 08/07/2025 23:11, Lucas De Marchi wrote:
-> On Thu, Jul 03, 2025 at 09:20:55AM +0100, Tvrtko Ursulin wrote:
->> Indirect context setup will need to get to the number of written dwords.
->> Lets add it as an output parameter so it can be accessed from the caller
->> regardless of whether code is writing directly or via an shadow buffer.
+> On Thu, Jul 03, 2025 at 09:20:56AM +0100, Tvrtko Ursulin wrote:
+>> Indirect context setup will need more than one.
 >>
 >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 >> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 >> ---
->> drivers/gpu/drm/xe/xe_lrc.c | 16 +++++++++++-----
->> 1 file changed, 11 insertions(+), 5 deletions(-)
+>> drivers/gpu/drm/xe/xe_lrc.c | 8 ++++----
+>> 1 file changed, 4 insertions(+), 4 deletions(-)
 >>
 >> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
->> index edd8751b164a..7f8911a10cc9 100644
+>> index 7f8911a10cc9..e278c12a41f9 100644
 >> --- a/drivers/gpu/drm/xe/xe_lrc.c
 >> +++ b/drivers/gpu/drm/xe/xe_lrc.c
->> @@ -985,7 +985,8 @@ setup_bo(struct xe_lrc *lrc,
+>> @@ -982,6 +982,7 @@ static u32 *
+>> setup_bo(struct xe_lrc *lrc,
+>>      struct xe_hw_engine *hwe,
+>>      const size_t max_size,
+>> +     unsigned int reserve_dw,
 >>      unsigned int offset,
 >>      const struct bo_setup *funcs,
 >>      unsigned int num_funcs,
->> -     u32 **free)
->> +     u32 **free,
->> +     unsigned int *written)
->> {
->>     u32 *cmd, *buf = NULL;
->>     ssize_t remain;
->> @@ -1016,6 +1017,8 @@ setup_bo(struct xe_lrc *lrc,
->>             goto fail;
->>
->>         cmd += len;
->> +        if (written)
->> +            *written += len;
->>     }
->>
->>     return cmd;
->> @@ -1026,13 +1029,14 @@ setup_bo(struct xe_lrc *lrc,
->> }
->>
->> static void
->> -finish_bo(struct xe_lrc *lrc, unsigned int offset, u32 *cmd, u32 *free)
->> +finish_bo(struct xe_lrc *lrc, unsigned int offset, unsigned int written,
->> +      u32 *free)
->> {
->>     if (!free)
->>         return;
->>
->>     xe_map_memcpy_to(gt_to_xe(lrc->gt), &lrc->bo->vmap, offset, free,
->> -             (cmd - free) * sizeof(*cmd));
->> +             written * sizeof(u32));
->>     kfree(free);
->> }
->>
->> @@ -1042,16 +1046,18 @@ static int setup_wa_bb(struct xe_lrc *lrc, 
->> struct xe_hw_engine *hwe)
->>         { .setup = setup_utilization_wa },
->>     };
->>     unsigned int offset = __xe_lrc_wa_bb_offset(lrc);
->> +    unsigned int written = 0;
->>     u32 *cmd, *buf = NULL;
->>
->>     cmd = setup_bo(lrc, hwe, LRC_WA_BB_SIZE, offset, funcs,
->> -               ARRAY_SIZE(funcs), &buf);
->> +               ARRAY_SIZE(funcs), &buf, &written);
->>     if (IS_ERR(cmd))
->>         return PTR_ERR(cmd);
->>
->>     *cmd++ = MI_BATCH_BUFFER_END;
->> +    written++;
->>
->> -    finish_bo(lrc, offset, cmd, buf);
->> +    finish_bo(lrc, offset, written, buf);
 > 
-> we should still have cmd in this call, right? But in the next patch the
-> cmd should be gone as it's then unused.
+> one by one these arguments make sense. Together they are pretty hard to
+> add a call to this function. We will probably need to change this to
+> keep the state separate or something like that.
 
-No, it is already unused in this patch. Explicitly counting dwords 
-written replaced the "end - start" pointer arithmetic.
+Yes it is not the prettiest. From what we talked before I understood you 
+are okay to leave the conversion to a struct state for later, but if you 
+want I can try something straight away.
 
 Regards,
 
 Tvrtko
 
-> 
-> Lucas De Marchi
-> 
+>> @@ -1010,10 +1011,9 @@ setup_bo(struct xe_lrc *lrc,
+>>         remain -= len;
 >>
->>     xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR,
->>                  xe_bo_ggtt_addr(lrc->bo) + offset + 1);
+>>         /*
+>> -         * There should always be at least 1 additional dword for
+>> -         * the end marker
+>> +         * Caller has asked for at least reserve_dw to remain unused.
+>>          */
+>> -        if (len < 0 || xe_gt_WARN_ON(lrc->gt, remain < 1))
+>> +        if (len < 0 || xe_gt_WARN_ON(lrc->gt, remain < reserve_dw))
+>>             goto fail;
+>>
+>>         cmd += len;
+>> @@ -1049,7 +1049,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, 
+>> struct xe_hw_engine *hwe)
+>>     unsigned int written = 0;
+>>     u32 *cmd, *buf = NULL;
+>>
+>> -    cmd = setup_bo(lrc, hwe, LRC_WA_BB_SIZE, offset, funcs,
+>> +    cmd = setup_bo(lrc, hwe, LRC_WA_BB_SIZE, 1, offset, funcs,
+>>                ARRAY_SIZE(funcs), &buf, &written);
+>>     if (IS_ERR(cmd))
+>>         return PTR_ERR(cmd);
 >> -- 
 >> 2.48.0
 >>
