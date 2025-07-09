@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49852C83F1A
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 16:08:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B0D8C83F1A
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 16:15:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1119210E4CD;
-	Mon, 14 Jul 2025 16:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 754F610E208;
+	Mon, 14 Jul 2025 16:15:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MIsl59VD";
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="uPsDAqc6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 330DD10E4CD;
- Mon, 14 Jul 2025 16:08:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752509304; x=1784045304;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=U4XcD4emQ0R/60vy0s8UeFdK9BOyi7LdB3oSdFWnVck=;
- b=MIsl59VDTFpYjFwUkotQtVArPFCurNEDZTTZgi+EBpUXjtrSO5QLsWPr
- pwtSdqYw5qsDRg9nBKy1fWXyfqa3MoGumT+XIGswuI2BJ1F9w+8qidk+v
- z+jMJa3ZTmXaIYlir25g3V2FlkNaARUFFMr9zMrHNxaIlL7D6pgcdEd7n
- ErrDqudugNEOXEgRQhCGRhiWxy+fr+7pQWV2Wa1ZuWgA31Sn/NmsMzbKG
- Th9hXpow7nRZeJ87M0iZW5IDQ/VKu8UYZr3fM8oBH2fCCDtzCV3EVFOjm
- Nw96yTH8O2GfrqSVGv68MjwjIL/0EH8dUjN4P2mhVupWfsucCWramCleR A==;
-X-CSE-ConnectionGUID: KGYMMxrXR7u1yN3OXxA3Jg==
-X-CSE-MsgGUID: ImOtrgF6TeuQMlPJpgRXFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54855204"
-X-IronPort-AV: E=Sophos;i="6.16,311,1744095600"; d="scan'208";a="54855204"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2025 09:08:24 -0700
-X-CSE-ConnectionGUID: Tvx4wX65S8eLaV8UBcko6w==
-X-CSE-MsgGUID: phFkrovfS7i5mLQ94G9Yjw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,311,1744095600"; d="scan'208";a="156385661"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by orviesa010.jf.intel.com with ESMTP; 14 Jul 2025 09:08:23 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v5 1/1] drm/i915/display: Add no_psr_reason to PSR debugfs
-Date: Mon, 14 Jul 2025 18:09:31 +0200
-Message-ID: <20250714160931.821383-2-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250714160931.821383-1-michal.grzelak@intel.com>
-References: <20250714160931.821383-1-michal.grzelak@intel.com>
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C6B210E79F;
+ Wed,  9 Jul 2025 11:49:45 +0000 (UTC)
+Received: from [192.168.42.116] (p5b1645eb.dip0.t-ipconnect.de [91.22.69.235])
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 326C52FC004A;
+ Wed,  9 Jul 2025 13:49:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1752061783;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Z4tPrpohIKzA9dpzM7fgM3lnG/w3QgoJ+fb9JhKfdC4=;
+ b=uPsDAqc6/GRcnySbr4rLZwJ33I0X5BpdBk4Q51cS1ERVD7G8HdXp5zP98woiX7YiTJqH/D
+ oY+zZo39jMWR5dGAV6x5IYJgb2RbPK79kNq8koKODyfO/M0RLOt0L/JW8obNrLD+Ea6m+D
+ Eep5mkPx9ZXWPpSUdsRE54IHXFb4vGw=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=wse@tuxedocomputers.com
+ smtp.mailfrom=wse@tuxedocomputers.com
+Message-ID: <513aa035-8a00-4943-abc1-d68824a5c0c6@tuxedocomputers.com>
+Date: Wed, 9 Jul 2025 13:49:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/1] drm/i915/display: Avoid unsupported 300Hz output
+ mode on a TUXEDO device
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, t.guttzeit@tuxedocomputers.com
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20250704192007.526044-1-wse@tuxedocomputers.com>
+ <aG2IL07UtZ4YICMn@intel.com>
+Content-Language: en-US
+From: Werner Sembach <wse@tuxedocomputers.com>
+In-Reply-To: <aG2IL07UtZ4YICMn@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 14 Jul 2025 16:15:32 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,107 +68,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is no reason in debugfs why PSR has been disabled. Add
-no_psr_reason field into struct intel_psr. Write the reason,
-e.g. PSR setup timing not met, into proper PSR debugfs file.
-Clean it when PSR is activated.
+Hi all,
 
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |  2 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 38 ++++++++++++-------
- 2 files changed, 26 insertions(+), 14 deletions(-)
+Am 08.07.25 um 23:05 schrieb Rodrigo Vivi:
+> On Fri, Jul 04, 2025 at 09:03:45PM +0200, Werner Sembach wrote:
+>> RFC because I'm not sure if this is the right approach.
+> Could you please file a gitlab issue for us so we can get someone from our
+> display team to take a look and see if there's anything else that could be done
+> before we take the quirk route?
+>
+> https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index ce45261c4a8f..bcff1a21f2be 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1685,6 +1685,8 @@ struct intel_psr {
- 	bool link_ok;
- 
- 	u8 active_non_psr_pipes;
-+
-+	const char *no_psr_reason;
- };
- 
- struct intel_dp {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index ae9053919211..ef6c548b892e 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1590,6 +1590,7 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
- 	if (entry_setup_frames >= 0) {
- 		intel_dp->psr.entry_setup_frames = entry_setup_frames;
- 	} else {
-+		intel_dp->psr.no_psr_reason = "PSR setup timing not met";
- 		drm_dbg_kms(display->drm,
- 			    "PSR condition failed: PSR setup timing not met\n");
- 		return false;
-@@ -1819,6 +1820,7 @@ static void intel_psr_activate(struct intel_dp *intel_dp)
- 		hsw_activate_psr1(intel_dp);
- 
- 	intel_dp->psr.active = true;
-+	intel_dp->psr.no_psr_reason = NULL;
- }
- 
- /*
-@@ -2937,13 +2939,21 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 			 * - Region Early Transport changing
- 			 * - Display WA #1136: skl, bxt
- 			 */
--			if (intel_crtc_needs_modeset(new_crtc_state) ||
--			    !new_crtc_state->has_psr ||
--			    !new_crtc_state->active_planes ||
--			    new_crtc_state->has_sel_update != psr->sel_update_enabled ||
--			    new_crtc_state->enable_psr2_su_region_et != psr->su_region_et_enabled ||
--			    new_crtc_state->has_panel_replay != psr->panel_replay_enabled ||
--			    (DISPLAY_VER(display) < 11 && new_crtc_state->wm_level_disabled))
-+			if (intel_crtc_needs_modeset(new_crtc_state))
-+				psr->no_psr_reason = "CRTC needs modeset";
-+			if (!new_crtc_state->has_psr)
-+				psr->no_psr_reason = "PSR disabled";
-+			if (!new_crtc_state->active_planes)
-+				psr->no_psr_reason = "All planes inactive";
-+			if (new_crtc_state->has_sel_update != psr->sel_update_enabled)
-+				psr->no_psr_reason = "Changing between PSR versions";
-+			if (new_crtc_state->enable_psr2_su_region_et != psr->su_region_et_enabled)
-+				psr->no_psr_reason = "Changing Region Early Transport";
-+			if (new_crtc_state->has_panel_replay != psr->panel_replay_enabled)
-+				psr->no_psr_reason = "Changing Panel Replay mode";
-+			if (DISPLAY_VER(display) < 11 && new_crtc_state->wm_level_disabled)
-+				psr->no_psr_reason = "Wa_1136";
-+			if (psr->no_psr_reason)
- 				intel_psr_disable_locked(intel_dp);
- 			else if (new_crtc_state->wm_level_disabled)
- 				/* Wa_14015648006 */
-@@ -3949,12 +3959,7 @@ static void intel_psr_print_mode(struct intel_dp *intel_dp,
- 				 struct seq_file *m)
- {
- 	struct intel_psr *psr = &intel_dp->psr;
--	const char *status, *mode, *region_et;
--
--	if (psr->enabled)
--		status = " enabled";
--	else
--		status = "disabled";
-+	const char *mode, *region_et;
- 
- 	if (psr->panel_replay_enabled && psr->sel_update_enabled)
- 		mode = "Panel Replay Selective Update";
-@@ -3972,7 +3977,12 @@ static void intel_psr_print_mode(struct intel_dp *intel_dp,
- 	else
- 		region_et = "";
- 
--	seq_printf(m, "PSR mode: %s%s%s\n", mode, status, region_et);
-+	if (psr->enabled) {
-+		seq_puts(m, "PSR enabled\n");
-+		seq_printf(m, "PSR mode: %s%s\n", mode, region_et);
-+	} else {
-+		seq_printf(m, "PSR disabled: %s\n", psr->no_psr_reason);
-+	}
- }
- 
- static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
--- 
-2.45.2
+Tim can you follow up with this? Reducing the communication chain to avoid 
+dropping information.
 
+Best regards,
+
+Werner Sembach
+
+>
+> Thanks for the investigation and the quirk,
+> Rodrigo.
+>
+>> The flicker manifests ever few seconds 1-3 black frames in quick
+>> succession.
+>>
+>> On windows 300Hz can not be selected for the iGPU, but the panel advertises
+>> it.
+>>
+>> A cleaner solution would probably to go over the pixel clock, but for this
+>> device there is only one 300Hz mode in the panels edid and that is at the
+>> nativ resolution. Chroma subsampling was not tested as linux afaik offers
+>> no way to easily enforce it for intel gpus.
+>>
+>> Tim Guttzeit (1):
+>>    drm/i915/display: Avoid unsupported output mode with 300Hz on TUXEDO
+>>      device
+>>
+>>   drivers/gpu/drm/i915/display/intel_dp.c     |  5 ++++
+>>   drivers/gpu/drm/i915/display/intel_quirks.c | 30 +++++++++++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
+>>   3 files changed, 36 insertions(+)
+>>
+>> -- 
+>> 2.43.0
+>>
