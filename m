@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B57F3C83F09
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 10:55:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B00B5C83F03
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 10:55:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7798E10E79B;
-	Wed,  9 Jul 2025 10:55:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76B1710E79C;
+	Wed,  9 Jul 2025 10:55:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="KqcKlbiR";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ej1/gDVP";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34A2A10E79A
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 10:55:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F8B110E79C
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 10:55:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=5TzWF2w5XeRmK7z7UJiyvbIsln5GjitnRJ9oPrs54xY=; b=KqcKlbiRTP8W2ogKh7kYFyLmxK
- XtqbPqYmlTDqcUsd0kzzRFGKbSG8Urs4LYIvCCU2vVZoSzo8tVLFGVNedABKzysDerGEWijT52R47
- OG1IZ0C4z9zm3lhF7ior+3lbXG4infgf1tkaXW6ONiAopHkF6MhRZHblA4tgPyvxfvMgNwVeKHnNo
- RgNg1A6e5Ou12NhYX6A5LTBxanJuQKAVmgUZxHXoXkzQ9oNziJvUDvl+WWN2JEJidvRVedCGDmgAR
- mZ65DlCbQSEszse2gZJGznKlqa4GC9ASfhcFQBfTevHR/W396nlTLUUuMx+7Ug2BuDGycI/yQLKQL
- o+O5rEDA==;
+ bh=kELqqKoVBQHdVFOc9tg+Xpw4UXvrDSU9FlsTnphVdOo=; b=ej1/gDVP+Gs/0Q8+xKS6yAvAig
+ LYAxC3a2ylqpvNeNQsjuuBGbjC6DvkM4kWPOtti98jskUwjHVBl3Fokt+ak9ggn1YJsT2pLrAd6U1
+ 7+Qut50KVJGzZQYc2336i9Y0IGInyF7ejz9KDxDsIpGxX1a3YwnJq5dTU2JeYcoUMg3dCKCrodV9b
+ FOYUuQEOS1Wc7YV3ootNmGaLxbe/8TICaTzisNwwNJxERGV6xsyofpUR+lfop5FRS2GBxRjSpHqDO
+ xHV4aDxI11zl1LpmX3hg2V6wPxKazB1OHRvaMaX2dI0cijPFrFXmNY3IP0cgWF5X7mKuO1+pa7f3H
+ cH1F/oyA==;
 Received: from [84.65.48.237] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uZSS5-00EQnr-Fb; Wed, 09 Jul 2025 12:55:01 +0200
+ id 1uZSS7-00EQoE-OL; Wed, 09 Jul 2025 12:55:03 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v9 4/8] drm/xe: Track number of written dwords from workaround
- batch buffer emission
-Date: Wed,  9 Jul 2025 11:54:51 +0100
-Message-ID: <20250709105455.93902-5-tvrtko.ursulin@igalia.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH v9 7/8] drm/xe/xelp: Implement Wa_16010904313
+Date: Wed,  9 Jul 2025 11:54:54 +0100
+Message-ID: <20250709105455.93902-8-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250709105455.93902-1-tvrtko.ursulin@igalia.com>
 References: <20250709105455.93902-1-tvrtko.ursulin@igalia.com>
@@ -59,54 +59,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Indirect context setup will need to get to the number of written dwords.
-Lets add it as an output parameter so it can be accessed from the finish
-helper regardless of whether code is writing directly or via an shadow
-buffer.
+Add XeLP workaround 16010904313.
+
+The description calls for it to be emitted as the indirect context buffer
+workaround for render and compute, and from the workaround batch buffer
+for the other engines. Therefore we plug into the previously added
+respective top level emission functions.
+
+The actual command streamer programming sequence differs from what is
+described in the PRM, in that it assumes the listed LRCA offset was
+supposed to actually refer to the location of the CTX_TIMESTAMP register
+instead of LRCA + 0x180c (which is in GPR space). Latter appears to make
+more sense under the assumption that multiple writes are helping with
+restoring the CTX_TIMESTAMP register content from the saved context state.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |  1 +
+ drivers/gpu/drm/xe/xe_lrc.c                   | 45 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules            |  1 +
+ 3 files changed, 47 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index e3f5e8bb3ebc..c47b290e0e9f 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -65,6 +65,7 @@
+ 
+ #define MI_LOAD_REGISTER_MEM		(__MI_INSTR(0x29) | XE_INSTR_NUM_DW(4))
+ #define   MI_LRM_USE_GGTT		REG_BIT(22)
++#define   MI_LRM_ASYNC			REG_BIT(21)
+ 
+ #define MI_LOAD_REGISTER_REG		(__MI_INSTR(0x2a) | XE_INSTR_NUM_DW(3))
+ #define   MI_LRR_DST_CS_MMIO		REG_BIT(19)
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 5d5b76f16829..229cfde91799 100644
+index 508bf032e06e..5678d8b81356 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -991,6 +991,7 @@ struct bo_setup_state {
- 	/* State: */
- 	u32			*buffer;
- 	u32			*ptr;
-+	unsigned int		written;
- };
- 
- static int setup_bo(struct bo_setup_state *state)
-@@ -1023,6 +1024,7 @@ static int setup_bo(struct bo_setup_state *state)
- 			goto fail;
- 
- 		state->ptr += len;
-+		state->written += len;
- 	}
- 
- 	return 0;
-@@ -1039,7 +1041,7 @@ static void finish_bo(struct bo_setup_state *state)
- 
- 	xe_map_memcpy_to(gt_to_xe(state->lrc->gt), &state->lrc->bo->vmap,
- 			 state->offset, state->buffer,
--			 (state->ptr - state->buffer) * sizeof(u32));
-+			 state->written * sizeof(u32));
- 	kfree(state->buffer);
+@@ -53,6 +53,11 @@ lrc_to_xe(struct xe_lrc *lrc)
+ static bool
+ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
+ {
++	if (XE_WA(gt, 16010904313) &&
++	    (class == XE_ENGINE_CLASS_RENDER ||
++	     class == XE_ENGINE_CLASS_COMPUTE))
++		return true;
++
+ 	return false;
  }
  
-@@ -1063,6 +1065,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 		return ret;
+@@ -993,6 +998,44 @@ static ssize_t setup_utilization_wa(struct xe_lrc *lrc,
+ 	return cmd - batch;
+ }
  
- 	*state.ptr++ = MI_BATCH_BUFFER_END;
-+	state.written++;
- 
- 	finish_bo(&state);
- 
++static ssize_t
++setup_timestamp_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe, u32 *batch,
++		   size_t max_len)
++{
++	const u32 ts_addr = __xe_lrc_ctx_timestamp_ggtt_addr(lrc);
++	u32 *cmd = batch;
++
++	if (!XE_WA(lrc->gt, 16010904313) ||
++	    !(hwe->class == XE_ENGINE_CLASS_RENDER ||
++	      hwe->class == XE_ENGINE_CLASS_COMPUTE ||
++	      hwe->class == XE_ENGINE_CLASS_COPY ||
++	      hwe->class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++	      hwe->class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
++		return 0;
++
++	if (xe_gt_WARN_ON(lrc->gt, max_len < 12))
++		return -ENOSPC;
++
++	*cmd++ = MI_LOAD_REGISTER_MEM | MI_LRM_USE_GGTT | MI_LRI_LRM_CS_MMIO |
++		 MI_LRM_ASYNC;
++	*cmd++ = RING_CTX_TIMESTAMP(0).addr;
++	*cmd++ = ts_addr;
++	*cmd++ = 0;
++
++	*cmd++ = MI_LOAD_REGISTER_MEM | MI_LRM_USE_GGTT | MI_LRI_LRM_CS_MMIO |
++		 MI_LRM_ASYNC;
++	*cmd++ = RING_CTX_TIMESTAMP(0).addr;
++	*cmd++ = ts_addr;
++	*cmd++ = 0;
++
++	*cmd++ = MI_LOAD_REGISTER_MEM | MI_LRM_USE_GGTT | MI_LRI_LRM_CS_MMIO;
++	*cmd++ = RING_CTX_TIMESTAMP(0).addr;
++	*cmd++ = ts_addr;
++	*cmd++ = 0;
++
++	return cmd - batch;
++}
++
+ struct bo_setup {
+ 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 			 u32 *batch, size_t max_size);
+@@ -1068,6 +1111,7 @@ static void finish_bo(struct bo_setup_state *state)
+ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ {
+ 	static const struct bo_setup funcs[] = {
++		{ .setup = setup_timestamp_wa },
+ 		{ .setup = setup_utilization_wa },
+ 	};
+ 	struct bo_setup_state state = {
+@@ -1100,6 +1144,7 @@ static int
+ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ {
+ 	static struct bo_setup rcs_funcs[] = {
++		{ .setup = setup_timestamp_wa },
+ 	};
+ 	struct bo_setup_state state = {
+ 		.lrc = lrc,
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 96cc33da0fb5..bf798f3b8f93 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -1,4 +1,5 @@
+ 1607983814	GRAPHICS_VERSION_RANGE(1200, 1210)
++16010904313	GRAPHICS_VERSION_RANGE(1200, 1210)
+ 22012773006	GRAPHICS_VERSION_RANGE(1200, 1250)
+ 14014475959	GRAPHICS_VERSION_RANGE(1270, 1271), GRAPHICS_STEP(A0, B0)
+ 		PLATFORM(DG2)
 -- 
 2.48.0
 
