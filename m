@@ -4,27 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2C7BC83F09
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 13:52:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76A81C83F03
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 13:54:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF6E10E7F5;
-	Wed,  9 Jul 2025 13:52:45 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8B0E10E7F3;
- Wed,  9 Jul 2025 13:52:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3239732951705938483=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3401E10E7F5;
+	Wed,  9 Jul 2025 13:54:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="ER4h1V2Q";
+	dkim-atps=neutral
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1CEA10E7F8
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 13:54:17 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-454b1d0a115so19930555e9.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 09 Jul 2025 06:54:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1752069256; x=1752674056; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=6vLeNNO8152O2umrZswKv7pwUlDj7EkRHEDFrV26qmg=;
+ b=ER4h1V2QTvZy4FkUPlcvV5LYSaYfqdHHK7H90WdkdtqQxifSY03u80yRKB4ZLOO/M8
+ AyF3QDy9YQeS2nCB+dl6IwX0CNcrCjaeMxrQ4BM5bQEI7f0C72qa81iYbrad0QFX0Bs7
+ HUAlcSju1x2MCbNxks/vimONeXfhNMbPPpngM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752069256; x=1752674056;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6vLeNNO8152O2umrZswKv7pwUlDj7EkRHEDFrV26qmg=;
+ b=GjN5Kn524zN0m28T59vBh34NGkGiNJ+uVS7pmPsbQfEoeiYmIJCaUZOGCobRgrwpaH
+ eJQJASQOLpoxmOtbGiF+2u1HrLCXaKdC/GB+04nnhn4Y3iL5pjN06Chb1VpW6gt4a8ZU
+ ng6yUIMz+VdFnhi0o8YJZQBMEcWVMhAzAgrqSnQ+2st984TWkdFqRTIM16aY+oSv9JT9
+ xGCGz3tLCaweCV4t8/gqRVApsJ7ui1qsM9vH9KJIk4yrljSUPTPkIcLw8xB9iXrR1PHu
+ 18nwAuDzKnQxiGxSfrnVwo0+KPNPx6FSmWUyKbbNNaXdT3/6aFUzBkf6MXrZkkeG8tnq
+ 0EDg==
+X-Gm-Message-State: AOJu0Ywi38COmTWldX9+3nSpZgEuIcXtuYJUBcBOVue5c4c7B+yvYUyi
+ JO1hzJFtKsEFZhBqj1BbrrwwYEpDFwMTb1Gfsy+cJrSExFMG0cPtJDRbOf+Jk0vpgVE=
+X-Gm-Gg: ASbGncuJ3Fx+rCmJXgI0ikcH3BiR6Knn4srd50ab9oPtK30WBjAr4+Z7VRdwRvWvexu
+ IgqDCt1S1XirWv4V0vq3hkpyraAgE2OyBV31SEaja9EK7BkEMlMjxKUc+KKLFGI1KFwPozEFPrD
+ 4HFISMPfwfj8s2z80lgvyq73qopt89p6euL9d65HXHIr1PJBCTncdsesItSLEiu4W8Ag/z8DYUP
+ uqz6ec7PHe0eS2v1ORxW4rQ966GCgv0e+xG8R3+RwqMBf3xWOdUzROLG++Tnfkh391RF8IK8Tr8
+ DHOUF7y5y9pRUsWw4iAyUSnynPLKC4NZQGImgXEx9uaulta2sgv/o9oJKUB7L24Y2C41BbLupA=
+ =
+X-Google-Smtp-Source: AGHT+IFQ64bJI0YogKdzo+Zkc2dfr0OjXcld75k0uMW3P0ftqy2V9CVtvBoV6ut+g73nqKeYrS+C3Q==
+X-Received: by 2002:a05:600c:4709:b0:453:62e9:125a with SMTP id
+ 5b1f17b1804b1-454d53ef39amr27994395e9.18.1752069256234; 
+ Wed, 09 Jul 2025 06:54:16 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-454d50516e3sm24944955e9.15.2025.07.09.06.54.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 09 Jul 2025 06:54:15 -0700 (PDT)
+Date: Wed, 9 Jul 2025 15:54:13 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Xe Development <intel-xe@lists.freedesktop.org>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, stable@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Simona Vetter <simona.vetter@intel.com>
+Subject: Re: [PATCH 1/2] drm/gem: Fix race in drm_gem_handle_create_tail()
+Message-ID: <aG50hcfCsmGdSmnl@phenom.ffwll.local>
+References: <20250707151814.603897-1-simona.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Cleaning_up_code_related_to?=
- =?utf-8?q?_VRAM_regions_and_its_initialization_-_part_2_=28rev13=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Jul 2025 13:52:43 -0000
-Message-ID: <175206916381.147214.2255475128753013630@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250709121543.4129807-1-piotr.piorkowski@intel.com>
-In-Reply-To: <20250709121543.4129807-1-piotr.piorkowski@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250707151814.603897-1-simona.vetter@ffwll.ch>
+X-Operating-System: Linux phenom 6.12.30-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,300 +86,152 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3239732951705938483==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Jul 07, 2025 at 05:18:13PM +0200, Simona Vetter wrote:
+> Object creation is a careful dance where we must guarantee that the
+> object is fully constructed before it is visible to other threads, and
+> GEM buffer objects are no difference.
+> 
+> Final publishing happens by calling drm_gem_handle_create(). After
+> that the only allowed thing to do is call drm_gem_object_put() because
+> a concurrent call to the GEM_CLOSE ioctl with a correctly guessed id
+> (which is trivial since we have a linear allocator) can already tear
+> down the object again.
+> 
+> Luckily most drivers get this right, the very few exceptions I've
+> pinged the relevant maintainers for. Unfortunately we also need
+> drm_gem_handle_create() when creating additional handles for an
+> already existing object (e.g. GETFB ioctl or the various bo import
+> ioctl), and hence we cannot have a drm_gem_handle_create_and_put() as
+> the only exported function to stop these issues from happening.
+> 
+> Now unfortunately the implementation of drm_gem_handle_create() isn't
+> living up to standards: It does correctly finishe object
+> initialization at the global level, and hence is safe against a
+> concurrent tear down. But it also sets up the file-private aspects of
+> the handle, and that part goes wrong: We fully register the object in
+> the drm_file.object_idr before calling drm_vma_node_allow() or
+> obj->funcs->open, which opens up races against concurrent removal of
+> that handle in drm_gem_handle_delete().
+> 
+> Fix this with the usual two-stage approach of first reserving the
+> handle id, and then only registering the object after we've completed
+> the file-private setup.
+> 
+> Jacek reported this with a testcase of concurrently calling GEM_CLOSE
+> on a freshly-created object (which also destroys the object), but it
+> should be possible to hit this with just additional handles created
+> through import or GETFB without completed destroying the underlying
+> object with the concurrent GEM_CLOSE ioctl calls.
+> 
+> Note that the close-side of this race was fixed in f6cd7daecff5 ("drm:
+> Release driver references to handle before making it available
+> again"), which means a cool 9 years have passed until someone noticed
+> that we need to make this symmetry or there's still gaps left :-/
+> Without the 2-stage close approach we'd still have a race, therefore
+> that's an integral part of this bugfix.
+> 
+> More importantly, this means we can have NULL pointers behind
+> allocated id in our drm_file.object_idr. We need to check for that
+> now:
+> 
+> - drm_gem_handle_delete() checks for ERR_OR_NULL already
+> 
+> - drm_gem.c:object_lookup() also chekcs for NULL
+> 
+> - drm_gem_release() should never be called if there's another thread
+>   still existing that could call into an IOCTL that creates a new
+>   handle, so cannot race. For paranoia I added a NULL check to
+>   drm_gem_object_release_handle() though.
+> 
+> - most drivers (etnaviv, i915, msm) are find because they use
+>   idr_find(), which maps both ENOENT and NULL to NULL.
+> 
+> - drivers using idr_for_each_entry() should also be fine, because
+>   idr_get_next does filter out NULL entries and continues the
+>   iteration.
+> 
+> - The same holds for drm_show_memory_stats().
+> 
+> v2: Use drm_WARN_ON (Thomas)
+> 
+> Reported-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+> Tested-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: stable@vger.kernel.org
+> Cc: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Signed-off-by: Simona Vetter <simona.vetter@intel.com>
+> Signed-off-by: Simona Vetter <simona.vetter@ffwll.ch>
 
-== Series Details ==
+Pushed to drm-misc-fixes, thanks for the reviews.
+-Sima
 
-Series: Cleaning up code related to VRAM regions and its initialization - part 2 (rev13)
-URL   : https://patchwork.freedesktop.org/series/149503/
-State : success
+> ---
+>  drivers/gpu/drm/drm_gem.c | 10 +++++++++-
+>  include/drm/drm_file.h    |  3 +++
+>  2 files changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index bc505d938b3e..1aa9192c4cc6 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -316,6 +316,9 @@ drm_gem_object_release_handle(int id, void *ptr, void *data)
+>  	struct drm_file *file_priv = data;
+>  	struct drm_gem_object *obj = ptr;
+>  
+> +	if (drm_WARN_ON(obj->dev, !data))
+> +		return 0;
+> +
+>  	if (obj->funcs->close)
+>  		obj->funcs->close(obj, file_priv);
+>  
+> @@ -436,7 +439,7 @@ drm_gem_handle_create_tail(struct drm_file *file_priv,
+>  	idr_preload(GFP_KERNEL);
+>  	spin_lock(&file_priv->table_lock);
+>  
+> -	ret = idr_alloc(&file_priv->object_idr, obj, 1, 0, GFP_NOWAIT);
+> +	ret = idr_alloc(&file_priv->object_idr, NULL, 1, 0, GFP_NOWAIT);
+>  
+>  	spin_unlock(&file_priv->table_lock);
+>  	idr_preload_end();
+> @@ -457,6 +460,11 @@ drm_gem_handle_create_tail(struct drm_file *file_priv,
+>  			goto err_revoke;
+>  	}
+>  
+> +	/* mirrors drm_gem_handle_delete to avoid races */
+> +	spin_lock(&file_priv->table_lock);
+> +	obj = idr_replace(&file_priv->object_idr, obj, handle);
+> +	WARN_ON(obj != NULL);
+> +	spin_unlock(&file_priv->table_lock);
+>  	*handlep = handle;
+>  	return 0;
+>  
+> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+> index eab7546aad79..115763799625 100644
+> --- a/include/drm/drm_file.h
+> +++ b/include/drm/drm_file.h
+> @@ -300,6 +300,9 @@ struct drm_file {
+>  	 *
+>  	 * Mapping of mm object handles to object pointers. Used by the GEM
+>  	 * subsystem. Protected by @table_lock.
+> +	 *
+> +	 * Note that allocated entries might be NULL as a transient state when
+> +	 * creating or deleting a handle.
+>  	 */
+>  	struct idr object_idr;
+>  
+> -- 
+> 2.49.0
+> 
 
-== Summary ==
-
-CI Bug Log - changes from xe-3381-20adfb60af27bc0e490b2d20609c3158ae2fbd26_BAT -> xe-pw-149503v13_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-149503v13_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-lnl-2:          NOTRUN -> [SKIP][1] ([Intel XE#1466] / [Intel XE#2235])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-lnl-2:          NOTRUN -> [SKIP][2] ([Intel XE#2235] / [Intel XE#2482]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-lnl-2:          NOTRUN -> [SKIP][3] ([Intel XE#2235] / [Intel XE#352]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-lnl-2:          NOTRUN -> [SKIP][4] ([Intel XE#2235] / [Intel XE#2548])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-lnl-2:          NOTRUN -> [SKIP][5] ([Intel XE#1470] / [Intel XE#2235] / [Intel XE#2853])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-lnl-2:          NOTRUN -> [SKIP][6] ([Intel XE#2235]) +13 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-lnl-2:          NOTRUN -> [SKIP][7] ([Intel XE#2850] / [Intel XE#929]) +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-off:
-    - bat-lnl-2:          NOTRUN -> [SKIP][8] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-lnl-2:          NOTRUN -> [SKIP][9] ([Intel XE#688]) +11 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-lnl-2:          NOTRUN -> [SKIP][10] ([Intel XE#2229]) +2 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-lnl-2:          NOTRUN -> [SKIP][11] ([Intel XE#1416])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-lnl-2:          NOTRUN -> [SKIP][12] ([Intel XE#1420] / [Intel XE#2838])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-lnl-2:          NOTRUN -> [SKIP][13] ([Intel XE#977])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-lnl-2:          NOTRUN -> [SKIP][14] ([Intel XE#2236] / [Intel XE#979])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-lnl-2:          NOTRUN -> [SKIP][15] ([Intel XE#3342])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  
-#### Possible fixes ####
-
-  * igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:
-    - bat-lnl-2:          [ABORT][16] -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3381-20adfb60af27bc0e490b2d20609c3158ae2fbd26/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
-
-  
-  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
-  [Intel XE#1416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#1466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466
-  [Intel XE#1470]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2235]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
-  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#2853]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/352
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
-
-
-Build changes
--------------
-
-  * Linux: xe-3381-20adfb60af27bc0e490b2d20609c3158ae2fbd26 -> xe-pw-149503v13
-
-  IGT_8447: 8447
-  xe-3381-20adfb60af27bc0e490b2d20609c3158ae2fbd26: 20adfb60af27bc0e490b2d20609c3158ae2fbd26
-  xe-pw-149503v13: 149503v13
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/index.html
-
---===============3239732951705938483==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Cleaning up code related to VRAM regions and its initialization - part 2 (rev13)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149503/">https://patchwork.freedesktop.org/series/149503/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3381-20adfb60af27bc0e490b2d20609c3158ae2fbd26_BAT -&gt; xe-pw-149503v13_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-149503v13_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466">Intel XE#1466</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/352">Intel XE#352</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470">Intel XE#1470</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853">Intel XE#2853</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416">Intel XE#1416</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3381-20adfb60af27bc0e490b2d20609c3158ae2fbd26/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v13/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3381-20adfb60af27bc0e490b2d20609c3158ae2fbd26 -&gt; xe-pw-149503v13</li>
-</ul>
-<p>IGT_8447: 8447<br />
-  xe-3381-20adfb60af27bc0e490b2d20609c3158ae2fbd26: 20adfb60af27bc0e490b2d20609c3158ae2fbd26<br />
-  xe-pw-149503v13: 149503v13</p>
-
-</body>
-</html>
-
---===============3239732951705938483==--
+-- 
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
