@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 801BBC83F03
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 16:34:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 706E8C83F03
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 16:43:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21BB610E815;
-	Wed,  9 Jul 2025 16:34:51 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D469110E08E;
- Wed,  9 Jul 2025 16:34:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7249026036781190993=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D6B610E29D;
+	Wed,  9 Jul 2025 16:43:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A8uhlglt";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D147C10E29D
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 16:43:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752079393; x=1783615393;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PjluKFVf4j2qcE+G9X94+MrqFRX9IxBBrsSkXoUu0FM=;
+ b=A8uhlgltIgSYn/LsjM4/F4FIibzz9QW+QXAUpuK+QWB51EfdtiHNWSWc
+ JP+ThkWo+fLPYGdbyKzI0MI/que9TRo7v1niel1VbVW6C9cEYrpMXgfCG
+ /G49gVUTansi864NTqgncafDrYYgrOVhbg1d/G42I8BY0eM5KD1KXPC4T
+ uGBHqu3Sk6p3zKEKxQWcAJUxV4Wur8cJjYtf7H9udr4ay1ikIIjimD+Dk
+ mlS606dbAAwWA70TzfSpZ6XAUwI69aPHacOPak7sOx3Qmtc9c3LwI9pG4
+ ZNfFHkcAYxada9Qe1eFSqlyBn7ADQLZJFQkvobaRj7jHZ/Cz1jOlpv3E6 A==;
+X-CSE-ConnectionGUID: aos2oNQjSDittu5gWqqYgg==
+X-CSE-MsgGUID: rTclGIpKRXK1b92iUw5Lwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="53561615"
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="53561615"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2025 09:43:13 -0700
+X-CSE-ConnectionGUID: a6vj7t9qTpGe0YiPk6X1lA==
+X-CSE-MsgGUID: 1lkfI+qERNah1gx09Z4IrQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="155234849"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa010.jf.intel.com with ESMTP; 09 Jul 2025 09:43:10 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: lucas.demarchi@intel.com,
+	rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v4] drm/xe: Expose fan control and voltage regulator version
+Date: Wed,  9 Jul 2025 22:12:24 +0530
+Message-Id: <20250709164224.2676086-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Expose_fan_contro?=
- =?utf-8?q?l_and_voltage_regulator_version?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Jul 2025 16:34:49 -0000
-Message-ID: <175207888986.148257.902180061673427952@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250709153402.2657493-1-raag.jadav@intel.com>
-In-Reply-To: <20250709153402.2657493-1-raag.jadav@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,224 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7249026036781190993==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add sysfs attributes for late binding features which expose bound version
+to the user.
 
-== Series Details ==
+v2: Rework attribute and macro naming (Badal)
+v3: Drop fancy formatting (Rodrigo)
+v4: Form version string using local variables (Rodrigo)
 
-Series: drm/xe: Expose fan control and voltage regulator version
-URL   : https://patchwork.freedesktop.org/series/151402/
-State : success
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 143 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pcode_api.h    |  15 +++
+ 2 files changed, 157 insertions(+), 1 deletion(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index b9440f8c781e..e5fd0cd537bc 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -24,6 +24,12 @@
+  *
+  * vram_d3cold_threshold - Report/change vram used threshold(in MB) below
+  * which vram save/restore is permissible during runtime D3cold entry/exit.
++ *
++ * lb_fan_control_version - Fan control version provisioned by late binding.
++ * Exposed only if supported by the device.
++ *
++ * lb_voltage_regulator_version - Voltage regulator version provisioned by late
++ * binding. Exposed only if supported by the device.
+  */
+ 
+ static ssize_t
+@@ -65,6 +71,135 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
+ 
+ static DEVICE_ATTR_RW(vram_d3cold_threshold);
+ 
++static ssize_t
++lb_fan_control_version_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++	struct xe_tile *root = xe_device_get_root_tile(xe);
++	u32 cap, ver_low = FAN_TABLE, ver_high = FAN_TABLE;
++	u16 major = 0, minor = 0, hotfix = 0, build = 0;
++	int ret;
++
++	xe_pm_runtime_get(xe);
++
++	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
++			    &cap, NULL);
++	if (ret)
++		goto out;
++
++	if (REG_FIELD_GET(V1_FAN_PROVISIONED, cap)) {
++		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_LOW, 0),
++				    &ver_low, NULL);
++		if (ret)
++			goto out;
++
++		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_HIGH, 0),
++				    &ver_high, NULL);
++		if (ret)
++			goto out;
++
++		major = REG_FIELD_GET(MAJOR_VERSION_MASK, ver_low);
++		minor = REG_FIELD_GET(MINOR_VERSION_MASK, ver_low);
++		hotfix = REG_FIELD_GET(HOTFIX_VERSION_MASK, ver_high);
++		build = REG_FIELD_GET(BUILD_VERSION_MASK, ver_high);
++	}
++out:
++	xe_pm_runtime_put(xe);
++
++	return ret ?: sysfs_emit(buf, "%u.%u.%u.%u\n", major, minor, hotfix, build);
++}
++static DEVICE_ATTR_ADMIN_RO(lb_fan_control_version);
++
++static ssize_t
++lb_voltage_regulator_version_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++	struct xe_tile *root = xe_device_get_root_tile(xe);
++	u32 cap, ver_low = VR_CONFIG, ver_high = VR_CONFIG;
++	u16 major = 0, minor = 0, hotfix = 0, build = 0;
++	int ret;
++
++	xe_pm_runtime_get(xe);
++
++	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
++			    &cap, NULL);
++	if (ret)
++		goto out;
++
++	if (REG_FIELD_GET(VR_PARAMS_PROVISIONED, cap)) {
++		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_LOW, 0),
++				    &ver_low, NULL);
++		if (ret)
++			goto out;
++
++		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_HIGH, 0),
++				    &ver_high, NULL);
++		if (ret)
++			goto out;
++
++		major = REG_FIELD_GET(MAJOR_VERSION_MASK, ver_low);
++		minor = REG_FIELD_GET(MINOR_VERSION_MASK, ver_low);
++		hotfix = REG_FIELD_GET(HOTFIX_VERSION_MASK, ver_high);
++		build = REG_FIELD_GET(BUILD_VERSION_MASK, ver_high);
++	}
++out:
++	xe_pm_runtime_put(xe);
++
++	return ret ?: sysfs_emit(buf, "%u.%u.%u.%u\n", major, minor, hotfix, build);
++}
++static DEVICE_ATTR_ADMIN_RO(lb_voltage_regulator_version);
++
++static int late_bind_create_files(struct device *dev)
++{
++	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++	struct xe_tile *root = xe_device_get_root_tile(xe);
++	u32 cap;
++	int ret;
++
++	xe_pm_runtime_get(xe);
++
++	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
++			    &cap, NULL);
++	if (ret)
++		goto out;
++
++	if (REG_FIELD_GET(V1_FAN_SUPPORTED, cap)) {
++		ret = sysfs_create_file(&dev->kobj, &dev_attr_lb_fan_control_version.attr);
++		if (ret)
++			goto out;
++	}
++
++	if (REG_FIELD_GET(VR_PARAMS_SUPPORTED, cap))
++		ret = sysfs_create_file(&dev->kobj, &dev_attr_lb_voltage_regulator_version.attr);
++out:
++	xe_pm_runtime_put(xe);
++
++	return ret;
++}
++
++static void late_bind_remove_files(struct device *dev)
++{
++	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++	struct xe_tile *root = xe_device_get_root_tile(xe);
++	u32 cap;
++	int ret;
++
++	xe_pm_runtime_get(xe);
++
++	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
++			    &cap, NULL);
++	if (ret)
++		goto out;
++
++	if (REG_FIELD_GET(V1_FAN_SUPPORTED, cap))
++		sysfs_remove_file(&dev->kobj, &dev_attr_lb_fan_control_version.attr);
++
++	if (REG_FIELD_GET(VR_PARAMS_SUPPORTED, cap))
++		sysfs_remove_file(&dev->kobj, &dev_attr_lb_voltage_regulator_version.attr);
++out:
++	xe_pm_runtime_put(xe);
++}
++
+ /**
+  * DOC: PCIe Gen5 Limitations
+  *
+@@ -151,8 +286,10 @@ static void xe_device_sysfs_fini(void *arg)
+ 	if (xe->d3cold.capable)
+ 		sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
+ 
+-	if (xe->info.platform == XE_BATTLEMAGE)
++	if (xe->info.platform == XE_BATTLEMAGE) {
+ 		sysfs_remove_files(&xe->drm.dev->kobj, auto_link_downgrade_attrs);
++		late_bind_remove_files(xe->drm.dev);
++	}
+ }
+ 
+ int xe_device_sysfs_init(struct xe_device *xe)
+@@ -170,6 +307,10 @@ int xe_device_sysfs_init(struct xe_device *xe)
+ 		ret = sysfs_create_files(&dev->kobj, auto_link_downgrade_attrs);
+ 		if (ret)
+ 			return ret;
++
++		ret = late_bind_create_files(dev);
++		if (ret)
++			return ret;
+ 	}
+ 
+ 	return devm_add_action_or_reset(dev, xe_device_sysfs_fini, xe);
+diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+index 0befdea77db1..92bfcba51e19 100644
+--- a/drivers/gpu/drm/xe/xe_pcode_api.h
++++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+@@ -50,6 +50,21 @@
+ #define	READ_PL_FROM_FW				0x1
+ #define	READ_PL_FROM_PCODE			0x0
+ 
++#define   PCODE_LATE_BINDING			0x5C
++#define     GET_CAPABILITY_STATUS		0x0
++#define       V1_FAN_SUPPORTED			REG_BIT(0)
++#define       VR_PARAMS_SUPPORTED		REG_BIT(3)
++#define       V1_FAN_PROVISIONED		REG_BIT(16)
++#define       VR_PARAMS_PROVISIONED		REG_BIT(19)
++#define     GET_VERSION_LOW			0x1
++#define     GET_VERSION_HIGH			0x2
++#define       MAJOR_VERSION_MASK		REG_GENMASK(31, 16)
++#define       MINOR_VERSION_MASK		REG_GENMASK(15, 0)
++#define       HOTFIX_VERSION_MASK		REG_GENMASK(31, 16)
++#define       BUILD_VERSION_MASK		REG_GENMASK(15, 0)
++#define       FAN_TABLE				1
++#define       VR_CONFIG				2
++
+ #define   PCODE_FREQUENCY_CONFIG		0x6e
+ /* Frequency Config Sub Commands (param1) */
+ #define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
+-- 
+2.34.1
 
-CI Bug Log - changes from xe-3383-0cc3f2731cb8e77b27ffb7f361407fd240276ed5_BAT -> xe-pw-151402v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3383-0cc3f2731cb8e77b27ffb7f361407fd240276ed5 -> xe-pw-151402v1
-
-  IGT_8447: 8447
-  xe-3383-0cc3f2731cb8e77b27ffb7f361407fd240276ed5: 0cc3f2731cb8e77b27ffb7f361407fd240276ed5
-  xe-pw-151402v1: 151402v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151402v1/index.html
-
---===============7249026036781190993==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Expose fan control and voltage regulator version</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151402/">https://patchwork.freedesktop.org/series/151402/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151402v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151402v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3383-0cc3f2731cb8e77b27ffb7f361407fd240276ed5_BAT -&gt; xe-pw-151402v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3383-0cc3f2731cb8e77b27ffb7f361407fd240276ed5 -&gt; xe-pw-151402v1</li>
-</ul>
-<p>IGT_8447: 8447<br />
-  xe-3383-0cc3f2731cb8e77b27ffb7f361407fd240276ed5: 0cc3f2731cb8e77b27ffb7f361407fd240276ed5<br />
-  xe-pw-151402v1: 151402v1</p>
-
-</body>
-</html>
-
---===============7249026036781190993==--
