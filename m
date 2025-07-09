@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0745FC83F0A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00687C83F09
 	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 22:16:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE4BC10E120;
-	Wed,  9 Jul 2025 22:16:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B99910E2B7;
+	Wed,  9 Jul 2025 22:16:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C1St0Ier";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JSsktI0P";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E2AA10E0E5
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 22:16:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ABF910E0E5
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 22:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1752099369; x=1783635369;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cv75rH+BuHNL1AVF7Tdf1WTsrgXz5Zh02k4MNiPEShU=;
- b=C1St0Ier4RrQ8PN0/hMCzDT9zK9XVxLo9AyzSRKVAU7k9qWoia4UMX58
- h1vzrjOaJPnx1SeDA49DEChLLG7Pwe6Ci3VdpIApUu+uTJhzMO0mDd+D8
- /Rxbzjd7Wz+g5AX7I3MSOIQBH2Tac1IVpLBKnMIFbREqq1my8CJ3i83mo
- LzygQwkBPbWD8yGJuoeVQlfqu6RJ+Fx1GjTx7yp1ixj5oCT/Esk7uKyNH
- wGPfl8wRV0jV780tD03nhqSh75xeMTc8bJ8g9PtbxmfkBBwjDlHnxhJ77
- yVnEZhxh+2Fpj+/MGnMA+CQd9u7GzXfdZVg0Wy9IQOwljq1ueONC6+8RR A==;
-X-CSE-ConnectionGUID: /egFZH+gR7KpU+hOqttkcA==
-X-CSE-MsgGUID: Ucphl9y4RXKQtR5pGqhbSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="54518054"
-X-IronPort-AV: E=Sophos;i="6.16,299,1744095600"; d="scan'208";a="54518054"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=M9tHGPJY7SfO6kyx2CtkckqRDiq/sKvzmiik4oFNBuI=;
+ b=JSsktI0PITorkBhZaU9yny2RRwA4z++7giP6ZpvIP0ROcnpiBYPhgJfu
+ tM4NfdJksznjnZu0cT04fMJY8G680bK6bugC+okDlkHki5lOBuPH+lOa1
+ /ZlsPaPktngqmE1ysfo3hd2M1Bvif2dhMgUg3zgMVVfb5b4s8ugUOM4S/
+ 0Fcqnt9B8UKYlA6Yd7diZ/DtBVi76dXnxQSELXE0BCak7ESPxasrpeptL
+ LboSaAgZTk9MLRLXNlU3Mk1CX+KGAy18LrPb0LkCae7Qz+5gRdUb2S3Mp
+ ILAjvp2w/PJqv02CbzKxfiiqIgNbikNHXnDUqdKh45eH1HEU1dZMMHC7f Q==;
+X-CSE-ConnectionGUID: Df6cn3reRUeTknmSxX8nGw==
+X-CSE-MsgGUID: GrfcNeqnT/2nQ5oBxfwUsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="54518053"
+X-IronPort-AV: E=Sophos;i="6.16,299,1744095600"; d="scan'208";a="54518053"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2025 15:16:09 -0700
-X-CSE-ConnectionGUID: eXAg/ccXTteLZ32GmkrMfA==
-X-CSE-MsgGUID: T8gb6HZOR0yKGsViJNsazw==
+ 09 Jul 2025 15:16:08 -0700
+X-CSE-ConnectionGUID: y4P+VmQGQGyUzZJcl3HT0g==
+X-CSE-MsgGUID: wLuKmvLWSOq3a3p15/Vg8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,299,1744095600"; d="scan'208";a="193096133"
+X-IronPort-AV: E=Sophos;i="6.16,299,1744095600"; d="scan'208";a="193096130"
 Received: from msatwood-mobl.jf.intel.com ([10.24.13.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2025 15:16:09 -0700
+ 09 Jul 2025 15:16:08 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
  matthew.d.roper@intel.com, Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH v6 1/6] drm/xe: prepare xe_gen_wa_oob to be multi-use
-Date: Wed,  9 Jul 2025 15:16:00 -0700
-Message-ID: <20250709221605.172516-2-matthew.s.atwood@intel.com>
+Subject: [PATCH v6 0/6] Create and use XE_DEVICE_WA infrastructure
+Date: Wed,  9 Jul 2025 15:15:59 -0700
+Message-ID: <20250709221605.172516-1-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250709221605.172516-1-matthew.s.atwood@intel.com>
-References: <20250709221605.172516-1-matthew.s.atwood@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,113 +65,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is a need for additional oob rules files. Make the current gen
-file more robust to support more files.
+There is currently no way to apply and track workarounds that are needed
+ahead of GT init. This series adds a bit field to the xe_device
+structure similar to those in the GT structures to apply and track
+workarounds applied at runtime (oobs).
 
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/xe/xe_gen_wa_oob.c | 45 +++++++++++++++++++++++++-----
- 1 file changed, 38 insertions(+), 7 deletions(-)
+Device workarounds in this new infrastructure are tracked in sysfs in a
+new workarounds file.
 
-diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-index ed9183599e31..6581cb0f0e59 100644
---- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-+++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-@@ -18,8 +18,8 @@
- 	" *\n" \
- 	" * This file was generated from rules: %s\n" \
- 	" */\n" \
--	"#ifndef _GENERATED_XE_WA_OOB_\n" \
--	"#define _GENERATED_XE_WA_OOB_\n" \
-+	"#ifndef _GENERATED_%s_\n" \
-+	"#define _GENERATED_%s_\n" \
- 	"\n" \
- 	"enum {\n"
- 
-@@ -52,7 +52,7 @@ static char *strip(char *line, size_t linelen)
- }
- 
- #define MAX_LINE_LEN 4096
--static int parse(FILE *input, FILE *csource, FILE *cheader)
-+static int parse(FILE *input, FILE *csource, FILE *cheader, char *prefix)
- {
- 	char line[MAX_LINE_LEN + 1];
- 	char *name, *prev_name = NULL, *rules;
-@@ -96,7 +96,7 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
- 		}
- 
- 		if (name) {
--			fprintf(cheader, "\tXE_WA_OOB_%s = %u,\n", name, idx);
-+			fprintf(cheader, "\t%s_%s = %u,\n", prefix, name, idx);
- 
- 			/* Close previous entry before starting a new one */
- 			if (idx)
-@@ -118,7 +118,33 @@ static int parse(FILE *input, FILE *csource, FILE *cheader)
- 	if (idx)
- 		fprintf(csource, ") },\n");
- 
--	fprintf(cheader, "\t_XE_WA_OOB_COUNT = %u\n", idx);
-+	fprintf(cheader, "\t_%s_COUNT = %u\n", prefix, idx);
-+
-+	return 0;
-+}
-+
-+static int fn_to_prefix(const char *fn, char *prefix, size_t size)
-+{
-+	size_t len;
-+
-+	fn = basename(fn);
-+	len = strlen(fn);
-+
-+	if (len > size - 1)
-+		return -ENAMETOOLONG;
-+
-+	memcpy(prefix, fn, len + 1);
-+
-+	for (char *p = prefix; *p; p++) {
-+		switch (*p) {
-+		case '.':
-+			*p = '\0';
-+			return 0;
-+		default:
-+			*p = toupper(*p);
-+			break;
-+		}
-+	}
- 
- 	return 0;
- }
-@@ -141,6 +167,7 @@ int main(int argc, const char *argv[])
- 		[ARGS_CHEADER] = { .fn = argv[3], .mode = "w" },
- 	};
- 	int ret = 1;
-+	char prefix[128];
- 
- 	if (argc < 3) {
- 		fprintf(stderr, "ERROR: wrong arguments\n");
-@@ -148,6 +175,9 @@ int main(int argc, const char *argv[])
- 		return 1;
- 	}
- 
-+	if (fn_to_prefix(args[ARGS_CHEADER].fn, prefix, sizeof(prefix)) < 0)
-+		return 1;
-+
- 	for (int i = 0; i < _ARGS_COUNT; i++) {
- 		args[i].f = fopen(args[i].fn, args[i].mode);
- 		if (!args[i].f) {
-@@ -157,9 +187,10 @@ int main(int argc, const char *argv[])
- 		}
- 	}
- 
--	fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn);
-+	fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, prefix, prefix);
-+
- 	ret = parse(args[ARGS_INPUT].f, args[ARGS_CSOURCE].f,
--		    args[ARGS_CHEADER].f);
-+		    args[ARGS_CHEADER].f, prefix);
- 	if (!ret)
- 		fprintf(args[ARGS_CHEADER].f, FOOTER);
- 
+Currently 15015404425 is the only workaround like this, so move it to
+using this new infrastructure.
+
+Wa_15015404425 is also needed for PTL A step compute dies. Implement two
+workarounds. A device Wa_15015404425 oob workaround that applies for mmio
+access before GMDID is available. A GT workaround Wa_15015404425_disbale
+that disables the device Wa_15015404425 when it is not needed.
+
+v2: Change naming from SoC to device, address styling issues, update
+commit messages.
+v3: rebase
+v4: Fix compile issues
+v5: rework xe_gen_wa_oob.c to be more versatile, move device oob init
+into device_probe early, move xe_device new fields into a structure for
+wa_active. Rename to xe_*_wa to xe_wa_* functions. Put the check to
+XE_DEVICE_WA into 1 place (mmio_flush_pending_writes). Create a disable
+macro, fix incidental bit clobbering. Reword explanation around PTL
+Compute die A-step explanation in commit message.
+v6: split xe_gen_wa_oob changes from Makefile, style nits, catch some
+safe checks in RTP, make the implementation of Wa_15015404425 1 patch
+
+Matt Atwood (6):
+  drm/xe: prepare xe_gen_wa_oob to be multi-use
+  drm/xe: add xe_device_wa infrastructure
+  drm/xe: add new type to RTP context
+  drm/xe: Add infrastructure for Device OOB workarounds
+  drm/xe: Move Wa_15015404425 to use the new XE_DEVICE_WA macro
+  drm/xe: extend Wa_15015404425 to apply to PTL
+
+ drivers/gpu/drm/xe/Makefile               |  9 +++-
+ drivers/gpu/drm/xe/xe_debugfs.c           | 20 ++++++++
+ drivers/gpu/drm/xe/xe_device.c            |  8 ++++
+ drivers/gpu/drm/xe/xe_device_types.h      | 12 +++++
+ drivers/gpu/drm/xe/xe_device_wa_oob.rules |  2 +
+ drivers/gpu/drm/xe/xe_gen_wa_oob.c        | 45 +++++++++++++++---
+ drivers/gpu/drm/xe/xe_mmio.c              |  8 ++--
+ drivers/gpu/drm/xe/xe_rtp.c               | 32 +++++++++++++
+ drivers/gpu/drm/xe/xe_rtp.h               |  3 +-
+ drivers/gpu/drm/xe/xe_rtp_types.h         |  2 +
+ drivers/gpu/drm/xe/xe_wa.c                | 58 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa.h                | 22 ++++++++-
+ drivers/gpu/drm/xe/xe_wa_oob.rules        |  2 +
+ 13 files changed, 208 insertions(+), 15 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_device_wa_oob.rules
+
 -- 
 2.49.0
 
