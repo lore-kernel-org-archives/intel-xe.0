@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87099C83F03
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B57F3C83F09
 	for <intel-xe@archiver.kernel.org>; Wed,  9 Jul 2025 10:55:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F7D910E79A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7798E10E79B;
 	Wed,  9 Jul 2025 10:55:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="HMuD9ySU";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="KqcKlbiR";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7873110E79A
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 10:55:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34A2A10E79A
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Jul 2025 10:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=gQcVjJdAHfL2UgDQiyJCnhJA8SzAyXnIjCK/2/K4yP4=; b=HMuD9ySUZkK0RmpYmaHMjlh4vZ
- 9zqsqnO2FmXFLANU53xhk2BP0o7AS/5JN+93ZQb6xWVlSBUxcx8Du2nEnf5PznFUTmB/TS08RT6ye
- llrmv8lol37AFruB0Ml7D9FQ+BK+l83zDpsItX+FEVuzRlgOEbQFCe1+KdxHrNJzkeRcPiL80iWxh
- 0bnoRhvV2ayDZmaUVWHLIdscJoLl5JB4TCLmq996VsBbcUSn/O1l+KWCIxaR06njMlGXczQfZd8VG
- Qc80DwPIkWCC2Z/r5UDjapEmOCH4raRgZUJEmb8ElBo2mjeKk+5b33V/EzLtM2Nbw28EEpK1obcJx
- 0D8kv4cQ==;
+ bh=5TzWF2w5XeRmK7z7UJiyvbIsln5GjitnRJ9oPrs54xY=; b=KqcKlbiRTP8W2ogKh7kYFyLmxK
+ XtqbPqYmlTDqcUsd0kzzRFGKbSG8Urs4LYIvCCU2vVZoSzo8tVLFGVNedABKzysDerGEWijT52R47
+ OG1IZ0C4z9zm3lhF7ior+3lbXG4infgf1tkaXW6ONiAopHkF6MhRZHblA4tgPyvxfvMgNwVeKHnNo
+ RgNg1A6e5Ou12NhYX6A5LTBxanJuQKAVmgUZxHXoXkzQ9oNziJvUDvl+WWN2JEJidvRVedCGDmgAR
+ mZ65DlCbQSEszse2gZJGznKlqa4GC9ASfhcFQBfTevHR/W396nlTLUUuMx+7Ug2BuDGycI/yQLKQL
+ o+O5rEDA==;
 Received: from [84.65.48.237] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uZSS4-00EQnl-OK; Wed, 09 Jul 2025 12:55:00 +0200
+ id 1uZSS5-00EQnr-Fb; Wed, 09 Jul 2025 12:55:01 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v9 3/8] drm/xe: Rename utilization workaround emission function
-Date: Wed,  9 Jul 2025 11:54:50 +0100
-Message-ID: <20250709105455.93902-4-tvrtko.ursulin@igalia.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v9 4/8] drm/xe: Track number of written dwords from workaround
+ batch buffer emission
+Date: Wed,  9 Jul 2025 11:54:51 +0100
+Message-ID: <20250709105455.93902-5-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250709105455.93902-1-tvrtko.ursulin@igalia.com>
 References: <20250709105455.93902-1-tvrtko.ursulin@igalia.com>
@@ -59,43 +59,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lucas suggested to consolidate to a slightly different naming scheme which
-will align with the upcoming additions better.
+Indirect context setup will need to get to the number of written dwords.
+Lets add it as an output parameter so it can be accessed from the finish
+helper regardless of whether code is writing directly or via an shadow
+buffer.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 578bef1e8140..5d5b76f16829 100644
+index 5d5b76f16829..229cfde91799 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -944,8 +944,10 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
-  * store it in the PPHSWP.
-  */
- #define CONTEXT_ACTIVE 1ULL
--static ssize_t wa_bb_setup_utilization(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
--				       u32 *batch, size_t max_len)
-+static ssize_t setup_utilization_wa(struct xe_lrc *lrc,
-+				    struct xe_hw_engine *hwe,
-+				    u32 *batch,
-+				    size_t max_len)
- {
- 	u32 *cmd = batch;
+@@ -991,6 +991,7 @@ struct bo_setup_state {
+ 	/* State: */
+ 	u32			*buffer;
+ 	u32			*ptr;
++	unsigned int		written;
+ };
  
-@@ -1044,7 +1046,7 @@ static void finish_bo(struct bo_setup_state *state)
- static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- {
- 	static const struct bo_setup funcs[] = {
--		{ .setup = wa_bb_setup_utilization },
-+		{ .setup = setup_utilization_wa },
- 	};
- 	struct bo_setup_state state = {
- 		.lrc = lrc,
+ static int setup_bo(struct bo_setup_state *state)
+@@ -1023,6 +1024,7 @@ static int setup_bo(struct bo_setup_state *state)
+ 			goto fail;
+ 
+ 		state->ptr += len;
++		state->written += len;
+ 	}
+ 
+ 	return 0;
+@@ -1039,7 +1041,7 @@ static void finish_bo(struct bo_setup_state *state)
+ 
+ 	xe_map_memcpy_to(gt_to_xe(state->lrc->gt), &state->lrc->bo->vmap,
+ 			 state->offset, state->buffer,
+-			 (state->ptr - state->buffer) * sizeof(u32));
++			 state->written * sizeof(u32));
+ 	kfree(state->buffer);
+ }
+ 
+@@ -1063,6 +1065,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 		return ret;
+ 
+ 	*state.ptr++ = MI_BATCH_BUFFER_END;
++	state.written++;
+ 
+ 	finish_bo(&state);
+ 
 -- 
 2.48.0
 
