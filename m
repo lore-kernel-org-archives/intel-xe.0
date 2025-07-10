@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E749C83F09
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Jul 2025 07:20:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37AC9C83F1A
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Jul 2025 07:26:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAA2B10E88F;
-	Thu, 10 Jul 2025 07:20:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RKyODRN9";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB4C610E88F
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Jul 2025 07:20:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752132009; x=1783668009;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eDgyFNCgu4JicpIGG07OSk6fqOrWP0ja+PHV9H01Oa0=;
- b=RKyODRN9tHOs+AKUzRPz3OSFCuxlur0ngU5Du6/9lvJkQIo9/oyXQGn6
- 5GAO+ds8cbXwmzBeVXgvi23VgRrn/UbN9PCuB2uZm37aNUEloxlR9HG/Y
- Kdpj/ku2MB6fxo9rZLy8Mn/Y/W8btqju+Mwl+32H5NVp4fXFUXQHHgPJx
- b6JqwBKPz7rWiOKQ6nCS9Da5SVhp9bGwp8H+V6weqLnB8lv9ZpfMYrVCd
- WHAGtp9BMfotoGG6Cdd8gdjfOPdtK40zXjZEACCRfJjP+gnl2ZYc76sUO
- jLJ8MVzX7ANHk5FIFQEu6pAfd/xAKYgk44izrJpzUELKKPbM71JAChvVG w==;
-X-CSE-ConnectionGUID: Auzy4RxXRhWQyL1PAc64VA==
-X-CSE-MsgGUID: aSQ8iAKgTXWx3peRa/eipA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="54256747"
-X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; d="scan'208";a="54256747"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2025 00:20:08 -0700
-X-CSE-ConnectionGUID: wxyUNwkBSaqM6p7EKD6arQ==
-X-CSE-MsgGUID: c534Jed4S+e0kQ6Jkn6abQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; d="scan'208";a="160324007"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa003.jf.intel.com with ESMTP; 10 Jul 2025 00:20:03 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com
-Cc: jarkko.nikula@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
- andriy.shevchenko@linux.intel.com, mika.westerberg@linux.intel.com,
- jsd@semihalf.com, andi.shyti@kernel.org, raag.jadav@intel.com,
- riana.tauro@intel.com, srinivasa.adatrao@intel.com,
- michael.j.ruhl@intel.com, intel-xe@lists.freedesktop.org,
- linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-Subject: [PATCH v7 5/5] drm/xe/xe_i2c: Add support for i2c in survivability
- mode
-Date: Thu, 10 Jul 2025 12:46:12 +0530
-Message-Id: <20250710071612.2714990-6-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250710071612.2714990-1-raag.jadav@intel.com>
-References: <20250710071612.2714990-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id F097D10E890;
+	Thu, 10 Jul 2025 07:26:09 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1D7110E890;
+ Thu, 10 Jul 2025 07:26:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_i2c_support_=28?=
+ =?utf-8?q?rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Heikki Krogerus" <heikki.krogerus@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 10 Jul 2025 07:26:08 -0000
+Message-ID: <175213236871.149739.9583079722785180309@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250710071612.2714990-1-raag.jadav@intel.com>
+In-Reply-To: <20250710071612.2714990-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,66 +36,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Riana Tauro <riana.tauro@intel.com>
+== Series Details ==
 
-Initialize i2c in survivability mode to allow firmware
-update of Add-In Management Controller (AMC) in
-survivability mode.
+Series: drm/xe: i2c support (rev7)
+URL   : https://patchwork.freedesktop.org/series/149699/
+State : warning
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_survivability_mode.c | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 1f710b3fc599..41705f5d52e3 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -14,6 +14,7 @@
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_heci_gsc.h"
-+#include "xe_i2c.h"
- #include "xe_mmio.h"
- #include "xe_pcode_api.h"
- #include "xe_vsec.h"
-@@ -173,20 +174,22 @@ static int enable_survivability_mode(struct pci_dev *pdev)
- 	survivability->mode = true;
- 
- 	ret = xe_heci_gsc_init(xe);
--	if (ret) {
--		/*
--		 * But if it fails, device can't enter survivability
--		 * so move it back for correct error handling
--		 */
--		survivability->mode = false;
--		return ret;
--	}
-+	if (ret)
-+		goto err;
- 
- 	xe_vsec_init(xe);
- 
-+	ret = xe_i2c_probe(xe);
-+	if (ret)
-+		goto err;
-+
- 	dev_err(dev, "In Survivability Mode\n");
- 
- 	return 0;
-+
-+err:
-+	survivability->mode = false;
-+	return ret;
- }
- 
- /**
--- 
-2.34.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+43254c2aa575037fc031c7ac21b0d031c700b2bf
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 20f8b63b545f7183a9b62b7f7237ae2af2fa19ba
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Thu Jul 10 12:46:12 2025 +0530
+
+    drm/xe/xe_i2c: Add support for i2c in survivability mode
+    
+    Initialize i2c in survivability mode to allow firmware
+    update of Add-In Management Controller (AMC) in
+    survivability mode.
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+    Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+    Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+    Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
++ /mt/dim checkpatch 7c6cc6e59baa15cc1b10fe5bba36219ae6d227b0 drm-intel
+062b38356ede i2c: designware: Use polling by default when there is no irq resource
+2ae481de1228 i2c: designware: Add quirk for Intel Xe
+-:9: WARNING:BAD_SIGN_OFF: Non-standard signature: Originally-by:
+#9: 
+Originally-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+93b1ee421260 drm/xe: Support for I2C attached MCUs
+-:14: WARNING:BAD_SIGN_OFF: Non-standard signature: Originally-by:
+#14: 
+Originally-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
+
+total: 0 errors, 2 warnings, 0 checks, 457 lines checked
+7a60bbf74711 drm/xe/pm: Wire up suspend/resume for I2C controller
+20f8b63b545f drm/xe/xe_i2c: Add support for i2c in survivability mode
+
 
