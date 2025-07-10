@@ -4,167 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90445C83F1B
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Jul 2025 18:12:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E300C83F17
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Jul 2025 18:20:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5913810E940;
-	Thu, 10 Jul 2025 18:12:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C312310E94A;
+	Thu, 10 Jul 2025 18:20:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jkuyeKRl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m2zQR50g";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97B1F10E940;
- Thu, 10 Jul 2025 18:12:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 336A510E94D
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Jul 2025 18:20:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752171166; x=1783707166;
+ t=1752171606; x=1783707606;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=SngjC84J5ft8sfjMRKq5esHdBn8UI1kbb70aWRBA3xA=;
- b=jkuyeKRlSTwQiexBQxaGPLXqJH3uPEQYCgAjDO5cW9cpqmlBa3lwbiYA
- H6op3RtpvYtjESiogV9e/tf/Y7YrJcFzP06xNoP58iH6M+YCfRiQC2fGe
- cyTMiWBCKWCM99aBLfp4CSkKgSsLj++zlUkJfeVvXv/S2Wc/dL/5c8QDb
- GPCa/nJ2NYj5CUZVdQ3hDWFLPIMAxkXaC63Hv95Scf0Uu/zZLQkGwUbby
- in+8J3Y+KW2N3RkqaM+uVFCQz+5DwNM7w7QxUWddgdN67Ie7bJQWpCeYp
- kdbeLovjPsL3pglKVLnKQKcZ0SCOyi5UlbwNS7axD9iokOPleJMIvWhyj Q==;
-X-CSE-ConnectionGUID: P/iiXxvnTJOTa/Vi2Pyr3A==
-X-CSE-MsgGUID: 3ANjhbA3RFWeBB/uSA5rjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11490"; a="54435519"
-X-IronPort-AV: E=Sophos;i="6.16,301,1744095600"; d="scan'208";a="54435519"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2025 11:12:34 -0700
-X-CSE-ConnectionGUID: cqm0OolHR0+0zJKoJgNLTg==
-X-CSE-MsgGUID: 30bPz+wnRE+UmqSouRGsVA==
+ in-reply-to:mime-version;
+ bh=LcBMQrBXbZe8kf7aaKvBIYq6wDv8+o6zaZ5LGuDe4m8=;
+ b=m2zQR50g3gLm8I/t7fWBWneiLul/ONkC1Lsaft5nMr28NdpDzNi5k3Uc
+ tMqh0avvY6hpiUv/AJOfVUeWsOgqj2THtm+IJUmBSMxkJyIydkv9q8uAB
+ bgSoYBSdDE6Jq0WG4MR/MyommTB/jD4Xtdy1zfCwKnzwLuhHwjHKUcQt5
+ sUNxmxQDo9dLEtwuTQJ1Y2CL4VPKxXAqt/9rnkSDaDN1CfPpuhVYE8i99
+ 9JfkMTnRb+21JYXL81wmBpgfuuD0fXc8uTzA6s8X0rqrwILpimGJQD5Pc
+ skKfXDI8NSdcvuELTw1qIA/r9vwEGb86MHKRSANOFq4jLfWxFQmVmfODt Q==;
+X-CSE-ConnectionGUID: GYvj4knxSRmzqsh46LljKA==
+X-CSE-MsgGUID: 3598xnZtR3Cyr6xB5w05vA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11490"; a="57077079"
+X-IronPort-AV: E=Sophos;i="6.16,301,1744095600"; d="scan'208";a="57077079"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2025 11:20:06 -0700
+X-CSE-ConnectionGUID: PogxLOhHST6KWFpV39MKCQ==
+X-CSE-MsgGUID: akYr+kO9QwOJA8excFf+AQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,301,1744095600"; d="scan'208";a="156641010"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2025 11:12:30 -0700
+X-IronPort-AV: E=Sophos;i="6.16,301,1744095600"; d="scan'208";a="160716933"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2025 11:20:07 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 10 Jul 2025 11:12:26 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Thu, 10 Jul 2025 11:12:26 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.46)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.1544.25; Thu, 10 Jul 2025 11:20:05 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 10 Jul 2025 11:12:26 -0700
+ 15.2.1544.25 via Frontend Transport; Thu, 10 Jul 2025 11:20:05 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.88)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Thu, 10 Jul 2025 11:20:03 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oaXXKdSiwY62PWMn8w52s1tpljKG0cSgi56mHjZhNSgxAu6wsf8XxCcWRyoLp82Cqa5sZOgIyUg619LOMpHLLfDLwgzDF4wWPCag7WJV05seKKI3OUI+TFacdrDWdO/2h6wvb4qnGKExOyLRmAyAkxDEFYtzTBPLurlm23/onc3yb0oXIhfS9VoAQrlA/ta8Ai/VWORcFqVYDq87gDir7FKwGFsATULmcjZuSAT005j8hG67tM3xIYRb81yLtSufENPbEEmFJn7wmOXhAyPmgZp4YouGYwatcHXiPGjUdhVYgMkIvolwUHRPl0fLE/dfNjvlkS+eMTWMKZHvzwlW9w==
+ b=bMqMIi1PUMFvfjAKySNgwg7Xt0DcBxmZ9g0i6Cj2OjGRLMHP/t9WyHYnjKs92Ie6Yt37kokZREvnzcmrT+p60M/dAXrQqw3607cCVkYhZmendnaur9iIH0gbTbt8pkBTw3Km3q+NHtXRVum3zJsuuZaAYfQa4Jt3ywed3/5ZmG3rxehDLafy9qS9aKNYBS9w6SRfYvt847G9BZVo+g3wiSB1xOUGPZKQKvJWMmVpGNM/3hnRO7re8/yEDbwhqOqXhzCNTc0etNH1wlj0g9ZxeU0ME3VsvwYwda4IWHbb4ShcN05dXT7r4lANPEigi6knX+eHoEHN0lHFOnbITvhJFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7EZcJQBF0b80jPq4K4g8VxDe6sEo7hRy3AJP4EOYvYg=;
- b=WXfVyfiHtmA7LhvM6jF7ZFZyjI5chESkHRxx7fhFvd7P5Lx6PxsoYA4qbe7OG+Pgo/xh1Ftkzi2GLymYfcUlCq5BW094atFMMCtblFRX+nKQsnDTU+A7THKggAF1FcxHpEnzd0thmA14zP8e21E6w6OQ9ZimlTLMSfLDg2zKAiPc+ZTrPng2CWmNqRRhMJRG92aURJ7wcaYhyy6veLtDRDIx10FjTD+2J8lgxfSzwPWJ89lEGEuGzTxyDp7UDfubrcZhZnpYQnhzdmcNdFHURH5QqSZ65LHZQrNRuKLewhlrmpY86cOIi2RT3QgQ+7LaLrUYSf+b2kzU81YSN1bHRQ==
+ bh=weE7lnclqmOvkKadlMPZzHW1kSkF0zvtQiApwjHc+3g=;
+ b=ICmcZsRj1X25fhAHDcpd/+EcfAPmRoGib7ITj70EnucVASVJ8aQ0QPoxkQ+u6C+2YK/sbGWnT6d6n9auZNctbUIyEHY1c1ozomWRh1s3re4qop/1VogGE+VR+qa3oZmF+ArVaxRASq23bfHiwzEzqvu+D7u83w1vSt63lTO3el0P+V0suFC9HiayCLDJM0SdSMNJr7GOLDqOKUcwbcjcHkRZUYCMmSqEXaNiIM0Xv2USxzrABmaC6kESHN3SwwEWJ9cnyFkMjUtd6zYakgeEzrNtXsq5O7KcKHeRzoF6BexsPKz2l7rEwgcuI/TQ5i7w/zkBpjGqgLpZbACfznDjfA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH8PR11MB6706.namprd11.prod.outlook.com (2603:10b6:510:1c5::15)
+ by SA1PR11MB5777.namprd11.prod.outlook.com (2603:10b6:806:23d::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.25; Thu, 10 Jul
- 2025 18:12:11 +0000
+ 2025 18:19:35 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.8901.024; Thu, 10 Jul 2025
- 18:12:11 +0000
-Date: Thu, 10 Jul 2025 11:13:54 -0700
+ 18:19:34 +0000
+Date: Thu, 10 Jul 2025 11:21:18 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-CC: <thomas.hellstrom@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/2] drm/ttm: remove ttm_bo_validate_swapout test
-Message-ID: <aHAC4l1taA5qaX0E@lstrano-desk.jf.intel.com>
-References: <20250710144129.1803-1-christian.koenig@amd.com>
- <20250710144129.1803-2-christian.koenig@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: Nitin Gote <nitin.r.gote@intel.com>, <tejas.upadhyay@intel.com>,
+ <rodrigo.vivi@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <joonas.lahtinen@linux.intel.com>, <himal.prasad.ghimiray@intel.com>
+Subject: Re: [PATCH] drm/xe/uapi: Add
+ DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_NULL_QUERY
+Message-ID: <aHAEnkKnOuJRUF8l@lstrano-desk.jf.intel.com>
+References: <20250710075435.407068-1-nitin.r.gote@intel.com>
+ <5gwyv6u4qtbqbmnnxaat6zjlbp3hgdl65dqron4w6qcxhyq5ua@h7vffx4fs3uc>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250710144129.1803-2-christian.koenig@amd.com>
-X-ClientProxiedBy: MW2PR16CA0002.namprd16.prod.outlook.com (2603:10b6:907::15)
- To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <5gwyv6u4qtbqbmnnxaat6zjlbp3hgdl65dqron4w6qcxhyq5ua@h7vffx4fs3uc>
+X-ClientProxiedBy: MW4PR04CA0306.namprd04.prod.outlook.com
+ (2603:10b6:303:82::11) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH8PR11MB6706:EE_
-X-MS-Office365-Filtering-Correlation-Id: 85a5f1ef-e81d-4ce5-abeb-08ddbfdd4a2b
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA1PR11MB5777:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4cac0002-68ae-437b-b897-08ddbfde52b5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?8DJArqAln0AYWgaCEV1+HQDOgB5zvVKyfRwzntQ1hNE4hxl+D101OHmkA7?=
- =?iso-8859-1?Q?U96qceMcH6tHtJW6MFa77VBQFKK21BjsSj/Ex8zw01nMx37U8AeqVpDS2+?=
- =?iso-8859-1?Q?iCOPOWVWfOvlpYMMRKN4olVKDWexZqU5xOIltEH1PI10/b4JcdFepabFzn?=
- =?iso-8859-1?Q?SQ67KQfO3EKsf0/9S83Hvo6zCeTwIr2DB4GgYyHsuC4kHR+f+gffDZqCQ2?=
- =?iso-8859-1?Q?nrG2fzI0GDfiiI35d9ItEU9GuefemUeZJt+EPpYBR6wqfL6vGWjc8U0zqS?=
- =?iso-8859-1?Q?TbkndplYKgFnPGl7pqAsiUDBHgzhR1gp8JUe6QGG26ip6fLO/6R2xH+q5n?=
- =?iso-8859-1?Q?0T79dcD6SttRzDz9J87vszD2aXSVSe8D0s8fLC0jQiryCgJ5b2xC01HtS7?=
- =?iso-8859-1?Q?Qqp1grU92xVASjGGQjUEFl4bPY/sOFlKkrqF4jSlfuJqrgvIbFmmICpPni?=
- =?iso-8859-1?Q?bD/YJ1tQ+7cMKQNNmxSuzYy2dzf2xnsxpG80k9HSF3T9IB9peb4RdjIgY8?=
- =?iso-8859-1?Q?zK8RUR4O17+poi1gfvW7VNRcPPKsDC1GsiJX2u3GvhB+yHbVZQfkAkUyKq?=
- =?iso-8859-1?Q?wzAQcSRrY+PdXCxoedixJ+UQ7mb+RoHwPABDX71XM6K6h4Jpri+OGHd+IG?=
- =?iso-8859-1?Q?WGGsxzsSoOS8Xa1cmu/vfVcBoJVZuKtMdduANAIGRINKb7eNj1H1jQFERP?=
- =?iso-8859-1?Q?xQ+x6U3ZzE9Y2hahWWWwUuLP58DdL6hp9sKYftZpmji+GJO7la/ha87q5P?=
- =?iso-8859-1?Q?YQAt7+HFZC9IeoLQvRRc0pAn8gHHnwfH+4fHYxeK+1jLGw+9IjDq8OOqZ8?=
- =?iso-8859-1?Q?0G3GT80mYe68HbMuCu6nE2mWAdqLoglI0aZL6w2UI3/JXrE2Nh+t9PmwY+?=
- =?iso-8859-1?Q?P3vi1WkILuWKrHqHlZbknqPAI/SYi4Tf+FHAVHuAe34AgVt1PwQS06w8Mz?=
- =?iso-8859-1?Q?28vU8CKuk4nRUWSqXEfEAGXiFi2448EefPRo74+ag1uPatXojqwj01rtj8?=
- =?iso-8859-1?Q?PkjDinOmSTXBLmfR7K/mFdjG6TgzcXqZDvt3/o3HJhBp9p0ehpAmLvp5kd?=
- =?iso-8859-1?Q?pPYWpT88ZdNPbZesnqfUdYhfKSUBy+3L6t3W4r7FzUS+axMmVYu3d/AiVR?=
- =?iso-8859-1?Q?EG2MBhFINiWUIiMPaeZpiVkKYtqPpK8tfrbGDQw0lIetkc7eGFeq23cpbY?=
- =?iso-8859-1?Q?afzgJdpYIDSJapid0sDLbGjH78UhpcFse2NN5k2OFH/XY6ny8FndFfmzpD?=
- =?iso-8859-1?Q?TKLWB+pBDgphrByLnjTdoP+dLJdVGdkvZtzfHTSeSd9hMh7KnP46tMa+Jj?=
- =?iso-8859-1?Q?UT6lO033z+fkW+uxEnLDhqyBCBNP3g1Jk48jLueAQgYvGJCuQzlbqq7veI?=
- =?iso-8859-1?Q?Pp5SjRKUfLUtKd/7zEFcamoNRNL688IVl0N77q3BSVnRRHaqBH1+SMYx9F?=
- =?iso-8859-1?Q?VJJONVeb2cQm2l57NwCrPql9lZTzPRP1CL6sN4eBf3HtHGyZnrzXbgotvC?=
- =?iso-8859-1?Q?0=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Z7Nv7HYrs33/aW65Lq2dpGxLF4nSxLHx3nfilAj98zpWO6KsI9SnskoagqD1?=
+ =?us-ascii?Q?vJMwQ/OATeDNQgt3W6nrizTYARZrzAgfiyiL6KHSFkW2wyGaRLL0WAKPwWuc?=
+ =?us-ascii?Q?FBPEO0gdT7XfXgm819MU4jd9JWYQXQZOuZ6OEWwSTEJK6Pw/Tp46x2VSlpQq?=
+ =?us-ascii?Q?/lcyEFMh2WRYq4uqgfydn/R8mRwLZWNu02tQ52cCec4xCtgfP7cKJkHkFWWB?=
+ =?us-ascii?Q?k/YYXDGJPmhRpOd05p48k/BtVOW2ca6Vbn8DNLa5FdNnftywi4E0A4gmb+7b?=
+ =?us-ascii?Q?wtfG6Y9qWGNKbMPa0Cbr1q7SNNL71ks9npmDIbiBBmDHzrf0WRKT7OdiVgj3?=
+ =?us-ascii?Q?hHKF82cUyXsmXpsibr2MgagGtzo3LDsv7hEWuw19/A5fUPOeukX60mjdpakF?=
+ =?us-ascii?Q?Cp08Czwzx/HYlxhLNSj6+Bbc4liZQANjlC9XloxAdIaYISrP/5pOM7Tz45Ok?=
+ =?us-ascii?Q?yx7eLfPOm6SN5FrNwZmqsAWJkZ7YGta0YVzZ+4zOdIGhw8Eh3HlCuwKrDRcG?=
+ =?us-ascii?Q?MJu+/kjTWppUuJrthDHzV4pu0OpBDuk/2elpl7t5FNv/dOwkoSjIJb1bVHpc?=
+ =?us-ascii?Q?ic0Uzs7PplvMvjd85xVOct5NqqJGzDh+ik1lI3rBfoZeQtvITsClAa7VIL6x?=
+ =?us-ascii?Q?siT+GsfN6ILeGkAaI+UB9XmdBESRYQNEz4G0rtMe6X9jEYkHailsH868Lx4Z?=
+ =?us-ascii?Q?po73s888PsUQtlpqIb7X4xvP3N8fAnJkiwJXZ8WVCdO2nbLxyAZh0DvNxdUQ?=
+ =?us-ascii?Q?5mMF5GmHzV0kbq+vKk1MZzFFZxkODqXV0ELKwKgL6qrdgsGVbVciqfyTPoa7?=
+ =?us-ascii?Q?iWuYbYaH9eLAve7BiPVChXHrI7RnD8+q5frbNgn/H/xxannkaWrrYLcdRMrx?=
+ =?us-ascii?Q?PK8YtOXxDlgJWsvg87UOn5/AcmY8H05/l1AjrFNUmAOcXxq7Z+PSCSZgNoH4?=
+ =?us-ascii?Q?0tyOwu+QiVx9/Iol0VWB6qRR5a8QbI1vP+UnAqtzMvlOpwFDQQ8AoZ9azdyw?=
+ =?us-ascii?Q?kCml6C7bmEzmytqPVikxocMnKlta9ssU73e41px8wjxz4OA4jRoRAmP3PEvp?=
+ =?us-ascii?Q?+5ArEB7OiNs05IhB3SgwMDSkZr8NJsZ4HlCffmAgEnrVkXDkDUR7ff4GQzLR?=
+ =?us-ascii?Q?ZAj/LWP+1FOs35hIWntJPNjSO2PnkNCQBfHnPl0xwIP9XfEyhoaBSJSzT8gr?=
+ =?us-ascii?Q?XBlh4WKre6Zepr6zvM2BrQ6yB4ZjdbkaRtU2VrRgh2DiKT4RLW47o6Xz3RRS?=
+ =?us-ascii?Q?kI8IY0x85140delPs7x3qaV8kPczPXL6qk4eD+E2Z8elYhdEiUVWoZeEavGe?=
+ =?us-ascii?Q?+Vo0mQbJj/dcAjaA6hp+Gkp21UGdEPFl2A0Mk3rXhCRCJpDStJBcN+SdqxOG?=
+ =?us-ascii?Q?w6iEYtE=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?CQ4hfZBMVA2t7Fpt7rCf9HEo6HbZyUIeqOPctcrywAhqddbObjbtLlwuWC?=
- =?iso-8859-1?Q?Js/scGXuepVHt5oz2FTb7VuZGOyeM1GPKRdImrz9MWGVvrNd9oNyTTgIto?=
- =?iso-8859-1?Q?04wgLT417WsVhPehcfKnFJh3RS720Cqgp3nPzX/rrrCwI6aaBQIUbDOF7h?=
- =?iso-8859-1?Q?iIUVBLuEjJ3yemhZ+JiYH00kY6sUTSwvpyDYCbOvOd5uDKW7ytgfVPPIDU?=
- =?iso-8859-1?Q?2KXkicf8lKbRbtgSpT/CuWY7AtS15nJ0SNoL1ZUaMxkDIqCvL5cf3L7xMm?=
- =?iso-8859-1?Q?ledziNoPZccgM3PjELvX/OyivM4LHNMOUDFvFRk4p2a0RT8l34/x37TVWx?=
- =?iso-8859-1?Q?LZyoRkf0ym5+31Pil4HA3zesAEDMmeYvxwUR9DDEevgVLeUFpjVhjF4Pec?=
- =?iso-8859-1?Q?Hr47md3TjP+sC6P35TzEdU1G7+76en4aAJjB+yl+0s/bKXGcQ+b9POyLR/?=
- =?iso-8859-1?Q?/PQ5N7j4lfNKM/KPlIMbaAsgUNEAvQArpaNsXlsHiLOJYWLtu1IVi4FGid?=
- =?iso-8859-1?Q?Lu6LiBPsQeyDiRGyRgEe6V6vc4Bs7IFA/ukxY2DkdtRrdx68W/DBD+4oly?=
- =?iso-8859-1?Q?oJXmV5GHxYL+GyQ+JlUDZ0I762CWo38DANvHXatYcnJBz5bkfuki5wScMR?=
- =?iso-8859-1?Q?EhlzwEIaJch9JpWbXYF/o1ZfduB/jBku9vvlmkbWvS3mVRKKjXfraUumfa?=
- =?iso-8859-1?Q?AWDtl06tvxaHYu0HfHfnU6g9H51E1sUo1pmH/7Aps4zEGZcuy7i1wMjy33?=
- =?iso-8859-1?Q?Z2I4/qitvnwDkkAAYo1HjpI4becnbZ7/H6p/kXeNeYL2D0ss3tFlxK+R3D?=
- =?iso-8859-1?Q?uLJ52VPDSQAFCVijbIr42gFxmUW/8pUS82AfgO1xEV7A24nlopBJ93tOCV?=
- =?iso-8859-1?Q?6huKvjliZRIb2kYOKVl+PNTaGXBp9ny23c5fAXaQ4PP1sK8zL80TmRA0Ku?=
- =?iso-8859-1?Q?Jv9lc4tMEv1vU5DUbUlSiE48h74T7U+joVoRNiJGp4k2h42EO92i/04yHa?=
- =?iso-8859-1?Q?cZ0aV5gRHDWIUaqscYmEITjBNVTnPEGcjGHJXMPbI/Smr8gb2dEW1kTwms?=
- =?iso-8859-1?Q?5ggeE0R/j4lQkuS9VLmehpYincZGzXZF0xTyeMpgzv8I+zkfA/4uC18/9N?=
- =?iso-8859-1?Q?G1fZrLoB+DXtwz0r41zZgVscbEP8+QqWFER1/e2oxEsZ2UXDVQa88WY2o4?=
- =?iso-8859-1?Q?spN5rTeaWYhZq+8XWIrPIEFHx6oXsr+FdTqPXuPmeF/9rs6q5KNnCgGQ3j?=
- =?iso-8859-1?Q?AGr4fEkiY5ix9lUlqh1Va/zz/3atJGZSK7kKkx7Rp1IeToBdv1+Jgmp8zn?=
- =?iso-8859-1?Q?SXqWnrVd+ZSG7oy0C6CMxvzOEGF5LEgviIhZiUupso8XhLb2YO/bHPFVxy?=
- =?iso-8859-1?Q?ShiEF9TRgaEKDpq6/UuHw6nJBhfmOH4eazNAmc5fYgm+HFWaquKthvsOZH?=
- =?iso-8859-1?Q?xwdUTRsvKv6QkvCE5Xu9mq7gE++NJRhmdHpmg4AgrBvwOXNCE/NwtCXwYy?=
- =?iso-8859-1?Q?WSwz9s7INHURFlN5U0qOnQFJy966a92BEpaB579GK0XFy1nALkKOg579p9?=
- =?iso-8859-1?Q?1mVi6nZKLWIw32nl8D1F0QlI2yHBOBBFZIo3NLfOHdezKcsqhL4O1rhDIC?=
- =?iso-8859-1?Q?7cyCn3L8PBKL7QaYn5XrDli+ZPq1wgMgAnaOMoYls1IeY12o4DRaeGrw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85a5f1ef-e81d-4ce5-abeb-08ddbfdd4a2b
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?V9z+yTfgDWA6l1/Oco5Vn5CZoFaBltuED3ja7iDEA6xIu4GC6HDw8uORwQDN?=
+ =?us-ascii?Q?uw8fjJGdLGnZ2RMexep3AqJpQgiRRTfpQ3HUZ9oA7x1ZkCDmKHZ+iQoNatKB?=
+ =?us-ascii?Q?2sE2z+OXIftUfZ4lMOjRmPvcL0Dr/ron98MEtNChMUl4gRKTE1Dt4ZsElIsd?=
+ =?us-ascii?Q?lEWyKkLpAAm2y8ODxZ76RAbZfEKdr1qt6BGwY9JFGGCFqNzhdTz3CjbOaSzb?=
+ =?us-ascii?Q?rtEL5XbYS6BvaoweRPfHMgCYVF74nzwjJhHIA6rv/9T37pFzPLWxu16So0ID?=
+ =?us-ascii?Q?lvFj+hpIvunpv3QzSqCvHqGBRAb6cflj5HSNILPtFsYuR82qVv80KOSOmCLS?=
+ =?us-ascii?Q?7ltBKtrvi9y9DMd1uvR5G9JocudH6LtrH9I7yG95CZzTbHkkxqZotseeDIZG?=
+ =?us-ascii?Q?IOqkrHRpLIYjRcuhjjQX8RsQmWkcaD8mn5aBxR+Wp6BdhmnkPpWsKOQZrZtM?=
+ =?us-ascii?Q?p3GSVCK0Nn9XWAWSH3uZHB1OsektlXq61UjAtCBUgvfEtJw2Wb17wd+lt3T7?=
+ =?us-ascii?Q?OUZ8uspSnAa8Bh+ZS+kH2tBjLgnOQfKu9rgkT89+bBFEal52mOj3bL4uYoCg?=
+ =?us-ascii?Q?u0RMkG7OygqCKR4yBQnufGdtmFmG7Y4K1a+lb82W7eKIRNthEl/KsJdg0FT6?=
+ =?us-ascii?Q?AH3VNXH1L4rWliI7q7qxQi+WoRCx7IpmpYX9NkU+oGwaevN8Z3owOmQShpr6?=
+ =?us-ascii?Q?sOZnA2XUAgytj0VL9NPGAyiPxWASLMWEK2RLLzEpm+nM5RPrQuAuvLGEIdN6?=
+ =?us-ascii?Q?tXYTjow5EkaSIqRHBHUcC5TO1fo05Ar3pIpgoNzevu+IxiZnO+REqhijOVXv?=
+ =?us-ascii?Q?LXEUQyJRN2k3tuZQ64Io5WGctD7/tDnCzJ3v+vDWPY+GDeCq2JBOw5h7sAnJ?=
+ =?us-ascii?Q?8qpYwsVM/6WjyV0iPkSw85Yohw1bz58oZGRTqRa9tO7wHzTkijb7w5cB3NkR?=
+ =?us-ascii?Q?SA8/LJWHzkNRYBzrBpPYmqNX3vLZabNq+8aXD33rZfdKzBA3/e31rTuy5BO6?=
+ =?us-ascii?Q?KDekMWu1cuDGv5reHnOmuesrWQnJaBWzYJAhhZUL1n9ACpofHynIlNGmmYZ5?=
+ =?us-ascii?Q?x67eLaJiCavLPVc5l1/ur13sHNj7FeyWMZCLrBK/76RFabIJPd74WSQIKBWG?=
+ =?us-ascii?Q?Zc5bzUKsCEGyXyi3FsyRPKco+Qe9XunOlBnrce6xqS2PGKG/rJbJu03BchO6?=
+ =?us-ascii?Q?22w2DgT3D+ZLm4K2GFVztNtOh8v2j3hPTBObfkCAZSse5WlI9MBtd+hEf7oM?=
+ =?us-ascii?Q?P8UTbBLJqLoTVK/u3kL4Om6H1ot2Mz2VVxO3J617wFw4nAhoSmEZLv/W63Zm?=
+ =?us-ascii?Q?nu4o2toYxLkQHzlN9ditkxKhOq2IzrQDpM+v5FoQmcKJOf+8XSIC9G8CIq5H?=
+ =?us-ascii?Q?d4XInHokBAtYGP8y+iZXi1aIlLTumT07APQxBTZqfQTU2vU3vZ8lS9izTmDe?=
+ =?us-ascii?Q?9IcK2+D8UYSQxQyZ0hpWF36/WPesBb421P0/NKZNEpMx1F1IvxJMLtg4RJXg?=
+ =?us-ascii?Q?5TwlIIsAGS2s4jYoT0tNKToCi3N8IUjFbXmTlpWpPm74cKupSGTitEOiUrpH?=
+ =?us-ascii?Q?k3pUlnhpqzvVBtwONx1Ya7jBy1BJHoEWXXN3vceJNWUzX9+y+JiYUhMkD/iM?=
+ =?us-ascii?Q?PA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4cac0002-68ae-437b-b897-08ddbfde52b5
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2025 18:12:11.1189 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2025 18:19:34.8942 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RHpYQZlNLYczCjdpfEk17mbGRFkaWY1PFhKuTzT8/ckyAy9qwcXfAJKlHxxl8U1flIPVmdQP+5DJM3iSAQkwSQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6706
+X-MS-Exchange-CrossTenant-UserPrincipalName: Cih1Xaoi1r1o8Pvyc5tLYAdExAY62COicMDUvN0307kkiUwomI1NTBHEj6EJjV0+8N7u0pU6J28RrZS4qWQ8cg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5777
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,99 +178,383 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 10, 2025 at 04:41:29PM +0200, Christian König wrote:
-> The test is quite fragile since it tries to allocate halve available system
-> memory + 1 page.
+On Thu, Jul 10, 2025 at 01:03:41PM -0500, Lucas De Marchi wrote:
+> On Thu, Jul 10, 2025 at 01:24:35PM +0530, Nitin Gote wrote:
+> > Add the DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_NULL_QUERY device query flag
+> > which indicates whether a device supports DIS_NULL_QUERY (Disable null
+> > anyhit shader query mechanism). The intent is for UMDs
+> > to use this query and opt-in DRM_XE_EXEC_QUEUE_DISABLE_NULL_QUERY flag
+> > to disable null query mechanism for anyhit shader by setting
+> > DIS_NULL_QUERY bit of RT_CTRL register for Xe2.
 > 
-> If the system has either not enough memory to make the allocation work
-> with other things running in parallel or to much memory so the allocation
-> fails as to large/invalid the test won't fail.
+> it seems like this commit has been over squashed and this commit message
+> doesn't really match what it's doing. This isn't just adding a
+> DRM_XE_QUERY_* (what the title implies), it's actually implementing the
+> DRM_XE_EXEC_QUEUE_*
 > 
-> Completely remove the test. We already validate swapout on the device
-> level and that test seems to be stable.
+> > 
+> > v2:
+> >   - Use xe_rtp_match_first_render_or_compute() api to check
+> >     render_or_compute. (Tejas)
+> >   - Validate args->flags (Tejas/Matthew)
+> >   - Add proper kernel-doc for both DRM_XE_EXEC_QUEUE_DIS_NULL_QUERY
+> >     and DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT. (Matthew)
+> > 
+> > v3:
+> >   - Rename DRM_XE_EXEC_QUEUE_DIS_NULL_QUERY to
+> >     DRM_XE_EXEC_QUEUE_DISABLE_NULL_QUERY. (Matthew)
+> >   - Move implementaion from exec queue creation time to
+> >     WA BB program. (Matthew)
+> > 
+> > Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+> > ---
+> > Hi,
+> > 
+> > Please note the review comments from previous rev2, addressed in this patch.
+> > https://patchwork.freedesktop.org/patch/660580/?series=150601&rev=2
+> > 
+> > 
+> > .../gpu/drm/xe/instructions/xe_mi_commands.h  |  4 ++
+> > drivers/gpu/drm/xe/regs/xe_gt_regs.h          |  2 +
+> > drivers/gpu/drm/xe/xe_exec_queue.c            |  9 ++-
+> > drivers/gpu/drm/xe/xe_exec_queue_types.h      |  2 +
+> > drivers/gpu/drm/xe/xe_gt_mcr.c                |  1 -
+> > drivers/gpu/drm/xe/xe_lrc.c                   | 65 +++++++++++++++++++
+> > drivers/gpu/drm/xe/xe_query.c                 |  3 +-
+> > include/uapi/drm/xe_drm.h                     | 12 ++++
+> > 8 files changed, 95 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+> > index e3f5e8bb3ebc..84e889528464 100644
+> > --- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+> > +++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+> > @@ -80,4 +80,8 @@
+> > #define MI_SET_APPID_SESSION_ID_MASK	REG_GENMASK(6, 0)
+> > #define MI_SET_APPID_SESSION_ID(x)	REG_FIELD_PREP(MI_SET_APPID_SESSION_ID_MASK, x)
+> > 
+> > +#define MI_SEMAPHORE_WAIT		__MI_INSTR(0x1c)
+> > +#define  MI_SEMAPHORE_POLL		(1 << 15)
+> > +#define  MI_SEMAPHORE_SAD_EQ_SDD	(4 << 12)
+> > +#define  MI_SEMAPHORE_REGISTER_POLL	(1 << 16)
 > 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
+> look at the defines above and implement it according to them. There are
+> multiple things wrong wrt coding style here:
+> 
+> 1) the MI definition is sorted by its number. 0x1c shouldn't be the last
+> in the file
+> 2) bits definition should be sorted, highest number first, to follow the
+> bspec and be easy to compare
+> 3) don't use shifts, use REG_BIT()
+> 4) there's a missing space in the bits definitions
+> 
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Thanks Lucas - it was late when I was reviewing this and apparently
+missed a ton things.
 
-The first patch in series in nowhere to be found in my inbox, but feel
-free to add RB to that patch as well.
+Agree with everything Lucas says here.
 
-Matt 
+One follow up below.
 
-> ---
->  .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  | 51 -------------------
->  1 file changed, 51 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
-> index 38f476787302..1bcc67977f48 100644
-> --- a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
-> +++ b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
-> @@ -758,56 +758,6 @@ static void ttm_bo_validate_move_fence_not_signaled(struct kunit *test)
->  	ttm_mock_manager_fini(priv->ttm_dev, snd_mem);
->  }
->  
-> -static void ttm_bo_validate_swapout(struct kunit *test)
-> -{
-> -	unsigned long size_big, size = ALIGN(BO_SIZE, PAGE_SIZE);
-> -	enum ttm_bo_type bo_type = ttm_bo_type_device;
-> -	struct ttm_buffer_object *bo_small, *bo_big;
-> -	struct ttm_test_devices *priv = test->priv;
-> -	struct ttm_operation_ctx ctx = { };
-> -	struct ttm_placement *placement;
-> -	u32 mem_type = TTM_PL_TT;
-> -	struct ttm_place *place;
-> -	struct sysinfo si;
-> -	int err;
-> -
-> -	si_meminfo(&si);
-> -	size_big = ALIGN(((u64)si.totalram * si.mem_unit / 2), PAGE_SIZE);
-> -
-> -	ttm_mock_manager_init(priv->ttm_dev, mem_type, size_big + size);
-> -
-> -	place = ttm_place_kunit_init(test, mem_type, 0);
-> -	placement = ttm_placement_kunit_init(test, place, 1);
-> -
-> -	bo_small = kunit_kzalloc(test, sizeof(*bo_small), GFP_KERNEL);
-> -	KUNIT_ASSERT_NOT_NULL(test, bo_small);
-> -
-> -	drm_gem_private_object_init(priv->drm, &bo_small->base, size);
-> -
-> -	err = ttm_bo_init_reserved(priv->ttm_dev, bo_small, bo_type, placement,
-> -				   PAGE_SIZE, &ctx, NULL, NULL,
-> -				   &dummy_ttm_bo_destroy);
-> -	KUNIT_EXPECT_EQ(test, err, 0);
-> -	dma_resv_unlock(bo_small->base.resv);
-> -
-> -	bo_big = ttm_bo_kunit_init(test, priv, size_big, NULL);
-> -
-> -	dma_resv_lock(bo_big->base.resv, NULL);
-> -	err = ttm_bo_validate(bo_big, placement, &ctx);
-> -	dma_resv_unlock(bo_big->base.resv);
-> -
-> -	KUNIT_EXPECT_EQ(test, err, 0);
-> -	KUNIT_EXPECT_NOT_NULL(test, bo_big->resource);
-> -	KUNIT_EXPECT_EQ(test, bo_big->resource->mem_type, mem_type);
-> -	KUNIT_EXPECT_EQ(test, bo_small->resource->mem_type, TTM_PL_SYSTEM);
-> -	KUNIT_EXPECT_TRUE(test, bo_small->ttm->page_flags & TTM_TT_FLAG_SWAPPED);
-> -
-> -	ttm_bo_put(bo_big);
-> -	ttm_bo_put(bo_small);
-> -
-> -	ttm_mock_manager_fini(priv->ttm_dev, mem_type);
-> -}
-> -
->  static void ttm_bo_validate_happy_evict(struct kunit *test)
->  {
->  	u32 mem_type = TTM_PL_VRAM, mem_multihop = TTM_PL_TT,
-> @@ -1202,7 +1152,6 @@ static struct kunit_case ttm_bo_validate_test_cases[] = {
->  	KUNIT_CASE(ttm_bo_validate_move_fence_signaled),
->  	KUNIT_CASE_PARAM(ttm_bo_validate_move_fence_not_signaled,
->  			 ttm_bo_validate_wait_gen_params),
-> -	KUNIT_CASE(ttm_bo_validate_swapout),
->  	KUNIT_CASE(ttm_bo_validate_happy_evict),
->  	KUNIT_CASE(ttm_bo_validate_all_pinned_evict),
->  	KUNIT_CASE(ttm_bo_validate_allowed_only_evict),
-> -- 
-> 2.34.1
+> > #endif
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > index 5cd5ab8529c5..8234789f05b7 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > @@ -55,6 +55,8 @@
+> > #define   MTL_MCR_GROUPID			REG_GENMASK(11, 8)
+> > #define   MTL_MCR_INSTANCEID			REG_GENMASK(3, 0)
+> > 
+> > +#define STEER_SEMAPHORE				XE_REG(0xFD0)
 > 
+> ditto, should be sorted too, but it also clashes with
+> MCFG_MCR_SELECTOR. I'm actually not sure why we are using MCFG_MCR_SELECTOR
+> name... probably a copy & paste from i915. That register is indeed
+> called STEER_SEMAPHORE in bspec.
+> 
+> > +
+> > #define PS_INVOCATION_COUNT			XE_REG(0x2348)
+> > 
+> > #define XELP_GLOBAL_MOCS(i)			XE_REG(0x4000 + (i) * 4)
+> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> > index 8991b4aed440..18a0bee38eed 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> > @@ -131,6 +131,9 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
+> > 			flags |= XE_LRC_CREATE_RUNALONE;
+> > 	}
+> > 
+> > +	if (q->flags & EXEC_QUEUE_DISABLE_NULL_QUERY)
+> > +		flags |= EXEC_QUEUE_DISABLE_NULL_QUERY;
+> > +
+> > 	for (i = 0; i < q->width; ++i) {
+> > 		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
+> > 		if (IS_ERR(q->lrc[i])) {
+> > @@ -597,7 +600,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+> > 	u32 len;
+> > 	int err;
+> > 
+> > -	if (XE_IOCTL_DBG(xe, args->flags & ~DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT) ||
+> > +	if (XE_IOCTL_DBG(xe, args->flags &
+> > +	    ~(DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT | DRM_XE_EXEC_QUEUE_DISABLE_NULL_QUERY)) ||
+> > 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+> > 		return -EINVAL;
+> > 
+> > @@ -616,6 +620,9 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+> > 	if (args->flags & DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT)
+> > 		flags |= EXEC_QUEUE_FLAG_LOW_LATENCY;
+> > 
+> > +	if (args->flags & DRM_XE_EXEC_QUEUE_DISABLE_NULL_QUERY)
+> > +		flags |= EXEC_QUEUE_DISABLE_NULL_QUERY;
+> > +
+> > 	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
+> > 		if (XE_IOCTL_DBG(xe, args->width != 1) ||
+> > 		    XE_IOCTL_DBG(xe, args->num_placements != 1) ||
+> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > index cc1cffb5c87f..b62502a18c1b 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > @@ -87,6 +87,8 @@ struct xe_exec_queue {
+> > #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
+> > /* flag to indicate low latency hint to guc */
+> > #define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
+> > +/* flag to indicate disable null query hint */
+> > +#define EXEC_QUEUE_DISABLE_NULL_QUERY		BIT(6)
+> 
+> 		     ^ missing FLAG here to follow the other defines
+> > 
+> > 	/**
+> > 	 * @flags: flags for this exec queue, should statically setup aside from ban
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > index 64a2f0d6aaf9..a7624b30d0c9 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > @@ -46,7 +46,6 @@
+> >  * MCR registers are not available on Virtual Function (VF).
+> >  */
+> > 
+> > -#define STEER_SEMAPHORE		XE_REG(0xFD0)
+> > 
+> > static inline struct xe_reg to_xe_reg(struct xe_reg_mcr reg_mcr)
+> > {
+> > diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> > index d2ad8fe737eb..6fc09df67442 100644
+> > --- a/drivers/gpu/drm/xe/xe_lrc.c
+> > +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> > @@ -13,6 +13,7 @@
+> > #include "instructions/xe_gfxpipe_commands.h"
+> > #include "instructions/xe_gfx_state_commands.h"
+> > #include "regs/xe_engine_regs.h"
+> > +#include "regs/xe_gt_regs.h"
+> > #include "regs/xe_lrc_layout.h"
+> > #include "xe_bb.h"
+> > #include "xe_bo.h"
+> > @@ -25,6 +26,7 @@
+> > #include "xe_map.h"
+> > #include "xe_memirq.h"
+> > #include "xe_mmio.h"
+> > +#include "xe_rtp.h"
+> > #include "xe_sriov.h"
+> > #include "xe_trace_lrc.h"
+> > #include "xe_vm.h"
+> > @@ -972,9 +974,56 @@ static ssize_t wa_bb_setup_utilization(struct xe_lrc *lrc, struct xe_hw_engine *
+> > 	return cmd - batch;
+> > }
+> > 
+> > +/*
+> > + * wa_bb_disable_null_query() - Emit commands in the WA BB
+> > + * to disable or enable NULL Anyhit Shader Query Mechanism.
+> > + *
+> > + * Some platforms require a workaround to disable (or enable) the
+> > + * Anyhit Shader NULL QUERY for specific engines (typically the
+> > + * first render or compute engine). This function emits a sequence
+> > + * of MI commands into the workaround batch buffer (WA BB) to perform
+> > + * a multicast write to the RT_CTRL register, setting or clearing the
+> > + * DIS_NULL_QUERY bit.
+> > + *
+> > + * The sequence includes a semaphore wait to ensure proper ordering,
+> > + * followed by MI_LOAD_REGISTER_IMM commands to write the desired value
+> > + * to the RT_CTRL register, and finally restores the semaphore state.
+> > + *
+> > + */
+> > +static ssize_t wa_bb_disable_null_query(struct xe_gt *gt, struct xe_hw_engine *hwe,
+> > +					u32 *batch, size_t max_size, u32 value)
+> > +{
+> > +	u32 *cmd = batch;
+> > +	struct xe_reg_mcr reg_mcr = RT_CTRL;
+> > +	struct xe_reg reg = reg_mcr.__reg;
+> > +	struct xe_reg reg_sema = STEER_SEMAPHORE;
+> > +
+> > +	/* Add WARN_ON check for minimum required space (10 DWORDs) */
+> 
+> no need for this comment
+> 
+> > +	if (xe_gt_WARN_ON(gt, max_size < 10))
+> > +		return -ENOSPC;
+> > +
+> > +	if (xe_rtp_match_first_render_or_compute(gt, hwe)) {
+> > +		*cmd++ = (MI_SEMAPHORE_WAIT | MI_SEMAPHORE_POLL |
+> > +			  MI_SEMAPHORE_SAD_EQ_SDD | MI_SEMAPHORE_REGISTER_POLL);
+> > +		*cmd++ = 1;
+> > +		*cmd++ = reg_sema.addr;
+> 
+> I think we can simply use
+> 
+> 		*cmd++ = STEER_SEMAPHORE.addr
+> 
+> and similarly in other places here and let go the local vars above.
+> 
+> > +		*cmd++ = 0;
+> > +		*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
+> > +		*cmd++ = reg.addr;
+> > +		*cmd++ = value;
+> > +		*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
+> > +		*cmd++ = reg_sema.addr;
+> > +		*cmd++ = 1;
+> > +	}
+> > +
+> > +	return cmd - batch;
+> > +}
+> > +
+> > struct wa_bb_setup {
+> > 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+> > 			 u32 *batch, size_t max_size);
+> > +	ssize_t (*disable_null_query)(struct xe_gt *gt, struct xe_hw_engine *hwe,
+> > +				      u32 *batch, size_t max_size, u32 value);
+> 
+> this is not how this works... you should define just your function, and
+> add it to the array below as a "setup function".
+> 
+> > };
+> > 
+> > static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+> > @@ -982,6 +1031,7 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+> > 	const size_t max_size = LRC_WA_BB_SIZE;
+> > 	static const struct wa_bb_setup funcs[] = {
+> > 		{ .setup = wa_bb_setup_utilization },
+> > +		{ .disable_null_query = wa_bb_disable_null_query },
+> 
+> should have been:
+> 
+> 		{ .setup = wa_bb_disable_null_query },
+> 
+> But also beware we are refactoring this a little bit, so on next rev you
+> will hit some conflicts. See
+> 
+> drm/xe: LRC refactors @ https://patchwork.freedesktop.org/series/151152/
+> More missing XeLP workarounds @ https://patchwork.freedesktop.org/series/149097/
+> 
+> 
+> 
+> > 	};
+> > 	ssize_t remain;
+> > 	u32 *cmd, *buf = NULL;
+> > @@ -1000,6 +1050,18 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+> > 	for (size_t i = 0; i < ARRAY_SIZE(funcs); i++) {
+> > 		ssize_t len = funcs[i].setup(lrc, hwe, cmd, remain);
+> > 
+> > +		if (((GRAPHICS_VER(gt_to_xe(lrc->gt)) >= 20) &&
+> 
+> this check should be inside the setup function, not here.
+> 
+> Also, is this a WA? It's looking like it, which means you need a
+> WA number, add it to drivers/gpu/drm/xe/xe_wa_oob.rules with the
+> graphics range where it applies and then in wa_bb_disable_null_query()
+> you use:
+> 
+> 	if (!XE_WA(gt, ...))
+> 		return 0;
+> 
+> > +		     (GRAPHICS_VER(gt_to_xe(lrc->gt)) < 30))) {
+> > +			if (lrc->flags & EXEC_QUEUE_DISABLE_NULL_QUERY)
+> > +				len += funcs[i].disable_null_query(lrc->gt, hwe,
+> > +								   cmd, remain,
+> > +								   DIS_NULL_QUERY);
+> > +			else
+> > +				len += funcs[i].disable_null_query(lrc->gt, hwe,
+> > +								   cmd, remain,
+> > +								   ~DIS_NULL_QUERY);
+> > +		}
+> > +
+> > 		remain -= len;
+> > 
+> > 		/*
+> > @@ -1175,6 +1237,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+> > 	map = __xe_lrc_start_seqno_map(lrc);
+> > 	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+> > 
+> > +	if (init_flags & EXEC_QUEUE_DISABLE_NULL_QUERY)
+> 
+> ahn? Please don't mix LRC_*_FLAGS and EXEC_QUEUE_*_FLAGS. This
+> is a recipe for disaster. I don't see why you'd need to set any flag in
+> lrc.
+>
+
+I think the caller (__xe_exec_queue_init) needs to go from
+EXEC_QUEUE_DISABLE_NULL_QUERY -> to an LRC specific flag and pass it via
+init_flags.
+
+Matt
+
+> Lucas De Marchi
+> 
+> > +		lrc->flags |= EXEC_QUEUE_DISABLE_NULL_QUERY;
+> > +
+> > 	err = setup_wa_bb(lrc, hwe);
+> > 	if (err)
+> > 		goto err_lrc_finish;
+> > diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> > index d517ec9ddcbf..5b48befd32cd 100644
+> > --- a/drivers/gpu/drm/xe/xe_query.c
+> > +++ b/drivers/gpu/drm/xe/xe_query.c
+> > @@ -344,7 +344,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+> > 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+> > 			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
+> > 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+> > -			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
+> > +			(DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY |
+> > +			DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_NULL_QUERY);
+> > 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+> > 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
+> > 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
+> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > index e2426413488f..adab49e63757 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -397,6 +397,8 @@ struct drm_xe_query_mem_regions {
+> >  *      has low latency hint support
+> >  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR - Flag is set if the
+> >  *      device has CPU address mirroring support
+> > + *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_NULL_QUERY - Flag is set if the
+> > + *      device has null query support for anyhit shader.
+> >  *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
+> >  *    required by this device, typically SZ_4K or SZ_64K
+> >  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
+> > @@ -415,6 +417,7 @@ struct drm_xe_query_config {
+> > 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
+> > 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
+> > 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
+> > +	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_NULL_QUERY	(1 << 3)
+> > #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+> > #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+> > #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+> > @@ -1270,7 +1273,16 @@ struct drm_xe_exec_queue_create {
+> > 	/** @vm_id: VM to use for this exec queue */
+> > 	__u32 vm_id;
+> > 
+> > +	/** DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY - \
+> > +	 *	Flag is set if the device has low latency hint support
+> > +	 */
+> > #define DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT	(1 << 0)
+> > +
+> > +	/** DRM_XE_EXEC_QUEUE_DISABLE_NULL_QUERY - \
+> > +	 *	flag is use to disable null query check for Anyhit shader
+> > +	 */
+> > +#define DRM_XE_EXEC_QUEUE_DISABLE_NULL_QUERY	(1 << 1)
+> > +
+> > 	/** @flags: flags to use for this exec queue */
+> > 	__u32 flags;
+> > 
+> > -- 
+> > 2.25.1
+> > 
