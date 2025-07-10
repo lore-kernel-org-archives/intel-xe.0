@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE055C83F17
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Jul 2025 23:39:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F6FCC83F17
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Jul 2025 23:44:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2C9810E98A;
-	Thu, 10 Jul 2025 23:39:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1A1210E22F;
+	Thu, 10 Jul 2025 23:44:02 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5271810E98A;
- Thu, 10 Jul 2025 23:39:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2703502380109912056=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64AE210E22F;
+ Thu, 10 Jul 2025 23:44:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Remove_references?=
- =?utf-8?q?_to_CONFIG=5FDRM=5FXE=5FDEVMEM=5FMIRROR?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/migrate=3A_Fix_ali?=
+ =?utf-8?q?gnment_check?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 10 Jul 2025 23:39:00 -0000
-Message-ID: <175219074033.152706.743294184344191848@1538d3639d33>
+Date: Thu, 10 Jul 2025 23:44:01 -0000
+Message-ID: <175219104140.152021.12183534873770039063@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250710205413.1105595-1-matthew.brost@intel.com>
-In-Reply-To: <20250710205413.1105595-1-matthew.brost@intel.com>
+References: <20250710-migrate-aligned-v1-1-44003ef3c078@intel.com>
+In-Reply-To: <20250710-migrate-aligned-v1-1-44003ef3c078@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,56 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2703502380109912056==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Remove references to CONFIG_DRM_XE_DEVMEM_MIRROR
-URL   : https://patchwork.freedesktop.org/series/151467/
-State : success
+Series: drm/xe/migrate: Fix alignment check
+URL   : https://patchwork.freedesktop.org/series/151470/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3393-0c25b3078b7b218b4a529dc6497fe4804aecb842_BAT -> xe-pw-151467v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+43254c2aa575037fc031c7ac21b0d031c700b2bf
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 68c0b1df8834a34d4ea4970a5200a53b0358bf95
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Thu Jul 10 14:34:41 2025 -0700
 
-Summary
--------
+    drm/xe/migrate: Fix alignment check
+    
+    The check would fail if the address is unaligned, but not when
+    accounting the offset. Instead of `buf | offset` it should have
+    been `buf + offset`. To make it more readable and also drop the
+    uintptr_t, just use the IS_ALIGNED() macro.
+    
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch bab85d5087ee37f0f268e0a0fb307378a168fe6e drm-intel
+68c0b1df8834 drm/xe/migrate: Fix alignment check
+-:26: ERROR:CODE_INDENT: code indent should use tabs where possible
+#26: FILE: drivers/gpu/drm/xe/xe_migrate.c:1820:
++        if (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||$
 
-  **SUCCESS**
+-:26: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#26: FILE: drivers/gpu/drm/xe/xe_migrate.c:1820:
++        if (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||$
 
-  No regressions found.
+-:27: ERROR:CODE_INDENT: code indent should use tabs where possible
+#27: FILE: drivers/gpu/drm/xe/xe_migrate.c:1821:
++            !IS_ALIGNED((unsigned long)buf + offset, XE_CACHELINE_BYTES)) {$
 
-  
+-:27: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#27: FILE: drivers/gpu/drm/xe/xe_migrate.c:1821:
++            !IS_ALIGNED((unsigned long)buf + offset, XE_CACHELINE_BYTES)) {$
 
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3393-0c25b3078b7b218b4a529dc6497fe4804aecb842 -> xe-pw-151467v1
-
-  IGT_8451: 8451
-  xe-3393-0c25b3078b7b218b4a529dc6497fe4804aecb842: 0c25b3078b7b218b4a529dc6497fe4804aecb842
-  xe-pw-151467v1: 151467v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151467v1/index.html
-
---===============2703502380109912056==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 2 errors, 2 warnings, 0 checks, 10 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Remove references to CONFIG_DRM_XE_DEVMEM_MIRROR</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151467/">https://patchwork.freedesktop.org/series/151467/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151467v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151467v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3393-0c25b3078b7b218b4a529dc6497fe4804aecb842_BAT -&gt; xe-pw-151467v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3393-0c25b3078b7b218b4a529dc6497fe4804aecb842 -&gt; xe-pw-151467v1</li>
-</ul>
-<p>IGT_8451: 8451<br />
-  xe-3393-0c25b3078b7b218b4a529dc6497fe4804aecb842: 0c25b3078b7b218b4a529dc6497fe4804aecb842<br />
-  xe-pw-151467v1: 151467v1</p>
-
-</body>
-</html>
-
---===============2703502380109912056==--
