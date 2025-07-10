@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E3AFC83F1D
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Jul 2025 09:37:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17D22C83F1D
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Jul 2025 09:37:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D15A810E04A;
-	Thu, 10 Jul 2025 09:37:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D562B10E05A;
+	Thu, 10 Jul 2025 09:37:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kNBUk9rX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MUhpsZWy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2594D10E04A
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Jul 2025 09:37:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1273E10E05A
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Jul 2025 09:37:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752140229; x=1783676229;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Ou2eeJ0SRRQ5+34s3eiSK68PbEAyhRyUcIPsesDvYsg=;
- b=kNBUk9rXA8c1hXUUKACYEF8aHVTQUFoc/LLJZZrQKFLbj59J5BQ2d+Uf
- jUPH3Da+3QWUA81UvrhDfgna4zWgFlmLIjzxohXVMdINoNSkfsxY3aLS1
- pyZe5qgJiRysFZAAzhPm75pJBLpRGUPMyaarSCu7NIMZizKk+bgif5u2V
- l4cMsrevL5S1v7cRu7ZOPEUbo6Cabpv/lQkyUtVshFcUBWwZDKJaugpEe
- st4c0fV5npEepi86BDnOp403cJHwaWdnp52D7bm9T+dH561ksJh0Ah+TD
- xApcpf6bigH6I144ZYsK281h1tb/Q3VyijKiYXu5Areio/4uFJZ/cSs8k A==;
-X-CSE-ConnectionGUID: 1/VXgRKITUSEFNqbFcX8YA==
-X-CSE-MsgGUID: kAPX/vy2Q5GVBoWkCVtQuw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="79851261"
-X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; d="scan'208";a="79851261"
+ t=1752140234; x=1783676234;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=WKrbc47fDlnXZvVW13Av+FK8uF+FXIc/u29onLEvvAo=;
+ b=MUhpsZWyPIxtm4uYyIxZIRrhYipwP+v7YvtEvPucqUm36Ie8kK4efC2/
+ fDlfz4NaiQXEokgqbUhsPlpH59iEGnxi+rZ1GRlixt0YYeHhoxt0cExSk
+ Cdf6qiz2LD8m3vvFsynW+Il45v5EeZ/eetYmN73Q8fKYAE5V1kZYCtVgI
+ Hp/qq1NepdfZuWVGU3Z1Yc7rrqmHlrpcxeuWyatfOfgyW1b/HCoPKAZ14
+ zOYXXA/IQ/FyM7BD/DleCHzndCtCxw5zkcxbAl8Qgnp9UkJegSaShNhKj
+ 3GPXbQcZIHQRH3BRW5YiJfeNzReMhVZVTLjHLphCGnOBdJO8ciSSxA2aP g==;
+X-CSE-ConnectionGUID: ysBlvHnPSv6jgOMglXF8Ng==
+X-CSE-MsgGUID: KULJzlqQRf6HvwFeMj9+IQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="79851263"
+X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; d="scan'208";a="79851263"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2025 02:37:08 -0700
-X-CSE-ConnectionGUID: WmpMYoFpSqqtVYgixu0Dkg==
-X-CSE-MsgGUID: vi7AKJV6TcOtWkFzuDz3lA==
+ 10 Jul 2025 02:37:14 -0700
+X-CSE-ConnectionGUID: ROSacf0xTt6tFgbfihZS8Q==
+X-CSE-MsgGUID: CkwKkeoyQ5yeL4o1P45K9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; d="scan'208";a="160038288"
+X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; d="scan'208";a="160038301"
 Received: from tmistat-dev.igk.intel.com ([10.211.135.226])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2025 02:37:07 -0700
+ 10 Jul 2025 02:37:13 -0700
 From: Jakub Kolakowski <jakub1.kolakowski@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH 0/2] Add SR-IOV support for BMG
-Date: Thu, 10 Jul 2025 09:26:28 +0000
-Message-Id: <20250710092630.370341-1-jakub1.kolakowski@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 1/2] drm/xe/bmg: Don't use WA 16023588340 and 22019338487 on VF
+Date: Thu, 10 Jul 2025 09:26:29 +0000
+Message-Id: <20250710092630.370341-2-jakub1.kolakowski@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250710092630.370341-1-jakub1.kolakowski@intel.com>
+References: <20250710092630.370341-1-jakub1.kolakowski@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,21 +66,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add SR-IOV support for BMG platforms. Exclude VF from using WA
-16023588340 and 22019338487 and add has_sriov flag for BMG.
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+These workarounds are not applicable for use by the VFs.
 
-Michal Wajdeczko (2):
-  drm/xe/bmg: Don't use WA 16023588340 and 22019338487 on VF
-  drm/xe/sriov: Mark BMG as SR-IOV capable
-
- drivers/gpu/drm/xe/xe_pci.c        | 1 +
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
  drivers/gpu/drm/xe/xe_wa_oob.rules | 4 ++--
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 96cc33da0fb5..e7ed5d583d68 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -40,10 +40,10 @@
+ 		GRAPHICS_VERSION_RANGE(3000, 3001)
+ 		GRAPHICS_VERSION(3003)
+ 22019338487	MEDIA_VERSION(2000)
+-		GRAPHICS_VERSION(2001)
++		GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_not_sriov_vf)
+ 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_not_sriov_vf)
+ 22019338487_display	PLATFORM(LUNARLAKE)
+-16023588340	GRAPHICS_VERSION(2001)
++16023588340	GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_not_sriov_vf)
+ 14019789679	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION_RANGE(1270, 2004)
+ no_media_l3	MEDIA_VERSION(3000)
 -- 
 2.34.1
 
