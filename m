@@ -4,52 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E9C1C83F1B
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Jul 2025 19:08:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68E47C83F1A
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Jul 2025 19:08:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46CAC10E2E8;
-	Fri, 11 Jul 2025 19:08:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D1B010E3BF;
+	Fri, 11 Jul 2025 19:08:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C9mnFc5c";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ObraHUMI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4F6910E2E8
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Jul 2025 19:08:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752260895; x=1783796895;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=odtL2hz4uTIDpHbXzAUwM1lYW8Rac0hcxg87ySVcQD8=;
- b=C9mnFc5cuRYwkYyBu5sGw66wpPs7RY5ubkp07oOMw0iywl4KCR/yWU+f
- 6eeN4knS2X0os59P5Wppw6Pcw/EMBUnA1Ig9ndnp8Np588ZzZMxBS3Y1F
- gltlkLZJ/q1C/BM1lvMlSujqx9LW9lf0U0zm59LsLzdFKSQOL1MJxX3hc
- 83K5FJdVSVLdtYR+fgqzqDDJGnQnzbuZHWfSQgoeZ8687l7kQMRtMYwOw
- XS+zmFdGVNNqSVNqsbKqcd1pIe3DvILd56ugI0GPtXbthaqEzmlmBwxqG
- moHvsQuJKDHB3SRnXPLgdsNrp9xtpQAjv8uOerUf4oZQuHKQGpTDlft/O Q==;
-X-CSE-ConnectionGUID: fnPHZCjJQL2KGRNG0Aqezg==
-X-CSE-MsgGUID: DmYm2j2oSiePQ9WGWNdrKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54535061"
-X-IronPort-AV: E=Sophos;i="6.16,304,1744095600"; d="scan'208";a="54535061"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2025 12:08:14 -0700
-X-CSE-ConnectionGUID: R09DBXX5Tp6qHTmThDJzHg==
-X-CSE-MsgGUID: q7S0deA5Te6E5QRurQJPBQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,304,1744095600"; d="scan'208";a="160457796"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa003.fm.intel.com with ESMTP; 11 Jul 2025 12:08:12 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: lucas.demarchi@intel.com,
-	rodrigo.vivi@intel.com
-Cc: intel-xe@lists.freedesktop.org, michal.wajdeczko@intel.com,
- matthew.d.roper@intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v1] drm/xe: Don't expose device attributes for VFs
-Date: Sat, 12 Jul 2025 00:38:08 +0530
-Message-Id: <20250711190808.2743402-1-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E203110E3BD;
+ Fri, 11 Jul 2025 19:08:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=UjO5jjvC3hP6G/uzyJC+ugsJD8Wne4n4ZF27eWw30vU=; b=ObraHUMIIi5b0c8NS9cNE0PyDC
+ E1OLtdyC7hub8QIC2jzryExm4A2i4+56xA8MeDdgkCWJdjAr64XI/FBr0PIk5drollPPXOOaTEi/Y
+ B+pv63SLWHxkrH7UftY2CVQeF2FHVjENzxbNCD6RKWnO27yoksVvofwfVxbuOsM7ilJ7R24FzINHD
+ aQctwjL5ccwW5TmobpR27UlD1aZVVj+m0v7Tjo9Ef48fRZaefv877zPVEPC5o87K9FBwbQFLawa68
+ wce2RDkmdI4wDFj3hjxD46f9rMW+7QkmwVhIF9xmW/EuGQJf+dGPw0iRNW3HV6wXRgt78up9kY8pO
+ YLGHR7ug==;
+Received: from [187.36.210.68] (helo=[192.168.1.103])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uaJ6u-00FUdM-Pv; Fri, 11 Jul 2025 21:08:41 +0200
+Message-ID: <d59b7550-5833-4377-9d94-33161f375604@igalia.com>
+Date: Fri, 11 Jul 2025 16:08:34 -0300
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/sched: Avoid double re-lock on the job free path
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
+References: <20250711150949.48667-1-tvrtko.ursulin@igalia.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <20250711150949.48667-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,42 +62,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit a7f87deac229 ("drm/xe: Default auto_link_downgrade status to false")
-tried to fix the side effect of xe_pcode_read() returning successfully
-without valid data-out value when xe->info.skip_pcode is set. Since this
-is true for IS_SRIOV_VF() cases, a much robust fix would be to not expose
-device attributes for VFs, which covers wider pcode mailbox users.
+Hi Tvrtko,
 
-Fixes: a7f87deac229 ("drm/xe: Default auto_link_downgrade status to false")
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/xe/xe_device_sysfs.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+On 11/07/25 12:09, Tvrtko Ursulin wrote:
+> Currently the job free work item will lock sched->job_list_lock first time
+> to see if there are any jobs, free a single job, and then lock again to
+> decide whether to re-queue itself if there are more finished jobs.
+> 
+> Since drm_sched_get_finished_job() already looks at the second job in the
+> queue we can simply add the signaled check and have it return the presence
+> of more jobs to be freed to the caller. That way the work item does not
+> have to lock the list again and repeat the signaled check.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Philipp Stanner <phasta@kernel.org>
+> ---
+> v2:
+>   * Improve commit text and kerneldoc. (Philipp)
+>   * Rename run free work helper. (Philipp)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-index e5fd0cd537bc..8250aa4620ee 100644
---- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-@@ -259,8 +259,7 @@ auto_link_downgrade_status_show(struct device *dev, struct device_attribute *att
- {
- 	struct pci_dev *pdev = to_pci_dev(dev);
- 	struct xe_device *xe = pdev_to_xe_device(pdev);
--	/* default the auto_link_downgrade status to 0 */
--	u32 val = 0;
-+	u32 val;
- 	int ret;
- 
- 	xe_pm_runtime_get(xe);
-@@ -297,6 +296,9 @@ int xe_device_sysfs_init(struct xe_device *xe)
- 	struct device *dev = xe->drm.dev;
- 	int ret;
- 
-+	if (IS_SRIOV_VF(xe))
-+		return 0;
-+
- 	if (xe->d3cold.capable) {
- 		ret = sysfs_create_file(&dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
- 		if (ret)
--- 
-2.34.1
+Maybe, would it be possible not to rename it? Otherwise, I won't be able
+to use the function name `drm_sched_run_free_queue()` in the
+DRM_GPU_SCHED_STAT_NO_HANG series.
+
+Not a big deal, but it would ease reintroducing
+`drm_sched_run_free_queue()` if the series lands after this patch.
+
+Best Regards,
+- Maíra
+
+> ---
+>   drivers/gpu/drm/scheduler/sched_main.c | 48 +++++++++++---------------
+>   1 file changed, 21 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> index 33d02b79674d..e183b305a51b 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -349,29 +349,13 @@ static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
+>   }
+>   
+>   /**
+> - * __drm_sched_run_free_queue - enqueue free-job work
+> - * @sched: scheduler instance
+> - */
+> -static void __drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
+> -{
+> -	if (!READ_ONCE(sched->pause_submit))
+> -		queue_work(sched->submit_wq, &sched->work_free_job);
+> -}
+> -
+> -/**
+> - * drm_sched_run_free_queue - enqueue free-job work if ready
+> + * drm_sched_run_free_queue - enqueue free-job work
+>    * @sched: scheduler instance
+>    */
+>   static void drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
+>   {
+> -	struct drm_sched_job *job;
+> -
+> -	spin_lock(&sched->job_list_lock);
+> -	job = list_first_entry_or_null(&sched->pending_list,
+> -				       struct drm_sched_job, list);
+> -	if (job && dma_fence_is_signaled(&job->s_fence->finished))
+> -		__drm_sched_run_free_queue(sched);
+> -	spin_unlock(&sched->job_list_lock);
+> +	if (!READ_ONCE(sched->pause_submit))
+> +		queue_work(sched->submit_wq, &sched->work_free_job);
+>   }
+>   
+>   /**
+> @@ -393,7 +377,7 @@ static void drm_sched_job_done(struct drm_sched_job *s_job, int result)
+>   	dma_fence_get(&s_fence->finished);
+>   	drm_sched_fence_finished(s_fence, result);
+>   	dma_fence_put(&s_fence->finished);
+> -	__drm_sched_run_free_queue(sched);
+> +	drm_sched_run_free_queue(sched);
+>   }
+>   
+>   /**
+> @@ -1094,12 +1078,16 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
+>    * drm_sched_get_finished_job - fetch the next finished job to be destroyed
+>    *
+>    * @sched: scheduler instance
+> + * @have_more: are there more finished jobs on the list
+> + *
+> + * Informs the caller through @have_more whether there are more finished jobs
+> + * besides the returned one.
+>    *
+>    * Returns the next finished job from the pending list (if there is one)
+>    * ready for it to be destroyed.
+>    */
+>   static struct drm_sched_job *
+> -drm_sched_get_finished_job(struct drm_gpu_scheduler *sched)
+> +drm_sched_get_finished_job(struct drm_gpu_scheduler *sched, bool *have_more)
+>   {
+>   	struct drm_sched_job *job, *next;
+>   
+> @@ -1107,22 +1095,25 @@ drm_sched_get_finished_job(struct drm_gpu_scheduler *sched)
+>   
+>   	job = list_first_entry_or_null(&sched->pending_list,
+>   				       struct drm_sched_job, list);
+> -
+>   	if (job && dma_fence_is_signaled(&job->s_fence->finished)) {
+>   		/* remove job from pending_list */
+>   		list_del_init(&job->list);
+>   
+>   		/* cancel this job's TO timer */
+>   		cancel_delayed_work(&sched->work_tdr);
+> -		/* make the scheduled timestamp more accurate */
+> +
+> +		*have_more = false;
+>   		next = list_first_entry_or_null(&sched->pending_list,
+>   						typeof(*next), list);
+> -
+>   		if (next) {
+> +			/* make the scheduled timestamp more accurate */
+>   			if (test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT,
+>   				     &next->s_fence->scheduled.flags))
+>   				next->s_fence->scheduled.timestamp =
+>   					dma_fence_timestamp(&job->s_fence->finished);
+> +
+> +			*have_more = dma_fence_is_signaled(&next->s_fence->finished);
+> +
+>   			/* start TO timer for next job */
+>   			drm_sched_start_timeout(sched);
+>   		}
+> @@ -1181,12 +1172,15 @@ static void drm_sched_free_job_work(struct work_struct *w)
+>   	struct drm_gpu_scheduler *sched =
+>   		container_of(w, struct drm_gpu_scheduler, work_free_job);
+>   	struct drm_sched_job *job;
+> +	bool have_more;
+>   
+> -	job = drm_sched_get_finished_job(sched);
+> -	if (job)
+> +	job = drm_sched_get_finished_job(sched, &have_more);
+> +	if (job) {
+>   		sched->ops->free_job(job);
+> +		if (have_more)
+> +			drm_sched_run_free_queue(sched);
+> +	}
+>   
+> -	drm_sched_run_free_queue(sched);
+>   	drm_sched_run_job_queue(sched);
+>   }
+>   
 
