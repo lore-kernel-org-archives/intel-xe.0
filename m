@@ -4,57 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09478C8303C
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Jul 2025 08:46:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEF91C8303C
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Jul 2025 08:56:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1F1E10E269;
-	Fri, 11 Jul 2025 08:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 680C510E9D2;
+	Fri, 11 Jul 2025 08:56:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fA2Xuh++";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="JfmK15/E";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57FBA10E269
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Jul 2025 08:46:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752223606; x=1783759606;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=P2jQuUk6cfXY7OPPkv/YDFtcAgq8+WCje1+1lvQk27A=;
- b=fA2Xuh++TnKaPEhwbhJktg4D81i3JgszH4Vk4TbWLWtuK+YrRlUjEXhT
- 2a5BcxRTd3rsQ7XDKoXuPAUytZ1dntOSxO/4F4gohkS244bOGdSWvJWXv
- dDhQOjA2yuBLsf2ulRuq+C/OTt5RAF+Qx3QNoXItFEGkW7eYhKNarsNsU
- JfMCOzWrKhM9L7rA9oh1OAusBUXvZ+TExQdAcmQSVlwo011Z6+ctQpa9+
- OtlsADu4s1k0N6S6I30GLRu54a6Od47SUu5PPN7Dl0b6ss5/IAsFmIAjI
- niaT/JCIbNjKLKXgLFlagO+V1ASB+c1z/I3MPE4Uy34nLSDbcdOVquP5v A==;
-X-CSE-ConnectionGUID: 6R0qJlT6TiiJvgiUw7IMPA==
-X-CSE-MsgGUID: 5BNmlHbJTOe1ZQFez3ViuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11490"; a="54604708"
-X-IronPort-AV: E=Sophos;i="6.16,303,1744095600"; d="scan'208";a="54604708"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2025 01:46:46 -0700
-X-CSE-ConnectionGUID: jC6Nk6GcQ/G0yUGipnwEGw==
-X-CSE-MsgGUID: CEiQIXOiTB6N6tzBkp3JyQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,303,1744095600"; d="scan'208";a="162009324"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.245.21])
- ([10.245.245.21])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2025 01:46:45 -0700
-Message-ID: <b6a333c4-c0ce-42ea-9201-20264e0c5987@intel.com>
-Date: Fri, 11 Jul 2025 09:46:42 +0100
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+ [209.85.128.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A1DA10E9D2
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Jul 2025 08:56:45 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id
+ 5b1f17b1804b1-453398e90e9so14058275e9.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Jul 2025 01:56:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1752224204; x=1752829004; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=3rn0Rb5qH5a1QkFW9vt15yj1EmAMdFbOqUedpnyzvD0=;
+ b=JfmK15/EWUVZq+t1QXz7SR/emTaEaY0mHdqfgU5nsO2Ck0yD50kLEBaAOusyAuYZzc
+ 5pln1tnxaaCWy/TbowlBxnQo7vxWbVAqwE9ijO9MXRc1LRhk3sDTVwmF5JL9lGhuQWaK
+ B+SJJJEGKCyaADSaxqbGevkdN9nXWGYV130rM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752224204; x=1752829004;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=3rn0Rb5qH5a1QkFW9vt15yj1EmAMdFbOqUedpnyzvD0=;
+ b=Xa9A3xYsbTmEG1tdHq+eG29SPnadqahFBw78WCqoI8uW0DgVY+JDoDgnr9qUF0L6an
+ hayMpJkvP+Z2S9M37QW3YSW5oRyggK60W02HIAKd0Af9PzjSWdMzyQWWrhGfB54ZeIJC
+ OhAklD3SLluuQeyB/zZu0jjo3ipFjc5Ni0euo0LP9gUAyHIeCWLC9/TwUn8vRgO6gDmI
+ q73UVVNAJnqc6n/nc/ltrDkZ+ECkJ6QDIiuSLwk0/PgynB+gtwW+aRsJKYz9oT3Oa9+0
+ z1rkk3mBE0ScGFn3XF+i45FOuQhfrQJ0zc1ZTKhbZmB7uDKE63bqtUtsZcd5JlFdywq/
+ NSgA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX9suKaQtNZZo+8veosTAibKYLU6AT8GdimWy0NyYSM8fHQuFgO+SguWFIexoBMpJC9OxW78hGfHw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyP8oxBBOs2M7n3RDiO/ihiGmpcO+GS26dhyawr6sgNVKtFIXGS
+ nfHgSB6D98hMMPKkc7V6/uApGAdNOMRI/CBxk+wYHy8RpyrH71UO3U/BWsvNRWSQT6U=
+X-Gm-Gg: ASbGncsBxJK5dtezJ02ARhJfoJR8sYiIZKR7QRqVrm91N2oP7kfc9wvl1cchr0Th9Cc
+ 7D1bSPrTb4TU4gLfenfm994UxnuvII9IbApxb6geTh+XTJS3aOMb0QkcMvE/GCxO0c0ykG9jGLE
+ 9jNxycfg9H0fwioke65fcd/DuvrH8UzWtWPiXpKmiVaO31MjGvg72Lf4+nARstmXUiCmkacZ7ss
+ RCoIkvwUriexRwfvxU9bM1ynGxIyq0N5Op6NTYHdV4heuKUVVGLStGxg9dfpR2MzbUNRmhJcFyJ
+ qZ940GRUN80HuINZ9Z+veywuO2M793XFvKEmxI1c85gTZXZRwdoOZ391/aU96lDZNbyR+kTXPxl
+ 4GNLEv1wMKDPRNbvlxUwEDzwrsnDVg2AlRw==
+X-Google-Smtp-Source: AGHT+IFWfW2C43q5JCCX74i1RzYHo2ZKVaE6ck5Kxo3I/Gr+voGCNDz6XtQ2g29C2wR/neA/XH/1uw==
+X-Received: by 2002:a05:600c:1910:b0:453:a95:f086 with SMTP id
+ 5b1f17b1804b1-454ec16a0d0mr21476435e9.12.1752224203632; 
+ Fri, 11 Jul 2025 01:56:43 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3b5e8dc1e4fsm3876387f8f.21.2025.07.11.01.56.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 11 Jul 2025 01:56:43 -0700 (PDT)
+Date: Fri, 11 Jul 2025 10:56:41 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Raag Jadav <raag.jadav@intel.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org,
+ anshuman.gupta@intel.com, lucas.demarchi@intel.com,
+ aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
+ frank.scarbrough@intel.com, sk.anirban@intel.com,
+ =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v4 1/9] drm: Add a vendor-specific recovery method to
+ device wedged uevent
+Message-ID: <aHDRyZBkw-Qa_30R@phenom.ffwll.local>
+References: <20250709112024.1053710-1-riana.tauro@intel.com>
+ <20250709112024.1053710-2-riana.tauro@intel.com>
+ <aG5xglf8BeGzleWM@phenom.ffwll.local>
+ <d42e17ef-30ce-4bf1-9948-7f08fd6f3bac@amd.com>
+ <aG56Trd1h5WbWYJt@black.fi.intel.com> <aG6eNcygPshsSlC8@intel.com>
+ <aG-BcFN6M9BtjB2j@phenom.ffwll.local>
+ <cd206f9e-be53-4b22-a166-ed18fa9b833a@amd.com>
+ <aG-U9JTXDah_tu1U@black.fi.intel.com> <aHANtkxkhI4_Nb6R@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/migrate: Fix alignment check
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-References: <20250710-migrate-aligned-v1-1-44003ef3c078@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250710-migrate-aligned-v1-1-44003ef3c078@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aHANtkxkhI4_Nb6R@intel.com>
+X-Operating-System: Linux phenom 6.12.30-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,38 +102,231 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 10/07/2025 22:34, Lucas De Marchi wrote:
-> The check would fail if the address is unaligned, but not when
-> accounting the offset. Instead of `buf | offset` it should have
-> been `buf + offset`. To make it more readable and also drop the
-> uintptr_t, just use the IS_ALIGNED() macro.
+On Thu, Jul 10, 2025 at 03:00:06PM -0400, Rodrigo Vivi wrote:
+> On Thu, Jul 10, 2025 at 01:24:52PM +0300, Raag Jadav wrote:
+> > On Thu, Jul 10, 2025 at 11:37:14AM +0200, Christian König wrote:
+> > > On 10.07.25 11:01, Simona Vetter wrote:
+> > > > On Wed, Jul 09, 2025 at 12:52:05PM -0400, Rodrigo Vivi wrote:
+> > > >> On Wed, Jul 09, 2025 at 05:18:54PM +0300, Raag Jadav wrote:
+> > > >>> On Wed, Jul 09, 2025 at 04:09:20PM +0200, Christian König wrote:
+> > > >>>> On 09.07.25 15:41, Simona Vetter wrote:
+> > > >>>>> On Wed, Jul 09, 2025 at 04:50:13PM +0530, Riana Tauro wrote:
+> > > >>>>>> Certain errors can cause the device to be wedged and may
+> > > >>>>>> require a vendor specific recovery method to restore normal
+> > > >>>>>> operation.
+> > > >>>>>>
+> > > >>>>>> Add a recovery method 'WEDGED=vendor-specific' for such errors. Vendors
+> > > >>>>>> must provide additional recovery documentation if this method
+> > > >>>>>> is used.
+> > > >>>>>>
+> > > >>>>>> v2: fix documentation (Raag)
+> > > >>>>>>
+> > > >>>>>> Cc: André Almeida <andrealmeid@igalia.com>
+> > > >>>>>> Cc: Christian König <christian.koenig@amd.com>
+> > > >>>>>> Cc: David Airlie <airlied@gmail.com>
+> > > >>>>>> Cc: <dri-devel@lists.freedesktop.org>
+> > > >>>>>> Suggested-by: Raag Jadav <raag.jadav@intel.com>
+> > > >>>>>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> > > >>>>>
+> > > >>>>> I'm not really understanding what this is useful for, maybe concrete
+> > > >>>>> example in the form of driver code that uses this, and some tool or
+> > > >>>>> documentation steps that should be taken for recovery?
+> > > >>
+> > > >> The case here is when FW underneath identified something badly corrupted on
+> > > >> FW land and decided that only a firmware-flashing could solve the day and
+> > > >> raise interrupt to the driver. At that point we want to wedge, but immediately
+> > > >> hint the admin the recommended action.
+> > > >>
+> > > >>>>
+> > > >>>> The recovery method for this particular case is to flash in a new firmware.
+> > > >>>>
+> > > >>>>> The issues I'm seeing here is that eventually we'll get different
+> > > >>>>> vendor-specific recovery steps, and maybe even on the same device, and
+> > > >>>>> that leads us to an enumeration issue. Since it's just a string and an
+> > > >>>>> enum I think it'd be better to just allocate a new one every time there's
+> > > >>>>> a new strange recovery method instead of this opaque approach.
+> > > >>>>
+> > > >>>> That is exactly the opposite of what we discussed so far.
+> > > > 
+> > > > Sorry, I missed that context.
+> > > > 
+> > > >>>> The original idea was to add a firmware-flush recovery method which
+> > > >>>> looked a bit wage since it didn't give any information on what to do
+> > > >>>> exactly.
+> > > >>>>
+> > > >>>> That's why I suggested to add a more generic vendor-specific event
+> > > >>>> with refers to the documentation and system log to see what actually
+> > > >>>> needs to be done.
+> > > >>>>
+> > > >>>> Otherwise we would end up with events like firmware-flash, update FW
+> > > >>>> image A, update FW image B, FW version mismatch etc....
+> > > > 
+> > > > Yeah, that's kinda what I expect to happen, and we have enough numbers for
+> > > > this all to not be an issue.
+> > > > 
+> > > >>> Agree. Any newly allocated method that is specific to a vendor is going to
+> > > >>> be opaque anyway, since it can't be generic for all drivers. This just helps
+> > > >>> reduce the noise in DRM core.
+> > > >>>
+> > > >>> And yes, there could be different vendor-specific cases for the same driver
+> > > >>> and the driver should be able to provide the means to distinguish between
+> > > >>> them.
+> > > >>
+> > > >> Sim, what's your take on this then?
+> > > >>
+> > > >> Should we get back to the original idea of firmware-flash?
+> > > > 
+> > > > Maybe intel-firmware-flash or something, meaning prefix with the vendor?
+> > > > 
+> > > > The reason I think it should be specific is because I'm assuming you want
+> > > > to script this. And if you have a big fleet with different vendors, then
+> > > > "vendor-specific" doesn't tell you enough. But if it's something like
+> > > > $vendor-$magic_step then it does become scriptable, and we do have have a
+> > > > place to put some documentation on what you should do instead.
+> > > > 
+> > > > If the point of this interface isn't that it's scriptable, then I'm not
+> > > > sure why it needs to be an uevent?
+> > > 
+> > > You should probably read up on the previous discussion, cause that is exactly what I asked as well :)
+> > > 
+> > > And no, it should *not* be scripted. That would be a bit brave for a firmware update where you should absolutely not power down the system for example.
 > 
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> I also don't like the idea or even the thought of scripting something like
+> a firmware-flash. But only to fail with a better pin point to make admin
+> lives easier with a notification.
+> 
+> > > 
+> > > In my understanding the new value "vendor-specific" basically means it is a known issue with a documented solution, while "unknown" means the driver has no idea how to solve it.
+> 
+> Exactly, the hardware and firmware are giving the indication of what should be
+> done. It is not 'unknown'.
+> 
+> > 
+> > Yes, and since the recovery procedure is defined and known to the consumer,
+> > it can potentially be automated (atleast for non-firmware cases).
+> > 
+> > > > I guess if you all want to stick with vendor-specific then I think that's
+> 
+> Well, I would honestly prefer a direct firmware-flash, but if that is not
+> usable by other vendors and there's a push back on that, let's go with
+> the vendor-specific then.
+> 
+> > > > ok with me too, but the docs should at least explain how to figure out
+> > > > from the uevent which vendor you're on with a small example. What I'm
+> > > > worried is that if we have this on multiple drivers userspace will
+> > > > otherwise make a complete mess and might want to run the wrong recovery
+> > > > steps.
+> > 
+> > The device id along with driver can be identified from uevent (probably
+> > available inside DEVPATH somewhere) to distinguish the vendor. So the consumer
+> > already knows if the device fits the criteria for recovery.
+> > 
+> > > > I think ideally, no matter what, we'd have a concrete driver patch which
+> > > > then also comes with the documentation for what exactly you're supposed to
+> > > > do as something you can script. And not just this stand-alone patch here.
+> > 
+> > Perhaps the rest of the series didn't make it to dri-devel, which will answer
+> > most of the above.
+> 
+> Riana, could you please try to provide a bit more documentation like Sima
+> asked and re-send the entire series to dri-devel?
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Yeah all the stuff discussed here needs to be included in the commit
+message.
 
-> ---
->   drivers/gpu/drm/xe/xe_migrate.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index 4e2bdf70eb70b..18b53a4e267d3 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -1817,8 +1817,8 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
->   	xe_bo_assert_held(bo);
->   
->   	/* Use bounce buffer for small access and unaligned access */
-> -	if (len & XE_CACHELINE_MASK ||
-> -	    ((uintptr_t)buf | offset) & XE_CACHELINE_MASK) {
-> +        if (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||
-> +            !IS_ALIGNED((unsigned long)buf + offset, XE_CACHELINE_BYTES)) {
->   		int buf_offset = 0;
->   
->   		/*
-> 
-> 
-> 
+Also ideally the patch series would add a user in xe, and the xe patch
+would then also include documentation on how that firmware flash should
+happen. Also I guess the xe patch I guess should explain how backwards
+compatibility should work if there's ever a need for yet-another recovery
+method. Asking userspace to filter on specific pciid sounds brittle, I
+think worst case we'll just add vendor-specific-1 or something :-)
 
+Which is why I still think we should just enum them all, but I'm ok with
+just properly documenting the reasoning behind this all.
+
+Cheers, Sima
+
+> 
+> Thanks,
+> Rodrigo.
+> 
+> > 
+> > Raag
+> > 
+> > > >>>>>> ---
+> > > >>>>>>  Documentation/gpu/drm-uapi.rst | 9 +++++----
+> > > >>>>>>  drivers/gpu/drm/drm_drv.c      | 2 ++
+> > > >>>>>>  include/drm/drm_device.h       | 4 ++++
+> > > >>>>>>  3 files changed, 11 insertions(+), 4 deletions(-)
+> > > >>>>>>
+> > > >>>>>> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
+> > > >>>>>> index 263e5a97c080..c33070bdb347 100644
+> > > >>>>>> --- a/Documentation/gpu/drm-uapi.rst
+> > > >>>>>> +++ b/Documentation/gpu/drm-uapi.rst
+> > > >>>>>> @@ -421,10 +421,10 @@ Recovery
+> > > >>>>>>  Current implementation defines three recovery methods, out of which, drivers
+> > > >>>>>>  can use any one, multiple or none. Method(s) of choice will be sent in the
+> > > >>>>>>  uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
+> > > >>>>>> -more side-effects. If driver is unsure about recovery or method is unknown
+> > > >>>>>> -(like soft/hard system reboot, firmware flashing, physical device replacement
+> > > >>>>>> -or any other procedure which can't be attempted on the fly), ``WEDGED=unknown``
+> > > >>>>>> -will be sent instead.
+> > > >>>>>> +more side-effects. If recovery method is specific to vendor
+> > > >>>>>> +``WEDGED=vendor-specific`` will be sent and userspace should refer to vendor
+> > > >>>>>> +specific documentation for further recovery steps. If driver is unsure about
+> > > >>>>>> +recovery or method is unknown, ``WEDGED=unknown`` will be sent instead
+> > > >>>>>>  
+> > > >>>>>>  Userspace consumers can parse this event and attempt recovery as per the
+> > > >>>>>>  following expectations.
+> > > >>>>>> @@ -435,6 +435,7 @@ following expectations.
+> > > >>>>>>      none            optional telemetry collection
+> > > >>>>>>      rebind          unbind + bind driver
+> > > >>>>>>      bus-reset       unbind + bus reset/re-enumeration + bind
+> > > >>>>>> +    vendor-specific vendor specific recovery method
+> > > >>>>>>      unknown         consumer policy
+> > > >>>>>>      =============== ========================================
+> > > >>>>>>  
+> > > >>>>>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> > > >>>>>> index cdd591b11488..0ac723a46a91 100644
+> > > >>>>>> --- a/drivers/gpu/drm/drm_drv.c
+> > > >>>>>> +++ b/drivers/gpu/drm/drm_drv.c
+> > > >>>>>> @@ -532,6 +532,8 @@ static const char *drm_get_wedge_recovery(unsigned int opt)
+> > > >>>>>>  		return "rebind";
+> > > >>>>>>  	case DRM_WEDGE_RECOVERY_BUS_RESET:
+> > > >>>>>>  		return "bus-reset";
+> > > >>>>>> +	case DRM_WEDGE_RECOVERY_VENDOR:
+> > > >>>>>> +		return "vendor-specific";
+> > > >>>>>>  	default:
+> > > >>>>>>  		return NULL;
+> > > >>>>>>  	}
+> > > >>>>>> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+> > > >>>>>> index 08b3b2467c4c..08a087f149ff 100644
+> > > >>>>>> --- a/include/drm/drm_device.h
+> > > >>>>>> +++ b/include/drm/drm_device.h
+> > > >>>>>> @@ -26,10 +26,14 @@ struct pci_controller;
+> > > >>>>>>   * Recovery methods for wedged device in order of less to more side-effects.
+> > > >>>>>>   * To be used with drm_dev_wedged_event() as recovery @method. Callers can
+> > > >>>>>>   * use any one, multiple (or'd) or none depending on their needs.
+> > > >>>>>> + *
+> > > >>>>>> + * Refer to "Device Wedging" chapter in Documentation/gpu/drm-uapi.rst for more
+> > > >>>>>> + * details.
+> > > >>>>>>   */
+> > > >>>>>>  #define DRM_WEDGE_RECOVERY_NONE		BIT(0)	/* optional telemetry collection */
+> > > >>>>>>  #define DRM_WEDGE_RECOVERY_REBIND	BIT(1)	/* unbind + bind driver */
+> > > >>>>>>  #define DRM_WEDGE_RECOVERY_BUS_RESET	BIT(2)	/* unbind + reset bus device + bind */
+> > > >>>>>> +#define DRM_WEDGE_RECOVERY_VENDOR	BIT(3)	/* vendor specific recovery method */
+> > > >>>>>>  
+> > > >>>>>>  /**
+> > > >>>>>>   * struct drm_wedge_task_info - information about the guilty task of a wedge dev
+> > > >>>>>> -- 
+> > > >>>>>> 2.47.1
+> > > >>>>>>
+> > > >>>>>
+> > > >>>>
+> > > > 
+> > > 
+
+-- 
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
