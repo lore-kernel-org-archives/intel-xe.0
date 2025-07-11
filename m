@@ -4,87 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD2ABC83F1A
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Jul 2025 08:59:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CE87C83F1A
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Jul 2025 09:08:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86B4710E9D4;
-	Fri, 11 Jul 2025 08:59:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 356E910E9DD;
+	Fri, 11 Jul 2025 09:08:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="MIY5eMnl";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="A8JlXSdN";
 	dkim-atps=neutral
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
- [209.85.221.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FED910E9D5
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Jul 2025 08:59:27 +0000 (UTC)
-Received: by mail-wr1-f42.google.com with SMTP id
- ffacd0b85a97d-3a588da60dfso1340783f8f.1
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Jul 2025 01:59:27 -0700 (PDT)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
+ [209.85.221.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F8C010E9DD
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Jul 2025 09:08:39 +0000 (UTC)
+Received: by mail-wr1-f46.google.com with SMTP id
+ ffacd0b85a97d-3a4f72cba73so1877275f8f.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Jul 2025 02:08:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1752224366; x=1752829166; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=HU8F6jqBbjB/UsB5kvfb0xJ7+1DHFZF+cyN3uGB+/QE=;
- b=MIY5eMnlZ02i2O5d2/f7eqUMbnT7bUNHD4g9MgUHy8MbySvKz6nrhF3FtbGH1AGIKo
- Y4qIe7Q2AGpbBretU695iUcUzotSwbFjMg5GI9PqZb+eXyXR4iChRoQ+lEG3v38/z1wh
- 3jsaYkBuy1mAnFekFK3v15+SULsZabUh0IW6E=
+ d=ffwll.ch; s=google; t=1752224918; x=1752829718; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=NClqQGvSyyWbFAtwxH41cChinxe5vTi0AslNu9ZJ5jM=;
+ b=A8JlXSdNDAynvcNNxpUdgUJVlaNVlIWv4bgriA0K22kWAMbCvSwd6zLKczMRFrUsqf
+ 7G2htS3p4B4r2hMZCV1Cz48x7QW0+HrIjGJfSxaEONOWSvvIhu3VJGHN8FUTYrA8dHF5
+ A2QpVVuBOpd9qhOfrxBJSASE7Oe96wIIkWlgc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752224366; x=1752829166;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=HU8F6jqBbjB/UsB5kvfb0xJ7+1DHFZF+cyN3uGB+/QE=;
- b=FSIPjCx2a73vYY/OIupioR+1Gfp8DxbC8HqcGVCu5GcvXya6wvP+ANy8/zPNFBl1a9
- Un8TFsnXdM8VYbmifxZmeJqEzLlGWUy9wme6bmO/QjQ9BzFVwbub9AB1yyL7ou4z3a/O
- Rhj/mUA1mWJLFg7nTplqvC+muqTHyUe7Y/gZP2mVSHJltcBBp8Uhh+nM71UmR9YmjN2B
- un1ETi4oeb+bHrCwXU9CrfJCWpkvMSGxv3MrhE7aLoYvXsWgfviubZrlQB4EicvOl90L
- ljQ7+drUu6b4HmgKjM18ceQy+lLgrXLtKO7vLnj8mFjjVJhGcIJILKZMGuL+9T5p9NmB
- CI3g==
+ d=1e100.net; s=20230601; t=1752224918; x=1752829718;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=NClqQGvSyyWbFAtwxH41cChinxe5vTi0AslNu9ZJ5jM=;
+ b=IEhhXuKO2SS8ZCVt3Ad1Gjn3P+xU8MywZlqcfjP8GZdMdNOXRYSNltuYXVnyYgR/3s
+ 6Zh7k34erwLoBn2v6vN+R4y9N0sxPUdHjseOLm2Ba7pjvXETxptq6OIHX6v61kvz2wRi
+ R/rChQSePC9EFCQERsa3X53Hf8xnEOSHtQPE+XbeRCwziQZURokkK5NE/4VNwks43joX
+ HvfEI52/37GDE4qWTncN/bIriIxCbxYz1aKEu94KOka3gE7L32pIz/SHcX6djniOIDvI
+ HY7I7spUbOB4iirelzdhSm9XRWhfaG3bXW9i27AZhq/wB2DjLCsdRJ2xJPLXTHIhIBJw
+ PIKA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWFFU+V+kcFzKM06XTeZlXYnR+UvwZL7QHGsKwm6ckR5i9jv2WOizQ7a0DukTC4ImwZeFVP2MS2mQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzgButoSuDqgmTqG/cHfCEHd0DMEn+R86vIDqlpHTF74oL9j390
- QeyQruTmy+tML/KrY0lTKBpHARSMI9VqFcZwOYJ/ac8p/OviZ7FktfIuiXfn+1ReitM=
-X-Gm-Gg: ASbGncvAnPtHl3RXPVeJR8vI59dEGK0oCtpGQf7WRMOB9xcCpw6bJw8Fccb9Ly8JMcU
- Fa5Bb+Ne6QmnsRX54ZJ9xeCAT9a1YbjV5+ZcVBlihjwWC/p1r1+vZ8Yv+SU/crEsRDFSi85n48P
- 49XMxn0+Uo5h3584w2rspmJduACN6DojF7UMFtU/eGTUuhXEx8ahFXQinGYALb4ZUTkssvqbh/L
- Y0nX1YKuOtWxH5qDTh9/aA2VixtBJHVfxb6Kc6YeW1R4oS4hPz2svinz+FmFmFVyntB19SHjtUc
- kh0pkLwuUXeHh+0q7zDITIgkm6Xq5CxPQ+Fqv7jqkUXbHWeLt8v9UEchEtlMLrpTjvqB15KsAqp
- eK/TBXo49uuqqCG8M3oJ97fzxA7OwDZIX4A==
-X-Google-Smtp-Source: AGHT+IFkP6lHJxiSi/hSjhxewMMkIXW56pkXASr3onum7RIYU0aXJX527P0t6fO3x/D8kSCoumSSpg==
-X-Received: by 2002:a05:6000:2809:b0:3b5:e29c:190 with SMTP id
- ffacd0b85a97d-3b5f18dc7a3mr1547544f8f.29.1752224365562; 
- Fri, 11 Jul 2025 01:59:25 -0700 (PDT)
+ AJvYcCUwOay8N7IcN9NIBHMCuCI8R4vHwJnr2L5R8+s4GRkVVWTAqgo8NMo2ihf7M15EG0ihHdBncF6Gfg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwdTIXQ/965TmfxZvNmkcZo4rKoyEIuah1KZKjVK1xicR6+X12Q
+ 7ohxl9RaXrFcRLKFL4c339qFVF2KtftMLQ0KC8C7lZKKkt2Yj9k3Ieko5H1RJLc0K2I=
+X-Gm-Gg: ASbGncsUeHw9L5CC2PHL/kr1IIXfUkhOAhEnJumxTCYpec8eRvyepfnTvaJm2NaJzdA
+ GM4OQcOADOMVe330KTBID3dAdaSRFkbTtx0thkTsjOw6pOpxA8qi+4TqwoUVTjLXAfAZbx2vbRV
+ PnIKAmPYieFX0lXd/nglWVOf8OhVDpEItQJvqEBrX4RRiIComKl7g6UoKvSMImKGRBsVB4cY1Nk
+ k96sqe29J24f6qeUTpQmpmtdwFRxROGkTbcdsjLiyqWqG+x9UtG83Tc/5/v/s6UIhLoJQKw4v7B
+ 86BycfUMrRTjHBQgdOuZUltBJdeJeDIp9DopRIsRu8uY7B17yeqjanR9bCNKzXlceze5c8HguUa
+ K6Rj0WxT14kfGOTRBvt6JVPTpEcB/T4/H3g==
+X-Google-Smtp-Source: AGHT+IGVsLzQL1NlYFVJvXIE4T0h4Rt3wByr9RdaY2zy17RQYDMiTV0C4rlOHtb8gaPmgLYxigvqbg==
+X-Received: by 2002:a05:6000:1a8f:b0:3a4:f7e7:3630 with SMTP id
+ ffacd0b85a97d-3b5f1e86f8emr2234076f8f.15.1752224917885; 
+ Fri, 11 Jul 2025 02:08:37 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-454dd537d12sm40897815e9.24.2025.07.11.01.59.24
+ ffacd0b85a97d-3b5e8e269a0sm3871184f8f.86.2025.07.11.02.08.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Jul 2025 01:59:25 -0700 (PDT)
-Date: Fri, 11 Jul 2025 10:59:23 +0200
+ Fri, 11 Jul 2025 02:08:37 -0700 (PDT)
+Date: Fri, 11 Jul 2025 11:08:35 +0200
 From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Raag Jadav <raag.jadav@intel.com>,
- Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org,
- anshuman.gupta@intel.com, lucas.demarchi@intel.com,
- aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
- frank.scarbrough@intel.com, sk.anirban@intel.com,
- =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 1/9] drm: Add a vendor-specific recovery method to
- device wedged uevent
-Message-ID: <aHDSawMTgaIEWoMw@phenom.ffwll.local>
-References: <20250709112024.1053710-1-riana.tauro@intel.com>
- <20250709112024.1053710-2-riana.tauro@intel.com>
- <aG5xglf8BeGzleWM@phenom.ffwll.local>
- <d42e17ef-30ce-4bf1-9948-7f08fd6f3bac@amd.com>
- <aG56Trd1h5WbWYJt@black.fi.intel.com> <aG6eNcygPshsSlC8@intel.com>
- <aG-BcFN6M9BtjB2j@phenom.ffwll.local>
- <cd206f9e-be53-4b22-a166-ed18fa9b833a@amd.com>
+To: Maxime Ripard <mripard@redhat.com>
+Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: Re: [PULL] drm-misc-next
+Message-ID: <aHDUk5RwrJlNWk4M@phenom.ffwll.local>
+References: <20250710-observant-elite-dingo-acfd6d@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cd206f9e-be53-4b22-a166-ed18fa9b833a@amd.com>
+In-Reply-To: <20250710-observant-elite-dingo-acfd6d@houat>
 X-Operating-System: Linux phenom 6.12.30-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,206 +96,252 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 10, 2025 at 11:37:14AM +0200, Christian König wrote:
-> On 10.07.25 11:01, Simona Vetter wrote:
-> > On Wed, Jul 09, 2025 at 12:52:05PM -0400, Rodrigo Vivi wrote:
-> >> On Wed, Jul 09, 2025 at 05:18:54PM +0300, Raag Jadav wrote:
-> >>> On Wed, Jul 09, 2025 at 04:09:20PM +0200, Christian König wrote:
-> >>>> On 09.07.25 15:41, Simona Vetter wrote:
-> >>>>> On Wed, Jul 09, 2025 at 04:50:13PM +0530, Riana Tauro wrote:
-> >>>>>> Certain errors can cause the device to be wedged and may
-> >>>>>> require a vendor specific recovery method to restore normal
-> >>>>>> operation.
-> >>>>>>
-> >>>>>> Add a recovery method 'WEDGED=vendor-specific' for such errors. Vendors
-> >>>>>> must provide additional recovery documentation if this method
-> >>>>>> is used.
-> >>>>>>
-> >>>>>> v2: fix documentation (Raag)
-> >>>>>>
-> >>>>>> Cc: André Almeida <andrealmeid@igalia.com>
-> >>>>>> Cc: Christian König <christian.koenig@amd.com>
-> >>>>>> Cc: David Airlie <airlied@gmail.com>
-> >>>>>> Cc: <dri-devel@lists.freedesktop.org>
-> >>>>>> Suggested-by: Raag Jadav <raag.jadav@intel.com>
-> >>>>>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> >>>>>
-> >>>>> I'm not really understanding what this is useful for, maybe concrete
-> >>>>> example in the form of driver code that uses this, and some tool or
-> >>>>> documentation steps that should be taken for recovery?
-> >>
-> >> The case here is when FW underneath identified something badly corrupted on
-> >> FW land and decided that only a firmware-flashing could solve the day and
-> >> raise interrupt to the driver. At that point we want to wedge, but immediately
-> >> hint the admin the recommended action.
-> >>
-> >>>>
-> >>>> The recovery method for this particular case is to flash in a new firmware.
-> >>>>
-> >>>>> The issues I'm seeing here is that eventually we'll get different
-> >>>>> vendor-specific recovery steps, and maybe even on the same device, and
-> >>>>> that leads us to an enumeration issue. Since it's just a string and an
-> >>>>> enum I think it'd be better to just allocate a new one every time there's
-> >>>>> a new strange recovery method instead of this opaque approach.
-> >>>>
-> >>>> That is exactly the opposite of what we discussed so far.
-> > 
-> > Sorry, I missed that context.
-> > 
-> >>>> The original idea was to add a firmware-flush recovery method which
-> >>>> looked a bit wage since it didn't give any information on what to do
-> >>>> exactly.
-> >>>>
-> >>>> That's why I suggested to add a more generic vendor-specific event
-> >>>> with refers to the documentation and system log to see what actually
-> >>>> needs to be done.
-> >>>>
-> >>>> Otherwise we would end up with events like firmware-flash, update FW
-> >>>> image A, update FW image B, FW version mismatch etc....
-> > 
-> > Yeah, that's kinda what I expect to happen, and we have enough numbers for
-> > this all to not be an issue.
-> > 
-> >>> Agree. Any newly allocated method that is specific to a vendor is going to
-> >>> be opaque anyway, since it can't be generic for all drivers. This just helps
-> >>> reduce the noise in DRM core.
-> >>>
-> >>> And yes, there could be different vendor-specific cases for the same driver
-> >>> and the driver should be able to provide the means to distinguish between
-> >>> them.
-> >>
-> >> Sim, what's your take on this then?
-> >>
-> >> Should we get back to the original idea of firmware-flash?
-> > 
-> > Maybe intel-firmware-flash or something, meaning prefix with the vendor?
-> > 
-> > The reason I think it should be specific is because I'm assuming you want
-> > to script this. And if you have a big fleet with different vendors, then
-> > "vendor-specific" doesn't tell you enough. But if it's something like
-> > $vendor-$magic_step then it does become scriptable, and we do have have a
-> > place to put some documentation on what you should do instead.
-> > 
-> > If the point of this interface isn't that it's scriptable, then I'm not
-> > sure why it needs to be an uevent?
+On Thu, Jul 10, 2025 at 12:06:19PM +0200, Maxime Ripard wrote:
+> Hi Dave, Sima,
 > 
-> You should probably read up on the previous discussion, cause that is
-> exactly what I asked as well :)
+> Here's this week drm-misc-next PR. It's likely to be the last PR for
+> this release cycle.
 > 
-> And no, it should *not* be scripted. That would be a bit brave for a
-> firmware update where you should absolutely not power down the system
-> for example.
+> Maxime
+> 
+> drm-misc-next-2025-07-10:
+> drm-misc-next for 6.17:
+> 
+> UAPI Changes:
+> 
+> Cross-subsystem Changes:
+> 
+> Core Changes:
+> 
+> Driver Changes:
+> - amdgpu: debugfs improvements
+> - ast: Improve hardware generations implementation
+> - dma-buf heaps:
+>   - Give the CMA heap a stable name
+> - panthor: fix UAF in debugfs
+> - rockchip: Convert inno_hdmi to a bridge
+> - sti: Convert to devm_drm_bridge_alloc()
+> - vkms: Use faux_device
+> 
+> - bridge:
+>   - Improve CEC handling code, convertions to devm_drm_bridge_alloc()
+> The following changes since commit 203dcde881561f1a4ee1084e2ee438fb4522c94a:
+> 
+>   Merge tag 'drm-msm-next-2025-07-05' of https://gitlab.freedesktop.org/drm/msm into drm-next (2025-07-08 14:31:19 +0200)
+> 
+> are available in the Git repository at:
+> 
+>   https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2025-07-10
 
-I guess if we clearly state that this is for manual recovery only, or for
-cases where you exactly know what you're doing (fleet-specific scripts
-instead of generic distros), I guess this very opaque code makes sense.
-
-But we should clearly document then that doing anything scripted here is
-very much "you get to keep the pieces", and definitely don't try to do
-something fancy generic.
-
-Which without documentation is just really confusing when some of the
-other error codes clearly look like they're meant to facilitate scripted
-recovery.
-
-> In my understanding the new value "vendor-specific" basically means it
-> is a known issue with a documented solution, while "unknown" means the
-> driver has no idea how to solve it.
-
-I think that's another detail which should be documented clearly.
+Pulled into drm-next, thanks!
 -Sima
+
 > 
-> Regards,
-> Christian.
+> for you to fetch changes up to fe69a391808404977b1f002a6e7447de3de7a88e:
 > 
-> > I guess if you all want to stick with vendor-specific then I think that's
-> > ok with me too, but the docs should at least explain how to figure out
-> > from the uevent which vendor you're on with a small example. What I'm
-> > worried is that if we have this on multiple drivers userspace will
-> > otherwise make a complete mess and might want to run the wrong recovery
-> > steps.
-> > 
-> > I think ideally, no matter what, we'd have a concrete driver patch which
-> > then also comes with the documentation for what exactly you're supposed to
-> > do as something you can script. And not just this stand-alone patch here.
-> > 
-> > Cheers, Sima
-> >>
-> >>>
-> >>> Raag
-> >>>
-> >>>>>> ---
-> >>>>>>  Documentation/gpu/drm-uapi.rst | 9 +++++----
-> >>>>>>  drivers/gpu/drm/drm_drv.c      | 2 ++
-> >>>>>>  include/drm/drm_device.h       | 4 ++++
-> >>>>>>  3 files changed, 11 insertions(+), 4 deletions(-)
-> >>>>>>
-> >>>>>> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
-> >>>>>> index 263e5a97c080..c33070bdb347 100644
-> >>>>>> --- a/Documentation/gpu/drm-uapi.rst
-> >>>>>> +++ b/Documentation/gpu/drm-uapi.rst
-> >>>>>> @@ -421,10 +421,10 @@ Recovery
-> >>>>>>  Current implementation defines three recovery methods, out of which, drivers
-> >>>>>>  can use any one, multiple or none. Method(s) of choice will be sent in the
-> >>>>>>  uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
-> >>>>>> -more side-effects. If driver is unsure about recovery or method is unknown
-> >>>>>> -(like soft/hard system reboot, firmware flashing, physical device replacement
-> >>>>>> -or any other procedure which can't be attempted on the fly), ``WEDGED=unknown``
-> >>>>>> -will be sent instead.
-> >>>>>> +more side-effects. If recovery method is specific to vendor
-> >>>>>> +``WEDGED=vendor-specific`` will be sent and userspace should refer to vendor
-> >>>>>> +specific documentation for further recovery steps. If driver is unsure about
-> >>>>>> +recovery or method is unknown, ``WEDGED=unknown`` will be sent instead
-> >>>>>>  
-> >>>>>>  Userspace consumers can parse this event and attempt recovery as per the
-> >>>>>>  following expectations.
-> >>>>>> @@ -435,6 +435,7 @@ following expectations.
-> >>>>>>      none            optional telemetry collection
-> >>>>>>      rebind          unbind + bind driver
-> >>>>>>      bus-reset       unbind + bus reset/re-enumeration + bind
-> >>>>>> +    vendor-specific vendor specific recovery method
-> >>>>>>      unknown         consumer policy
-> >>>>>>      =============== ========================================
-> >>>>>>  
-> >>>>>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> >>>>>> index cdd591b11488..0ac723a46a91 100644
-> >>>>>> --- a/drivers/gpu/drm/drm_drv.c
-> >>>>>> +++ b/drivers/gpu/drm/drm_drv.c
-> >>>>>> @@ -532,6 +532,8 @@ static const char *drm_get_wedge_recovery(unsigned int opt)
-> >>>>>>  		return "rebind";
-> >>>>>>  	case DRM_WEDGE_RECOVERY_BUS_RESET:
-> >>>>>>  		return "bus-reset";
-> >>>>>> +	case DRM_WEDGE_RECOVERY_VENDOR:
-> >>>>>> +		return "vendor-specific";
-> >>>>>>  	default:
-> >>>>>>  		return NULL;
-> >>>>>>  	}
-> >>>>>> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> >>>>>> index 08b3b2467c4c..08a087f149ff 100644
-> >>>>>> --- a/include/drm/drm_device.h
-> >>>>>> +++ b/include/drm/drm_device.h
-> >>>>>> @@ -26,10 +26,14 @@ struct pci_controller;
-> >>>>>>   * Recovery methods for wedged device in order of less to more side-effects.
-> >>>>>>   * To be used with drm_dev_wedged_event() as recovery @method. Callers can
-> >>>>>>   * use any one, multiple (or'd) or none depending on their needs.
-> >>>>>> + *
-> >>>>>> + * Refer to "Device Wedging" chapter in Documentation/gpu/drm-uapi.rst for more
-> >>>>>> + * details.
-> >>>>>>   */
-> >>>>>>  #define DRM_WEDGE_RECOVERY_NONE		BIT(0)	/* optional telemetry collection */
-> >>>>>>  #define DRM_WEDGE_RECOVERY_REBIND	BIT(1)	/* unbind + bind driver */
-> >>>>>>  #define DRM_WEDGE_RECOVERY_BUS_RESET	BIT(2)	/* unbind + reset bus device + bind */
-> >>>>>> +#define DRM_WEDGE_RECOVERY_VENDOR	BIT(3)	/* vendor specific recovery method */
-> >>>>>>  
-> >>>>>>  /**
-> >>>>>>   * struct drm_wedge_task_info - information about the guilty task of a wedge dev
-> >>>>>> -- 
-> >>>>>> 2.47.1
-> >>>>>>
-> >>>>>
-> >>>>
-> > 
+>   drm/panthor: Fix UAF in panthor_gem_create_with_handle() debugfs code (2025-07-10 10:16:50 +0100)
 > 
+> ----------------------------------------------------------------
+> drm-misc-next for 6.17:
+> 
+> UAPI Changes:
+> 
+> Cross-subsystem Changes:
+> 
+> Core Changes:
+> 
+> Driver Changes:
+> - amdgpu: debugfs improvements
+> - ast: Improve hardware generations implementation
+> - dma-buf heaps:
+>   - Give the CMA heap a stable name
+> - panthor: fix UAF in debugfs
+> - rockchip: Convert inno_hdmi to a bridge
+> - sti: Convert to devm_drm_bridge_alloc()
+> - vkms: Use faux_device
+> 
+> - bridge:
+>   - Improve CEC handling code, convertions to devm_drm_bridge_alloc()
+> 
+> ----------------------------------------------------------------
+> Alessio Belle (1):
+>       drm/imagination: Clear runtime PM errors while resetting the GPU
+> 
+> Andy Yan (9):
+>       drm/rockchip: inno_hdmi: Merge register definition to c file
+>       drm/rockchip: inno_hdmi: Refactor register macros to make checkpatch happy
+>       drm/rockchip: inno_hdmi: Remove unnecessary parentheses to make checkpatch happy
+>       drm/rockchip: inno_hdmi: Rename function inno_hdmi_reset to inno_hdmi_init_hw
+>       drm/rockchip: inno_hdmi: Move ddc/i2c configuration and HOTPLUG unmute to inno_hdmi_init_hw
+>       drm/rockchip: inno_hdmi: Use sleep_range instead of udelay
+>       drm/rockchip: inno_hdmi: switch i2c registration to devm functions
+>       drm/rockchip: inno_hdmi: Simpify clk get/enable by devm_clk_get_enabled api
+>       drm/rockchip: vop2: Fix the update of LAYER/PORT select registers when there are multi display output on rk3588/rk3568
+> 
+> Chaoyi Chen (2):
+>       drm/rockchip: lvds: Convert to drm bridge
+>       drm/rockchip: cdn-dp: Convert to drm bridge
+> 
+> Cristian Ciocaltea (3):
+>       drm/display: hdmi-cec-helper: Fix adapter unregistration
+>       drm/bridge: Fix kdoc comment for DRM_BRIDGE_OP_HDMI_CEC_ADAPTER
+>       drm/bridge: adv7511: Fix DRM_BRIDGE_OP_HDMI_{AUDIO|CEC_ADAPTER} setup
+> 
+> Dan Carpenter (1):
+>       drm/dp: Clean up white space in drm_edp_backlight_probe_state()
+> 
+> Greg Kroah-Hartman (2):
+>       drm/vkms: convert to use faux_device
+>       drm/vgem/vgem_drv convert to use faux_device
+> 
+> Heiko Stuebner (1):
+>       drm/rockchip: vop2: fail cleanly if missing a primary plane for a video-port
+> 
+> Jared Kangas (3):
+>       Documentation: dma-buf: heaps: Fix code markup
+>       dma-buf: heaps: Parameterize heap name in __add_cma_heap()
+>       dma-buf: heaps: Give default CMA heap a fixed name
+> 
+> Juston Li (1):
+>       gpu/trace: make TRACE_GPU_MEM configurable
+> 
+> Luca Ceresoli (3):
+>       drm/bridge: tc358767: fix uninitialized variable regression
+>       drm/sti: hdmi: convert to devm_drm_bridge_alloc() API
+>       drm/sti: hda: convert to devm_drm_bridge_alloc() API
+> 
+> Maarten Lankhorst (1):
+>       Merge remote-tracking branch 'drm/drm-next' into drm-misc-next
+> 
+> Marek Szyprowski (1):
+>       drm/bridge: analogix_dp: Use devm_drm_bridge_alloc() API
+> 
+> Matthew Brost (1):
+>       drm: Simplify drmm_alloc_ordered_workqueue return
+> 
+> Shixiong Ou (1):
+>       fbcon: Fix outdated registered_fb reference in comment
+> 
+> Simona Vetter (1):
+>       drm/panthor: Fix UAF in panthor_gem_create_with_handle() debugfs code
+> 
+> Sunil Khatri (6):
+>       drm: move drm based debugfs funcs to drm_debugfs.c
+>       drm: add debugfs support on per client-id basis
+>       drm/amdgpu: add debugfs support for VM pagetable per client
+>       drm/amdgpu: add support of debugfs for mqd information
+>       drm/amdgpu: fix MQD debugfs undefined symbol when DEBUG_FS=n
+>       drm/amdgpu: fix the logic to validate fpriv and root bo
+> 
+> T.J. Mercier (1):
+>       dma-buf: system_heap: No separate allocation for attachment sg_tables
+> 
+> Tamir Duberstein (1):
+>       rust: drm: remove unnecessary imports
+> 
+> Thierry Reding (1):
+>       drm/fbdev-client: Skip DRM clients if modesetting is absent
+> 
+> Thomas Zimmermann (13):
+>       drm/gem-shmem: Do not map s/g table by default
+>       drm/tegra: Test for imported buffers with drm_gem_is_imported()
+>       drm/tegra: Use dma_buf from GEM object instance
+>       drm/ast: Declare helpers for POST in header
+>       drm/ast: Move Gen7+ POST code to separate source file
+>       drm/ast: Move Gen6+ POST code to separate source file
+>       drm/ast: Move Gen4+ POST code to separate source file
+>       drm/ast: Move Gen2+ and Gen1 POST code to separate source files
+>       drm/ast: Move struct ast_dramstruct to ast_post.h
+>       drm/ast: Handle known struct ast_dramstruct with helpers
+>       drm/ast: Split ast_set_def_ext_reg() by chip generation
+>       drm/ast: Gen7: Disable VGASR0[1] as on Gen4+
+>       drm/ast: Gen7: Switch default registers to gen4+ state
+> 
+> Tvrtko Ursulin (2):
+>       drm/sched: De-clutter drm_sched_init
+>       drm/sched: Consolidate drm_sched_rq_select_entity_rr
+> 
+> Yumeng Fang (1):
+>       drm/rockchip: dw_hdmi: Use dev_err_probe() to simplify code
+> 
+>  Documentation/userspace-api/dma-buf-heaps.rst      |   11 +-
+>  drivers/Kconfig                                    |    2 -
+>  drivers/accel/drm_accel.c                          |   16 -
+>  drivers/dma-buf/heaps/Kconfig                      |   10 +
+>  drivers/dma-buf/heaps/cma_heap.c                   |   36 +-
+>  drivers/dma-buf/heaps/system_heap.c                |   43 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c        |   52 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h        |    1 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c            |    2 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c          |   55 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h          |    1 +
+>  drivers/gpu/drm/ast/Makefile                       |    5 +
+>  drivers/gpu/drm/ast/ast_2000.c                     |  149 ++
+>  drivers/gpu/drm/ast/ast_2100.c                     |  348 ++++
+>  drivers/gpu/drm/ast/ast_2300.c                     | 1328 +++++++++++++
+>  drivers/gpu/drm/ast/ast_2500.c                     |  569 ++++++
+>  drivers/gpu/drm/ast/ast_2600.c                     |   44 +
+>  drivers/gpu/drm/ast/ast_dram_tables.h              |  207 --
+>  drivers/gpu/drm/ast/ast_drv.c                      |    4 +-
+>  drivers/gpu/drm/ast/ast_drv.h                      |   17 +-
+>  drivers/gpu/drm/ast/ast_post.c                     | 2027 +-------------------
+>  drivers/gpu/drm/ast/ast_post.h                     |   50 +
+>  drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |    6 +-
+>  drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |   40 +-
+>  drivers/gpu/drm/bridge/analogix/analogix_dp_core.h |    3 +-
+>  drivers/gpu/drm/bridge/tc358767.c                  |    1 +
+>  drivers/gpu/drm/clients/drm_client_setup.c         |    5 +
+>  drivers/gpu/drm/display/drm_dp_helper.c            |   14 +-
+>  drivers/gpu/drm/display/drm_hdmi_cec_helper.c      |    2 +-
+>  drivers/gpu/drm/drm_debugfs.c                      |  118 +-
+>  drivers/gpu/drm/drm_drv.c                          |   16 +-
+>  drivers/gpu/drm/drm_file.c                         |   11 +
+>  drivers/gpu/drm/drm_internal.h                     |    6 +-
+>  drivers/gpu/drm/drm_panic_qr.rs                    |    2 +-
+>  drivers/gpu/drm/imagination/pvr_power.c            |   59 +-
+>  drivers/gpu/drm/panthor/panthor_gem.c              |   31 +-
+>  drivers/gpu/drm/panthor/panthor_gem.h              |    3 -
+>  drivers/gpu/drm/rockchip/cdn-dp-core.c             |  291 ++-
+>  drivers/gpu/drm/rockchip/cdn-dp-core.h             |    8 +-
+>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        |   16 +-
+>  drivers/gpu/drm/rockchip/inno_hdmi.c               |  452 ++++-
+>  drivers/gpu/drm/rockchip/inno_hdmi.h               |  349 ----
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |   29 +-
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h       |   33 +
+>  drivers/gpu/drm/rockchip/rockchip_lvds.c           |   68 +-
+>  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c       |   89 +-
+>  drivers/gpu/drm/scheduler/sched_main.c             |   81 +-
+>  drivers/gpu/drm/sti/sti_hda.c                      |   27 +-
+>  drivers/gpu/drm/sti/sti_hdmi.c                     |   26 +-
+>  drivers/gpu/drm/sti/sti_hdmi.h                     |    2 +
+>  drivers/gpu/drm/tegra/gem.c                        |    4 +-
+>  drivers/gpu/drm/udl/udl_drv.c                      |    2 +-
+>  drivers/gpu/drm/vgem/vgem_drv.c                    |   30 +-
+>  drivers/gpu/drm/vkms/vkms_crtc.c                   |    2 -
+>  drivers/gpu/drm/vkms/vkms_drv.c                    |   28 +-
+>  drivers/gpu/drm/vkms/vkms_drv.h                    |    4 +-
+>  drivers/gpu/trace/Kconfig                          |   11 +-
+>  drivers/video/Kconfig                              |    2 +
+>  drivers/video/fbdev/core/fbcon.c                   |    4 +-
+>  include/drm/drm_accel.h                            |    5 -
+>  include/drm/drm_bridge.h                           |    2 +-
+>  include/drm/drm_debugfs.h                          |   11 +
+>  include/drm/drm_drv.h                              |   19 +-
+>  include/drm/drm_file.h                             |    7 +
+>  include/drm/drm_gem_shmem_helper.h                 |   18 +-
+>  include/drm/drm_managed.h                          |   15 +-
+>  rust/kernel/drm/driver.rs                          |    1 -
+>  67 files changed, 3761 insertions(+), 3169 deletions(-)
+>  create mode 100644 drivers/gpu/drm/ast/ast_2000.c
+>  create mode 100644 drivers/gpu/drm/ast/ast_2100.c
+>  create mode 100644 drivers/gpu/drm/ast/ast_2300.c
+>  create mode 100644 drivers/gpu/drm/ast/ast_2500.c
+>  create mode 100644 drivers/gpu/drm/ast/ast_2600.c
+>  delete mode 100644 drivers/gpu/drm/ast/ast_dram_tables.h
+>  create mode 100644 drivers/gpu/drm/ast/ast_post.h
+>  delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.h
+
+
 
 -- 
 Simona Vetter
