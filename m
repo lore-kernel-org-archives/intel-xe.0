@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC191C83F1A
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Jul 2025 04:29:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C454C83F1A
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Jul 2025 04:29:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DDB910E992;
-	Fri, 11 Jul 2025 04:29:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E56F10E996;
+	Fri, 11 Jul 2025 04:29:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RAddSvAq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oEDuQUMq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FE4D10E992;
- Fri, 11 Jul 2025 04:29:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B636110E996;
+ Fri, 11 Jul 2025 04:29:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752208171; x=1783744171;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=uq6njQ9V7L+D/s6z0XvudLhu0lNnbNC28/8oLW1X8Z4=;
- b=RAddSvAqulqenycQZ/XIFrwimVtc1y6pTsVqzV8O1bZz3VXNUVYvQcqc
- 5JTIFfKsV1ipsAqyOFvXxipfa8o0qvcq9wz2VbGPsdHf8Hes9CysHAPkP
- Zv4nrWUbfRLdTV4TEe56ZbpGhQh0XLXsOsF2xEdz4gvaWCzz+xJaBuvTN
- yXjG6h//qBxSl3/wUBJpZ+NQSDoVD0ZgtyZL+hgg0MgzzKI6yrgcno6ND
- 6E+8d4RLmj/cPsXwiT6/CIbkAnkqVcQ6etgV7qfIG6c1MURZhzZlbXBbM
- LqsAE0v+D88LysyodKhnLTrFPa8ViIk/43auOGMxfGINbf0YfxB98LdyC g==;
-X-CSE-ConnectionGUID: aHutDvNgR5qATFBj8WDkbA==
-X-CSE-MsgGUID: zOr3O0ngQKalJEhNLOfKfg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11490"; a="72081777"
-X-IronPort-AV: E=Sophos;i="6.16,302,1744095600"; d="scan'208";a="72081777"
+ t=1752208176; x=1783744176;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=stpPJwuuqMPWtgq7WVZseD0jdgtlHfvJYdYGY3A1L7w=;
+ b=oEDuQUMq50QHzfKfvs3HZVfxpdT5Mp/owwajckRjGLokZe+AMIfLxmM+
+ jJfaTlNtKb1x0MgbFmdwZqFhhecfYFOWDbzGTrGYw+YKcZr2Qo8hANfHH
+ 9X0rQEAH4hIQq79V+WDW7ADc6fj8azgE860kWZ5FIVwSl1FT23Q2goha5
+ YAqjxgGYESe9orWAZataw73n8JJ6ntntyP1D/8IXAkj9tZnphoJuxSnm8
+ tkzSL26GIi5CCYWKwYhiyySoSNUiswXeaZNYOTUJPVsr5c/iyYHk7JyWF
+ 7Avk7D6N+0dTTEIhdXXa8GxVrIOKfKdeznQJO4h703wGctD2HQiBaAdPb w==;
+X-CSE-ConnectionGUID: p/UrsFqvTdiyTV4jKYWQdg==
+X-CSE-MsgGUID: r9dXIJrzRE+1KYTh34uTrQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11490"; a="72081795"
+X-IronPort-AV: E=Sophos;i="6.16,302,1744095600"; d="scan'208";a="72081795"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2025 21:29:31 -0700
-X-CSE-ConnectionGUID: CiULK3OJReSbkBtH0FAFYA==
-X-CSE-MsgGUID: THYXkSrlR+i4e5yXpt/nUQ==
+ 10 Jul 2025 21:29:36 -0700
+X-CSE-ConnectionGUID: ccEzjdtiTaCcaFbZ8HlFvg==
+X-CSE-MsgGUID: VoM9Y8tST1aoLuTwugRSAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,302,1744095600"; d="scan'208";a="156824770"
+X-IronPort-AV: E=Sophos;i="6.16,302,1744095600"; d="scan'208";a="156824778"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2025 21:29:29 -0700
+ 10 Jul 2025 21:29:34 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, gustavo.sousa@intel.com,
  lucas.demarchi@intel.com, ville.syrjala@linux.intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 0/2] Introduce helper for display workarounds and add
- Wa_16025573575
-Date: Fri, 11 Jul 2025 09:48:58 +0530
-Message-ID: <20250711041901.1607823-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 2/2] drm/i915/gmbus: Add Wa_16025573575 for PTL/WCL for
+ bit-bashing
+Date: Fri, 11 Jul 2025 09:49:00 +0530
+Message-ID: <20250711041901.1607823-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250711041901.1607823-1-ankit.k.nautiyal@intel.com>
+References: <20250711041901.1607823-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,40 +69,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series introduces a generic infrastructure for querying display
-workarounds. The goal is to simplify WA checks, avoid open-coded conditions,
-and make it easier to extend support for future workarounds.
+As per Wa_16025573575 for PTL/WCL, set the GPIO masks bit before starting
+bit-bashing and maintain value through the bit-bashing sequence. After the
+bit-bashing sequence is done, clear the GPIO masks bits.
 
-Patch 1 introduces the base infrastructure using an enum and a central
-helper function. It also migrates Wa_16023588340 to use this new interface.
+v2:
+-Use new helper for display workarounds. (Jani)
+-Use a separate if-block for the workaround. (Gustavo)
 
-Patch 2 adds support for Wa_16025573575, which applies to PTL platforms
-and requires preserving additional GPIO bits in GMBUS.
+v3:
+-Document the workaround details in intel_display_wa.c
+-Extend the workaround to WCL too. (Gustavo)
 
-The series is in response to the suggestions to unify workaround handling
-and allowing future automation or generation of WA logic in [1].
-
-[1] https://lore.kernel.org/intel-gfx/7f079861f91861e9e895240cd3272f6e29deab7e@intel.com/
-
-Rev2:
--Remove MISSING_CASE, use drm_WARN.
--Simplify macro for display_wa.
-
-Rev3:
--Print missing wa_number.
--Add more documentation for the WA.
--Extend the WA for WCL.
-
-Ankit Nautiyal (2):
-  drm/i915/display_wa: Add helpers to check wa
-  drm/i915/gmbus: Add Wa_16025573575 for PTL/WCL for bit-bashing
-
- .../gpu/drm/i915/display/intel_display_wa.c   | 27 +++++++++++++++
- .../gpu/drm/i915/display/intel_display_wa.h   | 10 ++++++
- drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ .../gpu/drm/i915/display/intel_display_wa.c   | 12 +++++++
+ .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
  drivers/gpu/drm/i915/display/intel_gmbus.c    | 34 +++++++++++++++++--
- 4 files changed, 70 insertions(+), 3 deletions(-)
+ 3 files changed, 45 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index 32719e2c6025..0dbcc1d272c7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -42,11 +42,23 @@ void intel_display_wa_apply(struct intel_display *display)
+ 		gen11_display_wa_apply(display);
+ }
+ 
++/*
++ * Wa_16025573575:
++ * Fixes: Issue with bitbashing on Xe3 based platforms.
++ * Workaround: Set masks bits in GPIO CTL and preserve it during bitbashing sequence.
++ */
++static bool intel_display_needs_wa_16025573575(struct intel_display *display)
++{
++	return DISPLAY_VER(display) == 30 || DISPLAY_VERx100(display) == 3002;
++}
++
+ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name)
+ {
+ 	switch (wa) {
+ 	case INTEL_DISPLAY_WA_16023588340:
+ 		return intel_display_needs_wa_16023588340(display);
++	case INTEL_DISPLAY_WA_16025573575:
++		return intel_display_needs_wa_16025573575(display);
+ 	default:
+ 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
+ 		break;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+index 8319e16eb460..aedea4cfa3ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+@@ -23,6 +23,7 @@ bool intel_display_needs_wa_16023588340(struct intel_display *display);
+ 
+ enum intel_display_wa {
+ 	INTEL_DISPLAY_WA_16023588340,
++	INTEL_DISPLAY_WA_16025573575,
+ };
+ 
+ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index 0d73f32fe7f1..6d6c3611d6c1 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -39,6 +39,7 @@
+ #include "intel_de.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
++#include "intel_display_wa.h"
+ #include "intel_gmbus.h"
+ #include "intel_gmbus_regs.h"
+ 
+@@ -241,11 +242,18 @@ static u32 get_reserved(struct intel_gmbus *bus)
+ {
+ 	struct intel_display *display = bus->display;
+ 	u32 reserved = 0;
++	u32 preserve_bits = 0;
+ 
+ 	/* On most chips, these bits must be preserved in software. */
+ 	if (!display->platform.i830 && !display->platform.i845g)
+-		reserved = intel_de_read_notrace(display, bus->gpio_reg) &
+-			(GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DISABLE);
++		preserve_bits |= GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DISABLE;
++
++	/* Wa_16025573575: the masks bits need to be preserved through out */
++	if (intel_display_wa(display, 16025573575))
++		preserve_bits |= GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
++				 GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
++
++	reserved = intel_de_read_notrace(display, bus->gpio_reg) & preserve_bits;
+ 
+ 	return reserved;
+ }
+@@ -308,6 +316,22 @@ static void set_data(void *data, int state_high)
+ 	intel_de_posting_read(display, bus->gpio_reg);
+ }
+ 
++static void
++ptl_handle_mask_bits(struct intel_gmbus *bus, bool set)
++{
++	struct intel_display *display = bus->display;
++	u32 reg_val = intel_de_read_notrace(display, bus->gpio_reg);
++	u32 mask_bits = GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
++			GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
++	if (set)
++		reg_val |= mask_bits;
++	else
++		reg_val &= ~mask_bits;
++
++	intel_de_write_notrace(display, bus->gpio_reg, reg_val);
++	intel_de_posting_read(display, bus->gpio_reg);
++}
++
+ static int
+ intel_gpio_pre_xfer(struct i2c_adapter *adapter)
+ {
+@@ -319,6 +343,9 @@ intel_gpio_pre_xfer(struct i2c_adapter *adapter)
+ 	if (display->platform.pineview)
+ 		pnv_gmbus_clock_gating(display, false);
+ 
++	if (intel_display_wa(display, 16025573575))
++		ptl_handle_mask_bits(bus, true);
++
+ 	set_data(bus, 1);
+ 	set_clock(bus, 1);
+ 	udelay(I2C_RISEFALL_TIME);
+@@ -336,6 +363,9 @@ intel_gpio_post_xfer(struct i2c_adapter *adapter)
+ 
+ 	if (display->platform.pineview)
+ 		pnv_gmbus_clock_gating(display, true);
++
++	if (intel_display_wa(display, 16025573575))
++		ptl_handle_mask_bits(bus, false);
+ }
+ 
+ static void
 -- 
 2.45.2
 
