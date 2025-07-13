@@ -4,27 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 193B9C83F17
-	for <intel-xe@archiver.kernel.org>; Sun, 13 Jul 2025 18:19:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59DC2C83F17
+	for <intel-xe@archiver.kernel.org>; Sun, 13 Jul 2025 19:03:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95AA310E02D;
-	Sun, 13 Jul 2025 18:19:04 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D0F810E04C;
- Sun, 13 Jul 2025 18:19:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7098260613616352528=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2C5610E030;
+	Sun, 13 Jul 2025 19:03:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="eMideR0N";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31ECD10E002;
+ Sun, 13 Jul 2025 19:03:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=xxuUfgSKUOW/IR0KSnrRRG/Gzc2YX5Yqy70vawg0Qs4=; b=eMideR0NMh3rusI9vNQPJOtIlr
+ 4Oe8TUz+gN4LHvvf4TUg7k+UgIvvwithz1swb5DZnMdDZpdKJTY5WhWKSvJXyoY5lGc6nfe3qrFtt
+ ULi1RyU3FvqtrkJthoqESrqKPJC/WxwgRs3MFudnXSFol/+Vk2K2piJ3NuHCK7UOf+Mrbf4M+O5JY
+ czT7RwfWa9oOPGHgtxJPhzLViTKenfVqgmIJz8tYt+tSz5gHSywV8ec0SHIJnSk0wNb3QeyiyMBfY
+ G4BkwpJs++V0k0QGoTMy3+dOoY2fyCs2Hh5YuP6NKwbSySWJitv11JC6v2i46jJOz7zm8N30YLDqm
+ c1sz+rqg==;
+Received: from [187.36.210.68] (helo=[192.168.1.103])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1ub1ym-00G9OD-NB; Sun, 13 Jul 2025 21:03:16 +0200
+Message-ID: <2347cd33-5289-4e6f-8296-b34bc05eff8b@igalia.com>
+Date: Sun, 13 Jul 2025 16:03:07 -0300
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Crashlog_Type1_Version2_sup?=
- =?utf-8?q?port_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sun, 13 Jul 2025 18:19:03 -0000
-Message-ID: <175243074317.157578.16932799036882260899@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250713172943.7335-1-michael.j.ruhl@intel.com>
-In-Reply-To: <20250713172943.7335-1-michael.j.ruhl@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/8] drm/sched: Allow drivers to skip the reset and
+ keep on running
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ phasta@kernel.org, Matthew Brost <matthew.brost@intel.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Simona Vetter <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, Melissa Wen <mwen@igalia.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20250708-sched-skip-reset-v5-0-2612b601f01a@igalia.com>
+ <20250708-sched-skip-reset-v5-2-2612b601f01a@igalia.com>
+ <20499b2a-0695-430a-9280-035a7e04d328@amd.com>
+ <335c9bc57d19f17a3ba0da311f287dfdc3d580c7.camel@mailbox.org>
+ <176e7f13-52e8-42d6-a9db-0bb237790aef@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <176e7f13-52e8-42d6-a9db-0bb237790aef@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +75,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7098260613616352528==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Christian,
 
-== Series Details ==
+On 11/07/25 12:20, Christian König wrote:
+> On 11.07.25 15:37, Philipp Stanner wrote:
+>> On Fri, 2025-07-11 at 15:22 +0200, Christian König wrote:
+>>>
+>>>
+>>> On 08.07.25 15:25, Maíra Canal wrote:
+>>>> When the DRM scheduler times out, it's possible that the GPU isn't hung;
+>>>> instead, a job just took unusually long (longer than the timeout) but is
+>>>> still running, and there is, thus, no reason to reset the hardware. This
+>>>> can occur in two scenarios:
+>>>>
+>>>>    1. The job is taking longer than the timeout, but the driver determined
+>>>>       through a GPU-specific mechanism that the hardware is still making
+>>>>       progress. Hence, the driver would like the scheduler to skip the
+>>>>       timeout and treat the job as still pending from then onward. This
+>>>>       happens in v3d, Etnaviv, and Xe.
+>>>>    2. Timeout has fired before the free-job worker. Consequently, the
+>>>>       scheduler calls `sched->ops->timedout_job()` for a job that isn't
+>>>>       timed out.
+>>>>
+>>>> These two scenarios are problematic because the job was removed from the
+>>>> `sched->pending_list` before calling `sched->ops->timedout_job()`, which
+>>>> means that when the job finishes, it won't be freed by the scheduler
+>>>> though `sched->ops->free_job()` - leading to a memory leak.
+>>>
+>>> Yeah, that is unfortunately intentional.
+>>>
+>>>> To solve these problems, create a new `drm_gpu_sched_stat`, called
+>>>> DRM_GPU_SCHED_STAT_NO_HANG, which allows a driver to skip the reset. The
+>>>> new status will indicate that the job must be reinserted into
+>>>> `sched->pending_list`, and the hardware / driver will still complete that
+>>>> job.
+>>>
+>>> Well long story short we have already tried this and the whole approach doesn't work correctly in all cases. See the git history around how we used to destroy the jobs.
+>>>
+>>> The basic problem is that you can always race between timing out and Signaling/destroying the job. This is the long lasting job lifetime issue we already discussed more than once.
+>>
+>> The scheduler destroys the job, through free_job().
+>> I think we have agreed that for now the scheduler is the party
+>> responsible for the job lifetime.
+> 
+> That's what I strongly disagree on. The job is just a state bag between the submission and scheduling state of a submission.
+> 
+> For the scheduler the control starts when it is pushed into the entity and ends when run_job is called.
+> 
+> The real representation of the submission is the scheduler fence and that object has a perfectly defined lifetime, state and error handling.
+> 
+>>>
+>>> If you want to fix this I think the correct approach is to completely drop tracking jobs in the scheduler at all.
+>>
+>> I don't see how this series introduces a problem?
+>>
+>> The fact is that drivers are abusing the API by just firing jobs back
+>> into the scheduler's job list. This series legalizes the abuse by
+>> providing scheduler functionality for that.
+>>
+>> IOW, the series improves the situation but does not add a *new*
+>> problem. Even less so as driver's aren't forced to use the new status
+>> code, but can continue having job completion race with timeout
+>> handlers.
+> 
+> Maybe yes, but I'm really not sure about it.
+> 
+> Take a look at the git history or job destruction, we already had exactly that approach, removed it and said that leaking memory is at least better than an use after free issue.
+> 
 
-Series: Crashlog Type1 Version2 support (rev8)
-URL   : https://patchwork.freedesktop.org/series/149120/
-State : success
+If the job was removed from the pending list in the beginning of the
+timeout and drm_sched_get_finished_job() fetches jobs from the pending
+list, how can we end up with an use-after-free issue?
 
-== Summary ==
+Best Regards,
+- Maíra
 
-CI Bug Log - changes from xe-3405-453e24ac0fd683880e40b3a844a774f5a427dc55_BAT -> xe-pw-149120v8_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-New tests
----------
-
-  New tests have been introduced between xe-3405-453e24ac0fd683880e40b3a844a774f5a427dc55_BAT and xe-pw-149120v8_BAT:
-
-### New IGT tests (1) ###
-
-  * igt@xe_intel_bb@create-in-region@region-vram0:
-    - Statuses : 5 pass(s)
-    - Exec time: [0.00, 0.01] s
-
-  
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3405-453e24ac0fd683880e40b3a844a774f5a427dc55 -> xe-pw-149120v8
-
-  IGT_8454: 67f8a0cc3a159bf6f912c08c030dfed5a85af328 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3405-453e24ac0fd683880e40b3a844a774f5a427dc55: 453e24ac0fd683880e40b3a844a774f5a427dc55
-  xe-pw-149120v8: 149120v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v8/index.html
-
---===============7098260613616352528==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Crashlog Type1 Version2 support (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149120/">https://patchwork.freedesktop.org/series/149120/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3405-453e24ac0fd683880e40b3a844a774f5a427dc55_BAT -&gt; xe-pw-149120v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-3405-453e24ac0fd683880e40b3a844a774f5a427dc55_BAT and xe-pw-149120v8_BAT:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@xe_intel_bb@create-in-region@region-vram0:<ul>
-<li>Statuses : 5 pass(s)</li>
-<li>Exec time: [0.00, 0.01] s</li>
-</ul>
-</li>
-</ul>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3405-453e24ac0fd683880e40b3a844a774f5a427dc55 -&gt; xe-pw-149120v8</li>
-</ul>
-<p>IGT_8454: 67f8a0cc3a159bf6f912c08c030dfed5a85af328 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3405-453e24ac0fd683880e40b3a844a774f5a427dc55: 453e24ac0fd683880e40b3a844a774f5a427dc55<br />
-  xe-pw-149120v8: 149120v8</p>
-
-</body>
-</html>
-
---===============7098260613616352528==--
