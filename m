@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32519C83F20
-	for <intel-xe@archiver.kernel.org>; Sun, 13 Jul 2025 10:36:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D82D1C83F17
+	for <intel-xe@archiver.kernel.org>; Sun, 13 Jul 2025 10:36:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E79A710E174;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D79610E176;
 	Sun, 13 Jul 2025 10:36:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NVZMbmMe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D8ft1V8p";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92FC610E175
- for <intel-xe@lists.freedesktop.org>; Sun, 13 Jul 2025 10:36:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0546010E175
+ for <intel-xe@lists.freedesktop.org>; Sun, 13 Jul 2025 10:36:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752403006; x=1783939006;
+ t=1752403005; x=1783939005;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gKflgpVRimSBNn4YcXaWpdfRoQzr0kS3xig3wrEjyHA=;
- b=NVZMbmMeF7wYC1E2t4Gb+kt5wR+djWx5wBeQctVCRuU4afz2ST1vRb4n
- c0cyTBEB/VpRHw4FdE4ZUnIqC+3324EuVu/jnUeNSCik4VA1Pl3G5u8lK
- 9YetIHiD3RA+IlHCqZMrIcDdP73bEx+o0ykryTLx1WA4uyQILNwkgIEU6
- Pz67L72e22F5AXguNa35AnKAzzxs6Ft9sVqILEOVeEnLJvRs0BfJTJUGu
- Ce4JMDwL3owX6a60lMwUcVZoauLjQbIedt9IKxHuT8LlaIAGzUK8XEQk+
- BqdLRVXgy/l7v7HuK2TkxLmwRef0qXTeVYRv1f9GlT62Uo57slUVH+TFv Q==;
-X-CSE-ConnectionGUID: B9W8noL3TuGt016/vvbegg==
-X-CSE-MsgGUID: YLGu151uQRqyZ7yPcd5AuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="64883047"
-X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="64883047"
+ bh=Yas+rITzx1KLEv1GiiVPKov+RPGGYarjmIptKPa7dOE=;
+ b=D8ft1V8pFwhf33dhEflhgG3/OHLCZ8Rzf4TTAOzg0jBdr63S36JNeE/g
+ Agi/CfajckTtzxaeYYmM0QmCrJwW6XXKet4K4IvP4Yo9P3lCQwKQcxREK
+ 2XP9EnLqSr9Prb6CrQVjeHFVMNdT6QUDzpoObKyf0pDMA7ja/49qsCo81
+ bw+kFbARwwitKIHgmEPpaJn1ayrFaBLaoN06Ov4r++ysI0FNoC0rHNX3q
+ Q67QGrd8VTU8zIAy/5WuojNfl+9wNWOxmTv43o/ecOF2Q9WA6U/KRAbRd
+ qCdmAJJC9jJCYl8GYWH5GPvoCEo1/XE5y083TwL2tzIf6bVLAwFTgO5PB Q==;
+X-CSE-ConnectionGUID: di/5wZn9SyiwMUibvxckTQ==
+X-CSE-MsgGUID: zdl/DwH6SnKduOnNMWO98A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="64883046"
+X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="64883046"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2025 03:36:46 -0700
-X-CSE-ConnectionGUID: H+yvuQGpQ26bfyIGkbBb0g==
-X-CSE-MsgGUID: w+IrL3dsQhiFEunQKMRCjw==
+ 13 Jul 2025 03:36:45 -0700
+X-CSE-ConnectionGUID: IYjk1Q/tTMi5x1SxD9k+1g==
+X-CSE-MsgGUID: HedluySSTYW4hyRx1aI6Fw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="156802494"
+X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="156802490"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.96.176])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2025 03:36:45 -0700
+ 13 Jul 2025 03:36:43 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [CI v4 7/7] drm/xe/vf: Store negotiated VF/PF ABI version at device
- level
-Date: Sun, 13 Jul 2025 12:36:25 +0200
-Message-Id: <20250713103625.1964-8-michal.wajdeczko@intel.com>
+Subject: [CI v4 6/7] drm/xe/pf: Stop requiring VF/PF version negotiation on
+ every GT
+Date: Sun, 13 Jul 2025 12:36:24 +0200
+Message-Id: <20250713103625.1964-7-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20250713103625.1964-1-michal.wajdeczko@intel.com>
 References: <20250713103625.1964-1-michal.wajdeczko@intel.com>
@@ -69,159 +69,1166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is no need to maintain PF ABI version on per-GT level.
+While some VF/PF relay actions must be handled on the GT level,
+like query for runtime registers, it was clarified by the arch
+team that initial version negotiation can be done by the VF just
+once, by using any available GuC/GT.
+
+Move handling of the VF/PF ABI version negotiation on the PF side
+from the GT level functions to the device level functions.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
-v2: rebased
+v2: use gt_is_main/tile_is_root helpers (Piotr)
+    drop leftover test include (Piotr)
+    add more asserts (Piotr)
+v3: rebase
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 28 +++++++++++++----------
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h | 12 ----------
- drivers/gpu/drm/xe/xe_sriov_vf_types.h    | 14 ++++++++++++
- 3 files changed, 30 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/Makefile                   |   3 +-
+ .../xe/tests/xe_gt_sriov_pf_service_test.c    | 232 ------------------
+ .../drm/xe/tests/xe_sriov_pf_service_kunit.c  | 227 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c   |   7 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |   5 -
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c   | 166 +------------
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h   |   2 -
+ drivers/gpu/drm/xe/xe_sriov_pf.c              |  18 +-
+ drivers/gpu/drm/xe/xe_sriov_pf_service.c      | 216 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_service.h      |  23 ++
+ .../gpu/drm/xe/xe_sriov_pf_service_types.h    |  36 +++
+ drivers/gpu/drm/xe/xe_sriov_pf_types.h        |  16 ++
+ 12 files changed, 548 insertions(+), 403 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_service_types.h
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index d65eafd91b17..b282838d59e6 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -686,21 +686,22 @@ static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32 *minor)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 4bda20f586ed..07c71a29963d 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -163,7 +163,8 @@ xe-$(CONFIG_PCI_IOV) += \
+ 	xe_lmtt_2l.o \
+ 	xe_lmtt_ml.o \
+ 	xe_pci_sriov.o \
+-	xe_sriov_pf.o
++	xe_sriov_pf.o \
++	xe_sriov_pf_service.o
  
--static void vf_connect_pf(struct xe_gt *gt, u16 major, u16 minor)
-+static void vf_connect_pf(struct xe_device *xe, u16 major, u16 minor)
- {
--	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+	xe_assert(xe, IS_SRIOV_VF(xe));
- 
--	gt->sriov.vf.pf_version.major = major;
--	gt->sriov.vf.pf_version.minor = minor;
-+	xe->sriov.vf.pf_version.major = major;
-+	xe->sriov.vf.pf_version.minor = minor;
- }
- 
--static void vf_disconnect_pf(struct xe_gt *gt)
-+static void vf_disconnect_pf(struct xe_device *xe)
- {
--	vf_connect_pf(gt, 0, 0);
-+	vf_connect_pf(xe, 0, 0);
- }
- 
- static int vf_handshake_with_pf(struct xe_gt *gt)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
- 	u32 major_wanted = GUC_RELAY_VERSION_LATEST_MAJOR;
- 	u32 minor_wanted = GUC_RELAY_VERSION_LATEST_MINOR;
- 	u32 major = major_wanted, minor = minor_wanted;
-@@ -716,13 +717,13 @@ static int vf_handshake_with_pf(struct xe_gt *gt)
- 	}
- 
- 	xe_gt_sriov_dbg(gt, "using VF/PF ABI %u.%u\n", major, minor);
--	vf_connect_pf(gt, major, minor);
-+	vf_connect_pf(xe, major, minor);
- 	return 0;
- 
- failed:
- 	xe_gt_sriov_err(gt, "Unable to confirm VF/PF ABI version %u.%u (%pe)\n",
- 			major, minor, ERR_PTR(err));
--	vf_disconnect_pf(gt);
-+	vf_disconnect_pf(xe);
- 	return err;
- }
- 
-@@ -775,10 +776,12 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
- 
- static bool vf_is_negotiated(struct xe_gt *gt, u16 major, u16 minor)
- {
--	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+	struct xe_device *xe = gt_to_xe(gt);
- 
--	return major == gt->sriov.vf.pf_version.major &&
--	       minor <= gt->sriov.vf.pf_version.minor;
-+	xe_gt_assert(gt, IS_SRIOV_VF(xe));
-+
-+	return major == xe->sriov.vf.pf_version.major &&
-+	       minor <= xe->sriov.vf.pf_version.minor;
- }
- 
- static int vf_prepare_runtime_info(struct xe_gt *gt, unsigned int num_regs)
-@@ -1072,9 +1075,10 @@ void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p)
-  */
- void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_uc_fw_version *guc_version = &gt->sriov.vf.guc_version;
- 	struct xe_uc_fw_version *wanted = &gt->sriov.vf.wanted_guc_version;
--	struct xe_gt_sriov_vf_relay_version *pf_version = &gt->sriov.vf.pf_version;
-+	struct xe_sriov_vf_relay_version *pf_version = &xe->sriov.vf.pf_version;
- 	struct xe_uc_fw_version ver;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index ef041679e9d4..298dedf4b009 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -9,16 +9,6 @@
- #include <linux/types.h>
- #include "xe_uc_fw_types.h"
- 
--/**
-- * struct xe_gt_sriov_vf_relay_version - PF ABI version details.
+ # include helpers for tests even when XE is built-in
+ ifdef CONFIG_DRM_XE_KUNIT_TEST
+diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
+deleted file mode 100644
+index b683585db852..000000000000
+--- a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
++++ /dev/null
+@@ -1,232 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0 AND MIT
+-/*
+- * Copyright © 2024 Intel Corporation
 - */
--struct xe_gt_sriov_vf_relay_version {
--	/** @major: major version. */
--	u16 major;
--	/** @minor: minor version. */
--	u16 minor;
+-
+-#include <kunit/test.h>
+-
+-#include "xe_device.h"
+-#include "xe_kunit_helpers.h"
+-#include "xe_pci_test.h"
+-
+-static int pf_service_test_init(struct kunit *test)
+-{
+-	struct xe_pci_fake_data fake = {
+-		.sriov_mode = XE_SRIOV_MODE_PF,
+-		.platform = XE_TIGERLAKE, /* some random platform */
+-		.subplatform = XE_SUBPLATFORM_NONE,
+-	};
+-	struct xe_device *xe;
+-	struct xe_gt *gt;
+-
+-	test->priv = &fake;
+-	xe_kunit_helper_xe_device_test_init(test);
+-
+-	xe = test->priv;
+-	KUNIT_ASSERT_EQ(test, xe_sriov_init(xe), 0);
+-
+-	gt = xe_device_get_gt(xe, 0);
+-	pf_init_versions(gt);
+-
+-	/*
+-	 * sanity check:
+-	 * - all supported platforms VF/PF ABI versions must be defined
+-	 * - base version can't be newer than latest
+-	 */
+-	KUNIT_ASSERT_NE(test, 0, gt->sriov.pf.service.version.base.major);
+-	KUNIT_ASSERT_NE(test, 0, gt->sriov.pf.service.version.latest.major);
+-	KUNIT_ASSERT_LE(test, gt->sriov.pf.service.version.base.major,
+-			gt->sriov.pf.service.version.latest.major);
+-	if (gt->sriov.pf.service.version.base.major == gt->sriov.pf.service.version.latest.major)
+-		KUNIT_ASSERT_LE(test, gt->sriov.pf.service.version.base.minor,
+-				gt->sriov.pf.service.version.latest.minor);
+-
+-	test->priv = gt;
+-	return 0;
+-}
+-
+-static void pf_negotiate_any(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	KUNIT_ASSERT_EQ(test, 0,
+-			pf_negotiate_version(gt, VF2PF_HANDSHAKE_MAJOR_ANY,
+-					     VF2PF_HANDSHAKE_MINOR_ANY,
+-					     &major, &minor));
+-	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
+-	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
+-}
+-
+-static void pf_negotiate_base_match(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	KUNIT_ASSERT_EQ(test, 0,
+-			pf_negotiate_version(gt,
+-					     gt->sriov.pf.service.version.base.major,
+-					     gt->sriov.pf.service.version.base.minor,
+-					     &major, &minor));
+-	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.base.major);
+-	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.base.minor);
+-}
+-
+-static void pf_negotiate_base_newer(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	KUNIT_ASSERT_EQ(test, 0,
+-			pf_negotiate_version(gt,
+-					     gt->sriov.pf.service.version.base.major,
+-					     gt->sriov.pf.service.version.base.minor + 1,
+-					     &major, &minor));
+-	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.base.major);
+-	KUNIT_ASSERT_GE(test, minor, gt->sriov.pf.service.version.base.minor);
+-	if (gt->sriov.pf.service.version.base.major == gt->sriov.pf.service.version.latest.major)
+-		KUNIT_ASSERT_LE(test, minor, gt->sriov.pf.service.version.latest.minor);
+-	else
+-		KUNIT_FAIL(test, "FIXME: don't know how to test multi-version yet!\n");
+-}
+-
+-static void pf_negotiate_base_next(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	KUNIT_ASSERT_EQ(test, 0,
+-			pf_negotiate_version(gt,
+-					     gt->sriov.pf.service.version.base.major + 1, 0,
+-					     &major, &minor));
+-	KUNIT_ASSERT_GE(test, major, gt->sriov.pf.service.version.base.major);
+-	KUNIT_ASSERT_LE(test, major, gt->sriov.pf.service.version.latest.major);
+-	if (major == gt->sriov.pf.service.version.latest.major)
+-		KUNIT_ASSERT_LE(test, minor, gt->sriov.pf.service.version.latest.minor);
+-	else
+-		KUNIT_FAIL(test, "FIXME: don't know how to test multi-version yet!\n");
+-}
+-
+-static void pf_negotiate_base_older(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	if (!gt->sriov.pf.service.version.base.minor)
+-		kunit_skip(test, "no older minor\n");
+-
+-	KUNIT_ASSERT_NE(test, 0,
+-			pf_negotiate_version(gt,
+-					     gt->sriov.pf.service.version.base.major,
+-					     gt->sriov.pf.service.version.base.minor - 1,
+-					     &major, &minor));
+-}
+-
+-static void pf_negotiate_base_prev(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	KUNIT_ASSERT_NE(test, 0,
+-			pf_negotiate_version(gt,
+-					     gt->sriov.pf.service.version.base.major - 1, 1,
+-					     &major, &minor));
+-}
+-
+-static void pf_negotiate_latest_match(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	KUNIT_ASSERT_EQ(test, 0,
+-			pf_negotiate_version(gt,
+-					     gt->sriov.pf.service.version.latest.major,
+-					     gt->sriov.pf.service.version.latest.minor,
+-					     &major, &minor));
+-	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
+-	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
+-}
+-
+-static void pf_negotiate_latest_newer(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	KUNIT_ASSERT_EQ(test, 0,
+-			pf_negotiate_version(gt,
+-					     gt->sriov.pf.service.version.latest.major,
+-					     gt->sriov.pf.service.version.latest.minor + 1,
+-					     &major, &minor));
+-	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
+-	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
+-}
+-
+-static void pf_negotiate_latest_next(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	KUNIT_ASSERT_EQ(test, 0,
+-			pf_negotiate_version(gt,
+-					     gt->sriov.pf.service.version.latest.major + 1, 0,
+-					     &major, &minor));
+-	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
+-	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
+-}
+-
+-static void pf_negotiate_latest_older(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	if (!gt->sriov.pf.service.version.latest.minor)
+-		kunit_skip(test, "no older minor\n");
+-
+-	KUNIT_ASSERT_EQ(test, 0,
+-			pf_negotiate_version(gt,
+-					     gt->sriov.pf.service.version.latest.major,
+-					     gt->sriov.pf.service.version.latest.minor - 1,
+-					     &major, &minor));
+-	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
+-	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor - 1);
+-}
+-
+-static void pf_negotiate_latest_prev(struct kunit *test)
+-{
+-	struct xe_gt *gt = test->priv;
+-	u32 major, minor;
+-
+-	if (gt->sriov.pf.service.version.base.major == gt->sriov.pf.service.version.latest.major)
+-		kunit_skip(test, "no prev major");
+-
+-	KUNIT_ASSERT_EQ(test, 0,
+-			pf_negotiate_version(gt,
+-					     gt->sriov.pf.service.version.latest.major - 1,
+-					     gt->sriov.pf.service.version.base.minor + 1,
+-					     &major, &minor));
+-	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major - 1);
+-	KUNIT_ASSERT_GE(test, major, gt->sriov.pf.service.version.base.major);
+-}
+-
+-static struct kunit_case pf_service_test_cases[] = {
+-	KUNIT_CASE(pf_negotiate_any),
+-	KUNIT_CASE(pf_negotiate_base_match),
+-	KUNIT_CASE(pf_negotiate_base_newer),
+-	KUNIT_CASE(pf_negotiate_base_next),
+-	KUNIT_CASE(pf_negotiate_base_older),
+-	KUNIT_CASE(pf_negotiate_base_prev),
+-	KUNIT_CASE(pf_negotiate_latest_match),
+-	KUNIT_CASE(pf_negotiate_latest_newer),
+-	KUNIT_CASE(pf_negotiate_latest_next),
+-	KUNIT_CASE(pf_negotiate_latest_older),
+-	KUNIT_CASE(pf_negotiate_latest_prev),
+-	{}
 -};
 -
- /**
-  * struct xe_gt_sriov_vf_selfconfig - VF configuration data.
-  */
-@@ -66,8 +56,6 @@ struct xe_gt_sriov_vf {
- 	struct xe_uc_fw_version guc_version;
- 	/** @self_config: resource configurations. */
- 	struct xe_gt_sriov_vf_selfconfig self_config;
--	/** @pf_version: negotiated VF/PF ABI version. */
--	struct xe_gt_sriov_vf_relay_version pf_version;
- 	/** @runtime: runtime data retrieved from the PF. */
- 	struct xe_gt_sriov_vf_runtime runtime;
- };
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-index 55c2421d4b2e..8300416a6226 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-@@ -6,8 +6,19 @@
- #ifndef _XE_SRIOV_VF_TYPES_H_
- #define _XE_SRIOV_VF_TYPES_H_
- 
-+#include <linux/types.h>
- #include <linux/workqueue_types.h>
- 
-+/**
-+ * struct xe_sriov_vf_relay_version - PF ABI version details.
+-static struct kunit_suite pf_service_suite = {
+-	.name = "pf_service",
+-	.test_cases = pf_service_test_cases,
+-	.init = pf_service_test_init,
+-};
+-
+-kunit_test_suite(pf_service_suite);
+diff --git a/drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c b/drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c
+new file mode 100644
+index 000000000000..ba95e29b597d
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c
+@@ -0,0 +1,227 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2024-2025 Intel Corporation
 + */
-+struct xe_sriov_vf_relay_version {
-+	/** @major: major version. */
++
++#include <kunit/test.h>
++
++#include "xe_device.h"
++#include "xe_kunit_helpers.h"
++#include "xe_pci_test.h"
++
++static int pf_service_test_init(struct kunit *test)
++{
++	struct xe_pci_fake_data fake = {
++		.sriov_mode = XE_SRIOV_MODE_PF,
++		.platform = XE_TIGERLAKE, /* some random platform */
++		.subplatform = XE_SUBPLATFORM_NONE,
++	};
++	struct xe_device *xe;
++
++	test->priv = &fake;
++	xe_kunit_helper_xe_device_test_init(test);
++
++	xe = test->priv;
++	KUNIT_ASSERT_EQ(test, xe_sriov_init(xe), 0);
++
++	xe_sriov_pf_service_init(xe);
++	/*
++	 * sanity check:
++	 * - all supported platforms VF/PF ABI versions must be defined
++	 * - base version can't be newer than latest
++	 */
++	KUNIT_ASSERT_NE(test, 0, xe->sriov.pf.service.version.base.major);
++	KUNIT_ASSERT_NE(test, 0, xe->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_LE(test, xe->sriov.pf.service.version.base.major,
++			xe->sriov.pf.service.version.latest.major);
++	if (xe->sriov.pf.service.version.base.major == xe->sriov.pf.service.version.latest.major)
++		KUNIT_ASSERT_LE(test, xe->sriov.pf.service.version.base.minor,
++				xe->sriov.pf.service.version.latest.minor);
++	return 0;
++}
++
++static void pf_negotiate_any(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(xe, VF2PF_HANDSHAKE_MAJOR_ANY,
++					     VF2PF_HANDSHAKE_MINOR_ANY,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, xe->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_EQ(test, minor, xe->sriov.pf.service.version.latest.minor);
++}
++
++static void pf_negotiate_base_match(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(xe,
++					     xe->sriov.pf.service.version.base.major,
++					     xe->sriov.pf.service.version.base.minor,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, xe->sriov.pf.service.version.base.major);
++	KUNIT_ASSERT_EQ(test, minor, xe->sriov.pf.service.version.base.minor);
++}
++
++static void pf_negotiate_base_newer(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(xe,
++					     xe->sriov.pf.service.version.base.major,
++					     xe->sriov.pf.service.version.base.minor + 1,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, xe->sriov.pf.service.version.base.major);
++	KUNIT_ASSERT_GE(test, minor, xe->sriov.pf.service.version.base.minor);
++	if (xe->sriov.pf.service.version.base.major == xe->sriov.pf.service.version.latest.major)
++		KUNIT_ASSERT_LE(test, minor, xe->sriov.pf.service.version.latest.minor);
++	else
++		KUNIT_FAIL(test, "FIXME: don't know how to test multi-version yet!\n");
++}
++
++static void pf_negotiate_base_next(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(xe,
++					     xe->sriov.pf.service.version.base.major + 1, 0,
++					     &major, &minor));
++	KUNIT_ASSERT_GE(test, major, xe->sriov.pf.service.version.base.major);
++	KUNIT_ASSERT_LE(test, major, xe->sriov.pf.service.version.latest.major);
++	if (major == xe->sriov.pf.service.version.latest.major)
++		KUNIT_ASSERT_LE(test, minor, xe->sriov.pf.service.version.latest.minor);
++	else
++		KUNIT_FAIL(test, "FIXME: don't know how to test multi-version yet!\n");
++}
++
++static void pf_negotiate_base_older(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	if (!xe->sriov.pf.service.version.base.minor)
++		kunit_skip(test, "no older minor\n");
++
++	KUNIT_ASSERT_NE(test, 0,
++			pf_negotiate_version(xe,
++					     xe->sriov.pf.service.version.base.major,
++					     xe->sriov.pf.service.version.base.minor - 1,
++					     &major, &minor));
++}
++
++static void pf_negotiate_base_prev(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_NE(test, 0,
++			pf_negotiate_version(xe,
++					     xe->sriov.pf.service.version.base.major - 1, 1,
++					     &major, &minor));
++}
++
++static void pf_negotiate_latest_match(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(xe,
++					     xe->sriov.pf.service.version.latest.major,
++					     xe->sriov.pf.service.version.latest.minor,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, xe->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_EQ(test, minor, xe->sriov.pf.service.version.latest.minor);
++}
++
++static void pf_negotiate_latest_newer(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(xe,
++					     xe->sriov.pf.service.version.latest.major,
++					     xe->sriov.pf.service.version.latest.minor + 1,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, xe->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_EQ(test, minor, xe->sriov.pf.service.version.latest.minor);
++}
++
++static void pf_negotiate_latest_next(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(xe,
++					     xe->sriov.pf.service.version.latest.major + 1, 0,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, xe->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_EQ(test, minor, xe->sriov.pf.service.version.latest.minor);
++}
++
++static void pf_negotiate_latest_older(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	if (!xe->sriov.pf.service.version.latest.minor)
++		kunit_skip(test, "no older minor\n");
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(xe,
++					     xe->sriov.pf.service.version.latest.major,
++					     xe->sriov.pf.service.version.latest.minor - 1,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, xe->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_EQ(test, minor, xe->sriov.pf.service.version.latest.minor - 1);
++}
++
++static void pf_negotiate_latest_prev(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	u32 major, minor;
++
++	if (xe->sriov.pf.service.version.base.major == xe->sriov.pf.service.version.latest.major)
++		kunit_skip(test, "no prev major");
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(xe,
++					     xe->sriov.pf.service.version.latest.major - 1,
++					     xe->sriov.pf.service.version.base.minor + 1,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, xe->sriov.pf.service.version.latest.major - 1);
++	KUNIT_ASSERT_GE(test, major, xe->sriov.pf.service.version.base.major);
++}
++
++static struct kunit_case pf_service_test_cases[] = {
++	KUNIT_CASE(pf_negotiate_any),
++	KUNIT_CASE(pf_negotiate_base_match),
++	KUNIT_CASE(pf_negotiate_base_newer),
++	KUNIT_CASE(pf_negotiate_base_next),
++	KUNIT_CASE(pf_negotiate_base_older),
++	KUNIT_CASE(pf_negotiate_base_prev),
++	KUNIT_CASE(pf_negotiate_latest_match),
++	KUNIT_CASE(pf_negotiate_latest_newer),
++	KUNIT_CASE(pf_negotiate_latest_next),
++	KUNIT_CASE(pf_negotiate_latest_older),
++	KUNIT_CASE(pf_negotiate_latest_prev),
++	{}
++};
++
++static struct kunit_suite pf_service_suite = {
++	.name = "pf_service",
++	.test_cases = pf_service_test_cases,
++	.init = pf_service_test_init,
++};
++
++kunit_test_suite(pf_service_suite);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+index 1f50aec3a059..4f7fff892bc0 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+@@ -15,10 +15,11 @@
+ #include "xe_gt_sriov_pf_helpers.h"
+ #include "xe_gt_sriov_pf_migration.h"
+ #include "xe_gt_sriov_pf_monitor.h"
+-#include "xe_gt_sriov_pf_service.h"
+ #include "xe_gt_sriov_printk.h"
+ #include "xe_guc_ct.h"
+ #include "xe_sriov.h"
++#include "xe_sriov_pf_service.h"
++#include "xe_tile.h"
+ 
+ static const char *control_cmd_to_string(u32 cmd)
+ {
+@@ -1064,7 +1065,9 @@ static bool pf_exit_vf_flr_reset_data(struct xe_gt *gt, unsigned int vfid)
+ 	if (!pf_exit_vf_state(gt, vfid, XE_GT_SRIOV_STATE_FLR_RESET_DATA))
+ 		return false;
+ 
+-	xe_gt_sriov_pf_service_reset(gt, vfid);
++	if (xe_tile_is_root(gt->tile) && xe_gt_is_main_type(gt))
++		xe_sriov_pf_service_reset_vf(gt_to_xe(gt), vfid);
++
+ 	xe_gt_sriov_pf_monitor_flr(gt, vfid);
+ 
+ 	pf_enter_vf_flr_reset_mmio(gt, vfid);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index 9b7772928d62..bf679b21f485 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -77,11 +77,6 @@ static const struct drm_info_list pf_info[] = {
+ 		.show = xe_gt_debugfs_simple_show,
+ 		.data = xe_gt_sriov_pf_service_print_runtime,
+ 	},
+-	{
+-		"negotiated_versions",
+-		.show = xe_gt_debugfs_simple_show,
+-		.data = xe_gt_sriov_pf_service_print_version,
+-	},
+ 	{
+ 		"adverse_events",
+ 		.show = xe_gt_debugfs_simple_show,
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
+index fa74b3e1a964..76dd9233ef9f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
+@@ -19,91 +19,7 @@
+ #include "xe_gt_sriov_pf_service_types.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_hxg_helpers.h"
+-
+-static void pf_init_versions(struct xe_gt *gt)
+-{
+-	BUILD_BUG_ON(!GUC_RELAY_VERSION_BASE_MAJOR && !GUC_RELAY_VERSION_BASE_MINOR);
+-	BUILD_BUG_ON(GUC_RELAY_VERSION_BASE_MAJOR > GUC_RELAY_VERSION_LATEST_MAJOR);
+-
+-	/* base versions may differ between platforms */
+-	gt->sriov.pf.service.version.base.major = GUC_RELAY_VERSION_BASE_MAJOR;
+-	gt->sriov.pf.service.version.base.minor = GUC_RELAY_VERSION_BASE_MINOR;
+-
+-	/* latest version is same for all platforms */
+-	gt->sriov.pf.service.version.latest.major = GUC_RELAY_VERSION_LATEST_MAJOR;
+-	gt->sriov.pf.service.version.latest.minor = GUC_RELAY_VERSION_LATEST_MINOR;
+-}
+-
+-/* Return: 0 on success or a negative error code on failure. */
+-static int pf_negotiate_version(struct xe_gt *gt,
+-				u32 wanted_major, u32 wanted_minor,
+-				u32 *major, u32 *minor)
+-{
+-	struct xe_gt_sriov_pf_service_version base = gt->sriov.pf.service.version.base;
+-	struct xe_gt_sriov_pf_service_version latest = gt->sriov.pf.service.version.latest;
+-
+-	xe_gt_assert(gt, base.major);
+-	xe_gt_assert(gt, base.major <= latest.major);
+-	xe_gt_assert(gt, (base.major < latest.major) || (base.minor <= latest.minor));
+-
+-	/* VF doesn't care - return our latest  */
+-	if (wanted_major == VF2PF_HANDSHAKE_MAJOR_ANY &&
+-	    wanted_minor == VF2PF_HANDSHAKE_MINOR_ANY) {
+-		*major = latest.major;
+-		*minor = latest.minor;
+-		return 0;
+-	}
+-
+-	/* VF wants newer than our - return our latest  */
+-	if (wanted_major > latest.major) {
+-		*major = latest.major;
+-		*minor = latest.minor;
+-		return 0;
+-	}
+-
+-	/* VF wants older than min required - reject */
+-	if (wanted_major < base.major ||
+-	    (wanted_major == base.major && wanted_minor < base.minor)) {
+-		return -EPERM;
+-	}
+-
+-	/* previous major - return wanted, as we should still support it */
+-	if (wanted_major < latest.major) {
+-		/* XXX: we are not prepared for multi-versions yet */
+-		xe_gt_assert(gt, base.major == latest.major);
+-		return -ENOPKG;
+-	}
+-
+-	/* same major - return common minor */
+-	*major = wanted_major;
+-	*minor = min_t(u32, latest.minor, wanted_minor);
+-	return 0;
+-}
+-
+-static void pf_connect(struct xe_gt *gt, u32 vfid, u32 major, u32 minor)
+-{
+-	xe_gt_sriov_pf_assert_vfid(gt, vfid);
+-	xe_gt_assert(gt, major || minor);
+-
+-	gt->sriov.pf.vfs[vfid].version.major = major;
+-	gt->sriov.pf.vfs[vfid].version.minor = minor;
+-}
+-
+-static void pf_disconnect(struct xe_gt *gt, u32 vfid)
+-{
+-	xe_gt_sriov_pf_assert_vfid(gt, vfid);
+-
+-	gt->sriov.pf.vfs[vfid].version.major = 0;
+-	gt->sriov.pf.vfs[vfid].version.minor = 0;
+-}
+-
+-static bool pf_is_negotiated(struct xe_gt *gt, u32 vfid, u32 major, u32 minor)
+-{
+-	xe_gt_sriov_pf_assert_vfid(gt, vfid);
+-
+-	return major == gt->sriov.pf.vfs[vfid].version.major &&
+-	       minor <= gt->sriov.pf.vfs[vfid].version.minor;
+-}
++#include "xe_sriov_pf_service.h"
+ 
+ static const struct xe_reg tgl_runtime_regs[] = {
+ 	RPM_CONFIG0,			/* _MMIO(0x0d00) */
+@@ -285,8 +201,6 @@ int xe_gt_sriov_pf_service_init(struct xe_gt *gt)
+ {
+ 	int err;
+ 
+-	pf_init_versions(gt);
+-
+ 	err = pf_alloc_runtime_info(gt);
+ 	if (unlikely(err))
+ 		goto failed;
+@@ -311,47 +225,6 @@ void xe_gt_sriov_pf_service_update(struct xe_gt *gt)
+ 	pf_prepare_runtime_info(gt);
+ }
+ 
+-/**
+- * xe_gt_sriov_pf_service_reset - Reset a connection with the VF.
+- * @gt: the &xe_gt
+- * @vfid: the VF identifier
+- *
+- * Reset a VF driver negotiated VF/PF ABI version.
+- * After that point, the VF driver will have to perform new version handshake
+- * to continue use of the PF services again.
+- *
+- * This function can only be called on PF.
+- */
+-void xe_gt_sriov_pf_service_reset(struct xe_gt *gt, unsigned int vfid)
+-{
+-	pf_disconnect(gt, vfid);
+-}
+-
+-/* Return: 0 on success or a negative error code on failure. */
+-static int pf_process_handshake(struct xe_gt *gt, u32 vfid,
+-				u32 wanted_major, u32 wanted_minor,
+-				u32 *major, u32 *minor)
+-{
+-	int err;
+-
+-	xe_gt_sriov_dbg_verbose(gt, "VF%u wants ABI version %u.%u\n",
+-				vfid, wanted_major, wanted_minor);
+-
+-	err = pf_negotiate_version(gt, wanted_major, wanted_minor, major, minor);
+-
+-	if (err < 0) {
+-		xe_gt_sriov_notice(gt, "VF%u failed to negotiate ABI %u.%u (%pe)\n",
+-				   vfid, wanted_major, wanted_minor, ERR_PTR(err));
+-		pf_disconnect(gt, vfid);
+-	} else {
+-		xe_gt_sriov_dbg(gt, "VF%u negotiated ABI version %u.%u\n",
+-				vfid, *major, *minor);
+-		pf_connect(gt, vfid, *major, *minor);
+-	}
+-
+-	return 0;
+-}
+-
+ /* Return: length of the response message or a negative error code on failure. */
+ static int pf_process_handshake_msg(struct xe_gt *gt, u32 origin,
+ 				    const u32 *request, u32 len, u32 *response, u32 size)
+@@ -371,7 +244,8 @@ static int pf_process_handshake_msg(struct xe_gt *gt, u32 origin,
+ 	wanted_major = FIELD_GET(VF2PF_HANDSHAKE_REQUEST_MSG_1_MAJOR, request[1]);
+ 	wanted_minor = FIELD_GET(VF2PF_HANDSHAKE_REQUEST_MSG_1_MINOR, request[1]);
+ 
+-	err = pf_process_handshake(gt, origin, wanted_major, wanted_minor, &major, &minor);
++	err = xe_sriov_pf_service_handshake_vf(gt_to_xe(gt), origin, wanted_major, wanted_minor,
++					       &major, &minor);
+ 	if (err < 0)
+ 		return err;
+ 
+@@ -430,8 +304,10 @@ static int pf_process_runtime_query_msg(struct xe_gt *gt, u32 origin,
+ 	u32 remaining = 0;
+ 	int ret;
+ 
+-	if (!pf_is_negotiated(gt, origin, 1, 0))
++	/* this action is available from ABI 1.0 */
++	if (!xe_sriov_pf_service_is_negotiated(gt_to_xe(gt), origin, 1, 0))
+ 		return -EACCES;
++
+ 	if (unlikely(msg_len > VF2PF_QUERY_RUNTIME_REQUEST_MSG_LEN))
+ 		return -EMSGSIZE;
+ 	if (unlikely(msg_len < VF2PF_QUERY_RUNTIME_REQUEST_MSG_LEN))
+@@ -528,33 +404,3 @@ int xe_gt_sriov_pf_service_print_runtime(struct xe_gt *gt, struct drm_printer *p
+ 
+ 	return 0;
+ }
+-
+-/**
+- * xe_gt_sriov_pf_service_print_version - Print ABI versions negotiated with VFs.
+- * @gt: the &xe_gt
+- * @p: the &drm_printer
+- *
+- * This function is for PF use only.
+- */
+-int xe_gt_sriov_pf_service_print_version(struct xe_gt *gt, struct drm_printer *p)
+-{
+-	struct xe_device *xe = gt_to_xe(gt);
+-	unsigned int n, total_vfs = xe_sriov_pf_get_totalvfs(xe);
+-	struct xe_gt_sriov_pf_service_version *version;
+-
+-	xe_gt_assert(gt, IS_SRIOV_PF(xe));
+-
+-	for (n = 1; n <= total_vfs; n++) {
+-		version = &gt->sriov.pf.vfs[n].version;
+-		if (!version->major && !version->minor)
+-			continue;
+-
+-		drm_printf(p, "VF%u:\t%u.%u\n", n, version->major, version->minor);
+-	}
+-
+-	return 0;
+-}
+-
+-#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
+-#include "tests/xe_gt_sriov_pf_service_test.c"
+-#endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h
+index 56aaadf0360d..10b02c9b651c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h
+@@ -14,9 +14,7 @@ struct xe_gt;
+ 
+ int xe_gt_sriov_pf_service_init(struct xe_gt *gt);
+ void xe_gt_sriov_pf_service_update(struct xe_gt *gt);
+-void xe_gt_sriov_pf_service_reset(struct xe_gt *gt, unsigned int vfid);
+ 
+-int xe_gt_sriov_pf_service_print_version(struct xe_gt *gt, struct drm_printer *p);
+ int xe_gt_sriov_pf_service_print_runtime(struct xe_gt *gt, struct drm_printer *p);
+ 
+ #ifdef CONFIG_PCI_IOV
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
+index 331755843e10..afbdd894bd6e 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
+@@ -12,6 +12,8 @@
+ #include "xe_module.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_pf.h"
++#include "xe_sriov_pf_helpers.h"
++#include "xe_sriov_pf_service.h"
+ #include "xe_sriov_printk.h"
+ 
+ static unsigned int wanted_max_vfs(struct xe_device *xe)
+@@ -82,9 +84,22 @@ bool xe_sriov_pf_readiness(struct xe_device *xe)
+  */
+ int xe_sriov_pf_init_early(struct xe_device *xe)
+ {
++	int err;
++
+ 	xe_assert(xe, IS_SRIOV_PF(xe));
+ 
+-	return drmm_mutex_init(&xe->drm, &xe->sriov.pf.master_lock);
++	xe->sriov.pf.vfs = drmm_kcalloc(&xe->drm, 1 + xe_sriov_pf_get_totalvfs(xe),
++					sizeof(*xe->sriov.pf.vfs), GFP_KERNEL);
++	if (!xe->sriov.pf.vfs)
++		return -ENOMEM;
++
++	err = drmm_mutex_init(&xe->drm, &xe->sriov.pf.master_lock);
++	if (err)
++		return err;
++
++	xe_sriov_pf_service_init(xe);
++
++	return 0;
+ }
+ 
+ /**
+@@ -119,6 +134,7 @@ static int simple_show(struct seq_file *m, void *data)
+ 
+ static const struct drm_info_list debugfs_list[] = {
+ 	{ .name = "vfs", .show = simple_show, .data = xe_sriov_pf_print_vfs_summary },
++	{ .name = "versions", .show = simple_show, .data = xe_sriov_pf_service_print_versions },
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_sriov_pf_service.c
+new file mode 100644
+index 000000000000..eee3b2a1ba41
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_service.c
+@@ -0,0 +1,216 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023-2025 Intel Corporation
++ */
++
++#include "abi/guc_relay_actions_abi.h"
++
++#include "xe_device_types.h"
++#include "xe_sriov.h"
++#include "xe_sriov_pf_helpers.h"
++#include "xe_sriov_printk.h"
++
++#include "xe_sriov_pf_service.h"
++#include "xe_sriov_pf_service_types.h"
++
++/**
++ * xe_sriov_pf_service_init - Early initialization of the SR-IOV PF service.
++ * @xe: the &xe_device to initialize
++ *
++ * Performs early initialization of the SR-IOV PF service.
++ *
++ * This function can only be called on PF.
++ */
++void xe_sriov_pf_service_init(struct xe_device *xe)
++{
++	BUILD_BUG_ON(!GUC_RELAY_VERSION_BASE_MAJOR && !GUC_RELAY_VERSION_BASE_MINOR);
++	BUILD_BUG_ON(GUC_RELAY_VERSION_BASE_MAJOR > GUC_RELAY_VERSION_LATEST_MAJOR);
++
++	xe_assert(xe, IS_SRIOV_PF(xe));
++
++	/* base versions may differ between platforms */
++	xe->sriov.pf.service.version.base.major = GUC_RELAY_VERSION_BASE_MAJOR;
++	xe->sriov.pf.service.version.base.minor = GUC_RELAY_VERSION_BASE_MINOR;
++
++	/* latest version is same for all platforms */
++	xe->sriov.pf.service.version.latest.major = GUC_RELAY_VERSION_LATEST_MAJOR;
++	xe->sriov.pf.service.version.latest.minor = GUC_RELAY_VERSION_LATEST_MINOR;
++}
++
++/* Return: 0 on success or a negative error code on failure. */
++static int pf_negotiate_version(struct xe_device *xe,
++				u32 wanted_major, u32 wanted_minor,
++				u32 *major, u32 *minor)
++{
++	struct xe_sriov_pf_service_version base = xe->sriov.pf.service.version.base;
++	struct xe_sriov_pf_service_version latest = xe->sriov.pf.service.version.latest;
++
++	xe_assert(xe, IS_SRIOV_PF(xe));
++	xe_assert(xe, base.major);
++	xe_assert(xe, base.major <= latest.major);
++	xe_assert(xe, (base.major < latest.major) || (base.minor <= latest.minor));
++
++	/* VF doesn't care - return our latest  */
++	if (wanted_major == VF2PF_HANDSHAKE_MAJOR_ANY &&
++	    wanted_minor == VF2PF_HANDSHAKE_MINOR_ANY) {
++		*major = latest.major;
++		*minor = latest.minor;
++		return 0;
++	}
++
++	/* VF wants newer than our - return our latest  */
++	if (wanted_major > latest.major) {
++		*major = latest.major;
++		*minor = latest.minor;
++		return 0;
++	}
++
++	/* VF wants older than min required - reject */
++	if (wanted_major < base.major ||
++	    (wanted_major == base.major && wanted_minor < base.minor)) {
++		return -EPERM;
++	}
++
++	/* previous major - return wanted, as we should still support it */
++	if (wanted_major < latest.major) {
++		/* XXX: we are not prepared for multi-versions yet */
++		xe_assert(xe, base.major == latest.major);
++		return -ENOPKG;
++	}
++
++	/* same major - return common minor */
++	*major = wanted_major;
++	*minor = min_t(u32, latest.minor, wanted_minor);
++	return 0;
++}
++
++static void pf_connect(struct xe_device *xe, u32 vfid, u32 major, u32 minor)
++{
++	xe_sriov_pf_assert_vfid(xe, vfid);
++	xe_assert(xe, major || minor);
++
++	xe->sriov.pf.vfs[vfid].version.major = major;
++	xe->sriov.pf.vfs[vfid].version.minor = minor;
++}
++
++static void pf_disconnect(struct xe_device *xe, u32 vfid)
++{
++	xe_sriov_pf_assert_vfid(xe, vfid);
++
++	xe->sriov.pf.vfs[vfid].version.major = 0;
++	xe->sriov.pf.vfs[vfid].version.minor = 0;
++}
++
++/**
++ * xe_sriov_pf_service_is_negotiated - Check if VF has negotiated given ABI version.
++ * @xe: the &xe_device
++ * @vfid: the VF identifier
++ * @major: the major version to check
++ * @minor: the minor version to check
++ *
++ * Performs early initialization of the SR-IOV PF service.
++ *
++ * This function can only be called on PF.
++ *
++ * Returns: true if VF can use given ABI version functionality.
++ */
++bool xe_sriov_pf_service_is_negotiated(struct xe_device *xe, u32 vfid, u32 major, u32 minor)
++{
++	xe_sriov_pf_assert_vfid(xe, vfid);
++
++	return major == xe->sriov.pf.vfs[vfid].version.major &&
++	       minor <= xe->sriov.pf.vfs[vfid].version.minor;
++}
++
++/**
++ * xe_sriov_pf_service_handshake_vf - Confirm a connection with the VF.
++ * @xe: the &xe_device
++ * @vfid: the VF identifier
++ * @wanted_major: the major service version expected by the VF
++ * @wanted_minor: the minor service version expected by the VF
++ * @major: the major service version to be used by the VF
++ * @minor: the minor service version to be used by the VF
++ *
++ * Negotiate a VF/PF ABI version to allow VF use the PF services.
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_pf_service_handshake_vf(struct xe_device *xe, u32 vfid,
++				     u32 wanted_major, u32 wanted_minor,
++				     u32 *major, u32 *minor)
++{
++	int err;
++
++	xe_sriov_dbg_verbose(xe, "VF%u wants ABI version %u.%u\n",
++			     vfid, wanted_major, wanted_minor);
++
++	err = pf_negotiate_version(xe, wanted_major, wanted_minor, major, minor);
++
++	if (err < 0) {
++		xe_sriov_notice(xe, "VF%u failed to negotiate ABI %u.%u (%pe)\n",
++				vfid, wanted_major, wanted_minor, ERR_PTR(err));
++		pf_disconnect(xe, vfid);
++	} else {
++		xe_sriov_dbg(xe, "VF%u negotiated ABI version %u.%u\n",
++			     vfid, *major, *minor);
++		pf_connect(xe, vfid, *major, *minor);
++	}
++
++	return err;
++}
++
++/**
++ * xe_sriov_pf_service_reset_vf - Reset a connection with the VF.
++ * @xe: the &xe_device
++ * @vfid: the VF identifier
++ *
++ * Reset a VF driver negotiated VF/PF ABI version.
++ *
++ * After that point, the VF driver will have to perform new version handshake
++ * to continue use of the PF services again.
++ *
++ * This function can only be called on PF.
++ */
++void xe_sriov_pf_service_reset_vf(struct xe_device *xe, unsigned int vfid)
++{
++	pf_disconnect(xe, vfid);
++}
++
++static void print_pf_version(struct drm_printer *p, const char *name,
++			     const struct xe_sriov_pf_service_version *version)
++{
++	drm_printf(p, "%s:\t%u.%u\n", name, version->major, version->minor);
++}
++
++/**
++ * xe_sriov_pf_service_print_versions - Print ABI versions negotiated with VFs.
++ * @xe: the &xe_device
++ * @p: the &drm_printer
++ *
++ * This function is for PF use only.
++ */
++void xe_sriov_pf_service_print_versions(struct xe_device *xe, struct drm_printer *p)
++{
++	unsigned int n, total_vfs = xe_sriov_pf_get_totalvfs(xe);
++	struct xe_sriov_pf_service_version *version;
++	char name[8];
++
++	xe_assert(xe, IS_SRIOV_PF(xe));
++
++	print_pf_version(p, "base", &xe->sriov.pf.service.version.base);
++	print_pf_version(p, "latest", &xe->sriov.pf.service.version.latest);
++
++	for (n = 1; n <= total_vfs; n++) {
++		version = &xe->sriov.pf.vfs[n].version;
++		if (!version->major && !version->minor)
++			continue;
++
++		print_pf_version(p, xe_sriov_function_name(n, name, sizeof(name)), version);
++	}
++}
++
++#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_sriov_pf_service_kunit.c"
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_service.h b/drivers/gpu/drm/xe/xe_sriov_pf_service.h
+new file mode 100644
+index 000000000000..d38c18f5ed10
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_service.h
+@@ -0,0 +1,23 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_SRIOV_PF_SERVICE_H_
++#define _XE_SRIOV_PF_SERVICE_H_
++
++#include <linux/types.h>
++
++struct drm_printer;
++struct xe_device;
++
++void xe_sriov_pf_service_init(struct xe_device *xe);
++void xe_sriov_pf_service_print_versions(struct xe_device *xe, struct drm_printer *p);
++
++int xe_sriov_pf_service_handshake_vf(struct xe_device *xe, u32 vfid,
++				     u32 wanted_major, u32 wanted_minor,
++				     u32 *major, u32 *minor);
++bool xe_sriov_pf_service_is_negotiated(struct xe_device *xe, u32 vfid, u32 major, u32 minor);
++void xe_sriov_pf_service_reset_vf(struct xe_device *xe, unsigned int vfid);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_service_types.h b/drivers/gpu/drm/xe/xe_sriov_pf_service_types.h
+new file mode 100644
+index 000000000000..0835dde358c1
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_service_types.h
+@@ -0,0 +1,36 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023-2025 Intel Corporation
++ */
++
++#ifndef _XE_SRIOV_PF_SERVICE_TYPES_H_
++#define _XE_SRIOV_PF_SERVICE_TYPES_H_
++
++#include <linux/types.h>
++
++/**
++ * struct xe_sriov_pf_service_version - VF/PF ABI Version.
++ * @major: the major version of the VF/PF ABI
++ * @minor: the minor version of the VF/PF ABI
++ *
++ * See `GuC Relay Communication`_.
++ */
++struct xe_sriov_pf_service_version {
 +	u16 major;
-+	/** @minor: minor version. */
 +	u16 minor;
 +};
 +
- /**
-  * struct xe_device_vf - Xe Virtual Function related data
-  *
-@@ -15,6 +26,9 @@
-  * @XE_SRIOV_MODE_VF mode.
-  */
- struct xe_device_vf {
-+	/** @pf_version: negotiated VF/PF ABI version. */
-+	struct xe_sriov_vf_relay_version pf_version;
++/**
++ * struct xe_sriov_pf_service - Data used by the PF service.
++ * @version: information about VF/PF ABI versions for current platform.
++ * @version.base: lowest VF/PF ABI version that could be negotiated with VF.
++ * @version.latest: latest VF/PF ABI version supported by the PF driver.
++ */
++struct xe_sriov_pf_service {
++	struct {
++		struct xe_sriov_pf_service_version base;
++		struct xe_sriov_pf_service_version latest;
++	} version;
++};
 +
- 	/** @migration: VF Migration state data */
- 	struct {
- 		/** @migration.worker: VF migration recovery worker */
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+index 918dc089eb1d..956a88f9f213 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+@@ -9,6 +9,16 @@
+ #include <linux/mutex.h>
+ #include <linux/types.h>
+ 
++#include "xe_sriov_pf_service_types.h"
++
++/**
++ * struct xe_sriov_metadata - per-VF device level metadata
++ */
++struct xe_sriov_metadata {
++	/** @version: negotiated VF/PF ABI version */
++	struct xe_sriov_pf_service_version version;
++};
++
+ /**
+  * struct xe_device_pf - Xe PF related data
+  *
+@@ -24,6 +34,12 @@ struct xe_device_pf {
+ 
+ 	/** @master_lock: protects all VFs configurations across GTs */
+ 	struct mutex master_lock;
++
++	/** @service: device level service data. */
++	struct xe_sriov_pf_service service;
++
++	/** @vfs: metadata for all VFs. */
++	struct xe_sriov_metadata *vfs;
+ };
+ 
+ #endif
 -- 
 2.47.1
 
