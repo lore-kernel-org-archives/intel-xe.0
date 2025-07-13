@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 212B2C83F1D
-	for <intel-xe@archiver.kernel.org>; Sun, 13 Jul 2025 10:36:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08DBCC83F20
+	for <intel-xe@archiver.kernel.org>; Sun, 13 Jul 2025 10:36:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4D4210E161;
-	Sun, 13 Jul 2025 10:36:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4F6B10E170;
+	Sun, 13 Jul 2025 10:36:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UY9XmVeg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eWvzEuNn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A517A10E161
- for <intel-xe@lists.freedesktop.org>; Sun, 13 Jul 2025 10:36:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3268B10E161
+ for <intel-xe@lists.freedesktop.org>; Sun, 13 Jul 2025 10:36:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752402999; x=1783938999;
+ t=1752403000; x=1783939000;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uVpq98yvvnyn9TjTT2N1esbsdR9DIDkpEuEhwXgKHIM=;
- b=UY9XmVeg6+pNQODK0tMVPQyClTegDkGMuarp6wC8VqjBqc1WeC0m5E74
- q2MnigJaUzxfiFWZ/Uqhqwvr2LMPSGNl0L0gOpH2C5PJTXQHfxiyEmqg/
- 5KOPVXM1wKk7JFdoRSZUCFenBcjJZQRvzGHbUUDkFuBEVHqZlNoTjEsp1
- Ws3pWL10LvlDLds28yGD+6ylwqmVl8d+y0HpHNTkDVzOd106vVlQ859wJ
- y2zbJ+i9DypT/LKb+lXT3fW9cJJhAHi88FFCmFZTMc7pDIkKyheImvxPb
- 9P3qgitR5BYuq001GitwFdRXI9SUwUh54aiScEBtefmhWr+JmF+q+wiyi w==;
-X-CSE-ConnectionGUID: Vy4Xkq95RbaEhtfJoB+lPg==
-X-CSE-MsgGUID: uzkYi7OLRgq3sZ+wrPaZoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="64883041"
-X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="64883041"
+ bh=wljks1FM3SD9oD3h3nnTTFsi/ewomDjMw85qdYMP/V4=;
+ b=eWvzEuNnlgld7sF4njECujwzdetz8QXvYOOdKsCcbdkDuoFLrfxv1Xwc
+ S+p1hRBiG3ARhZkwm5Zwr+Ql6WeIl5kYhZSEUTuTsrE8R1pqDmbNdp3vk
+ uEzPgsm3EwtSf0ae0vtIlq0PviT11rhW+VmmiZkPPoFU4IiE73zEXv7S+
+ EMEjLaBCiRiTSRO4H975bS1zBHF/3TxhezUcQjQzR4jIMxHVg5tZwJZUB
+ V+Qewtgk6TD4bIf9D3pbPPVuoW2wJ/cNGoz2X+b+9WDpynCBmECJK/4Ga
+ kpAvFa4hLDYUpSHWMhanoVu+9ZHYvyIZfavQ/cpovpwLSVRdL5xRzt3Ie A==;
+X-CSE-ConnectionGUID: W5mODgbATmSPywGVg5Et1w==
+X-CSE-MsgGUID: a8voWQYJR6yHSMJuCJKC+A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="64883042"
+X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="64883042"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2025 03:36:38 -0700
-X-CSE-ConnectionGUID: dXakxDD7SFGa6bvIbPe/JA==
-X-CSE-MsgGUID: YL6Hh4h/RcSVoOvUFzYiBA==
+ 13 Jul 2025 03:36:40 -0700
+X-CSE-ConnectionGUID: 6L85knOnR1iUMnWLpKvEqA==
+X-CSE-MsgGUID: 4N7T4sBzRX+KmwrLZ8X4uA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="156802473"
+X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="156802477"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.96.176])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2025 03:36:37 -0700
+ 13 Jul 2025 03:36:38 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [CI v4 2/7] drm/xe: Move PF and VF device types to separate headers
-Date: Sun, 13 Jul 2025 12:36:20 +0200
-Message-Id: <20250713103625.1964-3-michal.wajdeczko@intel.com>
+Subject: [CI v4 3/7] drm/xe: Introduce xe_tile_is_root helper
+Date: Sun, 13 Jul 2025 12:36:21 +0200
+Message-Id: <20250713103625.1964-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20250713103625.1964-1-michal.wajdeczko@intel.com>
 References: <20250713103625.1964-1-michal.wajdeczko@intel.com>
@@ -68,154 +68,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We plan to add more PF and VF types and mixing them in a single
-file is not desired.  Move them out to new dedicated files.
+Instead of looking at the tile->id member provide a small helper
+to explicitly express our intentions.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com> # v1
 ---
- drivers/gpu/drm/xe/xe_device_types.h   |  2 ++
- drivers/gpu/drm/xe/xe_sriov_pf_types.h | 29 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_types.h    | 36 --------------------------
- drivers/gpu/drm/xe/xe_sriov_vf_types.h | 27 +++++++++++++++++++
- 4 files changed, 58 insertions(+), 36 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_types.h
+v2: rebase and move helper to xe_tile.h (Michal)
+---
+ drivers/gpu/drm/xe/xe_gsc_proxy.c | 3 ++-
+ drivers/gpu/drm/xe/xe_irq.c       | 3 ++-
+ drivers/gpu/drm/xe/xe_tile.h      | 6 ++++++
+ 3 files changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 1f078b1da479..6c01c4ebe636 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -21,7 +21,9 @@
- #include "xe_platform_types.h"
- #include "xe_pmu_types.h"
- #include "xe_pt_types.h"
-+#include "xe_sriov_pf_types.h"
- #include "xe_sriov_types.h"
-+#include "xe_sriov_vf_types.h"
- #include "xe_step_types.h"
- #include "xe_survivability_mode_types.h"
- #include "xe_ttm_vram_mgr_types.h"
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
-new file mode 100644
-index 000000000000..918dc089eb1d
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
-@@ -0,0 +1,29 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023-2025 Intel Corporation
-+ */
-+
-+#ifndef _XE_SRIOV_PF_TYPES_H_
-+#define _XE_SRIOV_PF_TYPES_H_
-+
-+#include <linux/mutex.h>
-+#include <linux/types.h>
-+
-+/**
-+ * struct xe_device_pf - Xe PF related data
-+ *
-+ * The data in this structure is valid only if driver is running in the
-+ * @XE_SRIOV_MODE_PF mode.
-+ */
-+struct xe_device_pf {
-+	/** @device_total_vfs: Maximum number of VFs supported by the device. */
-+	u16 device_total_vfs;
-+
-+	/** @driver_max_vfs: Maximum number of VFs supported by the driver. */
-+	u16 driver_max_vfs;
-+
-+	/** @master_lock: protects all VFs configurations across GTs */
-+	struct mutex master_lock;
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
-index ca94382a721e..1a138108d139 100644
---- a/drivers/gpu/drm/xe/xe_sriov_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_types.h
-@@ -7,9 +7,6 @@
- #define _XE_SRIOV_TYPES_H_
+diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+index d0519cd6704a..464282a89eef 100644
+--- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
++++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+@@ -23,6 +23,7 @@
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_pm.h"
++#include "xe_tile.h"
  
- #include <linux/build_bug.h>
--#include <linux/mutex.h>
--#include <linux/types.h>
--#include <linux/workqueue_types.h>
+ /*
+  * GSC proxy:
+@@ -483,7 +484,7 @@ int xe_gsc_proxy_init(struct xe_gsc *gsc)
+ 	}
  
- /**
-  * VFID - Virtual Function Identifier
-@@ -40,37 +37,4 @@ enum xe_sriov_mode {
- };
- static_assert(XE_SRIOV_MODE_NONE);
+ 	/* no multi-tile devices with this feature yet */
+-	if (tile->id > 0) {
++	if (!xe_tile_is_root(tile)) {
+ 		xe_gt_err(gt, "unexpected GSC proxy init on tile %u\n", tile->id);
+ 		return -EINVAL;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index c43e62dc692e..cbb1850d0cab 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -23,6 +23,7 @@
+ #include "xe_mmio.h"
+ #include "xe_pxp.h"
+ #include "xe_sriov.h"
++#include "xe_tile.h"
  
--/**
-- * struct xe_device_pf - Xe PF related data
-- *
-- * The data in this structure is valid only if driver is running in the
-- * @XE_SRIOV_MODE_PF mode.
-- */
--struct xe_device_pf {
--	/** @device_total_vfs: Maximum number of VFs supported by the device. */
--	u16 device_total_vfs;
--
--	/** @driver_max_vfs: Maximum number of VFs supported by the driver. */
--	u16 driver_max_vfs;
--
--	/** @master_lock: protects all VFs configurations across GTs */
--	struct mutex master_lock;
--};
--
--/**
-- * struct xe_device_vf - Xe Virtual Function related data
-- *
-- * The data in this structure is valid only if driver is running in the
-- * @XE_SRIOV_MODE_VF mode.
-- */
--struct xe_device_vf {
--	/** @migration: VF Migration state data */
--	struct {
--		/** @migration.worker: VF migration recovery worker */
--		struct work_struct worker;
--		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
--		unsigned long gt_flags;
--	} migration;
--};
--
+ /*
+  * Interrupt registers for a unit are always consecutive and ordered
+@@ -552,7 +553,7 @@ static void xelp_irq_reset(struct xe_tile *tile)
+ 
+ static void dg1_irq_reset(struct xe_tile *tile)
+ {
+-	if (tile->id == 0)
++	if (xe_tile_is_root(tile))
+ 		dg1_intr_disable(tile_to_xe(tile));
+ 
+ 	gt_irq_reset(tile);
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index 066a3d0cea79..cc33e8733983 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -27,4 +27,10 @@ static inline struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
+ 	return NULL;
+ }
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-new file mode 100644
-index 000000000000..55c2421d4b2e
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023-2025 Intel Corporation
-+ */
 +
-+#ifndef _XE_SRIOV_VF_TYPES_H_
-+#define _XE_SRIOV_VF_TYPES_H_
++static inline bool xe_tile_is_root(struct xe_tile *tile)
++{
++	return tile->id == 0;
++}
 +
-+#include <linux/workqueue_types.h>
-+
-+/**
-+ * struct xe_device_vf - Xe Virtual Function related data
-+ *
-+ * The data in this structure is valid only if driver is running in the
-+ * @XE_SRIOV_MODE_VF mode.
-+ */
-+struct xe_device_vf {
-+	/** @migration: VF Migration state data */
-+	struct {
-+		/** @migration.worker: VF migration recovery worker */
-+		struct work_struct worker;
-+		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
-+		unsigned long gt_flags;
-+	} migration;
-+};
-+
-+#endif
+ #endif
 -- 
 2.47.1
 
