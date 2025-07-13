@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F17FDC83F17
-	for <intel-xe@archiver.kernel.org>; Sun, 13 Jul 2025 10:36:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CE50C83F1D
+	for <intel-xe@archiver.kernel.org>; Sun, 13 Jul 2025 10:36:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4EE110E16C;
-	Sun, 13 Jul 2025 10:36:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F176E10E175;
+	Sun, 13 Jul 2025 10:36:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3xqGpSv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SblCLTKQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C59ED10E16C
- for <intel-xe@lists.freedesktop.org>; Sun, 13 Jul 2025 10:36:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50B0510E16C
+ for <intel-xe@lists.freedesktop.org>; Sun, 13 Jul 2025 10:36:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752403002; x=1783939002;
+ t=1752403003; x=1783939003;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JV74i3I293d67SiPXeMD0IIFa+ZhdvwLEUKudbnEZvs=;
- b=R3xqGpSvLzbkI8O3AcovS1zAPBgsJ1BWQug+4Jcp/8D4lbMcZaXe0m/v
- AK4J8j2MzIa9zxSEqtOwuENGSF71BRDtbTYVI9aGJMwySU8rg1PacvZLz
- IdqNdOLM9l+sAcHjQM2SNfx+Q2mXQT9zvXEKGxW5Bgq9uxQT7jO+B9uvm
- 1TtqOa6qVt3I7f0PZWmyfJ8cHQyHJe0ZApcvEAKhFoqPbrq4h1zl5P3JJ
- OhdYEUatLkbFH35cn9Csp6Eq+zW28pkGuQcqVZZjQKcS8i+DPS38ob8QV
- D7V9alWqmzAt2I+XNpR1j39X8j2yFyNaQ3BIKUBzJv0DvmFuAplp8wlF1 Q==;
-X-CSE-ConnectionGUID: tKRFAxHiRLGT5zp9XWK5dw==
-X-CSE-MsgGUID: CJLUOIROR96hORd0d6E75g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="64883044"
-X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="64883044"
+ bh=2vg/T8Vbf1jt5JtEoxULkJB+yxNYUXhcFd9YeY2Gu4g=;
+ b=SblCLTKQ5p+fL5kt3gwbxnvzqBcaDsAtxRlujCcoG+HqtwQGTT60od3G
+ FkMw/jPv90DgcLIBOMxl5abU6H986EwSthnZW9yA0ZhWzvcqKj0Fipr3T
+ yBjfx90reyXn0C3Y9r6jwogyb/KgqqCWFSZgipOO7LnOxfsBXrMbD+T1X
+ GBcvFio8135O5fdZV/ZMoUelBkrr9JrVekPhjcyQRfS2BQyvbJ5kV2lue
+ rH/peb+wOv5jKevV8DODuZ1eg7ATVmKNKXTU2b/O4AZjIC1oeYyUOQNb4
+ oZ/FLkcXIj0jKVrfbqSg3ydB2n3lNZeWN7gyXe5Ye/Oui+PTZxqwERTQ9 w==;
+X-CSE-ConnectionGUID: wlUxba1sRpiPVPtGJi5YOw==
+X-CSE-MsgGUID: hdu/I+4fQH+HSN3jRt2KGw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="64883045"
+X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="64883045"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2025 03:36:42 -0700
-X-CSE-ConnectionGUID: kl6oyPrNTOGJUp31bDRiRQ==
-X-CSE-MsgGUID: V94fEmUdTa2//3LFtp/AgQ==
+ 13 Jul 2025 03:36:43 -0700
+X-CSE-ConnectionGUID: wYpo5ZjCR9iVN5MxjGSl9A==
+X-CSE-MsgGUID: pv//WAM9StGaEHG1AXTb1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="156802482"
+X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; d="scan'208";a="156802486"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.96.176])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2025 03:36:40 -0700
+ 13 Jul 2025 03:36:42 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [CI v4 4/7] drm/xe: Introduce xe_gt_is_main_type helper
-Date: Sun, 13 Jul 2025 12:36:22 +0200
-Message-Id: <20250713103625.1964-5-michal.wajdeczko@intel.com>
+Subject: [CI v4 5/7] drm/xe/pf: Expose basic info about VFs in debugfs
+Date: Sun, 13 Jul 2025 12:36:23 +0200
+Message-Id: <20250713103625.1964-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20250713103625.1964-1-michal.wajdeczko@intel.com>
 References: <20250713103625.1964-1-michal.wajdeczko@intel.com>
@@ -68,384 +68,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of checking for not being a media type GT provide a small
-helper to explicitly express our intentions.
+We already have function to print summary about VFs, but we missed
+to add debugfs attribute to make it visible. Do it now.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
-v2: rebased
+v2: don't WARN on missed mandatory print func (Piotr)
 ---
- drivers/gpu/drm/xe/xe_bb.c                  |  2 +-
- drivers/gpu/drm/xe/xe_force_wake.c          |  2 +-
- drivers/gpu/drm/xe/xe_gt.c                  | 12 ++++-----
- drivers/gpu/drm/xe/xe_gt.h                  |  5 ++++
- drivers/gpu/drm/xe/xe_gt_idle.c             |  2 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  | 30 ++++++++++-----------
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c |  4 +--
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c         |  6 ++---
- drivers/gpu/drm/xe/xe_irq.c                 |  4 +--
- drivers/gpu/drm/xe/xe_oa.c                  |  6 ++---
- 10 files changed, 39 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c  |  4 +++
+ drivers/gpu/drm/xe/xe_sriov_pf.c | 43 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf.h |  6 +++++
+ 3 files changed, 53 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index 9570672fce33..5ce0e26822f2 100644
---- a/drivers/gpu/drm/xe/xe_bb.c
-+++ b/drivers/gpu/drm/xe/xe_bb.c
-@@ -19,7 +19,7 @@ static int bb_prefetch(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 0e26658bcf7e..26e9d146ccbf 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -20,6 +20,7 @@
+ #include "xe_pm.h"
+ #include "xe_pxp_debugfs.h"
+ #include "xe_sriov.h"
++#include "xe_sriov_pf.h"
+ #include "xe_step.h"
+ #include "xe_wa.h"
  
--	if (GRAPHICS_VERx100(xe) >= 1250 && !xe_gt_is_media_type(gt))
-+	if (GRAPHICS_VERx100(xe) >= 1250 && xe_gt_is_main_type(gt))
- 		/*
- 		 * RCS and CCS require 1K, although other engines would be
- 		 * okay with 512.
-diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-index 8a5cba22b586..c59a9b330697 100644
---- a/drivers/gpu/drm/xe/xe_force_wake.c
-+++ b/drivers/gpu/drm/xe/xe_force_wake.c
-@@ -64,7 +64,7 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
- {
- 	int i, j;
+@@ -293,4 +294,7 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	xe_pxp_debugfs_register(xe->pxp);
  
--	if (!xe_gt_is_media_type(gt))
-+	if (xe_gt_is_main_type(gt))
- 		init_domain(fw, XE_FW_DOMAIN_ID_RENDER,
- 			    FORCEWAKE_RENDER,
- 			    FORCEWAKE_ACK_RENDER);
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index af03e19ef9be..9dad4f79328e 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -112,7 +112,7 @@ static void xe_gt_enable_host_l2_vram(struct xe_gt *gt)
- 	if (!fw_ref)
- 		return;
- 
--	if (!xe_gt_is_media_type(gt)) {
-+	if (xe_gt_is_main_type(gt)) {
- 		reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
- 		reg |= CG_DIS_CNTLBUS;
- 		xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
-@@ -470,7 +470,7 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
- 	xe_gt_mcr_init(gt);
- 	xe_gt_enable_host_l2_vram(gt);
- 
--	if (!xe_gt_is_media_type(gt)) {
-+	if (xe_gt_is_main_type(gt)) {
- 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
- 		if (err)
- 			goto err_force_wake;
-@@ -547,7 +547,7 @@ static int gt_init_with_all_forcewake(struct xe_gt *gt)
- 	if (err)
- 		goto err_force_wake;
- 
--	if (!xe_gt_is_media_type(gt)) {
-+	if (xe_gt_is_main_type(gt)) {
- 		/*
- 		 * USM has its only SA pool to non-block behind user operations
- 		 */
-@@ -563,7 +563,7 @@ static int gt_init_with_all_forcewake(struct xe_gt *gt)
- 		}
- 	}
- 
--	if (!xe_gt_is_media_type(gt)) {
-+	if (xe_gt_is_main_type(gt)) {
- 		struct xe_tile *tile = gt_to_tile(gt);
- 
- 		tile->migrate = xe_migrate_init(tile);
-@@ -583,7 +583,7 @@ static int gt_init_with_all_forcewake(struct xe_gt *gt)
- 		xe_gt_apply_ccs_mode(gt);
- 	}
- 
--	if (IS_SRIOV_PF(gt_to_xe(gt)) && !xe_gt_is_media_type(gt))
-+	if (IS_SRIOV_PF(gt_to_xe(gt)) && xe_gt_is_main_type(gt))
- 		xe_lmtt_init_hw(&gt_to_tile(gt)->sriov.pf.lmtt);
- 
- 	if (IS_SRIOV_PF(gt_to_xe(gt))) {
-@@ -780,7 +780,7 @@ static int do_gt_restart(struct xe_gt *gt)
- 	if (err)
- 		return err;
- 
--	if (IS_SRIOV_PF(gt_to_xe(gt)) && !xe_gt_is_media_type(gt))
-+	if (IS_SRIOV_PF(gt_to_xe(gt)) && xe_gt_is_main_type(gt))
- 		xe_lmtt_init_hw(&gt_to_tile(gt)->sriov.pf.lmtt);
- 
- 	if (IS_SRIOV_PF(gt_to_xe(gt)))
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 8128ddfdd788..e9ccab8aedbe 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -106,6 +106,11 @@ static inline bool xe_gt_has_indirect_ring_state(struct xe_gt *gt)
- 	       xe_device_uc_enabled(gt_to_xe(gt));
+ 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
++
++	if (IS_SRIOV_PF(xe))
++		xe_sriov_pf_debugfs_register(xe, root);
  }
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
+index 0f721ae17b26..331755843e10 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2023-2024 Intel Corporation
+  */
  
-+static inline bool xe_gt_is_main_type(struct xe_gt *gt)
++#include <linux/debugfs.h>
++#include <drm/drm_debugfs.h>
+ #include <drm/drm_managed.h>
+ 
+ #include "xe_assert.h"
+@@ -102,3 +104,44 @@ void xe_sriov_pf_print_vfs_summary(struct xe_device *xe, struct drm_printer *p)
+ 	drm_printf(p, "supported: %u\n", xe->sriov.pf.driver_max_vfs);
+ 	drm_printf(p, "enabled: %u\n", pci_num_vf(pdev));
+ }
++
++static int simple_show(struct seq_file *m, void *data)
 +{
-+	return gt->info.type == XE_GT_TYPE_MAIN;
++	struct drm_printer p = drm_seq_file_printer(m);
++	struct drm_info_node *node = m->private;
++	struct dentry *parent = node->dent->d_parent;
++	struct xe_device *xe = parent->d_inode->i_private;
++	void (*print)(struct xe_device *, struct drm_printer *) = node->info_ent->data;
++
++	print(xe, &p);
++	return 0;
 +}
 +
- static inline bool xe_gt_is_media_type(struct xe_gt *gt)
++static const struct drm_info_list debugfs_list[] = {
++	{ .name = "vfs", .show = simple_show, .data = xe_sriov_pf_print_vfs_summary },
++};
++
++/**
++ * xe_sriov_pf_debugfs_register - Register PF debugfs attributes.
++ * @xe: the &xe_device
++ * @root: the root &dentry
++ *
++ * Prepare debugfs attributes exposed by the PF.
++ */
++void xe_sriov_pf_debugfs_register(struct xe_device *xe, struct dentry *root)
++{
++	struct drm_minor *minor = xe->drm.primary;
++	struct dentry *parent;
++
++	/*
++	 *      /sys/kernel/debug/dri/0/
++	 *      ├── pf
++	 *      │   ├── ...
++	 */
++	parent = debugfs_create_dir("pf", root);
++	if (IS_ERR(parent))
++		return;
++	parent->d_inode->i_private = xe;
++
++	drm_debugfs_create_files(debugfs_list, ARRAY_SIZE(debugfs_list), parent, minor);
++}
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.h b/drivers/gpu/drm/xe/xe_sriov_pf.h
+index d1220e70e1c0..c392c3fcf085 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf.h
+@@ -8,12 +8,14 @@
+ 
+ #include <linux/types.h>
+ 
++struct dentry;
+ struct drm_printer;
+ struct xe_device;
+ 
+ #ifdef CONFIG_PCI_IOV
+ bool xe_sriov_pf_readiness(struct xe_device *xe);
+ int xe_sriov_pf_init_early(struct xe_device *xe);
++void xe_sriov_pf_debugfs_register(struct xe_device *xe, struct dentry *root);
+ void xe_sriov_pf_print_vfs_summary(struct xe_device *xe, struct drm_printer *p);
+ #else
+ static inline bool xe_sriov_pf_readiness(struct xe_device *xe)
+@@ -25,6 +27,10 @@ static inline int xe_sriov_pf_init_early(struct xe_device *xe)
  {
- 	return gt->info.type == XE_GT_TYPE_MEDIA;
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-index c11206410a4d..ffb210216aa9 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -121,7 +121,7 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt)
- 	if (vcs_mask || vecs_mask)
- 		gtidle->powergate_enable = MEDIA_POWERGATE_ENABLE;
- 
--	if (!xe_gt_is_media_type(gt))
-+	if (xe_gt_is_main_type(gt))
- 		gtidle->powergate_enable |= RENDER_POWERGATE_ENABLE;
- 
- 	if (xe->info.platform != XE_DG1) {
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index d0cf1d80be07..9ba9dc7c4ee9 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -376,7 +376,7 @@ static u64 pf_get_spare_ggtt(struct xe_gt *gt)
- {
- 	u64 spare;
- 
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
- 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
- 
-@@ -388,7 +388,7 @@ static u64 pf_get_spare_ggtt(struct xe_gt *gt)
- 
- static int pf_set_spare_ggtt(struct xe_gt *gt, u64 size)
- {
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
- 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
- 
-@@ -443,7 +443,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 	int err;
- 
- 	xe_gt_assert(gt, vfid);
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
- 
- 	size = round_up(size, alignment);
-@@ -492,7 +492,7 @@ static u64 pf_get_vf_config_ggtt(struct xe_gt *gt, unsigned int vfid)
- 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
- 	struct xe_ggtt_node *node = config->ggtt_region;
- 
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 	return xe_ggtt_node_allocated(node) ? node->base.size : 0;
+ 	return 0;
  }
++
++static inline void xe_sriov_pf_debugfs_register(struct xe_device *xe, struct dentry *root)
++{
++}
+ #endif
  
-@@ -560,7 +560,7 @@ int xe_gt_sriov_pf_config_set_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size
- {
- 	int err;
- 
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 
- 	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
- 	if (vfid)
-@@ -622,7 +622,7 @@ int xe_gt_sriov_pf_config_bulk_set_ggtt(struct xe_gt *gt, unsigned int vfid,
- 	int err = 0;
- 
- 	xe_gt_assert(gt, vfid);
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 
- 	if (!num_vfs)
- 		return 0;
-@@ -693,7 +693,7 @@ int xe_gt_sriov_pf_config_set_fair_ggtt(struct xe_gt *gt, unsigned int vfid,
- 
- 	xe_gt_assert(gt, vfid);
- 	xe_gt_assert(gt, num_vfs);
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 
- 	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
- 	fair = pf_estimate_fair_ggtt(gt, num_vfs);
-@@ -1406,7 +1406,7 @@ static int pf_update_vf_lmtt(struct xe_device *xe, unsigned int vfid)
- static void pf_release_vf_config_lmem(struct xe_gt *gt, struct xe_gt_sriov_config *config)
- {
- 	xe_gt_assert(gt, IS_DGFX(gt_to_xe(gt)));
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
- 
- 	if (config->lmem_obj) {
-@@ -1425,7 +1425,7 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
- 
- 	xe_gt_assert(gt, vfid);
- 	xe_gt_assert(gt, IS_DGFX(xe));
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 
- 	size = round_up(size, pf_get_lmem_alignment(gt));
- 
-@@ -1552,7 +1552,7 @@ int xe_gt_sriov_pf_config_bulk_set_lmem(struct xe_gt *gt, unsigned int vfid,
- 	int err = 0;
- 
- 	xe_gt_assert(gt, vfid);
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 
- 	if (!num_vfs)
- 		return 0;
-@@ -1629,7 +1629,7 @@ int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned int vfid,
- 
- 	xe_gt_assert(gt, vfid);
- 	xe_gt_assert(gt, num_vfs);
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 
- 	if (!xe_device_has_lmtt(gt_to_xe(gt)))
- 		return 0;
-@@ -1663,7 +1663,7 @@ int xe_gt_sriov_pf_config_set_fair(struct xe_gt *gt, unsigned int vfid,
- 	xe_gt_assert(gt, vfid);
- 	xe_gt_assert(gt, num_vfs);
- 
--	if (!xe_gt_is_media_type(gt)) {
-+	if (xe_gt_is_main_type(gt)) {
- 		err = xe_gt_sriov_pf_config_set_fair_ggtt(gt, vfid, num_vfs);
- 		result = result ?: err;
- 		err = xe_gt_sriov_pf_config_set_fair_lmem(gt, vfid, num_vfs);
-@@ -1991,7 +1991,7 @@ static void pf_release_vf_config(struct xe_gt *gt, unsigned int vfid)
- 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
- 	struct xe_device *xe = gt_to_xe(gt);
- 
--	if (!xe_gt_is_media_type(gt)) {
-+	if (xe_gt_is_main_type(gt)) {
- 		pf_release_vf_config_ggtt(gt, config);
- 		if (IS_DGFX(xe)) {
- 			pf_release_vf_config_lmem(gt, config);
-@@ -2082,7 +2082,7 @@ static int pf_sanitize_vf_resources(struct xe_gt *gt, u32 vfid, long timeout)
- 	 * Only GGTT and LMEM requires to be cleared by the PF.
- 	 * GuC doorbell IDs and context IDs do not need any clearing.
- 	 */
--	if (!xe_gt_is_media_type(gt)) {
-+	if (xe_gt_is_main_type(gt)) {
- 		pf_sanitize_ggtt(config->ggtt_region, vfid);
- 		if (IS_DGFX(xe))
- 			err = pf_sanitize_lmem(tile, config->lmem_obj, timeout);
-@@ -2149,7 +2149,7 @@ static int pf_validate_vf_config(struct xe_gt *gt, unsigned int vfid)
- {
- 	struct xe_gt *primary_gt = gt_to_tile(gt)->primary_gt;
- 	struct xe_device *xe = gt_to_xe(gt);
--	bool is_primary = !xe_gt_is_media_type(gt);
-+	bool is_primary = xe_gt_is_main_type(gt);
- 	bool valid_ggtt, valid_ctxs, valid_dbs;
- 	bool valid_any, valid_all;
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index 13970d5a2867..9b7772928d62 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -305,7 +305,7 @@ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigne
- 	xe_gt_assert(gt, gt == extract_gt(parent));
- 	xe_gt_assert(gt, vfid == extract_vfid(parent));
- 
--	if (!xe_gt_is_media_type(gt)) {
-+	if (xe_gt_is_main_type(gt)) {
- 		debugfs_create_file_unsafe(vfid ? "ggtt_quota" : "ggtt_spare",
- 					   0644, parent, parent, &ggtt_fops);
- 		if (xe_device_has_lmtt(gt_to_xe(gt)))
-@@ -554,7 +554,7 @@ void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *root)
- 	pfdentry->d_inode->i_private = gt;
- 
- 	drm_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), pfdentry, minor);
--	if (!xe_gt_is_media_type(gt)) {
-+	if (xe_gt_is_main_type(gt)) {
- 		drm_debugfs_create_files(pf_ggtt_info,
- 					 ARRAY_SIZE(pf_ggtt_info),
- 					 pfdentry, minor);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 93cd26dca070..d65eafd91b17 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -552,7 +552,7 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
- 	if (unlikely(err))
- 		return err;
- 
--	if (IS_DGFX(xe) && !xe_gt_is_media_type(gt)) {
-+	if (IS_DGFX(xe) && xe_gt_is_main_type(gt)) {
- 		err = vf_get_lmem_info(gt);
- 		if (unlikely(err))
- 			return err;
-@@ -649,7 +649,7 @@ s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt)
- 	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 
- 	return config->ggtt_shift;
- }
-@@ -1036,7 +1036,7 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
- 
- 	drm_printf(p, "GGTT shift on last restore:\t%lld\n", config->ggtt_shift);
- 
--	if (IS_DGFX(xe) && !xe_gt_is_media_type(gt)) {
-+	if (IS_DGFX(xe) && xe_gt_is_main_type(gt)) {
- 		string_get_size(config->lmem_size, 1, STRING_UNITS_2, buf, sizeof(buf));
- 		drm_printf(p, "LMEM size:\t%llu (%s)\n", config->lmem_size, buf);
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index cbb1850d0cab..5df5b8c2a3e4 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -162,7 +162,7 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
- 	dmask = irqs << 16 | irqs;
- 	smask = irqs << 16;
- 
--	if (!xe_gt_is_media_type(gt)) {
-+	if (xe_gt_is_main_type(gt)) {
- 		/* Enable interrupts for each engine class */
- 		xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, dmask);
- 		if (ccs_mask)
-@@ -262,7 +262,7 @@ gt_engine_identity(struct xe_device *xe,
- static void
- gt_other_irq_handler(struct xe_gt *gt, const u8 instance, const u16 iir)
- {
--	if (instance == OTHER_GUC_INSTANCE && !xe_gt_is_media_type(gt))
-+	if (instance == OTHER_GUC_INSTANCE && xe_gt_is_main_type(gt))
- 		return xe_guc_irq_handler(&gt->uc.guc, iir);
- 	if (instance == OTHER_MEDIA_GUC_INSTANCE && xe_gt_is_media_type(gt))
- 		return xe_guc_irq_handler(&gt->uc.guc, iir);
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index a3379d39f76d..d991fbd90f20 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -2493,7 +2493,7 @@ int xe_oa_register(struct xe_device *xe)
- 
- static u32 num_oa_units_per_gt(struct xe_gt *gt)
- {
--	if (!xe_gt_is_media_type(gt) || GRAPHICS_VER(gt_to_xe(gt)) < 20)
-+	if (xe_gt_is_main_type(gt) || GRAPHICS_VER(gt_to_xe(gt)) < 20)
- 		return 1;
- 	else if (!IS_DGFX(gt_to_xe(gt)))
- 		return XE_OAM_UNIT_SCMI_0 + 1; /* SAG + SCMI_0 */
-@@ -2506,7 +2506,7 @@ static u32 __hwe_oam_unit(struct xe_hw_engine *hwe)
- 	if (GRAPHICS_VERx100(gt_to_xe(hwe->gt)) < 1270)
- 		return XE_OA_UNIT_INVALID;
- 
--	xe_gt_WARN_ON(hwe->gt, !xe_gt_is_media_type(hwe->gt));
-+	xe_gt_WARN_ON(hwe->gt, xe_gt_is_main_type(hwe->gt));
- 
- 	if (GRAPHICS_VER(gt_to_xe(hwe->gt)) < 20)
- 		return 0;
-@@ -2589,7 +2589,7 @@ static void __xe_oa_init_oa_units(struct xe_gt *gt)
- 	for (i = 0; i < num_units; i++) {
- 		struct xe_oa_unit *u = &gt->oa.oa_unit[i];
- 
--		if (!xe_gt_is_media_type(gt)) {
-+		if (xe_gt_is_main_type(gt)) {
- 			u->regs = __oag_regs();
- 			u->type = DRM_XE_OA_UNIT_TYPE_OAG;
- 		} else {
+ #endif
 -- 
 2.47.1
 
