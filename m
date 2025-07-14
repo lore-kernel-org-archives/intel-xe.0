@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6793DC83F17
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 17:32:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82D6FC83F17
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 17:33:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC0310E2A8;
-	Mon, 14 Jul 2025 17:32:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5MvjTWj";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14E5D10E221
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Jul 2025 17:32:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752514320; x=1784050320;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=irVf2ALZZ45Fi2gHLU0xLZpxd9UJJ8fnUo722Myr+Dg=;
- b=O5MvjTWjhxoNC5kR6w0zPNaB0LYgh5ucHBGYKpM+pfY34S/sBts4sdGR
- FW/zXHXNw8JI2qT4t97BifBHBMgBTg2JmdUXZ9QcOdBD6gs7+QS9RDUUT
- 5Rb2tSE1r0tbWbdssM62CEuM1v8HMHybwiD37VMLX1xeeIQT1vgGKDVCk
- LP3R6acsfgrlcO8D64uaD1Z/Gx8jHhWw+XPPJGR6uzhhvTQcvdQRml2XR
- NuriquLTF3LXAEqFHsuJYWl/9mJFgwWN0B/UuJc5qGPXtavyrHlOnekp3
- 6Fk8FZgP4ywyRRJ4ODls8rh3UQFHakrnaszAmuHwLBRqj4DCW53aHSUOG Q==;
-X-CSE-ConnectionGUID: TitTdGMGSQ+dhL129wg6nQ==
-X-CSE-MsgGUID: LnMRXcsCQ1+I/TTY2eCQpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="72167072"
-X-IronPort-AV: E=Sophos;i="6.16,311,1744095600"; d="scan'208";a="72167072"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2025 10:31:59 -0700
-X-CSE-ConnectionGUID: /P5VdeMXQmuAkY/KGpxIOA==
-X-CSE-MsgGUID: piOXxsycTMCQdsvqhsv9Tg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,311,1744095600"; d="scan'208";a="180689776"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2025 10:31:59 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: michal.mrozek@intel.com, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, thomas.hellstrom@linux.intel.com,
- matthew.auld@intel.com
-Subject: [PATCH 3/3] drm/xe: Enable compressed memory for SVM
-Date: Mon, 14 Jul 2025 10:33:42 -0700
-Message-Id: <20250714173342.2997396-4-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250714173342.2997396-1-matthew.brost@intel.com>
-References: <20250714173342.2997396-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46EFE10E08E;
+	Mon, 14 Jul 2025 17:33:57 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37EE510E08E;
+ Mon, 14 Jul 2025 17:33:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8346519401218797846=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_no?=
+ =?utf-8?q?=5Fpsr=5Freason_to_PSR_debugfs_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 14 Jul 2025 17:33:56 -0000
+Message-ID: <175251443620.159897.775294874223567279@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250714160931.821383-1-michal.grzelak@intel.com>
+In-Reply-To: <20250714160931.821383-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,61 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_migrate.c | 10 ++++++++--
- drivers/gpu/drm/xe/xe_vm.c      |  5 +----
- 2 files changed, 9 insertions(+), 6 deletions(-)
+--===============8346519401218797846==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 936daa2b363d..0519b9025e0f 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1723,8 +1723,11 @@ struct dma_fence *xe_migrate_to_vram(struct xe_migrate *m,
- 				     dma_addr_t *src_addr,
- 				     u64 dst_addr)
- {
-+	struct xe_device *xe = gt_to_xe(m->tile->primary_gt);
-+
- 	return xe_migrate_vram(m, npages * PAGE_SIZE, 0, src_addr, dst_addr,
--			       XE_MIGRATE_COPY_TO_VRAM, false);
-+			       XE_MIGRATE_COPY_TO_VRAM,
-+			       xe_migrate_needs_ccs_emit(xe));
- }
- 
- /**
-@@ -1744,8 +1747,11 @@ struct dma_fence *xe_migrate_from_vram(struct xe_migrate *m,
- 				       u64 src_addr,
- 				       dma_addr_t *dst_addr)
- {
-+	struct xe_device *xe = gt_to_xe(m->tile->primary_gt);
-+
- 	return xe_migrate_vram(m, npages * PAGE_SIZE, 0, dst_addr, src_addr,
--			       XE_MIGRATE_COPY_TO_SRAM, false);
-+			       XE_MIGRATE_COPY_TO_SRAM,
-+			       xe_migrate_needs_ccs_emit(xe));
- }
- 
- static void xe_migrate_dma_unmap(struct xe_device *xe, dma_addr_t *dma_addr,
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 73cb981c0956..2035604121e6 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2362,10 +2362,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
- 			op->map.is_cpu_addr_mirror = flags &
- 				DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
- 			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
--			if (op->map.is_cpu_addr_mirror)
--				op->map.pat_index = 0;
--			else
--				op->map.pat_index = pat_index;
-+			op->map.pat_index = pat_index;
- 			op->map.invalidate_on_bind =
- 				__xe_vm_needs_clear_scratch_pages(vm, flags);
- 		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
--- 
-2.34.1
+== Series Details ==
 
+Series: drm/i915/display: Add no_psr_reason to PSR debugfs (rev8)
+URL   : https://patchwork.freedesktop.org/series/148957/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3407-addfee6c7e234dca2b07de3a628af4e0d1779343_BAT -> xe-pw-148957v8_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3407-addfee6c7e234dca2b07de3a628af4e0d1779343 -> xe-pw-148957v8
+
+  IGT_8457: 756ebdbf0e4c75f0680c0a36db206a9f6ff126ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3407-addfee6c7e234dca2b07de3a628af4e0d1779343: addfee6c7e234dca2b07de3a628af4e0d1779343
+  xe-pw-148957v8: 148957v8
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v8/index.html
+
+--===============8346519401218797846==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Add no_psr_reason to PSR debugfs (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148957/">https://patchwork.freedesktop.org/series/148957/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3407-addfee6c7e234dca2b07de3a628af4e0d1779343_BAT -&gt; xe-pw-148957v8_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3407-addfee6c7e234dca2b07de3a628af4e0d1779343 -&gt; xe-pw-148957v8</li>
+</ul>
+<p>IGT_8457: 756ebdbf0e4c75f0680c0a36db206a9f6ff126ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3407-addfee6c7e234dca2b07de3a628af4e0d1779343: addfee6c7e234dca2b07de3a628af4e0d1779343<br />
+  xe-pw-148957v8: 148957v8</p>
+
+</body>
+</html>
+
+--===============8346519401218797846==--
