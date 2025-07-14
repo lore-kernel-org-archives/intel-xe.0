@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A570C83F17
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 17:32:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EC79C83F1A
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 17:32:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46BEE10E08E;
-	Mon, 14 Jul 2025 17:32:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 036E210E221;
+	Mon, 14 Jul 2025 17:32:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LRiMCKa9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TEfg6t//";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1CED10E221
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 584D210E08E
  for <intel-xe@lists.freedesktop.org>; Mon, 14 Jul 2025 17:31:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752514320; x=1784050320;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hGkAvSPZDXFv12Ap4JwFohMe95cOv24w0tu8sq7lSag=;
- b=LRiMCKa9wDxnOcNmXZAV1boJ4LfM/O8/f5iqnsCYOSnmQ2kvoxieqW1R
- DFGNjxkkJd5764xQGQ7cGYCGAKR4RZPZoJ/zHkhYGXc79qmdQhFhGWwfq
- GzKKq4ZCEtDt1WPzCaR/RZOasPPaAwDIUA46YYKuWJiMC6Nm5CVXzeUJu
- YmGlSsX9t7zFG/luRsYDAWvjH+yPGggnMjP6sPgRL3LRBK0KjLGQxzfuL
- os/3mmU7PgeZ+le0nitte+P8R2gQB6Nus5RtbebwSpPLFZjq5+4VCWbzm
- 1eR2ipkhdm7aqxj0LyjvPf6nh2WWmcUaErro6zDc/4fdlS3JUpT+div0z g==;
-X-CSE-ConnectionGUID: HYHRcjnzRSSUmiTlCi86FA==
-X-CSE-MsgGUID: WgkTrG31TAeVhDvRsWRBnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="72167069"
-X-IronPort-AV: E=Sophos;i="6.16,311,1744095600"; d="scan'208";a="72167069"
+ t=1752514319; x=1784050319;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DI2FIVc3EySc+P6MASVbgsTyUY8gzIV5WweBkw21L2s=;
+ b=TEfg6t//qYHL5S84phwgVIis4pUszbYdX7rdBo6K6J3Q+r4JuEElDIyx
+ 7XiC2mN/DAAwVn4Dw72WkmoMvF5WCTARvjT/IiwlFIGlg4fsK2UoGrrwa
+ h9VtHdTuUIb8sNLsDmOCjbkU0+e2ndD5qAS6rFnhpurIkSPxoSpLcuzks
+ Sl93H9ogmP3XdyxmSXj71/7zqc86rgtwnE3hKZaOWfFdiPL/H6/gOXasd
+ euDHCPq4N/4dzbZrV0Ysd99YdnJjGC8KJYjYFy1v5I8H9MHL+JNkrgOqK
+ DXBeXndw88bMIDYzOkeF+1P1h9053am/amfM9hIrtqW6nIWmJDmCw/ZF6 w==;
+X-CSE-ConnectionGUID: +Rmtc6YZSMidsh/9JvW29Q==
+X-CSE-MsgGUID: SJdnKYqwTAa51f8NA/Pflw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="72167068"
+X-IronPort-AV: E=Sophos;i="6.16,311,1744095600"; d="scan'208";a="72167068"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jul 2025 10:31:59 -0700
-X-CSE-ConnectionGUID: IM0g36efQLao8VsMw6gb6g==
-X-CSE-MsgGUID: 3TwlUnkCRKOxG50moWLDxg==
+X-CSE-ConnectionGUID: xhuk19GLRlu+5SxtBjZP3g==
+X-CSE-MsgGUID: 3mFytG79QKKi9Fhx8TGYcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,311,1744095600"; d="scan'208";a="180689769"
+X-IronPort-AV: E=Sophos;i="6.16,311,1744095600"; d="scan'208";a="180689766"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2025 10:31:59 -0700
+ 14 Jul 2025 10:31:58 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: michal.mrozek@intel.com, himal.prasad.ghimiray@intel.com,
  francois.dugast@intel.com, thomas.hellstrom@linux.intel.com,
  matthew.auld@intel.com
-Subject: [PATCH 1/3] drm/xe: Disable compression on SVM
-Date: Mon, 14 Jul 2025 10:33:40 -0700
-Message-Id: <20250714173342.2997396-2-matthew.brost@intel.com>
+Subject: [PATCH 0/3] SVM compression fixes 
+Date: Mon, 14 Jul 2025 10:33:39 -0700
+Message-Id: <20250714173342.2997396-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250714173342.2997396-1-matthew.brost@intel.com>
-References: <20250714173342.2997396-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,32 +66,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is not yet supported, forcefully disable by setting pat_index to
-zero for CPU address mirror VMAs.
+Compression is broken for SVM and for devcoredump when reading out BOs.
 
-Cc: stable@vger.kernel.org
-Fixes: b43e864af0d4 ("drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Marking the first two patches as fixes. One option could be to drop
+patch 1 and proceed with just the last two patches as fixes, if we
+decide we're confident in SVM with compression.
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 2035604121e6..73cb981c0956 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2362,7 +2362,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
- 			op->map.is_cpu_addr_mirror = flags &
- 				DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
- 			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
--			op->map.pat_index = pat_index;
-+			if (op->map.is_cpu_addr_mirror)
-+				op->map.pat_index = 0;
-+			else
-+				op->map.pat_index = pat_index;
- 			op->map.invalidate_on_bind =
- 				__xe_vm_needs_clear_scratch_pages(vm, flags);
- 		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
+Tested with [1]. The append memory copy compression sections fail on
+drm-tip and pass after this series.
+
+Matt
+
+[1] https://patchwork.freedesktop.org/series/151581/
+
+Matthew Brost (3):
+  drm/xe: Disable compression on SVM
+  drm/xe: Update xe_migrate_vram to support compression
+  drm/xe: Enable compressed memory for SVM
+
+ drivers/gpu/drm/xe/xe_migrate.c | 37 ++++++++++++++++++++++++++-------
+ 1 file changed, 30 insertions(+), 7 deletions(-)
+
 -- 
 2.34.1
 
