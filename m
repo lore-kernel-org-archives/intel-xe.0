@@ -4,38 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FC6CC83F17
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37C52C83F1A
 	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 15:40:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2050110E0BC;
-	Mon, 14 Jul 2025 15:40:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC1BF10E055;
+	Mon, 14 Jul 2025 15:40:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="lyF2B0MJ";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="R5osGZNe";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="dQ/eYo2Z";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="fJnEGeia";
 	dkim-atps=neutral
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDD4B10E4C1;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF5BA10E4C4;
  Mon, 14 Jul 2025 15:40:02 +0000 (UTC)
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1752507599;
+ s=2020; t=1752507601;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ACde3DC9RtOmVpUItsECGEFOlkwvGci94MLUwoYm2PQ=;
- b=lyF2B0MJaAMwKnXpb9+M9vSaNzDWXARX9E1lED3NnyhPsfF5rINwG6D/GQ4+VEvtypKFjN
- 8td869tEt9lX01K/+P3ot75c6E/qyHT9HYrRjEGwq/pzOfHAJMRnNJp6oCjpF/fmvw4wR8
- vfcosocTTHIbQ5R7If0Z6zIluSsorNcM5AKF9+QpQViCBZwOZucv4CBiwf+31lMxmSUPjs
- QRZW2wJXW6EBToPKh1+WFcNjYtj+8xDtrOiV63Nkosk4rSjvzoL29Ewnp5iI7Ez31a9BWy
- R7Ir5o9sXh/TkWrGmvXGO1EkoxLzyuelbphFhZujf4A7mnTM3QkSIx19Zgp8OQ==
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=qocmuib59L+/Q3PxxJmPJOulfvAdlZE6dwU5H5OHfIc=;
+ b=dQ/eYo2ZFQhJAaOer5q3K+V6ID6Q/Kpn7XJtc5Sd7BE+M7rnXJ8h5eAa+dNM0UnGDeJXJc
+ FQLwDGYfRHii42zWuxIaSnPYmLxpC3CTwsQuq2I5OItl9bywn0Pan3cnboVnTy4FLIQilH
+ bQvAyMEVnaqOGLa3V+wGurH2j+umEZ5HTYR7otSLHLiZIqysslK5yq24x1282QZ92Y6V+L
+ yZYe4ZbFsrW2NschZ1++Q0TGd6yFZoXWZFxNnpeuVKnJawm/zlSHY5uJL5OpVc8G3HDfuj
+ TNVWaOC8PhHtSd73nqmVyvlytlhoL5YqqNayp8KZxmpKTBZ50cKSylkapp6Etw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1752507599;
+ s=2020e; t=1752507601;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ACde3DC9RtOmVpUItsECGEFOlkwvGci94MLUwoYm2PQ=;
- b=R5osGZNeE9E5z/BGPpuYc20UEQ5BJlWkwzc/ANkKEQFd+w1AHPPCdfMRueQHKWaUUXfkK9
- 0mdwt1MenV6dh/Cw==
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=qocmuib59L+/Q3PxxJmPJOulfvAdlZE6dwU5H5OHfIc=;
+ b=fJnEGeiaM8ZUGKlQg4KUR16ghOWiEj9QeRAMipfey6Bd9jGCzRD0hkCvmMGBTk7w0Pow4W
+ tpe1tDyxfToQoHDg==
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -45,12 +47,15 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
  Scott Oehrlein <scott.oehrlein@intel.com>,
  Ben Hutchings <ben@decadent.org.uk>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: [PATCH v4 0/9] drm/i915: PREEMPT_RT related fixups.
-Date: Mon, 14 Jul 2025 17:39:45 +0200
-Message-ID: <20250714153954.629393-1-bigeasy@linutronix.de>
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Luca Abeni <lucabe72@gmail.com>, Steven Rostedt <rostedt@goodmis.org>
+Subject: [PATCH v4 4/9] drm/i915: Disable tracing points on PREEMPT_RT
+Date: Mon, 14 Jul 2025 17:39:49 +0200
+Message-ID: <20250714153954.629393-5-bigeasy@linutronix.de>
+In-Reply-To: <20250714153954.629393-1-bigeasy@linutronix.de>
+References: <20250714153954.629393-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,68 +71,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The following patches are from the PREEMPT_RT queue. They are used by
-people using the real-time preemption model and a i915 compatible GPU
-card.
-Patches 1+2 keep preemption and interrupts enabled within vblank
-handling. I don't see another way of handling it given the constrains.
-Patch #4 disables i915's tracepoints because they acquire sleeping locks
-within the assign callback with is invoked with disabled preemption.=20
+Luca Abeni reported this:
+| BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
+| CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
+| Call Trace:
+|  rt_spin_lock+0x3f/0x50
+|  gen6_read32+0x45/0x1d0 [i915]
+|  g4x_get_vblank_counter+0x36/0x40 [i915]
+|  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
 
-The remaining patches mostly deal with the API & syntax such as not
-test for disabled interrupts but rather use lockdep (#6) or how to
-identify atomic context which also causes no errors on PREEMPT_RT (#3,
-#6, #7). Patch #5 uses proper spinlock API to disable interrupt instead
-of using local_irq_disable() for it.
+The tracing events use trace_intel_pipe_update_start() among other events
+use functions acquire spinlock_t locks which are transformed into
+sleeping locks on PREEMPT_RT. A few trace points use
+intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
+might acquire a sleeping locks on PREEMPT_RT.
+At the time the arguments are evaluated within trace point, preemption
+is disabled and so the locks must not be acquired on PREEMPT_RT.
 
-Some of the patches already received already Acked-by/ Reviewed-by.
-Could we please apply some of the series and then discuss the
-controversial ones which are not doable?
+Based on this I don't see any other way than disable trace points on
+PREMPT_RT.
 
-History:
-v3=E2=80=A6v4 https://lore.kernel.org/all/20240628130601.1772849-1-bigeasy@=
-linutronix.de/
-  - Added patch 8.
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Reported-by: Luca Abeni <lucabe72@gmail.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+---
+ drivers/gpu/drm/i915/display/intel_display_trace.h | 4 ++++
+ drivers/gpu/drm/i915/i915_trace.h                  | 4 ++++
+ drivers/gpu/drm/i915/intel_uncore_trace.h          | 4 ++++
+ 3 files changed, 12 insertions(+)
 
-v2=E2=80=A6v3 https://lore.kernel.org/all/20240613102818.4056866-1-bigeasy@=
-linutronix.de/
-  - Collected tags.
-  - Added comment to 3/8 explaining why RT is excluded from the test.
-=20=20
-v1=E2=80=A6v2:
-  - The tracing disable bits (4/8) have been reworked after Steven pointed =
-out
-    that something isn't right.
-  - The irq_work() bits have been dropped because they are no longer
-    needed.
+diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/g=
+pu/drm/i915/display/intel_display_trace.h
+index 27ebc32cb61a5..a519d94700c36 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_trace.h
++++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+@@ -13,6 +13,10 @@
+ #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
+ #define __INTEL_DISPLAY_TRACE_H__
+=20
++#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
++#define NOTRACE
++#endif
++
+ #include <linux/string.h>
+ #include <linux/string_helpers.h>
+ #include <linux/types.h>
+diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_=
+trace.h
+index 7ed41ce9b7085..6b87ef6005c69 100644
+--- a/drivers/gpu/drm/i915/i915_trace.h
++++ b/drivers/gpu/drm/i915/i915_trace.h
+@@ -6,6 +6,10 @@
+ #if !defined(_I915_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
+ #define _I915_TRACE_H_
+=20
++#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
++#define NOTRACE
++#endif
++
+ #include <linux/stringify.h>
+ #include <linux/types.h>
+ #include <linux/tracepoint.h>
+diff --git a/drivers/gpu/drm/i915/intel_uncore_trace.h b/drivers/gpu/drm/i9=
+15/intel_uncore_trace.h
+index f13ff71edf2db..3c67e267fb602 100644
+--- a/drivers/gpu/drm/i915/intel_uncore_trace.h
++++ b/drivers/gpu/drm/i915/intel_uncore_trace.h
+@@ -7,6 +7,10 @@
+ #if !defined(__INTEL_UNCORE_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
+ #define __INTEL_UNCORE_TRACE_H__
+=20
++#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
++#define NOTRACE
++#endif
++
+ #include "i915_reg_defs.h"
+=20
+ #include <linux/types.h>
+--=20
+2.50.0
 
-
-Mike Galbraith (2):
-  drm/i915: Use preempt_disable/enable_rt() where recommended
-  drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
-
-Sebastian Andrzej Siewior (7):
-  drm/i915: Don't check for atomic context on PREEMPT_RT
-  drm/i915: Disable tracing points on PREEMPT_RT
-  drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() +
-    spin_lock()
-  drm/i915: Drop the irqs_disabled() check
-  drm/i915/guc: Consider also RCU depth in busy loop.
-  drm/i915: Consider RCU read section as atomic.
-  Revert "drm/i915: Depend on !PREEMPT_RT."
-
- drivers/gpu/drm/i915/Kconfig                  |  1 -
- drivers/gpu/drm/i915/display/intel_crtc.c     |  9 ++--
- drivers/gpu/drm/i915/display/intel_cursor.c   |  9 ++--
- .../drm/i915/display/intel_display_trace.h    |  4 ++
- drivers/gpu/drm/i915/display/intel_vblank.c   | 49 ++++++++++++++-----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
- .../drm/i915/gt/intel_execlists_submission.c  | 17 ++-----
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  2 +-
- drivers/gpu/drm/i915/i915_request.c           |  2 -
- drivers/gpu/drm/i915/i915_trace.h             |  4 ++
- drivers/gpu/drm/i915/i915_utils.h             |  9 +++-
- drivers/gpu/drm/i915/intel_uncore_trace.h     |  4 ++
- 12 files changed, 75 insertions(+), 37 deletions(-)
-
-Sebastian
