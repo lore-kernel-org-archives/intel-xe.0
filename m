@@ -4,27 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04D02C83F1A
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 12:33:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17A74C83F1A
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 12:33:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B674610E485;
-	Mon, 14 Jul 2025 12:33:05 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56CBF10E485;
- Mon, 14 Jul 2025 12:33:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEA5810E486;
+	Mon, 14 Jul 2025 12:33:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="kBTL/lK4";
+	dkim-atps=neutral
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A31E810E485
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Jul 2025 12:33:57 +0000 (UTC)
+Received: by mail-wr1-f49.google.com with SMTP id
+ ffacd0b85a97d-3a5257748e1so2896375f8f.2
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Jul 2025 05:33:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1752496436; x=1753101236; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=bmHZSZ3uc9RTfnFODRiqxwuJ8MtBkjueQgjnUnL69XI=;
+ b=kBTL/lK4oLRp7+ije2eTQosYOoC8S2uiB6XEe+3v2ctuWvoeK6ZBlH/dgjhJEdEHiX
+ QWJ8Qz6El9n6B06fKKub3RqNjedrJJVHR6DLoerceCGvqgY3XVwqhb/rStHfBbX7w+2Z
+ 1ymLGiWmVqsLiAi+p7IeDevBEVaAJDHS2dGSo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752496436; x=1753101236;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=bmHZSZ3uc9RTfnFODRiqxwuJ8MtBkjueQgjnUnL69XI=;
+ b=iyH7q4LP/v5RfdmsKMWPtXM1XYiRHqqHaQ63P+mnnO2C5FJdxKcu659lOwdZpHEF+6
+ PISvRGvHzrBpbN0pb61C33SWUOobWi+hCUQsY9/uEqB4eO3jPpoRdweaF6MRfRw+tOoM
+ f5DfrLsyqTrxbcInulL9BUa8F+2bgm4BWGQjT52dxL4oTYhiHKJ4YKd/+JCSm1fi+OMm
+ cWXeB1TVf5f/EBcx5S5ywSGkRxd+dza2gTyDQAt8lN6c5VN0Up3kqaZP3VTWp3HZdBVc
+ XyVhj91Q4CJLu/h8d0Utz76WXTCXXDzbvmGvs2+v0Ww7hmcSddCLL4p8WAFEWHIuwDqe
+ po1A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVL/EN2J42Uqb8KuEn+LgqtMWxRER19at+PKogpG5tozWEI/EofNdYFvqL37JWOGTVRAZejlEyWhg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxaCOrC+eldPrlpoQqiw50ViU6iuyYKMwkL2pnaBxNZ0H084gam
+ V1wnOsGvWbj3sIKVUtAOL7UXxlLQLK3NZ9e6z0biCpISc1zJCM3yLtzBtD7EysB5Yvg=
+X-Gm-Gg: ASbGncuBwVGg/1EyvjmB0m0Is4y/1hd4/oetQwMICzVDg+NS2e21dABHZA1rW9W6O0M
+ ITKCpDyPbTGou8zMpr00g3lJ828zr6OE02oO86XJpP/knf0jArf+tm7trVZJFWxD6H3fMiW6Kdt
+ D5XeYq/h16wq+63Ai5jGyVZlJk/NmLdUGfKaDv7iSDjwm2O6Nr74n5fD3aJ52TuuMXucmR6KezC
+ Qlgoqtwm4sRMEfhMWXLUgqKQzJaXCCodb4LaxF5nquVnsY+Zyesp6iCEKwN/9xVoyHV8VphGWfD
+ Lx0JwehcQR+FcFluR1ja9JyzFgsfdGvykMwZcC3sgcFBqBqgOTfX7YBgpJu+FuItmC1MWD0/WJ1
+ L+OXBJSJXsCZvyaZ12LqT5GWRH0ZPWEQmRA==
+X-Google-Smtp-Source: AGHT+IHZ9FnlrI1753KZi7krCsPO8T5c2exgektd5V8u/g1dRjEdlHk+VBPU0ahgqKbKWznWYxlxNg==
+X-Received: by 2002:a5d:5c0d:0:b0:3b5:dfc2:f0ca with SMTP id
+ ffacd0b85a97d-3b5f2e26990mr9572084f8f.40.1752496435941; 
+ Mon, 14 Jul 2025 05:33:55 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3b5e8dc3a62sm12150775f8f.40.2025.07.14.05.33.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 14 Jul 2025 05:33:55 -0700 (PDT)
+Date: Mon, 14 Jul 2025 14:33:53 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Raag Jadav <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org,
+ anshuman.gupta@intel.com, lucas.demarchi@intel.com,
+ aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
+ frank.scarbrough@intel.com, sk.anirban@intel.com,
+ =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v4 1/9] drm: Add a vendor-specific recovery method to
+ device wedged uevent
+Message-ID: <aHT5MSbs9yDbP4kW@phenom.ffwll.local>
+References: <20250709112024.1053710-1-riana.tauro@intel.com>
+ <20250709112024.1053710-2-riana.tauro@intel.com>
+ <aG5xglf8BeGzleWM@phenom.ffwll.local>
+ <d42e17ef-30ce-4bf1-9948-7f08fd6f3bac@amd.com>
+ <aG56Trd1h5WbWYJt@black.fi.intel.com> <aG6eNcygPshsSlC8@intel.com>
+ <aG-BcFN6M9BtjB2j@phenom.ffwll.local>
+ <cd206f9e-be53-4b22-a166-ed18fa9b833a@amd.com>
+ <aHDSawMTgaIEWoMw@phenom.ffwll.local>
+ <3902cd03-a755-43e6-968e-773eb518ebce@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Support_for_mma?=
- =?utf-8?q?p-ing_mmio_regions_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ilia Levi" <ilia.levi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 14 Jul 2025 12:33:04 -0000
-Message-ID: <175249638434.158350.16967643327901020498@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250714122658.1803-1-ilia.levi@intel.com>
-In-Reply-To: <20250714122658.1803-1-ilia.levi@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3902cd03-a755-43e6-968e-773eb518ebce@intel.com>
+X-Operating-System: Linux phenom 6.12.30-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,50 +100,234 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jul 14, 2025 at 10:57:48AM +0530, Riana Tauro wrote:
+> 
+> 
+> On 7/11/2025 2:29 PM, Simona Vetter wrote:
+> > On Thu, Jul 10, 2025 at 11:37:14AM +0200, Christian König wrote:
+> > > On 10.07.25 11:01, Simona Vetter wrote:
+> > > > On Wed, Jul 09, 2025 at 12:52:05PM -0400, Rodrigo Vivi wrote:
+> > > > > On Wed, Jul 09, 2025 at 05:18:54PM +0300, Raag Jadav wrote:
+> > > > > > On Wed, Jul 09, 2025 at 04:09:20PM +0200, Christian König wrote:
+> > > > > > > On 09.07.25 15:41, Simona Vetter wrote:
+> > > > > > > > On Wed, Jul 09, 2025 at 04:50:13PM +0530, Riana Tauro wrote:
+> > > > > > > > > Certain errors can cause the device to be wedged and may
+> > > > > > > > > require a vendor specific recovery method to restore normal
+> > > > > > > > > operation.
+> > > > > > > > > 
+> > > > > > > > > Add a recovery method 'WEDGED=vendor-specific' for such errors. Vendors
+> > > > > > > > > must provide additional recovery documentation if this method
+> > > > > > > > > is used.
+> > > > > > > > > 
+> > > > > > > > > v2: fix documentation (Raag)
+> > > > > > > > > 
+> > > > > > > > > Cc: André Almeida <andrealmeid@igalia.com>
+> > > > > > > > > Cc: Christian König <christian.koenig@amd.com>
+> > > > > > > > > Cc: David Airlie <airlied@gmail.com>
+> > > > > > > > > Cc: <dri-devel@lists.freedesktop.org>
+> > > > > > > > > Suggested-by: Raag Jadav <raag.jadav@intel.com>
+> > > > > > > > > Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> > > > > > > > 
+> > > > > > > > I'm not really understanding what this is useful for, maybe concrete
+> > > > > > > > example in the form of driver code that uses this, and some tool or
+> > > > > > > > documentation steps that should be taken for recovery?
+> > > > > 
+> > > > > The case here is when FW underneath identified something badly corrupted on
+> > > > > FW land and decided that only a firmware-flashing could solve the day and
+> > > > > raise interrupt to the driver. At that point we want to wedge, but immediately
+> > > > > hint the admin the recommended action.
+> > > > > 
+> > > > > > > 
+> > > > > > > The recovery method for this particular case is to flash in a new firmware.
+> > > > > > > 
+> > > > > > > > The issues I'm seeing here is that eventually we'll get different
+> > > > > > > > vendor-specific recovery steps, and maybe even on the same device, and
+> > > > > > > > that leads us to an enumeration issue. Since it's just a string and an
+> > > > > > > > enum I think it'd be better to just allocate a new one every time there's
+> > > > > > > > a new strange recovery method instead of this opaque approach.
+> > > > > > > 
+> > > > > > > That is exactly the opposite of what we discussed so far.
+> > > > 
+> > > > Sorry, I missed that context.
+> > > > 
+> > > > > > > The original idea was to add a firmware-flush recovery method which
+> > > > > > > looked a bit wage since it didn't give any information on what to do
+> > > > > > > exactly.
+> > > > > > > 
+> > > > > > > That's why I suggested to add a more generic vendor-specific event
+> > > > > > > with refers to the documentation and system log to see what actually
+> > > > > > > needs to be done.
+> > > > > > > 
+> > > > > > > Otherwise we would end up with events like firmware-flash, update FW
+> > > > > > > image A, update FW image B, FW version mismatch etc....
+> > > > 
+> > > > Yeah, that's kinda what I expect to happen, and we have enough numbers for
+> > > > this all to not be an issue.
+> > > > 
+> > > > > > Agree. Any newly allocated method that is specific to a vendor is going to
+> > > > > > be opaque anyway, since it can't be generic for all drivers. This just helps
+> > > > > > reduce the noise in DRM core.
+> > > > > > 
+> > > > > > And yes, there could be different vendor-specific cases for the same driver
+> > > > > > and the driver should be able to provide the means to distinguish between
+> > > > > > them.
+> > > > > 
+> > > > > Sim, what's your take on this then?
+> > > > > 
+> > > > > Should we get back to the original idea of firmware-flash?
+> > > > 
+> > > > Maybe intel-firmware-flash or something, meaning prefix with the vendor?
+> > > > 
+> > > > The reason I think it should be specific is because I'm assuming you want
+> > > > to script this. And if you have a big fleet with different vendors, then
+> > > > "vendor-specific" doesn't tell you enough. But if it's something like
+> > > > $vendor-$magic_step then it does become scriptable, and we do have have a
+> > > > place to put some documentation on what you should do instead.
+> > > > 
+> > > > If the point of this interface isn't that it's scriptable, then I'm not
+> > > > sure why it needs to be an uevent?
+> > > 
+> > > You should probably read up on the previous discussion, cause that is
+> > > exactly what I asked as well :)
+> > > 
+> > > And no, it should *not* be scripted. That would be a bit brave for a
+> > > firmware update where you should absolutely not power down the system
+> > > for example.
+> > 
+> > I guess if we clearly state that this is for manual recovery only, or for
+> > cases where you exactly know what you're doing (fleet-specific scripts
+> > instead of generic distros), I guess this very opaque code makes sense.
+> > 
+> > But we should clearly document then that doing anything scripted here is
+> > very much "you get to keep the pieces", and definitely don't try to do
+> > something fancy generic.
+> 
+> 
+> The documentation is part of the series but was sent only to intel-xe
+> mailing list. Will re-send the entire series to dri-devel
+> 
+> https://lore.kernel.org/intel-xe/aHH2XGuOvz8bSlax@black.fi.intel.com/T/#m883269cf0b1f6891ecc9c24d3d45325f46d56572
 
-Series: drm/xe: Support for mmap-ing mmio regions (rev4)
-URL   : https://patchwork.freedesktop.org/series/149977/
-State : warning
+Duh, missed that, but yes definitely send the entire series to all mailing
+lists. Especially when adding new drm features like this one does.
 
-== Summary ==
+> > Which without documentation is just really confusing when some of the
+> > other error codes clearly look like they're meant to facilitate scripted
+> > recovery.
+> > 
+> 
+> To get consensus on the patch, is 'vendor-specific' okay or is it better to
+> have 'firmware-flash' with additional event parameter 'vendor' if number of
+> macros is not a concern?
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-43254c2aa575037fc031c7ac21b0d031c700b2bf
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 56764b8e82746cc0ec4776590302a458fc461cec
-Author: Ilia Levi <ilia.levi@intel.com>
-Date:   Mon Jul 14 15:26:58 2025 +0300
+I'll refrain from a vote.
+-Sima
 
-    drm/xe: Support for mmap-ing mmio regions
-    
-    Allow the driver to expose hardware register spaces to userspace
-    through GEM objects with fake mmap offsets. This can be useful
-    for userspace-firmware communication, debugging, etc.
-    
-    v2: Minor doc fix (CI)
-    v3: Enforce MAP_SHARED (Tejas)
-        Add fault handler with dummy page (Tejas, Matt Auld)
-        Store physical address instead of xe_mmio in the GEM object (MattB)
-    v4: Separate xe_mmio_gem from xe_mmio and make it private (MattB)
-    
-    Signed-off-by: Ilia Levi <ilia.levi@intel.com>
-+ /mt/dim checkpatch 4990310f0d4505f8a92f01012eaf433c35da7822 drm-intel
-56764b8e8274 drm/xe: Support for mmap-ing mmio regions
--:31: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#31: 
-new file mode 100644
+> 
+> Thanks
+> Riana
+> > > In my understanding the new value "vendor-specific" basically means it
+> > > is a known issue with a documented solution, while "unknown" means the
+> > > driver has no idea how to solve it.
+> > 
+> > I think that's another detail which should be documented clearly.
+> > -Sima
+> > > 
+> > > Regards,
+> > > Christian.
+> > > 
+> > > > I guess if you all want to stick with vendor-specific then I think that's
+> > > > ok with me too, but the docs should at least explain how to figure out
+> > > > from the uevent which vendor you're on with a small example. What I'm
+> > > > worried is that if we have this on multiple drivers userspace will
+> > > > otherwise make a complete mess and might want to run the wrong recovery
+> > > > steps.
+> > > > 
+> > > > I think ideally, no matter what, we'd have a concrete driver patch which
+> > > > then also comes with the documentation for what exactly you're supposed to
+> > > > do as something you can script. And not just this stand-alone patch here.
+> > > > 
+> > > > Cheers, Sima
+> > > > > 
+> > > > > > 
+> > > > > > Raag
+> > > > > > 
+> > > > > > > > > ---
+> > > > > > > > >   Documentation/gpu/drm-uapi.rst | 9 +++++----
+> > > > > > > > >   drivers/gpu/drm/drm_drv.c      | 2 ++
+> > > > > > > > >   include/drm/drm_device.h       | 4 ++++
+> > > > > > > > >   3 files changed, 11 insertions(+), 4 deletions(-)
+> > > > > > > > > 
+> > > > > > > > > diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
+> > > > > > > > > index 263e5a97c080..c33070bdb347 100644
+> > > > > > > > > --- a/Documentation/gpu/drm-uapi.rst
+> > > > > > > > > +++ b/Documentation/gpu/drm-uapi.rst
+> > > > > > > > > @@ -421,10 +421,10 @@ Recovery
+> > > > > > > > >   Current implementation defines three recovery methods, out of which, drivers
+> > > > > > > > >   can use any one, multiple or none. Method(s) of choice will be sent in the
+> > > > > > > > >   uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
+> > > > > > > > > -more side-effects. If driver is unsure about recovery or method is unknown
+> > > > > > > > > -(like soft/hard system reboot, firmware flashing, physical device replacement
+> > > > > > > > > -or any other procedure which can't be attempted on the fly), ``WEDGED=unknown``
+> > > > > > > > > -will be sent instead.
+> > > > > > > > > +more side-effects. If recovery method is specific to vendor
+> > > > > > > > > +``WEDGED=vendor-specific`` will be sent and userspace should refer to vendor
+> > > > > > > > > +specific documentation for further recovery steps. If driver is unsure about
+> > > > > > > > > +recovery or method is unknown, ``WEDGED=unknown`` will be sent instead
+> > > > > > > > >   Userspace consumers can parse this event and attempt recovery as per the
+> > > > > > > > >   following expectations.
+> > > > > > > > > @@ -435,6 +435,7 @@ following expectations.
+> > > > > > > > >       none            optional telemetry collection
+> > > > > > > > >       rebind          unbind + bind driver
+> > > > > > > > >       bus-reset       unbind + bus reset/re-enumeration + bind
+> > > > > > > > > +    vendor-specific vendor specific recovery method
+> > > > > > > > >       unknown         consumer policy
+> > > > > > > > >       =============== ========================================
+> > > > > > > > > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> > > > > > > > > index cdd591b11488..0ac723a46a91 100644
+> > > > > > > > > --- a/drivers/gpu/drm/drm_drv.c
+> > > > > > > > > +++ b/drivers/gpu/drm/drm_drv.c
+> > > > > > > > > @@ -532,6 +532,8 @@ static const char *drm_get_wedge_recovery(unsigned int opt)
+> > > > > > > > >   		return "rebind";
+> > > > > > > > >   	case DRM_WEDGE_RECOVERY_BUS_RESET:
+> > > > > > > > >   		return "bus-reset";
+> > > > > > > > > +	case DRM_WEDGE_RECOVERY_VENDOR:
+> > > > > > > > > +		return "vendor-specific";
+> > > > > > > > >   	default:
+> > > > > > > > >   		return NULL;
+> > > > > > > > >   	}
+> > > > > > > > > diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+> > > > > > > > > index 08b3b2467c4c..08a087f149ff 100644
+> > > > > > > > > --- a/include/drm/drm_device.h
+> > > > > > > > > +++ b/include/drm/drm_device.h
+> > > > > > > > > @@ -26,10 +26,14 @@ struct pci_controller;
+> > > > > > > > >    * Recovery methods for wedged device in order of less to more side-effects.
+> > > > > > > > >    * To be used with drm_dev_wedged_event() as recovery @method. Callers can
+> > > > > > > > >    * use any one, multiple (or'd) or none depending on their needs.
+> > > > > > > > > + *
+> > > > > > > > > + * Refer to "Device Wedging" chapter in Documentation/gpu/drm-uapi.rst for more
+> > > > > > > > > + * details.
+> > > > > > > > >    */
+> > > > > > > > >   #define DRM_WEDGE_RECOVERY_NONE		BIT(0)	/* optional telemetry collection */
+> > > > > > > > >   #define DRM_WEDGE_RECOVERY_REBIND	BIT(1)	/* unbind + bind driver */
+> > > > > > > > >   #define DRM_WEDGE_RECOVERY_BUS_RESET	BIT(2)	/* unbind + reset bus device + bind */
+> > > > > > > > > +#define DRM_WEDGE_RECOVERY_VENDOR	BIT(3)	/* vendor specific recovery method */
+> > > > > > > > >   /**
+> > > > > > > > >    * struct drm_wedge_task_info - information about the guilty task of a wedge dev
+> > > > > > > > > -- 
+> > > > > > > > > 2.47.1
+> > > > > > > > > 
+> > > > > > > > 
+> > > > > > > 
+> > > > 
+> > > 
+> > 
+> 
 
-total: 0 errors, 1 warnings, 0 checks, 253 lines checked
-
-
+-- 
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
