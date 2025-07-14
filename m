@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C122C83F1B
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 06:11:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97A02C83F1B
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Jul 2025 06:17:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC83F10E296;
-	Mon, 14 Jul 2025 06:11:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hBiKrIfz";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E13610E210;
- Mon, 14 Jul 2025 06:11:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752473500; x=1784009500;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SQsI75a80nRMTNJwreWrJ+CFrPTRI8EPM6xfACKsGPU=;
- b=hBiKrIfzn7tizAxJhr7xhkqYwGMeQLMXLSakR/VRNFzTW4YXQRN6YVB7
- D0tJchZHFl9DTKYSGel4s2gCNNyoq41c5vZX1tbVNw6nQHaATOOxnDnD6
- ccbcU6Sl4yzTwFuBhQmLiFLI9QNTIU6qsQF9bXCrmuOtQdHZvb0dtjbHF
- Ldwxv420OjIOYrZHSxItyH181JGNvC/Jg1burA2udv/A0v/Nc2LnU3AMG
- C/qbos1Qo2lF3/P/L2irq4GFWYzzLNsJ6k3vI+rtm3TM1MuxHsb1+yU8Z
- IdSNz25rWkrIJYadgSt2UP1lkycxi0uSXhxCy7p/jkzxSAxGiLcyCxrTW w==;
-X-CSE-ConnectionGUID: t+HtAhtWQqa5rPteBy2ggw==
-X-CSE-MsgGUID: AjP/U6GdRZi3Lpy9buC5RQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="42293415"
-X-IronPort-AV: E=Sophos;i="6.16,310,1744095600"; d="scan'208";a="42293415"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2025 23:11:37 -0700
-X-CSE-ConnectionGUID: XuS+URUgQ7yQNML7PMWI5w==
-X-CSE-MsgGUID: erDKorVUTfuuqasrzn8/sw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,310,1744095600"; d="scan'208";a="180533434"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa002.fm.intel.com with ESMTP; 13 Jul 2025 23:11:35 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, dnyaneshwar.bhadane@intel.com,
- dibin.moolakadan.subrahmanian@intel.com, imre.deak@intel.com
-Subject: [PATCH] drm/i915/display: Add power well mapping for WCL
-Date: Mon, 14 Jul 2025 11:23:44 +0530
-Message-Id: <20250714055344.3825881-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B60210E3F8;
+	Mon, 14 Jul 2025 06:17:02 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68D2D10E296;
+ Mon, 14 Jul 2025 06:17:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Add_p?=
+ =?utf-8?q?ower_well_mapping_for_WCL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 14 Jul 2025 06:17:00 -0000
+Message-ID: <175247382042.157881.18117571692183695123@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250714055344.3825881-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20250714055344.3825881-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,93 +36,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-WCL has 3 pipes, create power well mapping to reflect
-HW. Rest remains similar to Xe3 power well configuration.
+== Series Details ==
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- .../i915/display/intel_display_power_map.c    | 58 ++++++++++++++++++-
- 1 file changed, 57 insertions(+), 1 deletion(-)
+Series: drm/i915/display: Add power well mapping for WCL
+URL   : https://patchwork.freedesktop.org/series/151551/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index 77268802b55e..23c59b587f78 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -1717,6 +1717,60 @@ static const struct i915_power_well_desc_list xe3lpd_power_wells[] = {
- 	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
- };
- 
-+static const struct i915_power_well_desc wcl_power_wells_main[] = {
-+	{
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+43254c2aa575037fc031c7ac21b0d031c700b2bf
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit abdd624d18d2897219087c51077408f5ca63f253
+Author: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Date:   Mon Jul 14 11:23:44 2025 +0530
+
+    drm/i915/display: Add power well mapping for WCL
+    
+    WCL has 3 pipes, create power well mapping to reflect
+    HW. Rest remains similar to Xe3 power well configuration.
+    
+    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
++ /mt/dim checkpatch 4990310f0d4505f8a92f01012eaf433c35da7822 drm-intel
+abdd624d18d2 drm/i915/display: Add power well mapping for WCL
+-:21: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#21: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1722:
 +		.instances = &I915_PW_INSTANCES(
-+			I915_PW("PW_2", &xe3lpd_pwdoms_pw_2,
-+				.hsw.idx = ICL_PW_CTL_IDX_PW_2,
-+				.id = SKL_DISP_PW_2),
-+		),
-+		.ops = &hsw_power_well_ops,
-+		.has_vga = true,
-+		.has_fuses = true,
-+	}, {
+
+-:30: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#30: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1731:
 +		.instances = &I915_PW_INSTANCES(
-+			I915_PW("PW_A", &xelpd_pwdoms_pw_a,
-+				.hsw.idx = XELPD_PW_CTL_IDX_PW_A),
-+		),
-+		.ops = &hsw_power_well_ops,
-+		.irq_pipe_mask = BIT(PIPE_A),
-+		.has_fuses = true,
-+	}, {
+
+-:38: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#38: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1739:
 +		.instances = &I915_PW_INSTANCES(
-+			I915_PW("PW_B", &xe3lpd_pwdoms_pw_b,
-+				.hsw.idx = XELPD_PW_CTL_IDX_PW_B),
-+		),
-+		.ops = &hsw_power_well_ops,
-+		.irq_pipe_mask = BIT(PIPE_B),
-+		.has_fuses = true,
-+	}, {
+
+-:46: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#46: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1747:
 +		.instances = &I915_PW_INSTANCES(
-+			I915_PW("PW_C", &xe3lpd_pwdoms_pw_c,
-+				.hsw.idx = XELPD_PW_CTL_IDX_PW_C),
-+		),
-+		.ops = &hsw_power_well_ops,
-+		.irq_pipe_mask = BIT(PIPE_C),
-+		.has_fuses = true,
-+	}, {
+
+-:54: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#54: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1755:
 +		.instances = &I915_PW_INSTANCES(
-+			I915_PW("AUX_A", &icl_pwdoms_aux_a, .xelpdp.aux_ch = AUX_CH_A),
-+			I915_PW("AUX_B", &icl_pwdoms_aux_b, .xelpdp.aux_ch = AUX_CH_B),
-+			I915_PW("AUX_TC1", &xelpdp_pwdoms_aux_tc1, .xelpdp.aux_ch = AUX_CH_USBC1),
-+			I915_PW("AUX_TC2", &xelpdp_pwdoms_aux_tc2, .xelpdp.aux_ch = AUX_CH_USBC2),
-+			I915_PW("AUX_TC3", &xelpdp_pwdoms_aux_tc3, .xelpdp.aux_ch = AUX_CH_USBC3),
-+			I915_PW("AUX_TC4", &xelpdp_pwdoms_aux_tc4, .xelpdp.aux_ch = AUX_CH_USBC4),
-+		),
-+		.ops = &xelpdp_aux_power_well_ops,
-+	},
+
+-:65: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#65: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1766:
 +};
 +static const struct i915_power_well_desc_list wcl_power_wells[] = {
-+	I915_PW_DESCRIPTORS(i9xx_power_wells_always_on),
-+	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
-+	I915_PW_DESCRIPTORS(xe3lpd_power_wells_dcoff),
-+	I915_PW_DESCRIPTORS(wcl_power_wells_main),
-+	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
-+};
-+
- static void init_power_well_domains(const struct i915_power_well_instance *inst,
- 				    struct i915_power_well *power_well)
- {
-@@ -1824,7 +1878,9 @@ int intel_display_power_map_init(struct i915_power_domains *power_domains)
- 		return 0;
- 	}
- 
--	if (DISPLAY_VER(display) >= 30)
-+	if (DISPLAY_VERx100(display) == 3002)
-+		return set_power_wells(power_domains, wcl_power_wells);
-+	else if (DISPLAY_VER(display) >= 30)
- 		return set_power_wells(power_domains, xe3lpd_power_wells);
- 	else if (DISPLAY_VER(display) >= 20)
- 		return set_power_wells(power_domains, xe2lpd_power_wells);
--- 
-2.25.1
+
+total: 0 errors, 0 warnings, 6 checks, 70 lines checked
+
 
