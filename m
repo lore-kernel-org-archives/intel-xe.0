@@ -4,60 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6462C83F1D
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 08:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DE08C83F21
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 08:59:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69B2210E57F;
-	Tue, 15 Jul 2025 08:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02B9D10E1CD;
+	Tue, 15 Jul 2025 08:59:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="im9Fg8Mk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a6eI7E99";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8630610E578
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 08:49:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B651E10E1DF
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 08:59:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752569345; x=1784105345;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=uky81r00WvTH7fGlZ+KtQw06Q1FiYTbpNBD+zfUOifw=;
- b=im9Fg8MkrbqkpMNukErT4n/LsMasrjBZszSBQmEJXBIQVsVMTlJ6XGVd
- jAHUvcNeMpx8oAPSy1dafYCxG7xaJY/SvK/hCmr2fmIUVhqro4ye/91v5
- BNAygRxairPnQcnFe0qv9K+AwMwHszS+6JsQBYirpp9B5G3/WwQNFfQO1
- jcxt2Xls+FCW8KRYv0aMImt5+XFMqwp7j827nMYMWoXpnBoxYMeQdSvQ3
- tHFPglV2W++OhhwPe27zHk88FYbBx/RRaoTE5CXB5+wtOFq44mqhm/WRh
- 00CR4baEG24KmmLqk0PW2L5HOmYl0T8afUq34MMrD+kGy8XYCzoIjKbxX w==;
-X-CSE-ConnectionGUID: 8IyIXDGGRAW7Iz57cKbzQA==
-X-CSE-MsgGUID: rvDdCp6FQwu+jm+QkcaVLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54926085"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="54926085"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ t=1752569969; x=1784105969;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=YRAG8JsvxVWbYPgwDNMf+n+ksm8iycSD04BWrkXcQRM=;
+ b=a6eI7E99PZoyiZrbmq5vlqoV4R+PFFPByErHetCGnEQM3aFFpAo+GgUp
+ rdQLdoRRhH/kGYtwWSS5P8jNx5LeIgDxho20Z++HuG5+29scRvHtO9OsZ
+ kDulA02NfOSo1lCa0OcrWigBS3rB/Z6/FTcSpj/022A1Y+EW9476sCGOU
+ SKK25pdxP3PiBF5WmGiQhTDQ456MMV6Jy+gXqhRSHDY9gFJy4PIYvBvE7
+ EMo/fU5ldjAe2Qu7zWKcuj+9B2hXCNPOv5ZJImezx46dsYqwkPN6yh0/6
+ /613jBLwdL1g/zuVoqosF+Htr9C5sbS3bAChjyhrg8PkkYvhMvjdG197b w==;
+X-CSE-ConnectionGUID: vSZSvVDJRWWSyI6Gwxy0mw==
+X-CSE-MsgGUID: Rv5Xi16wQZqxRAqSGZYfzQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54927587"
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="54927587"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 01:49:05 -0700
-X-CSE-ConnectionGUID: kCpsbRPnRBuO6NNL4HuXSQ==
-X-CSE-MsgGUID: lxgR+/K3RFOB9deXmMYt4g==
+ 15 Jul 2025 01:59:28 -0700
+X-CSE-ConnectionGUID: XdL3KeiESZ2UnQdRgqEH5Q==
+X-CSE-MsgGUID: EyOWOj0KS4+1sLykRREqjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="157271494"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.193])
- ([10.245.244.193])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 01:49:04 -0700
-Message-ID: <953bb519-2e86-4cf1-be38-9455776d2c22@intel.com>
-Date: Tue, 15 Jul 2025 09:49:01 +0100
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="161716439"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2025 01:59:29 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Tue, 15 Jul 2025 01:59:27 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Tue, 15 Jul 2025 01:59:27 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.69)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Tue, 15 Jul 2025 01:59:25 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wEgwOqweMg+9b+Y8cXTrThzzK5ZCCQMIwsXbnP2HX2/wUbUodVYkj2pjpIjlfcEcs5jPiSYdEv36TPXEYDEOjR34C5wsnV7p04PRTmtcZSpMWfZPDZ8Pio6gTsd3kVa4MUFt0B0PWDd/+57aXn9luvfzd429UFKhQf19/FVJrRZOqk8wlvp3jnnMIeJ51rgcrLVUt6cRa42R9RpioYigPnuvsqbu0WpKChLTHtaNbkZznZqDVTNoDuGSZpIUdKNvLHP+nYLaZQbGYLg1WVhWkJlWindNrCtikKhqyz4iV9iPQfHy4yj2LdFavePieP4ojq2TqkJgZsheM0nDAkeahQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CBql78ZsmnosqDxkvAFLaD8vAAduzfr1TmeNIXSR+Vc=;
+ b=gVWEytLO98J9pGDZW30ejrqKZVhCK75BU/5ftBhH1KQqwdd1x/hs/yaglQlwPB6YB0EcPWnkLTmTCGR9ErVr4AACX8ocTfPaJUVeV3gLIl/Ijkc67kTr5SUtUYzriaOCSSbEER3mhewZ7q3k2Swi12MxgbYI3c+Qw3j+2er7bgAMTwhO8y7f9UhY1FEseWs33veUMSo4+cLqcgJZaZZICz+nLJePhtjh7ayL7v9NY40SqHvXORcL4EnwzHAinavQy/34qnhQufHERArRtRFN5F+lChQSYj3dp3VAZup7zSqmxP37Wnc4PAHIGMoHLR0wXUxKwnnMky2TwdCRzQhlgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a) by PH7PR11MB5793.namprd11.prod.outlook.com
+ (2603:10b6:510:13a::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.29; Tue, 15 Jul
+ 2025 08:26:50 +0000
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::2ae2:110b:2487:40ed]) by DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::2ae2:110b:2487:40ed%6]) with mapi id 15.20.8901.024; Tue, 15 Jul 2025
+ 08:26:49 +0000
+Message-ID: <cbec761a-4f18-45d1-8bf3-20791e0de82d@intel.com>
+Date: Tue, 15 Jul 2025 13:56:42 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/xe: Update xe_migrate_vram to support compression
-From: Matthew Auld <matthew.auld@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: michal.mrozek@intel.com, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, thomas.hellstrom@linux.intel.com
+Subject: Re: [PATCH 1/3] drm/xe: Disable compression on SVM
+To: Matthew Auld <matthew.auld@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <michal.mrozek@intel.com>, <francois.dugast@intel.com>,
+ <thomas.hellstrom@linux.intel.com>
 References: <20250714173342.2997396-1-matthew.brost@intel.com>
- <20250714173342.2997396-3-matthew.brost@intel.com>
- <0068e1bf-de5e-475f-9e4c-e4d358ea180a@intel.com>
-Content-Language: en-GB
-In-Reply-To: <0068e1bf-de5e-475f-9e4c-e4d358ea180a@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ <20250714173342.2997396-2-matthew.brost@intel.com>
+ <338a3400-1202-4c12-a99b-6a45004ce548@intel.com>
+Content-Language: en-US
+From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+In-Reply-To: <338a3400-1202-4c12-a99b-6a45004ce548@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0027.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:b8::20) To DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|PH7PR11MB5793:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3fa4a053-246e-4130-1828-08ddc3795836
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZnY5TzhNc3hCMWdmb2J5akYwbGNiSDA4eW0zM0RTaVJtaWpFeThZUGpaQjJx?=
+ =?utf-8?B?clRIL3VIRnhQRHNnS0V6UWtJdHNwRzh6Wm5WYUk0V2FuL01hcXVZVFpJVlBV?=
+ =?utf-8?B?d0ovRHg1YzJpeUdkMUZGcWFSRndENVVkcXZleEpnd1VkeTRBbHYzZE16SS9p?=
+ =?utf-8?B?aDV5SldPVDNaOEpBN1hreHRaWXd2VFZtZTFlMHRVcVo1ampmRVd0b05xVnZX?=
+ =?utf-8?B?QVlNbkVvZmJmL2Y3c2NRdjlwZXhMakdUV0J0QjE1dEUydElmWTlxSkJteGV3?=
+ =?utf-8?B?QTRQUnliWVNwN1N5ZW8vT1lsREJYZi9FRjZIakxldWI1VlhjU1JPKzBubmdq?=
+ =?utf-8?B?QXdnc1pLZGFicUtPT2FlVEt1czE3a09TaUdVc3AydTBCTW1xb3VKUW1xV0Z1?=
+ =?utf-8?B?Y2QvWktERkJibHdHQ1daYlBNSllzMU9ydnE5WVJrRUF0NjcrRUhTazBRZzdy?=
+ =?utf-8?B?V3lDRjM3bHNDYjVvSzNEaFpJK2xSZnVjRWlINWJMWVMreXI4ZkVKb0hYWUk4?=
+ =?utf-8?B?NU1kaWR5YkJVVUx1QU5GZXlIRVRpQTBjR01Hd3RmdmVNRUEwb3VCMjhIUEVy?=
+ =?utf-8?B?THlvbFdaWXA4V2VGdHlaTC80WlFob2lFYUI3QTVMUlg3YnY4M05LWnVXc1M0?=
+ =?utf-8?B?U09BVjlEajdXeE96cGtqbVVQbk9lRG0wYUZBcXgrbFMzOUJVVFpNaVU0QkFR?=
+ =?utf-8?B?RU5PYkZVN3Zyd1JBeFdFUHI1WEpzaFRUQzlaMjdYWDl1ZStCem44L3h5bHI3?=
+ =?utf-8?B?N1pmL3MvR0NxTDhySW1wcjNtT2tzNHhCRlNkd091YkcwN3k0OUVhb2tpRFV6?=
+ =?utf-8?B?Y01GOVFJOWNidXlWV0xCNzJRZTB0VFc4Z25oRzNteVlLYjg3UkRMNThEYy9k?=
+ =?utf-8?B?VWJ6eHRVUnBuQ2ZUTWh3N3o2R2RYUW5OZWwwclJsRVIzUktydjVkai9XRVkx?=
+ =?utf-8?B?bzFVRVZRZmNKQ2c0WTZOOWRvRFNEakwvNmxhTGYzNmJMTFBUcUhsUGlLL1pz?=
+ =?utf-8?B?YkE1Zi9RVFRPeWVuU2FxUVlqK3VuTDFYQ0Vaa3NRSnJibHFJUzQ4Wms3RzJZ?=
+ =?utf-8?B?YURYanJhWWFiZFRybFIyZ01iMTBvMkY3SCtHSjJTWGQ2T3hWdnZRVEc2S2Jr?=
+ =?utf-8?B?WGY3N0tUUTNKTmdQeGpKRmtLcXdTcHVFY2hUeFZLSUQ5NXJxb2VCUGh4dXpO?=
+ =?utf-8?B?eExOdk9yZytwWEN1b3ZOYzZsVzNUTVl5OHQwTVZkS1RDakJGV1o3Q2gzaE5u?=
+ =?utf-8?B?Smpxa1k4S0xFQklFUHJqUlFGTmM1a1hIV0xiNERRajZ5Qis5eStTdzQ3WGpI?=
+ =?utf-8?B?OEhSQzZwRGw2UDdUc2VRT2VhWnZXa21NMnhPdVd3KzhnQnA4d1JlK1BGSmFn?=
+ =?utf-8?B?ZEVmVStkbGFnQXl5SnJLZFlEczZpbGNmTzRzOU9NY3AvQmxtV1lOVEtQU3Fy?=
+ =?utf-8?B?YURyYVlnRGNnaDFUTnhTM3VmUkg0YnhVV1l0WlIvTkpaMTdEQnR1OTBZYXhs?=
+ =?utf-8?B?NWNFbFIvZjlwTDZuaGxydFVPZm5ocVlsTjBOcGNVTGpqLzNqb3A2SXE5aGw0?=
+ =?utf-8?B?cU85L2xvZEJxa0xSdk5wNFp0VEZnN3cxWTVQT2xRNnBlK3JRNmlUWTRUSGJX?=
+ =?utf-8?B?TUdSeCthZVhXWlJuRDBUbkE1V2podnlRWmZ0MnQvbmlrcDZITCtPNTYrOU0w?=
+ =?utf-8?B?VmJPZzA0em1BMGhtT2diSTExK2xFL2tEUE5zeTBKN3FGaG5hdDQ1aGpLRHVz?=
+ =?utf-8?B?ZTZwK3dJME9nYjFMTDhyckhzNnhCemEyWTZGcHZucGQ4cktJaEc3Rm9IbS8w?=
+ =?utf-8?B?V2prdWlNVkRGSzFzdzBpaXJ2U3prQVdwODRmYXZjY3dpZk53UXgrYmVYWCtG?=
+ =?utf-8?B?ckRFZC9USUxZRiszTWprOFRnZVM1QVlUMmIweGtKUEZMSTZyWFdPMTN1bkpM?=
+ =?utf-8?Q?IGtbwbR2XQ0=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M0RSKy81STNhd0wxa1ppdVIzbjhTRHJrdEFmSWlVNmhSa2sxWVRocW9uTmtq?=
+ =?utf-8?B?bkMvdXkrcTFQVW1JbzRGb2F3K0ZnZFo3NDdURTR6NmgxVjRTbHF5Z0dLclhU?=
+ =?utf-8?B?QUtZSVRZekNZczIwa1VkaHlqQThpM0dxaUFYUytmN2c5T29JckFWZW53MDVx?=
+ =?utf-8?B?M2YrMlgxYnAwZU5JWGx0N3U1d1BIeldibzdEcVplVWhBYXFxU3Rsb0RMK3dI?=
+ =?utf-8?B?dm1HTFRjcTU3WmJEZTU2V2tKajhiU2NVY28rMllOYlh5bEk2R2haNndOT0ll?=
+ =?utf-8?B?SDlHQVVqdHlCQ0hGTUU0Y28zSjV3Yk04UHgxM0FkbUZkUHI0SnRJV1h3US9v?=
+ =?utf-8?B?UisvTkZiaUN1eW9sT3dudGZkN1NqZ3ZweFpERUZTN1E2NEtIZjJneDI3U3hW?=
+ =?utf-8?B?U3puckxpdmxteE1aV2ZGbTR5SlBNZlVqVkMraUxwZUJWdENXRFk5VzZiWVYr?=
+ =?utf-8?B?MnY4NFAzRGx1aWQrRmlqdXpVNmR3amt1MEZZQkJEU3MzaDdXbndGRnNoMHFZ?=
+ =?utf-8?B?bEdrWkJnc0pVMU1STlFZNEh5cHR0R3BmUmMxQzVvekl4YXVSK2FLN0lhTmhw?=
+ =?utf-8?B?WGlnUlc1K1JKR0c4emovM01SaGFLVDRUZEkzR3lxQWhPdklaeHkxQ2NiaUZE?=
+ =?utf-8?B?bk4wbGdRSkdaZDlpL0psY0gzeW5sTG5DTzdsTmRqKzk2MTQ1UmF1NjMvUzNT?=
+ =?utf-8?B?YUM2TEhLc3RXK2xaUWRxaDk4d0NTS3BDeVZjRHk2WTFrWUgwNytVSWpQQURs?=
+ =?utf-8?B?cDFNaWtOQWwyZ3JCWWlBaDdEWER2TUw1RXFoQTJrRTNiYWF0MHZKOXBneFVq?=
+ =?utf-8?B?aTdDYUdFbWJyczBQeW9WNVJuamFTTEptZ2V3OHpoQ29TSUZ1Q3h4TTBnVk54?=
+ =?utf-8?B?YmxlSzhyMzVKczdjdmpOQUxSL0liOVFoYW9HdVUwZnpoWEZjMVBrcXRTTnQx?=
+ =?utf-8?B?VzdYZWx0ZFBPeTNUMmtnK3N0eGJGYjZZYmg1ekRqU3ZvUnUyelBmSExZbkEv?=
+ =?utf-8?B?TDI1RGJpcXBHV3hjK2hYSG9jVng2NEllZzZTekNRelA5UmhVNTRYYnNBYXVZ?=
+ =?utf-8?B?NWZzUFlSR1pGT2hIajlxa201cldaYUloemVDeUoxU2RadjJ6dVlYQm1seDBI?=
+ =?utf-8?B?RDZ0aGE3MmswN01PRDVOdU43T3FpcjR4Y3g3WGRrSHhrYlpJUC9KaVVkSm4v?=
+ =?utf-8?B?NGtYc1FpRy9vSnJxdUpkWFFwV3pYTmlSVlpqcTU4SSsyV3IwVnhnYWNQbGRR?=
+ =?utf-8?B?VlRycXlsT3BnbDViQTRxdVhGbDEwajk5Qm9xbVFrNjFtQWI5cmJpVWxvaHI5?=
+ =?utf-8?B?b0k0cFRNWnI5cTdEZ1ozTmI3dVlRbVFsUEw3MjBzd3cyVFBLcm1rZWxSa1RG?=
+ =?utf-8?B?SVpERUV3NHAyblFxeHpTVjdUMHhPR00rb2tjUEZsZm9zb1AvVmNYMDVSSUJo?=
+ =?utf-8?B?bmQwNkZrcWxBa2lNSU5IdFh4dkhCUmRrNFlyNzM4OUhYTmRBMkNYbEV3WHhz?=
+ =?utf-8?B?b1B1cE5XOVBjUFJrVHQ4VWZZdTFYejdRcW9lbVJrS2RjaHoxYmpMMVpUOE53?=
+ =?utf-8?B?LzVCOVJQb1A4SzVNWVBOZzZMTEU3MndMNWR1UE5UUGU4RS9BdTh5RWppWVND?=
+ =?utf-8?B?aXBNSU82TEdERGFiRkpWSEdteVluSEcvZlQxMEcvRzAvNzlPMTJTQWJTaXZp?=
+ =?utf-8?B?U0F2cTJucUZ0ZkdVNUh4Zi8wdnQvRjlHL0FFVnBSUDdZaXVtSFZhVFVOSnVV?=
+ =?utf-8?B?NVZyZjB0WTB0YU9USFlLcGw0alRQaUZTSlExaW1JMWNFZ0dkNVQ1OU5MRjE5?=
+ =?utf-8?B?ekhFdXlKaUQ0M2VJeXVMODVRYzk3ankxNW9VUlNjL1V4M0x1N3ZpMDY0TU5h?=
+ =?utf-8?B?S2d6YnlocGh6aHpxcjF5R0srOERkZW95WGlwZE9ScTlYWGlIV1IrbGdOeWEx?=
+ =?utf-8?B?VDJPMk5zMTBrTjJ3aEM2OFhXUWRVUHdjMnJZVkszSnliTUxublpzWkpkMFdQ?=
+ =?utf-8?B?akZRVDJ0M1V2eHdnOHh1TEg4Sk9pOTFCSXBVSSsrQkg3cXhaREVMQXdUcjh2?=
+ =?utf-8?B?Rm9jRng4RVBlMlJKdmNPQnlWWHFXaEx0ejZ2bS9yVDNRN0Z2ejRlWndGdExH?=
+ =?utf-8?B?eExKY3JrcHFDM2s2ZlZ4VjhhbnZRaFNnbEtydW1VN3dPMXZia0E5eXY4OUwr?=
+ =?utf-8?Q?H3dytFW1uov/4TbGHbdyHWw=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3fa4a053-246e-4130-1828-08ddc3795836
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2025 08:26:49.8324 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: l/YRHI/h3ut2eyISnFqg4ooI7hHn5Q2VEfBpYT7n6h/ajt0VWmIf75DpnsotiV8Oayr2oHjbR2TvclzdmSIkDD3J0uWnvi6pQwzmQdNYdok=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5793
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,138 +198,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 15/07/2025 09:37, Matthew Auld wrote:
+
+
+On 15-07-2025 13:45, Matthew Auld wrote:
 > On 14/07/2025 18:33, Matthew Brost wrote:
->> While SVM does not currently support compression, other users of
->> xe_migrate_vram (e.g., devcoredump) expect the data to be read back
->> uncompressed. Update xe_migrate_vram to support compressed data.
+>> This is not yet supported, forcefully disable by setting pat_index to
+>> zero for CPU address mirror VMAs.
 >>
 >> Cc: stable@vger.kernel.org
->> Fixes: 9c44fd5f6e8a ("drm/xe: Add migrate layer functions for SVM 
->> support")
+>> Fixes: b43e864af0d4 ("drm/xe/uapi: Add 
+>> DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR")
 >> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_migrate.c | 31 ++++++++++++++++++++++++-------
->>   1 file changed, 24 insertions(+), 7 deletions(-)
+>>   drivers/gpu/drm/xe/xe_vm.c | 5 ++++-
+>>   1 file changed, 4 insertions(+), 1 deletion(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/ 
->> xe_migrate.c
->> index ba1cff2e4cda..936daa2b363d 100644
->> --- a/drivers/gpu/drm/xe/xe_migrate.c
->> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->> @@ -1613,7 +1613,8 @@ static struct dma_fence *xe_migrate_vram(struct 
->> xe_migrate *m,
->>                        unsigned long len,
->>                        unsigned long sram_offset,
->>                        dma_addr_t *sram_addr, u64 vram_addr,
->> -                     const enum xe_migrate_copy_dir dir)
->> +                     const enum xe_migrate_copy_dir dir,
->> +                     bool needs_ccs_emit)
->>   {
->>       struct xe_gt *gt = m->tile->primary_gt;
->>       struct xe_device *xe = gt_to_xe(gt);
->> @@ -1623,10 +1624,12 @@ static struct dma_fence 
->> *xe_migrate_vram(struct xe_migrate *m,
->>       u64 src_L0_ofs, dst_L0_ofs;
->>       struct xe_sched_job *job;
->>       struct xe_bb *bb;
->> -    u32 update_idx, pt_slot = 0;
->> +    u32 update_idx, pt_slot = 0, flush_flags = 0;
->>       unsigned long npages = DIV_ROUND_UP(len + sram_offset, PAGE_SIZE);
->>       unsigned int pitch = len >= PAGE_SIZE && !(len & ~PAGE_MASK) ?
->>           PAGE_SIZE : 4;
->> +    bool use_comp_pat = xe_device_has_flat_ccs(xe) &&
->> +        GRAPHICS_VER(xe) >= 20 && dir == XE_MIGRATE_COPY_TO_SRAM;
->>       int err;
->>       if (drm_WARN_ON(&xe->drm, (len & XE_CACHELINE_MASK) ||
->> @@ -1637,6 +1640,8 @@ static struct dma_fence *xe_migrate_vram(struct 
->> xe_migrate *m,
->>       batch_size += pte_update_cmd_size(len);
->>       batch_size += EMIT_COPY_DW;
->> +    if (needs_ccs_emit)
->> +        batch_size += EMIT_COPY_CCS_DW;
->>       bb = xe_bb_new(gt, batch_size, use_usm_batch);
->>       if (IS_ERR(bb)) {
->> @@ -1652,7 +1657,7 @@ static struct dma_fence *xe_migrate_vram(struct 
->> xe_migrate *m,
->>           dst_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr, false);
->>       } else {
->> -        src_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr, false);
->> +        src_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr, use_comp_pat);
->>           dst_L0_ofs = xe_migrate_vm_addr(pt_slot, 0) + sram_offset;
->>       }
->> @@ -1661,6 +1666,17 @@ static struct dma_fence *xe_migrate_vram(struct 
->> xe_migrate *m,
->>       emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, len, pitch);
->> +    if (needs_ccs_emit) {
->> +        if (dir == XE_MIGRATE_COPY_TO_VRAM)
->> +            flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs,
->> +                              false, dst_L0_ofs,
->> +                              true, len, 0, true);
->> +        else
->> +            flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs,
->> +                              true, dst_L0_ofs,
->> +                              false, len, 0, true);
->> +    }
+>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>> index 2035604121e6..73cb981c0956 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>> @@ -2362,7 +2362,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, 
+>> struct xe_vma_ops *vops,
+>>               op->map.is_cpu_addr_mirror = flags &
+>>                   DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
+>>               op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
+>> -            op->map.pat_index = pat_index;
+>> +            if (op->map.is_cpu_addr_mirror)
+>> +                op->map.pat_index = 0;
 > 
-> I think we can drop this and anything related to needs_ccs_emit.  In 
-> theory we should only need the use_comp_pat change. IIUC this path is 
-> VRAM only, and only xe2+ can be decompressed in the KMD (dg2 is no-go), 
-> and for that we don't manage the raw CCS state.
+> Is this meant as a safe default or is this just a dummy value? If this 
+> actually gets programmed in the hw, maybe XE_CACHE_WB would be better 
+> here? That way we know exactly what it does from driver POV for a given 
+> platform. Index zero for example might have no host coherency (might 
+> then need WC on host). In some world index zero could enable compression.
 
-So xe_migrate_ccs_copy() is not actually decompressing anything, but 
-rather copying the raw CCS state around, which I think we use for manual 
-save/restore during swap and things like that to preserve the 
-compression state.
-
-I think we do also use xe_migrate_ccs_copy() to intitially clear the CCS 
-state, but I think that has already happened somewhere else? Or do we 
-need it here, if we say go from tt -> vram on platforms like dg2?
++1
 
 > 
->> +
->>       job = xe_bb_create_migration_job(m->q, bb,
->>                        xe_migrate_batch_base(m, use_usm_batch),
->>                        update_idx);
->> @@ -1669,7 +1685,7 @@ static struct dma_fence *xe_migrate_vram(struct 
->> xe_migrate *m,
->>           goto err;
->>       }
->> -    xe_sched_job_add_migrate_flush(job, 0);
->> +    xe_sched_job_add_migrate_flush(job, flush_flags);
->>       mutex_lock(&m->job_mutex);
->>       xe_sched_job_arm(job);
->> @@ -1708,7 +1724,7 @@ struct dma_fence *xe_migrate_to_vram(struct 
->> xe_migrate *m,
->>                        u64 dst_addr)
->>   {
->>       return xe_migrate_vram(m, npages * PAGE_SIZE, 0, src_addr, 
->> dst_addr,
->> -                   XE_MIGRATE_COPY_TO_VRAM);
->> +                   XE_MIGRATE_COPY_TO_VRAM, false);
->>   }
->>   /**
->> @@ -1729,7 +1745,7 @@ struct dma_fence *xe_migrate_from_vram(struct 
->> xe_migrate *m,
->>                          dma_addr_t *dst_addr)
->>   {
->>       return xe_migrate_vram(m, npages * PAGE_SIZE, 0, dst_addr, 
->> src_addr,
->> -                   XE_MIGRATE_COPY_TO_SRAM);
->> +                   XE_MIGRATE_COPY_TO_SRAM, false);
->>   }
->>   static void xe_migrate_dma_unmap(struct xe_device *xe, dma_addr_t 
->> *dma_addr,
->> @@ -1890,7 +1906,8 @@ int xe_migrate_access_memory(struct xe_migrate 
->> *m, struct xe_bo *bo,
->>                         dma_addr + current_page,
->>                         vram_addr, write ?
->>                         XE_MIGRATE_COPY_TO_VRAM :
->> -                      XE_MIGRATE_COPY_TO_SRAM);
->> +                      XE_MIGRATE_COPY_TO_SRAM,
->> +                      xe_bo_needs_ccs_pages(bo));
->>           if (IS_ERR(__fence)) {
->>               if (fence)
->>                   dma_fence_wait(fence, false);
+>> +            else
+>> +                op->map.pat_index = pat_index;
+>>               op->map.invalidate_on_bind =
+>>                   __xe_vm_needs_clear_scratch_pages(vm, flags);
+>>           } else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
 > 
 
