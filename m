@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76F01C83F1D
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 08:15:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49AE0C83F1D
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 08:17:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37D0C10E558;
-	Tue, 15 Jul 2025 08:15:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I8UJI60g";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C913410E57D
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 08:15:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752567333; x=1784103333;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bgHqEHDnZY1iOgD5mGNfQ2QZUuBw+LlMsjhE1ieKMfY=;
- b=I8UJI60gzo/mOesewvtn4S0HtuYow/KjF4E6VQ0fohO9ycAtpvhT7YMQ
- b12icYUZu1KK8YNQuINNmjD5jC5pGYFwOTh8T8jHSfeKiuNp56LkTzjSO
- CDshPBcueRcq/cMUjAfgiepb3BMRxrsXsm9JpbnPT9ymGXRfC6DSoxjXi
- Z66AOrxUV/pQKhn/PX3/YVB7quE/IHbbJIBmXu+OLckpWLcJjyVaOnz/B
- HcosUF9P1xMDeMW+zxBOnESwR8gwFj0+zvPN+eT+f/lfQkRVzBcLkNPRo
- EK1bA+d3G5IRzZ9bEKQxNXXbW2ZdFzoh5iJskvhoFTnHG3sfRd7y6sxS4 Q==;
-X-CSE-ConnectionGUID: Zh6LJ3CQRTymvm7a/5mBrw==
-X-CSE-MsgGUID: otegovE/QaqldSDaFl9JMA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54485009"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="54485009"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 01:15:33 -0700
-X-CSE-ConnectionGUID: 1nBRDwioSfS8enMfRbmbhA==
-X-CSE-MsgGUID: S+VFLky1RByUPEvheuvcyw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="161703767"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.193])
- ([10.245.244.193])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 01:15:25 -0700
-Message-ID: <338a3400-1202-4c12-a99b-6a45004ce548@intel.com>
-Date: Tue, 15 Jul 2025 09:15:22 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 138AB10E553;
+	Tue, 15 Jul 2025 08:17:32 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C745310E553;
+ Tue, 15 Jul 2025 08:17:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6733512063651132584=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe: Disable compression on SVM
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: michal.mrozek@intel.com, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, thomas.hellstrom@linux.intel.com
-References: <20250714173342.2997396-1-matthew.brost@intel.com>
- <20250714173342.2997396-2-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250714173342.2997396-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Cleaning_up_code_related_to?=
+ =?utf-8?q?_VRAM_regions_and_its_initialization_-_part_2_=28rev15=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Jul 2025 08:17:30 -0000
+Message-ID: <175256745080.161722.1926807352538913233@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250714184818.89201-1-piotr.piorkowski@intel.com>
+In-Reply-To: <20250714184818.89201-1-piotr.piorkowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,41 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 14/07/2025 18:33, Matthew Brost wrote:
-> This is not yet supported, forcefully disable by setting pat_index to
-> zero for CPU address mirror VMAs.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: b43e864af0d4 ("drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR")
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_vm.c | 5 ++++-
->   1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 2035604121e6..73cb981c0956 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2362,7 +2362,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
->   			op->map.is_cpu_addr_mirror = flags &
->   				DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
->   			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
-> -			op->map.pat_index = pat_index;
-> +			if (op->map.is_cpu_addr_mirror)
-> +				op->map.pat_index = 0;
+--===============6733512063651132584==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Is this meant as a safe default or is this just a dummy value? If this 
-actually gets programmed in the hw, maybe XE_CACHE_WB would be better 
-here? That way we know exactly what it does from driver POV for a given 
-platform. Index zero for example might have no host coherency (might 
-then need WC on host). In some world index zero could enable compression.
+== Series Details ==
 
-> +			else
-> +				op->map.pat_index = pat_index;
->   			op->map.invalidate_on_bind =
->   				__xe_vm_needs_clear_scratch_pages(vm, flags);
->   		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
+Series: Cleaning up code related to VRAM regions and its initialization - part 2 (rev15)
+URL   : https://patchwork.freedesktop.org/series/149503/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3412-b012f04b5be909a307ff629b297387e0ed55195a_BAT -> xe-pw-149503v15_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-149503v15_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3412-b012f04b5be909a307ff629b297387e0ed55195a/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v15/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8457 -> IGT_8458
+  * Linux: xe-3412-b012f04b5be909a307ff629b297387e0ed55195a -> xe-pw-149503v15
+
+  IGT_8457: 756ebdbf0e4c75f0680c0a36db206a9f6ff126ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8458: ff0457015d1bea8b5276b6b36c4bff6093081799 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3412-b012f04b5be909a307ff629b297387e0ed55195a: b012f04b5be909a307ff629b297387e0ed55195a
+  xe-pw-149503v15: 149503v15
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v15/index.html
+
+--===============6733512063651132584==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Cleaning up code related to VRAM regions and its initialization - part 2 (rev15)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149503/">https://patchwork.freedesktop.org/series/149503/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v15/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v15/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3412-b012f04b5be909a307ff629b297387e0ed55195a_BAT -&gt; xe-pw-149503v15_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-149503v15_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3412-b012f04b5be909a307ff629b297387e0ed55195a/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149503v15/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8457 -&gt; IGT_8458</li>
+<li>Linux: xe-3412-b012f04b5be909a307ff629b297387e0ed55195a -&gt; xe-pw-149503v15</li>
+</ul>
+<p>IGT_8457: 756ebdbf0e4c75f0680c0a36db206a9f6ff126ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8458: ff0457015d1bea8b5276b6b36c4bff6093081799 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3412-b012f04b5be909a307ff629b297387e0ed55195a: b012f04b5be909a307ff629b297387e0ed55195a<br />
+  xe-pw-149503v15: 149503v15</p>
+
+</body>
+</html>
+
+--===============6733512063651132584==--
