@@ -4,49 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A2ACC83F17
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82E42C83F22
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 18:14:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 393C510E626;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C5C710E234;
 	Tue, 15 Jul 2025 18:14:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PUd2L4IM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iu3ut+WI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 693D910E234
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 18:14:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 322DF10E234
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 18:14:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752603289; x=1784139289;
+ t=1752603290; x=1784139290;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oeLfRlKrcsVHEAborRxPcc4/sXx8kjr4wT3LAC7NI74=;
- b=PUd2L4IMRc7M0iX1BdKYjVg6sDkfnXJfyE7ugvJL/vhAn45iuhg9/pvH
- hqpA1ra1wSLEtZjvnFUN4sG0ij9S7Dfsuv52mRW08iXrXujC0elcHtuTH
- K2WVMNNyEVb+0IuQOBXBGEWGHSFDc01EdTwOgzj+zxprnTDRXeG5sERIS
- VlBhYchlQOKgSSP4byPMJmyNFp4AvJJ5zgRb8BpLUso/8frMb3q/04vHV
- Lzc4kVFkj3MpIR9jZ/MhAruS4dP9pw0XKoX1cu+/CPOUvhjRTvHGWPOTI
- uxeUoAn91yDCzAFivZkflU991Jm7xxMy+VE0nSYjQlBOxDtNuNHWonjX/ w==;
-X-CSE-ConnectionGUID: gWs0dRHOTH2CmuHhJQ6h4w==
-X-CSE-MsgGUID: OZNmtC9cRh+4TYeXT4nyQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="65406508"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="65406508"
+ bh=3rt60e6eol0tIbgqpOGpku5pcFCrx6AHxF4yiLDNY74=;
+ b=iu3ut+WIviQPYvetqO4AH8Fg+ilZ/7NmvP4DbzlIVchBGhTB03JWdwOP
+ ECRFs9oEJ3FdDVG8nuKFXrqnyGN4VywO6lMa4Ljk3gVI0LG0g9Z3DTbnH
+ nvCYIxnMkQm9Uq59YohCH0JP7SDUO2x/C2NH5I/hCdQPagcNWIFzVNvNR
+ ot7F8Owu/F4B1Jb3IzhyFDCSLb7ITEcjOMSlw37kpmEJK3Shxlae6NVQo
+ Mc3wwtR/gdEgmUayrZMowYDirfWsr+4xiklLX9DfziwG9O5XESOgg1xRl
+ F2qmVvJowca+rr6k1YIPj+ErhjORBjSKGvr5mKhbVXJ7/fiXC35pmm+fk A==;
+X-CSE-ConnectionGUID: bERJm+m8Tr6opkFC5BZhEg==
+X-CSE-MsgGUID: SnZb7fRYSuCkAXC+v43giQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="65406511"
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="65406511"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 11:14:48 -0700
-X-CSE-ConnectionGUID: tfiUorqbS1aTW9nSkVmjPA==
-X-CSE-MsgGUID: jtni4JicS8WZJ8O8OMnJOg==
+ 15 Jul 2025 11:14:50 -0700
+X-CSE-ConnectionGUID: 7//T/Jg1SWyw0HywKlFmLg==
+X-CSE-MsgGUID: msb05aO4TyqV2wmrMHlVsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="162845982"
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="162845985"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.253.198])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 11:14:47 -0700
+ 15 Jul 2025 11:14:48 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 1/4] Revert "drm/xe: Enable SR-IOV for ADL/ATSM"
-Date: Tue, 15 Jul 2025 20:14:15 +0200
-Message-Id: <20250715181419.807-2-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 2/4] drm/xe/pf: Enable SR-IOV PF mode by default
+Date: Tue, 15 Jul 2025 20:14:16 +0200
+Message-Id: <20250715181419.807-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20250715181419.807-1-michal.wajdeczko@intel.com>
 References: <20250715181419.807-1-michal.wajdeczko@intel.com>
@@ -66,88 +69,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit bbd6af134c0cf7934985fe2b4a5841f91760d61b.
-This commit is from CI-topic branch and will be applied again.
+We already claim official support for SR-IOV PF/VF modes on PTL
+and BMG platforms, but by default we start the Xe driver on those
+platforms in non-virtualized mode (native) since we still have
+max_vfs modparam set to disable creation of the VFs.
+
+It's time to let the Xe driver support SR-IOV PF mode by default.
+We were already testing this on our CI, which was relying on the
+patch that was enabling it for CONFIG_DRM_XE_DEBUG used by our CI.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_module.c | 10 +---------
- drivers/gpu/drm/xe/xe_pci.c    |  4 ----
- 2 files changed, 1 insertion(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_module.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 064093bf1adc..107ffe87808c 100644
+index 107ffe87808c..d9391bd08194 100644
 --- a/drivers/gpu/drm/xe/xe_module.c
 +++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -20,12 +20,8 @@
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- #define DEFAULT_GUC_LOG_LEVEL		3
--#define DEFAULT_MAX_VFS			~0
--#define DEFAULT_MAX_VFS_STR		"unlimited"
- #else
- #define DEFAULT_GUC_LOG_LEVEL		1
--#define DEFAULT_MAX_VFS			0
--#define DEFAULT_MAX_VFS_STR		__stringify(DEFAULT_MAX_VFS)
- #endif
- 
+@@ -27,6 +27,8 @@
  #define DEFAULT_PROBE_DISPLAY		true
-@@ -38,9 +34,6 @@ struct xe_modparam xe_modparam = {
+ #define DEFAULT_VRAM_BAR_SIZE		0
+ #define DEFAULT_FORCE_PROBE		CONFIG_DRM_XE_FORCE_PROBE
++#define DEFAULT_MAX_VFS			~0
++#define DEFAULT_MAX_VFS_STR		"unlimited"
+ #define DEFAULT_WEDGED_MODE		1
+ #define DEFAULT_SVM_NOTIFIER_SIZE	512
+ 
+@@ -34,6 +36,9 @@ struct xe_modparam xe_modparam = {
  	.probe_display =	DEFAULT_PROBE_DISPLAY,
  	.guc_log_level =	DEFAULT_GUC_LOG_LEVEL,
  	.force_probe =		DEFAULT_FORCE_PROBE,
--#ifdef CONFIG_PCI_IOV
--	.max_vfs =		DEFAULT_MAX_VFS,
--#endif
++#ifdef CONFIG_PCI_IOV
++	.max_vfs =		DEFAULT_MAX_VFS,
++#endif
  	.wedged_mode =		DEFAULT_WEDGED_MODE,
  	.svm_notifier_size =	DEFAULT_SVM_NOTIFIER_SIZE,
  	/* the rest are 0 by default */
-@@ -86,8 +79,7 @@ MODULE_PARM_DESC(force_probe,
+@@ -79,7 +84,8 @@ MODULE_PARM_DESC(force_probe,
  module_param_named(max_vfs, xe_modparam.max_vfs, uint, 0400);
  MODULE_PARM_DESC(max_vfs,
  		 "Limit number of Virtual Functions (VFs) that could be managed. "
--		 "(0=no VFs; N=allow up to N VFs "
--		 "[default=" DEFAULT_MAX_VFS_STR "])");
-+		 "(0 = no VFs [default]; N = allow up to N VFs)");
+-		 "(0 = no VFs [default]; N = allow up to N VFs)");
++		 "(0=no VFs; N=allow up to N VFs "
++		 "[default=" DEFAULT_MAX_VFS_STR "])");
  #endif
  
  module_param_named_unsafe(wedged_mode, xe_modparam.wedged_mode, int, 0600);
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index dc4c8e861a84..53d45779cbe9 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -193,7 +193,6 @@ static const struct xe_device_desc adl_s_desc = {
- 	.dma_mask_size = 39,
- 	.has_display = true,
- 	.has_llc = true,
--	.has_sriov = IS_ENABLED(CONFIG_DRM_XE_DEBUG),
- 	.max_gt_per_tile = 1,
- 	.require_force_probe = true,
- 	.subplatforms = (const struct xe_subplatform_desc[]) {
-@@ -211,7 +210,6 @@ static const struct xe_device_desc adl_p_desc = {
- 	.dma_mask_size = 39,
- 	.has_display = true,
- 	.has_llc = true,
--	.has_sriov = IS_ENABLED(CONFIG_DRM_XE_DEBUG),
- 	.max_gt_per_tile = 1,
- 	.require_force_probe = true,
- 	.subplatforms = (const struct xe_subplatform_desc[]) {
-@@ -227,7 +225,6 @@ static const struct xe_device_desc adl_n_desc = {
- 	.dma_mask_size = 39,
- 	.has_display = true,
- 	.has_llc = true,
--	.has_sriov = IS_ENABLED(CONFIG_DRM_XE_DEBUG),
- 	.max_gt_per_tile = 1,
- 	.require_force_probe = true,
- };
-@@ -273,7 +270,6 @@ static const struct xe_device_desc ats_m_desc = {
- 
- 	DG2_FEATURES,
- 	.has_display = false,
--	.has_sriov = IS_ENABLED(CONFIG_DRM_XE_DEBUG),
- };
- 
- static const struct xe_device_desc dg2_desc = {
 -- 
 2.47.1
 
