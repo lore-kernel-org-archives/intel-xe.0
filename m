@@ -4,59 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F44CC83F17
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 18:14:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A06F6C83F17
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 18:21:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 369C110E629;
-	Tue, 15 Jul 2025 18:14:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6254D10E626;
+	Tue, 15 Jul 2025 18:21:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ngw0ubLV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="emyTgeT1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D16B10E629
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 18:14:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44C7710E626;
+ Tue, 15 Jul 2025 18:21:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752603295; x=1784139295;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+X+7Jt0Pmg4fl0aA6t6wI0y1xhY2Ltpf6raRXowVIZc=;
- b=ngw0ubLVJ0Bm0Ez81ppN1/5jEJEzGUQzYggN1DFeZqRvl/GZfKKS98/M
- n2ivCdn3BxhgS8Q0vDLABN3/wRXrIIDtQsJX2Kh+RhKDYyPOgIhS/GLN0
- 9FWo1NSqVvXttPkIEAyDXjcG+mOV5xhr5nVitbJYk2SDiGgJlYDVyjRED
- YzGlSY7BVNZDAhomLSsPikAL+BeSJPISVxQI5EdxyQ4/u/oF6lV9egVL6
- UhpsqUPU02Kv30bKycsQOaxk2XwvDndDNKoFTapZC6X3OrIR/li6wNIxq
- 1JM78sOLqTOcFq2Mkfr8pOQFHM8xG/yNz5jJTcyX7r3csU2kIYhqy6041 A==;
-X-CSE-ConnectionGUID: YFLUWaM3QQqlxV1y4wIXbg==
-X-CSE-MsgGUID: x+YnPNyuR0Kqu6oVjB7GNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="65406516"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="65406516"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 11:14:55 -0700
-X-CSE-ConnectionGUID: GxNS5oCjQw6UUft4tRRjCw==
-X-CSE-MsgGUID: i1LtvJFpRNSb2kjHehLFCg==
+ t=1752603665; x=1784139665;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=iMeutk6WZ2r0algnTZt4qA/gpmAjHjms+LntI82YeQw=;
+ b=emyTgeT1ivcyIZPUMS7nbzSIIjHZEbccBYfYh6wS78RD0GBSC7ZOOhiR
+ dszbFOYmYDSRdjZU02+e+qkOhqqWhT+RIp+Izc+Uce0SA/vdNMRNWIFdd
+ 0tCY+6vpImBkGujCvXad6eeHll4P4I1ZYdxMZMQ9l/jWgWvTt99wiVorD
+ QSUM8IgfwxW0s+9sDFGB37ubS6o32CJYqnwnnPx2Kzio5L99MMKLPJv+O
+ 07Y23njUJN26IPKC8VJ/V830lR0qD1XREQC3HC+uOv3ARb4NTYFLoLhIh
+ oVq96JB6vYqS2dryD/pqlQqCZE7nc1R53xRtsBBWAo1kqWU0nBeDj6OIt w==;
+X-CSE-ConnectionGUID: IWmsk4+ERWGLziauCWLC5Q==
+X-CSE-MsgGUID: k5nCKUo6Rzm2xogm/1ci/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="80281003"
+X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; d="scan'208";a="80281003"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2025 11:21:04 -0700
+X-CSE-ConnectionGUID: zBjR1nOcT4W+3o7Abx+zrw==
+X-CSE-MsgGUID: KXHbkmZWQiunWTLSbB54Kg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="162845991"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.253.198])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 11:14:52 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH 4/4] drm/xe: Enable SR-IOV for ADL/ATSM
-Date: Tue, 15 Jul 2025 20:14:18 +0200
-Message-Id: <20250715181419.807-5-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20250715181419.807-1-michal.wajdeczko@intel.com>
-References: <20250715181419.807-1-michal.wajdeczko@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; d="scan'208";a="162936146"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.245.63])
+ by orviesa005.jf.intel.com with SMTP; 15 Jul 2025 11:20:59 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 15 Jul 2025 21:20:58 +0300
+Date: Tue, 15 Jul 2025 21:20:58 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: linux-kernel@vger.kernel.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ Imre Deak <imre.deak@intel.com>,
+ David Laight <david.laight.linux@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Matt Wagantall <mattw@codeaurora.org>, Dejin Zheng <zhengdejin5@gmail.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH v2 1/4] iopoll: Generalize read_poll_timeout() into
+ poll_timeout_us()
+Message-ID: <aHacCnkuMCwNYin8@intel.com>
+References: <20250702223439.19752-1-ville.syrjala@linux.intel.com>
+ <20250708131634.1524-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250708131634.1524-1-ville.syrjala@linux.intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,82 +79,248 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We should now have sufficient changes in the Xe driver changes to
-run it on ADL and ATSM platforms in the PF mode, to configure VFs
-and successfully probe driver on the enabled VF devices.
+On Tue, Jul 08, 2025 at 04:16:34PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> While read_poll_timeout() & co. were originally introduced just
+> for simple I/O usage scenarios they have since been generalized to
+> be useful in more cases.
+> 
+> However the interface is very cumbersome to use in the general case.
+> Attempt to make it more flexible by combining the 'op', 'var' and
+> 'args' parameter into just a single 'op' that the caller can fully
+> specify.
+> 
+> For example i915 has one case where one might currently
+> have to write something like:
+> 	ret = read_poll_timeout(drm_dp_dpcd_read_byte, err,
+> 				err || (status & mask),
+> 				0 * 1000, 200 * 1000, false,
+> 				aux, DP_FEC_STATUS, &status);
+> which is practically illegible, but with the adjusted macro
+> we do:
+> 	ret = poll_timeout_us(err = drm_dp_dpcd_read_byte(aux, DP_FEC_STATUS, &status),
+> 			      err || (status & mask),
+> 			      0 * 1000, 200 * 1000, false);
+> which much easier to understand.
+> 
+> One could even combine the 'op' and 'cond'  parameters into
+> one, but that might make the caller a bit too unwieldly with
+> assignments and checks being done on the same statement.
+> 
+> This makes poll_timeout_us() closer to the i915 __wait_for()
+> macro, with the main difference being that __wait_for() uses
+> expenential backoff as opposed to the fixed polling interval
+> used by poll_timeout_us(). Eventually we might be able to switch
+> (at least most of) i915 to use poll_timeout_us().
+> 
+> v2: Fix typos (Jani)
+>     Fix delay_us docs for poll_timeout_us_atomic() (Jani)
+> 
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: David Laight <david.laight.linux@gmail.com>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Matt Wagantall <mattw@codeaurora.org>
+> Cc: Dejin Zheng <zhengdejin5@gmail.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  include/linux/iopoll.h | 110 +++++++++++++++++++++++++++++------------
+>  1 file changed, 78 insertions(+), 32 deletions(-)
 
-While some more changes are likely still needed to fix all corner
-cases, we will not find them without running any tests. To start
-testing this feature by the CI, we need to mark which platforms
-have basic SR-IOV support and let the driver run in the PF mode.
+Any thoughs how we should get this stuff in? Jani will need it for
+some i915 stuff once he returns from vacation, so I could just push
+it into drm-intel-next...
 
-Since this feature support is still in the early testing stage,
-make all enabling available only for CONFIG_DRM_XE_DEBUG=y and
-keep it on CI topic branch.
+Are people OK with that, or is there a better tree that could pick 
+this up?
 
-Note that from this point, on selected platforms, the Xe driver
-will be acting as a PF driver, will some SR-IOV specific changes
-compared to running in the non-virtualized (native) mode.
+> 
+> diff --git a/include/linux/iopoll.h b/include/linux/iopoll.h
+> index 91324c331a4b..440aca5b4b59 100644
+> --- a/include/linux/iopoll.h
+> +++ b/include/linux/iopoll.h
+> @@ -14,41 +14,38 @@
+>  #include <linux/io.h>
+>  
+>  /**
+> - * read_poll_timeout - Periodically poll an address until a condition is
+> - *			met or a timeout occurs
+> - * @op: accessor function (takes @args as its arguments)
+> - * @val: Variable to read the value into
+> - * @cond: Break condition (usually involving @val)
+> - * @sleep_us: Maximum time to sleep between reads in us (0 tight-loops). Please
+> - *            read usleep_range() function description for details and
+> + * poll_timeout_us - Periodically poll and perform an operation until
+> + *                   a condition is met or a timeout occurs
+> + *
+> + * @op: Operation
+> + * @cond: Break condition
+> + * @sleep_us: Maximum time to sleep between operations in us (0 tight-loops).
+> + *            Please read usleep_range() function description for details and
+>   *            limitations.
+>   * @timeout_us: Timeout in us, 0 means never timeout
+> - * @sleep_before_read: if it is true, sleep @sleep_us before read.
+> - * @args: arguments for @op poll
+> + * @sleep_before_op: if it is true, sleep @sleep_us before operation.
+>   *
+>   * When available, you'll probably want to use one of the specialized
+>   * macros defined below rather than this macro directly.
+>   *
+> - * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
+> - * case, the last read value at @args is stored in @val. Must not
+> + * Returns: 0 on success and -ETIMEDOUT upon a timeout. Must not
+>   * be called from atomic context if sleep_us or timeout_us are used.
+>   */
+> -#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
+> -				sleep_before_read, args...) \
+> +#define poll_timeout_us(op, cond, sleep_us, timeout_us, sleep_before_op) \
+>  ({ \
+>  	u64 __timeout_us = (timeout_us); \
+>  	unsigned long __sleep_us = (sleep_us); \
+>  	ktime_t __timeout = ktime_add_us(ktime_get(), __timeout_us); \
+>  	might_sleep_if((__sleep_us) != 0); \
+> -	if (sleep_before_read && __sleep_us) \
+> +	if ((sleep_before_op) && __sleep_us) \
+>  		usleep_range((__sleep_us >> 2) + 1, __sleep_us); \
+>  	for (;;) { \
+> -		(val) = op(args); \
+> +		op; \
+>  		if (cond) \
+>  			break; \
+>  		if (__timeout_us && \
+>  		    ktime_compare(ktime_get(), __timeout) > 0) { \
+> -			(val) = op(args); \
+> +			op; \
+>  			break; \
+>  		} \
+>  		if (__sleep_us) \
+> @@ -59,17 +56,16 @@
+>  })
+>  
+>  /**
+> - * read_poll_timeout_atomic - Periodically poll an address until a condition is
+> - * 				met or a timeout occurs
+> - * @op: accessor function (takes @args as its arguments)
+> - * @val: Variable to read the value into
+> - * @cond: Break condition (usually involving @val)
+> - * @delay_us: Time to udelay between reads in us (0 tight-loops). Please
+> - *            read udelay() function description for details and
+> + * poll_timeout_us_atomic - Periodically poll and perform an operation until
+> + *                          a condition is met or a timeout occurs
+> + *
+> + * @op: Operation
+> + * @cond: Break condition
+> + * @delay_us: Time to udelay between operations in us (0 tight-loops).
+> + *            Please read udelay() function description for details and
+>   *            limitations.
+>   * @timeout_us: Timeout in us, 0 means never timeout
+> - * @delay_before_read: if it is true, delay @delay_us before read.
+> - * @args: arguments for @op poll
+> + * @delay_before_op: if it is true, delay @delay_us before operation.
+>   *
+>   * This macro does not rely on timekeeping.  Hence it is safe to call even when
+>   * timekeeping is suspended, at the expense of an underestimation of wall clock
+> @@ -78,27 +74,26 @@
+>   * When available, you'll probably want to use one of the specialized
+>   * macros defined below rather than this macro directly.
+>   *
+> - * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
+> - * case, the last read value at @args is stored in @val.
+> + * Returns: 0 on success and -ETIMEDOUT upon a timeout.
+>   */
+> -#define read_poll_timeout_atomic(op, val, cond, delay_us, timeout_us, \
+> -					delay_before_read, args...) \
+> +#define poll_timeout_us_atomic(op, cond, delay_us, timeout_us, \
+> +			       delay_before_op) \
+>  ({ \
+>  	u64 __timeout_us = (timeout_us); \
+>  	s64 __left_ns = __timeout_us * NSEC_PER_USEC; \
+>  	unsigned long __delay_us = (delay_us); \
+>  	u64 __delay_ns = __delay_us * NSEC_PER_USEC; \
+> -	if (delay_before_read && __delay_us) { \
+> +	if ((delay_before_op) && __delay_us) { \
+>  		udelay(__delay_us); \
+>  		if (__timeout_us) \
+>  			__left_ns -= __delay_ns; \
+>  	} \
+>  	for (;;) { \
+> -		(val) = op(args); \
+> +		op; \
+>  		if (cond) \
+>  			break; \
+>  		if (__timeout_us && __left_ns < 0) { \
+> -			(val) = op(args); \
+> +			op; \
+>  			break; \
+>  		} \
+>  		if (__delay_us) { \
+> @@ -113,6 +108,57 @@
+>  	(cond) ? 0 : -ETIMEDOUT; \
+>  })
+>  
+> +/**
+> + * read_poll_timeout - Periodically poll an address until a condition is
+> + *                     met or a timeout occurs
+> + * @op: accessor function (takes @args as its arguments)
+> + * @val: Variable to read the value into
+> + * @cond: Break condition (usually involving @val)
+> + * @sleep_us: Maximum time to sleep between reads in us (0 tight-loops). Please
+> + *            read usleep_range() function description for details and
+> + *            limitations.
+> + * @timeout_us: Timeout in us, 0 means never timeout
+> + * @sleep_before_read: if it is true, sleep @sleep_us before read.
+> + * @args: arguments for @op poll
+> + *
+> + * When available, you'll probably want to use one of the specialized
+> + * macros defined below rather than this macro directly.
+> + *
+> + * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
+> + * case, the last read value at @args is stored in @val. Must not
+> + * be called from atomic context if sleep_us or timeout_us are used.
+> + */
+> +#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
+> +			  sleep_before_read, args...) \
+> +	poll_timeout_us((val) = op(args), cond, sleep_us, timeout_us, sleep_before_read)
+> +
+> +/**
+> + * read_poll_timeout_atomic - Periodically poll an address until a condition is
+> + *                            met or a timeout occurs
+> + * @op: accessor function (takes @args as its arguments)
+> + * @val: Variable to read the value into
+> + * @cond: Break condition (usually involving @val)
+> + * @delay_us: Time to udelay between reads in us (0 tight-loops). Please
+> + *            read udelay() function description for details and
+> + *            limitations.
+> + * @timeout_us: Timeout in us, 0 means never timeout
+> + * @delay_before_read: if it is true, delay @delay_us before read.
+> + * @args: arguments for @op poll
+> + *
+> + * This macro does not rely on timekeeping.  Hence it is safe to call even when
+> + * timekeeping is suspended, at the expense of an underestimation of wall clock
+> + * time, which is rather minimal with a non-zero delay_us.
+> + *
+> + * When available, you'll probably want to use one of the specialized
+> + * macros defined below rather than this macro directly.
+> + *
+> + * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
+> + * case, the last read value at @args is stored in @val.
+> + */
+> +#define read_poll_timeout_atomic(op, val, cond, sleep_us, timeout_us, \
+> +				 sleep_before_read, args...) \
+> +	poll_timeout_us_atomic((val) = op(args), cond, sleep_us, timeout_us, sleep_before_read)
+> +
+>  /**
+>   * readx_poll_timeout - Periodically poll an address until a condition is met or a timeout occurs
+>   * @op: accessor function (takes @addr as its only argument)
+> -- 
+> 2.49.0
 
-However, those specific changes are visible mostly on the debugfs,
-and should not impact normal driver execution, unless VFs will be
-manually provisioned or explicitly enabled.
-
-Once we finish adding the remaining SR-IOV tests to the CI and fix
-any issues that we find in the meantime, we will replace this patch
-with proper series outside the topic branch.
-
-Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Acked-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240711192320.1198-3-michal.wajdeczko@intel.com
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
-[michal] rebased, for drm-xe/topic/xe-for-CI
----
- drivers/gpu/drm/xe/xe_pci.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 53d45779cbe9..dc4c8e861a84 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -193,6 +193,7 @@ static const struct xe_device_desc adl_s_desc = {
- 	.dma_mask_size = 39,
- 	.has_display = true,
- 	.has_llc = true,
-+	.has_sriov = IS_ENABLED(CONFIG_DRM_XE_DEBUG),
- 	.max_gt_per_tile = 1,
- 	.require_force_probe = true,
- 	.subplatforms = (const struct xe_subplatform_desc[]) {
-@@ -210,6 +211,7 @@ static const struct xe_device_desc adl_p_desc = {
- 	.dma_mask_size = 39,
- 	.has_display = true,
- 	.has_llc = true,
-+	.has_sriov = IS_ENABLED(CONFIG_DRM_XE_DEBUG),
- 	.max_gt_per_tile = 1,
- 	.require_force_probe = true,
- 	.subplatforms = (const struct xe_subplatform_desc[]) {
-@@ -225,6 +227,7 @@ static const struct xe_device_desc adl_n_desc = {
- 	.dma_mask_size = 39,
- 	.has_display = true,
- 	.has_llc = true,
-+	.has_sriov = IS_ENABLED(CONFIG_DRM_XE_DEBUG),
- 	.max_gt_per_tile = 1,
- 	.require_force_probe = true,
- };
-@@ -270,6 +273,7 @@ static const struct xe_device_desc ats_m_desc = {
- 
- 	DG2_FEATURES,
- 	.has_display = false,
-+	.has_sriov = IS_ENABLED(CONFIG_DRM_XE_DEBUG),
- };
- 
- static const struct xe_device_desc dg2_desc = {
 -- 
-2.47.1
-
+Ville Syrjälä
+Intel
