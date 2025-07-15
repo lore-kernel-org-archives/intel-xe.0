@@ -4,66 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A3DDC83F3B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD70AC83F3A
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 20:05:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9723010E687;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74A5E10E684;
 	Tue, 15 Jul 2025 20:05:23 +0000 (UTC)
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com
- [185.176.79.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F29A210E5E1
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 14:07:22 +0000 (UTC)
-Received: from mail.maildlp.com (unknown [172.18.186.231])
- by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bhLBl3dbyz6M4gG;
- Tue, 15 Jul 2025 21:49:03 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
- by mail.maildlp.com (Postfix) with ESMTPS id 7F934140446;
- Tue, 15 Jul 2025 21:50:17 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 15 Jul
- 2025 15:50:15 +0200
-Date: Tue, 15 Jul 2025 14:50:14 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: WangYuli <wangyuli@uniontech.com>
-CC: <airlied@gmail.com>, <akpm@linux-foundation.org>,
- <alison.schofield@intel.com>, <andrew+netdev@lunn.ch>,
- <andriy.shevchenko@linux.intel.com>, <arend.vanspriel@broadcom.com>,
- <bp@alien8.de>, <brcm80211-dev-list.pdl@broadcom.com>,
- <brcm80211@lists.linux.dev>, <colin.i.king@gmail.com>, <cvam0000@gmail.com>,
- <dan.j.williams@intel.com>, <dave.hansen@linux.intel.com>,
- <dave.jiang@intel.com>, <dave@stgolabs.net>, <davem@davemloft.net>,
- <dri-devel@lists.freedesktop.org>, <edumazet@google.com>,
- <gregkh@linuxfoundation.org>, <guanwentao@uniontech.com>, <hpa@zytor.com>,
- <ilpo.jarvinen@linux.intel.com>, <intel-xe@lists.freedesktop.org>,
- <ira.weiny@intel.com>, <j@jannau.net>, <jeff.johnson@oss.qualcomm.com>,
- <jgross@suse.com>, <jirislaby@kernel.org>, <johannes.berg@intel.com>,
- <kuba@kernel.org>, <kvalo@kernel.org>, <kvm@vger.kernel.org>,
- <linux-cxl@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-serial@vger.kernel.org>, <linux-wireless@vger.kernel.org>,
- <linux@treblig.org>, <lucas.demarchi@intel.com>, <marcin.s.wojtas@gmail.com>, 
- <ming.li@zohomail.com>, <mingo@kernel.org>, <mingo@redhat.com>,
- <netdev@vger.kernel.org>, <niecheng1@uniontech.com>,
- <oleksandr_tyshchenko@epam.com>, <pabeni@redhat.com>, <pbonzini@redhat.com>,
- <quic_ramess@quicinc.com>, <ragazenta@gmail.com>, <rodrigo.vivi@intel.com>,
- <seanjc@google.com>, <shenlichuan@vivo.com>, <simona@ffwll.ch>,
- <sstabellini@kernel.org>, <tglx@linutronix.de>,
- <thomas.hellstrom@linux.intel.com>, <vishal.l.verma@intel.com>,
- <x86@kernel.org>, <xen-devel@lists.xenproject.org>, <yujiaoliang@vivo.com>,
- <zhanjun@uniontech.com>
-Subject: Re: [PATCH v2 8/8] scripts/spelling.txt: Add notifer||notifier to
- spelling.txt
-Message-ID: <20250715145014.000075ec@huawei.com>
-In-Reply-To: <A205796B545C4241+20250715134407.540483-8-wangyuli@uniontech.com>
-References: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
- <A205796B545C4241+20250715134407.540483-8-wangyuli@uniontech.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="azO6PHCf";
+	dkim-atps=neutral
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B99310E222;
+ Tue, 15 Jul 2025 15:45:57 +0000 (UTC)
+Received: from [192.168.178.13] (business-24-134-207-61.pool2.vodafone-ip.de
+ [24.134.207.61])
+ (Authenticated sender: t.guttzeit@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 33BB92FC0057;
+ Tue, 15 Jul 2025 17:45:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1752594355;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=n/H+cQhyZm0Nb3DO7Ui2fMqJqiZh190V9LpxSLFnrBg=;
+ b=azO6PHCfU8/53XgEVSD60PDD9d7n/eJwnYNU8vCh3CzaShfu8wy1oUlSHcC3Z+rYWm5EjL
+ qlc/SsQdSX+OTrbwN0lP2U7Dcs7dyESTwwHGxQ7tgqCNqlgHee94XbYTFMCxaSPTEaDhnN
+ P6clxgns3VDNsRD0uSi/Zi3+W3OqmWw=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=t.guttzeit@tuxedocomputers.com
+ smtp.mailfrom=t.guttzeit@tuxedocomputers.com
+Message-ID: <95fd3ab0-7fe9-4abe-a57d-bf261064c097@tuxedocomputers.com>
+Date: Tue, 15 Jul 2025 17:45:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.203.177.66]
-X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
- frapeml500008.china.huawei.com (7.182.85.71)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/1] drm/i915/display: Avoid unsupported 300Hz output
+ mode on a TUXEDO device
+From: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>
+To: Werner Sembach <wse@tuxedocomputers.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+References: <20250704192007.526044-1-wse@tuxedocomputers.com>
+ <aG2IL07UtZ4YICMn@intel.com>
+ <513aa035-8a00-4943-abc1-d68824a5c0c6@tuxedocomputers.com>
+ <881d51a5-bed3-430e-a3cd-aca5f17e16bf@tuxedocomputers.com>
+Content-Language: en-US
+Organization: TUXEDO Computers
+In-Reply-To: <881d51a5-bed3-430e-a3cd-aca5f17e16bf@tuxedocomputers.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 15 Jul 2025 20:05:20 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,37 +74,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 15 Jul 2025 21:44:07 +0800
-WangYuli <wangyuli@uniontech.com> wrote:
+Hi all,
 
-> This typo was not listed in scripts/spelling.txt, thus it was more
-> difficult to detect. Add it for convenience.
-> 
-> Link: https://lore.kernel.org/all/B3C019B63C93846F+20250715071245.398846-1-wangyuli@uniontech.com/
+added intel-gfx@lists.freedesktop.org and 
+intel-xe@lists.freedesktop.org, as requested in the ticket.
 
-Adding a link tag to your own previous patch doesn't seem particularly
-useful as something to end up in the git log (which depending on
-maintainer preference may gain a link tag to this version).
+Best regards,
+Tim Guttzeit
 
-> Signed-off-by: WangYuli <wangyuli@uniontech.com>
-other than that, LGTM
+Am 09.07.25 um 15:32 schrieb Tim Guttzeit:
+> Hi all,
+>
+> > Tim can you follow up with this? Reducing the communication chain to 
+> avoid dropping information.
+>
+> Yes, here is the Ticket: 
+> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14616
+>
+> Best regards,
+> Tim Guttzeit
+>
+> Am 09.07.25 um 13:49 schrieb Werner Sembach:
+>> Hi all,
+>>
+>> Am 08.07.25 um 23:05 schrieb Rodrigo Vivi:
+>>> On Fri, Jul 04, 2025 at 09:03:45PM +0200, Werner Sembach wrote:
+>>>> RFC because I'm not sure if this is the right approach.
+>>> Could you please file a gitlab issue for us so we can get someone 
+>>> from our
+>>> display team to take a look and see if there's anything else that 
+>>> could be done
+>>> before we take the quirk route?
+>>>
+>>> https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+>>
+>> Tim can you follow up with this? Reducing the communication chain to 
+>> avoid dropping information.
+>>
+>> Best regards,
+>>
+>> Werner Sembach
+>>
+>>>
+>>> Thanks for the investigation and the quirk,
+>>> Rodrigo.
+>>>
+>>>> The flicker manifests ever few seconds 1-3 black frames in quick
+>>>> succession.
+>>>>
+>>>> On windows 300Hz can not be selected for the iGPU, but the panel 
+>>>> advertises
+>>>> it.
+>>>>
+>>>> A cleaner solution would probably to go over the pixel clock, but 
+>>>> for this
+>>>> device there is only one 300Hz mode in the panels edid and that is 
+>>>> at the
+>>>> nativ resolution. Chroma subsampling was not tested as linux afaik 
+>>>> offers
+>>>> no way to easily enforce it for intel gpus.
+>>>>
+>>>> Tim Guttzeit (1):
+>>>>    drm/i915/display: Avoid unsupported output mode with 300Hz on 
+>>>> TUXEDO
+>>>>      device
+>>>>
+>>>>   drivers/gpu/drm/i915/display/intel_dp.c     |  5 ++++
+>>>>   drivers/gpu/drm/i915/display/intel_quirks.c | 30 
+>>>> +++++++++++++++++++++
+>>>>   drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
+>>>>   3 files changed, 36 insertions(+)
+>>>>
+>>>> -- 
+>>>> 2.43.0
+>>>>
+>
 
-Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+-- 
+Tim Guttzeit
+Development
+--
+TUXEDO Computers GmbH
+Alter Postweg 101
+D-86159 Augsburg
+--
+www.tuxedocomputers.com
+Fon: +49 (0) 821 / 8998 2992
+--
+Amtsgericht Augsburg: HRB 27755
+CEO: Herbert Feiler
+VAT-ID: DE815420876
 
-> ---
->  scripts/spelling.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/scripts/spelling.txt b/scripts/spelling.txt
-> index c9a6df5be281..d824c4b17390 100644
-> --- a/scripts/spelling.txt
-> +++ b/scripts/spelling.txt
-> @@ -1099,6 +1099,7 @@ notication||notification
->  notications||notifications
->  notifcations||notifications
->  notifed||notified
-> +notifer||notifier
->  notity||notify
->  notfify||notify
->  nubmer||number
 
