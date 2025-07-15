@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C02CCC83F21
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 12:31:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6E6BC83F21
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 12:45:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 857F110E5B8;
-	Tue, 15 Jul 2025 12:31:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="QF8lJOGM";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0CD8892AA;
- Tue, 15 Jul 2025 12:31:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=G5tGG9amdL2b0ifcnhepNyhm4h9SwYWFaCFHBzhKkUo=; b=QF8lJOGMamFp3i34+/XW5O2GDn
- 71NiknX0apJ3b+619bcPJXd2PBL6R+06254tF6QlVTJftkaOUrW4vUD7h893zRA+7bBCQlOvxCGcx
- OihUhWlMYgOIKNjWzUITbw2ZxNZ+2dBdmUshHouaClGY7bLUvTeLBaRLkKKiMsCaK9Qy9jR7J1TdZ
- G22u76BSZtn+pdiLUbBD3VBZFgIqKhGNyIEAGz5ebzQk+JSxz0BRsSFj87fHZ4Nug49hXI8Iar+8M
- jNIFqj05xBUYz3euuROmgAnbGnDrRGI7DVRpewUxl+JB3cJJM8HUM+ospZkqODk+qBaPdajyFGg7J
- GLKyCtsg==;
-Received: from [187.36.210.68] (helo=morissey)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ubenv-00GpXn-Oc; Tue, 15 Jul 2025 14:30:40 +0200
-From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
-To: Matthew Brost <matthew.brost@intel.com>,
- Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Melissa Wen <mwen@igalia.com>, Lucas Stach <l.stach@pengutronix.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
-Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Min Ma <min.ma@amd.com>, Lizhi Hou <lizhi.hou@amd.com>,
- Oded Gabbay <ogabbay@kernel.org>, Frank Binns <frank.binns@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>, Qiang Yu <yuq825@gmail.com>,
- Lyude Paul <lyude@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: Re: [PATCH v6 0/8] drm/sched: Allow drivers to skip the reset with
- DRM_GPU_SCHED_STAT_NO_HANG
-Date: Tue, 15 Jul 2025 09:30:18 -0300
-Message-ID: <175258238784.119068.1577042922667240898.b4-ty@igalia.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250714-sched-skip-reset-v6-0-5c5ba4f55039@igalia.com>
-References: <20250714-sched-skip-reset-v6-0-5c5ba4f55039@igalia.com>
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6887610E104;
+	Tue, 15 Jul 2025 12:45:26 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A179510E104;
+ Tue, 15 Jul 2025 12:45:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Handle_Firmware_reported?=
+ =?utf-8?q?_Hardware_Errors_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Jul 2025 12:45:24 -0000
+Message-ID: <175258352465.163104.7280801892764823799@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250715104730.2109506-1-riana.tauro@intel.com>
+In-Reply-To: <20250715104730.2109506-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,35 +36,127 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On Mon, 14 Jul 2025 19:07:01 -0300, Maíra Canal wrote:
-> TL;DR: No changes from v5, I just rebased it on top of drm-misc-next. I
-> plan to push the series to the drm-misc tree tomorrow.
-> 
-> Thanks for all the reviews!
-> 
+Series: Handle Firmware reported Hardware Errors (rev5)
+URL   : https://patchwork.freedesktop.org/series/149756/
+State : warning
 
-Applied, thanks!
+== Summary ==
 
-[1/8] drm/sched: Rename DRM_GPU_SCHED_STAT_NOMINAL to DRM_GPU_SCHED_STAT_RESET
-      commit: 0a5dc1b67ef5c7e851b57764a2aab8cc4341a7b7
-[2/8] drm/sched: Allow drivers to skip the reset and keep on running
-      commit: 0b1217bfdfddf664c15954d1d51ee18ed88a2ccf
-[3/8] drm/sched: Make timeout KUnit tests faster
-      commit: 9b9b5a3605b9a5ef1d412e47b2ae70090c8d3580
-[4/8] drm/sched: Add new test for DRM_GPU_SCHED_STAT_NO_HANG
-      commit: 1472e7549f84c472a9ebb9a8bb0aaafe985ea608
-[5/8] drm/v3d: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
-      commit: 6b37fbacd087fbd517b6b276ca8bebd1dc052fb7
-[6/8] drm/etnaviv: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
-      commit: 8902c2b17a6ec723ab7924bc4113bef47603c0dc
-[7/8] drm/xe: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
-      commit: 53dcd0eaa271e870ca5d0b203be67b468214c1bc
-[8/8] drm/panfrost: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
-      commit: 9fb32803dfba63697080db7969bc3aa1bf323dc3
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 64f56ca0926a30d50bcc0c215b262f5149c7e5cd
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/drm_drv.c:449:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
++drivers/gpu/drm/drm_drv.c: note: in included file (through include/linux/notifier.h, arch/x86/include/asm/uprobes.h, include/linux/uprobes.h, include/linux/mm_types.h, include/linux/mmzone.h, include/linux/gfp.h, ...):
++drivers/gpu/drm/drm_plane.c:213:24: warning: Using plain integer as NULL pointer
++drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2019:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2032:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2032:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2032:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
++drivers/gpu/drm/i915/gt/intel_reset.c:1572:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/intel_sseu.c:598:17: error: too long token expansion
++drivers/gpu/drm/i915/i915_active.c:1063:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/i915_irq.c:492:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:492:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:500:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:500:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:505:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:505:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:505:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:543:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:543:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:551:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:551:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:556:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:556:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:556:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:600:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:600:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:603:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:603:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:607:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:607:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:614:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/intel_uncore.c:1927:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1929:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1995:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1996:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1997:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2017:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2018:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2019:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_wakeref.c:145:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
++drivers/gpu/drm/ttm/ttm_bo.c:1199:31: warning: symbol 'ttm_swap_ops' was not declared. Should it be static?
++drivers/gpu/drm/ttm/ttm_bo_util.c:329:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:329:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:329:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:332:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:332:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:332:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:335:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:335:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:335:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:467:28:    expected void volatile [noderef] __iomem *addr
++drivers/gpu/drm/ttm/ttm_bo_util.c:467:28:    got void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:467:28: warning: incorrect type in argument 1 (different address spaces)
++./include/linux/srcu.h:400:9: warning: context imbalance in 'drm_dev_exit' - unexpected unlock
 
-Best regards,
-- Maíra
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
