@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43FFAC83F17
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 15:33:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4CD0C83F17
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 15:44:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EEE210E5FA;
-	Tue, 15 Jul 2025 15:33:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=caterina.shablia@collabora.com header.b="QrBKbjO7";
-	dkim-atps=neutral
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com
- [136.143.188.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2B4089056;
- Tue, 15 Jul 2025 15:33:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1752593599; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=lRZyrNw5Afsl0YmrZxEiOkWwe++p6PTK3mqyAD9Tkkkr/YgTCmrc3PPGwzUJHKhGgxytNEP1VjJe5V6/5nCHuKqtudRvykB/F70RnetsuT0uUukHkveuxl2pkGD2SohtMOHY9Qj03PTfZEmSmeOt4kEvqjWYsdn6vN+cSgt/RrE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1752593599;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=YoRshJ8yvxDVuRAWmF4aZ5TITCx/VnZJ1sQdaBr6bq4=; 
- b=B6hxWuQzGPARdI+Kx6MeKLxxH5/F72Zxnsnd2IH/l08ZFaHQLCqA5I59/OeDxu2sQuV3iaoEoPgJufQQF3gmHdTzpK4Q3XGHyOSKzRlOndNmYHW8pSmaACraRnIDiXQBsyN+KoC+n05biPGULS4b+ikJGwztAqOEExxMOpODwcM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=caterina.shablia@collabora.com;
- dmarc=pass header.from=<caterina.shablia@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752593599; 
- s=zohomail; d=collabora.com; i=caterina.shablia@collabora.com; 
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=YoRshJ8yvxDVuRAWmF4aZ5TITCx/VnZJ1sQdaBr6bq4=;
- b=QrBKbjO7ulC1aHKwaYOPVyM9W0h90ww9YEbpWqzkh5C4S4zdmIdgVNlvyftmqv7Q
- J1ovJCNLog74nmFC0PkJFAF3HNTGiPOPHCCfn2rxlWg/HU5LtyW66sooTTiwOLsOPhH
- 4b7TxkNQIacNkVYzZZHoAUOTxCZPmM+3klopi0fI=
-Received: by mx.zohomail.com with SMTPS id 1752593597020280.59212037774194;
- Tue, 15 Jul 2025 08:33:17 -0700 (PDT)
-From: Caterina Shablia <caterina.shablia@collabora.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Steven Price <steven.price@arm.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- asahi@lists.linux.dev, Asahi Lina <lina@asahilina.net>
-Subject: Re: [PATCH v4 1/7] drm/panthor: Add support for atomic page table
- updates
-Date: Tue, 15 Jul 2025 17:33:10 +0200
-Message-ID: <2434159.cojqenx9y0@xps>
-In-Reply-To: <2813151.QOukoFCf94@xps>
-References: <20250707170442.1437009-1-caterina.shablia@collabora.com>
- <d4a6208b-a4a4-451f-9799-7b9f5fb20c37@arm.com> <2813151.QOukoFCf94@xps>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC39110E5FA;
+	Tue, 15 Jul 2025 15:44:19 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8677C10E222;
+ Tue, 15 Jul 2025 15:44:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2006722667218505083=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_CI_test_with_PREEMPT=5FRT_?=
+ =?utf-8?q?=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Jul 2025 15:44:18 -0000
+Message-ID: <175259425854.163530.4418083571887862866@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250715101636.906092-6-dev@lankhorst.se>
+In-Reply-To: <20250715101636.906092-6-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,293 +36,161 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-El martes, 15 de julio de 2025 17:08:09 (hora de verano de Europa central),=
-=20
-Caterina Shablia escribi=C3=B3:
-> El viernes, 11 de julio de 2025 15:30:21 (hora de verano de Europa centra=
-l),
-> Steven Price escribi=C3=B3:
-> > On 07/07/2025 18:04, Caterina Shablia wrote:
-> > > From: Boris Brezillon <boris.brezillon@collabora.com>
-> > >=20
-> > > Move the lock/flush_mem operations around the gpuvm_sm_map() calls so
-> > > we can implement true atomic page updates, where any access in the
-> > > locked range done by the GPU has to wait for the page table updates
-> > > to land before proceeding.
-> > >=20
-> > > This is needed for vkQueueBindSparse(), so we can replace the dummy
-> > > page mapped over the entire object by actual BO backed pages in an
-> > > atomic
-> > > way.
-> > >=20
-> > > Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
-> > > Signed-off-by: Caterina Shablia <caterina.shablia@collabora.com>
-> > > ---
-> > >=20
-> > >  drivers/gpu/drm/panthor/panthor_mmu.c | 65 +++++++++++++++++++++++++=
-=2D-
-> > >  1 file changed, 62 insertions(+), 3 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c
-> > > b/drivers/gpu/drm/panthor/panthor_mmu.c index b39ea6acc6a9..9caaba03c=
-5eb
-> > > 100644
-> > > --- a/drivers/gpu/drm/panthor/panthor_mmu.c
-> > > +++ b/drivers/gpu/drm/panthor/panthor_mmu.c
-> > > @@ -387,6 +387,15 @@ struct panthor_vm {
-> > >=20
-> > >  	 * flagged as faulty as a result.
-> > >  	 */
-> > >  =09
-> > >  	bool unhandled_fault;
-> > >=20
-> > > +
-> > > +	/** @locked_region: Information about the currently locked region
-> > > currently. */ +	struct {
-> > > +		/** @locked_region.start: Start of the locked region.
->=20
-> */
->=20
-> > > +		u64 start;
-> > > +
-> > > +		/** @locked_region.size: Size of the locked region. */
-> > > +		u64 size;
-> > > +	} locked_region;
-> > >=20
-> > >  };
-> > > =20
-> > >  /**
-> > >=20
-> > > @@ -775,6 +784,10 @@ int panthor_vm_active(struct panthor_vm *vm)
-> > >=20
-> > >  	}
-> > >  =09
-> > >  	ret =3D panthor_mmu_as_enable(vm->ptdev, vm->as.id, transtab,
->=20
-> transcfg,
->=20
-> > >  	vm->memattr);>
-> > >=20
-> > > +	if (!ret && vm->locked_region.size) {
-> > > +		lock_region(ptdev, vm->as.id, vm->locked_region.start,
-> > > vm->locked_region.size); +		ret =3D wait_ready(ptdev, vm-
-> >
-> >as.id);
-> >
-> > > +	}
-> >=20
-> > Do we need to do this? It seems odd to restore a MMU context and
-> > immediately set a lock region. Is there a good reason we can't just
-> > WARN_ON if there's a lock region set in panthor_vm_idle()?
->=20
-> So IIUC, when things are otherwise idle and we do a vm_bind, the vm will =
-be
-> inactive, in which case we're not going to poke the mmu to inform it of t=
-he
-> locked region, because it literally is not aware of this vm. Now if in the
-> meanwhile something submits a job and activates the vm, we need to inform
-> the mmu of the locked region, as vm_bind job might still be going on. I
-> don't see why panthor_vm_idle while a region is locked would be a problem?
-> That can arise e.g. when a job completes but there's a concurrent vm_bind
-> going on?
-> > I think we need to briefly take vm->op_lock to ensure synchronisation
-> > but that doesn't seem a big issue. Or perhaps there's a good reason that
-> > I'm missing?
->=20
-> I think you're right, all other accesses to locked_region are guarded by
-> op_lock. GPU job submit poke vm_active concurrently with vm_bind jobs doi=
-ng
-> region {,un}locks.
-Actually no, that's not necessary. Access to locked_region is protected by=
-=20
-slots_lock, which is held here. Trying to lock vm->op_lock would also be=20
-detrimental here, because these locks are often taken together and slots_lo=
-ck=20
-is taken after op_lock is taken, so taking op_lock here would be extremely=
-=20
-deadlockful.
->=20
-> > >  out_make_active:
-> > >  	if (!ret) {
-> > >=20
-> > > @@ -902,6 +915,9 @@ static int panthor_vm_unmap_pages(struct panthor_=
-vm
-> > > *vm, u64 iova, u64 size)>
-> > >=20
-> > >  	struct io_pgtable_ops *ops =3D vm->pgtbl_ops;
-> > >  	u64 offset =3D 0;
-> > >=20
-> > > +	drm_WARN_ON(&ptdev->base,
-> > > +		    (iova < vm->locked_region.start) ||
-> > > +		    (iova + size > vm->locked_region.start + vm-
-> >
-> >locked_region.size));
-> >
-> > >  	drm_dbg(&ptdev->base, "unmap: as=3D%d, iova=3D%llx, len=3D%llx", vm-
-> >
-> >as.id,
-> >
-> > >  	iova, size);
-> > >  =09
-> > >  	while (offset < size) {
-> > >=20
-> > > @@ -915,13 +931,12 @@ static int panthor_vm_unmap_pages(struct
-> > > panthor_vm
-> > > *vm, u64 iova, u64 size)>
-> > >=20
-> > >  				iova + offset + unmapped_sz,
-> > >  				iova + offset + pgsize * pgcount,
-> > >  				iova, iova + size);
-> > >=20
-> > > -			panthor_vm_flush_range(vm, iova, offset +
->=20
-> unmapped_sz);
->=20
-> > >  			return  -EINVAL;
-> > >  	=09
-> > >  		}
-> > >  		offset +=3D unmapped_sz;
-> > >  =09
-> > >  	}
-> > >=20
-> > > -	return panthor_vm_flush_range(vm, iova, size);
-> > > +	return 0;
-> > >=20
-> > >  }
-> > > =20
-> > >  static int
-> > >=20
-> > > @@ -938,6 +953,10 @@ panthor_vm_map_pages(struct panthor_vm *vm, u64
-> > > iova,
-> > > int prot,>
-> > >=20
-> > >  	if (!size)
-> > >  =09
-> > >  		return 0;
-> > >=20
-> > > +	drm_WARN_ON(&ptdev->base,
-> > > +		    (iova < vm->locked_region.start) ||
-> > > +		    (iova + size > vm->locked_region.start + vm-
-> >
-> >locked_region.size));
-> >
-> > > +
-> > >=20
-> > >  	for_each_sgtable_dma_sg(sgt, sgl, count) {
-> > >  =09
-> > >  		dma_addr_t paddr =3D sg_dma_address(sgl);
-> > >  		size_t len =3D sg_dma_len(sgl);
-> > >=20
-> > > @@ -985,7 +1004,7 @@ panthor_vm_map_pages(struct panthor_vm *vm, u64
-> > > iova,
-> > > int prot,>
-> > >=20
-> > >  		offset =3D 0;
-> > >  =09
-> > >  	}
-> > >=20
-> > > -	return panthor_vm_flush_range(vm, start_iova, iova - start_iova);
-> > > +	return 0;
-> > >=20
-> > >  }
-> > > =20
-> > >  static int flags_to_prot(u32 flags)
-> > >=20
-> > > @@ -1654,6 +1673,38 @@ static const char *access_type_name(struct
-> > > panthor_device *ptdev,>
-> > >=20
-> > >  	}
-> > > =20
-> > >  }
-> > >=20
-> > > +static int panthor_vm_lock_region(struct panthor_vm *vm, u64 start, =
-u64
-> > > size) +{
-> > > +	struct panthor_device *ptdev =3D vm->ptdev;
-> > > +	int ret =3D 0;
-> > > +
-> > > +	mutex_lock(&ptdev->mmu->as.slots_lock);
-> > > +	drm_WARN_ON(&ptdev->base, vm->locked_region.start ||
-> > > vm->locked_region.size); +	vm->locked_region.start =3D start;
-> > > +	vm->locked_region.size =3D size;
-> > > +	if (vm->as.id >=3D 0) {
-> > > +		lock_region(ptdev, vm->as.id, start, size);
-> > > +		ret =3D wait_ready(ptdev, vm->as.id);
-> > > +	}
-> > > +	mutex_unlock(&ptdev->mmu->as.slots_lock);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static void panthor_vm_unlock_region(struct panthor_vm *vm)
-> > > +{
-> > > +	struct panthor_device *ptdev =3D vm->ptdev;
-> > > +
-> > > +	mutex_lock(&ptdev->mmu->as.slots_lock);
-> > > +	if (vm->as.id >=3D 0) {
-> > > +		write_cmd(ptdev, vm->as.id, AS_COMMAND_FLUSH_MEM);
-> > > +		drm_WARN_ON(&ptdev->base, wait_ready(ptdev, vm-
-> >
-> >as.id));
-> >
-> > > +	}
-> > > +	vm->locked_region.start =3D 0;
-> > > +	vm->locked_region.size =3D 0;
-> > > +	mutex_unlock(&ptdev->mmu->as.slots_lock);
-> > > +}
-> >=20
-> > Do we need to include a drm_dev_enter() somewhere here? I note that
-> > panthor_vm_flush_range() has one and you've effectively replaced that
-> > code with the above.
->=20
-> Looks like we should.
->=20
-> > Thanks,
-> > Steve
-> >=20
-> > > +
-> > >=20
-> > >  static void panthor_mmu_irq_handler(struct panthor_device *ptdev, u32
-> > >  status) {
-> > > =20
-> > >  	bool has_unhandled_faults =3D false;
-> > >=20
-> > > @@ -2179,6 +2230,11 @@ panthor_vm_exec_op(struct panthor_vm *vm, stru=
-ct
-> > > panthor_vm_op_ctx *op,>
-> > >=20
-> > >  	mutex_lock(&vm->op_lock);
-> > >  	vm->op_ctx =3D op;
-> > >=20
-> > > +
-> > > +	ret =3D panthor_vm_lock_region(vm, op->va.addr, op->va.range);
-> > > +	if (ret)
-> > > +		goto out;
-> > > +
-> > >=20
-> > >  	switch (op_type) {
-> > >  =09
-> > >  	case DRM_PANTHOR_VM_BIND_OP_TYPE_MAP:
-> > >  		if (vm->unusable) {
-> > >=20
-> > > @@ -2199,6 +2255,9 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct
-> > > panthor_vm_op_ctx *op,>
-> > >=20
-> > >  		break;
-> > >  =09
-> > >  	}
-> > >=20
-> > > +	panthor_vm_unlock_region(vm);
-> > > +
-> > >=20
-> > > +out:
-> > >  	if (ret && flag_vm_unusable_on_failure)
-> > >  =09
-> > >  		vm->unusable =3D true;
+--===============2006722667218505083==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: CI test with PREEMPT_RT (rev2)
+URL   : https://patchwork.freedesktop.org/series/151626/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-3414-643ed1a99d02b58f910e989cf9a51414c1c41663_BAT -> xe-pw-151626v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-151626v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-151626v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-151626v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - bat-lnl-1:          NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151626v2/bat-lnl-1/igt@runner@aborted.html
+    - bat-lnl-2:          NOTRUN -> [FAIL][2]
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151626v2/bat-lnl-2/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-151626v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_pat@pat-index-xe2@render:
+    - bat-bmg-2:          [PASS][3] -> [FAIL][4] ([Intel XE#5507]) +1 other test fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3414-643ed1a99d02b58f910e989cf9a51414c1c41663/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151626v2/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
+
+  
+  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
 
 
+Build changes
+-------------
+
+  * Linux: xe-3414-643ed1a99d02b58f910e989cf9a51414c1c41663 -> xe-pw-151626v2
+
+  IGT_8459: 8459
+  xe-3414-643ed1a99d02b58f910e989cf9a51414c1c41663: 643ed1a99d02b58f910e989cf9a51414c1c41663
+  xe-pw-151626v2: 151626v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151626v2/index.html
+
+--===============2006722667218505083==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>CI test with PREEMPT_RT (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151626/">https://patchwork.freedesktop.org/series/151626/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151626v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151626v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3414-643ed1a99d02b58f910e989cf9a51414c1c41663_BAT -&gt; xe-pw-151626v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-151626v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-151626v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-151626v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151626v2/bat-lnl-1/igt@runner@aborted.html">FAIL</a></li>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151626v2/bat-lnl-2/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-151626v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xe2@render:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3414-643ed1a99d02b58f910e989cf9a51414c1c41663/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151626v2/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3414-643ed1a99d02b58f910e989cf9a51414c1c41663 -&gt; xe-pw-151626v2</li>
+</ul>
+<p>IGT_8459: 8459<br />
+  xe-3414-643ed1a99d02b58f910e989cf9a51414c1c41663: 643ed1a99d02b58f910e989cf9a51414c1c41663<br />
+  xe-pw-151626v2: 151626v2</p>
+
+</body>
+</html>
+
+--===============2006722667218505083==--
