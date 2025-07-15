@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E73B7C83F27
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 21:21:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2D9DC83F27
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 21:21:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AECD310E69D;
-	Tue, 15 Jul 2025 21:21:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEEEE10E6C6;
+	Tue, 15 Jul 2025 21:21:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MA2cKo29";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l3s4ZU4e";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0403610E054
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 21:21:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FFE810E68D
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 21:21:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752614497; x=1784150497;
+ t=1752614499; x=1784150499;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DkZxCMbs184U4D0SeqbSYmw+WTDGGAMnR6xu0IyXQQw=;
- b=MA2cKo29CdxCeogNaF91mIT9R65K9J00NwLnjOhRmqJrQRsWuhja8NM9
- Gu8Gb2dKVIyupKe00QdKeWUfgvWEszC8cRldzrHzT7qNuRx5B+Qf76TOI
- PicAY0a8qHCuUI5+f3X8u+YtuvhTn172qsjzNAZ75UiPEIMHp+ZDhfoQD
- 1Ke09xGguzwviWYzY/bFGWJIlGjF/QFXZb82N7WkedqGNzAJb/iYBfcsF
- 7KJaXzJlSIamjJOTz7FQpMXSamVwBZcpGSmFC15aLYEdGuO9+Ak24CvT4
- 4w6wPMpRKl6yzlRnP+ZqlQdu/zGSZi15HkGpTD5wBEHFS5uIkZ8LHHCXd A==;
-X-CSE-ConnectionGUID: PoUiq7yGRPWVKxjOG9Lr7Q==
-X-CSE-MsgGUID: Q6yDznb/ROOKSnjDbka61g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="54999482"
-X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; d="scan'208";a="54999482"
+ bh=EJLz6d3HWBGgwuMDSrYd+UDLhiZ2wpLcyNsMuT101+A=;
+ b=l3s4ZU4eyKLmCGD6nB6Vy5jgRQWDK34FuWmd7STrAVnCY0K3w9RS0xR+
+ b/m3QIQldIkxEjYskt6eXFtB/Cq1xwZIR917PUVvoChN4QdrUP8X1lzRj
+ GfIV1ifOxWnfkrCDLJdyzo7yh7py1LeXDveZWAAIB82obGpx9cvMBo8gP
+ Gl2hLoao43SZVWYzhMfQbkiNj5Yry97Tls9v7aQkozL38rdsHc3He4b73
+ T+lAZcbAdEbL28Pz2l5rh+lzFWeU3RLgTL3dunt6faN4wgHlPWAfIE3SO
+ 0/gMRqnXqyz/RwG34RrpbED7sv3nifg/9bLKacWoEp6c/14VVcxuOIzjy A==;
+X-CSE-ConnectionGUID: JTSBbUVSQDingM7ffoT4tQ==
+X-CSE-MsgGUID: fDywzpMNQPCu0qStoBtDlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="54999485"
+X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; d="scan'208";a="54999485"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 14:21:36 -0700
-X-CSE-ConnectionGUID: s/v/W6nXRSuJ3byZuhQh4g==
-X-CSE-MsgGUID: l08r8++XRNWOYb+eNz7y5g==
+ 15 Jul 2025 14:21:38 -0700
+X-CSE-ConnectionGUID: mGv57MjGSzuGXb5Yy1X9uA==
+X-CSE-MsgGUID: iRM3W/OCSEKVV601Jh7Cfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; d="scan'208";a="156733522"
+X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; d="scan'208";a="156733529"
 Received: from dut158arls.fm.intel.com ([10.105.23.70])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Jul 2025 14:21:36 -0700
@@ -45,11 +45,10 @@ From: stuartsummers <stuart.summers@intel.com>
 To: 
 Cc: matthew.brost@intel.com, matthew.auld@intel.com,
  maarten.lankhorst@linux.intel.com, intel-xe@lists.freedesktop.org,
- Francois Dugast <francois.dugast@intel.com>,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 1/4] drm/xe: Explicitly mark migration queues with flag
-Date: Tue, 15 Jul 2025 21:21:22 +0000
-Message-Id: <20250715212125.337195-2-stuart.summers@intel.com>
+Subject: [PATCH 2/4] drm/xe: Remove unused GT TLB invalidation trace points
+Date: Tue, 15 Jul 2025 21:21:23 +0000
+Message-Id: <20250715212125.337195-3-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250715212125.337195-1-stuart.summers@intel.com>
 References: <20250715212125.337195-1-stuart.summers@intel.com>
@@ -71,51 +70,82 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Rather than inferring if an exec queue is a migration queue for a flag,
-explicitly mark migration queues with a flag.
+Remove unused GT TLB invalidation trace points after converting to used
+GT TLB invalidation jobs. Tracepoint removed were used during early
+bring up of unstable driver, with a stable driver no need to replace
+with new tracepoints.
+
+v2: Separate this out from the original series to make it a little
+    more standalone
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue_types.h | 2 ++
- drivers/gpu/drm/xe/xe_migrate.c          | 6 ++++--
- 2 files changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c    |  6 ------
+ drivers/gpu/drm/xe/xe_trace.h | 16 ----------------
+ 2 files changed, 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index cc1cffb5c87f..abdf4a57e6e2 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -87,6 +87,8 @@ struct xe_exec_queue {
- #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
- /* flag to indicate low latency hint to guc */
- #define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
-+/* for migration (kernel copy, clear, bind) jobs */
-+#define EXEC_QUEUE_FLAG_MIGRATE			BIT(6)
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index c8e63bd23300..7b441d1a77e9 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1525,9 +1525,7 @@ static void invalidation_fence_cb(struct dma_fence *fence,
+ {
+ 	struct invalidation_fence *ifence =
+ 		container_of(cb, struct invalidation_fence, cb);
+-	struct xe_device *xe = gt_to_xe(ifence->gt);
  
- 	/**
- 	 * @flags: flags for this exec queue, should statically setup aside from ban
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index ba1cff2e4cda..713eb63b4c4e 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -437,12 +437,14 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
- 		m->q = xe_exec_queue_create(xe, vm, logical_mask, 1, hwe,
- 					    EXEC_QUEUE_FLAG_KERNEL |
- 					    EXEC_QUEUE_FLAG_PERMANENT |
--					    EXEC_QUEUE_FLAG_HIGH_PRIORITY, 0);
-+					    EXEC_QUEUE_FLAG_HIGH_PRIORITY |
-+					    EXEC_QUEUE_FLAG_MIGRATE, 0);
+-	trace_xe_gt_tlb_invalidation_fence_cb(xe, &ifence->base);
+ 	if (!ifence->fence->error) {
+ 		queue_work(system_wq, &ifence->work);
  	} else {
- 		m->q = xe_exec_queue_create_class(xe, primary_gt, vm,
- 						  XE_ENGINE_CLASS_COPY,
- 						  EXEC_QUEUE_FLAG_KERNEL |
--						  EXEC_QUEUE_FLAG_PERMANENT, 0);
-+						  EXEC_QUEUE_FLAG_PERMANENT |
-+						  EXEC_QUEUE_FLAG_MIGRATE, 0);
- 	}
- 	if (IS_ERR(m->q)) {
- 		xe_vm_close_and_put(vm);
+@@ -1541,9 +1539,7 @@ static void invalidation_fence_work_func(struct work_struct *w)
+ {
+ 	struct invalidation_fence *ifence =
+ 		container_of(w, struct invalidation_fence, work);
+-	struct xe_device *xe = gt_to_xe(ifence->gt);
+ 
+-	trace_xe_gt_tlb_invalidation_fence_work_func(xe, &ifence->base);
+ 	xe_gt_tlb_invalidation_range(ifence->gt, &ifence->base, ifence->start,
+ 				     ifence->end, ifence->asid);
+ }
+@@ -1555,8 +1551,6 @@ static void invalidation_fence_init(struct xe_gt *gt,
+ {
+ 	int ret;
+ 
+-	trace_xe_gt_tlb_invalidation_fence_create(gt_to_xe(gt), &ifence->base);
+-
+ 	xe_gt_tlb_invalidation_fence_init(gt, &ifence->base, false);
+ 
+ 	ifence->fence = fence;
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index b4a3577df70c..21486a6f693a 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -45,22 +45,6 @@ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
+ 			      __get_str(dev), __entry->fence, __entry->seqno)
+ );
+ 
+-DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_create,
+-	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
+-	     TP_ARGS(xe, fence)
+-);
+-
+-DEFINE_EVENT(xe_gt_tlb_invalidation_fence,
+-	     xe_gt_tlb_invalidation_fence_work_func,
+-	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
+-	     TP_ARGS(xe, fence)
+-);
+-
+-DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_cb,
+-	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
+-	     TP_ARGS(xe, fence)
+-);
+-
+ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_send,
+ 	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
+ 	     TP_ARGS(xe, fence)
 -- 
 2.34.1
 
