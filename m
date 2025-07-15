@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 447F6C83F22
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 18:14:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 978DAC83F22
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 18:14:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F241910E0B5;
-	Tue, 15 Jul 2025 18:14:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3247310E0B5;
+	Tue, 15 Jul 2025 18:14:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mSZa6f8F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kFQ34L3L";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A529E10E0B5
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 18:14:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6963E10E0B5
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 18:14:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752603267; x=1784139267;
+ t=1752603288; x=1784139288;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=+W+88RdYB5cD0GU2BHpDvSLezRVX7HWvwts/HibgD7A=;
- b=mSZa6f8FZoEj/0cO0UvjQxeVtrSSozzgkHl5WrkQbpyHjsDsTRg6rqtt
- GST0Fo2OCHfzVFOuT0euO2WoVVP75YvhYAjOUtb8ZWHyMXj6dy4DtGmBN
- xjszeWyvZS0A92xe3Ys7YG38Ji7NJikdy6obZjjZgzutiLOu1dsvCX1nd
- mdm5VLw8TzMHuiC3ynLXVZVvxOfnMXSl+/N5QR4RUeKdUviKyvE7roSxI
- JMJmtjaYE/iRo/KVKA14DWyzJXYQ3Fkiy5qeKV+NWLawgwg6AXGiDBVJP
- PrioJa5Wm7+eJFA+e8cIMjWdkhrWRE+Nc269zm1pcBLkED7LPBsfU3EE5 Q==;
-X-CSE-ConnectionGUID: sAe8MoRxTfK349npaT8Owg==
-X-CSE-MsgGUID: kGyZ4fy1TJCNS6Zl1pgb/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="54542241"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="54542241"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 11:14:26 -0700
-X-CSE-ConnectionGUID: 3Ce7S30DRp6Cr0kuz7eM8w==
-X-CSE-MsgGUID: 0+6J27C5RdaoVUOlpY6IDg==
+ bh=KRuU+xsjJDVM7CzRhpaQGp1iUneiN2fr/oVOlJNYX74=;
+ b=kFQ34L3LfzuK6So3wbjJFWiO0vSXjukR8/LB8Rq4SWOAa+3pyS5WRqAL
+ 51eBySeBU+QrEN4zRNNPHVItFmgZi42LJTzqf8GHQzMd3/8JWQpKds6JG
+ svclTNAbTT8ed4u9jTnyJoLSod+mT7300RoTwu2Wr9dKw+KDD7Lsdw8g1
+ dWv7N9IX9FSB58J7C4fOgxJz0CgUiUmpU3PGafuNatsuQMXVI6PUY/aqv
+ fGD23Ak0Y+UKamJfIYsTQrwY74Yodt77IfxrVvzNZuecbojM6jeW3Qk5W
+ pr4gs/bCYotbTDr/RTeGBCVhHf31JAdlq0IsbJD84gIro06/z4EL/zDP+ A==;
+X-CSE-ConnectionGUID: WG/UNK5ySLOzTxXt8UNdJQ==
+X-CSE-MsgGUID: FfISHPAbS/KewvCs5hnzLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="65406506"
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="65406506"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2025 11:14:47 -0700
+X-CSE-ConnectionGUID: ldIDHxYDSVSZxRlmDVov4w==
+X-CSE-MsgGUID: edfTS3fgSaaUTVTDiV6cNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="188274108"
-Received: from orsosgc001.jf.intel.com ([10.165.21.142])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 11:14:27 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="162845979"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.253.198])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2025 11:14:46 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH] drm/xe/oa: Fix static checker warning about null gt
-Date: Tue, 15 Jul 2025 11:14:22 -0700
-Message-ID: <20250715181422.2807624-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.48.1
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 0/4] Enable SR-IOV PF mode by default
+Date: Tue, 15 Jul 2025 20:14:14 +0200
+Message-Id: <20250715181419.807-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,29 +64,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is a static checker warning that gt returned by xe_device_get_gt can
-be NULL and that is being dereferenced. Use xe_root_mmio_gt instead, which
-is equivalent and cannot return a NULL gt 0.
+Patch 1/4 is just for the CI. Reverted patch is replaced with patch 4/4.
 
-Fixes: 10d42ef34bce ("drm/xe/oa: Assign hwe for OAM_SAG")
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Michal Wajdeczko (4):
+  Revert "drm/xe: Enable SR-IOV for ADL/ATSM"
+  drm/xe/pf: Enable SR-IOV PF mode by default
+  drm/xe/pf: Add max_vfs configfs attribute to control PF mode
+  drm/xe: Enable SR-IOV for ADL/ATSM
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index d991fbd90f201..5729e7d3e3356 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1941,7 +1941,7 @@ static int xe_oa_assign_hwe(struct xe_oa *oa, struct xe_oa_open_param *param)
- 
- 	/* If not provided, OA unit defaults to OA unit 0 as per uapi */
- 	if (!param->oa_unit)
--		param->oa_unit = &xe_device_get_gt(oa->xe, 0)->oa.oa_unit[0];
-+		param->oa_unit = &xe_root_mmio_gt(oa->xe)->oa.oa_unit[0];
- 
- 	/* When we have an exec_q, get hwe from the exec_q */
- 	if (param->exec_q) {
+ drivers/gpu/drm/xe/xe_configfs.c | 89 +++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_configfs.h | 11 ++++
+ drivers/gpu/drm/xe/xe_module.c   |  6 +--
+ drivers/gpu/drm/xe/xe_sriov_pf.c |  4 +-
+ 4 files changed, 103 insertions(+), 7 deletions(-)
+
 -- 
-2.48.1
+2.47.1
 
