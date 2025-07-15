@@ -4,61 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD70AC83F3A
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 20:05:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB8A8C83F17
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 20:05:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74A5E10E684;
-	Tue, 15 Jul 2025 20:05:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A35E410E670;
+	Tue, 15 Jul 2025 20:05:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="azO6PHCf";
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="iKWsRaCi";
 	dkim-atps=neutral
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
- [157.90.84.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B99310E222;
- Tue, 15 Jul 2025 15:45:57 +0000 (UTC)
-Received: from [192.168.178.13] (business-24-134-207-61.pool2.vodafone-ip.de
- [24.134.207.61])
- (Authenticated sender: t.guttzeit@tuxedocomputers.com)
- by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 33BB92FC0057;
- Tue, 15 Jul 2025 17:45:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
- s=default; t=1752594355;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=n/H+cQhyZm0Nb3DO7Ui2fMqJqiZh190V9LpxSLFnrBg=;
- b=azO6PHCfU8/53XgEVSD60PDD9d7n/eJwnYNU8vCh3CzaShfu8wy1oUlSHcC3Z+rYWm5EjL
- qlc/SsQdSX+OTrbwN0lP2U7Dcs7dyESTwwHGxQ7tgqCNqlgHee94XbYTFMCxaSPTEaDhnN
- P6clxgns3VDNsRD0uSi/Zi3+W3OqmWw=
-Authentication-Results: mail.tuxedocomputers.com;
- auth=pass smtp.auth=t.guttzeit@tuxedocomputers.com
- smtp.mailfrom=t.guttzeit@tuxedocomputers.com
-Message-ID: <95fd3ab0-7fe9-4abe-a57d-bf261064c097@tuxedocomputers.com>
-Date: Tue, 15 Jul 2025 17:45:53 +0200
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.73.137])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49BBB10E5CF;
+ Tue, 15 Jul 2025 13:45:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+ s=onoh2408; t=1752587103;
+ bh=4dCjZQck7i48uYPx3Sx/BUlk4a4eQthSLjRNSkI25wM=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version;
+ b=iKWsRaCi4IyVXeEb7SaCnECxm7SPGYfpdT0VDDnwJzOK6xwIvQWtZrqBRjPMwmZLO
+ oRIpE+dR11YBa2o2Mza71k+24t0ZNrKIim1NmB/Ag5KU9D9sgNtcBcDIUN7cfkkCaL
+ oeDFOYz/p25IEt5nn47pQU15kzvAJEbQObwMV2PU=
+X-QQ-mid: zesmtpip2t1752587090tf2d9a8bf
+X-QQ-Originating-IP: Bj6+lC9487tno1VXLJV8kuYKf+azi1IB4WhScDeon4Y=
+Received: from avenger-e500 ( [localhost]) by bizesmtp.qq.com (ESMTP) with 
+ id ; Tue, 15 Jul 2025 21:44:34 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 11546741082578306350
+EX-QQ-RecipientCnt: 63
+From: WangYuli <wangyuli@uniontech.com>
+To: wangyuli@uniontech.com
+Cc: airlied@gmail.com, akpm@linux-foundation.org, alison.schofield@intel.com,
+ andrew+netdev@lunn.ch, andriy.shevchenko@linux.intel.com,
+ arend.vanspriel@broadcom.com, bp@alien8.de,
+ brcm80211-dev-list.pdl@broadcom.com, brcm80211@lists.linux.dev,
+ colin.i.king@gmail.com, cvam0000@gmail.com, dan.j.williams@intel.com,
+ dave.hansen@linux.intel.com, dave.jiang@intel.com, dave@stgolabs.net,
+ davem@davemloft.net, dri-devel@lists.freedesktop.org, edumazet@google.com,
+ gregkh@linuxfoundation.org, guanwentao@uniontech.com, hpa@zytor.com,
+ ilpo.jarvinen@linux.intel.com, intel-xe@lists.freedesktop.org,
+ ira.weiny@intel.com, j@jannau.net, jeff.johnson@oss.qualcomm.com,
+ jgross@suse.com, jirislaby@kernel.org, johannes.berg@intel.com,
+ jonathan.cameron@huawei.com, kuba@kernel.org, kvalo@kernel.org,
+ kvm@vger.kernel.org, linux-cxl@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux@treblig.org,
+ lucas.demarchi@intel.com, marcin.s.wojtas@gmail.com, ming.li@zohomail.com,
+ mingo@kernel.org, mingo@redhat.com, netdev@vger.kernel.org,
+ niecheng1@uniontech.com, oleksandr_tyshchenko@epam.com, pabeni@redhat.com,
+ pbonzini@redhat.com, quic_ramess@quicinc.com, ragazenta@gmail.com,
+ rodrigo.vivi@intel.com, seanjc@google.com, shenlichuan@vivo.com,
+ simona@ffwll.ch, sstabellini@kernel.org, tglx@linutronix.de,
+ thomas.hellstrom@linux.intel.com, vishal.l.verma@intel.com, x86@kernel.org,
+ xen-devel@lists.xenproject.org, yujiaoliang@vivo.com, zhanjun@uniontech.com
+Subject: [PATCH v2 3/8] drm/xe: Fix typo "notifer"
+Date: Tue, 15 Jul 2025 21:44:02 +0800
+Message-ID: <63E6DAC34DD3C878+20250715134407.540483-3-wangyuli@uniontech.com>
+X-Mailer: git-send-email 2.50.0
+In-Reply-To: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
+References: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/1] drm/i915/display: Avoid unsupported 300Hz output
- mode on a TUXEDO device
-From: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>
-To: Werner Sembach <wse@tuxedocomputers.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20250704192007.526044-1-wse@tuxedocomputers.com>
- <aG2IL07UtZ4YICMn@intel.com>
- <513aa035-8a00-4943-abc1-d68824a5c0c6@tuxedocomputers.com>
- <881d51a5-bed3-430e-a3cd-aca5f17e16bf@tuxedocomputers.com>
-Content-Language: en-US
-Organization: TUXEDO Computers
-In-Reply-To: <881d51a5-bed3-430e-a3cd-aca5f17e16bf@tuxedocomputers.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:uniontech.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: MiUxkXieYO8RAJN5LLZip2J+FUzD7Qr+n4kJTVFcP81/RuB1oNu0MfUd
+ rLtKaay+hGMiEbfY/TLwPDFNbLNicz6tzmNwBbl1zwHfYLDH8FgMMwL6fwebHuxcDenXIXC
+ j3LOlj7d87Xa93vvCwJXH63gBZ6r08ufMNhKljyWSuY+i5TpZ8NE6uHnFfPdBcg1FgBw/DH
+ jE/T3Nl8x+kDxFDyyLEiSPAhBQfXLkD1Jg/fTpBtq2Cp3eETHxnSrFDjb+T626GTbgvKH5L
+ cmpSqTFn+mOfskg3JREwpdr15FiUIs9FqF90ahJgEOgiciANDdkJbhiT11ia9EImr6cBCxD
+ 0qZuVyEf5MeuVF54T+LrRCaFpvor8pPu93KRID8IkG2vjI+1d4r+NpkpQIxKR50vFM3hYYB
+ fSR6L9F6SYpD+Y26NNh2pFz38BfhwhqQh0b9Sw9eOqZo3FMwQubSCDxW2R8DgihDwBKAJWN
+ 5VbWMU7yCuizDy6KNshvvfLAsSXXw4FintJS9Ckd4K6wDmhzLyy0MNvx/c2rOzta47t0LRQ
+ Ys2DWZBhsDb5hA5sXbL1Gj2Ssuo0ZFyPIiNc5I/w7gjcEXZpY6QPbkBN4Sq9MUVoot7hjo8
+ GRshdiYHEylyDtZ6FQAeu5VkC5SQKcOPNxWqRnweKzxzxnuhW0E0pMSlNPeCO41kC5fMw+s
+ FXS4vh+/wPi0aOFvjutnFQfB9qTPcKhKnLAj1Q5RM7ZsENmSSaRn7c0MBj0i0j2W1eV3ReZ
+ sEMBFNOEwhQxIbZhsgKZcFnMP/uoYA8j0d46LgmseBSwEfn+mLLIqhlLC9Jx8cSvGfvzb4D
+ HOqs8HhPgOK+O/3XjPmF3STV91VcngPlSu/5H+g+wJwdVmwVC/6jSl2okdFaSJSIYTzPhNf
+ YEzA+CGsGBFcqck4NCT61oPjPJf4JeFxxfRdapNssSCgbZIZfHVpxkFWJCeZFNjMZ7wpmyF
+ UAlX0mM3meWLQozDlPFWca011K2aBsQqmOJGOwKZ/Zer9Ip0tMMqhCr2nwsVfUGQwrjxCVz
+ TyJF5H5mQUZrtb7yaDyZjsKaps1tQsOdSYqa6rlkwYTjwyziLC0lqGc25+BTfqlUpM/46Wv
+ JpBzToa8vZwznDpDCSDKeM=
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Tue, 15 Jul 2025 20:05:20 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,95 +99,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi all,
+There is a spelling mistake of 'notifer' in the comment which
+should be 'notifier'.
 
-added intel-gfx@lists.freedesktop.org and 
-intel-xe@lists.freedesktop.org, as requested in the ticket.
+Link: https://lore.kernel.org/all/B3C019B63C93846F+20250715071245.398846-1-wangyuli@uniontech.com/
+Signed-off-by: WangYuli <wangyuli@uniontech.com>
+---
+ drivers/gpu/drm/xe/xe_vm_types.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards,
-Tim Guttzeit
-
-Am 09.07.25 um 15:32 schrieb Tim Guttzeit:
-> Hi all,
->
-> > Tim can you follow up with this? Reducing the communication chain to 
-> avoid dropping information.
->
-> Yes, here is the Ticket: 
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14616
->
-> Best regards,
-> Tim Guttzeit
->
-> Am 09.07.25 um 13:49 schrieb Werner Sembach:
->> Hi all,
->>
->> Am 08.07.25 um 23:05 schrieb Rodrigo Vivi:
->>> On Fri, Jul 04, 2025 at 09:03:45PM +0200, Werner Sembach wrote:
->>>> RFC because I'm not sure if this is the right approach.
->>> Could you please file a gitlab issue for us so we can get someone 
->>> from our
->>> display team to take a look and see if there's anything else that 
->>> could be done
->>> before we take the quirk route?
->>>
->>> https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
->>
->> Tim can you follow up with this? Reducing the communication chain to 
->> avoid dropping information.
->>
->> Best regards,
->>
->> Werner Sembach
->>
->>>
->>> Thanks for the investigation and the quirk,
->>> Rodrigo.
->>>
->>>> The flicker manifests ever few seconds 1-3 black frames in quick
->>>> succession.
->>>>
->>>> On windows 300Hz can not be selected for the iGPU, but the panel 
->>>> advertises
->>>> it.
->>>>
->>>> A cleaner solution would probably to go over the pixel clock, but 
->>>> for this
->>>> device there is only one 300Hz mode in the panels edid and that is 
->>>> at the
->>>> nativ resolution. Chroma subsampling was not tested as linux afaik 
->>>> offers
->>>> no way to easily enforce it for intel gpus.
->>>>
->>>> Tim Guttzeit (1):
->>>>    drm/i915/display: Avoid unsupported output mode with 300Hz on 
->>>> TUXEDO
->>>>      device
->>>>
->>>>   drivers/gpu/drm/i915/display/intel_dp.c     |  5 ++++
->>>>   drivers/gpu/drm/i915/display/intel_quirks.c | 30 
->>>> +++++++++++++++++++++
->>>>   drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
->>>>   3 files changed, 36 insertions(+)
->>>>
->>>> -- 
->>>> 2.43.0
->>>>
->
-
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 1979e9bdbdf3..0ca27579fd1f 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -259,7 +259,7 @@ struct xe_vm {
+ 		 * up for revalidation. Protected from access with the
+ 		 * @invalidated_lock. Removing items from the list
+ 		 * additionally requires @lock in write mode, and adding
+-		 * items to the list requires either the @userptr.notifer_lock in
++		 * items to the list requires either the @userptr.notifier_lock in
+ 		 * write mode, OR @lock in write mode.
+ 		 */
+ 		struct list_head invalidated;
 -- 
-Tim Guttzeit
-Development
---
-TUXEDO Computers GmbH
-Alter Postweg 101
-D-86159 Augsburg
---
-www.tuxedocomputers.com
-Fon: +49 (0) 821 / 8998 2992
---
-Amtsgericht Augsburg: HRB 27755
-CEO: Herbert Feiler
-VAT-ID: DE815420876
-
+2.50.0
 
