@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FE1AC83F1D
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 07:22:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EAA7C83F17
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 07:30:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3351610E1A5;
-	Tue, 15 Jul 2025 07:22:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="xV4ayyVH";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 243B110E1A5;
- Tue, 15 Jul 2025 07:22:08 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id A65C05C5A39;
- Tue, 15 Jul 2025 07:22:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BF12C4CEE3;
- Tue, 15 Jul 2025 07:22:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1752564127;
- bh=Rhik2SI+sxdIEG5rfGbMFjsf4x5xltoyJp8F3xN1GvI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=xV4ayyVHzmMklnAQs9ZPV19B42Zsk2m7JMrMJ9Ou80gk+ulgxsyLIhmhnUsk5ITkT
- BIOD164QstgeLz9+xuFFZ01NuqUGgIn+VixhoplzD96lw9IWhOcL5obCmwa6Ivp5vT
- /UdnZj44/JtIwtk6Q92BDyrCHIsNzPlEBMflYjVA=
-Date: Tue, 15 Jul 2025 09:22:03 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: WangYuli <wangyuli@uniontech.com>
-Cc: seanjc@google.com, pbonzini@redhat.com, tglx@linutronix.de,
- mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com,
- x86@kernel.org, hpa@zytor.com, dave@stgolabs.net,
- jonathan.cameron@huawei.com, dave.jiang@intel.com,
- alison.schofield@intel.com, vishal.l.verma@intel.com,
- ira.weiny@intel.com, dan.j.williams@intel.com,
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
- marcin.s.wojtas@gmail.com, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, arend.vanspriel@broadcom.com,
- ilpo.jarvinen@linux.intel.com, andriy.shevchenko@linux.intel.com,
- jirislaby@kernel.org, jgross@suse.com, sstabellini@kernel.org,
- oleksandr_tyshchenko@epam.com, akpm@linux-foundation.org,
- kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
- ming.li@zohomail.com, linux-cxl@vger.kernel.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org, kvalo@kernel.org, johannes.berg@intel.com,
- quic_ramess@quicinc.com, ragazenta@gmail.com,
- jeff.johnson@oss.qualcomm.com, mingo@kernel.org, j@jannau.net,
- linux@treblig.org, linux-wireless@vger.kernel.org,
- brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
- linux-serial@vger.kernel.org, xen-devel@lists.xenproject.org,
- shenlichuan@vivo.com, yujiaoliang@vivo.com, colin.i.king@gmail.com,
- cvam0000@gmail.com, zhanjun@uniontech.com, niecheng1@uniontech.com,
- guanwentao@uniontech.com
-Subject: Re: [PATCH] treewide: Fix typo "notifer"
-Message-ID: <2025071545-endnote-imprison-2b98@gregkh>
-References: <B3C019B63C93846F+20250715071245.398846-1-wangyuli@uniontech.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C88710E540;
+	Tue, 15 Jul 2025 07:30:33 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26B7210E540;
+ Tue, 15 Jul 2025 07:30:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4313911922004943876=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <B3C019B63C93846F+20250715071245.398846-1-wangyuli@uniontech.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_Avoid_dig?=
+ =?utf-8?q?=5Fport_work_during_suspend?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Jul 2025 07:30:32 -0000
+Message-ID: <175256463215.161613.3772980837008781871@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250715055219.410193-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20250715055219.410193-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,30 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 15, 2025 at 03:12:45PM +0800, WangYuli wrote:
-> There are some spelling mistakes of 'notifer' in comments which
-> should be 'notifier'.
-> 
-> Fix them and add it to scripts/spelling.txt.
-> 
-> Signed-off-by: WangYuli <wangyuli@uniontech.com>
-> ---
->  arch/x86/kvm/i8254.c                                        | 4 ++--
->  drivers/cxl/core/mce.h                                      | 2 +-
->  drivers/gpu/drm/xe/xe_vm_types.h                            | 2 +-
->  drivers/net/ethernet/marvell/mvneta.c                       | 2 +-
->  drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c | 2 +-
->  drivers/tty/serial/8250/8250_dw.c                           | 2 +-
->  include/xen/xenbus.h                                        | 2 +-
->  scripts/spelling.txt                                        | 1 +
->  8 files changed, 9 insertions(+), 8 deletions(-)
+--===============4313911922004943876==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Please break this up into one-patch-per-subsystem, like is required for
-things like this.
+== Series Details ==
 
-thanks,
+Series: drm/xe/display: Avoid dig_port work during suspend
+URL   : https://patchwork.freedesktop.org/series/151602/
+State : success
 
-greg k-h
+== Summary ==
+
+CI Bug Log - changes from xe-3412-b012f04b5be909a307ff629b297387e0ed55195a_BAT -> xe-pw-151602v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8457 -> IGT_8458
+  * Linux: xe-3412-b012f04b5be909a307ff629b297387e0ed55195a -> xe-pw-151602v1
+
+  IGT_8457: 756ebdbf0e4c75f0680c0a36db206a9f6ff126ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8458: ff0457015d1bea8b5276b6b36c4bff6093081799 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3412-b012f04b5be909a307ff629b297387e0ed55195a: b012f04b5be909a307ff629b297387e0ed55195a
+  xe-pw-151602v1: 151602v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151602v1/index.html
+
+--===============4313911922004943876==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: Avoid dig_port work during suspend</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151602/">https://patchwork.freedesktop.org/series/151602/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151602v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151602v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3412-b012f04b5be909a307ff629b297387e0ed55195a_BAT -&gt; xe-pw-151602v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8457 -&gt; IGT_8458</li>
+<li>Linux: xe-3412-b012f04b5be909a307ff629b297387e0ed55195a -&gt; xe-pw-151602v1</li>
+</ul>
+<p>IGT_8457: 756ebdbf0e4c75f0680c0a36db206a9f6ff126ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8458: ff0457015d1bea8b5276b6b36c4bff6093081799 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3412-b012f04b5be909a307ff629b297387e0ed55195a: b012f04b5be909a307ff629b297387e0ed55195a<br />
+  xe-pw-151602v1: 151602v1</p>
+
+</body>
+</html>
+
+--===============4313911922004943876==--
