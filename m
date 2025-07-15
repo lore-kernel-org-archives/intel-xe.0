@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF44C83F1D
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 11:00:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E562C83F17
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 11:05:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBA6510E37F;
-	Tue, 15 Jul 2025 11:00:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c3ehclnq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFF9410E37F
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 11:00:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752577252; x=1784113252;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=F1O7pPpweUSP6ibi15oUf/pE1p/vaHxPY0bJy4+jkQY=;
- b=c3ehclnqE0IRYQrAfsX80gSXDf0oIuJgjFecQoE+bObOeDSt8UILCfUy
- pTEwPzPI4KrzyR+KyUd9d7WAOSzzLw6fvcnDdX9zz4QyJg2XPqBt/X9fZ
- oZlWhruPqygVCAjBsk7/K1BUm2CYHzDXBAVjP9XXO8SjRlSatJmZKXNSk
- otSIxhE7Cu9li2gXuE2tb4CtBQ6vmu++b+x6bG0oFeB7SN/ARXvYfKhZF
- UFgfMxvBh/SIMh4T2NOrg6gpuP+/V+oP5UO3RvFHbQMfDuh6oeFpVLpl8
- 0f9h2Cac+7FvBL33/UwmG/Lz4yQxPw50GY5HXLxAC8iHrttjsDBu3fVrZ Q==;
-X-CSE-ConnectionGUID: R31iNnMkRp2IluBc9I+cuA==
-X-CSE-MsgGUID: aHtDGsdsQNq3Tva5XZ3CVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="65361406"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="65361406"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 04:00:51 -0700
-X-CSE-ConnectionGUID: Vw0ek7qFSviSonJSwHwMbw==
-X-CSE-MsgGUID: IcESN/10Skm1Bsm5lbBDSg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="157913473"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa010.fm.intel.com with ESMTP; 15 Jul 2025 04:00:50 -0700
-Received: from [10.245.253.198] (unknown [10.245.253.198])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id A252A28791;
- Tue, 15 Jul 2025 12:00:48 +0100 (IST)
-Message-ID: <9bb24742-27c7-42c1-a167-fa8b7c543315@intel.com>
-Date: Tue, 15 Jul 2025 13:00:47 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA42A10E1F4;
+	Tue, 15 Jul 2025 11:05:46 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B515310E1F4;
+ Tue, 15 Jul 2025 11:05:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3012550183736368973=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [CI v4 6/7] drm/xe/pf: Stop requiring VF/PF version negotiation
- on every GT
-To: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-References: <20250713103625.1964-1-michal.wajdeczko@intel.com>
- <20250713103625.1964-7-michal.wajdeczko@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250713103625.1964-7-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Add_debugfs_node_to_expose_?=
+ =?utf-8?q?G-state_and_pcie_link_state_residency_=28rev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Soham Purkait" <soham.purkait@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Jul 2025 11:05:45 -0000
+Message-ID: <175257754573.162639.11941673883878362545@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250715095422.2901899-1-soham.purkait@intel.com>
+In-Reply-To: <20250715095422.2901899-1-soham.purkait@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,25 +36,141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3012550183736368973==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Add debugfs node to expose G-state and pcie link state residency (rev10)
+URL   : https://patchwork.freedesktop.org/series/149793/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-3412-b012f04b5be909a307ff629b297387e0ed55195a_BAT -> xe-pw-149793v10_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-149793v10_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-149793v10_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-149793v10_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3412-b012f04b5be909a307ff629b297387e0ed55195a/bat-bmg-2/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/bat-bmg-2/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
+    - bat-bmg-1:          [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3412-b012f04b5be909a307ff629b297387e0ed55195a/bat-bmg-1/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/bat-bmg-1/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
+
+  
 
 
-On 13.07.2025 12:36, Michal Wajdeczko wrote:
-> While some VF/PF relay actions must be handled on the GT level,
-> like query for runtime registers, it was clarified by the arch
-> team that initial version negotiation can be done by the VF just
-> once, by using any available GuC/GT.
-> 
-> Move handling of the VF/PF ABI version negotiation on the PF side
-> from the GT level functions to the device level functions.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Build changes
+-------------
 
-for the record, since this series is already merged, considering
-cross-OS support this patch (and its prerequisites) might also deserve tag:
+  * IGT: IGT_8457 -> IGT_8459
+  * Linux: xe-3412-b012f04b5be909a307ff629b297387e0ed55195a -> xe-pw-149793v10
 
-Fixes: 98e62805921c ("drm/xe/pf: Add SR-IOV GuC Relay PF services")
+  IGT_8457: 756ebdbf0e4c75f0680c0a36db206a9f6ff126ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8459: 8459
+  xe-3412-b012f04b5be909a307ff629b297387e0ed55195a: b012f04b5be909a307ff629b297387e0ed55195a
+  xe-pw-149793v10: 149793v10
 
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/index.html
+
+--===============3012550183736368973==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add debugfs node to expose G-state and pcie link state residency (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149793/">https://patchwork.freedesktop.org/series/149793/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3412-b012f04b5be909a307ff629b297387e0ed55195a_BAT -&gt; xe-pw-149793v10_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-149793v10_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-149793v10_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-149793v10_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3412-b012f04b5be909a307ff629b297387e0ed55195a/bat-bmg-2/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/bat-bmg-2/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">ABORT</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3412-b012f04b5be909a307ff629b297387e0ed55195a/bat-bmg-1/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/bat-bmg-1/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8457 -&gt; IGT_8459</li>
+<li>Linux: xe-3412-b012f04b5be909a307ff629b297387e0ed55195a -&gt; xe-pw-149793v10</li>
+</ul>
+<p>IGT_8457: 756ebdbf0e4c75f0680c0a36db206a9f6ff126ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8459: 8459<br />
+  xe-3412-b012f04b5be909a307ff629b297387e0ed55195a: b012f04b5be909a307ff629b297387e0ed55195a<br />
+  xe-pw-149793v10: 149793v10</p>
+
+</body>
+</html>
+
+--===============3012550183736368973==--
