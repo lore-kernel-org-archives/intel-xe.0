@@ -4,22 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CEAFC83F1D
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 10:16:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62B56C83F2D
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 10:16:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3C4F10E207;
-	Tue, 15 Jul 2025 10:16:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E232110E586;
+	Tue, 15 Jul 2025 10:16:54 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1017110E207
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 10:16:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F20810E581
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 10:16:53 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
  Maarten Lankhorst <dev@lankhorst.se>
-Subject: [CI PATCH 0/4] CI test with PREEMPT_RT
-Date: Tue, 15 Jul 2025 12:16:37 +0200
-Message-ID: <20250715101636.906092-6-dev@lankhorst.se>
+Subject: [PATCH 3/4] drm/i915/display: Use drm_crtc_vblank_count in
+ intel_crtc_get_vblank_counter()
+Date: Tue, 15 Jul 2025 12:16:40 +0200
+Message-ID: <20250715101636.906092-9-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250715101636.906092-6-dev@lankhorst.se>
+References: <20250715101636.906092-6-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -36,24 +39,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Just testing the XE enabling parts.
+drm_crtc_accurate_vblank_count takes a spinlock, which we should avoid
+in tracepoints and debug functions.
 
-Maarten Lankhorst (2):
-  drm/i915/display: Use drm_crtc_vblank_count in
-    intel_crtc_get_vblank_counter()
-  FOR-CI: Enable PREEMPT_RT
+This also prevents taking the spinlock 2x during the critical
+section of pipe updates.
 
-Mike Galbraith (2):
-  drm/i915: Use preempt_disable/enable_rt() where recommended
-  drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/i915/display/intel_crtc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/gpu/drm/i915/display/intel_crtc.c   | 11 +++--
- drivers/gpu/drm/i915/display/intel_cursor.c |  9 ++--
- drivers/gpu/drm/i915/display/intel_vblank.c | 49 ++++++++++++++++-----
- init/Kconfig                                |  2 +-
- kernel/Kconfig.preempt                      |  4 +-
- 5 files changed, 53 insertions(+), 22 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index dbdc4d9b2a33c..65a57cadfa3bf 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -85,7 +85,7 @@ u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc)
+ 		return 0;
+ 
+ 	if (!vblank->max_vblank_count)
+-		return (u32)drm_crtc_accurate_vblank_count(&crtc->base);
++		return (u32)drm_crtc_vblank_count(&crtc->base);
+ 
+ 	return crtc->base.funcs->get_vblank_counter(&crtc->base);
+ }
 -- 
 2.45.2
 
