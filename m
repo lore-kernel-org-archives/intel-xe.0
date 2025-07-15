@@ -4,86 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 102A7C83F27
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 07:59:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9FE5C83F1D
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 08:01:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0EF210E549;
-	Tue, 15 Jul 2025 07:59:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE0810E54D;
+	Tue, 15 Jul 2025 08:01:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OXEKOdd0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJGCTenS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6146510E548;
- Tue, 15 Jul 2025 07:59:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EE4910E549;
+ Tue, 15 Jul 2025 08:01:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752566388; x=1784102388;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=UeR90blzl1UkanLlvwh7Gs4nuz3Jzfvnov9b2Px8QHk=;
- b=OXEKOdd0Sxjs15A1de5OkADyNii8INyrNId5xt7j3whzggibr37S6DDI
- AY9oHsqZZuUtwZqjUUJM0D7u62iifj71MdifpxpN35DlxcqmmyyvBuyky
- bOG5hFIRqbYdKtL0kTLH/7P26xqckghwrl+NQr/X0hA1ulDQGrDBjDJ9J
- udjnrrET7gs85DTrzr3U/3Hxbny8y2EcuAgblVLpCUmg+82ov08Qa/qlq
- SmzEt/geznFP8AHM04l3/w3aeaErEH7rMAsLsv++PddyyAf5JDUcD0avy
- sqgievRNmhONBp1YW5poYktTfTEjwZlIEBS+gVpGJH2zQcTwBx72cScCf w==;
-X-CSE-ConnectionGUID: RSD/Oa36Qj+qvfqOoNWrDg==
-X-CSE-MsgGUID: 7hpqi/oIRiarYEmj+1PJEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54920733"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="54920733"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 00:59:47 -0700
-X-CSE-ConnectionGUID: LAglGVJPSx+FTNAdNBYyDw==
-X-CSE-MsgGUID: ZxagDbPCR3a8lGaD4xN+/Q==
+ t=1752566511; x=1784102511;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=sSTp37TIb6l3MJ4618tSg3NO6JAiET+0ObwmjllNcT0=;
+ b=cJGCTenSpQyOYCY6hrxV3icNCmf3p08DFNF7YnIFR9HL35QR87fVfPP/
+ VtwK0s11ROdVYyNNJuFwInL3L0M293SUEHjrSmnElU8+pAsxLZn+AAMOT
+ DsVZO9E1iRhg6Ldwrkv7q52WG9RU2OSGUhQ2Fg90VhHNpaCR8/YF+FylJ
+ EfnIFEJIVwz1Y5YXQcHvK9jtyz3JkpQNtENom4UMsamSguOoKxBmgdULT
+ 832bAM7tFFM7qe7zt8c1ZklPcYcbLABoAgiskeAyprUmaDj2UolNaKMWA
+ vtjhj70m+mnoCLGg6BC0UmOgFyn1LwqAZMVxFKYBv0gsgeBmwBtJywzGl Q==;
+X-CSE-ConnectionGUID: dqvfzLWPTAKVv245MJiaxA==
+X-CSE-MsgGUID: iiIxnOhsSySMLL8kVla6fg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="57386161"
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="57386161"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2025 01:01:51 -0700
+X-CSE-ConnectionGUID: GLUWmg3ESFq7wUTh2Uplcw==
+X-CSE-MsgGUID: Mcd9kRoKSs+7HTQyPOO+ig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="156565039"
-Received: from smile.fi.intel.com ([10.237.72.52])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 00:59:32 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1ubaZS-0000000Fadw-49Fb; Tue, 15 Jul 2025 10:59:26 +0300
-Date: Tue, 15 Jul 2025 10:59:26 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: WangYuli <wangyuli@uniontech.com>
-Cc: Greg KH <gregkh@linuxfoundation.org>, seanjc@google.com,
- pbonzini@redhat.com, tglx@linutronix.de, mingo@redhat.com,
- bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org,
- hpa@zytor.com, dave@stgolabs.net, jonathan.cameron@huawei.com,
- dave.jiang@intel.com, alison.schofield@intel.com,
- vishal.l.verma@intel.com, ira.weiny@intel.com,
- dan.j.williams@intel.com, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- airlied@gmail.com, simona@ffwll.ch, marcin.s.wojtas@gmail.com,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, arend.vanspriel@broadcom.com,
- ilpo.jarvinen@linux.intel.com, jirislaby@kernel.org,
- jgross@suse.com, sstabellini@kernel.org,
- oleksandr_tyshchenko@epam.com, akpm@linux-foundation.org,
- kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
- ming.li@zohomail.com, linux-cxl@vger.kernel.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org, kvalo@kernel.org, johannes.berg@intel.com,
- quic_ramess@quicinc.com, ragazenta@gmail.com,
- jeff.johnson@oss.qualcomm.com, mingo@kernel.org, j@jannau.net,
- linux@treblig.org, linux-wireless@vger.kernel.org,
- brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
- linux-serial@vger.kernel.org, xen-devel@lists.xenproject.org,
- shenlichuan@vivo.com, yujiaoliang@vivo.com, colin.i.king@gmail.com,
- cvam0000@gmail.com, zhanjun@uniontech.com, niecheng1@uniontech.com,
- guanwentao@uniontech.com
-Subject: Re: [PATCH] treewide: Fix typo "notifer"
-Message-ID: <aHYKXgc2k5wDY32c@smile.fi.intel.com>
-References: <B3C019B63C93846F+20250715071245.398846-1-wangyuli@uniontech.com>
- <2025071545-endnote-imprison-2b98@gregkh>
- <5D06C25920559D71+06c9ce34-9867-495c-9842-dcfe9f1d51bb@uniontech.com>
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="161178894"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.244.177])
+ ([10.245.244.177])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2025 01:01:47 -0700
+Message-ID: <272f743e-15f7-4dc0-a6c0-08cd60ca6cc2@linux.intel.com>
+Date: Tue, 15 Jul 2025 10:01:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5D06C25920559D71+06c9ce34-9867-495c-9842-dcfe9f1d51bb@uniontech.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/9] drm/i915: Disable tracing points on PREEMPT_RT
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Scott Oehrlein <scott.oehrlein@intel.com>,
+ Ben Hutchings <ben@decadent.org.uk>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Luca Abeni <lucabe72@gmail.com>,
+ Steven Rostedt <rostedt@goodmis.org>
+References: <20250714153954.629393-1-bigeasy@linutronix.de>
+ <20250714153954.629393-5-bigeasy@linutronix.de>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20250714153954.629393-5-bigeasy@linutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,33 +78,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 15, 2025 at 03:53:18PM +0800, WangYuli wrote:
-> On 2025/7/15 15:22, Greg KH wrote:
-> > Please break this up into one-patch-per-subsystem, like is required for
-> > things like this.
+Hey,
 
-> Honestly, I've always been quite unsure how to handle situations like this.
+I believe the platforms that require spinlocks for reading registers all predate Xe,
+so it should be possible to enable tracepoints on Xe.
+
+I do see there is still a path there that takes locks, through intel_crtc_get_vblank_counter -> drm_crtc_accurate_vblank_count().
+
+I would recommend changing intel_crtc_get_vblank_counter to use drm_vblank_count(),
+which doesn't take locks.
+
+This reduces vblank accuracy slightly on old platforms and gen11+ DSI, but I would say for most usecases it has the same accuracy, with the benefit of keeping tracepoints enabled. The only users for intel_crtc_get_vblank_counter() are debug functions.
+
+With that change, something like: 
+"#if defined(CONFIG_PREEMPT_RT) && defined(I915) && !defined(NOTRACE)"
+
+would disable tracepoints only on i915.
+
+Kind regards,
+~Maarten
+
+Den 2025-07-14 kl. 17:39, skrev Sebastian Andrzej Siewior:
+> Luca Abeni reported this:
+> | BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
+> | CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
+> | Call Trace:
+> |  rt_spin_lock+0x3f/0x50
+> |  gen6_read32+0x45/0x1d0 [i915]
+> |  g4x_get_vblank_counter+0x36/0x40 [i915]
+> |  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
 > 
-> It seems every subsystem maintainer has different preferences.
-
-True, but at least if you see the specific driver in the MAINTAINERS, split for
-that driver. For instance, 8250_dw in this patch is exactly the case.
-
-> I've previously encountered some maintainers who suggested I split such
-> patches by subsystem so each maintainer could merge them into their tree
-> without contention. However, other ones have argued that fixing spelling
-> errors isn't worth multiple commits, claiming it would create chaos.
-
-> Since I genuinely discover these spelling errors by chance each time, and to
-> avoid giving the impression I'm "spamming" the kernel tree for some ulterior
-> motive, I've opted to squash them into a single commit.
+> The tracing events use trace_intel_pipe_update_start() among other events
+> use functions acquire spinlock_t locks which are transformed into
+> sleeping locks on PREEMPT_RT. A few trace points use
+> intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
+> might acquire a sleeping locks on PREEMPT_RT.
+> At the time the arguments are evaluated within trace point, preemption
+> is disabled and so the locks must not be acquired on PREEMPT_RT.
 > 
-> That said, I personally don't have any strong feelings or preferences on
-> this matter. Since you've requested it, I'll go ahead and split it up and
-> send a v2 patchset.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> Based on this I don't see any other way than disable trace points on
+> PREMPT_RT.
+> 
+> Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Reported-by: Luca Abeni <lucabe72@gmail.com>
+> Cc: Steven Rostedt <rostedt@goodmis.org>
+> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_trace.h | 4 ++++
+>  drivers/gpu/drm/i915/i915_trace.h                  | 4 ++++
+>  drivers/gpu/drm/i915/intel_uncore_trace.h          | 4 ++++
+>  3 files changed, 12 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
+> index 27ebc32cb61a5..a519d94700c36 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+> @@ -13,6 +13,10 @@
+>  #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
+>  #define __INTEL_DISPLAY_TRACE_H__
+>  
+> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
+> +#define NOTRACE
+> +#endif
+> +
+>  #include <linux/string.h>
+>  #include <linux/string_helpers.h>
+>  #include <linux/types.h>
+> diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+> index 7ed41ce9b7085..6b87ef6005c69 100644
+> --- a/drivers/gpu/drm/i915/i915_trace.h
+> +++ b/drivers/gpu/drm/i915/i915_trace.h
+> @@ -6,6 +6,10 @@
+>  #if !defined(_I915_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
+>  #define _I915_TRACE_H_
+>  
+> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
+> +#define NOTRACE
+> +#endif
+> +
+>  #include <linux/stringify.h>
+>  #include <linux/types.h>
+>  #include <linux/tracepoint.h>
+> diff --git a/drivers/gpu/drm/i915/intel_uncore_trace.h b/drivers/gpu/drm/i915/intel_uncore_trace.h
+> index f13ff71edf2db..3c67e267fb602 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore_trace.h
+> +++ b/drivers/gpu/drm/i915/intel_uncore_trace.h
+> @@ -7,6 +7,10 @@
+>  #if !defined(__INTEL_UNCORE_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
+>  #define __INTEL_UNCORE_TRACE_H__
+>  
+> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
+> +#define NOTRACE
+> +#endif
+> +
+>  #include "i915_reg_defs.h"
+>  
+>  #include <linux/types.h>
 
