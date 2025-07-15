@@ -4,61 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DA7EC83F27
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 10:23:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 067FFC83F17
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 10:32:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01ACD10E595;
-	Tue, 15 Jul 2025 10:23:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C32A710E209;
+	Tue, 15 Jul 2025 10:32:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YjZNWY5j";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K2lRh+jy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E924510E593;
- Tue, 15 Jul 2025 10:23:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C02B310E209
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 10:32:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752575010; x=1784111010;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2rKdRla1AIIO7R3LjnrMwrrkHwubCEVenKg+XTGiHWA=;
- b=YjZNWY5jLWwijXUk5yGCxhpIniE30sYlJCGi89htQnjT59viFq6NRyeI
- ZcU3HyRRSooUUt/2VIQFTB9MB4uo4O/SfuG7T3EPno2ti0EAFMFUa22XV
- Eyp8FpT50XqNMo6aSxNuaOYSNhUo/aW17/raFD52itvNh3KPnF4ShAsDf
- ClCizmcz5/VUYkZlTRwGSlbUKqwF1V8TLtvEtntKxEyiAq3ybNkKK2t3E
- F8XLfgIChycJyJK3H20yXAk6LBZzo0A8j5xxaraumxYU4qK0gmGFTlEKY
- HfY6HWDEKfsfON8GFemY0ihYDqOMClKJX8V/ueGeSMOhBzkFc841kH0Hx g==;
-X-CSE-ConnectionGUID: iWemUpTIR1a4ApY5lJjkuQ==
-X-CSE-MsgGUID: NW2MujtsTcyKrsTwp0cBJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54496942"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="54496942"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 03:23:30 -0700
-X-CSE-ConnectionGUID: Lf417DqIS4u3dxbXlwlC2Q==
-X-CSE-MsgGUID: piQ5kRB+RWCdE3TIrSjmuQ==
+ t=1752575568; x=1784111568;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=JZ57VuBNTkzImkwVYksAAAW1Y+imC8YPHANXGgedqg0=;
+ b=K2lRh+jyj6ad3rg8fvAsCSVNCzWvjZU229jMvt71GYU4YSVIfAxNub15
+ j936tJ8cX14jXmfZ2c6mZOGoqv+fvYGowUloP28vTPIL689YvVDXL+nLh
+ C7hKS7t8KQTPYSuA45WZilGjHYLC9YhfIWAQhkWWINjNWEtJKbLoJGC3S
+ PyQCkQjbO0R2DuI8ZF3bPOyr+P+lRVwhT8Z0X8xDcC0YRij7H5gSGONor
+ ZI00KCnnMMMCY0uLbEilZOfD1XMUquBDGB5vdGIo1RoqaDgeUYN9wtSOU
+ JTHDjZmQPtspvgR3KlgqimLLpfVj8AqbMN/ml4IAug9rg2Rh+fM/daSrl Q==;
+X-CSE-ConnectionGUID: 3Qs0hccDRxCbWBemnujl1g==
+X-CSE-MsgGUID: iC3l9huRTd63gdr7F1V5iw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="58555741"
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="58555741"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2025 03:32:48 -0700
+X-CSE-ConnectionGUID: pydsTY4GToWvr+Z5xxSfbA==
+X-CSE-MsgGUID: 2rjDJrroR9SAiJQxMTY79A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="157543102"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 03:23:26 -0700
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
- raag.jadav@intel.com, umesh.nerlige.ramappa@intel.com,
- frank.scarbrough@intel.com, sk.anirban@intel.com, simona.vetter@ffwll.ch,
- airlied@gmail.com
-Subject: [PATCH v5 9/9] drm/xe/xe_hw_error: Add fault injection to trigger csc
- error handler
-Date: Tue, 15 Jul 2025 16:17:29 +0530
-Message-ID: <20250715104730.2109506-10-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250715104730.2109506-1-riana.tauro@intel.com>
-References: <20250715104730.2109506-1-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="188174772"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.193])
+ ([10.245.244.193])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2025 03:32:48 -0700
+Message-ID: <9b3fd3ce-851b-44e0-81b9-d1712aa13826@intel.com>
+Date: Tue, 15 Jul 2025 11:32:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] drm/xe: Implement clear VRAM on free
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, thomas.hellstrom@linux.intel.com
+References: <20250623151929.2422584-1-matthew.brost@intel.com>
+ <20250623151929.2422584-5-matthew.brost@intel.com>
+ <47e9d188-aa97-4eb1-a5cb-d4de3c944188@intel.com>
+ <aHWWZksco/qfSQBT@lstrano-desk.jf.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <aHWWZksco/qfSQBT@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,81 +72,266 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a debugfs fault handler to trigger csc error handler that
-wedges the device and sends drm uevent
+On 15/07/2025 00:44, Matthew Brost wrote:
+> On Fri, Jul 04, 2025 at 10:17:24AM +0100, Matthew Auld wrote:
+>> On 23/06/2025 16:19, Matthew Brost wrote:
+>>> Clearing on free should hide latency of BO clears on new user BO
+>>> allocations.
+>>>
+>>> Implemented via calling xe_migrate_clear in release notify and updating
+>>> iterator in xe_migrate_clear to skip cleared buddy blocks. Only user BOs
+>>> cleared in release notify as kernel BOs could still be in use (e.g., PT
+>>> BOs need to wait for dma-resv to be idle).
+>>>
+>>> v2:
+>>>    - Update to new xe_migrate_clear arguments (Thomas)
+>>>    - Wait on BOOKKEEP slots for clear onn free (Thomas)
+>>>    - s/XE_MIGRATE_CLEAR_NON_DIRTY/XE_MIGRATE_CLEAR_FLAG_ON_FREE
+>>>    - Do not requested clear memory in VRAM manager if BO as TT data (Auld)
+>>>
+>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/xe/xe_bo.c           | 48 ++++++++++++++++++++++++++++
+>>>    drivers/gpu/drm/xe/xe_migrate.c      | 31 ++++++++++++------
+>>>    drivers/gpu/drm/xe/xe_migrate.h      |  1 +
+>>>    drivers/gpu/drm/xe/xe_res_cursor.h   | 26 +++++++++++++++
+>>>    drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  6 +++-
+>>>    drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  6 ++++
+>>>    6 files changed, 108 insertions(+), 10 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>>> index 7a412121477e..900f67deef9d 100644
+>>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>>> @@ -1453,6 +1453,52 @@ static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
+>>>    	return locked;
+>>>    }
+>>> +static void xe_ttm_bo_release_clear(struct ttm_buffer_object *ttm_bo)
+>>> +{
+>>> +	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
+>>> +	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+>>> +	struct dma_fence *fence;
+>>> +	int err, idx;
+>>> +
+>>> +	xe_bo_assert_held(ttm_to_xe_bo(ttm_bo));
+>>> +
+>>> +	if (ttm_bo->type != ttm_bo_type_device)
+>>> +		return;
+>>> +
+>>> +	if (xe_device_wedged(xe))
+>>> +		return;
+>>> +
+>>> +	if (!ttm_bo->resource || !mem_type_is_vram(ttm_bo->resource->mem_type))
+>>> +		return;
+>>> +
+>>> +	if (!drm_dev_enter(&xe->drm, &idx))
+>>> +		return;
+>>> +
+>>> +	if (!xe_pm_runtime_get_if_active(xe))
+>>> +		goto unbind;
+>>> +
+>>> +	err = dma_resv_reserve_fences(&ttm_bo->base._resv, 1);
+>>> +	if (err)
+>>> +		goto put_pm;
+>>> +
+>>> +	fence = xe_migrate_clear(mem_type_to_migrate(xe, ttm_bo->resource->mem_type),
+>>> +				 ttm_bo->resource, &ttm_bo->base._resv, NULL,
+>>> +				 bo->size, XE_MIGRATE_CLEAR_FLAG_FULL |
+>>> +				 XE_MIGRATE_CLEAR_FLAG_ON_FREE, &bo->ccs_cleared);
+>>> +	if (XE_WARN_ON(IS_ERR(fence)))
+>>
+>> Should we chuck a warn for this? I think there might be some intr waits in
+>> there which could legit trigger?
+>>
+> 
+> Unless I'm missing something, nothing xe_migrate_clear in interruptable.
+> All the locks are non-interruptable, same with waits. Also this should
+> be a kernel contetxt, not interrutable user context, right?
 
-v2: add debugfs only for bmg (Umesh)
+I was looking in xe_bb_new(), I think I see some potential intr waits? I 
+think we can get here via any bo_put, which could happen inside an ioctl?
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c  |  3 +++
- drivers/gpu/drm/xe/xe_hw_error.c | 11 +++++++++++
- 2 files changed, 14 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 26e9d146ccbf..95057c04a022 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -31,6 +31,7 @@
- #endif
- 
- DECLARE_FAULT_ATTR(gt_reset_failure);
-+DECLARE_FAULT_ATTR(inject_csc_hw_error);
- 
- static struct xe_device *node_to_xe(struct drm_info_node *node)
- {
-@@ -294,6 +295,8 @@ void xe_debugfs_register(struct xe_device *xe)
- 	xe_pxp_debugfs_register(xe->pxp);
- 
- 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
-+	if (xe->info.platform == XE_BATTLEMAGE)
-+		fault_create_debugfs_attr("inject_csc_hw_error", root, &inject_csc_hw_error);
- 
- 	if (IS_SRIOV_PF(xe))
- 		xe_sriov_pf_debugfs_register(xe, root);
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index c5b3e8c207fa..db7417c390ff 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2025 Intel Corporation
-  */
- 
-+#include <linux/fault-inject.h>
-+
- #include "regs/xe_gsc_regs.h"
- #include "regs/xe_hw_error_regs.h"
- #include "regs/xe_irq_regs.h"
-@@ -13,6 +15,7 @@
- #include "xe_survivability_mode.h"
- 
- #define  HEC_UNCORR_FW_ERR_BITS 4
-+extern struct fault_attr inject_csc_hw_error;
- 
- /* Error categories reported by hardware */
- enum hardware_error {
-@@ -43,6 +46,11 @@ static const char *hw_error_to_str(const enum hardware_error hw_err)
- 	}
- }
- 
-+static bool fault_inject_csc_hw_error(void)
-+{
-+	return should_fail(&inject_csc_hw_error, 1);
-+}
-+
- static void csc_hw_error_work(struct work_struct *work)
- {
- 	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
-@@ -130,6 +138,9 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
- {
- 	enum hardware_error hw_err;
- 
-+	if (fault_inject_csc_hw_error())
-+		schedule_work(&tile->csc_hw_error_work);
-+
- 	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++)
- 		if (master_ctl & ERROR_IRQ(hw_err))
- 			hw_error_source_handler(tile, hw_err);
--- 
-2.47.1
+> 
+>>> +		goto put_pm;
+>>> +
+>>> +	xe_ttm_vram_mgr_resource_set_cleared(ttm_bo->resource);
+>>> +	dma_resv_add_fence(&ttm_bo->base._resv, fence,
+>>> +			   DMA_RESV_USAGE_KERNEL);
+>>> +	dma_fence_put(fence);
+>>> +
+>>> +put_pm:
+>>> +	xe_pm_runtime_put(xe);
+>>> +unbind:
+>>> +	drm_dev_exit(idx);
+>>> +}
+>>> +
+>>>    static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+>>>    {
+>>>    	struct dma_resv_iter cursor;
+>>> @@ -1497,6 +1543,8 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+>>>    	}
+>>>    	dma_fence_put(replacement);
+>>> +	xe_ttm_bo_release_clear(ttm_bo);
+>>> +
+>>>    	dma_resv_unlock(ttm_bo->base.resv);
+>>>    }
+>>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+>>> index 18030f9613ae..7620f4eb8fb3 100644
+>>> --- a/drivers/gpu/drm/xe/xe_migrate.c
+>>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+>>> @@ -1067,7 +1067,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>>>    	struct xe_gt *gt = m->tile->primary_gt;
+>>>    	struct xe_device *xe = gt_to_xe(gt);
+>>>    	bool clear_only_system_ccs = false;
+>>> -	struct dma_fence *fence = NULL;
+>>> +	struct dma_fence *fence = dma_fence_get_stub();
+>>>    	struct xe_res_cursor src_it;
+>>>    	struct ttm_resource *src = dst;
+>>>    	int err;
+>>> @@ -1078,10 +1078,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>>>    	if (!clear_bo_data && clear_ccs && !IS_DGFX(xe))
+>>>    		clear_only_system_ccs = true;
+>>> -	if (!clear_vram)
+>>> +	if (!clear_vram) {
+>>>    		xe_res_first_sg(sgt, 0, size, &src_it);
+>>> -	else
+>>> +	} else {
+>>>    		xe_res_first(src, 0, size, &src_it);
+>>> +		if (!(clear_flags & XE_MIGRATE_CLEAR_FLAG_ON_FREE))
+>>> +			size -= xe_res_next_dirty(&src_it);
+>>> +	}
+>>>    	while (size) {
+>>>    		u64 clear_L0_ofs;
+>>> @@ -1128,6 +1131,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>>>    			emit_pte(m, bb, clear_L0_pt, clear_vram, clear_only_system_ccs,
+>>>    				 &src_it, clear_L0, dst);
+>>> +		if (clear_vram && !(clear_flags & XE_MIGRATE_CLEAR_FLAG_ON_FREE))
+>>> +			size -= xe_res_next_dirty(&src_it);
+>>> +
+>>>    		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+>>>    		update_idx = bb->len;
+>>> @@ -1149,15 +1155,22 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>>>    		}
+>>>    		xe_sched_job_add_migrate_flush(job, flush_flags);
+>>> -		if (!fence) {
+>>> +		if (fence == dma_fence_get_stub()) {
+>>
+>> Does this get() always have a matching put()? Say fence != stub?
+>>
+> 
+> Maybe not, but I think that is ok given you don't want a dma-fence to be
+> destroyed. This is a bit of backwwards checkout though as
+> dma_fence_get_stub takes a spin_lock and increments a ref count. Let me
+> rework this a bit.
+> 
+> Matt
+> 
+>>> +			enum dma_resv_usage usage =
+>>> +			       (clear_flags & XE_MIGRATE_CLEAR_FLAG_ON_FREE) ?
+>>> +			       DMA_RESV_USAGE_BOOKKEEP : DMA_RESV_USAGE_KERNEL;
+>>> +
+>>>    			/*
+>>> -			 * There can't be anything userspace related at this
+>>> -			 * point, so we just need to respect any potential move
+>>> -			 * fences, which are always tracked as
+>>> +			 * For initial clears, there can't be anything userspace
+>>> +			 * related at this point, so we just need to respect any
+>>> +			 * potential move fences, which are always tracked as
+>>>    			 * DMA_RESV_USAGE_KERNEL.
+>>> +			 *
+>>> +			 * For clear on free need to respect all fences as
+>>> +			 * memory could still be in use by the GPU which is
+>>> +			 * tracked in DMA_RESV_USAGE_BOOKKEEP.
+>>>    			 */
+>>> -			err = xe_sched_job_add_deps(job, resv,
+>>> -						    DMA_RESV_USAGE_KERNEL);
+>>> +			err = xe_sched_job_add_deps(job, resv, usage);
+>>>    			if (err)
+>>>    				goto err_job;
+>>>    		}
+>>> diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+>>> index 04b3cd86ba90..104c61812ba1 100644
+>>> --- a/drivers/gpu/drm/xe/xe_migrate.h
+>>> +++ b/drivers/gpu/drm/xe/xe_migrate.h
+>>> @@ -120,6 +120,7 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+>>>    #define XE_MIGRATE_CLEAR_FLAG_BO_DATA		BIT(0)
+>>>    #define XE_MIGRATE_CLEAR_FLAG_CCS_DATA		BIT(1)
+>>> +#define XE_MIGRATE_CLEAR_FLAG_ON_FREE		BIT(2)
+>>>    #define XE_MIGRATE_CLEAR_FLAG_FULL	(XE_MIGRATE_CLEAR_FLAG_BO_DATA | \
+>>>    					XE_MIGRATE_CLEAR_FLAG_CCS_DATA)
+>>>    struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>>> diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+>>> index d1a403cfb628..630082e809ba 100644
+>>> --- a/drivers/gpu/drm/xe/xe_res_cursor.h
+>>> +++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+>>> @@ -315,6 +315,32 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
+>>>    	}
+>>>    }
+>>> +/**
+>>> + * xe_res_next_dirty - advance the cursor to next dirty buddy block
+>>> + *
+>>> + * @cur: the cursor to advance
+>>> + *
+>>> + * Move the cursor until dirty buddy block is found.
+>>> + *
+>>> + * Return: Number of bytes cursor has been advanced
+>>> + */
+>>> +static inline u64 xe_res_next_dirty(struct xe_res_cursor *cur)
+>>> +{
+>>> +	struct drm_buddy_block *block = cur->node;
+>>> +	u64 bytes = 0;
+>>> +
+>>> +	XE_WARN_ON(cur->mem_type != XE_PL_VRAM0 &&
+>>> +		   cur->mem_type != XE_PL_VRAM1);
+>>> +
+>>> +	while (cur->remaining && drm_buddy_block_is_clear(block)) {
+>>> +		bytes += cur->size;
+>>> +		xe_res_next(cur, cur->size);
+>>> +		block = cur->node;
+>>> +	}
+>>> +
+>>> +	return bytes;
+>>> +}
+>>> +
+>>>    /**
+>>>     * xe_res_dma - return dma address of cursor at current position
+>>>     *
+>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>>> index 9e375a40aee9..838739e47815 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>>> @@ -84,6 +84,10 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+>>>    	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
+>>>    		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+>>> +	if (tbo->type == ttm_bo_type_device &&
+>>> +	    !xe_bo_tt_has_data(ttm_to_xe_bo(tbo)))
+>>> +		vres->flags |= DRM_BUDDY_CLEAR_ALLOCATION;
+>>> +
+>>>    	if (WARN_ON(!vres->base.size)) {
+>>>    		err = -EINVAL;
+>>>    		goto error_fini;
+>>> @@ -187,7 +191,7 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+>>>    	struct drm_buddy *mm = &mgr->mm;
+>>>    	mutex_lock(&mgr->lock);
+>>> -	drm_buddy_free_list(mm, &vres->blocks, 0);
+>>> +	drm_buddy_free_list(mm, &vres->blocks, vres->flags);
+>>>    	mgr->visible_avail += vres->used_visible_size;
+>>>    	mutex_unlock(&mgr->lock);
+>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+>>> index cc76050e376d..dfc0e6890b3c 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+>>> @@ -36,6 +36,12 @@ to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
+>>>    	return container_of(res, struct xe_ttm_vram_mgr_resource, base);
+>>>    }
+>>> +static inline void
+>>> +xe_ttm_vram_mgr_resource_set_cleared(struct ttm_resource *res)
+>>> +{
+>>> +	to_xe_ttm_vram_mgr_resource(res)->flags |= DRM_BUDDY_CLEARED;
+>>> +}
+>>> +
+>>>    static inline struct xe_ttm_vram_mgr *
+>>>    to_xe_ttm_vram_mgr(struct ttm_resource_manager *man)
+>>>    {
+>>
 
