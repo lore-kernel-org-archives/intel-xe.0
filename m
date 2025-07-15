@@ -4,65 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9FE5C83F1D
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 08:01:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76F01C83F1D
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 08:15:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE0810E54D;
-	Tue, 15 Jul 2025 08:01:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37D0C10E558;
+	Tue, 15 Jul 2025 08:15:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJGCTenS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I8UJI60g";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EE4910E549;
- Tue, 15 Jul 2025 08:01:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C913410E57D
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 08:15:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752566511; x=1784102511;
+ t=1752567333; x=1784103333;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=sSTp37TIb6l3MJ4618tSg3NO6JAiET+0ObwmjllNcT0=;
- b=cJGCTenSpQyOYCY6hrxV3icNCmf3p08DFNF7YnIFR9HL35QR87fVfPP/
- VtwK0s11ROdVYyNNJuFwInL3L0M293SUEHjrSmnElU8+pAsxLZn+AAMOT
- DsVZO9E1iRhg6Ldwrkv7q52WG9RU2OSGUhQ2Fg90VhHNpaCR8/YF+FylJ
- EfnIFEJIVwz1Y5YXQcHvK9jtyz3JkpQNtENom4UMsamSguOoKxBmgdULT
- 832bAM7tFFM7qe7zt8c1ZklPcYcbLABoAgiskeAyprUmaDj2UolNaKMWA
- vtjhj70m+mnoCLGg6BC0UmOgFyn1LwqAZMVxFKYBv0gsgeBmwBtJywzGl Q==;
-X-CSE-ConnectionGUID: dqvfzLWPTAKVv245MJiaxA==
-X-CSE-MsgGUID: iiIxnOhsSySMLL8kVla6fg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="57386161"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="57386161"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 01:01:51 -0700
-X-CSE-ConnectionGUID: GLUWmg3ESFq7wUTh2Uplcw==
-X-CSE-MsgGUID: Mcd9kRoKSs+7HTQyPOO+ig==
+ bh=bgHqEHDnZY1iOgD5mGNfQ2QZUuBw+LlMsjhE1ieKMfY=;
+ b=I8UJI60gzo/mOesewvtn4S0HtuYow/KjF4E6VQ0fohO9ycAtpvhT7YMQ
+ b12icYUZu1KK8YNQuINNmjD5jC5pGYFwOTh8T8jHSfeKiuNp56LkTzjSO
+ CDshPBcueRcq/cMUjAfgiepb3BMRxrsXsm9JpbnPT9ymGXRfC6DSoxjXi
+ Z66AOrxUV/pQKhn/PX3/YVB7quE/IHbbJIBmXu+OLckpWLcJjyVaOnz/B
+ HcosUF9P1xMDeMW+zxBOnESwR8gwFj0+zvPN+eT+f/lfQkRVzBcLkNPRo
+ EK1bA+d3G5IRzZ9bEKQxNXXbW2ZdFzoh5iJskvhoFTnHG3sfRd7y6sxS4 Q==;
+X-CSE-ConnectionGUID: Zh6LJ3CQRTymvm7a/5mBrw==
+X-CSE-MsgGUID: otegovE/QaqldSDaFl9JMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54485009"
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="54485009"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2025 01:15:33 -0700
+X-CSE-ConnectionGUID: 1nBRDwioSfS8enMfRbmbhA==
+X-CSE-MsgGUID: S+VFLky1RByUPEvheuvcyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="161178894"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.244.177])
- ([10.245.244.177])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 01:01:47 -0700
-Message-ID: <272f743e-15f7-4dc0-a6c0-08cd60ca6cc2@linux.intel.com>
-Date: Tue, 15 Jul 2025 10:01:45 +0200
+X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="161703767"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.193])
+ ([10.245.244.193])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2025 01:15:25 -0700
+Message-ID: <338a3400-1202-4c12-a99b-6a45004ce548@intel.com>
+Date: Tue, 15 Jul 2025 09:15:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/9] drm/i915: Disable tracing points on PREEMPT_RT
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Scott Oehrlein <scott.oehrlein@intel.com>,
- Ben Hutchings <ben@decadent.org.uk>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Luca Abeni <lucabe72@gmail.com>,
- Steven Rostedt <rostedt@goodmis.org>
-References: <20250714153954.629393-1-bigeasy@linutronix.de>
- <20250714153954.629393-5-bigeasy@linutronix.de>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20250714153954.629393-5-bigeasy@linutronix.de>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 1/3] drm/xe: Disable compression on SVM
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: michal.mrozek@intel.com, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, thomas.hellstrom@linux.intel.com
+References: <20250714173342.2997396-1-matthew.brost@intel.com>
+ <20250714173342.2997396-2-matthew.brost@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20250714173342.2997396-2-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,100 +71,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
-
-I believe the platforms that require spinlocks for reading registers all predate Xe,
-so it should be possible to enable tracepoints on Xe.
-
-I do see there is still a path there that takes locks, through intel_crtc_get_vblank_counter -> drm_crtc_accurate_vblank_count().
-
-I would recommend changing intel_crtc_get_vblank_counter to use drm_vblank_count(),
-which doesn't take locks.
-
-This reduces vblank accuracy slightly on old platforms and gen11+ DSI, but I would say for most usecases it has the same accuracy, with the benefit of keeping tracepoints enabled. The only users for intel_crtc_get_vblank_counter() are debug functions.
-
-With that change, something like: 
-"#if defined(CONFIG_PREEMPT_RT) && defined(I915) && !defined(NOTRACE)"
-
-would disable tracepoints only on i915.
-
-Kind regards,
-~Maarten
-
-Den 2025-07-14 kl. 17:39, skrev Sebastian Andrzej Siewior:
-> Luca Abeni reported this:
-> | BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
-> | CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
-> | Call Trace:
-> |  rt_spin_lock+0x3f/0x50
-> |  gen6_read32+0x45/0x1d0 [i915]
-> |  g4x_get_vblank_counter+0x36/0x40 [i915]
-> |  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
+On 14/07/2025 18:33, Matthew Brost wrote:
+> This is not yet supported, forcefully disable by setting pat_index to
+> zero for CPU address mirror VMAs.
 > 
-> The tracing events use trace_intel_pipe_update_start() among other events
-> use functions acquire spinlock_t locks which are transformed into
-> sleeping locks on PREEMPT_RT. A few trace points use
-> intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
-> might acquire a sleeping locks on PREEMPT_RT.
-> At the time the arguments are evaluated within trace point, preemption
-> is disabled and so the locks must not be acquired on PREEMPT_RT.
-> 
-> Based on this I don't see any other way than disable trace points on
-> PREMPT_RT.
-> 
-> Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Reported-by: Luca Abeni <lucabe72@gmail.com>
-> Cc: Steven Rostedt <rostedt@goodmis.org>
-> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+> Cc: stable@vger.kernel.org
+> Fixes: b43e864af0d4 ("drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR")
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display_trace.h | 4 ++++
->  drivers/gpu/drm/i915/i915_trace.h                  | 4 ++++
->  drivers/gpu/drm/i915/intel_uncore_trace.h          | 4 ++++
->  3 files changed, 12 insertions(+)
+>   drivers/gpu/drm/xe/xe_vm.c | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
-> index 27ebc32cb61a5..a519d94700c36 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-> @@ -13,6 +13,10 @@
->  #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
->  #define __INTEL_DISPLAY_TRACE_H__
->  
-> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
-> +#define NOTRACE
-> +#endif
-> +
->  #include <linux/string.h>
->  #include <linux/string_helpers.h>
->  #include <linux/types.h>
-> diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-> index 7ed41ce9b7085..6b87ef6005c69 100644
-> --- a/drivers/gpu/drm/i915/i915_trace.h
-> +++ b/drivers/gpu/drm/i915/i915_trace.h
-> @@ -6,6 +6,10 @@
->  #if !defined(_I915_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
->  #define _I915_TRACE_H_
->  
-> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
-> +#define NOTRACE
-> +#endif
-> +
->  #include <linux/stringify.h>
->  #include <linux/types.h>
->  #include <linux/tracepoint.h>
-> diff --git a/drivers/gpu/drm/i915/intel_uncore_trace.h b/drivers/gpu/drm/i915/intel_uncore_trace.h
-> index f13ff71edf2db..3c67e267fb602 100644
-> --- a/drivers/gpu/drm/i915/intel_uncore_trace.h
-> +++ b/drivers/gpu/drm/i915/intel_uncore_trace.h
-> @@ -7,6 +7,10 @@
->  #if !defined(__INTEL_UNCORE_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
->  #define __INTEL_UNCORE_TRACE_H__
->  
-> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
-> +#define NOTRACE
-> +#endif
-> +
->  #include "i915_reg_defs.h"
->  
->  #include <linux/types.h>
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 2035604121e6..73cb981c0956 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2362,7 +2362,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+>   			op->map.is_cpu_addr_mirror = flags &
+>   				DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
+>   			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
+> -			op->map.pat_index = pat_index;
+> +			if (op->map.is_cpu_addr_mirror)
+> +				op->map.pat_index = 0;
+
+Is this meant as a safe default or is this just a dummy value? If this 
+actually gets programmed in the hw, maybe XE_CACHE_WB would be better 
+here? That way we know exactly what it does from driver POV for a given 
+platform. Index zero for example might have no host coherency (might 
+then need WC on host). In some world index zero could enable compression.
+
+> +			else
+> +				op->map.pat_index = pat_index;
+>   			op->map.invalidate_on_bind =
+>   				__xe_vm_needs_clear_scratch_pages(vm, flags);
+>   		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
 
