@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E562C83F17
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 11:05:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80D8EC83F1D
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 11:11:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA42A10E1F4;
-	Tue, 15 Jul 2025 11:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2223C10E595;
+	Tue, 15 Jul 2025 11:11:57 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B515310E1F4;
- Tue, 15 Jul 2025 11:05:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3012550183736368973=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BEBE10E37F;
+ Tue, 15 Jul 2025 11:11:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Add_debugfs_node_to_expose_?=
- =?utf-8?q?G-state_and_pcie_link_state_residency_=28rev10=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_CI_test_with_PREEMPT=5FRT?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Soham Purkait" <soham.purkait@intel.com>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Jul 2025 11:05:45 -0000
-Message-ID: <175257754573.162639.11941673883878362545@1538d3639d33>
+Date: Tue, 15 Jul 2025 11:11:56 -0000
+Message-ID: <175257791610.162639.4123609207066658541@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250715095422.2901899-1-soham.purkait@intel.com>
-In-Reply-To: <20250715095422.2901899-1-soham.purkait@intel.com>
+References: <20250715101636.906092-6-dev@lankhorst.se>
+In-Reply-To: <20250715101636.906092-6-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,137 +39,57 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3012550183736368973==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Add debugfs node to expose G-state and pcie link state residency (rev10)
-URL   : https://patchwork.freedesktop.org/series/149793/
-State : failure
+Series: CI test with PREEMPT_RT
+URL   : https://patchwork.freedesktop.org/series/151626/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3412-b012f04b5be909a307ff629b297387e0ed55195a_BAT -> xe-pw-149793v10_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+43254c2aa575037fc031c7ac21b0d031c700b2bf
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 93223cfd77b90a38b15d48b2701a3bac616f3660
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Tue Jul 15 12:16:41 2025 +0200
 
-Summary
--------
+    FOR-CI: Enable PREEMPT_RT
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 1ee2adb4180a8f8c10000684631a13dece33d1de drm-intel
+00c9be5d2fae drm/i915: Use preempt_disable/enable_rt() where recommended
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
 
-  **FAILURE**
+-:46: WARNING:LINE_SPACING: Missing a blank line after declarations
+#46: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:320:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_lock_irqsave(&i915->uncore.lock, *flags);
 
-  Serious unknown changes coming with xe-pw-149793v10_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-149793v10_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:53: WARNING:LINE_SPACING: Missing a blank line after declarations
+#53: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:327:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_unlock_irqrestore(&i915->uncore.lock, flags);
 
-  
+total: 0 errors, 3 warnings, 0 checks, 78 lines checked
+e7dea1c635fa drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
 
-Participating hosts (9 -> 8)
-------------------------------
+total: 0 errors, 1 warnings, 0 checks, 68 lines checked
+6aaac77c6f06 drm/i915/display: Use drm_crtc_vblank_count in intel_crtc_get_vblank_counter()
+93223cfd77b9 FOR-CI: Enable PREEMPT_RT
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-149793v10_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3412-b012f04b5be909a307ff629b297387e0ed55195a/bat-bmg-2/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/bat-bmg-2/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
-    - bat-bmg-1:          [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3412-b012f04b5be909a307ff629b297387e0ed55195a/bat-bmg-1/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/bat-bmg-1/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
-
-  
-
-
-Build changes
--------------
-
-  * IGT: IGT_8457 -> IGT_8459
-  * Linux: xe-3412-b012f04b5be909a307ff629b297387e0ed55195a -> xe-pw-149793v10
-
-  IGT_8457: 756ebdbf0e4c75f0680c0a36db206a9f6ff126ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8459: 8459
-  xe-3412-b012f04b5be909a307ff629b297387e0ed55195a: b012f04b5be909a307ff629b297387e0ed55195a
-  xe-pw-149793v10: 149793v10
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/index.html
-
---===============3012550183736368973==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 18 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add debugfs node to expose G-state and pcie link state residency (rev10)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149793/">https://patchwork.freedesktop.org/series/149793/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3412-b012f04b5be909a307ff629b297387e0ed55195a_BAT -&gt; xe-pw-149793v10_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-149793v10_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-149793v10_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-149793v10_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3412-b012f04b5be909a307ff629b297387e0ed55195a/bat-bmg-2/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/bat-bmg-2/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">ABORT</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3412-b012f04b5be909a307ff629b297387e0ed55195a/bat-bmg-1/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v10/bat-bmg-1/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8457 -&gt; IGT_8459</li>
-<li>Linux: xe-3412-b012f04b5be909a307ff629b297387e0ed55195a -&gt; xe-pw-149793v10</li>
-</ul>
-<p>IGT_8457: 756ebdbf0e4c75f0680c0a36db206a9f6ff126ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8459: 8459<br />
-  xe-3412-b012f04b5be909a307ff629b297387e0ed55195a: b012f04b5be909a307ff629b297387e0ed55195a<br />
-  xe-pw-149793v10: 149793v10</p>
-
-</body>
-</html>
-
---===============3012550183736368973==--
