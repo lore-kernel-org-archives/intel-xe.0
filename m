@@ -4,87 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FDEAC83F2D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A5B9C83F34
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 20:05:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9C5710E672;
-	Tue, 15 Jul 2025 20:05:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AFED10E675;
+	Tue, 15 Jul 2025 20:05:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="UkkdV/Vg";
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="FuSGLnLw";
 	dkim-atps=neutral
-X-Greylist: delayed 23082 seconds by postgrey-1.36 at gabe;
- Tue, 15 Jul 2025 13:45:07 UTC
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.73.137])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C1A610E5CD;
- Tue, 15 Jul 2025 13:45:06 +0000 (UTC)
+X-Greylist: delayed 23267 seconds by postgrey-1.36 at gabe;
+ Tue, 15 Jul 2025 13:41:48 UTC
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.64.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E6F10E5CA;
+ Tue, 15 Jul 2025 13:41:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
- s=onoh2408; t=1752587083;
- bh=qr7vnn7eeOCjc+CY7+06nVMi7mZA3SUUNFXvLriFWI8=;
+ s=onoh2408; t=1752586877;
+ bh=DYh+6PDIK8SljIBmyMHrXvBMyc6UvyjoLxtRvLKcLYw=;
  h=From:To:Subject:Date:Message-ID:MIME-Version;
- b=UkkdV/VgT9YKpmv2p5vCzhYaVpPNMkTX8GU0fdtGh183IOIzn9iWaPL4becCONlyR
- s43uF9oXmg3YjsPvDlW779xjH/LG+PEAabjEnezN416RkwzZ4pju1PcysZQhGIv5FT
- G0kyMpntx5Z3tdclegBhwT/HL+rWuCKp+/xojhh0=
-X-QQ-mid: zesmtpip2t1752587071t6eb91e5d
-X-QQ-Originating-IP: F1q5g6EsDf65gITeUTv/PWZUZ0Adu/pQEt6UQ7FSUXk=
+ b=FuSGLnLwCgAHTPyGVASWNIky64prQYBGC23iLTwJaxSXF2msqdPe5oYgoHClHMjNJ
+ 5jf6pn/sdZvM2ROoK0aOG8bcnlxOzGOhJhgJVveAYgoF3H4us4KUN8Hiz2cHR4q8Yp
+ EkZeBNRjaS9QdvY/QRZfUBTVHqYWXKOCZC3PZvZ8=
+X-QQ-mid: zesmtpip4t1752586865t2a0dea2e
+X-QQ-Originating-IP: vd1RqZ1Qgxy/7VfOTmQ9xNBTBKWDttmC7/G/8c4FLA8=
 Received: from avenger-e500 ( [localhost]) by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 15 Jul 2025 21:44:23 +0800 (CST)
+ id ; Tue, 15 Jul 2025 21:41:00 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 5398797519423429951
+X-BIZMAIL-ID: 13011556839216271353
 EX-QQ-RecipientCnt: 63
 From: WangYuli <wangyuli@uniontech.com>
-To: wangyuli@uniontech.com
-Cc: airlied@gmail.com, akpm@linux-foundation.org, alison.schofield@intel.com,
- andrew+netdev@lunn.ch, andriy.shevchenko@linux.intel.com,
- arend.vanspriel@broadcom.com, bp@alien8.de,
- brcm80211-dev-list.pdl@broadcom.com, brcm80211@lists.linux.dev,
- colin.i.king@gmail.com, cvam0000@gmail.com, dan.j.williams@intel.com,
- dave.hansen@linux.intel.com, dave.jiang@intel.com, dave@stgolabs.net,
- davem@davemloft.net, dri-devel@lists.freedesktop.org, edumazet@google.com,
- gregkh@linuxfoundation.org, guanwentao@uniontech.com, hpa@zytor.com,
- ilpo.jarvinen@linux.intel.com, intel-xe@lists.freedesktop.org,
- ira.weiny@intel.com, j@jannau.net, jeff.johnson@oss.qualcomm.com,
- jgross@suse.com, jirislaby@kernel.org, johannes.berg@intel.com,
- jonathan.cameron@huawei.com, kuba@kernel.org, kvalo@kernel.org,
- kvm@vger.kernel.org, linux-cxl@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux@treblig.org,
- lucas.demarchi@intel.com, marcin.s.wojtas@gmail.com, ming.li@zohomail.com,
- mingo@kernel.org, mingo@redhat.com, netdev@vger.kernel.org,
- niecheng1@uniontech.com, oleksandr_tyshchenko@epam.com, pabeni@redhat.com,
- pbonzini@redhat.com, quic_ramess@quicinc.com, ragazenta@gmail.com,
- rodrigo.vivi@intel.com, seanjc@google.com, shenlichuan@vivo.com,
- simona@ffwll.ch, sstabellini@kernel.org, tglx@linutronix.de,
- thomas.hellstrom@linux.intel.com, vishal.l.verma@intel.com, x86@kernel.org,
- xen-devel@lists.xenproject.org, yujiaoliang@vivo.com, zhanjun@uniontech.com
-Subject: [PATCH v2 2/8] cxl: mce: Fix typo "notifer"
-Date: Tue, 15 Jul 2025 21:44:01 +0800
-Message-ID: <65FC7B96ECBDB052+20250715134407.540483-2-wangyuli@uniontech.com>
+To: seanjc@google.com, pbonzini@redhat.com, tglx@linutronix.de,
+ mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com,
+ x86@kernel.org, hpa@zytor.com, dave@stgolabs.net,
+ jonathan.cameron@huawei.com, dave.jiang@intel.com,
+ alison.schofield@intel.com, vishal.l.verma@intel.com, ira.weiny@intel.com,
+ dan.j.williams@intel.com, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ airlied@gmail.com, simona@ffwll.ch, marcin.s.wojtas@gmail.com,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, arend.vanspriel@broadcom.com,
+ ilpo.jarvinen@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, jgross@suse.com,
+ sstabellini@kernel.org, oleksandr_tyshchenko@epam.com,
+ akpm@linux-foundation.org
+Cc: kvm@vger.kernel.org, linux-kernel@vger.kernel.org, wangyuli@uniontech.com,
+ ming.li@zohomail.com, linux-cxl@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, kvalo@kernel.org, johannes.berg@intel.com,
+ quic_ramess@quicinc.com, ragazenta@gmail.com,
+ jeff.johnson@oss.qualcomm.com, mingo@kernel.org, j@jannau.net,
+ linux@treblig.org, linux-wireless@vger.kernel.org,
+ brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
+ linux-serial@vger.kernel.org, xen-devel@lists.xenproject.org,
+ shenlichuan@vivo.com, yujiaoliang@vivo.com, colin.i.king@gmail.com,
+ cvam0000@gmail.com, zhanjun@uniontech.com, niecheng1@uniontech.com,
+ guanwentao@uniontech.com
+Subject: [PATCH v2 0/8] treewide: Fix typo "notifer"
+Date: Tue, 15 Jul 2025 21:40:50 +0800
+Message-ID: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
 X-Mailer: git-send-email 2.50.0
-In-Reply-To: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
-References: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-QQ-SENDSIZE: 520
 Feedback-ID: zesmtpip:uniontech.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: OFelQXFBryTbt1yse0HJODq3uBQeF6nk9/u9T0cj1UuEPj2IV7pxO7Qb
- q/wsLq0fxSCuTsyBEp4Q6rXqxL9JztTqOSnf3ziSmBqWpxHkp0sRIdkVeSainfAuz1PIS8v
- YDpjitouVpjEFQ61od+/TX1CXFWcQE5YCpBctngySLTkrf3vtFVbQ0MZFztvYOEVrudkmOe
- thmK2PFZ6iOhxXykm80XKCly5z90VGxxU17r1z05ixfECON8ZGfYKGJFQQA4T/0N10lHhCM
- iQmob38T6qhf7exQjt6r0u3MA0H4oQYuH8E669V+pIIFvjUzYcqvApCeyUnBH7n7v3ZBWk8
- +RvypDcBTrIV5tZJqaMMXwxF3LrWny01f3AKsRkWLO2qmALNurxVZix1IVD0Ba1osg8u0T9
- G2QkTn3JzrLLf910qR2s7UNwifiU6qWdCslL+N0xikhZoB0esh+2ecsWSfdMWWoF5RP6GwY
- 5tRzpeICLMM1m0ZiA//g5wz5uMMDeAFTcHO9sXC6yw+YiuzhT8c500wHq6oGqzrs8Zs7w+L
- Kf2eDyf8GYoU05uk76dbSfb1uvgOaS88mZn8u19dBaIdxJX335En8TgG6y/bOc3Rpg0QMN+
- Yt8JMrKDCX8aDUJoTJq6qfWD0fc4pM2OQlcEzvQgPbWJzPASyWAc1V565qXw73FIK0UtC9e
- Pw/x7dIXCwyu+dX8i8JhKn/1l4e2t05GZc8grLBJxp3FzVIzcIs0xMYMhu4PxyMf4hL/tyd
- c92FKGHe+M81w6z0P99Sy7Q0U1Q1H7DtxQZ43Z+rxbtEPAmF1fN70+bUlXq0YCUMTKBkvai
- R4GLqsoJ9xz8o7ZawIhu6INevo3ZQaBlAP2EhLc9OhtBSB0UAFKWgZC/jlN9fWLremIXv+s
- e6EuWoI3KT13sa/MvRjeHI6AU4At4y/JSVQCniypmGMtyC8B8549DRqBTb8pFp1V6cQV87P
- SuY4AYTvFBPU8PAnugrGVvhWFz5FZaWRJeV+bIweRXxMNvRSMHAcHyFxxDvhJHDuL//jizy
- z7mpDEfIRfyHkZ3zQMM9oaZ2f1BbEtMiXF1HKo2cwKtqDW4q47GPZdUbQ9MSrT4iog147jr
- rC+6XZOlBuKMYR9mT8duYgbuWotvp6azS9o8v7/12phqKzakjeWy98=
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
+X-QQ-XMAILINFO: OK0361LY/LXI8nlvspYlQFyqRrCjzyXqkN5hP7+ojw5/gb7lp68kF2Uk
+ p1oClLbudbSJR3P8x8PW/7LNwwJ+hR2Hvavz4eCbd6BVdGRAoI1D5C0QoztMX1laDwCONbX
+ 6weFSI/xb4cvdsxW4Bak3I3uQR/3ClRwChlzk41AV3nH4wmRzkYGBEJ1ocIe849pcu0Vo/g
+ jpim2OSAhgWz3M69ChCJcd2Hahig3apZi9l5ekG4VyAokkGN53A0V1qZ5YCI8RG/lQ5l/Hh
+ iiBNsQnfBkRGwRtabZ9Ein8ApiG46wFSuyrHiPOZoIbJMhL2SnH1+c2D7qTCF+qgsDUXMLc
+ xk2sK6DJ9Xfd41DXWqhkwLMLYLpZZ7c8q5ufIEgsnLtx1UWWeO72sZt+7TAIMOz7/JVQ8sC
+ 9RBt+HfearMkGGpCJRpeuotFbx9RA7qIv9LAdav7unk/lVf90IRMz/I2L6HdTWY0fucefUh
+ NR5HHu+xRyLyZ04OWCvd52dsinwZ1mdc05uQbrWGSBWDWKsr+a1ujpmCizijtN3++0S8icp
+ Am540IA5vTPLeNZNPIMLGQ5fblSy+hk2rOcxnVsrLSWBsldPKR82erUEzSqqoMQtXCbCSIw
+ O4vGo23XycL7UGq2LmmuguaSuqUizXkLUSU9oJGZ079of2Z/TbzJZnh2+RI8qYzJxTsov4z
+ maK0O0L5xileDIw0ERX8Ifv6/rEOhbd74ObslvwGTg3sTvt/xFQ2HW+rBBiZabiUdEsmWlZ
+ +4sl7IwkAJW+W9D3+ozkmcenGJfUv7q4/Zgx2d2+g/ovDZEqdB1YL4MucZWfwbikbcR0M2n
+ U3lkTDMzvRByPHoqiizNWGNZgoWDNMN6KMJpc/GF2mQk6iLSaz/FAnhwVaC7d+ziJufJSuK
+ wuH1RnHlcKBlzkc7hpXB7M54uo/gbSo1U/Q3QtyKsQB+hJwe3CxBKZtAI84ZOSCrXvxdFsr
+ IaXJludiZevFD0sLatMdcjWxjYVQrl3G0Nmk7XO6UWspEgIQr+p3vwYbaDjRNElFEeud+FT
+ /+TLcfBnvL4Znjcqwqj5VCsm0dMKRuIE5z4IaUS/I4mw4BO8o8Wtpwipw2b08EzlIftEABl
+ 1uMAIsZQvx3eAnQ6HSD9lk=
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
 X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Tue, 15 Jul 2025 20:05:20 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -101,28 +101,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to the context, "mce_notifer" should be "mce_notifier".
+There are some spelling mistakes of 'notifer' in comments which
+should be 'notifier'.
+
+Fix them and add it to scripts/spelling.txt.
 
 Link: https://lore.kernel.org/all/B3C019B63C93846F+20250715071245.398846-1-wangyuli@uniontech.com/
-Fixes: 516e5bd0b6bf ("cxl: Add mce notifier to emit aliased address for extended linear cache")
-Signed-off-by: WangYuli <wangyuli@uniontech.com>
----
- drivers/cxl/core/mce.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/cxl/core/mce.h b/drivers/cxl/core/mce.h
-index ace73424eeb6..ca272e8db6c7 100644
---- a/drivers/cxl/core/mce.h
-+++ b/drivers/cxl/core/mce.h
-@@ -7,7 +7,7 @@
- 
- #ifdef CONFIG_CXL_MCE
- int devm_cxl_register_mce_notifier(struct device *dev,
--				   struct notifier_block *mce_notifer);
-+				   struct notifier_block *mce_notifier);
- #else
- static inline int
- devm_cxl_register_mce_notifier(struct device *dev,
+WangYuli (8):
+  KVM: x86: Fix typo "notifer"
+  cxl: mce: Fix typo "notifer"
+  drm/xe: Fix typo "notifer"
+  net: mvneta: Fix typo "notifer"
+  wifi: brcmfmac: Fix typo "notifer"
+  serial: 8250_dw: Fix typo "notifer"
+  xen/xenbus: Fix typo "notifer"
+  scripts/spelling.txt: Add notifer||notifier to spelling.txt
+
+ arch/x86/kvm/i8254.c                                        | 4 ++--
+ drivers/cxl/core/mce.h                                      | 2 +-
+ drivers/gpu/drm/xe/xe_vm_types.h                            | 2 +-
+ drivers/net/ethernet/marvell/mvneta.c                       | 2 +-
+ drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c | 2 +-
+ drivers/tty/serial/8250/8250_dw.c                           | 2 +-
+ include/xen/xenbus.h                                        | 2 +-
+ scripts/spelling.txt                                        | 1 +
+ 8 files changed, 9 insertions(+), 8 deletions(-)
+---
+Changelog:
+ *v1->v2: Break patch v1 up into one-patch-per-subsystem.
+
 -- 
 2.50.0
 
