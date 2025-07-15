@@ -4,21 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B2DEC83F17
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF400C83F27
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Jul 2025 10:16:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC79510E582;
-	Tue, 15 Jul 2025 10:16:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CFCD10E587;
+	Tue, 15 Jul 2025 10:16:55 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B480F10E581
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 10:16:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 104F310E581
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Jul 2025 10:16:51 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 4/4] FOR-CI: Enable PREEMPT_RT
-Date: Tue, 15 Jul 2025 12:16:41 +0200
-Message-ID: <20250715101636.906092-10-dev@lankhorst.se>
+ Mike Galbraith <umgwanakikbuti@gmail.com>,
+ Mario Kleiner <mario.kleiner.de@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH 1/4] drm/i915: Use preempt_disable/enable_rt() where
+ recommended
+Date: Tue, 15 Jul 2025 12:16:38 +0200
+Message-ID: <20250715101636.906092-7-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250715101636.906092-6-dev@lankhorst.se>
 References: <20250715101636.906092-6-dev@lankhorst.se>
@@ -38,40 +41,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+From: Mike Galbraith <umgwanakikbuti@gmail.com>
+
+Mario Kleiner suggest in commit
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
+
+a spots where preemption should be disabled on PREEMPT_RT. The
+difference is that on PREEMPT_RT the intel_uncore::lock disables neither
+preemption nor interrupts and so region remains preemptible.
+
+The area covers only register reads and writes. The part that worries me
+is:
+- __intel_get_crtc_scanline() the worst case is 100us if no match is
+  found.
+
+- intel_crtc_scanlines_since_frame_timestamp() not sure how long this
+  may take in the worst case.
+
+It was in the RT queue for a while and nobody complained.
+Disable preemption on PREEPMPT_RT during timestamping.
+
+[bigeasy: patch description.]
+
+Cc: Mario Kleiner <mario.kleiner.de@gmail.com>
+Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Link: https://lore.kernel.org/r/20250714153954.629393-2-bigeasy@linutronix.de
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- init/Kconfig           | 2 +-
- kernel/Kconfig.preempt | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 43 ++++++++++++++++-----
+ 1 file changed, 33 insertions(+), 10 deletions(-)
 
-diff --git a/init/Kconfig b/init/Kconfig
-index af4c2f0854554..488dbad04b732 100644
---- a/init/Kconfig
-+++ b/init/Kconfig
-@@ -185,7 +185,7 @@ config INIT_ENV_ARG_LIMIT
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 70ba7aa26bf49..b82e9fc51af01 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -312,6 +312,20 @@ static void intel_vblank_section_exit(struct intel_display *display)
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	spin_unlock(&i915->uncore.lock);
+ }
++
++static void intel_vblank_section_enter_irqf(struct intel_display *display, unsigned long *flags)
++	__acquires(i915->uncore.lock)
++{
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_lock_irqsave(&i915->uncore.lock, *flags);
++}
++
++static void intel_vblank_section_exit_irqf(struct intel_display *display, unsigned long flags)
++	__releases(i915->uncore.lock)
++{
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_unlock_irqrestore(&i915->uncore.lock, flags);
++}
+ #else
+ static void intel_vblank_section_enter(struct intel_display *display)
+ {
+@@ -320,6 +334,17 @@ static void intel_vblank_section_enter(struct intel_display *display)
+ static void intel_vblank_section_exit(struct intel_display *display)
+ {
+ }
++
++static void intel_vblank_section_enter_irqf(struct intel_display *display, unsigned long *flags)
++{
++	*flags = 0;
++}
++
++static void intel_vblank_section_exit_irqf(struct intel_display *display, unsigned long flags)
++{
++	if (flags)
++		return;
++}
+ #endif
  
- config COMPILE_TEST
- 	bool "Compile also drivers which will not load"
--	depends on HAS_IOMEM
-+	depends on BROKEN && HAS_IOMEM
- 	help
- 	  Some drivers can be compiled on a different platform than they are
- 	  intended to be run on. Despite they cannot be loaded there (or even
-diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
-index 54ea59ff8fbeb..eb0aad1aeaf74 100644
---- a/kernel/Kconfig.preempt
-+++ b/kernel/Kconfig.preempt
-@@ -87,8 +87,8 @@ config PREEMPT_LAZY
- endchoice
+ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+@@ -356,10 +381,10 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 	 * timing critical raw register reads, potentially with
+ 	 * preemption disabled, so the following code must not block.
+ 	 */
+-	local_irq_save(irqflags);
+-	intel_vblank_section_enter(display);
++	intel_vblank_section_enter_irqf(display, &irqflags);
  
- config PREEMPT_RT
--	bool "Fully Preemptible Kernel (Real-Time)"
--	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
-+	def_bool y
-+	depends on ARCH_SUPPORTS_RT
- 	select PREEMPTION
- 	help
- 	  This option turns the kernel into a real-time kernel by replacing
+-	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
++	if (IS_ENABLED(CONFIG_PREEMPT_RT))
++		preempt_disable();
+ 
+ 	/* Get optional system timestamp before query. */
+ 	if (stime)
+@@ -423,10 +448,10 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 	if (etime)
+ 		*etime = ktime_get();
+ 
+-	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
++	if (IS_ENABLED(CONFIG_PREEMPT_RT))
++		preempt_enable();
+ 
+-	intel_vblank_section_exit(display);
+-	local_irq_restore(irqflags);
++	intel_vblank_section_exit_irqf(display, irqflags);
+ 
+ 	/*
+ 	 * While in vblank, position will be negative
+@@ -464,13 +489,11 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
+ 	unsigned long irqflags;
+ 	int position;
+ 
+-	local_irq_save(irqflags);
+-	intel_vblank_section_enter(display);
++	intel_vblank_section_enter_irqf(display, &irqflags);
+ 
+ 	position = __intel_get_crtc_scanline(crtc);
+ 
+-	intel_vblank_section_exit(display);
+-	local_irq_restore(irqflags);
++	intel_vblank_section_exit_irqf(display, irqflags);
+ 
+ 	return position;
+ }
 -- 
 2.45.2
 
