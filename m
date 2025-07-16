@@ -4,67 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8959EC83F1B
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 08:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04E36C83F27
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 08:10:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26A1E10E6F0;
-	Wed, 16 Jul 2025 08:08:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD0BD10E6F0;
+	Wed, 16 Jul 2025 08:10:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="clYWrTZk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i+N2XyE+";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D55C310E071;
- Wed, 16 Jul 2025 08:08:36 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 385B943431;
- Wed, 16 Jul 2025 08:08:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12419C4CEF0;
- Wed, 16 Jul 2025 08:08:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1752653316;
- bh=HIfZ2WyLhan5ssXSdB5gQZDLA9YqfEoaAfStUdGlXFQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=clYWrTZkp/rq0rCVhswSXVqfKlXYciP2uM3S5iUrcQP9HIZSlHaFyZZ8e6FhKU9/U
- Lh3gBy5Ev81QSMIFUAWFwXwi2wp+9D4NRDiE1O/qfo1Dw1EYsEpURuycj9dvpTzLyL
- hncH3tuUa6Vr1A5Z6VLty6GPo6W0f4WqF8Ccqj7s=
-Date: Wed, 16 Jul 2025 10:08:33 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: WangYuli <wangyuli@uniontech.com>
-Cc: airlied@gmail.com, akpm@linux-foundation.org,
- alison.schofield@intel.com, andrew+netdev@lunn.ch,
- andriy.shevchenko@linux.intel.com, arend.vanspriel@broadcom.com,
- bp@alien8.de, brcm80211-dev-list.pdl@broadcom.com,
- brcm80211@lists.linux.dev, colin.i.king@gmail.com,
- cvam0000@gmail.com, dan.j.williams@intel.com,
- dave.hansen@linux.intel.com, dave.jiang@intel.com,
- dave@stgolabs.net, davem@davemloft.net,
- dri-devel@lists.freedesktop.org, edumazet@google.com,
- guanwentao@uniontech.com, hpa@zytor.com,
- ilpo.jarvinen@linux.intel.com, intel-xe@lists.freedesktop.org,
- ira.weiny@intel.com, j@jannau.net, jeff.johnson@oss.qualcomm.com,
- jgross@suse.com, jirislaby@kernel.org, johannes.berg@intel.com,
- jonathan.cameron@huawei.com, kuba@kernel.org, kvalo@kernel.org,
- kvm@vger.kernel.org, linux-cxl@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux@treblig.org,
- lucas.demarchi@intel.com, marcin.s.wojtas@gmail.com,
- ming.li@zohomail.com, mingo@kernel.org, mingo@redhat.com,
- netdev@vger.kernel.org, niecheng1@uniontech.com,
- oleksandr_tyshchenko@epam.com, pabeni@redhat.com,
- pbonzini@redhat.com, quic_ramess@quicinc.com, ragazenta@gmail.com,
- rodrigo.vivi@intel.com, seanjc@google.com, shenlichuan@vivo.com,
- simona@ffwll.ch, sstabellini@kernel.org, tglx@linutronix.de,
- thomas.hellstrom@linux.intel.com, vishal.l.verma@intel.com,
- x86@kernel.org, xen-devel@lists.xenproject.org,
- yujiaoliang@vivo.com, zhanjun@uniontech.com
-Subject: Re: [PATCH v2 6/8] serial: 8250_dw: Fix typo "notifer"
-Message-ID: <2025071607-outbid-heat-b0ba@gregkh>
-References: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
- <2BF1749F02ADE664+20250715134407.540483-6-wangyuli@uniontech.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B38F010E6F0;
+ Wed, 16 Jul 2025 08:09:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752653398; x=1784189398;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+IfJIt//r+VDsp+bk27g9q0Oe5U2qunbdk1guUNWumg=;
+ b=i+N2XyE+siHQLxBqZ5hGhBZOk+ZwhgXREHQeB16NMInWezkyxioDx+6d
+ yx3GGTrFJj0go3yRkRL5l7KkNns9I1gowc6oL17XdJaS9HwWn0WlZVvDj
+ DOkiuJFOXym2mi1sAr6dWTm1mfRnc8blCcnP2/KeZvRgyQ/e5aZyO+/rx
+ Dwzc4N5aQ94WUmQtlqAlqkPzOJay2vt3W7E9iCZjbh+DYLFieAR4QKZPj
+ yTUBtW0A725INKwN0eMvsRoS5eqHfV+A4TY4DsU+r2EwF3ukxJIl2ebHs
+ +1TSic/Ufs7Dr89hbtKLsbJzI2ARZt/wdcQgZrtROwCFTbDTmMA+cNGXn Q==;
+X-CSE-ConnectionGUID: ZGaNVkZFREiM4vtttQmJow==
+X-CSE-MsgGUID: ezoLZl/kSEmXKZwj9FyPyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="66245053"
+X-IronPort-AV: E=Sophos;i="6.16,315,1744095600"; d="scan'208";a="66245053"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2025 01:09:58 -0700
+X-CSE-ConnectionGUID: hgNMt0zcQpOI2EqmFaHhlQ==
+X-CSE-MsgGUID: Cc2np+jDSB+Sjij09kkKWA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,315,1744095600"; d="scan'208";a="161759305"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa003.jf.intel.com with ESMTP; 16 Jul 2025 01:09:57 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 0/2] eDP Data Override
+Date: Wed, 16 Jul 2025 13:39:17 +0530
+Message-Id: <20250716080919.2127676-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2BF1749F02ADE664+20250715134407.540483-6-wangyuli@uniontech.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,18 +65,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 15, 2025 at 09:44:05PM +0800, WangYuli wrote:
-> There is a spelling mistake of 'notifer' in the comment which
-> should be 'notifier'.
-> 
-> Link: https://lore.kernel.org/all/B3C019B63C93846F+20250715071245.398846-1-wangyuli@uniontech.com/
-> Signed-off-by: WangYuli <wangyuli@uniontech.com>
+When using link rates 2.43 and 6.75 causes a strong noise for WIFI
+bands. Its recommended we use 2.7 and 8.1 Gbps instead.
+The solution proposed was a static vbt field that provides us with a
+mask of rates which need to be skipped in favor of the next higher link
+rate.
 
-Is your name all one word like that, or should there be a " " between
-them?
+HSD:14022096069
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Also, as others said, don't link to your own patch.
+Suraj Kandpal (2):
+  drm/i915/vbt: Add eDP Data Overrride field in VBT
+  drm/i915/edp: eDP Data Overrride
 
-thanks,
+ drivers/gpu/drm/i915/display/intel_bios.c     | 56 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_bios.h     |  2 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 11 +++-
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 16 ++++++
+ 4 files changed, 82 insertions(+), 3 deletions(-)
 
-greg k-h
+-- 
+2.34.1
+
