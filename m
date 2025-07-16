@@ -4,185 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF5DDC83F27
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 14:30:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6C30C83F27
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 14:30:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E8FE10E7B2;
-	Wed, 16 Jul 2025 14:30:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 878E710E290;
+	Wed, 16 Jul 2025 14:30:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V7BPgLYh";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="FUgiWYSw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7F0310E290;
- Wed, 16 Jul 2025 14:30:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752676219; x=1784212219;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=JD3RtcNUOPHwBNgZIXL4Fl1bzCL0jZX8bauLnmMixas=;
- b=V7BPgLYhrqdglDfQq0c9yUpSlemSBD+W6PvRkIjrdnlG/pyNPYu5Xi/a
- jYRDzG7gMJYqjd2Ry4+BrunNu2XT+OaB8fUMjnyEG8nseQic537knFqrC
- oiQm+PqVB970yDsgg7OYFWuD3SN8mm7iIK1FaJ8MRKQP12ttRoaSSNczS
- Jt8+LC9LoFGH48s0gDW7rXHjgiG0lAhWj9XeSvKCxVmJhItrGm59UY5y7
- 9HmyjU5K9voX/dF/U1iexEhG+2kjaOoVBo24yHWkDAlAWdkMbtM4V0/I2
- ATU5vs6DDXIZiEIfWQF8w1Ic7MLuVzeH+iL7+1K2icQFaJoUA7zLIN/tQ Q==;
-X-CSE-ConnectionGUID: nmgjdegcQoCEatL7Xfxp4Q==
-X-CSE-MsgGUID: v5VDYGnlRQGY4oXsfts6EQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="55072647"
-X-IronPort-AV: E=Sophos;i="6.16,316,1744095600"; d="scan'208";a="55072647"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2025 07:30:18 -0700
-X-CSE-ConnectionGUID: mxZq8qQrQmSkLfWmQkaN0Q==
-X-CSE-MsgGUID: oDY3cy9HQEintxUdfCfaJA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,316,1744095600"; d="scan'208";a="158068613"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2025 07:30:18 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 16 Jul 2025 07:30:17 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Wed, 16 Jul 2025 07:30:17 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (40.107.96.66) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 16 Jul 2025 07:30:17 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iD/+zRuWgTerMPmGhoabOELRQRgVgI912DDh6I2Bav9Sm6VAR6tU5BHlVnIWd/vNT7GeLLpumafVNps/JVTK9sbmvM5BK4Tgqp0g79bF2lEOkuojzW9jiI/jfQQG2cXPKuWtjuavgj1ByVTkhrGRzX1FUT0wnsUWkpnVlCCUpczwQXHZfhqL6h0ZTnbTSCBKkBgvM+5UADc7N2yjRE9GbRJUMR71PeDurT69YK1z9cffVa0p7LLTGtzgeIQNifMpBgMAsq4HBU4LlY6sXkl7+r5c0tPYqviEW4CBBzrcn8w+FJ07c+DVRTaLNqWMwp9CwLpf6NYh0phAoadQBLAaAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s8RDmarxE272AE8YQpzv48omYawXq0sdk7DDpB8lxh4=;
- b=u60RbiSFkMU8OHVUc8HHlCFT7zmaVEU41O2x4WayfQ2iKgxee18eThPArSkHPWNJcHv/RCNzA51+4gODUCbIfNU5FJp4lfWKScZQ1b5I+qhtCzdrdImJFLDt+P9YMD2w/YxxS5R5X2ag5XaqVFttV/kMxoNGi2HjazCCT1ikzyIVbtxi0k0a7rnjuFrRjVxAnBDlDYytKCl0c28b7sdicwvwr23S6Lr5OqTMSySuGMcjFESY+LaguCfO/+V5Cb0IzEYdXBCG44/CfIBUnr32FLC4FpFS/hQHHBseCem5C7EHISQgUGecvz7GEYT5RYSAuv0Tih6Oq7O+yTdkgbiGGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB6141.namprd11.prod.outlook.com (2603:10b6:8:b3::13) by
- PH3PPF179F31853.namprd11.prod.outlook.com (2603:10b6:518:1::d0b) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.22; Wed, 16 Jul
- 2025 14:30:14 +0000
-Received: from DM4PR11MB6141.namprd11.prod.outlook.com
- ([fe80::31fd:4de2:2775:396f]) by DM4PR11MB6141.namprd11.prod.outlook.com
- ([fe80::31fd:4de2:2775:396f%3]) with mapi id 15.20.8857.021; Wed, 16 Jul 2025
- 14:30:14 +0000
-Message-ID: <d8be62bc-d6d1-4f88-ab92-5c277a88f388@intel.com>
-Date: Wed, 16 Jul 2025 20:00:05 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/dp: Fallback to DSC for HDR content if needed
-Content-Language: en-GB
-To: <imre.deak@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <ankit.k.nautiyal@intel.com>, <chaitanya.kumar.borah@intel.com>, "Shankar,
- Uma" <uma.shankar@intel.com>
-References: <20250703140252.3547953-1-chaitanya.kumar.borah@intel.com>
- <aHEKIZC_KanqJTF5@ideak-desk>
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <aHEKIZC_KanqJTF5@ideak-desk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN5PR01CA0040.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:264::6) To DM4PR11MB6141.namprd11.prod.outlook.com
- (2603:10b6:8:b3::13)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 912EB10E290;
+ Wed, 16 Jul 2025 14:30:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=NbzcoVdnvaJ8o8jG1zDyO6gs1kjzr+9BFoCAKqRFkDc=; b=FUgiWYSwNTrsyZHoh9A3HlVtvu
+ p8NEmXL+nHBot60aMafT+SiTqX0B/+MLaV4mc5SU//tgbSJoTP9Aber8/ajBZfMzTTwpzkQAapomc
+ 64W2M6MY+jFnQLuUB/jyo9VYbeQIU65XOADEiB82SLzNfbWM1+KXqOr/qfzmg+rBfiQjGCisL7vW+
+ hKdt1B70AKnbaKa94Aj2eMQ5WhW5CYstyHfVxiVYVixlm/Wu9W9ej0NODzg3E/6KXHRpxh5w8jIC6
+ JZBCwNvN8D+sRsLSrDXlv4EJWaGE7IbAsGtZLcpog5Y93KdEiKHOSNAhoqux4YPvxUWU6C8bOyqRP
+ bQr58qTg==;
+Received: from [187.36.210.68] (helo=[192.168.1.103])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uc39c-00HLso-7P; Wed, 16 Jul 2025 16:30:40 +0200
+Message-ID: <f535c0bf-225a-40c9-b6a1-5bfbb5ebec0d@igalia.com>
+Date: Wed, 16 Jul 2025 11:30:35 -0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB6141:EE_|PH3PPF179F31853:EE_
-X-MS-Office365-Filtering-Correlation-Id: 456d1063-0d84-4806-8265-08ddc47546b1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ejRGQ2VlWUNPVlVVRVFOTmdtL3FQeFNHbTdNd2VOeWRXa1pTYTBUK1ZUc0NQ?=
- =?utf-8?B?ejJ4VG5pQ1ZDZFB3bkR3L2dsdVRaUmcrS0oxNDlaSnBKeXZERWpNVTFOMEhQ?=
- =?utf-8?B?K3hlUTg5Mzk5N21Ld3JuMG1OS0VsUFhwQnRiY21uaGxZeWhrVDNrYlJsd3Fv?=
- =?utf-8?B?SVBIMTk3bVl0eDRrWUVIdTBYbHVGSDB4NUI5SDQ2K0FpSkNXd3lOdjRDbFpl?=
- =?utf-8?B?WHhsRXI4ajN1bzlVbFVIV3hXbDV0NFN1Vk5UbEMwSzVMWTJVNkI2K21BWUx3?=
- =?utf-8?B?RE05MzREMThmak9DSW0vdFRRTDdvOUhWcSszMG5hYzFueVlObEVnNzE0MmZj?=
- =?utf-8?B?anRlL0JtTzc3T2FlZzM3aTdIQVBwMVNEMmlLOEg5REJwVzI0TGVVa2FPSEhr?=
- =?utf-8?B?d05GSHQwUkloNmtVMXRLNmwydUh5L0ZRazdYT3BWWGVBNjIrZ292QjB1aU9O?=
- =?utf-8?B?dERoanVnZDlmRHVpSGN2UlhVbkZiTTE5Qzd2NlBaTGt3VVpVd2I2cDZCSzlF?=
- =?utf-8?B?OHJmZlR1Qi9zSHgyQ2dYS3VCUm1IUVZSQzkvNmg0dGlqdXhuV1piZTZWWk9p?=
- =?utf-8?B?U3RFeWR3Z0JRR1RwaVZ6N0ErbkZYd0JkY3Jib2VaVjR6ZzJ6WVIyOUNQSGxx?=
- =?utf-8?B?K0lVeVhacWVtNU1yakZzSEorSFV1aERZcWhYUTdFL1puSnB4OTBFSWN2andy?=
- =?utf-8?B?M3BFTGlhSXlpZjYrb0xSMzAwbmRJck5ZaHBDVVArQnVWQldEZDNPbEdnVGE2?=
- =?utf-8?B?VFk3ajlkMnlDMG5oRU43MnR4WjFGNW9vdTJXNWIwMTgwS2VoSENiVi94WVZZ?=
- =?utf-8?B?dEZzb0dGV2lZWjBMRVJNeFNlZXVFSXJVRDhaVTN2WnBtTHAwaWwwdVMvNWxo?=
- =?utf-8?B?K2FXeUttKzRsRFFYUk9yQmxTRU1Ma1hEMkNUcTdWNGphdDVQR3N2YjVBR3hP?=
- =?utf-8?B?QnF0T295R3lkc252MTJPU3RvenpWVzIrL3JpMjJ3WnhLd0NZVGFOaTFYMkZh?=
- =?utf-8?B?d0NzSVNwMHNrQ2U2bXhsMDJsR2d1MEpDUlkremd5cEIrSUovWTlkVXFjMlN6?=
- =?utf-8?B?WkVSY0thZU9uWExXZmM3UHJ0TWJEU25GM2RhRGhoTXhvMmtMZk5uUTJieTBU?=
- =?utf-8?B?OU9hUkpURnltUmhuaHArMkhEU0FCU1NPQ0JRamxkV2xxQ2VxV0JCYTUwd0Ur?=
- =?utf-8?B?eVhlV2c2SDhybjRpajY3UXlJMFB6M3gybk9vS1h6L1F2SVZwK1A1Q2tHd3Ru?=
- =?utf-8?B?Mm1CVXorSWZ1a00xdDZSNUxjTWRDdGN2MTR3Q2U4SnhrazJnU3dBUWtJQVJu?=
- =?utf-8?B?dWdMZGVNZzNWZ09xeWZKMGI5dnl5MEFKRGZybDdRVzEyeDFhcVFJUmo5R0R4?=
- =?utf-8?B?QjUyZC9XNDVzazFXdXQ2SzdzWk1vTEZSa3BCTWlKd0p3RE8xZkx3ci9oK2J1?=
- =?utf-8?B?aEIxbjhoV1phb25abC9WeDhyNGpWMmVWVDU3SXd3MnYyaDJqQ0haWUdpc1Ay?=
- =?utf-8?B?Mk8vQTlpQ0pxUFZtcjh0VFVuck5MaWREQTRFVkUxazU4d2YxSVRqVGtGb3Fr?=
- =?utf-8?B?TzBOVVN1M21nTm1LZGE3WDhyVGtQY2xORW1WallDYUFETDF5NnZzb1Nqc2ZT?=
- =?utf-8?B?T0FNa3R2NThTanQ3MmcvcXBlSk5EZGVsRmNFUGRUV1BNaEI1MjVJZW1oNUZI?=
- =?utf-8?B?MzFsUmRoQkJnMXZ6YXR3MysvbE56a3A2aHREaGs0SHNXZXFZUmU1UUtJSk9O?=
- =?utf-8?B?QnFwSnY3NkRtQXQ4RlBFWkdXUnVZbUkwRVFNU24ySGxBQnNnbG5QY3ZtTmpC?=
- =?utf-8?B?Uzd0aVNMdUNKcXdKSUh3M3RoTzVPNnhaUUJ4U0FTc1VSRWJDUmE2Nk9OdEt0?=
- =?utf-8?B?YWIrYzlvb0hSa0h6NWNYaFRLbTQvUUZXVHgvNlA0cEkrYTl2SWdsNmVHdnM1?=
- =?utf-8?Q?sK3yM2I9PuI=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6141.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OXNRZWltUXNSbFU5WTZ2SlNmRTRSVzJPU3NCdlN0ODBydHdrYzZ5VDB3VXNZ?=
- =?utf-8?B?RWhPWUZoUWI4NEVMYUtOTE8wWVY1VndNaCswQ1QrYWhxTmptNzFjSzNrR2RW?=
- =?utf-8?B?R3YxdlJFUXlQd3RFY3RDR2pJamd1WHR1ajlpelRmMUZ3UnhHYkdXZzQyN3Z2?=
- =?utf-8?B?NmY4QzRRVGY1YnZIc2lyM2x1dkpDNzJHd2pjTEd5cStaTlFvdkVZTHFCc3Rp?=
- =?utf-8?B?YjcxQUtheUNTdlV2WGZUaWU3Rk10a1hIN0ZMSW1MekFLZFZvY2Y0b1dWRVY1?=
- =?utf-8?B?S3FmNWhtc080ZDlVZlZaYVN2ZVNCME4zYi9VWjBNRFlSOWEzRUcxaENIK2tl?=
- =?utf-8?B?ZytLTzNNTTZJYnlVclZQNEpaNkJFbm1pdmRZUFVhOElqYktDZnAreE1vSDN5?=
- =?utf-8?B?d0MvdmhoV0JlYmRiejFqQktqZlY2MENkNUI4eittNWF0UWVSWHJuNXdwaXFz?=
- =?utf-8?B?RkpRc3NBZDRTdjk0TlpwSTI0Z1JnUzRFQlB4YkllcVhaNzdjZUpjU2U1M0Q4?=
- =?utf-8?B?U0hCRExyT1daUnZTeFFmQWFlT09jTUxWc28rdmxJMnBtamo0UTUvS1VraC8v?=
- =?utf-8?B?OVhMcGMrYjRhWG9KaGNOZGZZUzV2NndRLzgvb3lQYkNQYlYyZGpQbUdMZEdX?=
- =?utf-8?B?ZlBxSkNJUFpGYVBUbk1NclF4K1l2dzhwUnBqeUx1eFZIcmRkV2RXc3J0TnMz?=
- =?utf-8?B?SjIvc3hXZ21zRFpRTHorVzlYSHVYd3FUbys4MFJPbEg4Zm9PeVcraFRlZE1L?=
- =?utf-8?B?Y0VvV0RRTDgvcFJaNGRIVTBzelZxbVpoS3FWbGZFS3dtV2l4aFlUb3laUkFE?=
- =?utf-8?B?NEZRb1p4T3AzVmsxTFRwbW1wSGl4UkhuTXJERE1Pc1k5NWNRRkFWendtdk5x?=
- =?utf-8?B?Vkplbk9KT25iN0lIdm5TR0h6UzgvUERmdC9WQ0gwa0U5UzlkNTNaeCszMW16?=
- =?utf-8?B?SkNuQXd6RHZVM3pUZlRUZmZHY3c3SVlEa1lRalc2N1BXSmhqRGs1akFWTjdU?=
- =?utf-8?B?dzJ1SHR0eGxiSjZRZHV2ZWxsbFNxZ3d0eFgyYnhMNHNmT0cyaUxGN0ZxZmFX?=
- =?utf-8?B?dmU1NFVFcFNyL3AyZkN2SkdrNG5iL1pYekVldmtyKzF6TGl3M2U4TEIvRjQw?=
- =?utf-8?B?TXova3MzK1cvMHJRUXNkcjlzNURuUnNpRHUySjBia3pFSkMyUlJPTE5GTXdY?=
- =?utf-8?B?Mm4yeTlka3FhTlZBKzk4bFhRQXdjS1NUekMwUDF6WVhqZzBwaGxvU3kydm1z?=
- =?utf-8?B?REM2WHVpWm1sdkRIdzVHbHFzUm9ZcDQ2eFVITi9PWW1DTThaN0VyYVYxZWsr?=
- =?utf-8?B?Si9CcUVTQzZ1NFJhVWhQOHVnSDNPdWxoTEVhNnJlY3VIalI1a2k1QklPVi9s?=
- =?utf-8?B?V1FqKzRSeHlDNzIyZW5oSDVtaFNCZEJENkRRUGFDVGhUREtzaElyNUZJaU5W?=
- =?utf-8?B?S3R1VWVlS3YrTVZvZHVZVXhleG90bm9iL3FHVlA3Z3ZGRGZFYkxzYVhYbWZL?=
- =?utf-8?B?Mi9XUUlXUVdac0FrNTRWYzcrbFJhVmMxY2hQalJNaWJmM2Q1ZVZMZjdNaVpB?=
- =?utf-8?B?OXdOclNrSjd2bGhhcjZZQjJjN2JwanZXRmVmK01uekUzT2ttNWNPL1RkSUhU?=
- =?utf-8?B?OG9TY1B6ZkxSRDBZRnZYdXhBVVFXbkFWdVlHb1BCOEVuUGhLMlpiVjBNbnBv?=
- =?utf-8?B?RlNyUWoxV1QzNUwxUGhpMVp2RlFCUk1sTXFRRTdHdHJKTCtUQnh2Q3VPNm1B?=
- =?utf-8?B?ekJqV1lpUjZ1SlE3c2RrWCtXVldIcFd1bGZhaEN4TndwUWF5aDJZWEZ2eUdv?=
- =?utf-8?B?YThjc1NPdml1b2lvUzU1eTRnTXo2MWs3UjZLSUxDMDNwaDNrRG55eHlBME5n?=
- =?utf-8?B?YmdwdXhtRWxTNUFpV1p5V21UNkVCV0RFc2tCMEZuNytkSk1leWdTeVNpanZF?=
- =?utf-8?B?Y0NhalhHNmYzMXAwM1BMNFdhWlNzZ2Nta3BNNGNxSGhBRnJBMUtYZ3c4Ullw?=
- =?utf-8?B?T3MvaFBLTGV5MGlKZ3A0L2Zkdi8vR3c2Q3dQTDV1aU5UbTVQeHdaSjdiQ0Rq?=
- =?utf-8?B?K0pFWU1IaEE5bm1qNTlyRHJyRGp1M21ZWU9qeXFYM2ZLN1BVZlNHNDhoMm0z?=
- =?utf-8?B?WkNNRVp6WGRtOFd2YVdaRWFJd2NlMllYMnNJT3E3ZWliZlhBdjlmZFNIcTk1?=
- =?utf-8?Q?qflVi4bWEWhqKB+VDlBuHHE=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 456d1063-0d84-4806-8265-08ddc47546b1
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6141.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2025 14:30:14.0398 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rO6OxZl/7TDa0uAV5hf560Ei8WCQVQKNQdDFLK92ZT342DTmlaGFp34JTrAHsRjtfMtgWbk4tiQeOZIPa8BaXRe9ncqB35azSGjDnEAG3qA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF179F31853
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/sched: Avoid double re-lock on the job free path
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
+References: <20250716085117.56864-1-tvrtko.ursulin@igalia.com>
+ <8e527b62-d968-4bc3-a0dc-491d193c02ce@igalia.com>
+ <52d32846-0286-4979-ab2f-c1aa1aa02e20@igalia.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <52d32846-0286-4979-ab2f-c1aa1aa02e20@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,132 +64,195 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-+Uma
+Hi Tvrtko,
 
-On 7/11/2025 6:27 PM, Imre Deak wrote:
-> On Thu, Jul 03, 2025 at 07:32:52PM +0530, Chaitanya Kumar Borah wrote:
->> If user-space has enabled HDR by passing HDR metadata and we can't support
->> 10bpc fallback to DSC.
+On 16/07/25 10:49, Tvrtko Ursulin wrote:
+> 
+> On 16/07/2025 14:31, Maíra Canal wrote:
+>> Hi Tvrtko,
 >>
->> Now that we need the helper to determine the presence of HDR metadata at
->> multiple places make it non static.
+>> On 16/07/25 05:51, Tvrtko Ursulin wrote:
+>>> Currently the job free work item will lock sched->job_list_lock first 
+>>> time
+>>> to see if there are any jobs, free a single job, and then lock again to
+>>> decide whether to re-queue itself if there are more finished jobs.
+>>>
+>>> Since drm_sched_get_finished_job() already looks at the second job in 
+>>> the
+>>> queue we can simply add the signaled check and have it return the 
+>>> presence
+>>> of more jobs to be freed to the caller. That way the work item does not
+>>> have to lock the list again and repeat the signaled check.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>> Cc: Christian König <christian.koenig@amd.com>
+>>> Cc: Danilo Krummrich <dakr@kernel.org>
+>>> Cc: Maíra Canal <mcanal@igalia.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: Philipp Stanner <phasta@kernel.org>
+>>> ---
+>>> v2:
+>>>   * Improve commit text and kerneldoc. (Philipp)
+>>>   * Rename run free work helper. (Philipp)
+>>>
+>>> v3:
+>>>   * Rebase on top of Maira's changes.
+>>> ---
+>>>   drivers/gpu/drm/scheduler/sched_main.c | 53 ++++++++++----------------
+>>>   1 file changed, 21 insertions(+), 32 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/ 
+>>> drm/ scheduler/sched_main.c
+>>> index e2cda28a1af4..5a550fd76bf0 100644
+>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>>> @@ -349,34 +349,13 @@ static void drm_sched_run_job_queue(struct 
+>>> drm_gpu_scheduler *sched)
+>>>   }
+>>>   /**
+>>> - * __drm_sched_run_free_queue - enqueue free-job work
+>>> - * @sched: scheduler instance
+>>> - */
+>>> -static void __drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
+>>> -{
+>>> -    if (!READ_ONCE(sched->pause_submit))
+>>> -        queue_work(sched->submit_wq, &sched->work_free_job);
+>>> -}
+>>> -
+>>> -/**
+>>> - * drm_sched_run_free_queue - enqueue free-job work if ready
+>>> + * drm_sched_run_free_queue - enqueue free-job work
+>>>    * @sched: scheduler instance
+>>>    */
+>>>   static void drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
+>>>   {
+>>> -    struct drm_sched_job *job;
+>>> -
+>>> -    job = list_first_entry_or_null(&sched->pending_list,
+>>> -                       struct drm_sched_job, list);
+>>> -    if (job && dma_fence_is_signaled(&job->s_fence->finished))
+>>> -        __drm_sched_run_free_queue(sched);
 >>
->> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_dp.c          | 16 ++++++++++++++++
->>   drivers/gpu/drm/i915/display/intel_dp.h          |  1 +
->>   .../drm/i915/display/intel_dp_aux_backlight.c    | 13 -------------
->>   3 files changed, 17 insertions(+), 13 deletions(-)
+>> I believe we'd still need this chunk for DRM_GPU_SCHED_STAT_NO_HANG
+>> (check the comment in drm_sched_job_reinsert_on_false_timeout()). How
+> 
+> You mean the "is there a signaled job in the list check" is needed for 
+> drm_sched_job_reinsert_on_false_timeout()? Hmm why? Worst case is a 
+> false positive wakeup on the free worker, no?
+
+Correct me if I'm mistaken, we would also have a false positive wake-up
+on the run_job worker, which I believe it could be problematic in the
+cases that we skipped the reset because the job is still running.
+
+> 
+>> about only deleting drm_sched_run_free_queue_unlocked() and keep using
+>> __drm_sched_run_free_queue()?
+> 
+> You mean use __drm_sched_run_free_queue() from 
+> drm_sched_job_reinsert_on_false_timeout()? That is the same as 
+> drm_sched_run_free_queue() with this patch.
+
+Sorry, I believe I didn't express myself clearly. I mean, using
+__drm_sched_run_free_queue() in drm_sched_free_job_work() and keep using
+drm_sched_run_free_queue() in drm_sched_job_reinsert_on_false_timeout().
+
+Best Regards,
+- Maíra
+
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+>>> -}
+>>> -
+>>> -static void drm_sched_run_free_queue_unlocked(struct 
+>>> drm_gpu_scheduler *sched)
+>>> -{
+>>> -    spin_lock(&sched->job_list_lock);
+>>> -    drm_sched_run_free_queue(sched);
+>>> -    spin_unlock(&sched->job_list_lock);
+>>> +    if (!READ_ONCE(sched->pause_submit))
+>>> +        queue_work(sched->submit_wq, &sched->work_free_job);
+>>>   }
+>>>   /**
+>>> @@ -398,7 +377,7 @@ static void drm_sched_job_done(struct 
+>>> drm_sched_job *s_job, int result)
+>>>       dma_fence_get(&s_fence->finished);
+>>>       drm_sched_fence_finished(s_fence, result);
+>>>       dma_fence_put(&s_fence->finished);
+>>> -    __drm_sched_run_free_queue(sched);
+>>> +    drm_sched_run_free_queue(sched);
+>>>   }
+>>>   /**
+>>> @@ -1134,12 +1113,16 @@ drm_sched_select_entity(struct 
+>>> drm_gpu_scheduler *sched)
+>>>    * drm_sched_get_finished_job - fetch the next finished job to be 
+>>> destroyed
+>>>    *
+>>>    * @sched: scheduler instance
+>>> + * @have_more: are there more finished jobs on the list
+>>> + *
+>>> + * Informs the caller through @have_more whether there are more 
+>>> finished jobs
+>>> + * besides the returned one.
+>>>    *
+>>>    * Returns the next finished job from the pending list (if there is 
+>>> one)
+>>>    * ready for it to be destroyed.
+>>>    */
+>>>   static struct drm_sched_job *
+>>> -drm_sched_get_finished_job(struct drm_gpu_scheduler *sched)
+>>> +drm_sched_get_finished_job(struct drm_gpu_scheduler *sched, bool 
+>>> *have_more)
+>>>   {
+>>>       struct drm_sched_job *job, *next;
+>>> @@ -1147,22 +1130,25 @@ drm_sched_get_finished_job(struct 
+>>> drm_gpu_scheduler *sched)
+>>>       job = list_first_entry_or_null(&sched->pending_list,
+>>>                          struct drm_sched_job, list);
+>>> -
+>>>       if (job && dma_fence_is_signaled(&job->s_fence->finished)) {
+>>>           /* remove job from pending_list */
+>>>           list_del_init(&job->list);
+>>>           /* cancel this job's TO timer */
+>>>           cancel_delayed_work(&sched->work_tdr);
+>>> -        /* make the scheduled timestamp more accurate */
+>>> +
+>>> +        *have_more = false;
+>>>           next = list_first_entry_or_null(&sched->pending_list,
+>>>                           typeof(*next), list);
+>>> -
+>>>           if (next) {
+>>> +            /* make the scheduled timestamp more accurate */
+>>>               if (test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT,
+>>>                        &next->s_fence->scheduled.flags))
+>>>                   next->s_fence->scheduled.timestamp =
+>>>                       dma_fence_timestamp(&job->s_fence->finished);
+>>> +
+>>> +            *have_more = dma_fence_is_signaled(&next->s_fence- 
+>>> >finished);
+>>> +
+>>>               /* start TO timer for next job */
+>>>               drm_sched_start_timeout(sched);
+>>>           }
+>>> @@ -1221,12 +1207,15 @@ static void drm_sched_free_job_work(struct 
+>>> work_struct *w)
+>>>       struct drm_gpu_scheduler *sched =
+>>>           container_of(w, struct drm_gpu_scheduler, work_free_job);
+>>>       struct drm_sched_job *job;
+>>> +    bool have_more;
+>>> -    job = drm_sched_get_finished_job(sched);
+>>> -    if (job)
+>>> +    job = drm_sched_get_finished_job(sched, &have_more);
+>>> +    if (job) {
+>>>           sched->ops->free_job(job);
+>>> +        if (have_more)
+>>> +            drm_sched_run_free_queue(sched);
+>>> +    }
+>>> -    drm_sched_run_free_queue_unlocked(sched);
+>>>       drm_sched_run_job_queue(sched);
+>>>   }
 >>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index f48912f308df..abbba159e479 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -1774,6 +1774,9 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
->>   	     bpp -= 2 * 3) {
->>   		int link_bpp = intel_dp_output_bpp(pipe_config->output_format, bpp);
->>   
->> +		if (intel_dp_in_hdr_mode(conn_state) && bpp < 30)
->> +			return -EINVAL;
-> This limit should be set in limits->pipe.min_bpp, computed already by
-> this time in intel_dp_compute_config_limits().
+> 
 
-
-Thank you, Imre, for pointing that out. I had a branch with this 
-implementation sometime back but I was sloppy enough to lose it.
-I will prepare a patch with something like this.
-
--       limits->pipe.min_bpp = intel_dp_min_bpp(crtc_state->output_format);
-+       limits->pipe.min_bpp = intel_dp_in_hdr_mode(conn_state) ? 30 :
-+  intel_dp_min_bpp(crtc_state->output_format);
-
-But it will involve some jugglary with the arguments of 
-intel_dp_dsc_compute_pipe_bpp_limits().
-
-
-> Not sure though if it's
-> expected that the modeset fails if DSC is not available for instance.
-
-
-Now this is the tricky part. We first encountered this problem on a DRRS 
-capable panel where clock is fixed at the highest mode's pixel rate.
-
-That results in our bandwidth calculation ending up with 6bpc even at 
-lower mode. Probably the mode change would go through but will cause
-
-some horrible banding.
-
-Fortunately, this particular panel has DSC and the fallback works. But 
-as you appointed, it is a problem if the panel does not support DSC.
-Only way I see to work around it, is to let go off DRRS and allow a 
-modeset. But given our codeflow, I am not sure how easy it will be to 
-implement such a policy.
-
-
-Regards
-
-Chaitanya
-
-
->> +
->>   		mode_rate = intel_dp_link_required(clock, link_bpp);
->>   
->>   		for (i = 0; i < intel_dp->num_common_rates; i++) {
->> @@ -2910,6 +2913,19 @@ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
->>   	}
->>   }
->>   
->> +bool
->> +intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state)
->> +{
->> +	struct hdr_output_metadata *hdr_metadata;
->> +
->> +	if (!conn_state->hdr_output_metadata)
->> +		return false;
->> +
->> +	hdr_metadata = conn_state->hdr_output_metadata->data;
->> +
->> +	return hdr_metadata->hdmi_metadata_type1.eotf == HDMI_EOTF_SMPTE_ST2084;
->> +}
->> +
->>   static void
->>   intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
->>   					    struct intel_crtc_state *crtc_state,
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
->> index 0657f5681196..5def589e3c0e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.h
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
->> @@ -214,5 +214,6 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
->>   
->>   int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
->>   void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
->> +bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
->>   
->>   #endif /* __INTEL_DP_H__ */
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> index 41228478b21c..12084a542fc5 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> @@ -225,19 +225,6 @@ intel_dp_aux_hdr_set_aux_backlight(const struct drm_connector_state *conn_state,
->>   			connector->base.base.id, connector->base.name);
->>   }
->>   
->> -static bool
->> -intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state)
->> -{
->> -	struct hdr_output_metadata *hdr_metadata;
->> -
->> -	if (!conn_state->hdr_output_metadata)
->> -		return false;
->> -
->> -	hdr_metadata = conn_state->hdr_output_metadata->data;
->> -
->> -	return hdr_metadata->hdmi_metadata_type1.eotf == HDMI_EOTF_SMPTE_ST2084;
->> -}
->> -
->>   static void
->>   intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32 level)
->>   {
->> -- 
->> 2.25.1
->>
