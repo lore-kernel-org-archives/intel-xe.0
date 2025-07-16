@@ -4,73 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4445DC83F1B
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 16:06:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58D82C83F22
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 16:06:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD75F10E667;
-	Wed, 16 Jul 2025 16:06:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 069CD10E7D3;
+	Wed, 16 Jul 2025 16:06:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dv6sypxU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FFaU0r4U";
 	dkim-atps=neutral
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 637DB10E66B;
- Wed, 16 Jul 2025 16:06:04 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-455ecacfc32so6595e9.3; 
- Wed, 16 Jul 2025 09:06:04 -0700 (PDT)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A18710E667;
+ Wed, 16 Jul 2025 16:06:02 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-4560add6cd2so793355e9.0; 
+ Wed, 16 Jul 2025 09:06:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752681963; x=1753286763; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1752681961; x=1753286761; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=sMrKLje0DXLQnstLXzFUUW2cOA7SrnAjQLdQCwRTzaA=;
- b=dv6sypxUXND06gVDyYHFY9TDzleG5pPbsw13O5CbPlmZzkGzX+BXXOg6X2UHwuy9wp
- pywh/uDRMqpZcC2fsF+7yK7ARhJHmS1cAth3b4R+GXBYryoNwjyYOEdRbQvopIEA/k/s
- te16iyI/gqJo76f2jzV2WXWhOuupkbhab4KH6Iu1gDatmP50+sUkzMc/EbnBaAG3k3mz
- TyNWbqKXxwQ/PnKJCiEknjKGbTE0g6vbNCs2WMkR52D6j0QEoqvvX80Hw3WBqbspPKgJ
- 3ISF2hIIbvd4DdcHOlysoaFMpDzsMDvnFw1tJz4JyjzwmOvW632TeYcQelTs5lEmFeFQ
- r4wg==
+ :reply-to; bh=Wxf5aXO+Hdd8Q820dvj7me7YwJHxQjmUHVvn7elrjmg=;
+ b=FFaU0r4U0fAeEviXNPtMfyEgTNzmNPpuEikf0VjBZJfWWeWWcrqc4N1djkwP+4shjJ
+ hd/y0SQKQkWNQQWbJJ+2XlJRL1MgqcUAsKjGi27P9tYTZLYgRWcNgeeJygCPV6soDhpB
+ ZwB+gZU+95F2EeQB+bV1bjqhR2/JI3e4cKmpWxjQQUe7vDhhUqKjvo7ysH+koIDkSkpE
+ wQBvBPZ7xXdvtaiyvJmJIPHxfmlPl+cZbvrLSK3HUoGHfuF3/0iDj98QPReq4uvG1sQD
+ JU6NOmKXrmf0dhIdj5HnkXJFG0QXoEfm8mj7MLm4dRPJ1UJrpXhZeT4rm4STbzy1nSL1
+ eI3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752681963; x=1753286763;
+ d=1e100.net; s=20230601; t=1752681961; x=1753286761;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=sMrKLje0DXLQnstLXzFUUW2cOA7SrnAjQLdQCwRTzaA=;
- b=KC/N10NB6GTtpgD8bQL5B8YciZu6kxtCrweoIf7A8QQKm3pt2jcZkqmvgQVHlTJPoT
- ulhNNM9Ny/oH88V2lC3IbVkP11kGzAbkASB2rID0HRjgCHABNkI0Zz1Vicm30LS3YkJX
- 4hL7vqCTypRBjFnrtnZnijJW5t63FQvZy5u+yq2rZh0j2jZKV150WPGNme1Mjn89oL2h
- XQ/o/QaTuea9zpVVrN+g4cOBWjs7+ORFrZTfW9xHZY1L4SIwg5msdEzP1BIQMTq9LJlb
- OmvD6VcVWHpz55fEe+mF+fvpOgU3w/hdHvDQ/fWYDyqJbFLsBU5W0ir74vIQrNEZthnw
- KeVg==
+ bh=Wxf5aXO+Hdd8Q820dvj7me7YwJHxQjmUHVvn7elrjmg=;
+ b=aX1G1UUmeY/mgmIUwrJY3shS+mlDzaiqHq0ljAeSdYJtUYYa4zWRnSBSL8/bz0xV4y
+ gJVvI+3NLMtYN/bC5NfUR9gvmSep8+lhi4CrbU6iWOqko7nNL4wspWoQMfhlUn0lD7FE
+ 2sNpJSpASdRAUTDjd1WUJqlfIRiKfm8Irm7ygkFQvANPQDpH4myihaurCOJ6Z82jBDdx
+ gfG5sMzrSCQaHKF+oOREzClPmVVvK7Crwi8mF5ydVuzs2ye50LGeHRLuK5Qtl0+LKz9h
+ Ir1Gp2ZleLdQzCejU+T6L7iiat3toPmywRSS/7TZ8msqieBafuKeinFba/clo3D9pJj6
+ kGRg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVvUkcO9zx/fCxPVnNE583zDS8AdJYklUX1SLpv+iVaMBpbK/PJiTCqmHXUuz1iJ+XZAnfpAyf5T5k=@lists.freedesktop.org,
- AJvYcCX43sBPnjPS3wEbuOVV7fQp123DdPFXIt430HAd6ZdF0KWdQTUMHQFhRXABw2pS7Pc6PmYIAhue/AM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxphqHan04UyvBe1PQim1rE+3VXPRLOlV6Yxp+/cg/5QuLUPQQr
- brQc0XbUX9ovTVWGlzn9J5SR4/RoyGfxX5HxcaxV8Yjylep5TlFATV4b
-X-Gm-Gg: ASbGncv8LERDT0/5OuSfhB7cIj8guwtjP3f6VBm5bnPKBCg73YoV5IIjj4EmgYg4qgF
- FrkgmasgIZm7XmMYp6r3q8NRjmLllwrMG+INLckr9LUyEc/VTom3XRdCyS1qcw+SF7Bys9lKzCa
- YZu+84+ha38JiDGdesgF56bDP8YEnlpQzv0zhPQ6JJIZGm1JaDG++GoMvUl5GntciKcgubgPCJA
- L4SOBo/YpB1daC8GLvV5rJhyhFU9Z9+9Z5m8Ten6ZHiUha9Lr37oRcnbO3uZsi5Dj0jsPjFkt/a
- 2eCI8lt4PnRYG/Rxqxdyeio17ashmmvBnG01uRNv0U7h7FXXH58+RTwJPnmCxXWBxdQvsFjdcfQ
- sqf7ZrItakoiIrqDOoY3SVy9mMZ5MyHipodU=
-X-Google-Smtp-Source: AGHT+IHtDuNZKhrTXNHz0C4CSz3XTvaFsEq0KULBOcRJ4AQOxVPmNSjEYD22OEt37hVJ/8bo/h+KJA==
-X-Received: by 2002:a05:600c:1546:b0:43c:fe5e:f040 with SMTP id
- 5b1f17b1804b1-4562e283d99mr27163415e9.23.1752681962375; 
- Wed, 16 Jul 2025 09:06:02 -0700 (PDT)
+ AJvYcCUiYQkuQ3/TllCoiV8yZJLPN2wUXXa8RxByECj3BONX+3w2VNVGo7/2iFroPVVCa6JxyoUqVNsOjRU=@lists.freedesktop.org,
+ AJvYcCXwMRFcagaj+CT80iSje4Y2TgkzLjilOQ4ouTDTJFEQnXuxw9ZXTpPhObNNf40bD2rVPalOKdQcWf4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyUm1jWD/FQS+HgY6+yVYqQAZDqDq0/eiKd2oB0HhzKblutH8w+
+ Wzuuhagtd7bo3o+eK0I+24bnz0ZjcU/Nk8PPuBiKqle0hNrh/vq1Ojh/
+X-Gm-Gg: ASbGncvstLRY74m+1J6e2BFl3qgbJAdfcuYl5If0w22EDnmdCpEZw3symXnj4ZjP22o
+ nUMq3BZkgh2QMToUU50hAIhrJ5amfDeqVgJKaUhSZ2ZoCFAKIcYZzb6kjk8pkqSe0Hz+tGjy3oQ
+ jlMMzk0ltHXbnZ6pkWRZO6uLlfoTMugHVYgDaZuVsX7gKGhl2JUO2cZTIFq5K93Qk9CYeXupoVh
+ +YTr08XRTMyJE78HJdamWktVTfJWxRlDcNfnr/uSerGtdF4pFSOZ2UArsiGiq6MCDwCil+71dip
+ 7LUd18p1ntsT3v2iddT3kq+6rD50YsL0KsYYkZAgmoeu2PwMTBCGNinG7n8Qc5fjVoOfFMV+P0c
+ QETIaZKjiEnwYg0A5OcPrTcP01ska/PCu3OM=
+X-Google-Smtp-Source: AGHT+IHcJ9dGqqUnGd6lH5Is7kadjKFRoiFdnX6iqhFX5x8wbuDwp7hQ41x4Eg28UNxDiT68H8VtHw==
+X-Received: by 2002:a05:600c:3582:b0:456:21f4:a0a3 with SMTP id
+ 5b1f17b1804b1-45634533d98mr469695e9.5.1752681960790; 
+ Wed, 16 Jul 2025 09:06:00 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:15ac:3200:9bfa:f68e:168b:a67a])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4562e884779sm25296185e9.19.2025.07.16.09.06.01
+ 5b1f17b1804b1-4562e884779sm25296185e9.19.2025.07.16.09.06.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 16 Jul 2025 09:06:01 -0700 (PDT)
+ Wed, 16 Jul 2025 09:06:00 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: [PATCH 4/7] drm/ttm: switch to ttm_bo_lru_for_each_reserved_guarded
- for swapout
-Date: Wed, 16 Jul 2025 18:04:23 +0200
-Message-ID: <20250716160555.20217-5-christian.koenig@amd.com>
+Subject: [PATCH 2/7] drm/ttm: remove ttm_lru_walk_ops
+Date: Wed, 16 Jul 2025 18:04:21 +0200
+Message-ID: <20250716160555.20217-3-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250716160555.20217-1-christian.koenig@amd.com>
 References: <20250716160555.20217-1-christian.koenig@amd.com>
@@ -91,154 +90,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of the walker wrapper use the underlying foreach. Saves us quite
-a bunch of complexity and loc.
+It's just another layer of indirection.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c     | 57 ++++++--------------------------
- drivers/gpu/drm/ttm/ttm_device.c | 19 ++++++++---
- include/drm/ttm/ttm_bo.h         |  5 ++-
- 3 files changed, 27 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c      | 12 ++---------
+ drivers/gpu/drm/ttm/ttm_bo_util.c |  2 +-
+ include/drm/ttm/ttm_bo.h          | 34 +++++++++++++------------------
+ 3 files changed, 17 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index ea963dc43b62..2a4b98bfde57 100644
+index d456be1d6e1e..ea963dc43b62 100644
 --- a/drivers/gpu/drm/ttm/ttm_bo.c
 +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -1087,25 +1087,18 @@ int ttm_bo_wait_ctx(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx)
- EXPORT_SYMBOL(ttm_bo_wait_ctx);
+@@ -554,10 +554,6 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *
+ 	return lret;
+ }
  
- /**
-- * struct ttm_bo_swapout_walk - Parameters for the swapout walk
-+ * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
-+ * @bo: The buffer to swap out.
-+ * @ctx: The ttm_operation_ctx governing the swapout operation.
-+ * @gfp_flags: The gfp flags used for shmem page allocations.
-+ *
-+ * Return: The number of bytes actually swapped out, or negative error code
-+ * on error.
-  */
--struct ttm_bo_swapout_walk {
--	/** @walk: The walk base parameters. */
--	struct ttm_lru_walk walk;
--	/** @gfp_flags: The gfp flags to use for ttm_tt_swapout() */
--	gfp_t gfp_flags;
--	/** @hit_low: Whether we should attempt to swap BO's with low watermark threshold */
--	/** @evict_low: If we cannot swap a bo when @try_low is false (first pass) */
--	bool hit_low, evict_low;
+-static const struct ttm_lru_walk_ops ttm_evict_walk_ops = {
+-	.process_bo = ttm_bo_evict_cb,
 -};
 -
--static s64
--ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
-+s64 ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
-+		   gfp_t gfp_flags)
+ static int ttm_bo_evict_alloc(struct ttm_device *bdev,
+ 			      struct ttm_resource_manager *man,
+ 			      const struct ttm_place *place,
+@@ -569,7 +565,7 @@ static int ttm_bo_evict_alloc(struct ttm_device *bdev,
  {
- 	struct ttm_place place = {.mem_type = bo->resource->mem_type};
--	struct ttm_bo_swapout_walk *swapout_walk =
--		container_of(walk, typeof(*swapout_walk), walk);
--	struct ttm_operation_ctx *ctx = walk->arg.ctx;
- 	s64 ret;
- 
- 	/*
-@@ -1176,7 +1169,7 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
- 		ttm_resource_del_bulk_move(bo->resource, bo);
- 		spin_unlock(&bo->bdev->lru_lock);
- 
--		ret = ttm_tt_swapout(bo->bdev, bo->ttm, swapout_walk->gfp_flags);
-+		ret = ttm_tt_swapout(bo->bdev, bo->ttm, gfp_flags);
- 
- 		spin_lock(&bo->bdev->lru_lock);
- 		if (ret)
-@@ -1193,36 +1186,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
+ 	struct ttm_bo_evict_walk evict_walk = {
+ 		.walk = {
+-			.ops = &ttm_evict_walk_ops,
++			.process_bo = ttm_bo_evict_cb,
+ 			.arg = {
+ 				.ctx = ctx,
+ 				.ticket = ticket,
+@@ -1197,10 +1193,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
  	return ret;
  }
  
--/**
-- * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
-- * @bdev: The ttm device.
-- * @ctx: The ttm_operation_ctx governing the swapout operation.
-- * @man: The resource manager whose resources / buffer objects are
-- * goint to be swapped out.
-- * @gfp_flags: The gfp flags used for shmem page allocations.
-- * @target: The desired number of bytes to swap out.
-- *
-- * Return: The number of bytes actually swapped out, or negative error code
-- * on error.
-- */
--s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
--		   struct ttm_resource_manager *man, gfp_t gfp_flags,
--		   s64 target)
--{
--	struct ttm_bo_swapout_walk swapout_walk = {
--		.walk = {
--			.process_bo = ttm_bo_swapout_cb,
--			.arg = {
--				.ctx = ctx,
--				.trylock_only = true,
--			},
--		},
--		.gfp_flags = gfp_flags,
--	};
+-const struct ttm_lru_walk_ops ttm_swap_ops = {
+-	.process_bo = ttm_bo_swapout_cb,
+-};
 -
--	return ttm_lru_walk_for_evict(&swapout_walk.walk, bdev, man, target);
--}
--
- void ttm_bo_tt_destroy(struct ttm_buffer_object *bo)
+ /**
+  * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
+  * @bdev: The ttm device.
+@@ -1219,7 +1211,7 @@ s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
  {
- 	if (bo->ttm == NULL)
-diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
-index c3e2fcbdd2cc..7ba18e782131 100644
---- a/drivers/gpu/drm/ttm/ttm_device.c
-+++ b/drivers/gpu/drm/ttm/ttm_device.c
-@@ -173,6 +173,12 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
- 		       gfp_t gfp_flags)
- {
- 	struct ttm_resource_manager *man;
-+	struct ttm_bo_lru_cursor cursor;
-+	struct ttm_buffer_object *bo;
-+	struct ttm_lru_walk_arg arg = {
-+		.ctx = ctx,
-+		.trylock_only = true
-+	};
- 	unsigned i;
+ 	struct ttm_bo_swapout_walk swapout_walk = {
+ 		.walk = {
+-			.ops = &ttm_swap_ops,
++			.process_bo = ttm_bo_swapout_cb,
+ 			.arg = {
+ 				.ctx = ctx,
+ 				.trylock_only = true,
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index ef1e42e005af..dec60a41185d 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -888,7 +888,7 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
  	s64 lret;
  
-@@ -181,10 +187,15 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
- 		if (!man || !man->use_tt)
- 			continue;
- 
--		lret = ttm_bo_swapout(bdev, ctx, man, gfp_flags, 1);
--		/* Can be both positive (num_pages) and negative (error) */
--		if (lret)
--			return lret;
-+		ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &arg, bo) {
-+			lret = ttm_bo_swapout(bo, ctx, gfp_flags);
-+				continue;
-+			/* Can be both positive (num_pages) and negative (error) */
-+			if (lret && lret != -EBUSY && lret != -EALREADY)
-+				return lret;
-+		}
-+		if (IS_ERR(bo))
-+			return PTR_ERR(bo);
- 	}
- 	return 0;
- }
+ 	ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &walk->arg, bo) {
+-		lret = walk->ops->process_bo(walk, bo);
++		lret = walk->process_bo(walk, bo);
+ 		if (lret == -EBUSY || lret == -EALREADY)
+ 			lret = 0;
+ 		progress = (lret < 0) ? lret : progress + lret;
 diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 63331a4b37f9..6e85f9e207ad 100644
+index 5a16d304a849..63331a4b37f9 100644
 --- a/include/drm/ttm/ttm_bo.h
 +++ b/include/drm/ttm/ttm_bo.h
-@@ -398,9 +398,8 @@ void *ttm_bo_kmap_try_from_panic(struct ttm_buffer_object *bo, unsigned long pag
- int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map *map);
- void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct iosys_map *map);
- int ttm_bo_mmap_obj(struct vm_area_struct *vma, struct ttm_buffer_object *bo);
--s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
--		   struct ttm_resource_manager *man, gfp_t gfp_flags,
--		   s64 target);
-+s64 ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
-+		   gfp_t gfp_flags);
- void ttm_bo_pin(struct ttm_buffer_object *bo);
- void ttm_bo_unpin(struct ttm_buffer_object *bo);
- int ttm_bo_evict_first(struct ttm_device *bdev,
+@@ -179,24 +179,6 @@ struct ttm_operation_ctx {
+ 	uint64_t bytes_moved;
+ };
+ 
+-struct ttm_lru_walk;
+-
+-/** struct ttm_lru_walk_ops - Operations for a LRU walk. */
+-struct ttm_lru_walk_ops {
+-	/**
+-	 * process_bo - Process this bo.
+-	 * @walk: struct ttm_lru_walk describing the walk.
+-	 * @bo: A locked and referenced buffer object.
+-	 *
+-	 * Return: Negative error code on error, User-defined positive value
+-	 * (typically, but not always, size of the processed bo) on success.
+-	 * On success, the returned values are summed by the walk and the
+-	 * walk exits when its target is met.
+-	 * 0 also indicates success, -EBUSY means this bo was skipped.
+-	 */
+-	s64 (*process_bo)(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo);
+-};
+-
+ /**
+  * struct ttm_lru_walk_arg - Common part for the variants of BO LRU walk.
+  */
+@@ -213,8 +195,20 @@ struct ttm_lru_walk_arg {
+  * struct ttm_lru_walk - Structure describing a LRU walk.
+  */
+ struct ttm_lru_walk {
+-	/** @ops: Pointer to the ops structure. */
+-	const struct ttm_lru_walk_ops *ops;
++	/**
++	 * process_bo - Process this bo.
++	 * @walk: struct ttm_lru_walk describing the walk.
++	 * @bo: A locked and referenced buffer object.
++	 *
++	 * Return: Negative error code on error, User-defined positive value
++	 * (typically, but not always, size of the processed bo) on success.
++	 * On success, the returned values are summed by the walk and the
++	 * walk exits when its target is met.
++	 * 0 also indicates success, -EBUSY means this bo was skipped.
++	 */
++	s64 (*process_bo)(struct ttm_lru_walk *walk,
++			  struct ttm_buffer_object *bo);
++
+ 	/** @arg: Common bo LRU walk arguments. */
+ 	struct ttm_lru_walk_arg arg;
+ };
 -- 
 2.43.0
 
