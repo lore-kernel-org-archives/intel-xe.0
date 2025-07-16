@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6C30C83F27
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 14:30:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94B2FC83F22
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 14:44:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 878E710E290;
-	Wed, 16 Jul 2025 14:30:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="FUgiWYSw";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 912EB10E290;
- Wed, 16 Jul 2025 14:30:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=NbzcoVdnvaJ8o8jG1zDyO6gs1kjzr+9BFoCAKqRFkDc=; b=FUgiWYSwNTrsyZHoh9A3HlVtvu
- p8NEmXL+nHBot60aMafT+SiTqX0B/+MLaV4mc5SU//tgbSJoTP9Aber8/ajBZfMzTTwpzkQAapomc
- 64W2M6MY+jFnQLuUB/jyo9VYbeQIU65XOADEiB82SLzNfbWM1+KXqOr/qfzmg+rBfiQjGCisL7vW+
- hKdt1B70AKnbaKa94Aj2eMQ5WhW5CYstyHfVxiVYVixlm/Wu9W9ej0NODzg3E/6KXHRpxh5w8jIC6
- JZBCwNvN8D+sRsLSrDXlv4EJWaGE7IbAsGtZLcpog5Y93KdEiKHOSNAhoqux4YPvxUWU6C8bOyqRP
- bQr58qTg==;
-Received: from [187.36.210.68] (helo=[192.168.1.103])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uc39c-00HLso-7P; Wed, 16 Jul 2025 16:30:40 +0200
-Message-ID: <f535c0bf-225a-40c9-b6a1-5bfbb5ebec0d@igalia.com>
-Date: Wed, 16 Jul 2025 11:30:35 -0300
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38DDE10E233;
+	Wed, 16 Jul 2025 14:44:40 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53EBC10E2B8;
+ Wed, 16 Jul 2025 14:44:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/sched: Avoid double re-lock on the job free path
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
-References: <20250716085117.56864-1-tvrtko.ursulin@igalia.com>
- <8e527b62-d968-4bc3-a0dc-491d193c02ce@igalia.com>
- <52d32846-0286-4979-ab2f-c1aa1aa02e20@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-In-Reply-To: <52d32846-0286-4979-ab2f-c1aa1aa02e20@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_CI_test_with_PREEMPT=5FRT?=
+ =?utf-8?q?_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Jul 2025 14:44:39 -0000
+Message-ID: <175267707933.166353.8797427712724184889@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250716105634.177676-7-dev@lankhorst.se>
+In-Reply-To: <20250716105634.177676-7-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,198 +36,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+== Series Details ==
 
-On 16/07/25 10:49, Tvrtko Ursulin wrote:
-> 
-> On 16/07/2025 14:31, Maíra Canal wrote:
->> Hi Tvrtko,
->>
->> On 16/07/25 05:51, Tvrtko Ursulin wrote:
->>> Currently the job free work item will lock sched->job_list_lock first 
->>> time
->>> to see if there are any jobs, free a single job, and then lock again to
->>> decide whether to re-queue itself if there are more finished jobs.
->>>
->>> Since drm_sched_get_finished_job() already looks at the second job in 
->>> the
->>> queue we can simply add the signaled check and have it return the 
->>> presence
->>> of more jobs to be freed to the caller. That way the work item does not
->>> have to lock the list again and repeat the signaled check.
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>> Cc: Christian König <christian.koenig@amd.com>
->>> Cc: Danilo Krummrich <dakr@kernel.org>
->>> Cc: Maíra Canal <mcanal@igalia.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: Philipp Stanner <phasta@kernel.org>
->>> ---
->>> v2:
->>>   * Improve commit text and kerneldoc. (Philipp)
->>>   * Rename run free work helper. (Philipp)
->>>
->>> v3:
->>>   * Rebase on top of Maira's changes.
->>> ---
->>>   drivers/gpu/drm/scheduler/sched_main.c | 53 ++++++++++----------------
->>>   1 file changed, 21 insertions(+), 32 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/ 
->>> drm/ scheduler/sched_main.c
->>> index e2cda28a1af4..5a550fd76bf0 100644
->>> --- a/drivers/gpu/drm/scheduler/sched_main.c
->>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->>> @@ -349,34 +349,13 @@ static void drm_sched_run_job_queue(struct 
->>> drm_gpu_scheduler *sched)
->>>   }
->>>   /**
->>> - * __drm_sched_run_free_queue - enqueue free-job work
->>> - * @sched: scheduler instance
->>> - */
->>> -static void __drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
->>> -{
->>> -    if (!READ_ONCE(sched->pause_submit))
->>> -        queue_work(sched->submit_wq, &sched->work_free_job);
->>> -}
->>> -
->>> -/**
->>> - * drm_sched_run_free_queue - enqueue free-job work if ready
->>> + * drm_sched_run_free_queue - enqueue free-job work
->>>    * @sched: scheduler instance
->>>    */
->>>   static void drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
->>>   {
->>> -    struct drm_sched_job *job;
->>> -
->>> -    job = list_first_entry_or_null(&sched->pending_list,
->>> -                       struct drm_sched_job, list);
->>> -    if (job && dma_fence_is_signaled(&job->s_fence->finished))
->>> -        __drm_sched_run_free_queue(sched);
->>
->> I believe we'd still need this chunk for DRM_GPU_SCHED_STAT_NO_HANG
->> (check the comment in drm_sched_job_reinsert_on_false_timeout()). How
-> 
-> You mean the "is there a signaled job in the list check" is needed for 
-> drm_sched_job_reinsert_on_false_timeout()? Hmm why? Worst case is a 
-> false positive wakeup on the free worker, no?
+Series: CI test with PREEMPT_RT (rev3)
+URL   : https://patchwork.freedesktop.org/series/151626/
+State : warning
 
-Correct me if I'm mistaken, we would also have a false positive wake-up
-on the run_job worker, which I believe it could be problematic in the
-cases that we skipped the reset because the job is still running.
+== Summary ==
 
-> 
->> about only deleting drm_sched_run_free_queue_unlocked() and keep using
->> __drm_sched_run_free_queue()?
-> 
-> You mean use __drm_sched_run_free_queue() from 
-> drm_sched_job_reinsert_on_false_timeout()? That is the same as 
-> drm_sched_run_free_queue() with this patch.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+43254c2aa575037fc031c7ac21b0d031c700b2bf
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 443d1e999c10fc3fa04db380c68305656696a0b4
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Wed Jul 16 12:56:40 2025 +0200
 
-Sorry, I believe I didn't express myself clearly. I mean, using
-__drm_sched_run_free_queue() in drm_sched_free_job_work() and keep using
-drm_sched_run_free_queue() in drm_sched_job_reinsert_on_false_timeout().
+    FOR-CI: Enable PREEMPT_RT
+    
+    Link: https://lore.kernel.org/r/20250715101636.906092-10-dev@lankhorst.se
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 3b965bd54a93adbf5520b143254ecb10b9a11776 drm-intel
+e155807d1962 accel/ivpu: Remove lockdep_assert_irqs_disabled()
+ab82d823c5d9 drm/i915: Use preempt_disable/enable_rt() where recommended
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
 
-Best Regards,
-- Maíra
+-:47: WARNING:LINE_SPACING: Missing a blank line after declarations
+#47: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:320:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_lock_irqsave(&i915->uncore.lock, *flags);
 
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->>> -}
->>> -
->>> -static void drm_sched_run_free_queue_unlocked(struct 
->>> drm_gpu_scheduler *sched)
->>> -{
->>> -    spin_lock(&sched->job_list_lock);
->>> -    drm_sched_run_free_queue(sched);
->>> -    spin_unlock(&sched->job_list_lock);
->>> +    if (!READ_ONCE(sched->pause_submit))
->>> +        queue_work(sched->submit_wq, &sched->work_free_job);
->>>   }
->>>   /**
->>> @@ -398,7 +377,7 @@ static void drm_sched_job_done(struct 
->>> drm_sched_job *s_job, int result)
->>>       dma_fence_get(&s_fence->finished);
->>>       drm_sched_fence_finished(s_fence, result);
->>>       dma_fence_put(&s_fence->finished);
->>> -    __drm_sched_run_free_queue(sched);
->>> +    drm_sched_run_free_queue(sched);
->>>   }
->>>   /**
->>> @@ -1134,12 +1113,16 @@ drm_sched_select_entity(struct 
->>> drm_gpu_scheduler *sched)
->>>    * drm_sched_get_finished_job - fetch the next finished job to be 
->>> destroyed
->>>    *
->>>    * @sched: scheduler instance
->>> + * @have_more: are there more finished jobs on the list
->>> + *
->>> + * Informs the caller through @have_more whether there are more 
->>> finished jobs
->>> + * besides the returned one.
->>>    *
->>>    * Returns the next finished job from the pending list (if there is 
->>> one)
->>>    * ready for it to be destroyed.
->>>    */
->>>   static struct drm_sched_job *
->>> -drm_sched_get_finished_job(struct drm_gpu_scheduler *sched)
->>> +drm_sched_get_finished_job(struct drm_gpu_scheduler *sched, bool 
->>> *have_more)
->>>   {
->>>       struct drm_sched_job *job, *next;
->>> @@ -1147,22 +1130,25 @@ drm_sched_get_finished_job(struct 
->>> drm_gpu_scheduler *sched)
->>>       job = list_first_entry_or_null(&sched->pending_list,
->>>                          struct drm_sched_job, list);
->>> -
->>>       if (job && dma_fence_is_signaled(&job->s_fence->finished)) {
->>>           /* remove job from pending_list */
->>>           list_del_init(&job->list);
->>>           /* cancel this job's TO timer */
->>>           cancel_delayed_work(&sched->work_tdr);
->>> -        /* make the scheduled timestamp more accurate */
->>> +
->>> +        *have_more = false;
->>>           next = list_first_entry_or_null(&sched->pending_list,
->>>                           typeof(*next), list);
->>> -
->>>           if (next) {
->>> +            /* make the scheduled timestamp more accurate */
->>>               if (test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT,
->>>                        &next->s_fence->scheduled.flags))
->>>                   next->s_fence->scheduled.timestamp =
->>>                       dma_fence_timestamp(&job->s_fence->finished);
->>> +
->>> +            *have_more = dma_fence_is_signaled(&next->s_fence- 
->>> >finished);
->>> +
->>>               /* start TO timer for next job */
->>>               drm_sched_start_timeout(sched);
->>>           }
->>> @@ -1221,12 +1207,15 @@ static void drm_sched_free_job_work(struct 
->>> work_struct *w)
->>>       struct drm_gpu_scheduler *sched =
->>>           container_of(w, struct drm_gpu_scheduler, work_free_job);
->>>       struct drm_sched_job *job;
->>> +    bool have_more;
->>> -    job = drm_sched_get_finished_job(sched);
->>> -    if (job)
->>> +    job = drm_sched_get_finished_job(sched, &have_more);
->>> +    if (job) {
->>>           sched->ops->free_job(job);
->>> +        if (have_more)
->>> +            drm_sched_run_free_queue(sched);
->>> +    }
->>> -    drm_sched_run_free_queue_unlocked(sched);
->>>       drm_sched_run_job_queue(sched);
->>>   }
->>
-> 
+-:54: WARNING:LINE_SPACING: Missing a blank line after declarations
+#54: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:327:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_unlock_irqrestore(&i915->uncore.lock, flags);
+
+total: 0 errors, 3 warnings, 0 checks, 78 lines checked
+681555cb3ffd drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
+
+total: 0 errors, 1 warnings, 0 checks, 68 lines checked
+046d1204c09f drm/i915/display: Use drm_crtc_vblank_count in intel_crtc_get_vblank_counter()
+443d1e999c10 FOR-CI: Enable PREEMPT_RT
+
 
