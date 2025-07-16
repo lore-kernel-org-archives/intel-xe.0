@@ -4,70 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACB8EC83F1B
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 07:36:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53D4AC83F2D
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 07:42:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F02D10E6A1;
-	Wed, 16 Jul 2025 07:36:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 079C110E6CD;
+	Wed, 16 Jul 2025 07:42:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IL2DhtWk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dghhNHX9";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E72310E690;
- Wed, 16 Jul 2025 07:36:44 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id ACE1D43BB8;
- Wed, 16 Jul 2025 07:36:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E68C4CEF0;
- Wed, 16 Jul 2025 07:36:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1752651403;
- bh=X+LoooskKcWhlAk2v6lNXE/e0zZx766RhuQ3yNOXPys=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=IL2DhtWkL8GDzqJNo9+kBPyWdkfG4GzpC2X36NeLSTin8LCx+WYzbrCpq6G0Dx8SS
- zArHhlzubKDio5Zro02MVteupBYUx+LntvJuzZe9iENIH2yMp8bsI7rqrHAkJPHs5t
- UYon4DAT51Cfe6549+kL80qFPh0YWlhHPaP+nyhxbbvDaxfXt2qAr+/qu9gAlYC4RD
- eWQELv9GKJhWdGr1wuiKilj3h0h6g+m5p91k9Nr9XdppMcjzkk+uMayh4/b1NsdN78
- kdORh0vvOWrU9L25zluzsIbqMTSQwMyn1eEUj6sfWG5/RYBdJz/kkol7HSKvq2/Pc2
- SY5E7sSIHOjxw==
-Date: Wed, 16 Jul 2025 08:36:30 +0100
-From: Simon Horman <horms@kernel.org>
-To: WangYuli <wangyuli@uniontech.com>
-Cc: airlied@gmail.com, akpm@linux-foundation.org,
- alison.schofield@intel.com, andrew+netdev@lunn.ch,
- andriy.shevchenko@linux.intel.com, arend.vanspriel@broadcom.com,
- bp@alien8.de, brcm80211-dev-list.pdl@broadcom.com,
- brcm80211@lists.linux.dev, colin.i.king@gmail.com,
- cvam0000@gmail.com, dan.j.williams@intel.com,
- dave.hansen@linux.intel.com, dave.jiang@intel.com,
- dave@stgolabs.net, davem@davemloft.net,
- dri-devel@lists.freedesktop.org, edumazet@google.com,
- gregkh@linuxfoundation.org, guanwentao@uniontech.com, hpa@zytor.com,
- ilpo.jarvinen@linux.intel.com, intel-xe@lists.freedesktop.org,
- ira.weiny@intel.com, j@jannau.net, jeff.johnson@oss.qualcomm.com,
- jgross@suse.com, jirislaby@kernel.org, johannes.berg@intel.com,
- jonathan.cameron@huawei.com, kuba@kernel.org, kvalo@kernel.org,
- kvm@vger.kernel.org, linux-cxl@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux@treblig.org,
- lucas.demarchi@intel.com, marcin.s.wojtas@gmail.com,
- ming.li@zohomail.com, mingo@kernel.org, mingo@redhat.com,
- netdev@vger.kernel.org, niecheng1@uniontech.com,
- oleksandr_tyshchenko@epam.com, pabeni@redhat.com,
- pbonzini@redhat.com, quic_ramess@quicinc.com, ragazenta@gmail.com,
- rodrigo.vivi@intel.com, seanjc@google.com, shenlichuan@vivo.com,
- simona@ffwll.ch, sstabellini@kernel.org, tglx@linutronix.de,
- thomas.hellstrom@linux.intel.com, vishal.l.verma@intel.com,
- x86@kernel.org, xen-devel@lists.xenproject.org,
- yujiaoliang@vivo.com, zhanjun@uniontech.com
-Subject: Re: [PATCH v2 4/8] net: mvneta: Fix typo "notifer"
-Message-ID: <20250716073630.GB1428042@horms.kernel.org>
-References: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
- <41013AF60AF9B5BE+20250715134407.540483-4-wangyuli@uniontech.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8159610E6C4;
+ Wed, 16 Jul 2025 07:42:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752651744; x=1784187744;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=7G9uOyZ3juMdF5Us7PxsVozhy5f19mL67f2MlcNn8wM=;
+ b=dghhNHX99vNDfE4AcWSD6SUuti/B2SHKwZD+Mu/ITUedTNJd2nSZLMLQ
+ 6hc8SMruGTFSZZeQQuco0msidaKdxk/LTBq0vFnhvkeTO9uKUk7JwG60S
+ Rtfq8zJI9r3M97yr1s6VcFED1Bc2o1vvF+YwEiQPg78ZBLz7cAzlhRJ2s
+ x93MVhocCtZdOj36zBxnHs9U8RPFyIuxGg97DKtC1PnV0qR2c4Bt3PZXf
+ OE7UZfoSoNsmXYRVMvfWK+jwXKaO5/gRhICxpqiNcbL5Z0eqd3ym/XTJw
+ v0sr/454Uaxv1mdho+SvpGST3RIfMxWEaN1T3C4Bmrhvg+O7NsjO0zUt7 A==;
+X-CSE-ConnectionGUID: aL7tAhtHTZ6VhSclzaXAuA==
+X-CSE-MsgGUID: gfSePt/OT3WHpXoqxL47rA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="54761009"
+X-IronPort-AV: E=Sophos;i="6.16,315,1744095600"; d="scan'208";a="54761009"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2025 00:42:24 -0700
+X-CSE-ConnectionGUID: ZmZTSw6BRfGGQ5iW+8iiaA==
+X-CSE-MsgGUID: 0sM1Al9pTZq/8C7/5VDaQw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,315,1744095600"; d="scan'208";a="156832703"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.143])
+ ([10.245.245.143])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2025 00:42:20 -0700
+Message-ID: <ee784a3a-30b4-489a-8503-b1be3b09268c@linux.intel.com>
+Date: Wed, 16 Jul 2025 09:42:17 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <41013AF60AF9B5BE+20250715134407.540483-4-wangyuli@uniontech.com>
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,18 +76,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 15, 2025 at 09:44:03PM +0800, WangYuli wrote:
-> There is a spelling mistake of 'notifer' in the comment which
-> should be 'notifier'.
-> 
-> Link: https://lore.kernel.org/all/B3C019B63C93846F+20250715071245.398846-1-wangyuli@uniontech.com/
+Hi Dave, Simona,
 
-As suggested by Jonathan Cameron elsewhere in this thread, this link to an
-earlier version doesn't seem appropriate here. I'd suggest it belongs
-below the scissors ('---') with a note that it is a link to v1.
+Another pull request.
 
-> Signed-off-by: WangYuli <wangyuli@uniontech.com>
+Best regards,
+~Maarten
 
-The comment above notwithstanding this looks good to me.
+drm-misc-fixes-2025-07-16:
+drm-misc-fixes for v6.16 final?:
+- nouveau ioctl validation fix.
+- panfrost scheduler bug.
+The following changes since commit bd46cece51a36ef088f22ef0416ac13b0a46d5b0:
 
-Reviewed-by: Simon Horman <horms@kernel.org>
+  drm/gem: Fix race in drm_gem_handle_create_tail() (2025-07-09 15:53:34 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-07-16
+
+for you to fetch changes up to cb345f954eacd162601e7d07ca2f0f0a17b54ee3:
+
+  drm/panfrost: Fix scheduler workqueue bug (2025-07-14 16:49:10 +0100)
+
+----------------------------------------------------------------
+drm-misc-fixes for v6.16 final?:
+- nouveau ioctl validation fix.
+- panfrost scheduler bug.
+
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      drm/nouveau: check ioctl command codes better
+
+Philipp Stanner (1):
+      drm/panfrost: Fix scheduler workqueue bug
+
+ drivers/gpu/drm/nouveau/nouveau_drm.c   | 11 +++++------
+ drivers/gpu/drm/panfrost/panfrost_job.c |  2 +-
+ 2 files changed, 6 insertions(+), 7 deletions(-)
