@@ -4,25 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19DB2C83F1B
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 10:56:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25790C83F22
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 11:16:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0D7710E795;
-	Wed, 16 Jul 2025 10:56:44 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 554A410E6DB
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Jul 2025 10:56:40 +0000 (UTC)
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 3/5] drm/i915: Don't disable interrupts on PREEMPT_RT
- during atomic updates
-Date: Wed, 16 Jul 2025 12:56:38 +0200
-Message-ID: <20250716105634.177676-10-dev@lankhorst.se>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250716105634.177676-7-dev@lankhorst.se>
-References: <20250716105634.177676-7-dev@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E9D10E7A8;
+	Wed, 16 Jul 2025 11:16:50 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEFFF10E79D;
+ Wed, 16 Jul 2025 11:16:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1984598236175874187=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/sched=3A_Avoid_double_r?=
+ =?utf-8?q?e-lock_on_the_job_free_path_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Jul 2025 11:16:49 -0000
+Message-ID: <175266460970.166334.14361293168497228887@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250716085117.56864-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250716085117.56864-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,133 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mike Galbraith <umgwanakikbuti@gmail.com>
+--===============1984598236175874187==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Commit
-   8d7849db3eab7 ("drm/i915: Make sprite updates atomic")
+== Series Details ==
 
-started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
-because within this section the code attempt to acquire spinlock_t locks which
-are sleeping locks on PREEMPT_RT.
+Series: drm/sched: Avoid double re-lock on the job free path (rev4)
+URL   : https://patchwork.freedesktop.org/series/151331/
+State : success
 
-According to the comment the interrupts are disabled to avoid random delays and
-not required for protection or synchronisation.
-If this needs to happen with disabled interrupts on PREEMPT_RT, and the
-whole section is restricted to register access then all sleeping locks
-need to be acquired before interrupts are disabled and some function
-maybe moved after enabling interrupts again.
-This includes:
-- prepare_to_wait() + finish_wait() due its wake queue.
-- drm_crtc_vblank_put() -> vblank_disable_fn() drm_device::vbl_lock.
-- skl_pfit_enable(), intel_update_plane(), vlv_atomic_update_fifo() and
-  maybe others due to intel_uncore::lock
-- drm_crtc_arm_vblank_event() due to drm_device::event_lock and
-  drm_device::vblank_time_lock.
+== Summary ==
 
-Don't disable interrupts on PREEMPT_RT during atomic updates.
+CI Bug Log - changes from xe-3420-69e98a7d66784ff8a833b2b7ef4290ae3f083c5f_BAT -> xe-pw-151331v4_BAT
+====================================================
 
-[bigeasy: drop local locks, commit message]
+Summary
+-------
 
-Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Link: https://lore.kernel.org/r/20250714153954.629393-3-bigeasy@linutronix.de
-Link: https://lore.kernel.org/r/20250715101636.906092-8-dev@lankhorst.se
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/i915/display/intel_crtc.c   | 9 ++++++---
- drivers/gpu/drm/i915/display/intel_cursor.c | 9 ++++++---
- drivers/gpu/drm/i915/display/intel_vblank.c | 6 ++++--
- 3 files changed, 16 insertions(+), 8 deletions(-)
+  **SUCCESS**
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index a187db6df2d36..dbdc4d9b2a33c 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -562,7 +562,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
- 	 */
- 	intel_psr_wait_for_idle_locked(new_crtc_state);
- 
--	local_irq_disable();
-+	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+		local_irq_disable();
- 
- 	crtc->debug.min_vbl = evade.min;
- 	crtc->debug.max_vbl = evade.max;
-@@ -580,7 +581,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
- 	return;
- 
- irq_disable:
--	local_irq_disable();
-+	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+		local_irq_disable();
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_VBLANK_EVADE)
-@@ -726,7 +728,8 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 	if (!state->base.legacy_cursor_update)
- 		intel_vrr_send_push(NULL, new_crtc_state);
- 
--	local_irq_enable();
-+	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+		local_irq_enable();
- 
- 	if (intel_vgpu_active(dev_priv))
- 		goto out;
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 198e69efe9ac1..2d86b2c3f863b 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -929,13 +929,15 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		 */
- 		intel_psr_wait_for_idle_locked(crtc_state);
- 
--		local_irq_disable();
-+		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+			local_irq_disable();
- 
- 		intel_vblank_evade(&evade);
- 
- 		drm_crtc_vblank_put(&crtc->base);
- 	} else {
--		local_irq_disable();
-+		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+			local_irq_disable();
- 	}
- 
- 	if (new_plane_state->uapi.visible) {
-@@ -945,7 +947,8 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		intel_plane_disable_arm(NULL, plane, crtc_state);
- 	}
- 
--	local_irq_enable();
-+	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+		local_irq_enable();
- 
- 	intel_psr_unlock(crtc_state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index b82e9fc51af01..d0197fd96d6cf 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -753,11 +753,13 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- 			break;
- 		}
- 
--		local_irq_enable();
-+		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+			local_irq_enable();
- 
- 		timeout = schedule_timeout(timeout);
- 
--		local_irq_disable();
-+		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+			local_irq_disable();
- 	}
- 
- 	finish_wait(wq, &wait);
--- 
-2.45.2
+  No regressions found.
 
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-151331v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +3 other tests pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3420-69e98a7d66784ff8a833b2b7ef4290ae3f083c5f/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151331v4/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3420-69e98a7d66784ff8a833b2b7ef4290ae3f083c5f -> xe-pw-151331v4
+
+  IGT_8460: 8460
+  xe-3420-69e98a7d66784ff8a833b2b7ef4290ae3f083c5f: 69e98a7d66784ff8a833b2b7ef4290ae3f083c5f
+  xe-pw-151331v4: 151331v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151331v4/index.html
+
+--===============1984598236175874187==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/sched: Avoid double re-lock on the job free path (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151331/">https://patchwork.freedesktop.org/series/151331/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151331v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151331v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3420-69e98a7d66784ff8a833b2b7ef4290ae3f083c5f_BAT -&gt; xe-pw-151331v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-151331v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3420-69e98a7d66784ff8a833b2b7ef4290ae3f083c5f/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151331v4/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +3 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3420-69e98a7d66784ff8a833b2b7ef4290ae3f083c5f -&gt; xe-pw-151331v4</li>
+</ul>
+<p>IGT_8460: 8460<br />
+  xe-3420-69e98a7d66784ff8a833b2b7ef4290ae3f083c5f: 69e98a7d66784ff8a833b2b7ef4290ae3f083c5f<br />
+  xe-pw-151331v4: 151331v4</p>
+
+</body>
+</html>
+
+--===============1984598236175874187==--
