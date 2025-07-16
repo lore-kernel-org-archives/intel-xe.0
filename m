@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A564C83F34
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 13:49:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE78AC83F22
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 13:51:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE97A10E7C0;
-	Wed, 16 Jul 2025 13:49:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="E3KF1ZFm";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8DAD10E7B0;
- Wed, 16 Jul 2025 13:49:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=zGUv7eTSYxsOgqMtPbVV//yRn5tnzskdilRU13XzeVo=; b=E3KF1ZFmxl8GXTV5xrAADPaf7f
- mmF+gzNrTLPrdDBr+Iy1NFzTiTmcw7HSi31v5L6F476vCcI/lNJ0BG0jor0er/rXjxGXI0nsqtKv3
- zCdGk+EW9WF7LZrH05tDIspE2ALUMFJum/Vu6yZiNR6p9ixS81m8/DBgpXyqkIGm09pn5xVcKldJz
- LUKtiL902AWG9WFEdpZcs5AsgSGHnJOs9gyNB5KQTKAn+7gGVQuLzp2xxtfOt4KpHAybIG8WPT7Qj
- lxQmgPVmGPINPu5gIPSwbiRGe7toDK6xOHzhrxajjvJqWHG+tI2tSZUpeiF/rmJj2a1zdYqGlwrm7
- g9KJtWJQ==;
-Received: from [84.66.36.92] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uc2VO-00HKuG-Ri; Wed, 16 Jul 2025 15:49:06 +0200
-Message-ID: <52d32846-0286-4979-ab2f-c1aa1aa02e20@igalia.com>
-Date: Wed, 16 Jul 2025 14:49:05 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC3C210E7AC;
+	Wed, 16 Jul 2025 13:51:29 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7B110E7C0;
+ Wed, 16 Jul 2025 13:51:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7564768529656869454=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/sched: Avoid double re-lock on the job free path
-To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
-References: <20250716085117.56864-1-tvrtko.ursulin@igalia.com>
- <8e527b62-d968-4bc3-a0dc-491d193c02ce@igalia.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <8e527b62-d968-4bc3-a0dc-491d193c02ce@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_debugfs_node_to_expose_?=
+ =?utf-8?q?G-state_and_pcie_link_state_residency_=28rev11=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Soham Purkait" <soham.purkait@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Jul 2025 13:51:28 -0000
+Message-ID: <175267388823.166774.15341646555254943625@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250716101412.3062780-1-soham.purkait@intel.com>
+In-Reply-To: <20250716101412.3062780-1-soham.purkait@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,180 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7564768529656869454==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 16/07/2025 14:31, Maíra Canal wrote:
-> Hi Tvrtko,
-> 
-> On 16/07/25 05:51, Tvrtko Ursulin wrote:
->> Currently the job free work item will lock sched->job_list_lock first 
->> time
->> to see if there are any jobs, free a single job, and then lock again to
->> decide whether to re-queue itself if there are more finished jobs.
->>
->> Since drm_sched_get_finished_job() already looks at the second job in the
->> queue we can simply add the signaled check and have it return the 
->> presence
->> of more jobs to be freed to the caller. That way the work item does not
->> have to lock the list again and repeat the signaled check.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: Danilo Krummrich <dakr@kernel.org>
->> Cc: Maíra Canal <mcanal@igalia.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Philipp Stanner <phasta@kernel.org>
->> ---
->> v2:
->>   * Improve commit text and kerneldoc. (Philipp)
->>   * Rename run free work helper. (Philipp)
->>
->> v3:
->>   * Rebase on top of Maira's changes.
->> ---
->>   drivers/gpu/drm/scheduler/sched_main.c | 53 ++++++++++----------------
->>   1 file changed, 21 insertions(+), 32 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/ 
->> scheduler/sched_main.c
->> index e2cda28a1af4..5a550fd76bf0 100644
->> --- a/drivers/gpu/drm/scheduler/sched_main.c
->> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->> @@ -349,34 +349,13 @@ static void drm_sched_run_job_queue(struct 
->> drm_gpu_scheduler *sched)
->>   }
->>   /**
->> - * __drm_sched_run_free_queue - enqueue free-job work
->> - * @sched: scheduler instance
->> - */
->> -static void __drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
->> -{
->> -    if (!READ_ONCE(sched->pause_submit))
->> -        queue_work(sched->submit_wq, &sched->work_free_job);
->> -}
->> -
->> -/**
->> - * drm_sched_run_free_queue - enqueue free-job work if ready
->> + * drm_sched_run_free_queue - enqueue free-job work
->>    * @sched: scheduler instance
->>    */
->>   static void drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
->>   {
->> -    struct drm_sched_job *job;
->> -
->> -    job = list_first_entry_or_null(&sched->pending_list,
->> -                       struct drm_sched_job, list);
->> -    if (job && dma_fence_is_signaled(&job->s_fence->finished))
->> -        __drm_sched_run_free_queue(sched);
-> 
-> I believe we'd still need this chunk for DRM_GPU_SCHED_STAT_NO_HANG
-> (check the comment in drm_sched_job_reinsert_on_false_timeout()). How
+== Series Details ==
 
-You mean the "is there a signaled job in the list check" is needed for 
-drm_sched_job_reinsert_on_false_timeout()? Hmm why? Worst case is a 
-false positive wakeup on the free worker, no?
+Series: Add debugfs node to expose G-state and pcie link state residency (rev11)
+URL   : https://patchwork.freedesktop.org/series/149793/
+State : success
 
-> about only deleting drm_sched_run_free_queue_unlocked() and keep using
-> __drm_sched_run_free_queue()?
+== Summary ==
 
-You mean use __drm_sched_run_free_queue() from 
-drm_sched_job_reinsert_on_false_timeout()? That is the same as 
-drm_sched_run_free_queue() with this patch.
+CI Bug Log - changes from xe-3421-80e0612085c36304e6ab19615fa3ad03c5a49748_BAT -> xe-pw-149793v11_BAT
+====================================================
 
-Regards,
+Summary
+-------
 
-Tvrtko
+  **SUCCESS**
 
->> -}
->> -
->> -static void drm_sched_run_free_queue_unlocked(struct 
->> drm_gpu_scheduler *sched)
->> -{
->> -    spin_lock(&sched->job_list_lock);
->> -    drm_sched_run_free_queue(sched);
->> -    spin_unlock(&sched->job_list_lock);
->> +    if (!READ_ONCE(sched->pause_submit))
->> +        queue_work(sched->submit_wq, &sched->work_free_job);
->>   }
->>   /**
->> @@ -398,7 +377,7 @@ static void drm_sched_job_done(struct 
->> drm_sched_job *s_job, int result)
->>       dma_fence_get(&s_fence->finished);
->>       drm_sched_fence_finished(s_fence, result);
->>       dma_fence_put(&s_fence->finished);
->> -    __drm_sched_run_free_queue(sched);
->> +    drm_sched_run_free_queue(sched);
->>   }
->>   /**
->> @@ -1134,12 +1113,16 @@ drm_sched_select_entity(struct 
->> drm_gpu_scheduler *sched)
->>    * drm_sched_get_finished_job - fetch the next finished job to be 
->> destroyed
->>    *
->>    * @sched: scheduler instance
->> + * @have_more: are there more finished jobs on the list
->> + *
->> + * Informs the caller through @have_more whether there are more 
->> finished jobs
->> + * besides the returned one.
->>    *
->>    * Returns the next finished job from the pending list (if there is 
->> one)
->>    * ready for it to be destroyed.
->>    */
->>   static struct drm_sched_job *
->> -drm_sched_get_finished_job(struct drm_gpu_scheduler *sched)
->> +drm_sched_get_finished_job(struct drm_gpu_scheduler *sched, bool 
->> *have_more)
->>   {
->>       struct drm_sched_job *job, *next;
->> @@ -1147,22 +1130,25 @@ drm_sched_get_finished_job(struct 
->> drm_gpu_scheduler *sched)
->>       job = list_first_entry_or_null(&sched->pending_list,
->>                          struct drm_sched_job, list);
->> -
->>       if (job && dma_fence_is_signaled(&job->s_fence->finished)) {
->>           /* remove job from pending_list */
->>           list_del_init(&job->list);
->>           /* cancel this job's TO timer */
->>           cancel_delayed_work(&sched->work_tdr);
->> -        /* make the scheduled timestamp more accurate */
->> +
->> +        *have_more = false;
->>           next = list_first_entry_or_null(&sched->pending_list,
->>                           typeof(*next), list);
->> -
->>           if (next) {
->> +            /* make the scheduled timestamp more accurate */
->>               if (test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT,
->>                        &next->s_fence->scheduled.flags))
->>                   next->s_fence->scheduled.timestamp =
->>                       dma_fence_timestamp(&job->s_fence->finished);
->> +
->> +            *have_more = dma_fence_is_signaled(&next->s_fence- 
->> >finished);
->> +
->>               /* start TO timer for next job */
->>               drm_sched_start_timeout(sched);
->>           }
->> @@ -1221,12 +1207,15 @@ static void drm_sched_free_job_work(struct 
->> work_struct *w)
->>       struct drm_gpu_scheduler *sched =
->>           container_of(w, struct drm_gpu_scheduler, work_free_job);
->>       struct drm_sched_job *job;
->> +    bool have_more;
->> -    job = drm_sched_get_finished_job(sched);
->> -    if (job)
->> +    job = drm_sched_get_finished_job(sched, &have_more);
->> +    if (job) {
->>           sched->ops->free_job(job);
->> +        if (have_more)
->> +            drm_sched_run_free_queue(sched);
->> +    }
->> -    drm_sched_run_free_queue_unlocked(sched);
->>       drm_sched_run_job_queue(sched);
->>   }
-> 
+  No regressions found.
 
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8460 -> IGT_8461
+  * Linux: xe-3421-80e0612085c36304e6ab19615fa3ad03c5a49748 -> xe-pw-149793v11
+
+  IGT_8460: 8460
+  IGT_8461: 873912f2353ad861a172f6c787c054f934aee71d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3421-80e0612085c36304e6ab19615fa3ad03c5a49748: 80e0612085c36304e6ab19615fa3ad03c5a49748
+  xe-pw-149793v11: 149793v11
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v11/index.html
+
+--===============7564768529656869454==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add debugfs node to expose G-state and pcie link state residency (rev11)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149793/">https://patchwork.freedesktop.org/series/149793/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v11/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149793v11/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3421-80e0612085c36304e6ab19615fa3ad03c5a49748_BAT -&gt; xe-pw-149793v11_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8460 -&gt; IGT_8461</li>
+<li>Linux: xe-3421-80e0612085c36304e6ab19615fa3ad03c5a49748 -&gt; xe-pw-149793v11</li>
+</ul>
+<p>IGT_8460: 8460<br />
+  IGT_8461: 873912f2353ad861a172f6c787c054f934aee71d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3421-80e0612085c36304e6ab19615fa3ad03c5a49748: 80e0612085c36304e6ab19615fa3ad03c5a49748<br />
+  xe-pw-149793v11: 149793v11</p>
+
+</body>
+</html>
+
+--===============7564768529656869454==--
