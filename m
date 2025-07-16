@@ -4,20 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3751CC83F22
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 10:56:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BC3CC83F27
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 10:56:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E034A10E794;
-	Wed, 16 Jul 2025 10:56:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA68F10E797;
+	Wed, 16 Jul 2025 10:56:44 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5A710E6DB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A569810E794
  for <intel-xe@lists.freedesktop.org>; Wed, 16 Jul 2025 10:56:41 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 4/5] drm/i915/display: Use drm_crtc_vblank_count in
- intel_crtc_get_vblank_counter()
-Date: Wed, 16 Jul 2025 12:56:39 +0200
-Message-ID: <20250716105634.177676-11-dev@lankhorst.se>
+Subject: [PATCH v2 5/5] FOR-CI: Enable PREEMPT_RT
+Date: Wed, 16 Jul 2025 12:56:40 +0200
+Message-ID: <20250716105634.177676-12-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250716105634.177676-7-dev@lankhorst.se>
 References: <20250716105634.177676-7-dev@lankhorst.se>
@@ -37,31 +36,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm_crtc_accurate_vblank_count takes a spinlock, which we should avoid
-in tracepoints and debug functions.
-
-This also prevents taking the spinlock 2x during the critical
-section of pipe updates.
-
-Link: https://lore.kernel.org/r/20250715101636.906092-9-dev@lankhorst.se
+Link: https://lore.kernel.org/r/20250715101636.906092-10-dev@lankhorst.se
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ init/Kconfig           | 2 +-
+ kernel/Kconfig.preempt | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index dbdc4d9b2a33c..65a57cadfa3bf 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -85,7 +85,7 @@ u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc)
- 		return 0;
+diff --git a/init/Kconfig b/init/Kconfig
+index 666783eb50abd..cc7c50eb2a5a0 100644
+--- a/init/Kconfig
++++ b/init/Kconfig
+@@ -185,7 +185,7 @@ config INIT_ENV_ARG_LIMIT
  
- 	if (!vblank->max_vblank_count)
--		return (u32)drm_crtc_accurate_vblank_count(&crtc->base);
-+		return (u32)drm_crtc_vblank_count(&crtc->base);
+ config COMPILE_TEST
+ 	bool "Compile also drivers which will not load"
+-	depends on HAS_IOMEM
++	depends on BROKEN && HAS_IOMEM
+ 	help
+ 	  Some drivers can be compiled on a different platform than they are
+ 	  intended to be run on. Despite they cannot be loaded there (or even
+diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
+index 54ea59ff8fbeb..eb0aad1aeaf74 100644
+--- a/kernel/Kconfig.preempt
++++ b/kernel/Kconfig.preempt
+@@ -87,8 +87,8 @@ config PREEMPT_LAZY
+ endchoice
  
- 	return crtc->base.funcs->get_vblank_counter(&crtc->base);
- }
+ config PREEMPT_RT
+-	bool "Fully Preemptible Kernel (Real-Time)"
+-	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
++	def_bool y
++	depends on ARCH_SUPPORTS_RT
+ 	select PREEMPTION
+ 	help
+ 	  This option turns the kernel into a real-time kernel by replacing
 -- 
 2.45.2
 
