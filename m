@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94B2FC83F22
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 14:44:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9573C83F27
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 14:45:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38DDE10E233;
-	Wed, 16 Jul 2025 14:44:40 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53EBC10E2B8;
- Wed, 16 Jul 2025 14:44:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4C7010E7BB;
+	Wed, 16 Jul 2025 14:45:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Vtgwqkmu";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4148810E7BF;
+ Wed, 16 Jul 2025 14:45:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id AF9F744AEA;
+ Wed, 16 Jul 2025 14:45:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41021C4CEE7;
+ Wed, 16 Jul 2025 14:45:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1752677135;
+ bh=nHbkOPQThJAUcbsBsK/Y+mJAiUxpmcKEzvzLu/ss+WE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=VtgwqkmuF7QRE0w2Tbk4VxeG8fUwHFknE2cGEUSTjp7oKwV+MYkABHgHkUTW9eIO2
+ Pr14N/jpdoXC/SXZN0xr89HZfiGZYiQiGWJKZ2RA9iaHSYo64rbdAdXci/PMNu3KBi
+ uplbb2kA8XaR6Gk7qinoFa02kVtDhVi7aZSca+AA=
+Date: Wed, 16 Jul 2025 16:45:33 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
+Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ "Gupta, Anshuman" <anshuman.gupta@intel.com>,
+ "Nilawar, Badal" <badal.nilawar@intel.com>
+Subject: Re: [PATCH 2/9] mei: late_bind: add late binding component driver
+Message-ID: <2025071619-sterile-skiing-e64b@gregkh>
+References: <20250710150831.3018674-11-rodrigo.vivi@intel.com>
+ <20250710150831.3018674-13-rodrigo.vivi@intel.com>
+ <2025071611-decode-hastiness-df63@gregkh>
+ <CY5PR11MB63666310C54B48FB3624D9E0ED56A@CY5PR11MB6366.namprd11.prod.outlook.com>
+ <2025071603-guide-definite-70e3@gregkh>
+ <CY5PR11MB636646E936C800D689BFBEEBED56A@CY5PR11MB6366.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_CI_test_with_PREEMPT=5FRT?=
- =?utf-8?q?_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 16 Jul 2025 14:44:39 -0000
-Message-ID: <175267707933.166353.8797427712724184889@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250716105634.177676-7-dev@lankhorst.se>
-In-Reply-To: <20250716105634.177676-7-dev@lankhorst.se>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CY5PR11MB636646E936C800D689BFBEEBED56A@CY5PR11MB6366.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,60 +60,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Jul 16, 2025 at 02:26:26PM +0000, Usyskin, Alexander wrote:
+> > > > > +	if (bytes < sizeof(rsp)) {
+> > > > > +		dev_err(dev, "bad response from the firmware: size %zd <
+> > > > %zu\n",
+> > > > > +			bytes, sizeof(rsp));
+> > > > > +		ret = -EPROTO;
+> > > > > +		goto end;
+> > > > > +	}
+> > > >
+> > > > Why not check this above when you check against the size of the header?
+> > > > You only need one size check, not 2.
+> > > Firmware may return only header with result field set without the data.
+> > 
+> > Then the firmware is broken :)
+> > 
+> > > We are parsing the header first and then starting to parse data.
+> > > If we check for whole message size at the beginning we'll miss the result
+> > data.
+> > 
+> > You mean you will make it harder to debug the firmware, as you will not
+> > be printing out the header information?  Or something else?  The
+> > bytes variable HAS to match the full structure size, not just the header
+> > size, according to this code.  So just test for that and be done with
+> > it!
+> 
+> The CSME firmware returns only command header if, like, command is not recognised.
+> This may happen because of firmware bug or for firmware is configured/compiled
+> that way.
+> This seems reasonable for the complex protocols where firmware may not be
+> aware of this particular command at all and have no idea what the data size it
+> should send in reply.
+> Printing result from the header will allow us to understand either this is the firmware
+> problem or driver sent something wrong.
 
-Series: CI test with PREEMPT_RT (rev3)
-URL   : https://patchwork.freedesktop.org/series/151626/
-State : warning
+Then make it obvious in your checking and in your error messages as to
+what you are doing here.  Checking the size of the buffer in two
+different places, with different values is very odd, and deserves a lot
+of explaination.
 
-== Summary ==
+thanks,
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-43254c2aa575037fc031c7ac21b0d031c700b2bf
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 443d1e999c10fc3fa04db380c68305656696a0b4
-Author: Maarten Lankhorst <dev@lankhorst.se>
-Date:   Wed Jul 16 12:56:40 2025 +0200
-
-    FOR-CI: Enable PREEMPT_RT
-    
-    Link: https://lore.kernel.org/r/20250715101636.906092-10-dev@lankhorst.se
-    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-+ /mt/dim checkpatch 3b965bd54a93adbf5520b143254ecb10b9a11776 drm-intel
-e155807d1962 accel/ivpu: Remove lockdep_assert_irqs_disabled()
-ab82d823c5d9 drm/i915: Use preempt_disable/enable_rt() where recommended
--:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#7: 
-  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
-
--:47: WARNING:LINE_SPACING: Missing a blank line after declarations
-#47: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:320:
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+	spin_lock_irqsave(&i915->uncore.lock, *flags);
-
--:54: WARNING:LINE_SPACING: Missing a blank line after declarations
-#54: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:327:
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+	spin_unlock_irqrestore(&i915->uncore.lock, flags);
-
-total: 0 errors, 3 warnings, 0 checks, 78 lines checked
-681555cb3ffd drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
--:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#10: 
-started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
-
-total: 0 errors, 1 warnings, 0 checks, 68 lines checked
-046d1204c09f drm/i915/display: Use drm_crtc_vblank_count in intel_crtc_get_vblank_counter()
-443d1e999c10 FOR-CI: Enable PREEMPT_RT
-
-
+greg k-h
