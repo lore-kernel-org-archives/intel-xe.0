@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65E05C83F27
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AAACC83F1B
 	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 16:06:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D06910E7D7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D51210E7DD;
 	Wed, 16 Jul 2025 16:06:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Nhh47N+D";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JXSTUF0w";
 	dkim-atps=neutral
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
- [209.85.128.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3CB710E7D5;
- Wed, 16 Jul 2025 16:06:04 +0000 (UTC)
-Received: by mail-wm1-f46.google.com with SMTP id
- 5b1f17b1804b1-455b00339c8so3895e9.3; 
- Wed, 16 Jul 2025 09:06:04 -0700 (PDT)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+ [209.85.221.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 536E710E7D3;
+ Wed, 16 Jul 2025 16:06:03 +0000 (UTC)
+Received: by mail-wr1-f43.google.com with SMTP id
+ ffacd0b85a97d-3a54700a46eso10806f8f.1; 
+ Wed, 16 Jul 2025 09:06:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752681963; x=1753286763; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1752681962; x=1753286762; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=o8pLUPzWJ8Q68hff2aNSMwPyYfjcQZ6dVE1UDm3vE+c=;
- b=Nhh47N+DIkV6Th63M5CvIIzNLDkc2J4krZYT+AyH5bpzx7HnCgc8/C2Y2c+2xCs21Z
- V5IPGoamPTiE2npOZ35xgcBizbqwJ+gp95/y/iqb2bScvcPTVroCgB4xqp3a1ErwIOJZ
- 373R8IV9xUuXIjRhjqXUSZavcajOfmleXf5wiwpvxl8axW0vkAAQMhCRwU6BOte4eTek
- y6AT+KQuwjQB0UTK087Fhrcp8jT2q3VjHOLtbNfeePly4zXrhdmt1QjsyNO2HSowc/wK
- TwRdPGdot+meuANgzhaCJiRERYMKi4pOv1Ngo3WFTWuHnL8/VX7Gd9WIEDgkb5WDAi/j
- BKkg==
+ :reply-to; bh=hiXRIBxyZsvqMOiIfj1pfMUoYaZtVY+txuYeW3ru9rs=;
+ b=JXSTUF0wkAUrWIzmGZ5drdBQcUG/S1I2WXsRkwxCZk8/Gr6xtJhkZgGD+QwHzwWT5Z
+ 4pk2KhXdbrIZWBw7fZpnB9mXE2sr7jd5o4SynRjqOJacWGrlxKv8Qnk2WbAkRSQt6kAC
+ grEQhk7dOD2NqyFuvOdkPVqyu4bDAdZAZb7AbL33Dsj4R5T6SnTmLdhvXr4aavuW8rSo
+ H2C99gJVtanflppN0Kmqk2agasevIrd2oTTWUb0YixU9ra4f1KL9q2s4pCWCKU1xqPdG
+ V7smsM1d0UrDJi3nQTcpONlYebJ1tT/gLWkPe+2yT9qV1W6dKG5mxQs0e6WxnVHwkFaA
+ eTLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752681963; x=1753286763;
+ d=1e100.net; s=20230601; t=1752681962; x=1753286762;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=o8pLUPzWJ8Q68hff2aNSMwPyYfjcQZ6dVE1UDm3vE+c=;
- b=N/vUdqhdDcW597siboSq9qGBhDLhQAC//+SeuT8sBXV2/yyF65ASBf4BELjdIsbasj
- 0kMB2RDln12MYj6U0aFVYORjWMfcz4qWtH13iUQiSnuxdHhVhtOZeoUmXgEmLyUcGzlv
- rUUo0/82NHaEzocmmtDRC+r48aMX4Xt5Yvv37oIpiwgCsaG0VqlcYYR5LtUTjRj11Sui
- fS6DDaDR9g3T12ogRQTwtOC+H2n+xP8SVtvq7/jdKw1UHruSrkBaedWLEYuvJ7v3qLZI
- XUz2Gxdrh/Y83qSILV5p+zYf1XMgGSq+XXUoeefAQjLDC4p/lP76M6jfeWLulZYYvyVW
- xfnw==
+ bh=hiXRIBxyZsvqMOiIfj1pfMUoYaZtVY+txuYeW3ru9rs=;
+ b=bdvn0o/jVZ759FbR9J0Uz4EY1S3DsJzS6gQm7NKP9YTCWB6RgsxcTAGKb3AnmazSAw
+ hvvFQN2u4mx0v/aXzpmeKiSwxrq99B0q4mvuvR+opY9wvllVPJnRhjABsTdHsp+9mQRO
+ iwHP8oIpR9X79RRgnG3dZAe8HzOWDZrP6dPjFZwLZJDOE+iurbQLcQzsayUp6NE0GxdA
+ yE5uG+mMil8HaKur2DGulzLmrZoCBt6NmG2i9BNyrchSsOtI/8LSMk0Zcsv91iMqAJ7L
+ 2QyTzXU7I7Wobsm3rYFOsZNp7x0k8CrFpD11QbRwOHNS+2WjGL4IEaZCzl3DThdLd55x
+ BdBQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWKMY9A8FUVikhfTdxVmCRjp5vMx0/Kfhxf9GtxalpuFvjDd0sN2uKIGl43A680/8Jdp2GE4mihKXw=@lists.freedesktop.org,
- AJvYcCXuNmXe/XHMZURtu/3Cz1cA6YwLum/ItGU5pbBGS6NBifHxnuNtHG2U43RgxuRXyQYY/mcS5TniUyM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy48xJKaudMusCUNKx4XZijc6Q/hQuGlmXC7jKdcj7iDaAxLq+6
- Uwbiy/GbFPGm2XLJ2mh5ib3LJxiMowKdRMKHPB/9Q9978p0GpDWX67ir
-X-Gm-Gg: ASbGncuSdy9xsYIazs6UCPGy9DaG7+yWOsUqJL4CXUbd5tJV3+divY/mxHi3KeuA7LD
- HQ0HP31PNFqsdpU6fGHU9m5fksKEz12b8KQzAdtYibV48TzjTGzJqR7GOSvbt4yGXyjIECX/0fz
- MpGdIlcDL4965/tySZ6TD6tG2FUvy8N6EVvsbrg78NuTQ+KgLtl8lDM70wDfR/TGNQXfj08q6K5
- Ps9qpChF39lhiXbZ7P/Q0YkyUTYtc8ldD++KJ2zDI/Q/mar/eKD0pII3iNrtRtRBTbkXU/4xVYC
- gJvMRPV5wySingIE6O+HyMvhlKqNShIG7xEW/Vy4la1myB22SPWUpOkz+8wkC4Xze6irjBrwUCL
- eoR5kmDhwep07EyKMqwk5WOw9eKSdmMh5AZg=
-X-Google-Smtp-Source: AGHT+IEJH6OTPT+OJwER4E34jV9ordafmGLAsEw6c33nfgMokfplr4fMJueOZY9iNee3H+qfX8VpUQ==
-X-Received: by 2002:a05:600c:674a:b0:456:2b4d:d752 with SMTP id
- 5b1f17b1804b1-4562e373e16mr30664455e9.20.1752681963015; 
- Wed, 16 Jul 2025 09:06:03 -0700 (PDT)
+ AJvYcCW7AJ2Ik72788zE23zMrsdyO/VP0lkCrq/OTMIrJ5hN4FDcxF7yLOdAm1yIn9pSjoAO2m7KX990ZEI=@lists.freedesktop.org,
+ AJvYcCWJBw27pgpDTj9c1v5qM+faH1eK+Z8azHrFbPKXbFDW1GKZcXFtuWFckSFqqYYoM0c6O1iuSIiQKi4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzU7shsKRP2hEF3qrS80i/cJwxu1wCmVna6iAdSKEEWnkrYyY+C
+ vys7XwaQYVTrWH/SWKw4xN3KKVxRa9w4ml9GGdKSY3uGxlEiqEmONP7l
+X-Gm-Gg: ASbGncsmnL3B3ijSgetIkg2JydCapcTEj9kiMwJfbA5xlj2/R/WOSOZnyl5UlhMXsTc
+ o7Qy4PMQTQ2inYiIQw/47NOLxI0U2fRs5djzVYaDQ/f8uQji0PvMs4oyEJ5BPg/cT+jvkVikh6D
+ w80EI8UhKYSKV3bmXGdW4jifvzS7b4ZFQz+trULIXkWW+QEmfFQny/9j4wVjxr7wp9xbDeBqZgg
+ 3YGZH9EaZdLGhDXjAQJ/UwO7ZPwJsSmyRQGmdbsejKyOTxc22YE7fbIRMsr6s9Gumz0sygjEOi/
+ dnoldZFBv5G1gPBDyspWFusa6MtUQczZ8+J6UnYMAVCR2Lv7Ku3Y+SE5PzrNV5GozdbqOKZjk+a
+ FyXa5ypUSNgvhNKOcdNPsFfu+rnFrA1pk+XI=
+X-Google-Smtp-Source: AGHT+IGENWkboVO1pWdYY0K2k1HR6gIUriGJy2W2kUQVR16MRUqtUsAni9vLF+NQbLEMVm9gujJhVw==
+X-Received: by 2002:a05:6000:2101:b0:3a5:67d5:a400 with SMTP id
+ ffacd0b85a97d-3b60dd7ad32mr2507198f8f.33.1752681961554; 
+ Wed, 16 Jul 2025 09:06:01 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:15ac:3200:9bfa:f68e:168b:a67a])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4562e884779sm25296185e9.19.2025.07.16.09.06.02
+ 5b1f17b1804b1-4562e884779sm25296185e9.19.2025.07.16.09.06.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 16 Jul 2025 09:06:02 -0700 (PDT)
+ Wed, 16 Jul 2025 09:06:01 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/7] drm/ttm: move zombie handling into ttm_bo_evict
-Date: Wed, 16 Jul 2025 18:04:24 +0200
-Message-ID: <20250716160555.20217-6-christian.koenig@amd.com>
+Subject: [PATCH 3/7] drm/ttm: grab BO reference before locking it
+Date: Wed, 16 Jul 2025 18:04:22 +0200
+Message-ID: <20250716160555.20217-4-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250716160555.20217-1-christian.koenig@amd.com>
 References: <20250716160555.20217-1-christian.koenig@amd.com>
@@ -90,61 +90,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Both callers do the same thing, so we can trivially unify that.
+Previously we always grabbed the BO reference after taking the lock, but
+that isn't necessary any more.
+
+So avoid doing that and cleanup the handling here.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c | 24 +++++++++---------------
- 1 file changed, 9 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 2a4b98bfde57..87e81e36bbd4 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -368,6 +368,13 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
- 	struct ttm_place hop;
- 	int ret = 0;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index dec60a41185d..a903529c2b1f 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -979,14 +979,17 @@ __ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs)
+ 			break;
  
-+	if (ttm_bo_is_zombie(bo)) {
-+		ret = ttm_bo_wait_ctx(bo, ctx);
-+		if (!ret)
-+			ttm_bo_cleanup_memtype_use(bo);
-+		return ret;
-+	}
+ 		bo = res->bo;
+-		if (ttm_lru_walk_trylock(curs, bo))
+-			bo_locked = true;
+-		else if (!arg->ticket || arg->ctx->no_wait_gpu || arg->trylock_only)
++		if (!ttm_bo_get_unless_zero(bo))
+ 			continue;
+ 
+-		if (!ttm_bo_get_unless_zero(bo)) {
+-			if (curs->needs_unlock)
+-				dma_resv_unlock(bo->base.resv);
++		if (ttm_lru_walk_trylock(curs, bo)) {
++			bo_locked = true;
 +
- 	memset(&hop, 0, sizeof(hop));
- 
- 	dma_resv_assert_held(bo->base.resv);
-@@ -475,13 +482,7 @@ int ttm_bo_evict_first(struct ttm_device *bdev, struct ttm_resource_manager *man
- 	if (!bo->resource || bo->resource->mem_type != mem_type)
- 		goto out_bo_moved;
- 
--	if (ttm_bo_is_zombie(bo)) {
--		ret = ttm_bo_wait_ctx(bo, ctx);
--		if (!ret)
--			ttm_bo_cleanup_memtype_use(bo);
--	} else {
--		ret = ttm_bo_evict(bo, ctx);
--	}
-+	ret = ttm_bo_evict(bo, ctx);
- out_bo_moved:
- 	dma_resv_unlock(bo->base.resv);
- out_no_lock:
-@@ -529,14 +530,7 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *
- 	if (bo->pin_count || !bo->bdev->funcs->eviction_valuable(bo, evict_walk->place))
- 		return 0;
- 
--	if (ttm_bo_is_zombie(bo)) {
--		lret = ttm_bo_wait_ctx(bo, walk->arg.ctx);
--		if (!lret)
--			ttm_bo_cleanup_memtype_use(bo);
--	} else {
--		lret = ttm_bo_evict(bo, walk->arg.ctx);
--	}
--
-+	lret = ttm_bo_evict(bo, walk->arg.ctx);
- 	if (lret)
- 		goto out;
++		} else if (!arg->ticket || arg->ctx->no_wait_gpu ||
++			   arg->trylock_only) {
++			spin_unlock(lru_lock);
++			ttm_bo_put(bo);
++			spin_lock(lru_lock);
+ 			continue;
+ 		}
  
 -- 
 2.43.0
