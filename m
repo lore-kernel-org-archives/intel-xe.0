@@ -4,78 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6590C83F1B
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 16:06:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78CF6C83F27
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Jul 2025 16:56:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A97A210E7E0;
-	Wed, 16 Jul 2025 16:06:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hAemDpeR";
-	dkim-atps=neutral
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30B1710E7DA;
- Wed, 16 Jul 2025 16:06:06 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-3a4f72cba73so710212f8f.1; 
- Wed, 16 Jul 2025 09:06:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752681965; x=1753286765; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=Pyzg6d+Fpl4BI0JGiI7+zESUkb8q/0jGrd9Qmztq5Tk=;
- b=hAemDpeRZvoZMEetJ53jl+zwDZmDMydP/bXnxSxXi7I1dgkoe2cYhtzGVTyL1QjAjq
- 6i5X6r46oQNmZAQrd1nN+RhpCFGpFbNnIa4jWcsK1WRfo8+1j7DS3/Tzw5XdY4y9NyRe
- S4nw0zc2Zto6eoHMvJujIgbsmnjSs3uqAbm+3FpNIWIYhDt+M+DZBh1sYfbO9ifHCt4i
- QdtSE4wGYiOtlKwaHW7976P9jGuNgq/w834mTb60PEpYOIoMtNAUl9BCsRYHWU4vEQ3u
- vHaraHVPguQytonehEzFqN81bX31h0N+8q963QLvqo6R8gxWZoS4Y4Sxwcc51ZGlDyE4
- DWBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752681965; x=1753286765;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Pyzg6d+Fpl4BI0JGiI7+zESUkb8q/0jGrd9Qmztq5Tk=;
- b=py46BpGdnWgTWM9ttIl9rDbJ8ucTEFxMbMMGAMnhV+h1c7J/egjDlFJds6BY605nrw
- k3lozA/uyO+SFMwJkla4CI7R8wYTcZwAE+AHIQwLXs0NHiQa1SJ/OpwgFRei48/bXxIo
- b6H6lfB2NtGMRKabQTbgycnpPbuM7q9744zEYZYVwvbPMymGuursVNq3SWIeZecDVEal
- vWOiGn/8pzvf89F0CvOA0GHxPPbxbO5m0p1mGRXJGXutpGnbFzewEo+D7WE+jGcFI1jU
- ef292bDxZHJjnaynL12A88poLm1Hm5OEbvbU+naPuCJyYpWXYKZvA8xuwH/tWUMh/K+n
- y9oQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV0ZxUfalolBsNXKMaMn8gXNKCulSHs1tzBspeaIxyf1pDCoo9o6miDaZXRVApvjIrBWXA25/i+QrE=@lists.freedesktop.org,
- AJvYcCVzOhzKc/QeTlFtE0M/aWqzXSfxRVelfA5qkO0ES21agYa3P2s1issVRS6jJEIA5v8RHcEQvPtd/y4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywk4laLdOSOodfhQ/U7Ncw65hEN564ZegNjn5q6ODqTzZbOrZKh
- lADYs+USijNY3xkTMkbCiD0SIGjkAfOEpPiFAdXa5XDI4LvcoyobNHG/
-X-Gm-Gg: ASbGncvekhKrh0nUVexI9uHMBnwy9pEkDs1uNQjeuy8VMDn2XCsK8whlSpzWDl70pDe
- ABkSQ5BEuWSL/yohWAVT3bgBVwKvy+qyEQQouUTzl+O7/az1/N9MpLAlTs6dhTqXDEws0XadH3C
- AZ6ohAbh/9Qk9780BeutSnBFbKM4CXlbpz0q4REKoHELA4aWca99IUd6q1R1P/wqF9NLZKHSY8h
- 1pjaoMbNC8lYKujQ297msWIlrz0fuYCYfTbAJbxp77LVGp2va+03GH+1PrE4I4yLjleoXAdcSZJ
- GNd5XfKq6BYTHaOXG8LopM8rrTGMqa3qPDon8lzP/vflI/TwGxSlQu3Hz8VjMd1sy1uQYXBMvHU
- EHP9MnLdIuSFJDuPNl3i1WD0hA3guBp9dHLQ=
-X-Google-Smtp-Source: AGHT+IG7NgHsZk6IxKnsRJIVX5nEq9hmbAGUcs2YyjVTGE+0kpCb3I44Sx/zYKNdg9L4w576qzsNGg==
-X-Received: by 2002:a5d:64e8:0:b0:3b5:f8ea:28ff with SMTP id
- ffacd0b85a97d-3b6139ca66fmr35165f8f.6.1752681964470; 
- Wed, 16 Jul 2025 09:06:04 -0700 (PDT)
-Received: from able.fritz.box ([2a00:e180:15ac:3200:9bfa:f68e:168b:a67a])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4562e884779sm25296185e9.19.2025.07.16.09.06.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 16 Jul 2025 09:06:04 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: [PATCH 7/7] drm/xe: remove workaround for TTM internals
-Date: Wed, 16 Jul 2025 18:04:26 +0200
-Message-ID: <20250716160555.20217-8-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250716160555.20217-1-christian.koenig@amd.com>
-References: <20250716160555.20217-1-christian.koenig@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41B3610E0A1;
+	Wed, 16 Jul 2025 16:56:07 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99B9910E0A1;
+ Wed, 16 Jul 2025 16:56:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/ttm=3A_rename_ttm=5Fb?=
+ =?utf-8?q?o=5Fput_to_=5Ffini_v2?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Jul 2025 16:56:06 -0000
+Message-ID: <175268496662.167626.5330370312078377246@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250716121522.3340-1-christian.koenig@amd.com>
+In-Reply-To: <20250716121522.3340-1-christian.koenig@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,69 +36,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This should no longer be necessary, TTM doesn't lock the BO without a
-reference any more.
+== Series Details ==
 
-Only compile tested!
+Series: drm/ttm: rename ttm_bo_put to _fini v2
+URL   : https://patchwork.freedesktop.org/series/151705/
+State : warning
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 32 +++++---------------------------
- 1 file changed, 5 insertions(+), 27 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 9411114c6d5c..250ebd9ff184 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1409,31 +1409,6 @@ static unsigned long xe_ttm_io_mem_pfn(struct ttm_buffer_object *ttm_bo,
- 
- static void __xe_bo_vunmap(struct xe_bo *bo);
- 
--/*
-- * TODO: Move this function to TTM so we don't rely on how TTM does its
-- * locking, thereby abusing TTM internals.
-- */
--static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
--{
--	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
--	bool locked;
--
--	xe_assert(xe, !kref_read(&ttm_bo->base.refcount));
--
--	/*
--	 * We can typically only race with TTM trylocking under the
--	 * lru_lock, which will immediately be unlocked again since
--	 * the ttm_bo refcount is zero at this point. So trylocking *should*
--	 * always succeed here, as long as we hold the lru lock.
--	 */
--	spin_lock(&ttm_bo->bdev->lru_lock);
--	locked = dma_resv_trylock(ttm_bo->base.resv);
--	spin_unlock(&ttm_bo->bdev->lru_lock);
--	xe_assert(xe, locked);
--
--	return locked;
--}
--
- static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
- {
- 	struct dma_resv_iter cursor;
-@@ -1454,8 +1429,11 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
- 	if (ttm_bo->base.resv != &ttm_bo->base._resv)
- 		return;
- 
--	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
--		return;
-+	/*
-+	 * This should never fail since there are no other references to the BO
-+	 * any more.
-+	 */
-+	WARN_ON(!dma_resv_trylock(ttm_bo->base.resv));
- 
- 	/*
- 	 * Scrub the preempt fences if any. The unbind fence is already
--- 
-2.43.0
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+43254c2aa575037fc031c7ac21b0d031c700b2bf
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f3ac6bba292a275ba0c7fff532f0271e0bf403b7
+Author: Christian König <ckoenig.leichtzumerken@gmail.com>
+Date:   Wed Jul 16 14:15:22 2025 +0200
+
+    drm/ttm: rename ttm_bo_put to _fini v2
+    
+    Give TTM BOs a separate cleanup function.
+    
+    No funktional change, but the next step in removing the TTM BO reference
+    counting and replacing it with the GEM object reference counting.
+    
+    v2: move the code around a bit to make it clearer what's happening
+    
+    Signed-off-by: Christian König <christian.koenig@amd.com>
++ /mt/dim checkpatch 5c81898a2e97ccaed5067b1476f6a77321d057f9 drm-intel
+f3ac6bba292a drm/ttm: rename ttm_bo_put to _fini v2
+-:481: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 368 lines checked
+
 
