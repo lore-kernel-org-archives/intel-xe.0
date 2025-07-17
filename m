@@ -4,45 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1234C83F22
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3603C83F1B
 	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 13:04:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79E5610E80F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 744E210E810;
 	Thu, 17 Jul 2025 13:04:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PvL2VhIC";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="oR2rbtzw";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CCC410E812
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CABC10E810
  for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 13:04:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ea8DYv4IDsIN2ucC5evNC5SkeTVxtS4mOmF8TT0T9u4=; b=PvL2VhICNo6X9/dLSu18DGQPyk
- HDIBg54a1s539wr8kVc0YW8YUyPYYft3WnS9VGrX4gipElyMEFbv7EnnAwI3yv4gO0mfI3yEfWK4Z
- Nn91XNHV4rg3+rs53BLWSqMxMlOZOE3W7YAVZQY5ZhjT/4El03eRJ8AHQl6QkSa6K9yKA4vvrgaLf
- kyaNZ63+Kffe0vvBW0Qc43nWxyEkcRoCWrsZ5mGjoIJf77PVWgbQB9d2BaTrL1DkVCaqEZbtTSLrU
- SN2sylt88j8BNT1PdtHs1Ctstp3y5QpkzL/PlMoAhMjMmrUrlxxV+qJJ3mvysJ9VnY+/uNxRkASkO
- gjm8oq5w==;
+ bh=Ke5FJUZcUE0BaM2hoJ5YwdTZwTv5uRLhLcZUAJZCZF0=; b=oR2rbtzwdHlwrB12szgqZZMOus
+ 04ny5l68x87fnqRZwSDvvVoQTT4GkXvGVdFXrbOAZf+ur4o3ffxDF+9md/MvShZv0iXQ3Jw0HvOhd
+ JwoA+iggWrIu1qtt9O84PEkDFI9gAj+oBaBtgl4uzPSVMb7J1d/v8gtwXkXABBbY7J4v5OGBiS4kS
+ LRjLE/8uO+zRRPwU4kCxi0Ex4tspWMgJBvP4Zfu/NrGo4G3xN8/iO0ytRufsl0J7Q9tb+eDgF/hlu
+ GuR17MwZxHMjo4ChP0VFEy9RY6Zp1ZV5bsBi+rMcaKyI3j4B+sbnvpUVKDccThoBkwTNVeW1nQAlM
+ ZGaFY1yw==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ucOHs-0009Oh-8t
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 15:04:36 +0200
+ id 1ucOHr-0009Od-JB
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 15:04:35 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 01/17] drm/xe: Use emit_flush_imm_ggtt helper instead of open
- coding
-Date: Thu, 17 Jul 2025 14:04:17 +0100
-Message-ID: <20250717130434.82251-2-tvrtko.ursulin@igalia.com>
+Subject: [CI 00/17] adl auxcss ci run
+Date: Thu, 17 Jul 2025 14:04:16 +0100
+Message-ID: <20250717130434.82251-1-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250717130434.82251-1-tvrtko.ursulin@igalia.com>
-References: <20250717130434.82251-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,33 +56,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Helper is already there so lets just use it.
+Trying to figure out if unconditional clflush does something for sporadic
+pipe crc errors.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_ring_ops.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+Tvrtko Ursulin (17):
+  drm/xe: Use emit_flush_imm_ggtt helper instead of open coding
+  drm/xe/xelpg: Flush CCS when flushing caches
+  drm/xe: Flush L3 when flushing render cache
+  drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+  drm/xe/xelp: Support auxccs invalidation on blitter
+  drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+  drm/xe/xelp: Wait for AuxCCS invalidation to complete
+  drm/xe/xelp: Add AuxCCS invalidation to the buffer migration path
+  drm/xe: Export xe_emit_aux_table_inv
+  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
+    workarounds
+  drm/xe: Use fb cached min alignment
+  drm/xe: Flush GGTT writes after populating DPT
+  drm/xe: Handle DPT in system memory
+  drm/xe: Force flush system memory AuxCCS framebuffers before scan out
+  drm/xe/display: Add support for AuxCCS
+  drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+  always flush
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 7b50c7c1ee21..e8f22ec5f9af 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -415,11 +415,9 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
- 
--	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
--		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
--	dw[i++] = xe_lrc_seqno_ggtt_addr(lrc) | MI_FLUSH_DW_USE_GTT;
--	dw[i++] = 0;
--	dw[i++] = seqno; /* value */
-+	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
-+				MI_INVALIDATE_TLB | job->migrate_flush_flags,
-+				dw, i);
- 
- 	i = emit_user_interrupt(dw, i);
- 
+ .../drm/i915/display/skl_universal_plane.c    |   6 -
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 176 ++++++++++++---
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |   2 +
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
+ drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
+ drivers/gpu/drm/xe/xe_lrc.c                   |  47 ++++
+ drivers/gpu/drm/xe/xe_ring_ops.c              | 207 +++++++++++-------
+ drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
+ drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+ 10 files changed, 334 insertions(+), 130 deletions(-)
+
 -- 
 2.48.0
 
