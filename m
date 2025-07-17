@@ -4,193 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BE6EC83F1B
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 07:31:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FC43C83F1A
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 08:00:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77B0D10E71D;
-	Thu, 17 Jul 2025 07:30:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C872C10E7E9;
+	Thu, 17 Jul 2025 08:00:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bQN2umtn";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="H3sZCdRS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF3510E71B;
- Thu, 17 Jul 2025 07:30:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752737459; x=1784273459;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=bNkDhnwiOMx/cwMjgJ72LZoLFX+kYj3CAOEQTmPg4WM=;
- b=bQN2umtnD9BjCIMsxbjTORWv/uE9wh+xnK4Yoc7eWUcaB4W7uAf1hxtI
- r+epJoLAm7wOq/MN+q08mpFEdcvuaKS+wN9uVUPQOJ6waE6udwvRqp3s1
- Qv0n7boakvLm6O6A8qUEeJELXUVVZHsHxp+wKtw6P+E+LW/AKg/E8FL7r
- RzS/HB/HTd8Up4O7RnnJ2/yeIBnCgCso5YvJ/WuADF+p+kkFSSHccMkgx
- S2BUVpUT1ZdzFaydKJAswNGz9MX/Ip6tMFesBXntnNJd3D10qK//lz47s
- VUAesG88fCHzgYRHJPwbkWt/rqNP4rM2g/5n9eW/txu5g9/d7efmejnyn Q==;
-X-CSE-ConnectionGUID: fOijH9JETAmEtWgVc8+KLw==
-X-CSE-MsgGUID: 9R5SpxAAS2GiKpbSdobFhQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="58809540"
-X-IronPort-AV: E=Sophos;i="6.16,318,1744095600"; d="scan'208";a="58809540"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2025 00:30:58 -0700
-X-CSE-ConnectionGUID: hZbCZieCRUCp6x24s2qb6A==
-X-CSE-MsgGUID: 2Kq132VzTSCSzsfMw0QmNw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,318,1744095600"; d="scan'208";a="157112168"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2025 00:30:57 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 17 Jul 2025 00:30:55 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Thu, 17 Jul 2025 00:30:55 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.74) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 17 Jul 2025 00:30:55 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A163+uk+HZpJBncgqoUjVOtVMuM0/6dLQ8/TDIpHrCuUHU5YCrVXKSrjr48Eglrf9K+3MnM3k+LUl8WOra60VTaEKywveNCc0tkJDriMeqS6Wa2xj3Ywhsq0m/RGXgkVNPCtRTPW4Ln/WCj0N2bBO1TDbQc1nAJMIOg0660agNBTJn/+ck2BLXI7z9sAuTccZ0tR2wOdxHL3UFL5qqrFoUDzqAF6Rdr/YQM1lyEHtZSys4vMfopwdjsapiHB76vxV3BurywzGa777QYDvQ2qFG510bxMHOiG8UOAgw8ThJvRClePvOthYUKar+ZDUQLcWVYyDPZ2X6OWNG4vv2tJ9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sk7wQHLjjUcsr/i+pYKw4gP1JrsydxklYIOIPjr0DR4=;
- b=L5WwkyC99KLDvZlQSZj8kwKLVEHmhyY2L8ch60KEioiyYxRO1ivbOT+46XH2VnnZ5Wk2eVSYnL/HcjLqdCtjOMsPe8sO17fqYStj2naXUj97kUdEYIy8pKld+JPiJcJopH3tYfnUFg9rpkwxs5iJ6beqXKJ+8feKQRDxr5789w6DvJnmn/9qoG36NmjO8c3bcjr6Se26ak4Ix1HlbmLNOBkJLmVGvZKqo6Lh4n10lKlhxGP+HKvPYOJ4V7lOQGOzXBnvpQggUHl8DgvNkP899DyV2OUQEZwumlzC7eH/N8ckjgkZo2WQin7/TmSr69O93XfbJAKZlmfmzS7TOLWW9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by SJ2PR11MB8565.namprd11.prod.outlook.com (2603:10b6:a03:56b::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.25; Thu, 17 Jul
- 2025 07:30:53 +0000
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::dafa:d38d:8ac1:e843]) by IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::dafa:d38d:8ac1:e843%4]) with mapi id 15.20.8922.037; Thu, 17 Jul 2025
- 07:30:52 +0000
-Message-ID: <5998d67d-2096-4c93-b0b6-8af582d901ea@intel.com>
-Date: Thu, 17 Jul 2025 13:00:39 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/1] drm/i915/display: Avoid unsupported 300Hz output
- mode on a TUXEDO device
-To: Werner Sembach <wse@tuxedocomputers.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>
-CC: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250704192007.526044-1-wse@tuxedocomputers.com>
- <20250704192007.526044-2-wse@tuxedocomputers.com>
-Content-Language: en-US
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-In-Reply-To: <20250704192007.526044-2-wse@tuxedocomputers.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0091.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ae::14) To IA0PR11MB7307.namprd11.prod.outlook.com
- (2603:10b6:208:437::10)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9868E10E7EE
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 08:00:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1752739210;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=1Nz6VryXPk7mYLTTYghc42iB4MvgqJDw6Wknewy1nzE=;
+ b=H3sZCdRSZSHvLpor5s5IHslPmM0fpQLH78Lw9eZAxDx5ZYQ9Bw9JxAXqFrxBxYZsVxMRTR
+ tbn0eblz84sXMeqqRUn5srOBlTiFjbZflzeDBSR3Wykw5C/SEsoKpzNVy879g4SEwNtObK
+ cWVK3mRPgLxCzAZ4PbcP8rvoooWqCFw=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-605-c19nYsO5NP6K-hdePUOLwQ-1; Thu, 17 Jul 2025 04:00:08 -0400
+X-MC-Unique: c19nYsO5NP6K-hdePUOLwQ-1
+X-Mimecast-MFC-AGG-ID: c19nYsO5NP6K-hdePUOLwQ_1752739207
+Received: by mail-wr1-f69.google.com with SMTP id
+ ffacd0b85a97d-3b5fe97af5fso253657f8f.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 01:00:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752739207; x=1753344007;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=1Nz6VryXPk7mYLTTYghc42iB4MvgqJDw6Wknewy1nzE=;
+ b=cHzympH0AUVbVQk/oZftFTcdQXoCoXkIc9idBtyFavtQM7s25Ujf3VU9Oj9lgk9Osm
+ v4f/V84c0GESzyP2cvkMEO39pEZyEyuigsJoC6qI2nqJGY6j/EldvLM7gjNHFKvWmL7W
+ 3N8imxTGT7UsmqQ14uano8UiHLCBEtW+/VVAqxq+pKwboWPsOrHjNm9jUbYbF95iLALK
+ u9cxyoQY4xnTZUqhiN92akPPAdoxPJfrlxbO1VxZZotNeEsuOP0GHBMUAu+7IvBGncqR
+ huJUxNkrxdBxmlr7PdSB8lRsi6HlFFXLTStK0/amAXozXzCdnGzioJOJy940pYHCMdk7
+ 8GEA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV42P+K5fnpSdYtzSIwMqAUxfIt9py8+crLtCJn3Tw+QDKWg6gztaVWu0FZGXYSbaAiDrubWAuyrA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyK0wD6nt+4YEnXrPDDgQwyLpiDT0xOr0jOdkkfcnCsTqCtxtt+
+ lcqFEqQmrhuTb5tOKYW0LCxuEk3kckN0TZCMZtzZysc7Lvu4i0SkbI0fhXyq8i1KYc9a7I8/sMc
+ 0nXvtAb9wvHru8KcsVt/kk0Bmq39AcOI+zj/WZtMX5ENmtAhy0HeXm6LGEB2vmC96v1sx
+X-Gm-Gg: ASbGncuE1feXGJgQ+G6p8D2urWoYnH5VbVCakFvQTAq1nAzYTlBMVofVMi1CIr3Ijc0
+ gKuA4Fkkd6AFMdae4mZYNQgkABQ7iopZKu2ESV/X5eUMQ6G7mQHP1H/osC2t5vd8JY2+VkUniN0
+ +8bM+c6AzjYXE/n/fbI84bBPFGxcbf6RTp5focmpRh4frfPi7nF5OAdiQndgG5crA0PWtUc9qxx
+ M4Hx64Q25yI8a/GeqxGTRUvkASgvkX/LGvE1WoIDmyjbqG10S+hE0pnT5fFwh3F+vJGgiZ9onAs
+ qysfPH6a2FCa9/I=
+X-Received: by 2002:a5d:5e8a:0:b0:3a8:38b4:1d55 with SMTP id
+ ffacd0b85a97d-3b60e513793mr4090926f8f.28.1752739206612; 
+ Thu, 17 Jul 2025 01:00:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEijnsEHJwhRy5cl/HWL8P5OXf8cAn4TAJgdTuk7azxyV09+sC1fhVAUSHZE0TyivIPVAjogw==
+X-Received: by 2002:a5d:5e8a:0:b0:3a8:38b4:1d55 with SMTP id
+ ffacd0b85a97d-3b60e513793mr4090850f8f.28.1752739205717; 
+ Thu, 17 Jul 2025 01:00:05 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4562e81ccb4sm43247315e9.17.2025.07.17.01.00.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 17 Jul 2025 01:00:04 -0700 (PDT)
+Date: Thu, 17 Jul 2025 10:00:04 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20250717-efficient-kudu-of-fantasy-ff95e0@houat>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|SJ2PR11MB8565:EE_
-X-MS-Office365-Filtering-Correlation-Id: e2c95dac-1802-49e3-90d1-08ddc503dc21
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|366016|1800799024|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aEttbkkrd1VvS1hwVW5zV3J0NktENFJ0RjhsVTRlUzlJNUllSWRRNEJmVGlr?=
- =?utf-8?B?bTVsMjFxQnFZcUJCdmU1bnZKZHBTMlZybXp3UmwxaUQ1QXZpYkVaSkRmSFdw?=
- =?utf-8?B?aFNsUGRRamU5ZWJ5QXZFWHA4cjBCK21HSHNIWUR5aHpXd0tzTkc5ZzI2ak9O?=
- =?utf-8?B?N2pPSVFZcFliWkhXQUJ5cVNaOVFvTmRadnA4UDNhWFJINDh4SEpxT00xY2Na?=
- =?utf-8?B?Y001MGN3THNJMEdGR1ZIVXBaQTRmSmJPQ1k1M1VneWNMVHhVQ3o1ME5NaTNk?=
- =?utf-8?B?Nm1RNDJUY25NNWhwc3lnNDgwTUo3UlU3SUJ3aWdrNytpd1doQklSQUxNUkhZ?=
- =?utf-8?B?SG0vOTVTd1BvWFN5T1lldzB5djlmcEFPaWxjK0ZvcTVnZWNrMXhrWnZaMFdy?=
- =?utf-8?B?cVpwWmU0RGIzNFo0Y1hxYWtBRXV0MzZlVmRnTDkyM21wTDlubXE4WFA2b3Yw?=
- =?utf-8?B?blY0U1F3ZUNGbm42eTN0WVJETFFkSjhGbjFTOU1uVzJ3QWFPaTY1TGdJazdN?=
- =?utf-8?B?anpnYlIzcmh1T2ZzQVBjL1BqZDdlMFQxaVlKQm44MnlWSnl6Qmd5NTBLMVJl?=
- =?utf-8?B?cC9tZW5RVUhuc3Y5YWUvOW9JSER5Q21haHY5RW83OVhhKzJwckEyR2dqSEV0?=
- =?utf-8?B?MmxyV29PNENwM3p5VGlQMjd2WnptZFRrSGQ4RDVHMkFtMmtHNTRWYjNhWXF2?=
- =?utf-8?B?c2RweXRKVWVuSm9vNVdPNWZxZEpPaVBKYUJkeHlpeVgxaERFTGxXa0tReVlS?=
- =?utf-8?B?VTJTRmhEa1ovU2pSR2FPSkFOaFhPaTUvRzVTM0NZWUkzaHRBSXJGOXJ1dnNK?=
- =?utf-8?B?c0hvTFA5Vm4rblYrMW81M25PYlFPTkdwT0duYkUwdmZwWC9KZ21Yc3QzNDNP?=
- =?utf-8?B?MEc1YWJQbElWQW03VCtGR1RjdGpmYnBib1JZMDJmV3I2WFZhT0VHTk5kdXk2?=
- =?utf-8?B?ZE1INnVvc0hxc09sR29YdEo0TitDcFpvZWIxdGZoaVp1Z2NTL2pOamhXQU4r?=
- =?utf-8?B?T3VIY0dFUnk5clpONWdsRHNHeVo5dDBKeDl0OXBkQ3ozV0lYK2pJQXhGc1V3?=
- =?utf-8?B?L013NUJvWkV0Q2Jya21pZ3BZY0JTS1VrUHNsQW0wZnBvVFBzbzRUYjBOUnQ2?=
- =?utf-8?B?aXBuTmJad05pbExKUGN0K0htei9GRjYwOGJGNEVuY2pocGpzUTFUc2ZaeEFD?=
- =?utf-8?B?ck5jTmwzc1E2V3owY3BwVGxlalNsNGMxQUFHT2ZGdGVBRWd5em9IdzkrMDBR?=
- =?utf-8?B?dW9wTUhpZ2ZSLzEvczhYczhtbHFuRExZOUZmZzFYV005QXVxNFFqYlRmVGJp?=
- =?utf-8?B?dEhQOUd2Z2FUbUN3Y1FVZkVKbXYzeUVGWjhhcXhPeVpsa1k2azZIR05pTjNi?=
- =?utf-8?B?cEZubkpBR29nNDhkZEpNU0FTbjgwdzdqaFhQbVZUNi9ROFZHRDlMaGlrSDhX?=
- =?utf-8?B?QWFVM05LcFpBQ3d5Z2tveGljRFRLMUZ2NjVwTDA1M090WWJJS0ZkUzVRZlFU?=
- =?utf-8?B?RVVtVXY0Z3dvSlJPbVJLcytIVnROWXplQksrR2pLcE9aUitTRnFqU3FYL1dV?=
- =?utf-8?B?VHJRYnpWdVRybklSVEpsTUxwWHNoMFp6MVVXdnZodDE3aHQ1KzBENTdRRVNS?=
- =?utf-8?B?OXFXZzJWeFJad1puWHBOaDJkUVZ5QThqa1JocWw0U3BETTRyRjlyMlY5WUFr?=
- =?utf-8?B?UHg0eXVBZzV3N0Z4OWVpT1NGVjVSMWdZeHh2Y3pSbkoxemg1ZW02dkRlcElC?=
- =?utf-8?B?N1BYZXBGRVF5VFd5NkxJdUJYR01Bb0Rvb3QrcmkxWXB4KzNGSllZTmtiZlVi?=
- =?utf-8?B?TU9RdVFUb3VnN3ZLL0lXVHlQUFl1QnUzWG00cjA2dlUrdjdPRk1qTGhnZFpt?=
- =?utf-8?B?YmtLMlNtR3g1V3lnNTNxY3k4S0h6SjJxbS9iamhCOWhXd0R3N2pNZVU4V0E4?=
- =?utf-8?Q?NmYf33V+hTQ=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(366016)(1800799024)(7053199007); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YzA1aWJWSzFkYlpqVjMvZVB0dGpHbXRXN0UwVTRnM0E5QUxWbHRlWUozRWRT?=
- =?utf-8?B?VUpCT2FpOUdNalVnelFnbGRETnZXUFV2cVpOLytSek1neUxldFNiV1RVNFVC?=
- =?utf-8?B?eUxiNW5ZWDdiRjJZZjBLc2FYQkRiWm5NMlZUU3ZGZ0tqTzhHMlpPV280dWYw?=
- =?utf-8?B?YUVGUlgyREs0dE9neVlZbnQrRFpsU2FIaXdyMTk3YlJzdllXa3MweXlsUkFz?=
- =?utf-8?B?Ui95aXlqYlE5eGltSFBGNzRpRHAzWC83a2QzNm1MZ3hlM1dUVTIrTEVjV0cr?=
- =?utf-8?B?VHdRMDNKcGRHY3lQV1BOL3BVTEtUZG9pdnROdUZjaHB1UlBkTVZZTVBnZFNW?=
- =?utf-8?B?TGFwUE01eEkrckRad0xLcXZxbGZBSVA2SnYwR1FpOTIySWFQTk45S1dsYkFX?=
- =?utf-8?B?eUx0TnMwdEV1TEhsdnd4Z1BhMHdWL25nVTJTcU90V3hrNXhOMnEvQnc4Y1Q2?=
- =?utf-8?B?VVY1UXRjbjNxMzRpRThWdnh1SCtTSXQ2a1RTS243NkVVVXBhRU4yc0lvVkRO?=
- =?utf-8?B?bUFSMDlyYjd3OVJCV25iZmVDdnprZS8vL280MjFGRm1Ed1RhS1NmblEwZWJD?=
- =?utf-8?B?dzQ5NXhCVGVnanVrME5kWFQ3Qmt2Ky9BMWlxRFZTdTgySjBUUVlHZVBYME9y?=
- =?utf-8?B?SEZMZVBSaHA2YkZ5Vks2a3ZiQW5MUklhNUVGYlNaN0ZrdDhPWDdvVmp6ME1W?=
- =?utf-8?B?NHdjd2hNMENuN0RDa2VIdHEvMkhVRTNwS0cyd2JTTnZWbHluNGppQWZ2MVBa?=
- =?utf-8?B?ZXVrbzFkSUtMQUg3cHhXRENLYmUyRFQ3am5raFE5VGRjR3g5Mm1xdFVkRERW?=
- =?utf-8?B?MVg2WGJsVDNFYjhoS2t6UnRBUDRPVW1sNW9hekZDN2k4VW0zTTJsTEJCeHdH?=
- =?utf-8?B?dlRnWlplN2JpY2Vud3A4WXBrbG1weTJjMnpxcjFXVWd2c1ZhL3pkR2hNVnhX?=
- =?utf-8?B?amljTVhxQ2Q0WjFPU3RXdUdicWlVU01uMFJZa3N2NDRsNmFKSDU3cFJjc21X?=
- =?utf-8?B?bnM2MVJCelVCaVArN01xLzg4SHNEZHQ1cHNyOGFhVFVHYmwzd0xFbFNFcnpr?=
- =?utf-8?B?SmpGV1FLVnUySEZMNXVhUFMwaG5oTjZJMWNIV0FHQ0xaQnd5U2NxVUpmVjJL?=
- =?utf-8?B?aE82d2dsM1J3ckxwM2tzRHlMYVRKN0VJUmN4TStackx5UHd1Y2VMMWVrU04y?=
- =?utf-8?B?dGlocHJNOVlCVmxFVm1GbGk2bW51WTY4KzVza0h6KytQTWhNZTgvclVydjJv?=
- =?utf-8?B?L1hkYjY3YzVSM2Y2dGkxOWZ6b1F5bVk5clViWmdMdG5mWm1LNHN4Y3ducUpw?=
- =?utf-8?B?UzEvOVk5SWQ1dGRGVWRXNjRwc1hZbFNkdEtlTXJ3djk0K0lRV0RlcUpod21s?=
- =?utf-8?B?L3JiTHdDeHBCM1c0b0FTcVZHbzY4eGZNZDI0TUkyWHd1TEtCRW8zSGFQL0J6?=
- =?utf-8?B?UVVFRVFFejhYU0ZNb2FRcGpsMGxmTDlzMUxjNjlJdVZ4Lzk3a3dSQTlFeXBY?=
- =?utf-8?B?SC9yY3RFN0ZHWnhudWM1ME1xL2NidzBlbHlxYm5ENEkwOXVqRlJCMUNERVVB?=
- =?utf-8?B?Vm44aUlQSnlvcFpXbnExbUE0NVV3blVRa2ljc01XRTlxdnZ2b0phd1dUZ2xZ?=
- =?utf-8?B?L0ZkV0gvQTBQSkdDWnZZVG5HeDZ6SW4raEVCV2JDakpoNUFkMi9iRnVudXIz?=
- =?utf-8?B?aFE1OTNkTmo3U0lteXZNYTBXMmVRNzBoVGtzc0xYaE0zMDBYcGdwVDg2SGVJ?=
- =?utf-8?B?b2hpaFVjTmNocGJhdnBQbWxybVBHQW1tSWtrcDFvTmdCWXZWRWxVbDJSK3lV?=
- =?utf-8?B?eXRZRElXNWNSdkowWlFyQ0g3bnU2Q29OTjMvNWNTVWpob0FFa3g4RytFYmto?=
- =?utf-8?B?Q0pkS0RaUi9lVkhibnJvaEdkdjlLWGhseFM3dDRncW42Rm9YeSt6QUtjTkw1?=
- =?utf-8?B?a3VvNkIzZ3FwTlYyZ0J4UkhidE9HZXh2Q1l4a1A4RWJsWE10c3JVclhWMDFN?=
- =?utf-8?B?WWxsVFZYejhSbndiSDI3QTBmZlBwUTN3SkdYT3dNaGdQcFhkOGNmMG84bHpX?=
- =?utf-8?B?K3hQdVgraklJZ1NyRGRoNnR0VzdCdGk0OE1Qd2JJNTN3d2RCS1lTSDVpVDhz?=
- =?utf-8?Q?r1JFxNtHT3GRYGUaI+Hta2V4q?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2c95dac-1802-49e3-90d1-08ddc503dc21
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2025 07:30:52.8606 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: r78gygJjqv6JXfWsAXvJ+ZZE7WCNQEdt33B17gXwVj96ApR+v+cDw7W+bN56py5CBjPpgMSq57+whdaea46fEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8565
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="lqu5s6cxqdvbpx3y"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -206,130 +102,405 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Werner
-> Sembach
-> Sent: Saturday, July 5, 2025 12:34 AM
-> To: Jani Nikula <jani.nikula@linux.intel.com>; Vivi, Rodrigo
-> <rodrigo.vivi@intel.com>; Joonas Lahtinen <joonas.lahtinen@linux.intel.com>;
-> Tvrtko Ursulin <tursulin@ursulin.net>; David Airlie <airlied@gmail.com>;
-> Simona Vetter <simona@ffwll.ch>
-> Cc: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>; Werner Sembach
-> <wse@tuxedocomputers.com>; intel-gfx@lists.freedesktop.org; intel-
-> xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-
-> kernel@vger.kernel.org
-> Subject: [RFC PATCH 1/1] drm/i915/display: Avoid unsupported 300Hz output
-> mode on a TUXEDO device
-> 
-> From: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>
-> 
-> Removes all display modes with more than 240 Hz for the integrated display on
-> a TUXEDO Stellaris 16 Gen7, because using the iGPU with higer refresh rates
-> causes screen flicker.
-> 
-> Signed-off-by: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>
-> Co-developed-by: Werner Sembach <wse@tuxedocomputers.com>
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c     |  5 ++++
->  drivers/gpu/drm/i915/display/intel_quirks.c | 30 +++++++++++++++++++++
-> drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
->  3 files changed, 36 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 640c43bf62d4c..5ce00cfe36ee1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1436,6 +1436,11 @@ intel_dp_mode_valid(struct drm_connector
-> *_connector,
->  	if (mode->clock < 10000)
->  		return MODE_CLOCK_LOW;
-> 
-> +	if (intel_has_quirk(display, QUIRK_EDP_MAX_240HZ_HOOK) &&
-> +	    intel_dp_is_edp(intel_dp) &&
-> +	    drm_mode_vrefresh(mode) > 240)
-> +		return MODE_BAD;
-> +
-Adding a quirk for this is not the right approach. If this is not 
-supported by the display, should have been pruned by the driver.
+--lqu5s6cxqdvbpx3y
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-next
+MIME-Version: 1.0
 
-Thanks and Regards,
-Arun R Murthy
-------------->  	fixed_mode = intel_panel_fixed_mode(connector, mode);
->  	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
->  		status = intel_panel_mode_valid(connector, mode); diff --git
-> a/drivers/gpu/drm/i915/display/intel_quirks.c
-> b/drivers/gpu/drm/i915/display/intel_quirks.c
-> index a32fae510ed27..438ce2cb37a01 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-> @@ -72,6 +72,12 @@ static void quirk_no_pps_backlight_power_hook(struct
-> intel_display *display)
->  	drm_info(display->drm, "Applying no pps backlight power quirk\n");  }
-> 
-> +static void quirk_edp_max_240hz_hook(struct intel_display *display) {
-> +	intel_set_quirk(display, QUIRK_EDP_MAX_240HZ_HOOK);
-> +	drm_info(display->drm, "Applying max 240Hz quirk\n"); }
-> +
->  static void quirk_fw_sync_len(struct intel_dp *intel_dp)  {
->  	struct intel_display *display = to_intel_display(intel_dp); @@ -120,6
-> +126,12 @@ static int intel_dmi_no_pps_backlight(const struct dmi_system_id
-> *id)
->  	return 1;
->  }
-> 
-> +static int intel_dmi_edp_max_240hz(const struct dmi_system_id *id) {
-> +	DRM_INFO("Restrict output refreshrate to maximum 240Hz %s\n", id-
-> >ident);
-> +	return 1;
-> +}
-> +
->  static const struct intel_dmi_quirk intel_dmi_quirks[] = {
->  	{
->  		.dmi_id_list = &(const struct dmi_system_id[]) { @@ -166,6
-> +178,24 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
->  		},
->  		.hook = quirk_no_pps_backlight_power_hook,
->  	},
-> +	{
-> +		.dmi_id_list = &(const struct dmi_system_id[]) {
-> +			{
-> +				.callback = intel_dmi_edp_max_240hz,
-> +				.ident = "TUXEDO Stellaris 16 Intel Gen7",
-> +				.matches =
-> {DMI_EXACT_MATCH(DMI_BOARD_NAME, "X6AR5xxY"),
-> +				},
-> +			},
-> +			{
-> +				.callback = intel_dmi_edp_max_240hz,
-> +				.ident = "TUXEDO Stellaris 16 Intel Gen7",
-> +				.matches =
-> {DMI_EXACT_MATCH(DMI_BOARD_NAME, "X6AR5xxY_mLED"),
-> +				},
-> +			},
-> +			{ }
-> +		},
-> +		.hook = quirk_edp_max_240hz_hook,
-> +	},
->  };
-> 
->  static struct intel_quirk intel_quirks[] = { diff --git
-> a/drivers/gpu/drm/i915/display/intel_quirks.h
-> b/drivers/gpu/drm/i915/display/intel_quirks.h
-> index cafdebda75354..8fe3f3467106a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-> @@ -20,6 +20,7 @@ enum intel_quirk_id {
->  	QUIRK_LVDS_SSC_DISABLE,
->  	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
->  	QUIRK_FW_SYNC_LEN,
-> +	QUIRK_EDP_MAX_240HZ_HOOK,
->  };
-> 
->  void intel_init_quirks(struct intel_display *display);
-> --
-> 2.43.0
+Hi Dave, Sima,
 
+An extra drm-misc-next PR this time around because I've been asked to
+make an exception to get the hibernation fixes for amdgpu in.
 
+This will definitely be the last PR for 6.17 :)
+
+Thanks,
+Maxime
+
+drm-misc-next-2025-07-17:
+drm-misc-next for 6.17:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+
+- mode_config: Change fb_create prototype to pass the drm_format_info
+  and avoid redundant lookups in drivers
+- sched: kunit improvements, memory leak fixes, reset handling
+  improvements
+- tests: kunit EDID update
+
+Driver Changes:
+
+- amdgpu: Hibernation fixes, structure lifetime fixes
+- nouveau: sched improvements
+- sitronix: Add Sitronix ST7567 Support
+
+- bridge:
+  - Make connector available to bridge detect hook
+
+- panel:
+  - More refcounting changes
+  - New panels: BOE NE14QDM
+The following changes since commit fe69a391808404977b1f002a6e7447de3de7a88e:
+
+  drm/panthor: Fix UAF in panthor_gem_create_with_handle() debugfs code (20=
+25-07-10 10:16:50 +0100)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
+5-07-17
+
+for you to fetch changes up to 28c5c486380cc29e82b7747e999b3238f2887539:
+
+  drm/amdgpu: Fix missing unlocking in an error path in amdgpu_userq_create=
+() (2025-07-16 15:46:04 -0400)
+
+----------------------------------------------------------------
+drm-misc-next for 6.17:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+
+- mode_config: Change fb_create prototype to pass the drm_format_info
+  and avoid redundant lookups in drivers
+- sched: kunit improvements, memory leak fixes, reset handling
+  improvements
+- tests: kunit EDID update
+
+Driver Changes:
+
+- amdgpu: Hibernation fixes, structure lifetime fixes
+- nouveau: sched improvements
+- sitronix: Add Sitronix ST7567 Support
+
+- bridge:
+  - Make connector available to bridge detect hook
+
+- panel:
+  - More refcounting changes
+  - New panels: BOE NE14QDM
+
+----------------------------------------------------------------
+Adri=E1n Larumbe (1):
+      drm/panthor: Remove dead VM flushing code
+
+Alice Ryhl (1):
+      drm: rust: rename as_ref() to from_raw() for drm constructors
+
+Andr=E9 Almeida (4):
+      drm/doc: Fix title underline for "Task information"
+      drm: Add missing struct drm_wedge_task_info kernel doc
+      drm/doc: Fix grammar for "Task information"
+      drm/amdgpu: Fix lifetime of struct amdgpu_task_info after ring reset
+
+Andy Yan (3):
+      drm/bridge: Make dp/hdmi_audio_* callback keep the same paramter orde=
+r with get_modes
+      drm/bridge: Pass down connector to drm bridge detect hook
+      drm/bridge: megachips-stdpxxxx-ge-b850v3-fw: Fix a compile error due =
+to bridge->detect parameter changes
+
+Anusha Srivatsa (14):
+      drm/panel/lq101r1sx01: Use refcounted allocation in place of devm_kza=
+lloc()
+      drm/panel/raspberrypi: Use refcounted allocation in place of devm_kza=
+lloc()
+      drm/panel/vvx10f034n00: Use refcounted allocation in place of devm_kz=
+alloc()
+      drm/panel/osd101t2587-53ts: Use refcounted allocation in place of dev=
+m_kzalloc()
+      drm/panel/novatek-nt36672a: Use refcounted allocation in place of dev=
+m_kzalloc()
+      drm/panel/lg-sw43408: Use refcounted allocation in place of devm_kzal=
+loc()
+      drm/panel/kd097d04: Use refcounted allocation in place of devm_kzallo=
+c()
+      drm/panel/khadas-ts050: Use refcounted allocation in place of devm_kz=
+alloc()
+      drm/panel/jdi-lt070me05000: Use refcounted allocation in place of dev=
+m_kzalloc()
+      drm/panel/lpm102a188a: Use refcounted allocation in place of devm_kza=
+lloc()
+      drm/panel/ilitek-ili9882t: Use refcounted allocation in place of devm=
+_kzalloc()
+      drm/panel/himax-hx83102: Use refcounted allocation in place of devm_k=
+zalloc()
+      drm/panel/boe-tv101wum-nl6: Use refcounted allocation in place of dev=
+m_kzalloc()
+      drm/panel/boe-himax8279d: Use refcounted allocation in place of devm_=
+kzalloc()
+
+Christian K=F6nig (2):
+      drm/ttm: fix locking in test ttm_bo_validate_no_placement_signaled
+      drm/ttm: remove ttm_bo_validate_swapout test
+
+Christophe JAILLET (1):
+      drm/amdgpu: Fix missing unlocking in an error path in amdgpu_userq_cr=
+eate()
+
+Dale Whinham (1):
+      dt-bindings: display: panel: samsung,atna30dw01: document ATNA30DW01
+
+Diederik de Haas (1):
+      dt-bindings: display: rockchip,dw-mipi-dsi: Drop address/size cells
+
+Javier Martinez Canillas (5):
+      drm/sitronix/st7571-i2c: Fix encoder callbacks function names
+      drm/sitronix/st7571-i2c: Log probe deferral cause for GPIO get failure
+      drm/sitronix/st7571-i2c: Add an indirection level to parse DT
+      dt-bindings: display: Add Sitronix ST7567 LCD Controller
+      drm/sitronix/st7571-i2c: Add support for the ST7567 Controller
+
+Mario Limonciello (1):
+      PM: hibernate: Add stub for pm_hibernate_is_recovering()
+
+Maxime Ripard (3):
+      drm/tests: edid: Fix monitor range limits
+      drm/tests: edid: Update CTA-861 HDMI Vendor Specific Data Block
+      drm/tests: edid: Add edid-decode --check output
+
+Ma=EDra Canal (8):
+      drm/sched: Rename DRM_GPU_SCHED_STAT_NOMINAL to DRM_GPU_SCHED_STAT_RE=
+SET
+      drm/sched: Allow drivers to skip the reset and keep on running
+      drm/sched: Make timeout KUnit tests faster
+      drm/sched: Add new test for DRM_GPU_SCHED_STAT_NO_HANG
+      drm/v3d: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
+      drm/etnaviv: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
+      drm/xe: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
+      drm/panfrost: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the reset
+
+Philipp Stanner (7):
+      drm/sched: Avoid memory leaks with cancel_job() callback
+      drm/sched/tests: Implement cancel_job() callback
+      drm/sched/tests: Add unit test for cancel_job()
+      drm/sched: Warn if pending_list is not empty
+      drm/nouveau: Make fence container helper usable driver-wide
+      drm/nouveau: Add new callback for scheduler teardown
+      drm/nouveau: Remove waitque for sched teardown
+
+Samuel Zhang (5):
+      drm/ttm: add new api ttm_device_prepare_hibernation()
+      drm/amdgpu: move GTT to shmem after eviction for hibernation
+      PM: hibernate: shrink shmem pages after dev_pm_ops.prepare()
+      PM: hibernate: add new api pm_hibernate_is_recovering()
+      drm/amdgpu: do not resume device in thaw for normal hibernation
+
+Val Packett (1):
+      drm/panel-edp: Add BOE NE14QDM panel for Dell Latitude 7455
+
+Ville Syrj=E4l=E4 (19):
+      drm: Pass pixel_format+modifier to .get_format_info()
+      drm: Pass pixel_format+modifier directly to drm_get_format_info()
+      drm: Look up the format info earlier
+      drm: Pass the format info to .fb_create()
+      drm: Allow the caller to pass in the format info to drm_helper_mode_f=
+ill_fb_struct()
+      drm/malidp: Pass along the format info from .fb_create() malidp_verif=
+y_afbc_framebuffer_size()
+      drm/gem: Pass along the format info from .fb_create() to drm_helper_m=
+ode_fill_fb_struct()
+      drm/gem/afbc: Eliminate redundant drm_get_format_info()
+      drm/amdgpu: Pass along the format info from .fb_create() to drm_helpe=
+r_mode_fill_fb_struct()
+      drm/armada: Pass along the format info from .fb_create() to drm_helpe=
+r_mode_fill_fb_struct()
+      drm/exynos: Pass along the format info from .fb_create() to drm_helpe=
+r_mode_fill_fb_struct()
+      drm/gma500: Pass along the format info from .fb_create() to drm_helpe=
+r_mode_fill_fb_struct()
+      drm/i915: Pass along the format info from .fb_create() to drm_helper_=
+mode_fill_fb_struct()
+      drm/komeda: Pass along the format info from .fb_create() to drm_helpe=
+r_mode_fill_fb_struct()
+      drm/msm: Pass along the format info from .fb_create() to drm_helper_m=
+ode_fill_fb_struct()
+      drm/tegra: Pass along the format info from .fb_create() to drm_helper=
+_mode_fill_fb_struct()
+      drm/virtio: Pass along the format info from .fb_create() to drm_helpe=
+r_mode_fill_fb_struct()
+      drm/vmwgfx: Pass along the format info from .fb_create() to drm_helpe=
+r_mode_fill_fb_struct()
+      drm: Make passing of format info to drm_helper_mode_fill_fb_struct() =
+mandatory
+
+ .../bindings/display/panel/samsung,atna33xc20.yaml |   2 +
+ .../display/rockchip/rockchip,dw-mipi-dsi.yaml     |   6 -
+ .../bindings/display/sitronix,st7567.yaml          |  63 +++++++++
+ Documentation/gpu/drm-uapi.rst                     |   6 +-
+ MAINTAINERS                                        |   1 +
+ drivers/accel/amdxdna/aie2_ctx.c                   |   2 +-
+ drivers/base/power/main.c                          |  14 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |  10 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c        |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.h        |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |  17 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c            |   7 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c          |   6 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c    |   4 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h    |   2 +-
+ .../drm/arm/display/komeda/komeda_framebuffer.c    |   3 +-
+ .../drm/arm/display/komeda/komeda_framebuffer.h    |   1 +
+ drivers/gpu/drm/arm/malidp_drv.c                   |  12 +-
+ drivers/gpu/drm/armada/armada_fb.c                 |  12 +-
+ drivers/gpu/drm/armada/armada_fb.h                 |   4 +-
+ drivers/gpu/drm/armada/armada_fbdev.c              |   5 +-
+ drivers/gpu/drm/bridge/adv7511/adv7511.h           |  16 +--
+ drivers/gpu/drm/bridge/adv7511/adv7511_audio.c     |  12 +-
+ drivers/gpu/drm/bridge/adv7511/adv7511_cec.c       |   4 +-
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |   3 +-
+ drivers/gpu/drm/bridge/analogix/anx7625.c          |   2 +-
+ .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.c    |   3 +-
+ drivers/gpu/drm/bridge/chrontel-ch7033.c           |   2 +-
+ drivers/gpu/drm/bridge/display-connector.c         |  11 +-
+ drivers/gpu/drm/bridge/ite-it6263.c                |   3 +-
+ drivers/gpu/drm/bridge/ite-it6505.c                |   2 +-
+ drivers/gpu/drm/bridge/ite-it66121.c               |   3 +-
+ drivers/gpu/drm/bridge/lontium-lt8912b.c           |   6 +-
+ drivers/gpu/drm/bridge/lontium-lt9611.c            |  15 ++-
+ drivers/gpu/drm/bridge/lontium-lt9611uxc.c         |   3 +-
+ .../drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c   |   5 +-
+ drivers/gpu/drm/bridge/sii902x.c                   |   3 +-
+ drivers/gpu/drm/bridge/simple-bridge.c             |   2 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |  14 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   3 +-
+ drivers/gpu/drm/bridge/tc358767.c                  |   5 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c              |   3 +-
+ drivers/gpu/drm/bridge/ti-tfp410.c                 |   2 +-
+ drivers/gpu/drm/bridge/ti-tpd12s015.c              |   8 +-
+ drivers/gpu/drm/display/drm_bridge_connector.c     |  20 +--
+ drivers/gpu/drm/drm_bridge.c                       |   5 +-
+ drivers/gpu/drm/drm_fourcc.c                       |  10 +-
+ drivers/gpu/drm/drm_framebuffer.c                  |  27 ++--
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c       |  42 +++---
+ drivers/gpu/drm/drm_modeset_helper.c               |   4 +-
+ drivers/gpu/drm/etnaviv/etnaviv_sched.c            |  14 +-
+ drivers/gpu/drm/exynos/exynos_drm_fb.c             |   7 +-
+ drivers/gpu/drm/exynos/exynos_drm_fb.h             |   1 +
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c          |   5 +-
+ drivers/gpu/drm/gma500/fbdev.c                     |   5 +-
+ drivers/gpu/drm/gma500/framebuffer.c               |  14 +-
+ drivers/gpu/drm/gma500/psb_drv.h                   |   1 +
+ drivers/gpu/drm/i915/display/intel_fb.c            |  20 +--
+ drivers/gpu/drm/i915/display/intel_fb.h            |   5 +-
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c      |   6 +-
+ drivers/gpu/drm/i915/display/intel_plane_initial.c |   3 +-
+ drivers/gpu/drm/imagination/pvr_queue.c            |   4 +-
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c          |   5 +-
+ drivers/gpu/drm/lima/lima_sched.c                  |   6 +-
+ drivers/gpu/drm/mediatek/mtk_dp.c                  |   3 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c             |   5 +-
+ drivers/gpu/drm/mediatek/mtk_hdmi.c                |   3 +-
+ drivers/gpu/drm/msm/dp/dp_audio.c                  |   8 +-
+ drivers/gpu/drm/msm/dp/dp_audio.h                  |   8 +-
+ drivers/gpu/drm/msm/dp/dp_drm.c                    |   3 +-
+ drivers/gpu/drm/msm/hdmi/hdmi.h                    |  10 +-
+ drivers/gpu/drm/msm/hdmi/hdmi_audio.c              |   8 +-
+ drivers/gpu/drm/msm/hdmi/hdmi_bridge.c             |   2 +-
+ drivers/gpu/drm/msm/hdmi/hdmi_hpd.c                |   4 +-
+ drivers/gpu/drm/msm/msm_drv.h                      |   3 +-
+ drivers/gpu/drm/msm/msm_fb.c                       |  18 +--
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c                  |   9 +-
+ drivers/gpu/drm/nouveau/nouveau_display.c          |   6 +-
+ drivers/gpu/drm/nouveau/nouveau_display.h          |   1 +
+ drivers/gpu/drm/nouveau/nouveau_exec.c             |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_fence.c            |  35 +++--
+ drivers/gpu/drm/nouveau/nouveau_fence.h            |   7 +
+ drivers/gpu/drm/nouveau/nouveau_sched.c            |  37 +++---
+ drivers/gpu/drm/nouveau/nouveau_sched.h            |   9 +-
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c             |   8 +-
+ drivers/gpu/drm/omapdrm/omap_fb.c                  |  10 +-
+ drivers/gpu/drm/omapdrm/omap_fb.h                  |   3 +-
+ drivers/gpu/drm/panel/panel-boe-himax8279d.c       |  11 +-
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c     |  10 +-
+ drivers/gpu/drm/panel/panel-edp.c                  |   1 +
+ drivers/gpu/drm/panel/panel-himax-hx83102.c        |  10 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9882t.c      |  10 +-
+ drivers/gpu/drm/panel/panel-jdi-lpm102a188a.c      |  12 +-
+ drivers/gpu/drm/panel/panel-jdi-lt070me05000.c     |  11 +-
+ drivers/gpu/drm/panel/panel-khadas-ts050.c         |  13 +-
+ drivers/gpu/drm/panel/panel-kingdisplay-kd097d04.c |  12 +-
+ drivers/gpu/drm/panel/panel-lg-sw43408.c           |  10 +-
+ drivers/gpu/drm/panel/panel-novatek-nt36672a.c     |  10 +-
+ drivers/gpu/drm/panel/panel-osd-osd101t2587-53ts.c |  12 +-
+ .../gpu/drm/panel/panel-panasonic-vvx10f034n00.c   |  12 +-
+ .../gpu/drm/panel/panel-raspberrypi-touchscreen.c  |  12 +-
+ drivers/gpu/drm/panel/panel-sharp-lq101r1sx01.c    |  11 +-
+ drivers/gpu/drm/panfrost/panfrost_job.c            |  10 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c              |  13 +-
+ drivers/gpu/drm/panthor/panthor_mmu.h              |   1 -
+ drivers/gpu/drm/panthor/panthor_sched.c            |   2 +-
+ drivers/gpu/drm/qxl/qxl_display.c                  |   3 +-
+ drivers/gpu/drm/radeon/radeon_display.c            |   3 +-
+ drivers/gpu/drm/radeon/radeon_fbdev.c              |   3 +-
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c      |   3 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c       |   3 +-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.c   |   3 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c             |  14 +-
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c             |   2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c         |  11 +-
+ drivers/gpu/drm/scheduler/sched_main.c             |  85 +++++++++---
+ drivers/gpu/drm/scheduler/tests/mock_scheduler.c   |  75 +++++------
+ drivers/gpu/drm/scheduler/tests/sched_tests.h      |   2 +-
+ drivers/gpu/drm/scheduler/tests/tests_basic.c      |  93 +++++++++++++-
+ drivers/gpu/drm/sitronix/st7571-i2c.c              |  95 ++++++++++++--
+ drivers/gpu/drm/tegra/drm.h                        |   2 +
+ drivers/gpu/drm/tegra/fb.c                         |   7 +-
+ drivers/gpu/drm/tegra/fbdev.c                      |   4 +-
+ drivers/gpu/drm/tests/drm_framebuffer_test.c       |   1 +
+ drivers/gpu/drm/tests/drm_kunit_edid.h             | 142 ++++++++++++++---=
+----
+ drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c   |  60 +--------
+ drivers/gpu/drm/ttm/ttm_device.c                   |  22 ++++
+ drivers/gpu/drm/v3d/v3d_sched.c                    |  18 +--
+ drivers/gpu/drm/vc4/vc4_kms.c                      |   3 +-
+ drivers/gpu/drm/virtio/virtgpu_display.c           |   6 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                |  15 ++-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |   1 +
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c        |   6 +-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c      |   2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c                 |  14 +-
+ drivers/gpu/drm/xen/xen_drm_front_kms.c            |   3 +-
+ drivers/gpu/drm/xlnx/zynqmp_dp.c                   |   3 +-
+ drivers/gpu/drm/xlnx/zynqmp_kms.c                  |   3 +-
+ include/drm/drm_bridge.h                           |  42 +++---
+ include/drm/drm_device.h                           |   2 +
+ include/drm/drm_fourcc.h                           |   3 +-
+ include/drm/drm_gem_framebuffer_helper.h           |   6 +
+ include/drm/drm_mode_config.h                      |   3 +-
+ include/drm/drm_modeset_helper.h                   |   2 +
+ include/drm/gpu_scheduler.h                        |  25 +++-
+ include/drm/ttm/ttm_device.h                       |   1 +
+ include/linux/suspend.h                            |   2 +
+ kernel/power/hibernate.c                           |  26 ++++
+ rust/kernel/drm/device.rs                          |   2 +-
+ rust/kernel/drm/file.rs                            |   8 +-
+ rust/kernel/drm/gem/mod.rs                         |  16 +--
+ rust/kernel/drm/ioctl.rs                           |   4 +-
+ 152 files changed, 1106 insertions(+), 646 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/sitronix,st75=
+67.yaml
+
+--lqu5s6cxqdvbpx3y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaHithAAKCRAnX84Zoj2+
+dmPJAYDBXUdANu50x/oLMfDJa2ONG06VDacScg/MXN0FLMRwkCN63Sko5Dx6ihQ0
+nP5NRugBgKwffaDrq4VTYhmXtDI5QTx+C0u51jbR2tr/6jmPiSrLiMkDos5rhoBi
+I5k6INWnWg==
+=/JM3
+-----END PGP SIGNATURE-----
+
+--lqu5s6cxqdvbpx3y--
 
