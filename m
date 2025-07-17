@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 235EBC83F1A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 556B0C83F38
 	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 18:48:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E228510E883;
-	Thu, 17 Jul 2025 18:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1ADA510E0B7;
+	Thu, 17 Jul 2025 18:48:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hVpXu7OC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NGw9Tbb2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64E7510E0B7
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 18:48:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F250010E0B7
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 18:48:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752778121; x=1784314121;
+ t=1752778120; x=1784314120;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ekGn/SKeFvXgKJkfXUzKrhszQBAwUcO8Em+ausERbMA=;
- b=hVpXu7OCFkT5ptSRRYjSfHDTeSpDZt1Mi4iEAduX9QciVAt6axAmrP8o
- 8aoP8Qaz5/3MKF3bKYbOeFX9yRDuaa210hSk+BVTrlgnkp/L4wZWQQ6Pb
- FjqA7n1mAinerupdtI8XZZPf030Ua/VlUNiTg5rr52QS1+bTNsIrs1sT2
- y5CE7FaBQTS11hitN2NUNRxe3/enMePty0AAv8PKbpx5vCvNd4r4OCAIF
- ib/vtguIbYFNf5F8BSh+/yi/ucY3FsYg45DRzxnVG3HnlD+nE59ss+OHA
- Kmr4vvxkz5KM2Fcqk5H5+KPoiXIA9LZTPkwYKEF9byW11mqp4stn1L9AF Q==;
-X-CSE-ConnectionGUID: /1d+nxRcQn2mA66HFBIolQ==
-X-CSE-MsgGUID: FU8KLKw+QuKp7bwnvDI4Mg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="80513743"
-X-IronPort-AV: E=Sophos;i="6.16,319,1744095600"; d="scan'208";a="80513743"
+ bh=cEqBmPdfB4updYe3UzzyWmsB3izoUCbFVHBVYMOpjyM=;
+ b=NGw9Tbb2GslP4mNvuRKteajJKJdwkFHS+6iwfoRhwqvPfJgG1C4h6ZxB
+ rW81Q7JSHO4GOiNc5MK6dMDQ3JlPdeP3hxa3FKCfcaXBna2ZddmkXwaZv
+ /7Br55ELS0Ii8vOoSAoRdx/1V/u1c+WCnLdwKSAyV1FscGvC2+uvbtw2E
+ zhUY+QqIoNRBusn1qhpvGP18q7YB6vJ9mQvabO1Kxeos+fsRHDzuad6C+
+ gtVbBoLYaLsEASsjatAkJS6JEbWhQBvGDrf3BdwvyZ8KIRn5n10O6/l1B
+ SHQrlHWrf/HlOggm1Qtw3PsKwxAW5IWwRt62mwTpzshjNhSj6elBYlvz6 w==;
+X-CSE-ConnectionGUID: PHLnnW0cTpme3eNnHVdhnw==
+X-CSE-MsgGUID: lZcd2G6fTnSVLqn8HTMCHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="80513738"
+X-IronPort-AV: E=Sophos;i="6.16,319,1744095600"; d="scan'208";a="80513738"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2025 11:48:41 -0700
-X-CSE-ConnectionGUID: xvjHgI8JQgyJZyESr31S8g==
-X-CSE-MsgGUID: c3CMm9tgTdu4tPWvyxGAtg==
+ 17 Jul 2025 11:48:39 -0700
+X-CSE-ConnectionGUID: g3PEJQ78T5iF3DmkDWCtQA==
+X-CSE-MsgGUID: o0lgi39bSuOKnAEidqbkPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,319,1744095600"; d="scan'208";a="181580957"
+X-IronPort-AV: E=Sophos;i="6.16,319,1744095600"; d="scan'208";a="181580951"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.84.121])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2025 11:48:40 -0700
+ 17 Jul 2025 11:48:38 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 3/5] drm/xe/configfs: Use pci_name() for lookup
-Date: Thu, 17 Jul 2025 20:48:23 +0200
-Message-Id: <20250717184825.851-4-michal.wajdeczko@intel.com>
+Subject: [PATCH 2/5] drm/xe/configfs: Enforce canonical device names
+Date: Thu, 17 Jul 2025 20:48:22 +0200
+Message-Id: <20250717184825.851-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20250717184825.851-1-michal.wajdeczko@intel.com>
 References: <20250717184825.851-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,35 +68,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is no need to manually build PCI device name from BDF data,
-since it was already prepared and assigned and can be accessed by
-calling pci_name() function.
+While we expect config directory names to match PCI device name,
+currently we are only scanning provided names for domain, bus,
+device and function numbers, without checking their format.
+This would pass slightly broken entries like:
+
+  /sys/kernel/config/xe/
+  ├── 0000:00:02.0000000000000
+  │   └── ...
+  ├── 0000:00:02.0x
+  │   └── ...
+  ├──  0: 0: 2. 0
+  │   └── ...
+  └── 0:0:2.0
+      └── ...
+
+To avoid such mistakes, check if the name provided exactly matches
+the canonical PCI device address format, which we recreated from
+the parsed BDF data. Also simplify scanf format as it can't really
+catch all formatting errors.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 90b4fe92a611..00bb4e412c12 100644
+index e9b46a2d0019..90b4fe92a611 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -312,13 +312,9 @@ static struct configfs_subsystem xe_configfs = {
- static struct xe_config_device *configfs_find_group(struct pci_dev *pdev)
- {
- 	struct config_item *item;
--	char name[64];
--
--	snprintf(name, sizeof(name), "%04x:%02x:%02x.%x", pci_domain_nr(pdev->bus),
--		 pdev->bus->number, PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
+@@ -259,12 +259,19 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
+ 	unsigned int domain, bus, slot, function;
+ 	struct xe_config_device *dev;
+ 	struct pci_dev *pdev;
++	char canonical[16];
+ 	int ret;
  
- 	mutex_lock(&xe_configfs.su_mutex);
--	item = config_group_find_item(&xe_configfs.su_group, name);
-+	item = config_group_find_item(&xe_configfs.su_group, pci_name(pdev));
- 	mutex_unlock(&xe_configfs.su_mutex);
+-	ret = sscanf(name, "%04x:%02x:%02x.%x", &domain, &bus, &slot, &function);
++	ret = sscanf(name, "%x:%x:%x.%d", &domain, &bus, &slot, &function);
+ 	if (ret != 4)
+ 		return ERR_PTR(-EINVAL);
  
- 	if (!item)
++	ret = scnprintf(canonical, sizeof(canonical), "%04x:%02x:%02x.%d", domain, bus,
++			PCI_SLOT(PCI_DEVFN(slot, function)),
++			PCI_FUNC(PCI_DEVFN(slot, function)));
++	if (ret != 12 || strcmp(name, canonical))
++		return ERR_PTR(-EINVAL);
++
+ 	pdev = pci_get_domain_bus_and_slot(domain, bus, PCI_DEVFN(slot, function));
+ 	if (!pdev)
+ 		return ERR_PTR(-ENODEV);
 -- 
 2.47.1
 
