@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8B25C83F3D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2495C83F3C
 	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 13:04:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAC8510E82F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8824F10E82E;
 	Thu, 17 Jul 2025 13:04:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="F1yKAb6S";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kCnxTZi9";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70C8910E822
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 13:04:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4361110E099
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 13:04:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,22 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ywnHbPn+Udes67JLlSyElmrBZ4a6xd5AKZW5LcG/iI8=; b=F1yKAb6SOdhGzzrBZQga8ZQmoF
- PydJS2CtrjDJK7xkRbqvye+Ga074jbBbT7ADmtbsLcABD7sT3CLNwG4VfKMRl5RogB8QTHtwmNHs1
- OIJRUTyzLlPvwE9n57zKOiA9Xo3jPMQy4tBWlKRa7bxLGVcd3eNURoJ++XGXqk7ASnEOgL1ea5kYw
- cqfsZEJs1JejKonGQRW973NiariFYpj3EQiDtpd1Up9c0QPukzcncLvBVc99iik8z/0YZ6fR2/c59
- /qK7YYvhOxR9uHF5aw5HPYDHY+bkVwQS2Um9fdKIhdzO7adhMOQ4OsugVu8YotWebMAMYt3ORJb6B
- sfrFZSOA==;
+ bh=3lyCm8vSJ4RI9cjRDCRqcPO3N7vqNsMP/8nwXUbuSuA=; b=kCnxTZi9gHdrYw0xr7fX7y6u1l
+ Qb5iqpNz4yo/jLya2OnPH54NhAKSJ6x2F4amQrOI5D7pshTRex/+V+tnpR/GOhfJC4UngHL0BYssi
+ T6OIMOHLa72VqE0wFYq4AdNjJDFY+rvImxIzwjUq6s9wtagOX0/i8Kz8d14rl3BrUS7iJucNz9GhC
+ Gw8qfeTboPwYPcMbvEJJyEmX/OwgTluLmnxixlCWtpTCmNcB+QvJTfagIUVetPEOz/CPW/KoN23vt
+ s0QI0sOySoh2f3o9S0/43xReHpOe4doMYV06fCh3naZRiFL0wdDE9NdsETUWIwgmWlJeIrYHyFnHy
+ RnCXSwfA==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ucOI3-0009QM-PK
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 15:04:47 +0200
+ id 1ucOHw-0009P4-Ho
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 15:04:40 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 17/17] always flush
-Date: Thu, 17 Jul 2025 14:04:33 +0100
-Message-ID: <20250717130434.82251-18-tvrtko.ursulin@igalia.com>
+Subject: [CI 07/17] drm/xe/xelp: Wait for AuxCCS invalidation to complete
+Date: Thu, 17 Jul 2025 14:04:23 +0100
+Message-ID: <20250717130434.82251-8-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250717130434.82251-1-tvrtko.ursulin@igalia.com>
 References: <20250717130434.82251-1-tvrtko.ursulin@igalia.com>
@@ -57,27 +57,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On AuxCCS platforms we need to wait for AuxCCS invalidations to complete.
+
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 6 ++++++
+ drivers/gpu/drm/xe/xe_ring_ops.c                 | 9 ++++++++-
+ drivers/gpu/drm/xe/xe_ring_ops_types.h           | 2 +-
+ 3 files changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 58e3cf5151bd..75d120384870 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -438,9 +438,8 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	 * Force flush frame buffer data for non-coherent display access when
- 	 * AuxCCS formats are used.
- 	 */
--	if (first_pin && !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
--	    intel_fb_is_ccs_modifier(fb->base.modifier))
--		drm_clflush_sg(xe_bo_sg(bo));
-+	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo))
-+	    drm_clflush_sg(xe_bo_sg(bo));
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index e3f5e8bb3ebc..edb06b91ed6f 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -80,4 +80,10 @@
+ #define MI_SET_APPID_SESSION_ID_MASK	REG_GENMASK(6, 0)
+ #define MI_SET_APPID_SESSION_ID(x)	REG_FIELD_PREP(MI_SET_APPID_SESSION_ID_MASK, x)
  
- 	return vma;
++#define MI_SEMAPHORE_WAIT_TOKEN		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(5)) /* XeLP+ */
++#define   MI_SEMAPHORE_REGISTER_POLL	REG_BIT(16)
++#define   MI_SEMAPHORE_POLL		REG_BIT(15)
++#define   MI_SEMAPHORE_CMP_OP_MASK	REG_GENMASK(14, 12)
++#define   MI_SEMAPHORE_SAD_EQ_SDD	REG_FIELD_PREP(MI_SEMAPHORE_CMP_OP_MASK, 4)
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index f80100451cfb..db94b475cd32 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -56,7 +56,14 @@ static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
+ 	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
+ 	dw[i++] = reg.addr + gt->mmio.adj_offset;
+ 	dw[i++] = AUX_INV;
+-	dw[i++] = MI_NOOP;
++	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
++		  MI_SEMAPHORE_REGISTER_POLL |
++		  MI_SEMAPHORE_POLL |
++		  MI_SEMAPHORE_SAD_EQ_SDD;
++	dw[i++] = 0;
++	dw[i++] = reg.addr + gt->mmio.adj_offset;
++	dw[i++] = 0;
++	dw[i++] = 0;
  
+ 	return i;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index 477dc7defd72..1197fc0bf2af 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
+ 
+ struct xe_sched_job;
+ 
+-#define MAX_JOB_SIZE_DW 70
++#define MAX_JOB_SIZE_DW 74
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
+ /**
 -- 
 2.48.0
 
