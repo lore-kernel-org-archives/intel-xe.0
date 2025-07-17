@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E6E9C83F1B
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 05:33:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE5F1C83F1B
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 05:39:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF3FE10E083;
-	Thu, 17 Jul 2025 05:33:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JXcoAHhc";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DB7410E083;
- Thu, 17 Jul 2025 05:33:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752730436; x=1784266436;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RgjSkunlfsMsRbpS/iOhjqxkBKDBrBwYG111zD1EWkQ=;
- b=JXcoAHhcTlqsmlQctHii4bCP9yHOitqNL2+pP4H2Vu9oPrqkEF+CXk3a
- vzOCsOJtn87PGlT2bI4yNSShIMMlkSN1Sc+u80YcgdpIlcAqehEn3mF7L
- UW0JEFao+s1XradOY4W5kDCeaJv+OZLI2FmHOoxI9GoDTJ5IgERgVht8j
- lqRnV/+NRqz/szO7tHTqoRgEyJhy4b5qFdaKotT9Vsuh7YQyeeJfJQ0lo
- Hgii7NiwFiXOesbrl0hg5hSNyQ/J9b9cRjiu//E3WvxOKIrUQZTz+88J/
- FChfO3yewyIqSMvCsHDFJ3DkbPHIXbooeeU+jmYoSm+GhUZ4PG8eiyOmi A==;
-X-CSE-ConnectionGUID: HCvfEhD5Qvm410CXbgSjYw==
-X-CSE-MsgGUID: Q+2P9/hgTVaslHf2r/Vm+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="54708854"
-X-IronPort-AV: E=Sophos;i="6.16,317,1744095600"; d="scan'208";a="54708854"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2025 22:33:56 -0700
-X-CSE-ConnectionGUID: k0EiWGKoS8GfZ0LKn05M5w==
-X-CSE-MsgGUID: rqZXelYqSki4aiJYPwfMTg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,317,1744095600"; d="scan'208";a="158164860"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa008.jf.intel.com with ESMTP; 16 Jul 2025 22:33:53 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: gustavo.sousa@intel.com, dnyaneshwar.bhadane@intel.com,
- dibin.moolakadan.subrahmanian@intel.com, imre.deak@intel.com
-Subject: [PATCH] drm/i915/display: Skip unavailable power wells based on pipe
- mask
-Date: Thu, 17 Jul 2025 10:46:03 +0530
-Message-Id: <20250717051603.1036746-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0AD310E306;
+	Thu, 17 Jul 2025 05:39:46 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7630A10E306;
+ Thu, 17 Jul 2025 05:39:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Skip_?=
+ =?utf-8?q?unavailable_power_wells_based_on_pipe_mask?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 17 Jul 2025 05:39:45 -0000
+Message-ID: <175273078545.168606.11324323278246175338@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250717051603.1036746-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20250717051603.1036746-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,66 +36,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some power wells are only relevant for certain display pipes. Add a check
-to ensure we only allocate and initialize power wells whose associated
-pipes are available on the platform.
+== Series Details ==
 
-This avoids unnecessary mapping of power wells, particularly when platforms
-support a subset of pipes described in the power well descriptors.
+Series: drm/i915/display: Skip unavailable power wells based on pipe mask
+URL   : https://patchwork.freedesktop.org/series/151737/
+State : warning
 
-Suggested-by: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- .../i915/display/intel_display_power_map.c    | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index 77268802b55e..ca73e4084354 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -1748,6 +1748,16 @@ static void init_power_well_domains(const struct i915_power_well_instance *inst,
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+43254c2aa575037fc031c7ac21b0d031c700b2bf
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4822f0541331cd33099d03ef1f3c6dd711cf548c
+Author: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Date:   Thu Jul 17 10:46:03 2025 +0530
+
+    drm/i915/display: Skip unavailable power wells based on pipe mask
+    
+    Some power wells are only relevant for certain display pipes. Add a check
+    to ensure we only allocate and initialize power wells whose associated
+    pipes are available on the platform.
+    
+    This avoids unnecessary mapping of power wells, particularly when platforms
+    support a subset of pipes described in the power well descriptors.
+    
+    Suggested-by: Imre Deak <imre.deak@intel.com>
+    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
++ /mt/dim checkpatch e7058b7a607f5fdfd7bc4586644756d7ef002331 drm-intel
+4822f0541331 drm/i915/display: Skip unavailable power wells based on pipe mask
+-:22: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 0)
+#22: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1748:
  		for_each_power_well_instance_in_desc_list((_descs)->list, (_descs)->count, \
- 							  (_desc), (_inst))
- 
+[...]
 +static bool
-+is_power_well_available(struct intel_display *display, const struct i915_power_well_desc *desc)
-+{
-+	if (desc->irq_pipe_mask &&
-+	    !(desc->irq_pipe_mask & DISPLAY_RUNTIME_INFO(display)->pipe_mask))
-+		return false;
-+
-+	return true;
-+}
-+
- static int
- __set_power_wells(struct i915_power_domains *power_domains,
- 		  const struct i915_power_well_desc_list *power_well_descs,
-@@ -1763,8 +1773,10 @@ __set_power_wells(struct i915_power_domains *power_domains,
- 	int power_well_count = 0;
- 	int plt_idx = 0;
- 
--	for_each_power_well_instance(power_well_descs, power_well_descs_sz, desc_list, desc, inst)
--		power_well_count++;
-+	for_each_power_well_instance(power_well_descs, power_well_descs_sz, desc_list, desc, inst) {
-+		if (is_power_well_available(display, desc))
-+			power_well_count++;
-+	}
- 
- 	power_domains->power_well_count = power_well_count;
- 	power_domains->power_wells =
-@@ -1778,6 +1790,9 @@ __set_power_wells(struct i915_power_domains *power_domains,
- 		struct i915_power_well *pw = &power_domains->power_wells[plt_idx];
- 		enum i915_power_well_id id = inst->id;
- 
-+		if (!is_power_well_available(display, desc))
-+			continue;
-+
- 		pw->desc = desc;
- 		drm_WARN_ON(display->drm,
- 			    overflows_type(inst - desc->instances->list, pw->instance_idx));
--- 
-2.25.1
+
+total: 0 errors, 1 warnings, 0 checks, 37 lines checked
+
 
