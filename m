@@ -4,36 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 520ECC83F1B
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 05:14:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E6E9C83F1B
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 05:33:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01DC910E154;
-	Thu, 17 Jul 2025 05:14:57 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F09110E154
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 05:14:56 +0000 (UTC)
-Received: from [IPV6:2400:2410:b120:f200:a1f3:73da:3a04:160d] (unknown
- [IPv6:2400:2410:b120:f200:a1f3:73da:3a04:160d])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 518503F104;
- Thu, 17 Jul 2025 07:14:51 +0200 (CEST)
-Message-ID: <a54dfff8-5ba3-4fcd-ac2e-5bf5b24eca5c@hogyros.de>
-Date: Thu, 17 Jul 2025 14:14:48 +0900
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF3FE10E083;
+	Thu, 17 Jul 2025 05:33:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JXcoAHhc";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DB7410E083;
+ Thu, 17 Jul 2025 05:33:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752730436; x=1784266436;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RgjSkunlfsMsRbpS/iOhjqxkBKDBrBwYG111zD1EWkQ=;
+ b=JXcoAHhcTlqsmlQctHii4bCP9yHOitqNL2+pP4H2Vu9oPrqkEF+CXk3a
+ vzOCsOJtn87PGlT2bI4yNSShIMMlkSN1Sc+u80YcgdpIlcAqehEn3mF7L
+ UW0JEFao+s1XradOY4W5kDCeaJv+OZLI2FmHOoxI9GoDTJ5IgERgVht8j
+ lqRnV/+NRqz/szO7tHTqoRgEyJhy4b5qFdaKotT9Vsuh7YQyeeJfJQ0lo
+ Hgii7NiwFiXOesbrl0hg5hSNyQ/J9b9cRjiu//E3WvxOKIrUQZTz+88J/
+ FChfO3yewyIqSMvCsHDFJ3DkbPHIXbooeeU+jmYoSm+GhUZ4PG8eiyOmi A==;
+X-CSE-ConnectionGUID: HCvfEhD5Qvm410CXbgSjYw==
+X-CSE-MsgGUID: Q+2P9/hgTVaslHf2r/Vm+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="54708854"
+X-IronPort-AV: E=Sophos;i="6.16,317,1744095600"; d="scan'208";a="54708854"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2025 22:33:56 -0700
+X-CSE-ConnectionGUID: k0EiWGKoS8GfZ0LKn05M5w==
+X-CSE-MsgGUID: rqZXelYqSki4aiJYPwfMTg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,317,1744095600"; d="scan'208";a="158164860"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orviesa008.jf.intel.com with ESMTP; 16 Jul 2025 22:33:53 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: gustavo.sousa@intel.com, dnyaneshwar.bhadane@intel.com,
+ dibin.moolakadan.subrahmanian@intel.com, imre.deak@intel.com
+Subject: [PATCH] drm/i915/display: Skip unavailable power wells based on pipe
+ mask
+Date: Thu, 17 Jul 2025 10:46:03 +0530
+Message-Id: <20250717051603.1036746-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] Support Intel Xe GPU dirver Porting on RISC-V
- Architecture
-To: zhangzhijie <zhangzhijie@bosc.ac.cn>, wangran@bosc.ac.cn,
- zhangjian@bosc.ac.cn, intel-xe@lists.freedesktop.org
-References: <20250715061837.2144388-1-zhangzhijie@bosc.ac.cn>
- <60c7bebe-8bfa-4f33-ad9a-a4b366b46157@hogyros.de>
- <be9ebefe-ddee-4c67-9d72-dc9b67fae6f9@bosc.ac.cn>
-Content-Language: en-US
-From: Simon Richter <Simon.Richter@hogyros.de>
-In-Reply-To: <be9ebefe-ddee-4c67-9d72-dc9b67fae6f9@bosc.ac.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,60 +66,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Some power wells are only relevant for certain display pipes. Add a check
+to ensure we only allocate and initialize power wells whose associated
+pipes are available on the platform.
 
-On 7/16/25 16:00, zhangzhijie wrote:
+This avoids unnecessary mapping of power wells, particularly when platforms
+support a subset of pipes described in the power well descriptors.
 
->>>      inb/outb speccial wire not support on other ARCH.
->> Are you sure these aren't memory mapped?
+Suggested-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+ .../i915/display/intel_display_power_map.c    | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
 
->      yes, few arch not has this memory map(SVGAlib.) on .
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+index 77268802b55e..ca73e4084354 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+@@ -1748,6 +1748,16 @@ static void init_power_well_domains(const struct i915_power_well_instance *inst,
+ 		for_each_power_well_instance_in_desc_list((_descs)->list, (_descs)->count, \
+ 							  (_desc), (_inst))
+ 
++static bool
++is_power_well_available(struct intel_display *display, const struct i915_power_well_desc *desc)
++{
++	if (desc->irq_pipe_mask &&
++	    !(desc->irq_pipe_mask & DISPLAY_RUNTIME_INFO(display)->pipe_mask))
++		return false;
++
++	return true;
++}
++
+ static int
+ __set_power_wells(struct i915_power_domains *power_domains,
+ 		  const struct i915_power_well_desc_list *power_well_descs,
+@@ -1763,8 +1773,10 @@ __set_power_wells(struct i915_power_domains *power_domains,
+ 	int power_well_count = 0;
+ 	int plt_idx = 0;
+ 
+-	for_each_power_well_instance(power_well_descs, power_well_descs_sz, desc_list, desc, inst)
+-		power_well_count++;
++	for_each_power_well_instance(power_well_descs, power_well_descs_sz, desc_list, desc, inst) {
++		if (is_power_well_available(display, desc))
++			power_well_count++;
++	}
+ 
+ 	power_domains->power_well_count = power_well_count;
+ 	power_domains->power_wells =
+@@ -1778,6 +1790,9 @@ __set_power_wells(struct i915_power_domains *power_domains,
+ 		struct i915_power_well *pw = &power_domains->power_wells[plt_idx];
+ 		enum i915_power_well_id id = inst->id;
+ 
++		if (!is_power_well_available(display, desc))
++			continue;
++
+ 		pw->desc = desc;
+ 		drm_WARN_ON(display->drm,
+ 			    overflows_type(inst - desc->instances->list, pw->instance_idx));
+-- 
+2.25.1
 
-Is it missing from the root complex IP instantation, so the logic does 
-not exist, or just not enabled, which could be fixed by doing the same 
-thing as POWER?
-
-The fewer differences there are between platforms, the better.
-
->> [1] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1824
->      Got that same with issue link. thanks
-
-That is also an inb/outb pair. If you got it to compile, then you have a 
-definition of inb/outb for your platform, and the next step is checking 
-where that came from and how it is supposed to work, and the same 
-definition can be used to compile the code you proposed to make conditional.
-
-That is a question for the people building your PCIe interface though.
-
->      I have question that will VGA_CONSOLE support on non-x64 
-> architecture? using CONFIG_X86/X86_64 means only support for X86 
-> archtecture
-
-VGA_CONSOLE is text mode, with font rendering done by the graphics card.
-
-That requires that the I/O ports in the ranges 0x3bb0 to 0x3bb and 0x3c0 
-to 0x3df and memory accesses from 0xa0000 to 0xbffff are forwarded to 
-the card (i.e. all PCI(e) bridges above the card need to have the VGA 
-bit set, and the root complex needs to generate these accesses -- so 
-there needs to be memory mappings in the root complex for legacy I/O 
-ports (so working inb/outb) and for the 128kB VGA aperture.
-
-Pretty much nobody on x86 uses VGA_CONSOLE these days, instead they use 
-kernel modesetting to switch to a graphical mode, and render into the 
-framebuffer with whatever method is available -- CPU and maybe some 
-device specific acceleration in the kernel, or Mesa and full 3D 
-acceleration in X and Wayland.
-
-So I'd turn off VGA_CONSOLE, that also seems to avoid issues when the 
-non-generic drivers take over (that is what the code in the linked issue 
-does -- I haven't fully understood the problem there, but someone 
-deliberately added this, and I'd expect that they understood it enough 
-to say that this was necessary.
-
-If someone from Intel knows more, this information would be great to 
-have, so I can tell how much time to invest on fixing this for the 
-various platforms (if that is the source of the 400,000 interrupts per 
-second I'm seeing, then it gets higher priority than if it is only 
-relevant if someone activated text mode before).
-
-    Simon
