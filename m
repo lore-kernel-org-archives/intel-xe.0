@@ -4,56 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A56D8C83F22
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 13:40:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF008C83F22
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 14:01:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6789710E812;
-	Thu, 17 Jul 2025 13:40:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BY15E7oF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23B6310E80F
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 13:40:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752759612; x=1784295612;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HU7M9Wx+zrGwstUtL41KaufMG9Ox+W/ah7WdEBCdjrI=;
- b=BY15E7oFA+DFMvVtGNQpZ5SPDBxDDUkzgZqawwo54qTnxrehakU3q0W9
- IxpNHMv3DMM9mhxI1yb9Lb0oU039LHq2xgTC0mHN42D2FlXvkryioZtWr
- Gzxgkc7FVWOMVyQJX/YQawFaquLz4RuTKcrbIKzO9Ju0kOBp5sLnRBsuD
- n+90C8ZIO5iccKcf8bYOlXEw1oVB5osf1bRfhC8mfGz1Tpd67RGjxfvLN
- 04kIk3GokLe8RuKjZJPfFh6q0GJdu6KX9d028ulN7VSIeA83a+DW62F7d
- 5aucVx/O4QDKkHrgD7X50GIvpuxiySgkv4RyDJWpmVhsIox1rNd7OqnYS w==;
-X-CSE-ConnectionGUID: Xgeh/WE1QbC7bRrDYwtVew==
-X-CSE-MsgGUID: cJEe7yttSf+vjx/kuYmBEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="54251738"
-X-IronPort-AV: E=Sophos;i="6.16,319,1744095600"; d="scan'208";a="54251738"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2025 06:40:12 -0700
-X-CSE-ConnectionGUID: 8z90d93DT9ykFM+GBq5sFw==
-X-CSE-MsgGUID: kXpLuUhESviDaqpdEjvbrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,319,1744095600"; d="scan'208";a="162328412"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO fdugast-desk.home)
- ([10.245.244.35])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2025 06:40:11 -0700
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com,
-	Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v1 5/5] drm/pagemap: Allocate folios when possible
-Date: Thu, 17 Jul 2025 15:38:27 +0200
-Message-ID: <20250717133928.526111-6-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250717133928.526111-1-francois.dugast@intel.com>
-References: <20250717133928.526111-1-francois.dugast@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B795D10E819;
+	Thu, 17 Jul 2025 14:01:02 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE01210E810;
+ Thu, 17 Jul 2025 14:01:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_adl_auxcss_ci_run?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 17 Jul 2025 14:01:01 -0000
+Message-ID: <175276086196.169589.10996208614641538780@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250717130434.82251-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250717130434.82251-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,105 +35,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the order is greater than zero, allocate a folio when populating the
-RAM PFNs instead of allocating individual pages one after the other. For
-example if 2MB folios are used instead of 4KB pages, this reduces the
-number of calls to the allocation API by 512.
+== Series Details ==
 
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/drm_pagemap.c | 33 ++++++++++++++++++++++-----------
- 1 file changed, 22 insertions(+), 11 deletions(-)
+Series: adl auxcss ci run
+URL   : https://patchwork.freedesktop.org/series/151753/
+State : warning
 
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index de15d96f6393..4f67c6173ee5 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -438,6 +438,7 @@ EXPORT_SYMBOL_GPL(drm_pagemap_migrate_to_devmem);
-  * @src_mpfn: Source array of migrate PFNs
-  * @mpfn: Array of migrate PFNs to populate
-  * @addr: Start address for PFN allocation
-+ * @order: Page order
-  *
-  * This function populates the RAM migrate page frame numbers (PFNs) for the
-  * specified VM area structure. It allocates and locks pages in the VM area for
-@@ -452,35 +453,45 @@ static int drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
- 						unsigned long *mpages,
- 						unsigned long *src_mpfn,
- 						unsigned long *mpfn,
--						unsigned long addr)
-+						unsigned long addr,
-+						unsigned int order)
- {
- 	unsigned long i;
- 
--	for (i = 0; i < npages; ++i, addr += PAGE_SIZE) {
-+	for (i = 0; i < npages;) {
- 		struct page *page, *src_page;
- 
- 		if (!(src_mpfn[i] & MIGRATE_PFN_MIGRATE))
--			continue;
-+			goto next;
- 
- 		src_page = migrate_pfn_to_page(src_mpfn[i]);
- 		if (!src_page)
--			continue;
-+			goto next;
- 
- 		if (fault_page) {
- 			if (src_page->zone_device_data !=
- 			    fault_page->zone_device_data)
--				continue;
-+				goto next;
- 		}
- 
--		if (vas)
--			page = alloc_page_vma(GFP_HIGHUSER, vas, addr);
--		else
--			page = alloc_page(GFP_HIGHUSER);
-+		if (order) {
-+			page = folio_page(vma_alloc_folio(GFP_HIGHUSER | __GFP_ZERO,
-+							  order, vas, addr), 0);
-+		} else {
-+			if (vas)
-+				page = alloc_page_vma(GFP_HIGHUSER, vas, addr);
-+			else
-+				page = alloc_page(GFP_HIGHUSER);
-+		}
- 
- 		if (!page)
- 			goto free_pages;
- 
- 		mpfn[i] = migrate_pfn(page_to_pfn(page));
-+
-+next:
-+		i += 0x1 << order;
-+		addr += page_size(page);
- 	}
- 
- 	for (i = 0; i < npages; ++i) {
-@@ -554,7 +565,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
- 		goto err_free;
- 
- 	err = drm_pagemap_migrate_populate_ram_pfn(NULL, NULL, npages, &mpages,
--						   src, dst, 0);
-+						   src, dst, 0, 0);
- 	if (err || !mpages)
- 		goto err_finalize;
- 
-@@ -690,7 +701,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
- 
- 	err = drm_pagemap_migrate_populate_ram_pfn(vas, page, npages, &mpages,
- 						   migrate.src, migrate.dst,
--						   start);
-+						   start, 0);
- 	if (err)
- 		goto err_finalize;
- 
--- 
-2.43.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+43254c2aa575037fc031c7ac21b0d031c700b2bf
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6c7265b5a16156fc894fe3966c134b3213bcbe2b
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Thu Jul 17 14:04:33 2025 +0100
+
+    always flush
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
++ /mt/dim checkpatch 32c3655fcecb4e7e7dd624bf7b201ae69eb5bb5f drm-intel
+c53328ba7d75 drm/xe: Use emit_flush_imm_ggtt helper instead of open coding
+6c5e69007f04 drm/xe/xelpg: Flush CCS when flushing caches
+35bddb5a7f6c drm/xe: Flush L3 when flushing render cache
+-:19: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#19: FILE: drivers/gpu/drm/xe/instructions/xe_gpu_commands.h:48:
++#define   PIPE_CONTROL_FLUSH_L3                         (1<<30)
+                                                           ^
+
+total: 0 errors, 0 warnings, 1 checks, 23 lines checked
+e81868863175 drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+5d56c0731e19 drm/xe/xelp: Support auxccs invalidation on blitter
+9b76a264cd12 drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+ba4925c94f35 drm/xe/xelp: Wait for AuxCCS invalidation to complete
+5c6873a42e89 drm/xe/xelp: Add AuxCCS invalidation to the buffer migration path
+20c05b4b50ad drm/xe: Export xe_emit_aux_table_inv
+b7afaee56bdc drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+a286c7206a04 drm/xe: Use fb cached min alignment
+865718b99dc8 drm/xe: Flush GGTT writes after populating DPT
+-:72: WARNING:MEMORY_BARRIER: memory barrier without comment
+#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
++	wmb();
+
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+9e6c68fe3002 drm/xe: Handle DPT in system memory
+893b19f76dbd drm/xe: Force flush system memory AuxCCS framebuffers before scan out
+4905cb2166b1 drm/xe/display: Add support for AuxCCS
+3e092ea39e46 drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#10: 
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+
+total: 1 errors, 1 warnings, 0 checks, 12 lines checked
+6c7265b5a161 always flush
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:19: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#19: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:441:
++	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo))
++	    drm_clflush_sg(xe_bo_sg(bo));
+
+total: 0 errors, 2 warnings, 0 checks, 11 lines checked
+
 
