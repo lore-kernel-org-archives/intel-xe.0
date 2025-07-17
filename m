@@ -4,26 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF008C83F22
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 14:01:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AFD7C83F1A
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 14:02:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B795D10E819;
-	Thu, 17 Jul 2025 14:01:02 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE01210E810;
- Thu, 17 Jul 2025 14:01:01 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCA8210E828;
+	Thu, 17 Jul 2025 14:02:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="Pb8kTk2r";
+	dkim-atps=neutral
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FCF810E00B;
+ Thu, 17 Jul 2025 08:29:48 +0000 (UTC)
+Received: from [192.168.178.13] (business-24-134-207-61.pool2.vodafone-ip.de
+ [24.134.207.61])
+ (Authenticated sender: t.guttzeit@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 8BEB12FC0055;
+ Thu, 17 Jul 2025 10:29:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1752740986;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Hj1avtcoqxbKAMsm5imqqAwJOWRbcxAXTXB67LGPYEY=;
+ b=Pb8kTk2rxNIBFxjUq92sAMWNBCZC+HToOAWNOE6myhATk/kqLk1qOLnCnAEc74d/KOZif7
+ Ls4h4vIOGsbxHayK2ErT6egZLgDKxTdyEwEYffY2IwlTGpAZyMlOc/HlF7IORXUR4FdYhO
+ IXtgEnvJpJO7voYy1FHZUbS+nrO8zWI=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=t.guttzeit@tuxedocomputers.com
+ smtp.mailfrom=t.guttzeit@tuxedocomputers.com
+Message-ID: <3f9a6ad3-d892-4177-9b84-677b90d76e89@tuxedocomputers.com>
+Date: Thu, 17 Jul 2025 10:29:45 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_adl_auxcss_ci_run?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 17 Jul 2025 14:01:01 -0000
-Message-ID: <175276086196.169589.10996208614641538780@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250717130434.82251-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250717130434.82251-1-tvrtko.ursulin@igalia.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/1] drm/i915/display: Avoid unsupported 300Hz output
+ mode on a TUXEDO device
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ Werner Sembach <wse@tuxedocomputers.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250704192007.526044-1-wse@tuxedocomputers.com>
+ <20250704192007.526044-2-wse@tuxedocomputers.com>
+ <5998d67d-2096-4c93-b0b6-8af582d901ea@intel.com>
+Content-Language: en-US
+From: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>
+Organization: TUXEDO Computers
+In-Reply-To: <5998d67d-2096-4c93-b0b6-8af582d901ea@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 17 Jul 2025 14:02:06 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,79 +72,152 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: adl auxcss ci run
-URL   : https://patchwork.freedesktop.org/series/151753/
-State : warning
-
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-43254c2aa575037fc031c7ac21b0d031c700b2bf
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 6c7265b5a16156fc894fe3966c134b3213bcbe2b
-Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Date:   Thu Jul 17 14:04:33 2025 +0100
-
-    always flush
-    
-    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-+ /mt/dim checkpatch 32c3655fcecb4e7e7dd624bf7b201ae69eb5bb5f drm-intel
-c53328ba7d75 drm/xe: Use emit_flush_imm_ggtt helper instead of open coding
-6c5e69007f04 drm/xe/xelpg: Flush CCS when flushing caches
-35bddb5a7f6c drm/xe: Flush L3 when flushing render cache
--:19: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#19: FILE: drivers/gpu/drm/xe/instructions/xe_gpu_commands.h:48:
-+#define   PIPE_CONTROL_FLUSH_L3                         (1<<30)
-                                                           ^
-
-total: 0 errors, 0 warnings, 1 checks, 23 lines checked
-e81868863175 drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
-5d56c0731e19 drm/xe/xelp: Support auxccs invalidation on blitter
-9b76a264cd12 drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
-ba4925c94f35 drm/xe/xelp: Wait for AuxCCS invalidation to complete
-5c6873a42e89 drm/xe/xelp: Add AuxCCS invalidation to the buffer migration path
-20c05b4b50ad drm/xe: Export xe_emit_aux_table_inv
-b7afaee56bdc drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
-a286c7206a04 drm/xe: Use fb cached min alignment
-865718b99dc8 drm/xe: Flush GGTT writes after populating DPT
--:72: WARNING:MEMORY_BARRIER: memory barrier without comment
-#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
-+	wmb();
-
-total: 0 errors, 1 warnings, 0 checks, 66 lines checked
-9e6c68fe3002 drm/xe: Handle DPT in system memory
-893b19f76dbd drm/xe: Force flush system memory AuxCCS framebuffers before scan out
-4905cb2166b1 drm/xe/display: Add support for AuxCCS
-3e092ea39e46 drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
--:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
-#10: 
-done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
-
--:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#16: 
-		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-
-total: 1 errors, 1 warnings, 0 checks, 12 lines checked
-6c7265b5a161 always flush
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:19: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
-#19: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:441:
-+	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo))
-+	    drm_clflush_sg(xe_bo_sg(bo));
-
-total: 0 errors, 2 warnings, 0 checks, 11 lines checked
 
 
+Am 17.07.25 um 09:30 schrieb Murthy, Arun R:
+> 
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of 
+>> Werner
+>> Sembach
+>> Sent: Saturday, July 5, 2025 12:34 AM
+>> To: Jani Nikula <jani.nikula@linux.intel.com>; Vivi, Rodrigo
+>> <rodrigo.vivi@intel.com>; Joonas Lahtinen 
+>> <joonas.lahtinen@linux.intel.com>;
+>> Tvrtko Ursulin <tursulin@ursulin.net>; David Airlie <airlied@gmail.com>;
+>> Simona Vetter <simona@ffwll.ch>
+>> Cc: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>; Werner Sembach
+>> <wse@tuxedocomputers.com>; intel-gfx@lists.freedesktop.org; intel-
+>> xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-
+>> kernel@vger.kernel.org
+>> Subject: [RFC PATCH 1/1] drm/i915/display: Avoid unsupported 300Hz output
+>> mode on a TUXEDO device
+>>
+>> From: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>
+>>
+>> Removes all display modes with more than 240 Hz for the integrated 
+>> display on
+>> a TUXEDO Stellaris 16 Gen7, because using the iGPU with higer refresh 
+>> rates
+>> causes screen flicker.
+>>
+>> Signed-off-by: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>
+>> Co-developed-by: Werner Sembach <wse@tuxedocomputers.com>
+>> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp.c     |  5 ++++
+>>  drivers/gpu/drm/i915/display/intel_quirks.c | 30 +++++++++++++++++++++
+>> drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
+>>  3 files changed, 36 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+>> b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 640c43bf62d4c..5ce00cfe36ee1 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -1436,6 +1436,11 @@ intel_dp_mode_valid(struct drm_connector
+>> *_connector,
+>>      if (mode->clock < 10000)
+>>          return MODE_CLOCK_LOW;
+>>
+>> +    if (intel_has_quirk(display, QUIRK_EDP_MAX_240HZ_HOOK) &&
+>> +        intel_dp_is_edp(intel_dp) &&
+>> +        drm_mode_vrefresh(mode) > 240)
+>> +        return MODE_BAD;
+>> +
+> Adding a quirk for this is not the right approach. If this is not 
+> supported by the display, should have been pruned by the driver.
+> 
+
+Thank you for your reply. The panel (NE160QDM-NZL) supports 300 Hz and 
+advertises it. Also when running the system on its NVIDIA dGPU, it runs 
+perfectly fine without the flickering and on 300 Hz. On the iGPU, which 
+is apparently unable to support 300 Hz, it is not pruned, thus leading 
+to the flickering.
+
+Best regards,
+Tim Guttzeit
+
+> ------------->      fixed_mode = intel_panel_fixed_mode(connector, mode);
+>>      if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+>>          status = intel_panel_mode_valid(connector, mode); diff --git
+>> a/drivers/gpu/drm/i915/display/intel_quirks.c
+>> b/drivers/gpu/drm/i915/display/intel_quirks.c
+>> index a32fae510ed27..438ce2cb37a01 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+>> @@ -72,6 +72,12 @@ static void quirk_no_pps_backlight_power_hook(struct
+>> intel_display *display)
+>>      drm_info(display->drm, "Applying no pps backlight power 
+>> quirk\n");  }
+>>
+>> +static void quirk_edp_max_240hz_hook(struct intel_display *display) {
+>> +    intel_set_quirk(display, QUIRK_EDP_MAX_240HZ_HOOK);
+>> +    drm_info(display->drm, "Applying max 240Hz quirk\n"); }
+>> +
+>>  static void quirk_fw_sync_len(struct intel_dp *intel_dp)  {
+>>      struct intel_display *display = to_intel_display(intel_dp); @@ 
+>> -120,6
+>> +126,12 @@ static int intel_dmi_no_pps_backlight(const struct 
+>> dmi_system_id
+>> *id)
+>>      return 1;
+>>  }
+>>
+>> +static int intel_dmi_edp_max_240hz(const struct dmi_system_id *id) {
+>> +    DRM_INFO("Restrict output refreshrate to maximum 240Hz %s\n", id-
+>> >ident);
+>> +    return 1;
+>> +}
+>> +
+>>  static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>>      {
+>>          .dmi_id_list = &(const struct dmi_system_id[]) { @@ -166,6
+>> +178,24 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>>          },
+>>          .hook = quirk_no_pps_backlight_power_hook,
+>>      },
+>> +    {
+>> +        .dmi_id_list = &(const struct dmi_system_id[]) {
+>> +            {
+>> +                .callback = intel_dmi_edp_max_240hz,
+>> +                .ident = "TUXEDO Stellaris 16 Intel Gen7",
+>> +                .matches =
+>> {DMI_EXACT_MATCH(DMI_BOARD_NAME, "X6AR5xxY"),
+>> +                },
+>> +            },
+>> +            {
+>> +                .callback = intel_dmi_edp_max_240hz,
+>> +                .ident = "TUXEDO Stellaris 16 Intel Gen7",
+>> +                .matches =
+>> {DMI_EXACT_MATCH(DMI_BOARD_NAME, "X6AR5xxY_mLED"),
+>> +                },
+>> +            },
+>> +            { }
+>> +        },
+>> +        .hook = quirk_edp_max_240hz_hook,
+>> +    },
+>>  };
+>>
+>>  static struct intel_quirk intel_quirks[] = { diff --git
+>> a/drivers/gpu/drm/i915/display/intel_quirks.h
+>> b/drivers/gpu/drm/i915/display/intel_quirks.h
+>> index cafdebda75354..8fe3f3467106a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+>> @@ -20,6 +20,7 @@ enum intel_quirk_id {
+>>      QUIRK_LVDS_SSC_DISABLE,
+>>      QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
+>>      QUIRK_FW_SYNC_LEN,
+>> +    QUIRK_EDP_MAX_240HZ_HOOK,
+>>  };
+>>
+>>  void intel_init_quirks(struct intel_display *display);
+>> -- 
+>> 2.43.0
+> 
+> 
+> 
