@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72163C83F3B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A7C9C83F38
 	for <intel-xe@archiver.kernel.org>; Thu, 17 Jul 2025 21:52:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3634410E8B9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18D4910E8B6;
 	Thu, 17 Jul 2025 21:52:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="dNMPZGw9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="W5rEcxc/";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8C5B10E8B2
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 21:52:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5126E10E8B2
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 21:52:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=4bSuKZhvtcDNMzyrEB8ann9g2krJhAyRWBsBDB9NmBw=; b=dNMPZGw98YiXdVjGeD8eYv6S4/
- MQQH1Sv1uASK5vMVbMH5IpJ62goqGKZQGMTNH/+iayEfI2BCqX5m2/WigkJH1wXi4gt3FUhVOg+e2
- y9JmAiBZawffcbtlCBXJYkkKmgmAvUeScYlgWIZHdheHv6p4z5sTJ3v5Uz3dVcynjh2i3JIBwgZYK
- fI1Elp+RBOFsLRm9NgDwNOGvFudpRSC/1aLvKDYlZSgnDCiZ8RrR51GOnjB4sHky5UaY04t/EUtIZ
- r2C4uSBnCKoiDPZQgW5vvYGw8Hux0n6gEoMe2PYent2RRSjTI0U/0MfpPi+rLwnAz7dq8NBJlyKsr
- 6CDJhXfQ==;
+ bh=kmaa0/p5vSmvMPLgEGiCeqsU4kOyrUkG5PQgLFimYYE=; b=W5rEcxc/1X6a+lW8JgS3xWnFE5
+ hxS0vpq4OqoTCI7Nn5IdZdoGXCa8CC7CMUZ7W8TxYpeiMS78e15T+MRTGB1G8iRkzg9f2jxpuXUyq
+ u1NvAHuwjCYjGOcMtQq6HO5cDGWv9Jn7SUzXTRELsT4+vaDaEWfJ4hpu79o7jbwl023wIpJ1kDmCT
+ t9OlRcG+5lT7W5cmgVsiOWRnB/izwhNHywJxfvsbGdADEvgs4Ees4EI+n3CMXHYDTJ1Zn7CdtGujq
+ HQTpk2tSBeJ8tTwMwIiVwYp51GSpJRH/lfb9zy1fF0svj4g2jCdtk6uYhBZa4Jxv4/+BqFHgkHTK5
+ j0hqMUVw==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ucWWr-000JrI-7t
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 23:52:37 +0200
+ id 1ucWWs-000JrR-L1
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Jul 2025 23:52:38 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 10/17] drm/xe/xelp: Add AuxCCS invalidation to the indirect
- context workarounds
-Date: Thu, 17 Jul 2025 22:52:20 +0100
-Message-ID: <20250717215229.88140-11-tvrtko.ursulin@igalia.com>
+Subject: [CI 12/17] drm/xe: Flush GGTT writes after populating DPT
+Date: Thu, 17 Jul 2025 22:52:22 +0100
+Message-ID: <20250717215229.88140-13-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250717215229.88140-1-tvrtko.ursulin@igalia.com>
 References: <20250717215229.88140-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,100 +58,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Following from the i915 reference implementation, we add the AuxCCS
-invalidation to the indirect context workarounds page.
+When DPT is placed in stolen it is populated using ioremap_wc() via GGTT.
+
+I915 has established that on modern platforms a small flush and delay is
+required for those writes to reliably land so lets add the same logic
+(simplified by removing impossible platforms) to xe as well.
+
+v2:
+ * Do it only for system memory buffers.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 47 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 45 ++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 6d38411bdeba..0f32b096a292 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -25,6 +25,7 @@
- #include "xe_map.h"
- #include "xe_memirq.h"
- #include "xe_mmio.h"
-+#include "xe_ring_ops.h"
- #include "xe_sriov.h"
- #include "xe_trace_lrc.h"
- #include "xe_vm.h"
-@@ -76,6 +77,18 @@ lrc_to_xe(struct xe_lrc *lrc)
- static bool
- gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	/* AuxCCS invalidation */
-+	if (GRAPHICS_VERx100(xe) >= 1200 &&
-+	    GRAPHICS_VERx100(xe) <= 1210 &&
-+	    (class == XE_ENGINE_CLASS_RENDER ||
-+	     class == XE_ENGINE_CLASS_COMPUTE ||
-+	     class == XE_ENGINE_CLASS_COPY ||
-+	     class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	     class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
-+		return true;
-+
- 	return false;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 0f0fa4cdb2ea..6341ff6cf291 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -12,9 +12,11 @@
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
+ #include "intel_fbdev.h"
++#include "regs/xe_engine_regs.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
++#include "xe_mmio.h"
+ #include "xe_pm.h"
+ #include "xe_vram_types.h"
+ 
+@@ -79,6 +81,46 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
  }
  
-@@ -1014,6 +1027,31 @@ static ssize_t setup_utilization_wa(struct xe_lrc *lrc,
- 	return cmd - batch;
- }
- 
-+static ssize_t setup_invalidate_auxccs_wa(struct xe_lrc *lrc,
-+					  struct xe_hw_engine *hwe,
-+					  u32 *batch, size_t max_len)
++static void gt_flush_ggtt_writes(struct xe_gt *gt)
 +{
-+	struct xe_gt *gt = lrc->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	const unsigned int class = hwe->class;
-+	u32 *cmd;
++	if (!gt)
++		return;
 +
-+	if (GRAPHICS_VERx100(xe) < 1200 || GRAPHICS_VERx100(xe) > 1210 ||
-+	    !(class == XE_ENGINE_CLASS_RENDER ||
-+	      class == XE_ENGINE_CLASS_COMPUTE ||
-+	      class == XE_ENGINE_CLASS_COPY ||
-+	      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	      class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
-+		return 0;
-+
-+	if (xe_gt_WARN_ON(gt, max_len < 8))
-+		return -ENOSPC;
-+
-+	cmd = xe_emit_aux_table_inv(hwe, batch);
-+
-+	return cmd - batch;
++	xe_mmio_read32(&gt->mmio, RING_TAIL(RENDER_RING_BASE));
 +}
 +
- struct bo_setup {
- 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 			 u32 *batch, size_t max_size);
-@@ -1121,6 +1159,10 @@ static int
- setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- {
- 	static struct bo_setup rcs_funcs[] = {
-+		{ .setup = setup_invalidate_auxccs_wa },
-+	};
-+	static struct bo_setup xcs_funcs[] = {
-+		{ .setup = setup_invalidate_auxccs_wa },
- 	};
- 	struct bo_setup_state state = {
- 		.lrc = lrc,
-@@ -1137,6 +1179,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	    hwe->class == XE_ENGINE_CLASS_COMPUTE) {
- 		state.funcs = rcs_funcs;
- 		state.num_funcs = ARRAY_SIZE(rcs_funcs);
-+	} else if (hwe->class == XE_ENGINE_CLASS_COPY ||
-+		   hwe->class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+		   hwe->class == XE_ENGINE_CLASS_VIDEO_ENHANCE) {
-+		state.funcs = xcs_funcs;
-+		state.num_funcs = ARRAY_SIZE(xcs_funcs);
++static void ggtt_flush_writes(struct xe_ggtt *ggtt)
++{
++	struct xe_device *xe = tile_to_xe(ggtt->tile);
++
++	/*
++	 * No actual flushing is required for the GTT write domain for reads
++	 * from the GTT domain. Writes to it "immediately" go to main memory
++	 * as far as we know, so there's no chipset flush. It also doesn't
++	 * land in the GPU render cache.
++	 *
++	 * However, we do have to enforce the order so that all writes through
++	 * the GTT land before any writes to the device, such as updates to
++	 * the GATT itself.
++	 *
++	 * We also have to wait a bit for the writes to land from the GTT.
++	 * An uncached read (i.e. mmio) seems to be ideal for the round-trip
++	 * timing. This issue has only been observed when switching quickly
++	 * between GTT writes and CPU reads from inside the kernel on recent hw,
++	 * and it appears to only affect discrete GTT blocks (i.e. on LLC
++	 * system agents we cannot reproduce this behaviour, until Cannonlake
++	 * that was!).
++	 */
++
++	wmb();
++
++	if (xe_pm_runtime_get_if_active(xe)) {
++		gt_flush_ggtt_writes(ggtt->tile->primary_gt);
++		gt_flush_ggtt_writes(ggtt->tile->media_gt);
++		xe_pm_runtime_put(xe);
++	}
++}
++
+ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			       const struct i915_gtt_view *view,
+ 			       struct i915_vma *vma,
+@@ -162,6 +204,9 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 					  rot_info->plane[i].dst_stride);
  	}
  
- 	if (xe_gt_WARN_ON(lrc->gt, !state.funcs))
++	if (dpt->vmap.is_iomem && !xe_bo_is_vram(bo))
++		ggtt_flush_writes(tile0->mem.ggtt);
++
+ 	vma->dpt = dpt;
+ 	vma->node = dpt->ggtt_node[tile0->id];
+ 
 -- 
 2.48.0
 
