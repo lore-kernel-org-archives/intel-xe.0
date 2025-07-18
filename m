@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13423C83F17
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 22:15:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C588C83F17
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 22:20:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C346010E013;
-	Fri, 18 Jul 2025 22:15:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1421C10EA51;
+	Fri, 18 Jul 2025 22:20:19 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A9A710E013;
- Fri, 18 Jul 2025 22:15:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0055714961826619408=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 561BC10EA4F;
+ Fri, 18 Jul 2025 22:20:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_an_IS=5FERR?=
- =?utf-8?q?=28=29_vs_NULL_bug_in_xe=5Ftile=5Falloc=5Fvram=28=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Misc_refine_for?=
+ =?utf-8?q?_svm?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dan Carpenter" <dan.carpenter@linaro.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Jul 2025 22:15:21 -0000
-Message-ID: <175287692123.174289.4616096875105401326@1538d3639d33>
+Date: Fri, 18 Jul 2025 22:20:17 -0000
+Message-ID: <175287721734.174137.4843664577851404622@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <5449065e-9758-4711-b706-78771c0753c4@sabinyo.mountain>
-In-Reply-To: <5449065e-9758-4711-b706-78771c0753c4@sabinyo.mountain>
+References: <20250718212409.86516-2-shuicheng.lin@intel.com>
+In-Reply-To: <20250718212409.86516-2-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,90 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0055714961826619408==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix an IS_ERR() vs NULL bug in xe_tile_alloc_vram()
-URL   : https://patchwork.freedesktop.org/series/151840/
-State : success
+Series: drm/xe: Misc refine for svm
+URL   : https://patchwork.freedesktop.org/series/151842/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3441-a8e61e615995f6bc93361cf1752563140349517a_BAT -> xe-pw-151840v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63535c743231a7497a612c53f6edbb8a7d14412d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 49e2c2657f8a65705543bba543e6e1ddfc4ade6c
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Fri Jul 18 21:24:10 2025 +0000
 
-Summary
--------
+    drm/xe: Misc refine for svm
+    
+    in function xe_svm_handle_pagefault(), migrate_try_count is set to 3 when
+    ctx.devmem_only is true. If ctx.devmem_only is false, the try count is 1,
+    which means no retry. Remove the "!ctx.devmem_only" check for the retry
+    path.
+    
+    Below other changes should have no function effect.
+    1. Correct typo of "operation"in macro range_debug().
+    2. Combine 2 spin_lock() call in xe_svm_garbage_collector() into 1.
+    3. Remove preferred_region_is_vram check in xe_svm_range_needs_migrate_to_vram()
+       as it is already checked in the begin of this function.
+    4. Combine the devmem_possible check in xe_svm_handle_pagefault().
+    5. Combine 2 xe_vm_unlock() call in xe_svm_handle_pagefault() into 1.
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch 17cc1a17481ab5481b6cd9f01eb073a254b7a3b2 drm-intel
+49e2c2657f8a drm/xe: Misc refine for svm
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+3. Remove preferred_region_is_vram check in xe_svm_range_needs_migrate_to_vram()
 
-  **SUCCESS**
+-:31: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#31: FILE: drivers/gpu/drm/xe/xe_svm.c:53:
++#define range_debug(r__, operation__)					\
+ 	vm_dbg(&range_to_vm(&(r__)->base)->xe->drm,			\
+ 	       "%s: asid=%u, gpusvm=%p, vram=%d,%d, seqno=%lu, " \
+ 	       "start=0x%014lx, end=0x%014lx, size=%lu",		\
++	       (operation__), range_to_vm(&(r__)->base)->usm.asid,	\
+ 	       (r__)->base.gpusvm,					\
+ 	       xe_svm_range_in_vram((r__)) ? 1 : 0,			\
+ 	       xe_svm_range_has_vram_binding((r__)) ? 1 : 0,		\
 
-  No regressions found.
+BUT SEE:
 
-  
+   do {} while (0) advice is over-stated in a few situations:
 
-Participating hosts (8 -> 7)
-------------------------------
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-  Missing    (1): bat-adlp-vm 
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-Changes
--------
+   Enjoy this qualification while we work to improve our heuristics.
 
-  No changes found
+-:31: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'r__' - possible side-effects?
+#31: FILE: drivers/gpu/drm/xe/xe_svm.c:53:
++#define range_debug(r__, operation__)					\
+ 	vm_dbg(&range_to_vm(&(r__)->base)->xe->drm,			\
+ 	       "%s: asid=%u, gpusvm=%p, vram=%d,%d, seqno=%lu, " \
+ 	       "start=0x%014lx, end=0x%014lx, size=%lu",		\
++	       (operation__), range_to_vm(&(r__)->base)->usm.asid,	\
+ 	       (r__)->base.gpusvm,					\
+ 	       xe_svm_range_in_vram((r__)) ? 1 : 0,			\
+ 	       xe_svm_range_has_vram_binding((r__)) ? 1 : 0,		\
 
-
-Build changes
--------------
-
-  * Linux: xe-3441-a8e61e615995f6bc93361cf1752563140349517a -> xe-pw-151840v1
-
-  IGT_8468: 8468
-  xe-3441-a8e61e615995f6bc93361cf1752563140349517a: a8e61e615995f6bc93361cf1752563140349517a
-  xe-pw-151840v1: 151840v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151840v1/index.html
-
---===============0055714961826619408==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 1 warnings, 1 checks, 104 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix an IS_ERR() vs NULL bug in xe_tile_alloc_vram()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151840/">https://patchwork.freedesktop.org/series/151840/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151840v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151840v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3441-a8e61e615995f6bc93361cf1752563140349517a_BAT -&gt; xe-pw-151840v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3441-a8e61e615995f6bc93361cf1752563140349517a -&gt; xe-pw-151840v1</li>
-</ul>
-<p>IGT_8468: 8468<br />
-  xe-3441-a8e61e615995f6bc93361cf1752563140349517a: a8e61e615995f6bc93361cf1752563140349517a<br />
-  xe-pw-151840v1: 151840v1</p>
-
-</body>
-</html>
-
---===============0055714961826619408==--
