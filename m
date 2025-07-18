@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 700EDC83F34
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 23:28:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 466C1C83F17
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 23:37:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AB1F10E19B;
-	Fri, 18 Jul 2025 23:28:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06A7810EA4F;
+	Fri, 18 Jul 2025 23:37:11 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA63E10E19B;
- Fri, 18 Jul 2025 23:28:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6972653878563802837=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6569110EA4F;
+ Fri, 18 Jul 2025 23:37:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Misc_refine_for_s?=
- =?utf-8?q?vm?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Add_LFD_for?=
+ =?utf-8?q?mat_output_for_guc_log_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Jul 2025 23:28:46 -0000
-Message-ID: <175288132694.174137.10290316022609088799@1538d3639d33>
+Date: Fri, 18 Jul 2025 23:37:09 -0000
+Message-ID: <175288182939.174289.6974915431249237007@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250718212409.86516-2-shuicheng.lin@intel.com>
-In-Reply-To: <20250718212409.86516-2-shuicheng.lin@intel.com>
+References: <20250718231223.670188-1-zhanjun.dong@intel.com>
+In-Reply-To: <20250718231223.670188-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,49 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6972653878563802837==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Misc refine for svm
-URL   : https://patchwork.freedesktop.org/series/151842/
-State : success
+Series: drm/xe/guc: Add LFD format output for guc log (rev5)
+URL   : https://patchwork.freedesktop.org/series/146541/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3441-a8e61e615995f6bc93361cf1752563140349517a_BAT -> xe-pw-151842v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63535c743231a7497a612c53f6edbb8a7d14412d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a4e308a48d46bfe2d3a04a09e453372d3e43b30a
+Author: Zhanjun Dong <zhanjun.dong@intel.com>
+Date:   Fri Jul 18 19:12:23 2025 -0400
 
-Summary
--------
+    drm/xe/guc: Only add GuC crash dump if available
+    
+    Add GuC crash dump data empty check. LFD will only include crash dump
+    section when data is not empty.
+    
+    Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
++ /mt/dim checkpatch 17cc1a17481ab5481b6cd9f01eb073a254b7a3b2 drm-intel
+a57bf650c2e4 drm/xe/guc: Add log init config abi definitions
+-:11: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#11: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 107 lines checked
+e23777b7feac drm/xe/guc: Add LFD related abi definitions
+-:11: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#11: 
+new file mode 100644
 
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-151842v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3441-a8e61e615995f6bc93361cf1752563140349517a/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151842v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3441-a8e61e615995f6bc93361cf1752563140349517a -> xe-pw-151842v1
-
-  IGT_8468: 8468
-  xe-3441-a8e61e615995f6bc93361cf1752563140349517a: a8e61e615995f6bc93361cf1752563140349517a
-  xe-pw-151842v1: 151842v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151842v1/index.html
-
---===============6972653878563802837==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 282 lines checked
+1c1ec3af21ab drm/xe/guc: Add new debugfs entry for lfd format output
+8d81b9272da8 drm/xe/guc: Add GuC log init config in LFD format
+71dc7426a182 drm/xe/guc: Add GuC log event buffer output in LFD format
+a4e308a48d46 drm/xe/guc: Only add GuC crash dump if available
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Misc refine for svm</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151842/">https://patchwork.freedesktop.org/series/151842/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151842v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151842v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3441-a8e61e615995f6bc93361cf1752563140349517a_BAT -&gt; xe-pw-151842v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-151842v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3441-a8e61e615995f6bc93361cf1752563140349517a/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151842v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3441-a8e61e615995f6bc93361cf1752563140349517a -&gt; xe-pw-151842v1</li>
-</ul>
-<p>IGT_8468: 8468<br />
-  xe-3441-a8e61e615995f6bc93361cf1752563140349517a: a8e61e615995f6bc93361cf1752563140349517a<br />
-  xe-pw-151842v1: 151842v1</p>
-
-</body>
-</html>
-
---===============6972653878563802837==--
