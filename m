@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15921C83F3D
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 23:12:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB768C83F34
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 23:12:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA78E10EA5A;
-	Fri, 18 Jul 2025 23:12:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CB7C10EA52;
+	Fri, 18 Jul 2025 23:12:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mhUkR1GL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U/dZtAiX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4A1A10E19F
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 23:12:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1868010E19F
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 23:12:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1752880346; x=1784416346;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=INoqQ1Aqx8anve9gnT1TlErfYzybK8v/nfrrk/ZuE88=;
- b=mhUkR1GLCf8ENTKRcp5fuAzkPsJbNiXT/jKrRd0Xzt0UaEwfS8ARxbeW
- NjjSDxntbJqkSHhTCLedAliHCt+wVLMJQNzHMg/WUUwZgvKmYNdFR5TOz
- oEiPsfYJE/k3GXVveEsMJEzi+Er2sTCbkRCDIIniRBS/0ou5llDRz2p1O
- F9KMABHvWsweEllPmsJ2+gAdtKSEOENAPOPiZ3JyBpkPIFpKICXrInkJp
- cgC8gYbv9gxhwO7Qkv3NrOafF1n8NzsTWmKJiK28XGp3WgbuW4Iu216o5
- SGtLiBxxlj1ejLEetFOfV+c/gyf/22tDJwHc8QtpONUKDmhrWOS7ubgV5 g==;
-X-CSE-ConnectionGUID: oWZuq7lBQsW3IYC4UwHXnA==
-X-CSE-MsgGUID: a602zotDRsaUBpjm6iUelw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="58995568"
-X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="58995568"
+ bh=bvDVYICiA4rOj90bYudN7Yg8D2nC/s9yvVmPHtQjNcU=;
+ b=U/dZtAiXIrNcwgFLLx4gXqLq1phdp98muVxNcK+bvJnIUELRytlflF5J
+ vjqGAZAkVXHRm5PS/VjMjKuBYNbxjVhdMOsQR2rlZWQZqc5GiycApHQZH
+ NG24RCsi925kGkKhVV7o2RNrxgCNAkoBVNFmDdmHFvabKbSJFuTE4Dfhd
+ ghxvvG1ln/pFmUR+ER/+ybc+XD8BVb3ohuLpUkdE7Bn1oINhFXh2ShvV4
+ YXaJS0RvRJijqZGf2tRbJKh9dFzvGCVW6q8rY3BVnWEE3LDveTuM3hCjx
+ 4bgQlgL88sufT08HhLZsVdWJCEm+xnOfxf9SthPKaLAjYVFYrzG6+htYa A==;
+X-CSE-ConnectionGUID: FBYN0Q83QLCCoQGoK/rmRw==
+X-CSE-MsgGUID: kgHjj2eSTUGcScRmn0WUNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="58995570"
+X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="58995570"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Jul 2025 16:12:25 -0700
-X-CSE-ConnectionGUID: VR+KTYAzRSmZVm+J6uJ0eQ==
-X-CSE-MsgGUID: RzJ7FgDRRwGtaoZTk42uDA==
+X-CSE-ConnectionGUID: n6+XVz9DR3mPi4DP/+7R1Q==
+X-CSE-MsgGUID: fZChNgBXRC2b3TXhsN2S1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="163949096"
+X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="163949103"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
  by orviesa005.jf.intel.com with ESMTP; 18 Jul 2025 16:12:24 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v5 2/6] drm/xe/guc: Add LFD related abi definitions
-Date: Fri, 18 Jul 2025 19:12:19 -0400
-Message-Id: <20250718231223.670188-3-zhanjun.dong@intel.com>
+Subject: [PATCH v5 4/6] drm/xe/guc: Add GuC log init config in LFD format
+Date: Fri, 18 Jul 2025 19:12:21 -0400
+Message-Id: <20250718231223.670188-5-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250718231223.670188-1-zhanjun.dong@intel.com>
 References: <20250718231223.670188-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,302 +65,257 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add GuC LFD (Log Format Descriptors) related ABI definitions.
+Add support to output GuC log init config (LIC) in LFD format.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_lfd_abi.h | 282 +++++++++++++++++++++++++++
- 1 file changed, 282 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/abi/guc_lfd_abi.h
+ drivers/gpu/drm/xe/xe_guc_log.c | 204 ++++++++++++++++++++++++++++++++
+ 1 file changed, 204 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_lfd_abi.h b/drivers/gpu/drm/xe/abi/guc_lfd_abi.h
-new file mode 100644
-index 000000000000..b6888ab47e25
---- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/guc_lfd_abi.h
-@@ -0,0 +1,282 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index d2256773aaf3..2258d73d9c24 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -7,6 +7,7 @@
+ 
+ #include <linux/fault-inject.h>
+ 
++#include <linux/utsname.h>
+ #include <drm/drm_managed.h>
+ 
+ #include "abi/guc_lfd_abi.h"
+@@ -20,12 +21,67 @@
+ #include "xe_mmio.h"
+ #include "xe_module.h"
+ 
++/* LFD supported LIC type range */
++#define GUC_LOG_LIC_TYPE_FIRST	(GUC_LIC_TYPE_GUC_SW_VERSION)
++#define GUC_LOG_LIC_TYPE_LAST	(GUC_LIC_TYPE_BUILD_PLATFORM_ID)
 +
-+#ifndef _ABI_GUC_LFD_ABI_H_
-+#define _ABI_GUC_LFD_ABI_H_
++#define GUC_LOG_BUFFER_STATE_HEADER_LENGTH		4096
++#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_LOG		0
++#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_CRASH		1
++#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_CAPTURE	2
++#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_INIT		3
++#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT		4
 +
-+#include <linux/types.h>
++#define GUC_LFD_BUFFER_SIZE	SZ_1K
 +
-+#include "guc_lic_abi.h"
-+
-+/* Magic keys define */
-+#define GUC_LFD_DRIVER_KEY_STREAMING		0x8086AAAA474C5346
-+#define GUC_LFD_LOG_BUFFER_MARKER_2		0xDEADFEED
-+#define GUC_LFD_CRASH_DUMP_BUFFER_MARKER_2	0x8086DEAD
-+#define GUC_LFD_STATE_CAPTURE_BUFFER_MARKER_2	0xBEEFFEED
-+#define GUC_LFD_LOG_BUFFER_MARKER_1V2		0xCABBA9E6
-+#define GUC_LFD_STATE_CAPTURE_BUFFER_MARKER_1V2	0xCABBA9F7
-+#define GUC_LFD_DATA_HEADER_MAGIC		0x8086
-+
-+/* The current major version of GuC-Log-File format. */
-+#define GUC_LFD_FORMAT_VERSION_MAJOR		0x0001
-+/* The current minor version of GuC-Log-File format. */
-+#define GUC_LFD_FORMAT_VERSION_MINOR		0x0000
-+
-+/** enum guc_lfd_type - Log format descriptor type */
-+enum guc_lfd_type {
-+	/**
-+	 * @GUC_LFD_TYPE_FW_REQUIRED_RANGE_START: Start of range for
-+	 * required LFDs from GuC
-+	 */
-+	GUC_LFD_TYPE_FW_REQUIRED_RANGE_START = 0x1,
-+	/**
-+	 * @GUC_LFD_TYPE_FW_VERSION: GuC Firmware Version structure. LFDs
-+	 * payload is guc_lfd_data_fw_version
-+	 */
-+	GUC_LFD_TYPE_FW_VERSION = GUC_LIC_TYPE_GUC_SW_VERSION,
-+	/**
-+	 * @GUC_LFD_TYPE_GUC_DEVICE_ID: GuC microcontroller device ID.
-+	 * LFDs payload is guc_lfd_data_guc_devid
-+	 */
-+	GUC_LFD_TYPE_GUC_DEVICE_ID = GUC_LIC_TYPE_GUC_DEVICE_ID,
-+	/**
-+	 * @GUC_LFD_TYPE_TSC_FREQUENCY: Frequency of GuC timestamps. LFDs
-+	 * payload is guc_lfd_data_tsc_freq
-+	 */
-+	GUC_LFD_TYPE_TSC_FREQUENCY = GUC_LIC_TYPE_TSC_FREQUENCY,
-+	/**
-+	 * @GUC_LFD_TYPE_GMD_ID: HW GMD ID. LFDs payload is
-+	 * guc_lfd_data_gmdid
-+	 */
-+	GUC_LFD_TYPE_GMD_ID = GUC_LIC_TYPE_GMD_ID,
-+	/**
-+	 * @GUC_LFD_TYPE_BUILD_PLATFORM_ID: GuC build platform ID. LFDs
-+	 * payload is guc_lfd_data_build_platformid
-+	 */
-+	GUC_LFD_TYPE_BUILD_PLATFORM_ID = GUC_LIC_TYPE_BUILD_PLATFORM_ID,
-+	/** @GUC_LFD_TYPE_FW_REQUIRED_RANGE_END: End of this range */
-+	GUC_LFD_TYPE_FW_REQUIRED_RANGE_END = 0x1FFF,
-+	/**
-+	 * @GUC_LFD_TYPE_FW_OPTIONAL_RANGE_START: Start of range for
-+	 * required LFDs from GuC
-+	 */
-+	GUC_LFD_TYPE_FW_OPTIONAL_RANGE_START = 0x2000,
-+	/**
-+	 * @GUC_LFD_TYPE_LOG_EVENTS_BUFFER: Log-event-entries buffer. LFDs
-+	 * payload is guc_lfd_data_log_events_buf
-+	 */
-+	GUC_LFD_TYPE_LOG_EVENTS_BUFFER = 0x2000,
-+	/**
-+	 * @GUC_LFD_TYPE_FW_CRASH_DUMP: GuC generated crash-dump blob.
-+	 * LFDs payload is guc_lfd_data_fw_crashdump
-+	 */
-+	GUC_LFD_TYPE_FW_CRASH_DUMP = 0x2001,
-+	/** @GUC_LFD_TYPE_FW_OPTIONAL_RANGE_END: End of this range */
-+	GUC_LFD_TYPE_FW_OPTIONAL_RANGE_END = 0x3FFF,
-+	/**
-+	 * @GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START: Start of range for
-+	 * required KMD LFDs
-+	 */
-+	GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START = 0x4000,
-+	/**
-+	 * @GUC_LFD_TYPE_OS_ID: An identifier for the OS. LFDs payload is
-+	 * guc_lfd_data_os_id
-+	 */
-+	GUC_LFD_TYPE_OS_ID = 0x4000,
-+	/** @GUC_LFD_TYPE_KMD_REQUIRED_RANGE_END: End of this range */
-+	GUC_LFD_TYPE_KMD_REQUIRED_RANGE_END = 0x5FFF,
-+	/**
-+	 * @GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_START: Start of range for
-+	 * optional KMD LFDs
-+	 */
-+	GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_START = 0x6000,
-+	/**
-+	 * @GUC_LFD_TYPE_BINARY_SCHEMA_FORMAT: Binary representation of
-+	 * GuC log-events schema. LFDs TLV payload is
-+	 * guc_lfd_data_binary_schema
-+	 */
-+	GUC_LFD_TYPE_BINARY_SCHEMA_FORMAT = 0x6000,
-+	/**
-+	 * @GUC_LFD_TYPE_HOST_COMMENT: ASCII string containing comments
-+	 * from the host/KMD. LFDs TLV payload is
-+	 * guc_lfd_data_host_comment
-+	 */
-+	GUC_LFD_TYPE_HOST_COMMENT = 0x6001,
-+	/** @GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_END: End of this range */
-+	GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_END = 0x7FFF,
-+	/** @GUC_LFD_TYPE_RESERVED_RANGE_START: Start of reserved range */
-+	GUC_LFD_TYPE_RESERVED_RANGE_START = 0x8000,
-+	/** @GUC_LFD_TYPE_RESERVED_RANGE_END: End of this range */
-+	GUC_LFD_TYPE_RESERVED_RANGE_END = 0xFFFF,
++struct guc_log_buffer_entry_list {
++	u32 offset;
++	u32 rd_ptr;
++	u32 wr_ptr;
++	u32 buf_size;
 +};
 +
-+/** enum guc_lfd_os_type - OS Type LFD-ID */
-+enum guc_lfd_os_type {
-+	/** @GUC_LFD_OS_TYPE_OSID_WIN: Windows OS */
-+	GUC_LFD_OS_TYPE_OSID_WIN = 0x1,
-+	/** @GUC_LFD_OS_TYPE_OSID_LIN: Linux OS */
-+	GUC_LFD_OS_TYPE_OSID_LIN = 0x2,
-+	/** @GUC_LFD_OS_TYPE_OSID_VMW: VMWare OS */
-+	GUC_LFD_OS_TYPE_OSID_VMW = 0x3,
-+	/** @GUC_LFD_OS_TYPE_OSID_OTHER: Other */
-+	GUC_LFD_OS_TYPE_OSID_OTHER = 0x4,
++struct guc_log_init_config_save {
++	u32 version;
++	/*
++	 * Array of init config KLVs.
++	 * Range from GUC_LOG_LIC_TYPE_FIRST to GUC_LOG_LIC_TYPE_LAST
++	 */
++	u32 KLV[GUC_LOG_LIC_TYPE_LAST - GUC_LOG_LIC_TYPE_FIRST + 1];
++	struct guc_log_buffer_entry_list entry[GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT];
 +};
 +
-+/**
-+ * struct guc_lfd_data - Log format descriptor (LFD).
-+ * A type of KLV with custom field-sizes + magic numbers.
-+ */
-+struct guc_lfd_data {
-+	/** @dw0: A 32 bits dword, contains multiple bit fields */
-+	u32 dw0;
-+	/*
-+	 * Expected value: GUC_LFD_DATA_HEADER_MAGIC.
-+	 * Helpful in detecting file errors.
-+	 */
-+#define GUC_LFD_DATA_MAGIC		GENMASK(15, 0)
-+	/*
-+	 * File descriptor type (the 'T' in TLV) is used to identify how
-+	 * to interpret `data` below. For the range of types, see
-+	 * guc_lfd_type
-+	 */
-+#define GUC_LFD_DATA_DESC_TYPE		GENMASK(31, 16)
-+	/** @dw_size: Number of dwords the `data` field contains. */
-+	u32 dw_size;
-+	/** @data: Data defined by File descriptor type. */
-+	u32 data[] __counted_by(dw_size);
-+} __packed;
++static const struct guc_lfd_data default_guc_lfd_data = {
++	.dw0 = FIELD_PREP_CONST(GUC_LFD_DATA_MAGIC, GUC_LFD_DATA_HEADER_MAGIC)
++};
 +
-+/**
-+ * struct guc_lfd_version - GuC Log File Format Version.
-+ * Major-Minor is not a fractional number (i.e. Ver 1.3 would be older
-+ * than 1.12)
-+ */
-+struct guc_lfd_version {
-+	/** @dw0: A 32 bits dword, contains multiple bit fields */
-+	u32 dw0;
-+	/*
-+	 * Guc-Log-File Format minor version. Must be
-+	 * GUC_LOG_FILE_FORMAT_VERSION_MINOR
-+	 */
-+#define GUC_LFD_VERSION_MINOR	GENMASK(15, 0)
-+	/*
-+	 * Guc-Log-File Format major version. Must be
-+	 * GUC_LOG_FILE_FORMAT_VERSION_MAJOR
-+	 */
-+#define GUC_LFD_VERSION_MAJOR	GENMASK(31, 16)
-+} __packed;
+ static const struct guc_lfd_file_header default_guc_lfd_file_header = {
+ 	.magic = GUC_LFD_DRIVER_KEY_STREAMING,
+ 	.version.dw0 = FIELD_PREP_CONST(GUC_LFD_VERSION_MINOR, GUC_LFD_FORMAT_VERSION_MINOR) |
+ 		       FIELD_PREP_CONST(GUC_LFD_VERSION_MAJOR, GUC_LFD_FORMAT_VERSION_MAJOR)
+ };
+ 
++static struct guc_log_buffer_entry_markers {
++	u32 key[2];
++} const entry_markers[4] = {
++	{{
++		GUC_LFD_LOG_BUFFER_MARKER_1V2,
++		GUC_LFD_LOG_BUFFER_MARKER_2
++	}},
++	{{
++		GUC_LFD_LOG_BUFFER_MARKER_1V2,
++		GUC_LFD_CRASH_DUMP_BUFFER_MARKER_2
++	}},
++	{{
++		GUC_LFD_STATE_CAPTURE_BUFFER_MARKER_1V2,
++		GUC_LFD_STATE_CAPTURE_BUFFER_MARKER_2
++	}},
++	{{
++		GUC_LIC_MAGIC,
++		((GUC_LIC_FORMAT_VERSION_MAJOR << 16) | GUC_LIC_FORMAT_VERSION_MINOR)
++	}}
++};
 +
-+/**
-+ * struct guc_lfd_data_guc_devid - GuC Device ID.
-+ * This is mandatory fw LFD data
-+ */
-+struct guc_lfd_data_guc_devid {
-+	/**
-+	 * @guc_devid: GuC microcontroller device ID defined as described
-+	 * in GUC_LIC_TYPE_GUC_DEVICE_ID
-+	 */
-+	u32 guc_devid;
-+} __packed;
+ static struct xe_guc *
+ log_to_guc(struct xe_guc_log *log)
+ {
+@@ -223,15 +279,163 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
+ 	}
+ }
+ 
++static int xe_guc_log_add_lfd_header(void *buf, int buf_size)
++{
++	int len = sizeof(default_guc_lfd_data);
 +
-+/**
-+ * struct guc_lfd_data_tsc_freq - GuC TSC Fequency.
-+ * This is mandatory fw LFD data
-+ */
-+struct guc_lfd_data_tsc_freq {
-+	/**
-+	 * @tsc_freq: GuC timestamp counter frequency as described in
-+	 * GUC_LIC_TYPE_TSC_FREQUENCY
-+	 */
-+	u32 tsc_freq;
-+} __packed;
++	memcpy(buf, &default_guc_lfd_data, len);
++	return len;
++}
 +
-+/** struct guc_lfd_data_gmdid - GMD ID. */
-+struct guc_lfd_data_gmdid {
-+	/** @gmd_id: GMD ID as described in GUC_LIC_TYPE_GMD_ID */
-+	u32 gmd_id;
-+} __packed;
++static int xe_guc_log_add_payload(void *buf, int buf_size, u32 data_len, void *data)
++{
++	struct guc_lfd_data *lfd = buf;
 +
-+/** struct guc_lfd_data_build_platformid - GuC build platform ID. */
-+struct guc_lfd_data_build_platformid {
-+	/**
-+	 * @platform_build_id: GuC build platform ID as described in
-+	 * GUC_LIC_TYPE_BUILD_PLATFORM_ID
-+	 */
-+	u32 platform_build_id;
-+} __packed;
++	/* make length DW aligned */
++	lfd->dw_size = DIV_ROUND_UP(data_len, sizeof(u32));
++	memcpy(lfd->data, data, data_len);
++	return lfd->dw_size * sizeof(u32);
++}
 +
-+/**
-+ * struct guc_lfd_data_log_events_buf - GuC Log Events Buffer.
-+ * This is optional fw LFD data
-+ */
-+struct guc_lfd_data_log_events_buf {
-+	/**
-+	 * @log_events_format_version: version of GuC log format of buffer
-+	 */
-+	u32 log_events_format_version;
-+	/**
-+	 * @log_format_buf: If `log_format_version` == 1, array of
-+	 * guc_log_format_version_1. If `log_format_version` == 2, array
-+	 * of guc_log_format_version_2. Dword size determined by
-+	 * guc_logfile_lfd.`desc_dw_size` - 1
-+	 */
-+	u32 log_format_buf[];
-+} __packed;
++static int xe_guc_log_add_typed_payload(void *buf, int buf_size, u32 type,
++					u32 data_len, void *data)
++{
++	struct guc_lfd_data *lfd = buf;
++	int index;
 +
-+/**
-+ * struct guc_lfd_data_os_info - OS Version Information.
-+ * This is mandatory host LFD data
-+ */
-+struct guc_lfd_data_os_info {
-+	/**
-+	 * @os_id: enum values to identify the OS brand (1=Windows,
-+	 * 2=Linux, etc..). See guc_lfd_os_type for the range of types
-+	 */
-+	u32 os_id;
-+	/**
-+	 * @build_version: ASCII string containing OS build version
-+	 * information based on os_id. String is padded with null
-+	 * characters to ensure its DWORD aligned. Dword size determined
-+	 * by guc_logfile_lfd.`desc_dw_size` - 1
-+	 */
-+	char build_version[];
-+} __packed;
++	index = xe_guc_log_add_lfd_header(buf, buf_size);
++	lfd->dw0 |= FIELD_PREP(GUC_LFD_DATA_DESC_TYPE, type);
++	index += xe_guc_log_add_payload(buf, buf_size, data_len, data);
 +
-+/**
-+ * struct guc_lfd_data_fw_version - GuC FW Version.
-+ * This is mandatory fw LFD data
-+ */
-+struct guc_lfd_data_fw_version {
-+	/**
-+	 * @guc_sw_version: The full version of the GuC microkernel that
-+	 * generated the logs as described in
-+	 * GUC_LIC_TYPE_GUC_SW_VERSION.
-+	 */
-+	struct guc_sw_version guc_sw_version;
-+} __packed;
++	return index;
++}
 +
-+/**
-+ * struct guc_logfile_header - Header of GuC Log Streaming-LFD-File Format.
-+ * This structure encapsulates the layout of the guc-log-file format
-+ */
-+struct guc_lfd_file_header {
-+	/**
-+	 * @magic: A magic number set by producer of a GuC log file to
-+	 * identify that file is a valid guc-log-file containing a stream
-+	 * of LFDs: Expected value: GUC_LFD_DRIVER_KEY_STREAMING
-+	 */
-+	u64 magic;
-+	/**
-+	 * @version: Version of this file format layout as per
-+	 * guc_lfd_version
-+	 */
-+	struct guc_lfd_version version;
-+	/**
-+	 * @lfd_stream: A stream of one or more guc_lfd_data LFD data
-+	 */
-+	struct guc_lfd_data lfd_stream;
-+} __packed;
++static inline int lic_type_to_KLV_index(u32 lic_type)
++{
++	XE_WARN_ON(lic_type < GUC_LOG_LIC_TYPE_FIRST || lic_type > GUC_LOG_LIC_TYPE_LAST);
 +
-+#endif
++	return lic_type - GUC_LOG_LIC_TYPE_FIRST;
++}
++
++static int xe_guc_log_add_klv(void *buf, int size, u32 lic_type,
++			      struct guc_log_init_config_save *config)
++{
++	int klv_index = lic_type_to_KLV_index(lic_type);
++
++	return xe_guc_log_add_typed_payload(buf, size, lic_type, sizeof(u32),
++					    &config->KLV[klv_index]);
++}
++
++static int xe_guc_log_add_os_id(void *buf, int buf_size, u32 id)
++{
++	struct guc_lfd_data *lfd = buf;
++	struct guc_lfd_data_os_info *os_id;
++	char *version;
++	int info_len;
++
++	os_id = (void *)lfd->data;
++	os_id->os_id = id;
++
++	version = init_utsname()->release;
++	info_len = strnlen(version, buf_size) + 1;
++
++	if (buf_size < sizeof(struct guc_lfd_data) + info_len)
++		return -ENOMEM;
++
++	strscpy(os_id->build_version, version, info_len);
++	return xe_guc_log_add_typed_payload(buf, buf_size, GUC_LFD_TYPE_OS_ID,
++					    info_len + sizeof(*os_id), os_id);
++}
++
++static void xe_guc_log_loop_log_init(struct guc_log_init_config *init,
++				     struct guc_log_init_config_save *config)
++{
++	struct guc_klv_generic_dw_t *p = (void *)init->data;
++	int i;
++
++	for (i = 0; i < init->dw_size;) {
++		int klv_len = FIELD_GET(GUC_KLV_0_LEN, p->kl) + 1;
++		int key = FIELD_GET(GUC_KLV_0_KEY, p->kl);
++
++		if (key < GUC_LOG_LIC_TYPE_FIRST || key > GUC_LOG_LIC_TYPE_LAST)
++			break;
++		config->KLV[lic_type_to_KLV_index(key)] = p->value;
++		i += klv_len;
++		p = (void *)((u32 *)p + klv_len);
++	}
++}
++
++static void xe_guc_log_load_lic(void *guc_log, struct guc_log_init_config_save *config)
++{
++	u32 offset = GUC_LOG_BUFFER_STATE_HEADER_LENGTH;
++	struct guc_log_buffer_state *p = guc_log;
++	int i = 0;
++
++	config->version = p->version;
++	while (p) {
++		for (i = 0; i < GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT; i++) {
++			if (p->marker[0] == entry_markers[i].key[0] &&
++			    p->marker[1] == entry_markers[i].key[1]) {
++				config->entry[i].offset = offset;
++				config->entry[i].rd_ptr = p->read_ptr;
++				config->entry[i].wr_ptr = p->write_ptr;
++				config->entry[i].buf_size = p->size;
++
++				if (i != GUC_LOG_BUFFER_STATE_HEADER_ENTRY_INIT) {
++					offset += p->size;
++					p++;
++				} else {
++					/* Load log init config */
++					xe_guc_log_loop_log_init((void *)p, config);
++
++					/* Init config is the last */
++					return;
++				}
++			}
++		}
++		if (i >= GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT)
++			break;
++	}
++}
++
++static int
++xe_guc_log_output_lfd_init(struct drm_printer *p, struct xe_guc_log_snapshot *snapshot,
++			   struct guc_log_init_config_save *config)
++{
++	int type, len;
++	size_t size = 0;
++	char buf[GUC_LFD_BUFFER_SIZE] = {0};
++
++	/* FW required types */
++	for (type = GUC_LOG_LIC_TYPE_FIRST; type <= GUC_LOG_LIC_TYPE_LAST; type++)
++		size += xe_guc_log_add_klv(&buf[size], GUC_LFD_BUFFER_SIZE - size, type, config);
++
++	/* KMD required type(s) */
++	len = xe_guc_log_add_os_id(&buf[size], GUC_LFD_BUFFER_SIZE - size,
++				   GUC_LFD_OS_TYPE_OSID_LIN);
++	if (len < 0)
++		return len;
++	size += len;
++
++	xe_print_blob_ascii85(p, NULL, 0, buf, 0, size);
++	return size;
++}
++
+ static void
+ xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
+ {
++	struct guc_log_init_config_save config;
++
+ 	if (!snapshot || !snapshot->size)
+ 		return;
+ 
+ 	/* Output LFD file header */
+ 	xe_print_blob_ascii85(p, "[LOG].data", 0, &default_guc_lfd_file_header, 0,
+ 			      offsetof(struct guc_lfd_file_header, lfd_stream));
++
++	/* Output LFD stream */
++	xe_guc_log_load_lic(snapshot->copy[0], &config);
++	xe_guc_log_output_lfd_init(p, snapshot, &config);
+ }
+ 
+ /**
 -- 
 2.34.1
 
