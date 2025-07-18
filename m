@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4DA4C83F17
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 22:46:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8ED4C83F17
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 23:12:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6483410E013;
-	Fri, 18 Jul 2025 22:46:56 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3203F10E013;
- Fri, 18 Jul 2025 22:46:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3735408682016769094=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5186910E19F;
+	Fri, 18 Jul 2025 23:12:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5fI37m6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31D1610EA52
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 23:12:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752880346; x=1784416346;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=p71ck+R6dPUWDoWygEI2CUvwCDbKBQ8fvIBzSuciC9U=;
+ b=C5fI37m6b6o5EcuSwwltM0/6JfaUE+3Et7/vZgGv7GzAaPhY2MqwNt07
+ n+hLdlx3JTIPOPS5YsfaWXhRuHJ2/LC/6xQPL0dElqJFjBsFfag/h4CoQ
+ ve4uMsaLfmuY4chN069y9vqKOtK1ZjOrxHQtGIMYXH0myOXcXwQ9wDjdd
+ POXkQAhN+D6aU1aFoyg6gVOZLmLgyZ/R/uLMVp3MsFh7XdXL2RO+J15fW
+ Bya238Ivz6SKjgFcurcYbKqCRtqBxKOVVziHNxzzDcsggRJxbnK2/3zLq
+ IBmsdPY+JOAEmEVeYv4glcXun58E3lZkGknBLwZyLi7rzOB2Z1UijMyr0 A==;
+X-CSE-ConnectionGUID: 9hbx/BWGTCuHgs35sGV4MA==
+X-CSE-MsgGUID: MTVynU5JQLuLuLbJUHUYuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="58995572"
+X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="58995572"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2025 16:12:25 -0700
+X-CSE-ConnectionGUID: em9Bs7YFSvKNnxc0GPBGVg==
+X-CSE-MsgGUID: Nv6ZUhBtRqGqbV27IJFbyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="163949109"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by orviesa005.jf.intel.com with ESMTP; 18 Jul 2025 16:12:25 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v5 6/6] drm/xe/guc: Only add GuC crash dump if available
+Date: Fri, 18 Jul 2025 19:12:23 -0400
+Message-Id: <20250718231223.670188-7-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250718231223.670188-1-zhanjun.dong@intel.com>
+References: <20250718231223.670188-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_Prepare_GPU_SVM_for_migrat?=
- =?utf-8?q?ion_of_THP?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Jul 2025 22:46:55 -0000
-Message-ID: <175287881519.174137.304838183177484802@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250717133928.526111-1-francois.dugast@intel.com>
-In-Reply-To: <20250717133928.526111-1-francois.dugast@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +62,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3735408682016769094==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add GuC crash dump data empty check. LFD will only include crash dump
+section when data is not empty.
 
-== Series Details ==
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_log.c | 60 +++++++++++++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
-Series: Prepare GPU SVM for migration of THP
-URL   : https://patchwork.freedesktop.org/series/151754/
-State : failure
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index e4ee67a9aa28..6331282a438a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -502,6 +502,65 @@ xe_guc_log_add_log_event(struct drm_printer *p, struct xe_guc_log_snapshot *snap
+ 	return size;
+ }
+ 
++static int
++xe_guc_log_add_crash_dump(struct drm_printer *p, struct xe_guc_log_snapshot *snapshot,
++			  struct guc_log_init_config_save *config)
++{
++	struct guc_log_buffer_entry_list *entry;
++	int chunk_from, chunk_id, to_chunk_id;
++	int pos, from, to;
++	size_t size = 0;
++	char buf[GUC_LFD_BUFFER_SIZE] = {0};
++
++	entry = &config->entry[GUC_LOG_BUFFER_STATE_HEADER_ENTRY_CRASH];
++
++	/* Skip zero sized crash dump */
++	if (!entry->buf_size)
++		return 0;
++
++	/* Check if crash dump section are all zero */
++	from = entry->offset;
++	to = entry->offset + entry->buf_size;
++	chunk_from = from % GUC_LOG_CHUNK_SIZE;
++	chunk_id = from / GUC_LOG_CHUNK_SIZE;
++	to_chunk_id = to / GUC_LOG_CHUNK_SIZE;
++	pos = from;
++
++	do {
++		size_t size = (to_chunk_id > chunk_id ? GUC_LOG_CHUNK_SIZE : to) - chunk_from;
++		u32 *buf32 = snapshot->copy[chunk_id] + chunk_from;
++		int i;
++
++		for (i = 0; i < size / sizeof(u32); i++)
++			if (buf32[i])
++				break;
++		if (i < size / sizeof(u32)) {
++			pos += i * sizeof(u32) - chunk_from;
++			break;
++		}
++		pos += size;
++		chunk_id++;
++		chunk_from = 0;
++	} while (pos < to);
++
++	/* Buffer has non-zero data? */
++	if (pos < to) {
++		struct guc_lfd_data *lfd = (void *)buf;
++
++		size = xe_guc_log_add_lfd_header(buf, GUC_LFD_BUFFER_SIZE);
++		lfd->dw0 |= FIELD_PREP(GUC_LFD_DATA_DESC_TYPE, GUC_LFD_TYPE_FW_CRASH_DUMP);
++		/* Calculate data length */
++		lfd->dw_size = DIV_ROUND_UP(entry->buf_size, sizeof(u32));
++		/* Output GUC_LFD_TYPE_FW_CRASH_DUMP header */
++		xe_print_blob_ascii85(p, NULL, 0, buf, 0, size);
++
++		/* rd/wr ptr is not used for crash dump */
++		xe_guc_log_print_over_chunks(p, snapshot, entry->offset,
++					     entry->offset + entry->buf_size);
++	}
++	return size;
++}
++
+ static void
+ xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
+ {
+@@ -522,6 +581,7 @@ xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_p
+ 		return;
+ 
+ 	xe_guc_log_add_log_event(p, snapshot, &config);
++	xe_guc_log_add_crash_dump(p, snapshot, &config);
+ }
+ 
+ /**
+-- 
+2.34.1
 
-== Summary ==
-
-ERROR: The runconfig 'xe-3430-32c3655fcecb4e7e7dd624bf7b201ae69eb5bb5f_FULL' does not exist in the database
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151754v1/index.html
-
---===============3735408682016769094==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Prepare GPU SVM for migration of THP</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151754/">https://patchwork.freedesktop.org/series/151754/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151754v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151754v1/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-3430-32c3655fcecb4e7e7dd624bf7b201ae69eb5bb5f_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============3735408682016769094==--
