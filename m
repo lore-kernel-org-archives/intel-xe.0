@@ -4,62 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA933C83F1A
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 15:27:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8627BC83F1A
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 15:27:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7294A10E9EA;
-	Fri, 18 Jul 2025 15:27:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2947210E9EB;
+	Fri, 18 Jul 2025 15:27:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="GAeptTTd";
+	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="H71nClKD";
 	dkim-atps=neutral
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5186510E93A;
- Fri, 18 Jul 2025 09:41:16 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4bk4YN6cSsz9t2R;
- Fri, 18 Jul 2025 11:41:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1752831673; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=a2Zg4QEe0LqebhVzLVIQHsMhWzN9W8MKDz2KfO089x0=;
- b=GAeptTTdUlbq2mCRPrYZQ9a82ysB/A77mUGeD8nIg06l3vaFU3Or8rKH22BIMJQ5By6/30
- x2CfRxvpZEHotXaLelDFTAJVyiuE8DPXbSUgHQ7q0b/leYcDWoH69z3u3YMtzLpLRc/fcC
- AlvdR4NhavVDUfuZ/3lJtSJfYdj37kUSx9JeJv2fNJbjn2cYO6JrqiHH39CyPOegcKdpkE
- /POMAZVIYEcoN5w73vk4XVqGvhYR/juSgob969p3gNG+pkpp/HzJP62y2EhKzbqylhP1b0
- DBsKaHp46/KmBN5RlRVQ/P1gGXDavE+4KMoqKT62WVzo/DM+b6+trT4LOwRaZQ==
-Message-ID: <48c311e35a4ed983433fc049bf465edde7930405.camel@mailbox.org>
-Subject: Re: [PATCH] drm/sched: Avoid double re-lock on the job free path
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, phasta@kernel.org, 
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
- Brost <matthew.brost@intel.com>, =?ISO-8859-1?Q?Ma=EDra?= Canal
- <mcanal@igalia.com>
-Date: Fri, 18 Jul 2025 11:41:09 +0200
-In-Reply-To: <c4e252ba-6ac2-4115-9606-c7f6f18f1abf@igalia.com>
-References: <20250716085117.56864-1-tvrtko.ursulin@igalia.com>
- <8e527b62-d968-4bc3-a0dc-491d193c02ce@igalia.com>
- <52d32846-0286-4979-ab2f-c1aa1aa02e20@igalia.com>
- <f535c0bf-225a-40c9-b6a1-5bfbb5ebec0d@igalia.com>
- <b5ff1fba-0e2c-4d02-8b9d-49c3c313e65d@igalia.com>
- <c1c9bb53-399d-4f1a-a6de-8cf354c2e903@igalia.com>
- <ad66eeac-26d7-4f46-b29c-7b43ce793ea8@igalia.com>
- <3448a6cf097051ea9fbd5beba741b624c831df2c.camel@mailbox.org>
- <c4e252ba-6ac2-4115-9606-c7f6f18f1abf@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
+ [209.85.222.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D34610E949
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 10:26:56 +0000 (UTC)
+Received: by mail-qk1-f178.google.com with SMTP id
+ af79cd13be357-7dd8773f9d9so180129685a.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 03:26:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=broadcom.com; s=google; t=1752834415; x=1753439215;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:autocrypt:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=Tceb6O3nBrebvy+ZDwLDwrGTRdGaZ8naYMQfV4XKrrU=;
+ b=H71nClKDQgr2Oomm/gjBWWIIREqATZyMCEvisvZFsQyMBuCXdEIvK6ygJ8A+h7VwIU
+ Da1RR3wqK/O+LE9Z8XcwqBB050c2njEQHSakqkOHBHiyRLL7WIIz2XdM2/qrgoDot7d9
+ aNkTxTsy48mUmk+scyH0RYj117XkMaMMY0d7I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752834415; x=1753439215;
+ h=content-transfer-encoding:in-reply-to:autocrypt:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Tceb6O3nBrebvy+ZDwLDwrGTRdGaZ8naYMQfV4XKrrU=;
+ b=T7fnp+fI36z900tivy5cAYJpHWZv7lSSxSZoJQtL19wczVXBvxVylHb1uwqNDgX29h
+ eIY9n6s/IaPdPYNnIBTj8CJGx4jWcHZaI29GuJNQYU1OofjOUWNKErT8eGFc8oFKQk+j
+ hSq+q+1sZfDM82Nl1z/m4eo3rBwyodbH9zcMAnAwE2uqma60oVecIREIWPfQLSBiw/mU
+ Z9wKdd8lt77B/1sN9SC7+4P4OQtLomgAFQiCtTp6PMwUMJKo/dvwbeRHhNopWaMRr6kx
+ LAKfco6NjWCALjCdpgOPDt21RlmjNSURGOIwjQrxHzDA3JNdZPOq7zeXXWo7L57IJUcT
+ pjPA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXYD2mNcrZUyy3K0iXX8/W9LqFIpzSo7Rrfzpx3GeVIJWvQZcD50o97nvyE5GPCxMxiZ6AibmSbwA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyLMT3OManFo6YQCBis+qz78r4UOf6qi2c04RrM2/BX6IXmWjWt
+ a/oB7FcdeMfVGPn9iwa+Fn9VlLgh7W7SA4JrboT8HMZPmdt16+rrSp5ljsOszypl0A==
+X-Gm-Gg: ASbGncu1TN9Lcy4gxjDPf68H2cauiRL/ZwZiz4c56Y3CwSgYw0Gh2XyvV7oFEAOA0/z
+ HGVYaloaMvjYn8iO1TVpx5h6LfO2G+6OmnG/+eonFe0+yo8niyt/PmS6vGMIesbxxtV3sLe+Cep
+ 2iLtwxSLW5RlOt026H0TpqhBkzSfJoZzUHAnkH9j6IiUJU5YBaTXVMuNCveUnb+SG+KAtxxA5wK
+ 52Oe3NKb1Cr3qbOetT+PJMvBLAgSRO6/yoE9bu3bPSGErLtO5Xj5ZUl0olWQtvvgJgv1RWTVfoJ
+ gMGhaxqp+a5UNelpjnOye++UgvTj79CFxTw6YAVZJttxylK9tUhTNG4jdbiTaAeKxRXGmJyGgQR
+ kzVbXK84+8E5zg61YS3F76y1bg+Xu9dmV4atI48DpGhETlBHJIF8=
+X-Google-Smtp-Source: AGHT+IEqo4UAFanleVPdYl4dXVyU1lZnXf1z6whg+8xWt/p2QDWx5PJ8H+d/5db0hyJyi9WF5q8VPA==
+X-Received: by 2002:a05:620a:19a5:b0:7e3:52f6:66e5 with SMTP id
+ af79cd13be357-7e352f6672amr568859885a.35.1752834415217; 
+ Fri, 18 Jul 2025 03:26:55 -0700 (PDT)
+Received: from [10.229.41.1] ([192.19.176.250])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-7e356b46814sm68537885a.30.2025.07.18.03.26.45
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 18 Jul 2025 03:26:54 -0700 (PDT)
+Message-ID: <4445c7ec-a580-4c28-89cf-2df5790de6ac@broadcom.com>
+Date: Fri, 18 Jul 2025 12:26:43 +0200
 MIME-Version: 1.0
-X-MBO-RS-ID: 0f20e2a877c70a13885
-X-MBO-RS-META: qbb99t1j1czmoy5iciiu3a347h1pontj
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/8] wifi: brcmfmac: Fix typo "notifer"
+To: WangYuli <wangyuli@uniontech.com>
+Cc: airlied@gmail.com, akpm@linux-foundation.org, alison.schofield@intel.com, 
+ andrew+netdev@lunn.ch, andriy.shevchenko@linux.intel.com, bp@alien8.de,
+ brcm80211-dev-list.pdl@broadcom.com, brcm80211@lists.linux.dev,
+ colin.i.king@gmail.com, cvam0000@gmail.com, dan.j.williams@intel.com,
+ dave.hansen@linux.intel.com, dave.jiang@intel.com, dave@stgolabs.net,
+ davem@davemloft.net, dri-devel@lists.freedesktop.org, edumazet@google.com,
+ gregkh@linuxfoundation.org, guanwentao@uniontech.com, hpa@zytor.com,
+ ilpo.jarvinen@linux.intel.com, intel-xe@lists.freedesktop.org,
+ ira.weiny@intel.com, j@jannau.net, jeff.johnson@oss.qualcomm.com,
+ jgross@suse.com, jirislaby@kernel.org, johannes.berg@intel.com,
+ jonathan.cameron@huawei.com, kuba@kernel.org, kvalo@kernel.org,
+ kvm@vger.kernel.org, linux-cxl@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux@treblig.org, lucas.demarchi@intel.com,
+ marcin.s.wojtas@gmail.com, ming.li@zohomail.com, mingo@kernel.org,
+ mingo@redhat.com, netdev@vger.kernel.org, niecheng1@uniontech.com,
+ oleksandr_tyshchenko@epam.com, pabeni@redhat.com, pbonzini@redhat.com,
+ quic_ramess@quicinc.com, ragazenta@gmail.com, rodrigo.vivi@intel.com,
+ seanjc@google.com, shenlichuan@vivo.com, simona@ffwll.ch,
+ sstabellini@kernel.org, tglx@linutronix.de,
+ thomas.hellstrom@linux.intel.com, vishal.l.verma@intel.com, x86@kernel.org,
+ xen-devel@lists.xenproject.org, yujiaoliang@vivo.com, zhanjun@uniontech.com
+References: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
+ <F92035B0A9123150+20250715134407.540483-5-wangyuli@uniontech.com>
+Content-Language: en-US
+From: Arend van Spriel <arend.vanspriel@broadcom.com>
+Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
+ 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
+In-Reply-To: <F92035B0A9123150+20250715134407.540483-5-wangyuli@uniontech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 18 Jul 2025 15:27:02 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,220 +151,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2025-07-18 at 10:35 +0100, Tvrtko Ursulin wrote:
->=20
-> On 18/07/2025 10:31, Philipp Stanner wrote:
-> > On Fri, 2025-07-18 at 08:13 +0100, Tvrtko Ursulin wrote:
-> > >=20
-> > > On 16/07/2025 21:44, Ma=C3=ADra Canal wrote:
-> > > > Hi Tvrtko,
-> > > >=20
-> > > > On 16/07/25 11:46, Tvrtko Ursulin wrote:
-> > > > >=20
-> > > > > On 16/07/2025 15:30, Ma=C3=ADra Canal wrote:
-> > > > > > Hi Tvrtko,
-> > > > > >=20
-> > > > > > On 16/07/25 10:49, Tvrtko Ursulin wrote:
-> > > > > > >=20
-> > > > > > > On 16/07/2025 14:31, Ma=C3=ADra Canal wrote:
-> > > > > > > > Hi Tvrtko,
-> > > > > > > >=20
-> > > > > > > > On 16/07/25 05:51, Tvrtko Ursulin wrote:
-> > > > > > > > > Currently the job free work item will lock sched-
-> > > > > > > > > >job_list_lock
-> > > > > > > > > first time
-> > > > > > > > > to see if there are any jobs, free a single job, and
-> > > > > > > > > then lock
-> > > > > > > > > again to
-> > > > > > > > > decide whether to re-queue itself if there are more
-> > > > > > > > > finished jobs.
-> > > > > > > > >=20
-> > > > > > > > > Since drm_sched_get_finished_job() already looks at
-> > > > > > > > > the second job
-> > > > > > > > > in the
-> > > > > > > > > queue we can simply add the signaled check and have
-> > > > > > > > > it return the
-> > > > > > > > > presence
-> > > > > > > > > of more jobs to be freed to the caller. That way the
-> > > > > > > > > work item
-> > > > > > > > > does not
-> > > > > > > > > have to lock the list again and repeat the signaled
-> > > > > > > > > check.
-> > > > > > > > >=20
-> > > > > > > > > Signed-off-by: Tvrtko Ursulin
-> > > > > > > > > <tvrtko.ursulin@igalia.com>
-> > > > > > > > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > > > > > > > Cc: Danilo Krummrich <dakr@kernel.org>
-> > > > > > > > > Cc: Ma=C3=ADra Canal <mcanal@igalia.com>
-> > > > > > > > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > > > > > > > Cc: Philipp Stanner <phasta@kernel.org>
-> > > > > > > > > ---
-> > > > > > > > > v2:
-> > > > > > > > > =C2=A0=C2=A0 * Improve commit text and kerneldoc. (Philip=
-p)
-> > > > > > > > > =C2=A0=C2=A0 * Rename run free work helper. (Philipp)
-> > > > > > > > >=20
-> > > > > > > > > v3:
-> > > > > > > > > =C2=A0=C2=A0 * Rebase on top of Maira's changes.
-> > > > > > > > > ---
-> > > > > > > > > =C2=A0=C2=A0 drivers/gpu/drm/scheduler/sched_main.c | 53
-> > > > > > > > > +++++++++
-> > > > > > > > > +----------------
-> > > > > > > > > =C2=A0=C2=A0 1 file changed, 21 insertions(+), 32 deletio=
-ns(-)
-> > > > > > > > >=20
-> > > > > > > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > > > b/drivers/gpu/
-> > > > > > > > > drm/ scheduler/sched_main.c
-> > > > > > > > > index e2cda28a1af4..5a550fd76bf0 100644
-> > > > > > > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > > > @@ -349,34 +349,13 @@ static void
-> > > > > > > > > drm_sched_run_job_queue(struct
-> > > > > > > > > drm_gpu_scheduler *sched)
-> > > > > > > > > =C2=A0=C2=A0 }
-> > > > > > > > > =C2=A0=C2=A0 /**
-> > > > > > > > > - * __drm_sched_run_free_queue - enqueue free-job
-> > > > > > > > > work
-> > > > > > > > > - * @sched: scheduler instance
-> > > > > > > > > - */
-> > > > > > > > > -static void __drm_sched_run_free_queue(struct
-> > > > > > > > > drm_gpu_scheduler
-> > > > > > > > > *sched)
-> > > > > > > > > -{
-> > > > > > > > > -=C2=A0=C2=A0=C2=A0 if (!READ_ONCE(sched->pause_submit))
-> > > > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 queue_work(sc=
-hed->submit_wq, &sched-
-> > > > > > > > > >work_free_job);
-> > > > > > > > > -}
-> > > > > > > > > -
-> > > > > > > > > -/**
-> > > > > > > > > - * drm_sched_run_free_queue - enqueue free-job work
-> > > > > > > > > if ready
-> > > > > > > > > + * drm_sched_run_free_queue - enqueue free-job work
-> > > > > > > > > =C2=A0=C2=A0=C2=A0 * @sched: scheduler instance
-> > > > > > > > > =C2=A0=C2=A0=C2=A0 */
-> > > > > > > > > =C2=A0=C2=A0 static void drm_sched_run_free_queue(struct
-> > > > > > > > > drm_gpu_scheduler
-> > > > > > > > > *sched)
-> > > > > > > > > =C2=A0=C2=A0 {
-> > > > > > > > > -=C2=A0=C2=A0=C2=A0 struct drm_sched_job *job;
-> > > > > > > > > -
-> > > > > > > > > -=C2=A0=C2=A0=C2=A0 job =3D list_first_entry_or_null(&sch=
-ed-
-> > > > > > > > > >pending_list,
-> > > > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 struct drm_sched_job, list);
-> > > > > > > > > -=C2=A0=C2=A0=C2=A0 if (job && dma_fence_is_signaled(&job=
-->s_fence-
-> > > > > > > > > >finished))
-> > > > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __drm_sched_r=
-un_free_queue(sched);
-> > > > > > > >=20
-> > > > > > > > I believe we'd still need this chunk for
-> > > > > > > > DRM_GPU_SCHED_STAT_NO_HANG
-> > > > > > > > (check the comment in
-> > > > > > > > drm_sched_job_reinsert_on_false_timeout()). How
-> > > > > > >=20
-> > > > > > > You mean the "is there a signaled job in the list check"
-> > > > > > > is needed
-> > > > > > > for drm_sched_job_reinsert_on_false_timeout()? Hmm why?
-> > > > > > > Worst case
-> > > > > > > is a false positive wakeup on the free worker, no?
-> > > > > >=20
-> > > > > > Correct me if I'm mistaken, we would also have a false
-> > > > > > positive wake-up
-> > > > > > on the run_job worker, which I believe it could be
-> > > > > > problematic in the
-> > > > > > cases that we skipped the reset because the job is still
-> > > > > > running.
-> > > > >=20
-> > > > > Run job worker exits when it sees no free credits so I don't
-> > > > > think
-> > > > > there is a problem. What am I missing?
-> > > > >=20
-> > > >=20
-> > > > I was the one missing the code in `drm_sched_can_queue()`.
-> > > > Sorry for the
-> > > > misleading comments. This is:
-> > > >=20
-> > > > Reviewed-by: Ma=C3=ADra Canal <mcanal@igalia.com>
-> > >=20
-> > > No worries, and thanks!
-> > >=20
-> > > Philipp - are you okay with this version? V2 was done to address
-> > > your
-> > > feedback so that should be good now.
-> >=20
-> > Was just giving it another spin when you wrote. (a [PATCH v3]
-> > would've
-> > been neat for identification, though =E2=80=93 I almost pulled the wron=
-g
-> > patch
-> > from the archive *wink*)
->=20
-> Oops, my bad.
->=20
-> > LGTM, improves things, can be merged.
-> >=20
-> > However, we had to merge Lin Cao's bug fix [1] recently. That one
-> > is
-> > now in drm-misc-fixes, and your patch should go to drm-misc-next.
-> > This
-> > would cause a conflict once the two branches meet.
-> >=20
-> > So I suggest that we wait with this non-urgent patch until drm-
-> > misc-
-> > fixes / Linus's -rc gets merged into drm-misc-next, and then we
-> > apply
-> > it. Should be next week or the week after AFAIK.
-> >=20
-> > Unless somebody has a better idea, of course?
->=20
-> Lin's patch touches sched_entity.c only and mine only sched_main.c -
-> ie.=20
-> no conflict AFAICT?
+On 7/15/2025 3:44 PM, WangYuli wrote:
+> There is a spelling mistake of 'notifer' in the comment which
+> should be 'notifier'.
+> 
+> Link:https://lore.kernel.org/all/B3C019B63C93846F+20250715071245.398846-1- 
+> wangyuli@uniontech.com/
 
-Aaahhh, I had a hallucination ^^'
+I think it has been said on other patches but it is not common to link 
+to obsolete version of the patch series. Apart from that:
 
-It doesn't apply to drm-misc-fixes, but that is because fixes misses
-changes that yours is based on. Because Lin's patch was the last thing
-I touched on that branch I seem to have jumped to that conclusion.
-
-Should be fine, then. My bad.
-
-Will apply.
-
-
-P.
-
-
->=20
-> Regards,
->=20
-> Tvrtko
->=20
-> >=20
-> > Remind me in case I forget.
-> >=20
-> >=20
-> > P.
-> >=20
-> > [1]
-> > https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/15f77764e90a713=
-ee3916ca424757688e4f565b9
-> >=20
-> >=20
-> > >=20
-> > > Regards,
-> > >=20
-> > > Tvrtko
-> > >=20
-> >=20
->=20
+Acked-by: Arend van Spriel <arend.vanspriel@broadcom.com>> 
+Signed-off-by: WangYuli<wangyuli@uniontech.com>
+> ---
+>   drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 
