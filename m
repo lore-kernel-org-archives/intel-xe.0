@@ -4,80 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDBA1C83F17
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 21:23:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AE43C83F17
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 21:25:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B90510EA45;
-	Fri, 18 Jul 2025 21:23:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D05FD10EA45;
+	Fri, 18 Jul 2025 21:25:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="RSQCYqQE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V/BHZ82S";
 	dkim-atps=neutral
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com
- [209.85.210.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 910D510EA45
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 21:23:08 +0000 (UTC)
-Received: by mail-ot1-f48.google.com with SMTP id
- 46e09a7af769-73e810dc01aso892618a34.0
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 14:23:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1752873788; x=1753478588; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=tK+4glzE3WnB4vC6DvcGs4atxT+1n6gCTpv11Qz3u6E=;
- b=RSQCYqQEH5U47tBhd+7p3+7xJUekzZeksJ12jn1Yc857CwKx9QLD8qTDuQi0B8IsWP
- maYd9lOLy76nINYKRvAihzF0A6Wg+RW81vd0pEUeJ0xuYqfkwtP80B944hySNJx4yQMx
- Gh1EDRV2BD1cL2TauCqMHs229RCb2lWN1AFhe4VFYCZMXjW1x6ReETHgozZuFf6tCrtz
- TwkEshfZLbNHir2ScMMK0wiRBmliubKHoqAXObgWkR6Lo93gPn2OcvaPHzcBGe0bLbWh
- ER03714aMRhDNGPRCMT8XcZkK6qushayTb/oKQuHgJGs2Ko7OS3JYohPgdBh0CnbpdJq
- rUUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752873788; x=1753478588;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=tK+4glzE3WnB4vC6DvcGs4atxT+1n6gCTpv11Qz3u6E=;
- b=jnwmFDhHQ19ZM2oRbbHKDEVIejM1sHV7hIeWskpbV7MG68ABFdE+Nkr2Cb5MVI7XaL
- kG8x8Xiv4FqDSx11+PfceangKbsbNHBWJVmMjWokY4qfuxpx3vilk7GyJP+24KLoCVtU
- OoGXRTk2f3qCXdsPL024OY44X6VVXDC9DJRCRNk5zKktREqUK/ppYwCSCQIA3FLAWHdf
- ihvQJDoBaWC783oldzZFYaWFeJRlN3swsGeF6LOUxyoti3vljwLf0J8HzaAPRNzs9dWv
- NuFTATSg6Okkofb4jQUoMl31tszko6uMId2WlBm1BsPPoqJhe+WvkEsiIuLSe0TRQPBi
- XZkQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUGTdfInEol4cReHMyqLRgTPEgStS92n8Ua7+mL6pSWujEeR4wH9GwG4VdqYH9hQptWLj0Wg1RFtA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxqNuZDeq6y7OdDJhgY+DOMpv8lr5uJCVUnvv3HU2K8ENfM/JjF
- ixjBhkz7g5L4HREgEU4KaDjZS+3DJ+D7xA4MdNQ5e3FtHYXT3kcmN0Z1aYRdhCvsgJo=
-X-Gm-Gg: ASbGncv0VRUPvP5mC7Q951chAfct7n5JEzkKM5/qvL3WihUraEJdf4sSi2JemdhPXMl
- fBffEU5adzt3T3v26tuzTQ3+mVdgPA6we/D2XJARyMTJB71Dsw3gO+XIMDJ64hOo3IvF5eTypqB
- ylpJm0NfaFzixUNh5sMF2kExva9k1J01dQhk7FjZQY49pHbI32KA3pX8XO1EYpebFM2vexmp9kv
- 40CMkLtpZoD6eoeNwQ4MzZqNv8rYVw0ErFY8KvjQRYwSBgD4FVCsGKJW3Ut9hHsu89liisTMBI2
- CNuVZPF6N8qUSESXrUExTpk2tNrBL0jYpIpbDsVezs+B5ZRF2gC4F71mQH0yG0TA/DwmDZAfLet
- G6Chd6r4mk/c=
-X-Google-Smtp-Source: AGHT+IF9VLx8mE8trvjMG7+MlGusZoBXTEIHkS13K0W7mcIBsGRVkXXT81gfglD97zg1dabcDIqGHA==
-X-Received: by 2002:a05:6830:8008:b0:73c:fb75:cee5 with SMTP id
- 46e09a7af769-73e65f33953mr8211210a34.0.1752873787612; 
- Fri, 18 Jul 2025 14:23:07 -0700 (PDT)
-Received: from localhost ([2603:8080:b800:f700::1fec])
- by smtp.gmail.com with UTF8SMTPSA id
- 46e09a7af769-73e83560306sm949902a34.13.2025.07.18.14.23.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Jul 2025 14:23:07 -0700 (PDT)
-Date: Fri, 18 Jul 2025 16:23:05 -0500
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Piotr =?iso-8859-1?Q?Pi=F3rkowski?= <piotr.piorkowski@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH next] drm/xe: Fix an IS_ERR() vs NULL bug in
- xe_tile_alloc_vram()
-Message-ID: <5449065e-9758-4711-b706-78771c0753c4@sabinyo.mountain>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D07B610EA53
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 21:25:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752873941; x=1784409941;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aRGrkz2ApOq3tvsFqIiBJVD1aA8+rC0l+TRVw+g8yJM=;
+ b=V/BHZ82Se6Fb7ihNtp5u5m4Hb2gqY7FR7TxpN8Elg/eyqV89laTsnfxj
+ KEbaAbsrHiovACsOdF47Wh90tVqHqoqJYcnQ/aM89NoXDfwv6uw5V8QaF
+ 9XBIHLBMf3CvPNYGY31952zXrwj32XX5sp04WvgkF72/ZBCVCHp14B7XI
+ Cvx/CC9xrRCCUaycwnxo7fn9GTkwELtG61egcNeG6m5HOGcZtI8y1DxZf
+ MqQqZ0KsMtE71hPjM2/3YEoJuMkZEj99GAHPd+nAk4Kd229kuQvgoUPjs
+ 176LVv0QX7WuXiiizXgCEu95tlVuLPUVELHxWehiCuRHQJqOcJhdpL+49 A==;
+X-CSE-ConnectionGUID: N/ZpW87CSv25EZj1bMaesw==
+X-CSE-MsgGUID: RIbqpCuFR02kGGk69MV03w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="66524337"
+X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="66524337"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2025 14:25:40 -0700
+X-CSE-ConnectionGUID: PoPAI4BvQ/iG5JJ/MYhRkQ==
+X-CSE-MsgGUID: J2dmK+7TSpWdf5Ft/Wh/og==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="158311201"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by orviesa007.jf.intel.com with ESMTP; 18 Jul 2025 14:25:38 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe: Misc refine for svm
+Date: Fri, 18 Jul 2025 21:24:10 +0000
+Message-ID: <20250718212409.86516-2-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,30 +64,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The xe_vram_region_alloc() function returns NULL on error.  It never
-returns error pointers.  Update the error checking to match.
+in function xe_svm_handle_pagefault(), migrate_try_count is set to 3 when
+ctx.devmem_only is true. If ctx.devmem_only is false, the try count is 1,
+which means no retry. Remove the "!ctx.devmem_only" check for the retry
+path.
 
-Fixes: 4b0a5f5ce784 ("drm/xe: Unify the initialization of VRAM regions")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+Below other changes should have no function effect.
+1. Correct typo of "operation"in macro range_debug().
+2. Combine 2 spin_lock() call in xe_svm_garbage_collector() into 1.
+3. Remove preferred_region_is_vram check in xe_svm_range_needs_migrate_to_vram()
+   as it is already checked in the begin of this function.
+4. Combine the devmem_possible check in xe_svm_handle_pagefault().
+5. Combine 2 xe_vm_unlock() call in xe_svm_handle_pagefault() into 1.
+
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tile.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c | 34 ++++++++++++++--------------------
+ 1 file changed, 14 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 0be0a5c57ef4..d49ba3401963 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -120,8 +120,8 @@ int xe_tile_alloc_vram(struct xe_tile *tile)
- 		return 0;
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 10c8a1bcb86e..2c47bbe7d4b4 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -50,11 +50,11 @@ static struct xe_vm *range_to_vm(struct drm_gpusvm_range *r)
+ 	return gpusvm_to_vm(r->gpusvm);
+ }
  
- 	vram = xe_vram_region_alloc(xe, tile->id, XE_PL_VRAM0 + tile->id);
--	if (IS_ERR(vram))
--		return PTR_ERR(vram);
-+	if (!vram)
-+		return -ENOMEM;
- 	tile->mem.vram = vram;
+-#define range_debug(r__, operaton__)					\
++#define range_debug(r__, operation__)					\
+ 	vm_dbg(&range_to_vm(&(r__)->base)->xe->drm,			\
+ 	       "%s: asid=%u, gpusvm=%p, vram=%d,%d, seqno=%lu, " \
+ 	       "start=0x%014lx, end=0x%014lx, size=%lu",		\
+-	       (operaton__), range_to_vm(&(r__)->base)->usm.asid,	\
++	       (operation__), range_to_vm(&(r__)->base)->usm.asid,	\
+ 	       (r__)->base.gpusvm,					\
+ 	       xe_svm_range_in_vram((r__)) ? 1 : 0,			\
+ 	       xe_svm_range_has_vram_binding((r__)) ? 1 : 0,		\
+@@ -263,8 +263,8 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
+ 	if (xe_vm_is_closed_or_banned(vm))
+ 		return -ENOENT;
  
- 	return 0;
+-	spin_lock(&vm->svm.garbage_collector.lock);
+ 	for (;;) {
++		spin_lock(&vm->svm.garbage_collector.lock);
+ 		range = list_first_entry_or_null(&vm->svm.garbage_collector.range_list,
+ 						 typeof(*range),
+ 						 garbage_collector_link);
+@@ -282,8 +282,6 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
+ 			xe_vm_kill(vm, true);
+ 			return err;
+ 		}
+-
+-		spin_lock(&vm->svm.garbage_collector.lock);
+ 	}
+ 	spin_unlock(&vm->svm.garbage_collector.lock);
+ 
+@@ -763,12 +761,12 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
+ 
+ 	xe_assert(vm->xe, IS_DGFX(vm->xe));
+ 
+-	if (preferred_region_is_vram && xe_svm_range_in_vram(range)) {
++	if (xe_svm_range_in_vram(range)) {
+ 		drm_info(&vm->xe->drm, "Range is already in VRAM\n");
+ 		return false;
+ 	}
+ 
+-	if (preferred_region_is_vram && range_size < SZ_64K && !supports_4K_migration(vm->xe)) {
++	if (range_size < SZ_64K && !supports_4K_migration(vm->xe)) {
+ 		drm_dbg(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
+ 		return false;
+ 	}
+@@ -793,16 +791,14 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			    struct xe_gt *gt, u64 fault_addr,
+ 			    bool atomic)
+ {
++	int devmem_possible = IS_DGFX(vm->xe) &&
++		IS_ENABLED(CONFIG_DRM_XE_PAGEMAP);
+ 	struct drm_gpusvm_ctx ctx = {
+ 		.read_only = xe_vma_read_only(vma),
+-		.devmem_possible = IS_DGFX(vm->xe) &&
+-			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
+-		.check_pages_threshold = IS_DGFX(vm->xe) &&
+-			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ? SZ_64K : 0,
+-		.devmem_only = atomic && IS_DGFX(vm->xe) &&
+-			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
+-		.timeslice_ms = atomic && IS_DGFX(vm->xe) &&
+-			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ?
++		.devmem_possible = devmem_possible,
++		.check_pages_threshold = devmem_possible ? SZ_64K : 0,
++		.devmem_only = atomic && devmem_possible,
++		.timeslice_ms = atomic && devmem_possible ?
+ 			vm->xe->atomic_svm_timeslice_ms : 0,
+ 	};
+ 	struct xe_svm_range *range;
+@@ -841,7 +837,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 		err = xe_svm_alloc_vram(tile, range, &ctx);
+ 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+ 		if (err) {
+-			if (migrate_try_count || !ctx.devmem_only) {
++			if (migrate_try_count) {
+ 				drm_dbg(&vm->xe->drm,
+ 					"VRAM allocation failed, falling back to retrying fault, asid=%u, errno=%pe\n",
+ 					vm->usm.asid, ERR_PTR(err));
+@@ -860,7 +856,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	/* Corner where CPU mappings have changed */
+ 	if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM) {
+ 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+-		if (migrate_try_count > 0 || !ctx.devmem_only) {
++		if (migrate_try_count > 0) {
+ 			drm_dbg(&vm->xe->drm,
+ 				"Get pages failed, falling back to retrying, asid=%u, gpusvm=%p, errno=%pe\n",
+ 				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+@@ -882,8 +878,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ retry_bind:
+ 	xe_vm_lock(vm, false);
+ 	fence = xe_vm_range_rebind(vm, vma, range, BIT(tile->id));
++	xe_vm_unlock(vm);
+ 	if (IS_ERR(fence)) {
+-		xe_vm_unlock(vm);
+ 		err = PTR_ERR(fence);
+ 		if (err == -EAGAIN) {
+ 			ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+@@ -894,13 +890,11 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			goto retry_bind;
+ 		goto err_out;
+ 	}
+-	xe_vm_unlock(vm);
+ 
+ 	dma_fence_wait(fence, false);
+ 	dma_fence_put(fence);
+ 
+ err_out:
+-
+ 	return err;
+ }
+ 
 -- 
-2.47.2
+2.49.0
 
