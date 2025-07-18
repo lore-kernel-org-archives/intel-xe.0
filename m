@@ -4,142 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8627BC83F1A
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 15:27:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38384C83F1A
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 15:52:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2947210E9EB;
-	Fri, 18 Jul 2025 15:27:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF13310E9EB;
+	Fri, 18 Jul 2025 15:52:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="H71nClKD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Myp334h/";
 	dkim-atps=neutral
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
- [209.85.222.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D34610E949
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 10:26:56 +0000 (UTC)
-Received: by mail-qk1-f178.google.com with SMTP id
- af79cd13be357-7dd8773f9d9so180129685a.2
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 03:26:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=broadcom.com; s=google; t=1752834415; x=1753439215;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=Tceb6O3nBrebvy+ZDwLDwrGTRdGaZ8naYMQfV4XKrrU=;
- b=H71nClKDQgr2Oomm/gjBWWIIREqATZyMCEvisvZFsQyMBuCXdEIvK6ygJ8A+h7VwIU
- Da1RR3wqK/O+LE9Z8XcwqBB050c2njEQHSakqkOHBHiyRLL7WIIz2XdM2/qrgoDot7d9
- aNkTxTsy48mUmk+scyH0RYj117XkMaMMY0d7I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752834415; x=1753439215;
- h=content-transfer-encoding:in-reply-to:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Tceb6O3nBrebvy+ZDwLDwrGTRdGaZ8naYMQfV4XKrrU=;
- b=T7fnp+fI36z900tivy5cAYJpHWZv7lSSxSZoJQtL19wczVXBvxVylHb1uwqNDgX29h
- eIY9n6s/IaPdPYNnIBTj8CJGx4jWcHZaI29GuJNQYU1OofjOUWNKErT8eGFc8oFKQk+j
- hSq+q+1sZfDM82Nl1z/m4eo3rBwyodbH9zcMAnAwE2uqma60oVecIREIWPfQLSBiw/mU
- Z9wKdd8lt77B/1sN9SC7+4P4OQtLomgAFQiCtTp6PMwUMJKo/dvwbeRHhNopWaMRr6kx
- LAKfco6NjWCALjCdpgOPDt21RlmjNSURGOIwjQrxHzDA3JNdZPOq7zeXXWo7L57IJUcT
- pjPA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXYD2mNcrZUyy3K0iXX8/W9LqFIpzSo7Rrfzpx3GeVIJWvQZcD50o97nvyE5GPCxMxiZ6AibmSbwA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyLMT3OManFo6YQCBis+qz78r4UOf6qi2c04RrM2/BX6IXmWjWt
- a/oB7FcdeMfVGPn9iwa+Fn9VlLgh7W7SA4JrboT8HMZPmdt16+rrSp5ljsOszypl0A==
-X-Gm-Gg: ASbGncu1TN9Lcy4gxjDPf68H2cauiRL/ZwZiz4c56Y3CwSgYw0Gh2XyvV7oFEAOA0/z
- HGVYaloaMvjYn8iO1TVpx5h6LfO2G+6OmnG/+eonFe0+yo8niyt/PmS6vGMIesbxxtV3sLe+Cep
- 2iLtwxSLW5RlOt026H0TpqhBkzSfJoZzUHAnkH9j6IiUJU5YBaTXVMuNCveUnb+SG+KAtxxA5wK
- 52Oe3NKb1Cr3qbOetT+PJMvBLAgSRO6/yoE9bu3bPSGErLtO5Xj5ZUl0olWQtvvgJgv1RWTVfoJ
- gMGhaxqp+a5UNelpjnOye++UgvTj79CFxTw6YAVZJttxylK9tUhTNG4jdbiTaAeKxRXGmJyGgQR
- kzVbXK84+8E5zg61YS3F76y1bg+Xu9dmV4atI48DpGhETlBHJIF8=
-X-Google-Smtp-Source: AGHT+IEqo4UAFanleVPdYl4dXVyU1lZnXf1z6whg+8xWt/p2QDWx5PJ8H+d/5db0hyJyi9WF5q8VPA==
-X-Received: by 2002:a05:620a:19a5:b0:7e3:52f6:66e5 with SMTP id
- af79cd13be357-7e352f6672amr568859885a.35.1752834415217; 
- Fri, 18 Jul 2025 03:26:55 -0700 (PDT)
-Received: from [10.229.41.1] ([192.19.176.250])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7e356b46814sm68537885a.30.2025.07.18.03.26.45
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Jul 2025 03:26:54 -0700 (PDT)
-Message-ID: <4445c7ec-a580-4c28-89cf-2df5790de6ac@broadcom.com>
-Date: Fri, 18 Jul 2025 12:26:43 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/8] wifi: brcmfmac: Fix typo "notifer"
-To: WangYuli <wangyuli@uniontech.com>
-Cc: airlied@gmail.com, akpm@linux-foundation.org, alison.schofield@intel.com, 
- andrew+netdev@lunn.ch, andriy.shevchenko@linux.intel.com, bp@alien8.de,
- brcm80211-dev-list.pdl@broadcom.com, brcm80211@lists.linux.dev,
- colin.i.king@gmail.com, cvam0000@gmail.com, dan.j.williams@intel.com,
- dave.hansen@linux.intel.com, dave.jiang@intel.com, dave@stgolabs.net,
- davem@davemloft.net, dri-devel@lists.freedesktop.org, edumazet@google.com,
- gregkh@linuxfoundation.org, guanwentao@uniontech.com, hpa@zytor.com,
- ilpo.jarvinen@linux.intel.com, intel-xe@lists.freedesktop.org,
- ira.weiny@intel.com, j@jannau.net, jeff.johnson@oss.qualcomm.com,
- jgross@suse.com, jirislaby@kernel.org, johannes.berg@intel.com,
- jonathan.cameron@huawei.com, kuba@kernel.org, kvalo@kernel.org,
- kvm@vger.kernel.org, linux-cxl@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux@treblig.org, lucas.demarchi@intel.com,
- marcin.s.wojtas@gmail.com, ming.li@zohomail.com, mingo@kernel.org,
- mingo@redhat.com, netdev@vger.kernel.org, niecheng1@uniontech.com,
- oleksandr_tyshchenko@epam.com, pabeni@redhat.com, pbonzini@redhat.com,
- quic_ramess@quicinc.com, ragazenta@gmail.com, rodrigo.vivi@intel.com,
- seanjc@google.com, shenlichuan@vivo.com, simona@ffwll.ch,
- sstabellini@kernel.org, tglx@linutronix.de,
- thomas.hellstrom@linux.intel.com, vishal.l.verma@intel.com, x86@kernel.org,
- xen-devel@lists.xenproject.org, yujiaoliang@vivo.com, zhanjun@uniontech.com
-References: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
- <F92035B0A9123150+20250715134407.540483-5-wangyuli@uniontech.com>
-Content-Language: en-US
-From: Arend van Spriel <arend.vanspriel@broadcom.com>
-Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
- 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
-In-Reply-To: <F92035B0A9123150+20250715134407.540483-5-wangyuli@uniontech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 18 Jul 2025 15:27:02 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E982410E9EB
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 15:52:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752853942; x=1784389942;
+ h=date:from:to:cc:subject:message-id;
+ bh=oq5+k1Hpj/fJ1lyh4k6plLX00qz73M9Ab5PSE5d22c4=;
+ b=Myp334h/13S1DLfSlX3yuENClm1APC5b80OFtprM4FCvxqbQNz075/hQ
+ TPX1y4rkug+yP8h8/MUTnRE4WZftoeo+lSAIBOhQHKOZcSAF2gQ/jWfaG
+ 5sA6tXeX36KL1orez+yoxYyWj/5uwQDeSaabPLXNMc5rhl/zL6xZ0rvb3
+ a5hTNci4pWGZ0cZd4UL1as7+FBYcL6oBbIONnwkyIZ31G9W/QgfqZdXX/
+ AJT5XE+59abBgimA6W7/MVv4YBT6auU53dRZjXr+XhORZXgbVSoY+kDTX
+ S2D/y85U72tnntcFLNkzLszvlfyxXnMQwBSlVs6lTLh5Q522cHH0sffyO w==;
+X-CSE-ConnectionGUID: 1gys/0+dQNy0FVhcqLLn5A==
+X-CSE-MsgGUID: i0u3BWDJRjGUhMiHmF6n1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="57765083"
+X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="57765083"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2025 08:51:28 -0700
+X-CSE-ConnectionGUID: crDzKIKtRr6k2BdSLd4tsw==
+X-CSE-MsgGUID: e6uNIpJMTSWt1gHHC7/8Qg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="157749227"
+Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
+ by fmviesa007.fm.intel.com with ESMTP; 18 Jul 2025 08:51:26 -0700
+Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1ucnMq-000Eo7-2o;
+ Fri, 18 Jul 2025 15:51:24 +0000
+Date: Fri, 18 Jul 2025 23:51:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ 0456696778025afcc92498e12dae0a7b9c945834
+Message-ID: <202507182303.fCAtlmYo-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,19 +64,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 7/15/2025 3:44 PM, WangYuli wrote:
-> There is a spelling mistake of 'notifer' in the comment which
-> should be 'notifier'.
-> 
-> Link:https://lore.kernel.org/all/B3C019B63C93846F+20250715071245.398846-1- 
-> wangyuli@uniontech.com/
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: 0456696778025afcc92498e12dae0a7b9c945834  FOR-DRM-XE-FIXES-TEST-UNBLOCK: platform/x86: asus-wmi: Only register lps0 dev for Ally devices
 
-I think it has been said on other patches but it is not common to link 
-to obsolete version of the patch series. Apart from that:
+elapsed time: 1449m
 
-Acked-by: Arend van Spriel <arend.vanspriel@broadcom.com>> 
-Signed-off-by: WangYuli<wangyuli@uniontech.com>
-> ---
->   drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+configs tested: 98
+configs skipped: 4
 
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                             allnoconfig    gcc-15.1.0
+alpha                            allyesconfig    gcc-15.1.0
+arc                              allmodconfig    gcc-15.1.0
+arc                               allnoconfig    gcc-15.1.0
+arc                              allyesconfig    gcc-15.1.0
+arc                   randconfig-001-20250718    gcc-10.5.0
+arc                   randconfig-002-20250718    gcc-8.5.0
+arm                              allmodconfig    gcc-15.1.0
+arm                               allnoconfig    clang-21
+arm                              allyesconfig    gcc-15.1.0
+arm                   randconfig-001-20250718    gcc-8.5.0
+arm                   randconfig-002-20250718    gcc-8.5.0
+arm                   randconfig-003-20250718    gcc-8.5.0
+arm                   randconfig-004-20250718    gcc-10.5.0
+arm64                            allmodconfig    clang-19
+arm64                             allnoconfig    gcc-15.1.0
+arm64                 randconfig-001-20250718    gcc-13.4.0
+arm64                 randconfig-002-20250718    gcc-8.5.0
+arm64                 randconfig-003-20250718    clang-21
+arm64                 randconfig-004-20250718    gcc-8.5.0
+csky                              allnoconfig    gcc-15.1.0
+csky                  randconfig-001-20250718    gcc-15.1.0
+csky                  randconfig-002-20250718    gcc-15.1.0
+hexagon                          allmodconfig    clang-17
+hexagon                           allnoconfig    clang-21
+hexagon                          allyesconfig    clang-21
+hexagon               randconfig-001-20250718    clang-21
+hexagon               randconfig-002-20250718    clang-21
+i386        buildonly-randconfig-001-20250718    gcc-12
+i386        buildonly-randconfig-002-20250718    clang-20
+i386        buildonly-randconfig-003-20250718    gcc-12
+i386        buildonly-randconfig-004-20250718    gcc-11
+i386        buildonly-randconfig-005-20250718    gcc-12
+i386        buildonly-randconfig-006-20250718    clang-20
+loongarch                        allmodconfig    clang-19
+loongarch                         allnoconfig    clang-21
+loongarch             randconfig-001-20250718    gcc-15.1.0
+loongarch             randconfig-002-20250718    gcc-15.1.0
+m68k                             allmodconfig    gcc-15.1.0
+m68k                              allnoconfig    gcc-15.1.0
+m68k                             allyesconfig    gcc-15.1.0
+microblaze                       allmodconfig    gcc-15.1.0
+microblaze                        allnoconfig    gcc-15.1.0
+microblaze                       allyesconfig    gcc-15.1.0
+microblaze                          defconfig    gcc-15.1.0
+mips                              allnoconfig    gcc-15.1.0
+nios2                             allnoconfig    gcc-11.5.0
+nios2                               defconfig    gcc-11.5.0
+nios2                 randconfig-001-20250718    gcc-8.5.0
+nios2                 randconfig-002-20250718    gcc-11.5.0
+openrisc                          allnoconfig    gcc-15.1.0
+parisc                            allnoconfig    gcc-15.1.0
+parisc                              defconfig    gcc-15.1.0
+parisc                randconfig-001-20250718    gcc-14.3.0
+parisc                randconfig-002-20250718    gcc-13.4.0
+parisc64                            defconfig    gcc-15.1.0
+powerpc                           allnoconfig    gcc-15.1.0
+powerpc               randconfig-001-20250718    gcc-9.3.0
+powerpc               randconfig-002-20250718    gcc-11.5.0
+powerpc               randconfig-003-20250718    clang-17
+powerpc64             randconfig-001-20250718    clang-18
+powerpc64             randconfig-002-20250718    clang-21
+riscv                             allnoconfig    gcc-15.1.0
+riscv                 randconfig-001-20250718    clang-21
+riscv                 randconfig-002-20250718    clang-16
+s390                             allmodconfig    clang-18
+s390                              allnoconfig    clang-21
+s390                             allyesconfig    gcc-15.1.0
+s390                  randconfig-001-20250718    clang-21
+s390                  randconfig-002-20250718    clang-21
+sh                               allmodconfig    gcc-15.1.0
+sh                                allnoconfig    gcc-15.1.0
+sh                               allyesconfig    gcc-15.1.0
+sh                    randconfig-001-20250718    gcc-15.1.0
+sh                    randconfig-002-20250718    gcc-15.1.0
+sparc                            allmodconfig    gcc-15.1.0
+sparc                             allnoconfig    gcc-15.1.0
+sparc                               defconfig    gcc-15.1.0
+sparc                 randconfig-001-20250718    gcc-10.3.0
+sparc                 randconfig-002-20250718    gcc-11.5.0
+sparc64               randconfig-001-20250718    gcc-10.5.0
+sparc64               randconfig-002-20250718    clang-20
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-21
+um                               allyesconfig    gcc-12
+um                    randconfig-001-20250718    gcc-12
+um                    randconfig-002-20250718    gcc-12
+x86_64                            allnoconfig    clang-20
+x86_64      buildonly-randconfig-001-20250718    clang-20
+x86_64      buildonly-randconfig-002-20250718    gcc-12
+x86_64      buildonly-randconfig-003-20250718    gcc-12
+x86_64      buildonly-randconfig-004-20250718    clang-20
+x86_64      buildonly-randconfig-005-20250718    clang-20
+x86_64      buildonly-randconfig-006-20250718    clang-20
+x86_64                              defconfig    gcc-11
+xtensa                            allnoconfig    gcc-15.1.0
+xtensa                randconfig-001-20250718    gcc-8.5.0
+xtensa                randconfig-002-20250718    gcc-12.4.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
