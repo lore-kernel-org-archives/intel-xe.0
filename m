@@ -4,62 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABD0CC83F1A
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 09:29:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95E85C83F17
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 09:35:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7314510E339;
-	Fri, 18 Jul 2025 09:29:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C4FF10E93A;
+	Fri, 18 Jul 2025 09:35:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aEgZ2G81";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="JV8/DnVP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD80210E339
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 09:29:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752830991; x=1784366991;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bwP7T9FpLi5yQHsnh8L7W7qkgyWtjbSo3ZU1xm3eDFQ=;
- b=aEgZ2G81BS4C9fuL46woPdlss8ot2z+jVFTA6DFr/2mzpc1zvC3d4EQF
- GqaHNe9JLMRprfim+JX3o542mlXARWcRdBpe2bGcQB7pJeX0FCW9wcmFR
- TQwWbOpMmHqhlh+0scTu+LTFsxSMshG/mOE4l69k7J+2TG7wn0L9yIBOm
- AWiKpbZEGw2W5KjXIhKIWcQ2Cec5q0icJJ7rZvJKsDAOjEpolAnyKf/Mb
- BJejzYrr+2tO+GA5vj3J+NiVipi2qMwqtOq7FI25eSzOeQUoI0QSwIZjj
- g1SLgtf49NW0z3SQAeyDhIUdjqj5qcukh0OEBFyDpmwRnriPt8h8OAB8D g==;
-X-CSE-ConnectionGUID: BlVbNLABS5S8PNisbrv0yQ==
-X-CSE-MsgGUID: Le+r88JHRLCi5feNvCZZ2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="54224864"
-X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="54224864"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2025 02:29:51 -0700
-X-CSE-ConnectionGUID: EdstXKPJTCmGsOpUkTAqJQ==
-X-CSE-MsgGUID: BT8ZIJH4Rq2F6btEoDIQqQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="158719574"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa010.fm.intel.com with ESMTP; 18 Jul 2025 02:29:49 -0700
-Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 34A9828196;
- Fri, 18 Jul 2025 10:29:48 +0100 (IST)
-Message-ID: <9f8bb67b-4381-40cb-ad02-6eaa4b5f94e1@intel.com>
-Date: Fri, 18 Jul 2025 11:29:47 +0200
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 510C410E938;
+ Fri, 18 Jul 2025 09:35:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=+8LIZAEk6MuSw+0jpr/iGDCIUka8aAfvDmtOr9ahEMs=; b=JV8/DnVP1TH09IgsT4JXlGmCUM
+ wwkcMkCaWgfslX7+3t032PW2IM9ear+OyBiqsmHbX5Y1GiBohCI6Vzoc2R/xZNZNOnUkMo6TdsO7C
+ 3PlhADilkkCMMKSfNOcEv9Y6iXPSL4iSETWrMsXQ8l3xXsdISDOatJy6WxPruZEiYwPnZkTiuf5Lj
+ 8/Hh715bNp3qeBcmNymP/mzGHVUuasAmlsriBPmoMEbTIyWxwdBG9YiQ2Oaj9+tFlzDSnYXQToNW7
+ Dk+IMUvqY5drL5pbaM8pYj9P0gamk07wfT1kiiV13c/ji0BSg0BrSJ1Np+zx2ys8K/xEQ9lLgcYBV
+ bD/OMMNw==;
+Received: from [84.66.36.92] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uchUe-000Vnh-9s; Fri, 18 Jul 2025 11:35:04 +0200
+Message-ID: <c4e252ba-6ac2-4115-9606-c7f6f18f1abf@igalia.com>
+Date: Fri, 18 Jul 2025 10:35:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] drm/xe/configfs: Allow configurations only for Intel
- VGA devices
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
-References: <20250717184825.851-1-michal.wajdeczko@intel.com>
- <20250717184825.851-5-michal.wajdeczko@intel.com>
- <CH0PR11MB544431B55F24E0F1688393E4E551A@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <CH0PR11MB544431B55F24E0F1688393E4E551A@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH] drm/sched: Avoid double re-lock on the job free path
+To: phasta@kernel.org, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
+ <mcanal@igalia.com>
+References: <20250716085117.56864-1-tvrtko.ursulin@igalia.com>
+ <8e527b62-d968-4bc3-a0dc-491d193c02ce@igalia.com>
+ <52d32846-0286-4979-ab2f-c1aa1aa02e20@igalia.com>
+ <f535c0bf-225a-40c9-b6a1-5bfbb5ebec0d@igalia.com>
+ <b5ff1fba-0e2c-4d02-8b9d-49c3c313e65d@igalia.com>
+ <c1c9bb53-399d-4f1a-a6de-8cf354c2e903@igalia.com>
+ <ad66eeac-26d7-4f46-b29c-7b43ce793ea8@igalia.com>
+ <3448a6cf097051ea9fbd5beba741b624c831df2c.camel@mailbox.org>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <3448a6cf097051ea9fbd5beba741b624c831df2c.camel@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,81 +71,152 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-
-On 17.07.2025 23:19, Cavitt, Jonathan wrote:
-> -----Original Message-----
->> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Michal Wajdeczko
->> Sent: Thursday, July 17, 2025 11:48 AM
->> To: intel-xe@lists.freedesktop.org
->> Cc: Wajdeczko, Michal <Michal.Wajdeczko@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>
->> Subject: [PATCH 4/5] drm/xe/configfs: Allow configurations only for Intel VGA devices
+On 18/07/2025 10:31, Philipp Stanner wrote:
+> On Fri, 2025-07-18 at 08:13 +0100, Tvrtko Ursulin wrote:
 >>
->> The Xe driver supports only Intel GPUs devices that all are PCI
->> VGA class devices. Reject creation of configuration directories
->> for PCI device addresses that are not Intel or VGA.
+>> On 16/07/2025 21:44, Maíra Canal wrote:
+>>> Hi Tvrtko,
+>>>
+>>> On 16/07/25 11:46, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 16/07/2025 15:30, Maíra Canal wrote:
+>>>>> Hi Tvrtko,
+>>>>>
+>>>>> On 16/07/25 10:49, Tvrtko Ursulin wrote:
+>>>>>>
+>>>>>> On 16/07/2025 14:31, Maíra Canal wrote:
+>>>>>>> Hi Tvrtko,
+>>>>>>>
+>>>>>>> On 16/07/25 05:51, Tvrtko Ursulin wrote:
+>>>>>>>> Currently the job free work item will lock sched->job_list_lock
+>>>>>>>> first time
+>>>>>>>> to see if there are any jobs, free a single job, and then lock
+>>>>>>>> again to
+>>>>>>>> decide whether to re-queue itself if there are more finished jobs.
+>>>>>>>>
+>>>>>>>> Since drm_sched_get_finished_job() already looks at the second job
+>>>>>>>> in the
+>>>>>>>> queue we can simply add the signaled check and have it return the
+>>>>>>>> presence
+>>>>>>>> of more jobs to be freed to the caller. That way the work item
+>>>>>>>> does not
+>>>>>>>> have to lock the list again and repeat the signaled check.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>>>>>> Cc: Christian König <christian.koenig@amd.com>
+>>>>>>>> Cc: Danilo Krummrich <dakr@kernel.org>
+>>>>>>>> Cc: Maíra Canal <mcanal@igalia.com>
+>>>>>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>>>>>> Cc: Philipp Stanner <phasta@kernel.org>
+>>>>>>>> ---
+>>>>>>>> v2:
+>>>>>>>>    * Improve commit text and kerneldoc. (Philipp)
+>>>>>>>>    * Rename run free work helper. (Philipp)
+>>>>>>>>
+>>>>>>>> v3:
+>>>>>>>>    * Rebase on top of Maira's changes.
+>>>>>>>> ---
+>>>>>>>>    drivers/gpu/drm/scheduler/sched_main.c | 53 +++++++++
+>>>>>>>> +----------------
+>>>>>>>>    1 file changed, 21 insertions(+), 32 deletions(-)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/
+>>>>>>>> drm/ scheduler/sched_main.c
+>>>>>>>> index e2cda28a1af4..5a550fd76bf0 100644
+>>>>>>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>>>>>>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>>>>>>>> @@ -349,34 +349,13 @@ static void drm_sched_run_job_queue(struct
+>>>>>>>> drm_gpu_scheduler *sched)
+>>>>>>>>    }
+>>>>>>>>    /**
+>>>>>>>> - * __drm_sched_run_free_queue - enqueue free-job work
+>>>>>>>> - * @sched: scheduler instance
+>>>>>>>> - */
+>>>>>>>> -static void __drm_sched_run_free_queue(struct drm_gpu_scheduler
+>>>>>>>> *sched)
+>>>>>>>> -{
+>>>>>>>> -    if (!READ_ONCE(sched->pause_submit))
+>>>>>>>> -        queue_work(sched->submit_wq, &sched->work_free_job);
+>>>>>>>> -}
+>>>>>>>> -
+>>>>>>>> -/**
+>>>>>>>> - * drm_sched_run_free_queue - enqueue free-job work if ready
+>>>>>>>> + * drm_sched_run_free_queue - enqueue free-job work
+>>>>>>>>     * @sched: scheduler instance
+>>>>>>>>     */
+>>>>>>>>    static void drm_sched_run_free_queue(struct drm_gpu_scheduler
+>>>>>>>> *sched)
+>>>>>>>>    {
+>>>>>>>> -    struct drm_sched_job *job;
+>>>>>>>> -
+>>>>>>>> -    job = list_first_entry_or_null(&sched->pending_list,
+>>>>>>>> -                       struct drm_sched_job, list);
+>>>>>>>> -    if (job && dma_fence_is_signaled(&job->s_fence->finished))
+>>>>>>>> -        __drm_sched_run_free_queue(sched);
+>>>>>>>
+>>>>>>> I believe we'd still need this chunk for DRM_GPU_SCHED_STAT_NO_HANG
+>>>>>>> (check the comment in drm_sched_job_reinsert_on_false_timeout()). How
+>>>>>>
+>>>>>> You mean the "is there a signaled job in the list check" is needed
+>>>>>> for drm_sched_job_reinsert_on_false_timeout()? Hmm why? Worst case
+>>>>>> is a false positive wakeup on the free worker, no?
+>>>>>
+>>>>> Correct me if I'm mistaken, we would also have a false positive wake-up
+>>>>> on the run_job worker, which I believe it could be problematic in the
+>>>>> cases that we skipped the reset because the job is still running.
+>>>>
+>>>> Run job worker exits when it sees no free credits so I don't think
+>>>> there is a problem. What am I missing?
+>>>>
+>>>
+>>> I was the one missing the code in `drm_sched_can_queue()`. Sorry for the
+>>> misleading comments. This is:
+>>>
+>>> Reviewed-by: Maíra Canal <mcanal@igalia.com>
 >>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_configfs.c | 7 +++++++
->>  1 file changed, 7 insertions(+)
+>> No worries, and thanks!
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
->> index 00bb4e412c12..1df8cce78f13 100644
->> --- a/drivers/gpu/drm/xe/xe_configfs.c
->> +++ b/drivers/gpu/drm/xe/xe_configfs.c
->> @@ -260,6 +260,7 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
->>  	struct xe_config_device *dev;
->>  	struct pci_dev *pdev;
->>  	char canonical[16];
->> +	bool match;
->>  	int ret;
->>  
->>  	ret = sscanf(name, "%x:%x:%x.%d", &domain, &bus, &slot, &function);
->> @@ -275,8 +276,14 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
->>  	pdev = pci_get_domain_bus_and_slot(domain, bus, PCI_DEVFN(slot, function));
->>  	if (!pdev)
->>  		return ERR_PTR(-ENODEV);
->> +
->> +	match = pci_is_vga(pdev) && pdev->vendor == PCI_VENDOR_ID_INTEL;
+>> Philipp - are you okay with this version? V2 was done to address your
+>> feedback so that should be good now.
 > 
-> This match check is relatively short.  Debatably, we could just do the comparison
-> directly in the if-statement instead of assigning the result to a new variable.
+> Was just giving it another spin when you wrote. (a [PATCH v3] would've
+> been neat for identification, though – I almost pulled the wrong patch
+> from the archive *wink*)
 
-what do you mean by the "if-statement" ?
+Oops, my bad.
 
-we can't return early here as then we would leak (again) a device
-reference that we just fixed in patch 1/5
-
+> LGTM, improves things, can be merged.
 > 
-> I won't block on it, though, since clearly labeling these comparisons is important.  Though,
-> perhaps we should call it "op_supported" instead of "match"?  I understand why it's called
-> "match" here (it's more in line with how it's used in patch 5), but maybe this check and the
-> check in patch 5 should be separated out?
+> However, we had to merge Lin Cao's bug fix [1] recently. That one is
+> now in drm-misc-fixes, and your patch should go to drm-misc-next. This
+> would cause a conflict once the two branches meet.
+> 
+> So I suggest that we wait with this non-urgent patch until drm-misc-
+> fixes / Linus's -rc gets merged into drm-misc-next, and then we apply
+> it. Should be next week or the week after AFAIK.
+> 
+> Unless somebody has a better idea, of course?
 
-I'm not sure that adding more flags variables will make code any
-cleaner, what's important are conditions inside, and yes, this is
-aligned with next patch, which adds more conditions to be checked before
-we can claim that there is a "match" between device address and device
-class that we may support
+Lin's patch touches sched_entity.c only and mine only sched_main.c - ie. 
+no conflict AFAICT?
+
+Regards,
+
+Tvrtko
 
 > 
-> Just a suggestion.
+> Remind me in case I forget.
 > 
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> -Jonathan Cavitt
 > 
->> +
->>  	pci_dev_put(pdev);
->>  
->> +	if (!match)
->> +		return ERR_PTR(-ENODEV);
->> +
->>  	dev = kzalloc(sizeof(*dev), GFP_KERNEL);
->>  	if (!dev)
->>  		return ERR_PTR(-ENOMEM);
->> -- 
->> 2.47.1
+> P.
+> 
+> [1] https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/15f77764e90a713ee3916ca424757688e4f565b9
+> 
+> 
 >>
+>> Regards,
 >>
+>> Tvrtko
+>>
+> 
 
