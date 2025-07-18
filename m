@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A71F3C83F17
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 08:58:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 455AAC83F1A
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 09:00:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5048D10E926;
-	Fri, 18 Jul 2025 08:58:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mJBbJX9d";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D8D910E926
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 08:58:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752829108; x=1784365108;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=0ZnqyoCZ+Cs3mFnS0Ze8Fl3rXKs1rqo7PeE+0DzRx0Y=;
- b=mJBbJX9dPyxNyXd48ftDhwT45DqESo0lHsNW355RpWHfKW0QOADCAQYo
- m/OfJvDNs4F65KQwsCb9TJANYCPLQ4F+ucwbYvd88qQwiHb9ml0STdiTj
- We3NZx7Gsbg/YEhz4UN2vl4qkxvr0/k0wnRcb20+SVOw/bqLMyOrLWJU6
- 7QGaSXBAXCNWlQs1EA2tuhtorjeEjWmkUDoQdkY48nfA9bB/rP45nZca9
- 7tIL8sZlXfOELmmDiKjj7WHprdN/nVVJGJBZDHkevir6tkNajBfOkeA/C
- FPibgHKdW5WXPPxdAF65nQuaJgbGKQjkT5RGQQDhnv6Bhz/WlgOvEVc/8 A==;
-X-CSE-ConnectionGUID: rfWHJHSyQ3ybsaipb2CJgw==
-X-CSE-MsgGUID: npdfjZhkTSO6dvKXhJCXaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="80563083"
-X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="80563083"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2025 01:58:28 -0700
-X-CSE-ConnectionGUID: ywWFnuP+RiO75Xude9+6FA==
-X-CSE-MsgGUID: IBpOJX2GT5CQVcgzMhug2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="158088242"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa007.jf.intel.com with ESMTP; 18 Jul 2025 01:58:27 -0700
-Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id A719827BD5;
- Fri, 18 Jul 2025 09:58:25 +0100 (IST)
-Message-ID: <83826115-1846-433f-b087-a695faf3d0fc@intel.com>
-Date: Fri, 18 Jul 2025 10:58:25 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A6E310E119;
+	Fri, 18 Jul 2025 09:00:22 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A14B910E119;
+ Fri, 18 Jul 2025 09:00:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3847424651912430386=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] drm/xe/configfs: Fix pci_dev reference leak
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
-References: <20250717184825.851-1-michal.wajdeczko@intel.com>
- <20250717184825.851-2-michal.wajdeczko@intel.com>
- <CH0PR11MB5444593FFB130CD1644E3244E551A@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <CH0PR11MB5444593FFB130CD1644E3244E551A@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Preliminary_support_for_sep?=
+ =?utf-8?q?arate_VRAM_region_for_kernel_allocations_on_tiles?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 18 Jul 2025 09:00:20 -0000
+Message-ID: <175282922065.171566.10645009548631339333@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250718081752.630122-1-piotr.piorkowski@intel.com>
+In-Reply-To: <20250718081752.630122-1-piotr.piorkowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,68 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3847424651912430386==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Preliminary support for separate VRAM region for kernel allocations on tiles
+URL   : https://patchwork.freedesktop.org/series/151796/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3437-9bd392e02e4551dbbf1bc109640e30e0d674acd4_BAT -> xe-pw-151796v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-151796v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3437-9bd392e02e4551dbbf1bc109640e30e0d674acd4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151796v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
 
 
-On 17.07.2025 23:16, Cavitt, Jonathan wrote:
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Michal Wajdeczko
-> Sent: Thursday, July 17, 2025 11:48 AM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Wajdeczko, Michal <Michal.Wajdeczko@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>
-> Subject: [PATCH 1/5] drm/xe/configfs: Fix pci_dev reference leak
->>
->> We are using pci_get_domain_bus_and_slot() function to verify if
->> the given config directory name matches any existing PCI device,
->> but we missed to call matching pci_dev_put() to release reference.
->>
->> While around, also change error code in case of no device match,
->> to make it more specific than generic formatting error.
->>
->> Fixes: 16280ded45fb ("drm/xe: Add configfs to enable survivability mode")
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->
-> Since we're already being fairly granular with the changes in this patch series,
-> it probably would've been okay for us to separate the pci_dev_put addition
-> from the errno change here.  
+Build changes
+-------------
 
-while we could split this small patch even further, note that changes
-are still around the same logical feature ("check for existing PCI
-device") so IMO combining them in single patch is still ok (and since it
-has Fixes tag we have a chance to propagate both together)
+  * Linux: xe-3437-9bd392e02e4551dbbf1bc109640e30e0d674acd4 -> xe-pw-151796v1
 
-> But I won't make it a requirement.
+  IGT_8466: 8d119c2b43d4d3660bef3bd68864be94a60bc0c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3437-9bd392e02e4551dbbf1bc109640e30e0d674acd4: 9bd392e02e4551dbbf1bc109640e30e0d674acd4
+  xe-pw-151796v1: 151796v1
 
-hint: usually such comments are then prefixed with "nit:" to make it
-clear that comment is just a suggestion or personal preference
+== Logs ==
 
-> 
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> -Jonathan Cavitt
-> 
->> ---
->>  drivers/gpu/drm/xe/xe_configfs.c | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
->> index 8ec1ff1e4e80..e9b46a2d0019 100644
->> --- a/drivers/gpu/drm/xe/xe_configfs.c
->> +++ b/drivers/gpu/drm/xe/xe_configfs.c
->> @@ -267,7 +267,8 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
->>  
->>  	pdev = pci_get_domain_bus_and_slot(domain, bus, PCI_DEVFN(slot, function));
->>  	if (!pdev)
->> -		return ERR_PTR(-EINVAL);
->> +		return ERR_PTR(-ENODEV);
->> +	pci_dev_put(pdev);
->>  
->>  	dev = kzalloc(sizeof(*dev), GFP_KERNEL);
->>  	if (!dev)
->> -- 
->> 2.47.1
->>
->>
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151796v1/index.html
 
+--===============3847424651912430386==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Preliminary support for separate VRAM region for kernel allocations on tiles</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151796/">https://patchwork.freedesktop.org/series/151796/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151796v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151796v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3437-9bd392e02e4551dbbf1bc109640e30e0d674acd4_BAT -&gt; xe-pw-151796v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-151796v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3437-9bd392e02e4551dbbf1bc109640e30e0d674acd4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151796v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3437-9bd392e02e4551dbbf1bc109640e30e0d674acd4 -&gt; xe-pw-151796v1</li>
+</ul>
+<p>IGT_8466: 8d119c2b43d4d3660bef3bd68864be94a60bc0c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3437-9bd392e02e4551dbbf1bc109640e30e0d674acd4: 9bd392e02e4551dbbf1bc109640e30e0d674acd4<br />
+  xe-pw-151796v1: 151796v1</p>
+
+</body>
+</html>
+
+--===============3847424651912430386==--
