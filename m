@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12BDBC83F3B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CA26C83F17
 	for <intel-xe@archiver.kernel.org>; Fri, 18 Jul 2025 23:12:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA75610EA59;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C389F10EA55;
 	Fri, 18 Jul 2025 23:12:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JI6OZue0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZJAfg3xb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09CEB10EA4F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2263C10EA51
  for <intel-xe@lists.freedesktop.org>; Fri, 18 Jul 2025 23:12:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1752880346; x=1784416346;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CAzk9efBK1CzalZ+fWnzUAkdAdOrJgHYZcG+uBr9fTg=;
- b=JI6OZue0CFqej9S71eBd3tFSkQDWOPzzmivKVbE4xfgpGD9NMsm3NcXw
- k80Zxn89Te71AiVwV8lRrzPf69Gh8olfzAYQZ7ap22+EAdEfht45pyx2u
- GP7ZCxUT5Mw1oKzk3Jhz4FljX7Grw26c6PDg4oHZNlfr8QJzaRqrAg7Gk
- UX+v8BPgLoHADglCdWAsQA+AYAqh+fDCTKUWGgTi3ofP5VCoIdUPKUBvv
- HBUWttay35gWEkc+aoyRHJHLqNmWJ60l9LxgBE2MajzynCpwkdcO7dI3b
- 2PU6Jd85eac9ATjB1JfYXQlT/flrXGjVWotfEiZXvDZKmFsSbAxNjshLL w==;
-X-CSE-ConnectionGUID: 2WO6f58GRuSHq4xpWnY7cw==
-X-CSE-MsgGUID: u4zhVqQgRWeXMZ1JeyVPbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="58995569"
-X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="58995569"
+ bh=n3lpV86A1MFgOgvxNPHat5yYey+2qjDoH0SUsF1Jg4Y=;
+ b=ZJAfg3xbTlLqHITeuZKRNG2QVPoK3YfCl6oGK6iO3IXUbrDq3W9BqWOP
+ O0dUh13QxGTxYzeM2uPvcJ/cGMcJ+hy0N7n7uKPp8wc46vLrzRXCsMW+R
+ eRedVmGzSWULYrz8YI8g3jimHwg7R7XoNDP4Kob38FzPup17iGJoQv7U7
+ CUmmkFKfSLSd9BQrx0QGo55TH6qIstDaUACEMhaoFn2zavzTpLQaW26pH
+ eGiQAERLVzggIiNnbVJWGknVoIg1Xd2y9GZ586G8JoYJlfdvKbIZBq9Di
+ 8SbuhEcEuFDjfJvciousNoyTtxZamyyWEUuCNm8De7nN8h2/tOFKBD151 w==;
+X-CSE-ConnectionGUID: 9b7PLQuLSwuFapjF2m5OuQ==
+X-CSE-MsgGUID: 42tOR3mATC66Z1CFYF6tvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="58995571"
+X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="58995571"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Jul 2025 16:12:25 -0700
-X-CSE-ConnectionGUID: +qZAoIcRTuaHoK50bEAqSg==
-X-CSE-MsgGUID: PMQ7rNx4TS+ogVlUm5/HzA==
+X-CSE-ConnectionGUID: roR5wGAIQry2VslIWQvOSQ==
+X-CSE-MsgGUID: 2rslgFAiQimF9nyOYzWf7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="163949099"
+X-IronPort-AV: E=Sophos;i="6.16,322,1744095600"; d="scan'208";a="163949106"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by orviesa005.jf.intel.com with ESMTP; 18 Jul 2025 16:12:24 -0700
+ by orviesa005.jf.intel.com with ESMTP; 18 Jul 2025 16:12:25 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v5 3/6] drm/xe/guc: Add new debugfs entry for lfd format output
-Date: Fri, 18 Jul 2025 19:12:20 -0400
-Message-Id: <20250718231223.670188-4-zhanjun.dong@intel.com>
+Subject: [PATCH v5 5/6] drm/xe/guc: Add GuC log event buffer output in LFD
+ format
+Date: Fri, 18 Jul 2025 19:12:22 -0400
+Message-Id: <20250718231223.670188-6-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250718231223.670188-1-zhanjun.dong@intel.com>
 References: <20250718231223.670188-1-zhanjun.dong@intel.com>
@@ -65,117 +66,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add new debugfs entry "guc_log_lfd", prepared for output guc log
-in LFD(Log Format Descriptors) format.
+Add GuC log event buffer output in LFD format.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_debugfs.c |  7 +++++++
- drivers/gpu/drm/xe/xe_guc_log.c     | 32 +++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_log.h     |  1 +
- 3 files changed, 40 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_log.c | 88 ++++++++++++++++++++++++++++++++-
+ 1 file changed, 87 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index 0b102ab46c4d..6cbc4240a3bd 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -85,6 +85,12 @@ static int guc_log(struct xe_guc *guc, struct drm_printer *p)
- 	return 0;
- }
- 
-+static int guc_log_lfd(struct xe_guc *guc, struct drm_printer *p)
-+{
-+	xe_guc_log_print_lfd(&guc->log, p);
-+	return 0;
-+}
-+
- static int guc_log_dmesg(struct xe_guc *guc, struct drm_printer *p)
- {
- 	xe_guc_log_print_dmesg(&guc->log);
-@@ -121,6 +127,7 @@ static const struct drm_info_list slpc_debugfs_list[] = {
- /* everything else should be added here */
- static const struct drm_info_list pf_only_debugfs_list[] = {
- 	{ "guc_log", .show = guc_debugfs_show, .data = guc_log },
-+	{ "guc_log_lfd", .show = guc_debugfs_show, .data = guc_log_lfd },
- 	{ "guc_log_dmesg", .show = guc_debugfs_show, .data = guc_log_dmesg },
- };
- 
 diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index c01ccb35dc75..d2256773aaf3 100644
+index 2258d73d9c24..e4ee67a9aa28 100644
 --- a/drivers/gpu/drm/xe/xe_guc_log.c
 +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -9,6 +9,7 @@
- 
- #include <drm/drm_managed.h>
- 
-+#include "abi/guc_lfd_abi.h"
- #include "regs/xe_guc_regs.h"
- #include "xe_bo.h"
- #include "xe_devcoredump.h"
-@@ -19,6 +20,12 @@
- #include "xe_mmio.h"
- #include "xe_module.h"
- 
-+static const struct guc_lfd_file_header default_guc_lfd_file_header = {
-+	.magic = GUC_LFD_DRIVER_KEY_STREAMING,
-+	.version.dw0 = FIELD_PREP_CONST(GUC_LFD_VERSION_MINOR, GUC_LFD_FORMAT_VERSION_MINOR) |
-+		       FIELD_PREP_CONST(GUC_LFD_VERSION_MAJOR, GUC_LFD_FORMAT_VERSION_MAJOR)
-+};
-+
- static struct xe_guc *
- log_to_guc(struct xe_guc_log *log)
- {
-@@ -216,6 +223,17 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
- 	}
+@@ -421,10 +421,92 @@ xe_guc_log_output_lfd_init(struct drm_printer *p, struct xe_guc_log_snapshot *sn
+ 	return size;
  }
  
 +static void
-+xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
++xe_guc_log_print_over_chunks(struct drm_printer *p, struct xe_guc_log_snapshot *snapshot,
++			     u32 from, u32 to)
 +{
-+	if (!snapshot || !snapshot->size)
++	int chunk_from = from % GUC_LOG_CHUNK_SIZE;
++	int chunk_id = from / GUC_LOG_CHUNK_SIZE;
++	int to_chunk_id = to / GUC_LOG_CHUNK_SIZE;
++	int chunk_to = to % GUC_LOG_CHUNK_SIZE;
++	int pos = from;
++
++	do {
++		size_t size = (to_chunk_id > chunk_id ? GUC_LOG_CHUNK_SIZE : chunk_to) - chunk_from;
++
++		xe_print_blob_ascii85(p, NULL, 0, snapshot->copy[chunk_id], chunk_from, size);
++		pos += size;
++		chunk_id++;
++		chunk_from = 0;
++	} while (pos < to);
++}
++
++static void
++xe_guc_log_lfd_print_from_chunks(struct drm_printer *p, struct xe_guc_log_snapshot *snapshot,
++				 struct guc_log_buffer_entry_list *entry)
++{
++	/* Output data from guc log chunks directly */
++	if (entry->rd_ptr < entry->wr_ptr) {
++		xe_guc_log_print_over_chunks(p, snapshot,
++					     entry->offset + entry->rd_ptr,
++					     entry->offset + entry->wr_ptr);
++	} else {
++		/* print from rd to buf end 1st */
++		xe_guc_log_print_over_chunks(p, snapshot,
++					     entry->offset + entry->rd_ptr,
++					     entry->offset + entry->buf_size);
++
++		/* print from buf start to wr */
++		xe_guc_log_print_over_chunks(p, snapshot, entry->offset,
++					     entry->offset + entry->wr_ptr);
++	}
++}
++
++static inline int
++xe_guc_log_add_log_event(struct drm_printer *p, struct xe_guc_log_snapshot *snapshot,
++			 struct guc_log_init_config_save *config)
++{
++	size_t size;
++	u32 data_len;
++	struct guc_lfd_data *lfd;
++	struct guc_log_buffer_entry_list *entry;
++	struct guc_lfd_data_log_events_buf *events_buf;
++	char buf[GUC_LFD_BUFFER_SIZE] = {0};
++
++	lfd = (void *)buf;
++	entry = &config->entry[GUC_LOG_BUFFER_STATE_HEADER_ENTRY_LOG];
++
++	/* Skip empty log */
++	if (entry->rd_ptr == entry->wr_ptr)
++		return 0;
++
++	size = xe_guc_log_add_lfd_header(buf, GUC_LFD_BUFFER_SIZE);
++	lfd->dw0 |= FIELD_PREP(GUC_LFD_DATA_DESC_TYPE, GUC_LFD_TYPE_LOG_EVENTS_BUFFER);
++	events_buf = (void *)&lfd->data;
++	events_buf->log_events_format_version = config->version;
++
++	/* Adjust to log_format_buf */
++	data_len = offsetof(struct guc_lfd_data_log_events_buf, log_format_buf);
++	size += data_len;
++
++	/* Calculate data length */
++	data_len += (entry->wr_ptr + entry->buf_size - entry->rd_ptr) % entry->buf_size;
++	/* make length u32 aligned */
++	lfd->dw_size = DIV_ROUND_UP(data_len, sizeof(u32));
++
++	/* Output GUC_LFD_TYPE_LOG_EVENTS_BUFFER header */
++	xe_print_blob_ascii85(p, NULL, 0, buf, 0, size);
++	xe_guc_log_lfd_print_from_chunks(p, snapshot, entry);
++
++	/* log event buffer content did not use buf, exclude from size count */
++	return size;
++}
++
+ static void
+ xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
+ {
+ 	struct guc_log_init_config_save config;
++	size_t size;
+ 
+ 	if (!snapshot || !snapshot->size)
+ 		return;
+@@ -435,7 +517,11 @@ xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_p
+ 
+ 	/* Output LFD stream */
+ 	xe_guc_log_load_lic(snapshot->copy[0], &config);
+-	xe_guc_log_output_lfd_init(p, snapshot, &config);
++	size = xe_guc_log_output_lfd_init(p, snapshot, &config);
++	if (size < 0)
 +		return;
 +
-+	/* Output LFD file header */
-+	xe_print_blob_ascii85(p, "[LOG].data", 0, &default_guc_lfd_file_header, 0,
-+			      offsetof(struct guc_lfd_file_header, lfd_stream));
-+}
-+
- /**
-  * xe_guc_log_print_dmesg - dump a copy of the GuC log to dmesg
-  * @log: GuC log structure
-@@ -251,6 +269,20 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
- 	xe_guc_log_snapshot_free(snapshot);
++	xe_guc_log_add_log_event(p, snapshot, &config);
  }
  
-+/**
-+ * xe_guc_log_print_lfd - dump a copy of the GuC log to some useful location
-+ * @log: GuC log structure
-+ * @p: the printer object to output to
-+ */
-+void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p)
-+{
-+	struct xe_guc_log_snapshot *snapshot;
-+
-+	snapshot = xe_guc_log_snapshot_capture(log, false);
-+	xe_guc_log_snapshot_print_lfd(snapshot, p);
-+	xe_guc_log_snapshot_free(snapshot);
-+}
-+
- int xe_guc_log_init(struct xe_guc_log *log)
- {
- 	struct xe_device *xe = log_to_xe(log);
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-index f1e2b0be90a9..0f6299886010 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.h
-+++ b/drivers/gpu/drm/xe/xe_guc_log.h
-@@ -40,6 +40,7 @@ struct xe_device;
- 
- int xe_guc_log_init(struct xe_guc_log *log);
- void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
-+void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p);
- void xe_guc_log_print_dmesg(struct xe_guc_log *log);
- struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
- void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
+ /**
 -- 
 2.34.1
 
