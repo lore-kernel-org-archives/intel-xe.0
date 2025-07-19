@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6A83C83F34
-	for <intel-xe@archiver.kernel.org>; Sat, 19 Jul 2025 07:37:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D54DCC83F34
+	for <intel-xe@archiver.kernel.org>; Sat, 19 Jul 2025 07:37:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D77210E1E6;
-	Sat, 19 Jul 2025 07:37:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A31810E1E3;
+	Sat, 19 Jul 2025 07:37:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iOGr3Kw/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UGaOaJx5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAA4210E1E6
- for <intel-xe@lists.freedesktop.org>; Sat, 19 Jul 2025 07:37:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FF9A10E1E3
+ for <intel-xe@lists.freedesktop.org>; Sat, 19 Jul 2025 07:37:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752910665; x=1784446665;
+ t=1752910673; x=1784446673;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QDFFlouI+Dw7s877qIfniS+Fb6dhrwtMp0GNek/lbY0=;
- b=iOGr3Kw/M/rnwEM7EcdnhvjIgdKEpPYZ8lOGTmvv+MAll8U9ZNE/fHtc
- WedgMPrcSt6cMyMnnAWyyjr7hTeYRY2eV0IdQftfrA0y+1Cc3bA7db2D/
- XVaK8mHo95kMWoyDZvw9Jaw1UXfImm+KYG+Dgy3ImKk5+Xts8EDa7ErvL
- 5XWPSMY3SGYJhRcFbta8hJ1tVtUdQIUdKLqiMmT+MDtuMzsOWMW7+6a4+
- k9Ufiz4rECnfdhsScKsj2Z9euDcQ9AFrEg+bRcjxU60G0uKeKNCoTKF4x
- VkDZSEerF/55Mh5kfMiPYfgCcdcEnAGaQUqVZHYSDXXI+bv8cSYRH3mOP w==;
-X-CSE-ConnectionGUID: NVUbbhTYRQqgMG/k9+Gwpg==
-X-CSE-MsgGUID: Gv4yYyM2TNC4SHk8dwVl9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="55159703"
-X-IronPort-AV: E=Sophos;i="6.16,323,1744095600"; d="scan'208";a="55159703"
+ bh=3LsPPuRtwb3FHRSoCmf8OAMe73/RXL0hyk8LjseYtyk=;
+ b=UGaOaJx5SX4aZbyWOhFa8WsMw7RZOm4gugwrXa4U+9pkYjKioQ6SJyDh
+ IYzFxPcJT5h1T/WnUiOD7iDYLWIgtpBF2LANL++Jtp22QbcsgJLwbD2Uk
+ 97fMpW/NBmeBoYCrow56+YXeRPTzFnEz77dhayspaczQRyK5vUvQeEx2G
+ 6SvQiBJ9VmsNgrJwQTyx1MmDg33m2E4F88ZyQ9yqP77e3a+wxjK2DVGfB
+ sFLS67NNIxDIf3Qb54T1L7QwXKBs3ItaRv+xBjUOXzMjdv3adq9EfEq94
+ mloWnATmdFfAhnsSuw32k9MzZqUeHnIGwvKgRCX8Czp1cXZshQ4N/QTRR g==;
+X-CSE-ConnectionGUID: kTctuaKqS3ukNDvkJaWHIw==
+X-CSE-MsgGUID: +UEwNSZQSb+AB2IKf0i/OA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="55159709"
+X-IronPort-AV: E=Sophos;i="6.16,323,1744095600"; d="scan'208";a="55159709"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2025 00:37:45 -0700
-X-CSE-ConnectionGUID: 3TgRQI6mQRGWPXD5fjEr+Q==
-X-CSE-MsgGUID: 8Rk8EE2OSdCk+I1GPdBONQ==
+ 19 Jul 2025 00:37:52 -0700
+X-CSE-ConnectionGUID: Dc7RTnIQQWCrLCPDgLZRyQ==
+X-CSE-MsgGUID: mmvwxJmfR+KVj6CLESH+3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,323,1744095600"; d="scan'208";a="158844435"
+X-IronPort-AV: E=Sophos;i="6.16,323,1744095600"; d="scan'208";a="158844449"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa008.jf.intel.com with ESMTP; 19 Jul 2025 00:37:43 -0700
+ by orviesa008.jf.intel.com with ESMTP; 19 Jul 2025 00:37:49 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
@@ -47,9 +47,10 @@ Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v7 4/9] drm/xe: Block reset while recovering from VF migration
-Date: Sat, 19 Jul 2025 09:37:40 +0200
-Message-Id: <20250719073745.74251-5-tomasz.lis@intel.com>
+Subject: [PATCH v7 7/9] drm/xe/vf: Post migration,
+ repopulate ring area for pending request
+Date: Sat, 19 Jul 2025 09:37:43 +0200
+Message-Id: <20250719073745.74251-8-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250719073745.74251-1-tomasz.lis@intel.com>
 References: <20250719073745.74251-1-tomasz.lis@intel.com>
@@ -69,192 +70,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Resetting GuC during recovery could interfere with the recovery
-process. Such reset might be also triggered without justification,
-due to migration taking time, rather than due to the workload not
-progressing.
+The commands within ring area allocated for a request may contain
+references to GGTT. These references require update after VF
+migration, in order to continue any preempted LRCs, or jobs which
+were emitted to the ring but not sent to GuC yet.
 
-Doing GuC reset during the recovery would cause exit of RESFIX state,
-and therefore continuation of GuC work while fixups are still being
-applied. To avoid that, reset needs to be blocked during the recovery.
+This change calls the emit function again for all such jobs,
+as part of post-migration recovery.
 
-This patch blocks the reset during recovery. Reset request in that
-time range will be stalled, and unblocked only after GuC goes out
-of RESFIX state.
-
-In case a reset procedure already started while the recovery is
-triggered, there isn't much we can do - we cannot wait for it to
-finish as it involves waiting for hardware, and we can't be sure
-at which exact point of the reset procedure the GPU got switched.
-Therefore, the rare cases where migration happens while reset is
-in progress, are still dangerous. Resets are not a part of the
-standard flow, and cause unfinished workloads - that will happen
-during the reset interrupted by migration as well, so it doesn't
-diverge that much from what normally happens during such resets.
-
-v2: Introduce a new atomic for reset blocking, as we cannot reuse
-  `stopped` atomic (that could lead to losing a workload).
-v3: Switched atomic functs to ones which include proper barriers
+v2: Moved few functions to better files
+v3: Take job_list_lock
 
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Michal Winiarski <michal.winiarski@intel.com>
 Reviewed-by: Michal Winiarski <michal.winiarski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c         | 10 ++++++++
- drivers/gpu/drm/xe/xe_guc_submit.c | 37 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h |  3 +++
- drivers/gpu/drm/xe/xe_guc_types.h  |  6 +++++
- drivers/gpu/drm/xe/xe_sriov_vf.c   | 12 ++++++++--
- 5 files changed, 66 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_exec_queue.h |  2 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h |  2 ++
+ drivers/gpu/drm/xe/xe_sriov_vf.c   |  2 +-
+ 5 files changed, 53 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index c8eda36546d3..6cddc3130acc 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -41,6 +41,7 @@
- #include "xe_gt_topology.h"
- #include "xe_guc_exec_queue_types.h"
- #include "xe_guc_pc.h"
-+#include "xe_guc_submit.h"
- #include "xe_hw_fence.h"
- #include "xe_hw_engine_class_sysfs.h"
- #include "xe_irq.h"
-@@ -804,6 +805,11 @@ static int do_gt_restart(struct xe_gt *gt)
- 	return 0;
- }
- 
-+static int gt_wait_reset_unblock(struct xe_gt *gt)
-+{
-+	return xe_guc_wait_reset_unblock(&gt->uc.guc);
-+}
-+
- static int gt_reset(struct xe_gt *gt)
- {
- 	unsigned int fw_ref;
-@@ -818,6 +824,10 @@ static int gt_reset(struct xe_gt *gt)
- 
- 	xe_gt_info(gt, "reset started\n");
- 
-+	err = gt_wait_reset_unblock(gt);
-+	if (!err)
-+		xe_gt_warn(gt, "reset block failed to get lifted");
-+
- 	xe_pm_runtime_get(gt_to_xe(gt));
- 
- 	if (xe_fault_inject_gt_reset()) {
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 6bcaecc1aa9b..f7b3cc8c0c5c 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1773,6 +1773,43 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index ceafbd6e2032..bd8de62cb228 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -1044,3 +1044,27 @@ void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+ 		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
  	}
  }
++
++/**
++ * xe_exec_queue_jobs_ring_restore - Re-emit ring commands of requests pending on given queue.
++ * @q: the &xe_exec_queue struct instance
++ */
++void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q)
++{
++	struct xe_gpu_scheduler *sched = &q->guc->sched;
++	struct xe_sched_job *job;
++
++	/*
++	 * This routine is used within VF migration recovery. This means
++	 * using the lock here, introduces a restriction: in no place we
++	 * can wait for any GFX HW response when that lock is taken.
++	 */
++	spin_lock(&sched->base.job_list_lock);
++	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
++		if (xe_sched_job_is_error(job))
++			continue;
++
++		q->ring_ops->emit_job(job);
++	}
++	spin_unlock(&sched->base.job_list_lock);
++}
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+index da720197929b..0ffc0cb03aa6 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+@@ -92,4 +92,6 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
+ 
+ void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
+ 
++void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 64ef72217919..84bc352f6f12 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -777,6 +777,30 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ 	return fence;
+ }
  
 +/**
-+ * xe_guc_submit_reset_block - Disallow reset calls on given GuC.
++ * xe_guc_jobs_ring_rebase - Re-emit ring commands of requests pending
++ * on all queues under a guc.
 + * @guc: the &xe_guc struct instance
 + */
-+int xe_guc_submit_reset_block(struct xe_guc *guc)
++void xe_guc_jobs_ring_rebase(struct xe_guc *guc)
 +{
-+	return atomic_fetch_or(1, &guc->submission_state.reset_blocked);
++	struct xe_exec_queue *q;
++	unsigned long index;
++
++	/*
++	 * This routine is used within VF migration recovery. This means
++	 * using the lock here, introduces a restriction: in no place we
++	 * can wait for any GFX HW response when that lock is taken.
++	 */
++	mutex_lock(&guc->submission_state.lock);
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
++		if (exec_queue_killed_or_banned_or_wedged(q))
++			continue;
++		xe_exec_queue_jobs_ring_restore(q);
++	}
++	mutex_unlock(&guc->submission_state.lock);
 +}
 +
-+/**
-+ * xe_guc_submit_reset_unblock - Allow back reset calls on given GuC.
-+ * @guc: the &xe_guc struct instance
-+ */
-+void xe_guc_submit_reset_unblock(struct xe_guc *guc)
-+{
-+	atomic_set_release(&guc->submission_state.reset_blocked, 0);
-+	wake_up_all(&guc->ct.wq);
-+}
-+
-+static int guc_submit_reset_is_blocked(struct xe_guc *guc)
-+{
-+	return atomic_read_acquire(&guc->submission_state.reset_blocked);
-+}
-+
-+/* Maximum time of blocking reset */
-+#define RESET_BLOCK_PERIOD_MAX (HZ * 5)
-+
-+/**
-+ * xe_guc_wait_reset_unblock - Wait until reset blocking flag is lifted, or timeout.
-+ * @guc: the &xe_guc struct instance
-+ */
-+int xe_guc_wait_reset_unblock(struct xe_guc *guc)
-+{
-+	return wait_event_timeout(guc->ct.wq,
-+				  !guc_submit_reset_is_blocked(guc), RESET_BLOCK_PERIOD_MAX);
-+}
-+
- int xe_guc_submit_reset_prepare(struct xe_guc *guc)
+ static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
  {
- 	int ret;
+ 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index f1cf271492ae..45b978b047c9 100644
+index 811cd9c0bf79..c0a1b2467d75 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.h
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -20,6 +20,9 @@ void xe_guc_submit_stop(struct xe_guc *guc);
- int xe_guc_submit_start(struct xe_guc *guc);
- void xe_guc_submit_pause(struct xe_guc *guc);
- void xe_guc_submit_unpause(struct xe_guc *guc);
-+int xe_guc_submit_reset_block(struct xe_guc *guc);
-+void xe_guc_submit_reset_unblock(struct xe_guc *guc);
-+int xe_guc_wait_reset_unblock(struct xe_guc *guc);
- void xe_guc_submit_wedge(struct xe_guc *guc);
+@@ -34,6 +34,8 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
  
- int xe_guc_read_stopped(struct xe_guc *guc);
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index 1fde7614fcc5..c7b9642b41ba 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -85,6 +85,12 @@ struct xe_guc {
- 		struct xarray exec_queue_lookup;
- 		/** @submission_state.stopped: submissions are stopped */
- 		atomic_t stopped;
-+		/**
-+		 * @submission_state.reset_blocked: reset attempts are blocked;
-+		 * blocking reset in order to delay it may be required if running
-+		 * an operation which is sensitive to resets.
-+		 */
-+		atomic_t reset_blocked;
- 		/** @submission_state.lock: protects submission state */
- 		struct mutex lock;
- 		/** @submission_state.enabled: submission is enabled */
++void xe_guc_jobs_ring_rebase(struct xe_guc *guc);
++
+ struct xe_guc_submit_exec_queue_snapshot *
+ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
+ void
 diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index c66b17da1ce7..71d28b30de43 100644
+index 43ac73e432d4..a219395c15de 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -163,9 +163,15 @@ static void vf_post_migration_shutdown(struct xe_device *xe)
- {
- 	struct xe_gt *gt;
- 	unsigned int id;
-+	int ret = 0;
+@@ -284,7 +284,7 @@ static int gt_vf_post_migration_fixups(struct xe_gt *gt)
+ 		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
+ 		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
+ 		xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
+-		/* FIXME: add the recovery steps */
++		xe_guc_jobs_ring_rebase(&gt->uc.guc);
+ 		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
+ 	}
  
--	for_each_gt(gt, xe, id)
-+	for_each_gt(gt, xe, id) {
- 		xe_guc_submit_pause(&gt->uc.guc);
-+		ret |= xe_guc_submit_reset_block(&gt->uc.guc);
-+	}
-+
-+	if (ret)
-+		drm_info(&xe->drm, "migration recovery encountered ongoing reset\n");
- }
- 
- /**
-@@ -187,8 +193,10 @@ static void vf_post_migration_kickstart(struct xe_device *xe)
- 	 */
- 	xe_irq_resume(xe);
- 
--	for_each_gt(gt, xe, id)
-+	for_each_gt(gt, xe, id) {
-+		xe_guc_submit_reset_unblock(&gt->uc.guc);
- 		xe_guc_submit_unpause(&gt->uc.guc);
-+	}
- }
- 
- static bool gt_vf_post_migration_needed(struct xe_gt *gt)
 -- 
 2.25.1
 
