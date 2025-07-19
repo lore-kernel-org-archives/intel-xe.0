@@ -4,73 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89F95C83F34
-	for <intel-xe@archiver.kernel.org>; Sat, 19 Jul 2025 18:30:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10155C83F34
+	for <intel-xe@archiver.kernel.org>; Sat, 19 Jul 2025 23:02:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F4A610E04F;
-	Sat, 19 Jul 2025 18:30:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A07E210E02C;
+	Sat, 19 Jul 2025 23:02:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cY4E24ZV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eLVMPVi3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D3A910E02E;
- Sat, 19 Jul 2025 18:30:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D843A10E02C
+ for <intel-xe@lists.freedesktop.org>; Sat, 19 Jul 2025 23:02:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752949853; x=1784485853;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=0GPDXHtiCNdUnDUZaQj8amOknfSO5SESpbv6f2oeBgo=;
- b=cY4E24ZVv0QgO3DZikeRx4y+jPIBwvKsApLHkzlwDWNLKUNKZgRYWhAl
- SchCGuQodowGHdY+guE6NCnFlsLMHKhEZVDUoZx+APR8C7gv2tJSTpes9
- WNRSBJ3VwOEhM8ciNXDY1FZeJRZsdGxxhxMrvRl0fTW/371pMYdbOA0yN
- FvcIOT0XLa4LlBw3WHFnGOpXORKpeVIXvJRL/Ffnin5j8tQmJYBUqMOid
- pll6lY1qawuXUdwQx1yECOCrc5fI+oqAReTOVQjpMhPZ4eNU8NW+Db+Cg
- yJRKpzVoF4rOWDH4IOGnqCGXFfbO/VF4+NwN9TPeBQqUmpvmg4I0Rm80C g==;
-X-CSE-ConnectionGUID: ZMu+F/cnQ3ys0vO0152suQ==
-X-CSE-MsgGUID: jB4VHvoqRnuqXqxdAZ4Xkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11497"; a="55304667"
-X-IronPort-AV: E=Sophos;i="6.16,324,1744095600"; d="scan'208";a="55304667"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2025 11:30:53 -0700
-X-CSE-ConnectionGUID: Qsi2NV7aQ72T9kNwrvJC1w==
-X-CSE-MsgGUID: f5Cb9QTySGiIjchwGuEgXQ==
+ t=1752966132; x=1784502132;
+ h=date:from:to:cc:subject:message-id;
+ bh=IXKORZuXu/AJzc/j+jLClRTuNscOJY5Vkuzq6AsQL/U=;
+ b=eLVMPVi3C4kJWzzgQQwUY0PrVF9EmRGhWj1/fVzBa4cIsYZljuqFw3c4
+ 4IvFHaV1IYFDACsnu0HDFo7bBtNFiY1v9Tw3snammjsvxHZ1krTJeS4O3
+ 23yZJ2xIWgSpyxBi9gnIcct3Pkj8lGOKa/Ai+giLIDt5nxMugMO0t9E0z
+ k16I0a3d8kN8aZq9hQm8t5hZvTMIHpqEWt9U+hnnu0ZA0i3CaJReTaYOl
+ uC/5fht0RITCOhMFX0VDA25o2UCgU5hg66mI2ArXnl2q8ltIn8H/+bQVK
+ M+EYfolhINIAdkgw/STODyOt6K81Qy+t6LGTrvWbnp+xmxAn6phhmJFdV g==;
+X-CSE-ConnectionGUID: mfadXKF3TZOXME2FocWtFw==
+X-CSE-MsgGUID: cgo79nj3R3Coka8P5c4/Aw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11497"; a="65915197"
+X-IronPort-AV: E=Sophos;i="6.16,325,1744095600"; d="scan'208";a="65915197"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2025 16:02:11 -0700
+X-CSE-ConnectionGUID: qGfJGI0kRGGUOa2+5AeJoA==
+X-CSE-MsgGUID: 5Ojs8qcJR2u+kE76+DUk1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,324,1744095600"; d="scan'208";a="164121461"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO stinkbox)
- ([10.245.245.152])
- by orviesa005.jf.intel.com with SMTP; 19 Jul 2025 11:30:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 19 Jul 2025 21:30:46 +0300
-Date: Sat, 19 Jul 2025 21:30:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jocelyn Falempe <jfalempe@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 03/10] drm/i915/display/i9xx: Add a disable_tiling()
- for i9xx planes
-Message-ID: <aHvkVora3Gzrm5NH@intel.com>
-References: <20250618094011.238154-1-jfalempe@redhat.com>
- <20250618094011.238154-4-jfalempe@redhat.com>
- <aHviiKb0EnQbNksL@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aHviiKb0EnQbNksL@intel.com>
-X-Patchwork-Hint: comment
+X-IronPort-AV: E=Sophos;i="6.16,325,1744095600"; d="scan'208";a="158289858"
+Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
+ by orviesa009.jf.intel.com with ESMTP; 19 Jul 2025 16:02:10 -0700
+Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1udGZD-000FpR-2Y;
+ Sat, 19 Jul 2025 23:02:07 +0000
+Date: Sun, 20 Jul 2025 07:01:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 4b5514f786dd790ec0d3e2fe66cea7fd2f36bdf3
+Message-ID: <202507200732.N04VngLt-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,88 +64,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Jul 19, 2025 at 09:23:04PM +0300, Ville Syrjälä wrote:
-> On Wed, Jun 18, 2025 at 11:31:21AM +0200, Jocelyn Falempe wrote:
-> > drm_panic draws in linear framebuffer, so it's easier to re-use the
-> > current framebuffer, and disable tiling in the panic handler, to show
-> > the panic screen.
-> > This assumes that the alignment restriction is always smaller in
-> > linear than in tiled.
-> > It also assumes that the linear framebuffer size is always smaller
-> > than the tiled.
-> > 
-> > Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
-> > ---
-> > 
-> > v7:
-> >  * Reword commit message about alignment/size when disabling tiling (Ville Syrjälä)
-> > 
-> >  drivers/gpu/drm/i915/display/i9xx_plane.c     | 23 +++++++++++++++++++
-> >  .../drm/i915/display/intel_display_types.h    |  2 ++
-> >  2 files changed, 25 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > index 8f15333a4b07..0807fae12450 100644
-> > --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > @@ -905,6 +905,27 @@ static const struct drm_plane_funcs i8xx_plane_funcs = {
-> >  	.format_mod_supported_async = intel_plane_format_mod_supported_async,
-> >  };
-> >  
-> > +static void i9xx_disable_tiling(struct intel_plane *plane)
-> > +{
-> > +	struct intel_display *display = to_intel_display(plane);
-> > +	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
-> > +	u32 dspcntr;
-> > +	u32 reg;
-> > +
-> > +	dspcntr = intel_de_read_fw(display, DSPCNTR(display, i9xx_plane));
-> > +	dspcntr &= ~DISP_TILED;
-> > +	intel_de_write_fw(display, DSPCNTR(display, i9xx_plane), dspcntr);
-> > +
-> > +	if (DISPLAY_VER(display) >= 4) {
-> > +		reg = intel_de_read_fw(display, DSPSURF(display, i9xx_plane));
-> > +		intel_de_write_fw(display, DSPSURF(display, i9xx_plane), reg);
-> > +
-> > +	} else {
-> > +		reg = intel_de_read_fw(display, DSPADDR(display, i9xx_plane));
-> > +		intel_de_write_fw(display, DSPADDR(display, i9xx_plane), reg);
-> > +	}
-> > +}
-> 
-> I thought I already shot this down before, but apparently this
-> got merged now :(
-> 
-> Just to reiterate why we don't want these 'disable tiling' hacks:
-> - different tiling formats have different stride/alignment/watermark
->   requirements so one can't safely change from one tiling to another
-> - this completely fails to account for the TILEOFF vs. LINOFF stuff
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 4b5514f786dd790ec0d3e2fe66cea7fd2f36bdf3  drm/xe: Remove unnecessary EU stall debug message
 
-Oh yeah, and rotation support of course is one really big difference
-between different tiling formats.
+elapsed time: 1444m
 
-> - etc.
-> 
-> So IMO these hacks must be removed and instead the code must learn how
-> to propetly write the tiled data. igt has all the code for that btw
-> (twice over IIRC) so shouldn't be that hard.
-> 
-> I suppose the only hack we need to keep is to disable compression,
-> mainly because (IIRC) on flat CCS systems the CPU doesn't have access
-> to the AUX data to clear it manually.
-> 
-> I also wonder if there are actual igts for this? I think what is needed
-> is a test that sets random things (different panning, rotation, pixel
-> foramts, etc.) and triggers the dumper. Not quite sure how the test
-> could validate that the output is correct though. CRCs might be a bit
-> tricky since you need an identical reference image.
-> 
-> /me off to summer vacation. Good luck
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+configs tested: 111
+configs skipped: 4
 
--- 
-Ville Syrjälä
-Intel
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                             allnoconfig    gcc-15.1.0
+alpha                            allyesconfig    gcc-15.1.0
+arc                              allmodconfig    gcc-15.1.0
+arc                               allnoconfig    gcc-15.1.0
+arc                              allyesconfig    gcc-15.1.0
+arc                     haps_hs_smp_defconfig    gcc-15.1.0
+arc                   randconfig-001-20250719    gcc-14.3.0
+arc                   randconfig-002-20250719    gcc-15.1.0
+arm                              allmodconfig    gcc-15.1.0
+arm                               allnoconfig    clang-21
+arm                              allyesconfig    gcc-15.1.0
+arm                   randconfig-001-20250719    gcc-14.3.0
+arm                   randconfig-002-20250719    clang-21
+arm                   randconfig-003-20250719    clang-21
+arm                   randconfig-004-20250719    clang-16
+arm64                            allmodconfig    clang-19
+arm64                             allnoconfig    gcc-15.1.0
+arm64                 randconfig-001-20250719    clang-20
+arm64                 randconfig-002-20250719    clang-18
+arm64                 randconfig-003-20250719    gcc-15.1.0
+arm64                 randconfig-004-20250719    clang-20
+csky                              allnoconfig    gcc-15.1.0
+csky                  randconfig-001-20250719    gcc-15.1.0
+csky                  randconfig-002-20250719    gcc-11.5.0
+hexagon                           allnoconfig    clang-21
+hexagon                          allyesconfig    clang-21
+hexagon               randconfig-001-20250719    clang-21
+hexagon               randconfig-002-20250719    clang-21
+i386        buildonly-randconfig-001-20250719    clang-20
+i386        buildonly-randconfig-002-20250719    gcc-12
+i386        buildonly-randconfig-003-20250719    gcc-12
+i386        buildonly-randconfig-004-20250719    clang-20
+i386        buildonly-randconfig-005-20250719    clang-20
+i386        buildonly-randconfig-006-20250719    clang-20
+loongarch                        allmodconfig    clang-19
+loongarch                         allnoconfig    clang-21
+loongarch             randconfig-001-20250719    clang-18
+loongarch             randconfig-002-20250719    gcc-15.1.0
+m68k                             allmodconfig    gcc-15.1.0
+m68k                              allnoconfig    gcc-15.1.0
+m68k                             allyesconfig    gcc-15.1.0
+m68k                        m5272c3_defconfig    gcc-15.1.0
+microblaze                       allmodconfig    gcc-15.1.0
+microblaze                        allnoconfig    gcc-15.1.0
+microblaze                       allyesconfig    gcc-15.1.0
+microblaze                          defconfig    gcc-15.1.0
+mips                              allnoconfig    gcc-15.1.0
+mips                         db1xxx_defconfig    clang-21
+mips                           ip22_defconfig    gcc-15.1.0
+mips                           mtx1_defconfig    clang-21
+nios2                             allnoconfig    gcc-11.5.0
+nios2                               defconfig    gcc-11.5.0
+nios2                 randconfig-001-20250719    gcc-11.5.0
+nios2                 randconfig-002-20250719    gcc-8.5.0
+openrisc                          allnoconfig    gcc-15.1.0
+openrisc                         allyesconfig    gcc-15.1.0
+openrisc                            defconfig    gcc-15.1.0
+parisc                           alldefconfig    gcc-15.1.0
+parisc                           allmodconfig    gcc-15.1.0
+parisc                            allnoconfig    gcc-15.1.0
+parisc                           allyesconfig    gcc-15.1.0
+parisc                              defconfig    gcc-15.1.0
+parisc                randconfig-001-20250719    gcc-8.5.0
+parisc                randconfig-002-20250719    gcc-8.5.0
+parisc64                            defconfig    gcc-15.1.0
+powerpc                          allmodconfig    gcc-15.1.0
+powerpc                           allnoconfig    gcc-15.1.0
+powerpc               randconfig-001-20250719    clang-19
+powerpc               randconfig-002-20250719    gcc-10.5.0
+powerpc               randconfig-003-20250719    gcc-12.5.0
+powerpc                     stx_gp3_defconfig    gcc-15.1.0
+powerpc64             randconfig-001-20250719    gcc-8.5.0
+powerpc64             randconfig-002-20250719    clang-21
+powerpc64             randconfig-003-20250719    gcc-10.5.0
+riscv                             allnoconfig    gcc-15.1.0
+riscv                               defconfig    clang-21
+riscv                 randconfig-001-20250719    clang-21
+riscv                 randconfig-002-20250719    clang-21
+s390                             allmodconfig    clang-18
+s390                              allnoconfig    clang-21
+s390                             allyesconfig    gcc-15.1.0
+s390                  randconfig-001-20250719    gcc-9.5.0
+s390                  randconfig-002-20250719    gcc-9.5.0
+sh                               allmodconfig    gcc-15.1.0
+sh                                allnoconfig    gcc-15.1.0
+sh                               allyesconfig    gcc-15.1.0
+sh                                  defconfig    gcc-15.1.0
+sh                    randconfig-001-20250719    gcc-13.4.0
+sh                    randconfig-002-20250719    gcc-15.1.0
+sh                           se7750_defconfig    gcc-15.1.0
+sparc                            allmodconfig    gcc-15.1.0
+sparc                             allnoconfig    gcc-15.1.0
+sparc                               defconfig    gcc-15.1.0
+sparc                 randconfig-001-20250719    gcc-15.1.0
+sparc                 randconfig-002-20250719    gcc-15.1.0
+sparc64               randconfig-001-20250719    gcc-9.5.0
+sparc64               randconfig-002-20250719    gcc-9.5.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-21
+um                               allyesconfig    gcc-12
+um                    randconfig-001-20250719    clang-16
+um                    randconfig-002-20250719    clang-21
+x86_64      buildonly-randconfig-001-20250719    clang-20
+x86_64      buildonly-randconfig-002-20250719    clang-20
+x86_64      buildonly-randconfig-003-20250719    clang-20
+x86_64      buildonly-randconfig-004-20250719    gcc-12
+x86_64      buildonly-randconfig-005-20250719    clang-20
+x86_64      buildonly-randconfig-006-20250719    gcc-12
+xtensa                            allnoconfig    gcc-15.1.0
+xtensa                randconfig-001-20250719    gcc-14.3.0
+xtensa                randconfig-002-20250719    gcc-8.5.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
