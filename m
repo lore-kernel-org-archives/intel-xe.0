@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51A60C83F3D
-	for <intel-xe@archiver.kernel.org>; Sat, 19 Jul 2025 07:37:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64E9FC83F27
+	for <intel-xe@archiver.kernel.org>; Sat, 19 Jul 2025 07:37:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EA5610E1E1;
-	Sat, 19 Jul 2025 07:37:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2717E10E1E2;
+	Sat, 19 Jul 2025 07:37:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RmrfRaLs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WlpjraRp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A0EC10E1E1
- for <intel-xe@lists.freedesktop.org>; Sat, 19 Jul 2025 07:37:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB96810E1E1
+ for <intel-xe@lists.freedesktop.org>; Sat, 19 Jul 2025 07:37:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752910660; x=1784446660;
+ t=1752910661; x=1784446661;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wKnKAjVy7+eKxBdydJtfvI//zjQ3ikQrYPK4qP+mM2A=;
- b=RmrfRaLsueMwjR17QkN80ftCiazKRXBUxpwUE4bzFIY6juqp78oqfl2Z
- UO38+Shho/ukvmqw8q2T9VvDKHJuAMp1cV2eBMIYhq4A1kGFBybHANg+M
- MEHAiizi9Lb78MEhQBnfv/xMfhB6EOFAtjQCpo6Putpdohu4W3Gcz+QQ1
- m9XL6a+yv+QPbVGmfTDhhB2WEXUvSAyD2Xdddbs4h2Jl+5axsGbIhALTe
- kMLLod1YTndtrJfFyzJVlDS+W80v8vyrPVBabBIHJ1P41qbbUd63Ma4uU
- qtMgEAzGjM+zW1So07g/b/cGtRdtx+y4oga2GuhW9Sw4JF5wdJEObvVLy g==;
-X-CSE-ConnectionGUID: Ui7Fob68Sja26H7qUCT60w==
-X-CSE-MsgGUID: hWeqhMymQdWs3ZHxQB5kEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="55159700"
-X-IronPort-AV: E=Sophos;i="6.16,323,1744095600"; d="scan'208";a="55159700"
+ bh=U9f/jXfVJjWHwV2sw0AYXnNT6h/T3QmlDfoLMiJVcl4=;
+ b=WlpjraRpGjVqJeM5604WnjFO8VHA3gilYb1Vw5hofYN4TuvR/O5y87ZW
+ 9G1kZwiPybddHrWwwTVDPiE5zwq8Z1jYxGyeck3ENRjZaISx1/ppkSkUr
+ /taEFjNgpinvpqTAu/+ua2eLZRzY/CK858VroIdt7u8VjR2WjfQXl3lCC
+ 4pZSE5DSGjH38ub/E1VCWsSaRDxCjIl4leWmLpOuoqOM+n0nBqev9akmq
+ Mt+6dBqBCEo/Zk66zdPmEkSqJ/Q8R9Hq2ji8hie3eu8MU76ORt56QAQ1B
+ qp430mrfxxgcmG9o/W1VB/ceWjoG8bgqeJ81tgXgAk2B2NCHsYIwM24cM w==;
+X-CSE-ConnectionGUID: zAiPjsuQQ+SjHs2BAaV+rQ==
+X-CSE-MsgGUID: a9oa7C3jS8iXqCfurcxvJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="55159701"
+X-IronPort-AV: E=Sophos;i="6.16,323,1744095600"; d="scan'208";a="55159701"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2025 00:37:39 -0700
-X-CSE-ConnectionGUID: RDj73TiVQOKUZbJt3aTT8Q==
-X-CSE-MsgGUID: QaPFaUQGStOjKZo7eWRn/w==
+ 19 Jul 2025 00:37:41 -0700
+X-CSE-ConnectionGUID: 8bxVNzpYRwWb8NSqeQIfbQ==
+X-CSE-MsgGUID: P2TsKbRYSf+WzBVU9YgagA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,323,1744095600"; d="scan'208";a="158844425"
+X-IronPort-AV: E=Sophos;i="6.16,323,1744095600"; d="scan'208";a="158844429"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa008.jf.intel.com with ESMTP; 19 Jul 2025 00:37:37 -0700
+ by orviesa008.jf.intel.com with ESMTP; 19 Jul 2025 00:37:39 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
@@ -47,10 +47,10 @@ Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v7 1/9] drm/xe/sa: Avoid caching GGTT address within the
- manager
-Date: Sat, 19 Jul 2025 09:37:37 +0200
-Message-Id: <20250719073745.74251-2-tomasz.lis@intel.com>
+Subject: [PATCH v7 2/9] drm/xe/vf: Skip fixups on migration before getting
+ GGTT info
+Date: Sat, 19 Jul 2025 09:37:38 +0200
+Message-Id: <20250719073745.74251-3-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250719073745.74251-1-tomasz.lis@intel.com>
 References: <20250719073745.74251-1-tomasz.lis@intel.com>
@@ -70,123 +70,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Non-virtualized resources require fixups after SRIOV VF migration.
-Caching GGTT references rather than re-computing them from the
-underlying Buffer Object is something we want to avoid, as such
-code would require additional fixup step and additional locking
-around all the places where the address is accessed.
+The RESFIX state should be achievable only after a successful
+handshake. If VF KMD has no GGTT configuration yet and we still got
+into RESFIX state, then either we're dealing with unclean initial
+state due to unusual actions before probe, or the migration
+happened while xe init (started by probe) was running.
 
-This change removes the cached GPU address from the Sub-Allocation
-Manager, and introduces a function which recomputes and returns
-the address instead.
+In 1st case (migration before probe), we should just skip migration -
+init procedure will ensure exit from RESFIX state as it starts GuC
+handshake with a reset.
 
-v2: renamed xe_sa_manager_gpu_addr(), added kerneldoc
+In 2nd case (migration during xe init), the migration procedure should
+execute normally if GGTT configuration was already acquired from GuC,
+and can be skipped if it was not acquired.
 
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michal Winiarski <michal.winiarski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_debugfs.c |  3 ++-
- drivers/gpu/drm/xe/xe_guc_buf.c    |  2 +-
- drivers/gpu/drm/xe/xe_sa.c         |  1 -
- drivers/gpu/drm/xe/xe_sa.h         | 15 ++++++++++++++-
- drivers/gpu/drm/xe/xe_sa_types.h   |  1 -
- 5 files changed, 17 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index 061a81f82e76..1641f6aebaee 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -29,6 +29,7 @@
- #include "xe_pm.h"
- #include "xe_reg_sr.h"
- #include "xe_reg_whitelist.h"
-+#include "xe_sa.h"
- #include "xe_sriov.h"
- #include "xe_tuning.h"
- #include "xe_uc_debugfs.h"
-@@ -128,7 +129,7 @@ static int sa_info(struct xe_gt *gt, struct drm_printer *p)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index b282838d59e6..7f0b8afc566b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -763,6 +763,15 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
  
- 	xe_pm_runtime_get(gt_to_xe(gt));
- 	drm_suballoc_dump_debug_info(&tile->mem.kernel_bb_pool->base, p,
--				     tile->mem.kernel_bb_pool->gpu_addr);
-+				     xe_sa_manager_gpu_addr(tile->mem.kernel_bb_pool));
- 	xe_pm_runtime_put(gt_to_xe(gt));
+ 	xe_gt_assert(gt, IS_SRIOV_VF(xe));
  
- 	return 0;
-diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
-index 14a07dca48e7..502ca3a4ee60 100644
---- a/drivers/gpu/drm/xe/xe_guc_buf.c
-+++ b/drivers/gpu/drm/xe/xe_guc_buf.c
-@@ -164,7 +164,7 @@ u64 xe_guc_cache_gpu_addr_from_ptr(struct xe_guc_buf_cache *cache, const void *p
- 	if (offset < 0 || offset + size > cache->sam->base.size)
- 		return 0;
- 
--	return cache->sam->gpu_addr + offset;
-+	return xe_sa_manager_gpu_addr(cache->sam) + offset;
- }
- 
- #if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
-index 1d43e183ca21..fedd017d6dd3 100644
---- a/drivers/gpu/drm/xe/xe_sa.c
-+++ b/drivers/gpu/drm/xe/xe_sa.c
-@@ -69,7 +69,6 @@ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u3
- 	}
- 	sa_manager->bo = bo;
- 	sa_manager->is_iomem = bo->vmap.is_iomem;
--	sa_manager->gpu_addr = xe_bo_ggtt_addr(bo);
- 
- 	if (bo->vmap.is_iomem) {
- 		sa_manager->cpu_ptr = kvzalloc(managed_size, GFP_KERNEL);
-diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
-index 1170ee5a81a8..99dbf0eea540 100644
---- a/drivers/gpu/drm/xe/xe_sa.h
-+++ b/drivers/gpu/drm/xe/xe_sa.h
-@@ -7,6 +7,8 @@
- 
- #include <linux/sizes.h>
- #include <linux/types.h>
++	if (!gt->sriov.vf.self_config.ggtt_size) {
++		/*
++		 * If driver initialization is running in parallel to this handler,
++		 * and it did not reached acquiring GGTT config yet, then ignore
++		 * the migration - init procedure will create the GGTT at new place.
++		 */
++		return;
++	}
 +
-+#include "xe_bo.h"
- #include "xe_sa_types.h"
- 
- struct dma_fence;
-@@ -43,9 +45,20 @@ to_xe_sa_manager(struct drm_suballoc_manager *mng)
- 	return container_of(mng, struct xe_sa_manager, base);
- }
- 
-+/**
-+ * xe_sa_manager_gpu_addr - Retrieve GPU address of a back storage BO
-+ * within suballocator.
-+ * @sa_manager: the &xe_sa_manager struct instance
-+ * Return: GGTT address of the back storage BO.
-+ */
-+static inline u64 xe_sa_manager_gpu_addr(struct xe_sa_manager *sa_manager)
-+{
-+	return xe_bo_ggtt_addr(sa_manager->bo);
-+}
-+
- static inline u64 xe_sa_bo_gpu_addr(struct drm_suballoc *sa)
- {
--	return to_xe_sa_manager(sa->manager)->gpu_addr +
-+	return xe_sa_manager_gpu_addr(to_xe_sa_manager(sa->manager)) +
- 		drm_suballoc_soffset(sa);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_sa_types.h b/drivers/gpu/drm/xe/xe_sa_types.h
-index 2b070ff1292e..cb7238799dcb 100644
---- a/drivers/gpu/drm/xe/xe_sa_types.h
-+++ b/drivers/gpu/drm/xe/xe_sa_types.h
-@@ -12,7 +12,6 @@ struct xe_bo;
- struct xe_sa_manager {
- 	struct drm_suballoc_manager base;
- 	struct xe_bo *bo;
--	u64 gpu_addr;
- 	void *cpu_ptr;
- 	bool is_iomem;
- };
+ 	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
+ 	/*
+ 	 * We need to be certain that if all flags were set, at least one
 -- 
 2.25.1
 
