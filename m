@@ -4,52 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10155C83F34
-	for <intel-xe@archiver.kernel.org>; Sat, 19 Jul 2025 23:02:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87633C83F1A
+	for <intel-xe@archiver.kernel.org>; Sun, 20 Jul 2025 11:47:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A07E210E02C;
-	Sat, 19 Jul 2025 23:02:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6CA710E218;
+	Sun, 20 Jul 2025 11:47:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eLVMPVi3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GN+TnxmM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D843A10E02C
- for <intel-xe@lists.freedesktop.org>; Sat, 19 Jul 2025 23:02:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDD8010E207;
+ Sun, 20 Jul 2025 11:47:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752966132; x=1784502132;
- h=date:from:to:cc:subject:message-id;
- bh=IXKORZuXu/AJzc/j+jLClRTuNscOJY5Vkuzq6AsQL/U=;
- b=eLVMPVi3C4kJWzzgQQwUY0PrVF9EmRGhWj1/fVzBa4cIsYZljuqFw3c4
- 4IvFHaV1IYFDACsnu0HDFo7bBtNFiY1v9Tw3snammjsvxHZ1krTJeS4O3
- 23yZJ2xIWgSpyxBi9gnIcct3Pkj8lGOKa/Ai+giLIDt5nxMugMO0t9E0z
- k16I0a3d8kN8aZq9hQm8t5hZvTMIHpqEWt9U+hnnu0ZA0i3CaJReTaYOl
- uC/5fht0RITCOhMFX0VDA25o2UCgU5hg66mI2ArXnl2q8ltIn8H/+bQVK
- M+EYfolhINIAdkgw/STODyOt6K81Qy+t6LGTrvWbnp+xmxAn6phhmJFdV g==;
-X-CSE-ConnectionGUID: mfadXKF3TZOXME2FocWtFw==
-X-CSE-MsgGUID: cgo79nj3R3Coka8P5c4/Aw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11497"; a="65915197"
-X-IronPort-AV: E=Sophos;i="6.16,325,1744095600"; d="scan'208";a="65915197"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2025 16:02:11 -0700
-X-CSE-ConnectionGUID: qGfJGI0kRGGUOa2+5AeJoA==
-X-CSE-MsgGUID: 5Ojs8qcJR2u+kE76+DUk1w==
+ t=1753012060; x=1784548060;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=PS2wJLBlLM/FuLnFxvc4A1rRtk1V8DP3WmioodBjivg=;
+ b=GN+TnxmMwaEcnyvV6yDwL535Y6uJqjRVMBu3hq4dF0tqCr8vPeh7HtZN
+ xbzb40Y17KzHS5Yp3gAPVL/158nXF+6B1PD7dozdesecJPnWc7DUUzyyD
+ HlfMzq+5kUnkQWVghWgHT8pegQn4dWG+ULFAOK6I3o07uA6BUICCxEyI7
+ xnQCvGAlKiJw/VDkuN6LMsSgJDrORzQ53VI0gojORlvaq6sO84QaMdmsh
+ JBQdIj523N5WJV8jeJDtPmCVRnvAsxbUCrilCJLfNba+2+B5gYewQCtIi
+ XqBgZY6xx0M5cfkBR9zSJezuxkIjzg47h/ttafON7FovG9v/Hpj7qzKL9 w==;
+X-CSE-ConnectionGUID: iR9K7Sa9QQazXDPU7G/MWw==
+X-CSE-MsgGUID: 7gxmvHycTUKCE1qq6A+3pQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11497"; a="66595443"
+X-IronPort-AV: E=Sophos;i="6.16,326,1744095600"; d="scan'208";a="66595443"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2025 04:47:39 -0700
+X-CSE-ConnectionGUID: oVpK9IT6QhyAba8NtANceQ==
+X-CSE-MsgGUID: Tc80ItjXTHGyHIwLleEeWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,325,1744095600"; d="scan'208";a="158289858"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
- by orviesa009.jf.intel.com with ESMTP; 19 Jul 2025 16:02:10 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1udGZD-000FpR-2Y;
- Sat, 19 Jul 2025 23:02:07 +0000
-Date: Sun, 20 Jul 2025 07:01:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 4b5514f786dd790ec0d3e2fe66cea7fd2f36bdf3
-Message-ID: <202507200732.N04VngLt-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.16,326,1744095600"; d="scan'208";a="164096490"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2025 04:47:35 -0700
+Date: Sun, 20 Jul 2025 14:47:32 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
+ umesh.nerlige.ramappa@intel.com, frank.scarbrough@intel.com,
+ sk.anirban@intel.com, simona.vetter@ffwll.ch, airlied@gmail.com,
+ =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Subject: Re: [PATCH v5 1/9] drm: Add a vendor-specific recovery method to
+ device wedged uevent
+Message-ID: <aHzXVKj_ZbIi6vg9@black.fi.intel.com>
+References: <20250715104730.2109506-1-riana.tauro@intel.com>
+ <20250715104730.2109506-2-riana.tauro@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250715104730.2109506-2-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,130 +75,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 4b5514f786dd790ec0d3e2fe66cea7fd2f36bdf3  drm/xe: Remove unnecessary EU stall debug message
+On Tue, Jul 15, 2025 at 04:17:21PM +0530, Riana Tauro wrote:
+> This patch addresses the need for a recovery method (firmware-update
+> on Firmware errors) introduced in the later patches of Xe KMD. Whenever
+> XE KMD detects a firmware error, a drm wedged uevent needs to be sent
+> to the system administrator/userspace to trigger a firmware update.
+> 
+> The initial proposal to use 'firmware-flash' as a recovery method was
+> not applicable to other drivers and could cause multiple recovery
+> methods specific to vendors to be added.
+> To address this a more generic 'vendor-specific' method is introduced,
+> guiding users to refer to vendor specific documentation and system logs
+> for detailed vendor specific recovery mechanism.
+> 
+> Add a recovery method 'WEDGED=vendor-specific' for such errors.
+> Vendors must provide additional recovery documentation if this method
+> is used.
+> 
+> It is the responsibility of the consumer to refer to the correct vendor
+> specific documentation and usecase before attempting a recovery.
+> 
+> For example: If driver is XE KMD, the consumer must refer
+> to the documentation of 'Device Wedging' under 'Documentation/gpu/xe/'
+> 
+> Recovery script contributed by Raag
 
-elapsed time: 1444m
+Thank you, and a fullstop would make it even more awesome ;)
 
-configs tested: 111
-configs skipped: 4
+> v2: fix documentation (Raag)
+> v3: add more details to commit message (Sima, Rodrigo, Raag)
+>     add an example to the documentation (by Raag)
+> 
+> Cc: André Almeida <andrealmeid@igalia.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: David Airlie <airlied@gmail.com>
+> Co-developed-by: Raag Jadav <raag.jadav@intel.com>
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> ---
+>  Documentation/gpu/drm-uapi.rst | 41 +++++++++++++++++++++++++++++-----
+>  drivers/gpu/drm/drm_drv.c      |  2 ++
+>  include/drm/drm_device.h       |  4 ++++
+>  3 files changed, 41 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
+> index 843facf01b2d..a1a5a4de68ea 100644
+> --- a/Documentation/gpu/drm-uapi.rst
+> +++ b/Documentation/gpu/drm-uapi.rst
+> @@ -421,10 +421,13 @@ Recovery
+>  Current implementation defines three recovery methods, out of which, drivers
+>  can use any one, multiple or none. Method(s) of choice will be sent in the
+>  uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
+> -more side-effects. If driver is unsure about recovery or method is unknown
+> -(like soft/hard system reboot, firmware flashing, physical device replacement
+> -or any other procedure which can't be attempted on the fly), ``WEDGED=unknown``
+> -will be sent instead.
+> +more side-effects. If recovery method is specific to vendor
+> +``WEDGED=vendor-specific`` will be sent and userspace should refer to vendor
+> +specific documentation for further recovery steps. As an example if the driver
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+We'd want to be consistent with terminologies, so it's either 'steps' ...
 
-tested configs:
-alpha                             allnoconfig    gcc-15.1.0
-alpha                            allyesconfig    gcc-15.1.0
-arc                              allmodconfig    gcc-15.1.0
-arc                               allnoconfig    gcc-15.1.0
-arc                              allyesconfig    gcc-15.1.0
-arc                     haps_hs_smp_defconfig    gcc-15.1.0
-arc                   randconfig-001-20250719    gcc-14.3.0
-arc                   randconfig-002-20250719    gcc-15.1.0
-arm                              allmodconfig    gcc-15.1.0
-arm                               allnoconfig    clang-21
-arm                              allyesconfig    gcc-15.1.0
-arm                   randconfig-001-20250719    gcc-14.3.0
-arm                   randconfig-002-20250719    clang-21
-arm                   randconfig-003-20250719    clang-21
-arm                   randconfig-004-20250719    clang-16
-arm64                            allmodconfig    clang-19
-arm64                             allnoconfig    gcc-15.1.0
-arm64                 randconfig-001-20250719    clang-20
-arm64                 randconfig-002-20250719    clang-18
-arm64                 randconfig-003-20250719    gcc-15.1.0
-arm64                 randconfig-004-20250719    clang-20
-csky                              allnoconfig    gcc-15.1.0
-csky                  randconfig-001-20250719    gcc-15.1.0
-csky                  randconfig-002-20250719    gcc-11.5.0
-hexagon                           allnoconfig    clang-21
-hexagon                          allyesconfig    clang-21
-hexagon               randconfig-001-20250719    clang-21
-hexagon               randconfig-002-20250719    clang-21
-i386        buildonly-randconfig-001-20250719    clang-20
-i386        buildonly-randconfig-002-20250719    gcc-12
-i386        buildonly-randconfig-003-20250719    gcc-12
-i386        buildonly-randconfig-004-20250719    clang-20
-i386        buildonly-randconfig-005-20250719    clang-20
-i386        buildonly-randconfig-006-20250719    clang-20
-loongarch                        allmodconfig    clang-19
-loongarch                         allnoconfig    clang-21
-loongarch             randconfig-001-20250719    clang-18
-loongarch             randconfig-002-20250719    gcc-15.1.0
-m68k                             allmodconfig    gcc-15.1.0
-m68k                              allnoconfig    gcc-15.1.0
-m68k                             allyesconfig    gcc-15.1.0
-m68k                        m5272c3_defconfig    gcc-15.1.0
-microblaze                       allmodconfig    gcc-15.1.0
-microblaze                        allnoconfig    gcc-15.1.0
-microblaze                       allyesconfig    gcc-15.1.0
-microblaze                          defconfig    gcc-15.1.0
-mips                              allnoconfig    gcc-15.1.0
-mips                         db1xxx_defconfig    clang-21
-mips                           ip22_defconfig    gcc-15.1.0
-mips                           mtx1_defconfig    clang-21
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    gcc-11.5.0
-nios2                 randconfig-001-20250719    gcc-11.5.0
-nios2                 randconfig-002-20250719    gcc-8.5.0
-openrisc                          allnoconfig    gcc-15.1.0
-openrisc                         allyesconfig    gcc-15.1.0
-openrisc                            defconfig    gcc-15.1.0
-parisc                           alldefconfig    gcc-15.1.0
-parisc                           allmodconfig    gcc-15.1.0
-parisc                            allnoconfig    gcc-15.1.0
-parisc                           allyesconfig    gcc-15.1.0
-parisc                              defconfig    gcc-15.1.0
-parisc                randconfig-001-20250719    gcc-8.5.0
-parisc                randconfig-002-20250719    gcc-8.5.0
-parisc64                            defconfig    gcc-15.1.0
-powerpc                          allmodconfig    gcc-15.1.0
-powerpc                           allnoconfig    gcc-15.1.0
-powerpc               randconfig-001-20250719    clang-19
-powerpc               randconfig-002-20250719    gcc-10.5.0
-powerpc               randconfig-003-20250719    gcc-12.5.0
-powerpc                     stx_gp3_defconfig    gcc-15.1.0
-powerpc64             randconfig-001-20250719    gcc-8.5.0
-powerpc64             randconfig-002-20250719    clang-21
-powerpc64             randconfig-003-20250719    gcc-10.5.0
-riscv                             allnoconfig    gcc-15.1.0
-riscv                               defconfig    clang-21
-riscv                 randconfig-001-20250719    clang-21
-riscv                 randconfig-002-20250719    clang-21
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-21
-s390                             allyesconfig    gcc-15.1.0
-s390                  randconfig-001-20250719    gcc-9.5.0
-s390                  randconfig-002-20250719    gcc-9.5.0
-sh                               allmodconfig    gcc-15.1.0
-sh                                allnoconfig    gcc-15.1.0
-sh                               allyesconfig    gcc-15.1.0
-sh                                  defconfig    gcc-15.1.0
-sh                    randconfig-001-20250719    gcc-13.4.0
-sh                    randconfig-002-20250719    gcc-15.1.0
-sh                           se7750_defconfig    gcc-15.1.0
-sparc                            allmodconfig    gcc-15.1.0
-sparc                             allnoconfig    gcc-15.1.0
-sparc                               defconfig    gcc-15.1.0
-sparc                 randconfig-001-20250719    gcc-15.1.0
-sparc                 randconfig-002-20250719    gcc-15.1.0
-sparc64               randconfig-001-20250719    gcc-9.5.0
-sparc64               randconfig-002-20250719    gcc-9.5.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-21
-um                               allyesconfig    gcc-12
-um                    randconfig-001-20250719    clang-16
-um                    randconfig-002-20250719    clang-21
-x86_64      buildonly-randconfig-001-20250719    clang-20
-x86_64      buildonly-randconfig-002-20250719    clang-20
-x86_64      buildonly-randconfig-003-20250719    clang-20
-x86_64      buildonly-randconfig-004-20250719    gcc-12
-x86_64      buildonly-randconfig-005-20250719    clang-20
-x86_64      buildonly-randconfig-006-20250719    gcc-12
-xtensa                            allnoconfig    gcc-15.1.0
-xtensa                randconfig-001-20250719    gcc-14.3.0
-xtensa                randconfig-002-20250719    gcc-8.5.0
+> +is 'xe' then the documentation of 'Device Wedging' of xe driver needs to be
+> +referred for the recovery mechanism.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+... or 'mechanism'. Personally I'd use 'procedure' and make it consistent
+with the example, but upto you.
+
+> +If driver is unsure about recovery or method is unknown, ``WEDGED=unknown``
+> +will be sent instead
+
+And again, punctuations please!
+
+Raag
+
+>  Userspace consumers can parse this event and attempt recovery as per the
+>  following expectations.
+> @@ -435,6 +438,7 @@ following expectations.
+>      none            optional telemetry collection
+>      rebind          unbind + bind driver
+>      bus-reset       unbind + bus reset/re-enumeration + bind
+> +    vendor-specific vendor specific recovery method
+>      unknown         consumer policy
+>      =============== ========================================
+>  
+> @@ -472,8 +476,12 @@ erroring out, all device memory should be unmapped and file descriptors should
+>  be closed to prevent leaks or undefined behaviour. The idea here is to clear the
+>  device of all user context beforehand and set the stage for a clean recovery.
+>  
+> -Example
+> --------
+> +For ``WEDGED=vendor-specific`` recovery method, it is the responsibility of the
+> +consumer to check the driver documentation and the usecase before attempting
+> +a recovery.
+> +
+> +Example - rebind
+> +----------------
+>  
+>  Udev rule::
+>  
+> @@ -491,6 +499,27 @@ Recovery script::
+>      echo -n $DEVICE > $DRIVER/unbind
+>      echo -n $DEVICE > $DRIVER/bind
+>  
+> +Example - vendor-specific
+> +-------------------------
+> +
+> +Udev rule::
+> +
+> +    SUBSYSTEM=="drm", ENV{WEDGED}=="vendor-specific", DEVPATH=="*/drm/card[0-9]",
+> +    RUN+="/path/to/vendor_specific_recovery.sh $env{DEVPATH}"
+> +
+> +Recovery script::
+> +
+> +    #!/bin/sh
+> +
+> +    DEVPATH=$(readlink -f /sys/$1/device)
+> +    DRIVERPATH=$(readlink -f $DEVPATH/driver)
+> +    DRIVER=$(basename $DRIVERPATH)
+> +
+> +    if [ "$DRIVER" = "xe" ]; then
+> +        # Refer XE documentation and check usecase and recovery procedure
+> +    fi
+> +
+> +
+>  Customization
+>  -------------
+>  
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index cdd591b11488..0ac723a46a91 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -532,6 +532,8 @@ static const char *drm_get_wedge_recovery(unsigned int opt)
+>  		return "rebind";
+>  	case DRM_WEDGE_RECOVERY_BUS_RESET:
+>  		return "bus-reset";
+> +	case DRM_WEDGE_RECOVERY_VENDOR:
+> +		return "vendor-specific";
+>  	default:
+>  		return NULL;
+>  	}
+> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+> index a33aedd5e9ec..59fd3f4d5995 100644
+> --- a/include/drm/drm_device.h
+> +++ b/include/drm/drm_device.h
+> @@ -26,10 +26,14 @@ struct pci_controller;
+>   * Recovery methods for wedged device in order of less to more side-effects.
+>   * To be used with drm_dev_wedged_event() as recovery @method. Callers can
+>   * use any one, multiple (or'd) or none depending on their needs.
+> + *
+> + * Refer to "Device Wedging" chapter in Documentation/gpu/drm-uapi.rst for more
+> + * details.
+>   */
+>  #define DRM_WEDGE_RECOVERY_NONE		BIT(0)	/* optional telemetry collection */
+>  #define DRM_WEDGE_RECOVERY_REBIND	BIT(1)	/* unbind + bind driver */
+>  #define DRM_WEDGE_RECOVERY_BUS_RESET	BIT(2)	/* unbind + reset bus device + bind */
+> +#define DRM_WEDGE_RECOVERY_VENDOR	BIT(3)	/* vendor specific recovery method */
+>  
+>  /**
+>   * struct drm_wedge_task_info - information about the guilty task of a wedge dev
+> -- 
+> 2.47.1
+> 
