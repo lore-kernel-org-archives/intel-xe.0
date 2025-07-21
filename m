@@ -4,59 +4,176 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5385BC83F25
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Jul 2025 16:00:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45222C83F25
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Jul 2025 16:22:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B27C10E56E;
-	Mon, 21 Jul 2025 16:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5A3B10E293;
+	Mon, 21 Jul 2025 16:22:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SIMzzr+c";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EpPmuJ+y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DEEF10E56E
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Jul 2025 16:00:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F134C10E293;
+ Mon, 21 Jul 2025 16:22:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753113648; x=1784649648;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0ELD1N+MaTNMT0V6IvwPU7mSeKpK2TlEv171aqizuzA=;
- b=SIMzzr+c7avh4ZE+sBV6y6cX3oStY05aV4BdqYDhsmhj/ymROEXJbDAf
- 64SlhmEa+959xckn4ntWKpGDIUHU6YFLY1mPbkUzZAFpT5/4/A+xNP1Rw
- gR0nPzu9amuQz0QEo6KkHMdKyojyV0r7jy1cr2Xi0vPN3qVutSaGGwW4e
- jpnr5K8ejOX84laMLWqQWHlWuOvllCO/gzXptaXJbPts2gj468s7Kf/bY
- LCEbJRFCMKIShNLFMZpLxFlcZGDFBTFoxgn8al0JwNRi7zd73pmv1zblb
- 3nTWOJAW9ZjfqwgmZQVcO7z5eFzL+d/gOaxOh8fscgyYsnFk4WjGGTLb+ Q==;
-X-CSE-ConnectionGUID: mQ8Uj5YqQp2Mu9iHt6xU+g==
-X-CSE-MsgGUID: looVNPFIRPqPdjiidK8eNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11499"; a="77874050"
-X-IronPort-AV: E=Sophos;i="6.16,329,1744095600"; d="scan'208";a="77874050"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2025 09:00:44 -0700
-X-CSE-ConnectionGUID: tOYxkBSCTPWh2w76dP43sg==
-X-CSE-MsgGUID: Enn8KvmfSNqDcr8vM2c7pA==
+ t=1753114975; x=1784650975;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=NAIVk7gfPFzo5w4dga//vkHyNThOmWCr+/w1Y9Hcrbg=;
+ b=EpPmuJ+y/+QnTpj/+EaSabpVUR8ETtyrJrYNYHxBDhSRykrt6Qk4HluR
+ zgYmnTeDc+NwC27dvHHOMajDuiBhrY+rAaHPukXcLXGT9wGrhfR/nmzrw
+ uZbJj1RCJLjL2gj+umr0QeTu3XCt0U/zOpJZQ6A4+XXxx7TGGIfMnJ93v
+ 34BkE3FyPG8RVoLsCXVPh6djPPxJKJiCeVYKLYd+y6e1l0LIwMevF/NKB
+ BrbsQEAjtIAi6j4TuwKyJNgT+B1eatuUEJS3nO4Ur1QS52ImWF09xDaJ0
+ sZeiWnOPEIh5UbCmSEKb1aBMaNzO7UxwE5kPb7IYBt7RwUr6gFO3jEDgU A==;
+X-CSE-ConnectionGUID: ZW7rOvHHR1Oamv8ci07bUQ==
+X-CSE-MsgGUID: X5sdNA9nQISIS1ub+vxaIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11499"; a="80781743"
+X-IronPort-AV: E=Sophos;i="6.16,329,1744095600"; d="scan'208";a="80781743"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2025 09:22:40 -0700
+X-CSE-ConnectionGUID: N6UQRSr8Rl+d36ZdKAcYZw==
+X-CSE-MsgGUID: HvgHFPsQQFyrPrOXVvsfIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,329,1744095600"; d="scan'208";a="159422004"
-Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa008.fm.intel.com with ESMTP; 21 Jul 2025 09:00:41 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Tomasz Lis <tomasz.lis@intel.com>
-Subject: [PATCH v11 2/3] drm/xe/vf: Attach and detach CCS copy commands with BO
-Date: Mon, 21 Jul 2025 21:47:23 +0530
-Message-ID: <20250721161724.26879-3-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250721161724.26879-1-satyanarayana.k.v.p@intel.com>
-References: <20250721161724.26879-1-satyanarayana.k.v.p@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.16,329,1744095600"; d="scan'208";a="159301489"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2025 09:22:41 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Mon, 21 Jul 2025 09:22:39 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Mon, 21 Jul 2025 09:22:39 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.65) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Mon, 21 Jul 2025 09:22:37 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Pg2JEV9dB9YepIpY3fD8/Hbxx4aVgmmPlN/pPUsHjXAcbkEbN1hfA1/snQ5GFLnSrmyep4VAqzypUzEZP/hSbI3y39l9wcI02BdwRvEVA8Z5i33LRjr6GToqmqdrfaJSkLXyxgoZR9ngoN8o/p7oH1elWCi5MjloB/LH5/vfzpapj8XcqxGG8uGvaZ+gJnH1OUqfo2vg8IUFq9upNHGHtUHYFXgHv4KBtuznbHGsrHG1ofo/v6wtnsKWZiGRMxZ9TmOJxi9ZGDywZwp9LbUzi4TIpLvcfEh3esh2fevLNeYiJjxiDYjew2LqnTfjkw7o3Mt2H3SAoJcTbINQKh/3xQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sATdRzIb0WjQG85t/ifFC24CvycJBsM7u0/tRTqNuug=;
+ b=BaBQiFhLEcqIw0Yt3ZK/0zOSimQUaD9KtGYZ4mvcVAgzXXVQ94gzowxdn3yZmGwpBoXDFOlRxCg4WiA9IwBHZI9PPfz4M5aWSFexNnLur+nN+e6OuNrbgJv7wGJ/WMiWhMPB4c9HynIK9/YAE6nYz/eJ9lHV5gJgOvVs7/xw95D5zAWI64LQbGYGh7fK98JjJi7EMqToAgw+gdiL1pH0WxNplS0/RJqXB0JxlYlAngy4563hhqqbGCIJeHiFXnVucpMIMtuvfj6+nXaCKSXDH9/3mrrtpSDnDfknSm2krf4PgtbVoC51TiID3/+IpFD+mgCKBRPrMLI+N7oAalsa4w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by CY5PR11MB6389.namprd11.prod.outlook.com (2603:10b6:930:3a::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Mon, 21 Jul
+ 2025 16:22:09 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%6]) with mapi id 15.20.8943.028; Mon, 21 Jul 2025
+ 16:22:09 +0000
+Date: Mon, 21 Jul 2025 19:21:59 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+CC: Gustavo Sousa <gustavo.sousa@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dnyaneshwar.bhadane@intel.com>, <dibin.moolakadan.subrahmanian@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Skip unavailable power wells based on
+ pipe mask
+Message-ID: <aH5pJxjgyEInbyNl@ideak-desk>
+References: <20250717051603.1036746-1-chaitanya.kumar.borah@intel.com>
+ <175275376596.1809.4970039481532019393@intel.com>
+ <aHpuI_h1ytLlujDN@ideak-desk>
+ <175285640686.1809.2888738151042642518@intel.com>
+ <aHqBlQ-yY2Lc8TuV@ideak-desk>
+ <175286978035.1474.9787252535829745230@intel.com>
+ <aHt1hKImGHBVXDBI@ideak-desk>
+ <4dd05412-8f3e-4c2f-9ade-7158d5478b22@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <4dd05412-8f3e-4c2f-9ade-7158d5478b22@intel.com>
+X-ClientProxiedBy: LO3P123CA0033.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:388::11) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|CY5PR11MB6389:EE_
+X-MS-Office365-Filtering-Correlation-Id: a8308bae-bf47-41aa-d281-08ddc872bd68
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|1800799024|366016|376014|10070799003;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?LURuy91eKfpUroBrIJlxn1Wm5XbGis1Ix49aDTPH+nLgrlBzIAE4SWGCl9?=
+ =?iso-8859-1?Q?6P8oAj5dV4YXE3YGZxU+0m4+020moPh+d7HSJ1bDtVl+tbCqTIBegEK3yP?=
+ =?iso-8859-1?Q?iVCcIWifThsf5ulF3TgIn7zkays+PsqrFhQPQH89s283jk3j+cJbBvs4xA?=
+ =?iso-8859-1?Q?zoxPU5hEK2/e2I6P5HyLYT7jI8F34IzTih60I3yxY/Y19w5r9uKf7ed4TG?=
+ =?iso-8859-1?Q?4WwBXXfkN/+fZymNfJ6xTAP2dWQgt+V+J6cH5AIn/AwfGZyz/JXb2PpRqm?=
+ =?iso-8859-1?Q?tUe55Rsh6w2olJeyAJGQ/AdMsjX7JU2RBW+GsUTC7YZsOeVul4itaMWR1J?=
+ =?iso-8859-1?Q?yKWLMCGHxI13Vi30a78059x6S8k++bcGVFgxpC65rwp12P5Ynt21oPbbWP?=
+ =?iso-8859-1?Q?pNcP9JzNgEcKmstNN5ZWn/YLAYGwUPK2sYlqT175Quco6M/Odcg5sA34dg?=
+ =?iso-8859-1?Q?/t6v2No3S9XnHyyVrLFy+Yl+8oSXBOQLLGTIImeRi3SXk/SfxKE/s9LGek?=
+ =?iso-8859-1?Q?9AxKh5fSgsHeLkB2DeEj6PEqRQ6xE46MmCNX7Is2Hf551Bb2R07BQDdddN?=
+ =?iso-8859-1?Q?n0Oll7skSSvr8UdNScE5k9MAdV6zSMaQxnLdO+WJaSzQu5CvrarA9oCIWi?=
+ =?iso-8859-1?Q?V7j2MfSBl/uRV+jNXXqPfeOnHwKKNpUUv0Sf2ssPTfBzzPxzHPU490/+W3?=
+ =?iso-8859-1?Q?liEc7f/AVOW9C2oVcpWXNESXVokSAebXkCo/57cCT16pJYd/RybqW3S10g?=
+ =?iso-8859-1?Q?uJ4THo0ZHWFZRntdSFhjW6sjorYN4C5oD6N9bJ2nKqk+0LvBNzPekSNKn7?=
+ =?iso-8859-1?Q?eFjm+9NUhZBFHqdDyVsbKtulhYHbAcaNRuqhG5KiupJh/OEj7vWE70qvog?=
+ =?iso-8859-1?Q?k7Timk3VJLbuzXDH7eLV280ybc/5wbMZniA3jKpXJfLHUB8af1Mg4qGdML?=
+ =?iso-8859-1?Q?ZfYQhfjbT6/uzZQ3NX1Jar3vtvQfi8TAC8di7u0Cfa8zZFvzITsg6/VEGa?=
+ =?iso-8859-1?Q?FP6Jm7Oehpl5mKsm1lM/xn4u+bjQw0hupugvA/F//Iq+c7A0KZb4Tx22Jj?=
+ =?iso-8859-1?Q?avVbhhC9WjOdteexlI9dHG0BRthiuZWaFcWSZw2a31/Zz4yYG4fPzM3Ew4?=
+ =?iso-8859-1?Q?RvKsSLaSMC1vIyHI28gosD6SWYwWJ7Sh0E+1zogTJ0cRQJGpe5s0PR/CWF?=
+ =?iso-8859-1?Q?z5YF+QMOaUvpn46NtUErF56vw9ZbAVtZY28d0jpdr1wIKJlpb5aNEMO8/Y?=
+ =?iso-8859-1?Q?S5uxtK50zueQRYGLjJ/272XoUNrlbxr528qGy0baXjjfvzY8NI+C48ti8M?=
+ =?iso-8859-1?Q?g/w8a1/BCMVmurrOI2vAVzR/OjbuJkiq7tVFPlF3LOT4kY43GPvov1pLTm?=
+ =?iso-8859-1?Q?1N+md3kdf12Qe+4MHVxB0SRv9+YL9AMKqhwf/67G1bzftyadFZIfSJX7wn?=
+ =?iso-8859-1?Q?hPFNEtF/Ot1Ur1/swQuX7fB5LDauPApNpkmwTHx3Hmevmsbm2L4W8d7hox?=
+ =?iso-8859-1?Q?0=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(10070799003); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?z9HSc2/h22wSuVAtLdkfRyeC65dbI8Prd3SlVfUdeCKIVJTRnYW9AZgF28?=
+ =?iso-8859-1?Q?yq28RbLpI+mRAIwgEtQgeNFDoQtNqzcdUyIlaECg5tpFSB1dXPDi2+xQOg?=
+ =?iso-8859-1?Q?KESNl9sMliX7NTdesj0KqxFxzs9UlT/AWmzxUq5izo0oRoa3yONuj3xm2C?=
+ =?iso-8859-1?Q?nDhNTJhoUb1/aCJOX580sn2X4oaan6qsleNK1eMsJu9pFNBRxV/3gEARMn?=
+ =?iso-8859-1?Q?a+OafT5A8RzrmtPdN/2/YQ0EccgFP4cceChOYG1MnkZ5B1XSdHDAvb3Iuv?=
+ =?iso-8859-1?Q?qnvifGFBr3jmI+8P4q300zX+sNNaVNXCZBOkDz6C2hAQAz/CAdvla9a5eg?=
+ =?iso-8859-1?Q?JH/LTWpq/tF38/2nm/6/aRQOQiG4ZA6db2keC+ZvJNoh91BcY3m/U3yzAP?=
+ =?iso-8859-1?Q?kN7b560N7b7AhoKXKeg8WnAEbpgN24G5AO1TujGryBJcyRZOvcg2rp4jjO?=
+ =?iso-8859-1?Q?4rzplBi65y6gFhhtGXV5lw7Kl7qW5GXQv3aOw/BMmCOwh1TqgyoWVOuMBd?=
+ =?iso-8859-1?Q?3toIqEECr4IbOu/R61JPyYUXHKFdqS2dyLhzaNvNXlITaHqCugLJp+lxjR?=
+ =?iso-8859-1?Q?U4v70hiAYK4DS+JoUqfg3G2v/CfhbRmRspypo9U5fnOtsVetSIjlwZzPek?=
+ =?iso-8859-1?Q?n64J+QrEiMzmEwjHdI2yNoh3EBbgmwNV8mUP7yLFmo8joAgYO3rrLgrz82?=
+ =?iso-8859-1?Q?AOb+A/TuUUg4lWwdwhvsWl/rIaVAFistzb7ZDbM8PspYtBuSQcoS/x7OOh?=
+ =?iso-8859-1?Q?17XS3sGnT85BYH/DIOnRAHZYa2mTKA5QZ+xQNxcCshfDRVM91aw7XNW2lq?=
+ =?iso-8859-1?Q?dZixVyOwDDNaayR9SQnPVfO5t1boUzUWFosxevQt/aGOTLrqvnTp++g0c2?=
+ =?iso-8859-1?Q?b1tZc92xkFNNiz8pBSOErP51Cmf1pHYUfISYjlwfmw01heldpQWVnD31g0?=
+ =?iso-8859-1?Q?VsbVtP4VGLxiPGa9/B7RUVDfRdRvd7j0z3Smv2SVPlolRwvAlOiAlZOa6v?=
+ =?iso-8859-1?Q?Z8Sh6rNq1DIAPk1JYRpbcdb0CRhWio+/K16u6RnuFev1RecMrplC7weUDM?=
+ =?iso-8859-1?Q?AnYSZxOhUJJCNy8aumEstUJM8EIgWfC5Ayu/rSQ0921nzRRgDsLh/m3hau?=
+ =?iso-8859-1?Q?DT8Eh6lr2j+BZI5kZFpjRc+mMX1fIvbI1AFVQe4jAEGi/NRFwGOm/uVzh4?=
+ =?iso-8859-1?Q?rPR8BLzruX9VthCBaFxmbNAlWQK/T2TiF1Q2JVai6Ei9HSiHt8T9qk6roq?=
+ =?iso-8859-1?Q?VsJOYzu5nx/859edc1gzoHgouOYbF0Uxn5GCidX+vmBamyBYAwGo7aWfMF?=
+ =?iso-8859-1?Q?w21zSDGw96BSptxReeyeh6/WqCqq/8lHINrhelEOoLw2ITvbPImzMC6ThD?=
+ =?iso-8859-1?Q?bMT9BBP04tJJonIzxy0MqAAMkCLcgjssSxvtpQNoJcs+yXK0TEAAJMf8yp?=
+ =?iso-8859-1?Q?d5TGrKUdQkpjdSFhCnJrL7s5FrsUSOle5a2viGuC/9Qnf94FQQ0VjFjNiR?=
+ =?iso-8859-1?Q?pfdCBqDqHtNHHcc5QBDsTF7CMcxnJWHM7Hf8v3qfHetSawsKNgEcH1VSDC?=
+ =?iso-8859-1?Q?/cj8YkC5sCsgs4kcQ2XolVKi3DttT16a75gQGWFT9KFeLxNOQDmQ6HH/di?=
+ =?iso-8859-1?Q?pwmv54rF1Y2e5xk8pQC9k+MGq44r0Dvw+aTVY1HQfSkNedEBf+nJWwqar/?=
+ =?iso-8859-1?Q?9uz7Q3O2AX8ApahnDsRIPfHWlbN8Rtk1a3ksW6GP?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a8308bae-bf47-41aa-d281-08ddc872bd68
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2025 16:22:08.9715 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TZUQtMIAjADDAHllpLu+BowSsAZRV3KWbWaGB1vcppRXd1A13zHgtGaTINm3Zl5cdjyeNYj4MRwsoiR0Nfg/JA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6389
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,501 +185,223 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Attach CCS read/write copy commands to BO for old and new mem types as
-NULL -> tt or system -> tt.
-Detach the CCS read/write copy commands from BO while deleting ttm bo
-from xe_ttm_bo_delete_mem_notify().
+On Mon, Jul 21, 2025 at 08:47:56PM +0530, Borah, Chaitanya Kumar wrote:
+> 
+> On 7/19/2025 4:07 PM, Imre Deak wrote:
+> > On Fri, Jul 18, 2025 at 05:16:20PM -0300, Gustavo Sousa wrote:
+> > ...
+> > 
+> > DDI TC3/4 are never wired on WCL, so I'd still confirm the above, i.e.
+> > do the PORT_AUX_CTL_USBC3/4 registers exist indeed (they do based on the
+> > spec) and do the 'PHY Power Request' / 'PHY Power State' flags get
+> > updated if the request bit is set/cleared as expected?
+> > 
+> > >   * As you explained in a previous reply, the driver needs to deal with
+> > >     power wells of fused-off pipes to ensure those get properly powered
+> > >     off in case whatever was controlling display before the driver takes
+> > >     control let them enabled.
+> > > 
+> > > So, I guess we could either
+> > > 
+> > >    (1) go back to Chaitanya's original patch;
+> > >    (2) or tweak this patch to use a mask of pipes supported by the
+> > >        display IP instead of non-fused-off ones.
+> > > 
+> > > I personally would prefer (1), since then we would make the presence of
+> > > power wells and mapping more explicit in the code;
+> > Agreed, I'd also prefer (1). I'd still check if registering the
+> > AUX_TC3/4 power wells is correct based on the above.
+> > 
+> I had a version of my first patch that excluded AUX_TC3/4.
+> 
+> That lead to the following warning. I need to dig deeper to understand the
+> failure but it might be more obvious to one of you.
+> At the time I just assumed that these power wells are actually present.
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Micha≈Ç Winiarski <michal.winiarski@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
-Cc: Tomasz Lis <tomasz.lis@intel.com>
+Is the connector for the TC3/4 ports get added? That would be incorrect,
+as WCL doesn't have these ports. The VBT on WCL should indicate only
+TC1/2 as present, but if the above is true that's probably not the case.
+Please provide a full dmesg.
 
-V10 -> V11:
-- Rebased and fixed conflicts.
-- Fixed issue with TLB flush.
+Regardless of the above, could you please check what happens with the
+above PHY power request/state flags if you set the request flag to 1 in
+the PORT_AUX_CTL_USBC3/4 registers?
 
-V9 -> V10:
-- None.
-
-V8 -> V9:
-- Removed MI_INVALIDATE_TLB after emitting PTEs (Matthew Brost).
-- Fixed review comments (Matthew Brost)
-
-V7 -> V8:
-- Removed xe_bb_ccs_realloc() and created a single BB by calculating the
-BB size first and then emitting the commands. (Matthew Brost)
-- Added xe_assert() if BB is not NULL in xe_sriov_vf_ccs_attach_bo().
-
-V6 -> V7:
-- Created xe_bb_ccs_realloc() to create a single BB instead of maintaining
-a list. (Matthew Brost)
-
-V5 -> V6:
-- Removed dead code from xe_migrate_ccs_rw_copy() function. (Matthew Brost)
-
-V4 -> V5:
-- Create a list of BBs for the given BO and fixed memory leak while
-detaching BOs. (Matthew Brost).
-- Fixed review comments (Matthew Brost & Matthew Auld).
-- Yet to cleanup xe_migrate_ccs_rw_copy() function.
-
-V3 -> V4:
-- Fixed issues reported by patchworks.
-
-V2 -> V3:
-- Attach and detach functions check for IS_VF_CCS_READY().
-
-V1 -> V2:
-- Fixed review comments.
----
- drivers/gpu/drm/xe/xe_bb.c                 |  35 ++++++
- drivers/gpu/drm/xe/xe_bb.h                 |   3 +
- drivers/gpu/drm/xe/xe_bo.c                 |  23 ++++
- drivers/gpu/drm/xe/xe_bo_types.h           |   3 +
- drivers/gpu/drm/xe/xe_migrate.c            | 137 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_migrate.h            |   6 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       |  67 ++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.h       |   3 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |   8 ++
- 9 files changed, 285 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index 5ce0e26822f2..feb6e013dc38 100644
---- a/drivers/gpu/drm/xe/xe_bb.c
-+++ b/drivers/gpu/drm/xe/xe_bb.c
-@@ -60,6 +60,41 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
- 	return ERR_PTR(err);
- }
- 
-+struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
-+			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
-+{
-+	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_sa_manager *bb_pool;
-+	int err;
-+
-+	if (!bb)
-+		return ERR_PTR(-ENOMEM);
-+	/*
-+	 * We need to allocate space for the requested number of dwords &
-+	 * one additional MI_BATCH_BUFFER_END dword. Since the whole SA
-+	 * is submitted to HW, we need to make sure that the last instruction
-+	 * is not over written when the last chunk of SA is allocated for BB.
-+	 * So, this extra DW acts as a guard here.
-+	 */
-+
-+	bb_pool = tile->sriov.vf.ccs[ctx_id].mem.ccs_bb_pool;
-+	bb->bo = xe_sa_bo_new(bb_pool, 4 * (dwords + 1));
-+
-+	if (IS_ERR(bb->bo)) {
-+		err = PTR_ERR(bb->bo);
-+		goto err;
-+	}
-+
-+	bb->cs = xe_sa_bo_cpu_addr(bb->bo);
-+	bb->len = 0;
-+
-+	return bb;
-+err:
-+	kfree(bb);
-+	return ERR_PTR(err);
-+}
-+
- static struct xe_sched_job *
- __xe_bb_create_job(struct xe_exec_queue *q, struct xe_bb *bb, u64 *addr)
- {
-diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
-index b5cc65506696..2a8adc9a6dee 100644
---- a/drivers/gpu/drm/xe/xe_bb.h
-+++ b/drivers/gpu/drm/xe/xe_bb.h
-@@ -13,8 +13,11 @@ struct dma_fence;
- struct xe_gt;
- struct xe_exec_queue;
- struct xe_sched_job;
-+enum xe_sriov_vf_ccs_rw_ctxs;
- 
- struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm);
-+struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
-+			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id);
- struct xe_sched_job *xe_bb_create_job(struct xe_exec_queue *q,
- 				      struct xe_bb *bb);
- struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 00ce067d5fd3..ffca1cea5585 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -33,6 +33,7 @@
- #include "xe_pxp.h"
- #include "xe_res_cursor.h"
- #include "xe_shrinker.h"
-+#include "xe_sriov_vf_ccs.h"
- #include "xe_trace_bo.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
-@@ -965,6 +966,20 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	dma_fence_put(fence);
- 	xe_pm_runtime_put(xe);
- 
-+	/*
-+	 * CCS meta data is migrated from TT -> SMEM. So, let us detach the
-+	 * BBs from BO as it is no longer needed.
-+	 */
-+	if (IS_VF_CCS_BB_VALID(xe, bo) && old_mem_type == XE_PL_TT &&
-+	    new_mem->mem_type == XE_PL_SYSTEM)
-+		xe_sriov_vf_ccs_detach_bo(bo);
-+
-+	if (IS_SRIOV_VF(xe) &&
-+	    ((move_lacks_source && new_mem->mem_type == XE_PL_TT) ||
-+	     (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT)) &&
-+	    handle_system_ccs)
-+		ret = xe_sriov_vf_ccs_attach_bo(bo);
-+
- out:
- 	if ((!ttm_bo->resource || ttm_bo->resource->mem_type == XE_PL_SYSTEM) &&
- 	    ttm_bo->ttm) {
-@@ -975,6 +990,9 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		if (timeout < 0)
- 			ret = timeout;
- 
-+		if (IS_VF_CCS_BB_VALID(xe, bo))
-+			xe_sriov_vf_ccs_detach_bo(bo);
-+
- 		xe_tt_unmap_sg(xe, ttm_bo->ttm);
- 	}
- 
-@@ -1502,9 +1520,14 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
- 
- static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
- {
-+	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
-+
- 	if (!xe_bo_is_xe_bo(ttm_bo))
- 		return;
- 
-+	if (IS_VF_CCS_BB_VALID(ttm_to_xe_device(ttm_bo->bdev), bo))
-+		xe_sriov_vf_ccs_detach_bo(bo);
-+
- 	/*
- 	 * Object is idle and about to be destroyed. Release the
- 	 * dma-buf attachment.
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 57d34698139e..cf604adc13a3 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -77,6 +77,9 @@ struct xe_bo {
- 	/** @ccs_cleared */
- 	bool ccs_cleared;
- 
-+	/** @bb_ccs_rw: BB instructions of CCS read/write. Valid only for VF */
-+	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
-+
- 	/**
- 	 * @cpu_caching: CPU caching mode. Currently only used for userspace
- 	 * objects. Exceptions are system memory on DGFX, which is always
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 6a80ae6104dd..30474d92a9b9 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -30,6 +30,7 @@
- #include "xe_mocs.h"
- #include "xe_pt.h"
- #include "xe_res_cursor.h"
-+#include "xe_sa.h"
- #include "xe_sched_job.h"
- #include "xe_sync.h"
- #include "xe_trace_bo.h"
-@@ -954,6 +955,142 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 	return fence;
- }
- 
-+/**
-+ * xe_migrate_ccs_rw_copy() - Copy content of TTM resources.
-+ * @m: The migration context.
-+ * @src_bo: The buffer object @src is currently bound to.
-+ * @read_write : Creates BB commands for CCS read/write.
-+ *
-+ * Creates batch buffer instructions to copy CCS metadata from CCS pool to
-+ * memory and vice versa.
-+ *
-+ * This function should only be called for IGPU.
-+ *
-+ * Return: 0 if successful, negative error code on failure.
-+ */
-+int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
-+			   struct xe_bo *src_bo,
-+			   enum xe_sriov_vf_ccs_rw_ctxs read_write)
-+
-+{
-+	bool src_is_pltt = read_write == XE_SRIOV_VF_CCS_READ_CTX;
-+	bool dst_is_pltt = read_write == XE_SRIOV_VF_CCS_WRITE_CTX;
-+	struct ttm_resource *src = src_bo->ttm.resource;
-+	struct xe_gt *gt = m->tile->primary_gt;
-+	u32 batch_size, batch_size_allocated;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_res_cursor src_it, ccs_it;
-+	u64 size = xe_bo_size(src_bo);
-+	struct xe_bb *bb = NULL;
-+	u64 src_L0, src_L0_ofs;
-+	u32 src_L0_pt;
-+	int err;
-+
-+	xe_res_first_sg(xe_bo_sg(src_bo), 0, size, &src_it);
-+
-+	xe_res_first_sg(xe_bo_sg(src_bo), xe_bo_ccs_pages_start(src_bo),
-+			PAGE_ALIGN(xe_device_ccs_bytes(xe, size)),
-+			&ccs_it);
-+
-+	/* Calculate Batch buffer size */
-+	batch_size = 0;
-+	while (size) {
-+		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
-+		u64 ccs_ofs, ccs_size;
-+		u32 ccs_pt;
-+
-+		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-+
-+		src_L0 = min_t(u64, max_mem_transfer_per_pass(xe), size);
-+
-+		batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
-+					      &src_L0_ofs, &src_L0_pt, 0, 0,
-+					      avail_pts);
-+
-+		ccs_size = xe_device_ccs_bytes(xe, src_L0);
-+		batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
-+					      &ccs_pt, 0, avail_pts, avail_pts);
-+		xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
-+
-+		/* Add copy commands size here */
-+		batch_size += EMIT_COPY_CCS_DW;
-+
-+		size -= src_L0;
-+	}
-+
-+	bb = xe_bb_ccs_new(gt, batch_size, read_write);
-+	if (IS_ERR(bb)) {
-+		drm_err(&xe->drm, "BB allocation failed.\n");
-+		err = PTR_ERR(bb);
-+		goto err_ret;
-+	}
-+
-+	batch_size_allocated = batch_size;
-+	size = xe_bo_size(src_bo);
-+	batch_size = 0;
-+
-+	/*
-+	 * Emit PTE and copy commands here.
-+	 * The CCS copy command can only support limited size. If the size to be
-+	 * copied is more than the limit, divide copy into chunks. So, calculate
-+	 * sizes here again before copy command is emitted.
-+	 */
-+	while (size) {
-+		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
-+		u32 flush_flags = 0;
-+		u64 ccs_ofs, ccs_size;
-+		u32 ccs_pt;
-+
-+		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-+
-+		src_L0 = xe_migrate_res_sizes(m, &src_it);
-+
-+		batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
-+					      &src_L0_ofs, &src_L0_pt, 0, 0,
-+					      avail_pts);
-+
-+		ccs_size = xe_device_ccs_bytes(xe, src_L0);
-+		batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
-+					      &ccs_pt, 0, avail_pts, avail_pts);
-+		xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
-+		batch_size += EMIT_COPY_CCS_DW;
-+
-+		emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
-+
-+		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
-+
-+		bb->cs[bb->len++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-+				    MI_FLUSH_IMM_DW;
-+		bb->cs[bb->len++] = lower_32_bits(xe_sa_bo_gpu_addr(bb->bo)) |
-+				    MI_FLUSH_DW_USE_GTT;
-+		bb->cs[bb->len++] = upper_32_bits(xe_sa_bo_gpu_addr(bb->bo));
-+		bb->cs[bb->len++] = MI_NOOP;
-+		bb->cs[bb->len++] = MI_NOOP;
-+
-+		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
-+						  src_L0_ofs, dst_is_pltt,
-+						  src_L0, ccs_ofs, true);
-+
-+		bb->cs[bb->len++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-+				    MI_FLUSH_IMM_DW | flush_flags;
-+		bb->cs[bb->len++] = lower_32_bits(xe_sa_bo_gpu_addr(bb->bo)) |
-+				    MI_FLUSH_DW_USE_GTT;
-+		bb->cs[bb->len++] = upper_32_bits(xe_sa_bo_gpu_addr(bb->bo));
-+		bb->cs[bb->len++] = MI_NOOP;
-+		bb->cs[bb->len++] = MI_NOOP;
-+
-+		size -= src_L0;
-+	}
-+
-+	xe_assert(xe, (batch_size_allocated == bb->len));
-+	src_bo->bb_ccs[read_write] = bb;
-+
-+	return 0;
-+
-+err_ret:
-+	return err;
-+}
-+
- static void emit_clear_link_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
- 				 u32 size, u32 pitch)
- {
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index 74c60f55004a..a1f4e91b25db 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -24,6 +24,8 @@ struct xe_vm;
- struct xe_vm_pgtable_update;
- struct xe_vma;
- 
-+enum xe_sriov_vf_ccs_rw_ctxs;
-+
- /**
-  * struct xe_migrate_pt_update_ops - Callbacks for the
-  * xe_migrate_update_pgtables() function.
-@@ -113,6 +115,10 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 				  struct ttm_resource *dst,
- 				  bool copy_only_ccs);
- 
-+int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
-+			   struct xe_bo *src_bo,
-+			   enum xe_sriov_vf_ccs_rw_ctxs read_write);
-+
- int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
- 			     unsigned long offset, void *buf, int len,
- 			     int write);
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index 697eea46659a..6ddeb016b892 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -5,6 +5,7 @@
- 
- #include "instructions/xe_mi_commands.h"
- #include "instructions/xe_gpu_commands.h"
-+#include "xe_bb.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_migrate.h"
-@@ -206,3 +207,69 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
- err_ret:
- 	return err;
- }
-+
-+/**
-+ * xe_sriov_vf_ccs_attach_bo - Insert CCS read write commands in the BO.
-+ * @bo: the &buffer object to which batch buffer commands will be added.
-+ *
-+ * This function shall be called only by VF. It inserts the PTEs and copy
-+ * command instructions in the BO by calling xe_migrate_ccs_rw_copy()
-+ * function.
-+ *
-+ * Returns: 0 if successful, negative error code on failure.
-+ */
-+int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
-+	struct xe_migrate *migrate;
-+	struct xe_tile *tile;
-+	struct xe_bb *bb;
-+	int err = 0;
-+
-+	if (!IS_VF_CCS_READY(xe))
-+		return 0;
-+
-+	tile = xe_device_get_root_tile(xe);
-+
-+	for_each_ccs_rw_ctx(ctx_id) {
-+		bb = bo->bb_ccs[ctx_id];
-+		/* bb should be NULL here. Assert if not NULL */
-+		xe_assert(xe, !bb);
-+
-+		migrate = tile->sriov.vf.ccs[ctx_id].migrate;
-+		err = xe_migrate_ccs_rw_copy(migrate, bo, ctx_id);
-+	}
-+	return err;
-+}
-+
-+/**
-+ * xe_sriov_vf_ccs_detach_bo - Remove CCS read write commands from the BO.
-+ * @bo: the &buffer object from which batch buffer commands will be removed.
-+ *
-+ * This function shall be called only by VF. It removes the PTEs and copy
-+ * command instructions from the BO. Make sure to update the BB with MI_NOOP
-+ * before freeing.
-+ *
-+ * Returns: 0 if successful.
-+ */
-+int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
-+	struct xe_bb *bb;
-+
-+	if (!IS_VF_CCS_READY(xe))
-+		return 0;
-+
-+	for_each_ccs_rw_ctx(ctx_id) {
-+		bb = bo->bb_ccs[ctx_id];
-+		if (!bb)
-+			continue;
-+
-+		memset(bb->cs, MI_NOOP, bb->len * sizeof(u32));
-+		xe_bb_free(bb, NULL);
-+		bo->bb_ccs[ctx_id] = NULL;
-+	}
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-index 5df9ba028d14..5d5e4bd25904 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-@@ -7,7 +7,10 @@
- #define _XE_SRIOV_VF_CCS_H_
- 
- struct xe_device;
-+struct xe_bo;
- 
- int xe_sriov_vf_ccs_init(struct xe_device *xe);
-+int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
-+int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-index 6dc279d206ec..e240f3fd18af 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-@@ -27,6 +27,14 @@ enum xe_sriov_vf_ccs_rw_ctxs {
- 	XE_SRIOV_VF_CCS_CTX_COUNT
- };
- 
-+#define IS_VF_CCS_BB_VALID(xe, bo) ({ \
-+		struct xe_device *___xe = (xe); \
-+		struct xe_bo *___bo = (bo); \
-+		IS_SRIOV_VF(___xe) && \
-+		___bo->bb_ccs[XE_SRIOV_VF_CCS_READ_CTX] && \
-+		___bo->bb_ccs[XE_SRIOV_VF_CCS_WRITE_CTX]; \
-+		})
-+
- struct xe_migrate;
- struct xe_sa_manager;
- 
--- 
-2.43.0
-
+> 
+> [† † 4.223342] ------------[ cut here ]------------
+> [† † 4.223343] xe 0000:00:02.0: [drm] drm_WARN_ON(aux_powered)
+> [† † 4.223367] WARNING: CPU: 0 PID: 145 at
+> drivers/gpu/drm/i915/display/intel_tc.c:1447
+> intel_tc_port_reset_mode+0x135/0x350 [xe]
+> [† † 4.223583] Modules linked in: xe(+) drm_ttm_helper ttm
+> drm_suballoc_helper cec rc_core drm_buddy gpu_sched drm_gpuvm drm_exec
+> drm_gpusvm drm_display_helper mac_hid video wmi pinctrl_intel_platform
+> pinctrl_intel pwm_lpss
+> ...
+> [† † 4.223801] Call Trace:
+> [† † 4.223803]† <TASK>
+> [† † 4.223806]† __intel_tc_port_lock+0xdf/0x130 [xe]
+> [† † 4.223943]† intel_tc_port_lock+0x1e/0x30 [xe]
+> [† † 4.224062]† intel_digital_port_connected+0x33/0xa0 [xe]
+> [† † 4.224258]† intel_dp_detect+0xef/0x860 [xe]
+> [† † 4.224474]† ? ww_mutex_lock+0xfd/0x110
+> [† † 4.224482]† detect_connector_status+0x1e/0x50
+> [† † 4.224490]† drm_helper_probe_detect+0x4b/0x80
+> [† † 4.224495] drm_helper_probe_single_connector_modes+0x3f4/0x680
+> [† † 4.224502]† drm_client_modeset_probe+0x251/0x1a40
+> [† † 4.224506]† ? kmem_cache_alloc_lru_noprof+0x2cd/0x3b0
+> [† † 4.224512]† ? __d_alloc+0x2e/0x1f0
+> [† † 4.224519]† ? __kmalloc_node_track_caller_noprof+0x347/0x4c0
+> [† † 4.224524] __drm_fb_helper_initial_config_and_unlock+0x3e/0x560
+> [† † 4.224529]† ? kstrdup+0x3c/0x70
+> [† † 4.224533]† ? kstrdup+0x52/0x70
+> [† † 4.224536]† drm_fb_helper_initial_config+0x36/0x40
+> [† † 4.224540]† drm_fbdev_client_hotplug+0x76/0xc0
+> [† † 4.224543]† drm_client_register+0x68/0xb0
+> [† † 4.224549]† drm_fbdev_client_setup+0xe8/0x1d0
+> [† † 4.224552]† drm_client_setup+0x5b/0x80
+> [† † 4.224555]† drm_client_setup_with_color_mode+0x29/0x40
+> [† † 4.224557]† intel_fbdev_setup+0x20f/0x4c0 [xe]
+> [† † 4.224699]† intel_display_driver_register+0xb9/0x100 [xe]
+> [† † 4.224905]† ? __pfx___drm_printfn_dbg+0x10/0x10
+> [† † 4.224909]† ? intel_display_driver_register+0x32/0x100 [xe]
+> [† † 4.225108]† xe_display_register+0x2c/0x40 [xe]
+> [† † 4.225321]† xe_device_probe+0x4af/0x580 [xe]
+> [† † 4.225467]† xe_pci_probe+0x9a2/0xcd0 [xe]
+> [† † 4.225653]† local_pci_probe+0x4c/0xb0
+> [† † 4.225657]† pci_device_probe+0xdb/0x230
+> [† † 4.225660]† really_probe+0xe2/0x390
+> [† † 4.225665]† __driver_probe_device+0x7e/0x160
+> [† † 4.225669]† driver_probe_device+0x23/0xa0
+> [† † 4.225673]† __driver_attach+0xe8/0x1e0
+> [† † 4.225677]† ? __pfx___driver_attach+0x10/0x10
+> [† † 4.225681]† bus_for_each_dev+0x7d/0xd0
+> [† † 4.225684]† driver_attach+0x22/0x30
+> [† † 4.225687]† bus_add_driver+0x118/0x240
+> [† † 4.225691]† driver_register+0x68/0x130
+> [† † 4.225695]† __pci_register_driver+0x65/0x70
+> [† † 4.225697]† xe_register_pci_driver+0x27/0x30 [xe]
+> [† † 4.225875]† xe_init+0x35/0x90 [xe]
+> [† † 4.226005]† ? __pfx_xe_init+0x10/0x10 [xe]
+> [† † 4.226131]† do_one_initcall+0x49/0x330
+> [† † 4.226137]† do_init_module+0x6a/0x2a0
+> [† † 4.226141]† load_module+0x21e6/0x22b0
+> [† † 4.226145]† ? kernel_read_file+0x240/0x2c0
+> [† † 4.226150]† init_module_from_file+0x9b/0xe0
+> [† † 4.226153]† ? init_module_from_file+0x9b/0xe0
+> [† † 4.226156]† idempotent_init_module+0x170/0x270
+> [† † 4.226159]† __x64_sys_finit_module+0x6f/0xe0
+> [† † 4.226162]† x64_sys_call+0x1b7a/0x2150
+> [† † 4.226165]† do_syscall_64+0x56/0x860
+> [† † 4.226169]† entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> [† † 4.226172] RIP: 0033:0x7fab2003b25d
+> ...
+> [† † 4.226190] ---[ end trace 0000000000000000 ]---
+> 
+> - Chaitanya
+> 
+> > 
+> > > but I wouldn't be against (2).
+> > > 
+> > > --
+> > > Gustavo Sousa
+> > > 
+> > > > > > > * If the power well that has irq_pipe_mask is also used to power
+> > > > > > >    something else than the pipes, we could have issues if pipes in that
+> > > > > > >    mask are fused off.
+> > > > > > > 
+> > > > > > > I'm leaning more toward a solution that makes POWER_DOMAIN_INIT map to
+> > > > > > > POWER_DOMAIN_PIPE_* based on DISPLAY_RUNTIME_INFO(display)->pipe_mask. I
+> > > > > > > have some idea of how to do that without rewriting code to use a
+> > > > > > > hierarchical structure (which IMO would be ideal, but takes more
+> > > > > > > effort).
+> > > > > > > 
+> > > > > > > The idea is to, during runtime and initialization of the mapping, set
+> > > > > > > the bit respective to POWER_DOMAIN_INIT in each power well that has the
+> > > > > > > bit for POWER_DOMAIN_PIPE_* set for non-fused off pipes. That would
+> > > > > > > also require removing the POWER_DOMAIN_INIT from the static mapping for
+> > > > > > > power wells directly responsible for POWER_DOMAIN_PIPE_*.
+> > > > > > Power wells that don't exist on a platform shouldn't be registered in
+> > > > > > the first place, so it's not enough to only remove them from the power
+> > > > > > well->domain mapping, while still registering the power well. Otherwise
+> > > > > > these non-existant power wells would still be accessed while disabling
+> > > > > > any unused power well during driver loading/resume. Also these power
+> > > > > > wells non-existant on a platform would be incorrectly listed in debugfs
+> > > > > > and other state dumps.
+> > > > > > 
+> > > > > > However, I realized that pipe power wells that do exist on a platform,
+> > > > > > but for which the corresponing pipe is fused off (for instance pipe
+> > > > > > A/B/C on WCL) we still need to register the power well. On some
+> > > > > > platforms at least such power wells may be enabled after HW reset/by
+> > > > > > BIOS and so these still need to be checked and disabled if needed during
+> > > > > > driver loading/resume. I.e. instead of the above
+> > > > > Ah, I see. Yeah, that makes sense. Thanks for the details!
+> > > > > 
+> > > > > Well, although Bspec overview page tells that WCL's display has only
+> > > > > pipes A, B and C, the page specific for power wells still lists power
+> > > > > well D. So I'm wondering if WCL display just has pipe D fused off and
+> > > > > the power well still exists or if power well D being listed in Bspec is
+> > > > > just a documentation mistake. I'll check with the hardware team.
+> > > > > 
+> > > > > > DISPLAY_RUNTIME_INFO(display)->pipe_mask
+> > > > > > 
+> > > > > > something like the following should be used:
+> > > > > > 
+> > > > > > u8 pipe_pw_mask(display)
+> > > > > > {
+> > > > > >         if (DISPLAY_VERx100(display) == 3002)
+> > > > > >                 return BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C);
+> > > > > > 
+> > > > > >         return BIT(I915_MAX_PIPES + 1) - 1;
+> > > > > > }
+> > > > > Well, if power well D does not exist indeed (i.e. not a case of pipe D
+> > > > > fused-off), we need either this above or maybe go back to Chaitanya's
+> > > > > original patch.
+> > > > > 
+> > > > > I think I prefer the original patch, making the power well mapping
+> > > > > explicit.
+> > > > > 
+> > > > > --
+> > > > > Gustavo Sousa
+> > > > > 
+> > > > > > > --
+> > > > > > > Gustavo Sousa
+> > > > > > > 
+> > > > > > > > +                return false;
+> > > > > > > > +
+> > > > > > > > +        return true;
+> > > > > > > > +}
+> > > > > > > > +
+> > > > > > > > static int
+> > > > > > > > __set_power_wells(struct i915_power_domains *power_domains,
+> > > > > > > >                    const struct i915_power_well_desc_list *power_well_descs,
+> > > > > > > > @@ -1763,8 +1773,10 @@ __set_power_wells(struct i915_power_domains *power_domains,
+> > > > > > > >          int power_well_count = 0;
+> > > > > > > >          int plt_idx = 0;
+> > > > > > > > 
+> > > > > > > > -        for_each_power_well_instance(power_well_descs, power_well_descs_sz, desc_list, desc, inst)
+> > > > > > > > -                power_well_count++;
+> > > > > > > > +        for_each_power_well_instance(power_well_descs, power_well_descs_sz, desc_list, desc, inst) {
+> > > > > > > > +                if (is_power_well_available(display, desc))
+> > > > > > > > +                        power_well_count++;
+> > > > > > > > +        }
+> > > > > > > > 
+> > > > > > > >          power_domains->power_well_count = power_well_count;
+> > > > > > > >          power_domains->power_wells =
+> > > > > > > > @@ -1778,6 +1790,9 @@ __set_power_wells(struct i915_power_domains *power_domains,
+> > > > > > > >                  struct i915_power_well *pw = &power_domains->power_wells[plt_idx];
+> > > > > > > >                  enum i915_power_well_id id = inst->id;
+> > > > > > > > 
+> > > > > > > > +                if (!is_power_well_available(display, desc))
+> > > > > > > > +                        continue;
+> > > > > > > > +
+> > > > > > > >                  pw->desc = desc;
+> > > > > > > >                  drm_WARN_ON(display->drm,
+> > > > > > > >                              overflows_type(inst - desc->instances->list, pw->instance_idx));
+> > > > > > > > -- 
+> > > > > > > > 2.25.1
+> > > > > > > > 
