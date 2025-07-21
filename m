@@ -4,49 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0446C83F1A
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Jul 2025 20:24:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64DADC83F25
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Jul 2025 21:37:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CC5910E3B9;
-	Mon, 21 Jul 2025 20:24:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ez7BTiDG";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5CC910E3B9
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Jul 2025 20:24:03 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id DF630601F5;
- Mon, 21 Jul 2025 20:24:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79459C4CEED;
- Mon, 21 Jul 2025 20:24:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1753129442;
- bh=sS633lBMdBbj9TmNHgMgMXWhm7Lyt6pC4nAtzjPkC4w=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=ez7BTiDGIZ3fz2lArG1GUZWTez9dpQZIobVBRdveTW/2V3LsW/5rWoKtsXKQDYwil
- 5tX8UFFYt3UjhzgCvGLdteYUGj95BPVH6VvrmQJXhEbNL7bznvLjR2OdNGkci1Uuhm
- 9KpVtLUXsxsfeLRbBKtKXUNVGxs18MG/A/vBHHghkkQ0gf8m/TbBd/YAaD/fYhoovA
- n5Sw7d3otwnF97qYLCqLZrpLihUnaEd8+y0s02uGi7hA3Kq27gMh3BxSiqtZdKxzrD
- Tp6d6x7qyklNyByQ4skkMgPtoFF7cbaxIHNnHGaf9HkMgjj/5hz52sbycbhORdfSID
- YqHduEj7eyKjA==
-Date: Mon, 21 Jul 2025 15:24:01 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-pci@vger.kernel.org,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Han Gao <rabenda.cn@gmail.com>, Vivian Wang <wangruikang@iscas.ac.cn>,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Subject: Re: [PATCH] PCI: hide mysterious 8MB 64-bit pref BAR on Intel Arc
- PCIe Switch
-Message-ID: <20250721202401.GA2751369@bhelgaas>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A35B10E5B7;
+	Mon, 21 Jul 2025 21:37:56 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 516BB10E5B7;
+ Mon, 21 Jul 2025 21:37:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2274307858734117250=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250721173057.867829-1-uwu@icenowy.me>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_Block_hpd?=
+ =?utf-8?q?_during_suspend_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 21 Jul 2025 21:37:55 -0000
+Message-ID: <175313387529.178280.15182435389756373338@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250717085425.1347043-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20250717085425.1347043-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,70 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-[+cc Ilpo]
+--===============2274307858734117250==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jul 22, 2025 at 01:30:57AM +0800, Icenowy Zheng wrote:
-> The upstream port device of Intel Arc series dGPUs' internal PCIe switch
-> contains a mysterious 8MB 64-bit prefetchable BAR. All reads to memory
-> mapped to that BAR returns 0xFFFFFFFF and writes have no effect.
-> 
-> When the PCI bus isn't configured by any firmware (e.g. a PCIe
-> controller solely initialized by Linux kernel), the PCI space allocation
-> algorithm of Linux will allocate the main VRAM BAR of Arc dGPU device at
-> base+0, and then the 8MB BAR at base+256M, which prevents the main VRAM
-> BAR gets resized. As the functionality and performance of Arc dGPU will
-> get severely restricted with small BAR, this makes a problem.
-> 
-> Hide the mysterious 8MB BAR to Linux PCI subsystem, to allow resizing
-> the VRAM BAR to VRAM size with the Linux PCI space allocation algorithm.
+== Series Details ==
 
-There's no reason a switch upstream port should not have a BAR.  I
-suspect this BAR probably does have a legitimate purpose, and it's
-only "mysterious" because we don't know how to use it.
+Series: drm/xe/display: Block hpd during suspend (rev2)
+URL   : https://patchwork.freedesktop.org/series/151747/
+State : success
 
-This sounds like it may be a deficiency in the Linux BAR assignment
-code.  Any other device could have a similar problem.  
+== Summary ==
 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> ---
->  drivers/pci/quirks.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> index d7f4ee634263..df304bfec6e9 100644
-> --- a/drivers/pci/quirks.c
-> +++ b/drivers/pci/quirks.c
-> @@ -3650,6 +3650,22 @@ DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, 0x37d0, quirk_broken_intx_masking);
->  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, 0x37d1, quirk_broken_intx_masking);
->  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, 0x37d2, quirk_broken_intx_masking);
->  
-> +/*
-> + * Intel Arc dGPUs' internal switch upstream port contains a mysterious 8MB
-> + * 64-bit prefetchable BAR that blocks resize of main dGPU VRAM BAR with
-> + * Linux's PCI space allocation algorithm.
-> + */
-> +static void quirk_intel_xe_upstream(struct pci_dev *pdev)
-> +{
-> +	memset(&pdev->resource[0], 0, sizeof(pdev->resource[0]));
+CI Bug Log - changes from xe-3448-c090dd90a95779c036f581aac578851ab3fe1920_BAT -> xe-pw-151747v2_BAT
+====================================================
 
-This doesn't touch the BAR itself, so we may be leaving the BAR
-decoding accesses, which could lead to an address conflict.  It also
-prevents a driver for the upstream port from using the BAR.
+Summary
+-------
 
-> +}
-> +/* Intel Arc A380 PCI Express Switch Upstream Port */
-> +DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x4fa1, quirk_intel_xe_upstream);
-> +/* Intel Arc A770 PCI Express Switch Upstream Port */
-> +DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x4fa0, quirk_intel_xe_upstream);
-> +/* Intel Arc B580 PCI Express Switch Upstream Port */
-> +DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0xe2ff, quirk_intel_xe_upstream);
-> +
->  static u16 mellanox_broken_intx_devs[] = {
->  	PCI_DEVICE_ID_MELLANOX_HERMON_SDR,
->  	PCI_DEVICE_ID_MELLANOX_HERMON_DDR,
-> -- 
-> 2.50.1
-> 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3448-c090dd90a95779c036f581aac578851ab3fe1920 -> xe-pw-151747v2
+
+  IGT_8470: ee326481fd4d17eba84fbc629f9e4a5def7dbd8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3448-c090dd90a95779c036f581aac578851ab3fe1920: c090dd90a95779c036f581aac578851ab3fe1920
+  xe-pw-151747v2: 151747v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151747v2/index.html
+
+--===============2274307858734117250==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: Block hpd during suspend (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151747/">https://patchwork.freedesktop.org/series/151747/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151747v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151747v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3448-c090dd90a95779c036f581aac578851ab3fe1920_BAT -&gt; xe-pw-151747v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3448-c090dd90a95779c036f581aac578851ab3fe1920 -&gt; xe-pw-151747v2</li>
+</ul>
+<p>IGT_8470: ee326481fd4d17eba84fbc629f9e4a5def7dbd8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3448-c090dd90a95779c036f581aac578851ab3fe1920: c090dd90a95779c036f581aac578851ab3fe1920<br />
+  xe-pw-151747v2: 151747v2</p>
+
+</body>
+</html>
+
+--===============2274307858734117250==--
