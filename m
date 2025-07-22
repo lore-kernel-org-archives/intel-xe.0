@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03818C83F34
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 12:56:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3825C83F27
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 12:56:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68C9110E679;
-	Tue, 22 Jul 2025 12:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D47F10E66D;
+	Tue, 22 Jul 2025 12:56:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ecvyiETz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cYZmEQd+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA88710E678;
- Tue, 22 Jul 2025 12:56:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 422DD10E684;
+ Tue, 22 Jul 2025 12:56:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753188994; x=1784724994;
+ t=1753188997; x=1784724997;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Rfqedm/ble3+eGRqt2MyU49wfJY+y1TwwlEY2gFu/b0=;
- b=ecvyiETzwpNzN+49nFbFbKyndQZV2Pz2OL7SJmMs1/ZU1Gzo5zzgkZ3J
- B0mzZFi98i+DkHqiYVeybrFGUkNL5SkNPzvgWCw6V8KHGlDEN4pf10A+i
- 03dCFJU5+Y22xlfaWFBDD1hiTpaixAVPiZxlUIQqCg6x87oplicGMhVIv
- lgUnUxx6bQOuiHsKFrSxpljhO9LFCdQD0nS2irqwr/02VMX/AdonHGcBK
- iHNxifeUI2y+5FqPTRoSEUw7fuDtm0U8GLbuhGNpuIGN0fVxfUigV7Vjq
- bQPDDcIaU4xUjkLEnqFSjL4eDbgP5bpFNQRluNoeOaRnxLRVUlk+ur351 w==;
-X-CSE-ConnectionGUID: QlF9PsaCTpyDr1l2yhzcCA==
-X-CSE-MsgGUID: 598ZqpxhTjiVR1pr4qV8zg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="66121542"
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="66121542"
+ bh=/meBrQxcb/MRKA/zBmmq6kqgOmtdkijvYkXILJ9AGLQ=;
+ b=cYZmEQd+R5qjoaYEgJDhF+lxsSyvU5kKyCwOBbS0O0o+IhLIoL47VOHT
+ ohfX9YlkC1Q9IIgU8QxhMT23dO6Rugt3RJ/v3eSw007t7v/Jc9UJMbUm7
+ Ye3S8bVGMNUL2v0mYqAfLDOCgM1UAwM1ZEIbYrj+Kjf6N/e9xSK8UpbYE
+ 8ekwLKGRexu/x3J7pm16/GYmTvMezbXKTH+vYqnr48UcNVJj4O3r+yVPK
+ xh6wpPL1HpiXsP1xVb/h7mkLnUpHa2GgeIU56GbN0zYwfhJ9PzXYSlUqR
+ vvCJ/aimApM4XrGFqonGjr4ocGTkHoluXLwtSwN6WxOJEbv+Blt0XM2Qq g==;
+X-CSE-ConnectionGUID: OSRDgChHTZG53/twSf91+A==
+X-CSE-MsgGUID: b2cgVukGQ9SqO4n6r0AJjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="66121548"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="66121548"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 05:56:33 -0700
-X-CSE-ConnectionGUID: 296cUAcBT1OY0NBGLTSHvg==
-X-CSE-MsgGUID: cXqceznzSl+3lv629tkKsA==
+ 22 Jul 2025 05:56:37 -0700
+X-CSE-ConnectionGUID: 7BtF5TB0R9qx91CH3MhZzg==
+X-CSE-MsgGUID: N6tyI3o1SJOjTAzDnFWCOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="164604137"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="164604153"
 Received: from agladkov-desk.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.0])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 05:56:32 -0700
+ 22 Jul 2025 05:56:36 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: gustavo.sousa@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 1/4] drm/i915/display: Write PHY_CMN1_CONTROL only when
- using AUXLess ALPM
-Date: Tue, 22 Jul 2025 15:56:15 +0300
-Message-ID: <20250722125618.1842615-2-jouni.hogander@intel.com>
+Subject: [PATCH v3 3/4] drm/i915/display: Ensure phy is accessible on lfps
+ configuration
+Date: Tue, 22 Jul 2025 15:56:17 +0300
+Message-ID: <20250722125618.1842615-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250722125618.1842615-1-jouni.hogander@intel.com>
 References: <20250722125618.1842615-1-jouni.hogander@intel.com>
@@ -72,47 +72,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are seeing "dmesg-warn/abort - *ERROR* PHY * failed after 3 retries"
-since we started configuring LFPS sending. According to Bspec Configuring
-LFPS sending is needed only when using AUXLess ALPM. This patch avoids
-these failures by configuring LFPS sending only when using AUXLess ALPM.
+Ensure phy is accessible on lfps configuration by adding
+intel_cx0_phy_transaction_begin/end around it.
 
-Bspec: 68849
 Fixes: 9dc619680de4 ("drm/i915/display: Add function to configure LFPS sending")
+Suggested-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index ed8e640b96b0..2b0305bb04cd 100644
+index 2993dabdbee6..a203937d66db 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3240,11 +3240,10 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
+@@ -3239,6 +3239,7 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
+ 				 const struct intel_crtc_state *crtc_state)
  {
  	struct intel_display *display = to_intel_display(encoder);
- 	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
--	bool enable = intel_alpm_is_alpm_aux_less(enc_to_intel_dp(encoder),
--						  crtc_state);
++	intel_wakeref_t wakeref;
  	int i;
+ 	u8 owned_lane_mask;
  
--	if (DISPLAY_VER(display) < 20)
-+	if (DISPLAY_VER(display) < 20 ||
-+	    !intel_alpm_is_alpm_aux_less(enc_to_intel_dp(encoder), crtc_state))
+@@ -3247,6 +3248,9 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
  		return;
  
+ 	owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
++
++	wakeref = intel_cx0_phy_transaction_begin(encoder);
++
  	for (i = 0; i < 4; i++) {
-@@ -3256,8 +3255,7 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
- 
- 		intel_cx0_rmw(encoder, lane_mask, PHY_CMN1_CONTROL(tx, 0),
+ 		int tx = i % 2 + 1;
+ 		u8 lane_mask = i < 2 ? INTEL_CX0_LANE0 : INTEL_CX0_LANE1;
+@@ -3258,6 +3262,8 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
  			      CONTROL0_MAC_TRANSMIT_LFPS,
--			      enable ? CONTROL0_MAC_TRANSMIT_LFPS : 0,
--			      MB_WRITE_COMMITTED);
-+			      CONTROL0_MAC_TRANSMIT_LFPS, MB_WRITE_COMMITTED);
+ 			      CONTROL0_MAC_TRANSMIT_LFPS, MB_WRITE_COMMITTED);
  	}
++
++	intel_cx0_phy_transaction_end(encoder, wakeref);
  }
  
+ static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
 -- 
 2.43.0
 
