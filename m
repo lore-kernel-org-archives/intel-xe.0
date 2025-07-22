@@ -4,56 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34A39C87FC5
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 13:09:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD2B0C83F1A
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 13:09:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF35E10E69B;
-	Tue, 22 Jul 2025 13:09:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94B3810E69C;
+	Tue, 22 Jul 2025 13:09:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fHhZAxWM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YwWGeF4+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B396810E30C
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 13:09:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC1D10E69C
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 13:09:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753189758; x=1784725758;
+ t=1753189763; x=1784725763;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QzrSrcvj00bCNf/hljmfwvNVohd9YHK4P+JR1VJ2cFA=;
- b=fHhZAxWM9+TfXAj0l/0NeDEMdV9jFYXzBrPnuV3DWD23c6QwKx6ljem2
- L1kKSlKvb2RiNWeX5L1n/ae2vHgdplM5+N4P40likmTh/9xoBdU1d5x3I
- 3sPkHAgQ0+uIsLdHta8aHBZ89Gcic6xybMwvrU38ndd6P77ju9W/ABDxu
- S2sEPmy26YOUIME/buD7Nb12KERwdi/oL7NMto76zHqii/K/i/ToQg08S
- BtPO6uymTTupDHw2FbObKIDwD7TXMhD8WjYVvtQYNVjSboaVIkSs5IZI3
- ekTWdSYMFjDHwAaXxj8vSfgN+5Ntkn0pbK3+dYdHWmUIerRauB4My2bMn g==;
-X-CSE-ConnectionGUID: tH4/HD4uQTucbZgsNvg0dQ==
-X-CSE-MsgGUID: Br7+rWkkT5+rsUoeB/3B+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="55530408"
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="55530408"
+ bh=i1AKTN05qZ21gE2ZrStp6J9ofOKbsMigss8iSTxR0KU=;
+ b=YwWGeF4+D0l8pblZ94JELaZM6lchyZMaAwliYqHBnqlBSzLZoLO/E13M
+ qh8Wz1VFtRskgn0yn3LA32huHJD/xLGOsK32sWuKwPuQNyg3PTJE14ghZ
+ sdoXP6g4tC9pC8Q7OV+nNyEwHaHa/vwXUFrKqmR1u+9ndDtWWCSsKDf5I
+ u4MniZeAgkTznsi9hgN8jrXqiymRm4IWd1jArA51S7pwHz6XCjSOrrcij
+ O3bB7F5A0yu33hVi+Ugp2mX8vvv7rd0XLNSDBJeK4RWE/PMk/Fe7Lvnku
+ m7Og3oGtSjrcxNWS3bKEpGZ71wyjtB0ccx/nrNRL9DiEqGXQzNUMdigDu A==;
+X-CSE-ConnectionGUID: qk9rzCyOSKyLROCspsaoyQ==
+X-CSE-MsgGUID: BEs74zmOStGZVmF9GaSjVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="55530412"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="55530412"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 06:09:18 -0700
-X-CSE-ConnectionGUID: j89Yv5MIR1meYDOfPX6VcA==
-X-CSE-MsgGUID: tOl3t6NtS0aO/ycrudY/9g==
+ 22 Jul 2025 06:09:23 -0700
+X-CSE-ConnectionGUID: 0Az7jq/4SW64vA21vCVVFQ==
+X-CSE-MsgGUID: J2vlp/CMQWCo5EndtgHAQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="163420724"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="163420760"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa005.fm.intel.com with ESMTP; 22 Jul 2025 06:09:16 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 22 Jul 2025 06:09:21 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v5 20/23] drm/xe: Reset VMA attributes to default in SVM
- garbage collector
-Date: Tue, 22 Jul 2025 19:05:23 +0530
-Message-Id: <20250722133526.3550547-21-himal.prasad.ghimiray@intel.com>
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH v5 23/23] drm/xe/uapi: Add UAPI for querying VMA count and
+ memory attributes
+Date: Tue, 22 Jul 2025 19:05:26 +0530
+Message-Id: <20250722133526.3550547-24-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250722133526.3550547-1-himal.prasad.ghimiray@intel.com>
 References: <20250722133526.3550547-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,292 +71,351 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Restore default memory attributes for VMAs during garbage collection
-if they were modified by madvise. Reuse existing VMA if fully overlapping;
-otherwise, allocate a new mirror VMA.
+Introduce the DRM_IOCTL_XE_VM_QUERY_MEMORY_RANGE_ATTRS ioctl to allow
+userspace to query memory attributes of VMAs within a user specified
+virtual address range.
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Userspace first calls the ioctl with num_mem_ranges = 0,
+sizeof_mem_ranges_attr = 0 and vector_of_vma_mem_attr = NULL to retrieve
+the number of memory ranges (vmas) and size of each memory range attribute.
+Then, it allocates a buffer of that size and calls the ioctl again to fill
+the buffer with memory range attributes.
+
+This two-step interface allows userspace to first query the required
+buffer size, then retrieve detailed attributes efficiently.
+
+v2 (Matthew Brost)
+- Use same ioctl to overload functionality
+
+v3
+- Add kernel-doc
+
+v4
+- Make uapi future proof by passing struct size (Matthew Brost)
+- make lock interruptible (Matthew Brost)
+- set reserved bits to zero (Matthew Brost)
+- s/__copy_to_user/copy_to_user (Matthew Brost)
+- Avod using VMA term in uapi (Thomas)
+- xe_vm_put(vm) is missing (Shuicheng)
+
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c |  34 +++++++++
- drivers/gpu/drm/xe/xe_vm.c  | 140 +++++++++++++++++++++++++-----------
- drivers/gpu/drm/xe/xe_vm.h  |   2 +
- 3 files changed, 135 insertions(+), 41 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |   2 +
+ drivers/gpu/drm/xe/xe_vm.c     | 101 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h     |   2 +-
+ include/uapi/drm/xe_drm.h      | 137 +++++++++++++++++++++++++++++++++
+ 4 files changed, 241 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index ba1233d0d5a2..79709dc066b9 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -255,7 +255,18 @@ static int __xe_svm_garbage_collector(struct xe_vm *vm,
- static int xe_svm_garbage_collector(struct xe_vm *vm)
- {
- 	struct xe_svm_range *range;
-+	struct xe_vma *vma;
-+	u64 range_start;
-+	u64 range_size;
-+	u64 range_end;
- 	int err;
-+	struct xe_vma_mem_attr default_attr = {
-+		.preferred_loc = {
-+			.devmem_fd = DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE,
-+			.migration_policy = DRM_XE_MIGRATE_ALL_PAGES,
-+		},
-+		.atomic_access = DRM_XE_ATOMIC_UNDEFINED,
-+	};
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index b02c4ae0fdbf..1e77570db531 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -202,6 +202,8 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(XE_VM_QUERY_MEM_RANGE_ATTRS, xe_vm_query_vmas_attrs_ioctl,
++			  DRM_RENDER_ALLOW),
+ };
  
- 	lockdep_assert_held_write(&vm->lock);
- 
-@@ -270,6 +281,12 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
- 		if (!range)
- 			break;
- 
-+		range_start = xe_svm_range_start(range);
-+		range_size = xe_svm_range_size(range);
-+		range_end = xe_svm_range_end(range);
-+
-+		vma = xe_vm_find_vma_by_addr(vm, xe_svm_range_start(range));
-+
- 		list_del(&range->garbage_collector_link);
- 		spin_unlock(&vm->svm.garbage_collector.lock);
- 
-@@ -282,7 +299,24 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
- 			return err;
- 		}
- 
-+		if (!xe_vma_has_default_mem_attrs(vma)) {
-+			vm_dbg(&vm->xe->drm, "Existing VMA start=0x%016llx, vma_end=0x%016llx",
-+			       xe_vma_start(vma), xe_vma_end(vma));
-+
-+			if (xe_vma_start(vma) == range_start && xe_vma_end(vma) == range_end) {
-+				default_attr.pat_index = vma->attr.default_pat_index;
-+				default_attr.default_pat_index  = vma->attr.default_pat_index;
-+				vma->attr = default_attr;
-+			} else {
-+				vm_dbg(&vm->xe->drm, "Split VMA start=0x%016llx, vma_end=0x%016llx",
-+				       range_start, range_end);
-+				err = xe_vm_alloc_cpu_addr_mirror_vma(vm, range_start, range_size);
-+				if (err)
-+					return err;
-+			}
-+		}
- 		spin_lock(&vm->svm.garbage_collector.lock);
-+
- 	}
- 	spin_unlock(&vm->svm.garbage_collector.lock);
- 
+ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d3f08bf9a3ee..003c8209f8bd 100644
+index bee849167c0d..e54ab4dce8df 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -4254,34 +4254,24 @@ bool xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool
- 	}
- }
- 
--/**
-- * xe_vm_alloc_madvise_vma - Allocate VMA's with madvise ops
-- * @vm: Pointer to the xe_vm structure
-- * @start: Starting input address
-- * @range: Size of the input range
-- *
-- * This function splits existing vma to create new vma for user provided input range
-- *
-- *  Return: 0 if success
-- */
--int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
-+static int xe_vm_alloc_vma(struct xe_vm *vm,
-+			   u64 start, u64 range,
-+			   enum drm_gpuvm_sm_map_ops_flags flags)
- {
- 	struct xe_vma_ops vops;
- 	struct drm_gpuva_ops *ops = NULL;
- 	struct drm_gpuva_op *__op;
- 	bool is_cpu_addr_mirror = false;
- 	bool remap_op = false;
-+	bool is_madvise = flags == DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE;
- 	struct xe_vma_mem_attr tmp_attr;
-+	u16 default_pat;
- 	int err;
- 
--	vm_dbg(&vm->xe->drm, "MADVISE IN: addr=0x%016llx, size=0x%016llx", start, range);
--
- 	lockdep_assert_held_write(&vm->lock);
- 
--	vm_dbg(&vm->xe->drm, "MADVISE_OPS_CREATE: addr=0x%016llx, size=0x%016llx", start, range);
- 	ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, start, range,
--					  DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE,
--					  NULL, start);
-+					  flags, NULL, start);
- 	if (IS_ERR(ops))
- 		return PTR_ERR(ops);
- 
-@@ -4292,33 +4282,56 @@ int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
- 
- 	drm_gpuva_for_each_op(__op, ops) {
- 		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-+		struct xe_vma *vma = NULL;
- 
--		if (__op->op == DRM_GPUVA_OP_REMAP) {
--			xe_assert(vm->xe, !remap_op);
--			remap_op = true;
-+		if (!is_madvise) {
-+			if (__op->op == DRM_GPUVA_OP_UNMAP) {
-+				vma = gpuva_to_vma(op->base.unmap.va);
-+				XE_WARN_ON(!xe_vma_has_default_mem_attrs(vma));
-+				default_pat = vma->attr.default_pat_index;
-+			}
- 
--			if (xe_vma_is_cpu_addr_mirror(gpuva_to_vma(op->base.remap.unmap->va)))
--				is_cpu_addr_mirror = true;
--			else
--				is_cpu_addr_mirror = false;
--		}
-+			if (__op->op == DRM_GPUVA_OP_REMAP) {
-+				vma = gpuva_to_vma(op->base.remap.unmap->va);
-+				default_pat = vma->attr.default_pat_index;
-+			}
- 
--		if (__op->op == DRM_GPUVA_OP_MAP) {
--			xe_assert(vm->xe, remap_op);
--			remap_op = false;
-+			if (__op->op == DRM_GPUVA_OP_MAP) {
-+				op->map.is_cpu_addr_mirror = true;
-+				op->map.pat_index = default_pat;
-+			}
-+		} else {
-+			if (__op->op == DRM_GPUVA_OP_REMAP) {
-+				vma = gpuva_to_vma(op->base.remap.unmap->va);
-+				xe_assert(vm->xe, !remap_op);
-+				remap_op = true;
- 
--			/* In case of madvise ops DRM_GPUVA_OP_MAP is always after
--			 * DRM_GPUVA_OP_REMAP, so ensure we assign op->map.is_cpu_addr_mirror true
--			 * if REMAP is for xe_vma_is_cpu_addr_mirror vma
--			 */
--			op->map.is_cpu_addr_mirror = is_cpu_addr_mirror;
--		}
-+				if (xe_vma_is_cpu_addr_mirror(vma))
-+					is_cpu_addr_mirror = true;
-+				else
-+					is_cpu_addr_mirror = false;
-+			}
- 
-+			if (__op->op == DRM_GPUVA_OP_MAP) {
-+				xe_assert(vm->xe, remap_op);
-+				remap_op = false;
-+				/*
-+				 * In case of madvise ops DRM_GPUVA_OP_MAP is
-+				 * always after DRM_GPUVA_OP_REMAP, so ensure
-+				 * we assign op->map.is_cpu_addr_mirror true
-+				 * if REMAP is for xe_vma_is_cpu_addr_mirror vma
-+				 */
-+				op->map.is_cpu_addr_mirror = is_cpu_addr_mirror;
-+			}
-+		}
- 		print_op(vm->xe, __op);
- 	}
- 
- 	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
--	vops.flags |= XE_VMA_OPS_FLAG_MADVISE;
-+
-+	if (is_madvise)
-+		vops.flags |= XE_VMA_OPS_FLAG_MADVISE;
-+
- 	err = vm_bind_ioctl_ops_parse(vm, ops, &vops);
- 	if (err)
- 		goto unwind_ops;
-@@ -4330,15 +4343,20 @@ int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
- 		struct xe_vma *vma;
- 
- 		if (__op->op == DRM_GPUVA_OP_UNMAP) {
--			/* There should be no unmap */
--			XE_WARN_ON("UNEXPECTED UNMAP");
--			xe_vma_destroy(gpuva_to_vma(op->base.unmap.va), NULL);
-+			vma = gpuva_to_vma(op->base.unmap.va);
-+			/* There should be no unmap for madvise */
-+			if (is_madvise)
-+				XE_WARN_ON("UNEXPECTED UNMAP");
-+
-+			xe_vma_destroy(vma, NULL);
- 		} else if (__op->op == DRM_GPUVA_OP_REMAP) {
- 			vma = gpuva_to_vma(op->base.remap.unmap->va);
--			/* Store attributes for REMAP UNMAPPED VMA, so they can be assigned
--			 * to newly MAP created vma.
-+			/* In case of madvise ops Store attributes for REMAP UNMAPPED
-+			 * VMA, so they can be assigned to newly MAP created vma.
- 			 */
--			tmp_attr = vma->attr;
-+			if (is_madvise)
-+				tmp_attr = vma->attr;
-+
- 			xe_vma_destroy(gpuva_to_vma(op->base.remap.unmap->va), NULL);
- 		} else if (__op->op == DRM_GPUVA_OP_MAP) {
- 			vma = op->map.vma;
-@@ -4346,7 +4364,8 @@ int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
- 			 * Therefore temp_attr will always have sane values, making it safe to
- 			 * copy them to new vma.
- 			 */
--			vma->attr = tmp_attr;
-+			if (is_madvise)
-+				vma->attr = tmp_attr;
- 		}
- 	}
- 
-@@ -4360,3 +4379,42 @@ int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
- 	drm_gpuva_ops_free(&vm->gpuvm, ops);
+@@ -2297,6 +2297,107 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
  	return err;
  }
-+
-+/**
-+ * xe_vm_alloc_madvise_vma - Allocate VMA's with madvise ops
-+ * @vm: Pointer to the xe_vm structure
-+ * @start: Starting input address
-+ * @range: Size of the input range
-+ *
-+ * This function splits existing vma to create new vma for user provided input range
-+ *
-+ * Return: 0 if success
-+ */
-+int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
+ 
++static int xe_vm_query_vmas(struct xe_vm *vm, u64 start, u64 end)
 +{
-+	lockdep_assert_held_write(&vm->lock);
++	struct drm_gpuva *gpuva;
++	u32 num_vmas = 0;
 +
-+	vm_dbg(&vm->xe->drm, "MADVISE_OPS_CREATE: addr=0x%016llx, size=0x%016llx", start, range);
++	lockdep_assert_held(&vm->lock);
++	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end)
++		num_vmas++;
 +
-+	return xe_vm_alloc_vma(vm, start, range, DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE);
++	return num_vmas;
 +}
 +
-+/**
-+ * xe_vm_alloc_cpu_addr_mirror_vma - Allocate CPU addr mirror vma
-+ * @vm: Pointer to the xe_vm structure
-+ * @start: Starting input address
-+ * @range: Size of the input range
-+ *
-+ * This function splits/merges existing vma to create new vma for user provided input range
-+ *
-+ * Return: 0 if success
-+ */
-+int xe_vm_alloc_cpu_addr_mirror_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
++static int get_mem_attrs(struct xe_vm *vm, u32 *num_vmas, u64 start,
++			 u64 end, struct drm_xe_mem_range_attr *attrs)
 +{
-+	lockdep_assert_held_write(&vm->lock);
++	struct drm_gpuva *gpuva;
++	int i = 0;
 +
-+	vm_dbg(&vm->xe->drm, "CPU_ADDR_MIRROR_VMA_OPS_CREATE: addr=0x%016llx, size=0x%016llx",
-+	       start, range);
++	lockdep_assert_held(&vm->lock);
 +
-+	return xe_vm_alloc_vma(vm, start, range, DRM_GPUVM_SM_MAP_NOT_MADVISE);
++	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
++		struct xe_vma *vma = gpuva_to_vma(gpuva);
++
++		if (i == *num_vmas)
++			return -ENOSPC;
++
++		attrs[i].start = xe_vma_start(vma);
++		attrs[i].end = xe_vma_end(vma);
++		attrs[i].atomic.val = vma->attr.atomic_access;
++		attrs[i].pat_index.val = vma->attr.pat_index;
++		attrs[i].preferred_mem_loc.devmem_fd = vma->attr.preferred_loc.devmem_fd;
++		attrs[i].preferred_mem_loc.migration_policy =
++		vma->attr.preferred_loc.migration_policy;
++
++		i++;
++	}
++
++	if (i <  (*num_vmas - 1))
++		*num_vmas = i;
++	return 0;
 +}
++
++int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
++{
++	struct xe_device *xe = to_xe_device(dev);
++	struct xe_file *xef = to_xe_file(file);
++	struct drm_xe_mem_range_attr *mem_attrs;
++	struct drm_xe_vm_query_mem_range_attr *args = data;
++	u64 __user *attrs_user = u64_to_user_ptr(args->vector_of_mem_attr);
++	struct xe_vm *vm;
++	int err = 0;
++
++	if (XE_IOCTL_DBG(xe,
++			 ((args->num_mem_ranges == 0 &&
++			  (attrs_user || args->sizeof_mem_range_attr != 0)) ||
++			 (args->num_mem_ranges > 0 &&
++			  (!attrs_user || args->sizeof_mem_range_attr == 0)))))
++		return -EINVAL;
++
++	vm = xe_vm_lookup(xef, args->vm_id);
++	if (XE_IOCTL_DBG(xe, !vm))
++		return -EINVAL;
++
++	err = down_read_interruptible(&vm->lock);
++	if (err)
++		goto put_vm;
++
++	attrs_user = u64_to_user_ptr(args->vector_of_mem_attr);
++
++	if (args->num_mem_ranges == 0 && !attrs_user) {
++		args->num_mem_ranges = xe_vm_query_vmas(vm, args->start, args->start + args->range);
++		args->sizeof_mem_range_attr = sizeof(struct drm_xe_mem_range_attr);
++		goto unlock_vm;
++	}
++
++	mem_attrs = kvmalloc_array(args->num_mem_ranges, args->sizeof_mem_range_attr,
++				   GFP_KERNEL | __GFP_ACCOUNT |
++				   __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
++	if (!mem_attrs) {
++		err = args->num_mem_ranges > 1 ? -ENOBUFS : -ENOMEM;
++		goto unlock_vm;
++	}
++
++	memset(mem_attrs, 0, args->num_mem_ranges * args->sizeof_mem_range_attr);
++	err = get_mem_attrs(vm, &args->num_mem_ranges, args->start,
++			    args->start + args->range, mem_attrs);
++	if (err)
++		goto free_mem_attrs;
++
++	err = copy_to_user(attrs_user, mem_attrs,
++			   args->sizeof_mem_range_attr * args->num_mem_ranges);
++
++free_mem_attrs:
++	kvfree(mem_attrs);
++unlock_vm:
++	up_read(&vm->lock);
++put_vm:
++	xe_vm_put(vm);
++	return err;
++}
++
+ static bool vma_matches(struct xe_vma *vma, u64 page_addr)
+ {
+ 	if (page_addr > xe_vma_end(vma) - 1 ||
 diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index a4db843de540..f7b9ad83685a 100644
+index f7b9ad83685a..6f25d6820991 100644
 --- a/drivers/gpu/drm/xe/xe_vm.h
 +++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -177,6 +177,8 @@ bool xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool
+@@ -199,7 +199,7 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file);
+ int xe_vm_bind_ioctl(struct drm_device *dev, void *data,
+ 		     struct drm_file *file);
+-
++int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
+ void xe_vm_close_and_put(struct xe_vm *vm);
  
- int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
+ static inline bool xe_vm_in_fault_mode(struct xe_vm *vm)
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 8f1d48664424..ee328bcb8bfa 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -82,6 +82,7 @@ extern "C" {
+  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
+  *  - &DRM_IOCTL_XE_OBSERVATION
+  *  - &DRM_IOCTL_XE_MADVISE
++ *  - &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
+  */
  
-+int xe_vm_alloc_cpu_addr_mirror_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
-+
+ /*
+@@ -104,6 +105,7 @@ extern "C" {
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+ #define DRM_XE_OBSERVATION		0x0b
+ #define DRM_XE_MADVISE			0x0c
++#define DRM_XE_VM_QUERY_MEM_RANGE_ATTRS	0x0d
+ 
+ /* Must be kept compact -- no holes */
+ 
+@@ -120,6 +122,7 @@ extern "C" {
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
+ #define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
++#define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
+ 
  /**
-  * to_userptr_vma() - Return a pointer to an embedding userptr vma
-  * @vma: Pointer to the embedded struct xe_vma
+  * DOC: Xe IOCTL Extensions
+@@ -2110,6 +2113,140 @@ struct drm_xe_madvise {
+ 	__u64 reserved[2];
+ };
+ 
++/**
++ * struct drm_xe_mem_range_attr - Output of &DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS
++ *
++ * This structure is provided by userspace and filled by KMD in response to the
++ * DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS ioctl. It describes memory attributes of
++ * a memory ranges within a user specified address range in a VM.
++ *
++ * The structure includes information such as atomic access policy,
++ * page attribute table (PAT) index, and preferred memory location.
++ * Userspace allocates an array of these structures and passes a pointer to the
++ * ioctl to retrieve attributes for each memory ranges
++ *
++ * @extensions: Pointer to the first extension struct, if any
++ * @start: Start address of the memory range
++ * @end: End address of the virtual memory range
++ *
++ */
++struct drm_xe_mem_range_attr {
++	 /** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @start: start of the memory range */
++	__u64 start;
++
++	/** @end: end of the memory range */
++	__u64 end;
++
++	/** @preferred_mem_loc: preferred memory location */
++	struct {
++		/** @preferred_mem_loc.devmem_fd: fd for preferred loc */
++		__u32 devmem_fd;
++
++		/** @preferred_mem_loc.migration_policy: Page migration policy */
++		__u32 migration_policy;
++	} preferred_mem_loc;
++
++	struct {
++		/** @atomic.val: atomic attribute */
++		__u32 val;
++
++		/** @atomic.reserved: Reserved */
++		__u32 reserved;
++	} atomic;
++
++	struct {
++		/** @pat_index.val: PAT index */
++		__u32 val;
++
++		/** @pat_index.reserved: Reserved */
++		__u32 reserved;
++	} pat_index;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++};
++
++/**
++ * struct drm_xe_vm_query_mem_range_attr - Input of &DRM_IOCTL_XE_VM_QUERY_MEM_ATTRIBUTES
++ *
++ * This structure is used to query memory attributes of memory regions
++ * within a user specified address range in a VM. It provides detailed
++ * information about each memory range, including atomic access policy,
++ * page attribute table (PAT) index, and preferred memory location.
++ *
++ * Userspace first calls the ioctl with @num_mem_ranges = 0,
++ * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL to retrieve
++ * the number of memory regions and size of each memory range attribute.
++ * Then, it allocates a buffer of that size and calls the ioctl again to fill
++ * the buffer with memory range attributes.
++ *
++ * If second call fails with -ENOSPC, it means memory ranges changed between
++ * first call and now, retry IOCTL again with @num_mem_ranges = 0,
++ * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL followed by
++ * Second ioctl call.
++ *
++ * Example:
++ *
++ * .. code-block:: C
++ *    struct drm_xe_vm_query_mem_range_attr query = {
++ *         .vm_id = vm_id,
++ *         .start = 0x100000,
++ *         .range = 0x2000,
++ *     };
++ *
++ *    // First ioctl call to get num of mem regions and sizeof each attribute
++ *    ioctl(fd, DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS, &query);
++ *
++ *    // Allocate buffer for the memory region attributes
++ *    void *ptr = malloc(query.num_mem_ranges * query.sizeof_mem_range_attr);
++ *
++ *    query.vector_of_mem_attr = (uintptr_t)ptr;
++ *
++ *    // Second ioctl call to actually fill the memory attributes
++ *    ioctl(fd, DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS, &query);
++ *
++ *    // Iterate over the returned memory region attributes
++ *    for (unsigned int i = 0; i < query.num_mem_ranges; ++i) {
++ *       struct drm_xe_mem_range_attr *attr = (struct drm_xe_mem_range_attr *)ptr;
++ *
++ *       // Do something with attr
++ *
++ *       // Move pointer by one entry
++ *       ptr += query.sizeof_mem_range_attr;
++ *     }
++ *
++ *    free(ptr);
++ */
++struct drm_xe_vm_query_mem_range_attr {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @vm_id: vm_id of the virtual range */
++	__u32 vm_id;
++
++	/** @num_mem_ranges: number of mem_ranges in range */
++	__u32 num_mem_ranges;
++
++	/** @start: start of the virtual address range */
++	__u64 start;
++
++	/** @range: size of the virtual address range */
++	__u64 range;
++
++	/** @sizeof_mem_range_attr: size of struct drm_xe_mem_range_attr */
++	__u64 sizeof_mem_range_attr;
++
++	/** @vector_of_ops: userptr to array of struct drm_xe_mem_range_attr */
++	__u64 vector_of_mem_attr;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.34.1
 
