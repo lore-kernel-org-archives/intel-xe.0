@@ -4,88 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3D5AC83F34
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 12:46:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73809C83F27
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 12:56:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BED0010E67D;
-	Tue, 22 Jul 2025 12:46:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30A4010E66D;
+	Tue, 22 Jul 2025 12:56:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="CltOyrqt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U8DZTfVj";
 	dkim-atps=neutral
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 085D610E601;
- Tue, 22 Jul 2025 07:36:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
- s=onoh2408; t=1753169762;
- bh=WQ3Sf4JHhtwa+UH5bDz8kFE4gvdd2eiJ0Z7vB2dcJ7o=;
- h=From:To:Subject:Date:Message-ID:MIME-Version;
- b=CltOyrqts1zb0aah7ceq5QYW1xNlJh93QxsV/iWySLvnnFMliqKZ2B2gorWyore9w
- I3Dm9OtPsA2647VmK3rmhzsw6YEob4SZY9zQG6JiItWPdJe5OtPyP2GzoQE5nNPCeL
- cENGWPQm4hxS9jQgVCyLlkx00q0cWEEacEigvSLY=
-X-QQ-mid: zesmtpip2t1753169697tffff2e54
-X-QQ-Originating-IP: ESW3/iFALqzPeVYmODy1/u+VMOIzJZ60evAbDZBeNu0=
-Received: from avenger-e500 ( [localhost]) by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 22 Jul 2025 15:34:52 +0800 (CST)
-X-QQ-SSF: 0002000000000000000000000000000
-X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 11624695961033415566
-EX-QQ-RecipientCnt: 64
-From: WangYuli <wangyuli@uniontech.com>
-To: wangyuli@uniontech.com
-Cc: airlied@gmail.com, akpm@linux-foundation.org, alison.schofield@intel.com,
- andrew+netdev@lunn.ch, andriy.shevchenko@linux.intel.com,
- arend.vanspriel@broadcom.com, bp@alien8.de,
- brcm80211-dev-list.pdl@broadcom.com, brcm80211@lists.linux.dev,
- colin.i.king@gmail.com, cvam0000@gmail.com, dan.j.williams@intel.com,
- dave.hansen@linux.intel.com, dave.jiang@intel.com, dave@stgolabs.net,
- davem@davemloft.net, dri-devel@lists.freedesktop.org, edumazet@google.com,
- gregkh@linuxfoundation.org, guanwentao@uniontech.com, hpa@zytor.com,
- ilpo.jarvinen@linux.intel.com, intel-xe@lists.freedesktop.org,
- ira.weiny@intel.com, j@jannau.net, jeff.johnson@oss.qualcomm.com,
- jgross@suse.com, jirislaby@kernel.org, johannes.berg@intel.com,
- jonathan.cameron@huawei.com, kuba@kernel.org, kvalo@kernel.org,
- kvm@vger.kernel.org, linux-cxl@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux@treblig.org,
- lucas.demarchi@intel.com, marcin.s.wojtas@gmail.com, ming.li@zohomail.com,
- mingo@kernel.org, mingo@redhat.com, netdev@vger.kernel.org,
- niecheng1@uniontech.com, oleksandr_tyshchenko@epam.com, pabeni@redhat.com,
- pbonzini@redhat.com, quic_ramess@quicinc.com, ragazenta@gmail.com,
- rodrigo.vivi@intel.com, seanjc@google.com, shenlichuan@vivo.com,
- simona@ffwll.ch, sstabellini@kernel.org, tglx@linutronix.de,
- thomas.hellstrom@linux.intel.com, vishal.l.verma@intel.com,
- wangyuli@deepin.org, x86@kernel.org, xen-devel@lists.xenproject.org,
- yujiaoliang@vivo.com, zhanjun@uniontech.com
-Subject: [PATCH v3 3/8] drm/xe: Fix typo "notifer"
-Date: Tue, 22 Jul 2025 15:34:26 +0800
-Message-ID: <94190C5F54A19F3E+20250722073431.21983-3-wangyuli@uniontech.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <576F0D85F6853074+20250722072734.19367-1-wangyuli@uniontech.com>
-References: <576F0D85F6853074+20250722072734.19367-1-wangyuli@uniontech.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F6A610E66D
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 12:56:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753188984; x=1784724984;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=c2L6rHjmtCJeciELiYPIjGCjIfrsQARmY4/qEmALyGE=;
+ b=U8DZTfVjyQ1jga4qv4cwR+dEKrZxu//pbG3aKDlyaei7weazKuTyOjiR
+ uwx1OGmDSOcNhVyaK0zvHE4xacU9eNdBcKXDJMaMELep9/ndVKTOJ7ync
+ cDAxSrzWPjuKDREikBJMUKqDDzFNctPSw++BupOyvwJnxCQgPtRyL4Evf
+ gRz0ud/Os+ucex5zg9E8pOh+eiPCWHQQo1rPhj26LzuIE2IVHwOKIsguy
+ ROIhg08PKu2Y38W46jD90Vc2oIdatM9wdhiWMqYNtSCtRsmDCw/5opnkB
+ zRuGASZOJP8XnfJHApfCegsWzUoOT/4uCTHHEAINt7sDpop5DEfISb0mt Q==;
+X-CSE-ConnectionGUID: 07rrHOaxRaSTumR1P9SjfQ==
+X-CSE-MsgGUID: EndpH92AQl2ySzS/Ut/Faw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="66121523"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="66121523"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2025 05:56:23 -0700
+X-CSE-ConnectionGUID: scgFeFDvR7O3N7BwwGx8Bw==
+X-CSE-MsgGUID: Du0Jm0HnRzOfSC4GwKBEkw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="164604090"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.254])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2025 05:56:19 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Tue, 22 Jul 2025 15:56:16 +0300 (EEST)
+To: Bjorn Helgaas <helgaas@kernel.org>
+cc: Icenowy Zheng <uwu@icenowy.me>, Bjorn Helgaas <bhelgaas@google.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-pci@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
+ Han Gao <rabenda.cn@gmail.com>, Vivian Wang <wangruikang@iscas.ac.cn>
+Subject: Re: [PATCH] PCI: hide mysterious 8MB 64-bit pref BAR on Intel Arc
+ PCIe Switch
+In-Reply-To: <20250721202401.GA2751369@bhelgaas>
+Message-ID: <380aa860-89a4-08dc-7d39-b7b212546415@linux.intel.com>
+References: <20250721202401.GA2751369@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:uniontech.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: NN5tIm2Cw++mUPQ8bcGmKLa1xMgQYZnczWcMIRHRxzkJYiByPervzJg/
- nMUSaSdrb05pdhNel+4XNDhgrMObfI/S3OG+9SUAYwzx8E4RbCynSnXkq5mRzr/pSFacKsZ
- hlOGLNx9OHjvgLyqGOCtokAZeoZQrhGTC16ZbWKFHCw+i/1HcXCOO2C2FNlpU3E0VJ7XNcV
- Q0CeEotLHEFSSg/eKqN+2D8LrhuhZ5z5WanHV1sVSIWy9U2IZt7LX4Jc9wI6P4s/CPOIp2o
- Dx9/6SsORILW6EUvQmVUtiKbfn6zIhkpZ1q2tGcOZMMz1OlVh1DbK63QlbONmZE3jdW13xC
- KpuETBxI1xY56ik1vgFCjrTLRuGFvIS+WYIlRy+v/9aQoBL7sbfV34C3pl6b2lhpJvXY5NV
- smHsc42utvLjtpL8dJBLyYFIcRG9B0n8XIBj8SSSHvymzQI46Dlspe3w2Ypa2qDckQC2HGV
- dPPw80HeRywP4VZtNFOMHfgvWC2jT3yIWyhwUyH4KUrxcWCVreb+tTwXrh8hS7VXfKgyQ16
- gxjogsVWuc2PmLXdc0EX+Dn2hZRv7xlzzlc+KDU46xTEMfkY/zXsfnjg71Hdi3gojs8F/Mr
- GtLfqTQAk/OMFodRWjFlYW42g2IJDR2viAI72etXwLfe9tvo2u/LcjinIM4sZz+ZUN95U68
- MwkApt0Wj+JTyQ07HbvV5UIH7VsbMClqUtS35tqCTrKeKiOXb440h3bynhc9eW8bQ8DA5NK
- X9NvT0whqNa3O2sfoJYHKZWC5Rr5Cy6VInJhEfKInncCMSdYXqCLcLFQPaxiTjATBqUEMaB
- CqQHzaWTxWV9GkVugdHTZCtCUxd+HIfADQpQsyuXi2nE7fpH2G3n/ytJUpPmzlb4b3082Eu
- tcDveP2aZTHOG737v52aVMcU/1uayveXeg9704diDrAGBVzBUVh+sLdLfN1VmD5fkB656cr
- o+wf3dbepDEpequEH1xpVMZca8l+dIwU2l2drNvVMKTqea4CawGOBSpPzL9RgiaBvyo1jOS
- SqgOXINUn/Fg2oRGC5ticZXrft+vHcnOOJ7swdLwi/KpnN+v01WU/7liMLplpQNQ1W3trCo
- PFrILXSMnhVuZ3zbamNGsQbZSHAFGBAqc7EhGsg6j10
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-X-QQ-RECHKSPAM: 0
-X-Mailman-Approved-At: Tue, 22 Jul 2025 12:46:35 +0000
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,27 +72,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is a spelling mistake of 'notifer' in the comment which
-should be 'notifier'.
+On Mon, 21 Jul 2025, Bjorn Helgaas wrote:
 
-Signed-off-by: WangYuli <wangyuli@uniontech.com>
----
- drivers/gpu/drm/xe/xe_vm_types.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> [+cc Ilpo]
+> 
+> On Tue, Jul 22, 2025 at 01:30:57AM +0800, Icenowy Zheng wrote:
+> > The upstream port device of Intel Arc series dGPUs' internal PCIe switch
+> > contains a mysterious 8MB 64-bit prefetchable BAR. All reads to memory
+> > mapped to that BAR returns 0xFFFFFFFF and writes have no effect.
+> > 
+> > When the PCI bus isn't configured by any firmware (e.g. a PCIe
+> > controller solely initialized by Linux kernel), the PCI space allocation
+> > algorithm of Linux will allocate the main VRAM BAR of Arc dGPU device at
+> > base+0, and then the 8MB BAR at base+256M, which prevents the main VRAM
+> > BAR gets resized.
 
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 1979e9bdbdf3..0ca27579fd1f 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -259,7 +259,7 @@ struct xe_vm {
- 		 * up for revalidation. Protected from access with the
- 		 * @invalidated_lock. Removing items from the list
- 		 * additionally requires @lock in write mode, and adding
--		 * items to the list requires either the @userptr.notifer_lock in
-+		 * items to the list requires either the @userptr.notifier_lock in
- 		 * write mode, OR @lock in write mode.
- 		 */
- 		struct list_head invalidated;
+__resource_resize_store() tries to release all resoures with the same 
+flags as the resource to be resized. But it seems the release doesn't work 
+across devices.
+
+I don't like that flags check anyway, I'd want to replace all such black 
+magic with a function that consistently determines the bridge window a 
+resouce is assigned to. I've a series to that effect but it doesn't cover 
+resize cases yet and it requires more testing anyway to confirm it doesn't 
+change any parent windows resources get assigned to.
+
+So IMO, the correct logic on resize would be to:
+
+1) Get the relevant upstream bridge window
+2) Release all child resource of that bridge window. But that will 
+require further checks whether all those resources (from foreign PCI devs) 
+can be released which might run a foul with dev lock ordering.
+
+...So it might turn out hard to implement in practice.
+
+> > As the functionality and performance of Arc dGPU will
+> > get severely restricted with small BAR, this makes a problem.
+> > 
+> > Hide the mysterious 8MB BAR to Linux PCI subsystem, to allow resizing
+> > the VRAM BAR to VRAM size with the Linux PCI space allocation algorithm.
+> 
+> There's no reason a switch upstream port should not have a BAR.  I
+> suspect this BAR probably does have a legitimate purpose, and it's
+> only "mysterious" because we don't know how to use it.
+> 
+> This sounds like it may be a deficiency in the Linux BAR assignment
+> code.  Any other device could have a similar problem.  
+
+I'm still working also with the resource fitting logic to make it consider 
+resizable BARs when sizing the resource which would address this problem 
+another way.
+
+> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > ---
+> >  drivers/pci/quirks.c | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
+> > 
+> > diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+> > index d7f4ee634263..df304bfec6e9 100644
+> > --- a/drivers/pci/quirks.c
+> > +++ b/drivers/pci/quirks.c
+> > @@ -3650,6 +3650,22 @@ DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, 0x37d0, quirk_broken_intx_masking);
+> >  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, 0x37d1, quirk_broken_intx_masking);
+> >  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, 0x37d2, quirk_broken_intx_masking);
+> >  
+> > +/*
+> > + * Intel Arc dGPUs' internal switch upstream port contains a mysterious 8MB
+> > + * 64-bit prefetchable BAR that blocks resize of main dGPU VRAM BAR with
+> > + * Linux's PCI space allocation algorithm.
+> > + */
+> > +static void quirk_intel_xe_upstream(struct pci_dev *pdev)
+> > +{
+> > +	memset(&pdev->resource[0], 0, sizeof(pdev->resource[0]));
+> 
+> This doesn't touch the BAR itself, so we may be leaving the BAR
+> decoding accesses, which could lead to an address conflict.  It also
+> prevents a driver for the upstream port from using the BAR.
+> 
+> > +}
+> > +/* Intel Arc A380 PCI Express Switch Upstream Port */
+> > +DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x4fa1, quirk_intel_xe_upstream);
+> > +/* Intel Arc A770 PCI Express Switch Upstream Port */
+> > +DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x4fa0, quirk_intel_xe_upstream);
+> > +/* Intel Arc B580 PCI Express Switch Upstream Port */
+> > +DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0xe2ff, quirk_intel_xe_upstream);
+> > +
+> >  static u16 mellanox_broken_intx_devs[] = {
+> >  	PCI_DEVICE_ID_MELLANOX_HERMON_SDR,
+> >  	PCI_DEVICE_ID_MELLANOX_HERMON_DDR,
+> > -- 
+> > 2.50.1
+> > 
+> 
+
 -- 
-2.50.0
+ i.
 
