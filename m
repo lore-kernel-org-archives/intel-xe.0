@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 477DAC83F34
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CC0FC87FC5
 	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 12:46:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E3D610E677;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4685410E679;
 	Tue, 22 Jul 2025 12:46:36 +0000 (UTC)
-X-Greylist: delayed 443 seconds by postgrey-1.36 at gabe;
- Mon, 21 Jul 2025 21:59:52 UTC
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD66410E089
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Jul 2025 21:59:52 +0000 (UTC)
-Received: from [192.168.0.105] (unknown [114.241.87.235])
- by APP-01 (Coremail) with SMTP id qwCowABHNqqTtn5oK_EvBg--.13363S2;
- Tue, 22 Jul 2025 05:52:20 +0800 (CST)
-Message-ID: <dca5e72c-ab77-4bcc-af3b-8ac504f3629e@iscas.ac.cn>
-Date: Tue, 22 Jul 2025 05:52:19 +0800
+X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
+ Tue, 22 Jul 2025 05:45:27 UTC
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 145FA10E2F4;
+ Tue, 22 Jul 2025 05:45:26 +0000 (UTC)
+X-UUID: 58393c0c66be11f0b29709d653e92f7d-20250722
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45, REQID:0b25fb33-ed9d-4f38-befa-9f33992742c6, IP:0,
+ U
+ RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+ release,TS:0
+X-CID-META: VersionHash:6493067, CLOUDID:708eaf457a96064c0c3ac0dc8b2deb52,
+ BulkI
+ D:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:nil,UR
+ L:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,S
+ PR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 58393c0c66be11f0b29709d653e92f7d-20250722
+Received: from node2.com.cn [(10.44.16.197)] by mailgw.kylinos.cn
+ (envelope-from <zhaoguohan@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1436159494; Tue, 22 Jul 2025 13:40:15 +0800
+Received: from node2.com.cn (localhost [127.0.0.1])
+ by node2.com.cn (NSMail) with SMTP id 985C8B8258E9;
+ Tue, 22 Jul 2025 13:40:15 +0800 (CST)
+X-ns-mid: postfix-687F243F-42099633
+Received: from zgh-VMware-Virtual-Platform.localdomain (unknown [10.42.12.181])
+ by node2.com.cn (NSMail) with ESMTPA id 32AD4B8258E7;
+ Tue, 22 Jul 2025 05:40:13 +0000 (UTC)
+From: zhaoguohan@kylinos.cn
+To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, GuoHan Zhao <zhaoguohan@kylinos.cn>
+Subject: [PATCH] drm/xe/hwmon: Return early on power limit read failure
+Date: Tue, 22 Jul 2025 13:40:10 +0800
+Message-ID: <20250722054010.34608-1-zhaoguohan@kylinos.cn>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] PCI: hide mysterious 8MB 64-bit pref BAR on Intel Arc
- PCIe Switch
-To: Icenowy Zheng <uwu@icenowy.me>, Bjorn Helgaas <bhelgaas@google.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Han Gao <rabenda.cn@gmail.com>
-References: <20250721173057.867829-1-uwu@icenowy.me>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20250721173057.867829-1-uwu@icenowy.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowABHNqqTtn5oK_EvBg--.13363S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxXryxtF17tw43tr1UJFW8Zwb_yoWrJF15pF
- WrGwsagr93tFy7WwsrZw129rZYvan5G34Ykr9Fvr9FvanxC345K39rtFn0qFy7WrZ7Wa1r
- Xay5t347Ga4Du3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUkab7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
- 0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
- A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
- jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwV
- C2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
- Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
- W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl
- 42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJV
- WUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAK
- I48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r
- 4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY
- 6I8E87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07betCcUUUUU=
-X-Originating-IP: [114.241.87.235]
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 22 Jul 2025 12:46:35 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,82 +65,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 7/22/25 01:30, Icenowy Zheng wrote:
+From: GuoHan Zhao <zhaoguohan@kylinos.cn>
 
-> The upstream port device of Intel Arc series dGPUs' internal PCIe switch
-> contains a mysterious 8MB 64-bit prefetchable BAR. All reads to memory
-> mapped to that BAR returns 0xFFFFFFFF and writes have no effect.
+In xe_hwmon_pcode_rmw_power_limit(), when xe_pcode_read() fails,
+the function logs the error but continues to execute the subsequent
+logic. This can result in undefined behavior as the values val0 and
+val1 may contain invalid data.
 
-Reading all-ones is certainly not a good indication that this BAR does
-nothing. My guess would be that maybe it's some write-only registers
-like MSI doorbells.
+Fix this by adding an early return after logging the read failure,
+ensuring that we don't proceed with potentially corrupted data.
 
-AMD has docs on how their GPUs have a tiny doorbell default-2M 64bit
-pref BAR [1], which I find interesting, even though very indirect as
-evidence.
+Signed-off-by: GuoHan Zhao <zhaoguohan@kylinos.cn>
+---
+ drivers/gpu/drm/xe/xe_hwmon.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-[1]: https://rocm.docs.amd.com/en/latest/how-to/Bar-Memory.html#bar-configuration-for-amd-gpus
-
-> When the PCI bus isn't configured by any firmware (e.g. a PCIe
-> controller solely initialized by Linux kernel), the PCI space allocation
-> algorithm of Linux will allocate the main VRAM BAR of Arc dGPU device at
-> base+0, and then the 8MB BAR at base+256M, which prevents the main VRAM
-> BAR gets resized. As the functionality and performance of Arc dGPU will
-> get severely restricted with small BAR, this makes a problem.
-
-While trying to look around for if any documentation is available on the
-"mysterious BAR", I found that this problem has indeed been discovered
-before with no satisfactory resolution. Linking for posterity:
-
-[2]: https://issues.redhat.com/browse/RHEL-3672
-[3]: https://github.com/raspberrypi/linux/issues/6621
-
-If my doorbell theory was correct, and that this is analogous for
-amdgpu, there is this interesting comment in
-drivers/gpu/drm/amd/amdgpu/amdgpu_device.c since commit d6895ad39f3b
-("drm/amdgpu: resize VRAM BAR for CPU access v6"):
-
-  /* Free the VRAM and doorbell BAR, we most likely need to move both. */
-
-That seems to be the right way *if* it makes sense that the "mysterious
-BAR" is supposed to be managed by the GPU driver. Of course, only
-someone from Intel can confirm for sure what's going on...
-
-Vivian "dramforever" Wang
-
-> Hide the mysterious 8MB BAR to Linux PCI subsystem, to allow resizing
-> the VRAM BAR to VRAM size with the Linux PCI space allocation algorithm.
->
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> ---
->  drivers/pci/quirks.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->
-> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> index d7f4ee634263..df304bfec6e9 100644
-> --- a/drivers/pci/quirks.c
-> +++ b/drivers/pci/quirks.c
-> @@ -3650,6 +3650,22 @@ DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, 0x37d0, quirk_broken_intx_masking);
->  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, 0x37d1, quirk_broken_intx_masking);
->  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, 0x37d2, quirk_broken_intx_masking);
->  
-> +/*
-> + * Intel Arc dGPUs' internal switch upstream port contains a mysterious 8MB
-> + * 64-bit prefetchable BAR that blocks resize of main dGPU VRAM BAR with
-> + * Linux's PCI space allocation algorithm.
-> + */
-> +static void quirk_intel_xe_upstream(struct pci_dev *pdev)
-> +{
-> +	memset(&pdev->resource[0], 0, sizeof(pdev->resource[0]));
-> +}
-> +/* Intel Arc A380 PCI Express Switch Upstream Port */
-> +DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x4fa1, quirk_intel_xe_upstream);
-> +/* Intel Arc A770 PCI Express Switch Upstream Port */
-> +DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x4fa0, quirk_intel_xe_upstream);
-> +/* Intel Arc B580 PCI Express Switch Upstream Port */
-> +DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0xe2ff, quirk_intel_xe_upstream);
-> +
->  static u16 mellanox_broken_intx_devs[] = {
->  	PCI_DEVICE_ID_MELLANOX_HERMON_SDR,
->  	PCI_DEVICE_ID_MELLANOX_HERMON_DDR,
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.=
+c
+index f08fc4377d25e..4e4f07f3e4788 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -190,9 +190,11 @@ static int xe_hwmon_pcode_rmw_power_limit(const stru=
+ct xe_hwmon *hwmon, u32 attr
+ 						  READ_PL_FROM_PCODE : READ_PL_FROM_FW),
+ 						  &val0, &val1);
+=20
+-	if (ret)
++	if (ret) {
+ 		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, =
+ret %d\n",
+ 			channel, val0, val1, ret);
++		return ret;
++	}
+=20
+ 	if (attr =3D=3D PL1_HWMON_ATTR)
+ 		val0 =3D (val0 & ~clr) | set;
+--=20
+2.43.0
 
