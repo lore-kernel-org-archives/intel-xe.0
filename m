@@ -4,81 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DCE4C83F25
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 09:24:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CE3FC83F25
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 10:13:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 621E310E643;
-	Tue, 22 Jul 2025 09:24:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 431AA10E10E;
+	Tue, 22 Jul 2025 10:13:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MjJRYeJZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bSSl0D/v";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F07A10E150;
- Tue, 22 Jul 2025 09:24:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C12A10E10E;
+ Tue, 22 Jul 2025 10:13:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753176271; x=1784712271;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=Ksr4RcpyiaVxvdAz9Ft+gR94b9IMq2d1CEO85zHMm3o=;
- b=MjJRYeJZpalrlHw+UcPoLhG0hsnDsFWT4Vl198E033SFSD8VB0j88IgK
- tsdjYlB+nUlOBtv2gmxqzWzz9v+1Vz7qcqmQRLBAvR7KjSNbfuZ3TSzwx
- 6qaTp8+EIIpqjbs7F1OpPp5qYQBh9Dmgn1p5WW0Z46zH98v9JSfFuaIof
- mP7E3btZygMf7XIArG3cCmTUHgD3AJV5tezE1D566DfnmyOrKeYuvS5xy
- aEiF4fT4jF51WLsfHPlb0dYBL8C8bnah7e9LuE9zS+DhxKao1yeS5i3uh
- FKU4YUYIuD8NilU9B5NSz6N2dJHzhdmg7f0JBMvNqHTQ++GDVFQ8Titq4 w==;
-X-CSE-ConnectionGUID: 4+UFLf4WQ96pBt0PnCJP5A==
-X-CSE-MsgGUID: L5OHo97MQeWZX8hRZdLifA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11499"; a="55574730"
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="55574730"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 02:24:30 -0700
-X-CSE-ConnectionGUID: cbehGU95QkWPRtX5+LVZGA==
-X-CSE-MsgGUID: 7OhfXV8JRdOAnLadikdZ1w==
+ t=1753179215; x=1784715215;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DwQglXlkfD17zjIwMuK5aSRLB7xaBkc51nD5Q6P8/KY=;
+ b=bSSl0D/vusPA2SaSPRuMYL4ULHGPM6KzqiCOHbbpNpilr7ymwH74P41f
+ CW6p3ZWKLhSs3O8yHsCz5UYSnY7nw792R7f3kSgyEEyTNne14DGpBLfdN
+ hGZsmhekobjra8VLMPh+PT1J03tp8Z3ZNNJtCSDkyievh7+o33SnYABw2
+ oYVqt/bTA8+h3szFolbH6TL2oyT0Pr+g4yTuHb76FPmXOVkhkNHayLJ/G
+ cpM5VP3bMojemjEGQmeYAUqyGq3IqZroxX50Joc5tJPtQmWDotBh3CV1K
+ utEcek9GCmbaPvXm3KTzp8MeaELDXICLfyLl5GJUbZoPilObz2eSbunWi A==;
+X-CSE-ConnectionGUID: Ztsgxj7ESK+A+ri/gPuPDQ==
+X-CSE-MsgGUID: j9qZCy5WR5i41JEBvwSAnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11499"; a="55266629"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="55266629"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2025 03:13:35 -0700
+X-CSE-ConnectionGUID: TimzVj3IQMymyxnE+JrkDg==
+X-CSE-MsgGUID: +2p+o3dqRwilkNPGeEYzlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="163133052"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.244.202])
- ([10.245.244.202])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 02:24:17 -0700
-Message-ID: <ffd58e1a8b51c98cac9be49e85d367f1a3a24c2d.camel@linux.intel.com>
-Subject: Re: [PATCH v3 3/8] drm/xe: Fix typo "notifer"
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: WangYuli <wangyuli@uniontech.com>
-Cc: airlied@gmail.com, akpm@linux-foundation.org,
- alison.schofield@intel.com, 	andrew+netdev@lunn.ch,
- andriy.shevchenko@linux.intel.com, 	arend.vanspriel@broadcom.com,
- bp@alien8.de, brcm80211-dev-list.pdl@broadcom.com, 
- brcm80211@lists.linux.dev, colin.i.king@gmail.com, cvam0000@gmail.com, 
- dan.j.williams@intel.com, dave.hansen@linux.intel.com,
- dave.jiang@intel.com, 	dave@stgolabs.net, davem@davemloft.net,
- dri-devel@lists.freedesktop.org, 	edumazet@google.com,
- gregkh@linuxfoundation.org, guanwentao@uniontech.com, 	hpa@zytor.com,
- ilpo.jarvinen@linux.intel.com, intel-xe@lists.freedesktop.org, 
- ira.weiny@intel.com, j@jannau.net, jeff.johnson@oss.qualcomm.com,
- jgross@suse.com, 	jirislaby@kernel.org, johannes.berg@intel.com,
- jonathan.cameron@huawei.com, 	kuba@kernel.org, kvalo@kernel.org,
- kvm@vger.kernel.org, linux-cxl@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
- linux-wireless@vger.kernel.org, linux@treblig.org,
- lucas.demarchi@intel.com, 	marcin.s.wojtas@gmail.com, ming.li@zohomail.com,
- mingo@kernel.org, 	mingo@redhat.com, netdev@vger.kernel.org,
- niecheng1@uniontech.com, 	oleksandr_tyshchenko@epam.com, pabeni@redhat.com,
- pbonzini@redhat.com, 	quic_ramess@quicinc.com, ragazenta@gmail.com,
- rodrigo.vivi@intel.com, 	seanjc@google.com, shenlichuan@vivo.com,
- simona@ffwll.ch, sstabellini@kernel.org, 	tglx@linutronix.de,
- vishal.l.verma@intel.com, wangyuli@deepin.org, x86@kernel.org, 
- xen-devel@lists.xenproject.org, yujiaoliang@vivo.com, zhanjun@uniontech.com
-Date: Tue, 22 Jul 2025 11:24:15 +0200
-In-Reply-To: <94190C5F54A19F3E+20250722073431.21983-3-wangyuli@uniontech.com>
-References: <576F0D85F6853074+20250722072734.19367-1-wangyuli@uniontech.com>
- <94190C5F54A19F3E+20250722073431.21983-3-wangyuli@uniontech.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="159418515"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.223])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2025 03:13:33 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: gustavo.sousa@intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 0/4] PHY LFPS sending configuration fixes
+Date: Tue, 22 Jul 2025 13:13:13 +0300
+Message-ID: <20250722101317.1728499-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,33 +69,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-07-22 at 15:34 +0800, WangYuli wrote:
-> There is a spelling mistake of 'notifer' in the comment which
-> should be 'notifier'.
->=20
-> Signed-off-by: WangYuli <wangyuli@uniontech.com>
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+We are seeing "dmesg-warn/abort - *ERROR* PHY * failed after 3 retries"
+since we started configuring LFPS sending. According to Bspec Configuring
+LFPS sending is needed only when using AUXLess ALPM. This patch avoids
+these failures by configuring LFPS sending only when using AUXLess ALPM.
 
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_vm_types.h | 2 +-
-> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> b/drivers/gpu/drm/xe/xe_vm_types.h
-> index 1979e9bdbdf3..0ca27579fd1f 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -259,7 +259,7 @@ struct xe_vm {
-> =C2=A0		 * up for revalidation. Protected from access with
-> the
-> =C2=A0		 * @invalidated_lock. Removing items from the list
-> =C2=A0		 * additionally requires @lock in write mode, and
-> adding
-> -		 * items to the list requires either the
-> @userptr.notifer_lock in
-> +		 * items to the list requires either the
-> @userptr.notifier_lock in
-> =C2=A0		 * write mode, OR @lock in write mode.
-> =C2=A0		 */
-> =C2=A0		struct list_head invalidated;
+Addition to PHY failure fix this patch set contains some additions
+that were seen missing during review:
+
+1. Ensure phy is accessible on lfps configuration
+2. Set C10_VDR_CTRL_MSGBUS_ACCESS before phy reg read
+
+Also one optimization is added to avoid unnecessarily calling
+intel_cx0_get_owned_lane_mask.
+
+v2:
+  - split as a patch set
+  - add ensuring phy is accessible on lfps configuration
+  - set C10_VDR_CTRL_MSGBUS_ACCESS before phy reg read
+
+Jouni Högander (4):
+  drm/i915/display: Write PHY_CMN1_CONTROL only when using AUXLess ALPM
+  drm/i915/display: Avoid unnecessarily calling
+    intel_cx0_get_owned_lane_mask
+  drm/i915/display: Ensure phy is accessible on lfps configuration
+  drm/i915/display: Set C10_VDR_CTRL_MSGBUS_ACCESS before phy reg read
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 22 ++++++++++++++------
+ 1 file changed, 16 insertions(+), 6 deletions(-)
+
+-- 
+2.43.0
 
