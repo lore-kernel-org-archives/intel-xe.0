@@ -4,76 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC5C4C83F27
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 17:06:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F0A3C83F1A
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 17:33:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7195110E318;
-	Tue, 22 Jul 2025 17:06:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=zytor.com header.i=@zytor.com header.b="nLYtFGj+";
-	dkim-atps=neutral
-X-Greylist: delayed 433 seconds by postgrey-1.36 at gabe;
- Tue, 22 Jul 2025 17:06:48 UTC
-Received: from terminus.zytor.com (terminus.zytor.com [198.137.202.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA8310E318;
- Tue, 22 Jul 2025 17:06:48 +0000 (UTC)
-Received: from [127.0.0.1] (c-76-133-66-138.hsd1.ca.comcast.net
- [76.133.66.138]) (authenticated bits=0)
- by mail.zytor.com (8.18.1/8.17.1) with ESMTPSA id 56MGwnFd657671
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NO);
- Tue, 22 Jul 2025 09:58:49 -0700
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.zytor.com 56MGwnFd657671
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zytor.com;
- s=2025062101; t=1753203533;
- bh=zcW3ufrPeS9z5vjFN56GirhJJTbdaCIUAEbrqpAovKM=;
- h=Date:From:To:CC:Subject:In-Reply-To:References:From;
- b=nLYtFGj+YjoGNEYGiQTtSSrpLjsViKYD5wc5TuPqddAJ8ED6zjoIGvwZgXShXXwZt
- Z82UlljOtC8H/vyP3+1XHhLAhJvsSdBXSHJ84a1lkAM+dC0eOenHEapfk4l+xPw3Yp
- Tt3Lpn5k1a8EeQHBGdtankMXR8c2x9H6h+0GL1KdQYwwtXGBVhacT1Ab7+XMA9Vwvr
- jaS1KWf/6v6gMYlrDFaRXV8sXwAbLXlPwERIbq3nL8fW2l05WOB61yjvWDeSWsbJtw
- LjgcnAROyJDyAmDWXrktO4r2jj7OpE+JXGo7pOG10BKOA/G6IDssVi679Ct4qgRD8y
- fQKKcG4D5VH1Q==
-Date: Tue, 22 Jul 2025 09:58:48 -0700
-From: "H. Peter Anvin" <hpa@zytor.com>
-To: Greg KH <gregkh@linuxfoundation.org>, WangYuli <wangyuli@uniontech.com>
-CC: airlied@gmail.com, akpm@linux-foundation.org, alison.schofield@intel.com, 
- andrew+netdev@lunn.ch, andriy.shevchenko@linux.intel.com,
- arend.vanspriel@broadcom.com, bp@alien8.de,
- brcm80211-dev-list.pdl@broadcom.com, brcm80211@lists.linux.dev,
- colin.i.king@gmail.com, cvam0000@gmail.com, dan.j.williams@intel.com,
- dave.hansen@linux.intel.com, dave.jiang@intel.com, dave@stgolabs.net,
- davem@davemloft.net, dri-devel@lists.freedesktop.org,
- edumazet@google.com, guanwentao@uniontech.com,
- ilpo.jarvinen@linux.intel.com, intel-xe@lists.freedesktop.org,
- ira.weiny@intel.com, j@jannau.net, jeff.johnson@oss.qualcomm.com,
- jgross@suse.com, jirislaby@kernel.org, johannes.berg@intel.com,
- jonathan.cameron@huawei.com, kuba@kernel.org, kvalo@kernel.org,
- kvm@vger.kernel.org, linux-cxl@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux@treblig.org,
- lucas.demarchi@intel.com, marcin.s.wojtas@gmail.com,
- ming.li@zohomail.com, mingo@kernel.org, mingo@redhat.com,
- netdev@vger.kernel.org, niecheng1@uniontech.com,
- oleksandr_tyshchenko@epam.com, pabeni@redhat.com, pbonzini@redhat.com,
- quic_ramess@quicinc.com, ragazenta@gmail.com, rodrigo.vivi@intel.com,
- seanjc@google.com, shenlichuan@vivo.com, simona@ffwll.ch,
- sstabellini@kernel.org, tglx@linutronix.de,
- thomas.hellstrom@linux.intel.com, vishal.l.verma@intel.com,
- x86@kernel.org, xen-devel@lists.xenproject.org, yujiaoliang@vivo.com,
- zhanjun@uniontech.com
-Subject: Re: [PATCH v2 6/8] serial: 8250_dw: Fix typo "notifer"
-User-Agent: K-9 Mail for Android
-In-Reply-To: <2025072252-halves-sadness-18dc@gregkh>
-References: <BD5C52D2838AEA48+20250715134050.539234-1-wangyuli@uniontech.com>
- <2BF1749F02ADE664+20250715134407.540483-6-wangyuli@uniontech.com>
- <2025071607-outbid-heat-b0ba@gregkh>
- <634BA467821D37FE+0b2ace38-07d9-4500-8bb7-5a4fa65c4b9f@uniontech.com>
- <2025072252-halves-sadness-18dc@gregkh>
-Message-ID: <10127165-7020-4D35-B0F3-099F58B2AF4E@zytor.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 163B310E6E4;
+	Tue, 22 Jul 2025 17:33:18 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D78A10E6E4;
+ Tue, 22 Jul 2025 17:33:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8716517572390733869=="
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_devcoredump=3A_Fix_circular?=
+ =?utf-8?q?_locking_dependency_with_devcd-=3Emutex=2E_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 22 Jul 2025 17:33:16 -0000
+Message-ID: <175320559643.180989.7488356482455447624@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250722164157.759120-1-dev@lankhorst.se>
+In-Reply-To: <20250722164157.759120-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,48 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On July 22, 2025 12:57:33 AM PDT, Greg KH <gregkh@linuxfoundation=2Eorg> wr=
-ote:
->On Tue, Jul 22, 2025 at 03:22:18PM +0800, WangYuli wrote:
->> Hi greg k-h,
->>=20
->> On 2025/7/16 16:08, Greg KH wrote:
->> > > Signed-off-by: WangYuli <wangyuli@uniontech=2Ecom>
->> > Is your name all one word like that, or should there be a " " between
->> > them?
->>=20
->> If I were to follow Western naming conventions, my name would be writte=
-n as
->> 'Yuli Wang'=2E
->>=20
->> However, frankly, I find it unnecessary and can't be bothered to follow
->> their customs, unless a maintainer strongly insists=2E (For example, yo=
-u can
->> see that my signature on commits for the LoongArch subsystem is differe=
-nt
->> from my other contributions)=2E
->>=20
->> Since Chinese names are written without any spaces in Chinese character=
-s, I
->> don't think it matters=2E
->
->Then use your Chinese name, don't feel like you need to change it to any
->other naming convention=2E  There's no requirement here at all to do so=
-=2E
->
->thanks,
->
->greg k-h
+--===============8716517572390733869==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To put it differently: what Greg (and the rest of us) want to make sure is=
- that your name appears the way you prefer=2E=20
+== Series Details ==
 
-Having the Latin transliteration in whatever form you prefer is greatly ap=
-preciated, of course, since the knowledge of Chinese script is limited outs=
-ide East Asia, but that's just about it=2E
+Series: devcoredump: Fix circular locking dependency with devcd->mutex. (rev2)
+URL   : https://patchwork.freedesktop.org/series/151901/
+State : success
 
-If you want to add your name in proper Chinese script in addition that sho=
-uld be fine, too=2E
+== Summary ==
+
+CI Bug Log - changes from xe-3456-3ffdafc799e70589295659c0c6a22a425dc13027_BAT -> xe-pw-151901v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3456-3ffdafc799e70589295659c0c6a22a425dc13027 -> xe-pw-151901v2
+
+  IGT_8472: 3f767264491a41ff3e6506f4cf7431bc72ec993a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3456-3ffdafc799e70589295659c0c6a22a425dc13027: 3ffdafc799e70589295659c0c6a22a425dc13027
+  xe-pw-151901v2: 151901v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151901v2/index.html
+
+--===============8716517572390733869==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>devcoredump: Fix circular locking dependency with devcd-&gt;mutex. (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151901/">https://patchwork.freedesktop.org/series/151901/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151901v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151901v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3456-3ffdafc799e70589295659c0c6a22a425dc13027_BAT -&gt; xe-pw-151901v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3456-3ffdafc799e70589295659c0c6a22a425dc13027 -&gt; xe-pw-151901v2</li>
+</ul>
+<p>IGT_8472: 3f767264491a41ff3e6506f4cf7431bc72ec993a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3456-3ffdafc799e70589295659c0c6a22a425dc13027: 3ffdafc799e70589295659c0c6a22a425dc13027<br />
+  xe-pw-151901v2: 151901v2</p>
+
+</body>
+</html>
+
+--===============8716517572390733869==--
