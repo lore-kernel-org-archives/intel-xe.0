@@ -4,52 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CC0FC87FC5
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 12:46:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D03FC83F34
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 12:46:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4685410E679;
-	Tue, 22 Jul 2025 12:46:36 +0000 (UTC)
-X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
- Tue, 22 Jul 2025 05:45:27 UTC
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 145FA10E2F4;
- Tue, 22 Jul 2025 05:45:26 +0000 (UTC)
-X-UUID: 58393c0c66be11f0b29709d653e92f7d-20250722
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45, REQID:0b25fb33-ed9d-4f38-befa-9f33992742c6, IP:0,
- U
- RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
- release,TS:0
-X-CID-META: VersionHash:6493067, CLOUDID:708eaf457a96064c0c3ac0dc8b2deb52,
- BulkI
- D:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:nil,UR
- L:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,S
- PR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 58393c0c66be11f0b29709d653e92f7d-20250722
-Received: from node2.com.cn [(10.44.16.197)] by mailgw.kylinos.cn
- (envelope-from <zhaoguohan@kylinos.cn>) (Generic MTA)
- with ESMTP id 1436159494; Tue, 22 Jul 2025 13:40:15 +0800
-Received: from node2.com.cn (localhost [127.0.0.1])
- by node2.com.cn (NSMail) with SMTP id 985C8B8258E9;
- Tue, 22 Jul 2025 13:40:15 +0800 (CST)
-X-ns-mid: postfix-687F243F-42099633
-Received: from zgh-VMware-Virtual-Platform.localdomain (unknown [10.42.12.181])
- by node2.com.cn (NSMail) with ESMTPA id 32AD4B8258E7;
- Tue, 22 Jul 2025 05:40:13 +0000 (UTC)
-From: zhaoguohan@kylinos.cn
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, GuoHan Zhao <zhaoguohan@kylinos.cn>
-Subject: [PATCH] drm/xe/hwmon: Return early on power limit read failure
-Date: Tue, 22 Jul 2025 13:40:10 +0800
-Message-ID: <20250722054010.34608-1-zhaoguohan@kylinos.cn>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5178510E67B;
+	Tue, 22 Jul 2025 12:46:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="hh9mf8Mc";
+	dkim-atps=neutral
+Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7690E10E5FA;
+ Tue, 22 Jul 2025 07:36:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+ s=onoh2408; t=1753169773;
+ bh=+qa2f3QEhHEuh4QOwcxSpKUWx1Ey8PdHAyuKdLKK9Qg=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version;
+ b=hh9mf8Mc39i+ypXzkOsf4eXv2b0nYXHjypO6K51HtClWMOgoe8WiUCUOKgNrC7lSO
+ kswBdHwDqCHODQZxZ6qIfnz8LZ4/eguAmnzJfkAWwhxgggEZRer794/zfwygBOEXsy
+ Bh700+3qb0A6kf23H6xbSevPD5NtzbaKY2SbGXGs=
+X-QQ-mid: zesmtpip2t1753169713ta05aff85
+X-QQ-Originating-IP: 65xfAki0jxPR9TUF1QvLcfebtVmeg84+TUXILAN6dYc=
+Received: from avenger-e500 ( [localhost]) by bizesmtp.qq.com (ESMTP) with 
+ id ; Tue, 22 Jul 2025 15:35:09 +0800 (CST)
+X-QQ-SSF: 0002000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 13454134674662907572
+EX-QQ-RecipientCnt: 64
+From: WangYuli <wangyuli@uniontech.com>
+To: wangyuli@uniontech.com
+Cc: airlied@gmail.com, akpm@linux-foundation.org, alison.schofield@intel.com,
+ andrew+netdev@lunn.ch, andriy.shevchenko@linux.intel.com,
+ arend.vanspriel@broadcom.com, bp@alien8.de,
+ brcm80211-dev-list.pdl@broadcom.com, brcm80211@lists.linux.dev,
+ colin.i.king@gmail.com, cvam0000@gmail.com, dan.j.williams@intel.com,
+ dave.hansen@linux.intel.com, dave.jiang@intel.com, dave@stgolabs.net,
+ davem@davemloft.net, dri-devel@lists.freedesktop.org, edumazet@google.com,
+ gregkh@linuxfoundation.org, guanwentao@uniontech.com, hpa@zytor.com,
+ ilpo.jarvinen@linux.intel.com, intel-xe@lists.freedesktop.org,
+ ira.weiny@intel.com, j@jannau.net, jeff.johnson@oss.qualcomm.com,
+ jgross@suse.com, jirislaby@kernel.org, johannes.berg@intel.com,
+ jonathan.cameron@huawei.com, kuba@kernel.org, kvalo@kernel.org,
+ kvm@vger.kernel.org, linux-cxl@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux@treblig.org,
+ lucas.demarchi@intel.com, marcin.s.wojtas@gmail.com, ming.li@zohomail.com,
+ mingo@kernel.org, mingo@redhat.com, netdev@vger.kernel.org,
+ niecheng1@uniontech.com, oleksandr_tyshchenko@epam.com, pabeni@redhat.com,
+ pbonzini@redhat.com, quic_ramess@quicinc.com, ragazenta@gmail.com,
+ rodrigo.vivi@intel.com, seanjc@google.com, shenlichuan@vivo.com,
+ simona@ffwll.ch, sstabellini@kernel.org, tglx@linutronix.de,
+ thomas.hellstrom@linux.intel.com, vishal.l.verma@intel.com,
+ wangyuli@deepin.org, x86@kernel.org, xen-devel@lists.xenproject.org,
+ yujiaoliang@vivo.com, zhanjun@uniontech.com
+Subject: [PATCH v3 5/8] wifi: brcmfmac: Fix typo "notifer"
+Date: Tue, 22 Jul 2025 15:34:28 +0800
+Message-ID: <6CA31F0821E6687F+20250722073431.21983-5-wangyuli@uniontech.com>
+X-Mailer: git-send-email 2.50.0
+In-Reply-To: <576F0D85F6853074+20250722072734.19367-1-wangyuli@uniontech.com>
+References: <576F0D85F6853074+20250722072734.19367-1-wangyuli@uniontech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:uniontech.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: MQzHuj/l4p1exEu9NuNMKN1TzxRjapobS0iun3hI2nqVfG1x6+jRK04f
+ tT8vlT/6r11/mry+8E2FknrTTjJ1s03Pfjm4A9ZDX4hjhDppiI+6czHkM1JRSWxADR367/i
+ e30EVLwP7CQl+hzDg+6s5bt4toKRrQHlnjGvMTmb9RilcUS8vM5HWtcVy/rsAkLU7ZjZDT5
+ javyPBlyyO/WroBBr/dBYCabMdT9yHkF3Uwu6BFb3tbo07yTqQZaK/FWucml77KxMYXDN5u
+ yWkrzEHYkSXV0YNLFdmmYv5UhcKf8sskP38SUEl99BkDjPhrQjda6yZfuM9056MXGOv75U5
+ +z8rEoymijoo5EctmrvJCxd05hD+nHOqv3xDoaqPb8IQnSuzrQuy39DtUend1Lls2fM5yze
+ GSAzU6BTCMaXRI+7CRCgu8TlTTEp/5/V2mHJBqyuRgFGEGVXiu0P5uvC/6ckAtkn9+yjv32
+ 9nEJHXVr6LSA8KG0Sc/MsiNRHT57fuio6zPlRQUz2nJ7KgQHlth+eSUJqRDP/OFA3H6r8bf
+ ij06kwWYkULCQ4vWHXrdQasnr0VsPVvCF+Pu32RmK4UJjUCc1qlFcZFobELzB2NOrjsjkOD
+ Ah4nLX5dy+WFw2yoHYxDEmexDm34B3akxoMmy7pIQyi8A0Er/NFl1ee5bJmvvlBi5Ha3r7Z
+ o+3uBBtqDPQ8Wngrpm9Nca2+trlfxhqR6KEhdviIMj6XnCCPlPIPmq4cQ7Xqg/HHwgbv6eW
+ k0EajGCLWit0v173HCkl9QMXaoRvqt/j/AmuRvCwtsJmvtWMLTCiOpVXfWlIleckEapp95T
+ IJgvH0RsAC7Qml0fhLFxU5sP8u56a9UW1WmKSwtmBQTYmAMteq44iJisrmwKutIyrTnjCD6
+ oWxW7kfkGIzSSALtq7hHN1KuXPsCyG/kVmJq7ZJeq7fNkaBs9GyGEt31eX6bdKUh1YvXmV9
+ oj99lHJJdrJyRb9te+Z4txdv9mhitcK/PwKJ4hUClenjnk1s34antu7vbkOSNXe/Mod8GQx
+ bHs4aPbo9p7WnY+CIsryjBWBMxqE8iSwOEvidZHBRlL+ggax4K4nDAvZIz6kIChr3d6EnS6
+ UXIVFQOTxx8eyrv3QLTR4//ekHs7sOiykacSX/OuBywR1jod1jrydk=
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
+X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Tue, 22 Jul 2025 12:46:35 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,41 +100,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: GuoHan Zhao <zhaoguohan@kylinos.cn>
+There is a spelling mistake of 'notifer' in the comment which
+should be 'notifier'.
 
-In xe_hwmon_pcode_rmw_power_limit(), when xe_pcode_read() fails,
-the function logs the error but continues to execute the subsequent
-logic. This can result in undefined behavior as the values val0 and
-val1 may contain invalid data.
-
-Fix this by adding an early return after logging the read failure,
-ensuring that we don't proceed with potentially corrupted data.
-
-Signed-off-by: GuoHan Zhao <zhaoguohan@kylinos.cn>
+Acked-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+Signed-off-by: WangYuli <wangyuli@uniontech.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.=
-c
-index f08fc4377d25e..4e4f07f3e4788 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -190,9 +190,11 @@ static int xe_hwmon_pcode_rmw_power_limit(const stru=
-ct xe_hwmon *hwmon, u32 attr
- 						  READ_PL_FROM_PCODE : READ_PL_FROM_FW),
- 						  &val0, &val1);
-=20
--	if (ret)
-+	if (ret) {
- 		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, =
-ret %d\n",
- 			channel, val0, val1, ret);
-+		return ret;
-+	}
-=20
- 	if (attr =3D=3D PL1_HWMON_ATTR)
- 		val0 =3D (val0 & ~clr) | set;
---=20
-2.43.0
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c
+index b94c3619526c..bcd56c7c4e42 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c
+@@ -8313,7 +8313,7 @@ struct brcmf_cfg80211_info *brcmf_cfg80211_attach(struct brcmf_pub *drvr,
+ 	cfg->d11inf.io_type = (u8)io_type;
+ 	brcmu_d11_attach(&cfg->d11inf);
+ 
+-	/* regulatory notifer below needs access to cfg so
++	/* regulatory notifier below needs access to cfg so
+ 	 * assign it now.
+ 	 */
+ 	drvr->config = cfg;
+-- 
+2.50.0
 
