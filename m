@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD68DC87FC5
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 13:08:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E9A5C83F27
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 13:08:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 719EF10E687;
-	Tue, 22 Jul 2025 13:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E92C10E689;
+	Tue, 22 Jul 2025 13:08:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jtji2wZY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l8pKQrXG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0050410E687
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 13:08:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7640910E689
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 13:08:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753189726; x=1784725726;
+ t=1753189727; x=1784725727;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oGo3Qw6f47edYpZxc4DvYf5dXgmWy3zkpPh1N5Z9nv4=;
- b=jtji2wZY1imcsdO9Y7aFMkMPvbNwIcYoe31FgoYxJfTYM3vxr5hoaa3+
- +eJ93mZoImhMWVQsDPjVJDp6qTDhH6PoVlm+3WBmPRP24AhOQmaj4ekDS
- asbwGOXxwJ/Z0U5g1DWd6T1ZyfHFnblw39BME4b6ML4PhD/x0yLb5wL21
- pCqG2rq+XsZBmrtLWNl/GBu3hitg4SI4Za4ySBkK9qm4m4gOsmZNjtKcl
- f9a34GyqUjT3Ilwcyf71pUdZDQOsmEYNmkE0v/p8boYjvA1Ybgv8fC7bc
- yVtMrNSAR8etxry1gomPjWGPsmgXDxHtjGzHmtLlwD5xJc8w4kvz+Nxv2 w==;
-X-CSE-ConnectionGUID: q+iSqX9EQnSH4XrcXwMAUw==
-X-CSE-MsgGUID: +VOzsie1Qou7hsWmXZS+/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="55530346"
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="55530346"
+ bh=q8ebR3YJpQisPGjrAOCoZdqzbAS+e+1pa3+TMI1DpOQ=;
+ b=l8pKQrXGT5wk3e4DMcy1xNQ3ln+jriJtqQ7Hmr2wcA2dj21vqmqS7FGA
+ CFgH7H/qsvjb4LHioSiVDV+8MP8tL//Lrt87YpoxBt0LGhTwx485yqYkV
+ S38WRIrgmbHO/AZrL1DXYkLSb/CNm0CvX0ReokSxb1xGfO+2qVjf3Vhqg
+ lO7dxf3CYQbqUNius1NHjZmTAwHNP8A+s1AfdCkfFq0xAV7CATI1oHPjZ
+ cws9yIP2oZtO0KNEPG0qHBcMNkbFrOI2ozs3rWnPymbG6SfvBSNvisClw
+ fszf/MTCYr9qQzTp8ncgzSek3AH26MUIvCjIKo1cvLjWGTy7oXf0du/3x w==;
+X-CSE-ConnectionGUID: xXfOSyekSNa9jI187eTfbA==
+X-CSE-MsgGUID: Qv7Cjv0XTSmmsofqmjy6Bw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="55530348"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="55530348"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 06:08:46 -0700
-X-CSE-ConnectionGUID: 2OiCeA8oSRS6/bvKOd2G+w==
-X-CSE-MsgGUID: ixOJsrZFQLSc8ldZFvsmfQ==
+ 22 Jul 2025 06:08:47 -0700
+X-CSE-ConnectionGUID: IfFDHeTPQ5eN0zosL5A7EQ==
+X-CSE-MsgGUID: iwTk2v2oTAu965efBI62Qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="163420505"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="163420516"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa005.fm.intel.com with ESMTP; 22 Jul 2025 06:08:44 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 22 Jul 2025 06:08:46 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v5 02/23] drm/xe/uapi: Add madvise interface
-Date: Tue, 22 Jul 2025 19:05:05 +0530
-Message-Id: <20250722133526.3550547-3-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v5 03/23] drm/xe/vm: Add attributes struct as member of vma
+Date: Tue, 22 Jul 2025 19:05:06 +0530
+Message-Id: <20250722133526.3550547-4-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250722133526.3550547-1-himal.prasad.ghimiray@intel.com>
 References: <20250722133526.3550547-1-himal.prasad.ghimiray@intel.com>
@@ -69,192 +69,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This commit introduces a new madvise interface to support
-driver-specific ioctl operations. The madvise interface allows for more
-efficient memory management by providing hints to the driver about the
-expected memory usage and pte update policy for gpuvma.
+The attribute of xe_vma will determine the migration policy and the
+encoding of the page table entries (PTEs) for that vma.
+This attribute helps manage how memory pages are moved and how their
+addresses are translated. It will be used by madvise to set the
+behavior of the vma.
 
-v2 (Matthew/Thomas)
-- Drop num_ops support
-- Drop purgeable support
-- Add kernel-docs
-- IOWR/IOW
+v2 (Matthew Brost)
+- Add docs
 
-v3 (Matthew/Thomas)
-- Reorder attributes
-- use __u16 for migration_policy
-- use __u64 for reserved in unions
-- Avoid usage of vma
+v3 (Matthew Brost)
+- Add uapi references
+- 80 characters line wrap
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- include/uapi/drm/xe_drm.h | 131 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 131 insertions(+)
+ drivers/gpu/drm/xe/xe_vm_types.h | 33 ++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index e2426413488f..51dcf63684b0 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -81,6 +81,7 @@ extern "C" {
-  *  - &DRM_IOCTL_XE_EXEC
-  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
-  *  - &DRM_IOCTL_XE_OBSERVATION
-+ *  - &DRM_IOCTL_XE_MADVISE
-  */
- 
- /*
-@@ -102,6 +103,7 @@ extern "C" {
- #define DRM_XE_EXEC			0x09
- #define DRM_XE_WAIT_USER_FENCE		0x0a
- #define DRM_XE_OBSERVATION		0x0b
-+#define DRM_XE_MADVISE			0x0c
- 
- /* Must be kept compact -- no holes */
- 
-@@ -117,6 +119,7 @@ extern "C" {
- #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
-+#define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -1974,6 +1977,134 @@ struct drm_xe_query_eu_stall {
- 	__u64 sampling_rates[];
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index bed6088e1bb3..5777b0e0c6a9 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -77,6 +77,33 @@ struct xe_userptr {
+ #endif
  };
  
 +/**
-+ * struct drm_xe_madvise - Input of &DRM_IOCTL_XE_MADVISE
-+ *
-+ * This structure is used to set memory attributes for a virtual address range
-+ * in a VM. The type of attribute is specified by @type, and the corresponding
-+ * union member is used to provide additional parameters for @type.
-+ *
-+ * Supported attribute types:
-+ * - DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC: Set preferred memory location.
-+ * - DRM_XE_MEM_RANGE_ATTR_ATOMIC: Set atomic access policy.
-+ * - DRM_XE_MEM_RANGE_ATTR_PAT: Set page attribute table index.
-+ *
-+ * Example:
-+ *
-+ * .. code-block:: C
-+ *
-+ * struct drm_xe_madvise madvise = {
-+ *          .vm_id = vm_id,
-+ *          .start = 0x100000,
-+ *          .range = 0x2000,
-+ *          .type = DRM_XE_MEM_RANGE_ATTR_ATOMIC,
-+ *          .atomic_val = DRM_XE_ATOMIC_DEVICE,
-+ *          .pad = 0,
-+ *         };
-+ *
-+ * ioctl(fd, DRM_IOCTL_XE_MADVISE, &madvise);
-+ *
++ * struct xe_vma_mem_attr - memory attributes associated with vma
 + */
-+struct drm_xe_madvise {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @start: start of the virtual address range */
-+	__u64 start;
-+
-+	/** @range: size of the virtual address range */
-+	__u64 range;
-+
-+	/** @vm_id: vm_id of the virtual range */
-+	__u32 vm_id;
-+
-+#define DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC	0
-+#define DRM_XE_MEM_RANGE_ATTR_ATOMIC		1
-+#define DRM_XE_MEM_RANGE_ATTR_PAT		2
-+	/** @type: type of attribute */
-+	__u32 type;
-+
-+	union {
-+		/**
-+		 * @preferred_mem_loc: preferred memory location
-+		 *
-+		 * Used when @type == DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC
-+		 *
-+		 * Supported values for @preferred_mem_loc.devmem_fd:
-+		 * - DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE: set vram of faulting tile as preferred loc
-+		 * - DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM: set smem as preferred loc
-+		 *
-+		 * Supported values for @preferred_mem_loc.migration_policy:
-+		 * - DRM_XE_MIGRATE_ALL_PAGES
-+		 * - DRM_XE_MIGRATE_ONLY_SYSTEM_PAGES
-+		 */
-+		struct {
-+#define DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE	0
-+#define DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM	-1
-+			/** @preferred_mem_loc.devmem_fd: fd for preferred loc */
-+			__u32 devmem_fd;
-+
-+#define DRM_XE_MIGRATE_ALL_PAGES		0
-+#define DRM_XE_MIGRATE_ONLY_SYSTEM_PAGES	1
-+			/** @preferred_mem_loc.migration_policy: Page migration policy */
-+			__u16 migration_policy;
-+
-+			/** @preferred_mem_loc.pad : MBZ */
-+			__u16 pad;
-+
-+			/** @preferred_mem_loc.reserved : Reserved */
-+			__u64 reserved;
-+		} preferred_mem_loc;
++struct xe_vma_mem_attr {
++	/** @preferred_loc: perferred memory_location */
++	struct {
++		/** @preferred_loc.migration_policy: Pages migration policy */
++		u32 migration_policy;
 +
 +		/**
-+		 * @atomic: Atomic access policy
-+		 *
-+		 * Used when @type == DRM_XE_MEM_RANGE_ATTR_ATOMIC.
-+		 *
-+		 * Supported values for @atomic.val:
-+		 * - DRM_XE_ATOMIC_UNDEFINED: Undefined or default behaviour
-+		 *   Support both GPU and CPU atomic operations for system allocator
-+		 *   Support GPU atomic operations for normal(bo) allocator
-+		 * - DRM_XE_ATOMIC_DEVICE: Support GPU atomic operations
-+		 * - DRM_XE_ATOMIC_GLOBAL: Support both GPU and CPU atomic operations
-+		 * - DRM_XE_ATOMIC_CPU: Support CPU atomic
++		 * @preferred_loc.devmem_fd: used for determining pagemap_fd
++		 * requested by user DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM and
++		 * DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE mean system memory or
++		 * closest device memory respectively.
 +		 */
-+		struct {
-+#define DRM_XE_ATOMIC_UNDEFINED	0
-+#define DRM_XE_ATOMIC_DEVICE	1
-+#define DRM_XE_ATOMIC_GLOBAL	2
-+#define DRM_XE_ATOMIC_CPU	3
-+			/** @atomic.val: value of atomic operation */
-+			__u32 val;
++		u32 devmem_fd;
++	} preferred_loc;
 +
-+			/** @atomic.pad: MBZ */
-+			__u32 pad;
-+
-+			/** @atomic.reserved: Reserved */
-+			__u64 reserved;
-+		} atomic;
-+
-+		/**
-+		 * @pat_index: Page attribute table index
-+		 *
-+		 * Used when @type == DRM_XE_MEM_RANGE_ATTR_PAT.
-+		 */
-+		struct {
-+			/** @pat_index.val: PAT index value */
-+			__u32 val;
-+
-+			/** @pat_index.pad: MBZ */
-+			__u32 pad;
-+
-+			/** @pat_index.reserved: Reserved */
-+			__u64 reserved;
-+		} pat_index;
-+	};
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved[2];
++	/**
++	 * @atomic_access: The atomic access type for the vma
++	 * See %DRM_XE_VMA_ATOMIC_UNDEFINED, %DRM_XE_VMA_ATOMIC_DEVICE,
++	 * %DRM_XE_VMA_ATOMIC_GLOBAL, and %DRM_XE_VMA_ATOMIC_CPU for possible
++	 * values. These are defined in uapi/drm/xe_drm.h.
++	 */
++	u32 atomic_access;
 +};
 +
- #if defined(__cplusplus)
- }
- #endif
+ struct xe_vma {
+ 	/** @gpuva: Base GPUVA object */
+ 	struct drm_gpuva gpuva;
+@@ -135,6 +162,12 @@ struct xe_vma {
+ 	 * Needs to be signalled before UNMAP can be processed.
+ 	 */
+ 	struct xe_user_fence *ufence;
++
++	/**
++	 * @attr: The attributes of vma which determines the migration policy
++	 * and encoding of the PTEs for this vma.
++	 */
++	struct xe_vma_mem_attr attr;
+ };
+ 
+ /**
 -- 
 2.34.1
 
