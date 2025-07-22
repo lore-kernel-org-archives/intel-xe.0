@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A03FDC83F34
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75B47C83F27
 	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 20:22:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20FCE10E711;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20FB810E70F;
 	Tue, 22 Jul 2025 20:22:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N5IF+8bJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H73oq7ch";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 945B210E711
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 20:22:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E1D310E709
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 20:22:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753215734; x=1784751734;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qdyl7Tt14cTEk8kmJUzIOj1Se1YP0mqv2dLhdwc4iT8=;
- b=N5IF+8bJ/h3vR3AGxe7vtu4lKORlKERNQnT+IAlg5WANi72eHx/TWYdz
- Jf9NT3pLcJxWGodyM3o4Gmzsz7gOXhRW212Q4BwWjtHSU9x7P/RydQPrI
- AAQDwT/QWVcOA0RqFH3yLs0FMbn+GpG8780tAGbwgsDl6h6/eslpr88FJ
- P514IntxN0FSUmmmiLyYmWLcyBST4Rjle1ydfDTlWH+q7pQHYokdC1riq
- KI9fG4/ZEAzYgI8Kd15JiLY2JglsV1tV6QZNJM85cJ8BZy+mMfBKDMD8c
- BY2VglpUWw3MbU8e600m4SeoErvS+uFA2cwdIMtcglp+Tyo+/6Cnz6jKi g==;
-X-CSE-ConnectionGUID: VJbNPCbARruNFWIGdZikjg==
-X-CSE-MsgGUID: HTOUSG8LRVyjAnpHuUBACw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="58098052"
-X-IronPort-AV: E=Sophos;i="6.16,332,1744095600"; d="scan'208";a="58098052"
+ t=1753215733; x=1784751733;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uwFCmflCr6v1AdufPIx3cfwMeVNc1xDi2nhapcO892I=;
+ b=H73oq7ch82Il4GG+5ZRjXdavw1mjCfUKVueGb1q4HOcLd4yJJL+8LRv7
+ H49RXQNf0UUko5VgL4NKc+nz87JeAN2nlvXpDGGATRgVYGh1028EUPfhd
+ f6RUSF3S/pHbR1E/IZUzuzcsKEI7/5jPZ6ljH53VcdB4WodYTRtz3maRr
+ 0hQH+uiCzqnSu15cNA7iFLITXqFVxgB1oor49/dgPbMK6tj7IgOhShxoi
+ Fv0rSk0zwaKjemft9wx2140fJPJlMRRY/SO1YCQoceO+CRx+sAlviRAN0
+ 4lExqkdxrWFJQaP/ngQ6gdxWDMn2oEpixz9hLGa3XaGgpTg3vRgLg25u9 A==;
+X-CSE-ConnectionGUID: GDAvPGC7RFm5Xui29ehQzw==
+X-CSE-MsgGUID: DwtMPr+GR0y51DE59J17UA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="58098047"
+X-IronPort-AV: E=Sophos;i="6.16,332,1744095600"; d="scan'208";a="58098047"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 13:22:13 -0700
-X-CSE-ConnectionGUID: 9+PEV9yXT+Weey8bREyPsw==
-X-CSE-MsgGUID: YW2lXQZBSwmRB8LmSr6FNw==
+ 22 Jul 2025 13:22:12 -0700
+X-CSE-ConnectionGUID: TNC6CU5zQOqWLGAt3lO2gQ==
+X-CSE-MsgGUID: WDfWKGuuRUOhIVq/VAgMng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,332,1744095600"; d="scan'208";a="182947261"
+X-IronPort-AV: E=Sophos;i="6.16,332,1744095600"; d="scan'208";a="182947247"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 13:22:13 -0700
+ 22 Jul 2025 13:22:12 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@linux.intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v3 4/7] drm/xe: Add dependency scheduler for GT TLB
- invalidations to bind queues
-Date: Tue, 22 Jul 2025 13:23:54 -0700
-Message-Id: <20250722202357.3718853-5-matthew.brost@intel.com>
+Subject: [PATCH v3 0/7] Use DRM scheduler for delayed GT TLB invalidations
+Date: Tue, 22 Jul 2025 13:23:50 -0700
+Message-Id: <20250722202357.3718853-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250722202357.3718853-1-matthew.brost@intel.com>
-References: <20250722202357.3718853-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,127 +66,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a generic dependency scheduler for GT TLB invalidations, used to
-schedule jobs that issue GT TLB invalidations to bind queues.
+Use the DRM scheduler for delayed GT TLB invalidations, which properly
+fixes the issue raised in [1]. GT TLB fences have their own dma-fence
+context, so even if the invalidations are ordered, the dma-resv/DRM
+scheduler cannot squash the fences. This results in O(M*N*N) complexity
+in the garbage collector, where M is the number of ranges in the garbage
+collector and N is the number of pending GT TLB invalidations. After
+this change, the resulting complexity in O(M*C) where C is the number of
+TLB invalidation contexts (i.e., number of exec queue, GTs tuples) with
+an invalidation in flight.
+
+Admittedly, it's quite a lot of code, but the series includes extensive
+kernel documentation and clear code comments. It introduces a generic
+dependency scheduler that can be reused in the future and is logically
+much cleaner than the previous open-coded solution for delaying GT TLB
+invalidations until a bind job completes.
 
 v2:
- - Use shared GT TLB invalidation queue for dep scheduler
- - Break allocation of dep scheduler into its own function
- - Add define for max number tlb invalidations
- - Skip media if not present
+ - Various cleanup covered in detail in change logs
+ - Use a per-GT ordered workqueue as DRM scheduler workqueue
+ - Remove unused ftrace points
+v3:
+ - Address Stuarts feedback
+ - Fix kernel doc, minor cleanups
 
-Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c       | 48 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue_types.h | 13 +++++++
- 2 files changed, 61 insertions(+)
+Matt
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 8991b4aed440..d5958518ef00 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -12,6 +12,7 @@
- #include <drm/drm_file.h>
- #include <uapi/drm/xe_drm.h>
- 
-+#include "xe_dep_scheduler.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_hw_engine_class_sysfs.h"
-@@ -39,6 +40,12 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
- 
- static void __xe_exec_queue_free(struct xe_exec_queue *q)
- {
-+	int i;
-+
-+	for (i = 0; i < XE_EXEC_QUEUE_TLB_INVAL_COUNT; ++i)
-+		if (q->tlb_inval[i].dep_scheduler)
-+			xe_dep_scheduler_fini(q->tlb_inval[i].dep_scheduler);
-+
- 	if (xe_exec_queue_uses_pxp(q))
- 		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
- 	if (q->vm)
-@@ -50,6 +57,39 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
- 	kfree(q);
- }
- 
-+static int alloc_dep_schedulers(struct xe_device *xe, struct xe_exec_queue *q)
-+{
-+	struct xe_tile *tile = gt_to_tile(q->gt);
-+	int i;
-+
-+	for (i = 0; i < XE_EXEC_QUEUE_TLB_INVAL_COUNT; ++i) {
-+		struct xe_dep_scheduler *dep_scheduler;
-+		struct xe_gt *gt;
-+		struct workqueue_struct *wq;
-+
-+		if (i == XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT)
-+			gt = tile->primary_gt;
-+		else
-+			gt = tile->media_gt;
-+
-+		if (!gt)
-+			continue;
-+
-+		wq = gt->tlb_invalidation.job_wq;
-+
-+#define MAX_TLB_INVAL_JOBS	16	/* Picking a reasonable value */
-+		dep_scheduler = xe_dep_scheduler_create(xe, wq, q->name,
-+							MAX_TLB_INVAL_JOBS);
-+		if (IS_ERR(dep_scheduler))
-+			return PTR_ERR(dep_scheduler);
-+
-+		q->tlb_inval[i].dep_scheduler = dep_scheduler;
-+	}
-+#undef MAX_TLB_INVAL_JOBS
-+
-+	return 0;
-+}
-+
- static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 						   struct xe_vm *vm,
- 						   u32 logical_mask,
-@@ -94,6 +134,14 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 	else
- 		q->sched_props.priority = XE_EXEC_QUEUE_PRIORITY_NORMAL;
- 
-+	if (q->flags & (EXEC_QUEUE_FLAG_MIGRATE | EXEC_QUEUE_FLAG_VM)) {
-+		err = alloc_dep_schedulers(xe, q);
-+		if (err) {
-+			__xe_exec_queue_free(q);
-+			return ERR_PTR(err);
-+		}
-+	}
-+
- 	if (vm)
- 		q->vm = xe_vm_get(vm);
- 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index abdf4a57e6e2..ba443a497b38 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -134,6 +134,19 @@ struct xe_exec_queue {
- 		struct list_head link;
- 	} lr;
- 
-+#define XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT	0
-+#define XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT	1
-+#define XE_EXEC_QUEUE_TLB_INVAL_COUNT		(XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT  + 1)
-+
-+	/** @tlb_inval: TLB invalidations exec queue state */
-+	struct {
-+		/**
-+		 * @tlb_inval.dep_scheduler: The TLB invalidation
-+		 * dependency scheduler
-+		 */
-+		struct xe_dep_scheduler *dep_scheduler;
-+	} tlb_inval[XE_EXEC_QUEUE_TLB_INVAL_COUNT];
-+
- 	/** @pxp: PXP info tracking */
- 	struct {
- 		/** @pxp.type: PXP session type used by this queue */
+[1] https://patchwork.freedesktop.org/patch/658370/?series=150188&rev=1
+
+Matthew Brost (7):
+  drm/xe: Explicitly mark migration queues with flag
+  drm/xe: Add generic dependecy jobs / scheduler
+  drm/xe: Create ordered workqueue for GT TLB invalidation jobs
+  drm/xe: Add dependency scheduler for GT TLB invalidations to bind
+    queues
+  drm/xe: Add GT TLB invalidation jobs
+  drm/xe: Use GT TLB invalidation jobs in PT layer
+  drm/xe: Remove unused GT TLB invalidation trace points
+
+ drivers/gpu/drm/xe/Makefile                 |   2 +
+ drivers/gpu/drm/xe/xe_dep_job_types.h       |  29 +++
+ drivers/gpu/drm/xe/xe_dep_scheduler.c       | 143 ++++++++++
+ drivers/gpu/drm/xe/xe_dep_scheduler.h       |  21 ++
+ drivers/gpu/drm/xe/xe_exec_queue.c          |  48 ++++
+ drivers/gpu/drm/xe/xe_exec_queue_types.h    |  15 ++
+ drivers/gpu/drm/xe/xe_gt_tlb_inval_job.c    | 274 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_tlb_inval_job.h    |  34 +++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   8 +
+ drivers/gpu/drm/xe/xe_gt_types.h            |   2 +
+ drivers/gpu/drm/xe/xe_migrate.c             |  42 ++-
+ drivers/gpu/drm/xe/xe_migrate.h             |  13 +
+ drivers/gpu/drm/xe/xe_pt.c                  | 178 +++++--------
+ drivers/gpu/drm/xe/xe_trace.h               |  16 --
+ 14 files changed, 700 insertions(+), 125 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_dep_job_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_dep_scheduler.c
+ create mode 100644 drivers/gpu/drm/xe/xe_dep_scheduler.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_inval_job.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_inval_job.h
+
 -- 
 2.34.1
 
