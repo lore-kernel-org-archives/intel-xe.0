@@ -4,34 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DE0DC83F1A
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 03:51:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D701C83F1A
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 03:54:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C929510E3E4;
-	Tue, 22 Jul 2025 03:51:35 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79C9B10E3E4
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 03:51:34 +0000 (UTC)
-Received: from [IPV6:2400:2410:b120:f200:a1f3:73da:3a04:160d] (unknown
- [IPv6:2400:2410:b120:f200:a1f3:73da:3a04:160d])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 3EE133F108
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 05:51:31 +0200 (CEST)
-Message-ID: <e27c8319-3439-481d-ab70-c9ccbb3db1b3@hogyros.de>
-Date: Tue, 22 Jul 2025 12:51:29 +0900
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E65A10E3E4;
+	Tue, 22 Jul 2025 03:54:21 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1734510E3E4;
+ Tue, 22 Jul 2025 03:54:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3681032260548935914=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] PCI: hide mysterious 8MB 64-bit pref BAR on Intel Arc
- PCIe Switch
-To: intel-xe@lists.freedesktop.org
-References: <20250721173057.867829-1-uwu@icenowy.me>
-Content-Language: en-US
-From: Simon Richter <Simon.Richter@hogyros.de>
-In-Reply-To: <20250721173057.867829-1-uwu@icenowy.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_LFD_forma?=
+ =?utf-8?q?t_output_for_guc_log_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 22 Jul 2025 03:54:19 -0000
+Message-ID: <175315645908.178695.14697228773553767287@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250722013553.1266218-1-zhanjun.dong@intel.com>
+In-Reply-To: <20250722013553.1266218-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,60 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+--===============3681032260548935914==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 7/22/25 02:30, Icenowy Zheng wrote:
+== Series Details ==
 
-> When the PCI bus isn't configured by any firmware (e.g. a PCIe
-> controller solely initialized by Linux kernel), the PCI space allocation
-> algorithm of Linux will allocate the main VRAM BAR of Arc dGPU device at
-> base+0, and then the 8MB BAR at base+256M, which prevents the main VRAM
-> BAR gets resized. As the functionality and performance of Arc dGPU will
-> get severely restricted with small BAR, this makes a problem.
+Series: drm/xe/guc: Add LFD format output for guc log (rev6)
+URL   : https://patchwork.freedesktop.org/series/146541/
+State : success
 
-Interestingly, the 8 MB BAR is assigned first and still ends up behind 
-the 256 MB aperture:
+== Summary ==
 
-pci 0033:01:00.0: BAR 0 [mem 0x6220020000000-0x62200207fffff 64bit 
-pref]: assigned
-pci 0033:03:00.0: BAR 2 [mem 0x6220000000000-0x622000fffffff 64bit 
-pref]: assigned
+CI Bug Log - changes from xe-3452-617f6e11e288a649addc9471911d29947c0996c8_BAT -> xe-pw-146541v6_BAT
+====================================================
 
-and the bridge window is not much larger either:
+Summary
+-------
 
-pci 0033:02:01.0:   bridge window [mem 0x6220000000000-0x622001fffffff 
-64bit pref]
+  **SUCCESS**
 
-but this does get cleaned up later:
+  No regressions found.
 
-xe 0033:03:00.0: [drm] Attempting to resize bar from 256MiB -> 16384MiB
-xe 0033:03:00.0: BAR 2 [mem 0x6220000000000-0x622000fffffff 64bit pref]: 
-releasing
-pci 0033:02:01.0: bridge window [mem 0x6220000000000-0x622001fffffff 
-64bit pref]: releasing
-pci 0033:01:00.0: bridge window [mem 0x6220000000000-0x6223fbff0ffff 
-64bit pref]: releasing
-pci 0033:01:00.0: bridge window [mem 0x6220400000000-0x62207ffffffff 
-64bit pref]: assigned
-pci 0033:02:01.0: bridge window [mem 0x6220400000000-0x62207ffffffff 
-64bit pref]: assigned
-xe 0033:03:00.0: BAR 2 [mem 0x6220400000000-0x62207ffffffff 64bit pref]: 
-assigned
+  
 
-I assume it works for me because the root bridge has a lot of room to 
-expand, so nothing else needs to be moved.
+Participating hosts (8 -> 7)
+------------------------------
 
-I think disabled devices can still be moved, so on such devices, it may 
-help to load the xe driver first -- but I agree that this is only a 
-workaround, not a proper fix (but so would be hiding the bridge's BAR -- 
-then another device can take that spot, and the only reason this doesn't 
-happen is that the card happens to be in the topmost slot). A proper 
-fix, however, would be a mechanism to ask other drivers to temporarily 
-shut down so their BARs can be moved.
-
-    Simon
+  Missing    (1): bat-adlp-vm 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3452-617f6e11e288a649addc9471911d29947c0996c8 -> xe-pw-146541v6
+
+  IGT_8470: ee326481fd4d17eba84fbc629f9e4a5def7dbd8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3452-617f6e11e288a649addc9471911d29947c0996c8: 617f6e11e288a649addc9471911d29947c0996c8
+  xe-pw-146541v6: 146541v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v6/index.html
+
+--===============3681032260548935914==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Add LFD format output for guc log (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146541/">https://patchwork.freedesktop.org/series/146541/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3452-617f6e11e288a649addc9471911d29947c0996c8_BAT -&gt; xe-pw-146541v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3452-617f6e11e288a649addc9471911d29947c0996c8 -&gt; xe-pw-146541v6</li>
+</ul>
+<p>IGT_8470: ee326481fd4d17eba84fbc629f9e4a5def7dbd8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3452-617f6e11e288a649addc9471911d29947c0996c8: 617f6e11e288a649addc9471911d29947c0996c8<br />
+  xe-pw-146541v6: 146541v6</p>
+
+</body>
+</html>
+
+--===============3681032260548935914==--
