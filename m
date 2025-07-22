@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7256C83F26
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 01:36:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C059C83F1A
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 01:36:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F22610E3CE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F4E610E5BA;
 	Tue, 22 Jul 2025 01:36:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m9fOSKPz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lutxwsdp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8113910E3CE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C557310E5BD
  for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 01:36:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1753148197; x=1784684197;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fmZAk+NCdIfChYjdfzNmvdiyIFIBvQNHEc2UDH/dPw0=;
- b=m9fOSKPze19yOgFW34Oh3Dc4P0Lu+FTGDk9OfZDy4T+MqGb1d/7/FxO6
- P7TPn+Xosccqfoz2TlUNCDG2qX2Xeha5ErXfowhgMZo3ave+RsD3xEpfm
- hGgGjHgYwc0SiXYg6/R6IKsMKzfXNz63Myl0sULPwHqC2GvL9mHnl66/W
- U1qBqVYOgMXWXiw7jstydEVI+hR+d/B8fzuVs2z4sbGmXIphFWhTsU4gl
- sF2DWt97p3jkeuxic8tI/yaA0ppXrUwMSFG54xUYYCIMpSmc+JpbqkgQ5
- u/eZmqTRBc6CLpJRLVtXBHNPGqwcpd9szbmSSD5UTngpFoxonhWy9lUWh Q==;
-X-CSE-ConnectionGUID: 7R8udulgSE2WK7vSRBtbQQ==
-X-CSE-MsgGUID: ZHPjMftGQza61wISg6Xa2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11499"; a="54596786"
-X-IronPort-AV: E=Sophos;i="6.16,330,1744095600"; d="scan'208";a="54596786"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=11iDJtqnUOrrCzKqC/9PBPex+ExdSwBE83hsYiHrDik=;
+ b=LutxwsdpxLH4LUdULIq4R2SCgtE+wUztZB2dn/3XRwHYOvlMlXqoarzJ
+ uNttleIV3szyyfTlYpUXMiD/hy96KTVhGtymDhAWVYymZjDar4RCdg2fT
+ wDV0hLCdWxKRI3Q61Uc3MteBg6NlIB2YYZXRlT4r20oytTyjzpxmcRLPq
+ J6+pBYJzl4xon2gj84cPHDoc9cR9u6W0Lj0qfAK5B7P565plcl5HnlCFF
+ RzX1+tNxVbyOvh7Ik/2EJs1hj20ew0d3YoJYq1LpfPCnt8kGRMnN8Cxrb
+ 1ON511QDXxxD1u/nxyOufjNF4o1QEvzGiFPeMYRNOwl6WYephx4c4wF3e Q==;
+X-CSE-ConnectionGUID: Y/OF3GK4S5WGo315Swu/uA==
+X-CSE-MsgGUID: JMcmj4ZwT+2t/Zx8R7AvpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11499"; a="54596793"
+X-IronPort-AV: E=Sophos;i="6.16,330,1744095600"; d="scan'208";a="54596793"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2025 18:35:55 -0700
-X-CSE-ConnectionGUID: Fn2SIUCISCOf+Yciuzlv0g==
-X-CSE-MsgGUID: nD0MuWYXQ+6IAXgMAFb+IA==
+ 21 Jul 2025 18:35:57 -0700
+X-CSE-ConnectionGUID: bEtKC1DWTcC3kI8gbGC7qQ==
+X-CSE-MsgGUID: QHBL0vt4QOCQElAyaykZKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,330,1744095600"; d="scan'208";a="163225875"
+X-IronPort-AV: E=Sophos;i="6.16,330,1744095600"; d="scan'208";a="163225893"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by orviesa003.jf.intel.com with ESMTP; 21 Jul 2025 18:35:55 -0700
+ by orviesa003.jf.intel.com with ESMTP; 21 Jul 2025 18:35:56 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v6 0/6] drm/xe/guc: Add LFD format output for guc log
-Date: Mon, 21 Jul 2025 21:35:47 -0400
-Message-Id: <20250722013553.1266218-1-zhanjun.dong@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v6 6/6] drm/xe/guc: Only add GuC crash dump if available
+Date: Mon, 21 Jul 2025 21:35:53 -0400
+Message-Id: <20250722013553.1266218-7-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250722013553.1266218-1-zhanjun.dong@intel.com>
+References: <20250722013553.1266218-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,57 +65,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add new debugfs entry "guc_log_lfd", which supports output guc log
-in LFD(Log Format Descriptors) format.
 Add GuC crash dump data empty check. LFD will only include crash dump
 section when data is not empty.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-
 ---
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+ drivers/gpu/drm/xe/xe_guc_log.c | 60 +++++++++++++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
-Changes in v6:
-Replace log_init_config to lic
-Changes in v5:
-Cleanup inconsistent macro, type and symbol names (Michal)
-Switch to use 1K local stack for buffer usage (Michal)
-Changes in v4:
-Rebase with debugfs changes (Michal)
-Drop "_t" suffix in structures name (Matthew, Michal)
-Split log abi header as seperate patch (Michal)
-Fix static vaiable multiple instance access issue (Michal)
-Switched to fixed size(2M) of lfd buffer, removed buffer size check for KLVs
-Removed log event buffer content copy, read from log buffer chunks directly
-Changes in v3:
-Split ABI header, debugfs and GuC code out as seperate patch
-Remove bit fields in structure define, changed to GENMASK
-Remove crash_dumped flag, changed to dump data empty check
-Changes in v2:
-Split GuC init config abi defines out from LFD abi header file
-Split crash dump detect as seperate patch
-Add size check for LFD functions
-Make abi header comments kernel-doc style
-
-Zhanjun Dong (6):
-  drm/xe/guc: Add log init config abi definitions
-  drm/xe/guc: Add LFD related abi definitions
-  drm/xe/guc: Add new debugfs entry for lfd format output
-  drm/xe/guc: Add GuC log init config in LFD format
-  drm/xe/guc: Add GuC log event buffer output in LFD format
-  drm/xe/guc: Only add GuC crash dump if available
-
- drivers/gpu/drm/xe/abi/guc_lfd_abi.h | 282 ++++++++++++++++++++
- drivers/gpu/drm/xe/abi/guc_lic_abi.h | 107 ++++++++
- drivers/gpu/drm/xe/xe_guc_debugfs.c  |   7 +
- drivers/gpu/drm/xe/xe_guc_log.c      | 382 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_log.h      |   1 +
- 5 files changed, 779 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/abi/guc_lfd_abi.h
- create mode 100644 drivers/gpu/drm/xe/abi/guc_lic_abi.h
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index a8910211c579..f5f31f15e7e3 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -502,6 +502,65 @@ xe_guc_log_add_log_event(struct drm_printer *p, struct xe_guc_log_snapshot *snap
+ 	return size;
+ }
+ 
++static int
++xe_guc_log_add_crash_dump(struct drm_printer *p, struct xe_guc_log_snapshot *snapshot,
++			  struct guc_lic_save *config)
++{
++	struct guc_log_buffer_entry_list *entry;
++	int chunk_from, chunk_id, to_chunk_id;
++	int pos, from, to;
++	size_t size = 0;
++	char buf[GUC_LFD_BUFFER_SIZE] = {0};
++
++	entry = &config->entry[GUC_LOG_BUFFER_STATE_HEADER_ENTRY_CRASH];
++
++	/* Skip zero sized crash dump */
++	if (!entry->buf_size)
++		return 0;
++
++	/* Check if crash dump section are all zero */
++	from = entry->offset;
++	to = entry->offset + entry->buf_size;
++	chunk_from = from % GUC_LOG_CHUNK_SIZE;
++	chunk_id = from / GUC_LOG_CHUNK_SIZE;
++	to_chunk_id = to / GUC_LOG_CHUNK_SIZE;
++	pos = from;
++
++	do {
++		size_t size = (to_chunk_id > chunk_id ? GUC_LOG_CHUNK_SIZE : to) - chunk_from;
++		u32 *buf32 = snapshot->copy[chunk_id] + chunk_from;
++		int i;
++
++		for (i = 0; i < size / sizeof(u32); i++)
++			if (buf32[i])
++				break;
++		if (i < size / sizeof(u32)) {
++			pos += i * sizeof(u32) - chunk_from;
++			break;
++		}
++		pos += size;
++		chunk_id++;
++		chunk_from = 0;
++	} while (pos < to);
++
++	/* Buffer has non-zero data? */
++	if (pos < to) {
++		struct guc_lfd_data *lfd = (void *)buf;
++
++		size = xe_guc_log_add_lfd_header(buf, GUC_LFD_BUFFER_SIZE);
++		lfd->dw0 |= FIELD_PREP(GUC_LFD_DATA_DESC_TYPE, GUC_LFD_TYPE_FW_CRASH_DUMP);
++		/* Calculate data length */
++		lfd->dw_size = DIV_ROUND_UP(entry->buf_size, sizeof(u32));
++		/* Output GUC_LFD_TYPE_FW_CRASH_DUMP header */
++		xe_print_blob_ascii85(p, NULL, 0, buf, 0, size);
++
++		/* rd/wr ptr is not used for crash dump */
++		xe_guc_log_print_over_chunks(p, snapshot, entry->offset,
++					     entry->offset + entry->buf_size);
++	}
++	return size;
++}
++
+ static void
+ xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
+ {
+@@ -522,6 +581,7 @@ xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_p
+ 		return;
+ 
+ 	xe_guc_log_add_log_event(p, snapshot, &config);
++	xe_guc_log_add_crash_dump(p, snapshot, &config);
+ }
+ 
+ /**
 -- 
 2.34.1
 
