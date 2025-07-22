@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5AC1C83F1A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9256C83F27
 	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 12:46:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADAB010E66D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EAE710E18A;
 	Tue, 22 Jul 2025 12:46:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="Y1Jg2QXw";
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="MJFkxAG3";
 	dkim-atps=neutral
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.73.137])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42F7210E5F0;
- Tue, 22 Jul 2025 07:36:20 +0000 (UTC)
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.64.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3722410E603;
+ Tue, 22 Jul 2025 07:37:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
- s=onoh2408; t=1753169747;
- bh=1DFykB4IGMZc95pr0nP6WV8K6S5/SNh6P26mZWnTYNc=;
+ s=onoh2408; t=1753169768;
+ bh=JwyCRpM1FWaTLNFe5LSvBKJz+ZtIxups+3c5ci7f0O0=;
  h=From:To:Subject:Date:Message-ID:MIME-Version;
- b=Y1Jg2QXwqu0x2BRg/T3WYlXX/ZLkVKX/ZLLlKTP9+oJExjNwpX4RNx/xk1oj9Xg3t
- RA2PQJchG9V//6Uxp00RUEwHbprhmM5uYmBf7O8fwyqG4YAmxLFjs5UDVO3GJzb9aY
- CTE6+pHuGh3QMLwCi1DY66kRiSgUQRIPa61jVQaE=
-X-QQ-mid: zesmtpip2t1753169680t1d8848d9
-X-QQ-Originating-IP: /2Vqiv1DKGDiDTOeHrTcoDDvJdzpiY2SWG31K/OjoKo=
+ b=MJFkxAG3TnOaoyZ4tzb12gT1fPu5yyG16H1Jl1iJ/oYnB9Kts6izQRSiY9a7OPcm7
+ WZleUri6Ry182mEzkPtL2iDmtU3MLCXxT/Vu/l1qM1DNsBuz5jKinRM3iFv1jNlTlK
+ Fc9kOnytqsgB5JVJNE2AOdrQsN15jb66+sxQDTV4=
+X-QQ-mid: zesmtpip2t1753169705t5d8d5b17
+X-QQ-Originating-IP: sO//PwrBzanzWIpX43hUjMW25ZeVM74q8qXSuUHVttA=
 Received: from avenger-e500 ( [localhost]) by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 22 Jul 2025 15:34:34 +0800 (CST)
+ id ; Tue, 22 Jul 2025 15:35:00 +0800 (CST)
 X-QQ-SSF: 0002000000000000000000000000000
 X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 12305455310709652104
-EX-QQ-RecipientCnt: 64
+X-BIZMAIL-ID: 13053412534972424115
+EX-QQ-RecipientCnt: 65
 From: WangYuli <wangyuli@uniontech.com>
 To: wangyuli@uniontech.com
 Cc: airlied@gmail.com, akpm@linux-foundation.org, alison.schofield@intel.com,
@@ -55,10 +55,11 @@ Cc: airlied@gmail.com, akpm@linux-foundation.org, alison.schofield@intel.com,
  simona@ffwll.ch, sstabellini@kernel.org, tglx@linutronix.de,
  thomas.hellstrom@linux.intel.com, vishal.l.verma@intel.com,
  wangyuli@deepin.org, x86@kernel.org, xen-devel@lists.xenproject.org,
- yujiaoliang@vivo.com, zhanjun@uniontech.com
-Subject: [PATCH v3 1/8] KVM: x86: Fix typo "notifer"
-Date: Tue, 22 Jul 2025 15:34:24 +0800
-Message-ID: <7F05778C3A1A9F8B+20250722073431.21983-1-wangyuli@uniontech.com>
+ yujiaoliang@vivo.com, zhanjun@uniontech.com,
+ Simon Horman <horms@kernel.org>
+Subject: [PATCH v3 4/8] net: mvneta: Fix typo "notifer"
+Date: Tue, 22 Jul 2025 15:34:27 +0800
+Message-ID: <0CB4300CB6F49007+20250722073431.21983-4-wangyuli@uniontech.com>
 X-Mailer: git-send-email 2.50.0
 In-Reply-To: <576F0D85F6853074+20250722072734.19367-1-wangyuli@uniontech.com>
 References: <576F0D85F6853074+20250722072734.19367-1-wangyuli@uniontech.com>
@@ -66,24 +67,24 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-QQ-SENDSIZE: 520
 Feedback-ID: zesmtpip:uniontech.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: NgaJKxROpQTjpj1dawfBAp5BSKyrzx32+b+lvgiwlIqmeOnmN6gaJuqT
- kpPq0Tcw7FjvzfD1y4yMicxRTECnWGhe243OBCOx8JWCkHjVmCV0lj2Xz2WhGCyxSL75MqN
- juLqDstsXTzc33gWmclCnZb/vwt5cxfXDIncp4wEzQ0NDhaCyTxsEsqGWRbWTX2slZ1z2Yy
- RFOy8avkO3moq6N4JCG7enVElGkKifijhIwEp8EP9n40czRfGtDLVkijXF7pLHhw7daaybO
- 0afXA4YR8+5A8ZSvooyf8jDET6QdgtuUl8cxmKADIkNQbLV0s20ruREzEgTs8+SLFjixcFs
- xQDw39cadCJQ6k/Gh8uM5ahHYKHmoLPwX9SLZkn5ojEZC6ZVyF6cTBGIiYVe2sSmUtTeQAO
- nfUfUrrpTtBM9i96G48SJiObIHL6F57CroFxye9WSPXvEkvuF/nG7AAo2Xze+B0zs15UFdD
- 4B501bEOL39ZdD5b2C3JU8Dcm4usU5q/LInKoUfk4x9eSnueX8jrSnhNi4nWLOrIYw/jR/m
- jY67P/6CkRlYZ0dqzJPWibJKRQ0Y7rh+gGuBVRPAfef7OHAfXYuyKv6acBFbpq18C38U5cn
- z9Zd5/JFd7hta74MCQrcrLTKiDhouCxVWUN9BHvqyCX4I2bizlLwS94O2tjJYrl1PmmsvgK
- uxvPWOH7FLeFiVDM7YUZWzIMenAsK21hn644n39QmyQh91BNxBQDsz4UbWK37qoQK3+JT2d
- MduKFEFT1DDJpNB2HMyMAtNO7UCToLbn/3+T0+mZ84bB0Q405t22J5LmddoskZn/HT2M0Q9
- EcetZVVDyOOM+3gNrh3TZpXPVrIjZHHX/q+fe1SWLtwlqauJEmSbTZkLHqEPZOooUOgxBUa
- mdSEyATRlytmE6+ppkWvxz2KZeGHjBCSp7NuP3/0m8fI7AU2f7hnp/mv9NNrzLXRoAzu/SM
- SyF5icDmtTMGyMcEQqUThYyQspC9RIHWIBmUIo61NAhmXRZqlf/2BKrIKPB4mNOyEFYN68G
- EyQCIp+FRUY9qAleIOnpCT+0W7BctHf4f5j6fzmgb5uqp5jCMhTTaUbQGfrBltB+wJJgwaO
- n5De1kXZg+J1GTPt5CtLvs=
-X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-XMAILINFO: OLsBWtCIHsg6qpyUVgLKJSgwSlAKGQTxXOnZVJNFFd4AQWPB2BjvZZt8
+ 2wgW4YXeCgyJCjYbAnzceUWlGLhA1te78istOv0Nk1hEiUUVDgV17BZ5q6Tdiyth7YZTfAR
+ pepTKbRe/Bw/4jW2yVaCTNK5wF6QHSy8EBu9w9bHCVKKJi4v5FsdNACW3dBkY0y2fjpPp68
+ AJt6+XmryWCnDmBOni4XzxxEgkRTAIVudwhv/2sxAsAYRpDHiE3RlbqG1LLzW6vi/q2qtRM
+ 0tdjKhUaazURm+S/exHXwWswXA/80tYYJe/um8gTx3oB5F/OjKNB+PSmBZj6pHQnpoOyTXa
+ aRkrMK/NHUtsGm2KD6GE2b3BHm/LIPFuX0ka3ZVAzdhuIw1HdxIno/FG73WIqNJ2xWQC9lH
+ sliMvciP6/NPcliBimaJhBBYRZDkkK+BDtPYP3df2QxGcEyJLj5NhkYL3/Um4M8DCvJe15J
+ nvwByVEInbw+KtHNnPGqDe4joaIKcVLSpHXB4H6hi32mhCIOJyTyi/utkt3Jo+qFPgWuJrI
+ hGt++YRsr1tdLgMiGZJZQXELfMXzYwAHDmYfZz17x3cATEzKMUKEmfoNEFnPPD1gZZWACl3
+ EY2UpZnnf4Zouo6p0q/mU09CxsjQL898Kg3L/ruyEfsKBDDSMYtZxW/G79vhlMtshFGhvRv
+ 8FRYQSOQ85OW8q3LqQVU18BkfoRgxMoDHd7z/wFWENKZ63JPaQ/soUM+0TtI95phljixouL
+ 6CoT5iVYkVEzBPxbwJ5jg9eFJk7FQPkEs0yWTXjLwHH7POuGGy81+VC4Gp1TMu4Dy9JdFBf
+ HILJqTFWMiQVws6sDYwntn8l4OC59MCJCXs+AKU6rw5t5MiwxAPD7BoKB2IZDxv6TiZAg+8
+ 4hSvE3LTxdwc9MYhFY7h8aRnPI2zMlssunpCHnePdmzWJIMW7QHJ1su0ypTUkYAd6ZrERvS
+ AzYDkng4WfXu5+GKhizgRrJtIEJWmtxVvNvLvbYIQSrftXdLna2gYIWO2utj2/X0YnJg4LE
+ Lz0kPewy8Jr0rB0DABZK5/5Hh4h/VSf+VBwwHCILiO4yOzGP2z7pwATgjwD0MURCnxEfQwE
+ 7szkTlAp+hjzGdFpMbHApv12IPDZa0+oQ==
+X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
 X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Tue, 22 Jul 2025 12:46:35 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -100,35 +101,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are some spelling mistakes of 'notifer' which should be 'notifier'.
+There is a spelling mistake of 'notifer' in the comment which
+should be 'notifier'.
 
+Reviewed-by: Simon Horman <horms@kernel.org>
 Signed-off-by: WangYuli <wangyuli@uniontech.com>
 ---
- arch/x86/kvm/i8254.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/net/ethernet/marvell/mvneta.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/x86/kvm/i8254.c b/arch/x86/kvm/i8254.c
-index 739aa6c0d0c3..9ff55112900a 100644
---- a/arch/x86/kvm/i8254.c
-+++ b/arch/x86/kvm/i8254.c
-@@ -641,7 +641,7 @@ static void kvm_pit_reset(struct kvm_pit *pit)
- 	kvm_pit_reset_reinject(pit);
- }
- 
--static void pit_mask_notifer(struct kvm_irq_mask_notifier *kimn, bool mask)
-+static void pit_mask_notifier(struct kvm_irq_mask_notifier *kimn, bool mask)
- {
- 	struct kvm_pit *pit = container_of(kimn, struct kvm_pit, mask_notifier);
- 
-@@ -694,7 +694,7 @@ struct kvm_pit *kvm_create_pit(struct kvm *kvm, u32 flags)
- 
- 	pit_state->irq_ack_notifier.gsi = 0;
- 	pit_state->irq_ack_notifier.irq_acked = kvm_pit_ack_irq;
--	pit->mask_notifier.func = pit_mask_notifer;
-+	pit->mask_notifier.func = pit_mask_notifier;
- 
- 	kvm_pit_reset(pit);
- 
+diff --git a/drivers/net/ethernet/marvell/mvneta.c b/drivers/net/ethernet/marvell/mvneta.c
+index 147571fdada3..ee4696600146 100644
+--- a/drivers/net/ethernet/marvell/mvneta.c
++++ b/drivers/net/ethernet/marvell/mvneta.c
+@@ -4610,7 +4610,7 @@ static int mvneta_stop(struct net_device *dev)
+ 		/* Inform that we are stopping so we don't want to setup the
+ 		 * driver for new CPUs in the notifiers. The code of the
+ 		 * notifier for CPU online is protected by the same spinlock,
+-		 * so when we get the lock, the notifer work is done.
++		 * so when we get the lock, the notifier work is done.
+ 		 */
+ 		spin_lock(&pp->lock);
+ 		pp->is_stopped = true;
 -- 
 2.50.0
 
