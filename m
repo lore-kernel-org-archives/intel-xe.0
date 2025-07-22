@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABEE0C83F34
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 13:08:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6F9CC83F27
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Jul 2025 13:08:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70FC510E67B;
-	Tue, 22 Jul 2025 13:08:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F09310E68F;
+	Tue, 22 Jul 2025 13:08:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U9BOEG+K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dYmKq6Ms";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32B1A10E68C
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 13:08:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F7B710E690
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Jul 2025 13:08:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753189729; x=1784725729;
+ t=1753189735; x=1784725735;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oGHk8t0IP4KiojT8VASua9zp8E5VgLBT1PbZqjV1kd4=;
- b=U9BOEG+Kfg0mBzU8lEh6b86goxjsMxV1o6yvdS0cIGpbW5QjqYVokP4z
- g5m5T0KjAsQHMaRYJvO+E5GxLy5V0JX07CZ+oldrmD6uFgSLZ58tiySMj
- zb/I5xsYZ3/IqDPC5tJIdt/f+AogkRGV9TyGh0LBYEkefbtZ3ew5IJ6nM
- nImDQ0Qw0/7K7DSjTISf3hlAxWEm7WocrtbqlEN/ZcSffqThOJcoOk/5u
- ZtZyrPXnC3Pdm4bntXdnr/ugX1g6Un/1xjatQkhFDrqgsvdA9OAAGsH0M
- liQ16Thl+RR8A7ow/g6ipRXXrRfqJ8dhkqX6gPW9tNbHDKAbdMFD7cPJX Q==;
-X-CSE-ConnectionGUID: mELvxvJGSvqv4KBQEHq9ig==
-X-CSE-MsgGUID: 5kjLjGzYRpWVi4pLE2v03Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="55530352"
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="55530352"
+ bh=NwgYuXUK3E+j+MCOnF/zPU8AYC2rKkeH+2eczNC7hEk=;
+ b=dYmKq6MstwnajHVqW0g3cjH2euiZ0cZL6Ofh5RqLpKWo33zERB/4D0uy
+ mLSXKtHaPU3drynqrejE106/22gp99baSwXt7Z+6cPvRNIbeyCflTizvB
+ /FOlsFxZ7ru/nailVHddzPQQuAfM7VKzHGyKYljhsN2xJTvgh+TobZ8uW
+ IEXH8PvRRgG1Vf0AYAaJg7BXLTzaOAqZeB1TeSPVgQiVtTunWauJR6LhE
+ GBqoxAnBSpvydFhBcVtDdVbiI3q8XPiyvTA0ihoyaDiQoNeHeIex8LN9F
+ Fu8XeG2sRkGmMSTckfXOLV/uHZmuMobmWGEGqszfTCwmiCFGiEYfmHBNx g==;
+X-CSE-ConnectionGUID: M7Uj9gfbR5eBwiQSX34zQw==
+X-CSE-MsgGUID: I/zbnubARFKpcOOAl96YQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="55530365"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="55530365"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 06:08:49 -0700
-X-CSE-ConnectionGUID: 73juC256SwKGE+e8ywK7uQ==
-X-CSE-MsgGUID: jVO4ph6bTXCO3V6/90E4jw==
+ 22 Jul 2025 06:08:54 -0700
+X-CSE-ConnectionGUID: B6N74kqxRMKSPrBLbefPNQ==
+X-CSE-MsgGUID: eYWkzLZQQU6mwK6gdrecVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="163420521"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="163420548"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa005.fm.intel.com with ESMTP; 22 Jul 2025 06:08:48 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 22 Jul 2025 06:08:53 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v5 04/23] drm/xe/vma: Move pat_index to vma attributes
-Date: Tue, 22 Jul 2025 19:05:07 +0530
-Message-Id: <20250722133526.3550547-5-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v5 07/23] drm/xe/svm: Split system allocator vma incase of
+ madvise call
+Date: Tue, 22 Jul 2025 19:05:10 +0530
+Message-Id: <20250722133526.3550547-8-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250722133526.3550547-1-himal.prasad.ghimiray@intel.com>
 References: <20250722133526.3550547-1-himal.prasad.ghimiray@intel.com>
@@ -68,89 +69,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The PAT index determines how PTEs are encoded and can be modified by
-madvise. Therefore, it is now part of the vma attributes.
+If the start or end of input address range lies within system allocator
+vma split the vma to create new vma's as per input range.
+
+v2 (Matthew Brost)
+- Add lockdep_assert_write for vm->lock
+- Remove unnecessary page aligned checks
+- Add kerrnel-doc and comments
+- Remove unnecessary unwind_ops and return
+
+v3
+- Fix copying of attributes
+
+v4
+- Nit fixes
+
+v5
+- Squash identifier for madvise in xe_vma_ops to this patch
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c       |  2 +-
- drivers/gpu/drm/xe/xe_vm.c       |  6 +++---
- drivers/gpu/drm/xe/xe_vm_types.h | 10 +++++-----
- 3 files changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 107 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h       |   2 +
+ drivers/gpu/drm/xe/xe_vm_types.h |   1 +
+ 3 files changed, 110 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index c8e63bd23300..1bf0cf81513c 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -518,7 +518,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- {
- 	struct xe_pt_stage_bind_walk *xe_walk =
- 		container_of(walk, typeof(*xe_walk), base);
--	u16 pat_index = xe_walk->vma->pat_index;
-+	u16 pat_index = xe_walk->vma->attr.pat_index;
- 	struct xe_pt *xe_parent = container_of(parent, typeof(*xe_parent), base);
- 	struct xe_vm *vm = xe_walk->vm;
- 	struct xe_pt *xe_child;
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index b2ed99551b6e..696f3e87bb73 100644
+index 480cf75340ce..a56384325f4d 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1223,7 +1223,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	if (vm->xe->info.has_atomic_enable_pte_bit)
- 		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
+@@ -4172,3 +4172,110 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
+ 	}
+ 	kvfree(snap);
+ }
++
++/**
++ * xe_vm_alloc_madvise_vma - Allocate VMA's with madvise ops
++ * @vm: Pointer to the xe_vm structure
++ * @start: Starting input address
++ * @range: Size of the input range
++ *
++ * This function splits existing vma to create new vma for user provided input range
++ *
++ *  Return: 0 if success
++ */
++int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
++{
++	struct xe_vma_ops vops;
++	struct drm_gpuva_ops *ops = NULL;
++	struct drm_gpuva_op *__op;
++	bool is_cpu_addr_mirror = false;
++	bool remap_op = false;
++	struct xe_vma_mem_attr tmp_attr;
++	int err;
++
++	vm_dbg(&vm->xe->drm, "MADVISE IN: addr=0x%016llx, size=0x%016llx", start, range);
++
++	lockdep_assert_held_write(&vm->lock);
++
++	vm_dbg(&vm->xe->drm, "MADVISE_OPS_CREATE: addr=0x%016llx, size=0x%016llx", start, range);
++	ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, start, range,
++					  DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE,
++					  NULL, start);
++	if (IS_ERR(ops))
++		return PTR_ERR(ops);
++
++	if (list_empty(&ops->list)) {
++		err = 0;
++		goto free_ops;
++	}
++
++	drm_gpuva_for_each_op(__op, ops) {
++		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
++
++		if (__op->op == DRM_GPUVA_OP_REMAP) {
++			xe_assert(vm->xe, !remap_op);
++			remap_op = true;
++
++			if (xe_vma_is_cpu_addr_mirror(gpuva_to_vma(op->base.remap.unmap->va)))
++				is_cpu_addr_mirror = true;
++			else
++				is_cpu_addr_mirror = false;
++		}
++
++		if (__op->op == DRM_GPUVA_OP_MAP) {
++			xe_assert(vm->xe, remap_op);
++			remap_op = false;
++
++			/* In case of madvise ops DRM_GPUVA_OP_MAP is always after
++			 * DRM_GPUVA_OP_REMAP, so ensure we assign op->map.is_cpu_addr_mirror true
++			 * if REMAP is for xe_vma_is_cpu_addr_mirror vma
++			 */
++			op->map.is_cpu_addr_mirror = is_cpu_addr_mirror;
++		}
++
++		print_op(vm->xe, __op);
++	}
++
++	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
++	vops.flags |= XE_VMA_OPS_FLAG_MADVISE;
++	err = vm_bind_ioctl_ops_parse(vm, ops, &vops);
++	if (err)
++		goto unwind_ops;
++
++	xe_vm_lock(vm, false);
++
++	drm_gpuva_for_each_op(__op, ops) {
++		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
++		struct xe_vma *vma;
++
++		if (__op->op == DRM_GPUVA_OP_UNMAP) {
++			/* There should be no unmap */
++			XE_WARN_ON("UNEXPECTED UNMAP");
++			xe_vma_destroy(gpuva_to_vma(op->base.unmap.va), NULL);
++		} else if (__op->op == DRM_GPUVA_OP_REMAP) {
++			vma = gpuva_to_vma(op->base.remap.unmap->va);
++			/* Store attributes for REMAP UNMAPPED VMA, so they can be assigned
++			 * to newly MAP created vma.
++			 */
++			tmp_attr = vma->attr;
++			xe_vma_destroy(gpuva_to_vma(op->base.remap.unmap->va), NULL);
++		} else if (__op->op == DRM_GPUVA_OP_MAP) {
++			vma = op->map.vma;
++			/* In case of madvise call, MAP will always be follwed by REMAP.
++			 * Therefore temp_attr will always have sane values, making it safe to
++			 * copy them to new vma.
++			 */
++			vma->attr = tmp_attr;
++		}
++	}
++
++	xe_vm_unlock(vm);
++	drm_gpuva_ops_free(&vm->gpuvm, ops);
++	return 0;
++
++unwind_ops:
++	vm_bind_ioctl_ops_unwind(vm, &ops, 1);
++free_ops:
++	drm_gpuva_ops_free(&vm->gpuvm, ops);
++	return err;
++}
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 3475a118f666..0d6b08cc4163 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -171,6 +171,8 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
  
--	vma->pat_index = pat_index;
-+	vma->attr.pat_index = pat_index;
+ struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
  
- 	if (bo) {
- 		struct drm_gpuvm_bo *vm_bo;
-@@ -2673,7 +2673,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 
- 			if (op->base.remap.prev) {
- 				vma = new_vma(vm, op->base.remap.prev,
--					      old->pat_index, flags);
-+					      old->attr.pat_index, flags);
- 				if (IS_ERR(vma))
- 					return PTR_ERR(vma);
- 
-@@ -2703,7 +2703,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 
- 			if (op->base.remap.next) {
- 				vma = new_vma(vm, op->base.remap.next,
--					      old->pat_index, flags);
-+					      old->attr.pat_index, flags);
- 				if (IS_ERR(vma))
- 					return PTR_ERR(vma);
- 
++int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
++
+ /**
+  * to_userptr_vma() - Return a pointer to an embedding userptr vma
+  * @vma: Pointer to the embedded struct xe_vma
 diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 5777b0e0c6a9..c30f404a00e3 100644
+index c30f404a00e3..cd94d8b5819d 100644
 --- a/drivers/gpu/drm/xe/xe_vm_types.h
 +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -102,6 +102,11 @@ struct xe_vma_mem_attr {
- 	 * values. These are defined in uapi/drm/xe_drm.h.
- 	 */
- 	u32 atomic_access;
-+
-+	/**
-+	 * @pat_index: The pat index to use when encoding the PTEs for this vma.
-+	 */
-+	u16 pat_index;
- };
- 
- struct xe_vma {
-@@ -152,11 +157,6 @@ struct xe_vma {
- 	/** @tile_staged: bind is staged for this VMA */
- 	u8 tile_staged;
- 
--	/**
--	 * @pat_index: The pat index to use when encoding the PTEs for this vma.
--	 */
--	u16 pat_index;
--
- 	/**
- 	 * @ufence: The user fence that was provided with MAP.
- 	 * Needs to be signalled before UNMAP can be processed.
+@@ -495,6 +495,7 @@ struct xe_vma_ops {
+ 	struct xe_vm_pgtable_update_ops pt_update_ops[XE_MAX_TILES_PER_DEVICE];
+ 	/** @flag: signify the properties within xe_vma_ops*/
+ #define XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH BIT(0)
++#define XE_VMA_OPS_FLAG_MADVISE          BIT(1)
+ 	u32 flags;
+ #ifdef TEST_VM_OPS_ERROR
+ 	/** @inject_error: inject error to test error handling */
 -- 
 2.34.1
 
