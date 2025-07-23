@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0DCCC83F17
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 12:52:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39831C83F17
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 12:53:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EF9410E0F6;
-	Wed, 23 Jul 2025 12:52:33 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A09D910E0F6;
- Wed, 23 Jul 2025 12:52:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8182355513616166830=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F068810E0F6;
+	Wed, 23 Jul 2025 12:53:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C+oKzyPl";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 194FA10E0F6
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 12:53:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753275212; x=1784811212;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2HdXr8x5VXDgTzW70UlRka+afe8SYNhHHVxVNLI6GOQ=;
+ b=C+oKzyPlobzTcw1OUon6AxX+wIg2VrhlluLgF68xkNUruJ3QGDG/PSH7
+ 7LO38OqFtM1YZemoioCIbSgnwCiWDYfWbzpitPTTOH2ToCstQoqZdP8sJ
+ iyfeGaMNFtU97zv1vvov3r/e8xV23FoYDA/9JJ72ePCtxvEDlyoNOI7GC
+ AuPOdeX67QdcmFsc3/wfJZjviv+uKWyW4KhungVKtWxDlAW9wsQs5c7GC
+ EXPyx0Lm72jd7Es1aGOEuPVm/x+MtNMjZmBWaLEsvJhzB6QM+7xFzcYZW
+ UUZG7SCaKAn892zSc/vFLjN6iK3Wqcvdze9y/JPNrJ3CojK/USEi9e+qf w==;
+X-CSE-ConnectionGUID: Y4veql45TLqrFDGiS97egg==
+X-CSE-MsgGUID: ay3hlsxQSc2jTqO8/IYlsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="54773799"
+X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="54773799"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2025 05:53:31 -0700
+X-CSE-ConnectionGUID: 3QeVFtUdQ0etovmgQ01uYQ==
+X-CSE-MsgGUID: sim+C5qeTH66tZzcFmlBgA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="196606007"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by orviesa001.jf.intel.com with ESMTP; 23 Jul 2025 05:53:30 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Summers Stuart <stuart.summers@intel.com>
+Subject: [PATCH v3] drm/xe: Improve VF provision stability with fault injection
+Date: Wed, 23 Jul 2025 18:40:08 +0530
+Message-ID: <20250723131008.26916-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Rename_MCFG=5FMCR?=
- =?utf-8?q?=5FSELECTOR_to_STEER=5FSEMAPHORE_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Jul 2025 12:52:32 -0000
-Message-ID: <175327515265.182805.12169635319481603109@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250723114050.3790099-1-nitin.r.gote@intel.com>
-In-Reply-To: <20250723114050.3790099-1-nitin.r.gote@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8182355513616166830==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+In unlikely event, due to PF malfunction or misconfiguration, VF may
+receive incomplete or invalid configuration and it must be prepared
+to handle such cases without causing a crash.
 
-== Series Details ==
+When simulating errors with the kernel's fault injection framework, crashes
+were observed during device unbind. These crashes were primarily due to the
+use of the XE_BO_FLAG_GGTT_INVALIDATE flag when creating buffer objects.
 
-Series: drm/xe: Rename MCFG_MCR_SELECTOR to STEER_SEMAPHORE (rev2)
-URL   : https://patchwork.freedesktop.org/series/151990/
-State : success
+The GGTT is invalidated using CTB, which is allocated with the
+XE_BO_FLAG_GGTT_INVALIDATE flag. However, the buffer object for CTB is
+freed before GGTT invalidation completes, leading to crashes.
 
-== Summary ==
+Similarly, for buffer objects allocated in memirq_alloc_pages() and
+__xe_sa_bo_manager_init(), the CTB is already freed by the time GGTT
+invalidation occurs, resulting in system crashes.
 
-CI Bug Log - changes from xe-3462-10aedf862778a34d7a894de5d18607d523a71d78_BAT -> xe-pw-151990v2_BAT
-====================================================
+To prevent these issues, while invalidating GGTT, an additional check for
+validity of GGTT is added which avoids sending CTB to GUC.
 
-Summary
--------
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Summers Stuart <stuart.summers@intel.com>
 
-  **SUCCESS**
+---
+V2 -> V3:
+- Moved GGTT validity check to xe_ggtt_invalidate(). (Michal Wajdeczko)
 
-  No regressions found.
+V1 -> V2:
+- An additional check for validity of GGTT is added in
+xe_gt_tlb_invalidation_ggtt() instead of removing XE_BO_FLAG_GGTT_INVALIDATE
+from memirq_alloc_pages(), __xe_sa_bo_manager_init() and xe_guc_ct_init().
+(Summers Stuart)
+---
+ drivers/gpu/drm/xe/xe_ggtt.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-  
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 29d4d3f51da1..b3005a462186 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -447,6 +447,16 @@ static void xe_ggtt_invalidate(struct xe_ggtt *ggtt)
+ {
+ 	struct xe_device *xe = tile_to_xe(ggtt->tile);
+ 
++	/*
++	 * To avoid crashes during BO unbind operations, always verify the
++	 * validity of the GGTT before attempting invalidation. This check is
++	 * particularly crucial when handling BOs created with the
++	 * XE_BO_FLAG_GGTT_INVALIDATE flag, as improper invalidation of an
++	 * invalid GGTT can cause crash.
++	 */
++	if (!ggtt->scratch)
++		return;
++
+ 	/*
+ 	 * XXX: Barrier for GGTT pages. Unsure exactly why this required but
+ 	 * without this LNL is having issues with the GuC reading scratch page
+-- 
+2.43.0
 
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3462-10aedf862778a34d7a894de5d18607d523a71d78 -> xe-pw-151990v2
-
-  IGT_8474: 54376e96f3f84e7bc6ccdc0106017cf2778ef08a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3462-10aedf862778a34d7a894de5d18607d523a71d78: 10aedf862778a34d7a894de5d18607d523a71d78
-  xe-pw-151990v2: 151990v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151990v2/index.html
-
---===============8182355513616166830==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Rename MCFG_MCR_SELECTOR to STEER_SEMAPHORE (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151990/">https://patchwork.freedesktop.org/series/151990/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151990v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151990v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3462-10aedf862778a34d7a894de5d18607d523a71d78_BAT -&gt; xe-pw-151990v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3462-10aedf862778a34d7a894de5d18607d523a71d78 -&gt; xe-pw-151990v2</li>
-</ul>
-<p>IGT_8474: 54376e96f3f84e7bc6ccdc0106017cf2778ef08a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3462-10aedf862778a34d7a894de5d18607d523a71d78: 10aedf862778a34d7a894de5d18607d523a71d78<br />
-  xe-pw-151990v2: 151990v2</p>
-
-</body>
-</html>
-
---===============8182355513616166830==--
