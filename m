@@ -4,16 +4,16 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0D6EC83F1A
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 10:27:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52BB3C87FCA
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 10:27:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8149810E7AA;
-	Wed, 23 Jul 2025 10:27:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1178E10E7AE;
+	Wed, 23 Jul 2025 10:27:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RpMmxW6o";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="cz+56uW7";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 071C510E7A4
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B50BB10E7A6
  for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 10:27:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -22,23 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=hJUoXUC6bsjcfx2+OqSpohDIYuOiTMZxRYpWVT/2iNg=; b=RpMmxW6oxXuZfM/5Y+B+H7oJLR
- Irm+Hc9JVA1fpPV3g9+6zkVuRNcj4DxVGSBPtveXObPLQvLJKyZseuqQdq9NbBzByIyjnO4/GUEUh
- e9F2hQAUVpX0STR4yatCaMXU7ApS5lsS7ObDTYkEXal5XVly6zLB4iFV6iua4I73qBg0nd543R8G5
- 7xjGIzVCRTS0x2Ic3VB87j1kR6ucTIr941iZLqcN5QNsLy5dFtms4uBJ3YZwNFREu5Oe4ic8Wdp2D
- 5a1lcZluWHWvGQHIYXZI69oxUbwjNGVnkaKbTB/mR8YyGU4gRlcyPAaDjBsZB475hOWy7tI/QTcF7
- enu+tiGw==;
+ bh=bd/XbNlfduyyQzCbXDz0ULKB69jdQr6E2EEBGDR57NA=; b=cz+56uW79UbDwodgs7PWWe2HHN
+ Oevev8dvW2IPnVZ0ncwwE86qT9vNkbrmmRBnUelw8+Ceq9YU3Pmx3tDRxqQxrcWfm5+5FfUmhbV7m
+ +0Vt4cMDJpe+brNCUVemErk4g2rrPK2jhJ2JGZcv84T7uGbqXK0XeGJ0dybK7aRm1pO4nc6d+pSDb
+ q+VIpfHweEU5cfz3sYqTkslJ971tJ1iMaDHzMgQEaCwe7en2c2jm7LBvE7ZkRg1tbWNEEkltqu/Bx
+ d5braod4ylc9sIgd/pQP2h3Mwslfz4331LENZQCnLRGbJTlDW/gcHVChkCgoOAU7ux6GOgJkpievf
+ j3U4e2mg==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ueWhL-002XyY-9o
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 12:27:43 +0200
+ id 1ueWhM-002Xyb-0Z
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 12:27:44 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 04/14] drm/xe/xelp: Quiesce memory traffic before invalidating
- auxccs
-Date: Wed, 23 Jul 2025 11:27:26 +0100
-Message-ID: <20250723102739.50425-5-tvrtko.ursulin@igalia.com>
+Subject: [CI 05/14] drm/xe/xelp: Support auxccs invalidation on blitter
+Date: Wed, 23 Jul 2025 11:27:27 +0100
+Message-ID: <20250723102739.50425-6-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
 References: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
@@ -58,57 +57,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to i915 before invalidating auxccs we must quiesce the memory
-traffic by an extra flush.
+Auxccs platforms need to be able to invalidate auxccs on the blitter
+engine.
+
+Add the relevant mmio register and enable this by refactoring the ring
+emission a bit to consolidate all non-render engines.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c       | 7 ++++++-
- drivers/gpu/drm/xe/xe_ring_ops_types.h | 2 +-
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |   1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c     | 104 +++++++++++----------------
+ 2 files changed, 41 insertions(+), 64 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 5cd5ab8529c5..db15801445b0 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -88,6 +88,7 @@
+ #define CCS_AUX_INV				XE_REG(0x4208)
+ 
+ #define VD0_AUX_INV				XE_REG(0x4218)
++#define BCS_AUX_INV				XE_REG(0x4248)
+ #define VE0_AUX_INV				XE_REG(0x4238)
+ 
+ #define VE1_AUX_INV				XE_REG(0x42b8)
 diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 09a9b31d2e12..c5e2e3b8aa2c 100644
+index c5e2e3b8aa2c..1f2f3da90fe0 100644
 --- a/drivers/gpu/drm/xe/xe_ring_ops.c
 +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -358,10 +358,15 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+@@ -248,44 +248,6 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
+ 	return i;
+ }
+ 
+-/* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
+-static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				    u64 batch_addr, u32 seqno)
+-{
+-	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+-	u32 ppgtt_flag = get_ppgtt_flag(job);
+-	struct xe_gt *gt = job->q->gt;
+-
+-	i = emit_copy_timestamp(lrc, dw, i);
+-
+-	if (job->ring_ops_flush_tlb) {
+-		dw[i++] = preparser_disable(true);
+-		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, MI_INVALIDATE_TLB, dw, i);
+-		dw[i++] = preparser_disable(false);
+-	} else {
+-		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, dw, i);
+-	}
+-
+-	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+-
+-	if (job->user_fence.used) {
+-		i = emit_flush_dw(dw, i);
+-		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
+-						job->user_fence.value,
+-						dw, i);
+-	}
+-
+-	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i);
+-
+-	i = emit_user_interrupt(dw, i);
+-
+-	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+-
+-	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+-}
+-
+ static bool has_aux_ccs(struct xe_device *xe)
+ {
+ 	/*
+@@ -300,36 +262,50 @@ static bool has_aux_ccs(struct xe_device *xe)
+ 	return !xe->info.has_flat_ccs;
+ }
+ 
+-static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				   u64 batch_addr, u32 seqno)
++static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
++				 u64 batch_addr, u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
  	struct xe_gt *gt = job->q->gt;
  	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
-+	const bool aux_ccs = has_aux_ccs(xe);
- 	u32 mask_flags = 0;
+-	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
++	const unsigned int class = job->q->class;
++	const bool aux_ccs = has_aux_ccs(xe) &&
++			     (class == XE_ENGINE_CLASS_COPY ||
++			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
++	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
  
  	i = emit_copy_timestamp(lrc, dw, i);
  
-+	/* hsdes: 1809175790 */
-+	if (aux_ccs)
-+		i = emit_render_cache_flush(job, dw, i);
-+
- 	dw[i++] = preparser_disable(true);
- 	if (lacks_render)
- 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
-@@ -372,7 +377,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
+-	dw[i++] = preparser_disable(true);
+-
+-	/* hsdes: 1809175790 */
+-	if (has_aux_ccs(xe)) {
+-		if (decode)
+-			i = emit_aux_table_inv(gt, VD0_AUX_INV, dw, i);
+-		else
+-			i = emit_aux_table_inv(gt, VE0_AUX_INV, dw, i);
+-	}
+-
+-	if (job->ring_ops_flush_tlb)
++	if (invalidate_tlb) {
++		dw[i++] = preparser_disable(true);
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, MI_INVALIDATE_TLB, dw, i);
++					seqno,
++					MI_INVALIDATE_TLB,
++					dw, i);
++		/* hsdes: 1809175790 */
++		if (aux_ccs) {
++			struct xe_reg reg;
  
- 	/* hsdes: 1809175790 */
--	if (has_aux_ccs(xe))
-+	if (aux_ccs)
- 		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
+-	dw[i++] = preparser_disable(false);
++			switch (job->q->class) {
++			case XE_ENGINE_CLASS_COPY:
++				reg = BCS_AUX_INV;
++				break;
++			case XE_ENGINE_CLASS_VIDEO_DECODE:
++				reg = VD0_AUX_INV;
++				break;
++			default:
++				reg = VE0_AUX_INV;
++			};
  
- 	dw[i++] = preparser_disable(false);
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-index d7e3e150a9a5..477dc7defd72 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
-+++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-@@ -8,7 +8,7 @@
+-	if (!job->ring_ops_flush_tlb)
++			i = emit_aux_table_inv(gt, reg, dw, i);
++		}
++		dw[i++] = preparser_disable(false);
++	} else {
+ 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+ 					seqno, dw, i);
++	}
  
- struct xe_sched_job;
+ 	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
  
--#define MAX_JOB_SIZE_DW 58
-+#define MAX_JOB_SIZE_DW 70
- #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+@@ -442,9 +418,9 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
  
- /**
+ 	xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
+ 
+-	__emit_job_gen12_simple(job, job->q->lrc[0],
+-				job->ptrs[0].batch_addr,
+-				xe_sched_job_lrc_seqno(job));
++	__emit_job_gen12_xcs(job, job->q->lrc[0],
++			     job->ptrs[0].batch_addr,
++			     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_copy(struct xe_sched_job *job)
+@@ -458,9 +434,9 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+ 	}
+ 
+ 	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_simple(job, job->q->lrc[i],
+-					job->ptrs[i].batch_addr,
+-					xe_sched_job_lrc_seqno(job));
++		__emit_job_gen12_xcs(job, job->q->lrc[i],
++				     job->ptrs[i].batch_addr,
++				     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_video(struct xe_sched_job *job)
+@@ -469,9 +445,9 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
+ 
+ 	/* FIXME: Not doing parallel handshake for now */
+ 	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_video(job, job->q->lrc[i],
+-				       job->ptrs[i].batch_addr,
+-				       xe_sched_job_lrc_seqno(job));
++		__emit_job_gen12_xcs(job, job->q->lrc[i],
++				     job->ptrs[i].batch_addr,
++				     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
 -- 
 2.48.0
 
