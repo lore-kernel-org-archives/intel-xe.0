@@ -4,36 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DE16C83F25
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 07:46:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08CEAC87FC5
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 07:46:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04F8010E76A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 882CB10E76D;
 	Wed, 23 Jul 2025 07:46:03 +0000 (UTC)
 Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ECCF10E76B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19F7210E76A
  for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 07:46:02 +0000 (UTC)
 Received: from localhost.localdomain (unknown
  [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id D1FDF3F11A;
- Wed, 23 Jul 2025 09:45:52 +0200 (CEST)
+ by psionic.psi5.com (Postfix) with ESMTPSA id B89573F108;
+ Wed, 23 Jul 2025 09:45:50 +0200 (CEST)
 From: Simon Richter <Simon.Richter@hogyros.de>
 To: intel-xe@lists.freedesktop.org
-Cc: jeffbai@aosc.io, Simon Richter <Simon.Richter@hogyros.de>,
- stable@vger.kernel.org, Wenbin Fang <fangwenbin@vip.qq.com>,
- Haien Liang <27873200@qq.com>, Jianfeng Liu <liujianfeng1994@gmail.com>,
- Shirong Liu <lsr1024@qq.com>, Haofeng Wu <s2600cw2@126.com>,
- Shang Yatsen <429839446@qq.com>
-Subject: [PATCH v3 1/5] drm/xe/bo: fix alignment with non-4KiB kernel page
- sizes
-Date: Wed, 23 Jul 2025 16:45:13 +0900
-Message-ID: <20250723074540.2660-2-Simon.Richter@hogyros.de>
+Cc: jeffbai@aosc.io,
+	Simon Richter <Simon.Richter@hogyros.de>
+Subject: [PATCH v3 0/5] drm/xe: enable driver usage on non-4KiB kernels
+Date: Wed, 23 Jul 2025 16:45:12 +0900
+Message-ID: <20250723074540.2660-1-Simon.Richter@hogyros.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250723074540.2660-1-Simon.Richter@hogyros.de>
-References: <20250723074540.2660-1-Simon.Richter@hogyros.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,128 +44,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mingcong Bai <jeffbai@aosc.io>
+Hi,
 
-The bo/ttm interfaces with kernel memory mapping from dedicated GPU
-memory. It is not correct to assume that SZ_4K would suffice for page
-alignment as there are a few hardware platforms that commonly uses non-
-4KiB pages - for instance, 16KiB is the most commonly used kernel page
-size used on Loongson devices (of the LoongArch architecture).
+since this needed a rebase for the disappearance of bo->size, I've gone
+ahead and done that (one line removed from Mingcong Bai's original patch
+series).
 
-Per our testing, Intel Xe/Alchemist/Battlemage families of GPUs works on
-Loongson platforms so long as "Above 4G Decoding" was enabled and
-"Resizable BAR" was set to auto in the UEFI firmware settings.
+There is only one thing that might need looking into: this will still fail
+if kernel pages are larger than 64k. I'm not aware of any platform where
+that is the case though.
 
-Without this fix, the kernel will hang at a kernel BUG():
+   Simon
 
-[    7.425445] ------------[ cut here ]------------
-[    7.430032] kernel BUG at drivers/gpu/drm/drm_gem.c:181!
-[    7.435330] Oops - BUG[#1]:
-[    7.438099] CPU: 0 UID: 0 PID: 102 Comm: kworker/0:4 Tainted: G            E      6.13.3-aosc-main-00336-g60829239b300-dirty #3
-[    7.449511] Tainted: [E]=UNSIGNED_MODULE
-[    7.453402] Hardware name: Loongson Loongson-3A6000-HV-7A2000-1w-V0.1-EVB/Loongson-3A6000-HV-7A2000-1w-EVB-V1.21, BIOS Loongson-UDK2018-V4.0.05756-prestab
-[    7.467144] Workqueue: events work_for_cpu_fn
-[    7.471472] pc 9000000001045fa4 ra ffff8000025331dc tp 90000001010c8000 sp 90000001010cb960
-[    7.479770] a0 900000012a3e8000 a1 900000010028c000 a2 000000000005d000 a3 0000000000000000
-[    7.488069] a4 0000000000000000 a5 0000000000000000 a6 0000000000000000 a7 0000000000000001
-[    7.496367] t0 0000000000001000 t1 9000000001045000 t2 0000000000000000 t3 0000000000000000
-[    7.504665] t4 0000000000000000 t5 0000000000000000 t6 0000000000000000 t7 0000000000000000
-[    7.504667] t8 0000000000000000 u0 90000000029ea7d8 s9 900000012a3e9360 s0 900000010028c000
-[    7.504668] s1 ffff800002744000 s2 0000000000000000 s3 0000000000000000 s4 0000000000000001
-[    7.504669] s5 900000012a3e8000 s6 0000000000000001 s7 0000000000022022 s8 0000000000000000
-[    7.537855]    ra: ffff8000025331dc ___xe_bo_create_locked+0x158/0x3b0 [xe]
-[    7.544893]   ERA: 9000000001045fa4 drm_gem_private_object_init+0xcc/0xd0
-[    7.551639]  CRMD: 000000b0 (PLV0 -IE -DA +PG DACF=CC DACM=CC -WE)
-[    7.557785]  PRMD: 00000004 (PPLV0 +PIE -PWE)
-[    7.562111]  EUEN: 00000000 (-FPE -SXE -ASXE -BTE)
-[    7.566870]  ECFG: 00071c1d (LIE=0,2-4,10-12 VS=7)
-[    7.571628] ESTAT: 000c0000 [BRK] (IS= ECode=12 EsubCode=0)
-[    7.577163]  PRID: 0014d000 (Loongson-64bit, Loongson-3A6000-HV)
-[    7.583128] Modules linked in: xe(E+) drm_gpuvm(E) drm_exec(E) drm_buddy(E) gpu_sched(E) drm_suballoc_helper(E) drm_display_helper(E) loongson(E) r8169(E) cec(E) rc_core(E) realtek(E) i2c_algo_bit(E) tpm_tis_spi(E) led_class(E) hid_generic(E) drm_ttm_helper(E) ttm(E) drm_client_lib(E) drm_kms_helper(E) sunrpc(E) la_ow_syscall(E) i2c_dev(E)
-[    7.613049] Process kworker/0:4 (pid: 102, threadinfo=00000000bc26ebd1, task=0000000055480707)
-[    7.621606] Stack : 0000000000000000 3030303a6963702b 000000000005d000 0000000000000000
-[    7.629563]         0000000000000001 0000000000000000 0000000000000000 8e1bfae42b2f7877
-[    7.637519]         000000000005d000 900000012a3e8000 900000012a3e9360 0000000000000000
-[    7.645475]         ffffffffffffffff 0000000000000000 0000000000022022 0000000000000000
-[    7.653431]         0000000000000001 ffff800002533660 0000000000022022 9000000000234470
-[    7.661386]         90000001010cba28 0000000000001000 0000000000000000 000000000005c300
-[    7.669342]         900000012a3e8000 0000000000000000 0000000000000001 900000012a3e8000
-[    7.677298]         ffffffffffffffff 0000000000022022 900000012a3e9498 ffff800002533a14
-[    7.685254]         0000000000022022 0000000000000000 900000000209c000 90000000010589e0
-[    7.693209]         90000001010cbab8 ffff8000027c78c0 fffffffffffff000 900000012a3e8000
-[    7.701165]         ...
-[    7.703588] Call Trace:
-[    7.703590] [<9000000001045fa4>] drm_gem_private_object_init+0xcc/0xd0
-[    7.712496] [<ffff8000025331d8>] ___xe_bo_create_locked+0x154/0x3b0 [xe]
-[    7.719268] [<ffff80000253365c>] __xe_bo_create_locked+0x228/0x304 [xe]
-[    7.725951] [<ffff800002533a10>] xe_bo_create_pin_map_at_aligned+0x70/0x1b0 [xe]
-[    7.733410] [<ffff800002533c7c>] xe_managed_bo_create_pin_map+0x34/0xcc [xe]
-[    7.740522] [<ffff800002533d58>] xe_managed_bo_create_from_data+0x44/0xb0 [xe]
-[    7.747807] [<ffff80000258d19c>] xe_uc_fw_init+0x3ec/0x904 [xe]
-[    7.753814] [<ffff80000254a478>] xe_guc_init+0x30/0x3dc [xe]
-[    7.759553] [<ffff80000258bc04>] xe_uc_init+0x20/0xf0 [xe]
-[    7.765121] [<ffff800002542abc>] xe_gt_init_hwconfig+0x5c/0xd0 [xe]
-[    7.771461] [<ffff800002537204>] xe_device_probe+0x240/0x588 [xe]
-[    7.777627] [<ffff800002575448>] xe_pci_probe+0x6c0/0xa6c [xe]
-[    7.783540] [<9000000000e9828c>] local_pci_probe+0x4c/0xb4
-[    7.788989] [<90000000002aa578>] work_for_cpu_fn+0x20/0x40
-[    7.794436] [<90000000002aeb50>] process_one_work+0x1a4/0x458
-[    7.800143] [<90000000002af5a0>] worker_thread+0x304/0x3fc
-[    7.805591] [<90000000002bacac>] kthread+0x114/0x138
-[    7.810520] [<9000000000241f64>] ret_from_kernel_thread+0x8/0xa4
-[    7.816489]
-[    7.817961] Code: 4c000020  29c3e2f9  53ff93ff <002a0001> 0015002c  03400000  02ff8063  29c04077  001500f7
-[    7.827651]
-[    7.829140] ---[ end trace 0000000000000000 ]---
+Mingcong Bai (5):
+  drm/xe/bo: fix alignment with non-4KiB kernel page sizes
+  drm/xe/guc: use GUC_SIZE (SZ_4K) for alignment
+  drm/xe/regs: fix RING_CTL_SIZE(size) calculation
+  drm/xe: use 4KiB alignment for cursor jumps
+  drm/xe/query: use PAGE_SIZE as the minimum page alignment
 
-Revise all instances of `SZ_4K' with `PAGE_SIZE' and revise the call to
-`drm_gem_private_object_init()' in `*___xe_bo_create_locked()' (last call
-before BUG()) to use `size_t aligned_size' calculated from `PAGE_SIZE' to
-fix the above error.
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c               |  6 ++---
+ drivers/gpu/drm/xe/xe_guc.c              |  4 +--
+ drivers/gpu/drm/xe/xe_guc.h              |  3 +++
+ drivers/gpu/drm/xe/xe_guc_ads.c          | 32 ++++++++++++------------
+ drivers/gpu/drm/xe/xe_guc_capture.c      |  8 +++---
+ drivers/gpu/drm/xe/xe_guc_ct.c           |  2 +-
+ drivers/gpu/drm/xe/xe_guc_log.c          |  5 ++--
+ drivers/gpu/drm/xe/xe_guc_pc.c           |  4 +--
+ drivers/gpu/drm/xe/xe_migrate.c          |  4 +--
+ drivers/gpu/drm/xe/xe_query.c            |  2 +-
+ include/uapi/drm/xe_drm.h                |  7 ++++--
+ 12 files changed, 43 insertions(+), 36 deletions(-)
 
-Cc: <stable@vger.kernel.org>
-Fixes: 4e03b584143e ("drm/xe/uapi: Reject bo creation of unaligned size")
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Tested-by: Mingcong Bai <jeffbai@aosc.io>
-Tested-by: Wenbin Fang <fangwenbin@vip.qq.com>
-Tested-by: Haien Liang <27873200@qq.com>
-Tested-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-Tested-by: Shirong Liu <lsr1024@qq.com>
-Tested-by: Haofeng Wu <s2600cw2@126.com>
-Link: https://github.com/FanFansfan/loongson-linux/commit/22c55ab3931c32410a077b3ddb6dca3f28223360
-Link: https://t.me/c/1109254909/768552
-Co-developed-by: Shang Yatsen <429839446@qq.com>
-Signed-off-by: Shang Yatsen <429839446@qq.com>
-Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
----
- drivers/gpu/drm/xe/xe_bo.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 00ce067d5fd3..649e6d0e05a1 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1861,9 +1861,9 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 		flags |= XE_BO_FLAG_INTERNAL_64K;
- 		alignment = align >> PAGE_SHIFT;
- 	} else {
--		aligned_size = ALIGN(size, SZ_4K);
-+		aligned_size = ALIGN(size, PAGE_SIZE);
- 		flags &= ~XE_BO_FLAG_INTERNAL_64K;
--		alignment = SZ_4K >> PAGE_SHIFT;
-+		alignment = PAGE_SIZE >> PAGE_SHIFT;
- 	}
- 
- 	if (type == ttm_bo_type_device && aligned_size != size)
-@@ -1887,7 +1887,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- #endif
- 	INIT_LIST_HEAD(&bo->vram_userfault_link);
- 
--	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
-+	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, aligned_size);
- 
- 	if (resv) {
- 		ctx.allow_res_evict = !(flags & XE_BO_FLAG_NO_RESV_EVICT);
 -- 
 2.47.2
 
