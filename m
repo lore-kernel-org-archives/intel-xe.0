@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95860C83F17
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 14:00:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29294C83F17
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 14:04:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 496C410E0E9;
-	Wed, 23 Jul 2025 14:00:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LaNj516z";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 110E810E05E;
- Wed, 23 Jul 2025 14:00:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753279248; x=1784815248;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=3jN44jS9jJD88nKaWGNgZjFEgmcnbW+yQM1DzmF/ZOA=;
- b=LaNj516zXqPllU+gGP5kOfjwAaFz4XpGBq2cEQdMGT1H/XsN17a/GOA2
- wr2vWJ5hzWcMTjvsGh5+5CjW9t0dNoRYBFZtA1qw+4Ry+oa5yvD9cfDmT
- zImzoDFeIt/nVzweO0T5FgSLOcPMaWZ4YbkG/Tks2w4eA1fbLcNvD6ico
- pStghhsPBdrgoba7iYrKnZHkYthw0X6chzoka8aY+OiNtRoe/WK5rsOpe
- 1AJ2T6UtI6JcQl+IpXPKg4tQKAu60OtGV3+zz3e6YUOzD3wdjs0iybRMq
- 6P8DuB9Edf3vs8S+BK+aL5ucDncvjPyoqRW3SqX/sSfuQlH2VZe+xOOQk g==;
-X-CSE-ConnectionGUID: hK3k8NT+S82FD/UqXw43Ww==
-X-CSE-MsgGUID: EcPB9MGvQo2XHpliR78vOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="65824519"
-X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="65824519"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2025 07:00:48 -0700
-X-CSE-ConnectionGUID: iWTJPjOTSsa1pa0cHUmROw==
-X-CSE-MsgGUID: G71UOMzmQ/SvGD+x7D9nLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="159170041"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2025 07:00:43 -0700
-Date: Wed, 23 Jul 2025 17:00:40 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
- umesh.nerlige.ramappa@intel.com, frank.scarbrough@intel.com,
- sk.anirban@intel.com, simona.vetter@ffwll.ch, airlied@gmail.com
-Subject: Re: [PATCH v5 4/9] drm/xe/xe_survivability: Refactor survivability
- mode
-Message-ID: <aIDrCMRK2gPGmIs6@black.fi.intel.com>
-References: <20250715104730.2109506-1-riana.tauro@intel.com>
- <20250715104730.2109506-5-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAF6610E0E9;
+	Wed, 23 Jul 2025 14:04:57 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A5C810E0E9;
+ Wed, 23 Jul 2025 14:04:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7019076281466352754=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250715104730.2109506-5-riana.tauro@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Improve_VF_provis?=
+ =?utf-8?q?ion_stability_with_fault_injection_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 23 Jul 2025 14:04:57 -0000
+Message-ID: <175327949702.182805.1928473631144342286@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250723131008.26916-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250723131008.26916-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,68 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 15, 2025 at 04:17:24PM +0530, Riana Tauro wrote:
-> The patches in these series refactor the boot survivability code to
-> allow adding runtime survivability
-> Refactor existing code to separate both the modes
+--===============7019076281466352754==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Punctuations please!
+== Series Details ==
 
-> This patch renames the functions and separates init and enable
+Series: drm/xe: Improve VF provision stability with fault injection (rev3)
+URL   : https://patchwork.freedesktop.org/series/151499/
+State : success
 
-...
+== Summary ==
 
->  static ssize_t survivability_mode_show(struct device *dev,
->  				       struct device_attribute *attr, char *buff)
->  {
-> @@ -130,6 +138,11 @@ static ssize_t survivability_mode_show(struct device *dev,
->  	struct xe_survivability_info *info = survivability->info;
->  	int index = 0, count = 0;
->  
-> +	count += sysfs_emit_at(buff, count, "Survivability mode type: Boot\n");
+CI Bug Log - changes from xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79_BAT -> xe-pw-151499v3_BAT
+====================================================
 
-Although I'm okay with this but, should we make it something more parseable
-from userspace?
+Summary
+-------
 
-> +	if (!check_boot_failure(xe))
-> +		return count;
-> +
+  **SUCCESS**
 
-...
+  No regressions found.
 
-> +int xe_survivability_mode_boot_enable(struct xe_device *xe)
->  {
->  	struct xe_survivability *survivability = &xe->survivability;
-> -	struct xe_survivability_info *info;
->  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> +	int ret;
->  
->  	if (!xe_survivability_mode_is_requested(xe))
->  		return 0;
->  
-> -	survivability->size = MAX_SCRATCH_MMIO;
-> -
-> -	info = devm_kcalloc(xe->drm.dev, survivability->size, sizeof(*info),
-> -			    GFP_KERNEL);
-> -	if (!info)
-> -		return -ENOMEM;
-> -
-> -	survivability->info = info;
-> -
-> -	populate_survivability_info(xe);
-> +	ret = init_survivability_mode(xe);
-> +	if (ret)
-> +		return ret;
->  
-> -	/* Only log debug information and exit if it is a critical failure */
-> +	/* Log breadcrumbs but do not enter survivability mode for Critical boot errors */
->  	if (survivability->boot_status == CRITICAL_FAILURE) {
->  		log_survivability_info(pdev);
+  
 
-I'm not much informed about the history here, but should we be logging the
-scratchs if we consider them sensitive?
+Participating hosts (9 -> 8)
+------------------------------
 
-Raag
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-151499v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79 -> xe-pw-151499v3
+
+  IGT_8474: 54376e96f3f84e7bc6ccdc0106017cf2778ef08a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79: aac91a1ef678cd79480a912837cabfaa348aeb79
+  xe-pw-151499v3: 151499v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v3/index.html
+
+--===============7019076281466352754==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Improve VF provision stability with fault injection (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151499/">https://patchwork.freedesktop.org/series/151499/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79_BAT -&gt; xe-pw-151499v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-151499v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79 -&gt; xe-pw-151499v3</li>
+</ul>
+<p>IGT_8474: 54376e96f3f84e7bc6ccdc0106017cf2778ef08a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79: aac91a1ef678cd79480a912837cabfaa348aeb79<br />
+  xe-pw-151499v3: 151499v3</p>
+
+</body>
+</html>
+
+--===============7019076281466352754==--
