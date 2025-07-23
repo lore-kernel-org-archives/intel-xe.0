@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5633AC83F17
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 08:31:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3A61C83F1A
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 09:18:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04D7A10E0DE;
-	Wed, 23 Jul 2025 08:31:43 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02FD610E004;
- Wed, 23 Jul 2025 08:31:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3197680535198154802=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D32BF10E774;
+	Wed, 23 Jul 2025 09:18:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="feSxJ4Hr";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2200010E11B;
+ Wed, 23 Jul 2025 09:18:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753262293; x=1784798293;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=+/Acgm87p0ltn0l7KL7sK2ZocH085A58KWW+7N2VY68=;
+ b=feSxJ4HrRFA58fKwk8vixlsi3zvpHfp00E6CzN5WtiGdo5P3krM5OLPQ
+ VwsEQu3XWu25pD0KM9WGAWzIkOBgz+vFjw0qupp9V+xL/dhl788DG+ekc
+ TrbjsCbkMP2P0jRQaotApD0gtUY33rjcDo8ygabMxQTBti45i1g2X5yJX
+ L84g6B3i2AlAkZ35dVLPeanqIjSWj4DeFIRQwcxqteZ+rIrrDv0mfgt/x
+ 0Hx+pvBWK6WcqFfGODoyC13v894YBHDwNGrY8gmOJDVDg9nQoQB5raxp0
+ +ztirsWTZY9U3jtaOHG13uC3CBBn7E++q9d1ZKmUq74hWKbpiy0jFfx7f w==;
+X-CSE-ConnectionGUID: ul5y3JHKQzuIYo16P8+KnQ==
+X-CSE-MsgGUID: BnpdgCenSMmvv/Ef5TtzbA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="73112846"
+X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="73112846"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2025 02:18:12 -0700
+X-CSE-ConnectionGUID: 4Mlsk2ozRqaVPWcfe+y2Cg==
+X-CSE-MsgGUID: s/ifWkyzTlGI/8M354o2ng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="190358405"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO [10.245.245.156])
+ ([10.245.245.156])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2025 02:18:07 -0700
+Message-ID: <72235afd-c849-49fe-9cc1-2b1781abdf08@linux.intel.com>
+Date: Wed, 23 Jul 2025 11:18:33 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_enable_driver_usa?=
- =?utf-8?q?ge_on_non-4KiB_kernels?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Simon Richter" <Simon.Richter@hogyros.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Jul 2025 08:31:42 -0000
-Message-ID: <175325950200.182605.3388663935009552692@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250723074540.2660-1-Simon.Richter@hogyros.de>
-In-Reply-To: <20250723074540.2660-1-Simon.Richter@hogyros.de>
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +73,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3197680535198154802==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+It's reverting time!
+Lots of reverts thsi time around, and some small fixes.
 
-Series: drm/xe: enable driver usage on non-4KiB kernels
-URL   : https://patchwork.freedesktop.org/series/151983/
-State : success
+Best regards,
+~Maarten
 
-== Summary ==
+drm-misc-fixes-2025-07-23:
+drm-misc-fixes for v6.16-rc8/final?:
+- Revert all uses of drm_gem_object->dmabuf to
+  drm_gem_object->import_attach->dmabuf.
+- Fix amdgpu returning BIOS cluttered VRAM after resume.
+- Scheduler hang fix.
+- Revert nouveau ioctl fix as it caused regressions.
+- Fix null pointer deref in nouveau.
+- Fix unnecessary semicolon in ti_sn_bridge_probe.
+The following changes since commit cb345f954eacd162601e7d07ca2f0f0a17b54ee3:
 
-CI Bug Log - changes from xe-3459-3af657bd50a6cefddf6b0edb2c1d8ce747dfdd8a_BAT -> xe-pw-151983v1_BAT
-====================================================
+  drm/panfrost: Fix scheduler workqueue bug (2025-07-14 16:49:10 +0100)
 
-Summary
--------
+are available in the Git repository at:
 
-  **SUCCESS**
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-07-23
 
-  No regressions found.
+for you to fetch changes up to 15a7ca747d9538c2ad8b0c81dd4c1261e0736c82:
 
-  
+  drm/bridge: ti-sn65dsi86: Remove extra semicolon in ti_sn_bridge_probe() (2025-07-22 07:46:34 -0700)
 
-Participating hosts (9 -> 8)
-------------------------------
+----------------------------------------------------------------
+drm-misc-fixes for v6.16-rc8/final?:
+- Revert all uses of drm_gem_object->dmabuf to
+  drm_gem_object->import_attach->dmabuf.
+- Fix amdgpu returning BIOS cluttered VRAM after resume.
+- Scheduler hang fix.
+- Revert nouveau ioctl fix as it caused regressions.
+- Fix null pointer deref in nouveau.
+- Fix unnecessary semicolon in ti_sn_bridge_probe.
 
-  Missing    (1): bat-adlp-vm 
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      Revert "drm/nouveau: check ioctl command codes better"
 
-Known issues
-------------
+Arunpravin Paneer Selvam (1):
+      drm/amdgpu: Reset the clear flag in buddy during resume
 
-  Here are the changes found in xe-pw-151983v1_BAT that come from known issues:
+Ben Skeggs (1):
+      drm/nouveau/nvif: fix null ptr deref on pre-fermi boards
 
-### IGT changes ###
+Douglas Anderson (1):
+      drm/bridge: ti-sn65dsi86: Remove extra semicolon in ti_sn_bridge_probe()
 
-#### Issues hit ####
+Lin.Cao (1):
+      drm/sched: Remove optimization that causes hang when killing dependent jobs
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +3 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3459-3af657bd50a6cefddf6b0edb2c1d8ce747dfdd8a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151983v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+Thomas Zimmermann (7):
+      Revert "drm/virtio: Use dma_buf from GEM object instance"
+      Revert "drm/vmwgfx: Use dma_buf from GEM object instance"
+      Revert "drm/etnaviv: Use dma_buf from GEM object instance"
+      Revert "drm/prime: Use dma_buf from GEM object instance"
+      Revert "drm/gem-framebuffer: Use dma_buf from GEM object instance"
+      Revert "drm/gem-shmem: Use dma_buf from GEM object instance"
+      Revert "drm/gem-dma: Use dma_buf from GEM object instance"
 
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3459-3af657bd50a6cefddf6b0edb2c1d8ce747dfdd8a -> xe-pw-151983v1
-
-  IGT_8473: b8b6f7615f840e15377c3b48a9c4178b3a248fb0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3459-3af657bd50a6cefddf6b0edb2c1d8ce747dfdd8a: 3af657bd50a6cefddf6b0edb2c1d8ce747dfdd8a
-  xe-pw-151983v1: 151983v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151983v1/index.html
-
---===============3197680535198154802==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: enable driver usage on non-4KiB kernels</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151983/">https://patchwork.freedesktop.org/series/151983/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151983v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151983v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3459-3af657bd50a6cefddf6b0edb2c1d8ce747dfdd8a_BAT -&gt; xe-pw-151983v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-151983v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3459-3af657bd50a6cefddf6b0edb2c1d8ce747dfdd8a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151983v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +3 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3459-3af657bd50a6cefddf6b0edb2c1d8ce747dfdd8a -&gt; xe-pw-151983v1</li>
-</ul>
-<p>IGT_8473: b8b6f7615f840e15377c3b48a9c4178b3a248fb0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3459-3af657bd50a6cefddf6b0edb2c1d8ce747dfdd8a: 3af657bd50a6cefddf6b0edb2c1d8ce747dfdd8a<br />
-  xe-pw-151983v1: 151983v1</p>
-
-</body>
-</html>
-
---===============3197680535198154802==--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h      |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 17 +++++++++++
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c        |  2 +-
+ drivers/gpu/drm/drm_buddy.c                  | 43 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/drm_gem_dma_helper.c         |  2 +-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c |  8 ++++--
+ drivers/gpu/drm/drm_gem_shmem_helper.c       |  4 +--
+ drivers/gpu/drm/drm_prime.c                  |  8 +++++-
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c  |  4 +--
+ drivers/gpu/drm/nouveau/nouveau_drm.c        | 11 +++----
+ drivers/gpu/drm/nouveau/nvif/chan.c          |  3 ++
+ drivers/gpu/drm/scheduler/sched_entity.c     | 21 ++------------
+ drivers/gpu/drm/virtio/virtgpu_prime.c       |  5 ++--
+ drivers/gpu/drm/vmwgfx/vmwgfx_gem.c          |  6 ++--
+ include/drm/drm_buddy.h                      |  2 ++
+ 16 files changed, 101 insertions(+), 38 deletions(-)
