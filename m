@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E670EC87FC5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0D6EC83F1A
 	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 10:27:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9D4C10E7AD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8149810E7AA;
 	Wed, 23 Jul 2025 10:27:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="AujNiVsf";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RpMmxW6o";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6636210E7A6
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 10:27:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 071C510E7A4
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 10:27:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,22 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Xu7vTmcPDoL8Hk1ZEI/Sz/PlSJBRwFJikGes4o2sbFk=; b=AujNiVsfftG9nUFvU7VvHEZFbS
- d0e4Hz2UKX5J985R01+eNrmhtH8XGv37DnL/1NDmP3k4yryN8mZTA8Yzugh7scawIciY1izUDwHbS
- zsvzmtI0CsWyd62I45/vP5hDH73oiJf56ozH3Q9xoN/XMquCKyQ7nd1JoxDLxFFIG33QMtavSbv/B
- 4QfKYAnigAwtGvZU2Go15dn5CXqVRufcpk7/eCJE6I+F6WN7TbH68S7Nrzbqd0iJsx3NEQkYjsR87
- DJ0ruxvUAWkcvjte+prsJYzC49fsCzD+QbHpMdkKEls4/DobLn+bdbFQd78O0a9l8dKOHvTn5mKgH
- l4snLjWg==;
+ bh=hJUoXUC6bsjcfx2+OqSpohDIYuOiTMZxRYpWVT/2iNg=; b=RpMmxW6oxXuZfM/5Y+B+H7oJLR
+ Irm+Hc9JVA1fpPV3g9+6zkVuRNcj4DxVGSBPtveXObPLQvLJKyZseuqQdq9NbBzByIyjnO4/GUEUh
+ e9F2hQAUVpX0STR4yatCaMXU7ApS5lsS7ObDTYkEXal5XVly6zLB4iFV6iua4I73qBg0nd543R8G5
+ 7xjGIzVCRTS0x2Ic3VB87j1kR6ucTIr941iZLqcN5QNsLy5dFtms4uBJ3YZwNFREu5Oe4ic8Wdp2D
+ 5a1lcZluWHWvGQHIYXZI69oxUbwjNGVnkaKbTB/mR8YyGU4gRlcyPAaDjBsZB475hOWy7tI/QTcF7
+ enu+tiGw==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ueWhM-002Xyi-NT
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 12:27:44 +0200
+ id 1ueWhL-002XyY-9o
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 12:27:43 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 06/14] drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
-Date: Wed, 23 Jul 2025 11:27:28 +0100
-Message-ID: <20250723102739.50425-7-tvrtko.ursulin@igalia.com>
+Subject: [CI 04/14] drm/xe/xelp: Quiesce memory traffic before invalidating
+ auxccs
+Date: Wed, 23 Jul 2025 11:27:26 +0100
+Message-ID: <20250723102739.50425-5-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
 References: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
@@ -57,37 +58,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Emit MI_FLUSH_DW_CCS when invalidating on auxccs platforms.
+According to i915 before invalidating auxccs we must quiesce the memory
+traffic by an extra flush.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c       | 7 ++++++-
+ drivers/gpu/drm/xe/xe_ring_ops_types.h | 2 +-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 1f2f3da90fe0..dc031e085f08 100644
+index 09a9b31d2e12..c5e2e3b8aa2c 100644
 --- a/drivers/gpu/drm/xe/xe_ring_ops.c
 +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -275,15 +275,16 @@ static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
- 			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
- 			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
- 	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
-+	const u32 flags = aux_ccs && class == XE_ENGINE_CLASS_COPY ?
-+			  MI_FLUSH_DW_CCS : 0;
+@@ -358,10 +358,15 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
++	const bool aux_ccs = has_aux_ccs(xe);
+ 	u32 mask_flags = 0;
  
  	i = emit_copy_timestamp(lrc, dw, i);
  
- 	if (invalidate_tlb) {
- 		dw[i++] = preparser_disable(true);
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno,
--					MI_INVALIDATE_TLB,
--					dw, i);
-+					seqno, MI_INVALIDATE_TLB | flags, dw,
-+					i);
- 		/* hsdes: 1809175790 */
- 		if (aux_ccs) {
- 			struct xe_reg reg;
++	/* hsdes: 1809175790 */
++	if (aux_ccs)
++		i = emit_render_cache_flush(job, dw, i);
++
+ 	dw[i++] = preparser_disable(true);
+ 	if (lacks_render)
+ 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
+@@ -372,7 +377,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
+ 
+ 	/* hsdes: 1809175790 */
+-	if (has_aux_ccs(xe))
++	if (aux_ccs)
+ 		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
+ 
+ 	dw[i++] = preparser_disable(false);
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index d7e3e150a9a5..477dc7defd72 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
+ 
+ struct xe_sched_job;
+ 
+-#define MAX_JOB_SIZE_DW 58
++#define MAX_JOB_SIZE_DW 70
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
+ /**
 -- 
 2.48.0
 
