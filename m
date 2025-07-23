@@ -4,50 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A40B0C83F17
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 09:57:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF781C83F34
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 10:27:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6668610E77D;
-	Wed, 23 Jul 2025 09:57:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91B1210E7A2;
+	Wed, 23 Jul 2025 10:27:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jKIDg7pk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kygZcmI0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 822C610E77D
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 09:57:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753264654; x=1784800654;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=f93ALCIEN3H5OrOtzmvTvmmKmNZvdGs5a7W/3x4rA/Y=;
- b=jKIDg7pkZq1hCayEA9LGB/9DPL+v3YltibjtOynWqlm82aLayRxsx2Dv
- Sdb1oYQ4aY9QGnb8tOq9YoxbDolQGwwsghV5C47ksuaBi+NrCfho0b7T2
- 7JC75Py1N0Ygp0HHH0D7bHQBSi93EllmXyTn4sfr8b2uKiWzqhmoe03Ya
- sHny+f/WZROj1UW1qt7szoYXd8Zl+M19mPJruS/afim6y8yTq+M0rifRK
- Oeou4sl+g3AsP9PdxJTzHXf5XtibIpB32GEQIMsvj/J0gnEi7HGsWUs/0
- c8lteLvxCELRsMBs3dw82sJn5gPJ/+jtkR3zunLRPaX6s31e1pDA0N/g5 g==;
-X-CSE-ConnectionGUID: YPfMoYx8RkO0uc9GNng00w==
-X-CSE-MsgGUID: CVSgjypwSMGAP3OSfqcepA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="73117627"
-X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="73117627"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2025 02:57:34 -0700
-X-CSE-ConnectionGUID: K1sz1pmhTNKhn+eVF224sA==
-X-CSE-MsgGUID: RfNqpMejTs26qDoxFFTl7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="158706346"
-Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
- by orviesa010.jf.intel.com with ESMTP; 23 Jul 2025 02:57:32 -0700
-From: Nitin Gote <nitin.r.gote@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A11610E7A2
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 10:27:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=1TzY8bo+4vUtKPLcUP8rp9D/+vpqaHuooxZjYRXdXqQ=; b=kygZcmI0Rk/M6f7qlJiId1vIg4
+ 07yNpRGG4bMzVnURBKQrVQ2KVdf16DiIla/ChG/q/QFtzO4IvCQWzrk0yvHhoAdrTsJggb7F4iuo5
+ c2uQtS8xayRRRiZ+ZI03Io3GKt6RukTLc18H2DcdyNEK9cyKDn+V7rt3IwRWqKXnXj9CFucQIYbGc
+ pZMPDJxWJ92cSiz/oJnLeJ7zxGzhykQ+gBZVMhmwSFUJOCTcJhYjHRMFYz//2vFED+v+049ux15RH
+ nZ0YZB4nbPfPXIgcKxThSvsuVZQJ9prmnd4Ez3K3xuIOmmQ3ZyF5xn/R+de3PxjSwvgTAeHeAZ4hs
+ zDRjsffg==;
+Received: from [84.66.36.92] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1ueWhJ-002XyI-2Z
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 12:27:41 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: lucas.demarchi@intel.com, tejas.upadhyay@intel.com,
- Nitin Gote <nitin.r.gote@intel.com>
-Subject: [PATCH] drm/xe: Rename MCFG_MCR_SELECTOR to STEER_SEMAPHORE
-Date: Wed, 23 Jul 2025 15:51:37 +0530
-Message-Id: <20250723102137.3580205-1-nitin.r.gote@intel.com>
-X-Mailer: git-send-email 2.25.1
+Subject: [CI 01/14] drm/i915/display: Fix dma_fence_wait_timeout() return
+ value handling
+Date: Wed, 23 Jul 2025 11:27:23 +0100
+Message-ID: <20250723102739.50425-2-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
+References: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,47 +58,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The register at offset 0xfd0 was incorrectly named MCFG_MCR_SELECTOR,
-likely copied from i915. According to the hardware specification (bspec),
-this register is actually called STEER_SEMAPHORE.
+From: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 
-Rename the register definition and update its usage in xe_gt_mcr.c to
-match the official hardware documentation.
+dma_fence_wait_timeout returns a long type but the driver is
+only using the lower 32 bits of the retval and discarding the
+upper 32 bits.
 
-No functional changes.
+This is particularly problematic if there are already signalled
+or stub fences on some of the hw planes. In this case the
+dma_fence_wait_timeout function will immediately return with
+timeout value MAX_SCHEDULE_TIMEOUT (0x7fffffffffffffff) since
+the fence is already signalled. If the driver only uses the lower
+32 bits of this return value then it'll interpret it as an error
+code (0xFFFFFFFF or (-1)) and skip the wait on the remaining fences.
 
-Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+This issue was first observed in the xe driver with the Android
+compositor where the GPU composited layer was not properly waited
+on when there were stub fences in other overlay planes resulting in
+visual artifacts.
+
+Fixes: d59cf7bb73f3c ("drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence")
+Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 +-
- drivers/gpu/drm/xe/xe_gt_mcr.c       | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 5cd5ab8529c5..f96b2e2b3064 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -42,7 +42,7 @@
- #define FORCEWAKE_ACK_GSC			XE_REG(0xdf8)
- #define FORCEWAKE_ACK_GT_MTL			XE_REG(0xdfc)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 456fc4b04cda..7035c1fc9033 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7092,7 +7092,8 @@ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_stat
+ 	struct drm_i915_private *i915 = to_i915(intel_state->base.dev);
+ 	struct drm_plane *plane;
+ 	struct drm_plane_state *new_plane_state;
+-	int ret, i;
++	long ret;
++	int i;
  
--#define MCFG_MCR_SELECTOR			XE_REG(0xfd0)
-+#define STEER_SEMAPHORE				XE_REG(0xfd0)
- #define MTL_MCR_SELECTOR			XE_REG(0xfd4)
- #define SF_MCR_SELECTOR				XE_REG(0xfd8)
- #define MCR_SELECTOR				XE_REG(0xfdc)
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 64a2f0d6aaf9..ca27b9dc92cc 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -533,7 +533,7 @@ void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt)
- 		u32 steer_val = REG_FIELD_PREP(MCR_SLICE_MASK, 0) |
- 			REG_FIELD_PREP(MCR_SUBSLICE_MASK, 2);
- 
--		xe_mmio_write32(&gt->mmio, MCFG_MCR_SELECTOR, steer_val);
-+		xe_mmio_write32(&gt->mmio, STEER_SEMAPHORE, steer_val);
- 		xe_mmio_write32(&gt->mmio, SF_MCR_SELECTOR, steer_val);
- 		/*
- 		 * For GAM registers, all reads should be directed to instance 1
+ 	for_each_new_plane_in_state(&intel_state->base, plane, new_plane_state, i) {
+ 		if (new_plane_state->fence) {
 -- 
-2.25.1
+2.48.0
 
