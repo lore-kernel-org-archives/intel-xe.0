@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29294C83F17
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 14:04:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 965C9C83F1A
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 14:08:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAF6610E0E9;
-	Wed, 23 Jul 2025 14:04:57 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A5C810E0E9;
- Wed, 23 Jul 2025 14:04:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7019076281466352754=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BB2210E0E9;
+	Wed, 23 Jul 2025 14:08:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I0+1Q2t/";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8018210E514;
+ Wed, 23 Jul 2025 14:08:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753279703; x=1784815703;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Uam3uGSmS8X/U2z5MvULB0BxVpco+wkNtehkt3u+mt4=;
+ b=I0+1Q2t/Jk+38bdiyo4OKDBiJR0x1vhTot+SntBWyiSr1vzMHfzrFODf
+ lntdOXKZCzX7xa0q3x2ImeX7vw3jxJi4/nS0hi41Lh0yX7eWar91zhMy9
+ dlVk57BaUPxm8SyTbCStK9pp5CMzUwpffQigAb0C+GIBi+aXAnGcHGiTn
+ mbft351f0m4fJMX88TKcqWDOGwK4O3Hq+oWPCFlBjbdPE1zJLr/2SSvbG
+ Pg5SKg71JUQaHoaToOCVNzc/j+gCLHp0dhvI1Dc0YLZ0vWeOeR2gkHfJu
+ OkNypKbCgN8z7siui1k+CLmb9z+U3AfXysDEu20OgkX+56NARXhd4U2pg A==;
+X-CSE-ConnectionGUID: eJRUa9BbRFGZIsCX/L+H7Q==
+X-CSE-MsgGUID: vUFwYwWFRGiPEYy6mjlhDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="59220257"
+X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="59220257"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2025 07:08:22 -0700
+X-CSE-ConnectionGUID: SSZkd+7VQwm/2kRLs32b8A==
+X-CSE-MsgGUID: +uwbC2FSRkOJfinnQGXK1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="163601539"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2025 07:08:19 -0700
+Date: Wed, 23 Jul 2025 17:08:15 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
+ umesh.nerlige.ramappa@intel.com, frank.scarbrough@intel.com,
+ sk.anirban@intel.com, simona.vetter@ffwll.ch, airlied@gmail.com
+Subject: Re: [PATCH v5 5/9] drm/xe/xe_survivability: Add support for Runtime
+ survivability mode
+Message-ID: <aIDsz7UkxW1XRRtP@black.fi.intel.com>
+References: <20250715104730.2109506-1-riana.tauro@intel.com>
+ <20250715104730.2109506-6-riana.tauro@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Improve_VF_provis?=
- =?utf-8?q?ion_stability_with_fault_injection_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Jul 2025 14:04:57 -0000
-Message-ID: <175327949702.182805.1928473631144342286@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250723131008.26916-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250723131008.26916-1-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250715104730.2109506-6-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +69,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7019076281466352754==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Jul 15, 2025 at 04:17:25PM +0530, Riana Tauro wrote:
+> Certain runtime firmware errors can cause the device to be in a unusable
+> state requiring a firmware flash to restore normal operation.
+> Runtime Survivability Mode indicates firmware flash is necessary by
+> wedging the device and exposing survivability mode sysfs.
+> 
+> The below sysfs is an indication that device is in survivability mode
+> 
+> /sys/bus/pci/devices/<device>/survivability_mode
 
-== Series Details ==
+...
 
-Series: drm/xe: Improve VF provision stability with fault injection (rev3)
-URL   : https://patchwork.freedesktop.org/series/151499/
-State : success
+> +int xe_survivability_mode_runtime_enable(struct xe_device *xe)
+> +{
+> +	struct xe_survivability *survivability = &xe->survivability;
+> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> +	int ret;
+> +
+> +	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe->info.platform < XE_BATTLEMAGE) {
+> +		dev_err(&pdev->dev, "Runtime Survivability Mode not supported\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = init_survivability_mode(xe);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = create_survivability_sysfs(pdev);
+> +	if (ret)
+> +		dev_err(&pdev->dev, "Failed to create survivability mode sysfs\n");
+> +
+> +	survivability->type = XE_SURVIVABILITY_TYPE_RUNTIME;
+> +	dev_err(&pdev->dev, "Runtime Survivability mode enabled\n");
+> +
+> +	xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_VENDOR);
+> +	xe_device_declare_wedged(xe);
+> +	dev_err(&pdev->dev, "Firmware update required, Refer the userspace documentation for more details!\n");
 
-== Summary ==
+Do we have it? Or did I miss it somewhere? :D
 
-CI Bug Log - changes from xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79_BAT -> xe-pw-151499v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-151499v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79 -> xe-pw-151499v3
-
-  IGT_8474: 54376e96f3f84e7bc6ccdc0106017cf2778ef08a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79: aac91a1ef678cd79480a912837cabfaa348aeb79
-  xe-pw-151499v3: 151499v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v3/index.html
-
---===============7019076281466352754==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Improve VF provision stability with fault injection (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151499/">https://patchwork.freedesktop.org/series/151499/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79_BAT -&gt; xe-pw-151499v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-151499v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79 -&gt; xe-pw-151499v3</li>
-</ul>
-<p>IGT_8474: 54376e96f3f84e7bc6ccdc0106017cf2778ef08a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3463-aac91a1ef678cd79480a912837cabfaa348aeb79: aac91a1ef678cd79480a912837cabfaa348aeb79<br />
-  xe-pw-151499v3: 151499v3</p>
-
-</body>
-</html>
-
---===============7019076281466352754==--
+Raag
