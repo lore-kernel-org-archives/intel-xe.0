@@ -4,45 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C364C83F17
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89BEFC87FC5
 	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 10:27:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 024C310E7A3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D53910E7A4;
 	Wed, 23 Jul 2025 10:27:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="OEmQI73b";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PDG8Rb5y";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8020710E7A4
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 10:27:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A39A10E7A3
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 10:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ea8DYv4IDsIN2ucC5evNC5SkeTVxtS4mOmF8TT0T9u4=; b=OEmQI73bSBTRp/hgFzzyLuZ8G7
- MxthPcawUhdrx7ebf+pHBTYe8HQhdRXB6NiA6mw5T3Ktb8/t33MR6IKdnI0oaF0N2YSs8YfKYydk3
- +pdGagWyoxB4RKFPZ7NsDaVc0vvYF9LtlUuXRD/K0zuGLIIdMWh0GunKpmq1gODGdA+yDruQTGV7/
- yE2DpD1gOssk92KVGiHchaqmh7v5gowVjReMiRGEsWi2VPqTczwR1htejmqiQd9lJ4CctmGlPAeI7
- o/z8VoaKPTZoMrBoaba6a335Egcig/ivi8+ulWlZZt4EG+IbbB60KKZf12SLaqj+iGAuJXSdO6l6w
- aaBAhJhg==;
+ bh=Bma9z3Jcr48xqGBFuYcxFkaOebGPmPxIFdx+z1F9hUg=; b=PDG8Rb5yM6EydAspBWVZb9UXX0
+ PFx2MsHLacxvmFcnmsMvHoUqogjrt/cQ/+4wQWHNei42R8zZMoD+Nxe5O8jCv2Bauu8m+jCwzboQB
+ l6wNRs+ZQQV73KmEtg0qH8/12wkId6ibZ5+LmJvafcbMyw5rWIQsC1FnC6Vts+I92bT+UeDbG41Lg
+ Oau87o/+TnoNv+FNamaHEdA97jnE2eg65exVpt681sS01DeOytplqP0gb6chwpeevOWo3P3gV1fcu
+ L21m6t9bPItUXZ3H8KBDJp2wBidigTjzR+jEjsDndcms49zep5ZSORO9231KDd73aysxZfK9aEFgj
+ h5Qtv0fQ==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ueWhJ-002XyM-QN
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 12:27:41 +0200
+ id 1ueWhI-002XyE-Bs
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 12:27:40 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 02/14] drm/xe: Use emit_flush_imm_ggtt helper instead of open
- coding
-Date: Wed, 23 Jul 2025 11:27:24 +0100
-Message-ID: <20250723102739.50425-3-tvrtko.ursulin@igalia.com>
+Subject: [CI 00/14] adl auxcss ci run
+Date: Wed, 23 Jul 2025 11:27:22 +0100
+Message-ID: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
-References: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,33 +56,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Helper is already there so lets just use it.
+Checking if the latest AuxCCS work fares any better..
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_ring_ops.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+Aakash Deep Sarkar (1):
+  drm/i915/display: Fix dma_fence_wait_timeout() return value handling
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 7b50c7c1ee21..e8f22ec5f9af 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -415,11 +415,9 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
- 
--	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
--		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
--	dw[i++] = xe_lrc_seqno_ggtt_addr(lrc) | MI_FLUSH_DW_USE_GTT;
--	dw[i++] = 0;
--	dw[i++] = seqno; /* value */
-+	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
-+				MI_INVALIDATE_TLB | job->migrate_flush_flags,
-+				dw, i);
- 
- 	i = emit_user_interrupt(dw, i);
- 
+Tvrtko Ursulin (13):
+  drm/xe: Use emit_flush_imm_ggtt helper instead of open coding
+  drm/xe/xelpg: Flush CCS when flushing caches
+  drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+  drm/xe/xelp: Support auxccs invalidation on blitter
+  drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+  drm/xe/xelp: Wait for AuxCCS invalidation to complete
+  drm/xe: Export xe_emit_aux_table_inv
+  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
+    workarounds
+  drm/xe: Flush GGTT writes after populating DPT
+  drm/xe: Handle DPT in system memory
+  drm/xe/display: Add support for AuxCCS
+  drm/xe: Force flush system memory AuxCCS data before scan out
+  drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+
+ drivers/gpu/drm/i915/display/intel_display.c  |   3 +-
+ .../drm/i915/display/skl_universal_plane.c    |   6 -
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 207 +++++++++++++++---
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
+ drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
+ drivers/gpu/drm/xe/xe_lrc.c                   |  47 ++++
+ drivers/gpu/drm/xe/xe_ring_ops.c              | 169 +++++++-------
+ drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
+ drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+ 11 files changed, 338 insertions(+), 121 deletions(-)
+
 -- 
 2.48.0
 
