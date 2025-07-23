@@ -4,46 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49213C83F17
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 10:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0A28C83F17
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 10:36:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1434010E7A5;
-	Wed, 23 Jul 2025 10:28:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="g0+tBbdX";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C5CF10E7A6
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 10:27:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=GniBgkUf1KUSWPvMQOsSTf96E9gdZhJc17ukBp1lnKU=; b=g0+tBbdXPL0M7WOslwpY/p6+1E
- BFB0nktjGV63zpjTDQ/iWGJVGp13BfDIUiR0aELn0Sh8OLZDERQkaLpHZvh3GhoqlhyVYJ4frKw8P
- tD2HO/EsZkiUaRu/KECF5oD/PcPHhHSrpNGxVopIXW9chqltN+LLVc3ZzqrzV0+OgawTmHh2P9ztA
- Mi9n2qHm/gCfKBrELEIG4FGuVpvi59wRitxj+b4do/k8vKUNFJLh2ZSjaFZK4uUvRsO9bIuP+PBGH
- GiEMCbc2mEXltVJfkEgyGprXSKPpKZiBPhaiPfyt8+0ezJIa+66eIMOV7/IiNfuT86uXvL5kn69va
- zIYo1Osw==;
-Received: from [84.66.36.92] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ueWhP-002Xz5-Ja
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 12:27:47 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 10/14] drm/xe: Flush GGTT writes after populating DPT
-Date: Wed, 23 Jul 2025 11:27:32 +0100
-Message-ID: <20250723102739.50425-11-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
-References: <20250723102739.50425-1-tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86AE010E7A2;
+	Wed, 23 Jul 2025 10:36:22 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D35710E7A2;
+ Wed, 23 Jul 2025 10:36:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4025005009485083186=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_Block_hpd?=
+ =?utf-8?q?_during_suspend_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 23 Jul 2025 10:36:21 -0000
+Message-ID: <175326698103.182772.11713595700438886275@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250723092946.1975018-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20250723092946.1975018-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,97 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When DPT is placed in stolen it is populated using ioremap_wc() via GGTT.
+--===============4025005009485083186==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I915 has established that on modern platforms a small flush and delay is
-required for those writes to reliably land so lets add the same logic
-(simplified by removing impossible platforms) to xe as well.
+== Series Details ==
 
-v2:
- * Do it only for system memory buffers.
+Series: drm/xe/display: Block hpd during suspend (rev3)
+URL   : https://patchwork.freedesktop.org/series/151747/
+State : success
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 45 ++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index f1f8b5ab53ef..6d680ab3d944 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -12,9 +12,11 @@
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
- #include "intel_fbdev.h"
-+#include "regs/xe_engine_regs.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_ggtt.h"
-+#include "xe_mmio.h"
- #include "xe_pm.h"
- #include "xe_vram_types.h"
- 
-@@ -79,6 +81,46 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
- 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
- }
- 
-+static void gt_flush_ggtt_writes(struct xe_gt *gt)
-+{
-+	if (!gt)
-+		return;
-+
-+	xe_mmio_read32(&gt->mmio, RING_TAIL(RENDER_RING_BASE));
-+}
-+
-+static void ggtt_flush_writes(struct xe_ggtt *ggtt)
-+{
-+	struct xe_device *xe = tile_to_xe(ggtt->tile);
-+
-+	/*
-+	 * No actual flushing is required for the GTT write domain for reads
-+	 * from the GTT domain. Writes to it "immediately" go to main memory
-+	 * as far as we know, so there's no chipset flush. It also doesn't
-+	 * land in the GPU render cache.
-+	 *
-+	 * However, we do have to enforce the order so that all writes through
-+	 * the GTT land before any writes to the device, such as updates to
-+	 * the GATT itself.
-+	 *
-+	 * We also have to wait a bit for the writes to land from the GTT.
-+	 * An uncached read (i.e. mmio) seems to be ideal for the round-trip
-+	 * timing. This issue has only been observed when switching quickly
-+	 * between GTT writes and CPU reads from inside the kernel on recent hw,
-+	 * and it appears to only affect discrete GTT blocks (i.e. on LLC
-+	 * system agents we cannot reproduce this behaviour, until Cannonlake
-+	 * that was!).
-+	 */
-+
-+	wmb();
-+
-+	if (xe_pm_runtime_get_if_active(xe)) {
-+		gt_flush_ggtt_writes(ggtt->tile->primary_gt);
-+		gt_flush_ggtt_writes(ggtt->tile->media_gt);
-+		xe_pm_runtime_put(xe);
-+	}
-+}
-+
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			       const struct i915_gtt_view *view,
- 			       struct i915_vma *vma,
-@@ -162,6 +204,9 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 					  rot_info->plane[i].dst_stride);
- 	}
- 
-+	if (dpt->vmap.is_iomem && !xe_bo_is_vram(bo))
-+		ggtt_flush_writes(tile0->mem.ggtt);
-+
- 	vma->dpt = dpt;
- 	vma->node = dpt->ggtt_node[tile0->id];
- 
--- 
-2.48.0
+CI Bug Log - changes from xe-3461-0a0e5494c4c91b11918d08c3ca88d8868141a5e5_BAT -> xe-pw-151747v3_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8473 -> IGT_8474
+  * Linux: xe-3461-0a0e5494c4c91b11918d08c3ca88d8868141a5e5 -> xe-pw-151747v3
+
+  IGT_8473: b8b6f7615f840e15377c3b48a9c4178b3a248fb0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8474: 54376e96f3f84e7bc6ccdc0106017cf2778ef08a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3461-0a0e5494c4c91b11918d08c3ca88d8868141a5e5: 0a0e5494c4c91b11918d08c3ca88d8868141a5e5
+  xe-pw-151747v3: 151747v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151747v3/index.html
+
+--===============4025005009485083186==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: Block hpd during suspend (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151747/">https://patchwork.freedesktop.org/series/151747/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151747v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151747v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3461-0a0e5494c4c91b11918d08c3ca88d8868141a5e5_BAT -&gt; xe-pw-151747v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8473 -&gt; IGT_8474</li>
+<li>Linux: xe-3461-0a0e5494c4c91b11918d08c3ca88d8868141a5e5 -&gt; xe-pw-151747v3</li>
+</ul>
+<p>IGT_8473: b8b6f7615f840e15377c3b48a9c4178b3a248fb0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8474: 54376e96f3f84e7bc6ccdc0106017cf2778ef08a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3461-0a0e5494c4c91b11918d08c3ca88d8868141a5e5: 0a0e5494c4c91b11918d08c3ca88d8868141a5e5<br />
+  xe-pw-151747v3: 151747v3</p>
+
+</body>
+</html>
+
+--===============4025005009485083186==--
