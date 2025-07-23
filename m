@@ -4,30 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EAB8C83F17
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 14:24:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1B37C83F17
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Jul 2025 14:38:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 573CC10E7DE;
-	Wed, 23 Jul 2025 14:24:34 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D71D10E7DE
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 14:24:32 +0000 (UTC)
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: linux-kernel@vger.kernel.org
-Cc: intel-xe@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Mukesh Ojha <quic_mojha@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Johannes Berg <johannes@sipsolutions.net>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, stable@vger.kernel.org,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH] devcoredump: Fix circular locking dependency with
- devcd->mutex.
-Date: Wed, 23 Jul 2025 16:24:16 +0200
-Message-ID: <20250723142416.1020423-1-dev@lankhorst.se>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id B439B10E046;
+	Wed, 23 Jul 2025 14:38:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gootx27P";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB11810E046
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Jul 2025 14:38:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753281529; x=1784817529;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=OJdvYhLKXcf3+oKJFuwbCHwDfCpiie/50b01lBKwNxE=;
+ b=gootx27PaM5t2PuAfdK44xWA/KIEIdMYyEg4aM8I3m59g92ySD14bQzP
+ ILjZZOPy1tftvI6eGvyk2Rx9T51tvLyWWaKIaxhVE8+dFHd5l2F/D5+GV
+ pcEfF0wNd+uMJgbdYg0sJGo5dp9KyfjwtOtINMhSJB8Oq4nExi+rf6jYe
+ YT4Po6X7v7YwiCjvSFl5cES7y8bDNMgcSh7suHDAOIgyiekSlDo6GxfZr
+ ddm+jl01j8mbbPgrudrBeEoy8i+sRXSwBkPd+gopxwTcT2iHUATvSadYm
+ Cdk/R0bb+9ey/oxo6y7Ght3MWABvkliiG3yNd3M24dXuxHYSMhj9lU/Ex Q==;
+X-CSE-ConnectionGUID: RWzeKel8S+WNQlMumkVOOg==
+X-CSE-MsgGUID: v69qRDYLT6qknm24enP9qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="55714104"
+X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="55714104"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2025 07:38:49 -0700
+X-CSE-ConnectionGUID: vA6l8/2mQoKBdzV5o3BPWQ==
+X-CSE-MsgGUID: e59GoioySiOuKAm0HBYKYw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,333,1744095600"; d="scan'208";a="159180483"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2025 07:38:49 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Wed, 23 Jul 2025 07:38:48 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Wed, 23 Jul 2025 07:38:48 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.66)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Wed, 23 Jul 2025 07:38:48 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fpVFtWgQu4NITyXeggF1+OpgU0kDapxvnU1FcFQVOoIekErmxGDIW/OyDKyO+ZGWfh6IuhpVH6AUzAnjSvyKmXRb8BNpDSgrkFZpxzfH4dbRZ/4u+Cw3xBbieAYiOP7glGHpvaaq64+UfRJcoSbjv/yiNfx1RtZcemiHxNeR/fTts8sI2ZJGeDBdI+ggyc53hbaL0FNl0LKXQbRHehyhVwABl1QFlR8jkDEDwSUvQcqvlcZCPsTX1R64N2SaqO74l7Yc+aOy2+bntq4GgT2g25MyhswI7sSKHNgAN8XdxHedYDlKyO0ciStL1FPuCaKlbV6qMNs+EueK3tE5q9UmYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iZrUfV7SiowAOvfI28oVZu4/FFs24IdlE7zeaehEsBo=;
+ b=kNZV9mslBJ1T7QDeY/NgOZvXuLJzSSZsVksdHU8OuxQWYmvwbr5diM+WEMZkpDuy/Onl5uopqJSybfMViciI17kmgi229TkTK2FxF5rA7k4P7bNIy5l3QkQFZoutWu/Ik95J9LeV76VRPBg+9LEkXaOPC2G7bOCCgaRmLKbwW4CHTOu0eKuYL51u7G8F76vuuh/9yyjfYH3zNXiYD5hVqn2SmXynPkiavZQwwjOofiZhLBkFOeGqFFHw2f2JiheG1V7v+HeEXGLngSFcA15k2/OGaqx/701/6YmGTedvz4uMSQz/pSYAiNm81MuR0gmBml+zsL3wtDraQmWGdGF6RA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by SA1PR11MB7110.namprd11.prod.outlook.com (2603:10b6:806:2b3::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.23; Wed, 23 Jul
+ 2025 14:38:32 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267%6]) with mapi id 15.20.8943.029; Wed, 23 Jul 2025
+ 14:38:31 +0000
+Message-ID: <29753a51-721f-4d47-a8a4-b29bf15db5c7@intel.com>
+Date: Wed, 23 Jul 2025 16:38:28 +0200
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_SR-IOV_prom?=
+ =?UTF-8?Q?otions?=
+To: <intel-xe@lists.freedesktop.org>
+References: <20250722182618.30811-1-michal.wajdeczko@intel.com>
+ <175323392980.181993.7561513403662460889@1538d3639d33>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <175323392980.181993.7561513403662460889@1538d3639d33>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR07CA0250.eurprd07.prod.outlook.com
+ (2603:10a6:803:b4::17) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SA1PR11MB7110:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5a4fa116-a1df-4d93-6194-08ddc9f698ab
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|1800799024|366016|376014|13003099007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SC9qU09zdG9OVDlMRmNQWi90Z1RMV0lYV2xRd2xmNkk1aWJrRzBhSmZLVzNK?=
+ =?utf-8?B?VmhTSkhqSWxJUEU1Y3F2T2pSQ2NiOHRRdHQyYUp6bElvcCtKOFo5RU4vblNp?=
+ =?utf-8?B?YlUrZkFEelJEZXBib0ZPUkVuNUxkNjE5N0VqVmRwb2JpUCtqL0c4ODlIa0ZO?=
+ =?utf-8?B?Y3JBcHpEU2J6THpZcVFYUlJvK0lVVTh3VzB5aGlHMnNRQVFJL0lHajdWOVg3?=
+ =?utf-8?B?dnhPRWIrS04xd3o3eW1xL0gyTlVGc3U3anhuSU4xdXBMMGlhU1BvRURxVDhl?=
+ =?utf-8?B?QVovbnF3MkxVM2dsblBLLzgvSWhURUdSMWt2N0Vwdlk2bGd5OXJHcTdpdFR5?=
+ =?utf-8?B?WWorMWloQjgrZGZTdHNhTEJtM1ZVZDFVcHJGT1g3Qi9ucHF5bVJiajR3SVc1?=
+ =?utf-8?B?QVJkZjl3S2toMU5CQU5aS0VzTDNzR1E1NCsyR2RLaDY1V0JSS1FtL3VUZjhN?=
+ =?utf-8?B?SFhnZHgvbW12M1dOWUd4cGs1eHdwM3FEL29HL3EyVVBVRHc0MnJWREZzRmY2?=
+ =?utf-8?B?S2FEUWpZaDJZOGk4WXdYOWRkSDQrYXQ5RzdCRUdDa3VZZHBYeG4zMHQzakF0?=
+ =?utf-8?B?a2djemk3Zk90L3dNcXJ1WkZJVlRWb05mSjVWZjBHT0I0VFNlanc0dEwrVDBY?=
+ =?utf-8?B?dElvNlVsejhlZ055L2kxQ29ZOHdSZU11Q1NqVVkrbEkveDFnd0g4K0kvOVh2?=
+ =?utf-8?B?cGcvZUo0bnVQWFdpYlNYTzlvc21BLzJWL3Z3TTlQOHRKS3AzaFJNMWxsRmlX?=
+ =?utf-8?B?MldxbnFZUyswUitQMkJ3cllOSmlvN1VjVksxWlVsMWlvOGpwZUJMK0MvNjZ1?=
+ =?utf-8?B?YXQ3cmlLWVVwUi9CaWw2UGJlNkQ2Y25DSC9kRXdiMElpVk1sSE9weTlTOXUx?=
+ =?utf-8?B?SzI0MFdsZnR5WUlDOXV1THdsVlJScGorRTZBRzRlcFJCdktDU1JjSDUrU3d3?=
+ =?utf-8?B?UXpUUnlldDhwM0dKS0FrdVducHUrSE5kcUZDNzdzRFg2SjlrdlByT0lNajZP?=
+ =?utf-8?B?SkxqcFdLLzFQdzNVbEFNbDhyWHVTL0hGVE9HSFBxTXhWRmVLUVFPbDlDWFB0?=
+ =?utf-8?B?N2tvL3NWQmNEOVhVMG5JcW5qQTJOempyWlNtdEduYVMzUGgra0hRWG9wYVNl?=
+ =?utf-8?B?cjJQOGdiajJLU2M3dkltdlgvRjRzSXViRzhNOGtJaWx3SzhNcmthTkdpUWtq?=
+ =?utf-8?B?aEVheEJ0dHRBTFk5VGN2c2NpRExhUHhRam16eFJRSExnV2I5OUlXeU1OQThU?=
+ =?utf-8?B?djJKZlhjN1JuWGhpTzRZOEFMNjBjV3FjV2c0V0R3TzQyUTB2dFlVVkJzY0d0?=
+ =?utf-8?B?MlZrNXVBWkxiVkpjdDVwMmUyNW91NXFmSU82QmlBS2huSnV5UXQvWE90cjF6?=
+ =?utf-8?B?NVJ2Qi83MVUyV2pwUDBBQjhKMElDNjM5RVZKZEpZMzlDRWR2WkdWbjJ5VmJk?=
+ =?utf-8?B?VmJsbCtQanlDV2l2dkEyUFFBbVFpQUtZSlhrRGw2MlJITklScWZ3SEtuRVQv?=
+ =?utf-8?B?cXh2YzZPZTk1R3hJbkZodFNYaFRnNXZpL2c4Q3BuWXRaT05KbWtVMEc1U2pu?=
+ =?utf-8?B?RG1KbzVjaWVWT1B6dG4wZUV4YzBsSUpMU3JvazRDcE9wZnBaYy9JU3hLMnhF?=
+ =?utf-8?B?aEhXSlFSeVlPcnRrOElXUWJYTmV6eDZkYmlwZVlQb2hJaHRScEVOZzYwbDE1?=
+ =?utf-8?B?S0VGNmV5dytxUURGL2ZvVWJVWThEeFhBelZ3QWhrMTd5MXM2ckxNbC9oeHE4?=
+ =?utf-8?B?NVBaSGV6bGNWeU9DaGlkQ0lkRmtTc242Y045Vis0SmdOM01sNVg2aGo3Y2Ju?=
+ =?utf-8?B?dk1VaGVXRkxVcDMwWCtVUTMwbGw1aGYrQ0hkTEk4dit5RmFyL25WT3hkbDhV?=
+ =?utf-8?Q?qkmgjTM8DHFOI?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(13003099007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aVF4UjV5TUtIbUQ1dGN0c2NpYm1kSHpoSkdFLzdCNVpZNWZwcDRsWDFNRG1Q?=
+ =?utf-8?B?VEZKS1RUcmpXZndVdnlvaHJMNk80VTNrM2V1STZDWUpneEFtVlJNeFZ0UW1i?=
+ =?utf-8?B?Wmo5bGIvUGxYM3BRSjUxckJxSXROSzJuL0QwNCtVTEdPa1lIajNYZHVmMVFB?=
+ =?utf-8?B?MDlSQm9jeFY1bHdvTE1rWGlmN1Y4YzRzTmcyL01CYTR5Vi8rNnlpNXhNMmgv?=
+ =?utf-8?B?QzFXWXB0dURVUWhoNlBISTNWNXZQL0syV3EwWXVCRmhXc2MxVHdxaTV2eFRV?=
+ =?utf-8?B?RU9yYTVodUdnNXY0cE10NHZJZDBwWFJnckdUeUxkd3NHWlBSRXZlVVhlcEQ2?=
+ =?utf-8?B?RElBd3NhWXltVmN0NnROVHp1bnVneVczVThVLzVnd3pBRHpDZEtiZ2RQbVo0?=
+ =?utf-8?B?WHIvTE5NcitFRkoyVGR2eVdVQklUTUNkSnZqYXlueTJwcWdhbzZRMFJyTTYy?=
+ =?utf-8?B?Uk03bGEzYU5TUWU5TEU1K0xjMWgzblV4Tmk2czM4NHp3SWhMMTZSOEdpMHRu?=
+ =?utf-8?B?cmZqQVZKRGxtUGVFejJYK1JnNGFwVVVWT0lIM2wzeDBqNS93MVVndUFQWFJ2?=
+ =?utf-8?B?VDVWeWhNZzNDVTFtellneksyNU5oN3M3SGRjU3phOFZHb1VacGxONnlMQjdV?=
+ =?utf-8?B?bXU5a3MwRkxxUmJxR2VpcjNabEluK2JJVVdlL1RELzlGY0czZ2JaY0JTdUVW?=
+ =?utf-8?B?bTlIaHZEYUVicXg2Sjcvb3dEWmQ5TDNnRnNlRGtuSElOc2hLemkwQ0J6bnpK?=
+ =?utf-8?B?U2w0ZFpGM2VrSkZoMmYrbFE3aVhzVU5VZHQ4VHlkUFRPdUFCLythWTgyd2Ni?=
+ =?utf-8?B?NXhONVN0K1F1TlkyTjFuM2JiMWJaMGhQbnJNc2ZEeWdYT3c2aEpLV1dMN3A4?=
+ =?utf-8?B?WjFtUTlqZUZBTVo3UVlpUjVxVkNJT1Z4dTBxZUpaZFdtYXdkTU15L1RpYk53?=
+ =?utf-8?B?Ty96ZnU5SWtJeGFvMTVPMncybERKbXlGcnQ5WWE0aUpuRysrTmVzWDdJSXpl?=
+ =?utf-8?B?THZHMHRVcFQ2UVJYM0xhUU1pYWhXZnE5emhEY3JQSWh0ZUhlVzlncCtqb3l2?=
+ =?utf-8?B?WFBBaTd3bnB2N1BJdUtqUzBkb2xCdDRhd3hnTjFKV2d1c1pwV0hhbURobVpq?=
+ =?utf-8?B?eXh1MzNIcmI5RDRFZllKdHd4Z0NkbndYNU9SSTgzMUhtSDNJYlh5UnpzeXJI?=
+ =?utf-8?B?eThxODZ1VDVnUGEwWmN0S1MwOXNMclpaWHE4RWZWS0ttUXVGQWFHUUtRU2Nz?=
+ =?utf-8?B?bC9NYmVyMzA4c29PaEdyMTNBVjFqT1hSL1gyRnh4RVduYVNLU3FmdmRNT2Jx?=
+ =?utf-8?B?b05Mc3YycktDcTNRYmJFeWREODJQeFZrQ0czQkJ0MlVzam9UVFE2M0VCR3Rp?=
+ =?utf-8?B?SjZWdzRpd1pWYzNtWS9TWGNtM2NrUmRjcExITTd1N3RpUDBvSjBlQ1RZZVBK?=
+ =?utf-8?B?dmNYUklHcDV4enRIR29CbnJsZ1NxRjZ2ZEdtbVRSVDdIOVJXZEpCWFlwcTQx?=
+ =?utf-8?B?TnVIcXJEN2tETmJSajN1OWtnRzUwQUhxelBSM2xFRUFxR21Nbjhzd0Ewd3Aw?=
+ =?utf-8?B?OEUxNldCVjdlL04vRmtzOE1tQkkrb1dFc2JkZzZLZnM0aWhCanFic3dWdzFT?=
+ =?utf-8?B?U2FFR3dYNXNrQ3p6aXYyTG9waTdZRWpRVC96cUlQUWhhZ05ERmdTektLTDZJ?=
+ =?utf-8?B?MW40T2VWcGVadG1BVCtsc05hWGRDbFdiYkhDeFJsUjFpVHViZitKR1N4RjJq?=
+ =?utf-8?B?cUt4WXBjMHNXTEtWS2d6WUNvNFZhWUhnSGFGMWFJc0tCdUU3cnBoS2dMNURR?=
+ =?utf-8?B?L0UvTmQreTY3OFc3NHJOc2drdUJhZUNibm1NMTlXdXl2ajd4Qi9xaVUxYWJR?=
+ =?utf-8?B?QjFTQTlNaEhWVnB4UlljOXdGVkt0RDZmaFVQOUpvanpSK2krdG11N1J2S0JN?=
+ =?utf-8?B?enBzQUtsWnQwcitqSHYvUVc0Slc5UEgxOFJpL0pyNnB2UGlCMGEzN2pzVUVp?=
+ =?utf-8?B?V3grL2RnK2N6THpobHdBdUVLQzNRK2N4REd2SUZDUE1pSUNLZnB0cWJuM0Jm?=
+ =?utf-8?B?LzBBVk55Y3NiUS9CSm4rQXdrNUVFdWQzUjVBb08vWWNEK0huU0g1ZG5BWFdG?=
+ =?utf-8?B?OGliNnJmdXJqNDBjdFY4L2ZwNFFrQ2haUUU1dnJnUHQ2RjRjL0RMbDFCQVpX?=
+ =?utf-8?B?U1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a4fa116-a1df-4d93-6194-08ddc9f698ab
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2025 14:38:31.8358 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Rl2lj0hBkFxNU7p9VnZHZRV2LS+Ong0bwyUwfQZtRV8CdhFkMpS8BgRhMIKZIihA+B+VNJM9TPa13xnq8hiIN6Vw8/WZNF+uEh95SnDAT3A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7110
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,378 +194,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The original code causes a circular locking dependency found by lockdep.
 
-======================================================
-WARNING: possible circular locking dependency detected
-6.16.0-rc6-lgci-xe-xe-pw-151626v3+ #1 Tainted: G S   U
-------------------------------------------------------
-xe_fault_inject/5091 is trying to acquire lock:
-ffff888156815688 ((work_completion)(&(&devcd->del_wk)->work)){+.+.}-{0:0}, at: __flush_work+0x25d/0x660
 
-but task is already holding lock:
+On 7/23/2025 3:25 AM, Patchwork wrote:
+> *Patch Details*
+> *Series:*	SR-IOV promotions
+> *URL:*	https://patchwork.freedesktop.org/series/151961/ <https://patchwork.freedesktop.org/series/151961/>
+> *State:*	failure
+> *Details:*	https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151961v1/index.html <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151961v1/index.html>
+> 
+> 
+>   CI Bug Log - changes from xe-3458-1bb52fd2f94e5c605adf88a086ab0eadcdd708e3_FULL -> xe-pw-151961v1_FULL
+> 
+> 
+>     Summary
+> 
+> *FAILURE*
+> 
+> Serious unknown changes coming with xe-pw-151961v1_FULL absolutely need to be
+> verified manually.
+> 
+> If you think the reported changes have nothing to do with the changes
+> introduced in xe-pw-151961v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+> to document this new failure mode, which will reduce false positives in CI.
+> 
+> 
+>     Participating hosts (4 -> 4)
+> 
+> No changes in participating hosts
+> 
+> 
+>     Possible new issues
+> 
+> Here are the unknown changes that may have been introduced in xe-pw-151961v1_FULL:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Possible regressions
+> 
+>   *
+> 
+>     igt@xe_exec_threads@threads-cm-fd-userptr-invalidate:
+> 
+>       o shard-adlp: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-3458-1bb52fd2f94e5c605adf88a086ab0eadcdd708e3/shard-adlp-3/igt@xe_exec_threads@threads-cm-fd-userptr-invalidate.html> -> FAIL <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151961v1/shard-adlp-1/igt@xe_exec_threads@threads-cm-fd-userptr-invalidate.html> +1 other test fail
 
-ffff888156815620 (&devcd->mutex){+.+.}-{3:3}, at: dev_coredump_put+0x3f/0xa0
-which lock already depends on the new lock.
-the existing dependency chain (in reverse order) is:
--> #2 (&devcd->mutex){+.+.}-{3:3}:
-       mutex_lock_nested+0x4e/0xc0
-       devcd_data_write+0x27/0x90
-       sysfs_kf_bin_write+0x80/0xf0
-       kernfs_fop_write_iter+0x169/0x220
-       vfs_write+0x293/0x560
-       ksys_write+0x72/0xf0
-       __x64_sys_write+0x19/0x30
-       x64_sys_call+0x2bf/0x2660
-       do_syscall_64+0x93/0xb60
-       entry_SYSCALL_64_after_hwframe+0x76/0x7e
--> #1 (kn->active#236){++++}-{0:0}:
-       kernfs_drain+0x1e2/0x200
-       __kernfs_remove+0xae/0x400
-       kernfs_remove_by_name_ns+0x5d/0xc0
-       remove_files+0x54/0x70
-       sysfs_remove_group+0x3d/0xa0
-       sysfs_remove_groups+0x2e/0x60
-       device_remove_attrs+0xc7/0x100
-       device_del+0x15d/0x3b0
-       devcd_del+0x19/0x30
-       process_one_work+0x22b/0x6f0
-       worker_thread+0x1e8/0x3d0
-       kthread+0x11c/0x250
-       ret_from_fork+0x26c/0x2e0
-       ret_from_fork_asm+0x1a/0x30
--> #0 ((work_completion)(&(&devcd->del_wk)->work)){+.+.}-{0:0}:
-       __lock_acquire+0x1661/0x2860
-       lock_acquire+0xc4/0x2f0
-       __flush_work+0x27a/0x660
-       flush_delayed_work+0x5d/0xa0
-       dev_coredump_put+0x63/0xa0
-       xe_driver_devcoredump_fini+0x12/0x20 [xe]
-       devm_action_release+0x12/0x30
-       release_nodes+0x3a/0x120
-       devres_release_all+0x8a/0xd0
-       device_unbind_cleanup+0x12/0x80
-       device_release_driver_internal+0x23a/0x280
-       device_driver_detach+0x14/0x20
-       unbind_store+0xaf/0xc0
-       drv_attr_store+0x21/0x50
-       sysfs_kf_write+0x4a/0x80
-       kernfs_fop_write_iter+0x169/0x220
-       vfs_write+0x293/0x560
-       ksys_write+0x72/0xf0
-       __x64_sys_write+0x19/0x30
-       x64_sys_call+0x2bf/0x2660
-       do_syscall_64+0x93/0xb60
-       entry_SYSCALL_64_after_hwframe+0x76/0x7e
-other info that might help us debug this:
-Chain exists of: (work_completion)(&(&devcd->del_wk)->work) --> kn->active#236 --> &devcd->mutex
- Possible unsafe locking scenario:
-       CPU0                    CPU1
-       ----                    ----
-  lock(&devcd->mutex);
-                               lock(kn->active#236);
-                               lock(&devcd->mutex);
-  lock((work_completion)(&(&devcd->del_wk)->work));
- *** DEADLOCK ***
-5 locks held by xe_fault_inject/5091:
- #0: ffff8881129f9488 (sb_writers#5){.+.+}-{0:0}, at: ksys_write+0x72/0xf0
- #1: ffff88810c755078 (&of->mutex#2){+.+.}-{3:3}, at: kernfs_fop_write_iter+0x123/0x220
- #2: ffff8881054811a0 (&dev->mutex){....}-{3:3}, at: device_release_driver_internal+0x55/0x280
- #3: ffff888156815620 (&devcd->mutex){+.+.}-{3:3}, at: dev_coredump_put+0x3f/0xa0
- #4: ffffffff8359e020 (rcu_read_lock){....}-{1:2}, at: __flush_work+0x72/0x660
-stack backtrace:
-CPU: 14 UID: 0 PID: 5091 Comm: xe_fault_inject Tainted: G S   U              6.16.0-rc6-lgci-xe-xe-pw-151626v3+ #1 PREEMPT_{RT,(lazy)}
-Tainted: [S]=CPU_OUT_OF_SPEC, [U]=USER
-Hardware name: Micro-Star International Co., Ltd. MS-7D25/PRO Z690-A DDR4(MS-7D25), BIOS 1.10 12/13/2021
-Call Trace:
- <TASK>
- dump_stack_lvl+0x91/0xf0
- dump_stack+0x10/0x20
- print_circular_bug+0x285/0x360
- check_noncircular+0x135/0x150
- ? register_lock_class+0x48/0x4a0
- __lock_acquire+0x1661/0x2860
- lock_acquire+0xc4/0x2f0
- ? __flush_work+0x25d/0x660
- ? mark_held_locks+0x46/0x90
- ? __flush_work+0x25d/0x660
- __flush_work+0x27a/0x660
- ? __flush_work+0x25d/0x660
- ? trace_hardirqs_on+0x1e/0xd0
- ? __pfx_wq_barrier_func+0x10/0x10
- flush_delayed_work+0x5d/0xa0
- dev_coredump_put+0x63/0xa0
- xe_driver_devcoredump_fini+0x12/0x20 [xe]
- devm_action_release+0x12/0x30
- release_nodes+0x3a/0x120
- devres_release_all+0x8a/0xd0
- device_unbind_cleanup+0x12/0x80
- device_release_driver_internal+0x23a/0x280
- ? bus_find_device+0xa8/0xe0
- device_driver_detach+0x14/0x20
- unbind_store+0xaf/0xc0
- drv_attr_store+0x21/0x50
- sysfs_kf_write+0x4a/0x80
- kernfs_fop_write_iter+0x169/0x220
- vfs_write+0x293/0x560
- ksys_write+0x72/0xf0
- __x64_sys_write+0x19/0x30
- x64_sys_call+0x2bf/0x2660
- do_syscall_64+0x93/0xb60
- ? __f_unlock_pos+0x15/0x20
- ? __x64_sys_getdents64+0x9b/0x130
- ? __pfx_filldir64+0x10/0x10
- ? do_syscall_64+0x1a2/0xb60
- ? clear_bhb_loop+0x30/0x80
- ? clear_bhb_loop+0x30/0x80
- entry_SYSCALL_64_after_hwframe+0x76/0x7e
-RIP: 0033:0x76e292edd574
-Code: c7 00 16 00 00 00 b8 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 80 3d d5 ea 0e 00 00 74 13 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 54 c3 0f 1f 00 55 48 89 e5 48 83 ec 20 48 89
-RSP: 002b:00007fffe247a828 EFLAGS: 00000202 ORIG_RAX: 0000000000000001
-RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 000076e292edd574
-RDX: 000000000000000c RSI: 00006267f6306063 RDI: 000000000000000b
-RBP: 000000000000000c R08: 000076e292fc4b20 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000202 R12: 00006267f6306063
-R13: 000000000000000b R14: 00006267e6859c00 R15: 000076e29322a000
- </TASK>
-xe 0000:03:00.0: [drm] Xe device coredump has been deleted.
+unrelated, looks like sporadic
 
-Fixes: 01daccf74832 ("devcoredump : Serialize devcd_del work")
-Cc: Mukesh Ojha <quic_mojha@quicinc.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Johannes Berg <johannes@sipsolutions.net>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: linux-kernel@vger.kernel.org
-Cc: <stable@vger.kernel.org> # v6.1+
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- drivers/base/devcoredump.c | 136 ++++++++++++++++++++++---------------
- 1 file changed, 83 insertions(+), 53 deletions(-)
+<7> [301.708094] xe 0000:00:02.0: [drm:xe_guc_exec_queue_memory_cat_error_handler [xe]] GT0: Engine memory CAT error: class=vcs, logical_mask: 0x1, guc_id=6
+<6> [301.708849] xe 0000:00:02.0: [drm] GT0: Engine reset: engine_class=vcs, logical_mask: 0x1, guc_id=6
+<7> [301.708957] xe 0000:00:02.0: [drm:xe_devcoredump [xe]] Multiple hangs are occurring, but only the first snapshot was taken
 
-diff --git a/drivers/base/devcoredump.c b/drivers/base/devcoredump.c
-index 03a39c417dc41..ad4bddde12ccb 100644
---- a/drivers/base/devcoredump.c
-+++ b/drivers/base/devcoredump.c
-@@ -23,50 +23,46 @@ struct devcd_entry {
- 	void *data;
- 	size_t datalen;
- 	/*
--	 * Here, mutex is required to serialize the calls to del_wk work between
--	 * user/kernel space which happens when devcd is added with device_add()
--	 * and that sends uevent to user space. User space reads the uevents,
--	 * and calls to devcd_data_write() which try to modify the work which is
--	 * not even initialized/queued from devcoredump.
-+	 * There are 2 races for which mutex is required.
- 	 *
-+	 * The first race is between device creation and userspace writing to
-+	 * schedule immediately destruction.
- 	 *
-+	 * This race is handled by arming the timer before device creation, but
-+	 * when device creation fails the timer still exists.
- 	 *
--	 *        cpu0(X)                                 cpu1(Y)
-+	 * To solve this, hold the mutex during device_add(), and set
-+	 * init_completed on success before releasing the mutex.
- 	 *
--	 *        dev_coredump() uevent sent to user space
--	 *        device_add()  ======================> user space process Y reads the
--	 *                                              uevents writes to devcd fd
--	 *                                              which results into writes to
-+	 * That way the timer will never fire until device_add() is called,
-+	 * it will do nothing if init_completed is not set. The timer is also
-+	 * cancelled in that case.
- 	 *
--	 *                                             devcd_data_write()
--	 *                                               mod_delayed_work()
--	 *                                                 try_to_grab_pending()
--	 *                                                   timer_delete()
--	 *                                                     debug_assert_init()
--	 *       INIT_DELAYED_WORK()
--	 *       schedule_delayed_work()
--	 *
--	 *
--	 * Also, mutex alone would not be enough to avoid scheduling of
--	 * del_wk work after it get flush from a call to devcd_free()
--	 * mentioned as below.
--	 *
--	 *	disabled_store()
--	 *        devcd_free()
--	 *          mutex_lock()             devcd_data_write()
--	 *          flush_delayed_work()
--	 *          mutex_unlock()
--	 *                                   mutex_lock()
--	 *                                   mod_delayed_work()
--	 *                                   mutex_unlock()
--	 * So, delete_work flag is required.
-+	 * The second race involves multiple parallel invocations of devcd_free(),
-+	 * add a deleted flag so only 1 can call the destructor.
- 	 */
- 	struct mutex mutex;
--	bool delete_work;
-+	bool init_completed, deleted;
- 	struct module *owner;
- 	ssize_t (*read)(char *buffer, loff_t offset, size_t count,
- 			void *data, size_t datalen);
- 	void (*free)(void *data);
-+	/*
-+	 * If nothing interferes and device_add() was returns success,
-+	 * del_wk will destroy the device after the timer fires.
-+	 *
-+	 * Multiple userspace processes can interfere in the working of the timer:
-+	 * - Writing to the coredump will reschedule the timer to run immediately,
-+	 *   if still armed.
-+	 *
-+	 *   This is handled by using "if (cancel_delayed_work()) {
-+	 *   schedule_delayed_work() }", to prevent re-arming after having
-+	 *   been previously fired.
-+	 * - Writing to /sys/class/devcoredump/disabled will destroy the
-+	 *   coredump synchronously.
-+	 *   This is handled by using disable_delayed_work_sync(), and then
-+	 *   checking if deleted flag is set with &devcd->mutex held.
-+	 */
- 	struct delayed_work del_wk;
- 	struct device *failing_dev;
- };
-@@ -95,14 +91,27 @@ static void devcd_dev_release(struct device *dev)
- 	kfree(devcd);
- }
- 
-+static void __devcd_del(struct devcd_entry *devcd)
-+{
-+	devcd->deleted = true;
-+	device_del(&devcd->devcd_dev);
-+	put_device(&devcd->devcd_dev);
-+}
-+
- static void devcd_del(struct work_struct *wk)
- {
- 	struct devcd_entry *devcd;
-+	bool init_completed;
- 
- 	devcd = container_of(wk, struct devcd_entry, del_wk.work);
- 
--	device_del(&devcd->devcd_dev);
--	put_device(&devcd->devcd_dev);
-+	/* devcd->mutex serializes against dev_coredumpm_timeout */
-+	mutex_lock(&devcd->mutex);
-+	init_completed = devcd->init_completed;
-+	mutex_unlock(&devcd->mutex);
-+
-+	if (init_completed)
-+		__devcd_del(devcd);
- }
- 
- static ssize_t devcd_data_read(struct file *filp, struct kobject *kobj,
-@@ -122,12 +131,12 @@ static ssize_t devcd_data_write(struct file *filp, struct kobject *kobj,
- 	struct device *dev = kobj_to_dev(kobj);
- 	struct devcd_entry *devcd = dev_to_devcd(dev);
- 
--	mutex_lock(&devcd->mutex);
--	if (!devcd->delete_work) {
--		devcd->delete_work = true;
--		mod_delayed_work(system_wq, &devcd->del_wk, 0);
--	}
--	mutex_unlock(&devcd->mutex);
-+	/*
-+	 * Although it's tempting to use mod_delayed work here,
-+	 * that will cause a reschedule if the timer already fired.
-+	 */
-+	if (cancel_delayed_work(&devcd->del_wk))
-+		schedule_delayed_work(&devcd->del_wk, 0);
- 
- 	return count;
- }
-@@ -151,11 +160,21 @@ static int devcd_free(struct device *dev, void *data)
- {
- 	struct devcd_entry *devcd = dev_to_devcd(dev);
- 
-+	/*
-+	 * To prevent a race with devcd_data_write(), disable work and
-+	 * complete manually instead.
-+	 *
-+	 * We cannot rely on the return value of
-+	 * disable_delayed_work_sync() here, because it might be in the
-+	 * middle of a cancel_delayed_work + schedule_delayed_work pair.
-+	 *
-+	 * devcd->mutex here guards against multiple parallel invocations
-+	 * of devcd_free().
-+	 */
-+	disable_delayed_work_sync(&devcd->del_wk);
- 	mutex_lock(&devcd->mutex);
--	if (!devcd->delete_work)
--		devcd->delete_work = true;
--
--	flush_delayed_work(&devcd->del_wk);
-+	if (!devcd->deleted)
-+		__devcd_del(devcd);
- 	mutex_unlock(&devcd->mutex);
- 	return 0;
- }
-@@ -179,12 +198,10 @@ static ssize_t disabled_show(const struct class *class, const struct class_attri
-  *                                                                 put_device() <- last reference
-  *             error = fn(dev, data)                           devcd_dev_release()
-  *             devcd_free(dev, data)                           kfree(devcd)
-- *             mutex_lock(&devcd->mutex);
-  *
-  *
-  * In the above diagram, it looks like disabled_store() would be racing with parallelly
-- * running devcd_del() and result in memory abort while acquiring devcd->mutex which
-- * is called after kfree of devcd memory after dropping its last reference with
-+ * running devcd_del() and result in memory abort after dropping its last reference with
-  * put_device(). However, this will not happens as fn(dev, data) runs
-  * with its own reference to device via klist_node so it is not its last reference.
-  * so, above situation would not occur.
-@@ -374,7 +391,7 @@ void dev_coredumpm_timeout(struct device *dev, struct module *owner,
- 	devcd->read = read;
- 	devcd->free = free;
- 	devcd->failing_dev = get_device(dev);
--	devcd->delete_work = false;
-+	devcd->deleted = false;
- 
- 	mutex_init(&devcd->mutex);
- 	device_initialize(&devcd->devcd_dev);
-@@ -383,8 +400,14 @@ void dev_coredumpm_timeout(struct device *dev, struct module *owner,
- 		     atomic_inc_return(&devcd_count));
- 	devcd->devcd_dev.class = &devcd_class;
- 
--	mutex_lock(&devcd->mutex);
- 	dev_set_uevent_suppress(&devcd->devcd_dev, true);
-+
-+	/* devcd->mutex prevents devcd_del() completing until init finishes */
-+	mutex_lock(&devcd->mutex);
-+	devcd->init_completed = false;
-+	INIT_DELAYED_WORK(&devcd->del_wk, devcd_del);
-+	schedule_delayed_work(&devcd->del_wk, timeout);
-+
- 	if (device_add(&devcd->devcd_dev))
- 		goto put_device;
- 
-@@ -401,13 +424,20 @@ void dev_coredumpm_timeout(struct device *dev, struct module *owner,
- 
- 	dev_set_uevent_suppress(&devcd->devcd_dev, false);
- 	kobject_uevent(&devcd->devcd_dev.kobj, KOBJ_ADD);
--	INIT_DELAYED_WORK(&devcd->del_wk, devcd_del);
--	schedule_delayed_work(&devcd->del_wk, timeout);
-+
-+	/*
-+	 * Safe to run devcd_del() now that we are done with devcd_dev.
-+	 * Alternatively we could have taken a ref on devcd_dev before
-+	 * dropping the lock.
-+	 */
-+	devcd->init_completed = true;
- 	mutex_unlock(&devcd->mutex);
- 	return;
-  put_device:
--	put_device(&devcd->devcd_dev);
- 	mutex_unlock(&devcd->mutex);
-+	cancel_delayed_work_sync(&devcd->del_wk);
-+	put_device(&devcd->devcd_dev);
-+
-  put_module:
- 	module_put(owner);
-  free:
--- 
-2.45.2
+>   *
+> 
+>     igt@xe_fault_injection@inject-fault-probe-function-xe_guc_log_init:
+> 
+>       o shard-bmg: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-3458-1bb52fd2f94e5c605adf88a086ab0eadcdd708e3/shard-bmg-2/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_log_init.html> -> ABORT <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151961v1/shard-bmg-8/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_log_init.html>
+> 
+
+unrelated, looks like sporadic, previously tracked as Xe Bug# 3084
+
+<4> [265.225514] pci 0000:03:00.0: [drm] Assertion `ret` failed!
+platform: BATTLEMAGE subplatform: 1
+graphics: Xe2_HPG 20.01 step A0
+media: Xe2_HPM 13.01 step A1
+tile: 0 VRAM 12.0 GiB
+GT: 0 type 1
+<4> [265.225582] WARNING: CPU: 0 PID: 8409 at drivers/gpu/drm/xe/xe_guc_submit.c:242 guc_submit_fini+0x2b6/0x2d0 [xe]
+
+...
+
+<3> [265.227376] pci 0000:03:00.0: [drm] *ERROR* GT0: GUC ID manager unclean (1/65535)
+<6> [265.228262] pci 0000:03:00.0: [drm] GT0: 	total 65535
+<6> [265.228272] pci 0000:03:00.0: [drm] GT0: 	used 1
+<6> [265.228278] pci 0000:03:00.0: [drm] GT0: 	range 5..5 (1)
+
+...
+
+<3> [265.233717] [drm:drm_mm_takedown] *ERROR* node [0070d000 + 00007000]: inserted at
+ drm_mm_insert_node_in_range+0x2b4/0x520
+ __xe_ggtt_insert_bo_at+0x159/0x4b0 [xe]
+ xe_ggtt_insert_bo+0x17/0x30 [xe]
+ __xe_bo_create_locked+0x2a5/0x620 [xe]
+ xe_bo_create_pin_map_at_aligned+0x49/0x1e0 [xe]
+ xe_bo_create_pin_map+0x1c/0x30 [xe]
+ xe_lrc_create+0x178/0x1990 [xe]
+ xe_exec_queue_create+0x339/0x520 [xe]
+ xe_exec_queue_create_ioctl+0xb2f/0xc90 [xe]
+
+> 
+>         Warnings
+> 
+>   * igt@xe_pm@s2idle-d3cold-basic-exec:
+>       o shard-adlp: SKIP <https://intel-gfx-ci.01.org/tree/intel-xe/xe-3458-1bb52fd2f94e5c605adf88a086ab0eadcdd708e3/shard-adlp-3/igt@xe_pm@s2idle-d3cold-basic-exec.html> (Intel XE#2284 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2284> / Intel XE#366 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/366>) -> ABORT <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151961v1/shard-adlp-1/igt@xe_pm@s2idle-d3cold-basic-exec.html>
+
+unrelated, looks that we lost MMIO
+
+<3> [321.997510] xe 0000:00:02.0: [drm] *ERROR* GT0: GuC mmio request 0x5507: no reply 0xffff
+<3> [321.998641] xe 0000:00:02.0: [drm] *ERROR* GT0: GuC suspend failed: -ETIMEDOUT
+<3> [321.998721] xe 0000:00:02.0: [drm] *ERROR* GT0: suspend failed (-ETIMEDOUT)
+<3> [321.999159] xe 0000:00:02.0: can't suspend (xe_pci_runtime_suspend [xe] returned -110)
+
 
