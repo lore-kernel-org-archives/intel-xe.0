@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0460DC83F26
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 19:59:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F33FCC83F26
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 20:04:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFE8510E29D;
-	Thu, 24 Jul 2025 19:59:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC6C310E2B9;
+	Thu, 24 Jul 2025 20:04:17 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B84DE10E29D;
- Thu, 24 Jul 2025 19:59:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6581741982546923689=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3809810E2B9;
+ Thu, 24 Jul 2025 20:04:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Use_DRM_scheduler_for_delay?=
- =?utf-8?q?ed_GT_TLB_invalidations_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/hw=5Fengine=5Fgrou?=
+ =?utf-8?q?p=3A_Avoid_call_kfree=28=29_for_drmm=5Fkzalloc=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Jul 2025 19:59:42 -0000
-Message-ID: <175338718267.188022.2685571314579577254@1538d3639d33>
+Date: Thu, 24 Jul 2025 20:04:17 -0000
+Message-ID: <175338745724.187925.18350329383788703717@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250724191216.4076566-1-matthew.brost@intel.com>
-In-Reply-To: <20250724191216.4076566-1-matthew.brost@intel.com>
+References: <20250724193854.1124510-2-shuicheng.lin@intel.com>
+In-Reply-To: <20250724193854.1124510-2-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,46 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6581741982546923689==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Use DRM scheduler for delayed GT TLB invalidations (rev4)
-URL   : https://patchwork.freedesktop.org/series/150402/
-State : success
+Series: drm/xe/hw_engine_group: Avoid call kfree() for drmm_kzalloc()
+URL   : https://patchwork.freedesktop.org/series/152094/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a_BAT -> xe-pw-150402v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63535c743231a7497a612c53f6edbb8a7d14412d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 19d63b8b12c1749f0ac41be67def65322c574f1e
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Thu Jul 24 19:38:55 2025 +0000
 
-Summary
--------
+    drm/xe/hw_engine_group: Avoid call kfree() for drmm_kzalloc()
+    
+    Memory allocated with drmm_kzalloc() should not be freed using kfree(), as it
+    is managed by the DRM subsystem. The memory will be automatically freed when
+    the associated drm_device is released.
+    These 3 group pointers are allocated using drmm_kzalloc() in hw_engine_group_alloc(),
+    so they don't require manual deallocation.
+    
+    Fixes: 67979060740f ("drm/xe/hw_engine_group: Fix potential leak")
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch e84ae65b0196f8c961dcc7f9149912d60bc28a68 drm-intel
+19d63b8b12c1 drm/xe/hw_engine_group: Avoid call kfree() for drmm_kzalloc()
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+Memory allocated with drmm_kzalloc() should not be freed using kfree(), as it
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a -> xe-pw-150402v4
-
-  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a: 2fe30dbc18cd98a593fa26398fe0147381ca716a
-  xe-pw-150402v4: 150402v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150402v4/index.html
-
---===============6581741982546923689==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 46 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Use DRM scheduler for delayed GT TLB invalidations (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150402/">https://patchwork.freedesktop.org/series/150402/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150402v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150402v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a_BAT -&gt; xe-pw-150402v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a -&gt; xe-pw-150402v4</li>
-</ul>
-<p>IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a: 2fe30dbc18cd98a593fa26398fe0147381ca716a<br />
-  xe-pw-150402v4: 150402v4</p>
-
-</body>
-</html>
-
---===============6581741982546923689==--
