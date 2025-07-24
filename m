@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D717DC83F26
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 20:47:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22396C87FC5
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 20:54:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB1310E07D;
-	Thu, 24 Jul 2025 20:47:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAB2910E09E;
+	Thu, 24 Jul 2025 20:54:50 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8961310E07D;
- Thu, 24 Jul 2025 20:47:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4713613692136688382=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BC2C10E07D;
+ Thu, 24 Jul 2025 20:54:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hw=5Fengine=5Fgroup?=
- =?utf-8?q?=3A_Avoid_call_kfree=28=29_for_drmm=5Fkzalloc=28=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_adl_css_test_run_=28rev2?=
+ =?utf-8?q?=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Jul 2025 20:47:19 -0000
-Message-ID: <175339003955.187925.2905953780652443403@1538d3639d33>
+Date: Thu, 24 Jul 2025 20:54:49 -0000
+Message-ID: <175339048917.187925.999370214118559573@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250724193854.1124510-2-shuicheng.lin@intel.com>
-In-Reply-To: <20250724193854.1124510-2-shuicheng.lin@intel.com>
+References: <20250724201818.81269-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250724201818.81269-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,56 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4713613692136688382==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/hw_engine_group: Avoid call kfree() for drmm_kzalloc()
-URL   : https://patchwork.freedesktop.org/series/152094/
-State : success
+Series: adl css test run (rev2)
+URL   : https://patchwork.freedesktop.org/series/152081/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a_BAT -> xe-pw-152094v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63535c743231a7497a612c53f6edbb8a7d14412d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 247798103a1afbd48fcc6f24f9f529af565434d3
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Thu Jul 24 21:18:15 2025 +0100
 
-Summary
--------
+    drm/xe/display: Add support for AuxCCS
+    
+    Add support for mapping the auxiliary CCS buffer into the DPT page tables.
+    
+    This will allow for more power efficiency by enabling the render
+    compression frame buffer modifiers such as
+    I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
+    
+    We do this by refactoring the code a bit so handling for the linear
+    auxiliary frame buffer can be added in a tidy way. Also replace some
+    hardcoded constants and tighten the loops a bit.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
++ /mt/dim checkpatch e84ae65b0196f8c961dcc7f9149912d60bc28a68 drm-intel
+fcc9f4977b97 drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+ccc6e2af9d4d drm/xe/xelp: Support auxccs invalidation on blitter
+442051cdb499 drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+4b8533a029dd drm/xe/xelp: Wait for AuxCCS invalidation to complete
+f1c794656fcd drm/xe: Export xe_emit_aux_table_inv
+1ad89fe9050a drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+4039863e29bc drm/xe: Flush GGTT writes after populating DPT
+-:72: WARNING:MEMORY_BARRIER: memory barrier without comment
+#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
++	wmb();
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a -> xe-pw-152094v1
-
-  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a: 2fe30dbc18cd98a593fa26398fe0147381ca716a
-  xe-pw-152094v1: 152094v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152094v1/index.html
-
---===============4713613692136688382==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+03be66683dd1 drm/xe: Handle DPT in system memory
+247798103a1a drm/xe/display: Add support for AuxCCS
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/hw_engine_group: Avoid call kfree() for drmm_kzalloc()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152094/">https://patchwork.freedesktop.org/series/152094/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152094v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152094v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a_BAT -&gt; xe-pw-152094v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a -&gt; xe-pw-152094v1</li>
-</ul>
-<p>IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a: 2fe30dbc18cd98a593fa26398fe0147381ca716a<br />
-  xe-pw-152094v1: 152094v1</p>
-
-</body>
-</html>
-
---===============4713613692136688382==--
