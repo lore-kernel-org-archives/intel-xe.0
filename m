@@ -4,57 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BEC6C83F1A
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 14:10:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF89C83F26
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 14:19:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D80B110E973;
-	Thu, 24 Jul 2025 14:10:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E172510E96B;
+	Thu, 24 Jul 2025 14:19:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KbxE2Kjs";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="k/87Hpt8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 837DE10E972;
- Thu, 24 Jul 2025 14:10:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753366233; x=1784902233;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=IiejBFIwJCy1TqHmi6Tu1LUJ5k26EqZHSm6Ek/hPfWM=;
- b=KbxE2KjsGhvVI/kksntwWDrJoyy42qP4hvdfE3j5vNHkPaf6AgS+5s6s
- vzQwCIxX2i/oZlYWz719K9OZFwAUA7zGJDtkMzdAoB7pGkvDGGrcHMp+J
- nMo9aL+qno5rftqguA7ls0owogmKW4SpZxD4AXVpMtqQQ+0CmZRZ3QG7v
- i04Bnc3NysLnj2GnidULlR1Yuzdn6zyMyjWirs+nYVM7RSRlwBaE4WDgM
- 2sKtYPpVi5Bamke6JLJz9z0rwasRh0D1aoYxnEw5Bp9F/vfzfQnjTGhml
- 5Pftm/tpFi2PSDkYQCC6cr2+6EFGxjJU52zqDd8D8wBQHfzChYSENmjmy A==;
-X-CSE-ConnectionGUID: dyrqmBS1SHasaOAsAHav9w==
-X-CSE-MsgGUID: rC+gydrHSlyIhvv9DaiQKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="73146028"
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="73146028"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 07:10:33 -0700
-X-CSE-ConnectionGUID: xm4QhkaDTcOOc6xFdMtrDQ==
-X-CSE-MsgGUID: iDyt6eI/TGWk5Ni+IEAPCg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="160010969"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 07:10:30 -0700
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
- raag.jadav@intel.com, umesh.nerlige.ramappa@intel.com,
- frank.scarbrough@intel.com, sk.anirban@intel.com, simona.vetter@ffwll.ch
-Subject: [PATCH v6 9/9] drm/xe/xe_hw_error: Add fault injection to trigger csc
- error handler
-Date: Thu, 24 Jul 2025 20:04:38 +0530
-Message-ID: <20250724143440.232862-10-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250724143440.232862-1-riana.tauro@intel.com>
-References: <20250724143440.232862-1-riana.tauro@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2069E10E96A;
+ Thu, 24 Jul 2025 14:19:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=TPd0oJbqXUyL1IScv+5RA+7exvnyLGdKl2MUY7LxpPE=; b=k/87Hpt8/ewgB3l+OLAIEMAqgy
+ j45UhHb3rmjLRWK5xH/35VpradgvypMEVyxD47295Xd40+IbM2wxd+KoebBpgKHGQ3PM6K317kdc2
+ 93CSHIHcEbPBkc6nHfmTaegPGY5O+oYxhaiE0v/hxm7FGp9H+Sq7Wl4P2w2vXU3VXXs3mWf0NzFGL
+ p7fAFhUBu4y2Ab42N4X7zOFWBL5Rl3XFKaXgcjOthQFoBoCS8aZr7rFL2TKCipJumrMtuIBAoc/is
+ EFzjAq9xBxFdykB1rFdnyu4vE7KBuWREBm20YHAIso7C4RWxD0Q8SPv/aInudR4Xd29H7T3bCdDU3
+ AY6WUKGA==;
+Received: from [84.66.36.92] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uewn5-003DrP-HA; Thu, 24 Jul 2025 16:19:23 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@kernel.org>, Leo Liu <Leo.Liu@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Subject: [RFC v7 00/12] Fair DRM scheduler
+Date: Thu, 24 Jul 2025 15:19:09 +0100
+Message-ID: <20250724141921.75583-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -72,83 +63,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a debugfs fault handler to trigger csc error handler that
-wedges the device and enables runtime survivability mode
+As a summary, the new scheduling algorithm is insipired by the original Linux
+CFS and so far no scheduling regressions have been found relative to FIFO.
+There are improvements in fairness and scheduling of interactive clients when
+running in parallel with a heavy GPU load (for example Pierre-Eric has one
+viewperf medical test which shows a nice improvement with amdgpu).
 
-v2: add debugfs only for bmg (Umesh)
-v3: do not use csc_fault attribute if debugfs is not enabled
+On the high level main advantages of the series are:
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c  |  3 +++
- drivers/gpu/drm/xe/xe_hw_error.c | 11 +++++++++++
- 2 files changed, 14 insertions(+)
+ 1. Scheduling quality - schedules better than FIFO, solves priority starvation.
+ 2. Code simplification - no more multiple run queues and multiple algorithms.
+ 3. Virtual GPU time based scheduling enables relatively simple addition
+    of a scheduling cgroup controller in the future.
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 0b4a532f7c45..ac5b9e5889c5 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -34,6 +34,7 @@
- #endif
- 
- DECLARE_FAULT_ATTR(gt_reset_failure);
-+DECLARE_FAULT_ATTR(inject_csc_hw_error);
- 
- static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
- 				   u32 offset, char *name, struct drm_printer *p)
-@@ -401,6 +402,8 @@ void xe_debugfs_register(struct xe_device *xe)
- 	xe_pxp_debugfs_register(xe->pxp);
- 
- 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
-+	if (xe->info.platform == XE_BATTLEMAGE)
-+		fault_create_debugfs_attr("inject_csc_hw_error", root, &inject_csc_hw_error);
- 
- 	if (IS_SRIOV_PF(xe))
- 		xe_sriov_pf_debugfs_register(xe, root);
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 4099ed1262e1..8c65291f36fc 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2025 Intel Corporation
-  */
- 
-+#include <linux/fault-inject.h>
-+
- #include "regs/xe_gsc_regs.h"
- #include "regs/xe_hw_error_regs.h"
- #include "regs/xe_irq_regs.h"
-@@ -13,6 +15,7 @@
- #include "xe_survivability_mode.h"
- 
- #define  HEC_UNCORR_FW_ERR_BITS 4
-+extern struct fault_attr inject_csc_hw_error;
- 
- /* Error categories reported by hardware */
- enum hardware_error {
-@@ -43,6 +46,11 @@ static const char *hw_error_to_str(const enum hardware_error hw_err)
- 	}
- }
- 
-+static bool fault_inject_csc_hw_error(void)
-+{
-+	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
-+}
-+
- static void csc_hw_error_work(struct work_struct *work)
- {
- 	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
-@@ -130,6 +138,9 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
- {
- 	enum hardware_error hw_err;
- 
-+	if (fault_inject_csc_hw_error())
-+		schedule_work(&tile->csc_hw_error_work);
-+
- 	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++)
- 		if (master_ctl & ERROR_IRQ(hw_err))
- 			hw_error_source_handler(tile, hw_err);
+There is a little bit more detailed write up on the motivation and results in
+the form of a blog post which may be easier to read:
+https://blogs.igalia.com/tursulin/fair-er-drm-gpu-scheduler/
+
+First patches add some unit tests which allow for easy evaluation of scheduling
+behaviour against different client submission patterns. From there onwards it is
+hopefully a natural progression of cleanups, enablers, adding the fair policy,
+and finally removing FIFO and RR and simplifying the code base due no more need
+for multiple run queues.
+
+As a headline result I have tested three simultaneous clients on the Steam Deck:
+
+One instance of a deferredmultisampling Vulkan demo running with low priority,
+one normal priority instance of the same demo, and the Unigine Heaven benchmark.
+
+With the FIFO scheduler we can see that the low priority client is completely
+starved and the GPU time distribution between the other two clients is uneven:
+
+https://people.igalia.com/tursulin/drm-sched-fair/fifo-starvation.png
+
+Switching to the fair scheduler, GPU time distribution is almost equal and the
+low priority client does get a small share of the GPU:
+
+https://people.igalia.com/tursulin/drm-sched-fair/fair-no-starvation.png
+
+Moving onto the synthetic submission patterns, they are about two simultaneous
+clients which broadly cover the following categories:
+
+ * Deep queue clients
+ * Hogs versus interactive
+ * Priority handling
+
+Lets look at the results:
+
+1. Two normal priority deep queue clients.
+
+These ones submit one second worth of 8ms jobs. As fast as they can, no
+dependencies etc. There is no difference in runtime between FIFO and fair but
+the latter allows both clients to progress with work more evenly:
+
+https://people.igalia.com/tursulin/drm-sched-fair/normal-normal.png
+
+(X axis is time, Y is submitted queue-depth, hence lowering of qd corresponds
+  with work progress for both clients, tested with both schedulers separately.)
+
+Round-robin is the same as fair here.
+
+2. Same two clients but one is now low priority.
+
+https://people.igalia.com/tursulin/drm-sched-fair/normal-low.png
+
+Normal priority client is a solid line, low priority dotted. We can see how FIFO
+completely starves the low priority client until the normal priority is fully
+done. Only then the low priority client gets any GPU time.
+
+In constrast, fair scheduler allows some GPU time to the low priority client.
+
+Here round-robin flavours are the same as FIFO (same starvation issue).
+
+3. Same clients but now high versus normal priority.
+
+Similar behaviour as in the previous one with normal a bit less de-prioritised
+relative to high, than low was against normal.
+
+https://people.igalia.com/tursulin/drm-sched-fair/high-normal.png
+
+And again round-robin flavours are the same as FIFO.
+
+4. Heavy load vs interactive client.
+
+Heavy client emits a 75% GPU load in the format of 3x 2.5ms jobs followed by a
+2.5ms wait. Interactive client emits a 10% GPU load in the format of 1x 1ms job
+followed by a 9ms wait.
+
+This simulates an interactive graphical client used on top of a relatively heavy
+background load but no GPU oversubscription.
+
+Graphs show the interactive client only and from now on, instead of looking at
+the client's queue depth, we look at its "fps".
+
+https://people.igalia.com/tursulin/drm-sched-fair/4-heavy-vs-interactive.png
+
+Here round-robin and round-robin rewritten on top of FIFO are best, while FIFO
+is clearly the worst. Fair scheduler is much better than FIFO but not as good as
+RR.
+
+5. An even heavier load vs interactive client.
+
+This one is oversubscribing the GPU by submitting 4x 50ms jobs and waiting for
+only one microsecond before repeating the cycle. Interactive client is the same
+10% as above.
+
+https://people.igalia.com/tursulin/drm-sched-fair/4-very-heavy-vs-interactive.png
+
+Here FIFO is really bad with fair more than twice as good. Round-robin flavours
+are better still.
+
+6. Low priority GPU hog versus heavy-interactive.
+
+Low priority client: 3x 2.5ms jobs client followed by a 0.5ms wait.
+Interactive client: 1x 0.5ms job followed by a 10ms wait.
+
+https://people.igalia.com/tursulin/drm-sched-fair/4-low-hog-vs-interactive.png
+
+All schedulers appear to handle this equally well.
+
+As before, I am looking for feedback, ideas for what other kinds of submission
+scenarios to test, testing on different GPUs and of course reviews.
+
+v2:
+ * Fixed many rebase errors.
+ * Added some new patches.
+ * Dropped single shot dependecy handling.
+
+v3:
+ * Added scheduling quality unit tests.
+ * Refined a tiny bit by adding some fairness.
+ * Dropped a few patches for now.
+
+v4:
+ * Replaced deadline with fair!
+ * Refined scheduling quality unit tests.
+ * Pulled one cleanup patch earlier.
+ * Fixed "drm/sched: Avoid double re-lock on the job free path".
+
+v5:
+ * Rebase on top of latest upstream DRM scheduler changes.
+ * Kerneldoc fixup.
+ * Improve commit message justification for one patch. (Philipp)
+ * Add comment in drm_sched_alloc_wq. (Christian)
+
+v6:
+ * Rebase for "drm/sched: De-clutter drm_sched_init" getting merged.
+ * Avoid NULL rq dereference from a bad rebase. (Maira)
+ * Added some kerneldoc throughout. (Maira)
+ * Removed some lockdep annotations not belonging to one patch. (Maira)
+ * Use dma_fence_is_signaled in "drm/sched: Avoid double re-lock on the job free path". (Maira, Philipp)
+
+v7:
+ * Rebase for some prep patches getting merged.
+ * Dropped submit all ready jobs patch.
+ * Fixed 64-bit division in unit tests.
+ * Fixed some more rebase and patch re-ordering mistakes.
+ * Preserve entity RR order when re-entering the queue.
+ * Fine tuned the queue re-enter logic for better behaviour with interactive
+   clients.
+ * Removed some static inlines.
+ * Added more kerneldoc.
+ * Done some benchmarks in the round-robin scheduling modes.
+
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+CC: Leo Liu <Leo.Liu@amd.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Philipp Stanner <phasta@kernel.org>
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Cc: Michel Dänzer <michel.daenzer@mailbox.org>
+
+Tvrtko Ursulin (12):
+  drm/sched: Add some scheduling quality unit tests
+  drm/sched: Add some more scheduling quality unit tests
+  drm/sched: Implement RR via FIFO
+  drm/sched: Consolidate entity run queue management
+  drm/sched: Move run queue related code into a separate file
+  drm/sched: Free all finished jobs at once
+  drm/sched: Account entity GPU time
+  drm/sched: Remove idle entity from tree
+  drm/sched: Add fair scheduling policy
+  drm/sched: Break submission patterns with some randomness
+  drm/sched: Remove FIFO and RR and simplify to a single run queue
+  drm/sched: Embed run queue singleton into the scheduler
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       |  27 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h       |   5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h     |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c   |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c       |   8 +-
+ drivers/gpu/drm/scheduler/Makefile            |   2 +-
+ drivers/gpu/drm/scheduler/sched_entity.c      | 131 ++-
+ drivers/gpu/drm/scheduler/sched_fence.c       |   2 +-
+ drivers/gpu/drm/scheduler/sched_internal.h    |  85 +-
+ drivers/gpu/drm/scheduler/sched_main.c        | 368 +-------
+ drivers/gpu/drm/scheduler/sched_rq.c          | 348 ++++++++
+ drivers/gpu/drm/scheduler/tests/Makefile      |   3 +-
+ .../gpu/drm/scheduler/tests/tests_scheduler.c | 824 ++++++++++++++++++
+ include/drm/gpu_scheduler.h                   |  30 +-
+ 15 files changed, 1393 insertions(+), 462 deletions(-)
+ create mode 100644 drivers/gpu/drm/scheduler/sched_rq.c
+ create mode 100644 drivers/gpu/drm/scheduler/tests/tests_scheduler.c
+
 -- 
-2.47.1
+2.48.0
 
