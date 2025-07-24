@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85208C83F26
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 15:25:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28814C83F26
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 15:31:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46C3010E08F;
-	Thu, 24 Jul 2025 15:25:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nB6snmma";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D81D610E08F
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Jul 2025 15:25:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753370703; x=1784906703;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4u7pY0zcZ1tB7lYwsX6JysfTboYw70mDf+ln1YnxJss=;
- b=nB6snmmaPl2npIG33idFIVOdMVNQgQvJD3L9cFwjWHGFCUiE8kOn3b1n
- /KUl49noWrcm4FBsJgMXSo44M/yPxAg8JrXQzrYNojet0rzCJ6k4UpGGc
- uts59eHXolmewgHUMwsbS8/0GFILwUpuE7SlFmMaJ6UPCIupZjimic5P1
- uPTaTlO0i9ExgBT+6ADmEt4ObwS+Tv5/yt06gEhMT/xXsXIysoSI1VGLi
- k0WNIo3qXYT9JxPZwdHrpqcUA7YvrcWjJqbSRep7UM+Wp9nkI5be1Ib9Z
- wSwTlwvJ9yv52Ip0RoK6cX4hsh2xg7ESfc3a418Y+3QpLvN5lY8Ls8pF1 Q==;
-X-CSE-ConnectionGUID: lW9M0eneRZKFg/5UQ8cckw==
-X-CSE-MsgGUID: TMjNylu0TsShF8y4YJQZPA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="66766920"
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="66766920"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 08:25:03 -0700
-X-CSE-ConnectionGUID: D3JNxy3lSPeYcOPD23LVrQ==
-X-CSE-MsgGUID: hPhYnYx2TYySUzkyjuneSA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="159520224"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by orviesa006.jf.intel.com with ESMTP; 24 Jul 2025 08:25:02 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v1] drm/xe/uc: Add xe_uc_stop on hardware initialization error
- handling
-Date: Thu, 24 Jul 2025 11:25:00 -0400
-Message-Id: <20250724152500.110367-1-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id C83C310E955;
+	Thu, 24 Jul 2025 15:31:14 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAA7610E3F0;
+ Thu, 24 Jul 2025 15:31:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fair_DRM_scheduler_=28rev?=
+ =?utf-8?q?2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 24 Jul 2025 15:31:12 -0000
+Message-ID: <175337107295.187679.10555881421861606056@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250724141921.75583-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250724141921.75583-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,42 +36,121 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During hardware initialization, GuC communication is expected, which
-will increase the outstanding counter. Non-zero counter will cause
-assertion failed during shutdown process.
-Add xe_uc_stop call to clear the counter.
+== Series Details ==
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5466
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5530
+Series: Fair DRM scheduler (rev2)
+URL   : https://patchwork.freedesktop.org/series/151321/
+State : warning
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
----
- drivers/gpu/drm/xe/xe_uc.c | 2 ++
- 1 file changed, 2 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 465bda355443..6c72ce305d6c 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -173,6 +173,7 @@ static int vf_uc_load_hw(struct xe_uc *uc)
- 	return 0;
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63535c743231a7497a612c53f6edbb8a7d14412d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c72b95a54870bf9038bdf08a86f0ffda7316bb63
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Thu Jul 24 15:19:21 2025 +0100
+
+    drm/sched: Embed run queue singleton into the scheduler
+    
+    Now that the run queue to scheduler relationship is always 1:1 we can
+    embed it (the run queue) directly in the scheduler struct and save on
+    some allocation error handling code and such.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    Cc: Christian König <christian.koenig@amd.com>
+    Cc: Danilo Krummrich <dakr@kernel.org>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Philipp Stanner <phasta@kernel.org>
++ /mt/dim checkpatch 2fe30dbc18cd98a593fa26398fe0147381ca716a drm-intel
+5a66905b6282 drm/sched: Add some scheduling quality unit tests
+-:41: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#41: 
+    0: prio=normal sync=0 elapsed_ms=1015ms (ideal_ms=1000ms) cycle_time(min,avg,max)=134,222,978 us latency_time(min,avg,max)=134,222,978
+
+-:124: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#124: 
+new file mode 100644
+
+-:140: WARNING:REPEATED_WORD: Possible repeated word: 'scheduler'
+#140: FILE: drivers/gpu/drm/scheduler/tests/tests_scheduler.c:12:
++ * DRM scheduler scheduler tests exercise load balancing decisions ie. entity
+
+-:630: WARNING:REPEATED_WORD: Possible repeated word: 'from'
+#630: FILE: drivers/gpu/drm/scheduler/tests/tests_scheduler.c:502:
++	 * Same job stream from from two clients.
+
+total: 0 errors, 4 warnings, 0 checks, 648 lines checked
+606dd2efa10d drm/sched: Add some more scheduling quality unit tests
+-:25: WARNING:REPEATED_WORD: Possible repeated word: 'test'
+#25: 
+Every 100ms for the duration of the test test logs how many jobs each
+
+-:54: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#54: FILE: drivers/gpu/drm/scheduler/tests/tests_scheduler.c:639:
  
- err_out:
-+	xe_uc_stop(uc);
- 	xe_guc_sanitize(&uc->guc);
- 	return err;
- }
-@@ -228,6 +229,7 @@ int xe_uc_load_hw(struct xe_uc *uc)
- 	return 0;
++
+
+total: 0 errors, 1 warnings, 1 checks, 197 lines checked
+341b6171e03f drm/sched: Implement RR via FIFO
+8ad766ff30ae drm/sched: Consolidate entity run queue management
+546efb148873 drm/sched: Move run queue related code into a separate file
+-:289: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#289: 
+new file mode 100644
+
+-:294: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#294: FILE: drivers/gpu/drm/scheduler/sched_rq.c:1:
++#include <linux/rbtree.h>
+
+total: 0 errors, 2 warnings, 0 checks, 475 lines checked
+084d90032758 drm/sched: Free all finished jobs at once
+5747d040b768 drm/sched: Account entity GPU time
+-:36: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#36: FILE: drivers/gpu/drm/scheduler/sched_entity.c:35:
  
- err_out:
-+	xe_uc_stop(uc);
- 	xe_guc_sanitize(&uc->guc);
- 	return ret;
- }
--- 
-2.34.1
++
+
+-:113: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#113: FILE: drivers/gpu/drm/scheduler/sched_internal.h:19:
++	spinlock_t	lock;
+
+total: 0 errors, 0 warnings, 2 checks, 188 lines checked
+f7c49bb242a9 drm/sched: Remove idle entity from tree
+1b13cde4a9ab drm/sched: Add fair scheduling policy
+-:70: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#70: FILE: drivers/gpu/drm/scheduler/sched_entity.c:141:
++			p = max_t(s32,
++				 (s32)sched_list[0]->num_user_rqs - 1,
+
+-:127: WARNING:LONG_LINE: line length of 249 exceeds 100 columns
+#127: FILE: drivers/gpu/drm/scheduler/sched_main.c:93:
++MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO, " __stringify(DRM_SCHED_POLICY_FAIR) " = Fair (default).");
+
+total: 0 errors, 1 warnings, 1 checks, 330 lines checked
+51d0aed23fef drm/sched: Break submission patterns with some randomness
+-:69: ERROR:INITIALISED_STATIC: do not initialise statics to 0
+#69: FILE: drivers/gpu/drm/scheduler/sched_rq.c:152:
++			static bool r = 0;
+
+total: 1 errors, 0 warnings, 0 checks, 16 lines checked
+2dd4b5d314ed drm/sched: Remove FIFO and RR and simplify to a single run queue
+-:304: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#304: FILE: drivers/gpu/drm/scheduler/sched_main.c:1145:
+ {
++
+
+total: 0 errors, 0 warnings, 1 checks, 524 lines checked
+c72b95a54870 drm/sched: Embed run queue singleton into the scheduler
+
 
