@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BA56C83F1A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F985C83F17
 	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 01:04:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ADEC10E1A9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55F2710E1AB;
 	Thu, 24 Jul 2025 01:04:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WQrHWGsb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HLBz6vux";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D50F10E1AB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DF3D10E1A9
  for <intel-xe@lists.freedesktop.org>; Thu, 24 Jul 2025 01:04:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753319083; x=1784855083;
+ t=1753319084; x=1784855084;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CegN0LB+DYa9jOU8+LjXDgxoll1rBpjeMXqIIbMa708=;
- b=WQrHWGsb3CQnWd2RSzefQoPU/2HdRmSMbPyLYorGd3hrMs6oh5I5YKiN
- HRsp4ZEu2j7Zzz9/TmXOkWvZzLgbn3PKEP0Nxx5+Vzi4NYEw3wyzfmI6P
- 66jaWFxN81o8Sd7JUN69c2yv36Y0nXlsS1edao/k6OHUpt3I+cpMphSYa
- f6nceHwgvtwcxMl5xORC0+SxnqusCDJXRiTzZLXv6VFYdaMUNTQeLzDDU
- Z10F5B4doOtmZJ5PiF1R2DrDcFvfoOBGGizzjDCuWrQBn87ZkcOVw2YFA
- O430trXZB9+Hi3nQnIe4mX/r22PgG2W6ai0k6Ml7dpXuxndRjyzUk9eS9 A==;
-X-CSE-ConnectionGUID: 02Ff0y6OQPqmkIdPC+TFiQ==
-X-CSE-MsgGUID: IxYnp6iSReS7EBbMK4xRfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="55766485"
-X-IronPort-AV: E=Sophos;i="6.16,335,1744095600"; d="scan'208";a="55766485"
+ bh=jKpyPvnrlAsGuHjv2mPr+m5GuQO6eO2+WjrdmuZp9Z0=;
+ b=HLBz6vuxxnLpGfR7ysMtJfAFjcdpfKVZyOmmOlS6KkgJoKQ3fc47tZOC
+ v/bvYbubOo6sPkEy4gSLeACSmGAsqg9w60fxKHKxM3FjeLGXEuWQFyz0i
+ ZoHfE6UPfsHkNAA1R6mQv1KNy2QrdaZTZ62N4HX6jC7WSIRdXADT6ZtXL
+ hBM9Gh+ecjQU1PG+gERuwYN64a+HRctLnfDkqXLZHqMXRNU4dW3xBpXLI
+ 1K/NujcDfTz3OxkJHvxvHwut9ENS7PyHBSISSDjfCRV1P2A6y7dsRIPj4
+ YsqlvCU4yaahlDFpnJ+eixs441ybxKqGiknyf8L+cNrrLAuI0tcieG1dI w==;
+X-CSE-ConnectionGUID: 24pFFKzMTSigLILpMsopbg==
+X-CSE-MsgGUID: rYWUJFLvQ8m6AEfh+eNQ5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="55766486"
+X-IronPort-AV: E=Sophos;i="6.16,335,1744095600"; d="scan'208,223";a="55766486"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jul 2025 18:04:43 -0700
-X-CSE-ConnectionGUID: QoydZhyKTlaWLzjTHw9tHQ==
-X-CSE-MsgGUID: 6EGSa+85QH+Fn7apuZ6/sQ==
+X-CSE-ConnectionGUID: k/wiTGOyQhSIgROfjib0ZQ==
+X-CSE-MsgGUID: 0K/xtZatSjOZc2A/4yyDPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,335,1744095600"; d="scan'208";a="160106417"
+X-IronPort-AV: E=Sophos;i="6.16,335,1744095600"; 
+ d="scan'208,223";a="160106425"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2025 18:04:42 -0700
+ 23 Jul 2025 18:04:43 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, prashanth.kumar@intel.com,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: [PATCH v2 5/7] drm/xe/psmi: Add Wa_16023683509
-Date: Wed, 23 Jul 2025 18:04:26 -0700
-Message-ID: <20250723-psmi-v2-5-84a04b5a3c04@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>, prashanth.kumar@intel.com
+Subject: [PATCH v2 6/7] drm/xe/configfs: Simplify kernel doc
+Date: Wed, 23 Jul 2025 18:04:27 -0700
+Message-ID: <20250723-psmi-v2-6-84a04b5a3c04@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250723-psmi-v2-0-84a04b5a3c04@intel.com>
 References: <20250723-psmi-v2-0-84a04b5a3c04@intel.com>
@@ -70,61 +70,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+From the caller perspective reading the documentation, there's no need
+to be so specific about everything the function is doing/checking. Just
+document the functionality a caller cares about.
 
-This WA ensures GuC will restore the media MCFG registers at C6
-exit.
-
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2:
- - Enable only when PSMI is enabled
----
- drivers/gpu/drm/xe/xe_guc.c        | 3 +++
- drivers/gpu/drm/xe/xe_guc_fwif.h   | 1 +
- drivers/gpu/drm/xe/xe_wa_oob.rules | 2 ++
- 3 files changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_configfs.c | 17 ++++-------------
+ 1 file changed, 4 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 88dab4724c510..e0bcaa6344505 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -219,6 +219,9 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
- 	if (XE_WA(gt, 14018913170))
- 		flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
- 
-+	if (XE_WA(gt, 16023683509))
-+		flags |= GUC_WA_SAVE_RESTORE_MCFG_REG_AT_MC6;
-+
- 	return flags;
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 8ec1ff1e4e808..e5bdfcf6185ff 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -320,13 +320,10 @@ static struct xe_config_device *configfs_find_group(struct pci_dev *pdev)
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index 4dc000c977faf..d4dbee7e98f22 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -108,6 +108,7 @@ struct guc_update_exec_queue_policy {
- #define   GUC_WA_RENDER_RST_RC6_EXIT	BIT(19)
- #define   GUC_WA_RCS_REGS_IN_CCS_REGS_LIST	BIT(21)
- #define   GUC_WA_ENABLE_TSC_CHECK_ON_RC6	BIT(22)
-+#define   GUC_WA_SAVE_RESTORE_MCFG_REG_AT_MC6 	BIT(25)
+ /**
+- * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
++ * xe_configfs_get_survivability_mode - get configfs survivability mode
+  * @pdev: pci device
+  *
+- * find the configfs group that belongs to the pci device and return
+- * the survivability mode attribute
+- *
+- * Return: survivability mode if config group is found, false otherwise
++ * Return: survivability_mode attribute in configfs
+  */
+ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+ {
+@@ -343,11 +340,8 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+ }
  
- #define GUC_CTL_FEATURE			2
- #define   GUC_CTL_ENABLE_SLPC		BIT(2)
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index ba58fa0ed8fcf..b3d4623a3e42b 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -70,6 +70,8 @@ no_media_l3	MEDIA_VERSION(3000)
- 		MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
- 		MEDIA_VERSION(3000), FUNC(xe_rtp_match_psmi_enabled)
- 		MEDIA_VERSION(3002), FUNC(xe_rtp_match_psmi_enabled)
-+16023683509	MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
-+		MEDIA_VERSION(3000), GRAPHICS_STEP(A0, B0), FUNC(xe_rtp_match_psmi_enabled)
- 
- # SoC workaround - currently applies to all platforms with the following
- # primary GT GMDID
+ /**
+- * xe_configfs_clear_survivability_mode - clear configfs survivability mode attribute
++ * xe_configfs_clear_survivability_mode - clear configfs survivability mode
+  * @pdev: pci device
+- *
+- * find the configfs group that belongs to the pci device and clear survivability
+- * mode attribute
+  */
+ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
+ {
+@@ -367,10 +361,7 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
+  * xe_configfs_get_engines_allowed - get engine allowed mask from configfs
+  * @pdev: pci device
+  *
+- * Find the configfs group that belongs to the pci device and return
+- * the mask of engines allowed to be used.
+- *
+- * Return: engine mask with allowed engines
++ * Return: engine mask with allowed engines set in configfs
+  */
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
+ {
 
 -- 
 2.50.1
