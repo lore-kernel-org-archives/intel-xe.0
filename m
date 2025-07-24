@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAD72C83F26
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 19:10:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAD52C83F26
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 19:13:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7953C10E223;
-	Thu, 24 Jul 2025 19:10:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QcBETE2T";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B8D310E2A2
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Jul 2025 19:10:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753384232; x=1784920232;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=MVmGXVahI7YltrfROl44vFwyMt/8TrbLhMVcUPs8DKw=;
- b=QcBETE2TvHG3fLIQ9S3dyE5jQoPMO9QRHucWnyOvv0x46OpBV3v3+OL8
- dmtopgGWpJn9UyCwjYIhc7K4SzEhL+xLFrKRTt/xTkknsTnpzETm5P2OY
- E+WCmsu6AolRnKqltGC0DX6nCLDFw5C4d2f0yGra9MhT0YsvWTVmflq2g
- J3HfMoVWxGaB1xIXtfNgWWO+zD73cWWyssa6m+XiHktuqwT1Q0mv8HYX0
- b/G/K4MxyhI1Fkwa+Jl3ygi+cDuile/u2i8MdzyH7PP8gtiWpBgxu1Lv+
- sVE669xIB8Ymxc2yqQNgzeMNNpyzzm7KSHDpGMEZZkIQaL23YOXfyRu7U A==;
-X-CSE-ConnectionGUID: aK6RA/FBQN6QVNt0uncoQA==
-X-CSE-MsgGUID: Wo0rdyHESaSlPo5r/j7BMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="65976731"
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="65976731"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 12:10:31 -0700
-X-CSE-ConnectionGUID: kdRdZ75JTGasPUS2EDrT6g==
-X-CSE-MsgGUID: VnTvj4pnSWKNnuyJjd65Dg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="160387672"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 12:10:30 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 7/7] drm/xe: Remove unused GT TLB invalidation trace points
-Date: Thu, 24 Jul 2025 12:12:16 -0700
-Message-Id: <20250724191216.4076566-8-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250724191216.4076566-1-matthew.brost@intel.com>
-References: <20250724191216.4076566-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A741510E02E;
+	Thu, 24 Jul 2025 19:13:26 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC6010E02E;
+ Thu, 24 Jul 2025 19:13:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7340813390557053549=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Fix_disablin?=
+ =?utf-8?q?g_training_pattern_at_end_of_UHBR_link_training?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 24 Jul 2025 19:13:25 -0000
+Message-ID: <175338440535.188022.10026964028377385121@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250724182900.160891-1-imre.deak@intel.com>
+In-Reply-To: <20250724182900.160891-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,47 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Remove unused GT TLB invalidation trace points after converting to used
-GT TLB invalidation jobs. The trace points removed were used during
-early bring up of unstable driver, with a stable driver no need to
-replace with new tracepoints.
+--===============7340813390557053549==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/xe_trace.h | 16 ----------------
- 1 file changed, 16 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index b4a3577df70c..21486a6f693a 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -45,22 +45,6 @@ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
- 			      __get_str(dev), __entry->fence, __entry->seqno)
- );
- 
--DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_create,
--	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
--	     TP_ARGS(xe, fence)
--);
--
--DEFINE_EVENT(xe_gt_tlb_invalidation_fence,
--	     xe_gt_tlb_invalidation_fence_work_func,
--	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
--	     TP_ARGS(xe, fence)
--);
--
--DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_cb,
--	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
--	     TP_ARGS(xe, fence)
--);
--
- DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_send,
- 	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
- 	     TP_ARGS(xe, fence)
--- 
-2.34.1
+Series: drm/i915/dp: Fix disabling training pattern at end of UHBR link training
+URL   : https://patchwork.freedesktop.org/series/152087/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a_BAT -> xe-pw-152087v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a -> xe-pw-152087v1
+
+  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a: 2fe30dbc18cd98a593fa26398fe0147381ca716a
+  xe-pw-152087v1: 152087v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152087v1/index.html
+
+--===============7340813390557053549==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Fix disabling training pattern at end of UHBR link training</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152087/">https://patchwork.freedesktop.org/series/152087/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152087v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152087v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a_BAT -&gt; xe-pw-152087v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a -&gt; xe-pw-152087v1</li>
+</ul>
+<p>IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a: 2fe30dbc18cd98a593fa26398fe0147381ca716a<br />
+  xe-pw-152087v1: 152087v1</p>
+
+</body>
+</html>
+
+--===============7340813390557053549==--
