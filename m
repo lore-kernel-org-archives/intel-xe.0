@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F99CC87FC5
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 20:22:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D717DC83F26
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 20:47:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 528A610E0AB;
-	Thu, 24 Jul 2025 20:22:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U1Iei/Jh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82DDD10E09B;
- Thu, 24 Jul 2025 20:22:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753388574; x=1784924574;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=A2c5F0yV5S/slgP5bH8QsZkPQLLSdFERpZNT+3CQ3cs=;
- b=U1Iei/JhIklAH25WxLhtdpZG+vdN+WdJsiYd+npx/ymsdtQnDlp70PS3
- +xFYH5ivLB5YW6z1obdC+z5dqossf5eXFXCCXsEGSREIh84gCa1xHUint
- CUM5Ce7O53Fw1fZS1jdmV9gRV7SpRDdpY/QAvKPjEqMEBULyiLf1Av/2n
- mUOU1WDXMGVq2S41DEZ3txHEqXxp/hYujiU3e4lXhfd+VsYjCUXOT2U8l
- RQJW/gWW55Kw0Ep3EnrprFKdVgwoWA8sG5t+i0bxllwSqImuFJ8VelvCB
- 2669ltzXsK9Zn8Rpf6U9wkdFtZZ1ZZa1wMZTdAQ0wgMaUhCpK+rgQVVnm g==;
-X-CSE-ConnectionGUID: zJk0KxgDRr2Jm7zhhtMgiw==
-X-CSE-MsgGUID: 1BvVAxATSHKYNOHEjeWcyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="55598616"
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="55598616"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 13:22:53 -0700
-X-CSE-ConnectionGUID: TtkZh9FeTiqIKr/Wz3Vgow==
-X-CSE-MsgGUID: r99yHrz0TrqmK6KNV9cfdQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="197564647"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO fedora)
- ([10.245.244.55])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 13:22:50 -0700
-Date: Thu, 24 Jul 2025 22:22:35 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <aIKWC2RPlbRxZc5o@fedora>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB1310E07D;
+	Thu, 24 Jul 2025 20:47:20 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8961310E07D;
+ Thu, 24 Jul 2025 20:47:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4713613692136688382=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hw=5Fengine=5Fgroup?=
+ =?utf-8?q?=3A_Avoid_call_kfree=28=29_for_drmm=5Fkzalloc=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 24 Jul 2025 20:47:19 -0000
+Message-ID: <175339003955.187925.2905953780652443403@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250724193854.1124510-2-shuicheng.lin@intel.com>
+In-Reply-To: <20250724193854.1124510-2-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,38 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona
+--===============4713613692136688382==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-A single fix for -rc8/final.
+== Series Details ==
 
-Thanks,
-Thomas
+Series: drm/xe/hw_engine_group: Avoid call kfree() for drmm_kzalloc()
+URL   : https://patchwork.freedesktop.org/series/152094/
+State : success
 
-drm-xe-fixes-2025-07-24:
-Driver Changes:
-- Fix build without debugfs (Lucas)
-The following changes since commit 5c244eeca57ff4e47e1f60310d059346d1b86b9b:
+== Summary ==
 
-  drm/xe/pf: Resend PF provisioning after GT reset (2025-07-17 09:51:51 -0300)
+CI Bug Log - changes from xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a_BAT -> xe-pw-152094v1_BAT
+====================================================
 
-are available in the Git repository at:
+Summary
+-------
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2025-07-24
+  **SUCCESS**
 
-for you to fetch changes up to 99e91521cef80d74e4fefed16a156848052b13df:
+  No regressions found.
 
-  drm/xe: Fix build without debugfs (2025-07-24 21:06:52 +0200)
+  
 
-----------------------------------------------------------------
-Driver Changes:
-- Fix build without debugfs (Lucas)
+Participating hosts (9 -> 8)
+------------------------------
 
-----------------------------------------------------------------
-Lucas De Marchi (1):
-      drm/xe: Fix build without debugfs
+  Missing    (1): bat-adlp-vm 
 
- drivers/gpu/drm/xe/xe_gt.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a -> xe-pw-152094v1
+
+  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a: 2fe30dbc18cd98a593fa26398fe0147381ca716a
+  xe-pw-152094v1: 152094v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152094v1/index.html
+
+--===============4713613692136688382==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/hw_engine_group: Avoid call kfree() for drmm_kzalloc()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152094/">https://patchwork.freedesktop.org/series/152094/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152094v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152094v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a_BAT -&gt; xe-pw-152094v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a -&gt; xe-pw-152094v1</li>
+</ul>
+<p>IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3470-2fe30dbc18cd98a593fa26398fe0147381ca716a: 2fe30dbc18cd98a593fa26398fe0147381ca716a<br />
+  xe-pw-152094v1: 152094v1</p>
+
+</body>
+</html>
+
+--===============4713613692136688382==--
