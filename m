@@ -4,27 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61572C83F26
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 16:31:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03EA9C87FC5
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 16:40:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BEDF10E97C;
-	Thu, 24 Jul 2025 16:31:45 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7CE610E3F6;
- Thu, 24 Jul 2025 16:31:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3866303010930171098=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD02C10E3F6;
+	Thu, 24 Jul 2025 16:40:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="XjKPnj7g";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32E1310E987
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Jul 2025 16:40:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=VekkeCvCzYmroOipUd/wcV/W6kkaxZbJOyrSeuW4bt8=; b=XjKPnj7gu4l1Y8/Ylkfy6EZJju
+ n8xKw2Fxyu7hm7O6kiiQW64/ELkfnTXrUkDnORXXzPhOMhCABqOKAGHkjnE6fz3ecNbCdjUo77umG
+ bfCnFN4nt8pXO+RxRdWQJ6yu/pbI18qQATD1zTTwK6ap1MMzIYCaF/AdY0wnf8ZDVaYOHojNWgUHX
+ XR0pAJyYTvqNffmk0yqJvomNMLwZGzyFXdsmB0O6ewfPztjGzKBuSdWU+Gf8xsBeU3KZN7UE5wUW1
+ LRPEBN7265EKOOrG57NmsxIffu4wY8Qlj5dpWFd+ycvisDnqNsv9vYEmvJMc0KsJzc7kv7HOQXoIq
+ c07H+2jw==;
+Received: from [84.66.36.92] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1ueyzD-003HFa-Ey
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Jul 2025 18:40:03 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI 2/4] drm/xe/xelp: Support auxccs invalidation on blitter
+Date: Thu, 24 Jul 2025 17:39:58 +0100
+Message-ID: <20250724164000.78212-3-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250724164000.78212-1-tvrtko.ursulin@igalia.com>
+References: <20250724164000.78212-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fair_DRM_scheduler_=28rev2?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Jul 2025 16:31:43 -0000
-Message-ID: <175337470393.187678.14530608976666919758@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250724141921.75583-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250724141921.75583-1-tvrtko.ursulin@igalia.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +54,189 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3866303010930171098==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Auxccs platforms need to be able to invalidate auxccs on the blitter
+engine.
 
-== Series Details ==
+Add the relevant mmio register and enable this by refactoring the ring
+emission a bit to consolidate all non-render engines.
 
-Series: Fair DRM scheduler (rev2)
-URL   : https://patchwork.freedesktop.org/series/151321/
-State : success
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |   1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c     | 104 +++++++++++----------------
+ 2 files changed, 41 insertions(+), 64 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index f96b2e2b3064..f8b1060c76c1 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -88,6 +88,7 @@
+ #define CCS_AUX_INV				XE_REG(0x4208)
+ 
+ #define VD0_AUX_INV				XE_REG(0x4218)
++#define BCS_AUX_INV				XE_REG(0x4248)
+ #define VE0_AUX_INV				XE_REG(0x4238)
+ 
+ #define VE1_AUX_INV				XE_REG(0x42b8)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 6ef737d95b4c..7688eb1d36fa 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -243,44 +243,6 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
+ 	return i;
+ }
+ 
+-/* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
+-static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				    u64 batch_addr, u32 seqno)
+-{
+-	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+-	u32 ppgtt_flag = get_ppgtt_flag(job);
+-	struct xe_gt *gt = job->q->gt;
+-
+-	i = emit_copy_timestamp(lrc, dw, i);
+-
+-	if (job->ring_ops_flush_tlb) {
+-		dw[i++] = preparser_disable(true);
+-		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, MI_INVALIDATE_TLB, dw, i);
+-		dw[i++] = preparser_disable(false);
+-	} else {
+-		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, dw, i);
+-	}
+-
+-	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+-
+-	if (job->user_fence.used) {
+-		i = emit_flush_dw(dw, i);
+-		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
+-						job->user_fence.value,
+-						dw, i);
+-	}
+-
+-	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i);
+-
+-	i = emit_user_interrupt(dw, i);
+-
+-	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+-
+-	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+-}
+-
+ static bool has_aux_ccs(struct xe_device *xe)
+ {
+ 	/*
+@@ -295,36 +257,50 @@ static bool has_aux_ccs(struct xe_device *xe)
+ 	return !xe->info.has_flat_ccs;
+ }
+ 
+-static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				   u64 batch_addr, u32 seqno)
++static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
++				 u64 batch_addr, u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+ 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
++	const unsigned int class = job->q->class;
++	const bool aux_ccs = has_aux_ccs(xe) &&
++			     (class == XE_ENGINE_CLASS_COPY ||
++			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
++	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
+ 
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+-	dw[i++] = preparser_disable(true);
+-
+-	/* hsdes: 1809175790 */
+-	if (has_aux_ccs(xe)) {
+-		if (decode)
+-			i = emit_aux_table_inv(gt, VD0_AUX_INV, dw, i);
+-		else
+-			i = emit_aux_table_inv(gt, VE0_AUX_INV, dw, i);
+-	}
+-
+-	if (job->ring_ops_flush_tlb)
++	if (invalidate_tlb) {
++		dw[i++] = preparser_disable(true);
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, MI_INVALIDATE_TLB, dw, i);
++					seqno,
++					MI_INVALIDATE_TLB,
++					dw, i);
++		/* hsdes: 1809175790 */
++		if (aux_ccs) {
++			struct xe_reg reg;
+ 
+-	dw[i++] = preparser_disable(false);
++			switch (job->q->class) {
++			case XE_ENGINE_CLASS_COPY:
++				reg = BCS_AUX_INV;
++				break;
++			case XE_ENGINE_CLASS_VIDEO_DECODE:
++				reg = VD0_AUX_INV;
++				break;
++			default:
++				reg = VE0_AUX_INV;
++			};
+ 
+-	if (!job->ring_ops_flush_tlb)
++			i = emit_aux_table_inv(gt, reg, dw, i);
++		}
++		dw[i++] = preparser_disable(false);
++	} else {
+ 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+ 					seqno, dw, i);
++	}
+ 
+ 	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+ 
+@@ -437,9 +413,9 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
+ 
+ 	xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
+ 
+-	__emit_job_gen12_simple(job, job->q->lrc[0],
+-				job->ptrs[0].batch_addr,
+-				xe_sched_job_lrc_seqno(job));
++	__emit_job_gen12_xcs(job, job->q->lrc[0],
++			     job->ptrs[0].batch_addr,
++			     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_copy(struct xe_sched_job *job)
+@@ -453,9 +429,9 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+ 	}
+ 
+ 	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_simple(job, job->q->lrc[i],
+-					job->ptrs[i].batch_addr,
+-					xe_sched_job_lrc_seqno(job));
++		__emit_job_gen12_xcs(job, job->q->lrc[i],
++				     job->ptrs[i].batch_addr,
++				     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_video(struct xe_sched_job *job)
+@@ -464,9 +440,9 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
+ 
+ 	/* FIXME: Not doing parallel handshake for now */
+ 	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_video(job, job->q->lrc[i],
+-				       job->ptrs[i].batch_addr,
+-				       xe_sched_job_lrc_seqno(job));
++		__emit_job_gen12_xcs(job, job->q->lrc[i],
++				     job->ptrs[i].batch_addr,
++				     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
+-- 
+2.48.0
 
-CI Bug Log - changes from xe-3469-add9d6a10141822e2c828645804801123e937e86_BAT -> xe-pw-151321v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8475 -> IGT_8476
-  * Linux: xe-3469-add9d6a10141822e2c828645804801123e937e86 -> xe-pw-151321v2
-
-  IGT_8475: 1ddc997191d8aa008b49b5a4c47cf295c9a3c4f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3469-add9d6a10141822e2c828645804801123e937e86: add9d6a10141822e2c828645804801123e937e86
-  xe-pw-151321v2: 151321v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151321v2/index.html
-
---===============3866303010930171098==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fair DRM scheduler (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151321/">https://patchwork.freedesktop.org/series/151321/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151321v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151321v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3469-add9d6a10141822e2c828645804801123e937e86_BAT -&gt; xe-pw-151321v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8475 -&gt; IGT_8476</li>
-<li>Linux: xe-3469-add9d6a10141822e2c828645804801123e937e86 -&gt; xe-pw-151321v2</li>
-</ul>
-<p>IGT_8475: 1ddc997191d8aa008b49b5a4c47cf295c9a3c4f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3469-add9d6a10141822e2c828645804801123e937e86: add9d6a10141822e2c828645804801123e937e86<br />
-  xe-pw-151321v2: 151321v2</p>
-
-</body>
-</html>
-
---===============3866303010930171098==--
