@@ -4,71 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C984DC83F26
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 14:07:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0B42C83F26
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Jul 2025 14:09:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90FAB10E945;
-	Thu, 24 Jul 2025 14:07:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACC7510E947;
+	Thu, 24 Jul 2025 14:09:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gbmd/r9M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lNL4swE4";
 	dkim-atps=neutral
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
- [209.85.218.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D415D10E7F6;
- Wed, 23 Jul 2025 15:25:50 +0000 (UTC)
-Received: by mail-ej1-f44.google.com with SMTP id
- a640c23a62f3a-ae3ec622d2fso1147196166b.1; 
- Wed, 23 Jul 2025 08:25:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753284349; x=1753889149; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=beDFfNZ4S97UR7YtlMFeit45AkVBlFdFilkbXCivTPU=;
- b=gbmd/r9MZIa640u5f4+71UrLwrAvtwjtiLQJX5d72/oKnjZ59hRCe9gbjjbd916tZC
- 30a4gwy3P//j6aIr5YL8TVPOs+r2G1AkjGCNK3+4VlmUCF4WxHqlNT4yId7E0Pt5IghY
- +isLzTp0tkmgM13Yr85IauWgykQS9Dps9Yc2zOsKLCDhjz33P2/rKtZM2+lOVXpdumLi
- ts0igoSbTwKQoxnYbXyfOzeqkA2xceRObe9EuuyIPgHhqH7HBd5gYqAP2OZcrErzZ9/e
- mGF5T3npsL6R7iLV2beTHS3dUFkymRvNRhZdJHM0PFFLTCA8aa9DOhXpYDvTVbTvZvOa
- 3HOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753284349; x=1753889149;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=beDFfNZ4S97UR7YtlMFeit45AkVBlFdFilkbXCivTPU=;
- b=bOy7yWIfyVblVybnaJ/nz2Qg+x5zo5E0Nqk5F983JW8T71Hu/skfnDEdfUG3OM0duI
- /H8Vt4cryrNQ9Gt4k9sv07W3zpux/24WZFLaO0rTNj02O3xEyjDhSizTxNupUeFtgvW3
- 3ReDtHRtPmmT77FW7IYa0JZqZpnB+Yn6H+ZHX9ITWsWASRKK3ZHeEYOkoF9H+Fv8f1VS
- /eAc50vko0civeCRSaV0N6l2rVFJawJ2k6R+JSCeXyKZpIBhWBSOHzPeIeRfEJRiqEQa
- PC/WMTHE16QD2ilSDRUXx3yAzovbb3T0mleAoqrs5fPRjtZV/NHCWrGD52tlnpajyFNl
- NAwA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWBJt49WitYg6f0vH7XJQdam6WNXz82aPY+2LK5YXHGfJoIDEmN1oWOuVaVS08qp0oRgdJxdRAnsnI=@lists.freedesktop.org,
- AJvYcCX/Hxv6ZbTO8n7QZonWzzaTiDZ2n9e/i5ZCudeOwOfwF7sD0T9lRCKkKvwGF/YhE6TrlFpv7RXTVtE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxH+4Jw337AbZyyU9LH00iDFQrOZCwnjiuVEBGmFbSguOlVM4ye
- pxtdY/WruWXaO8YUShhwe2IDiAWzv6qX8BorinWI4qWMlFohverP/r4NHFMshJ7/zpmhDCoGI+O
- hf54ZqOoVrbCnWpJs4BdmTNiEdplCna4=
-X-Gm-Gg: ASbGncuJeyGKNLY/Zc4cLfczTjVC8WXIcOYXh03przhB8xikJr76f+L/+G2u5jxfhWQ
- Qub9ZgEB0QUG3KHR2lkGmv2QxnrJxP5PcYLBTxIyjtW6RLqXIoSzQBijpTbAe1l5NOkut0YigtP
- 0YoUb4wZXRtXvocPAIjnzcFALz8q/ABYMyNzU0ZoHVeeBK8gEm2j1g8TxCfExaC8DBbNDHof5ko
- SPZbUJQrW+CGC0ZRVn5A0TV6ei+gJfseNsWPLCidg==
-X-Google-Smtp-Source: AGHT+IEa0ob0QBcEJfq3FhFawPvmxzni3jfhUtAlaF6YxGCJO8FwYOsF4YbFj9rdJb3Jbw+LcRzA43Q946tq0nyuDB4=
-X-Received: by 2002:a17:907:9816:b0:ae0:c7b4:b797 with SMTP id
- a640c23a62f3a-af2f8e513b8mr361942866b.45.1753284348692; Wed, 23 Jul 2025
- 08:25:48 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1298A10E947;
+ Thu, 24 Jul 2025 14:09:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753366170; x=1784902170;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7ZRDBdnfGCermgUEqhVhQwylai9Ab5g32uVIJqpHMgw=;
+ b=lNL4swE47Zce0r2k707xQEoctyxgmdaV3Lpri72RiSHBLPO0WJ/aOEBS
+ 78B+/cZDrtMIOWsQqlgMmCL3lJP8sJzvGmdk0ilA7Ysm0PDIwAOJ4rKqD
+ vtqb3NmtcRlFC1qr/uCRFUlqYU+C9vaEqhLbjAlTY9+rBRz5h9VujX4h5
+ kW7BPtA37Z3kQL6nKwnoxXvqPB/+HNzHhl87QWM7YImoeWiqqm0hV/X4H
+ 1dx4lfCwBuTTeFFsqt5SRcSBiUOlj1XRhzs0+gltocmw0u0uHrwhXQ117
+ NN7wfH2+MSkKfgfs6PmYCAOVMphkAadqo2roRh2ur1tY6gMJFcUvrsXUC Q==;
+X-CSE-ConnectionGUID: dEY9UfZoSj60YCKC1OyCkA==
+X-CSE-MsgGUID: yK8d/2YyQBG+NtTZ4WqpDQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="73145897"
+X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="73145897"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2025 07:09:29 -0700
+X-CSE-ConnectionGUID: k6zx7AxqSdCpHFtMzF7i1Q==
+X-CSE-MsgGUID: DluYA0SGRHSCDOCRsbA4pw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="160010877"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2025 07:09:27 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
+ raag.jadav@intel.com, umesh.nerlige.ramappa@intel.com,
+ frank.scarbrough@intel.com, sk.anirban@intel.com, simona.vetter@ffwll.ch
+Subject: [PATCH v6 0/9] Handle Firmware reported Hardware Errors
+Date: Thu, 24 Jul 2025 20:04:29 +0530
+Message-ID: <20250724143440.232862-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-References: <20250519122644.3685679-1-nemesa.garg@intel.com>
-In-Reply-To: <20250519122644.3685679-1-nemesa.garg@intel.com>
-From: Xaver Hugl <xaver.hugl@gmail.com>
-Date: Wed, 23 Jul 2025 17:25:37 +0200
-X-Gm-Features: Ac12FXyMmncENa3EXUJUKl77spjbAhx8VBNj8PXjjK1DB1Gv1g9jKSteAlochIs
-Message-ID: <CAFZQkGyRi310n967Mzq8qZ_DUTJeWx8tWks4XQAUxfVeOx65Rg@mail.gmail.com>
-Subject: Re: [PATCH 00/10] Introduce drm sharpness property
-To: Nemesa Garg <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Thu, 24 Jul 2025 14:07:41 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,8 +69,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I reviewed the KWin implementation for this
-(https://invent.kde.org/plasma/kwin/-/merge_requests/7689), and the
-uAPI looks good to me.
+Add support to handle firmware reported errors. When CSC firmware
+errors are encoutered, a error interrupt is received by the GFX device as
+a MSI interrupt. Device Source control registers indicates the source of the error
+as CSC. The HEC error status register indicates that the error is firmware reported
+Depending on the type of firmware error, the error cause is written to the HEC
+Firmware error register. On encountering such CSC firmware errors, the device is unusable
+and can be recovered only using firmware update.
 
-- Xaver
+Whenever Xe KMD detects such a firmware error, system administrator/userspace needs to be
+notified to trigger a firmware flash. To address the above need, a new
+recovery method is added to drm device wedged uevent.
+
+The initial proposal to add 'firmware-flash' as a recovery method was
+not applicable to other drivers and could cause multiple recovery
+methods specific to vendors to be added.
+A more generic 'vendor-specific' method is introduced in this series,
+guiding users to refer to vendor specific documentation and system
+logs, additonal indicators for detailed vendor specific recovery procedure.
+
+It is the responsibility of the consumer to refer to the correct vendor
+specific documentation and usecase before attempting a recovery.
+For example: If driver is XE KMD, the consumer must refer
+to the documentation of 'Xe Device Wedging' under 'Documentation/gpu/xe/'.
+
+The necessity of a firmware flash in Xe KMD is notified to the user with a
+combination of vendor-specific wedged uevent, runtime survivability
+mode and dmesg logs. Consumer must check both uevent and runtime
+survivability sysfs before triggering a firmware flash.
+
+Udev
+
+$ udevadm monitor --property --kernel
+monitor will print the received events for:
+KERNEL - the kernel uevent
+
+
+KERNEL[754.709341] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 (drm)
+ACTION=change
+DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0
+SUBSYSTEM=drm
+WEDGED=vendor-specific
+DEVNAME=/dev/dri/card0
+DEVTYPE=drm_minor
+SEQNUM=5973
+MAJOR=226
+MINOR=0
+
+
+Dmesg:
+
+xe 0000:03:00.0: [drm] *ERROR* [Hardware Error]: Tile0 reported NONFATAL error 0x20000
+xe 0000:03:00.0: [drm] *ERROR* [Hardware Error]: NONFATAL: HEC Uncorrected FW FD Corruption error reported, bit[2] is set
+xe 0000:03:00.0: Runtime Survivability mode enabled
+xe 0000:03:00.0: [drm] *ERROR* CRITICAL: Xe has declared device 0000:03:00.0 as wedged.
+               IOCTLs and executions are blocked. Only a rebind may clear the failure
+               Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new
+xe 0000:03:00.0: [drm] device wedged, needs recovery
+xe 0000:03:00.0: Firmware flash required, Please refer to the userspace documentation for more details!
+
+
+Runtime survivability Sysfs:
+
+/sys/bus/pci/devices/<device>/survivability_mode
+
+Bspec: 50875, 53073, 53074, 53075, 53076
+
+IGT: https://patchwork.freedesktop.org/patch/660122/
+fwupd PR: https://github.com/fwupd/fwupd/pull/9024
+Rev2: add a fault injection for csc errors
+      fix review comments
+
+Rev3: add a vendor-specific recovery method
+      add support for runtime survivability mode
+      enable runtime survivability mode when csc errors are reported
+
+Rev4: refactor survivability code
+
+Rev5: Add more documentation
+      add user friendly logs
+      remove checks for BMG if not necessary
+      fix other review comments
+
+Rev6: Use consistent words
+      revert to include BMG checks
+
+Riana Tauro (9):
+  drm: Add a vendor-specific recovery method to drm device wedged uevent
+  drm/xe: Set GT as wedged before sending wedged uevent
+  drm/xe: Add a helper function to set recovery method
+  drm/xe/xe_survivability: Refactor survivability mode
+  drm/xe/xe_survivability: Add support for Runtime survivability mode
+  drm/xe/doc: Document device wedged and runtime survivability
+  drm/xe: Add support to handle hardware errors
+  drm/xe/xe_hw_error: Handle CSC Firmware reported Hardware errors
+  drm/xe/xe_hw_error: Add fault injection to trigger csc error handler
+
+ Documentation/gpu/drm-uapi.rst                |  42 +++-
+ Documentation/gpu/xe/index.rst                |   1 +
+ Documentation/gpu/xe/xe_device.rst            |  10 +
+ Documentation/gpu/xe/xe_pcode.rst             |   6 +-
+ drivers/gpu/drm/drm_drv.c                     |   2 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/regs/xe_gsc_regs.h         |   2 +
+ drivers/gpu/drm/xe/regs/xe_hw_error_regs.h    |  20 ++
+ drivers/gpu/drm/xe/regs/xe_irq_regs.h         |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c               |   3 +
+ drivers/gpu/drm/xe/xe_device.c                |  58 +++++-
+ drivers/gpu/drm/xe/xe_device.h                |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   5 +
+ drivers/gpu/drm/xe/xe_heci_gsc.c              |   2 +-
+ drivers/gpu/drm/xe/xe_hw_error.c              | 182 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hw_error.h              |  15 ++
+ drivers/gpu/drm/xe/xe_irq.c                   |   4 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   6 +-
+ drivers/gpu/drm/xe/xe_survivability_mode.c    | 167 ++++++++++++----
+ drivers/gpu/drm/xe/xe_survivability_mode.h    |   5 +-
+ .../gpu/drm/xe/xe_survivability_mode_types.h  |   8 +
+ include/drm/drm_device.h                      |   4 +
+ 22 files changed, 489 insertions(+), 56 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_device.rst
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_error.c
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_error.h
+
+-- 
+2.47.1
+
