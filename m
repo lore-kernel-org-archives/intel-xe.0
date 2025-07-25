@@ -4,163 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA7C4C87FCE
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 14:58:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 301B5C87FCE
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 15:07:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6850310E20A;
-	Fri, 25 Jul 2025 14:58:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1B4610E20D;
+	Fri, 25 Jul 2025 15:07:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RbWb8a2I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U33kxqDo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E767F10E20A
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Jul 2025 14:58:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 135E110E20D
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Jul 2025 15:07:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753455513; x=1784991513;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=H5h02Zq59NPCU2B8eRkYsNrmR6+e5hTel/dk6EuQDsg=;
- b=RbWb8a2I5NZg8ZsMTkWiLeDBahPiOhKH6reEGuIvXlZwNi/BDPXUMes/
- gZk+f2i3d09sOtmHJQtYnmHKJVnsTIeQ9t5sq5SJ9DLRNm8kF2nJPwT/8
- hEnm22oCejNaKQxdaFk4ImxNj3+Jf69UgT/vHiUFyA3zkJVNKUhKSyT7B
- YrrO983IACjMck/137Mi6UXfabHFb35AItpbJtnxoYU7eCRhHsv1Rt+Np
- kCrqQawhY5uwXgfxb/Hs7z6ONai5VH0dnW8idzATWRs+7Tpw6Q6cBGz3u
- FpVfoU15PUzy3489DW+FoJODlVix8qstt/F6RLLj/t9MA3zYF3P0M92MI w==;
-X-CSE-ConnectionGUID: fN1JFJB7QkaatsMsBU91Aw==
-X-CSE-MsgGUID: vwyk0eICSzGPBnBBbJRoaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11503"; a="58411707"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="58411707"
+ t=1753456070; x=1784992070;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QFbp4Fp/O27qoncaoacwn77BQR/jK7MTv25kKnT5Myo=;
+ b=U33kxqDo8yVQ3hZ0er7O4HPfzR9O7FFJIu8VoTw/+PbwmR6rWSk04u2c
+ ktIsI6sxRyLy0tDRC7myQ481eGgozC9sbjAmzYZoytcnkU1v1Dat7Lk5O
+ qecpH5g/gSW2ASFK8ydyJJJ7Yg3DKr3O65yWErZHtfuHAuHyxtOlo/Xl0
+ kasPUGAhw0Pf1wD/FG7CFjxvkZlyiqO0xn6R6UozTOQlo1g7G7Ldry0tt
+ b0vN+tGNVIppi+ns7AWpEkGaattVMadfyU+6DEkDS4h5d7zh0ighxLsoi
+ ArPnGdRPyVwcV3ouskiTBVSW+VsZVxYsqVTV2cJBJR3r7QVSr1hix4EGu A==;
+X-CSE-ConnectionGUID: fpWlQS6+Q4qBbDMTtt7G0w==
+X-CSE-MsgGUID: wPdoSl3ARJa2buzJ4/cmqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11503"; a="58412670"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="58412670"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2025 07:58:26 -0700
-X-CSE-ConnectionGUID: 6We8g3dcQTusKcgLYONa0Q==
-X-CSE-MsgGUID: ChiT4Pz4SUyD1D1a0EkkHQ==
+ 25 Jul 2025 08:07:50 -0700
+X-CSE-ConnectionGUID: JL0vnSXlTsKecDbsEFFZEg==
+X-CSE-MsgGUID: aeLzYpsWQN6GhuZB4GKufQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="161724547"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2025 07:58:26 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Fri, 25 Jul 2025 07:58:26 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Fri, 25 Jul 2025 07:58:26 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (40.107.100.79)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Fri, 25 Jul 2025 07:58:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HZIen+Jthq34qVvpsSjfdZ3KmKbaLMPcVjjpbtpU1HSKI2uNQ2O/YrfUICOXQbqJI8hEmtMmZnvjaCrRRMfUxqQx3SyL9oLIVB0BheFU/I+pVIRL2XmWTkTdnVNQS4wByOdW5h3tF50amy6cHelx8ACnDmZ/fDwO75hXVrjSfdxT4HeCciTQpl0KT5YMp9gn3WQn6v7iIvUzv8av9p+LnPFYXi4Fl/WXmneOYAtScNU7j9fvGH4b1LI0V4fXhIWsTVxRIGLOz7wJyYBtOr3Q1HaFddCmQity0vdDYK3gSVOLIPMIl0eMWgwDK2DcCPCcKRraOd74J6N4gXIKwnDI7g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0CjWp5YBJQ3Gof+FWmfQTFtWbcXPVRH2fDC+QOELLaM=;
- b=HILFP4gK74mFa47YEdQcWMgP+2Qq5D9Ov4MPk95U1C+08bDiawTWVW5EUveHBAt7R5TS4o8reiHy1hvFQAHTg/sotk2v6bVRQaXOnJ5eKUe6HC7Sx6lP2tgfn+tPlvo0oEWD/XICQB1jfK431NWP6aVrxfEi+0iotZjOx+iefmpuGEaTSDoIIG4I7NdzvDSypj02nNZKF7lDnDGkCXGXle8DJpd6wpHCe3VWXABnaXO8YBhP89hfa4Gt6XzNqS7MaNre+MdUbBy4HcDG8WsZKRIPEbdvcvrz24eXtRNe9tWq36NcI2+4W2p1VbfrltGx98ROKviAcbfSsX/KlAYwbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SA1PR11MB8427.namprd11.prod.outlook.com (2603:10b6:806:373::19)
- by DS0PR11MB7621.namprd11.prod.outlook.com (2603:10b6:8:143::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.27; Fri, 25 Jul
- 2025 14:58:22 +0000
-Received: from SA1PR11MB8427.namprd11.prod.outlook.com
- ([fe80::b156:b61b:d462:b781]) by SA1PR11MB8427.namprd11.prod.outlook.com
- ([fe80::b156:b61b:d462:b781%5]) with mapi id 15.20.8964.021; Fri, 25 Jul 2025
- 14:58:22 +0000
-Date: Fri, 25 Jul 2025 10:58:18 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe/devcoredump: Defer devcoredump initialization
- during probe
-Message-ID: <aIObistOwsS5h2_6@intel.com>
-References: <20250725065543.3827989-1-balasubramani.vivekanandan@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250725065543.3827989-1-balasubramani.vivekanandan@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0298.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::33) To SA1PR11MB8427.namprd11.prod.outlook.com
- (2603:10b6:806:373::19)
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="161730436"
+Received: from dut4086lnl.fm.intel.com ([10.105.10.26])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2025 08:07:49 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ lucas.demarchi@intel.com, daniele.ceraolospurio@intel.com,
+ shuicheng.lin@intel.com
+Subject: [PATCH v2] drm/xe/xe_guc_ads: Consolidate guc_waklv_enable functions
+Date: Fri, 25 Jul 2025 15:07:50 +0000
+Message-ID: <20250725150749.68071-2-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR11MB8427:EE_|DS0PR11MB7621:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ff1b0ad-5bf8-421e-e501-08ddcb8bb322
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?0ApdkOnleumh/WRlLjvSnB79ICbx6FSroUoHFVMZ55eIOmiAVawMte/KhXUt?=
- =?us-ascii?Q?GaDN7aq+312K5KzNc4/rHKPMEuEWpLJvd6T+W0K/AwBDOWNQMJC5CUDczgwJ?=
- =?us-ascii?Q?TIn5zVZEJf/nJATnDARKyPqt1GsFP7jMWtXT2uoqWltOP87q1VvZKsbLp+cy?=
- =?us-ascii?Q?aifO37VaBQSoYIZtTxQm928kSDu4ZC+kEtXMAgxrmYv82qXLDuUewHyjRWWg?=
- =?us-ascii?Q?BOSNMQ79BYN5JFpEAz3fBVzf973dra7lCZuo3Jxg2HhUrD/ex+XauuHaOBwb?=
- =?us-ascii?Q?r2Pa/LfYzSddZqYaPqp0CiFY095OrqD+P3i1uo4rX99uWgFoVIsBQf9htTy4?=
- =?us-ascii?Q?JgOokvsg14yLGi8t+1vA8pa+HtUdv6gc6mXlIDMO0kPI95uWf8vKpKm87TV6?=
- =?us-ascii?Q?lkEHVuANWVRcw1rllIrNctia707JBwPbfgvfzKfJRg0CPpdQx3oliQ6pztql?=
- =?us-ascii?Q?OQXF10wrSJ/uiLI9/iRry+xu+/f/g75fJNNZnCzAao2p5CJ8RYnHenl3zOba?=
- =?us-ascii?Q?/x/YpqyFrGu9gnmFBpF78PcUPz6fcVBXICQNdFJPlH/ffsJheGe3cx9ma9n2?=
- =?us-ascii?Q?hb140kcC7R845UVhIzfMUDhdg8Dmm+QLZR0uRZLyQBBeDRJqZkUu7r8ZzKnr?=
- =?us-ascii?Q?LJU4IN7EoZvvom8lCrw6UZ1dgsVWfReOa9sH1IxPQbc3CUhiL70XkgpU0wDV?=
- =?us-ascii?Q?7ObTddGgpk4CvlI9XCkv5gQYr5AQE4GPNRS2eTLXiZMNdFw+c6kDLAzgg0ib?=
- =?us-ascii?Q?0rLBG4xB2fa04Fj782EvgDtyz6MBGCDfRWwPZbVwgNZ4kP/R245/Ac6Sv4YW?=
- =?us-ascii?Q?2qGZ7Rw7UwZXY2SWtjYUWjePubd0OMmE+N7AvuuUnKltcg1ygv6S1ghnaLlb?=
- =?us-ascii?Q?Up2Nu8ASVaIuwzejFTVx0WVTv9/ateFOl4vFYsL6LybP2z6KcOwej4LobabQ?=
- =?us-ascii?Q?eu6Rg51y6dTBfJJ/uVc/Xstpkvbnnn4jE2QnlOL+hWsCnkxqVPpNcniPx2rX?=
- =?us-ascii?Q?xtG1y1S9L1k8xfhoYhr4DLTbQ8531I+aThDqB1OAsed/WXmzqXVXtk85OGbJ?=
- =?us-ascii?Q?Q8iz0wUhKLz4UttCoyBiyzKazZhezvAucw3a3+abMpzwPD+KR7lSd6FtUGA9?=
- =?us-ascii?Q?olbQH2kCUKuCvC8Tw1zYkI5hH1BeMLQy9VJqN4qSk1yLc6sF6RPXqJpE71uV?=
- =?us-ascii?Q?QLdKvJEdV7pZv+TFEEIYSjx3dS8FoArI0DXAhV0JK7YA9dnfjY7FFv9BA+P0?=
- =?us-ascii?Q?iBXg8NosFUQPZdvrupUOHmPHensv+tlpvupTutBIpX7v9lirsOlLYa7g8CJd?=
- =?us-ascii?Q?KtcYVBlXYENTCx8+AqbljuiqSqr86X/VXtQMWaWWOI6niTzMLml9TmQu3iCL?=
- =?us-ascii?Q?Bj0cQiwpLS5Z4Y+TfjCMgTcgPrmIsWoVuCOGKtvF+x47BV+dg1XCSFBt7o+u?=
- =?us-ascii?Q?SLLkNk2dib8=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA1PR11MB8427.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?H/6l3DdSNjisAAMrFjLBNaEipTd+giDaA8gbTQE7bQSl2ItgGjrUCQ3IBLQL?=
- =?us-ascii?Q?sikdbWt26mS1j5wabHQTzberBJG6/ubKv52xbpvIjV5MQ2cUg+/L8Fqk0cYb?=
- =?us-ascii?Q?Raicp0BmvJ/wwq1nwaRHPzKqYNlesjmVecuAifWcA6ARq3OGIDfRbMoMbS7Y?=
- =?us-ascii?Q?9++HZn53QvlGdt6PKE2yU6SFy/u9fJ8j3q87uvwVtZCD4ZI5qv/vYUAp2Cj+?=
- =?us-ascii?Q?3qGF+cpFFlFlg0DbrI/wag45pyiIeZH9W5eNVaCujNzAEEVzVo74PDsp6E6f?=
- =?us-ascii?Q?JZmpNt8JS2x2ZWtcmaEYdkHfGnqsZRPJr89DMAgDhxHcsYsVugdPxdkBAOu+?=
- =?us-ascii?Q?EIGlH2g1cFaYiIC04EQbGJuG+MaVKRIEtPGHbTnPpWIKA/6TqX4L3S77Ipw6?=
- =?us-ascii?Q?IGqv4EqWbcHyDqgFJyOEjHjM/KcNphxsiuZDi7NlCnYhz4W1AUN7E582yGwu?=
- =?us-ascii?Q?12/lj3JrpjkimCHNJB6Sk2mSiXSyuo3xUT8OKAPq+14fMX8a4/TUJQtZPBz0?=
- =?us-ascii?Q?00Qi8mFXYmqBQoPiZ8gzGronJruaHkKn7jaDsuipYlxZLtIRs6RBDFkHz9H+?=
- =?us-ascii?Q?rWmboOObv+jvrjK72lvkTS4MaCiekdXBz8+c5wQad7HtbkXAhcAHXA/yYXxI?=
- =?us-ascii?Q?k8B7t5OXTJZgn0HHHzhSzEL+t21M0sJSVh3ODpsRHUr1/vQTqZtMzt46zVBj?=
- =?us-ascii?Q?+Djk7mH0znq3RAh0tN8TmQImbg1WIYOyBjEyX8fm3R2GH1zrnxXzfmYfTWDd?=
- =?us-ascii?Q?dGOLZ8DdWZIzC684eNjnmSusv7BXDuvO7fGIAD/6pvIYYfysX8rUv/92uxQw?=
- =?us-ascii?Q?IuaOVEM6JMxTSiS2bL+QqLTNxs2od605JGrhvO58cyGk4u32vnsYPfceDHsd?=
- =?us-ascii?Q?3wubhnmSV0L2skXP1ilrw+x7vsNc8gbcceNRsMyvHOmM5dN7spKZRWpMU8zB?=
- =?us-ascii?Q?uayB8IdGym+5zI0JYIpsjFFwCpE1C6auhXoIlKOzU21F7wq2Ip3zyBxQDfzD?=
- =?us-ascii?Q?e/y4ylm85Kn8GMtLwhTrTHkpmI1ZcwHY0dG7afrGydVW9C7YK4TtUaFuD/dC?=
- =?us-ascii?Q?MADUmw7D9R6Jwv7ycH7LdWJ0Mers6Yi/1gHTkTNAd4sm1zncKwl5dzbF9Ler?=
- =?us-ascii?Q?5M1Vxo4QNAbfOJyLdvaiDpmZmYhZ2eahSlyo5I8HQ3FQCiK8GDXWezvDLSha?=
- =?us-ascii?Q?Cxj9hfW3cxZ+M+uzbV+figE9gUvlcsGidsUWQWCgLkTViJH1bp5tmbebdoGY?=
- =?us-ascii?Q?nDFm7zei8mmvy4yrPxfo372Tb8Q2suAa+nttTtE/ksgRWPR9R6q0fCbKp6nP?=
- =?us-ascii?Q?DOtKmBscEnXuPIg9ncCr2vlQCksUpESYc1O8egs5tCGbUJPADzLfU22gjNzR?=
- =?us-ascii?Q?3vWg60qB/8YLxc8EouZUn7xg2SWzoWZlbUTYDujihrNl7N3cTiZTaGsiIhax?=
- =?us-ascii?Q?7iKYACbgofo2nhbYzu8M9ymyvh7C0ckeFmzg6ADp+XRIhLXWcGuSzpTlvsRf?=
- =?us-ascii?Q?bGgoiJ1i+04IiZ88XJVeoMdfoItE54ixJQiZrObaIcN+vovcV5n7w9t9xPWk?=
- =?us-ascii?Q?0+ORnZgmpEMenKhZQmN7V55nfUoaZYiPVzkfGaGl?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ff1b0ad-5bf8-421e-e501-08ddcb8bb322
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB8427.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2025 14:58:22.5514 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n0Zw8UfYJ6i33HIzBnqPok5iRUUWihC+nsU5cKahHBEPsf2c/iOt/7xLYCPFvT1QhreYxbO0/7gBUdqg8q6pxA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7621
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,75 +66,218 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 25, 2025 at 12:25:43PM +0530, Balasubramani Vivekanandan wrote:
-> Doing devcoredump initializing before GT though look harmless, it leads
-> to problem during driver unbind. Because of this order, GT/Engine
-> release functions will be called before xe devcoredump release function
-> (xe_driver_devcoredump_fini) leading to the following kernel crash
-> because the devcoredump functions might still use GT/Engine
-> datastructures after those are freed.
+Presently, multiple versions of the guc_waklv_enable_.* function exist,
+all with different numbers of dwords added to the klv_entry array.  This
+is not extensible, and more duplicates of the function will need to be
+created if it ever becomes necessary to support 3 or more dwords per wa
+in the future.
 
-I agree on moving this initialization a bit further, but I'd like
-to have a commit message that explains the problem a bit better.
+Consolidate the disparate guc_waklv_enable functions into a single
+guc_waklv_enable function that can take an arbitrary number of dword
+values.
 
-looking to xe_driver_devcoredump_fini it is just a dev_coredump_put()
-so, it is not reading anything on the gt... not triggering the
-__xe_devcoredump_read().
+v2: Update length value properly (Shuicheng)
 
-So, please explain the flow that is causing the below's error better.
+Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Lucas De Marchi <lucas.demarch@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ads.c | 144 ++++++++++++--------------------
+ 1 file changed, 54 insertions(+), 90 deletions(-)
 
-> 
-> BUG: kernel NULL pointer dereference, address: 0000000000000000
-> Workqueue: events_unbound xe_devcoredump_deferred_snap_work [xe]
-> RIP: 0010:xe_engine_snapshot_print+0x47/0x420 [xe]
-> Call Trace:
->  <TASK>
->  ? drm_printf+0x64/0x90
->  __xe_devcoredump_read+0x23f/0x2d0 [xe]
->  ? __pfx___drm_printfn_coredump+0x10/0x10
->  ? __pfx___drm_puts_coredump+0x10/0x10
->  xe_devcoredump_deferred_snap_work+0x17a/0x190 [xe]
->  process_one_work+0x22e/0x6f0
->  worker_thread+0x1e8/0x3d0
->  ? __pfx_worker_thread+0x10/0x10
->  kthread+0x11f/0x250
->  ? __pfx_kthread+0x10/0x10
->  ret_from_fork+0x47/0x70
->  ? __pfx_kthread+0x10/0x10
->  ret_from_fork_asm+0x1a/0x30
-> 
-> Fixes: 4209d635a823 ("drm/xe: Remove devcoredump during driver release")
-> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index d04a0ae018e6..ae48cd3c7bf0 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -821,10 +821,6 @@ int xe_device_probe(struct xe_device *xe)
->  			return err;
->  	}
->  
-> -	err = xe_devcoredump_init(xe);
-> -	if (err)
-> -		return err;
-> -
->  	/*
->  	 * From here on, if a step fails, make sure a Driver-FLR is triggereed
->  	 */
-> @@ -889,6 +885,10 @@ int xe_device_probe(struct xe_device *xe)
->  	    XE_WA(xe->tiles->media_gt, 15015404425_disable))
->  		XE_DEVICE_WA_DISABLE(xe, 15015404425);
->  
-> +	err = xe_devcoredump_init(xe);
-> +	if (err)
-> +		return err;
-> +
->  	xe_nvm_init(xe);
->  
->  	err = xe_heci_gsc_init(xe);
-> -- 
-> 2.34.1
-> 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 8ff8626227ae..4183a82fdb0c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -284,83 +284,41 @@ static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
+ 	return total_size;
+ }
+ 
+-static void guc_waklv_enable_two_word(struct xe_guc_ads *ads,
+-				      enum xe_guc_klv_ids klv_id,
+-				      u32 value1,
+-				      u32 value2,
+-				      u32 *offset, u32 *remain)
++static void guc_waklv_enable(struct xe_guc_ads *ads,
++			     enum xe_guc_klv_ids klv_id,
++			     u32 dwords[], u32 num_dwords,
++			     u32 *offset, u32 *remain)
+ {
+-	u32 size;
+-	u32 klv_entry[] = {
+-			/* 16:16 key/length */
+-			FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
+-			FIELD_PREP(GUC_KLV_0_LEN, 2),
+-			value1,
+-			value2,
+-			/* 2 dword data */
+-	};
+-
+-	size = sizeof(klv_entry);
++	size_t size = sizeof(u32) * (1 + num_dwords);
++	u32 *klv_entry;
+ 
+ 	if (*remain < size) {
+ 		drm_warn(&ads_to_xe(ads)->drm,
+ 			 "w/a klv buffer too small to add klv id %d\n", klv_id);
+-	} else {
+-		xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), *offset,
+-				 klv_entry, size);
+-		*offset += size;
+-		*remain -= size;
++		return;
+ 	}
+-}
+-
+-static void guc_waklv_enable_one_word(struct xe_guc_ads *ads,
+-				      enum xe_guc_klv_ids klv_id,
+-				      u32 value,
+-				      u32 *offset, u32 *remain)
+-{
+-	u32 size;
+-	u32 klv_entry[] = {
+-		/* 16:16 key/length */
+-		FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
+-		FIELD_PREP(GUC_KLV_0_LEN, 1),
+-		value,
+-		/* 1 dword data */
+-	};
+-
+-	size = sizeof(klv_entry);
+ 
+-	if (*remain < size) {
++	klv_entry = kzalloc(size, GFP_KERNEL);
++	if (!klv_entry) {
+ 		drm_warn(&ads_to_xe(ads)->drm,
+-			 "w/a klv buffer too small to add klv id %d\n", klv_id);
+-	} else {
+-		xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), *offset,
+-				 klv_entry, size);
+-		*offset += size;
+-		*remain -= size;
++			 "w/a klv buffer for klv id %d not allocated!\n", klv_id);
++		return;
+ 	}
+-}
+ 
+-static void guc_waklv_enable_simple(struct xe_guc_ads *ads,
+-				    enum xe_guc_klv_ids klv_id, u32 *offset, u32 *remain)
+-{
+-	u32 klv_entry[] = {
+-		/* 16:16 key/length */
+-		FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
+-		FIELD_PREP(GUC_KLV_0_LEN, 0),
+-		/* 0 dwords data */
+-	};
+-	u32 size;
++	/* 16:16 key/length */
++	klv_entry[0] = FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
++		       FIELD_PREP(GUC_KLV_0_LEN, num_dwords);
+ 
+-	size = sizeof(klv_entry);
+-
+-	if (xe_gt_WARN(ads_to_gt(ads), *remain < size,
+-		       "w/a klv buffer too small to add klv id %d\n", klv_id))
+-		return;
++	/* add dwords of data */
++	for (int i = 1; i <= num_dwords; i++)
++		klv_entry[i] = dwords[i];
+ 
+ 	xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), *offset,
+ 			 klv_entry, size);
+ 	*offset += size;
+ 	*remain -= size;
++
++	kfree(klv_entry);
+ }
+ 
+ static void guc_waklv_init(struct xe_guc_ads *ads)
+@@ -373,49 +331,55 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
+ 	remain = guc_ads_waklv_size(ads);
+ 
+ 	if (XE_WA(gt, 14019882105) || XE_WA(gt, 16021333562))
+-		guc_waklv_enable_simple(ads,
+-					GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED,
+-					&offset, &remain);
++		guc_waklv_enable(ads,
++				 GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED,
++				 NULL, 0, &offset, &remain);
+ 	if (XE_WA(gt, 18024947630))
+-		guc_waklv_enable_simple(ads,
+-					GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING,
+-					&offset, &remain);
++		guc_waklv_enable(ads,
++				 GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING,
++				 NULL, 0, &offset, &remain);
+ 	if (XE_WA(gt, 16022287689))
+-		guc_waklv_enable_simple(ads,
+-					GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE,
+-					&offset, &remain);
++		guc_waklv_enable(ads,
++				 GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE,
++				 NULL, 0, &offset, &remain);
+ 
+ 	if (XE_WA(gt, 14022866841))
+-		guc_waklv_enable_simple(ads,
+-					GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO,
+-					&offset, &remain);
++		guc_waklv_enable(ads,
++				 GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO,
++				 NULL, 0, &offset, &remain);
+ 
+ 	/*
+ 	 * On RC6 exit, GuC will write register 0xB04 with the default value provided. As of now,
+ 	 * the default value for this register is determined to be 0xC40. This could change in the
+ 	 * future, so GuC depends on KMD to send it the correct value.
+ 	 */
+-	if (XE_WA(gt, 13011645652))
+-		guc_waklv_enable_one_word(ads,
+-					  GUC_WA_KLV_NP_RD_WRITE_TO_CLEAR_RCSM_AT_CGP_LATE_RESTORE,
+-					  0xC40,
+-					  &offset, &remain);
++	if (XE_WA(gt, 13011645652)) {
++		u32 arr[] = {
++			0xC40,
++		};
++		guc_waklv_enable(ads,
++				 GUC_WA_KLV_NP_RD_WRITE_TO_CLEAR_RCSM_AT_CGP_LATE_RESTORE,
++				 arr, 1, &offset, &remain);
++	}
+ 
+ 	if (XE_WA(gt, 14022293748) || XE_WA(gt, 22019794406))
+-		guc_waklv_enable_simple(ads,
+-					GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET,
+-					&offset, &remain);
++		guc_waklv_enable(ads,
++				 GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET,
++				 NULL, 0, &offset, &remain);
+ 
+ 	if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(70, 44, 0) && XE_WA(gt, 16026508708))
+-		guc_waklv_enable_simple(ads,
+-					GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH,
+-					&offset, &remain);
+-	if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(70, 47, 0) && XE_WA(gt, 16026007364))
+-		guc_waklv_enable_two_word(ads,
+-					  GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG,
+-					  0x0,
+-					  0xF,
+-					  &offset, &remain);
++		guc_waklv_enable(ads,
++				 GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH,
++				 NULL, 0, &offset, &remain);
++	if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(70, 47, 0) && XE_WA(gt, 16026007364)) {
++		u32 arr[] = {
++			0x0,
++			0xF,
++		};
++		guc_waklv_enable(ads,
++				 GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG,
++				 arr, 2, &offset, &remain);
++	}
+ 
+ 	size = guc_ads_waklv_size(ads) - remain;
+ 	if (!size)
+-- 
+2.43.0
+
