@@ -4,52 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56CDCC87FCA
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 06:54:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC8BEC87FCE
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 06:57:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E691D10E078;
-	Fri, 25 Jul 2025 06:54:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50AF310E43A;
+	Fri, 25 Jul 2025 06:57:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SAEwcIq2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="oWLum58C";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFB6910E078
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Jul 2025 06:54:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753426470; x=1784962470;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xhA2ACqAOvhou7e4yGzVyXUY85jkCWTmnkhw55O9h+4=;
- b=SAEwcIq2y15V7IO9jY2N+X6soudsqvXUbEf5Wdfl7E1CVM7a6p3ImUC6
- hbiOrUidA2cbplbzMuOou43KiFrABueK+Q2jT3pUKCOie6ZvszKW1CEQs
- AjkOwUR/0v4xos1L0s+9Htwo0lvX8N1Y97NuTni1dNWManIeFUor7s3I+
- s5ybuGHJmLg0/LIvqd/rsLCu0B7ow0fnUQvfzZPMhcNMNf+N7KhcSJ1iO
- tkUWyCsTgS3ru29b/GccnGg3WCXYmNvoszPbNk/9r4JmviNLLVz08Yr5q
- rGs3+C9BJEJjRPiKd01mq5KT5XExuA1co+YSmASwiq46Ub0e8GKdZkP07 A==;
-X-CSE-ConnectionGUID: 3tU1ShZsQx2h/zS3/vqEvw==
-X-CSE-MsgGUID: kcaOtHFCRIm3buTMFmOrXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="66324569"
-X-IronPort-AV: E=Sophos;i="6.16,338,1744095600"; d="scan'208";a="66324569"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 23:54:29 -0700
-X-CSE-ConnectionGUID: hNKoY4UMSn+z3tbt1HJppA==
-X-CSE-MsgGUID: HwrsLVLWTSKhxNpBG7lR0A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,338,1744095600"; d="scan'208";a="160480335"
-Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 23:54:28 -0700
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63E4910E146
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Jul 2025 06:57:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=G59A4YO1M6F3sWs+/rp39HDOEdz8zIDNS9Wpo5gheXM=; b=oWLum58CpcY/Kq6xG6l0FyLmoK
+ BosjFoWl7lt+P2Cbd+0Ye1j6d1Pse1eFHXkF3mD7N3+RvqC6fz1sPPO8ySqoVE8xosUqOkVfpL+4B
+ 6JA3UgzuQ/ANTdMzNuOtyfY51D88Q6TjI/5qUR44iJ/znA3MMcAxPGIa+2h/KcCQy26vgrfF50Cp5
+ TjVacmG1t8xJe2D5nCT+cZ9f0OPNQMlSz8UWNy+VYm17UeqXaKzzhmxWsHZbSteHLsVR+BC28Zytz
+ 0Beieg1jKTmr2euPavoYYInMsCWLtLvGTqGb71wzWZK2U0vuhOCwEvXbmBwnyCv7XLf/Rtj3wAsgr
+ rfz83Hvg==;
+Received: from [84.66.36.92] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1ufCMb-003ZzZ-LC
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Jul 2025 08:57:05 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH] drm/xe/devcoredump: Defer devcoredump initialization during
- probe
-Date: Fri, 25 Jul 2025 12:25:43 +0530
-Message-Id: <20250725065543.3827989-1-balasubramani.vivekanandan@intel.com>
-X-Mailer: git-send-email 2.34.1
+Subject: [CI v3 1/7] drm/xe/xelpg: Flush CCS when flushing caches
+Date: Fri, 25 Jul 2025 07:56:57 +0100
+Message-ID: <20250725065704.87050-2-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250725065704.87050-1-tvrtko.ursulin@igalia.com>
+References: <20250725065704.87050-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,64 +57,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Doing devcoredump initializing before GT though look harmless, it leads
-to problem during driver unbind. Because of this order, GT/Engine
-release functions will be called before xe devcoredump release function
-(xe_driver_devcoredump_fini) leading to the following kernel crash
-because the devcoredump functions might still use GT/Engine
-datastructures after those are freed.
+According to i915 PIPE_CONTROL0_CCS_FLUSH needs to be set when flushing
+render caches on gfx ip 12.70+.
 
-BUG: kernel NULL pointer dereference, address: 0000000000000000
-Workqueue: events_unbound xe_devcoredump_deferred_snap_work [xe]
-RIP: 0010:xe_engine_snapshot_print+0x47/0x420 [xe]
-Call Trace:
- <TASK>
- ? drm_printf+0x64/0x90
- __xe_devcoredump_read+0x23f/0x2d0 [xe]
- ? __pfx___drm_printfn_coredump+0x10/0x10
- ? __pfx___drm_puts_coredump+0x10/0x10
- xe_devcoredump_deferred_snap_work+0x17a/0x190 [xe]
- process_one_work+0x22e/0x6f0
- worker_thread+0x1e8/0x3d0
- ? __pfx_worker_thread+0x10/0x10
- kthread+0x11f/0x250
- ? __pfx_kthread+0x10/0x10
- ret_from_fork+0x47/0x70
- ? __pfx_kthread+0x10/0x10
- ret_from_fork_asm+0x1a/0x30
-
-Fixes: 4209d635a823 ("drm/xe: Remove devcoredump during driver release")
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/instructions/xe_gpu_commands.h | 1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c                  | 7 ++++++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index d04a0ae018e6..ae48cd3c7bf0 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -821,10 +821,6 @@ int xe_device_probe(struct xe_device *xe)
- 			return err;
- 	}
+diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+index 8cfcd3360896..78c0e87dbd37 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+@@ -43,6 +43,7 @@
  
--	err = xe_devcoredump_init(xe);
--	if (err)
--		return err;
--
- 	/*
- 	 * From here on, if a step fails, make sure a Driver-FLR is triggereed
- 	 */
-@@ -889,6 +885,10 @@ int xe_device_probe(struct xe_device *xe)
- 	    XE_WA(xe->tiles->media_gt, 15015404425_disable))
- 		XE_DEVICE_WA_DISABLE(xe, 15015404425);
+ #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
+ #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
++#define   PIPE_CONTROL0_CCS_FLUSH                       BIT(13) /* MTL+ */
  
-+	err = xe_devcoredump_init(xe);
-+	if (err)
-+		return err;
+ #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
+ #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index e8f22ec5f9af..09a9b31d2e12 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -176,13 +176,18 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ {
+ 	struct xe_gt *gt = job->q->gt;
++	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
++	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
+ 	u32 flags;
+ 
+ 	if (XE_WA(gt, 14016712196))
+ 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+ 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+ 
++	if (GRAPHICS_VERx100(xe) >= 1270)
++		bit_group_0 |= PIPE_CONTROL0_CCS_FLUSH;
 +
- 	xe_nvm_init(xe);
+ 	flags = (PIPE_CONTROL_CS_STALL |
+ 		 PIPE_CONTROL_TILE_CACHE_FLUSH |
+ 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+@@ -198,7 +203,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+ 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
  
- 	err = xe_heci_gsc_init(xe);
+-	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
++	return emit_pipe_control(dw, i, bit_group_0, flags, 0, 0);
+ }
+ 
+ static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
 -- 
-2.34.1
+2.48.0
 
