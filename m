@@ -4,60 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09387C87FCA
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 05:50:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8692C83F26
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 06:04:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFB3710E425;
-	Fri, 25 Jul 2025 05:50:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z9gQxLqt";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BF3D10E425;
- Fri, 25 Jul 2025 05:50:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753422614; x=1784958614;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=o86HXC8fS175u4T+p5NLxbkvugG8XecNDwVMDSSC+QA=;
- b=Z9gQxLqttE6Y41xl4uSHvTMvnAVh/wxSf0qdGjsjLDAhhZeyqGrgcyuZ
- ia3KAe45YKHTtxOqA/GSjw6xyUXdkMDrG0H5bGIDDacry0JOoSw8u/XZ+
- 1IE/+pNnPvMQOkiaBLplEs4AUszij4jJl3vqc5hjf++5/1Lp+gG78NvEt
- DzKHi9GgX4gAiLgF2pUdq8p6yxi0OTQmlS1BvXDRm2BcJnbgLEbbbCsvM
- TLUuFRlmHQ4jROCJI8Lfrs/TITsFQb1qyvXeRjLKFWdi7t/3kmy01ki39
- q+a8QCZ9wC/DFZSnwaQHVqOiJSqcOqtt4j+cxY6wU/3+1y4NLpJ3XvgXC g==;
-X-CSE-ConnectionGUID: t3D+j2owTuyJQ8bk/fpOoA==
-X-CSE-MsgGUID: ROtHAntbQA2p88DrcYx40A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="58371623"
-X-IronPort-AV: E=Sophos;i="6.16,338,1744095600"; d="scan'208";a="58371623"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 22:50:14 -0700
-X-CSE-ConnectionGUID: mmatlTa/TpuHp5ohl2/gfg==
-X-CSE-MsgGUID: YfGJA1/8Smiw1RzWguPaDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,338,1744095600"; d="scan'208";a="161453275"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 22:50:11 -0700
-Date: Fri, 25 Jul 2025 08:50:08 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
- umesh.nerlige.ramappa@intel.com, frank.scarbrough@intel.com,
- sk.anirban@intel.com, simona.vetter@ffwll.ch
-Subject: Re: [PATCH v6 6/9] drm/xe/doc: Document device wedged and runtime
- survivability
-Message-ID: <aIMbEPlNhNjskITi@black.fi.intel.com>
-References: <20250724143440.232862-1-riana.tauro@intel.com>
- <20250724143440.232862-7-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC69010E078;
+	Fri, 25 Jul 2025 06:04:22 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B089110E078;
+ Fri, 25 Jul 2025 06:04:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4119290070587617741=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250724143440.232862-7-riana.tauro@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Enable_Pipe_writeback?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 25 Jul 2025 06:04:21 -0000
+Message-ID: <175342346171.189023.3271248281376283903@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250725050409.2687242-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250725050409.2687242-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,36 +35,178 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 24, 2025 at 08:04:35PM +0530, Riana Tauro wrote:
-> Add documentation for vendor specific device wedged recovery method
-> and runtime survivability.
+--===============4119290070587617741==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-...
+== Series Details ==
 
->  /**
-> + * DOC: Xe Device Wedging
-> + *
-> + * Xe driver uses drm device wedged uevent as documented in Documentation/gpu/drm-uapi.rst.
-> + *
-> + * When device is in wedged state, every IOCTL will be blocked and GT cannot be
-> + * used. Certain critical errors like gt reset failure, firmware failures can cause
-> + * the device to be wedged. The default recovery method for a wedged state
-> + * is rebind/bus-reset.
-> + *
-> + * Another recovery method is vendor-specific. Below are the usecases that trigger
-> + * vendor-specific drm device wedged uevent and the procedure to be performed
-> + * to recover the device.
-> + *
-> + * Case 1: CSC firmware errors require a firmware flash to restore normal device
-> + *         operation. Since firmware flash is a vendor-specific action
-> + *         ``WEDGED=vendor-specific`` recovery method along with
-> + *         :ref:`runtime survivability mode <xe-survivability-mode>` is used to
-> + *         notify userspace. User can then initiate a firmware flash using userspace tools
-> + *         like fwupd to restore device to normal situation.
+Series: Enable Pipe writeback
+URL   : https://patchwork.freedesktop.org/series/152105/
+State : failure
 
-s/situation/operation
+== Summary ==
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+CI Bug Log - changes from xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12_BAT -> xe-pw-152105v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-152105v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-152105v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-152105v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152105v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - bat-adlp-7:         [PASS][5] -> [DMESG-WARN][6] ([Intel XE#4543]) +1 other test dmesg-warn
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [DMESG-WARN][7] ([Intel XE#4543]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12 -> xe-pw-152105v1
+
+  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12: e4a00177f7a294b0e63959774b9ad3e5363cbd12
+  xe-pw-152105v1: 152105v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/index.html
+
+--===============4119290070587617741==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable Pipe writeback</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152105/">https://patchwork.freedesktop.org/series/152105/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12_BAT -&gt; xe-pw-152105v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-152105v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-152105v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-152105v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152105v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-dpms:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152105v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12 -&gt; xe-pw-152105v1</li>
+</ul>
+<p>IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3472-e4a00177f7a294b0e63959774b9ad3e5363cbd12: e4a00177f7a294b0e63959774b9ad3e5363cbd12<br />
+  xe-pw-152105v1: 152105v1</p>
+
+</body>
+</html>
+
+--===============4119290070587617741==--
