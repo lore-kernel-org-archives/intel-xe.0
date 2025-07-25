@@ -4,51 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 071C5C83F26
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 10:33:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D061AC83F26
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 10:34:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0A1D10E9AF;
-	Fri, 25 Jul 2025 10:33:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E96F10E9D3;
+	Fri, 25 Jul 2025 10:34:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="V1UI3XQ1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RpELQOKp";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8CEA10E1B6;
- Fri, 25 Jul 2025 10:33:41 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 05169601DC;
- Fri, 25 Jul 2025 10:33:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32A7EC4CEE7;
- Fri, 25 Jul 2025 10:33:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1753439620;
- bh=YP3zgdbV4rWDDNeh6M4/SahHLAfSTyA5yYPF8nAccjM=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=V1UI3XQ1ILsZUWLvdZZOZ0cVP5T8wA0BdNwewnfj8up3XmTfdV43DXkUbyvCTYS1T
- LFZz/c7azxmXyJxyvmporpAm7B7wlFMFPPLXurShb+c8tEhBYiTTBnTJDpVRmusiPD
- CUpf7joDpTNJ8lhMY1OHHe+1qWcN7wXuqr4oRfrzAxeCVtPzuuP6BnD6/D05lofKlV
- XrDQOT/woffjxnPToGEoLzS0lLRktOrKBkey/oSr2HG6NhyiDWngAd9twhe+q8ZyKn
- GehbD56qqNjvudX+DMw5h0/0/aUOp8mkPL7uPgxExc4wl9G2IZXPLNKye3MCf7sveO
- YYeHRCo93ehhg==
-Message-ID: <243457b5-c1f8-494a-a88a-272c535094a7@kernel.org>
-Date: Fri, 25 Jul 2025 19:33:37 +0900
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C67910E9CD;
+ Fri, 25 Jul 2025 10:34:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753439641; x=1784975641;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=LevBNGaMRX+QUpJe2xBfUDEytZ4F0l9p2h/+vmJ717s=;
+ b=RpELQOKpgBGIf85HqPZL3cK8nBPpNQnbRJn/vxO7dNsTfj6OKbwbvEV4
+ fuJgebmEX5aYscNv6H0InH/KYcWQvbBP1X5gmG/SwaPPep3Vf2krshO2+
+ 2T9YQxqEbtAuBTgA7Akp2d+fFAzIiRxxU+csP4KeQjadzxGGtNDA3ux1a
+ Rdb6soApjQH+8R8TN3PxAt2GRWJtEfu30JVNpLFe7RqQymduKG3NYnecs
+ zUeTcW3bl4zhx07TnJqg6BEkkDYjrZmdaGIz723qlsEUOaXzpNaCi9kgv
+ vROjib8Y9OsqWC5h9F78zjQLBmcLLEcUVoHJeUKKW2A6f83F2kP7yWKmM g==;
+X-CSE-ConnectionGUID: sTcHviZESTC8BbKBLwaaSA==
+X-CSE-MsgGUID: l5SQed0DRZySvGjKelrQWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="55922467"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="55922467"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2025 03:34:01 -0700
+X-CSE-ConnectionGUID: WUbpCxUmSXOLSoW/oEPyFw==
+X-CSE-MsgGUID: /MVd6Aq5T5Cja4u1NkBbiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="161172371"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2025 03:33:57 -0700
+Date: Fri, 25 Jul 2025 13:33:53 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
+ umesh.nerlige.ramappa@intel.com, frank.scarbrough@intel.com,
+ sk.anirban@intel.com, simona.vetter@ffwll.ch
+Subject: Re: [PATCH v6 9/9] drm/xe/xe_hw_error: Add fault injection to
+ trigger csc error handler
+Message-ID: <aINdkd0-liNN69Qn@black.fi.intel.com>
+References: <20250724143440.232862-1-riana.tauro@intel.com>
+ <20250724143440.232862-10-riana.tauro@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Regression on linux-next (next-20250708)
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- linux-ide@vger.kernel.org, mika.westerberg@intel.com,
- anshuman.gupta@intel.com, "Kurmi, Suresh Kumar"
- <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani" <jani.saarinen@intel.com>,
- lucas.demarchi@intel.com, Niklas Cassel <cassel@kernel.org>
-References: <07563042-6576-41cd-9a95-de83cfc95de1@intel.com>
-Content-Language: en-US
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <07563042-6576-41cd-9a95-de83cfc95de1@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250724143440.232862-10-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,96 +72,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 7/25/25 15:43, Borah, Chaitanya Kumar wrote:
-> Hello Damien,
-> 
-> Hope you are doing well. I am Chaitanya from the linux graphics team in 
-> Intel.
-> 
-> This mail is regarding a regression we are seeing in our CI runs[1] on
-> linux-next repository.
-> 
-> Since the version next-20250708 [2], we are seeing the following regression
-> 
-> `````````````````````````````````````````````````````````````````````````````````
-> (kms_pm_rpm:5821) igt_pm-CRITICAL: Test assertion failure function 
-> __igt_pm_enable_sata_link_power_management, file ../lib/igt_pm.c:392:
-> 
-> (kms_pm_rpm:5821) igt_pm-CRITICAL: Failed assertion: write(fd, 
-> "min_power\n", strlen("min_power\n")) == strlen("min_power\n")
-> 
-> (kms_pm_rpm:5821) igt_pm-CRITICAL: Last errno: 95, Operation not supported
-> 
-> (kms_pm_rpm:5821) igt_pm-CRITICAL: error: -1 != 10
-> 
-> Test kms_pm_rpm failed.
-> `````````````````````````````````````````````````````````````````````````````````
-> Details log can be found in [3].
-> 
-> After bisecting the tree, the following patch [4] seems to be the first 
-> "bad" commit
-> 
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> commit 4edf1505b76d30e1e1e283d431e4f84ad01ddcef
-> 
-> Author: Damien Le Moal dlemoal@kernel.org
-> 
-> Date:   Tue Jul 1 21:53:18 2025 +0900
-> 
-> 
->      ata: ahci: Disallow LPM policy control for external ports
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> 
-> For some context in our kms_pm_rpm tests, we enable min_power policy for 
-> SATA so that we can reach deep runtime power states and restore the 
-> original policy after finishing. [5][6]
-> 
-> IIUC, the above change is based on spec and not something which can be 
-> reverted. So as I see it, we have to drop this code path for external 
-> ports. However I am not sure if we can achieve deep power states without 
-> enforcing it through the sysfs entry.
+On Thu, Jul 24, 2025 at 08:04:38PM +0530, Riana Tauro wrote:
+> Add a debugfs fault handler to trigger csc error handler that
+> wedges the device and enables runtime survivability mode
 
-I am not entirely sure what you mean with the last sentence above, but for
-external ports, LPM cannot be used if you want to keep the port hotplug
-capability alive and working. Without keeping such port at max power state, we
-cannot detect hotplug events (which is super annoying when you have e.g. a
-server with front loading drive bays allowing swapping drives without shutting
-the machine down).
+With punctuations,
 
-> Atleast for the basic-rte subtest, the test passes if we comment out the 
-> functions controlling the SATA ports. We will need more testing to 
-> determine if this approach work. Any thoughts on it?
+> v2: add debugfs only for bmg (Umesh)
+> v3: do not use csc_fault attribute if debugfs is not enabled
+> 
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 
-Niklas and I actually suspected that we would be getting "complaints" about this
-change. Well... We did :)
-
-The problem really is that external ports have never been properly handled by
-libata so SATA hot-plugging never really worked reliably. Patches queued up for
-6.17 before this patch prevent the kernel from changing the power state of
-external port. And this patch was introduced after seeing systemd.udevd setting
-external ports power state to min_power or lower states, thus breaking again the
-hotplug capability.
-
-The error you are seeing is thus entirely correct and expected.
-
-The question is though: do we want the user to "ignore" hotplug capability and
-instead priviledge low power states. I guess we should have such capability.
-
-> Also, are there other ways to detect a port is external other than 
-> receiving EOPNOTSUPP on the sysfs write?
-
-There is not. But it would be easy to add a sysfs port attribute, e.g.
-/sys/class/ata_port/ata1/external which says "0" for regular ports and "1" for
-external ports. We could also make this attribute writable in the case of
-external port so that doing:
-
-echo 0 > /sys/class/ata_port/ata1/external
-
-forces the kernel to ignore the external nature of the port and allow user
-control of the port/device LPM state.
-
-Would that work for your case ?
-
--- 
-Damien Le Moal
-Western Digital Research
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
