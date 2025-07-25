@@ -4,45 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF120C87FCA
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 20:03:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 527A0C87FCE
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 20:03:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F03010E050;
-	Fri, 25 Jul 2025 20:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08A5F10EA0F;
+	Fri, 25 Jul 2025 20:03:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="oA3/OXSW";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="EKGiplSz";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A0FC10E050
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DF5510EA0F
  for <intel-xe@lists.freedesktop.org>; Fri, 25 Jul 2025 20:03:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=G59A4YO1M6F3sWs+/rp39HDOEdz8zIDNS9Wpo5gheXM=; b=oA3/OXSWWYsH8MaeWVK71hjdvo
- KUjbmcSADZwhAQmbTnO4usRiMFU1kN8RxKsrztCoEPzij9G2OVUKoHJZG7OL+1Owk+W44fderjeK6
- B8fMRxqf8vMdK2QCNoyxeDYamxCJrZAVyCtfpdcMWicibzmyEdo152aFP+LnG7aUrmQqO0UrcaaIF
- Qk+U0k3pqw/kd+41dnG8DqwkJQ0NDrVPQBkezq0WOm4eYLkU3HulpDouAIksh+5Qgb/ukV66ujhx8
- c4n8ahvDlwINifetx0ZiL5kx531B7reE1B9s9O++De4DXBvljX89NNFHqCraM1fP0KWP9dYgOsFco
- i/oALl6g==;
+ bh=XQQryqhpy5r5TIEun3toZuE0JXY2SsG1xMk3IYdw7RM=; b=EKGiplSzYjPQJGSY9y/7I3yVL1
+ KiQm1OwayrFxOnI3euqvESks6r6pDKXZYFCSZ1zxY/rnacu0wJF094sX0syGgztMP802/qlsDJC4G
+ D4pdYZjwP7Y9ycUFnL05uavJvMuMDbE6y1MXaZahsCcsW9vuy+q4EyfIzQbU107eDDcwb5pj6dbCP
+ aT5cV6gucWxTwPKb7w6KxnedxVfya3crl/GOqgeJx/UbFmPRfEfQor8+EVfrEj5s5XVi0/o1bgbel
+ jpVRv9Ao8F7EPsQcqkG/Cozmk4C+ZUlPcc4u4CbbMHEXS+VumfqPeNOYpz64UgnA2Qt9Z/nKfe6kp
+ 530zNRaA==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ufOe2-003rh8-Pi; Fri, 25 Jul 2025 22:03:54 +0200
+ id 1ufOe2-003rh4-3g; Fri, 25 Jul 2025 22:03:54 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
 	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v9 01/12] drm/xe/xelpg: Flush CCS when flushing caches
-Date: Fri, 25 Jul 2025 21:03:35 +0100
-Message-ID: <20250725200349.99038-2-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v9 00/12] AuxCCS handling and render compression modifiers
+Date: Fri, 25 Jul 2025 21:03:34 +0100
+Message-ID: <20250725200349.99038-1-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250725200349.99038-1-tvrtko.ursulin@igalia.com>
-References: <20250725200349.99038-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,59 +57,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to i915 PIPE_CONTROL0_CCS_FLUSH needs to be set when flushing
-render caches on gfx ip 12.70+.
+A series to fix and add xe support for AuxCSS framebuffers via DPT.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
----
- drivers/gpu/drm/xe/instructions/xe_gpu_commands.h | 1 +
- drivers/gpu/drm/xe/xe_ring_ops.c                  | 7 ++++++-
- 2 files changed, 7 insertions(+), 1 deletion(-)
+Currently the auxiliary buffer data isn't mapped into the page tables at all so
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+had to disable the support.
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-index 8cfcd3360896..78c0e87dbd37 100644
---- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-@@ -43,6 +43,7 @@
- 
- #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
- #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
-+#define   PIPE_CONTROL0_CCS_FLUSH                       BIT(13) /* MTL+ */
- 
- #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
- #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index e8f22ec5f9af..09a9b31d2e12 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -176,13 +176,18 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
- static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- {
- 	struct xe_gt *gt = job->q->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
-+	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
- 	u32 flags;
- 
- 	if (XE_WA(gt, 14016712196))
- 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
- 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
- 
-+	if (GRAPHICS_VERx100(xe) >= 1270)
-+		bit_group_0 |= PIPE_CONTROL0_CCS_FLUSH;
-+
- 	flags = (PIPE_CONTROL_CS_STALL |
- 		 PIPE_CONTROL_TILE_CACHE_FLUSH |
- 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-@@ -198,7 +203,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
- 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
- 
--	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
-+	return emit_pipe_control(dw, i, bit_group_0, flags, 0, 0);
- }
- 
- static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
+On top of that there are missing flushes, invalidations and similar.
+
+Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+
+  [PLANE:32:plane 1A]: type=PRI
+          uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+          hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+
+Display working fine - no artefacts, no DMAR/PIPE faults.
+
+All IGTs pass for me locally. But note that for the ones which "blit" using the
+VEBOX engine, so where media compression is the target surface, this fix for IGT
+not setting MOCS is also needed: https://patchwork.freedesktop.org/series/151928/
+
+I have included the Test-with: tag below although I am not sure that works with
+the xe CI.
+
+Test-with: 20250722073906.99759-1-tvrtko.ursulin@igalia.com
+
+v2:
+ * More patches added to fix kms_flip_tiling.
+
+v3:
+ * Rebased after some cleanup patches from v2 were merged.
+ * Added people to Cc as suggested by Rodrigo.
+ * Adjusted last patch title. (Rodrigo)
+ * Apply GGTT flushing only to iomapped system memory buffers.
+
+v4:
+ * Added patch for potentially misplaced Wa_14016712196.
+ * Fixed (hopefully) MAX_JOB_SIZE_DW on Meteorlake.
+
+v5:
+ * Split out ring emission changes to smaller patches.
+ * Fixed MAX_JOB_SIZE_DW even more.
+ * Don't emit MI_FLUSH_DW_CCS on !BCS. This should fix Meteorlake.
+
+ v6:
+ * Added AuxCCS invalidation to indirect context workarounds.
+ * Also added the indirect context handling and some other workarounds. They are
+   unrelated but the series depends on it.
+ * Dropped DPT pin alignment reduction since BMG appears not to be liking it for
+   some reason.
+
+v7:
+ * Rebased on top of recent xe_fb_pin.c refactoring and also the indirect
+   context workarounds series.
+
+v8:
+ * Rebased for bo->size removal.
+ * Corrected PIPE_CONTROL_FLUSH_L3 to bit 30. (Jose)
+
+v9:
+ * Fixed fb remapping changes.
+ * Dropped two not required patches from the series.
+ * Fixed criteria for GGTT flushing.
+ * Limit clflush to the compression metadata area.
+ * Rebased for indirect context workarounds landing upstream.
+
+Tvrtko Ursulin (12):
+  drm/xe/xelpg: Flush CCS when flushing caches
+  drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+  drm/xe/xelp: Support auxccs invalidation on blitter
+  drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+  drm/xe/xelp: Wait for AuxCCS invalidation to complete
+  drm/xe: Export xe_emit_aux_table_inv
+  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
+    workarounds
+  drm/xe: Flush GGTT writes after populating DPT
+  drm/xe: Handle DPT in system memory
+  drm/xe/display: Add support for AuxCCS
+  drm/xe: Force flush system memory AuxCCS data before scan out
+  drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+
+ .../drm/i915/display/skl_universal_plane.c    |   6 -
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 210 +++++++++++++++---
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
+ drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
+ drivers/gpu/drm/xe/xe_lrc.c                   |  47 ++++
+ drivers/gpu/drm/xe/xe_ring_ops.c              | 161 +++++++-------
+ drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
+ drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+ 10 files changed, 334 insertions(+), 117 deletions(-)
+
 -- 
 2.48.0
 
