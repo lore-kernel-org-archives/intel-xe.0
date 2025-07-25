@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3507DC87FCF
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 05:04:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BBDAC87FCD
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 05:04:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D952410E43E;
-	Fri, 25 Jul 2025 05:04:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA8FF10E43C;
+	Fri, 25 Jul 2025 05:04:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JuPR6S+C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nYKe1Xts";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 953F710E42F;
- Fri, 25 Jul 2025 05:04:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41F2C10E442;
+ Fri, 25 Jul 2025 05:04:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753419879; x=1784955879;
+ t=1753419886; x=1784955886;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NoajmhakFgk0gEWqrNc9iFSNNndjTSN2XqxcdrNtYPg=;
- b=JuPR6S+C/ctdiPxFbFQ9MIbdh/5Lxk/vQ32SGOeb+ZBzlTQ6pZ5q4aPE
- HtjSfBFG8Q1URjQK4vFTL3jqOvk7OVxOPefnW5C+iyso5b9k6VUiZz++M
- 9yjPlYQ9qcDym1xjddDwxW8ptdw/TH79oLRHsIrABsdZhETazVDXrVtMF
- cIcoGm0tcu2i0HMla9zm1Ixe2jK9I2mIRr0qL4vZ6ZH/6UOENjdpiMLmr
- Gpg7+EsELAmaJs4zSB5P12nkMy/ujVBR4d+2MqAeiHEMcD9uaUBt7HvVW
- G36I9mYxqXokcY+AksEYHO9S3pEfzxCSbL42W9PLbPdGYgrnHdfJPS3jf w==;
-X-CSE-ConnectionGUID: DCUGgpLSQHyRXMyV/pvsLQ==
-X-CSE-MsgGUID: cx6K/1i1Tf6PK7TAe1XYtQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="78299534"
-X-IronPort-AV: E=Sophos;i="6.16,338,1744095600"; d="scan'208";a="78299534"
+ bh=XKCR2fX7egl7H6r3aUFK3LWqkzPF7novZPHH1HctEB4=;
+ b=nYKe1Xtso1wMtpHvJCnIh9b61dXde+SKR/VsQxmmfKJWvCKEb/De54Bn
+ Bt697T0ob1wSMtjo3PDFx66pjEJUtxblLRD3QjfC5s8rwdyqcMRlcSYd7
+ Rh0hU8ErYRc+cVEb+4FYVnLUD15o7F5OSVuaOK1t4h9yt8IWo/8Nc30hQ
+ 654NbTkIQ9ELkqBTVx3ZhbAUQlRbwRzLk54tWeELlAweUBcRMuP7xNtvi
+ PdbUbfWI9gSFY0I+KXuCROM71t2I2Z4zb/VHcTWzcU8jc9ppOP2f6rRcj
+ 9OJFss+b2y+lfpEhrK9KERgVoPvWMSl0llGP7K6B2Wq4WdHPZdAD+ncGK Q==;
+X-CSE-ConnectionGUID: +uGV1ywqT8W+BnZphD6wUA==
+X-CSE-MsgGUID: hQnT6eqtToySeBMz/1uCwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="78299544"
+X-IronPort-AV: E=Sophos;i="6.16,338,1744095600"; d="scan'208";a="78299544"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 22:04:39 -0700
-X-CSE-ConnectionGUID: jbozSNYvSjew0VVI6LtBVw==
-X-CSE-MsgGUID: qCDQ0uwkTLiutVyXZEzwOA==
+ 24 Jul 2025 22:04:46 -0700
+X-CSE-ConnectionGUID: nG1WgdZGS2mh9fs+hddr4w==
+X-CSE-MsgGUID: W6zINykRR9OA8DwvAXbUUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,338,1744095600"; d="scan'208";a="160956609"
+X-IronPort-AV: E=Sophos;i="6.16,338,1744095600"; d="scan'208";a="160956624"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa009.fm.intel.com with ESMTP; 24 Jul 2025 22:04:37 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 24 Jul 2025 22:04:44 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 10/28] drm/i915/writeback: Add hook to check modes
-Date: Fri, 25 Jul 2025 10:33:51 +0530
-Message-Id: <20250725050409.2687242-11-suraj.kandpal@intel.com>
+Subject: [PATCH 13/28] drm/i915/writeback: Add private structure for writeback
+ job
+Date: Fri, 25 Jul 2025 10:33:54 +0530
+Message-Id: <20250725050409.2687242-14-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250725050409.2687242-1-suraj.kandpal@intel.com>
 References: <20250725050409.2687242-1-suraj.kandpal@intel.com>
@@ -67,52 +68,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add connector helper hooks to check if mode is valid or not.
-We add this restriction to make sure mode is 3840x2160 60Hz.
+Create intel_writeback_job to track drm_writback_job and other structure
+we might need to complete the writeback job.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- .../gpu/drm/i915/display/intel_writeback.c    | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ drivers/gpu/drm/i915/display/intel_writeback.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
-index 7df99771fd6f..ff5f15ce3f5f 100644
+index 674cc4ecf1b9..8d24b1ee0a2a 100644
 --- a/drivers/gpu/drm/i915/display/intel_writeback.c
 +++ b/drivers/gpu/drm/i915/display/intel_writeback.c
-@@ -75,6 +75,25 @@ intel_writeback_connector_alloc(struct intel_connector *connector)
- 	return 0;
- }
- 
-+static enum drm_mode_status
-+intel_writeback_mode_valid(struct drm_connector *_connector,
-+			   const struct drm_display_mode *mode)
-+{
-+	int refresh_rate;
-+
-+	if (mode->hdisplay > 3840)
-+		return MODE_H_ILLEGAL;
-+
-+	if (mode->vdisplay > 2160)
-+		return MODE_V_ILLEGAL;
-+
-+	refresh_rate = drm_mode_vrefresh(mode);
-+	if (refresh_rate > 60)
-+		return MODE_BAD;
-+
-+	return MODE_OK;
-+}
-+
- static int intel_writeback_get_modes(struct drm_connector *connector)
- {
- 	return drm_add_modes_noedid(connector, 3840, 2160);
-@@ -112,6 +131,7 @@ const struct drm_connector_funcs conn_funcs = {
- static const struct drm_connector_helper_funcs conn_helper_funcs = {
- 	.get_writeback_connector = intel_get_writeback_connector,
- 	.get_modes = intel_writeback_get_modes,
-+	.mode_valid = intel_writeback_mode_valid,
+@@ -25,10 +25,17 @@ struct intel_writeback_connector {
+ 	struct drm_writeback_connector base;
+ 	struct intel_encoder encoder;
+ 	struct intel_connector connector;
++	struct intel_writeback_job *job;
+ 	enum transcoder trans;
+ 	int frame_num;
  };
  
- static const struct drm_writeback_connector_helper_funcs writeback_conn_helper_funcs = {
++struct intel_writeback_job {
++	struct drm_framebuffer *fb;
++	struct drm_writeback_connector *wb_connector;
++	struct i915_vma *vma;
++};
++
+ static const u32 writeback_formats[] = {
+ 	DRM_FORMAT_XYUV8888,
+ 	DRM_FORMAT_YUYV,
 -- 
 2.34.1
 
