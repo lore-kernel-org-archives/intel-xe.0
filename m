@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEBDCC87FCA
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 21:18:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12F4FC87FCE
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 21:23:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 945D110EA20;
-	Fri, 25 Jul 2025 21:18:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C975610EA21;
+	Fri, 25 Jul 2025 21:23:09 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EAA810EA20;
- Fri, 25 Jul 2025 21:18:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8517346259551955555=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E26310EA20;
+ Fri, 25 Jul 2025 21:23:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_more_GuC_?=
- =?utf-8?q?load_error_status_codes?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
+ =?utf-8?q?r_compression_modifiers_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 25 Jul 2025 21:18:06 -0000
-Message-ID: <175347828664.191429.3960700264938636334@1538d3639d33>
+Date: Fri, 25 Jul 2025 21:23:08 -0000
+Message-ID: <175347858844.191429.11005616199296389189@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250725191132.4008357-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20250725191132.4008357-1-John.C.Harrison@Intel.com>
+References: <20250725200349.99038-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250725200349.99038-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,89 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8517346259551955555==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/guc: Add more GuC load error status codes
-URL   : https://patchwork.freedesktop.org/series/152135/
-State : success
+Series: AuxCCS handling and render compression modifiers (rev9)
+URL   : https://patchwork.freedesktop.org/series/144186/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04_BAT -> xe-pw-152135v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63535c743231a7497a612c53f6edbb8a7d14412d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3708514d23578f2a45ef4b39d3710734c76e9e9e
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Fri Jul 25 21:03:46 2025 +0100
 
-Summary
--------
+    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+    
+    Now that we have fixed the DPT handling we can undo the nerf which was
+    done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+    built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+    
+    Display working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 11e629e8c02307977802ba0ea8c60ddb15b17d04 drm-intel
+cdf0cd692241 drm/xe/xelpg: Flush CCS when flushing caches
+262d2895b15f drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+3f2a09153e41 drm/xe/xelp: Support auxccs invalidation on blitter
+14b916e5d570 drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+0e282885d74a drm/xe/xelp: Wait for AuxCCS invalidation to complete
+78bee08d12ff drm/xe: Export xe_emit_aux_table_inv
+2fbaeb06f591 drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+d7b80b9f25f7 drm/xe: Flush GGTT writes after populating DPT
+-:72: WARNING:MEMORY_BARRIER: memory barrier without comment
+#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
++	wmb();
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+6a55c9dd03d6 drm/xe: Handle DPT in system memory
+a14e128eaa9a drm/xe/display: Add support for AuxCCS
+9eac95c2d5e9 drm/xe: Force flush system memory AuxCCS data before scan out
+-:58: WARNING:MEMORY_BARRIER: memory barrier without comment
+#58: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:399:
++		mb();
 
-  No regressions found.
+-:61: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#61: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:402:
++			uint8_t *page_virtual;
 
-  
+-:69: WARNING:MEMORY_BARRIER: memory barrier without comment
+#69: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:410:
++		mb();
 
-Participating hosts (9 -> 8)
-------------------------------
+total: 0 errors, 2 warnings, 1 checks, 103 lines checked
+3708514d2357 drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#10: 
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
 
-  Missing    (1): bat-adlp-vm 
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
 
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04 -> xe-pw-152135v1
-
-  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04: 11e629e8c02307977802ba0ea8c60ddb15b17d04
-  xe-pw-152135v1: 152135v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152135v1/index.html
-
---===============8517346259551955555==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 1 errors, 1 warnings, 0 checks, 12 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Add more GuC load error status codes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152135/">https://patchwork.freedesktop.org/series/152135/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152135v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152135v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04_BAT -&gt; xe-pw-152135v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04 -&gt; xe-pw-152135v1</li>
-</ul>
-<p>IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04: 11e629e8c02307977802ba0ea8c60ddb15b17d04<br />
-  xe-pw-152135v1: 152135v1</p>
-
-</body>
-</html>
-
---===============8517346259551955555==--
