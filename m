@@ -4,16 +4,16 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06460C87FCA
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 20:04:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA76EC87FCA
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 20:04:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3D5E10EA11;
-	Fri, 25 Jul 2025 20:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE0B810EA0F;
+	Fri, 25 Jul 2025 20:04:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="OcW2+9Sf";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ZUMzjCJX";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A246410EA11
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D35810EA11
  for <intel-xe@lists.freedesktop.org>; Fri, 25 Jul 2025 20:04:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=d64Pnur6AA24rmrijDH4RPGlTIU8WQF/uVo6A1U3CYI=; b=OcW2+9SfJtNa7v8+0KNlLG9bnQ
- FWKLUQub+eh6JN4TzBsQDjv129xzipNdxIpL2EXOuKnDtMRYwENTEQuqYLtLaLCugGNt1oaRYUtCl
- V11bYe/K6ORqhhfZTN/RhAwPZFVZiqDChidaws3J9kCTp3CcASNGxSj1PgBsYsGL8YCiuMCidQHOx
- E0ESDRf+7OQMIuVrg0jLOzMVGmlQtR0p/3bmBxpp1ahEO+BJ7jzt6+eHEYpvy3eGUNe7TamEjEIMr
- a6fIi0NESi8Ini4k7ME+YD93s3RteyK5+QOxrzzkicaMjrqes8N/XKbJ9XhcS9c3+30EK2U8c/y3S
- bBzbAK8w==;
+ bh=NlC3y8Ca4UvEvHgK/Bs8+0VGPJ4LsWoMkhDge9y+la8=; b=ZUMzjCJXXOGC5y3coD5duxUpsW
+ uP+RpTtNEp/Fav6geYg8Hs0aGEjsRI9lxVoNki8CiYgLijtzb8CM28YFyA/rHGEq+UrHo4yUATikP
+ adY49sNE6+Wfbh2ZP0BlVbmMFZFV1HciS537/vEV9RD3b3PPhkkja1pNhQGjGqIjYlDSbrldshauf
+ w1eqcJobX2DKOfzofNTi4alkaQCqiIe9uGcAcgi8OSt49Grmm7tbAB5nHg16o3SFnWvEUTnQVRqA4
+ c4BoyaHuYlehEFOMFgshOVqi2FFvrdF/LXY5InffToOXRUjc6V2TUDzSy6/fdBGeHHCGPoFDV+X5O
+ D929/ftQ==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ufOe9-003ri4-1R; Fri, 25 Jul 2025 22:04:01 +0200
+ id 1ufOe9-003ri9-NK; Fri, 25 Jul 2025 22:04:01 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: [PATCH v9 10/12] drm/xe/display: Add support for AuxCCS
-Date: Fri, 25 Jul 2025 21:03:44 +0100
-Message-ID: <20250725200349.99038-11-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v9 11/12] drm/xe: Force flush system memory AuxCCS data before
+ scan out
+Date: Fri, 25 Jul 2025 21:03:45 +0100
+Message-ID: <20250725200349.99038-12-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250725200349.99038-1-tvrtko.ursulin@igalia.com>
 References: <20250725200349.99038-1-tvrtko.ursulin@igalia.com>
@@ -59,160 +59,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for mapping the auxiliary CCS buffer into the DPT page tables.
+Even though frame buffer objects are created as write-combined, in
+practice, on top of all the ring buffer flushing, an additional clflush
+seems to be needed before display engine can coherently scan out the
+AuxCCS compressed data without transient artifacts.
 
-This will allow for more power efficiency by enabling the render
-compression frame buffer modifiers such as
-I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
+If for comparison we look at how i915 handles things (where AuxCCS works
+fine), as it happens it has this same clflush before a frame buffer is
+pinned for display for the first time, courtesy the dynamic tracking of
+the buffer cache mode and setting the latter to uncached before handing
+to display.
 
-We do this by refactoring the code a bit so handling for the linear
-auxiliary frame buffer can be added in a tidy way. Also replace some
-hardcoded constants.
+Since xe considers the buffer object caching mode as static we can
+implement the same approach by adding a flag telling us if the buffer
+was ever pinned for display and flush on the first pin. Subsequent re-pins
+will not repeat the clflush but so far I have not observed any glitching
+after the first pin.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 111 ++++++++++++++++++-------
- 1 file changed, 81 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 53 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo_types.h       | 14 ++++---
+ 2 files changed, 62 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 5819895f5a48..658541422f44 100644
+index 658541422f44..bf600cad0284 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -53,33 +53,94 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
- 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+@@ -371,6 +371,46 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 	return ret;
  }
  
-+static unsigned int
-+write_dpt_padding(struct iosys_map *map, unsigned int dest, unsigned int pad)
++static void xe_bo_clflush_auxccs(struct xe_bo *bo,
++				 const struct i915_gtt_view *view)
 +{
-+	/* The DE ignores the PTEs for the padding tiles */
-+	return dest + pad * sizeof(u64);
-+}
++	const struct intel_remapped_info *remap_info = &view->remapped;
++	unsigned int i;
 +
-+static unsigned int
-+write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
-+			  unsigned int dest,
-+			  const struct intel_remapped_plane_info *plane)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
-+						 xe->pat.idx[XE_CACHE_NONE]);
-+	unsigned int offset = plane->offset * XE_PAGE_SIZE;
-+	unsigned int size = plane->size;
++	if (!IS_ENABLED(CONFIG_X86))
++		return;
 +
-+	while (size--) {
-+		u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++	if (!static_cpu_has(X86_FEATURE_CLFLUSH))
++		return;
 +
-+		iosys_map_wr(map, dest, u64, addr | pte);
-+		dest += sizeof(u64);
-+		offset += XE_PAGE_SIZE;
-+	}
-+
-+	return dest;
-+}
-+
-+static unsigned int
-+write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
-+			 unsigned int dest,
-+			 const struct intel_remapped_plane_info *plane)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
-+						 xe->pat.idx[XE_CACHE_NONE]);
-+	unsigned int offset, column, row;
-+
-+	for (row = 0; row < plane->height; row++) {
-+		offset = (plane->offset + plane->src_stride * row) *
-+			 XE_PAGE_SIZE;
-+
-+		for (column = 0; column < plane->width; column++) {
-+			u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
-+
-+			iosys_map_wr(map, dest, u64, addr | pte);
-+			dest += sizeof(u64);
-+			offset += XE_PAGE_SIZE;
-+		}
-+
-+		dest = write_dpt_padding(map, dest,
-+					 plane->dst_stride - plane->width);
-+	}
-+
-+	return dest;
-+}
-+
- static void
--write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
--		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
--		   u32 dst_stride)
-+write_dpt_remapped(struct xe_bo *bo,
-+		   const struct intel_remapped_info *remap_info,
-+		   struct iosys_map *map)
- {
--	struct xe_device *xe = xe_bo_device(bo);
--	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
--	u32 column, row;
--	u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
-+	unsigned int i, dest = 0;
- 
--	for (row = 0; row < height; row++) {
--		u32 src_idx = src_stride * row + bo_ofs;
 +	for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++) {
 +		const struct intel_remapped_plane_info *plane =
 +						&remap_info->plane[i];
- 
--		for (column = 0; column < width; column++) {
--			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
--			iosys_map_wr(map, *dpt_ofs, u64, pte | addr);
++		const int size = boot_cpu_data.x86_clflush_size;
++		struct sg_table *st = xe_bo_sg(bo);
++		struct sg_page_iter sg_iter;
++
 +		if (!plane->width && !plane->height && !plane->linear)
 +			continue;
- 
--			*dpt_ofs += 8;
--			src_idx++;
-+		if (remap_info->plane_alignment) {
-+			const unsigned int index = dest / sizeof(u64);
-+			const unsigned int pad =
-+				ALIGN(index, remap_info->plane_alignment) -
-+				index;
 +
-+			dest = write_dpt_padding(map, dest, pad);
- 		}
++		if (!plane->linear)
++			continue;
++
++		mb();
++		for_each_sgtable_page(st, &sg_iter, plane->offset) {
++			struct page *page = sg_page_iter_page(&sg_iter);
++			uint8_t *page_virtual;
++			unsigned int j;
++
++			page_virtual = kmap_local_page(page);
++			for (j = 0; j < PAGE_SIZE; j += size)
++				clflushopt(page_virtual + j);
++			kunmap_local(page_virtual);
++		}
++		mb();
++	}
++}
++
+ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 					const struct i915_gtt_view *view,
+ 					unsigned int alignment)
+@@ -380,6 +420,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
+ 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+ 	struct xe_bo *bo = gem_to_xe_bo(obj);
++	bool first_pin;
+ 	int ret;
  
--		/* The DE ignores the PTEs for the padding tiles */
--		*dpt_ofs += (dst_stride - width) * 8;
-+		if (plane->linear)
-+			dest = write_dpt_remapped_linear(bo, map, dest, plane);
-+		else
-+			dest = write_dpt_remapped_tiled(bo, map, dest, plane);
- 	}
--
--	/* Align to next page */
--	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
- }
+ 	if (!vma)
+@@ -411,6 +452,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (ret)
+ 		goto err;
  
- static void gt_flush_ggtt_writes(struct xe_gt *gt)
-@@ -181,17 +242,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte | addr);
- 		}
- 	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
--		const struct intel_remapped_info *remap_info = &view->remapped;
--		u32 i, dpt_ofs = 0;
++	first_pin = !bo->display_pin;
++	bo->display_pin = true;
++
+ 	if (IS_DGFX(xe))
+ 		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
+ 	else
+@@ -429,6 +473,15 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (ret)
+ 		goto err_unpin;
+ 
++	/*
++	 * Force flush AuxCCS data for non-coherent display access.
++	 */
++	if (first_pin &&
++	    !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
++	    intel_fb_is_ccs_modifier(fb->base.modifier) &&
++	    view->type == I915_GTT_VIEW_REMAPPED)
++		xe_bo_clflush_auxccs(bo, view);
++
+ 	return vma;
+ 
+ err_unpin:
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index cf604adc13a3..d5096f7f6f9a 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -71,11 +71,6 @@ struct xe_bo {
+ 	struct llist_node freed;
+ 	/** @update_index: Update index if PT BO */
+ 	int update_index;
+-	/** @created: Whether the bo has passed initial creation */
+-	bool created;
 -
--		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
--			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
--					   remap_info->plane[i].offset,
--					   remap_info->plane[i].width,
--					   remap_info->plane[i].height,
--					   remap_info->plane[i].src_stride,
--					   remap_info->plane[i].dst_stride);
--
-+		write_dpt_remapped(bo, &view->remapped, &dpt->vmap);
- 	} else {
- 		const struct intel_rotation_info *rot_info = &view->rotated;
- 		u32 i, dpt_ofs = 0;
+-	/** @ccs_cleared */
+-	bool ccs_cleared;
+ 
+ 	/** @bb_ccs_rw: BB instructions of CCS read/write. Valid only for VF */
+ 	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
+@@ -90,6 +85,15 @@ struct xe_bo {
+ 	/** @devmem_allocation: SVM device memory allocation */
+ 	struct drm_pagemap_devmem devmem_allocation;
+ 
++	/** @created: Whether the bo has passed initial creation */
++	bool created : 1;
++
++	/** @ccs_cleared */
++	bool ccs_cleared : 1;
++
++	/** @display_pin: Was it ever pinned to display */
++	bool display_pin : 1;
++
+ 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
+ 		struct list_head vram_userfault_link;
+ 
 -- 
 2.48.0
 
