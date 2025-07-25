@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F30AC87FCE
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 19:11:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36A85C87FCA
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Jul 2025 19:29:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B68B10E02C;
-	Fri, 25 Jul 2025 19:11:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Be0i+60H";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 456E210E02C
- for <Intel-Xe@lists.freedesktop.org>; Fri, 25 Jul 2025 19:11:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753470696; x=1785006696;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1NyH7CHq3qyvgbWUQFo716TmaUbjjA/Bl/7EgRfplR4=;
- b=Be0i+60HoCkY9UgwsJznPOEj25LySL7mjxACgi0FUcvXvuM/dfjtxlLA
- uNdBTpVYPi72KvmyFSfqcbK3yhAHv8M7GirWBHpX+yT2QsfnhBOhipJcb
- fOfDRTBFRqmtDVVtBjWRuaBWHi9iot5oCFK7LzCBtIC9o1xA8gbAS945/
- O6ZKn5AAvxj2+vrS0yO8xjSKZdUKEYIjsAxo1uV2oB4fgR3koW5WmN0rG
- A1X5v0Q0NPZk2GhMa4S0SzkSiQet/MUk+gk0EHzS57nTDfCiCuytsiESS
- bociSG/5mQPz5lG16exrjOt9Bczm7DHrwew4M/o7pWs5665BrxOvwFBUr A==;
-X-CSE-ConnectionGUID: /kVhA5JoT7iZci70kHwYPA==
-X-CSE-MsgGUID: DPDjnVEASSKxQ3JGgf/xfg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11503"; a="59634526"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="59634526"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2025 12:11:33 -0700
-X-CSE-ConnectionGUID: z04msVzPSt+3rtuvf9ezNg==
-X-CSE-MsgGUID: sDh+GPmvQj69Ko26NlfQag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="166566930"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orviesa005.jf.intel.com with ESMTP; 25 Jul 2025 12:11:32 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH] drm/xe/guc: Add more GuC load error status codes
-Date: Fri, 25 Jul 2025 12:11:32 -0700
-Message-ID: <20250725191132.4008357-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.49.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB1C210EA0A;
+	Fri, 25 Jul 2025 19:29:01 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED40810EA09;
+ Fri, 25 Jul 2025 19:29:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0779862753422216311=="
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_remapped_fb_view_test_=28re?=
+ =?utf-8?q?v5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 25 Jul 2025 19:29:00 -0000
+Message-ID: <175347174096.190918.2927209700082573180@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250725070305.87218-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250725070305.87218-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,77 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+--===============0779862753422216311==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The GuC load process will abort if certain status codes (which are
-indicative of a fatal error) are reported. Otherwise, it keeps waiting
-until the 'success' code is returned. New error codes have been added
-in recent GuC releases, so add support for aborting on those as well.
+== Series Details ==
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/xe/abi/guc_errors_abi.h |  3 +++
- drivers/gpu/drm/xe/xe_guc.c             | 11 +++++++++++
- 2 files changed, 14 insertions(+)
+Series: remapped fb view test (rev5)
+URL   : https://patchwork.freedesktop.org/series/152114/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_errors_abi.h b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
-index ecf748fd87df..ad76b4baf42e 100644
---- a/drivers/gpu/drm/xe/abi/guc_errors_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
-@@ -63,6 +63,7 @@ enum xe_guc_load_status {
- 	XE_GUC_LOAD_STATUS_HWCONFIG_START                   = 0x05,
- 	XE_GUC_LOAD_STATUS_HWCONFIG_DONE                    = 0x06,
- 	XE_GUC_LOAD_STATUS_HWCONFIG_ERROR                   = 0x07,
-+	XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH         = 0x08,
- 	XE_GUC_LOAD_STATUS_GDT_DONE                         = 0x10,
- 	XE_GUC_LOAD_STATUS_IDT_DONE                         = 0x20,
- 	XE_GUC_LOAD_STATUS_LAPIC_DONE                       = 0x30,
-@@ -75,6 +76,8 @@ enum xe_guc_load_status {
- 	XE_GUC_LOAD_STATUS_INVALID_INIT_DATA_RANGE_START,
- 	XE_GUC_LOAD_STATUS_MPU_DATA_INVALID                 = 0x73,
- 	XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID   = 0x74,
-+	XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR        = 0x75,
-+	XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG                 = 0x76,
- 	XE_GUC_LOAD_STATUS_INVALID_INIT_DATA_RANGE_END,
- 
- 	XE_GUC_LOAD_STATUS_READY                            = 0xF0,
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 1ca7f4f27e26..315ef74bb5ff 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -992,11 +992,14 @@ static int guc_load_done(u32 status)
- 	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
- 	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
- 	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
-+	case XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH:
- 	case XE_GUC_LOAD_STATUS_DPC_ERROR:
- 	case XE_GUC_LOAD_STATUS_EXCEPTION:
- 	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
- 	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
- 	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
-+	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
-+	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
- 		return -1;
- 	}
- 
-@@ -1146,6 +1149,14 @@ static void guc_wait_ucode(struct xe_guc *guc)
- 			xe_gt_err(gt, "illegal register in save/restore workaround list\n");
- 			break;
- 
-+		case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
-+			xe_gt_err(gt, "illegal workaround KLV data\n");
-+			break;
-+
-+		case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
-+			xe_gt_err(gt, "illegal feature flag specified\n");
-+			break;
-+
- 		case XE_GUC_LOAD_STATUS_HWCONFIG_START:
- 			xe_gt_err(gt, "still extracting hwconfig table.\n");
- 			break;
--- 
-2.49.0
+== Summary ==
 
+CI Bug Log - changes from xe-3478-a323d08c4fe03caea5c882ebe6446fd1ea441f98_BAT -> xe-pw-152114v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3478-a323d08c4fe03caea5c882ebe6446fd1ea441f98 -> xe-pw-152114v5
+
+  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3478-a323d08c4fe03caea5c882ebe6446fd1ea441f98: a323d08c4fe03caea5c882ebe6446fd1ea441f98
+  xe-pw-152114v5: 152114v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152114v5/index.html
+
+--===============0779862753422216311==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>remapped fb view test (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152114/">https://patchwork.freedesktop.org/series/152114/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152114v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152114v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3478-a323d08c4fe03caea5c882ebe6446fd1ea441f98_BAT -&gt; xe-pw-152114v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3478-a323d08c4fe03caea5c882ebe6446fd1ea441f98 -&gt; xe-pw-152114v5</li>
+</ul>
+<p>IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3478-a323d08c4fe03caea5c882ebe6446fd1ea441f98: a323d08c4fe03caea5c882ebe6446fd1ea441f98<br />
+  xe-pw-152114v5: 152114v5</p>
+
+</body>
+</html>
+
+--===============0779862753422216311==--
