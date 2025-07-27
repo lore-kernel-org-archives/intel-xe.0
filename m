@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D667C87FCF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D6A0C87FD1
 	for <intel-xe@archiver.kernel.org>; Sun, 27 Jul 2025 17:20:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33D2510E317;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32D9E10E315;
 	Sun, 27 Jul 2025 17:20:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BMaf9zeQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U+8FJMbS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B701210E3D9
- for <intel-xe@lists.freedesktop.org>; Sun, 27 Jul 2025 17:20:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C54F10E31A
+ for <intel-xe@lists.freedesktop.org>; Sun, 27 Jul 2025 17:20:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753636832; x=1785172832;
+ t=1753636830; x=1785172830;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6KX+tpE5Vhq7T4VMHQl/25PJdsC3oHthZuUTV6U3jQI=;
- b=BMaf9zeQlfZz4Df160OxM/QZIDp8RSQNVgUvvgLpN8iL42IYEstLLXEp
- Whys/gzh3NerA7IofvrcrizlQQ83ScvZ4WAUcc/QQAzfkUEvYyVeJoW3I
- CnmRUuU6mOBuo/pSpx23ImYutLi2Sipd0gjvOhbTFOmauZyaDeHjm0kyG
- RG1eSOIXEm2gydbtEWGRDtBPNJ2gKiEM9b2y5lQX+Xfh0RbWNG5cqP6wx
- K2hc32OwL/lHy9d0wrmGvGCHHqmpr1vbQkNQ+r/odBgquWwrXuaQ1wtpf
- nwW9tclWVm8zcIlS5fWvAI5n2Tu+ZHRGq/ISKYmeThOgdPIYugEMG1nNx Q==;
-X-CSE-ConnectionGUID: CfDCm9v9Rr+R0RZJJ7ZgEg==
-X-CSE-MsgGUID: vHuHdNMWTYKbPHIXRr9azg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="56046734"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="56046734"
+ bh=CMp1V9szMyJpkkm/w9eqqWVAS1H6s32s70dKMn4mjSk=;
+ b=U+8FJMbSIAdOxIoSVcfEZ+krgU4qxH1X+hqm5V24aqDNLSVeXtwbNIsq
+ 0loh0iO1K1u1OcGLWwkGsr+WExX8ymk5iHcIo54x4jvvp2LQgUU9uVgCD
+ /AJ634f2u0Ed4nYz3SsCA6AvPAVAKomHPm69Pa0qLRhYF0UC9aiNGoKTt
+ zNGXg0oU8BnwiodY5yw7StNIKqLK65kJfeXraxHBVD2muTQWOxOppgOV8
+ 5CMUPqtsN+uWCxu7v1L5mWVe6/bXuKOzTxf4X1XEfMu4IVQ+Qay1LgmHN
+ MD8TRXuk6nG3/d9TjsIVAfW9VApc8y6o2BRC6aHa9AJ9vw9oGBMv+vYHZ g==;
+X-CSE-ConnectionGUID: 6yWS7wwvRvy13pt0RNdi8Q==
+X-CSE-MsgGUID: Af3DMUVbRPCtkK3ie2OMqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="56046733"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="56046733"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2025 10:20:32 -0700
-X-CSE-ConnectionGUID: 2QmexpXpRkGbUd1rfaBWDA==
-X-CSE-MsgGUID: VaX85cf5TD61HN87d8fYIA==
+ 27 Jul 2025 10:20:30 -0700
+X-CSE-ConnectionGUID: OL6efdLgRdClxFWF4SJAOg==
+X-CSE-MsgGUID: ddJzZwhZQMy825EzHpkdzA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="167556847"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="167556843"
 Received: from bjanicki-mobl2.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.2.202])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2025 10:20:30 -0700
+ 27 Jul 2025 10:20:29 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 09/11] drm/xe/configfs: Check if device was preconfigured
-Date: Sun, 27 Jul 2025 19:20:06 +0200
-Message-ID: <20250727172009.587-10-michal.wajdeczko@intel.com>
+Subject: [PATCH v4 08/11] drm/xe/configfs: Keep default device config settings
+ together
+Date: Sun, 27 Jul 2025 19:20:05 +0200
+Message-ID: <20250727172009.587-9-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250727172009.587-1-michal.wajdeczko@intel.com>
 References: <20250727172009.587-1-michal.wajdeczko@intel.com>
@@ -68,103 +69,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since device configuration using configfs could be prepared long
-time prior the driver load, add a debug log whether the current
-device driver probe is using custom or default settings.
+For easier maintenance add a placeholder where we can keep all
+default device configuration settings in one place.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2: make function void, rename helpers (Lucas) and rebased
----
- drivers/gpu/drm/xe/xe_configfs.c | 25 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h |  2 ++
- drivers/gpu/drm/xe/xe_pci.c      |  3 +++
- 3 files changed, 30 insertions(+)
+ drivers/gpu/drm/xe/xe_configfs.c | 17 +++++++++++++----
+ 1 file changed, 13 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 60d89d3ef656..73fb6812efe0 100644
+index a5f13dd779c7..60d89d3ef656 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -108,6 +108,11 @@ static void set_device_defaults(struct xe_config_device *config)
- 	*config = device_defaults;
- }
+@@ -98,6 +98,16 @@ struct xe_config_group_device {
+ 	} config;
+ };
  
-+static bool config_device_is_default(const struct xe_config_device *config)
++static struct xe_config_device device_defaults = {
++	.survivability_mode = false,
++	.engines_allowed = U64_MAX,
++};
++
++static void set_device_defaults(struct xe_config_device *config)
 +{
-+	return !memcmp(config, &device_defaults, sizeof(*config));
++	*config = device_defaults;
 +}
 +
  struct engine_info {
  	const char *cls;
  	u64 mask;
-@@ -333,6 +338,26 @@ static struct xe_config_group_device *find_xe_config_group_device(struct pci_dev
- 	return to_xe_config_group_device(item);
- }
+@@ -286,8 +296,7 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
+ 	if (!dev)
+ 		return ERR_PTR(-ENOMEM);
  
-+/**
-+ * xe_configfs_check_device() - Test if device was configured by configfs
-+ * @pdev: the &pci_dev device to test
-+ *
-+ * Try to find the configfs group that belongs to the specified pci device
-+ * and print a diagnostic message if found.
-+ */
-+void xe_configfs_check_device(struct pci_dev *pdev)
-+{
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-+
-+	if (!dev)
-+		return;
-+
-+	pci_dbg(pdev, "found %s settings in configfs\n",
-+		config_device_is_default(&dev->config) ? "default" : "custom");
-+
-+	config_group_put(&dev->group);
-+}
-+
- /**
-  * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
-  * @pdev: pci device
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index fb8764008089..fa4ea7f0c375 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -13,12 +13,14 @@ struct pci_dev;
- #if IS_ENABLED(CONFIG_CONFIGFS_FS)
- int xe_configfs_init(void);
- void xe_configfs_exit(void);
-+void xe_configfs_check_device(struct pci_dev *pdev);
- bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
- void xe_configfs_clear_survivability_mode(struct pci_dev *pdev);
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- #else
- static inline int xe_configfs_init(void) { return 0; }
- static inline void xe_configfs_exit(void) { }
-+static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
- static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
- static inline void xe_configfs_clear_survivability_mode(struct pci_dev *pdev) { }
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 52d46c66ae1e..9ce6e6dca5bc 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -17,6 +17,7 @@
+-	/* Default values */
+-	dev->config.engines_allowed = U64_MAX;
++	set_device_defaults(&dev->config);
  
- #include "display/xe_display.h"
- #include "regs/xe_gt_regs.h"
-+#include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_drv.h"
- #include "xe_gt.h"
-@@ -771,6 +772,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	struct xe_device *xe;
- 	int err;
+ 	config_group_init_type_name(&dev->group, name, &xe_config_device_type);
  
-+	xe_configfs_check_device(pdev);
-+
- 	if (desc->require_force_probe && !id_forced(pdev->device)) {
- 		dev_info(&pdev->dev,
- 			 "Your graphics device %04x is not officially supported\n"
+@@ -339,7 +348,7 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+ 	bool mode;
+ 
+ 	if (!dev)
+-		return false;
++		return device_defaults.survivability_mode;
+ 
+ 	mode = dev->config.survivability_mode;
+ 	config_group_put(&dev->group);
+@@ -382,7 +391,7 @@ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
+ 	u64 engines_allowed;
+ 
+ 	if (!dev)
+-		return U64_MAX;
++		return device_defaults.engines_allowed;
+ 
+ 	engines_allowed = dev->config.engines_allowed;
+ 	config_group_put(&dev->group);
 -- 
 2.47.1
 
