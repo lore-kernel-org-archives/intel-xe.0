@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68F6BC87FCF
-	for <intel-xe@archiver.kernel.org>; Sun, 27 Jul 2025 17:20:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 968F1C87FCE
+	for <intel-xe@archiver.kernel.org>; Sun, 27 Jul 2025 17:20:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2575E10E3D4;
-	Sun, 27 Jul 2025 17:20:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57EEA10E312;
+	Sun, 27 Jul 2025 17:20:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OOWMKHyw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qz0d6LS4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95D3010E317
- for <intel-xe@lists.freedesktop.org>; Sun, 27 Jul 2025 17:20:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72A9310E317
+ for <intel-xe@lists.freedesktop.org>; Sun, 27 Jul 2025 17:20:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753636825; x=1785172825;
+ t=1753636827; x=1785172827;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YtAlZHQf5bm6nnfU8/WKNNEd3/AoLpseMCUJjVXCuEo=;
- b=OOWMKHywcRNbfYRZXFZUCO7qa+BnAfFIYk42MqhQrkF3XUnogJGSpvCi
- GyNqXn/qUDKtqfxms5mjdoW+PHuRg3adLK6bGA0Ne+gnrh3w0PpMCvqpz
- gJn08sPIZ34no9HHyfAR7MtJflWa52PxS2I/Eqzk8HIcvPrYU8inIC6/8
- OgEhVvAJ+lTsx0x/GJdOr40CrGxIHSs7JYlGBuutnqtm9j83i12kd7xqy
- mJ18lid3shhvzyFAZ8am2aeOF4wBDa0HugDDYKRu1wysy/2vnPb1oxyaL
- c1eLDQBcP2zCyNvqystb4N+ODd7s6Kswj2hqB1Zm8GhZLcxuiWxHDZdgT Q==;
-X-CSE-ConnectionGUID: NGLyd7i2S52PeSUfsg7TPw==
-X-CSE-MsgGUID: tNTBueguRmWWA/OVDOWpjQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="56046726"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="56046726"
+ bh=wojYxNNKKLum7u3eLFSeBavyi1oIrs2zYj+A/sMX/+Q=;
+ b=Qz0d6LS4HOYOFEWDNhkD/KsObICE7GWIxXuaA/JKf1z/WZrbkoPa4Wbu
+ FT11si7rwpcy6hL5biU/Idnl1u+TfTBkE9rJp7GKyrunLNBx5DMsHj08g
+ vCO/nxT4Om3Fy8TRyWfzekrBCr/fhrIweyildJ0Gf8QhcM00hgsIhmpPZ
+ gIY+tI8os0QetG9hZChO80bCnXRPtG7ZaWG5fhKWRqMYWoVQz/yLukta+
+ FA2CWn/M3zh75maiMBkoM8JgETVLswOlNJyRFbEyyidEg075knk1BPVTo
+ LvkwnenVeb0K0evsHz9FD1GpE/j0D9NPh6jICxoacRItHV1Xh5tChj38D Q==;
+X-CSE-ConnectionGUID: FtsA7k36TD6mUTw1z1i6FA==
+X-CSE-MsgGUID: uO9CVBQKT/OIldUYQTrEOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="56046731"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="56046731"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2025 10:20:24 -0700
-X-CSE-ConnectionGUID: oYU6wD+bQiS49Iwh2L1QnQ==
-X-CSE-MsgGUID: 691qoeRhSomdOWrYrVxLPA==
+ 27 Jul 2025 10:20:27 -0700
+X-CSE-ConnectionGUID: hgR3pDHrTJ2Eu+dp7rpdeQ==
+X-CSE-MsgGUID: xwHhCg4qRZaLB7iyNj4bDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="167556827"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="167556834"
 Received: from bjanicki-mobl2.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.2.202])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2025 10:20:23 -0700
+ 27 Jul 2025 10:20:26 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 04/11] drm/xe/configfs: Use mutex from xe_configfs subsystem
-Date: Sun, 27 Jul 2025 19:20:01 +0200
-Message-ID: <20250727172009.587-5-michal.wajdeczko@intel.com>
+Subject: [PATCH v4 06/11] drm/xe/configfs: Rename configfs_find_group() helper
+Date: Sun, 27 Jul 2025 19:20:03 +0200
+Message-ID: <20250727172009.587-7-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250727172009.587-1-michal.wajdeczko@intel.com>
 References: <20250727172009.587-1-michal.wajdeczko@intel.com>
@@ -68,106 +68,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It should be sufficient to protect all configuration parameters
-using single mutex already defined inside xe_configfs subsystem.
-
-While around, also convert code to use guard/scoped_guard classes.
+This helper name shouldn't suggest that it iss a part of the core
+configfs API family. While around switch to use different helper
+to release a reference.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 29 +++++++++++------------------
- 1 file changed, 11 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 6aa0531bcf76..e32517afae58 100644
+index edd52b8f0543..f5a780b8bb80 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -85,14 +85,15 @@
-  *	rmdir /sys/kernel/config/xe/0000:03:00.0/
-  */
- 
-+/*
-+ * Use xe_configfs.su_mutex (also accessible from group.cg_subsys->su_mutex)
-+ * to protect configuration data.
-+ */
- struct xe_config_device {
- 	struct config_group group;
- 
- 	bool survivability_mode;
- 	u64 engines_allowed;
--
--	/* protects attributes */
--	struct mutex lock;
+@@ -305,7 +305,7 @@ static struct configfs_subsystem xe_configfs = {
+ 	},
  };
  
- struct engine_info {
-@@ -135,9 +136,8 @@ static ssize_t survivability_mode_store(struct config_item *item, const char *pa
- 	if (ret)
- 		return ret;
- 
--	mutex_lock(&dev->lock);
--	dev->survivability_mode = survivability_mode;
--	mutex_unlock(&dev->lock);
-+	scoped_guard(mutex, &item->ci_group->cg_subsys->su_mutex)
-+		dev->survivability_mode = survivability_mode;
- 
- 	return len;
- }
-@@ -219,9 +219,8 @@ static ssize_t engines_allowed_store(struct config_item *item, const char *page,
- 		val |= mask;
- 	}
- 
--	mutex_lock(&dev->lock);
--	dev->engines_allowed = val;
--	mutex_unlock(&dev->lock);
-+	scoped_guard(mutex, &item->ci_group->cg_subsys->su_mutex)
-+		dev->engines_allowed = val;
- 
- 	return len;
- }
-@@ -239,7 +238,6 @@ static void xe_config_device_release(struct config_item *item)
+-static struct xe_config_group_device *configfs_find_group(struct pci_dev *pdev)
++static struct xe_config_group_device *find_xe_config_group_device(struct pci_dev *pdev)
  {
- 	struct xe_config_device *dev = to_xe_config_device(item);
- 
--	mutex_destroy(&dev->lock);
- 	kfree(dev);
- }
- 
-@@ -286,8 +284,6 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
- 
- 	config_group_init_type_name(&dev->group, name, &xe_config_device_type);
- 
--	mutex_init(&dev->lock);
--
- 	return &dev->group;
- }
- 
-@@ -311,12 +307,10 @@ static struct configfs_subsystem xe_configfs = {
- 
- static struct xe_config_device *configfs_find_group(struct pci_dev *pdev)
- {
-+	guard(mutex)(&xe_configfs.su_mutex);
+ 	guard(mutex)(&xe_configfs.su_mutex);
  	struct config_item *item;
+@@ -328,14 +328,14 @@ static struct xe_config_group_device *configfs_find_group(struct pci_dev *pdev)
+  */
+ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+ {
+-	struct xe_config_group_device *dev = configfs_find_group(pdev);
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+ 	bool mode;
  
--	mutex_lock(&xe_configfs.su_mutex);
- 	item = config_group_find_item(&xe_configfs.su_group, pci_name(pdev));
--	mutex_unlock(&xe_configfs.su_mutex);
--
- 	if (!item)
- 		return NULL;
+ 	if (!dev)
+ 		return false;
  
-@@ -360,9 +354,8 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
+ 	mode = dev->survivability_mode;
+-	config_item_put(&dev->group.cg_item);
++	config_group_put(&dev->group);
+ 
+ 	return mode;
+ }
+@@ -349,7 +349,7 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+  */
+ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
+ {
+-	struct xe_config_group_device *dev = configfs_find_group(pdev);
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+ 
  	if (!dev)
  		return;
+@@ -357,7 +357,7 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
+ 	scoped_guard(mutex, &xe_configfs.su_mutex)
+ 		dev->survivability_mode = 0;
  
--	mutex_lock(&dev->lock);
--	dev->survivability_mode = 0;
--	mutex_unlock(&dev->lock);
-+	scoped_guard(mutex, &xe_configfs.su_mutex)
-+		dev->survivability_mode = 0;
+-	config_item_put(&dev->group.cg_item);
++	config_group_put(&dev->group);
+ }
  
- 	config_item_put(&dev->group.cg_item);
+ /**
+@@ -371,14 +371,14 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
+  */
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
+ {
+-	struct xe_config_group_device *dev = configfs_find_group(pdev);
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+ 	u64 engines_allowed;
+ 
+ 	if (!dev)
+ 		return U64_MAX;
+ 
+ 	engines_allowed = dev->engines_allowed;
+-	config_item_put(&dev->group.cg_item);
++	config_group_put(&dev->group);
+ 
+ 	return engines_allowed;
  }
 -- 
 2.47.1
