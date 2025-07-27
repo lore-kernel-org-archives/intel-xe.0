@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 968F1C87FCE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9934AC87FCF
 	for <intel-xe@archiver.kernel.org>; Sun, 27 Jul 2025 17:20:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57EEA10E312;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EFD710E309;
 	Sun, 27 Jul 2025 17:20:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qz0d6LS4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jD5nxea2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72A9310E317
- for <intel-xe@lists.freedesktop.org>; Sun, 27 Jul 2025 17:20:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2540310E3DA
+ for <intel-xe@lists.freedesktop.org>; Sun, 27 Jul 2025 17:20:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753636827; x=1785172827;
+ t=1753636833; x=1785172833;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wojYxNNKKLum7u3eLFSeBavyi1oIrs2zYj+A/sMX/+Q=;
- b=Qz0d6LS4HOYOFEWDNhkD/KsObICE7GWIxXuaA/JKf1z/WZrbkoPa4Wbu
- FT11si7rwpcy6hL5biU/Idnl1u+TfTBkE9rJp7GKyrunLNBx5DMsHj08g
- vCO/nxT4Om3Fy8TRyWfzekrBCr/fhrIweyildJ0Gf8QhcM00hgsIhmpPZ
- gIY+tI8os0QetG9hZChO80bCnXRPtG7ZaWG5fhKWRqMYWoVQz/yLukta+
- FA2CWn/M3zh75maiMBkoM8JgETVLswOlNJyRFbEyyidEg075knk1BPVTo
- LvkwnenVeb0K0evsHz9FD1GpE/j0D9NPh6jICxoacRItHV1Xh5tChj38D Q==;
-X-CSE-ConnectionGUID: FtsA7k36TD6mUTw1z1i6FA==
-X-CSE-MsgGUID: uO9CVBQKT/OIldUYQTrEOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="56046731"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="56046731"
+ bh=1j3Y5fRxL1m+ZOfAqeiMSwW+u9k+/spm7dfhJbqFa6I=;
+ b=jD5nxea2eCxKDx/uyiO6NqUPfrswET02Je8C8DYn5dQTZ1i/THDtAUxu
+ oJ8ZJEmREXHFu8aDcNUwL/fNJk9dAO0M0j1thiyZ3IbGtNds/5BKWyssi
+ 17ms+VSQj897LTzBJAc3hb4qUxnpAaaLD2HILMDdllYBlsWWG9teo4OV5
+ pG2qCcxBeIAsZhmLCoUJEohGKB7/F2VOjN9dkLw7lTA6ZSmiIpKQPBm8s
+ 6lfH5P/OyZtqo1PrvqRmGvdarLel1EAfDmocHUjjYZy8WxoB+2ksvKt+K
+ R0CC1NzKsPp9WeVK+NsHJsdug1R5v0lnDs9K9oXVwzqqap/RD84vGUHBi w==;
+X-CSE-ConnectionGUID: hJqV3h1USyOlsMRrWDPqJw==
+X-CSE-MsgGUID: iOzH7W44RmuaidK+m+9k1A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="56046736"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="56046736"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2025 10:20:27 -0700
-X-CSE-ConnectionGUID: hgR3pDHrTJ2Eu+dp7rpdeQ==
-X-CSE-MsgGUID: xwHhCg4qRZaLB7iyNj4bDw==
+ 27 Jul 2025 10:20:33 -0700
+X-CSE-ConnectionGUID: oZ66yvPJSNyykzXLw50BYw==
+X-CSE-MsgGUID: RxDmfxvwTp28xVOEGub9qg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="167556834"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="167556850"
 Received: from bjanicki-mobl2.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.2.202])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2025 10:20:26 -0700
+ 27 Jul 2025 10:20:31 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 06/11] drm/xe/configfs: Rename configfs_find_group() helper
-Date: Sun, 27 Jul 2025 19:20:03 +0200
-Message-ID: <20250727172009.587-7-michal.wajdeczko@intel.com>
+Subject: [PATCH v4 10/11] drm/xe/configfs: Only allow configurations for
+ supported devices
+Date: Sun, 27 Jul 2025 19:20:07 +0200
+Message-ID: <20250727172009.587-11-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250727172009.587-1-michal.wajdeczko@intel.com>
 References: <20250727172009.587-1-michal.wajdeczko@intel.com>
@@ -68,81 +69,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This helper name shouldn't suggest that it iss a part of the core
-configfs API family. While around switch to use different helper
-to release a reference.
+Since we already lookup for the real PCI device before we allow
+to create its directory config, we might also check if the found
+device matches our driver PCI ID list. This will prevent creation
+of the directory configs for the unsupported devices.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+v2: rebased
+---
+ drivers/gpu/drm/xe/xe_configfs.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index edd52b8f0543..f5a780b8bb80 100644
+index 73fb6812efe0..928d62750d55 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -305,7 +305,7 @@ static struct configfs_subsystem xe_configfs = {
- 	},
+@@ -273,11 +273,22 @@ static const struct config_item_type xe_config_device_type = {
+ 	.ct_owner	= THIS_MODULE,
  };
  
--static struct xe_config_group_device *configfs_find_group(struct pci_dev *pdev)
-+static struct xe_config_group_device *find_xe_config_group_device(struct pci_dev *pdev)
++static const struct xe_device_desc *xe_match_desc(struct pci_dev *pdev)
++{
++	struct device_driver *driver = driver_find("xe", &pci_bus_type);
++	struct pci_driver *drv = to_pci_driver(driver);
++	const struct pci_device_id *ids = drv ? drv->id_table : NULL;
++	const struct pci_device_id *found = pci_match_id(ids, pdev);
++
++	return found ? (const void *)found->driver_data : NULL;
++}
++
+ static struct config_group *xe_config_make_device_group(struct config_group *group,
+ 							const char *name)
  {
- 	guard(mutex)(&xe_configfs.su_mutex);
- 	struct config_item *item;
-@@ -328,14 +328,14 @@ static struct xe_config_group_device *configfs_find_group(struct pci_dev *pdev)
-  */
- bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
- {
--	struct xe_config_group_device *dev = configfs_find_group(pdev);
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
- 	bool mode;
+ 	unsigned int domain, bus, slot, function;
+ 	struct xe_config_group_device *dev;
++	const struct xe_device_desc *match;
+ 	struct pci_dev *pdev;
+ 	char canonical[16];
+ 	int ret;
+@@ -295,8 +306,14 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
+ 	pdev = pci_get_domain_bus_and_slot(domain, bus, PCI_DEVFN(slot, function));
+ 	if (!pdev)
+ 		return ERR_PTR(-ENODEV);
++
++	match = xe_match_desc(pdev);
++
+ 	pci_dev_put(pdev);
  
++	if (!match)
++		return ERR_PTR(-ECANCELED);
++
+ 	dev = kzalloc(sizeof(*dev), GFP_KERNEL);
  	if (!dev)
- 		return false;
- 
- 	mode = dev->survivability_mode;
--	config_item_put(&dev->group.cg_item);
-+	config_group_put(&dev->group);
- 
- 	return mode;
- }
-@@ -349,7 +349,7 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
-  */
- void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
- {
--	struct xe_config_group_device *dev = configfs_find_group(pdev);
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
- 
- 	if (!dev)
- 		return;
-@@ -357,7 +357,7 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
- 	scoped_guard(mutex, &xe_configfs.su_mutex)
- 		dev->survivability_mode = 0;
- 
--	config_item_put(&dev->group.cg_item);
-+	config_group_put(&dev->group);
- }
- 
- /**
-@@ -371,14 +371,14 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
-  */
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
- {
--	struct xe_config_group_device *dev = configfs_find_group(pdev);
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
- 	u64 engines_allowed;
- 
- 	if (!dev)
- 		return U64_MAX;
- 
- 	engines_allowed = dev->engines_allowed;
--	config_item_put(&dev->group.cg_item);
-+	config_group_put(&dev->group);
- 
- 	return engines_allowed;
- }
+ 		return ERR_PTR(-ENOMEM);
 -- 
 2.47.1
 
