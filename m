@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF89CC87FCE
-	for <intel-xe@archiver.kernel.org>; Sun, 27 Jul 2025 17:20:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90C47C87FCC
+	for <intel-xe@archiver.kernel.org>; Sun, 27 Jul 2025 17:20:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5235610E315;
-	Sun, 27 Jul 2025 17:20:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5547610E31E;
+	Sun, 27 Jul 2025 17:20:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f5WVHmRa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eHBR3lTk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2569A10E309
- for <intel-xe@lists.freedesktop.org>; Sun, 27 Jul 2025 17:20:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D04A510E317
+ for <intel-xe@lists.freedesktop.org>; Sun, 27 Jul 2025 17:20:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753636820; x=1785172820;
+ t=1753636829; x=1785172829;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=w13TK+C0WAbRe/7oYOyobxnjpce3Aa4UVeD0uwEybT0=;
- b=f5WVHmRaer6Pk9grS4ZIxUx6k8ACgA+sWbdeaC8ha7nmvCrkF2Ty8RJP
- kIR5S0/sjKziWfH620OBwLkAiQxnLxG3t8uCauKY6AD1Cj8cPikG/nJEa
- IXNSbfIg49u1ztbIVbWIyFJQzfWXw5GM4sjJVWKneVla6kOrGSuaCmCb7
- UMylc1WOLhahnet2hTInIdG7ZneuisOQVtVzvuT1unUE2CuWpMb4f6+VU
- +izxOdvNm7B81CFOxYzUt1z/h+89ref3RtmFpZz1vI21Np7pRDxIXTKoW
- K+rLQ83207Bi9mFHeXSVculFGCBctQ+p4JyqnuDRNRfSfojM6aPYVMay8 w==;
-X-CSE-ConnectionGUID: NsuCb/8sSTWaJuTrc56Cmw==
-X-CSE-MsgGUID: 0QofBC+8Sg2hf1a2KhcHzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="56046721"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="56046721"
+ bh=AXErHASmPpWY3WzLsWhUWaULmyNb+Uimrg59ux9Iyk8=;
+ b=eHBR3lTkbjldpECQ17S0xd7asT7aquRSWCVpXWEi7RAp8ywK7W/wiH4Z
+ XIUhuuEa2rHge/xA+3AEO/X1Cm1XIyyGgr5zyoXA4BD/h2BkHmtP3sYdU
+ aMhw1+LntkAtBZGOohM6QnPhJLIukkEFTzKHYiDsiog5LXGAE2lpmcbAc
+ Selg651EltWwrsk0vaU9sSoWApbob6AD1EzR+TJIsnWSRUuFFSefla0k/
+ /gon0IXKf6C0TOQAkpUOBVIKxJ4EJXeqiHig+xTfmdzdylwC36RRP0XNU
+ /trIq5cpu79K7ZjKnwKMXTE7W+vdz6oUDZBIr8vpznPvnSKYfsaTAw0Jr A==;
+X-CSE-ConnectionGUID: sDPxHFufT5ymrDizsQ3ceA==
+X-CSE-MsgGUID: pxq0YAqhQvWutLgi5SmBBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="56046732"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="56046732"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2025 10:20:20 -0700
-X-CSE-ConnectionGUID: 81JY4GYQTA6EVFUZ3G9JQg==
-X-CSE-MsgGUID: di8ujSTxQaCjFOyUKT/Kgg==
+ 27 Jul 2025 10:20:29 -0700
+X-CSE-ConnectionGUID: XtSjc5zERfebHNj+OO2JCA==
+X-CSE-MsgGUID: SJwsgD10QoWv7FL0RarXQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="167556815"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="167556837"
 Received: from bjanicki-mobl2.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.2.202])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2025 10:20:18 -0700
+ 27 Jul 2025 10:20:27 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 01/11] drm/xe: Simplify module initialization code
-Date: Sun, 27 Jul 2025 19:19:58 +0200
-Message-ID: <20250727172009.587-2-michal.wajdeczko@intel.com>
+Subject: [PATCH v4 07/11] drm/xe/configfs: Reintroduce struct xe_config_device
+Date: Sun, 27 Jul 2025 19:20:04 +0200
+Message-ID: <20250727172009.587-8-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250727172009.587-1-michal.wajdeczko@intel.com>
 References: <20250727172009.587-1-michal.wajdeczko@intel.com>
@@ -68,83 +68,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is no need to have extra checks and WARN() in the helpers
-as instead of an index of the entry with function pointers, we
-can pass pointer to the entry which we prepare directly in the
-main loop, that is guaranteed to be valid.
-
-  add/remove: 0/0 grow/shrink: 0/4 up/down: 0/-180 (-180)
-  Function                                     old     new   delta
-  xe_exit                                      109      79     -30
-  cleanup_module                               109      79     -30
-  xe_init                                      248     188     -60
-  init_module                                  248     188     -60
-  Total: Before=2774145, After=2773965, chg -0.01%
+This time it will hold just pure configuration parameters, without
+any configfs related stuff. This will help us define defaults data
+without wasting space for unneeded data.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_module.c | 27 ++++++++++-----------------
- 1 file changed, 10 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 27 +++++++++++++++++----------
+ 1 file changed, 17 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index d9391bd08194..593bc9e5851a 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -135,24 +135,17 @@ static const struct init_funcs init_funcs[] = {
- 	},
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index f5a780b8bb80..a5f13dd779c7 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -92,8 +92,10 @@
+ struct xe_config_group_device {
+ 	struct config_group group;
+ 
+-	bool survivability_mode;
+-	u64 engines_allowed;
++	struct xe_config_device {
++		bool survivability_mode;
++		u64 engines_allowed;
++	} config;
  };
  
--static int __init xe_call_init_func(unsigned int i)
-+static int __init xe_call_init_func(const struct init_funcs *func)
+ struct engine_info {
+@@ -119,16 +121,21 @@ static struct xe_config_group_device *to_xe_config_group_device(struct config_it
+ 	return container_of(to_config_group(item), struct xe_config_group_device, group);
+ }
+ 
++static struct xe_config_device *to_xe_config_device(struct config_item *item)
++{
++	return &to_xe_config_group_device(item)->config;
++}
++
+ static ssize_t survivability_mode_show(struct config_item *item, char *page)
  {
--	if (WARN_ON(i >= ARRAY_SIZE(init_funcs)))
--		return 0;
--	if (!init_funcs[i].init)
--		return 0;
--
--	return init_funcs[i].init();
-+	if (func->init)
-+		return func->init();
-+	return 0;
+-	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	struct xe_config_device *dev = to_xe_config_device(item);
+ 
+ 	return sprintf(page, "%d\n", dev->survivability_mode);
  }
  
--static void xe_call_exit_func(unsigned int i)
-+static void xe_call_exit_func(const struct init_funcs *func)
+ static ssize_t survivability_mode_store(struct config_item *item, const char *page, size_t len)
  {
--	if (WARN_ON(i >= ARRAY_SIZE(init_funcs)))
--		return;
--	if (!init_funcs[i].exit)
--		return;
--
--	init_funcs[i].exit();
-+	if (func->exit)
-+		func->exit();
+-	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	struct xe_config_device *dev = to_xe_config_device(item);
+ 	bool survivability_mode;
+ 	int ret;
+ 
+@@ -144,7 +151,7 @@ static ssize_t survivability_mode_store(struct config_item *item, const char *pa
+ 
+ static ssize_t engines_allowed_show(struct config_item *item, char *page)
+ {
+-	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	struct xe_config_device *dev = to_xe_config_device(item);
+ 	char *p = page;
+ 
+ 	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+@@ -199,7 +206,7 @@ static bool lookup_engine_mask(const char *pattern, u64 *mask)
+ static ssize_t engines_allowed_store(struct config_item *item, const char *page,
+ 				     size_t len)
+ {
+-	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	struct xe_config_device *dev = to_xe_config_device(item);
+ 	size_t patternlen, p;
+ 	u64 mask, val = 0;
+ 
+@@ -280,7 +287,7 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
+ 		return ERR_PTR(-ENOMEM);
+ 
+ 	/* Default values */
+-	dev->engines_allowed = U64_MAX;
++	dev->config.engines_allowed = U64_MAX;
+ 
+ 	config_group_init_type_name(&dev->group, name, &xe_config_device_type);
+ 
+@@ -334,7 +341,7 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+ 	if (!dev)
+ 		return false;
+ 
+-	mode = dev->survivability_mode;
++	mode = dev->config.survivability_mode;
+ 	config_group_put(&dev->group);
+ 
+ 	return mode;
+@@ -355,7 +362,7 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
+ 		return;
+ 
+ 	scoped_guard(mutex, &xe_configfs.su_mutex)
+-		dev->survivability_mode = 0;
++		dev->config.survivability_mode = 0;
+ 
+ 	config_group_put(&dev->group);
  }
+@@ -377,7 +384,7 @@ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
+ 	if (!dev)
+ 		return U64_MAX;
  
- static int __init xe_init(void)
-@@ -160,10 +153,10 @@ static int __init xe_init(void)
- 	int err, i;
+-	engines_allowed = dev->engines_allowed;
++	engines_allowed = dev->config.engines_allowed;
+ 	config_group_put(&dev->group);
  
- 	for (i = 0; i < ARRAY_SIZE(init_funcs); i++) {
--		err = xe_call_init_func(i);
-+		err = xe_call_init_func(&init_funcs[i]);
- 		if (err) {
- 			while (i--)
--				xe_call_exit_func(i);
-+				xe_call_exit_func(&init_funcs[i]);
- 			return err;
- 		}
- 	}
-@@ -176,7 +169,7 @@ static void __exit xe_exit(void)
- 	int i;
- 
- 	for (i = ARRAY_SIZE(init_funcs) - 1; i >= 0; i--)
--		xe_call_exit_func(i);
-+		xe_call_exit_func(&init_funcs[i]);
- }
- 
- module_init(xe_init);
+ 	return engines_allowed;
 -- 
 2.47.1
 
