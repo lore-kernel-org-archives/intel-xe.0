@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0460C87FCE
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 09:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 311D3C83F17
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 09:46:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF1810E0F9;
-	Mon, 28 Jul 2025 09:35:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1F0310E119;
+	Mon, 28 Jul 2025 09:46:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=damsy.net header.i=@damsy.net header.b="TYrATnnR";
-	dkim=permerror (0-bit key) header.d=damsy.net header.i=@damsy.net header.b="TW1wHOjf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c2OPtFnJ";
 	dkim-atps=neutral
-X-Greylist: delayed 424 seconds by postgrey-1.36 at gabe;
- Mon, 28 Jul 2025 09:35:51 UTC
-Received: from jeth.damsy.net (jeth.damsy.net [51.159.152.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D82B410E0F9
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Jul 2025 09:35:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; s=202408r; d=damsy.net; c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1753694891;
- bh=E6rsuWgmcWSsq6MFSzPB/9S
- Iu66iibZvC42qyD8fkoU=; b=TYrATnnRvaYfnIZ6Z5uFq9Yr/5n3v9PPCUlTbTzbHX7j1ghVmq
- vgqLDL2qaZlWyUTx5BlCWSbxVgFKbqPiVcOWlqFmo/ljfmmsRjSnPcGuQClKbVYPGfsRw1aAchS
- HNEXgeLWGEChfTRpB7JFiTv3dgaPjXRIPx9niYh52lI87SbyIrsnLuoYsBoObdX1Bwfds/LWj4U
- XhoH3eyRO6Ufrb/J1bxhO9LBn9uB7JwxaNN9u7I+g0xXo3Tl/9O627WJjI3ifwYE8/gzZ32ntQZ
- iuKiNm7Fixk6ZoSg5gtASgeNXfZTGLF4rbdTQUiM+XTRzfeQIRguEnDs218hgJo8c0w==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202408e; d=damsy.net;
- c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1753694891; bh=E6rsuWgmcWSsq6MFSzPB/9S
- Iu66iibZvC42qyD8fkoU=; b=TW1wHOjf7j4Yq5lk5qlUiEwbvTzhDJFxj7tyd9exX+g4MLisyJ
- 1RPhUpHU/qlyFo5ziqnzdwBB4fT8RamxSoAQ==;
-Message-ID: <fe05e8fd-d56f-4b32-a65b-46c9ef6df9c7@damsy.net>
-Date: Mon, 28 Jul 2025 11:28:11 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45E8610E119
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Jul 2025 09:46:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753695961; x=1785231961;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ecIANBBb9iWilEl8/hD2BdGHSh6xShBVZ3quyBTdl0Q=;
+ b=c2OPtFnJZtUcvrD17fU2tA3frn0bmusN5n8h8ZDvnNF1rX3UFcEnc+0z
+ rCgPblr572J3KNBMovJrIfvJbsb3qQXC28XFVy8gZjCSB3GEYaX7PKR5O
+ B2/aygU1DVVONlf3NU3zdLw5TB77B+9dL2BB5wNG67u9WrfTPWuZKIy8K
+ 6YYPOyj4Eb1456S8mLHAWp1iJ1yYwv9IlDYNeSXezZOW9dVEqURHwK52w
+ FD606gqWVs208U16IDjkoC7qN6ZYZlTCfuOarqY6lvOkYWfNbhnzeVyz4
+ q0/b6w9PnQ6OnNn+xuB8x45nDv4QVJYBdS/tWnLXEeMlTmB0w4eYxHVpj Q==;
+X-CSE-ConnectionGUID: 2NuMTXd9SBeTDpr7QM6xUQ==
+X-CSE-MsgGUID: JmyxqR08R26dgLE4OcJVTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="66207725"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="66207725"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2025 02:46:01 -0700
+X-CSE-ConnectionGUID: iF91CThlSBeDQUXWAa/FrA==
+X-CSE-MsgGUID: Mldl8tqBRyyG9oCG1HrHTw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="167706168"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by fmviesa004.fm.intel.com with ESMTP; 28 Jul 2025 02:46:00 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH 0/3] Revert "CCS save restore for IGPU"
+Date: Mon, 28 Jul 2025 15:32:45 +0530
+Message-ID: <20250728100248.3333-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v7 10/12] drm/sched: Break submission patterns with some
- randomness
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
- <phasta@kernel.org>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-References: <20250724141921.75583-1-tvrtko.ursulin@igalia.com>
- <20250724141921.75583-11-tvrtko.ursulin@igalia.com>
-Content-Language: en-US
-From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
-In-Reply-To: <20250724141921.75583-11-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,89 +64,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The VF CCS save/restore series (patchwork #149108) has a dependency
+on the migration framework. A recent migration update in commit
+d65ff1ec8535 ("drm/xe: Split xe_migrate allocation from initialization")
+caused a VM crash during XE driver release for iGPU devices.
 
+So, reverting CCS save restore for IGPU series.
 
-Le 24/07/2025 à 16:19, Tvrtko Ursulin a écrit :
-> GPUs generally don't implement preemption and DRM scheduler definitely
-> does not support it at the front end scheduling level. This means
-> execution quanta can be quite long and is controlled by userspace,
-> consequence of which is picking the "wrong" entity to run can have a
-> larger negative effect than it would have with a virtual runtime based CPU
-> scheduler.
-> 
-> Another important consideration is that rendering clients often have
-> shallow submission queues, meaning they will be entering and exiting the
-> scheduler's runnable queue often.
-> 
-> Relevant scenario here is what happens when an entity re-joins the
-> runnable queue with other entities already present. One cornerstone of the
-> virtual runtime algorithm is to let it re-join at the head and depend on
-> the virtual runtime accounting to sort out the order after an execution
-> quanta or two.
-> 
-> However, as explained above, this may not work fully reliably in the GPU
-> world. Entity could always get to overtake the existing entities, or not,
-> depending on the submission order and rbtree equal key insertion
-> behaviour.
-> 
-> We can break this latching by adding some randomness for this specific
-> corner case.
-> 
-> If an entity is re-joining the runnable queue, was head of the queue the
-> last time it got picked, and there is an already queued different entity
-> of an equal scheduling priority, we can break the tie by randomly choosing
-> the execution order between the two.
-> 
-> For randomness we implement a simple driver global boolean which selects
-> whether new entity will be first or not. Because the boolean is global and
-> shared between all the run queues and entities, its actual effect can be
-> loosely called random. Under the assumption it will not always be the same
-> entity which is re-joining the queue under these circumstances.
-> 
-> Another way to look at this is that it is adding a little bit of limited
-> random round-robin behaviour to the fair scheduling algorithm.
-> 
-> Net effect is a significant improvemnt to the scheduling unit tests which
-> check the scheduling quality for the interactive client running in
-> parallel with GPU hogs.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Philipp Stanner <phasta@kernel.org>
-> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-> ---
->   drivers/gpu/drm/scheduler/sched_rq.c | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/scheduler/sched_rq.c
-> index d16ee3ee3653..087a6bdbb824 100644
-> --- a/drivers/gpu/drm/scheduler/sched_rq.c
-> +++ b/drivers/gpu/drm/scheduler/sched_rq.c
-> @@ -147,6 +147,16 @@ drm_sched_entity_restore_vruntime(struct drm_sched_entity *entity,
->   			 * Higher priority can go first.
->   			 */
->   			vruntime = -us_to_ktime(rq_prio - prio);
-> +		} else {
-> +			static const int shuffle[2] = { -100, 100 };
-> +			static bool r = 0;
-> +
-> +			/*
-> +			 * For equal priority apply some randomness to break
-> +			 * latching caused by submission patterns.
-> +			 */
-> +			vruntime = shuffle[r];
-> +			r ^= 1;
+Satyanarayana K V P (3):
+  Revert "drm/xe/vf: Register CCS read/write contexts with Guc"
+  Revert "drm/xe/vf: Attach and detach CCS copy commands with BO"
+  Revert "drm/xe/vf: Create contexts for CCS read write"
 
-I don't understand why this is needed at all?
+ drivers/gpu/drm/xe/Makefile                |   1 -
+ drivers/gpu/drm/xe/xe_bb.c                 |  35 --
+ drivers/gpu/drm/xe/xe_bb.h                 |   3 -
+ drivers/gpu/drm/xe/xe_bo.c                 |  23 --
+ drivers/gpu/drm/xe/xe_bo_types.h           |   3 -
+ drivers/gpu/drm/xe/xe_device.c             |   4 -
+ drivers/gpu/drm/xe/xe_device_types.h       |   4 -
+ drivers/gpu/drm/xe/xe_gt_debugfs.c         |  39 ---
+ drivers/gpu/drm/xe/xe_guc_fwif.h           |   5 -
+ drivers/gpu/drm/xe/xe_guc_submit.c         |  34 +-
+ drivers/gpu/drm/xe/xe_guc_submit.h         |   1 -
+ drivers/gpu/drm/xe/xe_migrate.c            | 172 +---------
+ drivers/gpu/drm/xe/xe_migrate.h            |  11 +-
+ drivers/gpu/drm/xe/xe_pm.c                 |   4 -
+ drivers/gpu/drm/xe/xe_sriov.c              |  19 --
+ drivers/gpu/drm/xe/xe_sriov.h              |   1 -
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       | 367 ---------------------
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h       |  17 -
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |  53 ---
+ drivers/gpu/drm/xe/xe_sriov_vf_types.h     |   6 -
+ drivers/gpu/drm/xe/xe_vm.c                 |   6 +-
+ 21 files changed, 20 insertions(+), 788 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+ delete mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+ delete mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
 
-I suppose this is related to how drm_sched_entity_save_vruntime saves a relative vruntime (= entity 
-rejoins with a 0 runtime would be impossible otherwise) but I don't understand this either.
+-- 
+2.43.0
 
-Pierre-Eric
-
-
->   		}
->   	}
->   
