@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75525C83F26
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 17:57:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7E8AC83F26
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 18:02:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30C9010E562;
-	Mon, 28 Jul 2025 17:57:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA81510E56A;
+	Mon, 28 Jul 2025 18:02:44 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F06310E560;
- Mon, 28 Jul 2025 17:57:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7197915167920176445=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1476A10E56A;
+ Mon, 28 Jul 2025 18:02:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/devcoredump=3A_Defer?=
- =?utf-8?q?_devcoredump_initialization_during_probe_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_MADVISE_SQUASH_?=
+ =?utf-8?q?for_CI_-v5=5Fdrm=5Ftip=5Fwith=5Fgpuvm=5Fpatches?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Jul 2025 17:57:37 -0000
-Message-ID: <175372545718.194581.14092408180179391336@1538d3639d33>
+Date: Mon, 28 Jul 2025 18:02:43 -0000
+Message-ID: <175372576307.194711.10953442273195780561@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250728084751.4057124-1-balasubramani.vivekanandan@intel.com>
-In-Reply-To: <20250728084751.4057124-1-balasubramani.vivekanandan@intel.com>
+References: <20250728161339.731681-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250728161339.731681-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,113 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7197915167920176445==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/devcoredump: Defer devcoredump initialization during probe (rev3)
-URL   : https://patchwork.freedesktop.org/series/152111/
-State : success
+Series: drm/xe: MADVISE SQUASH for CI -v5_drm_tip_with_gpuvm_patches
+URL   : https://patchwork.freedesktop.org/series/152192/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3480-51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09_BAT -> xe-pw-152111v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c298eac5978c38dcc62a70c0d73c91765e7cc296
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c0b5f259fa77c7dc11b2f87e85be5437d7bc2b3d
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Mon Jul 28 21:43:39 2025 +0530
 
-Summary
--------
+    drm/xe: MADVISE SQUASH for CI -v5_drm_tip_with_gpuvm_patches
+    
+    DONOT REVIEW
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09 drm-intel
+c0b5f259fa77 drm/xe: MADVISE SQUASH for CI -v5_drm_tip_with_gpuvm_patches
+-:1950: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#1950: 
+new file mode 100644
 
-  **SUCCESS**
+-:2279: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#2279: FILE: drivers/gpu/drm/xe/xe_vm_madvise.c:325:
++}
++/**
 
-  No regressions found.
+-:2541: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'range__' - possible side-effects?
+#2541: FILE: include/drm/drm_gpusvm.h:452:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
 
-  
+-:2541: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
+#2541: FILE: include/drm/drm_gpusvm.h:452:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
 
-Participating hosts (9 -> 8)
-------------------------------
+-:2541: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#2541: FILE: include/drm/drm_gpusvm.h:452:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
 
-  Missing    (1): bat-adlp-vm 
+-:2574: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'notifier__' - possible side-effects?
+#2574: FILE: include/drm/drm_gpusvm.h:485:
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__));	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
 
-Known issues
-------------
+-:2574: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#2574: FILE: include/drm/drm_gpusvm.h:485:
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__));	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
 
-  Here are the changes found in xe-pw-152111v3_BAT that come from known issues:
+-:2590: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'notifier__' - possible side-effects?
+#2590: FILE: include/drm/drm_gpusvm.h:501:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
 
-### IGT changes ###
+-:2590: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
+#2590: FILE: include/drm/drm_gpusvm.h:501:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
 
-#### Possible fixes ####
+-:2590: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#2590: FILE: include/drm/drm_gpusvm.h:501:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
 
-  * igt@xe_pat@pat-index-xe2@render:
-    - bat-bmg-1:          [FAIL][1] ([Intel XE#5507]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3480-51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152111v3/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
+-:2722: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#2722: FILE: include/uapi/drm/xe_drm.h:124:
++#define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
 
-  
-  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
+-:2723: WARNING:LONG_LINE: line length of 147 exceeds 100 columns
+#2723: FILE: include/uapi/drm/xe_drm.h:125:
++#define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
 
-
-Build changes
--------------
-
-  * Linux: xe-3480-51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09 -> xe-pw-152111v3
-
-  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3480-51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09: 51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09
-  xe-pw-152111v3: 152111v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152111v3/index.html
-
---===============7197915167920176445==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/devcoredump: Defer devcoredump initialization during probe (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152111/">https://patchwork.freedesktop.org/series/152111/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152111v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152111v3/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 3 warnings, 9 checks, 2820 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-3480-51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09_BAT -&gt; xe-pw-152111v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152111v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xe2@render:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3480-51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152111v3/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3480-51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09 -&gt; xe-pw-152111v3</li>
-</ul>
-<p>IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3480-51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09: 51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09<br />
-  xe-pw-152111v3: 152111v3</p>
-
-</body>
-</html>
-
---===============7197915167920176445==--
