@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E8AFC83F26
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 08:46:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85643C83F26
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 08:59:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18B9610E4BA;
-	Mon, 28 Jul 2025 08:46:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B47810E039;
+	Mon, 28 Jul 2025 08:59:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BjQZM960";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lwE9nJSd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7728910E4B3
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Jul 2025 08:46:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BAD910E039;
+ Mon, 28 Jul 2025 08:59:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753692395; x=1785228395;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4sBvx7IrVj5ox+iLANc19Y0TZss09Mljf61M1nVOGH4=;
- b=BjQZM960rPJK7lYEa2WKR104pPLIXGOS6obJl70sf5AszPOPEAQNGZNx
- DRSh5B4+U5WNqgK8RCO7Tg1G/a0ucE5RhHg3zh0CVM8rFkvA4PALgVZld
- 0JMGF5x9MQ+lB3IVVBc4ZtscO6E1fWIoBNbseXxIOFZSoEMBB1x2W1ohK
- hzicwJLcR1VMdvjBWWJK/KXVVVAW1+Z/Q156areuOkdcCwjoFhn+9DHmw
- 8Ev/k3NcoF4MJnekDUNOJRZwbKvpwT48nNEKyeV8svYMTnNfjSDmpwnL8
- j5h15k2V1hV3QvkORZv5i4o9QSln77y1C0OYxlwV1/VvmpK62jAvD5Nb1 A==;
-X-CSE-ConnectionGUID: pLCHDLbrTHe0uwcQMIE7/g==
-X-CSE-MsgGUID: kqYy5M8mRIiGgnNuzGZeAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="55633229"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="55633229"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2025 01:46:35 -0700
-X-CSE-ConnectionGUID: JcFZYC0fQNyLYgY0d8fzIQ==
-X-CSE-MsgGUID: VAceQf1cRbCUpsWH2s3cZg==
+ t=1753693152; x=1785229152;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=AfxX4m7Ke/F//BbmmtyANJRuWyPJBg4giMulwlk1BUk=;
+ b=lwE9nJSd8m+fnBsdMudQHyvLzZy1z5E94jC+H4wFYIQ7d+ZgVpDhBLwo
+ iIH6VV/a4sTykr81rtC0Pc9KoLJCBjqrKep0qZf1gbPYsz3ht/UXU3yz2
+ xZlgopX7qkEpQr8wK4QxnqTXQkFd7PUnPH9z3qDyKEDgsbKBbVY4m8wYb
+ kyc79E8VMSlBrk0VLQAmxG7WAXZeCk/PCszW8polWnbL6sq+HcjffwBd+
+ lajiZGs9HPf21EtZpVVFBWAak2I8O+7RfhB4LoE1XLmIXw9PHJDcytyve
+ pG8Q4SBA4TEtVKOJMlUhD8gf5xWOsLcbxiOjmt0EqQNINX1WZ1Ol1EcW7 w==;
+X-CSE-ConnectionGUID: tlcFZNllSSmrOw75SdE5Cw==
+X-CSE-MsgGUID: ZQUNviNOSvuB0AzIHtY8PQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="81378888"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="81378888"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2025 01:59:12 -0700
+X-CSE-ConnectionGUID: eKpTjvOcTkOjHhq4MaFrAA==
+X-CSE-MsgGUID: T2ihwNDDSiSjHgrShafq9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="166535728"
-Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2025 01:46:33 -0700
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v2] drm/xe/devcoredump: Defer devcoredump initialization
- during probe
-Date: Mon, 28 Jul 2025 14:17:51 +0530
-Message-Id: <20250728084751.4057124-1-balasubramani.vivekanandan@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="161950123"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa007.fm.intel.com with ESMTP; 28 Jul 2025 01:59:10 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Date: Mon, 28 Jul 2025 14:14:48 +0530
+Subject: [PATCH v6] drm/i915/display: Use the recomended min_hblank values
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250728-min_hblank-v6-1-8c8bae7db250@intel.com>
+X-B4-Tracking: v=1; b=H4sIAH84h2gC/3WOywrCMBQFf0WyNhKT3D5c+R8ikseNDbappCUop
+ f9u2o1d6HLgzHAmMmD0OJDTbiIRkx98HzIU+x0xjQp3pN5mJpxxYCWvaOfDrdGtCg/KC2FQSwa
+ sMiQLz4jOv9bY5ZrZxb6jYxNRfRMFh20iCXqkhatqBWCldvzsw4jtwfTdUmz8MPbxvb5Lcun+P
+ JJkrujaVkI7JvJgU1mOJPivQlZBGl2iAmNLuVXnef4AyBvWYCEBAAA=
+X-Change-ID: 20250728-min_hblank-263ceb40508c
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com, Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,81 +69,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Doing devcoredump initializing before GT though look harmless, it leads
-to problem during driver unbind. Because of this order, GT/Engine
-release functions will be called before xe devcoredump release function
-(xe_driver_devcoredump_fini) leading to the following kernel crash[1]
-because the devcoredump functions might still use GT/Engine
-datastructures after those are freed.
+Use recommended values as per wa_14021694213 to compare with the
+calculated value and choose minimum of them.
 
-The following crash is observed while running the IGT
-xe_wedged@wedged-at-any-timeout. The test forces a wedged state by
-submitting a worload which hangs. Then does a unbind/rebind of the
-driver to recover from the wedged state.
-The hanged worload leads to a devcoredump. The following crash is
-noticed when the devcoredump capture races with the driver unbind.
-During driver unbind, the release function hw_engine_fini() will be
-called which assigns NULL to hwe->gt. But the same data structure is
-accessed during the coredump capture in the function
-xe_engine_snapshot_print by reading snapshot->hwe->gt.
+v2: corrected checkpatch warning and retain the restriction for
+min_hblank (Jani)
+v3: use calculated value to compare with recomended value and choose
+minimum of them (Imre)
+v4: As driver supported min bpc is 8, omit the condition check for
+bpc6 with ycbcr420. Added a note for the same (Imre)
+v5: Add a warn for the unexpected case of 6bpc + uhbr + ycbcr420
+v6: Reworded the comments and check fo anything < compressed bpp 8(Imre)
 
-With this patch, we make sure the devcoredump is stopped before
-deinitializing the core driver functions.
-
-[1]:
-BUG: kernel NULL pointer dereference, address: 0000000000000000
-Workqueue: events_unbound xe_devcoredump_deferred_snap_work [xe]
-RIP: 0010:xe_engine_snapshot_print+0x47/0x420 [xe]
-Call Trace:
- <TASK>
- ? drm_printf+0x64/0x90
- __xe_devcoredump_read+0x23f/0x2d0 [xe]
- ? __pfx___drm_printfn_coredump+0x10/0x10
- ? __pfx___drm_puts_coredump+0x10/0x10
- xe_devcoredump_deferred_snap_work+0x17a/0x190 [xe]
- process_one_work+0x22e/0x6f0
- worker_thread+0x1e8/0x3d0
- ? __pfx_worker_thread+0x10/0x10
- kthread+0x11f/0x250
- ? __pfx_kthread+0x10/0x10
- ret_from_fork+0x47/0x70
- ? __pfx_kthread+0x10/0x10
- ret_from_fork_asm+0x1a/0x30
-
-v2: Detailed commit description (Rodrigo)
-
-Fixes: 4209d635a823 ("drm/xe: Remove devcoredump during driver release")
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Bspec: 74379
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Changes in v6:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v5: https://lore.kernel.org/r/20250728-min_hblank-v5-1-54cb7ea5cd74@intel.com
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index d04a0ae018e6..ae48cd3c7bf0 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -821,10 +821,6 @@ int xe_device_probe(struct xe_device *xe)
- 			return err;
- 	}
- 
--	err = xe_devcoredump_init(xe);
--	if (err)
--		return err;
--
- 	/*
- 	 * From here on, if a step fails, make sure a Driver-FLR is triggereed
+Changes in v5:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v4: https://lore.kernel.org/r/20250728-min_hblank-v4-1-b9d83bf03025@intel.com
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 54d88f24b6893e1f8009f00dda87d8dae5dfc137..148848a919e09e185fce38a0636e2c2a25d33bc4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3182,7 +3182,25 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
  	 */
-@@ -889,6 +885,10 @@ int xe_device_probe(struct xe_device *xe)
- 	    XE_WA(xe->tiles->media_gt, 15015404425_disable))
- 		XE_DEVICE_WA_DISABLE(xe, 15015404425);
+ 	min_hblank = min_hblank - 2;
  
-+	err = xe_devcoredump_init(xe);
-+	if (err)
-+		return err;
+-	min_hblank = min(10, min_hblank);
++	/*
++	 * min_hblank formula is undergoing a change, to avoid underrun use the
++	 * recomended value in spec to compare with the calculated one and use the
++	 * minimum value
++	 */
++	if (intel_dp_is_uhbr(crtc_state)) {
++		/*
++		 * Note: Bspec requires a min_hblank of 2 for YCBCR420
++		 * with compressed bpp 6, but the minimum compressed bpp
++		 * supported by the driver is 8.
++		 */
++		drm_WARN_ON(display->drm, (crtc_state->dsc.compression_enable &&
++			 crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
++			 crtc_state->dsc.compressed_bpp_x16 < fxp_q4_from_int(8)));
++		min_hblank = min(3, min_hblank);
++	} else {
++		min_hblank = min(10, min_hblank);
++	}
 +
- 	xe_nvm_init(xe);
+ 	crtc_state->min_hblank = min_hblank;
  
- 	err = xe_heci_gsc_init(xe);
+ 	return 0;
+
+---
+base-commit: eb0c2b25072b5c56e8c41d7099050bf53bebaa14
+change-id: 20250728-min_hblank-263ceb40508c
+
+Best regards,
 -- 
-2.34.1
+Arun R Murthy <arun.r.murthy@intel.com>
 
