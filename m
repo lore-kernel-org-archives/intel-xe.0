@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74FA4C83F17
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 16:13:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E120C83F17
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 16:18:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC2310E543;
-	Mon, 28 Jul 2025 16:13:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 427C310E538;
+	Mon, 28 Jul 2025 16:18:56 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B128A10E53A;
- Mon, 28 Jul 2025 16:13:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3070918418431991038=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FBC710E538;
+ Mon, 28 Jul 2025 16:18:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Revert_=22CCS_save_restore_?=
- =?utf-8?q?for_IGPU=22_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Handle_Firmware_reported_?=
+ =?utf-8?q?Hardware_Errors_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Jul 2025 16:13:42 -0000
-Message-ID: <175371922272.194391.16162871337114381569@1538d3639d33>
+Date: Mon, 28 Jul 2025 16:18:55 -0000
+Message-ID: <175371953519.194392.6499082989110328231@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250728100248.3333-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250728100248.3333-1-satyanarayana.k.v.p@intel.com>
+References: <20250728102809.502324-1-riana.tauro@intel.com>
+In-Reply-To: <20250728102809.502324-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,62 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3070918418431991038==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Revert "CCS save restore for IGPU" (rev2)
-URL   : https://patchwork.freedesktop.org/series/152172/
-State : success
+Series: Handle Firmware reported Hardware Errors (rev7)
+URL   : https://patchwork.freedesktop.org/series/149756/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04_BAT -> xe-pw-152172v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c298eac5978c38dcc62a70c0d73c91765e7cc296
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ad19d573929945f50c6f71d2207d46710b39063c
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Mon Jul 28 15:57:59 2025 +0530
 
-Summary
--------
+    drm/xe/xe_hw_error: Add fault injection to trigger csc error handler
+    
+    Add a debugfs fault handler to trigger csc error handler that
+    wedges the device and enables runtime survivability mode.
+    
+    v2: add debugfs only for bmg (Umesh)
+    v3: do not use csc_fault attribute if debugfs is not enabled
+    
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+    Reviewed-by: Raag Jadav <raag.jadav@intel.com>
++ /mt/dim checkpatch 51feeecc1f4cd7066d2ba2cd35f5c1ff39af6a09 drm-intel
+2ad2d82b28d8 drm: Add a vendor-specific recovery method to drm device wedged uevent
+58b71fc08939 drm/xe: Set GT as wedged before sending wedged uevent
+15ea02cf19b4 drm/xe: Add a helper function to set recovery method
+4df926c587f9 drm/xe/xe_survivability: Refactor survivability mode
+69dcd5c1d779 drm/xe/xe_survivability: Add support for Runtime survivability mode
+cd92a67858b0 drm/xe/doc: Document device wedged and runtime survivability
+-:29: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#29: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 119 lines checked
+34b11ccd7655 drm/xe: Add support to handle hardware errors
+-:46: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#46: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 175 lines checked
+7f590f44e97b drm/xe/xe_hw_error: Handle CSC Firmware reported Hardware errors
+-:30: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#30: 
+KERNEL[754.709341] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 (drm)
 
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-152172v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152172v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04 -> xe-pw-152172v2
-
-  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04: 11e629e8c02307977802ba0ea8c60ddb15b17d04
-  xe-pw-152172v2: 152172v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152172v2/index.html
-
---===============3070918418431991038==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 143 lines checked
+ad19d5739299 drm/xe/xe_hw_error: Add fault injection to trigger csc error handler
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Revert &quot;CCS save restore for IGPU&quot; (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152172/">https://patchwork.freedesktop.org/series/152172/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152172v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152172v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04_BAT -&gt; xe-pw-152172v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152172v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152172v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04 -&gt; xe-pw-152172v2</li>
-</ul>
-<p>IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04: 11e629e8c02307977802ba0ea8c60ddb15b17d04<br />
-  xe-pw-152172v2: 152172v2</p>
-
-</body>
-</html>
-
---===============3070918418431991038==--
