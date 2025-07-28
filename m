@@ -4,167 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9029C87FCE
-	for <intel-xe@archiver.kernel.org>; Sun, 27 Jul 2025 21:16:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD680C83F17
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 04:14:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5B110E0F4;
-	Sun, 27 Jul 2025 21:16:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79E4C10E033;
+	Mon, 28 Jul 2025 04:14:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kwz2UcdV";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BDTxZ2gb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 317FE10E0F4;
- Sun, 27 Jul 2025 21:16:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753651010; x=1785187010;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=0KH5wpul4PjQBXZE2L/RflrtdkyXxbqwW9IIv9vmGUU=;
- b=kwz2UcdV4qeZLMKfm1/En49dPntaRUm0iHO0JvPp6N+poNxYennf5rFx
- 1xDWygeGmC7NEgdf8oTdoHmOq/nkPKdXr5MZxqV+T+4mreGYC6CJEmG6N
- gAD6LMbeCROpguuApvG3ddsMCwNhOcAja8XPLbJArcMpk12nknMgcRIK+
- UylrUSTndFRRApRD6C8P3p3JMtgcf3CQa58U4/fho7c4auScI1YL2T0kB
- uN52uTdaycDi0vZ0y5BnWMjhnVNxEKAf0muSwv0gphr4EtfZ7FO3prw//
- wteLY7aYKx3AOhTbWrK5waMqDHbSmcUScNBxdkNvWzU5341sTx4I75ydO g==;
-X-CSE-ConnectionGUID: VB+c/3sRSo+CXDQb7amS/w==
-X-CSE-MsgGUID: rMtZ3twuReqDq8JLMdTueA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="56053151"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="56053151"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2025 14:16:50 -0700
-X-CSE-ConnectionGUID: QqhGhVrYS+OSEXUJaWoPRw==
-X-CSE-MsgGUID: j7K7hvtgQ3Gk7TL3WqPmtg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="161837818"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2025 14:16:49 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Sun, 27 Jul 2025 14:16:48 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Sun, 27 Jul 2025 14:16:48 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.63)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Sun, 27 Jul 2025 14:16:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W5K5RqzzVXXnq94a1bBuNJE8x8e6vTjQiJPy6xIinEfBT+i84xnun+D6TdAOTkmNn+DPlzAuhF7bSnLHecU5RUBRQ/W+o1k16/Gpj3wAEsyHjM2865AG+qOmeiG6qu5Jwe8FkKerlTXAiZjphjLcw5i0sJUZlCuQkOpswyOoII+RygsQeUnXmvv4Y3RJSxyvTQWv3Uj4Ug+C00ORUXnOk4pkF3T0ZWoy+dgZKdQS8t5wmZuqwHLZ+Br7z/J37YRWTTovKE/mWVyjWJw0td0TxaAtAgSMySmTP14kzzwhkyA1+qjqAaKxIHp3DzQHNcN+HVRE6zQERO53As4FA70tUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u85kdX+lRW25tApnBWev4k+t9y05+0eD4hXFPfrJFpg=;
- b=r9ZX26Z4r2VgYMMjnYd6cUPJ7WzJPGjCiRIJ+PKCYungRc9a7DQMCaaWOdqeD3+APOsyWtJmYOvjGpCjII7I9D1091xWMitKUZ16FXlaSRaEY7de7gRwThn/BhSQApkJUreeXYOOzSL5/x7JqOeg/zYhfy8RdeuVj9nO2IAs753v0FYc/uo2uoBw2tyMshOAt/O05KvXTQ8jpM65hBZjelllAZUE9wajQauQ9OluoW1rCJINKaZ5ZYeccfZHJgMbMUhqGeqpxyNj3pQ2Wc9VvxqdRoKFMIVF+Exiu0f2Or/znbV50P0Fykty/5WEQZiQvX0vVJrTyu+jIC3rOAWFFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CH0PR11MB8087.namprd11.prod.outlook.com (2603:10b6:610:187::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.25; Sun, 27 Jul
- 2025 21:16:45 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.8964.019; Sun, 27 Jul 2025
- 21:16:44 +0000
-Date: Sun, 27 Jul 2025 14:18:34 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Danilo Krummrich <dakr@redhat.com>,
- "Boris Brezillon" <bbrezillon@kernel.org>, <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v5 01/23] Introduce drm_gpuvm_sm_map_ops_flags enums for
- sm_map_ops
-Message-ID: <aIaXqs0VeO92RzXO@lstrano-desk.jf.intel.com>
-References: <20250722133526.3550547-1-himal.prasad.ghimiray@intel.com>
- <20250722133526.3550547-2-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250722133526.3550547-2-himal.prasad.ghimiray@intel.com>
-X-ClientProxiedBy: BYAPR02CA0010.namprd02.prod.outlook.com
- (2603:10b6:a02:ee::23) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E30E310E033;
+ Mon, 28 Jul 2025 04:14:11 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id B60F4A5272E;
+ Mon, 28 Jul 2025 04:14:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00423C4CEE7;
+ Mon, 28 Jul 2025 04:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1753676050;
+ bh=icdK9UZhHwudcxk2XYqruHbGN8wX/pzhgMNyjCP2DlE=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=BDTxZ2gbrhwQYwhsJR96QEIIioWeagwFcV9QjzBq9U+kgbHvy5wa8/70A+BeYsVci
+ sAa2vOduXK6res64vp9Z7hFvUe4gWpWSyrllDXhf5hpMdDPkn3/Qkn7pEGwAJofJCV
+ Ki+PBI2Br8XuWhPpt9UA2+6GC59WpZxnOK9LIqyuqyKTJ7fONV1lsJLmatyhSMtUsT
+ +vjXf9hxJDRiuHZiXarAptucyYboZev++U8HQAZKDuIDnytCbm0VE9QxL623P6fZS5
+ zwaYxm3NnKNd6ws4OHwEw3Wqk3KsvhXKGriB/HXVltWeP0KIrRT1B8LVvUJ1+m5NX3
+ OT9uyMxKv0l4g==
+Content-Type: multipart/mixed; boundary="------------8PspsMq80uB7NlP91NHAb0Yt"
+Message-ID: <f3f779e3-e269-4ac9-9bed-042859d98a83@kernel.org>
+Date: Mon, 28 Jul 2025 13:11:38 +0900
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CH0PR11MB8087:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1852e5cc-8c10-409f-06f2-08ddcd52e385
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?MRbuKzjkJ1uaU6yNmqPUvwkD8XKkOvmeIFjoZlIVfV9qM1aGsap84YPRQ7d7?=
- =?us-ascii?Q?fD2Nlz9vW2hKlYN//fz+anaml+4jg4t+9bPf4k6N4Md/OObSfheZ3gZrcqqb?=
- =?us-ascii?Q?kTNxvFhHYXVtoB03S1f+glFBPhY1XDJ0Hgqqg3TbYnCBW1mTYUUcVNsLMB+s?=
- =?us-ascii?Q?KZPA3XGFzOT7CYdmTSKrfIFu3iOEcZW2+O6y8CEW5P6ApreC6Dbaw6Emnbdp?=
- =?us-ascii?Q?Hb95lqVuhjLI/3xMJWTnU//HxDm3pA/PxRGX2IF9DerxzcWv/a55WpxWOGaW?=
- =?us-ascii?Q?DtDdOQMhCrk43DHbkUvlx8G9EKT8JFfOdApDZ5ThaG/aF2vDBYX2Sqj2+ffB?=
- =?us-ascii?Q?AybgqcfHYTRxrYyD+IxVpV/ocLzW435nGf1KnZvH1X9eznF2Bc2f2tShWawq?=
- =?us-ascii?Q?+EvjxKI1YmB4gaajG9M6yYsjUf3Gf1nlLpd0Iwe6m+3IqZT15ytJluZ1HHRr?=
- =?us-ascii?Q?QC3KnyVoS6XGoKIEykJwPN46xz+Svza29x1y0oqugxafjU+p6kEvydWxK2jW?=
- =?us-ascii?Q?2CDtFj0qmIxpM9dPw43FaRPAtvXlV1tDJ0274xGCqu/T4oMJbbXy1RTdYcui?=
- =?us-ascii?Q?ZQ3EMbR3Fzt/s/ldfuzO3MWTpquiZbTp2vRoDpkIZ/HBXD5XbQTnkfMLNval?=
- =?us-ascii?Q?e2fN2ikdLRD/Qnr0CLcgDfjEjHngEyNz0mieAM98yGJH/DPqAVPAJ8ApdEpI?=
- =?us-ascii?Q?cfsmdl87Ors6i3C6BjbZxt8vNAsyIyNBvUtZu5KQmf5vR2jV3Ts54HoEQVwc?=
- =?us-ascii?Q?JKkCibbqeDIz6VSj3DoEMkRYH/FGkiwmDqFVftFcU4HReugHvlnI+1+4wCaT?=
- =?us-ascii?Q?P1FvxqJqH52YQh2hL5MocImrazwUYxl1TjMdmUJQQzVHD2qHWQyz47mLEvDv?=
- =?us-ascii?Q?xQtvjckNM883Cg0itB11I28BwvmsxVz1f8G7n8C7wn0aXZHSLwhuQrdnvU5/?=
- =?us-ascii?Q?2B2jEv8VV45roLetmCp3zDH29cNeP3uxJSnjbEs26NImKD3zKl0iK8vYbhPl?=
- =?us-ascii?Q?kcQ6ZJsqKaARIiC6fWiNm6TjKti3oc/5rUKWsgvGswBrbMKdSuX7wyzplvRX?=
- =?us-ascii?Q?fbDSNJ3aS6GOc0i/Lla9X/ruseKUpG850MLMBMDdHvOLIwak8KMvlVjOJesD?=
- =?us-ascii?Q?krA/nNh5ze4cyACwN7mdQJioCZR/GOmv+uieoQYhputwm26dvn/hsXehNvr+?=
- =?us-ascii?Q?iSCy3d6o8gVrDm4eQfjGpkYcpEKjcu28r5gaRjflTRRtgagYvYs0Re0Urujg?=
- =?us-ascii?Q?0B1v/MRZWXQpUtb8Ia+iZBTwRRoe3cxAaklaGZcY21b1gf48jWo7TZiPf8cU?=
- =?us-ascii?Q?z3EPSklZODH6KkTonm89sC0XGb1GZfUvtG8w0Zlt0/G1nzjuJrR3kFnK8dIP?=
- =?us-ascii?Q?lnL0KbSrvlSjj2n1gdOTVTtDrDVvSCIrwLxtgqV9oiktA+exZoXYA6jE4/oJ?=
- =?us-ascii?Q?16ZlySW6rjw=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NF0245FOJ4/8ofZ5kP/R8xDAqW1PriimIIt/TfHrO/7lcpxXTmcKocorLXib?=
- =?us-ascii?Q?H25I95E3a64toO9I+WS4m3YKCg7+EgGU1gBERuFxN1k6NbbTvDHbB3AwP76S?=
- =?us-ascii?Q?ID2TtKgp7g/zXYM1p5tf0NwDuG0vGt4xFHThcavsiETKZtUesbzxUKAXFqdL?=
- =?us-ascii?Q?dEad33FSO1edsi6R/h0w0S2DaUyZptRnyY4J7NcvylMifMYopHH44ql44+JP?=
- =?us-ascii?Q?hboRnlkzzp8bhGhawpvMq+TZLzIAwXeCFmUkJNNXJ2/CRrKKjwOoqOydVBHw?=
- =?us-ascii?Q?b0cqmMLN9RMyjRPIEH4k8KAhpIJYLryev5o+yospzyFNgWh9fHAAQYVGuME4?=
- =?us-ascii?Q?rJI1FyzAKr07lb2dCjVYXQ1p+fJxQ0qHaXTf7BI7KhXd4d385goBnRwAfJif?=
- =?us-ascii?Q?uBsPz7KfbgSpM7vKgQOhlFoScq+Z87B/MaNw1TWDpnqh6r4FA9tQEe+OP/s9?=
- =?us-ascii?Q?c+CrKwl0EG770gg2nHWUq+h1tftyw1tDe5hK3y4Uj45w12HJfAW5jHpsgOLh?=
- =?us-ascii?Q?D0C3XOcnhwdAvltrKbsgVYilGLLMdLEX9y2T+XuJPL+4RtIGmpp+g/f60UVZ?=
- =?us-ascii?Q?dJ7c9MetcusWQSREP1e8c1y8JNzp8BIFZfjksUmm3iib56r+AC9VtD4zlxmt?=
- =?us-ascii?Q?k4lXNchaAoczPWCsGETt5/6r7cfq8FxPpzsFLTiMqm4MDWcHJwr8ta4Pn9Qz?=
- =?us-ascii?Q?4vSCRtxCohAjFXsiMgISlDaJT2AfyyHiibiO4GMEsBw5yhpocqKtZK+92boV?=
- =?us-ascii?Q?TMnTFIAI8qagsOtKCSjw8clItN73khwdieIGFC+ktncnbUcSoIj8fo4U4pq/?=
- =?us-ascii?Q?OkMSohUhz95K/J0bilZnUzDV0w/bEDzkRrlt1QE2APBtcn6CDWzH7a8iDYz+?=
- =?us-ascii?Q?OMNQwhmzqnB4yjUCOm5vWjyS6xLU82+DQ0Bq7zcruxHuaS+4UX8Pp90OBPFK?=
- =?us-ascii?Q?Ch9qp344uN73x4DIYnfie9Vmsm+y1uKMU4bW8SkT7U1iuUkF2Z1aNju4RQTx?=
- =?us-ascii?Q?mUIwxjQR1hoPLGXd3M4+ZRhpbCNvounfT77qkWsMbliMKuN1mCXHHM8jO5f3?=
- =?us-ascii?Q?LqAcT+5mcqi7qrI4lP8GV9+eSGrAu/m8Ye4o1A7JjbkUBH+F0OFM00hy/Kvh?=
- =?us-ascii?Q?JGIDHSc44V0JXj78WInHtHGphcYDHsyK8jQjrmzTtn5brI5ww4xHgfZK7qZU?=
- =?us-ascii?Q?DES6447FZS095KPkoiTPprarmw0ySUjYmVtX+jh98RzYLhlKzafmWCKqp/Nu?=
- =?us-ascii?Q?hPESAucqpxfi552Jb+YU5nAaCl3jjWag/xJXOigj0TKk9ZCZAeZJ2gXMQNam?=
- =?us-ascii?Q?nXNNSPgmoYV3e4Q06Rs0I8JLercKHOh24OZa3KXPQCgpZdM+H3Tfzvo99sEu?=
- =?us-ascii?Q?VM15kGe/P9wlzjxayRKZlN0DZ5Op3Oa6UMjZnDJ8wNluRKtmH+OWu7Nl+Vt8?=
- =?us-ascii?Q?wv1vKLAidQuijX3Zr8I2kTYLM1l77T3vEAc8/VEv61iAPXiy3YE5pUdoOOTC?=
- =?us-ascii?Q?1KPJA+UwTX4mwQGrZ2QHfcwjBuJrJLEEXUbHKwdW1JnJHq4GDle0CQiTeKii?=
- =?us-ascii?Q?2nvKTrsFh2qM1GOpKpn8Mjn3zSclaoUKHs0BK2UgNDa43XAJS4rvu6pcCSoG?=
- =?us-ascii?Q?Gg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1852e5cc-8c10-409f-06f2-08ddcd52e385
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2025 21:16:44.6849 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 10olpWmTYmifHkIcv80q4x7cW87YkSbKhKcqnzNYrssY1AH7Sh+RrUJCNK4m7k/OWJOuXuKn0OoRF0PR0wzoZA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8087
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: Regression on linux-next (next-20250708)
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ linux-ide@vger.kernel.org, mika.westerberg@intel.com,
+ anshuman.gupta@intel.com, "Kurmi, Suresh Kumar"
+ <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani" <jani.saarinen@intel.com>,
+ lucas.demarchi@intel.com
+References: <07563042-6576-41cd-9a95-de83cfc95de1@intel.com>
+From: Damien Le Moal <dlemoal@kernel.org>
+Content-Language: en-US
+Organization: Western Digital Research
+In-Reply-To: <07563042-6576-41cd-9a95-de83cfc95de1@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,354 +62,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 22, 2025 at 07:05:04PM +0530, Himal Prasad Ghimiray wrote:
-> - DRM_GPUVM_SM_MAP_NOT_MADVISE: Default sm_map operations for the input
->   range.
+This is a multi-part message in MIME format.
+--------------8PspsMq80uB7NlP91NHAb0Yt
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 7/25/25 3:43 PM, Borah, Chaitanya Kumar wrote:
+> For some context in our kms_pm_rpm tests, we enable min_power policy for SATA
+> so that we can reach deep runtime power states and restore the original policy
+> after finishing. [5][6]
 > 
-> - DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE: This flag is used by
->   drm_gpuvm_sm_map_ops_create to iterate over GPUVMA's in the
-> user-provided range and split the existing non-GEM object VMA if the
-> start or end of the input range lies within it. The operations can
-> create up to 2 REMAPS and 2 MAPs. The purpose of this operation is to be
-> used by the Xe driver to assign attributes to GPUVMA's within the
-> user-defined range. Unlike drm_gpuvm_sm_map_ops_flags in default mode,
-> the operation with this flag will never have UNMAPs and
-> merges, and can be without any final operations.
+> IIUC, the above change is based on spec and not something which can be
+> reverted. So as I see it, we have to drop this code path for external ports.
+> However I am not sure if we can achieve deep power states without enforcing it
+> through the sysfs entry.
 > 
-> v2
-> - use drm_gpuvm_sm_map_ops_create with flags instead of defining new
->   ops_create (Danilo)
-> - Add doc (Danilo)
+> Atleast for the basic-rte subtest, the test passes if we comment out the
+> functions controlling the SATA ports. We will need more testing to determine if
+> this approach work. Any thoughts on it?
 > 
-> v3
-> - Fix doc
-> - Fix unmapping check
-> 
-> v4
-> - Fix mapping for non madvise ops
-> 
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Boris Brezillon <bbrezillon@kernel.org>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Signed-off-by: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
-> ---
->  drivers/gpu/drm/drm_gpuvm.c            | 93 ++++++++++++++++++++------
->  drivers/gpu/drm/nouveau/nouveau_uvmm.c |  1 +
->  drivers/gpu/drm/xe/xe_vm.c             |  1 +
->  include/drm/drm_gpuvm.h                | 25 ++++++-
->  4 files changed, 98 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-> index e89b932e987c..c7779588ea38 100644
-> --- a/drivers/gpu/drm/drm_gpuvm.c
-> +++ b/drivers/gpu/drm/drm_gpuvm.c
-> @@ -2103,10 +2103,13 @@ static int
->  __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  		   const struct drm_gpuvm_ops *ops, void *priv,
->  		   u64 req_addr, u64 req_range,
-> +		   enum drm_gpuvm_sm_map_ops_flags flags,
->  		   struct drm_gem_object *req_obj, u64 req_offset)
->  {
->  	struct drm_gpuva *va, *next;
->  	u64 req_end = req_addr + req_range;
-> +	bool is_madvise_ops = (flags == DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE);
-> +	bool needs_map = !is_madvise_ops;
->  	int ret;
->  
->  	if (unlikely(!drm_gpuvm_range_valid(gpuvm, req_addr, req_range)))
-> @@ -2119,26 +2122,35 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  		u64 range = va->va.range;
->  		u64 end = addr + range;
->  		bool merge = !!va->gem.obj;
-> +		bool skip_madvise_ops = is_madvise_ops && merge;
->  
-> +		needs_map = !is_madvise_ops;
->  		if (addr == req_addr) {
->  			merge &= obj == req_obj &&
->  				 offset == req_offset;
->  
->  			if (end == req_end) {
-> -				ret = op_unmap_cb(ops, priv, va, merge);
-> -				if (ret)
-> -					return ret;
-> +				if (!is_madvise_ops) {
-> +					ret = op_unmap_cb(ops, priv, va, merge);
-> +					if (ret)
-> +						return ret;
-> +				}
->  				break;
->  			}
->  
->  			if (end < req_end) {
-> -				ret = op_unmap_cb(ops, priv, va, merge);
-> -				if (ret)
-> -					return ret;
-> +				if (!is_madvise_ops) {
-> +					ret = op_unmap_cb(ops, priv, va, merge);
-> +					if (ret)
-> +						return ret;
-> +				}
->  				continue;
->  			}
->  
->  			if (end > req_end) {
-> +				if (skip_madvise_ops)
-> +					break;
-> +
->  				struct drm_gpuva_op_map n = {
->  					.va.addr = req_end,
->  					.va.range = range - req_range,
-> @@ -2153,6 +2165,9 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  				ret = op_remap_cb(ops, priv, NULL, &n, &u);
->  				if (ret)
->  					return ret;
-> +
-> +				if (is_madvise_ops)
-> +					needs_map = true;
->  				break;
->  			}
->  		} else if (addr < req_addr) {
-> @@ -2170,20 +2185,42 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  			u.keep = merge;
->  
->  			if (end == req_end) {
-> +				if (skip_madvise_ops)
-> +					break;
-> +
->  				ret = op_remap_cb(ops, priv, &p, NULL, &u);
->  				if (ret)
->  					return ret;
-> +
-> +				if (is_madvise_ops)
-> +					needs_map = true;
-> +
->  				break;
->  			}
->  
->  			if (end < req_end) {
-> +				if (skip_madvise_ops)
-> +					continue;
-> +
->  				ret = op_remap_cb(ops, priv, &p, NULL, &u);
->  				if (ret)
->  					return ret;
-> +
-> +				if (is_madvise_ops) {
-> +					ret = op_map_cb(ops, priv, req_addr,
-> +							min(end - req_addr, req_end - end),
+> Also, are there other ways to detect a port is external other than receiving
+> EOPNOTSUPP on the sysfs write?
 
-This doesn't look right.
+The attached patch adds the "link_power_management_supported" sysfs device
+attribute for drives connected to AHCI. Would that work for you ?
 
-This creating a new MAP operation to replace what the REMAP operation
-unmapped but didn't remap. In Xe debug speak, this is where we are:
+diff --git a/drivers/ata/ata_piix.c b/drivers/ata/ata_piix.c
+index 229429ba5027..495fa096dd65 100644
+--- a/drivers/ata/ata_piix.c
++++ b/drivers/ata/ata_piix.c
+@@ -1089,6 +1089,7 @@ static struct ata_port_operations ich_pata_ops = {
+ };
 
-REMAP:UNMAP
-REMAP:PREV
-MAP <-- This is the calculation we are doing.
+ static struct attribute *piix_sidpr_shost_attrs[] = {
++       &dev_attr_link_power_management_supported.attr,
+        &dev_attr_link_power_management_policy.attr,
+        NULL
+ };
+diff --git a/drivers/ata/libahci.c b/drivers/ata/libahci.c
+index b335fb7e5cb4..c79abdfcd7a9 100644
+--- a/drivers/ata/libahci.c
++++ b/drivers/ata/libahci.c
+@@ -111,6 +111,7 @@ static DEVICE_ATTR(em_buffer, S_IWUSR | S_IRUGO,
+ static DEVICE_ATTR(em_message_supported, S_IRUGO, ahci_show_em_supported, NULL);
 
-We want to 'MAP' to size here to be:
+ static struct attribute *ahci_shost_attrs[] = {
++       &dev_attr_link_power_management_supported.attr,
+        &dev_attr_link_power_management_policy.attr,
+        &dev_attr_em_message_type.attr,
+        &dev_attr_em_message.attr,
+diff --git a/drivers/ata/libata-sata.c b/drivers/ata/libata-sata.c
+index 0708686ca58a..82a1a72e47bf 100644
+--- a/drivers/ata/libata-sata.c
++++ b/drivers/ata/libata-sata.c
+@@ -900,6 +900,18 @@ static const char *ata_lpm_policy_names[] = {
+        [ATA_LPM_MIN_POWER]             = "min_power",
+ };
 
-'REMAP:UNMAP.end - REMAP:PREV.end'
++static ssize_t ata_scsi_lpm_supported_show(struct device *dev,
++                                struct device_attribute *attr, char *buf)
++{
++       struct Scsi_Host *shost = class_to_shost(dev);
++       struct ata_port *ap = ata_shost_to_port(shost);
++
++       return sysfs_emit(buf, "%d\n", !(ap->flags & ATA_FLAG_NO_LPM));
++}
++DEVICE_ATTR(link_power_management_supported, S_IRUGO,
++           ata_scsi_lpm_supported_show, NULL);
++EXPORT_SYMBOL_GPL(dev_attr_link_power_management_supported);
++
+ static ssize_t ata_scsi_lpm_store(struct device *device,
+                                  struct device_attribute *attr,
+                                  const char *buf, size_t count)
+diff --git a/include/linux/libata.h b/include/linux/libata.h
+index 1c0580627dbb..e9a6f37bd7f9 100644
+--- a/include/linux/libata.h
++++ b/include/linux/libata.h
+@@ -547,6 +547,7 @@ typedef void (*ata_postreset_fn_t)(struct ata_link *link,
+unsigned int *classes)
 
-Which is 'end - req_addr'. So delete the min statement here and replace
-with 'end - req_addr'.
+ extern struct device_attribute dev_attr_unload_heads;
+ #ifdef CONFIG_SATA_HOST
++extern struct device_attribute dev_attr_link_power_management_supported;
+ extern struct device_attribute dev_attr_link_power_management_policy;
+ extern struct device_attribute dev_attr_ncq_prio_supported;
+ extern struct device_attribute dev_attr_ncq_prio_enable;
 
-Matt
 
-> +							NULL, req_offset);
-> +					if (ret)
-> +						return ret;
-> +				}
-> +
->  				continue;
->  			}
->  
->  			if (end > req_end) {
-> +				if (skip_madvise_ops)
-> +					break;
-> +
->  				struct drm_gpuva_op_map n = {
->  					.va.addr = req_end,
->  					.va.range = end - req_end,
-> @@ -2195,6 +2232,9 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  				ret = op_remap_cb(ops, priv, &p, &n, &u);
->  				if (ret)
->  					return ret;
-> +
-> +				if (is_madvise_ops)
-> +					needs_map = true;
->  				break;
->  			}
->  		} else if (addr > req_addr) {
-> @@ -2203,20 +2243,29 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  					   (addr - req_addr);
->  
->  			if (end == req_end) {
-> -				ret = op_unmap_cb(ops, priv, va, merge);
-> -				if (ret)
-> -					return ret;
-> +				if (!is_madvise_ops) {
-> +					ret = op_unmap_cb(ops, priv, va, merge);
-> +					if (ret)
-> +						return ret;
-> +				}
-> +
->  				break;
->  			}
->  
->  			if (end < req_end) {
-> -				ret = op_unmap_cb(ops, priv, va, merge);
-> -				if (ret)
-> -					return ret;
-> +				if (!is_madvise_ops) {
-> +					ret = op_unmap_cb(ops, priv, va, merge);
-> +					if (ret)
-> +						return ret;
-> +				}
-> +
->  				continue;
->  			}
->  
->  			if (end > req_end) {
-> +				if (skip_madvise_ops)
-> +					break;
-> +
->  				struct drm_gpuva_op_map n = {
->  					.va.addr = req_end,
->  					.va.range = end - req_end,
-> @@ -2231,14 +2280,16 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  				ret = op_remap_cb(ops, priv, NULL, &n, &u);
->  				if (ret)
->  					return ret;
-> +
-> +				if (is_madvise_ops)
-> +					return op_map_cb(ops, priv, addr,
-> +							(req_end - addr), NULL, req_offset);
->  				break;
->  			}
->  		}
->  	}
-> -
-> -	return op_map_cb(ops, priv,
-> -			 req_addr, req_range,
-> -			 req_obj, req_offset);
-> +	return needs_map ? op_map_cb(ops, priv, req_addr,
-> +			   req_range, req_obj, req_offset) : 0;
->  }
->  
->  static int
-> @@ -2337,15 +2388,15 @@ drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
->  		 struct drm_gem_object *req_obj, u64 req_offset)
->  {
->  	const struct drm_gpuvm_ops *ops = gpuvm->ops;
-> +	enum drm_gpuvm_sm_map_ops_flags flags = DRM_GPUVM_SM_MAP_NOT_MADVISE;
->  
->  	if (unlikely(!(ops && ops->sm_step_map &&
->  		       ops->sm_step_remap &&
->  		       ops->sm_step_unmap)))
->  		return -EINVAL;
->  
-> -	return __drm_gpuvm_sm_map(gpuvm, ops, priv,
-> -				  req_addr, req_range,
-> -				  req_obj, req_offset);
-> +	return __drm_gpuvm_sm_map(gpuvm, ops, priv, req_addr, req_range,
-> +				  flags, req_obj, req_offset);
->  }
->  EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map);
->  
-> @@ -2487,6 +2538,7 @@ static const struct drm_gpuvm_ops gpuvm_list_ops = {
->   * @gpuvm: the &drm_gpuvm representing the GPU VA space
->   * @req_addr: the start address of the new mapping
->   * @req_range: the range of the new mapping
-> + * @drm_gpuvm_sm_map_ops_flag: ops flag determining madvise or not
->   * @req_obj: the &drm_gem_object to map
->   * @req_offset: the offset within the &drm_gem_object
->   *
-> @@ -2517,6 +2569,7 @@ static const struct drm_gpuvm_ops gpuvm_list_ops = {
->  struct drm_gpuva_ops *
->  drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
->  			    u64 req_addr, u64 req_range,
-> +			    enum drm_gpuvm_sm_map_ops_flags flags,
->  			    struct drm_gem_object *req_obj, u64 req_offset)
->  {
->  	struct drm_gpuva_ops *ops;
-> @@ -2536,7 +2589,7 @@ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
->  	args.ops = ops;
->  
->  	ret = __drm_gpuvm_sm_map(gpuvm, &gpuvm_list_ops, &args,
-> -				 req_addr, req_range,
-> +				 req_addr, req_range, flags,
->  				 req_obj, req_offset);
->  	if (ret)
->  		goto err_free_ops;
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> index 48f105239f42..26e13fcdbdb8 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> @@ -1303,6 +1303,7 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
->  			op->ops = drm_gpuvm_sm_map_ops_create(&uvmm->base,
->  							      op->va.addr,
->  							      op->va.range,
-> +							      DRM_GPUVM_SM_MAP_NOT_MADVISE,
->  							      op->gem.obj,
->  							      op->gem.offset);
->  			if (IS_ERR(op->ops)) {
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 2035604121e6..b2ed99551b6e 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2318,6 +2318,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
->  	case DRM_XE_VM_BIND_OP_MAP:
->  	case DRM_XE_VM_BIND_OP_MAP_USERPTR:
->  		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, addr, range,
-> +						  DRM_GPUVM_SM_MAP_NOT_MADVISE,
->  						  obj, bo_offset_or_userptr);
->  		break;
->  	case DRM_XE_VM_BIND_OP_UNMAP:
-> diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
-> index 2a9629377633..c589b886a4fd 100644
-> --- a/include/drm/drm_gpuvm.h
-> +++ b/include/drm/drm_gpuvm.h
-> @@ -211,6 +211,27 @@ enum drm_gpuvm_flags {
->  	DRM_GPUVM_USERBITS = BIT(1),
->  };
->  
-> +/**
-> + * enum drm_gpuvm_sm_map_ops_flags - flags for drm_gpuvm split/merge ops
-> + */
-> +enum drm_gpuvm_sm_map_ops_flags {
-> +	/**
-> +	 * @DRM_GPUVM_SM_MAP_NOT_MADVISE: DEFAULT sm_map ops
-> +	 */
-> +	DRM_GPUVM_SM_MAP_NOT_MADVISE = 0,
-> +
-> +	/**
-> +	 * @DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE: This flag is used by
-> +	 * drm_gpuvm_sm_map_ops_create to iterate over GPUVMA's in the
-> +	 * user-provided range and split the existing non-GEM object VMA if the
-> +	 * start or end of the input range lies within it. The operations can
-> +	 * create up to 2 REMAPS and 2 MAPs. Unlike drm_gpuvm_sm_map_ops_flags
-> +	 * in default mode, the operation with this flag will never have UNMAPs and
-> +	 * merges, and can be without any final operations.
-> +	 */
-> +	DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE = BIT(0),
-> +};
-> +
->  /**
->   * struct drm_gpuvm - DRM GPU VA Manager
->   *
-> @@ -1059,8 +1080,8 @@ struct drm_gpuva_ops {
->  #define drm_gpuva_next_op(op) list_next_entry(op, entry)
->  
->  struct drm_gpuva_ops *
-> -drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
-> -			    u64 addr, u64 range,
-> +drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm, u64 addr, u64 range,
-> +			    enum drm_gpuvm_sm_map_ops_flags flags,
->  			    struct drm_gem_object *obj, u64 offset);
->  struct drm_gpuva_ops *
->  drm_gpuvm_sm_unmap_ops_create(struct drm_gpuvm *gpuvm,
-> -- 
-> 2.34.1
-> 
+-- 
+Damien Le Moal
+Western Digital Research
+--------------8PspsMq80uB7NlP91NHAb0Yt
+Content-Type: text/x-patch; charset=UTF-8;
+ name="0001-ata-libata-sata-Add-link_power_management_supported-.patch"
+Content-Disposition: attachment;
+ filename*0="0001-ata-libata-sata-Add-link_power_management_supported-.pa";
+ filename*1="tch"
+Content-Transfer-Encoding: base64
+
+RnJvbSBlOTkzN2Q4NmQzN2E2YzFhOTU4NGVmMjMyNjEzZDVhOGE1YTNiNmExIE1vbiBTZXAg
+MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBEYW1pZW4gTGUgTW9hbCA8ZGxlbW9hbEBrZXJuZWwu
+b3JnPgpEYXRlOiBNb24sIDI4IEp1bCAyMDI1IDEzOjA0OjI5ICswOTAwClN1YmplY3Q6IFtQ
+QVRDSF0gYXRhOiBsaWJhdGEtc2F0YTogQWRkIGxpbmtfcG93ZXJfbWFuYWdlbWVudF9zdXBw
+b3J0ZWQKIGF0dHJpYnV0ZQoKQSBwb3J0IGxpbmsgcG93ZXIgbWFuYWdlbWVudCBwb2xpY3kg
+Y2FuIGJlIGNvbnRyb2xsZWQgdXNpbmcgdGhlCmxpbmtfcG93ZXJfbWFuYWdlbWVudF9wb2xp
+Y3kgc3lzZnMgZGV2aWNlIGF0dHJpYnV0ZS4gSG93ZXZlciwgdGhpcwphdHRyaWJ1dGUgZXhp
+c3QgYWxzbyBmb3IgZGV2aWNlIGFuZCBwb3J0cyB0aGF0IGRvIG5vdCBzdXBwb3J0IExQTSBh
+bmQgaW4Kc3VjaCBjYXNlLCBhdHRlbXB0aW5nIHRvIGNoYW5nZSB0aGUgTFBNIHBvbGljeSB3
+aWxsIGZhaWwgd2l0aAotRU9QTk9UU1VQUC4KCkludHJvZHVjZSB0aGUgbmV3IHN5c2ZzIGxp
+bmtfcG93ZXJfbWFuYWdlbWVudF9zdXBwb3J0ZWQgZGV2aWNlIGF0dHJpYnV0ZQp0byBpbmRp
+Y2F0ZSB0byB0aGUgdXNlciBpZiBhIHBvcnQvZGV2aWNlIHN1cHBvcnRzIExQTSBhbmQgdGhl
+IGF0dHJpYnV0ZQpsaW5rX3Bvd2VyX21hbmFnZW1lbnRfcG9saWN5IGNhbiBiZSB1c2VkLgoK
+U2lnbmVkLW9mZi1ieTogRGFtaWVuIExlIE1vYWwgPGRsZW1vYWxAa2VybmVsLm9yZz4KLS0t
+CiBkcml2ZXJzL2F0YS9hdGFfcGlpeC5jICAgIHwgIDEgKwogZHJpdmVycy9hdGEvbGliYWhj
+aS5jICAgICB8ICAxICsKIGRyaXZlcnMvYXRhL2xpYmF0YS1zYXRhLmMgfCAxMiArKysrKysr
+KysrKysKIGluY2x1ZGUvbGludXgvbGliYXRhLmggICAgfCAgMSArCiA0IGZpbGVzIGNoYW5n
+ZWQsIDE1IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2F0YS9hdGFfcGlp
+eC5jIGIvZHJpdmVycy9hdGEvYXRhX3BpaXguYwppbmRleCAyMjk0MjliYTUwMjcuLjQ5NWZh
+MDk2ZGQ2NSAxMDA2NDQKLS0tIGEvZHJpdmVycy9hdGEvYXRhX3BpaXguYworKysgYi9kcml2
+ZXJzL2F0YS9hdGFfcGlpeC5jCkBAIC0xMDg5LDYgKzEwODksNyBAQCBzdGF0aWMgc3RydWN0
+IGF0YV9wb3J0X29wZXJhdGlvbnMgaWNoX3BhdGFfb3BzID0gewogfTsKIAogc3RhdGljIHN0
+cnVjdCBhdHRyaWJ1dGUgKnBpaXhfc2lkcHJfc2hvc3RfYXR0cnNbXSA9IHsKKwkmZGV2X2F0
+dHJfbGlua19wb3dlcl9tYW5hZ2VtZW50X3N1cHBvcnRlZC5hdHRyLAogCSZkZXZfYXR0cl9s
+aW5rX3Bvd2VyX21hbmFnZW1lbnRfcG9saWN5LmF0dHIsCiAJTlVMTAogfTsKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvYXRhL2xpYmFoY2kuYyBiL2RyaXZlcnMvYXRhL2xpYmFoY2kuYwppbmRl
+eCBiMzM1ZmI3ZTVjYjQuLmM3OWFiZGZjZDdhOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9hdGEv
+bGliYWhjaS5jCisrKyBiL2RyaXZlcnMvYXRhL2xpYmFoY2kuYwpAQCAtMTExLDYgKzExMSw3
+IEBAIHN0YXRpYyBERVZJQ0VfQVRUUihlbV9idWZmZXIsIFNfSVdVU1IgfCBTX0lSVUdPLAog
+c3RhdGljIERFVklDRV9BVFRSKGVtX21lc3NhZ2Vfc3VwcG9ydGVkLCBTX0lSVUdPLCBhaGNp
+X3Nob3dfZW1fc3VwcG9ydGVkLCBOVUxMKTsKIAogc3RhdGljIHN0cnVjdCBhdHRyaWJ1dGUg
+KmFoY2lfc2hvc3RfYXR0cnNbXSA9IHsKKwkmZGV2X2F0dHJfbGlua19wb3dlcl9tYW5hZ2Vt
+ZW50X3N1cHBvcnRlZC5hdHRyLAogCSZkZXZfYXR0cl9saW5rX3Bvd2VyX21hbmFnZW1lbnRf
+cG9saWN5LmF0dHIsCiAJJmRldl9hdHRyX2VtX21lc3NhZ2VfdHlwZS5hdHRyLAogCSZkZXZf
+YXR0cl9lbV9tZXNzYWdlLmF0dHIsCmRpZmYgLS1naXQgYS9kcml2ZXJzL2F0YS9saWJhdGEt
+c2F0YS5jIGIvZHJpdmVycy9hdGEvbGliYXRhLXNhdGEuYwppbmRleCAwNzA4Njg2Y2E1OGEu
+LjgyYTFhNzJlNDdiZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9hdGEvbGliYXRhLXNhdGEuYwor
+KysgYi9kcml2ZXJzL2F0YS9saWJhdGEtc2F0YS5jCkBAIC05MDAsNiArOTAwLDE4IEBAIHN0
+YXRpYyBjb25zdCBjaGFyICphdGFfbHBtX3BvbGljeV9uYW1lc1tdID0gewogCVtBVEFfTFBN
+X01JTl9QT1dFUl0JCT0gIm1pbl9wb3dlciIsCiB9OwogCitzdGF0aWMgc3NpemVfdCBhdGFf
+c2NzaV9scG1fc3VwcG9ydGVkX3Nob3coc3RydWN0IGRldmljZSAqZGV2LAorCQkJCSBzdHJ1
+Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYXR0ciwgY2hhciAqYnVmKQoreworCXN0cnVjdCBTY3Np
+X0hvc3QgKnNob3N0ID0gY2xhc3NfdG9fc2hvc3QoZGV2KTsKKwlzdHJ1Y3QgYXRhX3BvcnQg
+KmFwID0gYXRhX3Nob3N0X3RvX3BvcnQoc2hvc3QpOworCisJcmV0dXJuIHN5c2ZzX2VtaXQo
+YnVmLCAiJWRcbiIsICEoYXAtPmZsYWdzICYgQVRBX0ZMQUdfTk9fTFBNKSk7Cit9CitERVZJ
+Q0VfQVRUUihsaW5rX3Bvd2VyX21hbmFnZW1lbnRfc3VwcG9ydGVkLCBTX0lSVUdPLAorCSAg
+ICBhdGFfc2NzaV9scG1fc3VwcG9ydGVkX3Nob3csIE5VTEwpOworRVhQT1JUX1NZTUJPTF9H
+UEwoZGV2X2F0dHJfbGlua19wb3dlcl9tYW5hZ2VtZW50X3N1cHBvcnRlZCk7CisKIHN0YXRp
+YyBzc2l6ZV90IGF0YV9zY3NpX2xwbV9zdG9yZShzdHJ1Y3QgZGV2aWNlICpkZXZpY2UsCiAJ
+CQkJICBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYXR0ciwKIAkJCQkgIGNvbnN0IGNoYXIg
+KmJ1Ziwgc2l6ZV90IGNvdW50KQpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9saWJhdGEu
+aCBiL2luY2x1ZGUvbGludXgvbGliYXRhLmgKaW5kZXggMWMwNTgwNjI3ZGJiLi5lOWE2ZjM3
+YmQ3ZjkgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvbGludXgvbGliYXRhLmgKKysrIGIvaW5jbHVk
+ZS9saW51eC9saWJhdGEuaApAQCAtNTQ3LDYgKzU0Nyw3IEBAIHR5cGVkZWYgdm9pZCAoKmF0
+YV9wb3N0cmVzZXRfZm5fdCkoc3RydWN0IGF0YV9saW5rICpsaW5rLCB1bnNpZ25lZCBpbnQg
+KmNsYXNzZXMpCiAKIGV4dGVybiBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSBkZXZfYXR0cl91
+bmxvYWRfaGVhZHM7CiAjaWZkZWYgQ09ORklHX1NBVEFfSE9TVAorZXh0ZXJuIHN0cnVjdCBk
+ZXZpY2VfYXR0cmlidXRlIGRldl9hdHRyX2xpbmtfcG93ZXJfbWFuYWdlbWVudF9zdXBwb3J0
+ZWQ7CiBleHRlcm4gc3RydWN0IGRldmljZV9hdHRyaWJ1dGUgZGV2X2F0dHJfbGlua19wb3dl
+cl9tYW5hZ2VtZW50X3BvbGljeTsKIGV4dGVybiBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSBk
+ZXZfYXR0cl9uY3FfcHJpb19zdXBwb3J0ZWQ7CiBleHRlcm4gc3RydWN0IGRldmljZV9hdHRy
+aWJ1dGUgZGV2X2F0dHJfbmNxX3ByaW9fZW5hYmxlOwotLSAKMi41MC4xCgo=
+
+--------------8PspsMq80uB7NlP91NHAb0Yt--
