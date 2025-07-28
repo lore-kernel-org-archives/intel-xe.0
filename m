@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15C30C87FCE
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 05:33:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8FE2C87FD2
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Jul 2025 06:05:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79A0910E0F7;
-	Mon, 28 Jul 2025 05:33:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="eZBRFXqG";
-	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7759810E08B;
- Mon, 28 Jul 2025 05:33:50 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 507D9A547FF;
- Mon, 28 Jul 2025 05:33:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79101C4CEE7;
- Mon, 28 Jul 2025 05:33:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1753680828;
- bh=u6ERUNOOEzSBij/Uojzy5/MsKeWwSjrvHTW6EgVbPQI=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=eZBRFXqGmSa0uoG2YegRuFgCnx/Q4jEVLwmjYc5FsrSXgnbIe+K4CG2ICeotCssIY
- hjRYPGlWciyD8PnomqYkdaqEnnNmMpNPAf0aHyH7XDqgjt1JVK6Ls1U4sSOvaJhcU0
- ZMpPaL9aGAWUIzvlO1OoSljFHEABVf/cBg3EqXTdL9vqV0nCEQS4OqaV461GU4BMtF
- mgFJQ7rAjeA1kmJNr7o0TFCHiW9so5wHsI9TO9O+AfhDLRBKt66UK0GPy0xoaJ0iGk
- AkKM3uP7vz9tr/en1mzAz5pnEWAQIF2+hpXB1A3bEouEv7uuYnkYtkz+Y1TEzhJr5x
- m+1Csc9hDAlKw==
-Message-ID: <f4f147cd-5847-4efd-8dd3-9a00e129e133@kernel.org>
-Date: Mon, 28 Jul 2025 14:31:17 +0900
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6537610E334;
+	Mon, 28 Jul 2025 06:05:50 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C20710E334;
+ Mon, 28 Jul 2025 06:05:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4924069462123511917=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Regression on linux-next (next-20250708)
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- linux-ide@vger.kernel.org, mika.westerberg@intel.com,
- anshuman.gupta@intel.com, "Kurmi, Suresh Kumar"
- <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani" <jani.saarinen@intel.com>,
- lucas.demarchi@intel.com
-References: <07563042-6576-41cd-9a95-de83cfc95de1@intel.com>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <07563042-6576-41cd-9a95-de83cfc95de1@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Optimiz?=
+ =?utf-8?q?e_panel_power-on_wait_time_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 28 Jul 2025 06:05:48 -0000
+Message-ID: <175368274849.193023.5369553114232739297@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250728051237.2322256-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20250728051237.2322256-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,37 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 7/25/25 3:43 PM, Borah, Chaitanya Kumar wrote:
-> For some context in our kms_pm_rpm tests, we enable min_power policy for SATA
-> so that we can reach deep runtime power states and restore the original policy
-> after finishing. [5][6]
-> 
-> IIUC, the above change is based on spec and not something which can be
-> reverted. So as I see it, we have to drop this code path for external ports.
-> However I am not sure if we can achieve deep power states without enforcing it
-> through the sysfs entry.
-> 
-> Atleast for the basic-rte subtest, the test passes if we comment out the
-> functions controlling the SATA ports. We will need more testing to determine if
-> this approach work. Any thoughts on it?
-> 
-> Also, are there other ways to detect a port is external other than receiving
-> EOPNOTSUPP on the sysfs write?
+--===============4924069462123511917==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I completely forgot to mention one important thing: please check your test
-machine BIOS settings and see if you have "hotplug support" set to enable for
-SATA ports. If it is, set that BIOS setting to disable and you will see the
-SATA port as a regular one, not as an external port. So LPM support will be
-back and your test program will not need changes.
+== Series Details ==
 
-Not all BIOSes have such setting though. Most of the machine I have do have it
-though and I checked that it does affect how the ahci driver sees the port
-(external or regular with LPM).
+Series: drm/i915/display: Optimize panel power-on wait time (rev5)
+URL   : https://patchwork.freedesktop.org/series/150958/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04_BAT -> xe-pw-150958v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
--- 
-Damien Le Moal
-Western Digital Research
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04 -> xe-pw-150958v5
+
+  IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04: 11e629e8c02307977802ba0ea8c60ddb15b17d04
+  xe-pw-150958v5: 150958v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v5/index.html
+
+--===============4924069462123511917==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Optimize panel power-on wait time (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150958/">https://patchwork.freedesktop.org/series/150958/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04_BAT -&gt; xe-pw-150958v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04 -&gt; xe-pw-150958v5</li>
+</ul>
+<p>IGT_8476: 232d4de46aa5ec03aee240657c0b36110f8a6246 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3479-11e629e8c02307977802ba0ea8c60ddb15b17d04: 11e629e8c02307977802ba0ea8c60ddb15b17d04<br />
+  xe-pw-150958v5: 150958v5</p>
+
+</body>
+</html>
+
+--===============4924069462123511917==--
