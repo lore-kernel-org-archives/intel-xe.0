@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99F53C87FC9
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 10:19:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2969C87FC9
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 11:08:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41C0510E607;
-	Tue, 29 Jul 2025 10:19:11 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98EEE10E1EF;
- Tue, 29 Jul 2025 10:19:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7725610E061;
+	Tue, 29 Jul 2025 11:08:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iClWDjvm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C906F10E061;
+ Tue, 29 Jul 2025 11:08:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753787325; x=1785323325;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Vz17N4/He+lEuCoI+sl0p0y0kz/erEcmy0gU/A9Q5xE=;
+ b=iClWDjvm6mzY8n9/b4DNZLuXD4gUS8gjvyObnXyo7vUlfBcjrkEI2u0l
+ NskCnkKv+FJp4gbtBMblpZ2AQu5FbeAuTagdzhVmMVpg93aeiCZS7HsBm
+ LZKrZF17WmoOi4Y+fD5Td1Ji9v1Sy1UijxKIC5pBcGhlARcDUPOG7V7AG
+ MxxtsOZuwnzB4X65i+KqojSHUqE3EzP/XyttJVcqhTFGjRPNOXDBYntpj
+ cPFP6cu2rrgDv+tFgGpnv03Sg8F1nN/utPFp0Mhen6hRttvrUFDyDj3vd
+ LQ9mR4qtYxw0qnobRgfS8ucCnFVztqxKlsOnUhVQz0EjKwZFtFW3AdTnI A==;
+X-CSE-ConnectionGUID: HjjI+lv5RIe9j8deCfLOdA==
+X-CSE-MsgGUID: nkXSvb1OS1yJPkk9tSSCQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="56129700"
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="56129700"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2025 04:08:44 -0700
+X-CSE-ConnectionGUID: Mnp+pV+pRUKk/UOCfrFidA==
+X-CSE-MsgGUID: sJ2+tHClRR2P67Kci9GZWg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="186325921"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.22])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2025 04:08:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: uma.shankar@intel.com, ville.syrjala@linux.intel.com, Ankit Nautiyal
+ <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 5/9] drm/i915/display: Add bits for link_n_exended for
+ DISPLAY >= 14
+In-Reply-To: <20250721091529.3864004-6-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250721091529.3864004-1-ankit.k.nautiyal@intel.com>
+ <20250721091529.3864004-6-ankit.k.nautiyal@intel.com>
+Date: Tue, 29 Jul 2025 14:08:38 +0300
+Message-ID: <a345b688ad4e61bc296a11a82d04b7fc1b70622e@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915=3A_use_drm-=3Ed?=
- =?utf-8?q?ebugfs=5Froot_when_creating_debugfs_files_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 29 Jul 2025 10:19:10 -0000
-Message-ID: <175378435061.195916.3613826821827310504@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <cover.1753782998.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1753782998.git.jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,45 +68,97 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 21 Jul 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> LINK_N register has bits 31:24 for extended link N value used for
+> HDMI2.1 and for an alternate mode of operation of DP TG DDA
+> (Bspec:50488).
+>
+> Add support for these extra bits.
+>
+> For displays with version 14 or higher, the `PIPE_LINK_N1_EXTENDED_MASK`
+> (bits 31:24) is used to handle the extended link N bits.
+> For older platforms, the `DATA_LINK_M_N_MASK` (bits 23:0) is used to
+> handle the standard link N bits. This distinction ensures clarity and
+> maintains the semantics for platforms that support the extended bits.
+> In subsequent changes the logic is updated to conditionally apply the
+> extended link N bits.
+>
+> v2: Drop extra link_n_ext member. (Jani)
+> v3: Avoid link_n_ext in set_m_n helper. (Jani)
+> v4: Rebase, and update commit message.
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c   | 18 ++++++++++++++++--
+>  .../gpu/drm/i915/display/intel_display_regs.h  |  2 ++
+>  2 files changed, 18 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index f32a4956c926..5232478613aa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2578,14 +2578,22 @@ void intel_set_m_n(struct intel_display *display,
+>  		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
+>  		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
+>  {
+> +	u32 link_n = m_n->link_n;
+> +
+>  	intel_de_write(display, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
+>  	intel_de_write(display, data_n_reg, m_n->data_n);
+>  	intel_de_write(display, link_m_reg, m_n->link_m);
+> +
+> +	if (DISPLAY_VER(display) >= 14)
+> +		link_n &= ~PIPE_LINK_N1_EXTENDED_MASK;
+> +	else
+> +		link_n &= DATA_LINK_M_N_MASK;
+> +
+>  	/*
+>  	 * On BDW+ writing LINK_N arms the double buffered update
+>  	 * of all the M/N registers, so it must be written last.
+>  	 */
+> -	intel_de_write(display, link_n_reg, m_n->link_n);
+> +	intel_de_write(display, link_n_reg, link_n);
+>  }
+>  
+>  bool intel_cpu_transcoder_has_m2_n2(struct intel_display *display,
+> @@ -3321,7 +3329,13 @@ void intel_get_m_n(struct intel_display *display,
+>  		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
+>  {
+>  	m_n->link_m = intel_de_read(display, link_m_reg) & DATA_LINK_M_N_MASK;
+> -	m_n->link_n = intel_de_read(display, link_n_reg) & DATA_LINK_M_N_MASK;
+> +	m_n->link_n = intel_de_read(display, link_n_reg);
+> +
+> +	if (DISPLAY_VER(display) >= 14)
+> +		m_n->link_n &= ~PIPE_LINK_N1_EXTENDED_MASK;
+> +	else
+> +		m_n->link_n &= DATA_LINK_M_N_MASK;
+> +
+>  	m_n->data_m = intel_de_read(display, data_m_reg) & DATA_LINK_M_N_MASK;
+>  	m_n->data_n = intel_de_read(display, data_n_reg) & DATA_LINK_M_N_MASK;
+>  	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(display, data_m_reg)) + 1;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> index 7bd09d981cd2..9248561aec5f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -1027,6 +1027,8 @@
+>  
+>  #define _PIPEA_LINK_N1		0x60044
+>  #define _PIPEB_LINK_N1		0x61044
+> +#define  PIPE_LINK_N1_EXTENDED_MASK	REG_GENMASK(31, 24)
+> +#define  PIPE_LINK_N1_EXTENDED(val)	REG_FIELD_PREP(PIPE_LINK_N1_EXTENDED_MASK, (val))
 
-Series: drm/i915: use drm->debugfs_root when creating debugfs files (rev2)
-URL   : https://patchwork.freedesktop.org/series/150106/
-State : warning
+Please read the comment near the top of i915_reg.h, and send patches to
+amend the comment if there's something unclear.
 
-== Summary ==
+BR,
+Jani.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast c2d04724123c8df9ecec874f1db3007540c264e6
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
+>  #define PIPE_LINK_N1(dev_priv, tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_N1)
+>  
+>  #define _PIPEA_LINK_M2		0x60048
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+Jani Nikula, Intel
