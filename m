@@ -4,190 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1DC6C87FC9
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 08:58:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35CC1C87FC9
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 09:39:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 902E289FCE;
-	Tue, 29 Jul 2025 08:58:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E132B10E1DD;
+	Tue, 29 Jul 2025 09:39:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AV7v+vVE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TRZRQJYH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D61BD89954;
- Tue, 29 Jul 2025 08:58:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3176210E021;
+ Tue, 29 Jul 2025 09:39:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753779519; x=1785315519;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=PnKrjs4bKEBbIf+c4P1LgEQfctqALavwDG7XCo1d9Y4=;
- b=AV7v+vVE2C7up+bWc5pwVyryinFbBEMhuugsjQg1VqyjncNMif2q9Yvr
- Mwc96kD5MFA5UjrVyXsboOsoNuPZ6/vVtN6bsDhGruut4pxBRN/xxIQlK
- aL9HBBjOwkUGwLa3xMkukd7abLY+3EvnEmetLR1/9GsPNqRMSZRt2TD1p
- 7zZuEGaQb/Y1LcFjnMClgisyAMG2s4Uts0zHbzZsBrLo2/oC+rq8sEKys
- LYX0hSZVUeZ/Rx4JxyqY7bjpzuooTEX5xv9VW3GI6Qm8c/xtjY1GIKthy
- Ale2rousd+jL6zegmgIB7BgQLXTu81xVUKunWhno4yLS9gzIhJgqF3Pu2 A==;
-X-CSE-ConnectionGUID: rNazRlhfSiuWI4hYodbFbA==
-X-CSE-MsgGUID: gn3JkNMqQ/iX5Vs9XHZmUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="66313275"
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="66313275"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 01:58:39 -0700
-X-CSE-ConnectionGUID: +V7jGfLxTfq+Trn+fQ5PQQ==
-X-CSE-MsgGUID: 5tMuyqoUTtuqUaIyaR2/GQ==
+ t=1753781982; x=1785317982;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ocuxVHVNAasidzh1XVZd+sxnZ7tamc1CcfKFrWtBkV8=;
+ b=TRZRQJYHe3ZENxBAT+FvcK0+tZfvta/EfPucOBYrh/rjGLn006JcmRZT
+ oUfuYPkwuEEgIGL+jppBcUsrNIvUpPn9LPAZWYZ1Ngp8nOOZ2fvkYmki8
+ yyNb7C1eK2L4YpLrVpwd1rNkE1z2m6Dh6ynxYjcipI/e9zjcdMXZngzoE
+ YWwqAVgMpiC7avE+z9lVOOk8dlHjGfq7KfAr8G4Uu6O2pPXB8XPktna41
+ HPY0NvBoVrGu/24eA+DMKfwChY70O8dk+mbbWdk3+3lvBBebVq9a86Kgq
+ ZQvyj80DtxsvcnHV39pV0oH6Xnc6LgzvpGYwUtHcPEZuDqNn0p12BmLNY A==;
+X-CSE-ConnectionGUID: 2DD+k6axRlyHKKzmIrDh5A==
+X-CSE-MsgGUID: 83ZwEhEmQVa0YgI5enEtMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="67480764"
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="67480764"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2025 02:39:42 -0700
+X-CSE-ConnectionGUID: S/9uYjOkQteom6RDOylOoA==
+X-CSE-MsgGUID: vQjuGYpbSzOIYnuQ8IHzQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="186300248"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 01:58:38 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Tue, 29 Jul 2025 01:58:37 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Tue, 29 Jul 2025 01:58:37 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.48)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Tue, 29 Jul 2025 01:58:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rSWOHiY2/4wJRyYrDdOOT3ZtX2ZYiTBc+CBp82a0t8v6c0mjSNtgyN/HWNCAifLdOb2SjVuq8u6xEHqPeE0Pw/bc1Wu0onR6z83Yvl707bLRe9c9q/3bl6smQF+Y8pyYAb5llLpsEGE2GzhQc/3Bw9mefhCiBliALf7Lrpplt+Uxrr/7JUUtGKP7WnheX6Bf3BON/Jp8OCFe7G/TE3i8DujuXk0YasVMaiqtLRNMSuZldbnVlRzdNVx8UCqvyNfkEWzReH7lDsEcHMsQZ25VmWxEHaoYJswTiypDTalx/GAoCrJBdEC1sVwDxVJQjfdwXq2ZvaeY9qykY8aYHv3z4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D8fx3U3IaIYsarvKnLUPB+Brj3MVuq/csJykXdqCSRY=;
- b=YfZYtUz4uvRz9ob7dMV3f2oWgRE0jG0QE7LWNprj/W0hYGaS8a6XS24ZteL+9JdEcaYyX1r662cDyguecASqzjayZPTijFZz2wgLvlT1X6sHsFsnXwJxBSf4t4HuMUPXq3NsIRILTKpoFrid6JQHa/0Bpba+51Owl/S4XP8IfgHlLbeGVkMQyxaIj5CXfhSG10goVvfyw0ZomgzqHKy511SyRpgYkv/6/uvAbs8LdH/qXtaSteSQMqXi6TvcoCY/xB+LPLmOQN4m0KW+kZtDsyef+PtGSXrD/ku/FPG/j/w19NsUQtUspc+xv5Iaoa9wmD1RfYXj3uazIRDsHUdG8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by MN2PR11MB4551.namprd11.prod.outlook.com (2603:10b6:208:269::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.27; Tue, 29 Jul
- 2025 08:58:30 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525%6]) with mapi id 15.20.8964.025; Tue, 29 Jul 2025
- 08:58:29 +0000
-Message-ID: <5902b8f0-970f-479c-b665-3a55a41f3915@intel.com>
-Date: Tue, 29 Jul 2025 14:28:22 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: Regression on linux-next (next-20250708)
-Content-Language: en-GB
-To: Damien Le Moal <dlemoal@kernel.org>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- <linux-ide@vger.kernel.org>, <mika.westerberg@intel.com>,
- <anshuman.gupta@intel.com>, "Kurmi, Suresh Kumar"
- <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani" <jani.saarinen@intel.com>,
- <lucas.demarchi@intel.com>
-References: <07563042-6576-41cd-9a95-de83cfc95de1@intel.com>
- <f4f147cd-5847-4efd-8dd3-9a00e129e133@kernel.org>
- <8f37fcfd-300c-42df-a65b-57c10f185287@intel.com>
- <d47b06b4-d2e6-4c0a-8721-5df15aa46378@kernel.org>
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <d47b06b4-d2e6-4c0a-8721-5df15aa46378@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0013.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:179::11) To SJ1PR11MB6129.namprd11.prod.outlook.com
- (2603:10b6:a03:488::12)
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="167957114"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.22])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2025 02:39:39 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, imre.deak@intel.com
+Subject: Re: [PATCH v2] drm/xe/display: Block hpd during suspend
+In-Reply-To: <20250723092946.1975018-1-dibin.moolakadan.subrahmanian@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250723092946.1975018-1-dibin.moolakadan.subrahmanian@intel.com>
+Date: Tue, 29 Jul 2025 12:39:36 +0300
+Message-ID: <bfbe5a11fe8bf79db6ca0bb08c525e4951dc4de0@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|MN2PR11MB4551:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2391d6dc-91f5-48bb-f5a6-08ddce7e160a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dkFsQjI3aXlDaU1zQm1aSWtPcW9XTDBVd3cyVWc0MnBPYzBxYjBjZ1grYTR1?=
- =?utf-8?B?YVMyclMyWjNjNWZlZDJYdGVJcDVSY0ZBMGMwRENaZjFwWnZyenpUYTVsMlV3?=
- =?utf-8?B?VWxFdzBYZlRkbndNMEZ3eXVHUS9MbkY4TGFxWmRKSHdzaGowWEVzcFNCTWZn?=
- =?utf-8?B?bkN1Kzc0T21INFZ5L2hXMktBWSt1NWNMYWxaMit3dnpoaGZRQ245dzgrZXpM?=
- =?utf-8?B?anl5d2dIZ2grVFBCd2thN2ozZTlxQWJ0dEl6Q05sQVhRMVVhRTI5d3R1d1Fa?=
- =?utf-8?B?bGNERjZ1K1V4S2laTUR6eHZwN3l5WE1Zd0laV2xWZng3M21rOUxlenJMdFNY?=
- =?utf-8?B?TUhYcWI1aWZ4dnV5Skhua3gveVhWZjN3bnRyeW84M3NRclhRdEhZRXQ0SEk2?=
- =?utf-8?B?aktYS2VDWS93Wlp5K0IzTjZPdDB3K3VJRHI4dkMxYnVoaU0rZEtiQ3VBR2VJ?=
- =?utf-8?B?aXg4all0UzBIOTVKaUFMY1FtU3oxYTR5dXRKc2RuVFlmbmpWV1RvdEJESjlu?=
- =?utf-8?B?YTVxR3dHNWtBVCtjdjhCdWx4YTNJcTFqMVdISkt1aG50eDJTZlJMc3k4Z0p1?=
- =?utf-8?B?bVcyaUxMQzlHYkZoaWRNZG9FYVprSktGbmpoaE9sc2lBUGczSnh5ejBaejVt?=
- =?utf-8?B?eXJvVWxMajhGMzRPQm1qT3RVYXdnSXVZdWw3WjVNWkVCU2Jma0JHU2kyZEh2?=
- =?utf-8?B?UEVBT2kwZ3ZGTXhKb0V1OWhGLzkwR0FrZ2hTOXpyaEg3WEdnZnhqUmMxa3pU?=
- =?utf-8?B?aFVuOUR5cHlySHRRb20zd2FhdGNNSFRPQXlGR1ZnMmdmbTBTazhHK0ljZ1RU?=
- =?utf-8?B?VUswYUxWVyt1V3JaMUpFZHQrRmN1azRnODZBVDUyMG1IdVFOMVpVOUk4Y1Iv?=
- =?utf-8?B?MUJjYzBsdWVJU1ZsS2FZZjg1aWw3UVh5OTEySmdvekF6dGFPQ2RkUnJOQjZx?=
- =?utf-8?B?TFAyUHRXUThBRXR2eWtrUU1tNVdJNVFFM3JSSk9RMnh0a3FaUXkvb29KalV5?=
- =?utf-8?B?d1hoVlZrYmV6YkY2WCtvVXluNU55ZzJQRWdFdEpqcGpHZFNkLytoYlNiOHor?=
- =?utf-8?B?YTRhaTY0bVFiZTVYRUxIWDBJTitXV1laRDFyMGNjelZWcm1tTXY3N0lsOTU5?=
- =?utf-8?B?VDZ3M2wzMWlkdi9URVZVS3lLQkNhSTBINUc5NlZ4dkRTM3FxOWFOREUrY0NO?=
- =?utf-8?B?ZkNiNE9GYlEwSzhCbFVxdnJ5TEt5aFlmeFd5M2ZUQWkvd2sxMXFRNGFaemw3?=
- =?utf-8?B?ZTlKdmZEcjZOanhIRC9xUC9MNmtnSEdkSGp0c3FQR2hUVmdXUWxQRDZpTWxh?=
- =?utf-8?B?SWhHMmZIMW1RM25KZUk4Tis4bU10S1VpZVB3VlpmY1NudTMvcnU4NEJVekVV?=
- =?utf-8?B?MFZKeVFFZ2pJRTdmcVY3dzV0Q2hXUVQwb3JIdjRxOWxVS2FSQ0F4RFhqMTFK?=
- =?utf-8?B?S1hsakF1MkIxOHB0MXZkZjZPQm1sdHhqRVBtVnVEb3o1TkVjSDc4NHBFVEJB?=
- =?utf-8?B?MU80V0s0S0VqN1U4TmdGRFcxNmtzL3BHZVJpTVk5QmNxT2ZIeUhVN2RDaGl2?=
- =?utf-8?B?L1l3Zk1BTVhyR1pGNHFRMW4zamNRSUNsRndsWStqbTRBSTVDODdXVGozOVRU?=
- =?utf-8?B?NTM2WUg1UnJva2FTYWp3ZDkreFRleTl2RlJvK083U0FrSThuNEgxTTNVclpu?=
- =?utf-8?B?RWh5REh0WE1JbzVveTlsZ3YwOXNNVGRQN3dLWjBzS1FZQXVTRGVIMkJ2alZ6?=
- =?utf-8?B?eXZyelc2a25HUVJOS3RXZFdmYzF1OWp6bXZ0Mlk3RU9tdXMyVGtCcW5kdmJI?=
- =?utf-8?B?bkttZERCdmJINHI5b0pBM2x5Y3F3V1lFbGVPazkyYzN6bXY1U0k1NW9MZEg5?=
- =?utf-8?B?c1ZMbktkWWdIc1VQcTVKV0xOb2NET1I2cjM3K1ZPTmNyc3RNMmFzUERPZjVr?=
- =?utf-8?Q?ThdkrLLwxP8=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MXVKU1FNS2d6UjFHR08wWWFzWEFwWWN2NjhTMWpoYlFpU3M2R1B6eHlscVhp?=
- =?utf-8?B?Wld0Y0o3V0g5b1kwWFFUZ2UyNDdMdlBsUGN4T0twN1YrZDltQzZEWG9vNnNK?=
- =?utf-8?B?b1hpL0tyWWEyQWJYeFdEeE0yMWU1U1RhdWlRWkFQbHBIMHFweXNGUzhWZkF3?=
- =?utf-8?B?emsyNE12ZGZreGJXSExqY1Q3ZmxFWFRBQ05lTnJONnFPdUdmOGpIV3l4Y1BU?=
- =?utf-8?B?YUpBWkVERzNhbGd2dmJkb1UzR1kxL1orWnVXOEZjSDdIeW9VQ0ljMWd0R2xO?=
- =?utf-8?B?ZG8rVHJoNzdhN2RPdk9udzllOU5rdnVJK3hjUkVjeURpYVhiRXBsMUsxbEt2?=
- =?utf-8?B?aWxrdG0xV2FUaWN0bDJmSWVNdkFIbkxNeWV1QTcyVnZjNXNOVGloa2JEWDE0?=
- =?utf-8?B?T09CaVNtUTB5ano4VTdOUFR2S042Y3lmdzJpT1lBelVVNUpacnprVUw2cVRY?=
- =?utf-8?B?dWw1S1cwZjBUQm5hVEFrSlUxektnMktvOVA2b0tXVDBVdHFKNkVJL1NXQ0dw?=
- =?utf-8?B?TkhYVXhIc1dGekhOSmZGaURReUdhL3h1WVU5dDNQQmp1WjhUZHdjYXRnTHpn?=
- =?utf-8?B?MUFpQ1VYNzZwOXkvQ3pkT1B0SXpVSW13Z3ZWVTdaWU9WWG5xQ05lK0hSMjE3?=
- =?utf-8?B?VnRLOTVpVlNYYTJ3b1Z0aEtxZXZ1RnlZU3oweGE5MDUyTWxRWXFnUkxZVXFo?=
- =?utf-8?B?Yk1ZeitkK09Nc2gxaVg4OUNBVWZFcXRJWHZJR3I4b1RLOTJWdy9xVGJ0YVVs?=
- =?utf-8?B?RTdKc2NxUC9qdWJFanZyeHY0dmw1cEl4aDJzTzVJMHRGUmQwUy9Yb2NKU05Q?=
- =?utf-8?B?cW5LbmZDRlhZcktRU0NRbHZhVWQrQ1RrYTB5MktnL1RmampCakxyZ09FRDA1?=
- =?utf-8?B?c1YweTIzVjM2ejVjOWZwUnMzdHUwdGQrRUovdWxORFlyOUpHNjhEMVZhbitV?=
- =?utf-8?B?NVBtblRINkhZcWxHUk4yQ0J2RlRpd2VuS0VFQUloTXI1MjRvdGtTbkpseFZy?=
- =?utf-8?B?V2ZraUxYbWJPbXdMamxlUnY2Q29ORDNhT3JxWU1Sd1BDZUZYOEc0VUpsRjlH?=
- =?utf-8?B?S0V0RTVWSFZyRk1qSmgzODdja3pWNFJaaUdvZVZGZDhUMWsyVUQvR2toQTdH?=
- =?utf-8?B?d3dqdFZRSm0ydG5XQ2NjRnRtVDgza3NHbndYdVczbEl5MS92eFRGVENDVVFk?=
- =?utf-8?B?VEVMOC9qNDhrYWlYdGFZTFVqV1ljTk45aGFUVXZHQkdiSWdGU3FGNWd0Tm1s?=
- =?utf-8?B?TWRlSEkwQmkva0dVSUJOYjBFWTR3RlgyYUFaKzRKK1dRWnZhcTcvai9Mdjl3?=
- =?utf-8?B?UVJnNG5BT1czREdWRzhWcmhyK1hWdm9POWxhNEN1Yy9yTXlJeHdKVGFmRDhI?=
- =?utf-8?B?MlRwSHU2emN0aC9ieEU0c3A1cFErVm9GaDJwMjhiMzYzT1lOcWtJWXNhRjVx?=
- =?utf-8?B?dTNqcnM4RzJ5blJlME92VFMzNG5wNWplOWhORHZaMzdJbzUzOE9jRlR6eGJi?=
- =?utf-8?B?UG55MmIvKzc2aURqczB1cEpYa2tlbkpnRGNKbmxzRkZ2MTdyNEY0Y093UDYz?=
- =?utf-8?B?NzIzN2h6TFRhVitCaEx3RU5xOElobGZSc2NaRFk4VHhNcTlHeXVENWRZSldo?=
- =?utf-8?B?WUsrL2FIbnBoMk95S2t6TExJK212SC93TFFRUTVlSitQYVpqWTc2OTFZTmVJ?=
- =?utf-8?B?RklzbjhDZmM0cktEQkpMblowNXAwTEZRK0dzNUFnem0yLzVMTlBnZlFMa1B0?=
- =?utf-8?B?VXVqN3AzMEhkVGdQS052anJ0WmpCdm5mU1V2VW5XY0dMRGRxazMxVnpZWjdM?=
- =?utf-8?B?OUErVHpqTDZ3VEwyM2FsUzAxVDZaakFjTFF5K3p2djJzVi9GRFpPMzM2VGVj?=
- =?utf-8?B?V293MmN0NXFoRlk4M2toUmVoNDFZRElicDNzTFNNT0dMOVJBbHcybFUvNVVh?=
- =?utf-8?B?OFJCazl0eHRmK3JpemMzVTJ1bFpERXhKeFFnb2lhQmNLbXRZWU5uY0xHejdU?=
- =?utf-8?B?NlhhQVFXaTdqbUY0QW9kWGdFRlpNYnF4b3JWc2JCdjVHM2FMSklxU2FQMnMx?=
- =?utf-8?B?OHBzR1J5Sys2SDdSMWxRSzM4SUwyNG9ZQ0V6QmRkOG5pZkhoZk5XUW4wRXV2?=
- =?utf-8?B?UzdnVWpZRCtCMlZQQkZVcUZrWmVFTy9xUzRxOWtxVUVJbEI2c1c4b0hBZFl0?=
- =?utf-8?Q?womEVCSLevXHc4kl+XFj5iw=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2391d6dc-91f5-48bb-f5a6-08ddce7e160a
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 08:58:29.0454 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /h2NBCUgWj3PExJcfeA0x97sLPs0Qk3I2yEbclPKFXZcu4GWfKleGeCSvxc8CDL5a1KWdHTT7s0OLGqCshPeRJs7FdStIg05+S3TYmxcx34=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4551
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,122 +68,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, 23 Jul 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
+> It has been observed that during `xe_display_pm_suspend()` execution,
+> an HPD interrupt can still be triggered, resulting in `dig_port_work`
+> being scheduled. The issue arises when this work executes after
+> `xe_display_pm_suspend_late()`, by which time the display is fully
+> suspended.
+>
+> This can lead to errors such as "DC state mismatch", as the dig_port
+> work accesses display resources that are no longer available or
+> powered.
+>
+> To address this, introduce  'intel_encoder_block_all_hpds' and
+> 'intel_encoder_unblock_all_hpds' functions, which iterate over all
+> encoders and block/unblock HPD respectively.
 
+Please do not add anything xe specific to the display
+init/uninit/suspend/resume sequences. All of this needs to move to
+common display code under i915/display, and be shared between drivers.
 
-On 7/29/2025 4:00 AM, Damien Le Moal wrote:
-> On 7/29/25 01:33, Borah, Chaitanya Kumar wrote:
->>
->>
->> On 7/28/2025 11:01 AM, Damien Le Moal wrote:
->>> On 7/25/25 3:43 PM, Borah, Chaitanya Kumar wrote:
->>>> For some context in our kms_pm_rpm tests, we enable min_power policy for SATA
->>>> so that we can reach deep runtime power states and restore the original policy
->>>> after finishing. [5][6]
->>>>
->>>> IIUC, the above change is based on spec and not something which can be
->>>> reverted. So as I see it, we have to drop this code path for external ports.
->>>> However I am not sure if we can achieve deep power states without enforcing it
->>>> through the sysfs entry.
->>>>
->>>> Atleast for the basic-rte subtest, the test passes if we comment out the
->>>> functions controlling the SATA ports. We will need more testing to determine if
->>>> this approach work. Any thoughts on it?
->>>>
->>>> Also, are there other ways to detect a port is external other than receiving
->>>> EOPNOTSUPP on the sysfs write?
->>>
->>> I completely forgot to mention one important thing: please check your test
->>> machine BIOS settings and see if you have "hotplug support" set to enable for
->>> SATA ports. If it is, set that BIOS setting to disable and you will see the
->>> SATA port as a regular one, not as an external port. So LPM support will be
->>> back and your test program will not need changes.
->>>
->>> Not all BIOSes have such setting though. Most of the machine I have do have it
->>> though and I checked that it does affect how the ahci driver sees the port
->>> (external or regular with LPM).
->>>
->>>
->>
->> Found a "Hot Plug" setting (thanks to Mika!) in our testing device's
->> BIOS but it does not seem to have any effect.
->>
->> We also have an option called "External", toggling that did not help either.
->>
->> There is another configuration which was *readonly*.
->>
->> "Configured as eSATA" -> "Hot Plug supported"
->>
->> Not sure if it is relevant to our discussion.
-> 
-> It is and that probably is the reason why disabling hotplug does nothing on the
-> port external characteristic. Does this machine really have eSata ports ? Do
-> they correspond to the 4 ports (out of 8) that you see as external
-> (link_power_management_supported = 0 ports) ?
-> 
+BR,
+Jani.
 
-I can see the BIOS setting available for all 8 ports.
+>
+> These are used to:
+> - Block HPD IRQs before calling 'intel_hpd_cancel_work' in suspend
+>   and shutdown
+> - Unblock HPD IRQs after 'intel_hpd_init' in resume
+>
+> This will prevent 'dig_port_work' being scheduled during display
+> suspend.
+>
+> Continuation of previous patch discussion:
+> https://patchwork.freedesktop.org/patch/663964/
+>
+> Changes in v2:
+>  - Add 'intel_encoder_block_all_hpds' to 'xe_display_pm_shutdown'
+>  - Add 'intel_hpd_cancel_work' to 'xe_display_fini_early' to cancel
+>    any HPD pending work at late driver removal
+>
+> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_encoder.c | 23 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_encoder.h |  3 +++
+>  drivers/gpu/drm/i915/display/intel_hotplug.c |  2 --
+>  drivers/gpu/drm/xe/display/xe_display.c      |  6 +++++
+>  4 files changed, 32 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_encoder.c b/drivers/gpu/drm/i915/display/intel_encoder.c
+> index 0b7bd26f4339..4e2b77b87678 100644
+> --- a/drivers/gpu/drm/i915/display/intel_encoder.c
+> +++ b/drivers/gpu/drm/i915/display/intel_encoder.c
+> @@ -8,6 +8,7 @@
+>  #include "intel_display_core.h"
+>  #include "intel_display_types.h"
+>  #include "intel_encoder.h"
+> +#include "intel_hotplug.h"
+>  
+>  static void intel_encoder_link_check_work_fn(struct work_struct *work)
+>  {
+> @@ -37,6 +38,28 @@ void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int dela
+>  			 &encoder->link_check_work, msecs_to_jiffies(delay_ms));
+>  }
+>  
+> +void intel_encoder_unblock_all_hpds(struct intel_display *display)
+> +{
+> +	struct intel_encoder *encoder;
+> +
+> +	if (!HAS_DISPLAY(display))
+> +		return;
+> +
+> +	for_each_intel_encoder(display->drm, encoder)
+> +		intel_hpd_unblock(encoder);
+> +}
+> +
+> +void intel_encoder_block_all_hpds(struct intel_display *display)
+> +{
+> +	struct intel_encoder *encoder;
+> +
+> +	if (!HAS_DISPLAY(display))
+> +		return;
+> +
+> +	for_each_intel_encoder(display->drm, encoder)
+> +		intel_hpd_block(encoder);
+> +}
+> +
+>  void intel_encoder_suspend_all(struct intel_display *display)
+>  {
+>  	struct intel_encoder *encoder;
+> diff --git a/drivers/gpu/drm/i915/display/intel_encoder.h b/drivers/gpu/drm/i915/display/intel_encoder.h
+> index 3fa5589f0b1c..e1d3aeab7c00 100644
+> --- a/drivers/gpu/drm/i915/display/intel_encoder.h
+> +++ b/drivers/gpu/drm/i915/display/intel_encoder.h
+> @@ -17,4 +17,7 @@ void intel_encoder_link_check_flush_work(struct intel_encoder *encoder);
+>  void intel_encoder_suspend_all(struct intel_display *display);
+>  void intel_encoder_shutdown_all(struct intel_display *display);
+>  
+> +void intel_encoder_block_all_hpds(struct intel_display *display);
+> +void intel_encoder_unblock_all_hpds(struct intel_display *display);
+> +
+>  #endif /* __INTEL_ENCODER_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> index 265aa97fcc75..c69b535497bf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> @@ -971,8 +971,6 @@ void intel_hpd_cancel_work(struct intel_display *display)
+>  
+>  	spin_lock_irq(&display->irq.lock);
+>  
+> -	drm_WARN_ON(display->drm, get_blocked_hpd_pin_mask(display));
+> -
+>  	display->hotplug.long_hpd_pin_mask = 0;
+>  	display->hotplug.short_hpd_pin_mask = 0;
+>  	display->hotplug.event_bits = 0;
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index e2e0771cf274..9e984a045059 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -96,6 +96,7 @@ static void xe_display_fini_early(void *arg)
+>  	if (!xe->info.probe_display)
+>  		return;
+>  
+> +	intel_hpd_cancel_work(display);
+>  	intel_display_driver_remove_nogem(display);
+>  	intel_display_driver_remove_noirq(display);
+>  	intel_opregion_cleanup(display);
+> @@ -340,6 +341,8 @@ void xe_display_pm_suspend(struct xe_device *xe)
+>  
+>  	xe_display_flush_cleanup_work(xe);
+>  
+> +	intel_encoder_block_all_hpds(display);
+> +
+>  	intel_hpd_cancel_work(display);
+>  
+>  	if (has_display(xe)) {
+> @@ -369,6 +372,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+>  	}
+>  
+>  	xe_display_flush_cleanup_work(xe);
+> +	intel_encoder_block_all_hpds(display);
+>  	intel_dp_mst_suspend(display);
+>  	intel_hpd_cancel_work(display);
+>  
+> @@ -471,6 +475,8 @@ void xe_display_pm_resume(struct xe_device *xe)
+>  
+>  	intel_hpd_init(display);
+>  
+> +	intel_encoder_unblock_all_hpds(display);
+> +
+>  	if (has_display(xe)) {
+>  		intel_display_driver_resume(display);
+>  		drm_kms_helper_poll_enable(&xe->drm);
 
-> Likely, you have the SXS host capability set for this machine because of this
-> BIOS setup. From the AHCI specifications:
-> 
-> Supports External SATA (SXS): When set to ‘1’, indicates that the HBA has one or
-> more Serial ATA ports that has a signal only connector that is externally
-> accessible (e.g. eSATA connector).
-> 
-> Hotplug is reported as a separate bit, but handled in the same way as an
-> external port as we cannot (easily) support LPM if we want to preserve the
-> hotplug capability (LPM changes the PHY state constantly, which clashes with hot
-> plug/unplug PHY changes and is hard to differentiate).
-> 
-> Note that you can see if a port is external in dmesg. Look for:
-> 
-> ata4: SATA max UDMA/133 abar m524288@0xaa500000 port 0xaa500280 irq 112 lpm-pol
-> 1 ext
-> 
-> A regular port will not have the "ext" at the end:
-> 
-> ata5: SATA max UDMA/133 abar m524288@0xaa500000 port 0xaa500300 irq 112 lpm-pol 1
-
-Thanks for the hint. I see the following logs with our default BIOS 
-configuration.
-
-[    6.125670] ata1: DUMMY
-[    6.125673] ata2: DUMMY
-[    6.125676] ata3: DUMMY
-[    6.125678] ata4: DUMMY
-[    6.125683] ata5: SATA max UDMA/133 abar m2048@0xb8263000 port 
-0xb8263300 irq 128 lpm-pol 4
-[    6.125693] ata6: SATA max UDMA/133 abar m2048@0xb8263000 port 
-0xb8263380 irq 128 lpm-pol 4
-[    6.125702] ata7: SATA max UDMA/133 abar m2048@0xb8263000 port 
-0xb8263400 irq 128 lpm-pol 4
-[    6.125711] ata8: SATA max UDMA/133 abar m2048@0xb8263000 port 
-0xb8263480 irq 128 lpm-pol 4
-
-Enabling the "External" option in BIOS has impact on the "non-DUMMY" 
-ports but has no affect on the DUMMY ones.
-
-After enabling the External option on port 1 and 7, the dmesg becomes.
-
-[    6.366145] ata1: DUMMY
-[    6.366148] ata2: DUMMY
-[    6.366151] ata3: DUMMY
-[    6.366153] ata4: DUMMY
-[    6.366160] ata5: SATA max UDMA/133 abar m2048@0xb8263000 port 
-0xb8263300 irq 128 lpm-pol 4
-[    6.366168] ata6: SATA max UDMA/133 abar m2048@0xb8263000 port 
-0xb8263380 irq 128 lpm-pol 4
-[    6.366174] ata7: SATA max UDMA/133 abar m2048@0xb8263000 port 
-0xb8263400 irq 128 lpm-pol 1 ext
-[    6.366182] ata8: SATA max UDMA/133 abar m2048@0xb8263000 port 
-0xb8263480 irq 128 lpm-pol 4
-
-Also enabling "External" hides the "Configured as eSATA" option.
-
--Chaitanya
-
-
-
-
-
-
+-- 
+Jani Nikula, Intel
