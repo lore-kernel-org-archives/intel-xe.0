@@ -4,56 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5D6CC83F26
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 08:17:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3834C87FC9
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 08:22:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 764B710E1D2;
-	Tue, 29 Jul 2025 08:17:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jGRqg9yT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADD6F10E1D2;
- Tue, 29 Jul 2025 08:17:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753777074; x=1785313074;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=i2nvBRF9G9ilfwhFo4DZ7YvqPyw1c6aS+U25gtYqUUM=;
- b=jGRqg9yTqWlTU91MLndL8kuTCxbELyJGpsi0wNCoDg8idwWvIcI4qY4j
- eKf/uUB7iu9aYmmVjA2Spl0QYE74T/Oz+fWu/6toj9vDBlXH6boUMJ7y0
- WxA2I5tMu9eujFvbU6ri0Qg491144zUEayN5beLmu2E8DIjMW64c1poSq
- oy2y9DFen5Ksi5FW9iuZWX2qRN4zBKjJvjT3OsscaXP85q3KkcKZ9Oa8L
- q4cEeaUsnblPHw9aYu1D0fXW1yRxSwPTc89I45DK1DmxZZ4fd1MTZFdYe
- /LnmKyyRVEukB9cZpaNcSxKhFdnxc5MqOI1l9zz0VI4t1XhxgA/niMfz3 Q==;
-X-CSE-ConnectionGUID: vjBUZe8qQKiKo1a/o1ermg==
-X-CSE-MsgGUID: Y7j9IhWIRx607kusajM7cg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="66743569"
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="66743569"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 01:17:54 -0700
-X-CSE-ConnectionGUID: OKnH5qFWSo6YLxPUP2XBtw==
-X-CSE-MsgGUID: 5CF3WccnSYq7k5+puo7TPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="162985491"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.22])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 01:17:51 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, arun.r.murthy@intel.com
-Subject: Re: [PATCH v4] drm/i915/display: Optimize panel power-on wait time
-In-Reply-To: <20250728051237.2322256-1-dibin.moolakadan.subrahmanian@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250728051237.2322256-1-dibin.moolakadan.subrahmanian@intel.com>
-Date: Tue, 29 Jul 2025 11:17:48 +0300
-Message-ID: <018afd66168bd9a55abe4e14c24e9b11a89ab15c@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76EE310E1D2;
+	Tue, 29 Jul 2025 08:22:04 +0000 (UTC)
+Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF7EC10E1D2
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 08:22:02 +0000 (UTC)
+Received: from [IPV6:2400:2410:b120:f200:a1f3:73da:3a04:160d] (unknown
+ [IPv6:2400:2410:b120:f200:a1f3:73da:3a04:160d])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by psionic.psi5.com (Postfix) with ESMTPSA id 01DE23F116;
+ Tue, 29 Jul 2025 10:21:56 +0200 (CEST)
+Message-ID: <5020e4a6-971b-43db-8095-c5109c919839@hogyros.de>
+Date: Tue, 29 Jul 2025 17:21:53 +0900
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/5] drm/xe/bo: fix alignment with non-4KiB kernel page
+ sizes
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, jeffbai@aosc.io,
+ Wenbin Fang <fangwenbin@vip.qq.com>, Haien Liang <27873200@qq.com>,
+ Jianfeng Liu <liujianfeng1994@gmail.com>, Shirong Liu <lsr1024@qq.com>,
+ Haofeng Wu <s2600cw2@126.com>, Shang Yatsen <429839446@qq.com>
+References: <20250723074540.2660-1-Simon.Richter@hogyros.de>
+ <20250723074540.2660-2-Simon.Richter@hogyros.de> <aId7hYAfMxlBTV8x@intel.com>
+Content-Language: en-US
+From: Simon Richter <Simon.Richter@hogyros.de>
+In-Reply-To: <aId7hYAfMxlBTV8x@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,174 +51,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 28 Jul 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
->  The current wait_panel_status() uses intel_de_wait() with a long timeout
->  (5000ms), which is suboptimal on Xe platforms where the underlying
->  xe_mmio_wait32() employs an exponential backoff strategy. This leads
->  to unnecessary delays during resume or power-on  when the panel becomes
->  ready earlier than the full timeout.
+Hi,
 
-It's not about the timeout, it's about the exponentially increasing poll
-delay.
+On 7/28/25 22:30, Rodrigo Vivi wrote:
 
->  This patch replaces intel_de_wait() with read_poll_timeout() +
->  intel_de_read() to actively poll the register at given interval and exit
->  early when panel is ready, improving resume latency
+>> -	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
+>> +	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, aligned_size);
 
-Please do not say "this patch" in commit messages. Just use the
-imperative "Replace ...".
+> but this is strange.
+> think that we could get rid of the aligned_size variable and only go with
+> size = ALIGN(size, PAGE_SIZE)
 
-The commit messages is unnecessarily indented with a space.
+> but then there are some checks in between on the alignment
+> and different handling in different if conditions.
 
-> Changes in v2:
->  Replaced  two-phase intel_de_wait() with  read_poll_timeout()
->  + intel_de_read()
->
-> Changes in v3:
->  - Add poll_interval_ms argument  'wait_panel_status' function.
->  - Modify 'wait_panel_status' callers with proper poll interval
->
-> Changes in v4:
->  - Change 'wait_panel_off' poll interval to 10ms
->
-> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_pps.c | 41 +++++++++++++++++-------
->  1 file changed, 30 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index b64d0b30f5b1..56ef835fc2eb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -22,6 +22,7 @@
->  #include "intel_pps.h"
->  #include "intel_pps_regs.h"
->  #include "intel_quirks.h"
-> +#include <linux/iopoll.h>
+I think this can be simplified to a set of conditions in a flat list 
+that each impose a stronger alignment requirement, and the strongest 
+just wins because aligning 4k to 64k gives 64k.
 
-Please look at how includes are ordered in every single file in i915.
+So, paraphrased:
 
->  static void vlv_steal_power_sequencer(struct intel_display *display,
->  				      enum pipe pipe);
-> @@ -600,14 +601,18 @@ void intel_pps_check_power_unlocked(struct intel_dp *intel_dp)
->  #define IDLE_CYCLE_MASK		(PP_ON | PP_SEQUENCE_MASK | PP_CYCLE_DELAY_ACTIVE | PP_SEQUENCE_STATE_MASK)
->  #define IDLE_CYCLE_VALUE	(0     | PP_SEQUENCE_NONE | 0                     | PP_SEQUENCE_STATE_OFF_IDLE)
->  
-> +#define PANEL_MAXIMUM_ON_TIME_MS		(5000)
+  - BUG_ON not 4kB aligned (because all callers already ensure that)
+  - if CPU visible, align to PAGE_SIZE
+  - if 64kB constraint for VRAM allocation, align to 64kB
+  - whatever else
 
-The name of the macro is misleading. For single-use things, maybe better
-to just keep the value inline as it were.
+ From what I can see, making the BO larger than requested is always 
+safe, so the query parameter for the minimum alignment should be set to 
+the smallest alignment we will ever see (so SZ_4K) and make the ioctl 
+check consistent with that because any smaller request would get rounded 
+up anyway, so we can let userspace do that for us, and then we silently 
+fix any other requests.
 
-Side note, the parenthesis are superfluous here.
+I'm going to ask a few Mesa people about this.
 
-> +
->  static void intel_pps_verify_state(struct intel_dp *intel_dp);
->  
->  static void wait_panel_status(struct intel_dp *intel_dp,
-> -			      u32 mask, u32 value)
-> +			      u32 mask, u32 value, int poll_interval_ms)
+> We need further clean-up there to make the change obviously right first.
 
-Can we not add the extra parameter please? Can we have a meaningful
-default instead? 10 ms? Is the 1 ms poll interval really required?
+I'll try to come up with something soon.
 
->  {
->  	struct intel_display *display = to_intel_display(intel_dp);
->  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	i915_reg_t pp_stat_reg, pp_ctrl_reg;
-> +	int ret;
-> +	u32 reg_val;
+In the meantime, with my Debian hat on, do you have any opinion on the 
+patch marking non-4kB pages as BROKEN? That one came out of a 
+discussion[1] in the Debian kernel team how to avoid shipping a kernel 
+that crashes on boot, and to me it seems locking this out now (and 
+backporting that to stable), then reverting it along with the fix should 
+give the best user experience.
 
-Nitpick, usually just "val".
+    Simon
 
->  	lockdep_assert_held(&display->pps.mutex);
->  
-> @@ -624,14 +629,27 @@ static void wait_panel_status(struct intel_dp *intel_dp,
->  		    intel_de_read(display, pp_stat_reg),
->  		    intel_de_read(display, pp_ctrl_reg));
->  
-> -	if (intel_de_wait(display, pp_stat_reg, mask, value, 5000))
-> -		drm_err(display->drm,
-> -			"[ENCODER:%d:%s] %s panel status timeout: PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
-> -			dig_port->base.base.base.id, dig_port->base.base.name,
-> -			pps_name(intel_dp),
-> -			intel_de_read(display, pp_stat_reg),
-> -			intel_de_read(display, pp_ctrl_reg));
-> +	if (poll_interval_ms <= 0)
-> +		poll_interval_ms = 1; //if <0 is passed go with 1ms
-
-Without the parameter, we could get rid of checks like this.
-
-The comment just duplicates what the code already says.
-
-Also, we don't use // comments.
-
-> +
-> +	ret = read_poll_timeout(intel_de_read, reg_val,
-> +				((reg_val & mask) == value),
-> +				(poll_interval_ms * 1000),  // poll intervell
-> +				(PANEL_MAXIMUM_ON_TIME_MS * 1000),  // total timeout (us)
-> +				true,
-> +				display, pp_stat_reg);
-
-The outer parenthesis in the parameters are superfluous.
-
-The comments are useless (and have a typo too).
-
-> +
-> +	if (ret == 0)
-> +		goto panel_wait_complete;
-
-We do use goto in kernel, but primarily for error handling. Please use
-
-	if (ret)
-
-here, and the whole drm_err() thing remains unchanged, and doesn't
-become part of the patch...
-
->  
-> +	drm_err(display->drm,
-> +		"dibin [ENCODER:%d:%s] %s panel status timeout: PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
-
-...and it'll be easier to notice you've left your name in the debug
-logs. Oops.
-
-> +		dig_port->base.base.base.id, dig_port->base.base.name,
-> +		pps_name(intel_dp),
-> +		intel_de_read(display, pp_stat_reg),
-> +		intel_de_read(display, pp_ctrl_reg));
-> +
-> +panel_wait_complete:
->  	drm_dbg_kms(display->drm, "Wait complete\n");
->  }
->  
-> @@ -644,7 +662,8 @@ static void wait_panel_on(struct intel_dp *intel_dp)
->  		    "[ENCODER:%d:%s] %s wait for panel power on\n",
->  		    dig_port->base.base.base.id, dig_port->base.base.name,
->  		    pps_name(intel_dp));
-> -	wait_panel_status(intel_dp, IDLE_ON_MASK, IDLE_ON_VALUE);
-> +
-> +	wait_panel_status(intel_dp, IDLE_ON_MASK, IDLE_ON_VALUE, 20);
->  }
->  
->  static void wait_panel_off(struct intel_dp *intel_dp)
-> @@ -656,7 +675,7 @@ static void wait_panel_off(struct intel_dp *intel_dp)
->  		    "[ENCODER:%d:%s] %s wait for panel power off time\n",
->  		    dig_port->base.base.base.id, dig_port->base.base.name,
->  		    pps_name(intel_dp));
-> -	wait_panel_status(intel_dp, IDLE_OFF_MASK, IDLE_OFF_VALUE);
-> +	wait_panel_status(intel_dp, IDLE_OFF_MASK, IDLE_OFF_VALUE, 10);
->  }
->  
->  static void wait_panel_power_cycle(struct intel_dp *intel_dp)
-> @@ -683,7 +702,7 @@ static void wait_panel_power_cycle(struct intel_dp *intel_dp)
->  	if (remaining)
->  		wait_remaining_ms_from_jiffies(jiffies, remaining);
->  
-> -	wait_panel_status(intel_dp, IDLE_CYCLE_MASK, IDLE_CYCLE_VALUE);
-> +	wait_panel_status(intel_dp, IDLE_CYCLE_MASK, IDLE_CYCLE_VALUE, 1);
->  }
->  
->  void intel_pps_wait_power_cycle(struct intel_dp *intel_dp)
-
--- 
-Jani Nikula, Intel
+[1] https://salsa.debian.org/kernel-team/linux/-/merge_requests/1589
