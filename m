@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACE20C83F26
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 11:42:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2F7CC83F26
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 11:42:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64E3D10E611;
-	Tue, 29 Jul 2025 11:42:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6160010E617;
+	Tue, 29 Jul 2025 11:42:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OwZM0YQ8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VPwp/k2i";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF65010E16F
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 11:42:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A065410E617
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 11:42:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753789349; x=1785325349;
+ t=1753789351; x=1785325351;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DqgrEshgQrNOk/V8x5G3V0eYmyJxRcKFP3nwidUZ4s0=;
- b=OwZM0YQ8V6rmFmAbtRX0ZrOH66yoKgwsQNOV2igJXxb79Brf9qFMyCyz
- EfttOv3TDyk8xrnQ65cWVf0/MxnMHxqtIAyUQTW6hEH4a7HOxi1ew9cMP
- UYUrEn+1WG91IBsMF8tcPKN/V2LyXPDjJLDdHB4tbJ7IglEzOADTxSou4
- wrx/bNwWAle1MxlBlQu1yTxm+7whza91+oMMYVYnthNxCXuaS21wuABME
- ohoCJ7QBbrTokiNAOfNliyIh5Hbi/rCbHJzyeadco7cTUuJS2nbAmwYvW
- A8uUqZN5ln34TwsK/+uPgMT3X4JCTvBZyriYV4FZq9QpDfZCnV603XqhL w==;
-X-CSE-ConnectionGUID: yNx8nvLaTc6JMcuSzCD99g==
-X-CSE-MsgGUID: 6IuNOqthTEqV2L9fTy3/8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="55755575"
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="55755575"
+ bh=F3vFTkau3xp6zhfatJOFiorThzLjelNqx8Jf2ux4bMY=;
+ b=VPwp/k2ip8loZB4W69w3V3RbqmbPZT7NSMXaga9AVeSwoJ66J8pEn0ba
+ 7UOq0mUjdnfNb26IZBk29FqK119Mep+HGfNT3fQ/GnZGYEhjZGcRHYh3Q
+ 4QruGc3z8tanqQZdxleY7Z2K2W2jz4jYpj9vlZBbiDa3B5GpkJPx3+jaf
+ /i/DF5lklcJMNjHPfnGw+oCF4QSe5gLcEpgnm8i2qsiQgjd9sM736j9SW
+ FGHGjxfCln0NpBODMtYP0PoVYVN8PYvW3eTn8evrWKxFgIF7PcC4p8qAO
+ eeQ5ZYTohiXJxFRVFDifNAfOP+LtyZOVHbfrAVwT6karaKecZWlSZyqiY g==;
+X-CSE-ConnectionGUID: xheu+cxpTf2889tKuMyCEQ==
+X-CSE-MsgGUID: sIcXNY9XSwiizX9eRKGG0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="55755580"
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="55755580"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 04:42:29 -0700
-X-CSE-ConnectionGUID: tCgKRZBPTjuFKw61CixOxg==
-X-CSE-MsgGUID: NvOoSaCYTNaDC8rv+kJKRQ==
+ 29 Jul 2025 04:42:31 -0700
+X-CSE-ConnectionGUID: cghTyllHQiS3+Sz3s6Yz8g==
+X-CSE-MsgGUID: kMQaedNWSdu+k0ejifmxrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="161946873"
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="161946888"
 Received: from bjanicki-mobl2.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.2.202])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 04:42:27 -0700
+ 29 Jul 2025 04:42:29 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v5 02/11] drm/xe: Print module init abort code
-Date: Tue, 29 Jul 2025 13:42:06 +0200
-Message-ID: <20250729114215.177586-3-michal.wajdeczko@intel.com>
+Subject: [PATCH v5 03/11] drm/xe/configfs: Destroy xe_configfs.su_mutex on
+ exit/error
+Date: Tue, 29 Jul 2025 13:42:07 +0200
+Message-ID: <20250729114215.177586-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250729114215.177586-1-michal.wajdeczko@intel.com>
 References: <20250729114215.177586-1-michal.wajdeczko@intel.com>
@@ -69,30 +70,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We should provide a hint to the user why the module refused to
-load. This will also allow us to drop individual error messages
-from init steps.
+While mutex_destroy() is NOP when CONFIG_DEBUG_MUTEXES is not
+enabled, we should still call it.
+
+While around, drop a traling line.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_module.c | 2 ++
- 1 file changed, 2 insertions(+)
+v2: remove pr_err in separate patch (Rodrigo)
+---
+ drivers/gpu/drm/xe/xe_configfs.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index cfed36361613..d08338fc3bc1 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -155,6 +155,8 @@ static int __init xe_init(void)
- 	for (i = 0; i < ARRAY_SIZE(init_funcs); i++) {
- 		err = xe_call_init_func(init_funcs + i);
- 		if (err) {
-+			pr_info("%s: module_init aborted at %ps %pe\n",
-+				DRIVER_NAME, init_funcs[i].init, ERR_PTR(err));
- 			while (i--)
- 				xe_call_exit_func(init_funcs + i);
- 			return err;
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 36e2b45b305f..56fbf4c1c37f 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -401,6 +401,7 @@ int __init xe_configfs_init(void)
+ 	if (ret) {
+ 		pr_err("Error %d while registering %s subsystem\n",
+ 		       ret, root->cg_item.ci_namebuf);
++		mutex_destroy(&xe_configfs.su_mutex);
+ 		return ret;
+ 	}
+ 
+@@ -410,5 +411,5 @@ int __init xe_configfs_init(void)
+ void __exit xe_configfs_exit(void)
+ {
+ 	configfs_unregister_subsystem(&xe_configfs);
++	mutex_destroy(&xe_configfs.su_mutex);
+ }
+-
 -- 
 2.47.1
 
