@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89B89C87FC9
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 11:10:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F09EFC83F26
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 11:11:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5010210E061;
-	Tue, 29 Jul 2025 11:10:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OeFzT0sz";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F89810E061;
- Tue, 29 Jul 2025 11:10:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753787439; x=1785323439;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=0PTL29KARTY7t5rtUpFvmcmY8ETOAX2WRpp/BRWEj2k=;
- b=OeFzT0szLmsTusA6JWndEDIuTdvP+/MWJS0TM3NkGmwGpP5YwodFVFmt
- RtNqrwXe1wvWwRO7unJErm9sT0Q49NiR3DZ0LSvH2eaLdWXHtvAHueeAD
- 3nuJZHFUupC8hvobHR9SnqLm0citf3703lLQI8ZuzjLkcd0Nff/TRRxFv
- Kycxa3fpkEW2dosjfs44fEgRvN2gtP85fqUMVIbbtqwWqDIqNOrEkZCJp
- G1vBzn4dJo7UwflIgMpSJyEu+Pv3scXdoWTJ2ELsD0OKR4/8j+fzZXzrr
- gk/TBNHmyTvhgrU2L1ucmS/CQkqCaMkUHgowK5Fq993z/AOzIA0pLaVej A==;
-X-CSE-ConnectionGUID: Jjvakqj+RFu0QRjbEmbMFg==
-X-CSE-MsgGUID: 44OkMWqJT3O/qws2oT3rTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="67406919"
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="67406919"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 04:10:39 -0700
-X-CSE-ConnectionGUID: 1KBj7uUtSSiyo/X74w1MIQ==
-X-CSE-MsgGUID: uvU2pwHoQhqITLlNt25YDQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="199817436"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.22])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 04:10:36 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: uma.shankar@intel.com, ville.syrjala@linux.intel.com, Ankit Nautiyal
- <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 6/9] drm/i915/display_wa: Add support for Wa_14021768792
-In-Reply-To: <20250721091529.3864004-7-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250721091529.3864004-1-ankit.k.nautiyal@intel.com>
- <20250721091529.3864004-7-ankit.k.nautiyal@intel.com>
-Date: Tue, 29 Jul 2025 14:10:33 +0300
-Message-ID: <fce4d22ba4d2aaa2a79a2826185d28538f469a63@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1D1F10E061;
+	Tue, 29 Jul 2025 11:11:40 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E151110E061;
+ Tue, 29 Jul 2025 11:11:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8208778035240126205=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_use_drm-=3Edebu?=
+ =?utf-8?q?gfs=5Froot_when_creating_debugfs_files_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 29 Jul 2025 11:11:39 -0000
+Message-ID: <175378749991.196435.7372958992217781607@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <cover.1753782998.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1753782998.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,95 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 21 Jul 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Some BMG ultrajoiner configurations require support for Link M/N ratios
-> between 10.0 and 15.0. This range is not natively supported and requires
-> a workaround.
->
-> Wa_14021768792 enables this support by utilizing HDMI_EMP_DATA,
-> CHICKEN_BITs, and extended bits in the LINK_N registers.
->
-> Add the necessary logic to enable the workaround on applicable platforms.
->
-> Bspec: 49266
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_display_wa.c    | 18 ++++++++++++++++++
->  .../gpu/drm/i915/display/intel_display_wa.h    |  1 +
->  2 files changed, 19 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> index 399c08902413..541967168e97 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> @@ -5,11 +5,13 @@
->  
->  #include <drm/drm_print.h>
->  
-> +#include "i915_drv.h"
+--===============8208778035240126205==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Please do not add new includes of i915_drv.h in display/.
+== Series Details ==
 
->  #include "i915_reg.h"
->  #include "intel_de.h"
->  #include "intel_display_core.h"
->  #include "intel_display_regs.h"
->  #include "intel_display_wa.h"
-> +#include "intel_step.h"
->  
->  static void gen11_display_wa_apply(struct intel_display *display)
->  {
-> @@ -52,6 +54,20 @@ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
->  	return DISPLAY_VERx100(display) == 3000 || DISPLAY_VERx100(display) == 3002;
->  }
->  
-> +/*
-> + * Wa_14021768792:
-> + * Fixes: Limitation of Link M/N ratio > 10 for specific Xe2HPD platforms.
-> + * Workaround: Use HDMI_EMP_DATA, CHICKEN_BITs and extended bits in LINK_N registers to support
-> + * LINK M/N ratios from > 10 but < 15.
-> + */
-> +static bool intel_display_needs_wa_14021768792(struct intel_display *display)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
+Series: drm/i915: use drm->debugfs_root when creating debugfs files (rev2)
+URL   : https://patchwork.freedesktop.org/series/150106/
+State : success
 
-Please do not add new uses of struct drm_i915_private under display/.
+== Summary ==
 
-> +
-> +	return (DISPLAY_VER(display) == 14 && IS_DGFX(i915) &&
+CI Bug Log - changes from xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4_BAT -> xe-pw-150106v2_BAT
+====================================================
 
-s/IS_DGFX(i915)/display->platform.dgfx/
+Summary
+-------
 
-> +		IS_DISPLAY_STEP(display, STEP_C0, STEP_FOREVER));
-> +}
-> +
->  bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name)
->  {
->  	switch (wa) {
-> @@ -59,6 +75,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
->  		return intel_display_needs_wa_16023588340(display);
->  	case INTEL_DISPLAY_WA_16025573575:
->  		return intel_display_needs_wa_16025573575(display);
-> +	case INTEL_DISPLAY_WA_14021768792:
-> +		return intel_display_needs_wa_14021768792(display);
->  	default:
->  		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
->  		break;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> index aedea4cfa3ce..8470f4ceea1a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> @@ -24,6 +24,7 @@ bool intel_display_needs_wa_16023588340(struct intel_display *display);
->  enum intel_display_wa {
->  	INTEL_DISPLAY_WA_16023588340,
->  	INTEL_DISPLAY_WA_16025573575,
-> +	INTEL_DISPLAY_WA_14021768792,
->  };
->  
->  bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
+  **SUCCESS**
 
--- 
-Jani Nikula, Intel
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 7)
+------------------------------
+
+  Missing    (2): bat-pvc-2 bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4 -> xe-pw-150106v2
+
+  IGT_8477: 3e5ec9d06ce17d6e135901bda13957dc31ae4bf4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4: 23f7b89faeb0f3aed0ea60022847ac24339bdea4
+  xe-pw-150106v2: 150106v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150106v2/index.html
+
+--===============8208778035240126205==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: use drm-&gt;debugfs_root when creating debugfs files (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150106/">https://patchwork.freedesktop.org/series/150106/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150106v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150106v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4_BAT -&gt; xe-pw-150106v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 7)</h2>
+<p>Missing    (2): bat-pvc-2 bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4 -&gt; xe-pw-150106v2</li>
+</ul>
+<p>IGT_8477: 3e5ec9d06ce17d6e135901bda13957dc31ae4bf4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4: 23f7b89faeb0f3aed0ea60022847ac24339bdea4<br />
+  xe-pw-150106v2: 150106v2</p>
+
+</body>
+</html>
+
+--===============8208778035240126205==--
