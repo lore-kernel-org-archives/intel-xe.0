@@ -4,51 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 136E8C87FC9
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 12:35:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36DF7C83F26
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 12:47:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE4B010E1F8;
-	Tue, 29 Jul 2025 12:35:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEBD710E1F8;
+	Tue, 29 Jul 2025 12:47:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L8sfa74p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VFT3vED+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4D3D10E1F8
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 12:35:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E785710E1F8;
+ Tue, 29 Jul 2025 12:47:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753792514; x=1785328514;
+ t=1753793223; x=1785329223;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=TxMeaZWVHbveDq7c+xbyF2MtocGiRiObI43yBWR5WXg=;
- b=L8sfa74pJq3WyaxqD8RlRrmfEPne6KqPReglGuwrunJwNRwIS6B9G76U
- jz92bWAYP9Z/UHJhiJ8UrlzvY0kt/SbTFjwKHvGGvguHBSCIxbYgsx+MS
- 7CENHyMh+cjGtbODF6u1f2yx/KjIqO0lbcN/alrJ5nUuDvVTH1r1bfWvj
- 0UK7tc2bGau9oevbXXKNgX29zQ1AbqxxKl15dDtYnqEcT5qy2UtZdVn1Z
- TTUtKyNm6EES/KSHpAaaALP7pGZb8WL5jIey/Y2vDM1IeYbcOX0T1pdwO
- IXtM2qJSXvHobVt6UPnbZQsQoLAjWsh+/4fyKDayxs7nGXt1wF+xQeL1h w==;
-X-CSE-ConnectionGUID: mxNY5orpSpyUqh6SdCkpTw==
-X-CSE-MsgGUID: bb1CNOVpTkayD3HnYlpyKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="56137839"
-X-IronPort-AV: E=Sophos;i="6.16,349,1744095600"; d="scan'208";a="56137839"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 05:35:14 -0700
-X-CSE-ConnectionGUID: dAVaoxQxRfuui5N3v5zEkQ==
-X-CSE-MsgGUID: DdzSiDy3SZWPSRIPyHP+eg==
+ bh=pzNCH1Yl4NAExjgQ0foyd4YYqh6G0veMwrSfSVL8x68=;
+ b=VFT3vED+RETE2IRBM8NnU3dyhfx1qTjiv0ITgA2PyQb0jrln1OlN98UE
+ jeJW3AjDNEevThvkvLP+IXFU5oK46nW/MDBVr9/YNkvrmzqjsG3Ihq0Jc
+ MGzWJIiJ6wvtAScp1h5ARHSOpzwgwc68zCguBPtXgRXB0zxsugygurO6H
+ 8/caosYqrOOgpTBS5APDqIINAEhEYWf3ZqbR0rPdlstI6/nG9ReqtiGYA
+ hq7b+JdqIctkn21zU15Jm3p8CY5BtelnH2mlOwVzZWkvuzbhdiCvg2vmI
+ NY7X+YKz/9QPYHAfg8we26iY4YXKNjIJTyKsyIO3FojJvt7nqHoumqlic g==;
+X-CSE-ConnectionGUID: Zcy37zV9RWqT2vnEJlR84Q==
+X-CSE-MsgGUID: 3Bn3lfdxSN67yh0r1yfyGw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="55998671"
+X-IronPort-AV: E=Sophos;i="6.16,349,1744095600"; d="scan'208";a="55998671"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2025 05:47:03 -0700
+X-CSE-ConnectionGUID: AD7Ef82GQYuMSA3Heg2cng==
+X-CSE-MsgGUID: sP8e0FOBR0a6IMi5VdzCOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,349,1744095600"; d="scan'208";a="162725358"
-Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 05:35:12 -0700
-From: Lukasz Laguna <lukasz.laguna@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: lukasz.laguna@intel.com
-Subject: [PATCH] drm/xe/vf: Disable CSC support on VF
-Date: Tue, 29 Jul 2025 14:34:37 +0200
-Message-Id: <20250729123437.5933-1-lukasz.laguna@intel.com>
-X-Mailer: git-send-email 2.40.0
+X-IronPort-AV: E=Sophos;i="6.16,349,1744095600"; d="scan'208";a="186348396"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO vgovind2-mobl3.intel.com)
+ ([10.245.244.123])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2025 05:47:01 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, jouni.hoganger@intel.com,
+ jani.saarinen@intel.com, kunal1.joshi@intel.com
+Subject: [PATCH] drm/i915/fbc: fix the implementation of wa_18038517565
+Date: Tue, 29 Jul 2025 15:46:48 +0300
+Message-ID: <20250729124648.288497-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,29 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CSC is not accessible by VF drivers, so disable its support flag on VF
-to prevent further initialization attempts.
+As per the wa_18038517565, we need to disable FBC compressor
+clock gating before enabling FBC and enable after disabling
+FBC. Placing the enabling of clock gating in the fbc deactivate
+function can make the above wa logic go wrong in case of
+frontbuffer rendering FBC mechanism. FBC deactivate can get
+called during fb invalidate and then the corresponding FBC
+activate can get called without properly disabling the clock
+gating and can result in compression stalled. So move the
+enable clock gating at the end of one FBC session after FBC
+is completely disabled for a pipe.
 
-Fixes: e02cea83d32d ("drm/xe/gsc: add Battlemage support")
-Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
-Cc: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Bspec: 74212, 72197, 69741, 65555
+Fixes: 010363c46189 ("drm/i915/display: implement wa_18038517565")
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index d04a0ae018e6..c754374f1a8d 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -682,6 +682,7 @@ static void sriov_update_device_info(struct xe_device *xe)
- 	/* disable features that are not available/applicable to VFs */
- 	if (IS_SRIOV_VF(xe)) {
- 		xe->info.probe_display = 0;
-+		xe->info.has_heci_cscfi = 0;
- 		xe->info.has_heci_gscfi = 0;
- 		xe->info.skip_guc_pc = 1;
- 		xe->info.skip_pcode = 1;
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index e2e03af520b2..f82d392f1e22 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -552,10 +552,6 @@ static void ilk_fbc_deactivate(struct intel_fbc *fbc)
+ 	if (dpfc_ctl & DPFC_CTL_EN) {
+ 		dpfc_ctl &= ~DPFC_CTL_EN;
+ 		intel_de_write(display, ILK_DPFC_CONTROL(fbc->id), dpfc_ctl);
+-
+-		/* wa_18038517565 Enable DPFC clock gating after FBC disable */
+-		if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
+-			fbc_compressor_clkgate_disable_wa(fbc, false);
+ 	}
+ }
+ 
+@@ -1710,6 +1706,10 @@ static void __intel_fbc_disable(struct intel_fbc *fbc)
+ 
+ 	__intel_fbc_cleanup_cfb(fbc);
+ 
++	/* wa_18038517565 Enable DPFC clock gating after FBC disable */
++	if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
++		fbc_compressor_clkgate_disable_wa(fbc, false);
++
+ 	fbc->state.plane = NULL;
+ 	fbc->flip_pending = false;
+ 	fbc->busy_bits = 0;
 -- 
-2.40.0
+2.43.0
 
