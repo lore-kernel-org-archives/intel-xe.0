@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36DF7C83F26
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 12:47:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7594C83F26
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 13:16:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEBD710E1F8;
-	Tue, 29 Jul 2025 12:47:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VFT3vED+";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E785710E1F8;
- Tue, 29 Jul 2025 12:47:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753793223; x=1785329223;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=pzNCH1Yl4NAExjgQ0foyd4YYqh6G0veMwrSfSVL8x68=;
- b=VFT3vED+RETE2IRBM8NnU3dyhfx1qTjiv0ITgA2PyQb0jrln1OlN98UE
- jeJW3AjDNEevThvkvLP+IXFU5oK46nW/MDBVr9/YNkvrmzqjsG3Ihq0Jc
- MGzWJIiJ6wvtAScp1h5ARHSOpzwgwc68zCguBPtXgRXB0zxsugygurO6H
- 8/caosYqrOOgpTBS5APDqIINAEhEYWf3ZqbR0rPdlstI6/nG9ReqtiGYA
- hq7b+JdqIctkn21zU15Jm3p8CY5BtelnH2mlOwVzZWkvuzbhdiCvg2vmI
- NY7X+YKz/9QPYHAfg8we26iY4YXKNjIJTyKsyIO3FojJvt7nqHoumqlic g==;
-X-CSE-ConnectionGUID: Zcy37zV9RWqT2vnEJlR84Q==
-X-CSE-MsgGUID: 3Bn3lfdxSN67yh0r1yfyGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="55998671"
-X-IronPort-AV: E=Sophos;i="6.16,349,1744095600"; d="scan'208";a="55998671"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 05:47:03 -0700
-X-CSE-ConnectionGUID: AD7Ef82GQYuMSA3Heg2cng==
-X-CSE-MsgGUID: sP8e0FOBR0a6IMi5VdzCOg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,349,1744095600"; d="scan'208";a="186348396"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO vgovind2-mobl3.intel.com)
- ([10.245.244.123])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 05:47:01 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, jouni.hoganger@intel.com,
- jani.saarinen@intel.com, kunal1.joshi@intel.com
-Subject: [PATCH] drm/i915/fbc: fix the implementation of wa_18038517565
-Date: Tue, 29 Jul 2025 15:46:48 +0300
-Message-ID: <20250729124648.288497-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64A5910E1F8;
+	Tue, 29 Jul 2025 13:16:03 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 173CD10E1F8;
+ Tue, 29 Jul 2025 13:16:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2940977917098611456=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Updates_for_drm/xe/configfs?=
+ =?utf-8?q?_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 29 Jul 2025 13:16:03 -0000
+Message-ID: <175379496308.196436.10377654833102348668@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250729114215.177586-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250729114215.177586-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,53 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As per the wa_18038517565, we need to disable FBC compressor
-clock gating before enabling FBC and enable after disabling
-FBC. Placing the enabling of clock gating in the fbc deactivate
-function can make the above wa logic go wrong in case of
-frontbuffer rendering FBC mechanism. FBC deactivate can get
-called during fb invalidate and then the corresponding FBC
-activate can get called without properly disabling the clock
-gating and can result in compression stalled. So move the
-enable clock gating at the end of one FBC session after FBC
-is completely disabled for a pipe.
+--===============2940977917098611456==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Bspec: 74212, 72197, 69741, 65555
-Fixes: 010363c46189 ("drm/i915/display: implement wa_18038517565")
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index e2e03af520b2..f82d392f1e22 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -552,10 +552,6 @@ static void ilk_fbc_deactivate(struct intel_fbc *fbc)
- 	if (dpfc_ctl & DPFC_CTL_EN) {
- 		dpfc_ctl &= ~DPFC_CTL_EN;
- 		intel_de_write(display, ILK_DPFC_CONTROL(fbc->id), dpfc_ctl);
--
--		/* wa_18038517565 Enable DPFC clock gating after FBC disable */
--		if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
--			fbc_compressor_clkgate_disable_wa(fbc, false);
- 	}
- }
- 
-@@ -1710,6 +1706,10 @@ static void __intel_fbc_disable(struct intel_fbc *fbc)
- 
- 	__intel_fbc_cleanup_cfb(fbc);
- 
-+	/* wa_18038517565 Enable DPFC clock gating after FBC disable */
-+	if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
-+		fbc_compressor_clkgate_disable_wa(fbc, false);
-+
- 	fbc->state.plane = NULL;
- 	fbc->flip_pending = false;
- 	fbc->busy_bits = 0;
--- 
-2.43.0
+Series: Updates for drm/xe/configfs (rev6)
+URL   : https://patchwork.freedesktop.org/series/151773/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3484-c2d04724123c8df9ecec874f1db3007540c264e6_BAT -> xe-pw-151773v6_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-151773v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3484-c2d04724123c8df9ecec874f1db3007540c264e6/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151773v6/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8477 -> IGT_8478
+  * Linux: xe-3484-c2d04724123c8df9ecec874f1db3007540c264e6 -> xe-pw-151773v6
+
+  IGT_8477: 3e5ec9d06ce17d6e135901bda13957dc31ae4bf4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8478: 3e7c2bd685397f852853878aef4d9c1e4889a28b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3484-c2d04724123c8df9ecec874f1db3007540c264e6: c2d04724123c8df9ecec874f1db3007540c264e6
+  xe-pw-151773v6: 151773v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151773v6/index.html
+
+--===============2940977917098611456==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Updates for drm/xe/configfs (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151773/">https://patchwork.freedesktop.org/series/151773/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151773v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151773v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3484-c2d04724123c8df9ecec874f1db3007540c264e6_BAT -&gt; xe-pw-151773v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-151773v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3484-c2d04724123c8df9ecec874f1db3007540c264e6/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151773v6/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8477 -&gt; IGT_8478</li>
+<li>Linux: xe-3484-c2d04724123c8df9ecec874f1db3007540c264e6 -&gt; xe-pw-151773v6</li>
+</ul>
+<p>IGT_8477: 3e5ec9d06ce17d6e135901bda13957dc31ae4bf4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8478: 3e7c2bd685397f852853878aef4d9c1e4889a28b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3484-c2d04724123c8df9ecec874f1db3007540c264e6: c2d04724123c8df9ecec874f1db3007540c264e6<br />
+  xe-pw-151773v6: 151773v6</p>
+
+</body>
+</html>
+
+--===============2940977917098611456==--
