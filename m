@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27329C87FC9
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 05:38:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D5C7C87FC9
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 05:41:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D247110E1C3;
-	Tue, 29 Jul 2025 05:38:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60B3910E1C8;
+	Tue, 29 Jul 2025 05:41:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ULb1IW0k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LHIajv8R";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E41F410E1C3
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 05:38:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58C0410E1C3
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 05:41:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753767488; x=1785303488;
+ t=1753767679; x=1785303679;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=SAIqIWbObhlEcY/7uZlcObZ1qdhPE0EchsYM3mApr4M=;
- b=ULb1IW0kFIPp1h+jPi2ZCrtX8pAu4LM9k2Y0bjrJxPtMJdaX7vSPLfZa
- T3/liq9qUn2Ceqb8YNrmo8OaouOJbQ2tuVEFmwlrLv6PYp5Ili2k1FNbU
- Ly8FKJeyolBCq/F7/7Oh1rothYifC2MDTZHOHQUjSueOA2hsQGNZ/h2+a
- giC4oPzAgZBYe3nvwoiXhk9C/nPimp4qQdJ7bJ3nTGeqCVHUSSG5eLvE2
- I4yumG7cZvjOvzRedDh1Ha8kBQCu1Y/vRRQ0rhouG/f3wApk8+eXSzbKo
- UGrhrg9+G9Lv9xSDooeW7n3a/KBQRIv4dbGOIOjO2Eh/+6xx4tM2VKZhv w==;
-X-CSE-ConnectionGUID: ZlcE/xoVRqioWtV/NGAM2w==
-X-CSE-MsgGUID: /32XMZQ1TbOI09akYTny/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="67462171"
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="67462171"
+ in-reply-to:mime-version;
+ bh=jGxXyKOGTHAI1S4nvC+Shgj+YkUhGYjnhpBLsELv4tw=;
+ b=LHIajv8RSrCXuqdPAuBehIbCGDAyXmDg1MwRpo9rgqFCalWOoOY6qeTw
+ nyhGYLTCgNCwjCFAHvmXK3EV+FJkzyYLA3yeOldYqhom9kF6uzO1IMwG6
+ pIaNL/CkH7ubU/wdvqt03hb+ClBD6F+VC4xpWgo4YAJysG6TZQCycu/+U
+ +4FiMYk0xIzjDg4O4Ck4Ru4bHevPT66a7Tn1/Dz3ju6dlug5gfULY0+ds
+ 7NX4iOUU2RQaxEnLT4GMIV8yyl8lS0KocDn9YcOhY88ppbQUUCWuh9Oag
+ bvs5gvMKmqGRhEIL/zbaH6sxQ2Nvv3r8H4jPT+XYyBZFyltGy6wkxlrUZ A==;
+X-CSE-ConnectionGUID: lej4C4QYR12ecsc5tzomwg==
+X-CSE-MsgGUID: PfYVKC7jRsaVB0TXOv75nA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="67462566"
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="67462566"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2025 22:38:07 -0700
-X-CSE-ConnectionGUID: JRR+6dkTTl66+aQHuMA8Fg==
-X-CSE-MsgGUID: q4tnPQx9SKCjcV4lOAXtAQ==
+ 28 Jul 2025 22:41:19 -0700
+X-CSE-ConnectionGUID: vXgNnWPWRhepm9USIoPkfg==
+X-CSE-MsgGUID: gO1PCwXfRRaHzwtVEhEcNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="168011960"
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="168012828"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2025 22:38:08 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ 28 Jul 2025 22:41:19 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Mon, 28 Jul 2025 22:38:07 -0700
+ 15.2.1748.26; Mon, 28 Jul 2025 22:41:18 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Mon, 28 Jul 2025 22:38:07 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.89) by
+ 15.2.1748.26 via Frontend Transport; Mon, 28 Jul 2025 22:41:18 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.67) by
  edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Mon, 28 Jul 2025 22:38:06 -0700
+ 15.2.1748.26; Mon, 28 Jul 2025 22:41:18 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rVMNeoXk9AKABUmaC6C9iEFZ8Xv24nPYyuZA0EYN4Vs/lZo5N0fElrBAcVFogpE8XkUVsBPiAF2Kj8piOyOnP6tkylv08pcDDbKwjj9oObgOmCjVgB59+9UhoTkAfl9z2NEZc2mVH6FJ6QHGptcat0ecCvd4+uwckmaL9EqFisnFwzSMVfuke7228EDgHA2Mt7+xn4g8uD10Q6Yy0wjxX4+61JbDcgoIPo+hESaO9FflbKvSwH7a3QCxN9xZFDaXfP10oW7WN0LLAOQtZH3BXEleoROjizDE93y5puvuqhaoOYf/nKncvLEQjQnH1K0iBzJf/q3uKFCUTd1HAYlaiA==
+ b=g82ywhLeQku2OQz3LMVj7vah6YhFlezAP4GwMsIyEK5BWMxAE1/7uCu7FaXJfYd0gcXIxcKr0HDM8GJK1RqLsbqM4fXS9vWU/BJ7C9xNKtyf+xwkVVzJzIItvCLBuly9Mgg7FOyf4WTaMkVx8XGMP0PDAvFiR+1phGPDpYfn2BYrD0+Ttdnl8lhPEmYQiSWE26OGXAHrCJLYUQjf2lFWRJn+vPjKh7+hpO+LtNb/udwVuIX4iNdvQu+XgufGEqK/Jh1k5QxSe53hyuPBULPai87xLPB+CauMeTNd2Cv0Ir3fE7glxih0m7zcOggFrWEtQVbgNJoBdwPH/pj8DNm/lg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xV+ElrkEFW+rv9usCO2m/zh/X+tfQmnLjTsFLw6E9Ds=;
- b=y2exxcjm2y/J1bwJnzDcAImp1PZy/rs1WYGydib35gaIB/WrwVkumJJpo/wSwVE29lyobvFQrtVwU9Hb7tWy6n980A5RsGCd+Yo8ise1Xy8YCXe7dq8qjo5nThAPdzh2kCmvrC31O0b1V1IgEH0FDPdG99WAG3YBC2p+VPy4NqpJlD1LxPNDFiamYve/9zuYZwXonwn/9M1iWXQz5MwAvgCJFTz1yIAj9m+poBk7FbRrT7VaBtUmq8kw6ynnQhg573c5ITX9nNWsyoFOEsCbH7w/GEjKGwApv9d3Nu3oF2auyK5KnwWv2XLkmBrfAKqz3ocVuKgeoi7mdTc9luTHlg==
+ bh=Z1VG2szWnlXoQIzgP2jRwb/rVeFyJVXjixxfpKRFjKE=;
+ b=Zs8NuwOAFJqCyxnBZltqSBAW4laJxUeqr+9SyeJgczwJhpTeDo00wTs+kd6h7VS/+VrZfSXIXOMl4gkjYpQ9LqUNUee3KxCQEPF2GdDz4QcxeuUQXrhXHJ6YZUdY1uUOphe9v17Sshz4VHVW02WgcJhQRDmsOKcSSlSiim62BNEXFcDIybwgc755ExHSh4YEs9dOVurjKuxLd7kPzV7oD25TFt36Xv2wv/f/JJlIORteDfazVC5h6gYDe9CZTkhjwceP9VBfkTi53AIZ3NuVr8GvkhMTktd2Mr6yPeKORdCmKGcUOjBc0pnCsuVezc6bDpYpIDDoj9wnC4f3SuT8iw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,101 +69,99 @@ Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
  by MN0PR11MB6301.namprd11.prod.outlook.com (2603:10b6:208:3c3::8)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.26; Tue, 29 Jul
- 2025 05:37:18 +0000
+ 2025 05:41:16 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.8964.026; Tue, 29 Jul 2025
- 05:37:11 +0000
-Date: Mon, 28 Jul 2025 22:37:08 -0700
+ 05:41:16 +0000
+Date: Mon, 28 Jul 2025 22:41:14 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Shuicheng Lin <shuicheng.lin@intel.com>
-Subject: Re: [PATCH v5 23/23] drm/xe/uapi: Add UAPI for querying VMA count
- and memory attributes
-Message-ID: <aIheBEtHhg4LQQy6@lstrano-desk.jf.intel.com>
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v5 20/23] drm/xe: Reset VMA attributes to default in SVM
+ garbage collector
+Message-ID: <aIhe+nJCv5PQ2Y1d@lstrano-desk.jf.intel.com>
 References: <20250722133526.3550547-1-himal.prasad.ghimiray@intel.com>
- <20250722133526.3550547-24-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ <20250722133526.3550547-21-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250722133526.3550547-24-himal.prasad.ghimiray@intel.com>
-X-ClientProxiedBy: MW4PR04CA0193.namprd04.prod.outlook.com
- (2603:10b6:303:86::18) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20250722133526.3550547-21-himal.prasad.ghimiray@intel.com>
+X-ClientProxiedBy: MW4PR04CA0071.namprd04.prod.outlook.com
+ (2603:10b6:303:6b::16) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN0PR11MB6301:EE_
-X-MS-Office365-Filtering-Correlation-Id: f16d421c-ea1c-4fac-3246-08ddce61f782
+X-MS-Office365-Filtering-Correlation-Id: c19e49f5-846d-4af6-e9e3-08ddce628960
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?7F9Q12k0PVXYnp+AJ2FdVW+doGippWzHSx9/6zFDZVpaQqDRg84tXcMVSO?=
- =?iso-8859-1?Q?5hSkOTynpdmYawNnmEp/gSMXyASJrVpn3NoAChgg+ZbJRZmtwjHJXYmvxa?=
- =?iso-8859-1?Q?v/wyJAKiMAKSaKsKRVveGu0n7HSCWJO/gjX5714LI1vcJ19drJ2/u1eStQ?=
- =?iso-8859-1?Q?BBRKZXfy3001YjT4HdVMfQuEsZDS9lLLZwRgpXu4HpPRMrPfMHTT4JU3Qo?=
- =?iso-8859-1?Q?uqY3yLeYgFkgy1+tYs5rWfIj2XTvw0/+8cb329soFUp5QU76zwL1U6X6Zw?=
- =?iso-8859-1?Q?5wArFR5iyLah+C/07BF1sGYQ31feqOXVtJ+hfUJelpswE9KtqYe+KYczMe?=
- =?iso-8859-1?Q?fRvVtS26d57XuLLAgaAvJZmLfJd2i9KqgjmuZK+whJSI7u5XQ+KI2kUKuu?=
- =?iso-8859-1?Q?6KZHrZhp98oeJWCLl6KpLmZr7cHEftygvCs62/AS99083c0EYRHj5ITwrG?=
- =?iso-8859-1?Q?XvIZL6yGkzghzP5YkiirN1vdYYI2LfKQrD8CnXCSmsSl95VBYvPpT5DJhV?=
- =?iso-8859-1?Q?Xv/ofOBAshUVNEqrqoKuw1Y0x9kPgSljE5KfJUVeiBvVE7fh+ou2W1KV6D?=
- =?iso-8859-1?Q?lvZagoHGTqhLGWPYCkOzgW+YZDGrdRw2gN2Oo+ypRcRA8AdAejq/87TSf6?=
- =?iso-8859-1?Q?S+OIQO6GEzn9XjcCnz+W3yRjB0fW6neLC/PdgH/hjDlE1oOlJtz8kxEwkY?=
- =?iso-8859-1?Q?iDawKqTmq45I8MEnZOP12CcUR1wclUXhzHEfA0qIjawzqpZt8Zn2D159N1?=
- =?iso-8859-1?Q?AwI3eKUOHRcZUo36tzkRT1eTV3mGCUkbJQj2rczQIYWr5i0NkHmg0jEj5E?=
- =?iso-8859-1?Q?//UWN7lnf4Mzys0yW633aHvcHMqHCPaAs7iv9ICYejnRN3sAY8rk9I9XJQ?=
- =?iso-8859-1?Q?QPwVfunLPN2f8GoaLIH30q7ebNbSA19ZhrAezKRyZdggmyR9ALXjtrtESl?=
- =?iso-8859-1?Q?0oya9/rk4pJRfzJPnWG3blaAD15eAujRRIMqM2R8NXZjtwwa8M78giDHfZ?=
- =?iso-8859-1?Q?6TWt811KVO9aF5OMfNnPCVVlG3506OqKCNotU7aowggfBU2sElA4tYG45l?=
- =?iso-8859-1?Q?rmMRA9JvU5haCgH2AuREW6jCckyyKNdCyLoIABCq9UJfNchOeo+mV3b44y?=
- =?iso-8859-1?Q?YnQ9j3jetHrBdm4ED1m5WUj2eyP652kHhJmINQekkv+DZ+dECoDQVnRKDB?=
- =?iso-8859-1?Q?fwHVJcjTmS7JbE5I2oqMeimD0nnUei7QQw2ch3yXL2e+U2dLV4czjF6yES?=
- =?iso-8859-1?Q?y0/maOgRAek7BD+GzDYspv1otY0RdzWTQWNJlBh+C8demnlnQkbUp2wthB?=
- =?iso-8859-1?Q?7z19/fWsSoJRl1Gx5EIEPwW8S6i1dmVaTN8bLL77qfFR+KQZg7yMDun/FO?=
- =?iso-8859-1?Q?FiCklxRCcLIMeQ9YgxfpDdJPeAyCTffFMkuXlXLzR26pr5AcMqmmN3MBXZ?=
- =?iso-8859-1?Q?df8kDjvdlFGHk3qsmPGsfHHTUXJq9Si6BPHG2g=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Z0RYklVZeKGHIj6HhN2GwY1UblDiPgE4m5bMjy9/x46EpLMh5ZGMGZ5h+lzP?=
+ =?us-ascii?Q?ebSIG8MVrFPuo0jzFOyPuRL7KcZ/kX+Dy+0FG8wwhZDDZQfzpMoT81PBGTGB?=
+ =?us-ascii?Q?fEZVZkjo1j0npCeetiRVCOHraEEi6t9+ka2sNY7zK1IcB5Bp9PyBF7wZUdwj?=
+ =?us-ascii?Q?IksGdmgFlzd9CUC3ufRrQXc2gzSqIvqpJr7i4gFBfdVC63FFTdHZMXhI+7ts?=
+ =?us-ascii?Q?op4MQTNCbiBzTkCNxGIniFjqviOsyIXpyCdeiHjZymbiXv4Pztcoj19lEzX2?=
+ =?us-ascii?Q?fWLnD4jMywd0/rmJo8CJn9tZ2/GCYCeFxnGOGBkoe3ewEMGgIzv41LW+bW2D?=
+ =?us-ascii?Q?u/uZSyKm5mNoVEnl5dZsfAZUQYByUDs+I6+dTteeVyJ+2jiypivKZ/274MtO?=
+ =?us-ascii?Q?et3PvxJeHjJE0sgi1D1t6BEp/IoIlJIbv3E1w2lSwZvvyRJjaN+nsC7fGc67?=
+ =?us-ascii?Q?vzhSVHJEJKuQZkC+oGXs/BAyVvL7fzUNZVKM5UYPFHc1+dWTcznIq1rSG8Hr?=
+ =?us-ascii?Q?XnjNPJ5dV8X0XNgPWRHFZEtavYN5FAZJfT2B0VO6160x3NzTBZpnNnV5BfnQ?=
+ =?us-ascii?Q?F3C+IcYU0p3S89Ehm/JJli959asYRzZK+guPPTQvjwaSACS/kFgZn1DXgztm?=
+ =?us-ascii?Q?Oke1MU7pC9tJmkEQxlwhH/E6XJss0smRIfhkMqRn+G/rXlEP+zGrjolCkz0K?=
+ =?us-ascii?Q?+rr6upqFpFlbhoz3n5cuemQ6o1NnIvAITAN3fD1v6UxEHNV+AiUYVxbfhH3e?=
+ =?us-ascii?Q?r1TS+WrQMgpT+e6HcxAFAgrZwnzp4cZpuCw8NTBzduDYsUI9P3/7wbKtHtNB?=
+ =?us-ascii?Q?qEWLQKux5Fdq9yGRJRAyspzrsGC2BmPfp79BGTFos/VwzKRT4oqZOvToph71?=
+ =?us-ascii?Q?QBF9BmgSW4OzglGSTnaHvl8urg37nYqUWrSTKCXwIABNl0aXyXRsHceaZ0EG?=
+ =?us-ascii?Q?wYg6pNa5qu5zkhppUP7SV63mFfZkMHa7SUbU/q7G0dEqZ7IgkZ0jrDEUvCmE?=
+ =?us-ascii?Q?iXHZ/f01BiJyidOjBrFFdva9jrb67411yq+PEB3+bA3dQqxsQnqPcouPinCu?=
+ =?us-ascii?Q?TZdUbSo8YWON/clkRNRfxM1FcnvdFzyxlIzFibp3WR7RRk2eBpwzf74H60uH?=
+ =?us-ascii?Q?ojA3ulxia6j5J1/lXB5tCw/Qe97wVciazlHZgllXFENFa3mgXUkwJzazHNt/?=
+ =?us-ascii?Q?ZfaAkB2V43zM+0WUfaif/Dnb0tFdIidl5JiRS9u8hQGtrIBxbLb6IqcqMDkE?=
+ =?us-ascii?Q?zfK+LsCVUFh/PQBZd+JGGetGOSVeBq/HNDMfxfGHiDii6RgPmPEiVn+w4PMH?=
+ =?us-ascii?Q?hECIFTVT5u/DxBSARDkdoTfiA/cLU54/tvJRNvSNbH1e3cit7Tm/grnM3j7f?=
+ =?us-ascii?Q?R8I2maOLqhu8ZN79c+8+a1XKip6SD+gzM7VqlMRLQZ9lnqPj5JBtoEJp5zt+?=
+ =?us-ascii?Q?36xVN9eoAsc=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?R7HIoG52lmmFHMuv6z9Zc6cfJotvwhSyM7ymllyXpf43nhBIAUo0ZfFvGB?=
- =?iso-8859-1?Q?Qt6oLQY9DOOc6hibBQDKsKeP9hVUkaM5y3UGquAoXooCmpsUesr98P4Zz+?=
- =?iso-8859-1?Q?ue1OIx4gotKuBydtMhtZ7l3YlYu7ke3uXcuO0Eqf0ehrmCSm69lS3R3z72?=
- =?iso-8859-1?Q?VWJYhNybMGmMlk6anEfy+BDyHOJHizIXxGoRW9bYfZm2bDaOXeTsVseW5O?=
- =?iso-8859-1?Q?7QMFYEviPkVaaBxgybx1Adgcs+JHvHNU3S1XyUoYOcQlHLqOUPKjZSSuCV?=
- =?iso-8859-1?Q?nWfIl6gzLjj7cQ3GmRJsUhYQ6QWwDRxv67Mrzeg2yXYe8p+uMEG6v622BP?=
- =?iso-8859-1?Q?VkJc1I5Ebc6x6m/rFZewt2HIGVJHqDOORjU2McHDqlUV1DMT4GJ+Nyd5MV?=
- =?iso-8859-1?Q?DpM0/0tQFkuHP9FF8kfhrxiWKrnXBF/uZAV2XTZlFmHGxu7nQaUWxgFp1u?=
- =?iso-8859-1?Q?3snzfXE9IEwebmAVzOQyyy2MxzScUz0/QaBeqbANIwQUtHjcG6ySOQLvNN?=
- =?iso-8859-1?Q?TTngU97A4rTL1+USYbPuiEldQOLAO8B79qRg13icJ54ECXtc269xerZ4MJ?=
- =?iso-8859-1?Q?9DZWLNhlZUOxbBa9ckedjZLyb4C0a48TekKB5UN1BCKgKPVHZ3gVdAkpmy?=
- =?iso-8859-1?Q?xEi4UibW9Kz8vJQkp0vt/3qpFz86AWxWVlFzMohaVKxQ0h1SEPK/ydofuH?=
- =?iso-8859-1?Q?c06iFTcyYnYX/Yjx18gdGSOzUXwQbfPPMX58SD0SPHjzTXL8Q3TzlSF7FB?=
- =?iso-8859-1?Q?ogf14Upk27cwqk4Tn3ya8ijDd93q812nfzLmROhz/PtkYh75NUByDcZece?=
- =?iso-8859-1?Q?br0Uju3VgPVL66NqU/ZJLbz8CmqxVbc8ljUDcD7n163gE/l+gZXqfL7XeF?=
- =?iso-8859-1?Q?54n9jUY+HcUU+K2sOXPJhqT+AMVfDU0VmLHkc1ycpcj1EOLKqRhkVC/uki?=
- =?iso-8859-1?Q?XTnYv4TmqYnnyy3b3gZGtdiQwexfykAjsE0KDFhzndGsGAfGXZICCrc33g?=
- =?iso-8859-1?Q?mw/ilDL+iZ7dv1kSQfTvGzeBeri99PmYTm2uTYJNsGgfZfbowroUV6an1J?=
- =?iso-8859-1?Q?CunA6ozCr4GkfaCW5k/QkXqTMecg8wXbTIf4r+Ly1fuJXfhRJ1Oq4ZSMsf?=
- =?iso-8859-1?Q?tuhfeErvbxsNbJK2GreJqmrJGughRPGtYaAtpV/KSw3J1dQrsZW33otgm+?=
- =?iso-8859-1?Q?iU8FIMsKKxJFv9TYEDLYP3bXhrlKEMqauls63bHuMhdQh5qikknfAXs++R?=
- =?iso-8859-1?Q?wFwuPiew0C1KMOjkKMP1+VZh1Vix0mn8NDHLMAxhBzu7cetNrdTudQa5Zg?=
- =?iso-8859-1?Q?1YobeByAIYzIr9lN6m2i0/sP+oIGCqZGgizwz7gd7sKuLj8IaPZ2747bDl?=
- =?iso-8859-1?Q?ZutMPDEh5nPhox8bCMNPUmIPmBySMG+eFJrlC2bGPC5oQJ/vkDLkhVXSyJ?=
- =?iso-8859-1?Q?w5TeyDZ1YcBO9AjoBH3Z/1Ijj3Kmfz6CD9tqEU3hknYAaG98kVTZ3RfJ5N?=
- =?iso-8859-1?Q?unfdg4tb8/8T/sHaNBo9rBXHyy9q8G0LjH4c1G2etmn6IVnIEVCeKs5sjM?=
- =?iso-8859-1?Q?liBJG7m0fv615mUgZR8ZoVHftj/3VAoGNgUAqzo25G1ifbRnHhX29wWryC?=
- =?iso-8859-1?Q?yiUokz4Y9BHhxdgKpLrk0denX5ivHq/5MDqQJc5ZEEVo2oXDEVlEnfbQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f16d421c-ea1c-4fac-3246-08ddce61f782
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YAZ3mg3KntOgZLXTN9wFimwwXiLM2kuzip2ObiDGvl7GMNgwP0YeGLuEShGK?=
+ =?us-ascii?Q?wrhpxI9DjTXnMZO/rNCumHKyDeyN2YFJxjwQVWrlnIANBq82DAfltUkBQOpT?=
+ =?us-ascii?Q?+tKsyIifUN83nF5Wt/13GZDOtfaKVBh5YVbSdJ2IzkKOxwApY/Y4xecnocfg?=
+ =?us-ascii?Q?KK12MY8va1cbllIXoES9M7eW0c/1lAt1h2/3XiiCNwscrI48PguoWz5jRnwY?=
+ =?us-ascii?Q?lOZObHvZAdnY55sEpeD5PyGg+eaCrhQWBSto1+JcrHmVQbf4J3c4vXBSroNp?=
+ =?us-ascii?Q?tUjr4KyKycWwaFhmrdPyd2+fk6cyge1Yx0iokv5R9MBkD8dIHwojCjiWSbJU?=
+ =?us-ascii?Q?pxkIR8kT+L9HBIlvc7i8yaYlW6lWynkP0WVf3UrRq37pfHOGo8ifvjB1fGh4?=
+ =?us-ascii?Q?Qs7jionsNTVNoU3gXCn4mmm2bAzsv6YNnI8Z+2CriQruHrV80bnz5/58ZA2/?=
+ =?us-ascii?Q?4NMLk/47G9xfMyKoYB/uc+P+2O3ODyt1ttD9AJb9M39wWzHISTJfVndCqJNR?=
+ =?us-ascii?Q?p8afn9ahIWfbRYPvGSODLpfbWcdhmypBAJQFAjdfnSxNj2qKtVt2dJsZR+rt?=
+ =?us-ascii?Q?awJpJIp+M5HotZDz3vCe8NQE1hN3V+YljfAX7yc+qMvjynfrgsoCtn/ONDhm?=
+ =?us-ascii?Q?s9Z/jBXoVB3QnOuO4z0sGrt4dwPzkFqSNAJBiLcDgOqtf5CPJ+5FRJfcDnqj?=
+ =?us-ascii?Q?7rjAwT+Tezidw1qOH3PO9bpBUzq/1kilivbWShdkbHCjRjGv1dVSf7bwEQ6L?=
+ =?us-ascii?Q?82OTNSU/Y/GKxnIGr9vSQdgiQJZvyuqyMPBB/9FijWipwkPcFDdiR4N1U7OO?=
+ =?us-ascii?Q?ZHkaVVq/sXTbQL4a/CtGgiHZNLl3s6i74F2no6ytqN/PkI8Rqc2XI1602GES?=
+ =?us-ascii?Q?iMAxplYLt60+/73J+AAt/KJjQVhzfOpKY0tmfKHtNz6rhaiH2IA8AbI0uMse?=
+ =?us-ascii?Q?zH+hfEFyyzxKc7MDsMzgO0Y8/Ti4dPu7CYbhH+HL0gDDpgC7I/ZH9xvkuYyf?=
+ =?us-ascii?Q?jGZvgBBSU9vgYh2CYzFjxA8yN19TBSZyzFWtlKpj+HCY9gntbxjyl3XmLdBZ?=
+ =?us-ascii?Q?/Twth+l+7ZTZgvRpzb2Z89Sr7rckqS3lb5VDMPqTPfemqbdlJrDM6FVYIqbc?=
+ =?us-ascii?Q?PkozEGVMJc2SaxIxrmek9pNqZs8OjFmtNfkN68oqJbTIAzy+beD/3QM7N5Pa?=
+ =?us-ascii?Q?eT1w1A3t25+m96MS97C1QqG3AvemfVEG+kSHSW+RpTl0dYGdEKNADWbjkhmX?=
+ =?us-ascii?Q?eSgNv9td+VgtoMYJdvTS7vKu4uKAO6PEPPHx0Jvf3AAAgaoqgIUmyJCjkYCX?=
+ =?us-ascii?Q?QkJTkyNWMhzjjPp4Sw8dWxzC2ZJbu4dgJ9MKZZ9phuULFsMMbpFLA5miUrRX?=
+ =?us-ascii?Q?co6/BcseUgEAaXa+oz17y/xq4u1tPh3AJz9Ef25m9SoaU+TQgFgzfByxf2zg?=
+ =?us-ascii?Q?m/FwZG8ZWoLU1s//7DwOeeUzJAEa0rduYGGpxa9O0G7JJz6Ix3gxEIcDRH4k?=
+ =?us-ascii?Q?gEpwuKbZGvg0AjqRZRCgx9rK1osMpnvdJakyINmptcZSvijJivBFllmy30UT?=
+ =?us-ascii?Q?rg+RbM8JPrI4Zbg6s6AvQoIeTaJO+GVQz9NbxlU4DuHEdAsZtQ+W38i7eVit?=
+ =?us-ascii?Q?qw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c19e49f5-846d-4af6-e9e3-08ddce628960
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 05:37:11.7427 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 05:41:16.4553 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 52CNv70PJmhwFdRRuHOnc9NT0+WYjY9rzV8qMCsIvSI5P/zpPn8Ya4UQ3s46eJ/pj8uApHJQIiunSiEP738v+Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: yZGWuShbj/AXJcC0Zij3WnqSguaalfH6pdRtk+9/Zi0y7jm2WnYx6h8y1sn16qALwKitc/+3KFV/4DhssiUOeQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6301
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -180,362 +178,300 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 22, 2025 at 07:05:26PM +0530, Himal Prasad Ghimiray wrote:
-> Introduce the DRM_IOCTL_XE_VM_QUERY_MEMORY_RANGE_ATTRS ioctl to allow
-> userspace to query memory attributes of VMAs within a user specified
-> virtual address range.
+On Tue, Jul 22, 2025 at 07:05:23PM +0530, Himal Prasad Ghimiray wrote:
+> Restore default memory attributes for VMAs during garbage collection
+> if they were modified by madvise. Reuse existing VMA if fully overlapping;
+> otherwise, allocate a new mirror VMA.
 > 
-> Userspace first calls the ioctl with num_mem_ranges = 0,
-> sizeof_mem_ranges_attr = 0 and vector_of_vma_mem_attr = NULL to retrieve
-> the number of memory ranges (vmas) and size of each memory range attribute.
-> Then, it allocates a buffer of that size and calls the ioctl again to fill
-> the buffer with memory range attributes.
-> 
-> This two-step interface allows userspace to first query the required
-> buffer size, then retrieve detailed attributes efficiently.
-> 
-> v2 (Matthew Brost)
-> - Use same ioctl to overload functionality
-> 
-> v3
-> - Add kernel-doc
-> 
-> v4
-> - Make uapi future proof by passing struct size (Matthew Brost)
-> - make lock interruptible (Matthew Brost)
-> - set reserved bits to zero (Matthew Brost)
-> - s/__copy_to_user/copy_to_user (Matthew Brost)
-> - Avod using VMA term in uapi (Thomas)
-> - xe_vm_put(vm) is missing (Shuicheng)
-> 
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
 > Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_device.c |   2 +
->  drivers/gpu/drm/xe/xe_vm.c     | 101 ++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_vm.h     |   2 +-
->  include/uapi/drm/xe_drm.h      | 137 +++++++++++++++++++++++++++++++++
->  4 files changed, 241 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/xe/xe_svm.c |  34 +++++++++
+>  drivers/gpu/drm/xe/xe_vm.c  | 140 +++++++++++++++++++++++++-----------
+>  drivers/gpu/drm/xe/xe_vm.h  |   2 +
+>  3 files changed, 135 insertions(+), 41 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index b02c4ae0fdbf..1e77570db531 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -202,6 +202,8 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
->  			  DRM_RENDER_ALLOW),
->  	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
->  	DRM_IOCTL_DEF_DRV(XE_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
-> +	DRM_IOCTL_DEF_DRV(XE_VM_QUERY_MEM_RANGE_ATTRS, xe_vm_query_vmas_attrs_ioctl,
-> +			  DRM_RENDER_ALLOW),
->  };
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> index ba1233d0d5a2..79709dc066b9 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -255,7 +255,18 @@ static int __xe_svm_garbage_collector(struct xe_vm *vm,
+>  static int xe_svm_garbage_collector(struct xe_vm *vm)
+>  {
+>  	struct xe_svm_range *range;
+> +	struct xe_vma *vma;
+> +	u64 range_start;
+> +	u64 range_size;
+> +	u64 range_end;
+>  	int err;
+> +	struct xe_vma_mem_attr default_attr = {
+> +		.preferred_loc = {
+> +			.devmem_fd = DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE,
+> +			.migration_policy = DRM_XE_MIGRATE_ALL_PAGES,
+> +		},
+> +		.atomic_access = DRM_XE_ATOMIC_UNDEFINED,
+> +	};
 >  
->  static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index bee849167c0d..e54ab4dce8df 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2297,6 +2297,107 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
->  	return err;
->  }
+>  	lockdep_assert_held_write(&vm->lock);
 >  
-> +static int xe_vm_query_vmas(struct xe_vm *vm, u64 start, u64 end)
-> +{
-> +	struct drm_gpuva *gpuva;
-> +	u32 num_vmas = 0;
+> @@ -270,6 +281,12 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
+>  		if (!range)
+>  			break;
+>  
+> +		range_start = xe_svm_range_start(range);
+> +		range_size = xe_svm_range_size(range);
+> +		range_end = xe_svm_range_end(range);
 > +
-> +	lockdep_assert_held(&vm->lock);
-> +	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end)
-> +		num_vmas++;
+> +		vma = xe_vm_find_vma_by_addr(vm, xe_svm_range_start(range));
 > +
-> +	return num_vmas;
-> +}
+>  		list_del(&range->garbage_collector_link);
+>  		spin_unlock(&vm->svm.garbage_collector.lock);
+>  
+> @@ -282,7 +299,24 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
+>  			return err;
+>  		}
+>  
+> +		if (!xe_vma_has_default_mem_attrs(vma)) {
+> +			vm_dbg(&vm->xe->drm, "Existing VMA start=0x%016llx, vma_end=0x%016llx",
+> +			       xe_vma_start(vma), xe_vma_end(vma));
 > +
-> +static int get_mem_attrs(struct xe_vm *vm, u32 *num_vmas, u64 start,
-> +			 u64 end, struct drm_xe_mem_range_attr *attrs)
-> +{
-> +	struct drm_gpuva *gpuva;
-> +	int i = 0;
-> +
-> +	lockdep_assert_held(&vm->lock);
-> +
-> +	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
-> +		struct xe_vma *vma = gpuva_to_vma(gpuva);
-> +
-> +		if (i == *num_vmas)
-> +			return -ENOSPC;
-> +
-> +		attrs[i].start = xe_vma_start(vma);
-> +		attrs[i].end = xe_vma_end(vma);
-> +		attrs[i].atomic.val = vma->attr.atomic_access;
-> +		attrs[i].pat_index.val = vma->attr.pat_index;
-> +		attrs[i].preferred_mem_loc.devmem_fd = vma->attr.preferred_loc.devmem_fd;
-> +		attrs[i].preferred_mem_loc.migration_policy =
-> +		vma->attr.preferred_loc.migration_policy;
-> +
-> +		i++;
-> +	}
-> +
-> +	if (i <  (*num_vmas - 1))
-> +		*num_vmas = i;
+> +			if (xe_vma_start(vma) == range_start && xe_vma_end(vma) == range_end) {
+> +				default_attr.pat_index = vma->attr.default_pat_index;
+> +				default_attr.default_pat_index  = vma->attr.default_pat_index;
+> +				vma->attr = default_attr;
+> +			} else {
+> +				vm_dbg(&vm->xe->drm, "Split VMA start=0x%016llx, vma_end=0x%016llx",
+> +				       range_start, range_end);
+> +				err = xe_vm_alloc_cpu_addr_mirror_vma(vm, range_start, range_size);
 
-Shouldn't you just set this without a condition?
-
-> +	return 0;
-> +}
-> +
-> +int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> +{
-> +	struct xe_device *xe = to_xe_device(dev);
-> +	struct xe_file *xef = to_xe_file(file);
-> +	struct drm_xe_mem_range_attr *mem_attrs;
-> +	struct drm_xe_vm_query_mem_range_attr *args = data;
-> +	u64 __user *attrs_user = u64_to_user_ptr(args->vector_of_mem_attr);
-> +	struct xe_vm *vm;
-> +	int err = 0;
-> +
-> +	if (XE_IOCTL_DBG(xe,
-> +			 ((args->num_mem_ranges == 0 &&
-> +			  (attrs_user || args->sizeof_mem_range_attr != 0)) ||
-> +			 (args->num_mem_ranges > 0 &&
-> +			  (!attrs_user || args->sizeof_mem_range_attr == 0)))))
-
-sizeof_mem_range_attr != sizeof(struct drm_xe_mem_range_attr)
-
-Looks good aside from these few nits.
+I missed this corner, if you call from the fault handler the VMA it
+looked up originally could be gone, if you modify the VMAs you need to
+signal the fault handler to lookup the VMA again.
 
 Matt
 
-> +		return -EINVAL;
+> +				if (err)
+> +					return err;
+> +			}
+> +		}
+>  		spin_lock(&vm->svm.garbage_collector.lock);
 > +
-> +	vm = xe_vm_lookup(xef, args->vm_id);
-> +	if (XE_IOCTL_DBG(xe, !vm))
-> +		return -EINVAL;
+>  	}
+>  	spin_unlock(&vm->svm.garbage_collector.lock);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index d3f08bf9a3ee..003c8209f8bd 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -4254,34 +4254,24 @@ bool xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool
+>  	}
+>  }
+>  
+> -/**
+> - * xe_vm_alloc_madvise_vma - Allocate VMA's with madvise ops
+> - * @vm: Pointer to the xe_vm structure
+> - * @start: Starting input address
+> - * @range: Size of the input range
+> - *
+> - * This function splits existing vma to create new vma for user provided input range
+> - *
+> - *  Return: 0 if success
+> - */
+> -int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
+> +static int xe_vm_alloc_vma(struct xe_vm *vm,
+> +			   u64 start, u64 range,
+> +			   enum drm_gpuvm_sm_map_ops_flags flags)
+>  {
+>  	struct xe_vma_ops vops;
+>  	struct drm_gpuva_ops *ops = NULL;
+>  	struct drm_gpuva_op *__op;
+>  	bool is_cpu_addr_mirror = false;
+>  	bool remap_op = false;
+> +	bool is_madvise = flags == DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE;
+>  	struct xe_vma_mem_attr tmp_attr;
+> +	u16 default_pat;
+>  	int err;
+>  
+> -	vm_dbg(&vm->xe->drm, "MADVISE IN: addr=0x%016llx, size=0x%016llx", start, range);
+> -
+>  	lockdep_assert_held_write(&vm->lock);
+>  
+> -	vm_dbg(&vm->xe->drm, "MADVISE_OPS_CREATE: addr=0x%016llx, size=0x%016llx", start, range);
+>  	ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, start, range,
+> -					  DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE,
+> -					  NULL, start);
+> +					  flags, NULL, start);
+>  	if (IS_ERR(ops))
+>  		return PTR_ERR(ops);
+>  
+> @@ -4292,33 +4282,56 @@ int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
+>  
+>  	drm_gpuva_for_each_op(__op, ops) {
+>  		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
+> +		struct xe_vma *vma = NULL;
+>  
+> -		if (__op->op == DRM_GPUVA_OP_REMAP) {
+> -			xe_assert(vm->xe, !remap_op);
+> -			remap_op = true;
+> +		if (!is_madvise) {
+> +			if (__op->op == DRM_GPUVA_OP_UNMAP) {
+> +				vma = gpuva_to_vma(op->base.unmap.va);
+> +				XE_WARN_ON(!xe_vma_has_default_mem_attrs(vma));
+> +				default_pat = vma->attr.default_pat_index;
+> +			}
+>  
+> -			if (xe_vma_is_cpu_addr_mirror(gpuva_to_vma(op->base.remap.unmap->va)))
+> -				is_cpu_addr_mirror = true;
+> -			else
+> -				is_cpu_addr_mirror = false;
+> -		}
+> +			if (__op->op == DRM_GPUVA_OP_REMAP) {
+> +				vma = gpuva_to_vma(op->base.remap.unmap->va);
+> +				default_pat = vma->attr.default_pat_index;
+> +			}
+>  
+> -		if (__op->op == DRM_GPUVA_OP_MAP) {
+> -			xe_assert(vm->xe, remap_op);
+> -			remap_op = false;
+> +			if (__op->op == DRM_GPUVA_OP_MAP) {
+> +				op->map.is_cpu_addr_mirror = true;
+> +				op->map.pat_index = default_pat;
+> +			}
+> +		} else {
+> +			if (__op->op == DRM_GPUVA_OP_REMAP) {
+> +				vma = gpuva_to_vma(op->base.remap.unmap->va);
+> +				xe_assert(vm->xe, !remap_op);
+> +				remap_op = true;
+>  
+> -			/* In case of madvise ops DRM_GPUVA_OP_MAP is always after
+> -			 * DRM_GPUVA_OP_REMAP, so ensure we assign op->map.is_cpu_addr_mirror true
+> -			 * if REMAP is for xe_vma_is_cpu_addr_mirror vma
+> -			 */
+> -			op->map.is_cpu_addr_mirror = is_cpu_addr_mirror;
+> -		}
+> +				if (xe_vma_is_cpu_addr_mirror(vma))
+> +					is_cpu_addr_mirror = true;
+> +				else
+> +					is_cpu_addr_mirror = false;
+> +			}
+>  
+> +			if (__op->op == DRM_GPUVA_OP_MAP) {
+> +				xe_assert(vm->xe, remap_op);
+> +				remap_op = false;
+> +				/*
+> +				 * In case of madvise ops DRM_GPUVA_OP_MAP is
+> +				 * always after DRM_GPUVA_OP_REMAP, so ensure
+> +				 * we assign op->map.is_cpu_addr_mirror true
+> +				 * if REMAP is for xe_vma_is_cpu_addr_mirror vma
+> +				 */
+> +				op->map.is_cpu_addr_mirror = is_cpu_addr_mirror;
+> +			}
+> +		}
+>  		print_op(vm->xe, __op);
+>  	}
+>  
+>  	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
+> -	vops.flags |= XE_VMA_OPS_FLAG_MADVISE;
 > +
-> +	err = down_read_interruptible(&vm->lock);
-> +	if (err)
-> +		goto put_vm;
+> +	if (is_madvise)
+> +		vops.flags |= XE_VMA_OPS_FLAG_MADVISE;
 > +
-> +	attrs_user = u64_to_user_ptr(args->vector_of_mem_attr);
+>  	err = vm_bind_ioctl_ops_parse(vm, ops, &vops);
+>  	if (err)
+>  		goto unwind_ops;
+> @@ -4330,15 +4343,20 @@ int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
+>  		struct xe_vma *vma;
+>  
+>  		if (__op->op == DRM_GPUVA_OP_UNMAP) {
+> -			/* There should be no unmap */
+> -			XE_WARN_ON("UNEXPECTED UNMAP");
+> -			xe_vma_destroy(gpuva_to_vma(op->base.unmap.va), NULL);
+> +			vma = gpuva_to_vma(op->base.unmap.va);
+> +			/* There should be no unmap for madvise */
+> +			if (is_madvise)
+> +				XE_WARN_ON("UNEXPECTED UNMAP");
 > +
-> +	if (args->num_mem_ranges == 0 && !attrs_user) {
-> +		args->num_mem_ranges = xe_vm_query_vmas(vm, args->start, args->start + args->range);
-> +		args->sizeof_mem_range_attr = sizeof(struct drm_xe_mem_range_attr);
-> +		goto unlock_vm;
-> +	}
+> +			xe_vma_destroy(vma, NULL);
+>  		} else if (__op->op == DRM_GPUVA_OP_REMAP) {
+>  			vma = gpuva_to_vma(op->base.remap.unmap->va);
+> -			/* Store attributes for REMAP UNMAPPED VMA, so they can be assigned
+> -			 * to newly MAP created vma.
+> +			/* In case of madvise ops Store attributes for REMAP UNMAPPED
+> +			 * VMA, so they can be assigned to newly MAP created vma.
+>  			 */
+> -			tmp_attr = vma->attr;
+> +			if (is_madvise)
+> +				tmp_attr = vma->attr;
 > +
-> +	mem_attrs = kvmalloc_array(args->num_mem_ranges, args->sizeof_mem_range_attr,
-> +				   GFP_KERNEL | __GFP_ACCOUNT |
-> +				   __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
-> +	if (!mem_attrs) {
-> +		err = args->num_mem_ranges > 1 ? -ENOBUFS : -ENOMEM;
-> +		goto unlock_vm;
-> +	}
+>  			xe_vma_destroy(gpuva_to_vma(op->base.remap.unmap->va), NULL);
+>  		} else if (__op->op == DRM_GPUVA_OP_MAP) {
+>  			vma = op->map.vma;
+> @@ -4346,7 +4364,8 @@ int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
+>  			 * Therefore temp_attr will always have sane values, making it safe to
+>  			 * copy them to new vma.
+>  			 */
+> -			vma->attr = tmp_attr;
+> +			if (is_madvise)
+> +				vma->attr = tmp_attr;
+>  		}
+>  	}
+>  
+> @@ -4360,3 +4379,42 @@ int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
+>  	drm_gpuva_ops_free(&vm->gpuvm, ops);
+>  	return err;
+>  }
 > +
-> +	memset(mem_attrs, 0, args->num_mem_ranges * args->sizeof_mem_range_attr);
-> +	err = get_mem_attrs(vm, &args->num_mem_ranges, args->start,
-> +			    args->start + args->range, mem_attrs);
-> +	if (err)
-> +		goto free_mem_attrs;
+> +/**
+> + * xe_vm_alloc_madvise_vma - Allocate VMA's with madvise ops
+> + * @vm: Pointer to the xe_vm structure
+> + * @start: Starting input address
+> + * @range: Size of the input range
+> + *
+> + * This function splits existing vma to create new vma for user provided input range
+> + *
+> + * Return: 0 if success
+> + */
+> +int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
+> +{
+> +	lockdep_assert_held_write(&vm->lock);
 > +
-> +	err = copy_to_user(attrs_user, mem_attrs,
-> +			   args->sizeof_mem_range_attr * args->num_mem_ranges);
+> +	vm_dbg(&vm->xe->drm, "MADVISE_OPS_CREATE: addr=0x%016llx, size=0x%016llx", start, range);
 > +
-> +free_mem_attrs:
-> +	kvfree(mem_attrs);
-> +unlock_vm:
-> +	up_read(&vm->lock);
-> +put_vm:
-> +	xe_vm_put(vm);
-> +	return err;
+> +	return xe_vm_alloc_vma(vm, start, range, DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE);
 > +}
 > +
->  static bool vma_matches(struct xe_vma *vma, u64 page_addr)
->  {
->  	if (page_addr > xe_vma_end(vma) - 1 ||
+> +/**
+> + * xe_vm_alloc_cpu_addr_mirror_vma - Allocate CPU addr mirror vma
+> + * @vm: Pointer to the xe_vm structure
+> + * @start: Starting input address
+> + * @range: Size of the input range
+> + *
+> + * This function splits/merges existing vma to create new vma for user provided input range
+> + *
+> + * Return: 0 if success
+> + */
+> +int xe_vm_alloc_cpu_addr_mirror_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
+> +{
+> +	lockdep_assert_held_write(&vm->lock);
+> +
+> +	vm_dbg(&vm->xe->drm, "CPU_ADDR_MIRROR_VMA_OPS_CREATE: addr=0x%016llx, size=0x%016llx",
+> +	       start, range);
+> +
+> +	return xe_vm_alloc_vma(vm, start, range, DRM_GPUVM_SM_MAP_NOT_MADVISE);
+> +}
 > diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> index f7b9ad83685a..6f25d6820991 100644
+> index a4db843de540..f7b9ad83685a 100644
 > --- a/drivers/gpu/drm/xe/xe_vm.h
 > +++ b/drivers/gpu/drm/xe/xe_vm.h
-> @@ -199,7 +199,7 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
->  			struct drm_file *file);
->  int xe_vm_bind_ioctl(struct drm_device *dev, void *data,
->  		     struct drm_file *file);
-> -
-> +int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
->  void xe_vm_close_and_put(struct xe_vm *vm);
+> @@ -177,6 +177,8 @@ bool xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool
 >  
->  static inline bool xe_vm_in_fault_mode(struct xe_vm *vm)
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 8f1d48664424..ee328bcb8bfa 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -82,6 +82,7 @@ extern "C" {
->   *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
->   *  - &DRM_IOCTL_XE_OBSERVATION
->   *  - &DRM_IOCTL_XE_MADVISE
-> + *  - &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
->   */
+>  int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
 >  
->  /*
-> @@ -104,6 +105,7 @@ extern "C" {
->  #define DRM_XE_WAIT_USER_FENCE		0x0a
->  #define DRM_XE_OBSERVATION		0x0b
->  #define DRM_XE_MADVISE			0x0c
-> +#define DRM_XE_VM_QUERY_MEM_RANGE_ATTRS	0x0d
->  
->  /* Must be kept compact -- no holes */
->  
-> @@ -120,6 +122,7 @@ extern "C" {
->  #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
->  #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
->  #define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
-> +#define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
->  
+> +int xe_vm_alloc_cpu_addr_mirror_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
+> +
 >  /**
->   * DOC: Xe IOCTL Extensions
-> @@ -2110,6 +2113,140 @@ struct drm_xe_madvise {
->  	__u64 reserved[2];
->  };
->  
-> +/**
-> + * struct drm_xe_mem_range_attr - Output of &DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS
-> + *
-> + * This structure is provided by userspace and filled by KMD in response to the
-> + * DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS ioctl. It describes memory attributes of
-> + * a memory ranges within a user specified address range in a VM.
-> + *
-> + * The structure includes information such as atomic access policy,
-> + * page attribute table (PAT) index, and preferred memory location.
-> + * Userspace allocates an array of these structures and passes a pointer to the
-> + * ioctl to retrieve attributes for each memory ranges
-> + *
-> + * @extensions: Pointer to the first extension struct, if any
-> + * @start: Start address of the memory range
-> + * @end: End address of the virtual memory range
-> + *
-> + */
-> +struct drm_xe_mem_range_attr {
-> +	 /** @extensions: Pointer to the first extension struct, if any */
-> +	__u64 extensions;
-> +
-> +	/** @start: start of the memory range */
-> +	__u64 start;
-> +
-> +	/** @end: end of the memory range */
-> +	__u64 end;
-> +
-> +	/** @preferred_mem_loc: preferred memory location */
-> +	struct {
-> +		/** @preferred_mem_loc.devmem_fd: fd for preferred loc */
-> +		__u32 devmem_fd;
-> +
-> +		/** @preferred_mem_loc.migration_policy: Page migration policy */
-> +		__u32 migration_policy;
-> +	} preferred_mem_loc;
-> +
-> +	struct {
-> +		/** @atomic.val: atomic attribute */
-> +		__u32 val;
-> +
-> +		/** @atomic.reserved: Reserved */
-> +		__u32 reserved;
-> +	} atomic;
-> +
-> +	struct {
-> +		/** @pat_index.val: PAT index */
-> +		__u32 val;
-> +
-> +		/** @pat_index.reserved: Reserved */
-> +		__u32 reserved;
-> +	} pat_index;
-> +
-> +	/** @reserved: Reserved */
-> +	__u64 reserved[2];
-> +};
-> +
-> +/**
-> + * struct drm_xe_vm_query_mem_range_attr - Input of &DRM_IOCTL_XE_VM_QUERY_MEM_ATTRIBUTES
-> + *
-> + * This structure is used to query memory attributes of memory regions
-> + * within a user specified address range in a VM. It provides detailed
-> + * information about each memory range, including atomic access policy,
-> + * page attribute table (PAT) index, and preferred memory location.
-> + *
-> + * Userspace first calls the ioctl with @num_mem_ranges = 0,
-> + * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL to retrieve
-> + * the number of memory regions and size of each memory range attribute.
-> + * Then, it allocates a buffer of that size and calls the ioctl again to fill
-> + * the buffer with memory range attributes.
-> + *
-> + * If second call fails with -ENOSPC, it means memory ranges changed between
-> + * first call and now, retry IOCTL again with @num_mem_ranges = 0,
-> + * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL followed by
-> + * Second ioctl call.
-> + *
-> + * Example:
-> + *
-> + * .. code-block:: C
-> + *    struct drm_xe_vm_query_mem_range_attr query = {
-> + *         .vm_id = vm_id,
-> + *         .start = 0x100000,
-> + *         .range = 0x2000,
-> + *     };
-> + *
-> + *    // First ioctl call to get num of mem regions and sizeof each attribute
-> + *    ioctl(fd, DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS, &query);
-> + *
-> + *    // Allocate buffer for the memory region attributes
-> + *    void *ptr = malloc(query.num_mem_ranges * query.sizeof_mem_range_attr);
-> + *
-> + *    query.vector_of_mem_attr = (uintptr_t)ptr;
-> + *
-> + *    // Second ioctl call to actually fill the memory attributes
-> + *    ioctl(fd, DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS, &query);
-> + *
-> + *    // Iterate over the returned memory region attributes
-> + *    for (unsigned int i = 0; i < query.num_mem_ranges; ++i) {
-> + *       struct drm_xe_mem_range_attr *attr = (struct drm_xe_mem_range_attr *)ptr;
-> + *
-> + *       // Do something with attr
-> + *
-> + *       // Move pointer by one entry
-> + *       ptr += query.sizeof_mem_range_attr;
-> + *     }
-> + *
-> + *    free(ptr);
-> + */
-> +struct drm_xe_vm_query_mem_range_attr {
-> +	/** @extensions: Pointer to the first extension struct, if any */
-> +	__u64 extensions;
-> +
-> +	/** @vm_id: vm_id of the virtual range */
-> +	__u32 vm_id;
-> +
-> +	/** @num_mem_ranges: number of mem_ranges in range */
-> +	__u32 num_mem_ranges;
-> +
-> +	/** @start: start of the virtual address range */
-> +	__u64 start;
-> +
-> +	/** @range: size of the virtual address range */
-> +	__u64 range;
-> +
-> +	/** @sizeof_mem_range_attr: size of struct drm_xe_mem_range_attr */
-> +	__u64 sizeof_mem_range_attr;
-> +
-> +	/** @vector_of_ops: userptr to array of struct drm_xe_mem_range_attr */
-> +	__u64 vector_of_mem_attr;
-> +
-> +	/** @reserved: Reserved */
-> +	__u64 reserved[2];
-> +
-> +};
-> +
->  #if defined(__cplusplus)
->  }
->  #endif
+>   * to_userptr_vma() - Return a pointer to an embedding userptr vma
+>   * @vma: Pointer to the embedded struct xe_vma
 > -- 
 > 2.34.1
 > 
