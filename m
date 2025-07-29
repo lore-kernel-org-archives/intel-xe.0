@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F09EFC83F26
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 11:11:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 905EDC83F26
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Jul 2025 11:17:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1D1F10E061;
-	Tue, 29 Jul 2025 11:11:40 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E151110E061;
- Tue, 29 Jul 2025 11:11:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8208778035240126205=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38D7B10E611;
+	Tue, 29 Jul 2025 11:17:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jd207dVo";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8E2210E611;
+ Tue, 29 Jul 2025 11:17:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753787836; x=1785323836;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=CvXySDcjF70Danwe6yImWJTF/wrOQuYYCk6zq8D31nA=;
+ b=jd207dVo8zPbtnOPNmoCJacdeziljDqf8qr/+jbCqKhChx14uEUTAzCV
+ 5ahqhwpGDx6Cw7lTVYWmZifCE4JgJx/9kzNDeyiZCUa8vpFVNz7g8UiHB
+ pIPTTmhhl3y3e28xoJY61d1qkozckwJDSDlQ2R6c8c4yVxxvEkHjNIr93
+ +B91jATgnSa+38W0uer9HkZi+6hKK/y8um0Rr77zIIMrpnGKX7xSK+Nxs
+ XJodW6JjF+9hdmwpSAvWiT2cUsWxOMr860DsibOLPbhHSNOb2+N9oS9Ly
+ xtPr4tME1vesDhPNAaR2M+1zitGo6O2N6QO3ZI8tBY/niB1TwcDfKQvQI Q==;
+X-CSE-ConnectionGUID: 2MsYqWa5S4aXL5gZuoaQMA==
+X-CSE-MsgGUID: 6m5E2B1cSU+PWN6wctAM7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="66324323"
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="66324323"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2025 04:17:16 -0700
+X-CSE-ConnectionGUID: 5sXjgJ/UQd6XfIexaPgGUA==
+X-CSE-MsgGUID: v6n030CSRiWLsYseSt3w0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="168082015"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.22])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2025 04:17:13 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/2] drm/i915: dig port and connector cleanups
+Date: Tue, 29 Jul 2025 14:17:07 +0300
+Message-Id: <cover.1753787803.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_use_drm-=3Edebu?=
- =?utf-8?q?gfs=5Froot_when_creating_debugfs_files_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 29 Jul 2025 11:11:39 -0000
-Message-ID: <175378749991.196435.7372958992217781607@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <cover.1753782998.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1753782998.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8208778035240126205==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+Jani Nikula (2):
+  drm/i915/display: add intel_dig_port_alloc()
+  drm/i915/connector: make intel_connector_init() static
 
-Series: drm/i915: use drm->debugfs_root when creating debugfs files (rev2)
-URL   : https://patchwork.freedesktop.org/series/150106/
-State : success
+ drivers/gpu/drm/i915/display/g4x_dp.c          |  7 +------
+ drivers/gpu/drm/i915/display/g4x_hdmi.c        |  9 ++-------
+ drivers/gpu/drm/i915/display/intel_connector.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_connector.h |  1 -
+ drivers/gpu/drm/i915/display/intel_ddi.c       |  8 +-------
+ drivers/gpu/drm/i915/display/intel_encoder.c   | 18 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_encoder.h   |  3 +++
+ 7 files changed, 26 insertions(+), 22 deletions(-)
 
-== Summary ==
+-- 
+2.39.5
 
-CI Bug Log - changes from xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4_BAT -> xe-pw-150106v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 7)
-------------------------------
-
-  Missing    (2): bat-pvc-2 bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4 -> xe-pw-150106v2
-
-  IGT_8477: 3e5ec9d06ce17d6e135901bda13957dc31ae4bf4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4: 23f7b89faeb0f3aed0ea60022847ac24339bdea4
-  xe-pw-150106v2: 150106v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150106v2/index.html
-
---===============8208778035240126205==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: use drm-&gt;debugfs_root when creating debugfs files (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150106/">https://patchwork.freedesktop.org/series/150106/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150106v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150106v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4_BAT -&gt; xe-pw-150106v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 7)</h2>
-<p>Missing    (2): bat-pvc-2 bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4 -&gt; xe-pw-150106v2</li>
-</ul>
-<p>IGT_8477: 3e5ec9d06ce17d6e135901bda13957dc31ae4bf4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3482-23f7b89faeb0f3aed0ea60022847ac24339bdea4: 23f7b89faeb0f3aed0ea60022847ac24339bdea4<br />
-  xe-pw-150106v2: 150106v2</p>
-
-</body>
-</html>
-
---===============8208778035240126205==--
