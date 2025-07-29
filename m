@@ -4,74 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33392C87FD9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 362C0C88CB9
 	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 14:02:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E23F310E6B8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C934710E6B6;
 	Wed, 30 Jul 2025 14:02:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="WHZS281J";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m+oB710m";
 	dkim-atps=neutral
-Received: from mail-qt1-f202.google.com (mail-qt1-f202.google.com
- [209.85.160.202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C46EA10E21E
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 19:37:20 +0000 (UTC)
-Received: by mail-qt1-f202.google.com with SMTP id
- d75a77b69052e-4ab44642abeso125139891cf.1
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 12:37:20 -0700 (PDT)
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
+ [209.85.214.196])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A97DB10E061
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 11:05:53 +0000 (UTC)
+Received: by mail-pl1-f196.google.com with SMTP id
+ d9443c01a7336-240418cbb8bso11927275ad.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 04:05:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1753817840; x=1754422640;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=tISY+xBUYYz9JGsqhSxSDiuo5pXcWFPbk33bCR9svy4=;
- b=WHZS281JCbto8JJFmVM2IG1TbIo9oF90YckLKVqpBbWhH7soG47+T6qePz3Fe5g88z
- SMukr+nNQY8Kxu9lXR4pmK5W722mhRZV63ThsCyS0pafkZ22e8HZNFC86FUr7OcYXCOR
- UJGJUc3sCspA+TLO1XIQn+Uing9VKIUHEMgOEg3/T7lEPf2fUS1dghrTovMgZHm5+lEG
- YIhSNsMu2GyyMkVgNXlmzuT9V9zxYecp4UYxLNTa78v5FtqD1I1Z8267cLfv7asO/aQV
- 0P3i1/dAkBbrOMDcyxDxRXqfw9hW5wkkbSEXlNwRMixHRAh/elodURb6uCEh4K46Mjiu
- OdFQ==
+ d=gmail.com; s=20230601; t=1753787153; x=1754391953; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Abt8vstZAPNZDXKA1xlNOuo3fzYB7imYoFribfPOwfM=;
+ b=m+oB710mewyUpc/4RGe+hzDO7ofAqM7639ou4+P+LsubgVzL/DuTMWJVzz4KtuJt0l
+ mz+0dGhqjWW2mBUVXKTv6+lpLmXtcYc0Dzl+vFLIiaIlatX46u8y1Aernlsch6eazu5k
+ RGuEe38yBrpSgvMmXC+iuAe69mBOyxsdXr9ZHuqzi7bF7ILD46PzBo/FbJdNsM5/biBO
+ deRGeB4+DeAhAOzD3GZb2ikwe5jLA3YFUjj/GRHyUGAK6KiXMVDf2zlsQW3rzF0dijkR
+ eoDy6JJYkoqh2hh2DhRf8Lbyyo7uONTyDdQDZVQTRMHGyWdF461R/gyYP7adC32j56ac
+ mdcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753817840; x=1754422640;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=tISY+xBUYYz9JGsqhSxSDiuo5pXcWFPbk33bCR9svy4=;
- b=OvEUjfClmBcq1iAvkSYOM0EwvK9sHrIqUFoOOMxYFzruqLUpw2mnjszMMcgD3NnTiS
- /YWViOd6dZU15KAF0K5a3WJJ03mKDWdaPsF1/QvpUs0xNqxCqjtRHuYMlBM5NQ5TuFl3
- 5RNuHp6fRAnueeXOO4fYIijqIMo5B84Xed20ISAM/QZKz9ugqONwrwE7HAyGb3Dma1mh
- 2pjmdrgUqps4Fl2C4K9Dm4ghfK+4LKNfLVC5+4RyKcc+GMvKX2yhqBhMGI/Xqvizk9ab
- TxLtfBxCXAsJQR2ZNBFDPqoaTyL5uF43AhdgJGoSU1z+QYgnKB46vfWJiKtZxvB/OTkk
- 5Xyg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUaE9X6e1EabDslm1JnxTTG61D9VSuIJCQvXsIv40ILdrDzsfzb2WjrTBKRGy619junBppz8zsLbA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw3bYtNbmIFcj2SlU32nIT00UXzp+5M1T+Nffe0z1s2W3Gm1c9n
- q+5imO798uGyuK/nWK0c4bsn2+zrDxPtPoN9Tko8pmF/1XVQfwRypMmI8UG7eARXjJ6UsD1yic9
- 3bmIfZWB55tHMKg==
-X-Google-Smtp-Source: AGHT+IHO3w/OWxc0bh2stWMFfWMHfCNuwQ8ImCAJ/qrdu5G1dagcPV42fbu2D6wVRt/h4M0z28H1fFDxXyPbjg==
-X-Received: from qtbcf19.prod.google.com
- ([2002:a05:622a:4013:b0:4ab:9556:af14])
- (user=marievic job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:622a:ca:b0:4a8:19d5:f8a5 with SMTP id
- d75a77b69052e-4aedbc45df3mr13576391cf.35.1753817839732; 
- Tue, 29 Jul 2025 12:37:19 -0700 (PDT)
-Date: Tue, 29 Jul 2025 19:36:40 +0000
-In-Reply-To: <20250729193647.3410634-1-marievic@google.com>
-Mime-Version: 1.0
-References: <20250729193647.3410634-1-marievic@google.com>
-X-Mailer: git-send-email 2.50.1.552.g942d659e1b-goog
-Message-ID: <20250729193647.3410634-3-marievic@google.com>
-Subject: [PATCH 2/9] kunit: Introduce param_init/exit for parameterized test
- shared context management
-From: Marie Zhussupova <marievic@google.com>
-To: rmoar@google.com, davidgow@google.com, shuah@kernel.org, 
- brendan.higgins@linux.dev
-Cc: elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com, 
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- Marie Zhussupova <marievic@google.com>
-Content-Type: text/plain; charset="UTF-8"
+ d=1e100.net; s=20230601; t=1753787153; x=1754391953;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Abt8vstZAPNZDXKA1xlNOuo3fzYB7imYoFribfPOwfM=;
+ b=WgO7/bcGL6qD+OD68esX8RO1cjdnklCCx77pGzGSt8zNNhYtvVMi81O+qlxYlq/2ns
+ mk2vgceaQ0fpRffuKb+gG/x7cC++8GvjSz46y0SSuvhCQnn7NvrdzY3lvm5UNx2fU81s
+ Gknhhak4biEs5a6Z/dZmWH7qhqjGwd8UrF3E5WNJospjIpaopr+y0gHITnPiDhexBAyh
+ vl9cKcuyay72ivTgYsValF4+I2DBrM0In6OeXNzhUAkecUu0dKmVxWHOQdwNF0r9R+gV
+ AcfWLPbn45ASZKAgLn6bfmvZeoKyhBySnpENfwkSVs4CmSiBwb4N80GpypBOhOaNIaTU
+ AAgQ==
+X-Gm-Message-State: AOJu0Yw1HiizYtDec4y+T4SZIjNKRnP4aGK7LfhjSXpm23NigE1jhfvL
+ z5m5hljekHPJokOz1GN+YpLS9A6o4qjUGObemhqHcuKXQDwdzSicopI=
+X-Gm-Gg: ASbGncvWuJ5sKFEkNTUuga1QavSV5iI8neCslW8pUodSjvnF4a4gUV8dQoFVvl5WXMO
+ OaS/742HZjshLDEaEnRfXsxpHCOQT8xqF4zLlBoPhuTqzhQj1C4xLw88SVxga+sGMNTtRbAk8pM
+ tinPdAc2SZjayMQV1yPAaTVAdLIcM7MMyXeSow8VtcVpZqaHz6b6r5qiGxpZ/xqVnvjQ+/Gg6Mk
+ kx+6QJQ2YJhWwIQ5bCEzn45Ri1uXR2TqD0WIy4gJqpjoo3IfSQnpPVdT3fGMpdApcp8A4/bT/40
+ c3f7jGEIebwCZNJxZVz+roKzZusbXfl8KKMBqN1PL+Of/iXYx3H0xhCejpfq7nSEks5yN8jln+k
+ 5fJ8RcRnNYjre+2fN2ArfDAU2MCN85DrX4NgzBoo=
+X-Google-Smtp-Source: AGHT+IHAQn5G/9G5dVp6WunIHeCfG5Ftkh0IQEMUb3fjgxxrqRXsfHaPCtjrK9gLf0XgoJ/tEmN9YQ==
+X-Received: by 2002:a17:902:cec7:b0:235:6aa:1675 with SMTP id
+ d9443c01a7336-23fb315611bmr180795215ad.52.1753787153068; 
+ Tue, 29 Jul 2025 04:05:53 -0700 (PDT)
+Received: from git-send-email.moeko.lan ([139.227.17.83])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-23fbe30bc1fsm75929025ad.5.2025.07.29.04.05.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 29 Jul 2025 04:05:52 -0700 (PDT)
+From: Tomita Moeko <tomitamoeko@gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org,
+ Tomita Moeko <tomitamoeko@gmail.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, Badal Nilawar <badal.nilawar@intel.com>
+Subject: [PATCH 6.12 3/4] Revert "drm/xe/devcoredump: Update handling of
+ xe_force_wake_get return"
+Date: Tue, 29 Jul 2025 19:05:24 +0800
+Message-ID: <20250729110525.49838-4-tomitamoeko@gmail.com>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250729110525.49838-1-tomitamoeko@gmail.com>
+References: <20250729110525.49838-1-tomitamoeko@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 30 Jul 2025 14:02:27 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,143 +92,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add `param_init` and `param_exit` function pointers to
-`struct kunit_case`. Users will be able to set them
-via the new `KUNIT_CASE_PARAM_WITH_INIT` macro.
+This reverts commit 9ffd6ec2de08ef4ac5f17f6131d1db57613493f9.
 
-These functions are invoked by kunit_run_tests() once before
-and once after the entire parameterized test series, respectively.
-They will receive the parent kunit test instance, allowing users
-to register and manage shared resources. Resources added to this
-parent kunit test will be accessible to all individual parameterized
-tests, facilitating init and exit for shared state.
+The reverted commit updated the handling of xe_force_wake_get to match
+the new "return refcounted domain mask" semantics introduced in commit
+a7ddcea1f5ac ("drm/xe: Error handling in xe_force_wake_get()"). However,
+that API change only exists in 6.13 and later.
 
-Signed-off-by: Marie Zhussupova <marievic@google.com>
+In 6.12 stable kernel, xe_force_wake_get still returns a status code.
+The update incorrectly treats the return value as a mask, causing the
+return value of 0 to be misinterpreted as an error
+
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Signed-off-by: Tomita Moeko <tomitamoeko@gmail.com>
 ---
- include/kunit/test.h | 33 ++++++++++++++++++++++++++++++++-
- lib/kunit/test.c     | 23 ++++++++++++++++++++++-
- 2 files changed, 54 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
-diff --git a/include/kunit/test.h b/include/kunit/test.h
-index a42d0c8cb985..d8dac7efd745 100644
---- a/include/kunit/test.h
-+++ b/include/kunit/test.h
-@@ -92,6 +92,8 @@ struct kunit_attributes {
-  * @name:     the name of the test case.
-  * @generate_params: the generator function for parameterized tests.
-  * @attr:     the attributes associated with the test
-+ * @param_init: The init function to run before parameterized tests.
-+ * @param_exit: The exit function to run after parameterized tests.
-  *
-  * A test case is a function with the signature,
-  * ``void (*)(struct kunit *)``
-@@ -129,6 +131,13 @@ struct kunit_case {
- 	const void* (*generate_params)(const void *prev, char *desc);
- 	struct kunit_attributes attr;
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 8050938389b6..e412a70323cc 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -197,7 +197,6 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
+ 	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
+ 	struct xe_devcoredump *coredump = container_of(ss, typeof(*coredump), snapshot);
+ 	struct xe_device *xe = coredump_to_xe(coredump);
+-	unsigned int fw_ref;
  
-+	/*
-+	 * Optional user-defined functions: one to register shared resources once
-+	 * before the parameterized test series, and another to release them after.
-+	 */
-+	int (*param_init)(struct kunit *test);
-+	void (*param_exit)(struct kunit *test);
-+
- 	/* private: internal use only. */
- 	enum kunit_status status;
- 	char *module_name;
-@@ -218,6 +227,27 @@ static inline char *kunit_status_to_ok_not_ok(enum kunit_status status)
- 		  .generate_params = gen_params,				\
- 		  .attr = attributes, .module_name = KBUILD_MODNAME}
+ 	/*
+ 	 * NB: Despite passing a GFP_ flags parameter here, more allocations are done
+@@ -211,12 +210,11 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
+ 	xe_pm_runtime_get(xe);
  
-+/**
-+ * KUNIT_CASE_PARAM_WITH_INIT() - Define a parameterized KUnit test case with custom
-+ * init and exit functions.
-+ * @test_name: The function implementing the test case.
-+ * @gen_params: The function to generate parameters for the test case.
-+ * @init: The init function to run before parameterized tests.
-+ * @exit: The exit function to run after parameterized tests.
-+ *
-+ * Provides the option to register init and exit functions that take in the
-+ * parent of the parameterized tests and run once before and once after the
-+ * parameterized test series. The init function can be used to add any resources
-+ * to share between the parameterized tests or to pass parameter arrays. The
-+ * exit function can be used to clean up any resources that are not managed by
-+ * the test.
-+ */
-+#define KUNIT_CASE_PARAM_WITH_INIT(test_name, gen_params, init, exit)		\
-+		{ .run_case = test_name, .name = #test_name,			\
-+		  .generate_params = gen_params,				\
-+		  .param_init = init, .param_exit = exit,			\
-+		  .module_name = KBUILD_MODNAME}
-+
- /**
-  * struct kunit_suite - describes a related collection of &struct kunit_case
-  *
-@@ -269,7 +299,8 @@ struct kunit_suite_set {
-  * @priv: for user to store arbitrary data. Commonly used to pass data
-  *	  created in the init function (see &struct kunit_suite).
-  * @parent: for user to store data that they want to shared across
-- *	    parameterized tests.
-+ *	    parameterized tests. Typically, the data is provided in
-+ *	    the param_init function (see &struct kunit_case).
-  *
-  * Used to store information about the current context under which the test
-  * is running. Most of this data is private and should only be accessed
-diff --git a/lib/kunit/test.c b/lib/kunit/test.c
-index 4d6a39eb2c80..d80b5990d85d 100644
---- a/lib/kunit/test.c
-+++ b/lib/kunit/test.c
-@@ -641,6 +641,19 @@ static void kunit_accumulate_stats(struct kunit_result_stats *total,
- 	total->total += add.total;
+ 	/* keep going if fw fails as we still want to save the memory and SW data */
+-	fw_ref = xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
+-	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
++	if (xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL))
+ 		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
+ 	xe_vm_snapshot_capture_delayed(ss->vm);
+ 	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
+-	xe_force_wake_put(gt_to_fw(ss->gt), fw_ref);
++	xe_force_wake_put(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
+ 
+ 	xe_pm_runtime_put(xe);
+ 
+@@ -243,9 +241,8 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	u32 width_mask = (0x1 << q->width) - 1;
+ 	const char *process_name = "no process";
+ 
+-	unsigned int fw_ref;
+-	bool cookie;
+ 	int i;
++	bool cookie;
+ 
+ 	ss->snapshot_time = ktime_get_real();
+ 	ss->boot_time = ktime_get_boottime();
+@@ -268,7 +265,8 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	}
+ 
+ 	/* keep going if fw fails as we still want to save the memory and SW data */
+-	fw_ref = xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
++	if (xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL))
++		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
+ 
+ 	ss->ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
+ 	ss->ge = xe_guc_exec_queue_snapshot_capture(q);
+@@ -286,7 +284,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 
+ 	queue_work(system_unbound_wq, &ss->work);
+ 
+-	xe_force_wake_put(gt_to_fw(q->gt), fw_ref);
++	xe_force_wake_put(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
+ 	dma_fence_end_signalling(cookie);
  }
  
-+static void __kunit_init_parent_test(struct kunit_case *test_case, struct kunit *test)
-+{
-+	if (test_case->param_init) {
-+		int err = test_case->param_init(test);
-+
-+		if (err) {
-+			kunit_err(test_case, KUNIT_SUBTEST_INDENT KUNIT_SUBTEST_INDENT
-+				"# failed to initialize parent parameter test.");
-+			test_case->status = KUNIT_FAILURE;
-+		}
-+	}
-+}
-+
- int kunit_run_tests(struct kunit_suite *suite)
- {
- 	char param_desc[KUNIT_PARAM_DESC_SIZE];
-@@ -668,6 +681,8 @@ int kunit_run_tests(struct kunit_suite *suite)
- 		struct kunit_result_stats param_stats = { 0 };
- 
- 		kunit_init_test(&test, test_case->name, test_case->log);
-+		__kunit_init_parent_test(test_case, &test);
-+
- 		if (test_case->status == KUNIT_SKIPPED) {
- 			/* Test marked as skip */
- 			test.status = KUNIT_SKIPPED;
-@@ -677,7 +692,7 @@ int kunit_run_tests(struct kunit_suite *suite)
- 			test_case->status = KUNIT_SKIPPED;
- 			kunit_run_case_catch_errors(suite, test_case, &test);
- 			kunit_update_stats(&param_stats, test.status);
--		} else {
-+		} else if (test_case->status != KUNIT_FAILURE) {
- 			/* Get initial param. */
- 			param_desc[0] = '\0';
- 			/* TODO: Make generate_params try-catch */
-@@ -727,6 +742,12 @@ int kunit_run_tests(struct kunit_suite *suite)
- 
- 		kunit_update_stats(&suite_stats, test_case->status);
- 		kunit_accumulate_stats(&total_stats, param_stats);
-+		/*
-+		 * TODO: Put into a try catch. Since we don't need suite->exit
-+		 * for it we can't reuse kunit_try_run_cleanup for this yet.
-+		 */
-+		if (test_case->param_exit)
-+			test_case->param_exit(&test);
- 		/* TODO: Put this kunit_cleanup into a try-catch. */
- 		kunit_cleanup(&test);
- 	}
 -- 
-2.50.1.552.g942d659e1b-goog
+2.47.2
 
