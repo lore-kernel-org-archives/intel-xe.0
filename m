@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1008C87FD3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D347EC87FD5
 	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 12:34:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC9F10E6A0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9613A10E69F;
 	Wed, 30 Jul 2025 12:34:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WyZ+hvgB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="docwbJ/V";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB8C410E691
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 12:34:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5B910E691
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 12:34:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753878870; x=1785414870;
+ t=1753878868; x=1785414868;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ig+V85+Q858DhV8ZDCj4yrKSQ4oD1SdA9e8dhVbIy6w=;
- b=WyZ+hvgBDTzVD8dEfBcaC5fCChJwBRFEo4YxTW2wTT3DSlBjme/e0gwW
- O61gM1G82FJU5Luho6LYonemua/jtbqZWqWTt4i9SR/z9EX5cFNzYEYg7
- ZoiZg0thNQQaeDEpm2KEroUfwPFNQ9c+KZQi1NSyBBAQ3LOFgnrfXxL6m
- RQabN9QRM6/htXwx7nHQwvzVld5GHqYUZ9z0rYQNbu67uwKGUK81rXlK3
- IC5/QE0n3i9/5ZEPZ0xn/0iEv3rJw9+zcOQLHM/1GrvPGAtnzYDHKNneZ
- Ac+ePotuoT0twgSwqJtnT8+IoKQMFdm7b580vPfVmDlgwH33rtNBVuj5k g==;
-X-CSE-ConnectionGUID: Su7b3hOgSTmys9pFVPPhIg==
-X-CSE-MsgGUID: Ok6ibVEqTWuzcCq+/LF54g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="66450171"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="66450171"
+ bh=RhU+D8gLXZg9Dae3VflgQnW2a5TQiqyOQD7V9bhdtHk=;
+ b=docwbJ/VeVXlajp5TWPLKQJgzWu8whTiJBbTkI81mtFs3QZVb28dNOqP
+ AW0b75//h6lSIEK6fVjj/pX5S/eOgPw3FECe5/INKjnOI96D+Cl5i0yWE
+ 4nmrwgrr8JVZV3KvKhhML18ckFhxMeaPav2WJsQR/yAlHu18o9HdybVFB
+ 03xAm7hAEG1KLSOzkC+iDXD5v0/FOaTV1KGjDlHPfUul8MH8Ww73exirI
+ 7NDd0WsmZw3lN4lrngKs/nzzx/N6+JHB9PeUuoMl6BuG1ZEh11lWAK0Hl
+ WLRGUn4rZUozTY6aSjp+5KEvOTJ5W8TdO98PSh18QphDwHRO4avkxt/YD Q==;
+X-CSE-ConnectionGUID: fZmvn4tBQECZYM1Y7vNdag==
+X-CSE-MsgGUID: Cyglw8fkSt2FQhvD436Y1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="66450166"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="66450166"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 05:34:30 -0700
-X-CSE-ConnectionGUID: HI8f9RDGQJC5s3cp7uxd7w==
-X-CSE-MsgGUID: VVWwt5IXQQu9GN1D6u9wdg==
+ 30 Jul 2025 05:34:28 -0700
+X-CSE-ConnectionGUID: 1BoqaxaQQIKF0VYPj/L21w==
+X-CSE-MsgGUID: 2HQmfmzATPmRjIxC6zQHVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="186649500"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="186649497"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa002.fm.intel.com with ESMTP; 30 Jul 2025 05:34:28 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 30 Jul 2025 05:34:27 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v5 17/25] drm/xe/uapi: Add flag for consulting madvise hints
- on svm prefetch
-Date: Wed, 30 Jul 2025 18:30:42 +0530
-Message-Id: <20250730130050.1001648-18-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v5 16/25] drm/xe/svm: Support DRM_XE_SVM_MEM_RANGE_ATTR_PAT
+ memory attribute
+Date: Wed, 30 Jul 2025 18:30:41 +0530
+Message-Id: <20250730130050.1001648-17-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250730130050.1001648-1-himal.prasad.ghimiray@intel.com>
 References: <20250730130050.1001648-1-himal.prasad.ghimiray@intel.com>
@@ -69,45 +69,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce flag DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC to ensure prefetching
-in madvise-advised memory regions
+This attributes sets the pat_index for the svm used vma range, which is
+utilized to ascertain the coherence.
 
 v2 (Matthew Brost)
-- Add kernel-doc
-
-v3 (Matthew Brost)
-- Fix kernel-doc
+- Pat index sanity check
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 25 +++++++++++++++++++++++--
+ 1 file changed, 23 insertions(+), 2 deletions(-)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 4e6e9a9164ee..115b9bca2a25 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1010,6 +1010,10 @@ struct drm_xe_vm_destroy {
-  *    valid on VMs with DRM_XE_VM_CREATE_FLAG_FAULT_MODE set. The CPU address
-  *    mirror flag are only valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
-  *    handle MBZ, and the BO offset MBZ.
-+ *
-+ * The @prefetch_mem_region_instance for %DRM_XE_VM_BIND_OP_PREFETCH can also be:
-+ *  - %DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, which ensures prefetching occurs in
-+ *    the memory region advised by madvise.
-  */
- struct drm_xe_vm_bind_op {
- 	/** @extensions: Pointer to the first extension struct, if any */
-@@ -1115,6 +1119,7 @@ struct drm_xe_vm_bind_op {
- 	/** @flags: Bind flags */
- 	__u32 flags;
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index 207cb3a6e220..51a9364abc72 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -9,6 +9,7 @@
+ #include <drm/xe_drm.h>
  
-+#define DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC	-1
- 	/**
- 	 * @prefetch_mem_region_instance: Memory region to prefetch VMA to.
- 	 * It is a region instance, not a mask.
+ #include "xe_bo.h"
++#include "xe_pat.h"
+ #include "xe_pt.h"
+ #include "xe_svm.h"
+ 
+@@ -121,7 +122,13 @@ static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
+ 			      struct xe_vma **vmas, int num_vmas,
+ 			      struct drm_xe_madvise *op)
+ {
+-	/* Implementation pending */
++	int i;
++
++	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_PAT);
++
++	for (i = 0; i < num_vmas; i++)
++		vmas[i]->attr.pat_index = op->pat_index.val;
++
+ }
+ 
+ typedef void (*madvise_func)(struct xe_device *xe, struct xe_vm *vm,
+@@ -229,8 +236,22 @@ static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madv
+ 
+ 		break;
+ 	case DRM_XE_MEM_RANGE_ATTR_PAT:
+-		/*TODO: Add valid pat check */
++	{
++		u16 coh_mode = xe_pat_index_get_coh_mode(xe, args->pat_index.val);
++
++		if (XE_IOCTL_DBG(xe, !coh_mode))
++			return false;
++
++		if (XE_WARN_ON(coh_mode > XE_COH_AT_LEAST_1WAY))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->pat_index.pad))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->pat_index.reserved))
++			return false;
+ 		break;
++	}
+ 	default:
+ 		if (XE_IOCTL_DBG(xe, 1))
+ 			return false;
 -- 
 2.34.1
 
