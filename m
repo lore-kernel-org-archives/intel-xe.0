@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD0A0C87FC9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6C2CC87FCB
 	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 12:34:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 818B810E694;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6849F10E691;
 	Wed, 30 Jul 2025 12:34:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AEmR4TPW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O1+74osc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95B6C10E691
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 12:34:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB4F10E203
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 12:34:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753878871; x=1785414871;
+ t=1753878865; x=1785414865;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1CozfGFCl7bVotAX89FnXKjrHL1CGt1ALcI8BcmWizI=;
- b=AEmR4TPW+BQAV9rc8WJuvVkGoJ6moIZxV0KRgYsHA6XmpwxDmdAoxU2K
- exVVT/ySH0ciTTBbEoGpL/p7NLoTHeAI6BjgoekYc1L2u6eQCG7ogsrWN
- wQQvaRucj98HFN1Qp4ZF7pFVcXvlbRHDNMalmvHWCr1IV/PhD39WUeZRz
- ViZAPVuDhHkiZJBlNm2/GkfT4NK4dFyyoFMUyD5KS+4e3/DowzFkCQ8by
- 6AQ9UN/IzhjJPe/MMytDywa9ociwpZySWYqU15mEhKACICsGnGVewz6xE
- 4qAPhA8kRJHXP2Zi459C66/DVvtrstW0hDw1viCqjQ+VrHyPDqFsD1HHW w==;
-X-CSE-ConnectionGUID: RHYe//CgQqqTq6py+PLzRQ==
-X-CSE-MsgGUID: Odhz5TR4ToWiLTQtAT+9rA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="66450173"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="66450173"
+ bh=Ek5/YG/26t2sh7yWk1iIHcdDiLVn814Vu05nP9xlH8E=;
+ b=O1+74oscfo9syomzuuiB8TkQIIJgCJuJ2RmzeoQ6460XEz5AArv71XCA
+ l0E+oiSvpSUNgESMukVpbCt6QniqjDXKRhyVAkf/YgmE3OJQfTaNVCRSK
+ Qzcnw6OoYXwHAwNi+1EtXlMa3yDMCnQcL8MgUgNyf03bv1tAj69dyWc38
+ bLeVIUhsKaMrG6dXE8ygzqVikWDTPK+zuX56wNdd4cKzuQu7p+bLTPTJk
+ xyrt11hMDzeCX112f6a5oh8HH3Hko+GXEJErlTCaZB6jRQM1smAGcIU80
+ Z6GscAJu7gy8k15DenCENC/i9DiotBHqE9YXFgm/IooiJyMq8ya9+jS09 g==;
+X-CSE-ConnectionGUID: 9yq6wgSMQRS197+ECjYqrA==
+X-CSE-MsgGUID: vwWzUlflQi2Z52kHxq4eWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="66450158"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="66450158"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 05:34:31 -0700
-X-CSE-ConnectionGUID: Jmgur3nlTzGM6l5fzYEJ/w==
-X-CSE-MsgGUID: ithB9jpnQKa9nRGcT2yNYw==
+ 30 Jul 2025 05:34:25 -0700
+X-CSE-ConnectionGUID: IJ6TbbhNS7Oxo1C1RDFV6A==
+X-CSE-MsgGUID: 1yAJVhtHTLG3NjwZXAdQ0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="186649503"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="186649491"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa002.fm.intel.com with ESMTP; 30 Jul 2025 05:34:30 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 30 Jul 2025 05:34:23 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v5 18/25] drm/xe/svm: Consult madvise preferred location in
- prefetch
-Date: Wed, 30 Jul 2025 18:30:43 +0530
-Message-Id: <20250730130050.1001648-19-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v5 14/25] drm/xe/svm : Add svm ranges migration policy on
+ atomic access
+Date: Wed, 30 Jul 2025 18:30:39 +0530
+Message-Id: <20250730130050.1001648-15-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250730130050.1001648-1-himal.prasad.ghimiray@intel.com>
 References: <20250730130050.1001648-1-himal.prasad.ghimiray@intel.com>
@@ -69,101 +69,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When prefetch region is DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, prefetch svm
-ranges to preferred location provided by madvise.
+If the platform does not support atomic access on system memory, and the
+ranges are in system memory, but the user requires atomic accesses on
+the VMA, then migrate the ranges to VRAM. Apply this policy for prefetch
+operations as well.
 
-v2 (Matthew Brost)
-- Fix region, devmem_fd usages
-- consult madvise is applicable for other vma's too.
+v2
+- Drop unnecessary vm_dbg
 
-v3
-- Fix atomic handling
+v3 (Matthew Brost)
+- fix atomic policy
+- prefetch shouldn't have any impact of atomic
+- bo can be accessed from vma, avoid duplicate parameter
+
+v4 (Matthew Brost)
+- Remove TODO comment
+- Fix comment
+- Dont allow gpu atomic ops when user is setting atomic attr as CPU
+
+v5 (Matthew Brost)
+- Fix atomic checks
+- Add userptr checks
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 30 ++++++++++++++++++++++--------
- 1 file changed, 22 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c         | 23 ++++++++++--------
+ drivers/gpu/drm/xe/xe_svm.c        |  8 ++++--
+ drivers/gpu/drm/xe/xe_vm.c         | 39 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h         |  2 ++
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 15 +++++++++++-
+ 5 files changed, 74 insertions(+), 13 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 593fef438cd8..6f5b384991cd 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -640,28 +640,31 @@ static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
+  *    - In all other cases device atomics will be disabled with AE=0 until an application
+  *      request differently using a ioctl like madvise.
+  */
+-static bool xe_atomic_for_vram(struct xe_vm *vm)
++static bool xe_atomic_for_vram(struct xe_vm *vm, struct xe_vma *vma)
+ {
++	if (vma->attr.atomic_access == DRM_XE_ATOMIC_CPU)
++		return false;
++
+ 	return true;
+ }
+ 
+-static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_bo *bo)
++static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_vma *vma)
+ {
+ 	struct xe_device *xe = vm->xe;
++	struct xe_bo *bo = xe_vma_bo(vma);
+ 
+-	if (!xe->info.has_device_atomics_on_smem)
++	if (!xe->info.has_device_atomics_on_smem ||
++	    vma->attr.atomic_access == DRM_XE_ATOMIC_CPU)
+ 		return false;
+ 
++	if (vma->attr.atomic_access == DRM_XE_ATOMIC_DEVICE)
++		return true;
++
+ 	/*
+ 	 * If a SMEM+LMEM allocation is backed by SMEM, a device
+ 	 * atomics will cause a gpu page fault and which then
+ 	 * gets migrated to LMEM, bind such allocations with
+ 	 * device atomics enabled.
+-	 *
+-	 * TODO: Revisit this. Perhaps add something like a
+-	 * fault_on_atomics_in_system UAPI flag.
+-	 * Note that this also prohibits GPU atomics in LR mode for
+-	 * userptr and system memory on DGFX.
+ 	 */
+ 	return (!IS_DGFX(xe) || (!xe_vm_in_lr_mode(vm) ||
+ 				 (bo && xe_bo_has_single_placement(bo))));
+@@ -744,8 +747,8 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 		goto walk_pt;
+ 
+ 	if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) {
+-		xe_walk.default_vram_pte = xe_atomic_for_vram(vm) ? XE_USM_PPGTT_PTE_AE : 0;
+-		xe_walk.default_system_pte = xe_atomic_for_system(vm, bo) ?
++		xe_walk.default_vram_pte = xe_atomic_for_vram(vm, vma) ? XE_USM_PPGTT_PTE_AE : 0;
++		xe_walk.default_system_pte = xe_atomic_for_system(vm, vma) ?
+ 			XE_USM_PPGTT_PTE_AE : 0;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 1d0b444bf2ae..5e78beebe114 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -793,14 +793,18 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			    struct xe_gt *gt, u64 fault_addr,
+ 			    bool atomic)
+ {
++	int need_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
++
++	if (need_vram < 0)
++		return need_vram;
++
+ 	struct drm_gpusvm_ctx ctx = {
+ 		.read_only = xe_vma_read_only(vma),
+ 		.devmem_possible = IS_DGFX(vm->xe) &&
+ 			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
+ 		.check_pages_threshold = IS_DGFX(vm->xe) &&
+ 			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ? SZ_64K : 0,
+-		.devmem_only = atomic && IS_DGFX(vm->xe) &&
+-			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
++		.devmem_only = need_vram && IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
+ 		.timeslice_ms = atomic && IS_DGFX(vm->xe) &&
+ 			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ?
+ 			vm->xe->atomic_svm_timeslice_ms : 0,
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 463736db19d9..d57fc1071142 100644
+index d039779412b3..463736db19d9 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -38,6 +38,7 @@
- #include "xe_res_cursor.h"
- #include "xe_svm.h"
- #include "xe_sync.h"
-+#include "xe_tile.h"
- #include "xe_trace_bo.h"
- #include "xe_wa.h"
- #include "xe_hmm.h"
-@@ -2913,15 +2914,28 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
- 	int err = 0;
+@@ -4183,6 +4183,45 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
+ 	kvfree(snap);
+ }
  
- 	struct xe_svm_range *svm_range;
-+	struct drm_pagemap *dpagemap;
- 	struct drm_gpusvm_ctx ctx = {};
--	struct xe_tile *tile;
-+	struct xe_tile *tile = NULL;
- 	unsigned long i;
- 	u32 region;
- 
- 	if (!xe_vma_is_cpu_addr_mirror(vma))
- 		return 0;
- 
--	region = op->prefetch_range.region;
-+	if (op->prefetch_range.region == DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC) {
-+		dpagemap = xe_vma_resolve_pagemap(vma, xe_device_get_root_tile(vm->xe));
-+		/*
-+		 * TODO: Once multigpu support is enabled will need
-+		 * something to dereference tile from dpagemap.
-+		 */
-+		if (dpagemap)
-+			tile = xe_device_get_root_tile(vm->xe);
-+	} else {
-+		region = op->prefetch_range.region;
-+		if (region)
-+			tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
++/**
++ * xe_vma_need_vram_for_atomic - Check if VMA needs VRAM migration for atomic operations
++ * @xe: Pointer to the XE device structure
++ * @vma: Pointer to the virtual memory area (VMA) structure
++ * @is_atomic: In pagefault path and atomic operation
++ *
++ * This function determines whether the given VMA needs to be migrated to
++ * VRAM in order to do atomic GPU operation.
++ *
++ * Return:
++ *   1        - Migration to VRAM is required
++ *   0        - Migration is not required
++ *   -EINVAL  - Invalid access for atomic memory attr
++ *
++ */
++int xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool is_atomic)
++{
++	if (!IS_DGFX(xe) || !is_atomic)
++		return 0;
++
++	/*
++	 * NOTE: The checks implemented here are platform-specific. For
++	 * instance, on a device supporting CXL atomics, these would ideally
++	 * work universally without additional handling.
++	 */
++	switch (vma->attr.atomic_access) {
++	case DRM_XE_ATOMIC_DEVICE:
++		return !xe->info.has_device_atomics_on_smem;
++
++	case DRM_XE_ATOMIC_CPU:
++		return -EINVAL;
++
++	case DRM_XE_ATOMIC_UNDEFINED:
++	case DRM_XE_ATOMIC_GLOBAL:
++	default:
++		return 1;
 +	}
++}
++
+ /**
+  * xe_vm_alloc_madvise_vma - Allocate VMA's with madvise ops
+  * @vm: Pointer to the xe_vm structure
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 0d6b08cc4163..05ac3118d9f4 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -171,6 +171,8 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
  
- 	ctx.read_only = xe_vma_read_only(vma);
- 	ctx.devmem_possible = devmem_possible;
-@@ -2929,11 +2943,10 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+ struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
  
- 	/* TODO: Threading the migration */
- 	xa_for_each(&op->prefetch_range.range, i, svm_range) {
--		if (!region)
-+		if (!tile)
- 			xe_svm_range_migrate_to_smem(vm, svm_range);
++int xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool is_atomic);
++
+ int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
  
--		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, region)) {
--			tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
-+		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, !!tile)) {
- 			err = xe_svm_alloc_vram(tile, svm_range, &ctx);
- 			if (err) {
- 				drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
-@@ -3001,7 +3014,8 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 		else
- 			region = op->prefetch.region;
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index b861c3349b0a..a53b63dd603d 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -85,7 +85,20 @@ static void madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
+ 			   struct xe_vma **vmas, int num_vmas,
+ 			   struct drm_xe_madvise *op)
+ {
+-	/* Implementation pending */
++	int i;
++
++	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_ATOMIC);
++	xe_assert(vm->xe, op->atomic.val <= DRM_XE_ATOMIC_CPU);
++
++	for (i = 0; i < num_vmas; i++) {
++		if (xe_vma_is_userptr(vmas[i])) {
++			if (!(op->atomic.val == DRM_XE_ATOMIC_DEVICE &&
++			      xe->info.has_device_atomics_on_smem))
++				continue;
++		}
++		vmas[i]->attr.atomic_access = op->atomic.val;
++	/*TODO: handle bo backed vmas */
++	}
+ }
  
--		xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
-+		xe_assert(vm->xe, region == DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC ||
-+			  region <= ARRAY_SIZE(region_to_mem_type));
- 
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.prefetch.va),
-@@ -3419,8 +3433,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, prefetch_region &&
- 				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
--		    XE_IOCTL_DBG(xe, !(BIT(prefetch_region) &
--				       xe->info.mem_region_mask)) ||
-+		    XE_IOCTL_DBG(xe,  (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
-+				       !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
- 		    XE_IOCTL_DBG(xe, obj &&
- 				 op == DRM_XE_VM_BIND_OP_UNMAP)) {
- 			err = -EINVAL;
+ static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
 -- 
 2.34.1
 
