@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D2F5C87FCB
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 12:34:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9B0DC87FCB
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 12:34:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3066210E69E;
-	Wed, 30 Jul 2025 12:34:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 907BF10E6A2;
+	Wed, 30 Jul 2025 12:34:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H0atzUjh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmAHrSOV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B24A010E69E
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 12:34:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44F8210E6A2
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 12:34:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753878882; x=1785414882;
+ t=1753878878; x=1785414878;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sldi6C8+Y7VTGJBdc2knUNpWmaiZ8q7uFondCENvbJs=;
- b=H0atzUjhqdVT9Wjrb603aYdB2geAPmzYBJ9h0OuJUyFKc56TeC1qg+86
- EQzpZV3kWTGK9OJNQ6yU8Vli/JAyJovTfRuao+O0ODoC/utCp35SUVE9F
- kQIN9WVOy6ZrxuaZ3hVwMh6iV7HCyWVgTCt1I2I1wcZBOjHwQQRRxOte3
- nlog3oXe0xTKd+Hi+f/cW5RwaTNjvT+Sg73tt9JfKNN8sv8sI/hiHyxDw
- m2HKK1t6X0BNlleqk+CQXRoob4Gnwp8+Qb9Rdzcq4JaSetlGR0/OLG9cF
- 0fNnqcB/Y5JiI9tIDl2Vfkqnn8IkBuEeifR8u5nxn2J2FngpTyHn5lZOH A==;
-X-CSE-ConnectionGUID: jKW6kVRDRNmBefolVPW4Vw==
-X-CSE-MsgGUID: lc6c9KTgTpyL6EdigERHxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="66450197"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="66450197"
+ bh=aU/DGV8HtpU/eyOx9rhHXKxOGTkEii9HhvE7eu4Fem0=;
+ b=hmAHrSOV5ckFTWHd2AhBiDNdIPg2HSPb/GJhTD0wzFWpcUT/tG1LTuoK
+ xfyW0bfkgmOP3VW16/yjbBiLZQm6uka0HQ/DjVDoNYyWlpYYisfG/lUWE
+ CgUhD9mm0aak22P4pRNIiCrxxyluaR4nha+lNcFq8qZ2zmVtU4huzoJdA
+ 5UhglOI7gIC4W6npzMHOTkxPnUCYk77ir9kK+gl+1fiebcgTEln7Co/Si
+ 0VvmljKk9gUUYWUlqYcLQ9t6lDTK+yER+R69xLKa3KZmbQhBVSG77a51S
+ 8q54LQ38cm/1eiz1YbFFIRS2CNtW+dfO/RXUOis9Kh7itUvGPwoFuavm2 Q==;
+X-CSE-ConnectionGUID: QeyCa4hbT9GzIX++ogU2kA==
+X-CSE-MsgGUID: gLW6aMj8TvGnjhewzWPqNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="66450193"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="66450193"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 05:34:41 -0700
-X-CSE-ConnectionGUID: 2KGwJR22Q+S82xfOmUD58A==
-X-CSE-MsgGUID: DrqV0t7LSZuvK36m4H4IDA==
+ 30 Jul 2025 05:34:38 -0700
+X-CSE-ConnectionGUID: OdpMOOHtS7yDJg0D8mBGzA==
+X-CSE-MsgGUID: bhdx9uu+S0K6/LYlIgKA4A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="186649532"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="186649515"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa002.fm.intel.com with ESMTP; 30 Jul 2025 05:34:40 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 30 Jul 2025 05:34:37 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v5 24/25] drm/xe: Enable madvise ioctl for xe
-Date: Wed, 30 Jul 2025 18:30:49 +0530
-Message-Id: <20250730130050.1001648-25-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v5 22/25] drm/xe/vm: Add helper to check for default VMA
+ memory attributes
+Date: Wed, 30 Jul 2025 18:30:47 +0530
+Message-Id: <20250730130050.1001648-23-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250730130050.1001648-1-himal.prasad.ghimiray@intel.com>
 References: <20250730130050.1001648-1-himal.prasad.ghimiray@intel.com>
@@ -68,34 +69,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Ioctl enables setting up of memory attributes in user provided range.
+Introduce a new helper function `xe_vma_has_default_mem_attrs()` to
+determine whether a VMA's memory attributes are set to their default
+values. This includes checks for atomic access, PAT index, and preferred
+location.
+
+Also, add a new field `default_pat_index` to `struct xe_vma_mem_attr`
+to track the initial PAT index set during the first bind. This helps
+distinguish between default and user-modified pat index, such as those
+changed via madvise.
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c       | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h       |  2 ++
+ drivers/gpu/drm/xe/xe_vm_types.h |  6 ++++++
+ 3 files changed, 32 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index c754374f1a8d..80a77488381a 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -63,6 +63,7 @@
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_ttm_sys_mgr.h"
- #include "xe_vm.h"
-+#include "xe_vm_madvise.h"
- #include "xe_vram.h"
- #include "xe_vram_types.h"
- #include "xe_vsec.h"
-@@ -201,6 +202,7 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
- 			  DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
- };
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 0774b40bc37b..5ee38e9cf6c6 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2598,6 +2598,29 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ 	return err;
+ }
  
- static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
++/**
++ * xe_vma_has_default_mem_attrs - Check if a VMA has default memory attributes
++ * @vma: Pointer to the xe_vma structure to check
++ *
++ * This function determines whether the given VMA (Virtual Memory Area)
++ * has its memory attributes set to their default values. Specifically,
++ * it checks the following conditions:
++ *
++ * - `atomic_access` is `DRM_XE_VMA_ATOMIC_UNDEFINED`
++ * - `pat_index` is equal to `default_pat_index`
++ * - `preferred_loc.devmem_fd` is `DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE`
++ * - `preferred_loc.migration_policy` is `DRM_XE_MIGRATE_ALL_PAGES`
++ *
++ * Return: true if all attributes are at their default values, false otherwise.
++ */
++bool xe_vma_has_default_mem_attrs(struct xe_vma *vma)
++{
++	return (vma->attr.atomic_access == DRM_XE_ATOMIC_UNDEFINED &&
++		vma->attr.pat_index ==  vma->attr.default_pat_index &&
++		vma->attr.preferred_loc.devmem_fd == DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE &&
++		vma->attr.preferred_loc.migration_policy == DRM_XE_MIGRATE_ALL_PAGES);
++}
++
+ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				   struct xe_vma_ops *vops)
+ {
+@@ -2630,6 +2653,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 					.migration_policy = DRM_XE_MIGRATE_ALL_PAGES,
+ 				},
+ 				.atomic_access = DRM_XE_ATOMIC_UNDEFINED,
++				.default_pat_index = op->map.pat_index,
+ 				.pat_index = op->map.pat_index,
+ 			};
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 05ac3118d9f4..f735d994806d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -66,6 +66,8 @@ static inline bool xe_vm_is_closed_or_banned(struct xe_vm *vm)
+ struct xe_vma *
+ xe_vm_find_overlapping_vma(struct xe_vm *vm, u64 start, u64 range);
+ 
++bool xe_vma_has_default_mem_attrs(struct xe_vma *vma);
++
+ /**
+  * xe_vm_has_scratch() - Whether the vm is configured for scratch PTEs
+  * @vm: The vm
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 81d92d886578..351242c92c12 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -103,8 +103,14 @@ struct xe_vma_mem_attr {
+ 	 */
+ 	u32 atomic_access;
+ 
++	/**
++	 * @default_pat_index: The pat index for VMA set during first bind by user.
++	 */
++	u16 default_pat_index;
++
+ 	/**
+ 	 * @pat_index: The pat index to use when encoding the PTEs for this vma.
++	 * same as default_pat_index unless overwritten by madvise.
+ 	 */
+ 	u16 pat_index;
+ };
 -- 
 2.34.1
 
