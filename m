@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF057C87FCB
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 12:26:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6D78C87FCB
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 12:30:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91D4010E203;
-	Wed, 30 Jul 2025 12:26:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TMd1KkW3";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C11BE10E203;
- Wed, 30 Jul 2025 12:26:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753878381; x=1785414381;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Yqt9k3FEoN2rn755DspRcdnjCj8ruGaUo76ndianeec=;
- b=TMd1KkW3QNLEoDmxJ7j5DCmm3nBkTCCDRV1KQeyd7bEQvsDDqRjUlKdB
- bVpvtYcb/B+ue3P653MxGKsFX/fXJuYwiFvUJ7GeoC7v8E7FZqrOkOFAu
- tidCcL9qCbJrFCtCBN0fDS9DE+KnFuC30p/k9RrLT32++l3C4jSS56Osm
- XHFD2XWwt50xKz80tGNQxLZJBwWyAUMVIhbD/13+YNGvf7hxxjDUzA7IN
- 62Yi2J79E+83woUkCqP8s9mKAWQLBWUBLdrseIB5EhEVHy742QGfK0hJ0
- mCJMFiY9f0fBc26rECR/Ih7U0iv5a8tjIrB3UzUnS58qATGvxwBevQN2V A==;
-X-CSE-ConnectionGUID: 3q3+tWdaTgu09sItFE/mzA==
-X-CSE-MsgGUID: CJ0WpoxsTM2R2ft8m4Gliw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="56142552"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="56142552"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 05:26:21 -0700
-X-CSE-ConnectionGUID: QsyMguNhTASkZtzr+udzvw==
-X-CSE-MsgGUID: vuxavx1ZQKGyIClQO/DVXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="163427193"
-Received: from lkp-server01.sh.intel.com (HELO 160750d4a34c) ([10.239.97.150])
- by fmviesa008.fm.intel.com with ESMTP; 30 Jul 2025 05:26:16 -0700
-Received: from kbuild by 160750d4a34c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uh5sr-0002ie-31;
- Wed, 30 Jul 2025 12:26:13 +0000
-Date: Wed, 30 Jul 2025 20:25:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marie Zhussupova <marievic@google.com>, rmoar@google.com,
- davidgow@google.com, shuah@kernel.org, brendan.higgins@linux.dev
-Cc: oe-kbuild-all@lists.linux.dev, elver@google.com, dvyukov@google.com,
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, linux-kselftest@vger.kernel.org,
- kunit-dev@googlegroups.com, kasan-dev@googlegroups.com,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Marie Zhussupova <marievic@google.com>
-Subject: Re: [PATCH 7/9] kunit: Add example parameterized test with shared
- resources and direct static parameter array setup
-Message-ID: <202507302042.9Aw3rrmW-lkp@intel.com>
-References: <20250729193647.3410634-8-marievic@google.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DE9F10E683;
+	Wed, 30 Jul 2025 12:30:46 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA71210E207;
+ Wed, 30 Jul 2025 12:30:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6684386906834729661=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250729193647.3410634-8-marievic@google.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Use_the?=
+ =?utf-8?q?_recomended_min=5Fhblank_values_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 30 Jul 2025 12:30:44 -0000
+Message-ID: <175387864482.199115.6708517638425078365@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250730-min_hblank-v7-1-179360220ced@intel.com>
+In-Reply-To: <20250730-min_hblank-v7-1-179360220ced@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,36 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Marie,
+--===============6684386906834729661==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build errors:
+== Series Details ==
 
-[auto build test ERROR on shuah-kselftest/kunit]
-[also build test ERROR on shuah-kselftest/kunit-fixes drm-xe/drm-xe-next linus/master v6.16 next-20250730]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: drm/i915/display: Use the recomended min_hblank values (rev5)
+URL   : https://patchwork.freedesktop.org/series/150727/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marie-Zhussupova/kunit-Add-parent-kunit-for-parameterized-test-context/20250730-033818
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest.git kunit
-patch link:    https://lore.kernel.org/r/20250729193647.3410634-8-marievic%40google.com
-patch subject: [PATCH 7/9] kunit: Add example parameterized test with shared resources and direct static parameter array setup
-config: arc-randconfig-001-20250730 (https://download.01.org/0day-ci/archive/20250730/202507302042.9Aw3rrmW-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250730/202507302042.9Aw3rrmW-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507302042.9Aw3rrmW-lkp@intel.com/
+CI Bug Log - changes from xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe_BAT -> xe-pw-150727v5_BAT
+====================================================
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+Summary
+-------
 
->> ERROR: modpost: "kunit_get_next_param_and_desc" [lib/kunit/kunit-example-test.ko] undefined!
+  **SUCCESS**
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe -> xe-pw-150727v5
+
+  IGT_8478: 3e7c2bd685397f852853878aef4d9c1e4889a28b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe: 54ccd087aec954ea34b880223a17e4579eecedbe
+  xe-pw-150727v5: 150727v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150727v5/index.html
+
+--===============6684386906834729661==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Use the recomended min_hblank values (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150727/">https://patchwork.freedesktop.org/series/150727/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150727v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150727v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe_BAT -&gt; xe-pw-150727v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe -&gt; xe-pw-150727v5</li>
+</ul>
+<p>IGT_8478: 3e7c2bd685397f852853878aef4d9c1e4889a28b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe: 54ccd087aec954ea34b880223a17e4579eecedbe<br />
+  xe-pw-150727v5: 150727v5</p>
+
+</body>
+</html>
+
+--===============6684386906834729661==--
