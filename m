@@ -4,61 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34C56C83F26
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 20:58:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83950C83F26
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 21:06:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF26F10E050;
-	Wed, 30 Jul 2025 20:58:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UwcDxzj4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE01B10E0F8
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 20:58:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753909095; x=1785445095;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Do5CCNOPzTe7g5KxJq1YM5I1CzH5ZMi5utmnUk5l5go=;
- b=UwcDxzj4mpJEzDjsRZGrzSSs9KQjSz8xhkeYDpJ8NrwQ52JZh2BVp983
- gwKOeec0/TsszMh6PnuXQqC1XBm9xUP02w010my0oNMCjFUvpktHlXTT2
- treCu23VKSb4LsZcqihSMYJYlyLG8SA+HB12CgHoYjLSqueWyVRkkchO+
- 7Er5AwsEYCmJrwKuqy026C2bzgF/oteGV0VBUt2PxUybKX0JJ/eGOU2Z2
- ZeN7QnQ2R5sXqvn8UCdi9HuSdjP+JpxhfqzfwrJwHEbRrmKyF0Fp61v/N
- r46z5T1gytXqOJDTNdgOu1BUoemh9C3G/5q0eGql8XCWZHxIeSPOmP+ZM w==;
-X-CSE-ConnectionGUID: NF8W/UtkROmBhv5uqI7njg==
-X-CSE-MsgGUID: 4AtqcveCRv2ZtiaI/CwN4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="66788656"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="66788656"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 13:58:14 -0700
-X-CSE-ConnectionGUID: nUv5/WfbQdODdH8vBVvg+Q==
-X-CSE-MsgGUID: 88m4dpowTCmxsiWORP48uw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="162967134"
-Received: from lkp-server01.sh.intel.com (HELO 160750d4a34c) ([10.239.97.150])
- by fmviesa006.fm.intel.com with ESMTP; 30 Jul 2025 13:58:13 -0700
-Received: from kbuild by 160750d4a34c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uhDsJ-00039I-0C;
- Wed, 30 Jul 2025 20:58:11 +0000
-Date: Thu, 31 Jul 2025 04:57:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v5 21/25] drm/xe/madvise: Skip vma invalidation if mem
- attr are unchanged
-Message-ID: <202507310458.N20slFKu-lkp@intel.com>
-References: <20250730130050.1001648-22-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2787D10E0F8;
+	Wed, 30 Jul 2025 21:06:50 +0000 (UTC)
+X-Greylist: delayed 381 seconds by postgrey-1.36 at gabe;
+ Wed, 30 Jul 2025 21:06:49 UTC
+Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net
+ [83.223.95.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4974510E0F8
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 21:06:49 +0000 (UTC)
+Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+ client-signature RSA-PSS (4096 bits) client-digest SHA256)
+ (Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+ by bmailout1.hostsharing.net (Postfix) with ESMTPS id 6AE042C02AD6;
+ Wed, 30 Jul 2025 23:00:26 +0200 (CEST)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+ id 52DF939C007; Wed, 30 Jul 2025 23:00:26 +0200 (CEST)
+Date: Wed, 30 Jul 2025 23:00:26 +0200
+From: Lukas Wunner <lukas@wunner.de>
+To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Ruhl@freedesktop.org,
+ Michael J <michael.j.ruhl@intel.com>, Riana Tauro <riana.tauro@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>
+Subject: Re: [RFC v5 0/5] Proposal to use netlink for RAS and Telemetry
+ across drm subsystem
+Message-ID: <aIqH6ip02p3WQ7Jv@wunner.de>
+References: <20250730064956.1385855-1-aravind.iddamsetty@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250730130050.1001648-22-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250730064956.1385855-1-aravind.iddamsetty@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,87 +58,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Himal,
+On Wed, Jul 30, 2025 at 12:19:51PM +0530, Aravind Iddamsetty wrote:
+> Our hardware supports RAS(Reliability, Availability, Serviceability) by
+> reporting the errors to the host, which the KMD processes and exposes a
+> set of error counters which can be used by observability tools to take 
+> corrective actions or repairs. Traditionally there were being exposed 
+> via PMU (for relative counters) and sysfs interface (for absolute 
+> value) in our internal branch. But, due to the limitations in this 
+> approach to use two interfaces and also not able to have an event based 
+> reporting or configurability, an alternative approach to try netlink 
+> was suggested by community for drm subsystem wide UAPI for RAS and 
+> telemetry as discussed in [2]. 
+> 
+> This [2] is the inspiration to this series. It uses the generic
+> netlink(genl) family subsystem and exposes a set of commands that can
+> be used by every drm driver, the framework provides a means to have
+> custom commands too.
 
-kernel test robot noticed the following build warnings:
+It seems this series was originally conceived in 2023.  In the meantime,
+tooling has been introduced to auto-generate all the netlink boilerplate
+code from a YAML description in Documentation/netlink/specs/.  I *think*
+using it is mandatory for all newly introduced Netlink protocols.
 
-[auto build test WARNING on next-20250730]
-[cannot apply to drm-xe/drm-xe-next linus/master v6.16 v6.16-rc7 v6.16-rc6 v6.16]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Basically you create the uapi and kernel header files plus kernel source
+like this:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Himal-Prasad-Ghimiray/drm-gpuvm-Pass-map-arguments-through-a-struct/20250731-003813
-base:   next-20250730
-patch link:    https://lore.kernel.org/r/20250730130050.1001648-22-himal.prasad.ghimiray%40intel.com
-patch subject: [PATCH v5 21/25] drm/xe/madvise: Skip vma invalidation if mem attr are unchanged
-config: arm-randconfig-004-20250731 (https://download.01.org/0day-ci/archive/20250731/202507310458.N20slFKu-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 8f09b03aebb71c154f3bbe725c29e3f47d37c26e)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250731/202507310458.N20slFKu-lkp@intel.com/reproduce)
+tools/net/ynl/pyynl/ynl_gen_c.py --spec Documentation/netlink/specs/drm.yaml \
+  --mode uapi --header
+tools/net/ynl/pyynl/ynl_gen_c.py --spec Documentation/netlink/specs/drm.yaml \
+  --mode kernel --header
+tools/net/ynl/pyynl/ynl_gen_c.py --spec Documentation/netlink/specs/drm.yaml \
+  --mode kernel --source
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507310458.N20slFKu-lkp@intel.com/
+And then you add both the YAML file as well as the generated files to
+the commit.  The reason you have to do that is because Python is
+optional for building the kernel per Documentation/process/changes.rst,
+so the files cannot be generated at compile time.  It is possible though
+to regenerate them with tools/net/ynl/ynl-regen.sh whenever the YAML file
+is changed.
 
-All warnings (new ones prefixed by >>):
+ynl_gen_c.py is capable of auto-generating code for user space applications
+as well.  And there's tools/net/ynl/pyynl/cli.py to listen to events or
+send requests without having to write any code.
 
->> drivers/gpu/drm/xe/xe_vm_madvise.c:200:4: warning: variable 'tile_mask' is uninitialized when used here [-Wuninitialized]
-     200 |                         tile_mask |= xe_svm_ranges_zap_ptes_in_range(vm,
-         |                         ^~~~~~~~~
-   drivers/gpu/drm/xe/xe_vm_madvise.c:184:18: note: initialize the variable 'tile_mask' to silence this warning
-     184 |         u8 id, tile_mask;
-         |                         ^
-         |                          = '\0'
-   1 warning generated.
+Thanks,
 
-
-vim +/tile_mask +200 drivers/gpu/drm/xe/xe_vm_madvise.c
-
-   179	
-   180	static u8 xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start, u64 end)
-   181	{
-   182		struct drm_gpuva *gpuva;
-   183		struct xe_tile *tile;
-   184		u8 id, tile_mask;
-   185	
-   186		lockdep_assert_held_write(&vm->lock);
-   187	
-   188		/* Wait for pending binds */
-   189		if (dma_resv_wait_timeout(xe_vm_resv(vm), DMA_RESV_USAGE_BOOKKEEP,
-   190					  false, MAX_SCHEDULE_TIMEOUT) <= 0)
-   191			XE_WARN_ON(1);
-   192	
-   193		drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
-   194			struct xe_vma *vma = gpuva_to_vma(gpuva);
-   195	
-   196			if (vma->skip_invalidation || xe_vma_is_null(vma))
-   197				continue;
-   198	
-   199			if (xe_vma_is_cpu_addr_mirror(vma)) {
- > 200				tile_mask |= xe_svm_ranges_zap_ptes_in_range(vm,
-   201									      xe_vma_start(vma),
-   202									      xe_vma_end(vma));
-   203			} else {
-   204				for_each_tile(tile, vm->xe, id) {
-   205					if (xe_pt_zap_ptes(tile, vma)) {
-   206						tile_mask |= BIT(id);
-   207	
-   208					/*
-   209					 * WRITE_ONCE pairs with READ_ONCE
-   210					 * in xe_vm_has_valid_gpu_mapping()
-   211					 */
-   212					WRITE_ONCE(vma->tile_invalidated,
-   213						   vma->tile_invalidated | BIT(id));
-   214					}
-   215				}
-   216			}
-   217		}
-   218	
-   219		return tile_mask;
-   220	}
-   221	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Lukas
