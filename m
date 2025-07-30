@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3474BC83F26
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 14:24:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A23AC87FCC
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 14:24:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F212A10E69E;
-	Wed, 30 Jul 2025 14:24:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5E0810E6B6;
+	Wed, 30 Jul 2025 14:24:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bgk1Dzb2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NyHj3UCf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31B6510E69E
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 14:24:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 583D910E69E
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 14:24:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753885454; x=1785421454;
+ t=1753885455; x=1785421455;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RIHiv367yK5Z4XpBJet6UR9T+seJtyarF/swYMtyhtA=;
- b=Bgk1Dzb2QIID/NIaZHS9ONgdD4FDFHuoFMayKSRo8J/CHvU+265Z3zB/
- yy3h1QVB7hUOlhnW3D0hesLNlMCGD8P4H7pB6StNW80YeVJK5XIkB/Orx
- cIHs4wKHkGeaQqlWWZWagfWcRUAP42bRtIggIc6pqkhijY7iLR1Srmxy4
- VBeWeY/MD+NsZJGSSYWgQME3bezcOw6cR5ksbolHBa4JiPKtuyls61/Ss
- NSpZm73PqlhWFHLrKzHcbnczXJBuE/WYmpYcAda9enkVInOIhrA6f0Z2m
- Nq9o+LJQtrPho7kdSSqh0jgIwVMTBmLW75Xc5KTAmTD0MZw4zr7MWlpI7 g==;
-X-CSE-ConnectionGUID: VpD6bVHiRw+U048afGhdtQ==
-X-CSE-MsgGUID: 7vuGRBRWTgWIlL8E32JLMA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="55392780"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="55392780"
+ bh=X5DsLyII9HfLYYkNAssxD+iJxjnthufGx461dFRdvFk=;
+ b=NyHj3UCfqVMGPMfpJBUvOVU4fwybFUdBmLWKf8ejc1zSrqtQVdKhTPqt
+ bL0yXEoYFceqOCBZknrgZKtuE0Av+5UReHTIa18HCxosH7ZFNgOVoa7sv
+ OvjM143bhTUKGA13iqYRp4f2MMK8vnwr7iyVTvLtShrKjfuqmlT2IRkNk
+ M5e128uzTPafAF7qDv+3F1mlW0V6mygZv6M3Pa20Mx7ipTMfPn6g2LrL2
+ R2uTnzS5V7CaAK0C07s43Elxkc0SGK4dWGFXLdLVaIrGm1nP2l+jL7EkG
+ 9lEp7rU+WQP0XAyo0S+5fvCtsDA4QkYBYMSWSRq2UNBGuo1EOjyYcaVL4 Q==;
+X-CSE-ConnectionGUID: fHSJ/ztdSFq8VmUdKUwZ+w==
+X-CSE-MsgGUID: GqUoOlijTDKh3l52kXlcRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="55392782"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="55392782"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 07:24:14 -0700
-X-CSE-ConnectionGUID: g1zZUpOVSQWrJm/ZVpRWHg==
-X-CSE-MsgGUID: JdLgVCOTTlSNP/v2Y2bbXQ==
+ 30 Jul 2025 07:24:15 -0700
+X-CSE-ConnectionGUID: 3tySluWiS8KZXqN0idGTuA==
+X-CSE-MsgGUID: 4eXKzUlES3e+5Uz7/xLdOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="167254525"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="167254530"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO fdugast-desk.intel.com)
  ([10.245.245.61])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 07:24:13 -0700
+ 30 Jul 2025 07:24:14 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v3 4/6] drm/pagemap: Allocate folios when possible
-Date: Wed, 30 Jul 2025 16:22:49 +0200
-Message-ID: <20250730142357.3851167-5-francois.dugast@intel.com>
+Subject: [PATCH v3 5/6] drm/xe/migrate: Populate struct drm_pagemap_addr array
+Date: Wed, 30 Jul 2025 16:22:50 +0200
+Message-ID: <20250730142357.3851167-6-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250730142357.3851167-1-francois.dugast@intel.com>
 References: <20250730142357.3851167-1-francois.dugast@intel.com>
@@ -68,122 +68,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the order is greater than zero, allocate a folio when populating the
-RAM PFNs instead of allocating individual pages one after the other. For
-example if 2MB folios are used instead of 4KB pages, this reduces the
-number of calls to the allocation API by 512.
-
-v2:
-- Use page order instead of extra argument (Matthew Brost)
-- Allocate with folio_alloc() (Matthew Brost)
-- Loop for mpages and free_pages based on order (Matthew Brost)
-
-v3:
-- Fix loops in drm_pagemap_migrate_populate_ram_pfn() (Matthew Brost)
+Workaround to ensure all addresses are populated in the array as
+this is expected when creating the copy batch. This is required
+because the migrate layer does not support 2MB GPU pages yet. A
+proper fix will come in a follow-up.
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/drm_pagemap.c | 50 ++++++++++++++++++++++++++---------
- 1 file changed, 38 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 0312edb8d4a8..e43676e15fe2 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -460,54 +460,80 @@ static int drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
- {
- 	unsigned long i;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 6a0f04411ae0..0f9636a06083 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1802,6 +1802,7 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+ 	unsigned int pitch = len >= PAGE_SIZE && !(len & ~PAGE_MASK) ?
+ 		PAGE_SIZE : 4;
+ 	int err;
++	unsigned long i, j;
  
--	for (i = 0; i < npages; ++i, addr += PAGE_SIZE) {
-+	for (i = 0; i < npages;) {
- 		struct page *page, *src_page;
-+		struct folio *folio;
-+		unsigned int order = 0;
- 
- 		if (!(src_mpfn[i] & MIGRATE_PFN_MIGRATE))
--			continue;
-+			goto next;
- 
- 		src_page = migrate_pfn_to_page(src_mpfn[i]);
- 		if (!src_page)
--			continue;
-+			goto next;
- 
- 		if (fault_page) {
- 			if (src_page->zone_device_data !=
- 			    fault_page->zone_device_data)
--				continue;
-+				goto next;
- 		}
- 
-+		order = folio_order(page_folio(src_page));
-+
-+		/* TODO: Support fallback to single pages if THP allocation fails */
- 		if (vas)
--			page = alloc_page_vma(GFP_HIGHUSER, vas, addr);
-+			folio = vma_alloc_folio(GFP_HIGHUSER, order, vas, addr);
- 		else
--			page = alloc_page(GFP_HIGHUSER);
-+			folio = folio_alloc(GFP_HIGHUSER, order);
- 
--		if (!page)
-+		if (!folio)
- 			goto free_pages;
- 
-+		page = folio_page(folio, 0);
- 		mpfn[i] = migrate_pfn(page_to_pfn(page));
-+
-+next:
-+		if (page)
-+			addr += page_size(page);
-+		else
-+			addr += PAGE_SIZE;
-+
-+		i += NR_PAGES(order);
+ 	if (drm_WARN_ON(&xe->drm, (len & XE_CACHELINE_MASK) ||
+ 			(sram_offset | vram_addr) & XE_CACHELINE_MASK))
+@@ -1818,6 +1819,24 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+ 		return ERR_PTR(err);
  	}
  
--	for (i = 0; i < npages; ++i) {
++	/*
++	 * If the order of a struct drm_pagemap_addr entry is greater than 0,
++	 * the entry is populated by GPU pagemap but subsequent entries within
++	 * the range of that order are not populated.
++	 * build_pt_update_batch_sram() expects a fully populated array of
++	 * struct drm_pagemap_addr. Ensure this is the case even with higher
++	 * orders.
++	 */
 +	for (i = 0; i < npages;) {
- 		struct page *page = migrate_pfn_to_page(mpfn[i]);
-+		unsigned int order = 0;
- 
- 		if (!page)
--			continue;
-+			goto next_lock;
- 
- 		WARN_ON_ONCE(!trylock_page(page));
--		++*mpages;
++		unsigned int order = sram_addr[i].order;
 +
-+		order = folio_order(page_folio(page));
-+		*mpages += NR_PAGES(order);
++		for (j = 1; j < NR_PAGES(order) && i + j < npages; j++)
++			if (!sram_addr[i + j].addr)
++				sram_addr[i + j].addr = sram_addr[i].addr + j * PAGE_SIZE;
 +
-+next_lock:
 +		i += NR_PAGES(order);
- 	}
- 
- 	return 0;
- 
- free_pages:
--	for (i = 0; i < npages; ++i) {
-+	for (i = 0; i < npages;) {
- 		struct page *page = migrate_pfn_to_page(mpfn[i]);
-+		unsigned int order = 0;
- 
- 		if (!page)
--			continue;
-+			goto next_put;
- 
- 		put_page(page);
- 		mpfn[i] = 0;
++	}
 +
-+		order = folio_order(page_folio(page));
-+
-+next_put:
-+		i += NR_PAGES(order);
- 	}
- 	return -ENOMEM;
- }
+ 	build_pt_update_batch_sram(m, bb, pt_slot * XE_PAGE_SIZE,
+ 				   sram_addr, len + sram_offset);
+ 
 -- 
 2.43.0
 
