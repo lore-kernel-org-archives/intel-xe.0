@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A23AC87FCC
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 14:24:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71CC6C87FCB
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 14:24:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5E0810E6B6;
-	Wed, 30 Jul 2025 14:24:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34C8910E20B;
+	Wed, 30 Jul 2025 14:24:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NyHj3UCf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jbh8O1vx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 583D910E69E
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 14:24:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7212510E69E
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 14:24:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753885455; x=1785421455;
+ t=1753885456; x=1785421456;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X5DsLyII9HfLYYkNAssxD+iJxjnthufGx461dFRdvFk=;
- b=NyHj3UCfqVMGPMfpJBUvOVU4fwybFUdBmLWKf8ejc1zSrqtQVdKhTPqt
- bL0yXEoYFceqOCBZknrgZKtuE0Av+5UReHTIa18HCxosH7ZFNgOVoa7sv
- OvjM143bhTUKGA13iqYRp4f2MMK8vnwr7iyVTvLtShrKjfuqmlT2IRkNk
- M5e128uzTPafAF7qDv+3F1mlW0V6mygZv6M3Pa20Mx7ipTMfPn6g2LrL2
- R2uTnzS5V7CaAK0C07s43Elxkc0SGK4dWGFXLdLVaIrGm1nP2l+jL7EkG
- 9lEp7rU+WQP0XAyo0S+5fvCtsDA4QkYBYMSWSRq2UNBGuo1EOjyYcaVL4 Q==;
-X-CSE-ConnectionGUID: fHSJ/ztdSFq8VmUdKUwZ+w==
-X-CSE-MsgGUID: GqUoOlijTDKh3l52kXlcRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="55392782"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="55392782"
+ bh=8AAcxilvwbGEfahhXoNf4zkAjO/ydgxruqOadRCOLhE=;
+ b=jbh8O1vxXOOdq8SQAGYbnw7hJR/ZLhXaPPZ7aSZ26/deOhftXG1nFz84
+ 9ucXZCqBrr+d6UEXDScCxFlpf78C2F7/ZpX0XGy4YEYKfQIAT5ZKDwTEF
+ a0znHlNfxVENXVvc0vJnxz1Nd5o8fXeftwMKmx41yGEx7QkzAV9cxsf7p
+ 0jNcg9IpdxsrIKbw0jvV6SzD8bvxbTkSxgDq2CAo06OO/v4DjwkSKC0fv
+ kFd0AP8r2kf3J0cdQP8cKgPd0L+YY7Ne/tKtgbIZEfrz34aUkNzbYF22N
+ fkoXsl5mm5AvF15iWfBNN8DyReZ2xKlHj8lDnWNLAXzDe0+DiSoKrqEDc A==;
+X-CSE-ConnectionGUID: evrP0AgATeqN5Wzj6hA8IQ==
+X-CSE-MsgGUID: yP9iDw4eQFuTlKWBAZhAfw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="55392783"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="55392783"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 07:24:15 -0700
-X-CSE-ConnectionGUID: 3tySluWiS8KZXqN0idGTuA==
-X-CSE-MsgGUID: 4eXKzUlES3e+5Uz7/xLdOA==
+ 30 Jul 2025 07:24:16 -0700
+X-CSE-ConnectionGUID: AVoc6phuSEKi8in1kwOcHw==
+X-CSE-MsgGUID: eRz/5eF4SvmvPPYc3KaC+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="167254530"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="167254536"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO fdugast-desk.intel.com)
  ([10.245.245.61])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 07:24:14 -0700
+ 30 Jul 2025 07:24:15 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v3 5/6] drm/xe/migrate: Populate struct drm_pagemap_addr array
-Date: Wed, 30 Jul 2025 16:22:50 +0200
-Message-ID: <20250730142357.3851167-6-francois.dugast@intel.com>
+Subject: [PATCH v3 6/6] drm/xe/svm: Migrate folios when possible
+Date: Wed, 30 Jul 2025 16:22:51 +0200
+Message-ID: <20250730142357.3851167-7-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250730142357.3851167-1-francois.dugast@intel.com>
 References: <20250730142357.3851167-1-francois.dugast@intel.com>
@@ -68,54 +68,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Workaround to ensure all addresses are populated in the array as
-this is expected when creating the copy batch. This is required
-because the migrate layer does not support 2MB GPU pages yet. A
-proper fix will come in a follow-up.
+The DMA mapping can now correspond to a folio (order > 0), so move
+the iterator by the number of pages in the folio in order to migrate
+all pages at once.
+
+This requires forcing contiguous memory for SVM BOs, which greatly
+simplifies the code and enables 2MB device page support, allowing a
+major performance improvement. Negative effects like extra eviction
+are unlikely as SVM BOs have a maximal size of 2MB.
+
+v2:
+- Improve commit message (Matthew Brost)
+- Fix increment, chunk, assert match (Matthew Brost)
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c  | 2 ++
+ drivers/gpu/drm/xe/xe_svm.c | 8 ++++++++
+ 2 files changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 6a0f04411ae0..0f9636a06083 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1802,6 +1802,7 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
- 	unsigned int pitch = len >= PAGE_SIZE && !(len & ~PAGE_MASK) ?
- 		PAGE_SIZE : 4;
- 	int err;
-+	unsigned long i, j;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index ffca1cea5585..59994a978a8c 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -200,6 +200,8 @@ static bool force_contiguous(u32 bo_flags)
+ 	else if (bo_flags & XE_BO_FLAG_PINNED &&
+ 		 !(bo_flags & XE_BO_FLAG_PINNED_LATE_RESTORE))
+ 		return true; /* needs vmap */
++	else if (bo_flags & XE_BO_FLAG_CPU_ADDR_MIRROR)
++		return true;
  
- 	if (drm_WARN_ON(&xe->drm, (len & XE_CACHELINE_MASK) ||
- 			(sram_offset | vram_addr) & XE_CACHELINE_MASK))
-@@ -1818,6 +1819,24 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
- 		return ERR_PTR(err);
- 	}
+ 	/*
+ 	 * For eviction / restore on suspend / resume objects pinned in VRAM
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 1d097e76aabc..e35c6d4def20 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -383,6 +383,14 @@ static int xe_svm_copy(struct page **pages,
+ 			}
  
-+	/*
-+	 * If the order of a struct drm_pagemap_addr entry is greater than 0,
-+	 * the entry is populated by GPU pagemap but subsequent entries within
-+	 * the range of that order are not populated.
-+	 * build_pt_update_batch_sram() expects a fully populated array of
-+	 * struct drm_pagemap_addr. Ensure this is the case even with higher
-+	 * orders.
-+	 */
-+	for (i = 0; i < npages;) {
-+		unsigned int order = sram_addr[i].order;
+ 			match = vram_addr + PAGE_SIZE * (i - pos) == __vram_addr;
++			/* Expected with contiguous memory */
++			xe_assert(vr->xe, match);
 +
-+		for (j = 1; j < NR_PAGES(order) && i + j < npages; j++)
-+			if (!sram_addr[i + j].addr)
-+				sram_addr[i + j].addr = sram_addr[i].addr + j * PAGE_SIZE;
-+
-+		i += NR_PAGES(order);
-+	}
-+
- 	build_pt_update_batch_sram(m, bb, pt_slot * XE_PAGE_SIZE,
- 				   sram_addr, len + sram_offset);
++			if (pagemap_addr[i].order) {
++				i += NR_PAGES(pagemap_addr[i].order) - 1;
++				chunk = (i - pos) == (XE_MIGRATE_CHUNK_SIZE / PAGE_SIZE);
++				last = (i + 1) == npages;
++			}
+ 		}
  
+ 		/*
 -- 
 2.43.0
 
