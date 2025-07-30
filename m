@@ -4,56 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71CC6C87FCB
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 14:24:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B469EC87FCB
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 14:33:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34C8910E20B;
-	Wed, 30 Jul 2025 14:24:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4A410E6AE;
+	Wed, 30 Jul 2025 14:33:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jbh8O1vx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bz4SgOuh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7212510E69E
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 14:24:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC1210E6AE;
+ Wed, 30 Jul 2025 14:33:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753885456; x=1785421456;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8AAcxilvwbGEfahhXoNf4zkAjO/ydgxruqOadRCOLhE=;
- b=jbh8O1vxXOOdq8SQAGYbnw7hJR/ZLhXaPPZ7aSZ26/deOhftXG1nFz84
- 9ucXZCqBrr+d6UEXDScCxFlpf78C2F7/ZpX0XGy4YEYKfQIAT5ZKDwTEF
- a0znHlNfxVENXVvc0vJnxz1Nd5o8fXeftwMKmx41yGEx7QkzAV9cxsf7p
- 0jNcg9IpdxsrIKbw0jvV6SzD8bvxbTkSxgDq2CAo06OO/v4DjwkSKC0fv
- kFd0AP8r2kf3J0cdQP8cKgPd0L+YY7Ne/tKtgbIZEfrz34aUkNzbYF22N
- fkoXsl5mm5AvF15iWfBNN8DyReZ2xKlHj8lDnWNLAXzDe0+DiSoKrqEDc A==;
-X-CSE-ConnectionGUID: evrP0AgATeqN5Wzj6hA8IQ==
-X-CSE-MsgGUID: yP9iDw4eQFuTlKWBAZhAfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="55392783"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="55392783"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 07:24:16 -0700
-X-CSE-ConnectionGUID: AVoc6phuSEKi8in1kwOcHw==
-X-CSE-MsgGUID: eRz/5eF4SvmvPPYc3KaC+A==
+ t=1753886017; x=1785422017;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=pmEi+E7y8N1fUJ2Skd77GVL6bd2TokFUGYI1O6z8kE8=;
+ b=bz4SgOuhTjzo4tbiBXg9uUkDQlvXLWX9kmP7mUaQYk0Kk/ywMx2wZxgA
+ rA2UV9FgN7CnvQgnp++gqklDemIpnb1HvaKQlHT7lUtZgCZ/xrx9wzOog
+ uWrdeIzH1/kALWNp8DzkQiF2ygBE9ac6guFH9/9DdSPeSiNJ2egaw+64u
+ NZ5dYQYWrZDBEMitfc4THthKkyBuVw5Kc04kLOfkE0lh7zL/RcDnk47jN
+ OoTyH1PYs8tSNEfMb/WwWkZeCLveT4jL5IL9jR/BMV/unnekACg+pGqSq
+ trPrIafJ4GTbNE5WJbd9T0h1u/banmFhq+BG17Mv2VZDCOkl5Z9NPyyxW g==;
+X-CSE-ConnectionGUID: BJ2bt7GYTrem9ywubMBNfw==
+X-CSE-MsgGUID: rRIr9vh/Soejhhmu51Julg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="60013802"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="60013802"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2025 07:33:37 -0700
+X-CSE-ConnectionGUID: hkTixScCTg6cwK/DCkLisA==
+X-CSE-MsgGUID: zW5cvb46RTmWg/nwgXfSFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="167254536"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO fdugast-desk.intel.com)
- ([10.245.245.61])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 07:24:15 -0700
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com,
-	Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v3 6/6] drm/xe/svm: Migrate folios when possible
-Date: Wed, 30 Jul 2025 16:22:51 +0200
-Message-ID: <20250730142357.3851167-7-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250730142357.3851167-1-francois.dugast@intel.com>
-References: <20250730142357.3851167-1-francois.dugast@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="167492737"
+Received: from lkp-server01.sh.intel.com (HELO 160750d4a34c) ([10.239.97.150])
+ by orviesa004.jf.intel.com with ESMTP; 30 Jul 2025 07:33:33 -0700
+Received: from kbuild by 160750d4a34c with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1uh7s2-0002pg-1A;
+ Wed, 30 Jul 2025 14:33:30 +0000
+Date: Wed, 30 Jul 2025 22:32:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marie Zhussupova <marievic@google.com>, rmoar@google.com,
+ davidgow@google.com, shuah@kernel.org, brendan.higgins@linux.dev
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, elver@google.com,
+ dvyukov@google.com, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+ kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Marie Zhussupova <marievic@google.com>
+Subject: Re: [PATCH 3/9] kunit: Pass additional context to generate_params
+ for parameterized testing
+Message-ID: <202507302223.BTl33Nvo-lkp@intel.com>
+References: <20250729193647.3410634-4-marievic@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250729193647.3410634-4-marievic@google.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,57 +76,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The DMA mapping can now correspond to a folio (order > 0), so move
-the iterator by the number of pages in the folio in order to migrate
-all pages at once.
+Hi Marie,
 
-This requires forcing contiguous memory for SVM BOs, which greatly
-simplifies the code and enables 2MB device page support, allowing a
-major performance improvement. Negative effects like extra eviction
-are unlikely as SVM BOs have a maximal size of 2MB.
+kernel test robot noticed the following build errors:
 
-v2:
-- Improve commit message (Matthew Brost)
-- Fix increment, chunk, assert match (Matthew Brost)
+[auto build test ERROR on shuah-kselftest/kunit]
+[also build test ERROR on shuah-kselftest/kunit-fixes drm-xe/drm-xe-next linus/master v6.16 next-20250730]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c  | 2 ++
- drivers/gpu/drm/xe/xe_svm.c | 8 ++++++++
- 2 files changed, 10 insertions(+)
+url:    https://github.com/intel-lab-lkp/linux/commits/Marie-Zhussupova/kunit-Add-parent-kunit-for-parameterized-test-context/20250730-033818
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest.git kunit
+patch link:    https://lore.kernel.org/r/20250729193647.3410634-4-marievic%40google.com
+patch subject: [PATCH 3/9] kunit: Pass additional context to generate_params for parameterized testing
+config: arm64-randconfig-002-20250730 (https://download.01.org/0day-ci/archive/20250730/202507302223.BTl33Nvo-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250730/202507302223.BTl33Nvo-lkp@intel.com/reproduce)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index ffca1cea5585..59994a978a8c 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -200,6 +200,8 @@ static bool force_contiguous(u32 bo_flags)
- 	else if (bo_flags & XE_BO_FLAG_PINNED &&
- 		 !(bo_flags & XE_BO_FLAG_PINNED_LATE_RESTORE))
- 		return true; /* needs vmap */
-+	else if (bo_flags & XE_BO_FLAG_CPU_ADDR_MIRROR)
-+		return true;
- 
- 	/*
- 	 * For eviction / restore on suspend / resume objects pinned in VRAM
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 1d097e76aabc..e35c6d4def20 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -383,6 +383,14 @@ static int xe_svm_copy(struct page **pages,
- 			}
- 
- 			match = vram_addr + PAGE_SIZE * (i - pos) == __vram_addr;
-+			/* Expected with contiguous memory */
-+			xe_assert(vr->xe, match);
-+
-+			if (pagemap_addr[i].order) {
-+				i += NR_PAGES(pagemap_addr[i].order) - 1;
-+				chunk = (i - pos) == (XE_MIGRATE_CHUNK_SIZE / PAGE_SIZE);
-+				last = (i + 1) == npages;
-+			}
- 		}
- 
- 		/*
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507302223.BTl33Nvo-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/xe/xe_migrate.c:1917:
+>> drivers/gpu/drm/xe/tests/xe_migrate.c:772:44: error: incompatible function pointer types initializing 'const void *(*)(struct kunit *, const void *, char *)' with an expression of type 'const void *(const void *, char *)' [-Wincompatible-function-pointer-types]
+     772 |         KUNIT_CASE_PARAM(xe_migrate_sanity_kunit, xe_pci_live_device_gen_param),
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/kunit/test.h:215:24: note: expanded from macro 'KUNIT_CASE_PARAM'
+     215 |                   .generate_params = gen_params, .module_name = KBUILD_MODNAME}
+         |                                      ^~~~~~~~~~
+   In file included from drivers/gpu/drm/xe/xe_migrate.c:1917:
+   drivers/gpu/drm/xe/tests/xe_migrate.c:773:42: error: incompatible function pointer types initializing 'const void *(*)(struct kunit *, const void *, char *)' with an expression of type 'const void *(const void *, char *)' [-Wincompatible-function-pointer-types]
+     773 |         KUNIT_CASE_PARAM(xe_validate_ccs_kunit, xe_pci_live_device_gen_param),
+         |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/kunit/test.h:215:24: note: expanded from macro 'KUNIT_CASE_PARAM'
+     215 |                   .generate_params = gen_params, .module_name = KBUILD_MODNAME}
+         |                                      ^~~~~~~~~~
+   2 errors generated.
+--
+   In file included from drivers/gpu/drm/xe/xe_dma_buf.c:319:
+>> drivers/gpu/drm/xe/tests/xe_dma_buf.c:285:37: error: incompatible function pointer types initializing 'const void *(*)(struct kunit *, const void *, char *)' with an expression of type 'const void *(const void *, char *)' [-Wincompatible-function-pointer-types]
+     285 |         KUNIT_CASE_PARAM(xe_dma_buf_kunit, xe_pci_live_device_gen_param),
+         |                                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/kunit/test.h:215:24: note: expanded from macro 'KUNIT_CASE_PARAM'
+     215 |                   .generate_params = gen_params, .module_name = KBUILD_MODNAME}
+         |                                      ^~~~~~~~~~
+   1 error generated.
+--
+   In file included from drivers/gpu/drm/xe/xe_bo.c:3128:
+>> drivers/gpu/drm/xe/tests/xe_bo.c:610:41: error: incompatible function pointer types initializing 'const void *(*)(struct kunit *, const void *, char *)' with an expression of type 'const void *(const void *, char *)' [-Wincompatible-function-pointer-types]
+     610 |         KUNIT_CASE_PARAM(xe_ccs_migrate_kunit, xe_pci_live_device_gen_param),
+         |                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/kunit/test.h:215:24: note: expanded from macro 'KUNIT_CASE_PARAM'
+     215 |                   .generate_params = gen_params, .module_name = KBUILD_MODNAME}
+         |                                      ^~~~~~~~~~
+   In file included from drivers/gpu/drm/xe/xe_bo.c:3128:
+   drivers/gpu/drm/xe/tests/xe_bo.c:611:38: error: incompatible function pointer types initializing 'const void *(*)(struct kunit *, const void *, char *)' with an expression of type 'const void *(const void *, char *)' [-Wincompatible-function-pointer-types]
+     611 |         KUNIT_CASE_PARAM(xe_bo_evict_kunit, xe_pci_live_device_gen_param),
+         |                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/kunit/test.h:215:24: note: expanded from macro 'KUNIT_CASE_PARAM'
+     215 |                   .generate_params = gen_params, .module_name = KBUILD_MODNAME}
+         |                                      ^~~~~~~~~~
+   In file included from drivers/gpu/drm/xe/xe_bo.c:3128:
+   drivers/gpu/drm/xe/tests/xe_bo.c:624:44: error: incompatible function pointer types initializing 'const void *(*)(struct kunit *, const void *, char *)' with an expression of type 'const void *(const void *, char *)' [-Wincompatible-function-pointer-types]
+     624 |         KUNIT_CASE_PARAM_ATTR(xe_bo_shrink_kunit, xe_pci_live_device_gen_param,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/kunit/test.h:228:24: note: expanded from macro 'KUNIT_CASE_PARAM_ATTR'
+     228 |                   .generate_params = gen_params,                                \
+         |                                      ^~~~~~~~~~
+   3 errors generated.
+--
+   In file included from drivers/gpu/drm/xe/xe_mocs.c:799:
+>> drivers/gpu/drm/xe/tests/xe_mocs.c:193:46: error: incompatible function pointer types initializing 'const void *(*)(struct kunit *, const void *, char *)' with an expression of type 'const void *(const void *, char *)' [-Wincompatible-function-pointer-types]
+     193 |         KUNIT_CASE_PARAM(xe_live_mocs_kernel_kunit, xe_pci_live_device_gen_param),
+         |                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/kunit/test.h:215:24: note: expanded from macro 'KUNIT_CASE_PARAM'
+     215 |                   .generate_params = gen_params, .module_name = KBUILD_MODNAME}
+         |                                      ^~~~~~~~~~
+   In file included from drivers/gpu/drm/xe/xe_mocs.c:799:
+   drivers/gpu/drm/xe/tests/xe_mocs.c:194:45: error: incompatible function pointer types initializing 'const void *(*)(struct kunit *, const void *, char *)' with an expression of type 'const void *(const void *, char *)' [-Wincompatible-function-pointer-types]
+     194 |         KUNIT_CASE_PARAM(xe_live_mocs_reset_kunit, xe_pci_live_device_gen_param),
+         |                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/kunit/test.h:215:24: note: expanded from macro 'KUNIT_CASE_PARAM'
+     215 |                   .generate_params = gen_params, .module_name = KBUILD_MODNAME}
+         |                                      ^~~~~~~~~~
+   2 errors generated.
+
+
+vim +772 drivers/gpu/drm/xe/tests/xe_migrate.c
+
+54f07cfc016226 Akshata Jahagirdar 2024-07-17  770  
+0237368193e897 Michal Wajdeczko   2024-07-08  771  static struct kunit_case xe_migrate_tests[] = {
+37db1e77628551 Michal Wajdeczko   2024-07-20 @772  	KUNIT_CASE_PARAM(xe_migrate_sanity_kunit, xe_pci_live_device_gen_param),
+37db1e77628551 Michal Wajdeczko   2024-07-20  773  	KUNIT_CASE_PARAM(xe_validate_ccs_kunit, xe_pci_live_device_gen_param),
+0237368193e897 Michal Wajdeczko   2024-07-08  774  	{}
+0237368193e897 Michal Wajdeczko   2024-07-08  775  };
+0237368193e897 Michal Wajdeczko   2024-07-08  776  
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
