@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB7E0C87FC9
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 11:22:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38277C87FCB
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 11:27:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86D7810E678;
-	Wed, 30 Jul 2025 11:22:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F132A10E682;
+	Wed, 30 Jul 2025 11:27:34 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA3AE10E678;
- Wed, 30 Jul 2025 11:22:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0213518775822851842=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B37810E67B;
+ Wed, 30 Jul 2025 11:27:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_User_readable_error_codes_o?=
- =?utf-8?q?n_atomic=5Fioctl_failure?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Use_t?=
+ =?utf-8?q?he_recomended_min=5Fhblank_values_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Jul 2025 11:22:38 -0000
-Message-ID: <175387455888.197938.3104404642382732420@1538d3639d33>
+Date: Wed, 30 Jul 2025 11:27:33 -0000
+Message-ID: <175387485356.197938.4545919834570551548@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250730-atomic-v2-0-cc02ce0263dd@intel.com>
-In-Reply-To: <20250730-atomic-v2-0-cc02ce0263dd@intel.com>
+References: <20250730-min_hblank-v7-1-179360220ced@intel.com>
+In-Reply-To: <20250730-min_hblank-v7-1-179360220ced@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,51 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0213518775822851842==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: User readable error codes on atomic_ioctl failure
-URL   : https://patchwork.freedesktop.org/series/152277/
-State : success
+Series: drm/i915/display: Use the recomended min_hblank values (rev5)
+URL   : https://patchwork.freedesktop.org/series/150727/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe_BAT -> xe-pw-152277v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c298eac5978c38dcc62a70c0d73c91765e7cc296
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7c25b0b560bf932191bcaaf464ec24dffc9fec39
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Wed Jul 30 16:03:20 2025 +0530
 
-Summary
--------
+    drm/i915/display: Use the recomended min_hblank values
+    
+    Use recommended values as per wa_14021694213 to compare with the
+    calculated value and choose minimum of them.
+    
+    v2: corrected checkpatch warning and retain the restriction for
+    min_hblank (Jani)
+    v3: use calculated value to compare with recomended value and choose
+    minimum of them (Imre)
+    v4: As driver supported min bpc is 8, omit the condition check for
+    bpc6 with ycbcr420. Added a note for the same (Imre)
+    v5: Add a warn for the unexpected case of 6bpc + uhbr + ycbcr420
+    v6: Reworded the comments and check fo anything < compressed bpp 8(Imre)
+    
+    Bspec: 74379
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+    Reviewed-by: Imre Deak <imre.deak@intel.com>
++ /mt/dim checkpatch e1805ad9a7175457902ae453ea67b76194e7d796 drm-intel
+7c25b0b560bf drm/i915/display: Use the recomended min_hblank values
+-:43: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#43: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3197:
++		drm_WARN_ON(display->drm, (crtc_state->dsc.compression_enable &&
++			    crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe -> xe-pw-152277v1
-
-  IGT_8478: 3e7c2bd685397f852853878aef4d9c1e4889a28b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe: 54ccd087aec954ea34b880223a17e4579eecedbe
-  xe-pw-152277v1: 152277v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152277v1/index.html
-
---===============0213518775822851842==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 26 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>User readable error codes on atomic_ioctl failure</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152277/">https://patchwork.freedesktop.org/series/152277/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152277v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152277v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe_BAT -&gt; xe-pw-152277v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe -&gt; xe-pw-152277v1</li>
-</ul>
-<p>IGT_8478: 3e7c2bd685397f852853878aef4d9c1e4889a28b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3488-54ccd087aec954ea34b880223a17e4579eecedbe: 54ccd087aec954ea34b880223a17e4579eecedbe<br />
-  xe-pw-152277v1: 152277v1</p>
-
-</body>
-</html>
-
---===============0213518775822851842==--
