@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 020B2C87FCC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C30BCC83F26
 	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 14:24:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC79710E373;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89CA610E36F;
 	Wed, 30 Jul 2025 14:24:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVdgRjig";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QdGh2G+T";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 119ED10E36F
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 14:24:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C9C310E20B
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 14:24:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753885453; x=1785421453;
+ t=1753885450; x=1785421450;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=z6qKyWqYfpEkUiY/3WNDxeC1NOhPBnl1bsyCCnr8TjY=;
- b=eVdgRjig5g7COcLUYk/mpDjywUewmZDA0ySpxvi6fe/7cGkBZ/AgCWRw
- 0R+/0VS9sggCLE14lO7840+7qDuBsUV1tsIqUAlb6gpZtiCMVS2A5htC0
- /C6b20Ov5CIFckA7+bxGc8Yd6T3jGpwKjKcIC5ynVx9y3M1EywcC/p5uG
- rdw+HgOC5v4MVqBpBsLFU81rXB5utZeUzaNCTV67dAb1VHQhr7JsMgpTI
- IRshzIppxI50xMg7L1qz/VWGage7dLidrlJ+2VjddOQIUJy1jh7/XdsDg
- 3a8dtEmNMPS12ir3LyW8cM9r8D0irKL5J1ebRAn7A7xhreSO0taBzusWw g==;
-X-CSE-ConnectionGUID: wIGZBk2KStmXG+S/y8/YcQ==
-X-CSE-MsgGUID: l9dHi+h4Sf27bkU6YZpEFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="55392777"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="55392777"
+ bh=7s15NeHHemwyPN46MtVs6LL30hjzkXDxpMV8aYnS+AA=;
+ b=QdGh2G+TurFEhZX0v+B6pFab1axQY94zUG2VGHHYWjfhcM/uwAUE6RxC
+ jGdP6KqSTIrsuSglp0xN2XilVOEjkSJFOJBeUgfs4lESTUYIAlGyhAhvr
+ mFidQitWly9i1W1xWcJuqrjSwZJZtufC9yLBS2EDJDZ338OqwvyM5wUPC
+ vp7LPhpnIwnZ4zOw9eGLg/KZ7i8DNEPnVd63cUwjoZC2b1yw3lTx3qjE5
+ tWtdUaZFeYDBU02nZxa1yJcUwUWAVrGzgrMWSE1uINC6wQJ/eaaz5DDuv
+ XQu6TFebAWteUJQKrgJ3xRewSDMaABA3i+7sZEqEYA++CJktz2fP+B9kR g==;
+X-CSE-ConnectionGUID: ENXEXXNLTGqwk9c39oYDlA==
+X-CSE-MsgGUID: OwbPBUh3RGOOgIEou36VgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="55392773"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="55392773"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 07:24:13 -0700
-X-CSE-ConnectionGUID: cyyz7VkhTWydrmMxwtsKrw==
-X-CSE-MsgGUID: z9D2o9/lRQG4m7xDhEltYw==
+ 30 Jul 2025 07:24:10 -0700
+X-CSE-ConnectionGUID: 0B0kFSI2SqeECdLFS0FOKg==
+X-CSE-MsgGUID: 3BYbRBAfTDS7qitSzEdmdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="167254520"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="167254510"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO fdugast-desk.intel.com)
  ([10.245.245.61])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 07:24:12 -0700
+ 30 Jul 2025 07:24:10 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v3 3/6] drm/pagemap: DMA map folios when possible
-Date: Wed, 30 Jul 2025 16:22:48 +0200
-Message-ID: <20250730142357.3851167-4-francois.dugast@intel.com>
+Subject: [PATCH v3 1/6] drm/pagemap: Rename drm_pagemap_device_addr to
+ drm_pagemap_addr
+Date: Wed, 30 Jul 2025 16:22:46 +0200
+Message-ID: <20250730142357.3851167-2-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250730142357.3851167-1-francois.dugast@intel.com>
 References: <20250730142357.3851167-1-francois.dugast@intel.com>
@@ -68,122 +69,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the page is part of a folio, DMA map the whole folio at once instead of
-mapping individual pages one after the other. For example if 2MB folios
-are used instead of 4KB pages, this reduces the number of DMA mappings by
-512.
-
-The folio order (and consequently, the size) is persisted in the struct
-drm_pagemap_device_addr to be available at the time of unmapping.
-
-v2:
-- Initialize order variable (Matthew Brost)
-- Set proto and dir for completeness (Matthew Brost)
-- Do not populate drm_pagemap_addr, document it (Matthew Brost)
-- Add and use macro NR_PAGES(order) (Matthew Brost)
+Rename this struct to the more generic name drm_pagemap_addr so it can be
+used in a broader context, such as DMA mappings of CPU memory.
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/drm_pagemap.c | 25 ++++++++++++++++++-------
- include/drm/drm_pagemap.h     | 10 ++++++++--
- 2 files changed, 26 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/drm_gpusvm.c       |  4 ++--
+ drivers/gpu/drm/xe/xe_res_cursor.h | 10 +++++-----
+ drivers/gpu/drm/xe/xe_svm.c        |  4 ++--
+ drivers/gpu/drm/xe/xe_svm.h        |  4 ++--
+ include/drm/drm_gpusvm.h           |  4 ++--
+ include/drm/drm_pagemap.h          | 32 +++++++++++++++---------------
+ 6 files changed, 29 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index e5c135d793ed..0312edb8d4a8 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -222,24 +222,32 @@ static int drm_pagemap_migrate_map_pages(struct device *dev,
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index 5bb4c77db2c3..661306da6b2d 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -1048,7 +1048,7 @@ static void __drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
+ 		};
+ 
+ 		for (i = 0, j = 0; i < npages; j++) {
+-			struct drm_pagemap_device_addr *addr = &range->dma_addr[j];
++			struct drm_pagemap_addr *addr = &range->dma_addr[j];
+ 
+ 			if (addr->proto == DRM_INTERCONNECT_SYSTEM)
+ 				dma_unmap_page(dev,
+@@ -1400,7 +1400,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 				goto err_unmap;
+ 			}
+ 
+-			range->dma_addr[j] = drm_pagemap_device_addr_encode
++			range->dma_addr[j] = drm_pagemap_addr_encode
+ 				(addr, DRM_INTERCONNECT_SYSTEM, order,
+ 				 DMA_BIDIRECTIONAL);
+ 		}
+diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+index d1a403cfb628..4e00008b7081 100644
+--- a/drivers/gpu/drm/xe/xe_res_cursor.h
++++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+@@ -55,8 +55,8 @@ struct xe_res_cursor {
+ 	u32 mem_type;
+ 	/** @sgl: Scatterlist for cursor */
+ 	struct scatterlist *sgl;
+-	/** @dma_addr: Current element in a struct drm_pagemap_device_addr array */
+-	const struct drm_pagemap_device_addr *dma_addr;
++	/** @dma_addr: Current element in a struct drm_pagemap_addr array */
++	const struct drm_pagemap_addr *dma_addr;
+ 	/** @mm: Buddy allocator for VRAM cursor */
+ 	struct drm_buddy *mm;
+ 	/**
+@@ -170,7 +170,7 @@ static inline void __xe_res_sg_next(struct xe_res_cursor *cur)
+  */
+ static inline void __xe_res_dma_next(struct xe_res_cursor *cur)
  {
- 	unsigned long i;
+-	const struct drm_pagemap_device_addr *addr = cur->dma_addr;
++	const struct drm_pagemap_addr *addr = cur->dma_addr;
+ 	u64 start = cur->start;
  
--	for (i = 0; i < npages; ++i) {
-+	for (i = 0; i < npages;) {
- 		struct page *page = migrate_pfn_to_page(migrate_pfn[i]);
- 		dma_addr_t dma_addr;
-+		struct folio *folio;
-+		unsigned int order = 0;
- 
- 		if (!page)
--			continue;
-+			goto next;
- 
- 		if (WARN_ON_ONCE(is_zone_device_page(page)))
- 			return -EFAULT;
- 
--		dma_addr = dma_map_page(dev, page, 0, PAGE_SIZE, dir);
-+		folio = page_folio(page);
-+		order = folio_order(folio);
-+
-+		dma_addr = dma_map_page(dev, page, 0, page_size(page), dir);
- 		if (dma_mapping_error(dev, dma_addr))
- 			return -EFAULT;
- 
- 		pagemap_addr[i] =
- 			drm_pagemap_addr_encode(dma_addr,
- 						DRM_INTERCONNECT_SYSTEM,
--						0, dir);
-+						order, dir);
-+
-+next:
-+		i += NR_PAGES(order);
- 	}
- 
- 	return 0;
-@@ -263,11 +271,14 @@ static void drm_pagemap_migrate_unmap_pages(struct device *dev,
+ 	while (start >= cur->dma_seg_size) {
+@@ -222,14 +222,14 @@ static inline void xe_res_first_sg(const struct sg_table *sg,
+ /**
+  * xe_res_first_dma - initialize a xe_res_cursor with dma_addr array
+  *
+- * @dma_addr: struct drm_pagemap_device_addr array to walk
++ * @dma_addr: struct drm_pagemap_addr array to walk
+  * @start: Start of the range
+  * @size: Size of the range
+  * @cur: cursor object to initialize
+  *
+  * Start walking over the range of allocations between @start and @size.
+  */
+-static inline void xe_res_first_dma(const struct drm_pagemap_device_addr *dma_addr,
++static inline void xe_res_first_dma(const struct drm_pagemap_addr *dma_addr,
+ 				    u64 start, u64 size,
+ 				    struct xe_res_cursor *cur)
  {
- 	unsigned long i;
- 
--	for (i = 0; i < npages; ++i) {
-+	for (i = 0; i < npages;) {
- 		if (!pagemap_addr[i].addr || dma_mapping_error(dev, pagemap_addr[i].addr))
--			continue;
-+			goto next;
-+
-+		dma_unmap_page(dev, pagemap_addr[i].addr, PAGE_SIZE << pagemap_addr[i].order, dir);
- 
--		dma_unmap_page(dev, pagemap_addr[i].addr, PAGE_SIZE, dir);
-+next:
-+		i += NR_PAGES(pagemap_addr[i].order);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 10c8a1bcb86e..3e4f4a8760ee 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -1014,7 +1014,7 @@ int xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range *range,
+ 				       ctx->timeslice_ms);
  }
  
+-static struct drm_pagemap_device_addr
++static struct drm_pagemap_addr
+ xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
+ 			  struct device *dev,
+ 			  struct page *page,
+@@ -1033,7 +1033,7 @@ xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
+ 		prot = 0;
+ 	}
+ 
+-	return drm_pagemap_device_addr_encode(addr, prot, order, dir);
++	return drm_pagemap_addr_encode(addr, prot, order, dir);
+ }
+ 
+ static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index da9a69ea0bb1..4bdccb56d25f 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -163,7 +163,7 @@ void xe_svm_flush(struct xe_vm *vm);
+ #else
+ #include <linux/interval_tree.h>
+ 
+-struct drm_pagemap_device_addr;
++struct drm_pagemap_addr;
+ struct drm_gpusvm_ctx;
+ struct drm_gpusvm_range;
+ struct xe_bo;
+@@ -178,7 +178,7 @@ struct xe_vram_region;
+ struct xe_svm_range {
+ 	struct {
+ 		struct interval_tree_node itree;
+-		const struct drm_pagemap_device_addr *dma_addr;
++		const struct drm_pagemap_addr *dma_addr;
+ 	} base;
+ 	u32 tile_present;
+ 	u32 tile_invalidated;
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index 4aedc5423aff..8d613e9b2690 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -17,7 +17,7 @@ struct drm_gpusvm_notifier;
+ struct drm_gpusvm_ops;
+ struct drm_gpusvm_range;
+ struct drm_pagemap;
+-struct drm_pagemap_device_addr;
++struct drm_pagemap_addr;
+ 
+ /**
+  * struct drm_gpusvm_ops - Operations structure for GPU SVM
+@@ -154,7 +154,7 @@ struct drm_gpusvm_range {
+ 	struct interval_tree_node itree;
+ 	struct list_head entry;
+ 	unsigned long notifier_seq;
+-	struct drm_pagemap_device_addr *dma_addr;
++	struct drm_pagemap_addr *dma_addr;
+ 	struct drm_pagemap *dpagemap;
+ 	struct drm_gpusvm_range_flags flags;
+ };
 diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-index 1d5919a99139..f6e7e234c089 100644
+index e5f20a1235be..69d6ee49a3de 100644
 --- a/include/drm/drm_pagemap.h
 +++ b/include/drm/drm_pagemap.h
-@@ -6,6 +6,8 @@
- #include <linux/hmm.h>
- #include <linux/types.h>
+@@ -23,7 +23,7 @@ enum drm_interconnect_protocol {
+ };
  
-+#define NR_PAGES(order) (1U << (order))
-+
- struct drm_pagemap;
- struct drm_pagemap_zdd;
- struct device;
-@@ -173,7 +175,9 @@ struct drm_pagemap_devmem_ops {
- 	 * @pagemap_addr: Pointer to array of DMA information (source)
- 	 * @npages: Number of pages to copy
- 	 *
--	 * Copy pages to device memory.
-+	 * Copy pages to device memory. If the order of a @pagemap_addr entry
-+	 * is greater than 0, the entry is populated but subsequent entries
-+	 * within the range of that order are not populated.
- 	 *
- 	 * Return: 0 on success, a negative error code on failure.
+ /**
+- * struct drm_pagemap_device_addr - Device address representation.
++ * struct drm_pagemap_addr - Address representation.
+  * @addr: The dma address or driver-defined address for driver private interconnects.
+  * @proto: The interconnect protocol.
+  * @order: The page order of the device mapping. (Size is PAGE_SIZE << order).
+@@ -32,7 +32,7 @@ enum drm_interconnect_protocol {
+  * Note: There is room for improvement here. We should be able to pack into
+  * 64 bits.
+  */
+-struct drm_pagemap_device_addr {
++struct drm_pagemap_addr {
+ 	dma_addr_t addr;
+ 	u64 proto : 54;
+ 	u64 order : 8;
+@@ -40,21 +40,21 @@ struct drm_pagemap_device_addr {
+ };
+ 
+ /**
+- * drm_pagemap_device_addr_encode() - Encode a dma address with metadata
++ * drm_pagemap_addr_encode() - Encode a dma address with metadata
+  * @addr: The dma address or driver-defined address for driver private interconnects.
+  * @proto: The interconnect protocol.
+  * @order: The page order of the dma mapping. (Size is PAGE_SIZE << order).
+  * @dir: The DMA direction.
+  *
+- * Return: A struct drm_pagemap_device_addr encoding the above information.
++ * Return: A struct drm_pagemap_addr encoding the above information.
+  */
+-static inline struct drm_pagemap_device_addr
+-drm_pagemap_device_addr_encode(dma_addr_t addr,
+-			       enum drm_interconnect_protocol proto,
+-			       unsigned int order,
+-			       enum dma_data_direction dir)
++static inline struct drm_pagemap_addr
++drm_pagemap_addr_encode(dma_addr_t addr,
++			enum drm_interconnect_protocol proto,
++			unsigned int order,
++			enum dma_data_direction dir)
+ {
+-	return (struct drm_pagemap_device_addr) {
++	return (struct drm_pagemap_addr) {
+ 		.addr = addr,
+ 		.proto = proto,
+ 		.order = order,
+@@ -75,11 +75,11 @@ struct drm_pagemap_ops {
+ 	 * @order: The page order of the device mapping. (Size is PAGE_SIZE << order).
+ 	 * @dir: The transfer direction.
  	 */
-@@ -187,7 +191,9 @@ struct drm_pagemap_devmem_ops {
- 	 * @pagemap_addr: Pointer to array of DMA information (destination)
- 	 * @npages: Number of pages to copy
- 	 *
--	 * Copy pages to system RAM.
-+	 * Copy pages to system RAM. If the order of a @pagemap_addr entry
-+	 * is greater than 0, the entry is populated but subsequent entries
-+	 * within the range of that order are not populated.
- 	 *
- 	 * Return: 0 on success, a negative error code on failure.
+-	struct drm_pagemap_device_addr (*device_map)(struct drm_pagemap *dpagemap,
+-						     struct device *dev,
+-						     struct page *page,
+-						     unsigned int order,
+-						     enum dma_data_direction dir);
++	struct drm_pagemap_addr (*device_map)(struct drm_pagemap *dpagemap,
++					      struct device *dev,
++					      struct page *page,
++					      unsigned int order,
++					      enum dma_data_direction dir);
+ 
+ 	/**
+ 	 * @device_unmap: Unmap a device address previously obtained using @device_map.
+@@ -90,7 +90,7 @@ struct drm_pagemap_ops {
  	 */
+ 	void (*device_unmap)(struct drm_pagemap *dpagemap,
+ 			     struct device *dev,
+-			     struct drm_pagemap_device_addr addr);
++			     struct drm_pagemap_addr addr);
+ 
+ 	/**
+ 	 * @populate_mm: Populate part of the mm with @dpagemap memory,
 -- 
 2.43.0
 
