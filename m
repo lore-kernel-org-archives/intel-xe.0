@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7AF6C87FCB
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 05:49:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE417C87FC9
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 05:49:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9094210E3D2;
-	Wed, 30 Jul 2025 05:49:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9086710E12F;
+	Wed, 30 Jul 2025 05:49:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KJNEvuJx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XON3+qNr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C9C710E035
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 05:49:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57EC710E365
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 05:49:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753854583; x=1785390583;
+ t=1753854589; x=1785390589;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4DTLZQb3qGeQ1WPUDcZONDxTc2bXqMYEUbc5PJ8j0+s=;
- b=KJNEvuJxj03voHfb4aXNc7jGACv7AEVHdTHol351DFmMAGAWAOQ9iHk3
- 5iWHgw14PWEEWxDBzkCyKNP9zuAXYSH+uFzT5wyH5nvDVGONvc8HrMb1D
- xhPLilXmEddijWy9Aega+PvndSUVCeUSRnNuqytx3nc/NOgGN61DDPHlO
- RumcLVvY6ZiqlabN1OCcss/536uTvdSypqbGhNyXwcVkqtTbdkjJi9LTt
- q0X+FWUqEDc/i1mOhgjstf0HkmueiliHZx0+slRle8ydkBQWLUD3ba3Sb
- S2kjyFgimVjvRIQuiy/XFEs/ZbZSI/JIhzWFTUmPZnrcxvo6FaLRZlGme g==;
-X-CSE-ConnectionGUID: 4wexPdcmSjuUZXwBFcKkLQ==
-X-CSE-MsgGUID: 6Qa5UHOnQmqzHNapWHYi2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="55215615"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="55215615"
+ bh=Nvp5F2Jag6qWkyMoTxmiuUHG7I5xJkRzyn1IeJAwxi4=;
+ b=XON3+qNrYORWN3rL1KUTQAHwg56feKVf9d4k+0+gDWFsm5YnP9KM3q8v
+ uo540hKmQ7eHT2aioS9XrezWB1KFHT6hmSmOXznW5aYEVN/Hjo/chSVMD
+ PKE0gDYg6AXzmqFS5MnHpUp4lVVFw+A20yEUK1YFRU5qNvoOnWX0Dee4v
+ 9Bdi7iSHfJsPT0euIdsL49smxBsMR7BcbfRMsBh38O3/Kh6QLN4ypnCQ6
+ RJrnacwbc5o/74qYJkeklFrNPwUE/mdx3d+XGIpZIwLvMZ59qm4htlVr9
+ SEWJ9IZ7/gXBxEfNDKAAvFYPC6OCvwCZXXfcmThJ9z/kFZ/rOafaQeMlT w==;
+X-CSE-ConnectionGUID: 7jf7aKFrT267zsuFyH8gVA==
+X-CSE-MsgGUID: aVQqPMzhTXKgn4lFAiEHrw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="55215624"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="55215624"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 22:49:43 -0700
-X-CSE-ConnectionGUID: 9SEZVEP4RCiIsJQm022wJg==
-X-CSE-MsgGUID: dnfAyJrqSsarhBE0riRvZg==
+ 29 Jul 2025 22:49:48 -0700
+X-CSE-ConnectionGUID: 7xSUjyv8Sfmzjtgngdsgnw==
+X-CSE-MsgGUID: JQwD/nmlTayoXsWlSCpkQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="163240258"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="163240271"
 Received: from aravind-dev.iind.intel.com ([10.190.239.36])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 22:49:40 -0700
+ 29 Jul 2025 22:49:46 -0700
 From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, rodrigo.vivi@intel.com,
  himal.prasad.ghimiray@intel.com, anshuman.gupta@intel.com
-Subject: [PATCH 07/10] drm/xe: Support SOC NONFATAL error handling for PVC.
-Date: Wed, 30 Jul 2025 11:18:11 +0530
-Message-Id: <20250730054814.1376770-8-aravind.iddamsetty@linux.intel.com>
+Subject: [PATCH 10/10] drm/xe: Clear all SoC errors post warm reset.
+Date: Wed, 30 Jul 2025 11:18:14 +0530
+Message-Id: <20250730054814.1376770-11-aravind.iddamsetty@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250730054814.1376770-1-aravind.iddamsetty@linux.intel.com>
 References: <20250730054814.1376770-1-aravind.iddamsetty@linux.intel.com>
@@ -69,170 +69,85 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-Report the SOC nonfatal hardware error and update the counters which
-will increment incase of error.
+There are scenarios where there are errors being reported from the SoC
+uncore to IEH and not propagated to SG unit. Since these errors are not
+propagated to SG unit, driver won't be able to clean them as part of
+xe_process_hw_error. Hence clear all SoC register post xe_process_hw_error
+during the driver load.
 
 v2
-- Use xe_assign_hw_err_regs to initilaize registers.
-- Dont use the counters if error is being reported by second level
-  registers.
-- Fix Num of IEH to 2.
-- Follow the convention source_typeoferror_errorname for enum and error
-reporting.(Aravind)
+- Fix commit message.
+
+v3
+- Limit check to PVC.
+
+v4
+- Fix check
 
 Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_error.c | 70 +++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_hw_error.h | 39 ++++++++++++++++++
- 2 files changed, 108 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_hw_error.c | 41 ++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 927bf2ab401f..705a670f01fc 100644
+index a77779eb6ce8..6a7cd59caac1 100644
 --- a/drivers/gpu/drm/xe/xe_hw_error.c
 +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -260,6 +260,67 @@ static const struct err_name_index_pair pvc_soc_mstr_lcl_err_reg_fatal[] = {
- 	[14 ... 31] = {"Undefined",				XE_HW_ERR_SOC_FATAL_UNKNOWN},
- };
- 
-+static const struct err_name_index_pair pvc_soc_mstr_glbl_err_reg_nonfatal[] = {
-+	[0]         = {"MASTER LOCAL Reported",			XE_HW_ERR_TILE_UNSPEC},
-+	[1]         = {"SLAVE GLOBAL Reported",			XE_HW_ERR_TILE_UNSPEC},
-+	[2]         = {"HBM SS0: Channel0",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL0},
-+	[3]         = {"HBM SS0: Channel1",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL1},
-+	[4]         = {"HBM SS0: Channel2",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL2},
-+	[5]         = {"HBM SS0: Channel3",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL3},
-+	[6]         = {"HBM SS0: Channel4",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL4},
-+	[7]         = {"HBM SS0: Channel5",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL5},
-+	[8]         = {"HBM SS0: Channel6",                     XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL6},
-+	[9]         = {"HBM SS0: Channel7",                     XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL7},
-+	[10]        = {"HBM SS1: Channel0",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL0},
-+	[11]        = {"HBM SS1: Channel1",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL1},
-+	[12]        = {"HBM SS1: Channel2",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL2},
-+	[13]        = {"HBM SS1: Channel3",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL3},
-+	[14]        = {"HBM SS1: Channel4",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL4},
-+	[15]        = {"HBM SS1: Channel5",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL5},
-+	[16]        = {"HBM SS1: Channel6",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL6},
-+	[17]        = {"HBM SS1: Channel7",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL7},
-+	[18 ... 31] = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
-+};
-+
-+static const struct err_name_index_pair pvc_soc_slave_glbl_err_reg_nonfatal[] = {
-+	[0]         = {"SLAVE LOCAL Reported",			XE_HW_ERR_TILE_UNSPEC},
-+	[1]         = {"HBM SS2: Channel0",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL0},
-+	[2]         = {"HBM SS2: Channel1",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL1},
-+	[3]         = {"HBM SS2: Channel2",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL2},
-+	[4]         = {"HBM SS2: Channel3",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL3},
-+	[5]         = {"HBM SS2: Channel4",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL4},
-+	[6]         = {"HBM SS2: Channel5",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL5},
-+	[7]         = {"HBM SS2: Channel6",                     XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL6},
-+	[8]         = {"HBM SS2: Channel7",                     XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL7},
-+	[9]         = {"HBM SS3: Channel0",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL0},
-+	[10]        = {"HBM SS3: Channel1",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL1},
-+	[11]        = {"HBM SS3: Channel2",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL2},
-+	[12]        = {"HBM SS3: Channel3",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL3},
-+	[13]        = {"HBM SS3: Channel4",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL4},
-+	[14]        = {"HBM SS3: Channel5",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL5},
-+	[15]        = {"HBM SS3: Channel6",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL6},
-+	[16]        = {"HBM SS3: Channel7",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL7},
-+	[18]	    = {"ANR MDFI",				XE_HW_ERR_SOC_NONFATAL_ANR_MDFI},
-+	[17]        = {"Undefined",                             XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
-+	[19 ... 31] = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
-+};
-+
-+static const struct err_name_index_pair pvc_soc_slave_lcl_err_reg_nonfatal[] = {
-+	[0 ... 31]  = {"Undefined",			XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
-+};
-+
-+static const struct err_name_index_pair pvc_soc_mstr_lcl_err_reg_nonfatal[] = {
-+	[0 ... 3]   = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
-+	[4]         = {"Base Die MDFI T2T",			XE_HW_ERR_SOC_NONFATAL_MDFI_T2T},
-+	[5]         = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
-+	[6]         = {"Base Die MDFI T2C",			XE_HW_ERR_SOC_NONFATAL_MDFI_T2C},
-+	[7]         = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
-+	[8]         = {"Invalid CSC PSF Command Parity",	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_CMD},
-+	[9]         = {"Invalid CSC PSF Unexpected Completion",	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_CMP},
-+	[10]        = {"Invalid CSC PSF Unsupported Request",	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_REQ},
-+	[11 ... 31] = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
-+};
-+
- static void xe_assign_hw_err_regs(struct xe_device *xe)
- {
- 	const struct err_name_index_pair **dev_err_stat = xe->hw_err_regs.dev_err_stat;
-@@ -294,6 +355,10 @@ static void xe_assign_hw_err_regs(struct xe_device *xe)
- 		soc_mstr_lcl[HARDWARE_ERROR_FATAL] = pvc_soc_mstr_lcl_err_reg_fatal;
- 		soc_slave_glbl[HARDWARE_ERROR_FATAL] = pvc_soc_slave_glbl_err_reg_fatal;
- 		soc_slave_lcl[HARDWARE_ERROR_FATAL] = pvc_soc_slave_lcl_err_reg_fatal;
-+		soc_mstr_glbl[HARDWARE_ERROR_NONFATAL] = pvc_soc_mstr_glbl_err_reg_nonfatal;
-+		soc_mstr_lcl[HARDWARE_ERROR_NONFATAL] = pvc_soc_mstr_lcl_err_reg_nonfatal;
-+		soc_slave_glbl[HARDWARE_ERROR_NONFATAL] = pvc_soc_slave_glbl_err_reg_nonfatal;
-+		soc_slave_lcl[HARDWARE_ERROR_NONFATAL] = pvc_soc_slave_lcl_err_reg_nonfatal;
+@@ -510,6 +510,46 @@ xe_gt_hw_error_log_vector_reg(struct xe_gt *gt, const enum hardware_error hw_err
  	}
- 
  }
-@@ -556,7 +621,10 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
  
- 	lockdep_assert_held(&tile_to_xe(tile)->irq.lock);
- 
--	if ((tile_to_xe(tile)->info.platform != XE_PVC) ||  hw_err != HARDWARE_ERROR_FATAL)
-+	if (tile_to_xe(tile)->info.platform != XE_PVC)
++static void xe_clear_all_soc_errors(struct xe_device *xe)
++{
++	enum hardware_error hw_err;
++	u32 base, slave_base;
++	struct xe_tile *tile;
++	struct xe_gt *gt;
++	unsigned int i;
++
++	if (xe->info.platform != XE_PVC)
 +		return;
 +
-+	if (hw_err == HARDWARE_ERROR_CORRECTABLE)
- 		return;
- 
- 	base = SOC_PVC_BASE;
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-index ecd7edfcd38b..e43157aae938 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.h
-+++ b/drivers/gpu/drm/xe/xe_hw_error.h
-@@ -100,6 +100,45 @@ enum xe_tile_hw_errors {
- 	XE_HW_ERR_SOC_FATAL_PCIE_PSF_CMD,
- 	XE_HW_ERR_SOC_FATAL_PCIE_PSF_CMP,
- 	XE_HW_ERR_SOC_FATAL_PCIE_PSF_REQ,
-+	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL0,
-+	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL1,
-+	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL2,
-+	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL3,
-+	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL4,
-+	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL5,
-+	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL6,
-+	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL7,
-+	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL0,
-+	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL1,
-+	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL2,
-+	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL3,
-+	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL4,
-+	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL5,
-+	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL6,
-+	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL7,
-+	XE_HW_ERR_SOC_NONFATAL_UNKNOWN,
-+	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL0,
-+	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL1,
-+	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL2,
-+	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL3,
-+	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL4,
-+	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL5,
-+	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL6,
-+	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL7,
-+	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL0,
-+	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL1,
-+	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL2,
-+	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL3,
-+	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL4,
-+	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL5,
-+	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL6,
-+	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL7,
-+	XE_HW_ERR_SOC_NONFATAL_ANR_MDFI,
-+	XE_HW_ERR_SOC_NONFATAL_MDFI_T2T,
-+	XE_HW_ERR_SOC_NONFATAL_MDFI_T2C,
-+	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_CMD,
-+	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_CMP,
-+	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_REQ,
- };
- 
- enum gt_vctr_registers {
++	base = SOC_PVC_BASE;
++	slave_base = SOC_PVC_SLAVE_BASE;
++
++	hw_err = HARDWARE_ERROR_CORRECTABLE;
++
++	for_each_tile(tile, xe, i) {
++		gt = tile->primary_gt;
++
++		while (hw_err < HARDWARE_ERROR_MAX) {
++			for (i = 0; i < XE_SOC_NUM_IEH; i++)
++				xe_mmio_write32(&gt->tile->mmio, SOC_GSYSEVTCTL_REG(base, slave_base, i),
++						~REG_BIT(hw_err));
++
++			xe_mmio_write32(&gt->tile->mmio, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
++					REG_GENMASK(31, 0));
++			xe_mmio_write32(&gt->tile->mmio, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err),
++					REG_GENMASK(31, 0));
++			xe_mmio_write32(&gt->tile->mmio, SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
++					REG_GENMASK(31, 0));
++			xe_mmio_write32(&gt->tile->mmio, SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
++					REG_GENMASK(31, 0));
++			hw_err++;
++		}
++		for (i = 0; i < XE_SOC_NUM_IEH; i++)
++			xe_mmio_write32(&gt->tile->mmio, SOC_GSYSEVTCTL_REG(base, slave_base, i),
++					(HARDWARE_ERROR_MAX << 1) + 1);
++	}
++}
++
+ static void
+ xe_gt_hw_error_handler(struct xe_gt *gt, const enum hardware_error hw_err)
+ {
+@@ -852,4 +892,5 @@ void xe_init_hw_errors(struct xe_device *xe)
+ {
+ 	xe_assign_hw_err_regs(xe);
+ 	xe_process_hw_errors(xe);
++	xe_clear_all_soc_errors(xe);
+ }
 -- 
 2.25.1
 
