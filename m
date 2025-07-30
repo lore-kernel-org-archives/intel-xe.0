@@ -4,88 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B91CC87FCB
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 21:09:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0368EC87FCB
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 21:10:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53B4510E0B5;
-	Wed, 30 Jul 2025 21:09:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAE8D10E0B5;
+	Wed, 30 Jul 2025 21:10:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eeAog+KQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l+dbzr5k";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38AD110E0B5
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 21:09:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6670510E0B5
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 21:10:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753909762; x=1785445762;
+ t=1753909813; x=1785445813;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=62aXMfyzHZmd6MS5yXyNqOl6ExJdQVmhJzx7Q45A2xU=;
- b=eeAog+KQgiPiNdvDB9rHwaDNbhGZMI0pL892MqbtSm9/Ta5Uys9PbXaV
- OsJkSq+U4MascLurMKyRBLdKnA72vWy1V27gMDWqA/ICeV2bLZZxPLrS2
- XxkgdIPelbG0DTtqgxBucUEtWOvr96ggJcUcBRskd/yPiAnXZ0v/Mg7D1
- QAEhovrl6+Tkl0WxSd72e60ZUGqWtqUIicc49TRut5i/RbqPy8F80ODTc
- 6mROlsx2hSwRl9DujzQ7YZjzaYECVcLSjNneYjkgZiOzLvomZxZcMkJi8
- qocqMmUW0OhPPdeoOVPx9vF6scScBvlxf+NJjSKDfvWHh5JGSOvaUcDNS Q==;
-X-CSE-ConnectionGUID: 5SymkRCDT3SSq/53ft5cxA==
-X-CSE-MsgGUID: zjoE7vohSuSHflPFhJ04hQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="56302993"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="56302993"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 14:09:22 -0700
-X-CSE-ConnectionGUID: k52eoqVDREih0WltyqLeNA==
-X-CSE-MsgGUID: N1yvd0AITtOx0UOeJRRmYg==
+ bh=40hWleUFlo2HJXLc706zwDzBB+wZB+YN37dE+3MCG7s=;
+ b=l+dbzr5kyzeMOc+ydk7/hGFFtn39iPyxbHtonFYGjTXGDDlBkTkJSj3G
+ xa2qaksEaHtdNm0zBJzZ4HFJSHtxEdV/uf3ySkOWf0WID6TOSYtrDsmB5
+ vxiFVn8Mu1qUaas300+CfhUTTuZ8wphzo517Yv22rhlPOsbWFJwREUH8o
+ YxQHgtAzC4p//dErEAHbz1KMFPcwf+A4I5PT+/DSNk4xjfP5CcwDr7S8g
+ PlsnaQ9iUsHl8SsPKb0W7n0tq/hCuZhocfvlqFUgK4s3bUG6oTLHwW/SH
+ TSQGnFOQr9AgU+E1DNC8Oba2QP+c3byb9AcZnbyWw4nTnnR9tUciLy8L9 w==;
+X-CSE-ConnectionGUID: reK72qQ+QyykVXt22VwTUA==
+X-CSE-MsgGUID: 9bfZ/Z7ySYKR/wn98cuVwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="56371619"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="56371619"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2025 14:10:13 -0700
+X-CSE-ConnectionGUID: Dgd7ah1fQJOC6TAjEC2ooQ==
+X-CSE-MsgGUID: wm1lo2J3SiugZCHwcyIPug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="193930114"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 14:09:21 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="167573069"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2025 14:10:13 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 30 Jul 2025 14:09:21 -0700
+ 15.2.1748.26; Wed, 30 Jul 2025 14:10:12 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Wed, 30 Jul 2025 14:09:21 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (40.107.243.57)
+ 15.2.1748.26 via Frontend Transport; Wed, 30 Jul 2025 14:10:12 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (40.107.100.77)
  by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 30 Jul 2025 14:09:20 -0700
+ 15.2.1748.26; Wed, 30 Jul 2025 14:10:12 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KJHeLXG9dWSoPxiNoL4TODFmC4R6EGnenvkJxPwoNBGtirb/9iKgPnzSIqco3cisL5sOFJ2lIK6bACvEjthmfP4b1ft+UnE+y7ylpynK/e/QcyWl8J9ajATKK5yE2ure2nHue/29eurIKm3nb5CK0G3Rfh822CURwowA230l4NOmJBPxo5s+qy0XENONEZRMJ097jHkLTpi2LdBxqSuzOq20nquKdgg8kMia+1I0qKXVDDtErPTAuyDXwJwv44vHLQxZJ9Z+hoElsYaXu4XqbZdjbxIJo6EcIhKQJ4vGVvBk5npA05dbueUMFKis5EL1DnVP0mvyTw9/bRNWSTC7nw==
+ b=mgI/W7ZbEz9vZ1hp0s5evNyBG2wYBEaEd5rK8nFfnP5n7Dqu9lLZFoe+T8xMWXNK9PkjCqxv/vfhM78EM3h+cpxZAkJ0GMOc0ueBERRiFIbE0p0pD+MQcDIDp2w8AT0stG5nj4/w3/8KREX5tV3HyyvSOoDOmulL07+5mg5YQIbz4b4YdaYWp53SbRmS1V9U4f38C2T5eUCnNL1Pk/SUPAW++qzw3QFKygdT55sa/gPuSzwV5NRtPr9fuCLccwJqpAzsmJyIXsVw3ybbXr4PyCl6K8RtEWeOFASXySWW+4sKDMEbFdFaPI8hg/Rfqk05egps98+msPuWbvpgEve6hA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SjfBdLHX8aX1JJmzS5gsQw7IjwIqKv+r1BdQd7SfIOI=;
- b=YVKpVQA9Ry5b5sSSdSMGKQpZ8RTS9rX17kaSWyAtWtufFdQo0QN9nVZWg1hvCEWPgCkknXD218zsTnrWG4RcEINpmRRzTzJAcBE0nZGjQo0GFuvKaauG8aYliXykTi5f+/4qvFJFsbgplFnk0kep08FYRe9zyLXhEU08AoWxQZLAnaKmAPsuKp6Vxg2n6gTrhwADppseOb5GwOEtpgGG0dJleN8J9m+A4+Clw0Nr1Lxp6lZxJZNZs5Ik8RaOXelIyQIMAfWtWRn9pr3IAnxa+Z3DIuMfIkyrgi1bWtrblQk3w7a7cmStRYIfGcU1wl5FUHLq7q+QpKW4o+tqV62DJQ==
+ bh=OpcwWSTWqcBe2CpDjlDHgC8ftMEyKYAbjo3nh+DWad0=;
+ b=yBjJwzYK/CmiBBZHe3MtIHzrwP2DjTl5ey1/2TCKIPWRo1wDNz7UCofXT4DB6AKHDz+7Q3ts5yVAPjq0GBcs34B1jnLG1a/aHJsSeAui+PmqRWBRkpkz3GNxZN9njqIrLigntbn9Ac9+SOWWySS42nWRosqoVr1l/qhroYI+0Nc35jMgN/Ra/9PHt+VhvrlmIJ7oz1fSg4XFt6lp1ZZRPKsYllTP5c2qb6AM2bbn0Kowr66I9ENobde0UWiSIl6Gqx/gplA2A7kEsBn+YvKOuA4mlReDWk2RyskIeQBAHy0mlY453aKI2si7uQ4eHdnQsZh6FO+zgLVLHt+RIEwMUQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
- by MN0PR11MB6304.namprd11.prod.outlook.com (2603:10b6:208:3c0::7)
+ by BL1PR11MB5319.namprd11.prod.outlook.com (2603:10b6:208:31b::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.24; Wed, 30 Jul
- 2025 21:08:47 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.25; Wed, 30 Jul
+ 2025 21:09:56 +0000
 Received: from CH0PR11MB5444.namprd11.prod.outlook.com
  ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
  ([fe80::5f89:ba81:ff70:bace%4]) with mapi id 15.20.8989.010; Wed, 30 Jul 2025
- 21:08:47 +0000
+ 21:09:56 +0000
 From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
 To: "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 CC: "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>, "Cavitt, Jonathan"
  <jonathan.cavitt@intel.com>
-Subject: RE: [PATCH 1/3] drm/xe/pf: Disable PF restart worker on device removal
-Thread-Topic: [PATCH 1/3] drm/xe/pf: Disable PF restart worker on device
- removal
-Thread-Index: AQHcAXpVrY6yb2di7Uy/3QqHj1LM8bRLARZA
-Date: Wed, 30 Jul 2025 21:08:47 +0000
-Message-ID: <CH0PR11MB5444B1CE4DD9227B04115BDCE524A@CH0PR11MB5444.namprd11.prod.outlook.com>
+Subject: RE: [PATCH 2/3] drm/xe/pf: Make sure PF is ready to configure VFs
+Thread-Topic: [PATCH 2/3] drm/xe/pf: Make sure PF is ready to configure VFs
+Thread-Index: AQHcAXpVQzEqKDLCkUCprH26K5uetrRLCprw
+Date: Wed, 30 Jul 2025 21:09:56 +0000
+Message-ID: <CH0PR11MB5444CEA80C83A713DEE5CAC1E524A@CH0PR11MB5444.namprd11.prod.outlook.com>
 References: <20250730174913.178434-1-michal.wajdeczko@intel.com>
- <20250730174913.178434-2-michal.wajdeczko@intel.com>
-In-Reply-To: <20250730174913.178434-2-michal.wajdeczko@intel.com>
+ <20250730174913.178434-3-michal.wajdeczko@intel.com>
+In-Reply-To: <20250730174913.178434-3-michal.wajdeczko@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -93,82 +92,82 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|MN0PR11MB6304:EE_
-x-ms-office365-filtering-correlation-id: 77786329-aa75-4b2d-25b9-08ddcfad467a
+x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|BL1PR11MB5319:EE_
+x-ms-office365-filtering-correlation-id: 7c964674-51af-468f-d0ff-08ddcfad6f7c
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|10070799003|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?W3Jy1YEMZtsZSIcH81eqEKeSLNM7PQ5kWiNg0LBszV+aU1ZnUc88jmm60IR0?=
- =?us-ascii?Q?ag5RN32WWvy2zrJ7ez8KpyDxLuNcXa3gX2Q6SzVChZsY67kWVMWnkw2/8fPc?=
- =?us-ascii?Q?09NWYnRLZHRJlUIeQYJMM51UCO4+rimDGYgJkbwPAEEqK7PxkX8v1jqL4mVn?=
- =?us-ascii?Q?ulmX+/48IzNSLLZp9CwqNUnydFU/uC8ADKlMp+JOeJ5Jl870v2EpoGu6iENh?=
- =?us-ascii?Q?tETp/Wcpo2wN3y7U+Ctns5rpl8NIjt4UijGKb1VNvE4XtISDUq/XxSB2yzTg?=
- =?us-ascii?Q?4Gl0xGn2GA8J1ssJg7DUbLb5rD/Z30dgK1WC172EY2arTh+Q88IdAo6upBw9?=
- =?us-ascii?Q?E/zUNl1yVBu856tkF88K3tVXrfKMJQJ5pQ1D+iJLuy04HMYuUV79jnU1YLYx?=
- =?us-ascii?Q?dEst75bv1v1jjT9JgFS1fwrZJX40kN0N1wuE1Xi456yOwCH2uyA2yElIIkjG?=
- =?us-ascii?Q?0bQyoftRgGeoD9IrDoGl68odcKoI5o2mEmLk//Ap3Q8uP6mTeAjwG7eDcSXB?=
- =?us-ascii?Q?Vqqp6wDRYe0S74E5dBrEw2bvhJNGHaTwBazLtBPLhtKoxcXk8hP/7m8KaPPh?=
- =?us-ascii?Q?Xqba6+sPdEMavvAZFjogVCCxciUH3BdUau/56RCZmtJBVf2gqJSsneK1AY6g?=
- =?us-ascii?Q?OKIZY/6PTD5Afj3YH+Z26U/Pm7GK1tQ2gflzZZJNKcnOjNXONzgcNUNnDpVc?=
- =?us-ascii?Q?rpGngbG3JbtjUl9En8TRtBJuaGaWckiRyTYh49fj3uamHabvGwjeIrFmmDxg?=
- =?us-ascii?Q?XUk4tHsKeszriIaanGTd15/PAsDK2KpEMDwW0+keFx7/ATMBH2amD24cVfaa?=
- =?us-ascii?Q?e/Pc1RiSJ3F5X1CyXO3UOZ8BwtW67KqES85M2Rw3g8uIrauQi9yfAU3n5A98?=
- =?us-ascii?Q?SVDzHRUXJvzvcekBCk/Mj49pGNR5dx5wyiCVtfVErjU97MSb5evLq5Sdyk4K?=
- =?us-ascii?Q?zjgMszGhp4IBFOzMU3vHSYE6Uc50SKffr+xXXhZEE6rX5JqoY8y5oV7+r4eJ?=
- =?us-ascii?Q?xSeCjMfaQziDNnGBA2B6pkrMf55qYWuNdX3CSWhMY8hQkM3JtDMd84cyGgAz?=
- =?us-ascii?Q?/wQ8NO/sygVo5XfFNz1/a7vQbMHWN4aYbYbBogs4CkEF8EUisWzy+IHG7wEP?=
- =?us-ascii?Q?Qz1Iuaw8djux7v2Aw35LAHYyZ5PF4UQJ/zUhnynrHqpEo12A91yeYe3Q1Ynz?=
- =?us-ascii?Q?jUOxQfjumOE4YVwscNFXSgbg4uZIynx1HeVYB47juDHUmA3SKkYPc/RPHoVQ?=
- =?us-ascii?Q?dhH+9DElFVW6nLvoW7RLhmh4qUqs1Ri/qwkLjN1/cL27zJM1SDm3iezQnSFs?=
- =?us-ascii?Q?uB4Fc0aSpJw0VRekc8wSQjxyOlj3QoM91lxYZi57sTtRD/3Fw59BljACIpQ5?=
- =?us-ascii?Q?0hR6sv+cD8Hi/3CS0T1UPwc24kK1sD12gsNQELPqxhojbcdNlMZmq6AHDBe6?=
- =?us-ascii?Q?c+PMm7sJeQbcWn8Qmk2puxhnPO+jaTtLVPuGS/kPL4ViIINW9SKxBA=3D=3D?=
+ ARA:13230040|1800799024|10070799003|376014|366016|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?EEFr/YeOSHRXexVSfb3bzg3JrNPevFakP88Qsd9hnZg30JFqm3K+AciItkU7?=
+ =?us-ascii?Q?Wi3gbpeC7OWV9WSnlYueBhcefwd+Dh6gnORKM88G4Lf1IYJEcs6u+sEQ2t2h?=
+ =?us-ascii?Q?GYoS59FolIK2z116qTptgmF7hZL7NkED46C72sRnixta/igHXM+a48bM4ggK?=
+ =?us-ascii?Q?MXHK4QUzIh8tcLLMs7bbtpPPpPnoJ54Dnb1m0jUO6ZrgjaIvrnn2dzVTNpKt?=
+ =?us-ascii?Q?hixYsyAE5NMgqiEXGTzXN9KGAqk2rVCJkAzP1QkjEtdVTasY+P46Jxf4gvuQ?=
+ =?us-ascii?Q?3N4fKGYJuOiKV743Poc1nQ+6DZ4v9Sp0G/xy9ET0vLdPovfOFj7A3dgr1F5W?=
+ =?us-ascii?Q?Nvnj905nr9Tg+yEIZY6eS3B6uPulANf4AIwm9526XnQQMw6GXpV50iKl/ala?=
+ =?us-ascii?Q?z8NZUrFwqL00fI5VHbI4gj7/ZKchNXyTmJbarUI4JaloJPw02azD2/yB05Hd?=
+ =?us-ascii?Q?PQXVkEn4ShZWFA9VWJCzVSRlKvM4Frp6S1gmoEHWsG9pcaAWTJlJnX9L7i4d?=
+ =?us-ascii?Q?um5V9pkcG4645kfb7nOJHraTJGBaMeXDCOBe8IDoF7lXiXrizd8JGtosE3hY?=
+ =?us-ascii?Q?Bt98rqP/gElAjVR1FEHyNFKU4P43Y9mL8NzVVey0iJnbegxdArxJYaSRZakx?=
+ =?us-ascii?Q?cACCDmPp/F4ztcHE+hvbAwY7xqP5jtmMinI44SjArpBwJbr6Br3goFgTDQ81?=
+ =?us-ascii?Q?Rc/fqHFMVyuxLzACpesKxJk6ImT4VdvieMTIFj0RxDFd9IAzFSUjCbLO99/h?=
+ =?us-ascii?Q?hZ3Y4761pnQk/wyXcrpbzDt42lH/BdxhMKxUfptM3NBQDp2w+7/cjKrGHUId?=
+ =?us-ascii?Q?zuXPe9VhII4NFtSJ1rjBas8q6TasJ1xuwwxjdrD/+yWStkuPEHu8/WUNy1qr?=
+ =?us-ascii?Q?4tmihD8JUZ22tgu04LTa1nNBwltdgJKnygWrzujlCpO0Mq9tkj9z9I6YGlfl?=
+ =?us-ascii?Q?5DBC65WnDxoIdKL8eo2TYYEYS9BuCRcRGG1mLkbLrWTimyS7idlBU/6h4fv9?=
+ =?us-ascii?Q?ezqHBfE8Eu0+gA+TTKI9Afa0xW+aUSEobooIcJDZSu9pblGWx3d562TRkfmm?=
+ =?us-ascii?Q?PaBpVQhNuRawnSvUve8YRj0zYyuGVgHpPApMPyY8vEC3z81nYdX9jB3mh5pf?=
+ =?us-ascii?Q?YBU0f822H8AgwpmU2o3kZBMiHXT7dOvmfYBbbUIzeJQF0Nhd0ImsUEdxInps?=
+ =?us-ascii?Q?JnMbdo4zpbCr1LR94dFYPRlXG8rWznDBJ4BMNCIaB2H2rluRfpyPJEYI6LsS?=
+ =?us-ascii?Q?6xVG2wCo1Ui30tPJtb5OAkfu54t9M//ZAAMUMivmpz/oSLJV2JdZeg0Jmhqh?=
+ =?us-ascii?Q?84g6FDvs2MNt0fvKMRpsFhphxhUPR51WNE4/uzmje9NkrQ6K0eX76ptyvYmu?=
+ =?us-ascii?Q?8IgmJln62Kz/mXJuPUfY+z4hmiJVJ3Fmok0twMolkWHiIy7NKb1atJonbYpF?=
+ =?us-ascii?Q?/CB70BT3ktIu4aoU9Ng0vL9OkxfX9pJuK3HAUB35tt/qRPG80MeQ9Q=3D=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(10070799003)(7053199007)(38070700018);
+ SFS:(13230040)(1800799024)(10070799003)(376014)(366016)(7053199007)(38070700018);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?kuqK4oQLIlRoIm4v3pA6Hz65x25QnPdCeLxeWHPZ/pKu5SYe4sQ4xZYvG11N?=
- =?us-ascii?Q?6Hh66oLiFm6UI/otlBYRU0+PmcOMdOb7qGIYi8JzMvsckRCqueojnqgZXsTo?=
- =?us-ascii?Q?IdsCjFPTRZH07czZznuWcy/SujYWzyaunKIUTeOilG6cQbVbMY5Ij8dCQNZa?=
- =?us-ascii?Q?a7NZoUfvjiDObetVq4FrRIO3pyQXFQliJsODG9QVlxYDVTro46j7vbZAuQhN?=
- =?us-ascii?Q?0csHpRkWZJ3YLyzsG5Z1aO5OkhfFaGLJgyHjdriWptA0XdJ0jGWl63B+JBmP?=
- =?us-ascii?Q?Kcy8jw2vpI3krafmLzgnplinjwrqQfDYY3mgUR0tUJLiMFEjgR8BlnSqCRMk?=
- =?us-ascii?Q?GKIKUi5vbI51x9/KUlmEyYIKe1im3dF1o65H0B/7nAO5Mh0jZbUidVDVATYC?=
- =?us-ascii?Q?tsogRpBU/WkzScPSigqLAsDSK1nRxanesc7uD0or89N8Hlk5A1Yw7UkM1hfo?=
- =?us-ascii?Q?KdkjE0+233iAGUcz/CM/wl7wOeH6T/LZpQde5tWdd1c4G77iao6SOXulx+AR?=
- =?us-ascii?Q?cVV6xnfy0wHSx7xWxWmNHOZozFu5SapdAjpMjNF0zTLG0oLbYDCGWVJi//J5?=
- =?us-ascii?Q?aKre2JdtzeaSpQFlhBCrl5aAmL5n56Tlu+FXPZXiqDs2ZwZd8+cd5m3KyeXu?=
- =?us-ascii?Q?aUX+40BHNmvV2IyRJeJwjs2brXWigg5AMgNkwOQDzqExS1SaVRaJlbp+99sJ?=
- =?us-ascii?Q?WruO7P1cK9ovCimqu/zm9dCZb2FXKDnIrx58vgG6LT1IIqiXB3Vhg+uMs9e0?=
- =?us-ascii?Q?pRhzy6OowCcntMbuFKkuEpS+iZ10bxbul3yJ+Ag7ZCjKNTlW5v69r+XA25Jl?=
- =?us-ascii?Q?YIyCadtTK0yeE/5D8gto7EPBbxMJpqyBjsiTZ9ZNSSehctLkYcpE8GSYYUWr?=
- =?us-ascii?Q?BAciNWN8E8WftBjKpJjDdDtlcONy01LMh2OB6WvVZ69x6XkR6NCuYkfM2nHt?=
- =?us-ascii?Q?yRB6h4s8V+ImyUcZ4HQB9J8cLwFLI8nc61YAh+noirGVBzvpnC/uf1P8OKrX?=
- =?us-ascii?Q?5xNMtJCOvmAkH6U4YjeGxB7Z6wg0VnerNYn1O/SrzonDdBcNW9cULfb1brfb?=
- =?us-ascii?Q?NUjyyrUJt15MkxCwkpy9ZjYrOb8zuTMOfJid6YRlLnLr9D+QLkR5IMX2/b5z?=
- =?us-ascii?Q?XtyXdW6AUJ5Y3nLPBYZZgkFuUnpLr27nDOdqhB5XfAzAIPMJkTFXjBzf3FRB?=
- =?us-ascii?Q?ZEviY04zLykh/6LplhmI6Qw6ABM23MwEWSMYtk+HFmYiu31GoTNiFLRLevpa?=
- =?us-ascii?Q?ovDwwaiVmT4sS3qgI+fdAsL8PL3XvtAVJxYYpN7JauwqGvYk1TAGngHNgSzv?=
- =?us-ascii?Q?YTJjeeFfqRZTkHM+ORWabOVFQTC5z2/T1IeV8zkARQbRrneJNViNw4qPcL1F?=
- =?us-ascii?Q?04xDFfTH1S1AHVfQVUvsZe+n/PSm7S5f26MzLxzIlrqd4OH0sXja8NS7gc43?=
- =?us-ascii?Q?mEIrN++W92OTui6yJ4fcEcuGE0bAlhhc35hDIHKthTmaRJ81uS4ZKACXW20T?=
- =?us-ascii?Q?8oNQ7KcOmsWq4dm5Im/rhVmXyNOQL9enXEmdYF0YCecBOJAQLLaV3TEk+4qJ?=
- =?us-ascii?Q?echgGnAgMaLG8GnzolLejV1fa0sTIKgt3WsI3FW8bUkIazW4p2E401LdwyjL?=
- =?us-ascii?Q?Ze/MTLoetCFKDGgHQzGFIR7HD7XUadE+MD36OaYyV8sE?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JJoCSQJqF0Ja6B9VmgvsQJ8lPI9GnRwLHsSr3Azsso9fK6P4EhB0/KCID8wH?=
+ =?us-ascii?Q?JmtNKfWMV121R1aN3zonksC3uQJ+xZ3LAZ+5JkQoTeOJg8bT2Nu8aES5fSnG?=
+ =?us-ascii?Q?yeM7qTSjZchBIZVJrksYirOu29auuMUm1/tHlbqDXDRQb93EibjX8ttqBNBX?=
+ =?us-ascii?Q?LnlmwxMzNBau8cDtG4hm2zTrL7wp2pE8eEGSU5kFiaUaFMDBgWP4SvZNHUjb?=
+ =?us-ascii?Q?OECVqRQuj5buIrcwF54uUCHMoJp7mGFWJ8Hw9h8aK1ExG/FEdkdPOyvDlx43?=
+ =?us-ascii?Q?ybnapAuv+/hMVGH5Agk3ytJRy/gHoZFczMWpXTUNjtp1p6jLhf6xaU5Dy4lG?=
+ =?us-ascii?Q?+mngpvqeRJ1fEU79podxuHqudWdq5z1LelOPSK9ttnM+qPHBaa83HA6i23Qj?=
+ =?us-ascii?Q?mnHMCJJSJQ2WvdMu3vCtFBuZzTMS+DO49SGSZK4ZZaWtikMSovmr6Jrn+cnY?=
+ =?us-ascii?Q?LBKNgJHj7HUCn5kTI4+5B4fWwXBXaiPuI2WZRpYTBTx+UkIMZF4HGizpDS+N?=
+ =?us-ascii?Q?2frR5YVY5qJ19+925wZUGP0C8U2sfMThKVkluH5jRBfo9GxrBDxXYdoCJIba?=
+ =?us-ascii?Q?cl11AA6JQh3FVdkpxVuL52+SbbY1a4Cz0MbhzZV0osHtg5nANMLn0jN/5E1Y?=
+ =?us-ascii?Q?EGJjld4mTpusPElGsGxyAUkmHKt+11cm4d2M24N+vArE+EIY4uVwTwCPA90O?=
+ =?us-ascii?Q?flmqoCQY1B8Q2M+Rr74J6/SFRBEh2qFOtli/W+bUVBcLzdxoGIsGXjLb380E?=
+ =?us-ascii?Q?wnv5RJmSMpHjSn4GJmDzSOShkFWv3H9iKpWYL4/LcIdVUwge81TmBws00G1h?=
+ =?us-ascii?Q?2hEafA/MEk6rukH6+OIhHs/GGJmydFIbrUvbKPuowl89zKdr02zAqKHRjyIu?=
+ =?us-ascii?Q?BxN9tOKT57x11sUn19MNhepW/MHbRBkdT5dKaiXITFAJJGcu8OgRgVZevTec?=
+ =?us-ascii?Q?AdmJ42e8DYz6c7FsFeZD0G5+IwvyLk4PmToG0OC0P79+zVNJ9L23BYHNALEY?=
+ =?us-ascii?Q?tfyBfXxHUgE/HtqPHE5oItrhM21iuChkojIc4JxzuHWLdi29DC4BPl+IBZ+M?=
+ =?us-ascii?Q?9MgvDyWJezBFQhOoIH/BzxRl6OG+P+ltjxM52CowbHgYtoaHD2KtN22MHWfe?=
+ =?us-ascii?Q?NR6xSeMnuJTEa35EODyWRR0PGijnbanEKRyzONLENJco++ZsPnjZHKctR6pq?=
+ =?us-ascii?Q?eDqB77spFOzw297ts68HStz1hPgqD6NX4aIe9t6HFqhDqF0gxp4lGuyrQpRI?=
+ =?us-ascii?Q?fH1dyBRE7nUca4A5jRyFyy4yN9+aFwjQ1q1pq4vhVrMS78Tn6GbEcrDgJVa1?=
+ =?us-ascii?Q?pcJZpECL4dx8D/pXi7VlrEd5LL2Je4oL/qoSzIk7zgT+rERpzfS7jwVlZLeQ?=
+ =?us-ascii?Q?V6/R9gowP2UedpJwF8nC9s+89gdJQW3+0LEp5h5uT0spfIcS8fTHSJQhCy6j?=
+ =?us-ascii?Q?h41SFCFuU8Xsi/k83DjnCGC7VbNzffENjyDn84MOgYgC5ripqKOGLBOfCxsY?=
+ =?us-ascii?Q?yXIdDKlzhf22F9erNTOLOQB8GG81EsQcZ0PTGoRN/gt9sNd4rSuEfI7Rlv21?=
+ =?us-ascii?Q?Bv16by7bSvvzFeT7RsRDii37pInCwTbzNBm/gZn8wO1JuurlbnCC3NpZXW/j?=
+ =?us-ascii?Q?OYx4gG+L67NqFnQvbNF8ntymbtmuSt4kNRPl3PTkzT7R?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77786329-aa75-4b2d-25b9-08ddcfad467a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2025 21:08:47.4787 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c964674-51af-468f-d0ff-08ddcfad6f7c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2025 21:09:56.2965 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: brfk4gPQcsc+sTyxCvBUi8gQEmzXveuijKfEqdhUp7kStEkfzLfsKoEFJBr5eeJkKEomgQ6GvHJE3he3CRwF+V0tQpx9Fok04xtDdVYfUGA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6304
+X-MS-Exchange-CrossTenant-userprincipalname: 5vM6rGcaTH8K+kKZs8AIVIpkKbxJzJD/AH8GliogTOiD8S96EMgbvR4iOkBBkWd8Uhv97Tbv4yBTae8hQG44+9oXBVVWCFr/dnBraY6GesA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5319
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -190,85 +189,228 @@ From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Michal=
 Sent: Wednesday, July 30, 2025 10:49 AM
 To: intel-xe@lists.freedesktop.org
 Cc: Wajdeczko, Michal <Michal.Wajdeczko@intel.com>
-Subject: [PATCH 1/3] drm/xe/pf: Disable PF restart worker on device removal
+Subject: [PATCH 2/3] drm/xe/pf: Make sure PF is ready to configure VFs
 >=20
-> We can't let restart worker run once device is removed, since other
-> data that it might want to access could be already released.
-> Explicitly disable worker as part of device cleanup action.
+> The PF driver might be resumed just to configure VFs, but since
+> it is doing some asynchronous GuC reconfigurations after fresh
+> reset, we should wait until all pending works are completed.
 >=20
-> Fixes: a4d1c5d0b99b ("drm/xe/pf: Move VFs reprovisioning to worker")
+> This is especially important in case of LMEM provisioning, since
+> we also need to update the LMTT and send invalidation requests
+> to all GuCs, which are expected to be already in the VGT mode.
+>=20
+> Fixes: 68ae022278a1 ("drm/xe/pf: Force GuC virtualization mode")
 > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt_sriov_pf.c | 30 ++++++++++++++++++++++++++++-
->  1 file changed, 29 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf.c         | 28 +++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf.h         |  1 +
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c |  4 ++-
+>  drivers/gpu/drm/xe/xe_pci_sriov.c           |  7 +++++-
+>  drivers/gpu/drm/xe/xe_sriov_pf.c            | 27 ++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_sriov_pf.h            |  1 +
+>  6 files changed, 66 insertions(+), 2 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_=
 gt_sriov_pf.c
-> index 35489fa81825..2761319fdc26 100644
+> index 2761319fdc26..8bc7d7f9f47a 100644
 > --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
 > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-> @@ -50,6 +50,11 @@ static void pf_init_workers(struct xe_gt *gt)
->  	INIT_WORK(&gt->sriov.pf.workers.restart, pf_worker_restart_func);
+> @@ -16,6 +16,7 @@
+>  #include "xe_gt_sriov_pf_migration.h"
+>  #include "xe_gt_sriov_pf_service.h"
+>  #include "xe_gt_sriov_printk.h"
+> +#include "xe_guc_submit.h"
+>  #include "xe_mmio.h"
+>  #include "xe_pm.h"
+> =20
+> @@ -258,3 +259,30 @@ void xe_gt_sriov_pf_restart(struct xe_gt *gt)
+>  {
+>  	pf_queue_restart(gt);
 >  }
-> =20
-> +static void pf_fini_workers(struct xe_gt *gt)
+> +
+> +static bool pf_flush_restart(struct xe_gt *gt)
 > +{
-> +	disable_work_sync(&gt->sriov.pf.workers.restart);
-> +}
-> +
->  /**
->   * xe_gt_sriov_pf_init_early - Prepare SR-IOV PF data structures on PF.
->   * @gt: the &xe_gt to initialize
-> @@ -79,6 +84,21 @@ int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
->  	return 0;
->  }
-> =20
-> +static void pf_fini_action(void *arg)
-> +{
-> +	struct xe_gt *gt =3D arg;
-> +
-> +	pf_fini_workers(gt);
-> +}
-> +
-> +static int pf_init_late(struct xe_gt *gt)
-> +{
-> +	struct xe_device *xe =3D gt_to_xe(gt);
-> +
-> +	xe_gt_assert(gt, IS_SRIOV_PF(xe));
-> +	return devm_add_action_or_reset(xe->drm.dev, pf_fini_action, gt);
-> +}
-> +
->  /**
->   * xe_gt_sriov_pf_init - Prepare SR-IOV PF data structures on PF.
->   * @gt: the &xe_gt to initialize
-> @@ -95,7 +115,15 @@ int xe_gt_sriov_pf_init(struct xe_gt *gt)
->  	if (err)
->  		return err;
-> =20
-> -	return xe_gt_sriov_pf_migration_init(gt);
-> +	err =3D xe_gt_sriov_pf_migration_init(gt);
-> +	if (err)
-> +		return err;
-> +
-> +	err =3D pf_init_late(gt);
-> +	if (err)
-> +		return err;
+> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));=20
 
-Everything else looks okay, but I don't think this conditional branch is ne=
-cessary.
-I think we can just return err here unconditionally, as if we fail this bra=
-nch, err
-would equal zero anyway, which is what we'd want to return.
+Asserting here seems unnecessary.  If we're certain that the pf functions
+will never be called in a non-pf context, then we probably don't need to
+assert the system is in sriov-pf mode here.  And if we aren't certain of th=
+is,
+it probably makes more sense to put the assertion in
+xe_gt_sriov_pf_wait_ready instead, or to have a separate return path instea=
+d
+of breaking instantly.
 
-With that change:
+Unless the system can exit sriov-pf mode in the middle of execution?  I don=
+'t
+think that's a possibility, though.
+
+The assertion by itself isn't harmful if we're assuming the system would ne=
+ver
+hit the assertion in a non-sriov-pf context, though, so I won't block on it=
+'s
+removal.  Though a justification would do well here, if only for my sake.
+
+Everything else is
 Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 -Jonathan Cavitt
 
 > +
+> +	return flush_work(&gt->sriov.pf.workers.restart);
+> +}
+> +
+> +/**
+> + * xe_gt_sriov_pf_wait_ready() - Wait until per-GT PF SR-IOV support is =
+ready.
+> + * @gt: the &xe_gt
+> + *
+> + * This function can only be called on PF.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_gt_sriov_pf_wait_ready(struct xe_gt *gt)
+> +{
+> +	/* don't wait if there is another ongoing reset */
+> +	if (xe_guc_read_stopped(&gt->uc.guc))
+> +		return -EBUSY;
+> +
+> +	if (pf_flush_restart(gt))
+> +		xe_gt_sriov_dbg_verbose(gt, "ready after restart\n");
+> +
 > +	return 0;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.h b/drivers/gpu/drm/xe/xe_=
+gt_sriov_pf.h
+> index e2b2ff8132dc..e7fde3f9937a 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
+> @@ -11,6 +11,7 @@ struct xe_gt;
+>  #ifdef CONFIG_PCI_IOV
+>  int xe_gt_sriov_pf_init_early(struct xe_gt *gt);
+>  int xe_gt_sriov_pf_init(struct xe_gt *gt);
+> +int xe_gt_sriov_pf_wait_ready(struct xe_gt *gt);
+>  void xe_gt_sriov_pf_init_hw(struct xe_gt *gt);
+>  void xe_gt_sriov_pf_sanitize_hw(struct xe_gt *gt, unsigned int vfid);
+>  void xe_gt_sriov_pf_stop_prepare(struct xe_gt *gt);
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/dr=
+m/xe/xe_gt_sriov_pf_debugfs.c
+> index bf679b21f485..3ed245e04d0c 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+> @@ -22,6 +22,7 @@
+>  #include "xe_gt_sriov_pf_policy.h"
+>  #include "xe_gt_sriov_pf_service.h"
+>  #include "xe_pm.h"
+> +#include "xe_sriov_pf.h"
+> =20
+>  /*
+>   *      /sys/kernel/debug/dri/0/
+> @@ -205,7 +206,8 @@ static int CONFIG##_set(void *data, u64 val)					\
+>  		return -EOVERFLOW;						\
+>  										\
+>  	xe_pm_runtime_get(xe);							\
+> -	err =3D xe_gt_sriov_pf_config_set_##CONFIG(gt, vfid, val);		\
+> +	err =3D xe_sriov_pf_wait_ready(xe) ?:					\
+> +	      xe_gt_sriov_pf_config_set_##CONFIG(gt, vfid, val);		\
+>  	xe_pm_runtime_put(xe);							\
+>  										\
+>  	return err;								\
+> diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pc=
+i_sriov.c
+> index 27b148eab49c..af05db07162e 100644
+> --- a/drivers/gpu/drm/xe/xe_pci_sriov.c
+> +++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+> @@ -16,6 +16,7 @@
+>  #include "xe_pci_sriov.h"
+>  #include "xe_pm.h"
+>  #include "xe_sriov.h"
+> +#include "xe_sriov_pf.h"
+>  #include "xe_sriov_pf_helpers.h"
+>  #include "xe_sriov_printk.h"
+> =20
+> @@ -154,6 +155,10 @@ static int pf_enable_vfs(struct xe_device *xe, int n=
+um_vfs)
+>  	xe_assert(xe, num_vfs <=3D total_vfs);
+>  	xe_sriov_dbg(xe, "enabling %u VF%s\n", num_vfs, str_plural(num_vfs));
+> =20
+> +	err =3D xe_sriov_pf_wait_ready(xe);
+> +	if (err)
+> +		goto out;
+> +
+>  	/*
+>  	 * We must hold additional reference to the runtime PM to keep PF in D0
+>  	 * during VFs lifetime, as our VFs do not implement the PM capability.
+> @@ -191,7 +196,7 @@ static int pf_enable_vfs(struct xe_device *xe, int nu=
+m_vfs)
+>  failed:
+>  	pf_unprovision_vfs(xe, num_vfs);
+>  	xe_pm_runtime_put(xe);
+> -
+> +out:
+>  	xe_sriov_notice(xe, "Failed to enable %u VF%s (%pe)\n",
+>  			num_vfs, str_plural(num_vfs), ERR_PTR(err));
+>  	return err;
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sri=
+ov_pf.c
+> index afbdd894bd6e..7e8f3d3ac656 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
+> @@ -9,6 +9,7 @@
+> =20
+>  #include "xe_assert.h"
+>  #include "xe_device.h"
+> +#include "xe_gt_sriov_pf.h"
+>  #include "xe_module.h"
+>  #include "xe_sriov.h"
+>  #include "xe_sriov_pf.h"
+> @@ -102,6 +103,32 @@ int xe_sriov_pf_init_early(struct xe_device *xe)
+>  	return 0;
 >  }
 > =20
->  static bool pf_needs_enable_ggtt_guest_update(struct xe_device *xe)
+> +/**
+> + * xe_sriov_pf_wait_ready() - Wait until PF is ready to operate.
+> + * @xe: the &xe_device to test
+> + *
+> + * This function can only be called on PF.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_sriov_pf_wait_ready(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +	int err =3D 0;
+> +
+> +	if (xe_device_wedged(xe))
+> +		return -ECANCELED;
+> +
+> +	for_each_gt(gt, xe, id) {
+> +		err =3D xe_gt_sriov_pf_wait_ready(gt);
+> +		if (err)
+> +			break;
+> +	}
+> +
+> +	return err;
+> +}
+> +
+>  /**
+>   * xe_sriov_pf_print_vfs_summary - Print SR-IOV PF information.
+>   * @xe: the &xe_device to print info from
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.h b/drivers/gpu/drm/xe/xe_sri=
+ov_pf.h
+> index c392c3fcf085..e3b34f8f5e04 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.h
+> @@ -15,6 +15,7 @@ struct xe_device;
+>  #ifdef CONFIG_PCI_IOV
+>  bool xe_sriov_pf_readiness(struct xe_device *xe);
+>  int xe_sriov_pf_init_early(struct xe_device *xe);
+> +int xe_sriov_pf_wait_ready(struct xe_device *xe);
+>  void xe_sriov_pf_debugfs_register(struct xe_device *xe, struct dentry *r=
+oot);
+>  void xe_sriov_pf_print_vfs_summary(struct xe_device *xe, struct drm_prin=
+ter *p);
+>  #else
 > --=20
 > 2.47.1
 >=20
