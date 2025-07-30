@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C123AC87FCB
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 20:45:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9A2BC83F26
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 20:45:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84F0310E050;
-	Wed, 30 Jul 2025 20:45:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8736B10E0F8;
+	Wed, 30 Jul 2025 20:45:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j64jX0ss";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jku5Shkw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56A2D10E050
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 20:45:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E44E410E0F8
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Jul 2025 20:45:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753908324; x=1785444324;
+ t=1753908327; x=1785444327;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hShGc15C5N3wUovK1ZjFnHYDhDYiKDO6Mp/RTrLExy4=;
- b=j64jX0ssCoScP/2hFH+on4wsPwsFFJ4ni+FUUApEePyieq6B8ZYuZp2U
- ElgLMcIT8JIOuk3aGCBrBG0MJpTYuI4XZOr+bBKpzQxz8k1Gmd++gKevf
- 6KaCbwyMGa2JOloBfW03U7nII1N5IBOZVYV6AARyPyOI8aQ6NjOzOoeaR
- 5biYfqyK7bb192bUZerF9Dcmgk+PwlqybGGzBFfsjfefnwQbSDT2/lry0
- Iq5HQLIpbxp2I//STJLtiGDK9zbO9Iqsbbt8mDA8sNDLp/1fwrBCShR/x
- m6eBEO242C6Rs32zVozQeTBO+HMWOgL7u59VE0KYvsHcNHWowtdA6lmdj Q==;
-X-CSE-ConnectionGUID: Qg2vQd6CTfyCn3sNUJ4IWQ==
-X-CSE-MsgGUID: U4n+GObYSEOkWl/PK8ayMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="60046387"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="60046387"
+ bh=Nh6ZXppp0YMwi5mVJPoNM6/1zCsxW7h4+cNrNVcpoFU=;
+ b=jku5ShkwVLHXURpBTpHcfiKLcl3jeMtd1azGtOPX+GKCeMW/Us8lNtIe
+ zm4YjTaksUKR22cZ157LL9NaIJ+AOJMepR+tmrlOLfvamgHamzpguieSP
+ iimkd7+gkVFOuYnN6lF7mxgaVslxOAoPsvEYC4mk7oiISks1FxR+H1R22
+ +1X1n3ukEAguWdnJ9jNfPxhdqqQFPSPKOwUXNifx9nVYPnDtY3DQ6GFVZ
+ Dilux596Y7TV7to2tNPBsAehoGwRxLm6097m0f58tJBENwqSpizqPvTLB
+ 6L62q6jNF3CJbKONfgN7sjWfDJ1J3KoCouzTLP6y0aNYR/P/ho/GMiwCj Q==;
+X-CSE-ConnectionGUID: TDzvpVhKRISHK+Ere7lqmw==
+X-CSE-MsgGUID: abMopuv3RQq+OlUfV0jwRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="60046392"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="60046392"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Jul 2025 13:45:17 -0700
-X-CSE-ConnectionGUID: /sFI6ReeTn6uQujupVB5lQ==
-X-CSE-MsgGUID: FnibFZ6oQDKtAVttCULRZA==
+X-CSE-ConnectionGUID: 73XIjYFHS7qkk1HUkdQJTA==
+X-CSE-MsgGUID: QhP2R/WkQLOVGiaqhb2Xzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="193925762"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="193925778"
 Received: from live-gta-imageloader.fm.intel.com (HELO
  DUT136ARLU.fm.intel.com) ([10.105.23.76])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
@@ -45,10 +45,10 @@ Received: from live-gta-imageloader.fm.intel.com (HELO
 From: stuartsummers <stuart.summers@intel.com>
 To: 
 Cc: matthew.brost@intel.com, farah.kassabri@intel.com,
- intel-xe@lists.freedesktop.org, stuartsummers <stuart.summers@intel.com>
-Subject: [PATCH 1/8] drm/xe: Move explicit CT lock in TLB invalidation sequence
-Date: Wed, 30 Jul 2025 20:45:07 +0000
-Message-Id: <20250730204514.76459-2-stuart.summers@intel.com>
+ intel-xe@lists.freedesktop.org
+Subject: [PATCH 6/8] drm/xe: Prep TLB invalidation fence before sending
+Date: Wed, 30 Jul 2025 20:45:12 +0000
+Message-Id: <20250730204514.76459-7-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250730204514.76459-1-stuart.summers@intel.com>
 References: <20250730204514.76459-1-stuart.summers@intel.com>
@@ -68,62 +68,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have a lock tracking the fences/sequence numbers
-here (pending_lock). And the GuC CT code already has an
-implicit version of this lock in the ct_send routine.
-Prepare the way for future optimizations in TLB invalidation
-flow by moving the mutex lock down into the GuC CT send
-routine rather than in the upper TLB invalidation layer.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Signed-off-by: stuartsummers <stuart.summers@intel.com>
+It is a bit backwards to add a TLB invalidation fence to the pending
+list after issuing the invalidation. Perform this step before issuing
+the TLB invalidation in a helper function.
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_tlb_inval.c | 103 +++++++++++++++---------------
+ 1 file changed, 51 insertions(+), 52 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 02f0bb92d6e0..230f30161395 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -158,7 +158,6 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
- 	 * appear.
- 	 */
- 
--	mutex_lock(&gt->uc.guc.ct.lock);
- 	spin_lock_irq(&gt->tlb_invalidation.pending_lock);
- 	cancel_delayed_work(&gt->tlb_invalidation.fence_tdr);
- 	/*
-@@ -178,7 +177,6 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
- 				 &gt->tlb_invalidation.pending_fences, link)
- 		invalidation_fence_signal(gt_to_xe(gt), fence);
- 	spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
--	mutex_unlock(&gt->uc.guc.ct.lock);
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
+index 288960ea0caa..2ffd677ee180 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+@@ -65,19 +65,19 @@ __inval_fence_signal(struct xe_device *xe, struct xe_tlb_inval_fence *fence)
+ static void
+ inval_fence_signal(struct xe_device *xe, struct xe_tlb_inval_fence *fence)
+ {
++	lockdep_assert_held(&fence->tlb_inval->pending_lock);
++
+ 	list_del(&fence->link);
+ 	__inval_fence_signal(xe, fence);
  }
  
- static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
-@@ -211,13 +209,12 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+-void xe_tlb_inval_fence_signal(struct xe_tlb_inval_fence *fence)
++static void
++inval_fence_signal_unlocked(struct xe_device *xe,
++			    struct xe_tlb_inval_fence *fence)
+ {
+-	struct xe_gt *gt;
+-
+-	if (WARN_ON_ONCE(!fence->tlb_inval))
+-		return;
+-
+-	gt = fence->tlb_inval->private;
+-	__inval_fence_signal(gt_to_xe(gt), fence);
++	spin_lock_irq(&fence->tlb_inval->pending_lock);
++	inval_fence_signal(xe, fence);
++	spin_unlock_irq(&fence->tlb_inval->pending_lock);
+ }
+ 
+ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+@@ -199,14 +199,10 @@ static bool tlb_inval_seqno_past(struct xe_gt *gt, int seqno)
+ 	return seqno_recv >= seqno;
+ }
+ 
+-static int send_tlb_inval(struct xe_guc *guc,
+-			  struct xe_tlb_inval_fence *fence,
++static int send_tlb_inval(struct xe_guc *guc, struct xe_tlb_inval_fence *fence,
+ 			  u32 *action, int len)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
+-	struct xe_device *xe = gt_to_xe(gt);
+-	int seqno;
+-	int ret;
+ 
+ 	xe_gt_assert(gt, fence);
+ 
+@@ -216,45 +212,36 @@ static int send_tlb_inval(struct xe_guc *guc,
  	 * need to be updated.
  	 */
  
--	mutex_lock(&guc->ct.lock);
- 	seqno = gt->tlb_invalidation.seqno;
- 	fence->seqno = seqno;
- 	trace_xe_gt_tlb_invalidation_fence_send(xe, fence);
- 	action[1] = seqno;
--	ret = xe_guc_ct_send_locked(&guc->ct, action, len,
--				    G2H_LEN_DW_TLB_INVALIDATE, 1);
-+	ret = xe_guc_ct_send(&guc->ct, action, len,
-+			     G2H_LEN_DW_TLB_INVALIDATE, 1);
- 	if (!ret) {
- 		spin_lock_irq(&gt->tlb_invalidation.pending_lock);
- 		/*
-@@ -248,7 +245,6 @@ static int send_tlb_invalidation(struct xe_guc *guc,
- 		if (!gt->tlb_invalidation.seqno)
- 			gt->tlb_invalidation.seqno = 1;
- 	}
--	mutex_unlock(&guc->ct.lock);
+-	seqno = gt->tlb_inval.seqno;
+-	fence->seqno = seqno;
+-	trace_xe_tlb_inval_fence_send(xe, fence);
+-	action[1] = seqno;
+-	ret = xe_guc_ct_send(&guc->ct, action, len,
+-			     G2H_LEN_DW_TLB_INVALIDATE, 1);
+-	if (!ret) {
+-		spin_lock_irq(&gt->tlb_inval.pending_lock);
+-		/*
+-		 * We haven't actually published the TLB fence as per
+-		 * pending_fences, but in theory our seqno could have already
+-		 * been written as we acquired the pending_lock. In such a case
+-		 * we can just go ahead and signal the fence here.
+-		 */
+-		if (tlb_inval_seqno_past(gt, seqno)) {
+-			__inval_fence_signal(xe, fence);
+-		} else {
+-			fence->inval_time = ktime_get();
+-			list_add_tail(&fence->link,
+-				      &gt->tlb_inval.pending_fences);
+-
+-			if (list_is_singular(&gt->tlb_inval.pending_fences))
+-				queue_delayed_work(system_wq,
+-						   &gt->tlb_inval.fence_tdr,
+-						   tlb_timeout_jiffies(gt));
+-		}
+-		spin_unlock_irq(&gt->tlb_inval.pending_lock);
+-	} else {
+-		__inval_fence_signal(xe, fence);
+-	}
+-	if (!ret) {
+-		gt->tlb_inval.seqno = (gt->tlb_inval.seqno + 1) %
+-			TLB_INVALIDATION_SEQNO_MAX;
+-		if (!gt->tlb_inval.seqno)
+-			gt->tlb_inval.seqno = 1;
+-	}
  	xe_gt_stats_incr(gt, XE_GT_STATS_ID_TLB_INVAL, 1);
++	action[1] = fence->seqno;
  
- 	return ret;
+-	return ret;
++	return xe_guc_ct_send(&guc->ct, action, len,
++			      G2H_LEN_DW_TLB_INVALIDATE, 1);
++}
++
++static void xe_tlb_inval_fence_prep(struct xe_tlb_inval_fence *fence)
++{
++	struct xe_tlb_inval *tlb_inval = fence->tlb_inval;
++	struct xe_gt *gt = tlb_inval->private;
++	struct xe_device *xe = gt_to_xe(gt);
++
++	fence->seqno = tlb_inval->seqno;
++	trace_xe_tlb_inval_fence_send(xe, fence);
++
++	spin_lock_irq(&tlb_inval->pending_lock);
++	fence->inval_time = ktime_get();
++	list_add_tail(&fence->link, &tlb_inval->pending_fences);
++
++	if (list_is_singular(&tlb_inval->pending_fences))
++		queue_delayed_work(system_wq,
++				   &tlb_inval->fence_tdr,
++				   tlb_timeout_jiffies(gt));
++	spin_unlock_irq(&tlb_inval->pending_lock);
++
++	tlb_inval->seqno = (tlb_inval->seqno + 1) %
++		TLB_INVALIDATION_SEQNO_MAX;
++	if (!tlb_inval->seqno)
++		tlb_inval->seqno = 1;
+ }
+ 
+ #define MAKE_INVAL_OP(type)	((type << XE_GUC_TLB_INVAL_TYPE_SHIFT) | \
+@@ -282,7 +269,12 @@ static int xe_tlb_inval_guc(struct xe_gt *gt,
+ 	};
+ 	int ret;
+ 
++	xe_tlb_inval_fence_prep(fence);
++
+ 	ret = send_tlb_inval(&gt->uc.guc, fence, action, ARRAY_SIZE(action));
++	if (ret < 0)
++		inval_fence_signal_unlocked(gt_to_xe(gt), fence);
++
+ 	/*
+ 	 * -ECANCELED indicates the CT is stopped for a GT reset. TLB caches
+ 	 *  should be nuked on a GT reset so this error can be ignored.
+@@ -409,7 +401,7 @@ int xe_tlb_inval_range(struct xe_tlb_inval *tlb_inval,
+ #define MAX_TLB_INVALIDATION_LEN	7
+ 	u32 action[MAX_TLB_INVALIDATION_LEN];
+ 	u64 length = end - start;
+-	int len = 0;
++	int len = 0, ret;
+ 
+ 	xe_gt_assert(gt, fence);
+ 
+@@ -470,7 +462,14 @@ int xe_tlb_inval_range(struct xe_tlb_inval *tlb_inval,
+ 
+ 	xe_gt_assert(gt, len <= MAX_TLB_INVALIDATION_LEN);
+ 
+-	return send_tlb_inval(&gt->uc.guc, fence, action, len);
++	xe_tlb_inval_fence_prep(fence);
++
++	ret = send_tlb_inval(&gt->uc.guc, fence, action,
++			     ARRAY_SIZE(action));
++	if (ret < 0)
++		inval_fence_signal_unlocked(xe, fence);
++
++	return ret;
+ }
+ 
+ /**
 -- 
 2.34.1
 
