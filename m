@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45F18C87FC9
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 07:33:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0927BC87FC9
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 07:40:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0622310E414;
-	Wed, 30 Jul 2025 07:33:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="asRm62rZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62C1410E414;
- Wed, 30 Jul 2025 07:33:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753860809; x=1785396809;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=J/DF82vY9AQfyMEnKc2GeKsCmMDYYLcYh0binxJAzfw=;
- b=asRm62rZdaOWpFiPMcmOJxozOpeN+E7H5m/4d73Akn1r+qtuKLC4bwdR
- sjqJL4DxaD2BrP4KuBwjgh0EXSTrAsuegpPju7a9VKJWRMcDHNxqsHvTe
- 6XHJW2fDYnrzEFKsB5ZhJoR1lF48f7sCC5XkcHAhOMU8BnVY8pDZsWj3F
- JgJjhloy4pJ6XQ4Q2ZQFnoRyuYn2PNJ7yCH/TR2WPrcXd4fe4FYQgmjNs
- EMaLK5zER4x1CjorE0/u7x911R+CLitLVUQon9Qaxc0kfwGmc1v7PaWXT
- Kbg6qdxtq+uCTiyRs+aj3K6h7jMJQlRey4m9D9LNdY8Bf0sAm0ZhSxD3U g==;
-X-CSE-ConnectionGUID: IROtbO0DSm637Ge/2vDswA==
-X-CSE-MsgGUID: d9E9lHW0SCmgYnN/clDOKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="56240650"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="56240650"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 00:33:27 -0700
-X-CSE-ConnectionGUID: pG2H9bwOTIm7LhHs6VP/eQ==
-X-CSE-MsgGUID: YrNcR0FfTlqbQb28V9VyBA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="162636373"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.74])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 00:33:24 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>, Ankit Nautiyal
- <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 02/10] drm/i915/display: Introduce HAS_CASF for
- sharpness support
-In-Reply-To: <2c93ca60e6125a9bd1792fb0b00dd01dd6705781@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250724134544.284371-1-nemesa.garg@intel.com>
- <20250724134544.284371-3-nemesa.garg@intel.com>
- <2c93ca60e6125a9bd1792fb0b00dd01dd6705781@intel.com>
-Date: Wed, 30 Jul 2025 10:33:21 +0300
-Message-ID: <559c287032ae48697188eefa78b769da322b8063@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5F5710E078;
+	Wed, 30 Jul 2025 07:40:26 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A058B10E078;
+ Wed, 30 Jul 2025 07:40:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3856361920747351795=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Limit_minimum_BPP_to_30_for?=
+ =?utf-8?q?_HDR_content=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 30 Jul 2025 07:40:25 -0000
+Message-ID: <175386122564.197930.8545107187937891527@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250730055523.2214966-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20250730055523.2214966-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,59 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 30 Jul 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Thu, 24 Jul 2025, Nemesa Garg <nemesa.garg@intel.com> wrote:
->> Add HAS_CASF macro to check whether platform supports
->> the content adaptive sharpness capability or not.
->>
->> v2: Update commit message[Ankit]
->>
->> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
->> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 7 +++++++
->>  drivers/gpu/drm/i915/display/intel_display_device.h  | 1 +
->>  2 files changed, 8 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> index 0c7f91046996..33ec30123214 100644
->> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> @@ -373,6 +373,13 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
->>  
->>  	intel_vdsc_state_dump(&p, 0, pipe_config);
->>  
->> +	if (HAS_CASF(display)) {
->> +		drm_printf(&p, "sharpness strength: %d, sharpness tap size :%d\n sharpness enable :%d\n",
->
-> No \n in the middle please.
+--===============3856361920747351795==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Moreover, place the space after ":" not before.
+== Series Details ==
 
->
->> +			   pipe_config->hw.casf_params.strength,
->> +			   pipe_config->hw.casf_params.win_size,
->> +			   pipe_config->hw.casf_params.casf_enable);
->> +	}
->> +
->>  dump_planes:
->>  	if (!state)
->>  		return;
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
->> index 4308822f0415..7f76215195d8 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
->> @@ -145,6 +145,7 @@ struct intel_display_platforms {
->>  #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
->>  #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
->>  #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
->> +#define HAS_CASF(__display)		(DISPLAY_VER(__display) >= 20)
->>  #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
->>  #define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)->has_cdclk_squash)
->>  #define HAS_CMRR(__display)		(DISPLAY_VER(__display) >= 20)
+Series: Limit minimum BPP to 30 for HDR content.
+URL   : https://patchwork.freedesktop.org/series/152254/
+State : success
 
--- 
-Jani Nikula, Intel
+== Summary ==
+
+CI Bug Log - changes from xe-3487-9378b693d04cb60c6d1b13150244c480a7cd2741_BAT -> xe-pw-152254v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152254v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3487-9378b693d04cb60c6d1b13150244c480a7cd2741/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152254v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3487-9378b693d04cb60c6d1b13150244c480a7cd2741 -> xe-pw-152254v1
+
+  IGT_8478: 3e7c2bd685397f852853878aef4d9c1e4889a28b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3487-9378b693d04cb60c6d1b13150244c480a7cd2741: 9378b693d04cb60c6d1b13150244c480a7cd2741
+  xe-pw-152254v1: 152254v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152254v1/index.html
+
+--===============3856361920747351795==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Limit minimum BPP to 30 for HDR content.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152254/">https://patchwork.freedesktop.org/series/152254/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152254v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152254v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3487-9378b693d04cb60c6d1b13150244c480a7cd2741_BAT -&gt; xe-pw-152254v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152254v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3487-9378b693d04cb60c6d1b13150244c480a7cd2741/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152254v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3487-9378b693d04cb60c6d1b13150244c480a7cd2741 -&gt; xe-pw-152254v1</li>
+</ul>
+<p>IGT_8478: 3e7c2bd685397f852853878aef4d9c1e4889a28b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3487-9378b693d04cb60c6d1b13150244c480a7cd2741: 9378b693d04cb60c6d1b13150244c480a7cd2741<br />
+  xe-pw-152254v1: 152254v1</p>
+
+</body>
+</html>
+
+--===============3856361920747351795==--
