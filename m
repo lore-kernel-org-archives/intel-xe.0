@@ -4,80 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50271CA0EC0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E65FDC87FDB
 	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 14:02:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1673010E6B9;
-	Wed, 30 Jul 2025 14:02:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B063A10E6B3;
+	Wed, 30 Jul 2025 14:02:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TYDvor1H";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="KC1syJUy";
 	dkim-atps=neutral
-Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
- [209.85.215.196])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0930A10E061
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 11:05:58 +0000 (UTC)
-Received: by mail-pg1-f196.google.com with SMTP id
- 41be03b00d2f7-b31d489a76dso5557738a12.1
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Jul 2025 04:05:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753787157; x=1754391957; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=WLHeYkFqqgcgLLa5E70HO7JnbGS55Dax9Okm1rFtTZg=;
- b=TYDvor1HJflpktKmmgzLxjFxwD+pCcdVrDt70XVQQn8UEN5C8EHXM5lT2kyVTmo0lG
- dTIQI1KQANI0XIol7qzR/fmj4xksZz6Acr55XbReDJeaI5tttJdTafKIbpNIRihBzXYD
- B+qqHmNFWPIi2tl9dwbonA2fEpr/S2hzImsA57iRl+Y+AsEdOduF3fHqVUzBfS/mgkoU
- 79snbyUmfIz4kS4cAb3yOGFARLV186wGKBnvLMMcNMXQP423vBLQm5HlEutdQclsvhVd
- BwDAgPeh2aBxXWvLkSxG13qhWtJcAZF8YvUNSHIbaIqxf+JPsTyW3qkoPwuF+s1e9zIk
- aJzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753787157; x=1754391957;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=WLHeYkFqqgcgLLa5E70HO7JnbGS55Dax9Okm1rFtTZg=;
- b=K2fd5Yw3KD+gKZ7qT+s08lxL2paN+0V7KoabjO5aaN5znY9L1x49bCL8WG2Rf8yOhR
- CtSAzMx0wz4pqA1wh2Js0pxlYgb65x4LGniw9LIkYMvYEkrltCkyWGzNau6eu6t7ntsY
- N63Ka9kuKcs7Ux3Xnd4xh7fi7TGY7HHzvWuBG+mXiUrhnzN2yh2noBykoiWQTEzKQlMx
- UZEWBhXxQO6vSOiYiewSyyoFqXbX2O/hLZZU2t0jBooA0Wp1fE3gM6pmGB3fA5PVs0Bb
- Hgk2idYT3dD68oRxnMjYh2Ew4abIqmVtPUKaVsnk1ebXkNE3s9JfBboBOOny7gUGW0KY
- dg+Q==
-X-Gm-Message-State: AOJu0Yzw2OVTWlCWecAYFssBmRjfmJAPpRi+TMl5DvFz6ASUgZfgUSOw
- mNUxt4eNTigWKpSye8zTtW0KCaZQfozoFEQn49G5fvy+gHJEQkYegow=
-X-Gm-Gg: ASbGnctgJW1NMzZb1OAC6AVyLLOLYuDiNOh71hUc6QJlEpcLcp9dbF24CqnbeJPwxZS
- yHenky/71tzhpL4UDWFOQ14Un6pT/sDIfn4da7TDbuy5AH0jJDqQuk1XpRFujM53kEjWnFG0poK
- R28yQkdcNSDs8tggn0O7KLUJ0kspIXaP5zCuZ14kFGaFfCzBq+xlFfAPk1g6BBhutrA7amf2XqI
- PH5RPO8+Sv3yafYN7EhGQt9vH9+wwzNzUJXnugusebLyAt1rDNkCmr/wWHkSdhyQUelnH4kwD2b
- wyUvUI7rqS93MEt6wWYimUbcFDvRaFpk16Aw6lStYIZqE+2/Otz0MHRsyrZlecOpYNxn5c7xBDP
- EkE3WJxS3UPcpAzeOyCA1Ww1cuRC+G2evIzJDgmY=
-X-Google-Smtp-Source: AGHT+IEaUlgjTCWhrh0w4mjTtnBsKLmW8QBUdOBpwR84OQmFTVKiyCPzd0imDRIAZjTJTlRy2xCB8Q==
-X-Received: by 2002:a17:903:94e:b0:240:7725:18de with SMTP id
- d9443c01a7336-24077252f3amr19060465ad.37.1753787157361; 
- Tue, 29 Jul 2025 04:05:57 -0700 (PDT)
-Received: from git-send-email.moeko.lan ([139.227.17.83])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23fbe30bc1fsm75929025ad.5.2025.07.29.04.05.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 29 Jul 2025 04:05:56 -0700 (PDT)
-From: Tomita Moeko <tomitamoeko@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org,
- Tomita Moeko <tomitamoeko@gmail.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH 6.12 4/4] Revert "drm/xe/forcewake: Add a helper
- xe_force_wake_ref_has_domain()"
-Date: Tue, 29 Jul 2025 19:05:25 +0800
-Message-ID: <20250729110525.49838-5-tomitamoeko@gmail.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250729110525.49838-1-tomitamoeko@gmail.com>
-References: <20250729110525.49838-1-tomitamoeko@gmail.com>
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF5210E421;
+ Wed, 30 Jul 2025 07:56:20 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4bsPfm6Qhqz9sXg;
+ Wed, 30 Jul 2025 09:56:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1753862177; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ontXPx/waFW2vwfIZhpDrxs80xPxqKi4ay9J8j5IdJo=;
+ b=KC1syJUy48BcRqN+svY6GQK8ljjnSpA06DlfPue5hKjzjG71lcZng0lgjaAwijMDItIiTx
+ 0sGs/9JAVW6TPvkUjRA01YM+OpdjKZh9lUp/7AOo85K0O03gz8p1B5ZOzrJ/SkIdJBPOjl
+ 2fLvd+1JOWCUnZ+0Z0LkOfmGWV7hTShJRwGNrdNLJtAy+ZEjQjeQ7xGDExMMFCDiVuvapz
+ OufRhfvCjmKQ8ibDztQeUmXjPUBuDl7C/Uh1t/x+QDqmKvUM5b5zZQzTiGMZfR7T9mfy18
+ vyeC30qhe/LgkZ0Bx9nsOQTCoXQgQeOelNvTwF7xIxwwIdmg1jZh7FXQ7qrICA==
+Message-ID: <dda766b27e9a7035dee2f6368b882cc628a73772.camel@mailbox.org>
+Subject: Re: [RFC v7 10/12] drm/sched: Break submission patterns with some
+ randomness
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Pierre-Eric Pelloux-Prayer
+ <pierre-eric@damsy.net>, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
+ Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Date: Wed, 30 Jul 2025 09:56:11 +0200
+In-Reply-To: <0312116d-b216-4afb-bf9f-210b553fed7f@igalia.com>
+References: <20250724141921.75583-1-tvrtko.ursulin@igalia.com>
+ <20250724141921.75583-11-tvrtko.ursulin@igalia.com>
+ <fe05e8fd-d56f-4b32-a65b-46c9ef6df9c7@damsy.net>
+ <0312116d-b216-4afb-bf9f-210b553fed7f@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: 1mzkczf3cpqwsa463waf8qbkcwfo7yts
+X-MBO-RS-ID: 2d58de4d89f905860c1
 X-Mailman-Approved-At: Wed, 30 Jul 2025 14:02:27 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,51 +69,216 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit deb05f8431f31e08fd6ab99a56069fc98014dbec.
+On Mon, 2025-07-28 at 12:14 +0100, Tvrtko Ursulin wrote:
+>=20
+> On 28/07/2025 10:28, Pierre-Eric Pelloux-Prayer wrote:
+> > Le 24/07/2025 =C3=A0 16:19, Tvrtko Ursulin a =C3=A9crit=C2=A0:
+> > > GPUs generally don't implement preemption and DRM scheduler definitel=
+y
+> > > does not support it at the front end scheduling level. This means
+> > > execution quanta can be quite long and is controlled by userspace,
+> > > consequence of which is picking the "wrong" entity to run can have a
+> > > larger negative effect than it would have with a virtual runtime base=
+d=20
+> > > CPU
+> > > scheduler.
+> > >=20
+> > > Another important consideration is that rendering clients often have
+> > > shallow submission queues, meaning they will be entering and exiting =
+the
+> > > scheduler's runnable queue often.
+> > >=20
+> > > Relevant scenario here is what happens when an entity re-joins the
+> > > runnable queue with other entities already present. One cornerstone o=
+f=20
+> > > the
+> > > virtual runtime algorithm is to let it re-join at the head and depend=
+ on
+> > > the virtual runtime accounting to sort out the order after an executi=
+on
+> > > quanta or two.
+> > >=20
+> > > However, as explained above, this may not work fully reliably in the =
+GPU
+> > > world. Entity could always get to overtake the existing entities, or =
+not,
+> > > depending on the submission order and rbtree equal key insertion
+> > > behaviour.
+> > >=20
+> > > We can break this latching by adding some randomness for this specifi=
+c
+> > > corner case.
+> > >=20
+> > > If an entity is re-joining the runnable queue, was head of the queue =
+the
+> > > last time it got picked, and there is an already queued different ent=
+ity
+> > > of an equal scheduling priority, we can break the tie by randomly
+> > > choosing
+> > > the execution order between the two.
+> > >=20
+> > > For randomness we implement a simple driver global boolean which sele=
+cts
+> > > whether new entity will be first or not. Because the boolean is globa=
+l=20
+> > > and
+> > > shared between all the run queues and entities, its actual effect can=
+ be
+> > > loosely called random. Under the assumption it will not always be the=
+=20
+> > > same
+> > > entity which is re-joining the queue under these circumstances.
+> > >=20
+> > > Another way to look at this is that it is adding a little bit of limi=
+ted
+> > > random round-robin behaviour to the fair scheduling algorithm.
+> > >=20
+> > > Net effect is a significant improvemnt to the scheduling unit tests w=
+hich
+> > > check the scheduling quality for the interactive client running in
+> > > parallel with GPU hogs.
+> > >=20
+> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > Cc: Danilo Krummrich <dakr@kernel.org>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: Philipp Stanner <phasta@kernel.org>
+> > > Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+> > > ---
+> > > =C2=A0 drivers/gpu/drm/scheduler/sched_rq.c | 10 ++++++++++
+> > > =C2=A0 1 file changed, 10 insertions(+)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/=
+=20
+> > > scheduler/sched_rq.c
+> > > index d16ee3ee3653..087a6bdbb824 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_rq.c
+> > > +++ b/drivers/gpu/drm/scheduler/sched_rq.c
+> > > @@ -147,6 +147,16 @@ drm_sched_entity_restore_vruntime(struct=20
+> > > drm_sched_entity *entity,
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 * Higher priority can go first.
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 */
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 vruntime =3D -us_to_ktime(rq_prio - prio);
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 } else {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 s=
+tatic const int shuffle[2] =3D { -100, 100 };
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 s=
+tatic bool r =3D 0;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /=
+*
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 * For equal priority apply some randomness to break
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 * latching caused by submission patterns.
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 */
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 v=
+runtime =3D shuffle[r];
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 r=
+ ^=3D 1;
+> >=20
+> > I don't understand why this is needed at all?
+> >=20
+> > I suppose this is related to how drm_sched_entity_save_vruntime saves a=
+=20
+> > relative vruntime (=3D entity rejoins with a 0 runtime would be impossi=
+ble=20
+> > otherwise) but I don't understand this either.
+>=20
+> Two things (and a bit more) to explain here for the record. And as=20
+> agreed off-line I need to add some more code comments for this are in
+> the next respin.
+>=20
+> First the saving of "vruntime - min_runtime" when entity exits the=20
+> run-queue.
+>=20
+> That is a core CFS concept AFAIU which enables the relative position of=
+=20
+> the entity to be restored once it re-enters the rq.
+>=20
+> It only applies on the scenario when the picked entity was not the head=
+=20
+> of the queue, due the actual head being not runnable due a dependency.
+>=20
+> If the picked entity then leaves the queue and re-joins, this relative=
+=20
+> vruntime is used to put it back where it was relative to the unready=20
+> entity (which may have became ready by now and so it needs to be picked=
+=20
+> next and not overtaken so easily.)
 
-The helper function introduced in the reverted commit is for handling
-the "refcounted domain mask" introduced in commit a7ddcea1f5ac
-("drm/xe: Error handling in xe_force_wake_get()"). Since that API change
-only exists in 6.13 and later, this helper is unnecessary in 6.12 stable
-kernel.
+I'm afraid I also don't get it completely. So you're saying that with
+this jitter-mechanism we can preserve the relative order of entities?
+But the actual patch title says that it's about breaking such patterns,
+or isn't it? "Break submission patterns"
 
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Tomita Moeko <tomitamoeko@gmail.com>
----
- drivers/gpu/drm/xe/xe_force_wake.h | 16 ----------------
- 1 file changed, 16 deletions(-)
+Maybe you can help improve my understanding by us reversing the
+question:
 
-diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
-index 1608a55edc84..a2577672f4e3 100644
---- a/drivers/gpu/drm/xe/xe_force_wake.h
-+++ b/drivers/gpu/drm/xe/xe_force_wake.h
-@@ -46,20 +46,4 @@ xe_force_wake_assert_held(struct xe_force_wake *fw,
- 	xe_gt_assert(fw->gt, fw->awake_domains & domain);
- }
- 
--/**
-- * xe_force_wake_ref_has_domain - verifies if the domains are in fw_ref
-- * @fw_ref : the force_wake reference
-- * @domain : forcewake domain to verify
-- *
-- * This function confirms whether the @fw_ref includes a reference to the
-- * specified @domain.
-- *
-- * Return: true if domain is refcounted.
-- */
--static inline bool
--xe_force_wake_ref_has_domain(unsigned int fw_ref, enum xe_force_wake_domains domain)
--{
--	return fw_ref & domain;
--}
--
- #endif
--- 
-2.47.2
+If that jitter-mechanism is dropped, what will be the negative
+consequence?
+
+Entities with similar vruntimes would always run in the same order,
+correct? So the patch is not so much about GPU time fairness, but about
+response / delay fairness.
+
+
+P.
+
+>=20
+> It has to be the relative vruntime that is preserved, ie. entity which=
+=20
+> re-enters cannot simply keep its previous vruntime, since by then that=
+=20
+> could lag significantly behind the vruntime of other active entities,
+> which in turn would mean the re-joining entity could be head of the=20
+> queue for a long time.
+>=20
+> Second part is the special case from the quoted patch and that only=20
+> applies to entities which are re-joining the queue after having been=20
+> picked from the head _and_ there is another entity in the rq.
+>=20
+> By the nature of the CFS algorithm the re-joining entity continues with=
+=20
+> the vruntime assigned from the current rq min_vruntime. Which puts two=
+=20
+> entities with the same vruntime at the head of the queue and the actual=
+=20
+> picking order influenced by the submit order (FIFO) and rbtree sort=20
+> order (did not check). But in any case it is not desirable for all the=
+=20
+> description of GPU scheduling weaknesses from the commit text (this patch=
+).
+>=20
+> For this special case there are three sub-paths:
+>=20
+> =C2=A0 1. Re-joining entity is higher scheduling prio -> we pull its vrun=
+time=20
+> a tiny bit ahead of the min_vruntime so it runs first.
+>=20
+> =C2=A0 2. Lower re-joining prio -> the opposite of the above - we explici=
+tly=20
+> prevent it overtaking the higher priority head.
+>=20
+> =C2=A0 3. Equal prio -> apply some randomness as to which one runs first.
+>=20
+> Idea being avoidance of any "latching" of the execution order based on=
+=20
+> submission patterns. Which kind of applies a little bit of=20
+> round/random-robin for this very specific case of equal priority entity=
+=20
+> re-joining at the top of the queue.
+>=20
+> Regards,
+>=20
+> Tvrtko
+>=20
 
