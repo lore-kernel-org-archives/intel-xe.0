@@ -4,61 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B458C87FCB
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 10:32:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B41BC87FCE
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Jul 2025 10:36:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB19C10E35E;
-	Wed, 30 Jul 2025 10:32:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3118E10E2B7;
+	Wed, 30 Jul 2025 10:36:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mlLcHO1U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YUQppzRM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A18A10E2D4;
- Wed, 30 Jul 2025 10:32:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F48010E1B4;
+ Wed, 30 Jul 2025 10:36:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753871536; x=1785407536;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xY0cGAduPMxd5tMAYBCMfqbxzSqavrO5JyNnwoCIJHQ=;
- b=mlLcHO1UtPvyAkVEi6DWUxZkIXMG0cDMcgZjvsh6Ks3vKcNWFXr7sa3b
- yHRJPByCtD0xo6vwp2g3UnlzwekgqiQX0t3CCuhgzN8FIUT/DHCy5vk2V
- 9t+mMFNjHhBjyzMf8kWF5FbYdmxQlSCud7PYhnY+7LJcLd73foPLTnamJ
- L49Ms7FBNcyyIunbi3mmBid/jic9APRd7kwAtbjO1lT85U9eyBinXcosr
- zh9MJVfLotVghuzQ1S25IzJr3HvtgK9pH/l4LbL7myWfyFrpcM2wPeIxG
- fo5nW9fE5Q6qEPmu3w1RkYSCGfx/YGgWuB2E6BEbQXRAwDMqh00Ra82Hu w==;
-X-CSE-ConnectionGUID: 9k6q0AbmSXeCVbvM+Yz4Vg==
-X-CSE-MsgGUID: VPHZIxhcQiiiGGM+H9WryQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="59808651"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="59808651"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 03:32:15 -0700
-X-CSE-ConnectionGUID: eI3AQv9KRMevZgfTBjMV8w==
-X-CSE-MsgGUID: ltEV/2/KTsCZXYhDXdqRuA==
+ t=1753871764; x=1785407764;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=TirsyHsn1M4DwL1ppWirMXT2wpwsxb283vMwhZ1ptVo=;
+ b=YUQppzRMKwho9w8p3mDI7n+kKRS0RW2jzcxMBcXO35iHV32lnC5bh3xq
+ dGZAavPSUICLhCmdqhNctLUN0AR26SCVShL45vsycpuCS/ou1KSoniFlH
+ 9AqFjIwm6zCuLB0/0QvPbz7MVA3x0oosde8fQOCY8eP32PZyot2OHaQDP
+ fN0DFU7vpLuvKU0Wzy0kQBMEj0r901w85MdYg/dd+nyW2Qt4sKqqdkch8
+ fHCHLKkOTcwlykqxfgLt8Ue09ZPXup7mCbnG60qiGJpMytsE7Hyn0TloP
+ 7cjGdTe2g6zazk0Dz4OrpD+M0mKeJSC8r6staXIyUoIP+xoINaTk1kWDY Q==;
+X-CSE-ConnectionGUID: dqggZ/dDTmOn8jAuVGaBFw==
+X-CSE-MsgGUID: 5dhFSek5QBiSnyCH61DPnw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="81617759"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="81617759"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2025 03:36:03 -0700
+X-CSE-ConnectionGUID: AMwcDsJfSZWeWG+jVHOMlA==
+X-CSE-MsgGUID: c62A1z4qQVeNjCXRx3pBTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="162979081"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.74])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 03:32:10 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tomas Winkler <tomasw@gmail.com>, Alexander Usyskin
- <alexander.usyskin@intel.com>, Raag Jadav <raag.jadav@intel.com>
-Cc: linux-mtd@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org, Geert
- Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH] mtd: MTD_INTEL_DG should depend on DRM_I915 or DRM_XE
-In-Reply-To: <07f67ab8ee78f6bf2559131e193381aafff7479a.1753870424.git.geert+renesas@glider.be>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <07f67ab8ee78f6bf2559131e193381aafff7479a.1753870424.git.geert+renesas@glider.be>
-Date: Wed, 30 Jul 2025 13:32:07 +0300
-Message-ID: <d947168fd02d6f820159b456099e6aa8f465b633@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="162222495"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa006.jf.intel.com with ESMTP; 30 Jul 2025 03:36:00 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v2 0/4] User readable error codes on atomic_ioctl failure
+Date: Wed, 30 Jul 2025 15:46:35 +0530
+Message-Id: <20250730-atomic-v2-0-cc02ce0263dd@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAPxiWgC/0XMQQrDIBCF4auEWXdK1BibrnqP0oXo2AzUGFRCI
+ eTulULp8oP3vx0KZaYC126HTBsXTkuDPHXgZrs8Cdk3g+yl7o28oK0pskM3GaGCV9rQAG28Zgr
+ 8/h7dH80hp4h1zmT/+SjNL98EChzt5KwQXnk93Hip9Dq7FOE4PjEAw/SWAAAA
+X-Change-ID: 20250728-atomic-c9713fd357e4
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, naveen1.kumar@intel.com, 
+ xaver.hugl@kde.org, uma.shankar@intel.com, harry.wentland@amd.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,43 +75,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 30 Jul 2025, Geert Uytterhoeven <geert+renesas@glider.be> wrote:
-> Intel Discrete Graphics non-volatile memory is onlt present on intel
-> discrete graphics devices, and its auxiliary device is instantiated by
-> the Intel i915 and Xe2 DRM drivers.  Hence add dependencies on DRM_I915
-> and DRM_XE, to prevent asking the user about this driver when
-> configuring a kernel without Intel graphics support.
->
-> Fixes: ceb5ab3cb6463795 ("mtd: add driver for intel graphics non-volatile memory device")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  drivers/mtd/devices/Kconfig | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/mtd/devices/Kconfig b/drivers/mtd/devices/Kconfig
-> index 46cebde79f34b0b7..f0ab74d695347117 100644
-> --- a/drivers/mtd/devices/Kconfig
-> +++ b/drivers/mtd/devices/Kconfig
-> @@ -185,8 +185,8 @@ config MTD_POWERNV_FLASH
->  
->  config MTD_INTEL_DG
->  	tristate "Intel Discrete Graphics non-volatile memory driver"
-> -	depends on AUXILIARY_BUS
-> -	depends on MTD
-> +	depends on AUXILIARY_BUS && MTD
-> +	depends on DRM_I915 || DRM_XE || COMPILE_TEST
+The series focuses on providing a user readable error value on a failure
+in drm_atomic_ioctl(). Usually -EINVAL is returned in most of the error
+cases and it is difficult for the user to decode the error and get to
+know the real cause for the error. If user gets to know the reason for
+the error then corrective measurements can be taken up.
 
-I understand the intent, but IIUC auxiliary bus usage should not require
-a "depends on" relationship. Couldn't you have MTD_INTEL_DG=y and
-DRM_I915=m just fine?
+TODO: driver specific error codes are to be added and will be done in
+the follow-up patches.
 
-BR,
-Jani.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+Arun R Murthy (4):
+      drm: Define user readable error codes for atomic ioctl
+      drm/atomic: Add error_code element in atomic_state
+      drm/atomic: Return user readable error in atomic_ioctl
+      drm/i915/display: Error codes for async flip failures
 
+ drivers/gpu/drm/drm_atomic.c                 |  5 ++++
+ drivers/gpu/drm/drm_atomic_uapi.c            | 20 ++++++++++----
+ drivers/gpu/drm/i915/display/intel_display.c |  4 +++
+ include/drm/drm_atomic.h                     |  7 +++++
+ include/uapi/drm/drm_mode.h                  | 40 ++++++++++++++++++++++++++++
+ 5 files changed, 71 insertions(+), 5 deletions(-)
+---
+base-commit: 52ac98096df0784abd379f822ad14d6998b09154
+change-id: 20250728-atomic-c9713fd357e4
 
->  	help
->  	  This provides an MTD device to access Intel Discrete Graphics
->  	  non-volatile memory.
-
+Best regards,
 -- 
-Jani Nikula, Intel
+Arun R Murthy <arun.r.murthy@intel.com>
+
