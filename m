@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EBDEC87FCC
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 12:36:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89D3BC87FCC
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 12:37:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2581810E78A;
-	Thu, 31 Jul 2025 12:36:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zd7BoQ5d";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93B7C10E783;
- Thu, 31 Jul 2025 12:36:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753965391; x=1785501391;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3BvRs/uQZNPHyXJX+vkfJR3f3p2bllqjmK2u3etgnJ0=;
- b=Zd7BoQ5dsmlXtv3yD1AaokDQxpY4Fp1NcauuPpLHT5xb/2Hf1SfsrHpQ
- P8YjkRwIJdarN6Kl6t0Ps2wq5x+w2S+F/l2FaqtctZOKJIjEfhIemSu8H
- RwoOP265jdTOrvgA1LYpSFwpAmprIY0Yg2AggVMMlQMQfJE2SbCswSM7O
- 3lJ8qXXQWlIEfPAorwjiz290s15xCw5fOcekznxeKjHzcDy8Gsv6sQ/5L
- qEDYNIcsQmjFJnmavTEP4b/KiM0zMN2hobAY4m5JGSvDUUYFjnnMnBM3e
- HA///IeFEDrkapGM3Y6+8vqWOEU6vxOIDlixjcKw1ujG/wUUlSCpnJaMm w==;
-X-CSE-ConnectionGUID: TpTEV28DReGeneHEjtQItA==
-X-CSE-MsgGUID: CbSenigdTmysshtekRvK8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="66852994"
-X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="66852994"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 05:36:31 -0700
-X-CSE-ConnectionGUID: QfRdyAc3Th23zQWgASRQNA==
-X-CSE-MsgGUID: JgfUHyogRCyMmzIFzZ2FVA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="186935333"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.108])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 05:36:30 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 2/2] drm/xe/compat: stop including i915_utils.h from compat
- i915_drv.h
-Date: Thu, 31 Jul 2025 15:36:16 +0300
-Message-Id: <6338c8524e600e048b56c5484624cfb51ed49d1d.1753965351.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1753965351.git.jani.nikula@intel.com>
-References: <cover.1753965351.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FAD510E26A;
+	Thu, 31 Jul 2025 12:37:17 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7598A10E26A;
+ Thu, 31 Jul 2025 12:37:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3568028016120886422=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_eDP_Data_Override_=28rev5?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 31 Jul 2025 12:37:16 -0000
+Message-ID: <175396543646.202217.16180497359732728573@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250731051646.3009255-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250731051646.3009255-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,184 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose the places that need i915_utils.h, and include it where needed.
+--===============3568028016120886422==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c               | 1 +
- drivers/gpu/drm/i915/display/intel_cdclk.c              | 1 +
- drivers/gpu/drm/i915/display/intel_display_driver.c     | 1 +
- drivers/gpu/drm/i915/display/intel_display_power.c      | 1 +
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 1 +
- drivers/gpu/drm/i915/display/intel_fb.c                 | 1 +
- drivers/gpu/drm/i915/display/intel_gmbus.c              | 1 +
- drivers/gpu/drm/i915/display/intel_hotplug.c            | 1 +
- drivers/gpu/drm/i915/display/intel_vblank.c             | 1 +
- drivers/gpu/drm/i915/display/skl_universal_plane.c      | 1 +
- drivers/gpu/drm/i915/soc/intel_dram.c                   | 1 +
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h       | 1 -
- drivers/gpu/drm/xe/display/ext/i915_utils.c             | 1 +
- 13 files changed, 12 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 9c268bed091d..276ac29e4daf 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -36,6 +36,7 @@
- #include "soc/intel_rom.h"
- 
- #include "i915_drv.h"
-+#include "i915_utils.h"
- #include "intel_display.h"
- #include "intel_display_core.h"
- #include "intel_display_rpm.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 228aa64c1349..8ff20415770f 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -31,6 +31,7 @@
- #include "hsw_ips.h"
- #include "i915_drv.h"
- #include "i915_reg.h"
-+#include "i915_utils.h"
- #include "intel_atomic.h"
- #include "intel_audio.h"
- #include "intel_bw.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 8586ba102605..cf1c14412abe 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -18,6 +18,7 @@
- #include <drm/drm_vblank.h>
- 
- #include "i915_drv.h"
-+#include "i915_utils.h"
- #include "i9xx_wm.h"
- #include "intel_acpi.h"
- #include "intel_atomic.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 273054c22325..cc80c72ac9d1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -10,6 +10,7 @@
- #include "i915_drv.h"
- #include "i915_irq.h"
- #include "i915_reg.h"
-+#include "i915_utils.h"
- #include "intel_backlight_regs.h"
- #include "intel_cdclk.h"
- #include "intel_clock_gating.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 48cac225a809..6efe5524cbbf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -6,6 +6,7 @@
- #include "i915_drv.h"
- #include "i915_irq.h"
- #include "i915_reg.h"
-+#include "i915_utils.h"
- #include "intel_backlight_regs.h"
- #include "intel_combo_phy.h"
- #include "intel_combo_phy_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 0da842bd2f2f..b210c3250501 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -11,6 +11,7 @@
- #include <drm/drm_modeset_helper.h>
- 
- #include "i915_drv.h"
-+#include "i915_utils.h"
- #include "intel_bo.h"
- #include "intel_display.h"
- #include "intel_display_core.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 637f0f23f163..6a74805570e1 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -36,6 +36,7 @@
- #include "i915_drv.h"
- #include "i915_irq.h"
- #include "i915_reg.h"
-+#include "i915_utils.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 265aa97fcc75..740e5c930521 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -28,6 +28,7 @@
- 
- #include "i915_drv.h"
- #include "i915_irq.h"
-+#include "i915_utils.h"
- #include "intel_connector.h"
- #include "intel_display_power.h"
- #include "intel_display_core.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 3e51deca0c21..46d6db5fed11 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -6,6 +6,7 @@
- #include <drm/drm_vblank.h>
- 
- #include "i915_drv.h"
-+#include "i915_utils.h"
- #include "intel_color.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index ec3fe75f2c6c..950dc79dbdd4 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -10,6 +10,7 @@
- 
- #include "pxp/intel_pxp.h"
- #include "i915_drv.h"
-+#include "i915_utils.h"
- #include "intel_bo.h"
- #include "intel_de.h"
- #include "intel_display_irq.h"
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index deb159548a09..3eeaabdf59e8 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -11,6 +11,7 @@
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
-+#include "i915_utils.h"
- #include "intel_dram.h"
- #include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index d8cd66a96621..b8269391bc69 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -12,7 +12,6 @@
- 
- #include <drm/drm_drv.h>
- 
--#include "i915_utils.h"
- #include "xe_device.h" /* for xe_device_has_flat_ccs() */
- #include "xe_device_types.h"
- 
-diff --git a/drivers/gpu/drm/xe/display/ext/i915_utils.c b/drivers/gpu/drm/xe/display/ext/i915_utils.c
-index 43b10a2cc508..1421c2a7b64d 100644
---- a/drivers/gpu/drm/xe/display/ext/i915_utils.c
-+++ b/drivers/gpu/drm/xe/display/ext/i915_utils.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include "i915_drv.h"
-+#include "i915_utils.h"
- 
- bool i915_vtd_active(struct drm_i915_private *i915)
- {
--- 
-2.39.5
+Series: eDP Data Override (rev5)
+URL   : https://patchwork.freedesktop.org/series/151687/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8_BAT -> xe-pw-151687v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8479 -> IGT_8481
+  * Linux: xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8 -> xe-pw-151687v5
+
+  IGT_8479: 5fea7ca6493415ce108231b0ff29f02d293f9aa6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8481: 8481
+  xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8: 7f74ca5c75dd28bc57d5ea1be165919bc70609d8
+  xe-pw-151687v5: 151687v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151687v5/index.html
+
+--===============3568028016120886422==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>eDP Data Override (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151687/">https://patchwork.freedesktop.org/series/151687/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151687v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151687v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8_BAT -&gt; xe-pw-151687v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8479 -&gt; IGT_8481</li>
+<li>Linux: xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8 -&gt; xe-pw-151687v5</li>
+</ul>
+<p>IGT_8479: 5fea7ca6493415ce108231b0ff29f02d293f9aa6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8481: 8481<br />
+  xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8: 7f74ca5c75dd28bc57d5ea1be165919bc70609d8<br />
+  xe-pw-151687v5: 151687v5</p>
+
+</body>
+</html>
+
+--===============3568028016120886422==--
