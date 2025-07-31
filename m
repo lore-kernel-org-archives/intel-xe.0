@@ -4,35 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FCB4C87FCC
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 08:35:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFDD1C83F17
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 08:36:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10A3710E720;
-	Thu, 31 Jul 2025 08:35:24 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D3DA10E720;
- Thu, 31 Jul 2025 08:35:23 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 85A8E5C5489;
- Thu, 31 Jul 2025 08:35:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BAD0C4CEF7;
- Thu, 31 Jul 2025 08:35:19 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tomas Winkler <tomasw@gmail.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Raag Jadav <raag.jadav@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Cc: linux-mtd@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] mtd: MTD_INTEL_DG should depend on DRM_I915 or DRM_XE
-Date: Thu, 31 Jul 2025 10:35:14 +0200
-Message-ID: <def775b1d7afe43720d2a1778735e764a01cb017.1753950712.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F06E10E73A;
+	Thu, 31 Jul 2025 08:36:13 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CDC510E731;
+ Thu, 31 Jul 2025 08:36:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_mtd=3A_MTD=5FIN?=
+ =?utf-8?q?TEL=5FDG_should_depend_on_DRM=5FI915_or_DRM=5FXE_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Geert Uytterhoeven" <geert+renesas@glider.be>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 31 Jul 2025 08:36:12 -0000
+Message-ID: <175395097217.201293.16684038742086840724@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <def775b1d7afe43720d2a1778735e764a01cb017.1753950712.git.geert+renesas@glider.be>
+In-Reply-To: <def775b1d7afe43720d2a1778735e764a01cb017.1753950712.git.geert+renesas@glider.be>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,42 +36,20 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Intel Discrete Graphics non-volatile memory is only present on Intel
-discrete graphics devices, and its auxiliary device is instantiated by
-the Intel i915 and Xe2 DRM drivers.  Hence add dependencies on DRM_I915
-and DRM_XE, to prevent asking the user about this driver when
-configuring a kernel without Intel graphics support.
+== Series Details ==
 
-Fixes: ceb5ab3cb6463795 ("mtd: add driver for intel graphics non-volatile memory device")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - Use !=n as MTD_INTEL_DG can be built-in when DRM_I915 and DRM_XE are
-    modular,
-  - s/onlt/only/,
-  - s/intel/Intel/.
----
- drivers/mtd/devices/Kconfig | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Series: mtd: MTD_INTEL_DG should depend on DRM_I915 or DRM_XE (rev2)
+URL   : https://patchwork.freedesktop.org/series/152274/
+State : failure
 
-diff --git a/drivers/mtd/devices/Kconfig b/drivers/mtd/devices/Kconfig
-index 46cebde79f34b0b7..e518dfeee654268a 100644
---- a/drivers/mtd/devices/Kconfig
-+++ b/drivers/mtd/devices/Kconfig
-@@ -185,8 +185,8 @@ config MTD_POWERNV_FLASH
- 
- config MTD_INTEL_DG
- 	tristate "Intel Discrete Graphics non-volatile memory driver"
--	depends on AUXILIARY_BUS
--	depends on MTD
-+	depends on AUXILIARY_BUS && MTD
-+	depends on DRM_I915!=n || DRM_XE!=n || COMPILE_TEST
- 	help
- 	  This provides an MTD device to access Intel Discrete Graphics
- 	  non-volatile memory.
--- 
-2.43.0
+== Summary ==
+
+Address 'geert@glider.be' is not on the allowlist, which prevents CI from being triggered for this patch.
+If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
+Exception occurred during validation, bailing out!
+
 
