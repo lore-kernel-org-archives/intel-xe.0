@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2B8EC87FD2
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 09:38:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 243F9C87FCC
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 09:51:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A733D10E749;
-	Thu, 31 Jul 2025 09:38:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEB5010E75B;
+	Thu, 31 Jul 2025 09:51:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EcFx16LG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GrgDVLw1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DE9310E744
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 09:38:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9707310E75B;
+ Thu, 31 Jul 2025 09:51:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753954704; x=1785490704;
+ t=1753955461; x=1785491461;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1wtfPfWtCCd0g3G2ZdFYI0RkigPDS3V6NMhX8A9mEz8=;
- b=EcFx16LGDIVgwBQwmNwh/IfOOC814ZN0QiHrAK+dQdLTOB5+906mDEaY
- 5AKhlR7J6JIR6R64Mgf1KJ3v+kooyXkmLl58rHrCcDvz37bh9dhgog+oO
- NoN55mT1E0UwiOuLPUaT3BgfPaF6mW9WzpnXOq2rCmNq/gaufuI5cPWHc
- J5MJ0D+wDvpWykbZXQUEr1dNpG0Wn+VtyvwCkAYSr9UOx5pgK1p+riG/L
- bu1gzQwIMho81sYyq39cxM58liFNLO11pNvDi7qoMhilaY+CkVeANSdXr
- Bg3rNDlTpZuJeSaDyT9fOXChe+3RI9M4VPCxIMcoLCGuR+6l5xVE5aD9L Q==;
-X-CSE-ConnectionGUID: tNyDfbIWR1i1BrbMGyeFhA==
-X-CSE-MsgGUID: fN9QVF8TTGyDEVqFCedX0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="43877061"
-X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="43877061"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 02:38:21 -0700
-X-CSE-ConnectionGUID: KZG8XU75S7uzvdAOWPUJUA==
-X-CSE-MsgGUID: XWK+iw7LSMOBomTp35xX2w==
+ bh=zJPp75bV75O4tju6LnXQ577UpLrgGtb5B4fS7R+SWLA=;
+ b=GrgDVLw1BDAbV0c0Wtp6ZwCnemH8wpBE8dWSSoGBEPue87PeN4m28UFf
+ HvEgDeHf8a/AQFlEHXUlx9xQiMLSZjg6J/53ndeYKgx1SgEwRIO+4rpUL
+ os8LGSQvs4R22YXxn1thhWkocI/hBreLHSlC7NPsvCeNKr1b7tooABrJN
+ tj5Qq88VHBYjdmtMgq847l3oMq0CKySmN4qd8VgFDGbHIQ9fidYzB4w3w
+ FyaCXxI9328S1Vy1S20jHHLRRJ/PvVfAXmURIQ+IQn5sKD3eiIZb9fvGn
+ QOKYzj1hXQHBgQTd8q14sKJay1FYWlin5k4JRYyXYDvajpkhw+LXXAKkQ g==;
+X-CSE-ConnectionGUID: 9bBtBB8rSKGRli6YjSXQjA==
+X-CSE-MsgGUID: AeseKklBSiGBZaLJ5fahAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="66840357"
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="66840357"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2025 02:51:00 -0700
+X-CSE-ConnectionGUID: PaCdlGLrRGGEBYy819PsHg==
+X-CSE-MsgGUID: WnWQUrOmTi2AoLX3Y9MZmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="194056860"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.250])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 02:38:20 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH v2 3/3] drm/xe/migrate: prevent potential UAF
-Date: Thu, 31 Jul 2025 10:38:11 +0100
-Message-ID: <20250731093807.207572-8-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250731093807.207572-5-matthew.auld@intel.com>
-References: <20250731093807.207572-5-matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="167708340"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa004.jf.intel.com with ESMTP; 31 Jul 2025 02:50:59 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v4 3/3] drm/i915/edp: eDP Data Overrride
+Date: Thu, 31 Jul 2025 15:20:50 +0530
+Message-Id: <20250731095049.3026988-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250731051646.3009255-4-suraj.kandpal@intel.com>
+References: <20250731051646.3009255-4-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,50 +67,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If we hit the error path, the previous fence (if there is one) has
-already been put() prior to this, so doing a fence_wait could lead to
-UAF. Tweak the flow to do to the put() until after we do the wait.
+We need override certain link rates in favour of the next available
+higher link rate. The Link rates that need to be overridden are
+indicated by a mask in VBT. To make sure these modes are skipped we
+don't add them in them in the sink rates array.
 
-Fixes: 270172f64b11 ("drm/xe: Update xe_ttm_access_memory to use GPU for non-visible access")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+--v2
+-Update the link rates after we have a final set of link rates [Ankit]
+-Break this patch up [Ankit]
+-Optimize the assingment during loop [Ankit]
+
+--v3
+-Add protection against broken VBTs [Jani]
+
+--v4
+-Fix build errors
+-Create a seprate function to check if edp data override is selected
+and using the correct vbt
+
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 17 +++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_bios.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_dp.c   | 22 ++++++++++++++++++++++
+ 3 files changed, 39 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 30f40e1201c4..084157e1a9e3 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -2063,9 +2063,6 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
- 			current_bytes = min_t(int, current_bytes, S16_MAX * pitch);
- 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 7adb7c4b0432..5d9126a0219e 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2519,12 +2519,25 @@ int intel_bios_dp_max_lane_count(const struct intel_bios_encoder_data *devdata)
+ }
  
--		if (fence)
--			dma_fence_put(fence);
--
- 		__fence = xe_migrate_vram(m, current_bytes,
- 					  (unsigned long)buf & ~PAGE_MASK,
- 					  dma_addr + current_page,
-@@ -2073,11 +2070,15 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
- 					  XE_MIGRATE_COPY_TO_VRAM :
- 					  XE_MIGRATE_COPY_TO_SRAM);
- 		if (IS_ERR(__fence)) {
--			if (fence)
-+			if (fence) {
- 				dma_fence_wait(fence, false);
-+				dma_fence_put(fence);
-+			}
- 			fence = __fence;
- 			goto out_err;
- 		}
+ bool
+-intel_bios_encoder_supports_edp_rate(const struct intel_bios_encoder_data *devdata,
+-				     int rate)
++intel_bios_vbt_supports_edp_data_override(const struct intel_bios_encoder_data *devdata)
+ {
+ 	if (!devdata || devdata->display->vbt.version < 263)
+ 		return false;
+ 
++	/*
++	 * This means the VBT ends up asking us to override every possible rate
++	 * indicating the VBT is broken so skip this
++	 */
++	if (hweight32(devdata->child.edp_data_rate_override) >= 11)
++		return false;
 +
-+		dma_fence_put(fence);
- 		fence = __fence;
++	return true;
++}
++
++bool
++intel_bios_encoder_supports_edp_rate(const struct intel_bios_encoder_data *devdata,
++				     int rate)
++{
+ 	return devdata->child.edp_data_rate_override & edp_rate_override_mask(rate);
+ }
  
- 		buf += current_bytes;
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index a4abaa89a682..d244caef2275 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -276,5 +276,7 @@ void intel_bios_for_each_encoder(struct intel_display *display,
+ 					      const struct intel_bios_encoder_data *devdata));
+ 
+ void intel_bios_debugfs_register(struct intel_display *display);
++bool
++intel_bios_vbt_supports_edp_data_override(const struct intel_bios_encoder_data *devdata);
+ 
+ #endif /* _INTEL_BIOS_H_ */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 54d88f24b689..7e905e912aef 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4277,6 +4277,26 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
+ 	intel_dp->mso_pixel_overlap = mso ? info->mso_pixel_overlap : 0;
+ }
+ 
++static void
++intel_edp_set_data_override_rates(struct intel_dp *intel_dp)
++{
++	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
++	int *sink_rates = intel_dp->sink_rates;
++	int i, j = 0;
++
++	if (!intel_bios_vbt_supports_edp_data_override(encoder->devdata))
++		return;
++
++	for (i = 0; i < intel_dp->num_sink_rates; i++) {
++		if (intel_bios_encoder_supports_edp_rate(encoder->devdata,
++							 intel_dp->sink_rates[i]))
++			continue;
++
++		sink_rates[j++] = intel_dp->sink_rates[i];
++	}
++	intel_dp->num_sink_rates = j;
++}
++
+ static void
+ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+ {
+@@ -4327,6 +4347,8 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+ 		intel_dp->use_rate_select = true;
+ 	else
+ 		intel_dp_set_sink_rates(intel_dp);
++
++	intel_edp_set_data_override_rates(intel_dp);
+ }
+ 
+ static bool
 -- 
-2.50.1
+2.34.1
 
