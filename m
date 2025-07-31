@@ -4,173 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DF33C87FD2
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 08:57:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BDF7C87FCC
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 09:02:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A56410E73D;
-	Thu, 31 Jul 2025 08:57:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1160410E73D;
+	Thu, 31 Jul 2025 09:02:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T/9/YYXl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TppFAEU6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A8F410E73B;
- Thu, 31 Jul 2025 08:57:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EAD310E73D
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 09:02:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753952221; x=1785488221;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=l1uoLZzQ2WYczpv8a6pJAGAJ+c23jZ0Vvy6lpKgkjMY=;
- b=T/9/YYXl3kdUnwI84+cTU22KChKpFKWLq7bHkr/kqqSigIfHNRvPFmu2
- kahzIuWckeNtSE2CDuXCkPZ0LQDR6CY2AYgUoynyL+GDCHguwFVAXEiar
- ZqyZQjgndp0+LKrmR8KPDaUE4uSX9FitEw6m+gNxnXDzYVaGHYBnTO+2c
- GuqsGt1l6KMq+MQdw0HuSYZC7pPpf0pIQTAReBhebnjwBIs0ltIqjBnMx
- fb30Amo+M8ToYGmJXmCd+npaTyzadyT59APP4LUNz8DRNSHWVoFigmaNl
- MuM3tig/4A0HpUQ9kQzNqnbma4Q1MluEvu9x92VVxLpNKjazBdwfsJyno w==;
-X-CSE-ConnectionGUID: UA6dmqiBTIqx0jq2q8h9GA==
-X-CSE-MsgGUID: pLsO8y9AR2ikyJft99TxsA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="58891872"
-X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="58891872"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 01:57:00 -0700
-X-CSE-ConnectionGUID: r8jQQxK9TNy7RHOrS9C6Gw==
-X-CSE-MsgGUID: c1z6SrKdSdeMGlcKTbM/7A==
+ t=1753952572; x=1785488572;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=tZ8o2Bj4yaEWgGcPj/VUxG+reLNJz6trABnet/XRoIw=;
+ b=TppFAEU6VcNa23lLdGQ4QOuWqmvjKo7Whmcy26RQ7xbXsrwJBwUmhQjs
+ kkB9i7+ywuHwU+A+MPcN+4orRU4j3/HXNa8R484a6kmcD9s7R3Gqy80WL
+ 8B9IsrDOMEh+pCbaAgaV+d0pnzmvOyNt/LoP8f3ohj3yYmwzhL5eWXt17
+ V6uHTtvyo1fDhh4YBzgl5h60uUVfsfhVE0zpsHunPQJeRpHwWuNg5X9/H
+ r9oc2nGF24QlxsoPi47tza53jgsK6GpOPYZJq/uUpaFFyEHAjBHVu8Go5
+ IPBMeLB9R/PymIB6e49TMTxBFX3hqBEt4uh/NhYojkud44/J9FycyVpMN Q==;
+X-CSE-ConnectionGUID: JTbKi1n/QvKrCkoJTOivcQ==
+X-CSE-MsgGUID: n1r7kU4zQjuqzMIg0JVykA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="43873949"
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="43873949"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2025 02:02:52 -0700
+X-CSE-ConnectionGUID: 0ZYejaqOQGu6Jx7Z1+7oyw==
+X-CSE-MsgGUID: ACDiSOlaQKyfzavsNbAVag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="200377211"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 01:56:59 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 31 Jul 2025 01:56:59 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Thu, 31 Jul 2025 01:56:59 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.55)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 31 Jul 2025 01:56:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oOsNGTb+l0tsOmx3vlWN9T11iwYjAB+JXTi6W7aZb0088SZ5xGJqhAfi0t3DLeMMNlCjvMxYdPI1vcpJU+eMAmuSQeclIybzfd2DXd7k9NqhSOadsQSM+sH8zS7efYKuiaU64P6JvXkUOdOPXA8PJ9PjWLjhUQIz1pHhYkZTucqjgVh7MQdeBF1lZKmyAsbo5mvULm6F13RyiOGIsC2KVT2y1GLhOb46mIo1seWmf7KGBCcGDXM9c9jVuNl/+fwA3dJ35+Gt17f1DVsw4U8uqxODTaiqWqbV017nwBCd5ddo+mHe2GHln5VWp8Jydc8QsTPeHz/p6vciLY508AqhTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=67jhWCOX1rxrFlJxfNA2lxzCkZePAg1QK2JGnABy4kk=;
- b=TXw0YIm9t4d7f7MGmN+K/tO2ZJ05IDMSvwbidnRrpoHil8k3Ifo2QRCzM27GKDVqPVduDzXdrek3HmpPvtZkoOO8gYa4ddMCRWhsDMrZ078Jrd3gqpvvWl5+PPBhtfxYcLrNOAcAMyI5rMt/X7SJEvA0dC+rtIZYtyIgTlZrZFiUFsobocMf4qVlun/Y1Ys17ZW6m4MtQooFPup32XQEcRkQ1muBTAR06576pH5HbhemTHAJ2nSfC8j/2CRjGS73C/ZE7J69RMG4LTjuBQZygaLDPpVIQsUsekV6ST/K89i9uKdBrFAr1JNhotWUqYP2fbFjBWFS9GEFhrbh/1ycNQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6467.namprd11.prod.outlook.com (2603:10b6:208:3a5::18)
- by PH7PR11MB7002.namprd11.prod.outlook.com (2603:10b6:510:209::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.23; Thu, 31 Jul
- 2025 08:56:51 +0000
-Received: from IA1PR11MB6467.namprd11.prod.outlook.com
- ([fe80::af0a:68bb:7bbf:5a45]) by IA1PR11MB6467.namprd11.prod.outlook.com
- ([fe80::af0a:68bb:7bbf:5a45%3]) with mapi id 15.20.8989.011; Thu, 31 Jul 2025
- 08:56:51 +0000
-From: "Garg, Nemesa" <nemesa.garg@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Subject: RE: [PATCH 02/10] drm/i915/display: Introduce HAS_CASF for sharpness
- support
-Thread-Topic: [PATCH 02/10] drm/i915/display: Introduce HAS_CASF for sharpness
- support
-Thread-Index: AQHb/KICiotmwcJewkKkVMQEDyPA87RKTu8AgAAAQICAAalpQA==
-Date: Thu, 31 Jul 2025 08:56:51 +0000
-Message-ID: <IA1PR11MB6467F1DCBC5DFBD04A4C60C2E327A@IA1PR11MB6467.namprd11.prod.outlook.com>
-References: <20250724134544.284371-1-nemesa.garg@intel.com>
- <20250724134544.284371-3-nemesa.garg@intel.com>
- <2c93ca60e6125a9bd1792fb0b00dd01dd6705781@intel.com>
- <559c287032ae48697188eefa78b769da322b8063@intel.com>
-In-Reply-To: <559c287032ae48697188eefa78b769da322b8063@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6467:EE_|PH7PR11MB7002:EE_
-x-ms-office365-filtering-correlation-id: a6675e6d-aa87-4547-2a55-08ddd01030dd
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?4BzfxAP/X9aK9PPFYbL9c2F7dJcp/xmEHadzK1bHj9bppktMwzubF823ksMs?=
- =?us-ascii?Q?zehS+xbod2VFZ1LTVhOWVMu7VTEGeUiihf/whjcX0RGH9kk6/F9e0gFnSCQd?=
- =?us-ascii?Q?6poUIMX/Rnt1fFzOxqsY9+HgOCVvLU94iQ3AvNTDz5AJo4tep4h94o4ONTs6?=
- =?us-ascii?Q?8e7jY6j6BCDAT5j5DEpFVUSegwCjHJ9LMploKmWBAFRcjpK8wRW/82YOO7AI?=
- =?us-ascii?Q?rELxSVgvDiB+mytC7ZfRN7guZypPqBmgx9va8pLQLSfRqlzieAUFB73wGE7d?=
- =?us-ascii?Q?gw6UQDuVH4VEKo9Gp2cstcWikCP39hKUMK3qykzzYa7sWSOHJ1W/kdO5wwZp?=
- =?us-ascii?Q?kKZaR48KVmBNs5hZ84+9XUC17Ek7sfR5du0IfwcA723/xQrXEcXYqtSP97VV?=
- =?us-ascii?Q?RX1c55A0vsROL4H2T4dYByIzXf+AveuPtJwoAZl67jqADCZsEMPe0QWEm74o?=
- =?us-ascii?Q?oH06aAvwcMBxpx5B0j7ynQrORyxvVqPz7DQBhVWlhDH9STOpLBBrqW6wUC3Q?=
- =?us-ascii?Q?bSrtMDW1jlBvIvPTUuw3YOafaYdA4ZicPnn9jExEN8ioNoTscg/FpA9Z2uIu?=
- =?us-ascii?Q?KCkAYqJQ7kds2nNDR9Gg1CkPEwfYx3HxVm+C/LCuHUGxV6ltSpEXW6z41Xn1?=
- =?us-ascii?Q?8p3CylVgpbgpW2QDbmWHP32qxtKbEA7mMlYKp/nge3cTkK5sx0epspZV6IBT?=
- =?us-ascii?Q?3jdJ4jRO3I1W/sQUMLGDbvozs8XBHOPP6E7B0QCAHwYTehjUd1So7vnpPYe0?=
- =?us-ascii?Q?IgFaa2QpfOPD8YWdJaolBIbKSAM1KNGvEQ5lwyp+PVvSme2O8Z1Y37s4jDX3?=
- =?us-ascii?Q?EhVL98jljhgH5V9ksYCSc6B/iEkF1hX/ZCfr+bugxxGmguy1jb6O8jO4gEK+?=
- =?us-ascii?Q?7jxmK7looDBl6zh5LDn4RX27Rb6grsqOGN2uEIDRdby8ghK3ov0/xsxAN8os?=
- =?us-ascii?Q?yp40wuYqnyLb+0f71CLJtqNPrcAi4xRjbHA+yQRt27XlxG+bNlvdcAWDvzA8?=
- =?us-ascii?Q?wWtckW+aJLrXZMpY1SstwTMvL3HZIPoNLAQElFXeIYHJ8MO2v/p8Lmdft0yL?=
- =?us-ascii?Q?nvRxs5UpfxCuQO77c4TO4OQWX0t3wRXZ8SZ3KgUiiWLivXC89FkVDqF40VRx?=
- =?us-ascii?Q?dyxMCP1M/3QcnIhMw4A9Zk5bGaZh+VbBu9RZuHWpmNT0x60gCKCaurH7slEb?=
- =?us-ascii?Q?5hRhTSpekGLpPB1smmu1v92sZ/b+PyzH3Jdr5AJoW19gvFMpvS/E/GkkU4Df?=
- =?us-ascii?Q?HkgpDKUsH5V2yCa5ocyWz/v0RmeXDqWPa8wAwCx7S6cC8GRP1dpgC8TOBbpB?=
- =?us-ascii?Q?h3cSCMIB7WlCMDKh7rMtkqTp8XSVCRvm3s7ZnxzussouvLM2acsijpX7YrEz?=
- =?us-ascii?Q?4QVk6ycXy/qb5MLUaVLq16MVR0UgGSnBqQEJ8pi9/82/ojerjGHTjz4A2uH7?=
- =?us-ascii?Q?LvCP9zOqCvyKS2qDMZuXUc7AwmoDg4jkV0ZbfMX6vAvYIEJ+Saq0fg=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6467.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bph/WLVxNs6DXMnFwgwt4PK360Twb1NVHCqSIXKnPfyYrFvriTvLtf1klK09?=
- =?us-ascii?Q?3ChFBA4I99MkTtmeuH/zYojgoAg8fLBjmElgVQ3OiOgmRBEBwA6OmQcitT8Y?=
- =?us-ascii?Q?8XNlLhCw8uA1C4N8yXnl3e9LHt6vpdSt1A98ZrV8IyHsVoXoebIP60N+jvdS?=
- =?us-ascii?Q?nbXqmCsSjaEycZpLQq7D1KJ/zylIW9UBCjo2xVgtxFdwKw9si+bqsVTOsCCv?=
- =?us-ascii?Q?j9AQrNaB6HwlCX2OBGjD7iTiOQTXs/UT14IdecRwwNCVngw7Cd0ZVbwSX1ek?=
- =?us-ascii?Q?Tkfsj6QucjJklzTWrfnXMZWoWhymzNGCROWOStKKVPzZqsdiTAgxdOzEEilP?=
- =?us-ascii?Q?Q6b0ckHItmMtsb5I5aVEUox/hNp1ee24pOnhpify4XgzTShWnMHQxM5Jnpyf?=
- =?us-ascii?Q?v9uYJYB/KWMeFDkhbhj4M3ON566jiHHoGGm6D+vc6ihHmF48aHsbOfc6Xtjd?=
- =?us-ascii?Q?zCv5ODqvrSVxcS3fXjTpKj9Msnu3oqgk8cBG2a+64SxG08ZINFyLTLF2xiWH?=
- =?us-ascii?Q?U8O6+plj5nc9Y1N+oZr9gq5HiV6no2EbS1feypqOX5Yoy0qCgoUzFd6wuW6l?=
- =?us-ascii?Q?X8k+FCt2gRYriQZk7tvIw63Pi4hsmuQlGy7Yo/8Aqk1j89g6ur1W2teCeNge?=
- =?us-ascii?Q?a/sLWyVD9uf0KYntIBeVf5gcHtmASwbHscOpkKiU8k2ETeHLSGwTmWHgKzgR?=
- =?us-ascii?Q?r60OrJPk9ucQKnmgA1EIdmmtdfee8GM+PVBd0wBp0MvDPb6GGhRtETmznX8N?=
- =?us-ascii?Q?ZEoOPei3qhnhyvoJcmd74oXyIWCz/WRpB4ysTF8xGu83CVJSy0ovgEtuzXYK?=
- =?us-ascii?Q?FYSXToJhxcq4LQwpXzm+BB/kRgEbsvkCxMscfXP32Lmw9FJm8ryG6BDMzkVJ?=
- =?us-ascii?Q?ksv55qbKpfFQw7fSIoP7+uDIlEFhXN5oJ5g1U33/9mpTWNCOlWmlus5AH0qr?=
- =?us-ascii?Q?lUM+ejmV8gn59Q9G+ZoSr/fhQJP10PP2EIjbcNLn7KNLgpkiC+fmJzl5ErDi?=
- =?us-ascii?Q?7yF8aHNLUJG2qnMiOcCh89Q89n8XGTsxuWPzzU+193EL0YkXOsKXMWSWT4md?=
- =?us-ascii?Q?r+DmdtsoFdlWo/xcHokn+XsmLQAlruRCEWRjRWL9WRMV0nCEda+dxhlY6V0k?=
- =?us-ascii?Q?qD/t9KaCVhHh8sQY87H8/DDD4xKWUbRNK5lB1txckFg8oBdnejXqr02MsZrw?=
- =?us-ascii?Q?vOt5igwbHYBKYRNbj8ddEq7IJZxcnkE0Gd0uWHuzuSi6fNGE+I3MdYB/9EtH?=
- =?us-ascii?Q?boEGO5awZ/4MdTxdmThfSa6FAybk9QzvtI8OL+CLcc8iYTJA26f4VPIEWaeC?=
- =?us-ascii?Q?iPJnVlO/NoVk72d4i0qNWx8XN+nEml0r9C7AEfjNmZmDlwfE4bqw97Br4u4W?=
- =?us-ascii?Q?8UzYSlDR1EXd/z02V8EdwfoNdLIy9g6J/rsn+wlvhpluFv5IG/C+ABBaZCmc?=
- =?us-ascii?Q?BpVN17VjqClMUFSE96loPyJCKHAEzBrC9x8/JFntbzLtcAKAVMXBh+u/AWna?=
- =?us-ascii?Q?cBEuHd9NbKtdxLc1qaHYxp+1FmfCG6jLCiL4bnlMrG9xOGBT1PJkxpW42Wa8?=
- =?us-ascii?Q?xGxR7XkMCiJOtLlslTgeSftpEBpm6l4piZtgmbo/?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="162489307"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.245.250])
+ ([10.245.245.250])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2025 02:02:50 -0700
+Message-ID: <9ee7071f-5d88-4b0e-89b4-b50792fa42de@intel.com>
+Date: Thu, 31 Jul 2025 10:02:48 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6467.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6675e6d-aa87-4547-2a55-08ddd01030dd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2025 08:56:51.4224 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rAw99itsHqptzOCxyRnMlHJT0jV3LOqz9FP/BBKSoynEhifNVU+fLKIiNeRYQu1Sb+lEGd+N60dV4afJXcZVFQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7002
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/xe/migrate: prevent infinite recursion
+To: "Summers, Stuart" <stuart.summers@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Patelczyk, Maciej" <maciej.patelczyk@intel.com>,
+ "Brost, Matthew" <matthew.brost@intel.com>
+References: <20250730143335.174373-5-matthew.auld@intel.com>
+ <20250730143335.174373-6-matthew.auld@intel.com>
+ <8947a74a8e0d73a50e29c20b5d6093d22e93d620.camel@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <8947a74a8e0d73a50e29c20b5d6093d22e93d620.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -185,83 +73,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 30/07/2025 19:11, Summers, Stuart wrote:
+> On Wed, 2025-07-30 at 15:33 +0100, Matthew Auld wrote:
+>> If the buf + offset is not aligned to XE_CAHELINE_BYTES we fallback
+>> to
+>> using a bounce buffer. However the bounce buffer here is allocated on
+>> the stack, and the only alignment requirement here is that it's
+>> naturally aligned to u8, and not XE_CACHELINE_BYTES. If the bounce
+>> buffer is also misaligned we then recurse back into the function
+>> again,
+>> however the new bounce buffer might also not be aligned, and might
+>> never
+>> be until we eventually blow through the stack, as we keep recursing.
+>>
+>> Instead of using the stack use kmalloc, which should respect the
+>> power-of-two alignment request here. Fixes a kernel panic when
+> 
+> Should we add a build bug on (or similar) to guarantee that the power-
+> of-2 stays here? My understanding is this alignment isn't guaranteed
+> otherwise. Of course the chance of the cacheline being a non-power-of-2
+> seems low...
 
+Agreed, will add.
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Wednesday, July 30, 2025 1:03 PM
-> To: Garg, Nemesa <nemesa.garg@intel.com>; intel-gfx@lists.freedesktop.org=
-;
-> dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Garg, Nemesa <nemesa.garg@intel.com>; Nautiyal, Ankit K
-> <ankit.k.nautiyal@intel.com>
-> Subject: Re: [PATCH 02/10] drm/i915/display: Introduce HAS_CASF for
-> sharpness support
->=20
-> On Wed, 30 Jul 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> > On Thu, 24 Jul 2025, Nemesa Garg <nemesa.garg@intel.com> wrote:
-> >> Add HAS_CASF macro to check whether platform supports the content
-> >> adaptive sharpness capability or not.
-> >>
-> >> v2: Update commit message[Ankit]
-> >>
-> >> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-> >> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 7 +++++++
-> >> drivers/gpu/drm/i915/display/intel_display_device.h  | 1 +
-> >>  2 files changed, 8 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> >> b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> >> index 0c7f91046996..33ec30123214 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> >> @@ -373,6 +373,13 @@ void intel_crtc_state_dump(const struct
-> >> intel_crtc_state *pipe_config,
-> >>
-> >>  	intel_vdsc_state_dump(&p, 0, pipe_config);
-> >>
-> >> +	if (HAS_CASF(display)) {
-> >> +		drm_printf(&p, "sharpness strength: %d, sharpness tap size
-> :%d\n
-> >> +sharpness enable :%d\n",
-> >
-> > No \n in the middle please.
->=20
-> Moreover, place the space after ":" not before.
->=20
-Sure will remove.
+> 
+>> triggering this path through eudebug.
+>>
+>> Fixes: 270172f64b11 ("drm/xe: Update xe_ttm_access_memory to use GPU
+>> for non-visible access")
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_migrate.c | 31 +++++++++++++++++++------------
+>>   1 file changed, 19 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+>> b/drivers/gpu/drm/xe/xe_migrate.c
+>> index 3a276e2348a2..b6bdc9bd32b0 100644
+>> --- a/drivers/gpu/drm/xe/xe_migrate.c
+>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+>> @@ -1987,15 +1987,21 @@ int xe_migrate_access_memory(struct
+>> xe_migrate *m, struct xe_bo *bo,
+>>          if (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||
+>>              !IS_ALIGNED((unsigned long)buf + offset,
+>> XE_CACHELINE_BYTES)) {
+>>                  int buf_offset = 0;
+>> +               void *bounce;
+>> +               int err;
+>> +
+>> +               bounce = kmalloc(XE_CACHELINE_BYTES, GFP_KERNEL);
+>> +               if (!bounce)
+>> +                       return -EINVAL;
+> 
+> ENOMEM?
 
-> >
-> >> +			   pipe_config->hw.casf_params.strength,
-> >> +			   pipe_config->hw.casf_params.win_size,
-> >> +			   pipe_config->hw.casf_params.casf_enable);
-> >> +	}
-> >> +
-> >>  dump_planes:
-> >>  	if (!state)
-> >>  		return;
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h
-> >> b/drivers/gpu/drm/i915/display/intel_display_device.h
-> >> index 4308822f0415..7f76215195d8 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> >> @@ -145,6 +145,7 @@ struct intel_display_platforms {
-> >>  #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >=3D
-> 5)
-> >>  #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >=3D
-> 13)
-> >>  #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >=3D 11 &&
-> HAS_DSC(__display))
-> >> +#define HAS_CASF(__display)		(DISPLAY_VER(__display) >=3D
-> 20)
-> >>  #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)-
-> >has_cdclk_crawl)
-> >>  #define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)-
-> >has_cdclk_squash)
-> >>  #define HAS_CMRR(__display)		(DISPLAY_VER(__display) >=3D
-> 20)
->=20
-> --
-> Jani Nikula, Intel
+Oops. Thanks.
+
+> 
+> Thanks,
+> Stuart
+> 
+>> +
+>> +               xe_assert(xe, IS_ALIGNED((unsigned long)bounce,
+>> +                                        XE_CACHELINE_BYTES));
+>>   
+>>                  /*
+>>                   * Less than ideal for large unaligned access but
+>> this should be
+>>                   * fairly rare, can fixup if this becomes common.
+>>                   */
+>>                  do {
+>> -                       u8 bounce[XE_CACHELINE_BYTES];
+>> -                       void *ptr = (void *)bounce;
+>> -                       int err;
+>>                          int copy_bytes = min_t(int, bytes_left,
+>>                                                 XE_CACHELINE_BYTES -
+>>                                                 (offset &
+>> XE_CACHELINE_MASK));
+>> @@ -2004,22 +2010,22 @@ int xe_migrate_access_memory(struct
+>> xe_migrate *m, struct xe_bo *bo,
+>>                          err = xe_migrate_access_memory(m, bo,
+>>                                                         offset &
+>>                                                        
+>> ~XE_CACHELINE_MASK,
+>> -                                                      (void *)ptr,
+>> -
+>> sizeof(bounce), 0);
+>> +                                                      bounce,
+>> +
+>> XE_CACHELINE_BYTES, 0);
+>>                          if (err)
+>> -                               return err;
+>> +                               break;
+>>   
+>>                          if (write) {
+>> -                               memcpy(ptr + ptr_offset, buf +
+>> buf_offset, copy_bytes);
+>> +                               memcpy(bounce + ptr_offset, buf +
+>> buf_offset, copy_bytes);
+>>   
+>>                                  err = xe_migrate_access_memory(m, bo,
+>>                                                                 offset
+>> & ~XE_CACHELINE_MASK,
+>> -                                                              (void
+>> *)ptr,
+>> -
+>> sizeof(bounce), write);
+>> +
+>> bounce,
+>> +
+>> XE_CACHELINE_BYTES, write);
+>>                                  if (err)
+>> -                                       return err;
+>> +                                       break;
+>>                          } else {
+>> -                               memcpy(buf + buf_offset, ptr +
+>> ptr_offset,
+>> +                               memcpy(buf + buf_offset, bounce +
+>> ptr_offset,
+>>                                         copy_bytes);
+>>                          }
+>>   
+>> @@ -2028,7 +2034,8 @@ int xe_migrate_access_memory(struct xe_migrate
+>> *m, struct xe_bo *bo,
+>>                          offset += copy_bytes;
+>>                  } while (bytes_left);
+>>   
+>> -               return 0;
+>> +               kfree(bounce);
+>> +               return err;
+>>          }
+>>   
+>>          dma_addr = xe_migrate_dma_map(xe, buf, len + page_offset,
+>> write);
+> 
+
