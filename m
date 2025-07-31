@@ -4,53 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C39F7C87FCC
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 19:46:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46B45C87FCC
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 19:49:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88B1210E7DB;
-	Thu, 31 Jul 2025 19:46:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 091DA10E7E2;
+	Thu, 31 Jul 2025 19:49:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="knS1gjdJ";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="ixd0m60x";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5409710E7DB
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 19:46:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753991204; x=1785527204;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aElubdQuFPx+M4HTxy2VfvUtYpe69LSYv+xs2YhtI4k=;
- b=knS1gjdJOq+YG3Ag5KmXvT02KxfSVZR5EEQXUKwPV2VeKbfEeH1KAac/
- auoGH9CUFDEPhuzhKSYBA3ib1CyTR6QJFrmnT/IlHozuHTyMhVgSK7Sox
- KKo38lcdEHbC1gG129WMwvoWrKujzuKWXYq+T1epG3aoR2kkrl7lAlpnO
- Qfd/+swrpgC8iIY70eME2mcPuL5NfsxK5PQepxdBbzOprMu5Q88B2Bb3U
- SqGM8BkvPDaF90tDUvwK3eRkqtSjosS/P0NTb81aDRq3yhqCYED3OIQbG
- kF0majrCzy7rPlgrZHE9ITspef/95JH4W1X+O1vJpWHpAZOzx/rL288+a g==;
-X-CSE-ConnectionGUID: T+EkRoQ5QTKNjMZv11ZP0Q==
-X-CSE-MsgGUID: hIKdKBRJSdeZyz2Ky50R4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="67404326"
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="67404326"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 12:46:44 -0700
-X-CSE-ConnectionGUID: Gf6V9U2gQNC3MLICcFvw0w==
-X-CSE-MsgGUID: 7U7yQugFTKeDdpBUWEJlzA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="163696985"
-Received: from egore-mobl1.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.116.1])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 12:46:43 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH] drm/xe/pf: Skip LMTT update if no LMEM was provisioned
-Date: Thu, 31 Jul 2025 21:46:33 +0200
-Message-ID: <20250731194633.179852-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
+ [209.85.208.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F94210E7DB
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 19:49:57 +0000 (UTC)
+Received: by mail-ed1-f43.google.com with SMTP id
+ 4fb4d7f45d1cf-61543b05b7cso2761a12.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 12:49:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1753991396; x=1754596196;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=w0NmmPrgKMAdI4zT8cKWXm7HR1XmVftYuLV66NFbboQ=;
+ b=ixd0m60x9A333nRNRZRgIT4FzqTzhBqxfdCSY3/CZgbcGTu2i2as/k5EjhLVDwCRE9
+ H3Hm9tmW35AxhdtEmzOI61PHKRNoGt899lREicObsqK7rt797Dg3lvWgjtj0VIeZNiSI
+ DqeDVsSXSS1GUx/O9SFGFj74b/VLWaANBlJc7qninqYv3/y2ULqejxbYNRgaRuKFYyOD
+ 7wFvHy35ZUvRQL+ofr+G3HuKRKYab6k6oMjq530EDyR613AZerRyT9nPmKZKhFR6ASLV
+ Sr1biFr3rWoMdLz2Z1Mr536Knozl12DLP7wSiYlwklh+oPjzRlIadMm/lUWX6DEj8b67
+ WFrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1753991396; x=1754596196;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=w0NmmPrgKMAdI4zT8cKWXm7HR1XmVftYuLV66NFbboQ=;
+ b=fMx+wNVZNBwe1AV8OqQx/EC7Y247OncjTHUZ56q2ocPTiLgJDVH7qM8sEQi/07NRmx
+ 925O8SosC0SvkVBXzyyt8y4PjGfLemB6dODBRGBVNDbFsKRHHCCR37zbM+rzZFZuvI+S
+ 0++8Oqs7ZbcpnRfzAbP/vGySh8vsgrkOReqQ7REUACpWSmeojkbtc9/T9kNCMnb7WTHF
+ siPgzLrC5yR0UxFLR0BGhxIKLzE5TBZDeKMvX1JKCEZgMSyZ3c1+C5sY7T6oqkoN7tBm
+ +wV0GnszBpQ5mZRPFHrIqvF99vDfRC4F66gypxhAG5ZsexjLODc4nkJCnCWrLS8G7p23
+ ZVSw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUsOtoORCgl6ZxshGEfNXJY9SWpCp/lWv/D8HDGRoPmTYuohtwtqCJxkmE68k5HfTQ/LMcfUlv9cA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YySp55tEqbYk95rJjWJU0vhrFdD1DbqrC+c9s9++nzWoeSv/7PG
+ OviMIZrmFKAkRkA2G88kloWeSz9whKAc+uTTatMtsE5SYC12ey/U7VnKub49HuzCeoHB0ImpYBb
+ 6LJa8nQ4kyN17kCuiOaCJk1QbWW60RMdtHQaZCG7E
+X-Gm-Gg: ASbGncsB+qHFfjUJl0J3L+xNPVVZUZZj41HcRXDmV36v3s7nSnzu248Y8fch266aK7Z
+ 7L6r9vIXFIxD8Eu/UDkPjH4WwSpEBqXpKEHSeuYXT8p4xyzpB9qisWL+mh9CeHRcx4l9L1NrS/Q
+ 1TiBUNwSRjtaG660B6vqTKu0eYIH8XeOeoE+Sxu4yZtmzpamy+t/xxrZM+XY+b+pu/ghPtKv5MS
+ obRmOvv3roQEmJWlKDiKkXeX7ZtG3AeKTP17w==
+X-Google-Smtp-Source: AGHT+IHEobKbrTSKZCGkN83GAfbPBtK7r0ACp3iFe62DoQnJeuFCDuy1TWvW86AyI6V2Iwo/t9fo+z0HLx68aeXX3B4=
+X-Received: by 2002:a50:955b:0:b0:615:28c0:fac8 with SMTP id
+ 4fb4d7f45d1cf-615cb709cc4mr11672a12.4.1753991395595; Thu, 31 Jul 2025
+ 12:49:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250729193647.3410634-7-marievic@google.com>
+ <5683507a-dacc-4e46-893f-d1e775d2ef22@suswa.mountain>
+In-Reply-To: <5683507a-dacc-4e46-893f-d1e775d2ef22@suswa.mountain>
+From: Marie Zhussupova <marievic@google.com>
+Date: Thu, 31 Jul 2025 15:49:43 -0400
+X-Gm-Features: Ac12FXy9pctOjhAPWBrCxe7TRxwbUutDqcqHowGqJpY31Ox_2dkMf4vGOaTdX74
+Message-ID: <CAAkQn5KtGMYqEP07xvs5GR_5b591Lo+YPu5uT9HiduMo900Mxw@mail.gmail.com>
+Subject: Re: [PATCH 6/9] kunit: Enable direct registration of parameter arrays
+ to a KUnit test
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: oe-kbuild@lists.linux.dev, rmoar@google.com, davidgow@google.com, 
+ shuah@kernel.org, brendan.higgins@linux.dev, lkp@intel.com, 
+ oe-kbuild-all@lists.linux.dev, elver@google.com, dvyukov@google.com, 
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com, 
+ rodrigo.vivi@intel.com, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, kasan-dev@googlegroups.com, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+Content-Type: multipart/alternative; boundary="000000000000137eab063b3ef2a1"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,57 +90,419 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During VF unprovisioning, if VF was not provisioned with LMEM,
-there is no need to trigger LMTT update, as VF LMTT was never
-set. This will spare us sending full TLB invalidation requests.
+--000000000000137eab063b3ef2a1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+On Thu, Jul 31, 2025 at 11:58=E2=80=AFAM Dan Carpenter <dan.carpenter@linar=
+o.org>
+wrote:
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index f00cce81f1ff..692b174dd5b8 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1434,8 +1434,10 @@ static int pf_update_vf_lmtt(struct xe_device *xe, unsigned int vfid)
- 	return err;
- }
- 
--static void pf_release_vf_config_lmem(struct xe_gt *gt, struct xe_gt_sriov_config *config)
-+static bool pf_release_vf_config_lmem(struct xe_gt *gt, struct xe_gt_sriov_config *config)
- {
-+	bool released = false;
-+
- 	xe_gt_assert(gt, IS_DGFX(gt_to_xe(gt)));
- 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-@@ -1443,7 +1445,9 @@ static void pf_release_vf_config_lmem(struct xe_gt *gt, struct xe_gt_sriov_confi
- 	if (config->lmem_obj) {
- 		xe_bo_unpin_map_no_vm(config->lmem_obj);
- 		config->lmem_obj = NULL;
-+		released = true;
- 	}
-+	return released;
- }
- 
- static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
-@@ -2021,12 +2025,13 @@ static void pf_release_vf_config(struct xe_gt *gt, unsigned int vfid)
- {
- 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
- 	struct xe_device *xe = gt_to_xe(gt);
-+	bool released;
- 
- 	if (xe_gt_is_main_type(gt)) {
- 		pf_release_vf_config_ggtt(gt, config);
- 		if (IS_DGFX(xe)) {
--			pf_release_vf_config_lmem(gt, config);
--			if (xe_device_has_lmtt(xe))
-+			released = pf_release_vf_config_lmem(gt, config);
-+			if (released && xe_device_has_lmtt(xe))
- 				pf_update_vf_lmtt(xe, vfid);
- 		}
- 	}
--- 
-2.47.1
+> Hi Marie,
+>
+> kernel test robot noticed the following build warnings:
+>
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+> url:
+> https://github.com/intel-lab-lkp/linux/commits/Marie-Zhussupova/kunit-Add=
+-parent-kunit-for-parameterized-test-context/20250730-033818
+> base:
+> https://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest.git
+> kunit
+> patch link:
+> https://lore.kernel.org/r/20250729193647.3410634-7-marievic%40google.com
+> patch subject: [PATCH 6/9] kunit: Enable direct registration of parameter
+> arrays to a KUnit test
+> config: nios2-randconfig-r072-20250731 (
+> https://download.01.org/0day-ci/archive/20250731/202507310854.pZvIcswn-lk=
+p@intel.com/config
+> )
+> compiler: nios2-linux-gcc (GCC) 8.5.0
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new
+> version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+> | Closes: https://lore.kernel.org/r/202507310854.pZvIcswn-lkp@intel.com/
+>
+> New smatch warnings:
+> lib/kunit/test.c:723 kunit_run_tests() error: we previously assumed
+> 'test_case->generate_params' could be null (see line 714)
+>
+> vim +723 lib/kunit/test.c
+>
+> 914cc63eea6fbe Brendan Higgins     2019-09-23  681  int
+> kunit_run_tests(struct kunit_suite *suite)
+> 914cc63eea6fbe Brendan Higgins     2019-09-23  682  {
+> fadb08e7c7501e Arpitha Raghunandan 2020-11-16  683      char
+> param_desc[KUNIT_PARAM_DESC_SIZE];
+> 914cc63eea6fbe Brendan Higgins     2019-09-23  684      struct kunit_case
+> *test_case;
+> acd8e8407b8fcc David Gow           2021-08-03  685      struct
+> kunit_result_stats suite_stats =3D { 0 };
+> acd8e8407b8fcc David Gow           2021-08-03  686      struct
+> kunit_result_stats total_stats =3D { 0 };
+> 8631cd2cf5fbf2 Marie Zhussupova    2025-07-29  687      const void
+> *curr_param;
+> 914cc63eea6fbe Brendan Higgins     2019-09-23  688
+> c272612cb4a2f7 David Gow           2022-07-01  689      /* Taint the
+> kernel so we know we've run tests. */
+> c272612cb4a2f7 David Gow           2022-07-01  690
+> add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
+> c272612cb4a2f7 David Gow           2022-07-01  691
+> 1cdba21db2ca31 Daniel Latypov      2022-04-29  692      if
+> (suite->suite_init) {
+> 1cdba21db2ca31 Daniel Latypov      2022-04-29  693
+> suite->suite_init_err =3D suite->suite_init(suite);
+> 1cdba21db2ca31 Daniel Latypov      2022-04-29  694              if
+> (suite->suite_init_err) {
+> 1cdba21db2ca31 Daniel Latypov      2022-04-29  695
+> kunit_err(suite, KUNIT_SUBTEST_INDENT
+> 1cdba21db2ca31 Daniel Latypov      2022-04-29  696
+>         "# failed to initialize (%d)", suite->suite_init_err);
+> 1cdba21db2ca31 Daniel Latypov      2022-04-29  697
+> goto suite_end;
+> 1cdba21db2ca31 Daniel Latypov      2022-04-29  698              }
+> 1cdba21db2ca31 Daniel Latypov      2022-04-29  699      }
+> 1cdba21db2ca31 Daniel Latypov      2022-04-29  700
+> cae56e1740f559 Daniel Latypov      2022-04-29  701
+> kunit_print_suite_start(suite);
+> 914cc63eea6fbe Brendan Higgins     2019-09-23  702
+> fadb08e7c7501e Arpitha Raghunandan 2020-11-16  703
+> kunit_suite_for_each_test_case(suite, test_case) {
+> fadb08e7c7501e Arpitha Raghunandan 2020-11-16  704              struct
+> kunit test =3D { .param_value =3D NULL, .param_index =3D 0 };
+> acd8e8407b8fcc David Gow           2021-08-03  705              struct
+> kunit_result_stats param_stats =3D { 0 };
+> fadb08e7c7501e Arpitha Raghunandan 2020-11-16  706
+> 887d85a0736ff3 Rae Moar            2023-03-08  707
+> kunit_init_test(&test, test_case->name, test_case->log);
+> 03806177fa4cbb Marie Zhussupova    2025-07-29  708
+> __kunit_init_parent_test(test_case, &test);
+> 03806177fa4cbb Marie Zhussupova    2025-07-29  709
+> 529534e8cba3e6 Rae Moar            2023-07-25  710              if
+> (test_case->status =3D=3D KUNIT_SKIPPED) {
+> 529534e8cba3e6 Rae Moar            2023-07-25  711                      /=
+*
+> Test marked as skip */
+> 529534e8cba3e6 Rae Moar            2023-07-25  712
+> test.status =3D KUNIT_SKIPPED;
+> 529534e8cba3e6 Rae Moar            2023-07-25  713
+> kunit_update_stats(&param_stats, test.status);
+> 44c50ed8e59936 Marie Zhussupova    2025-07-29 @714              } else if
+> (!test_case->generate_params && !test.params_data.params) {
+>
+>   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+> Imagine ->generate_parms is NULL but test.params_data.params is
+> non-NULL.
 
+
+> 37dbb4c7c7442d David Gow           2021-11-02  715                      /=
+*
+> Non-parameterised test. */
+> 529534e8cba3e6 Rae Moar            2023-07-25  716
+> test_case->status =3D KUNIT_SKIPPED;
+> 37dbb4c7c7442d David Gow           2021-11-02  717
+> kunit_run_case_catch_errors(suite, test_case, &test);
+> 37dbb4c7c7442d David Gow           2021-11-02  718
+> kunit_update_stats(&param_stats, test.status);
+> 03806177fa4cbb Marie Zhussupova    2025-07-29  719              } else if
+> (test_case->status !=3D KUNIT_FAILURE) {
+> fadb08e7c7501e Arpitha Raghunandan 2020-11-16  720                      /=
+*
+> Get initial param. */
+> fadb08e7c7501e Arpitha Raghunandan 2020-11-16  721
+> param_desc[0] =3D '\0';
+> 8631cd2cf5fbf2 Marie Zhussupova    2025-07-29  722                      /=
+*
+> TODO: Make generate_params try-catch */
+> 13ee0c64bd88a3 Marie Zhussupova    2025-07-29 @723
+> curr_param =3D test_case->generate_params(&test, NULL, param_desc);
+>
+>            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+> Then this could crash.
+>
+> I suspect that this is fine, but I bet that in the previous
+> condition, just testing one would probably have been sufficient
+> or maybe we could have change && to ||.
+>
+
+Hello Dan,
+
+As of now, test.params_data.params can only be populated in a param_init
+function, which can only be used if we register the test case with a
+KUNIT_CASE_PARAM_WITH_INIT macro. That macro auto populates
+test_case->generate_params with a function called
+kunit_get_next_param_and_desc()
+(which iterates over the parameter array) if the test user didn't provide
+their
+own generator function. So, there shouldn't be a case where
+test_case->generate_params is NULL but test.params_data.params is NON-NULL.
+
+However, to be robust, we could add a NULL check  before calling
+test_case->generate_params on line 723.
+
+Thank you!
+-Marie
+
+>
+> 529534e8cba3e6 Rae Moar            2023-07-25  724
+> test_case->status =3D KUNIT_SKIPPED;
+> 6c738b52316c58 Rae Moar            2022-11-23  725
+> kunit_log(KERN_INFO, &test, KUNIT_SUBTEST_INDENT KUNIT_SUBTEST_INDENT
+> 6c738b52316c58 Rae Moar            2022-11-23  726
+>         "KTAP version 1\n");
+> 44b7da5fcd4c99 David Gow           2021-11-02  727
+> kunit_log(KERN_INFO, &test, KUNIT_SUBTEST_INDENT KUNIT_SUBTEST_INDENT
+> 44b7da5fcd4c99 David Gow           2021-11-02  728
+>         "# Subtest: %s", test_case->name);
+> fadb08e7c7501e Arpitha Raghunandan 2020-11-16  729
+> 8631cd2cf5fbf2 Marie Zhussupova    2025-07-29  730
+> while (curr_param) {
+>
+> --
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests/wiki
+>
+>
+
+--000000000000137eab063b3ef2a1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><br></div><div dir=3D"lt=
+r"><div dir=3D"ltr"><br></div><div dir=3D"ltr"><div dir=3D"ltr"><br></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu,=
+ Jul 31, 2025 at 11:58=E2=80=AFAM Dan Carpenter &lt;<a href=3D"mailto:dan.c=
+arpenter@linaro.org" target=3D"_blank">dan.carpenter@linaro.org</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Marie,<br=
+>
+<br>
+kernel test robot noticed the following build warnings:<br>
+<br>
+<a href=3D"https://git-scm.com/docs/git-format-patch#_base_tree_information=
+" rel=3D"noreferrer" target=3D"_blank">https://git-scm.com/docs/git-format-=
+patch#_base_tree_information</a>]<br>
+<br>
+url:=C2=A0 =C2=A0 <a href=3D"https://github.com/intel-lab-lkp/linux/commits=
+/Marie-Zhussupova/kunit-Add-parent-kunit-for-parameterized-test-context/202=
+50730-033818" rel=3D"noreferrer" target=3D"_blank">https://github.com/intel=
+-lab-lkp/linux/commits/Marie-Zhussupova/kunit-Add-parent-kunit-for-paramete=
+rized-test-context/20250730-033818</a><br>
+base:=C2=A0 =C2=A0<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/gi=
+t/shuah/linux-kselftest.git" rel=3D"noreferrer" target=3D"_blank">https://g=
+it.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest.git</a> kunit<=
+br>
+patch link:=C2=A0 =C2=A0 <a href=3D"https://lore.kernel.org/r/2025072919364=
+7.3410634-7-marievic%40google.com" rel=3D"noreferrer" target=3D"_blank">htt=
+ps://lore.kernel.org/r/20250729193647.3410634-7-marievic%40google.com</a><b=
+r>
+patch subject: [PATCH 6/9] kunit: Enable direct registration of parameter a=
+rrays to a KUnit test<br>
+config: nios2-randconfig-r072-20250731 (<a href=3D"https://download.01.org/=
+0day-ci/archive/20250731/202507310854.pZvIcswn-lkp@intel.com/config" rel=3D=
+"noreferrer" target=3D"_blank">https://download.01.org/0day-ci/archive/2025=
+0731/202507310854.pZvIcswn-lkp@intel.com/config</a>)<br>
+compiler: nios2-linux-gcc (GCC) 8.5.0<br>
+<br>
+If you fix the issue in a separate patch/commit (i.e. not just a new versio=
+n of<br>
+the same patch/commit), kindly add following tags<br>
+| Reported-by: kernel test robot &lt;<a href=3D"mailto:lkp@intel.com" targe=
+t=3D"_blank">lkp@intel.com</a>&gt;<br>
+| Reported-by: Dan Carpenter &lt;<a href=3D"mailto:dan.carpenter@linaro.org=
+" target=3D"_blank">dan.carpenter@linaro.org</a>&gt;<br>
+| Closes: <a href=3D"https://lore.kernel.org/r/202507310854.pZvIcswn-lkp@in=
+tel.com/" rel=3D"noreferrer" target=3D"_blank">https://lore.kernel.org/r/20=
+2507310854.pZvIcswn-lkp@intel.com/</a><br>
+<br>
+New smatch warnings:<br>
+lib/kunit/test.c:723 kunit_run_tests() error: we previously assumed &#39;te=
+st_case-&gt;generate_params&#39; could be null (see line 714)<br>
+<br>
+vim +723 lib/kunit/test.c<br>
+<br>
+914cc63eea6fbe Brendan Higgins=C2=A0 =C2=A0 =C2=A02019-09-23=C2=A0 681=C2=
+=A0 int kunit_run_tests(struct kunit_suite *suite)<br>
+914cc63eea6fbe Brendan Higgins=C2=A0 =C2=A0 =C2=A02019-09-23=C2=A0 682=C2=
+=A0 {<br>
+fadb08e7c7501e Arpitha Raghunandan 2020-11-16=C2=A0 683=C2=A0 =C2=A0 =C2=A0=
+ char param_desc[KUNIT_PARAM_DESC_SIZE];<br>
+914cc63eea6fbe Brendan Higgins=C2=A0 =C2=A0 =C2=A02019-09-23=C2=A0 684=C2=
+=A0 =C2=A0 =C2=A0 struct kunit_case *test_case;<br>
+acd8e8407b8fcc David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02021-08-03=
+=C2=A0 685=C2=A0 =C2=A0 =C2=A0 struct kunit_result_stats suite_stats =3D { =
+0 };<br>
+acd8e8407b8fcc David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02021-08-03=
+=C2=A0 686=C2=A0 =C2=A0 =C2=A0 struct kunit_result_stats total_stats =3D { =
+0 };<br>
+8631cd2cf5fbf2 Marie Zhussupova=C2=A0 =C2=A0 2025-07-29=C2=A0 687=C2=A0 =C2=
+=A0 =C2=A0 const void *curr_param;<br>
+914cc63eea6fbe Brendan Higgins=C2=A0 =C2=A0 =C2=A02019-09-23=C2=A0 688=C2=
+=A0 <br>
+c272612cb4a2f7 David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02022-07-01=
+=C2=A0 689=C2=A0 =C2=A0 =C2=A0 /* Taint the kernel so we know we&#39;ve run=
+ tests. */<br>
+c272612cb4a2f7 David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02022-07-01=
+=C2=A0 690=C2=A0 =C2=A0 =C2=A0 add_taint(TAINT_TEST, LOCKDEP_STILL_OK);<br>
+c272612cb4a2f7 David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02022-07-01=
+=C2=A0 691=C2=A0 <br>
+1cdba21db2ca31 Daniel Latypov=C2=A0 =C2=A0 =C2=A0 2022-04-29=C2=A0 692=C2=
+=A0 =C2=A0 =C2=A0 if (suite-&gt;suite_init) {<br>
+1cdba21db2ca31 Daniel Latypov=C2=A0 =C2=A0 =C2=A0 2022-04-29=C2=A0 693=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 suite-&gt;suite_init_err =3D =
+suite-&gt;suite_init(suite);<br>
+1cdba21db2ca31 Daniel Latypov=C2=A0 =C2=A0 =C2=A0 2022-04-29=C2=A0 694=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (suite-&gt;suite_init_err)=
+ {<br>
+1cdba21db2ca31 Daniel Latypov=C2=A0 =C2=A0 =C2=A0 2022-04-29=C2=A0 695=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 k=
+unit_err(suite, KUNIT_SUBTEST_INDENT<br>
+1cdba21db2ca31 Daniel Latypov=C2=A0 =C2=A0 =C2=A0 2022-04-29=C2=A0 696=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;# failed to initialize (%d)&quot;,=
+ suite-&gt;suite_init_err);<br>
+1cdba21db2ca31 Daniel Latypov=C2=A0 =C2=A0 =C2=A0 2022-04-29=C2=A0 697=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 g=
+oto suite_end;<br>
+1cdba21db2ca31 Daniel Latypov=C2=A0 =C2=A0 =C2=A0 2022-04-29=C2=A0 698=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+1cdba21db2ca31 Daniel Latypov=C2=A0 =C2=A0 =C2=A0 2022-04-29=C2=A0 699=C2=
+=A0 =C2=A0 =C2=A0 }<br>
+1cdba21db2ca31 Daniel Latypov=C2=A0 =C2=A0 =C2=A0 2022-04-29=C2=A0 700=C2=
+=A0 <br>
+cae56e1740f559 Daniel Latypov=C2=A0 =C2=A0 =C2=A0 2022-04-29=C2=A0 701=C2=
+=A0 =C2=A0 =C2=A0 kunit_print_suite_start(suite);<br>
+914cc63eea6fbe Brendan Higgins=C2=A0 =C2=A0 =C2=A02019-09-23=C2=A0 702=C2=
+=A0 <br>
+fadb08e7c7501e Arpitha Raghunandan 2020-11-16=C2=A0 703=C2=A0 =C2=A0 =C2=A0=
+ kunit_suite_for_each_test_case(suite, test_case) {<br>
+fadb08e7c7501e Arpitha Raghunandan 2020-11-16=C2=A0 704=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct kunit test =3D { .param_value =3D NULL,=
+ .param_index =3D 0 };<br>
+acd8e8407b8fcc David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02021-08-03=
+=C2=A0 705=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct kunit_res=
+ult_stats param_stats =3D { 0 };<br>
+fadb08e7c7501e Arpitha Raghunandan 2020-11-16=C2=A0 706=C2=A0 <br>
+887d85a0736ff3 Rae Moar=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2023-03-08=
+=C2=A0 707=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 kunit_init_test(=
+&amp;test, test_case-&gt;name, test_case-&gt;log);<br>
+03806177fa4cbb Marie Zhussupova=C2=A0 =C2=A0 2025-07-29=C2=A0 708=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 __kunit_init_parent_test(test_case, =
+&amp;test);<br>
+03806177fa4cbb Marie Zhussupova=C2=A0 =C2=A0 2025-07-29=C2=A0 709=C2=A0 <br=
+>
+529534e8cba3e6 Rae Moar=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2023-07-25=
+=C2=A0 710=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (test_case-&g=
+t;status =3D=3D KUNIT_SKIPPED) {<br>
+529534e8cba3e6 Rae Moar=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2023-07-25=
+=C2=A0 711=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 /* Test marked as skip */<br>
+529534e8cba3e6 Rae Moar=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2023-07-25=
+=C2=A0 712=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 test.status =3D KUNIT_SKIPPED;<br>
+529534e8cba3e6 Rae Moar=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2023-07-25=
+=C2=A0 713=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 kunit_update_stats(&amp;param_stats, test.status);<br>
+44c50ed8e59936 Marie Zhussupova=C2=A0 =C2=A0 2025-07-29 @714=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 } else if (!test_case-&gt;generate_param=
+s &amp;&amp; !test.params_data.params) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^^^^^^^^^^^^^^^^^^^^^^^^^^<br=
+>
+Imagine -&gt;generate_parms is NULL but test.params_data.params is<br>
+non-NULL.</blockquote><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+37dbb4c7c7442d David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02021-11-02=
+=C2=A0 715=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 /* Non-parameterised test. */<br>
+529534e8cba3e6 Rae Moar=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2023-07-25=
+=C2=A0 716=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 test_case-&gt;status =3D KUNIT_SKIPPED;<br>
+37dbb4c7c7442d David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02021-11-02=
+=C2=A0 717=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 kunit_run_case_catch_errors(suite, test_case, &amp;test);<br>
+37dbb4c7c7442d David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02021-11-02=
+=C2=A0 718=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 kunit_update_stats(&amp;param_stats, test.status);<br>
+03806177fa4cbb Marie Zhussupova=C2=A0 =C2=A0 2025-07-29=C2=A0 719=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 } else if (test_case-&gt;status !=3D=
+ KUNIT_FAILURE) {<br>
+fadb08e7c7501e Arpitha Raghunandan 2020-11-16=C2=A0 720=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /* Get initial par=
+am. */<br>
+fadb08e7c7501e Arpitha Raghunandan 2020-11-16=C2=A0 721=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 param_desc[0] =3D =
+&#39;\0&#39;;<br>
+8631cd2cf5fbf2 Marie Zhussupova=C2=A0 =C2=A0 2025-07-29=C2=A0 722=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /* TODO:=
+ Make generate_params try-catch */<br>
+13ee0c64bd88a3 Marie Zhussupova=C2=A0 =C2=A0 2025-07-29 @723=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 curr_param =
+=3D test_case-&gt;generate_params(&amp;test, NULL, param_desc);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0^^^^^^^^^^^^^^^^^^^^^^^^^^<br>
+Then this could crash.<br>
+<br>
+I suspect that this is fine, but I bet that in the previous<br>
+condition, just testing one would probably have been sufficient<br>
+or maybe we could have change &amp;&amp; to ||.<br></blockquote><div><br></=
+div><div>Hello Dan,</div><div><br></div><div>As of now, test.params_data.pa=
+rams can only be populated in a param_init</div><div>function, which can on=
+ly be used if we register the test case with a=C2=A0</div><div>KUNIT_CASE_P=
+ARAM_WITH_INIT macro. That macro auto populates=C2=A0</div><div>test_case-&=
+gt;generate_params with a function called kunit_get_next_param_and_desc()=
+=C2=A0</div><div>(which iterates over the parameter array) if the test user=
+ didn&#39;t provide their=C2=A0</div><div>own generator function. So, there=
+ shouldn&#39;t be a case where=C2=A0</div><div>test_case-&gt;generate_param=
+s is NULL but test.params_data.params is NON-NULL.=C2=A0</div><div><br></di=
+v><div>However, to be robust, we could add a NULL check=C2=A0 before callin=
+g=C2=A0</div><div>test_case-&gt;generate_params on line 723.</div><div><br>=
+</div><div>Thank you!</div><div>-Marie</div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex">
+<br>
+529534e8cba3e6 Rae Moar=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2023-07-25=
+=C2=A0 724=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 test_case-&gt;status =3D KUNIT_SKIPPED;<br>
+6c738b52316c58 Rae Moar=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2022-11-23=
+=C2=A0 725=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 kunit_log(KERN_INFO, &amp;test, KUNIT_SUBTEST_INDENT KUNIT_SU=
+BTEST_INDENT<br>
+6c738b52316c58 Rae Moar=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2022-11-23=
+=C2=A0 726=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;KTAP version 1\n&quo=
+t;);<br>
+44b7da5fcd4c99 David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02021-11-02=
+=C2=A0 727=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 kunit_log(KERN_INFO, &amp;test, KUNIT_SUBTEST_INDENT KUNIT_SU=
+BTEST_INDENT<br>
+44b7da5fcd4c99 David Gow=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02021-11-02=
+=C2=A0 728=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;# Subtest: %s&quot;,=
+ test_case-&gt;name);<br>
+fadb08e7c7501e Arpitha Raghunandan 2020-11-16=C2=A0 729=C2=A0 <br>
+8631cd2cf5fbf2 Marie Zhussupova=C2=A0 =C2=A0 2025-07-29=C2=A0 730=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 while (c=
+urr_param) {<br>
+<br>
+-- <br>
+0-DAY CI Kernel Test Service<br>
+<a href=3D"https://github.com/intel/lkp-tests/wiki" rel=3D"noreferrer" targ=
+et=3D"_blank">https://github.com/intel/lkp-tests/wiki</a><br>
+<br>
+</blockquote></div></div>
+</div>
+</div>
+</div>
+
+--000000000000137eab063b3ef2a1--
