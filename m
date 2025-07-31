@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F03BC87FCA
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 05:16:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FB21C87FCA
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 05:17:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2514710E6FF;
-	Thu, 31 Jul 2025 05:16:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA22510E702;
+	Thu, 31 Jul 2025 05:16:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RwynUcmA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wi4BlJbf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 014AB10E6FE;
- Thu, 31 Jul 2025 05:16:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB5A910E701;
+ Thu, 31 Jul 2025 05:16:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753939015; x=1785475015;
+ t=1753939019; x=1785475019;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SsPTfK55wtl//yVBoJLQJ2VxTK6h4oEZRf6fh98KKOM=;
- b=RwynUcmA01eX4L8Ij8BoJQ9AtkAD9y9ZvMOpStLcx7cXVuqg2g2AEydp
- yeOMxLDQNRu+Zt/ddi04D+iZEXetn0bs77jn0eZdVEhvCOl4mD+9x+HJF
- dDCS/uWX2ewLxo/zBvmMAaI56d6dsozenU4rPy7iIkWbjWriJMLNgYs1i
- Jk29ko13dshexvqzsRzOsDcmfI+yXzbi/pp1Ebo3dE2C+KLj0nrbb4AMh
- DcxNAYBtsF3nvIO+Z4mtViZWRP4D/R2MmbL3yOJ/IBUR/jkbKwdtkoBDt
- VN6u0Nmc/Dz5amV5jIjBYuxmlL3LJeza2G62vqdYBU2NQaRP3xrSqYV0U w==;
-X-CSE-ConnectionGUID: 7cPSMhc/QpuDEkj6YjQKxA==
-X-CSE-MsgGUID: MnBI626ZR5Ssv+47AYVjQw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="67332423"
-X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="67332423"
+ bh=aUHOifLrF4JpcqaT3tCdMFd82UZuGymxnXQOTLVkU4Y=;
+ b=Wi4BlJbfvoeFGV9zZbnhNziimMaQ96jbLSmfOa9XHcW1N6qBzcbOVHGh
+ XWwFw5fvbIXr9NR9mm4G2XGRbHhPQK8Ykzxhn+0DZDakjxZxfzEzoNpmU
+ +NQySBYdCvqWEdTGs/bQIZcwdUdi85uYMrGOHJOarG3gdmiJ83CA/NaqJ
+ 3SBbJPdIH7cLQi2YpUtPLYtaZt6NSvzq6jzqc+DabqRcQFoejTLtv5Pc2
+ nWc/Wi6Bh5lQm5ovl+ju1FHkfdQH4d3q9DERvWDhHe5n9wUAdW1gE4Cvk
+ XgzAyZODuSjOcFucvXEr3wv7v0++ZZiIm+8Sp3zlmQJhVYWHecly0Ctl1 A==;
+X-CSE-ConnectionGUID: Jixwwt1hQX69o+qEaejKVw==
+X-CSE-MsgGUID: sEVcesN0SHqrQqWLqzr7cQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="67332430"
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="67332430"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2025 22:16:55 -0700
-X-CSE-ConnectionGUID: IF3m35NiQYC71bJP7mhlbw==
-X-CSE-MsgGUID: hWPetb/1QhSDFBiIOm1/Zg==
+ 30 Jul 2025 22:16:59 -0700
+X-CSE-ConnectionGUID: hcFFx7uhQZKJtEpyiMwbDw==
+X-CSE-MsgGUID: rEabHWOARweKEmRDU03lWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="194154179"
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="194154200"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa002.jf.intel.com with ESMTP; 30 Jul 2025 22:16:54 -0700
+ by orviesa002.jf.intel.com with ESMTP; 30 Jul 2025 22:16:58 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 1/3] drm/i915/vbt: Add eDP Data rate overrride field in VBT
-Date: Thu, 31 Jul 2025 10:46:44 +0530
-Message-Id: <20250731051646.3009255-2-suraj.kandpal@intel.com>
+Subject: [PATCH v3 3/3] drm/i915/edp: eDP Data Overrride
+Date: Thu, 31 Jul 2025 10:46:46 +0530
+Message-Id: <20250731051646.3009255-4-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250731051646.3009255-1-suraj.kandpal@intel.com>
 References: <20250731051646.3009255-1-suraj.kandpal@intel.com>
@@ -67,73 +67,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add edp_data_rate_override field VBT which gives us a mask
-of rates which needs to be skipped in favour of
-subsequent higher rate.
+We need override certain link rates in favour of the next available
+higher link rate. The Link rates that need to be overridden are
+indicated by a mask in VBT. To make sure these modes are skipped we
+don't add them in them in the sink rates array.
 
 --v2
--Rename vbt field [Jani]
--Fix comment to 263+ [Jani]
--Use BIT_U32 [Jani]
--Fix the bits assignment in vbt [Jani]
+-Update the link rates after we have a final set of link rates [Ankit]
+-Break this patch up [Ankit]
+-Optimize the assingment during loop [Ankit]
 
-Bspec: 20124
+--v3
+-Add protection against broken VBTs [Jani]
+
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c     |  4 +++-
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 16 ++++++++++++++++
- 2 files changed, 19 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 29 +++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 9c268bed091d..8337ebe0f2c8 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2747,8 +2747,10 @@ static int child_device_expected_size(u16 version)
- {
- 	BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 54d88f24b689..ca5c49ff4b29 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4277,6 +4277,33 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
+ 	intel_dp->mso_pixel_overlap = mso ? info->mso_pixel_overlap : 0;
+ }
  
--	if (version > 256)
-+	if (version > 263)
- 		return -ENOENT;
-+	else if (version >= 263)
-+		return 44;
- 	else if (version >= 256)
- 		return 40;
- 	else if (version >= 216)
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 92c04811aa28..6546e3bf883f 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -437,6 +437,20 @@ enum vbt_gmbus_ddi {
- #define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR13P5	6
- #define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR20	7
- 
-+/* EDP link rate 263+ */
-+#define BDB_263_VBT_EDP_LINK_RATE_1_62		BIT_U32(0)
-+#define BDB_263_VBT_EDP_LINK_RATE_2_16		BIT_U32(1)
-+#define BDB_263_VBT_EDP_LINK_RATE_2_43		BIT_U32(2)
-+#define BDB_263_VBT_EDP_LINK_RATE_2_7		BIT_U32(3)
-+#define BDB_263_VBT_EDP_LINK_RATE_3_24		BIT_U32(4)
-+#define BDB_263_VBT_EDP_LINK_RATE_4_32		BIT_U32(5)
-+#define BDB_263_VBT_EDP_LINK_RATE_5_4		BIT_U32(6)
-+#define BDB_263_VBT_EDP_LINK_RATE_6_75		BIT_U32(7)
-+#define BDB_263_VBT_EDP_LINK_RATE_8_1		BIT_U32(8)
-+#define BDB_263_VBT_EDP_LINK_RATE_10		BIT_U32(9)
-+#define BDB_263_VBT_EDP_LINK_RATE_13_5		BIT_U32(10)
-+#define BDB_263_VBT_EDP_LINK_RATE_20		BIT_U32(11)
++static void
++intel_edp_set_data_override_rates(struct intel_dp *intel_dp)
++{
++	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
++	int *sink_rates = intel_dp->sink_rates;
++	int i, j = 0;
 +
- /*
-  * The child device config, aka the display device data structure, provides a
-  * description of a port and its configuration on the platform.
-@@ -547,6 +561,8 @@ struct child_device_config {
- 	u8 dp_max_link_rate:3;					/* 216+ */
- 	u8 dp_max_link_rate_reserved:5;				/* 216+ */
- 	u8 efp_index;						/* 256+ */
-+	u32 edp_data_rate_override:12;				/* 263+ */
-+	u32 edp_data_rate_override_reserved:20;			/* 263+ */
- } __packed;
++	if (!encoder->devdata || encoder->devdata->display->vbt.version < 263)
++		return;
++
++	/*
++	 * This means the VBT ends up asking us to override every possible rate
++	 * indicating the VBT is broken so skip this
++	 */
++	if (hweight32(devdata->child.edp_data_rate_override) >= 11)
++		return;
++
++	for (i = 0; i < intel_dp->num_sink_rates; i++) {
++		if (intel_bios_encoder_supports_edp_rate(encoder->devdata,
++							 intel_dp->sink_rates[i]))
++			continue;
++
++		sink_rates[j++] = intel_dp->sink_rates[i];
++	}
++	intel_dp->num_sink_rates = j;
++}
++
+ static void
+ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+ {
+@@ -4327,6 +4354,8 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+ 		intel_dp->use_rate_select = true;
+ 	else
+ 		intel_dp_set_sink_rates(intel_dp);
++
++	intel_edp_set_data_override_rates(intel_dp);
+ }
  
- struct bdb_general_definitions {
+ static bool
 -- 
 2.34.1
 
