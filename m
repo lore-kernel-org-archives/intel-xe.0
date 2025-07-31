@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78E3DC87FCC
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 15:29:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7049DC87FCA
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 15:30:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FBB010E289;
-	Thu, 31 Jul 2025 15:29:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K4Skl6Mq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49ADE10E289
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 15:29:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753975771; x=1785511771;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=gflAC+vdaFvHs89137G2K8BsNQmjYgo5gg9pNk1c3Uk=;
- b=K4Skl6Mq8aiufWB0p3wm26smIT27O69inurF2q37I3TCMU3KD90Di4x/
- 0txx9QWjFreETJCXcBVp0K0zz7GWR5080Hwy0g0deJWIlbADqN//l3N2O
- ovMmDtkcYcYjGNyJQRaVlYiAifRAxIcPkZWuQwPobViZuzVjtMidVwZ66
- gDkrBnHfGVkNUHe40ZqpCGizjw0BbEdS78xCp6nKCW6ZBDuItXiHVhXhN
- PUKQvJGgSrvPCPzmWUOFtshwIYIswG3QpWoj4ZaKTAj5z82KR9jqFchdE
- ubx2zeWcKg55H4TtDYIO2Hgt/ehw9uKHCZ5wHTWbhnRA4VQk9fbZYj+Sa g==;
-X-CSE-ConnectionGUID: dOUFQ9XsT0OEGW7T9GGVTA==
-X-CSE-MsgGUID: lHavYnuwTfGAGF7PYCibqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="67748539"
-X-IronPort-AV: E=Sophos;i="6.17,254,1747724400"; d="scan'208";a="67748539"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 08:29:31 -0700
-X-CSE-ConnectionGUID: lYS1IiHBTo+Bq0TmN3/Zpg==
-X-CSE-MsgGUID: bgWqmrVWTjy9zrUhGqx4Bg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,254,1747724400"; d="scan'208";a="186974472"
-Received: from dut4086lnl.fm.intel.com ([10.105.10.26])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 08:29:31 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- tilak.tirumalesh.tangudu@intel.com, matthew.d.roper@intel.com
-Subject: [PATCH] drm/xe: Extend wa_13012615864 to additional Xe2 and Xe3
- platforms
-Date: Thu, 31 Jul 2025 15:29:31 +0000
-Message-ID: <20250731152930.67059-2-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A90610E289;
+	Thu, 31 Jul 2025 15:30:17 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 500FE10E289;
+ Thu, 31 Jul 2025 15:30:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4942391946575995584=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_fix_stale_comment?=
+ =?utf-8?q?_about_unordered=5Fwq_usage?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 31 Jul 2025 15:30:16 -0000
+Message-ID: <175397581631.202804.3201434562402400990@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250731111214.1130130-1-jani.nikula@intel.com>
+In-Reply-To: <20250731111214.1130130-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,59 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+--===============4942391946575995584==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Correct code placement (Matt R)
+== Series Details ==
 
-Extend WA 13012615864 to Graphics Versions 20.01,20.02,20.04
-and 30.03 .
+Series: drm/xe: fix stale comment about unordered_wq usage
+URL   : https://patchwork.freedesktop.org/series/152346/
+State : success
 
-Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
----
- drivers/gpu/drm/xe/xe_wa.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 22a98600fd8f..535067e7fb0c 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -538,6 +538,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7, CLEAR_OPTIMIZATION_DISABLE))
- 	},
-+	{ XE_RTP_NAME("13012615864"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
-+	},
- 
- 	/* Xe2_HPG */
- 
-@@ -602,6 +607,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, STK_ID_RESTRICT))
- 	},
-+	{ XE_RTP_NAME("13012615864"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2002),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
-+	},
- 
- 	/* Xe2_LPM */
- 
-@@ -647,7 +657,8 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, QID_WAIT_FOR_THREAD_NOT_RUN_DISABLE))
- 	},
- 	{ XE_RTP_NAME("13012615864"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001), OR,
-+		       GRAPHICS_VERSION(3003),
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
- 	},
--- 
-2.43.0
+CI Bug Log - changes from xe-3492-d61b45f1c6f1aeb5dd516491cfb7cbc03d024888_BAT -> xe-pw-152346v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8481 -> IGT_8482
+  * Linux: xe-3492-d61b45f1c6f1aeb5dd516491cfb7cbc03d024888 -> xe-pw-152346v1
+
+  IGT_8481: 8481
+  IGT_8482: 8482
+  xe-3492-d61b45f1c6f1aeb5dd516491cfb7cbc03d024888: d61b45f1c6f1aeb5dd516491cfb7cbc03d024888
+  xe-pw-152346v1: 152346v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152346v1/index.html
+
+--===============4942391946575995584==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: fix stale comment about unordered_wq usage</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152346/">https://patchwork.freedesktop.org/series/152346/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152346v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152346v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3492-d61b45f1c6f1aeb5dd516491cfb7cbc03d024888_BAT -&gt; xe-pw-152346v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8481 -&gt; IGT_8482</li>
+<li>Linux: xe-3492-d61b45f1c6f1aeb5dd516491cfb7cbc03d024888 -&gt; xe-pw-152346v1</li>
+</ul>
+<p>IGT_8481: 8481<br />
+  IGT_8482: 8482<br />
+  xe-3492-d61b45f1c6f1aeb5dd516491cfb7cbc03d024888: d61b45f1c6f1aeb5dd516491cfb7cbc03d024888<br />
+  xe-pw-152346v1: 152346v1</p>
+
+</body>
+</html>
+
+--===============4942391946575995584==--
