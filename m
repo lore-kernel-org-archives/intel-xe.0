@@ -4,55 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 243F9C87FCC
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 09:51:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB26BC87FCC
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 10:04:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEB5010E75B;
-	Thu, 31 Jul 2025 09:51:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 807C910E263;
+	Thu, 31 Jul 2025 10:04:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GrgDVLw1";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="llKVSWGX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9707310E75B;
- Thu, 31 Jul 2025 09:51:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753955461; x=1785491461;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zJPp75bV75O4tju6LnXQ577UpLrgGtb5B4fS7R+SWLA=;
- b=GrgDVLw1BDAbV0c0Wtp6ZwCnemH8wpBE8dWSSoGBEPue87PeN4m28UFf
- HvEgDeHf8a/AQFlEHXUlx9xQiMLSZjg6J/53ndeYKgx1SgEwRIO+4rpUL
- os8LGSQvs4R22YXxn1thhWkocI/hBreLHSlC7NPsvCeNKr1b7tooABrJN
- tj5Qq88VHBYjdmtMgq847l3oMq0CKySmN4qd8VgFDGbHIQ9fidYzB4w3w
- FyaCXxI9328S1Vy1S20jHHLRRJ/PvVfAXmURIQ+IQn5sKD3eiIZb9fvGn
- QOKYzj1hXQHBgQTd8q14sKJay1FYWlin5k4JRYyXYDvajpkhw+LXXAKkQ g==;
-X-CSE-ConnectionGUID: 9bBtBB8rSKGRli6YjSXQjA==
-X-CSE-MsgGUID: AeseKklBSiGBZaLJ5fahAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="66840357"
-X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="66840357"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 02:51:00 -0700
-X-CSE-ConnectionGUID: PaCdlGLrRGGEBYy819PsHg==
-X-CSE-MsgGUID: WnWQUrOmTi2AoLX3Y9MZmw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="167708340"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa004.jf.intel.com with ESMTP; 31 Jul 2025 02:50:59 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v4 3/3] drm/i915/edp: eDP Data Overrride
-Date: Thu, 31 Jul 2025 15:20:50 +0530
-Message-Id: <20250731095049.3026988-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250731051646.3009255-4-suraj.kandpal@intel.com>
-References: <20250731051646.3009255-4-suraj.kandpal@intel.com>
+X-Greylist: delayed 506 seconds by postgrey-1.36 at gabe;
+ Thu, 31 Jul 2025 10:04:25 UTC
+Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com
+ [51.81.35.219])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07CAC10E263
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 10:04:25 +0000 (UTC)
+Received: from relay5.mymailcheap.com (relay5.mymailcheap.com
+ [159.100.248.207])
+ by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 4270F223BE
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 09:55:58 +0000 (UTC)
+Received: from relay2.mymailcheap.com (relay2.mymailcheap.com
+ [217.182.113.132])
+ by relay5.mymailcheap.com (Postfix) with ESMTPS id BCB11262C0
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 09:55:55 +0000 (UTC)
+Received: from nf2.mymailcheap.com (nf2.mymailcheap.com [54.39.180.165])
+ by relay2.mymailcheap.com (Postfix) with ESMTPS id 5C91B3E8CA;
+ Thu, 31 Jul 2025 09:55:53 +0000 (UTC)
+Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
+ by nf2.mymailcheap.com (Postfix) with ESMTPSA id 622E7400F0;
+ Thu, 31 Jul 2025 09:55:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
+ t=1753955751; bh=WigGKFbgtCVAFw2VbTCB01cMzYJQXuFISWadikcrpjk=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=llKVSWGXoIKsVRCYYxy5skiSzvnNfmVBbfwadXWaxvBgNHEa2GH4ZiR7uu0f2dF+t
+ b3FhT7NdnsIDHkLTeBizl2RE/gO3EcKKzY6RNNlO/eVhzyGi7kDSyxMDMQ7wlMUeRs
+ j3ItWm29VS9iKZ/adulVluG7KlZY1kNm8kEYt4us=
+Received: from [127.0.0.1] (unknown [203.175.14.48])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mail20.mymailcheap.com (Postfix) with ESMTPSA id 704C74168E;
+ Thu, 31 Jul 2025 09:55:47 +0000 (UTC)
+Message-ID: <0b4df78a-5740-415e-9939-b9c00ead84e7@aosc.io>
+Date: Thu, 31 Jul 2025 17:55:43 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/5] drm/xe/bo: fix alignment with non-4KiB kernel page
+ sizes
+To: Simon Richter <Simon.Richter@hogyros.de>, intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Wenbin Fang <fangwenbin@vip.qq.com>,
+ Haien Liang <27873200@qq.com>, Jianfeng Liu <liujianfeng1994@gmail.com>,
+ Shirong Liu <lsr1024@qq.com>, Haofeng Wu <s2600cw2@126.com>,
+ Shang Yatsen <429839446@qq.com>
+References: <20250723074540.2660-1-Simon.Richter@hogyros.de>
+ <20250723074540.2660-2-Simon.Richter@hogyros.de>
+Content-Language: en-US
+From: Mingcong Bai <jeffbai@aosc.io>
+In-Reply-To: <20250723074540.2660-2-Simon.Richter@hogyros.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 622E7400F0
+X-Rspamd-Server: nf2.mymailcheap.com
+X-Spamd-Result: default: False [-0.10 / 10.00]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; RCPT_COUNT_SEVEN(0.00)[9];
+ MID_RHS_MATCH_FROM(0.00)[]; ARC_NA(0.00)[];
+ RCVD_COUNT_ONE(0.00)[1];
+ ASN(0.00)[asn:16276, ipnet:51.83.0.0/16, country:FR];
+ MIME_TRACE(0.00)[0:+]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; FROM_HAS_DN(0.00)[];
+ RECEIVED_HELO_LOCALHOST(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ FREEMAIL_CC(0.00)[vger.kernel.org,vip.qq.com,qq.com,gmail.com,126.com];
+ FREEMAIL_ENVRCPT(0.00)[126.com,gmail.com,qq.com,vip.qq.com];
+ TO_DN_SOME(0.00)[]
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,115 +90,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We need override certain link rates in favour of the next available
-higher link rate. The Link rates that need to be overridden are
-indicated by a mask in VBT. To make sure these modes are skipped we
-don't add them in them in the sink rates array.
+Hi Simon,
 
---v2
--Update the link rates after we have a final set of link rates [Ankit]
--Break this patch up [Ankit]
--Optimize the assingment during loop [Ankit]
+Thanks for your revision, however, there is an issue with this patch.
 
---v3
--Add protection against broken VBTs [Jani]
+在 2025/7/23 15:45, Simon Richter 写道:
 
---v4
--Fix build errors
--Create a seprate function to check if edp data override is selected
-and using the correct vbt
+<snip>
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 17 +++++++++++++++--
- drivers/gpu/drm/i915/display/intel_bios.h |  2 ++
- drivers/gpu/drm/i915/display/intel_dp.c   | 22 ++++++++++++++++++++++
- 3 files changed, 39 insertions(+), 2 deletions(-)
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 00ce067d5fd3..649e6d0e05a1 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1861,9 +1861,9 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+>   		flags |= XE_BO_FLAG_INTERNAL_64K;
+>   		alignment = align >> PAGE_SHIFT;
+>   	} else {
+> -		aligned_size = ALIGN(size, SZ_4K);
+> +		aligned_size = ALIGN(size, PAGE_SIZE);
+>   		flags &= ~XE_BO_FLAG_INTERNAL_64K;
+> -		alignment = SZ_4K >> PAGE_SHIFT;
+> +		alignment = PAGE_SIZE >> PAGE_SHIFT;
+>   	}
+>   
+>   	if (type == ttm_bo_type_device && aligned_size != size)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 7adb7c4b0432..5d9126a0219e 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2519,12 +2519,25 @@ int intel_bios_dp_max_lane_count(const struct intel_bios_encoder_data *devdata)
- }
- 
- bool
--intel_bios_encoder_supports_edp_rate(const struct intel_bios_encoder_data *devdata,
--				     int rate)
-+intel_bios_vbt_supports_edp_data_override(const struct intel_bios_encoder_data *devdata)
- {
- 	if (!devdata || devdata->display->vbt.version < 263)
- 		return false;
- 
-+	/*
-+	 * This means the VBT ends up asking us to override every possible rate
-+	 * indicating the VBT is broken so skip this
-+	 */
-+	if (hweight32(devdata->child.edp_data_rate_override) >= 11)
-+		return false;
-+
-+	return true;
-+}
-+
-+bool
-+intel_bios_encoder_supports_edp_rate(const struct intel_bios_encoder_data *devdata,
-+				     int rate)
-+{
- 	return devdata->child.edp_data_rate_override & edp_rate_override_mask(rate);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index a4abaa89a682..d244caef2275 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -276,5 +276,7 @@ void intel_bios_for_each_encoder(struct intel_display *display,
- 					      const struct intel_bios_encoder_data *devdata));
- 
- void intel_bios_debugfs_register(struct intel_display *display);
-+bool
-+intel_bios_vbt_supports_edp_data_override(const struct intel_bios_encoder_data *devdata);
- 
- #endif /* _INTEL_BIOS_H_ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 54d88f24b689..7e905e912aef 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4277,6 +4277,26 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
- 	intel_dp->mso_pixel_overlap = mso ? info->mso_pixel_overlap : 0;
- }
- 
-+static void
-+intel_edp_set_data_override_rates(struct intel_dp *intel_dp)
-+{
-+	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-+	int *sink_rates = intel_dp->sink_rates;
-+	int i, j = 0;
-+
-+	if (!intel_bios_vbt_supports_edp_data_override(encoder->devdata))
-+		return;
-+
-+	for (i = 0; i < intel_dp->num_sink_rates; i++) {
-+		if (intel_bios_encoder_supports_edp_rate(encoder->devdata,
-+							 intel_dp->sink_rates[i]))
-+			continue;
-+
-+		sink_rates[j++] = intel_dp->sink_rates[i];
-+	}
-+	intel_dp->num_sink_rates = j;
-+}
-+
- static void
- intel_edp_set_sink_rates(struct intel_dp *intel_dp)
- {
-@@ -4327,6 +4347,8 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
- 		intel_dp->use_rate_select = true;
- 	else
- 		intel_dp_set_sink_rates(intel_dp);
-+
-+	intel_edp_set_data_override_rates(intel_dp);
- }
- 
- static bool
--- 
-2.34.1
+A previous change under this struct:
 
+-	bo->size = size;
++	bo->size = aligned_size;
+
+Is actually still needed. Without this change, the kernel does not start 
+up with an Intel B580.
+
+Best Regards,
+Mingcong Bai
