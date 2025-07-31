@@ -4,39 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DC44C83F17
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 10:48:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6A2FC83F17
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 10:50:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54C0010E773;
-	Thu, 31 Jul 2025 10:48:18 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16C0110E773
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 10:48:17 +0000 (UTC)
-Received: from [IPV6:2400:2410:b120:f200:a1f3:73da:3a04:160d] (unknown
- [IPv6:2400:2410:b120:f200:a1f3:73da:3a04:160d])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 557563F108;
- Thu, 31 Jul 2025 12:48:12 +0200 (CEST)
-Message-ID: <9cc7c5f9-2b1c-4b45-ad44-67923ed61757@hogyros.de>
-Date: Thu, 31 Jul 2025 19:48:09 +0900
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9569F10E776;
+	Thu, 31 Jul 2025 10:50:28 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 592C310E775;
+ Thu, 31 Jul 2025 10:50:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] drm/xe/bo: fix alignment with non-4KiB kernel page
- sizes
-To: Mingcong Bai <jeffbai@aosc.io>, intel-xe@lists.freedesktop.org
-Cc: Wenbin Fang <fangwenbin@vip.qq.com>, Haien Liang <27873200@qq.com>,
- Jianfeng Liu <liujianfeng1994@gmail.com>, Shirong Liu <lsr1024@qq.com>,
- Haofeng Wu <s2600cw2@126.com>, Shang Yatsen <429839446@qq.com>
-References: <20250723074540.2660-1-Simon.Richter@hogyros.de>
- <20250723074540.2660-2-Simon.Richter@hogyros.de>
- <0b4df78a-5740-415e-9939-b9c00ead84e7@aosc.io>
-Content-Language: en-US
-From: Simon Richter <Simon.Richter@hogyros.de>
-In-Reply-To: <0b4df78a-5740-415e-9939-b9c00ead84e7@aosc.io>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Some_more_xe=5Fmigrate=5F?=
+ =?utf-8?q?access=5Fmemory_fixes_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 31 Jul 2025 10:50:27 -0000
+Message-ID: <175395902735.201961.12772194002538523150@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250731093807.207572-5-matthew.auld@intel.com>
+In-Reply-To: <20250731093807.207572-5-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,29 +36,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On 7/31/25 18:55, Mingcong Bai wrote:
+Series: Some more xe_migrate_access_memory fixes (rev2)
+URL   : https://patchwork.freedesktop.org/series/152297/
+State : warning
 
-> -    bo->size = size;
-> +    bo->size = aligned_size;
+== Summary ==
 
-> Is actually still needed. Without this change, the kernel does not start 
-> up with an Intel B580.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c298eac5978c38dcc62a70c0d73c91765e7cc296
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 93e348d767e58a20b3bfc784f534e4eb8482d109
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Thu Jul 31 10:38:11 2025 +0100
 
-bo->size has been removed in commit ec9223b49, though -- instead, the 
-size is taken from the underlying GEM object, and the size field there 
-is taken from the third parameter to drm_gem_private_object_init, which 
-is "aligned_size" in your patch already, so this field is fully 
-redundant even if the size has been aligned.
+    drm/xe/migrate: prevent potential UAF
+    
+    If we hit the error path, the previous fence (if there is one) has
+    already been put() prior to this, so doing a fence_wait could lead to
+    UAF. Tweak the flow to do to the put() until after we do the wait.
+    
+    Fixes: 270172f64b11 ("drm/xe: Update xe_ttm_access_memory to use GPU for non-visible access")
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Stuart Summers <stuart.summers@intel.com>
++ /mt/dim checkpatch 7f74ca5c75dd28bc57d5ea1be165919bc70609d8 drm-intel
+50aeca156e40 drm/xe/migrate: prevent infinite recursion
+b028279263c7 drm/xe/migrate: don't overflow max copy size
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+xe 0000:03:00.0: [drm] Assertion `size / pitch <= ((s16)(((u16)~0U) >> 1))` failed!
 
-Tested on ppc64le with B580 using 64k pages, still survives a piglit run 
-just fine.
+total: 0 errors, 1 warnings, 0 checks, 12 lines checked
+93e348d767e5 drm/xe/migrate: prevent potential UAF
 
-The field being removed was the reason for me resubmitting the patch 
-stack: it stopped compiling without dropping this line.
 
-    Simon
