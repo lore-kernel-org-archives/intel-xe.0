@@ -4,56 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B558C87FCC
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 12:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2219BC87FD2
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 12:33:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBA9710E470;
-	Thu, 31 Jul 2025 12:28:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B88A310E781;
+	Thu, 31 Jul 2025 12:33:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V/iRKph4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nZibOOEZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F127F10E470
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 12:28:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71C0810E79C;
+ Thu, 31 Jul 2025 12:32:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753964898; x=1785500898;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Zn7vqMrcVAoZXGm+GnZ3I6fz5uf7DkRzqs0D/gOHFa0=;
- b=V/iRKph4U6tDWfnk1dv7F5DBpVhQ+XCYO9Gh0RgDPfI2nN/bnR3WxB4k
- 5CWGdh9oe927wF7+YyvZ9mlD1sb8/pA0oouW2UzXRBBdaFvAa9Eg+iETN
- dXG155oS9NsBQjEfmiOz7/6pIcPdut/536p+mExNN40xOOUdHOz1J/zmA
- 0uHa+Bh/ZeMzrN+1lCwWiudOUsxPXuUlDsVxMTmOuAPKgLNyhxS32oWB6
- dhgYybUmreBtArwCH+3Gx8d9CtP0/kmKPhK5Oz5Yx6yIwk36j7xSneQD8
- 830Rw30EyLFEDl9WnWZves07w9Nke8CHRNF/tX5YA84M/zary+5ydmeUr A==;
-X-CSE-ConnectionGUID: r6hw2zKfT1y/PTyUZuQuxg==
-X-CSE-MsgGUID: 7R6yPan9QsSp3qTMMtbCOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="56363975"
-X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="56363975"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 05:28:03 -0700
-X-CSE-ConnectionGUID: JlQZbcZXSAK1kI1lUdrJGQ==
-X-CSE-MsgGUID: C3hHhbOqR2OKdD05QC8Q1g==
+ t=1753965179; x=1785501179;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=QvBFAPPCajiycFfbn2tYXggB3euP7sC66zoMmJsm+9M=;
+ b=nZibOOEZKKbk8vHcT98gF74lpijr3/ZuYskfrfuiBobopX0pPFUYyIMK
+ vQgkxpLxGm8koj4Ji6Bpe6n1FsQ9XvmLMKGdZZJ5WTeogiOjHtDLmphs5
+ Vsh9YpMlfkCe0as8xbRV7T24X9CBDRUhhI5FnnYXXsiUAClIhKS2ZKjSR
+ 5c0GdMGRKlORYNE8vBw2SYdUGx5PvRtfpKd5p0UFG2J36TUWdsm+0rEOW
+ XjC4pUxwVo6G+TyNo7G6f07FubWq0Eqo1ZyOe13Js0Ct6DozLdyylYvpQ
+ O3VYgWNIm7jUWu81VgYI8MPZM7daxvE4mJ65y+LWhhwWrjK+3/6i6CClz w==;
+X-CSE-ConnectionGUID: OGtfeXf9RiCFJ78ZtX5AgQ==
+X-CSE-MsgGUID: rNzEnV2hTq2WvmRAaWTufA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="73876941"
+X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="73876941"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2025 05:32:58 -0700
+X-CSE-ConnectionGUID: dYS+YYx3QBehT0stZvCiJw==
+X-CSE-MsgGUID: dqgIKKzNSz2+JznSQS8Jvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="163268546"
-Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 05:28:02 -0700
-From: Lukasz Laguna <lukasz.laguna@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: michal.wajdeczko@intel.com, rodrigo.vivi@intel.com,
- matthew.brost@intel.com, lukasz.laguna@intel.com
-Subject: [PATCH v7 4/4] drm/xe/pf: Allow upon-any-hang wedged mode only in
- debug config
-Date: Thu, 31 Jul 2025 14:27:31 +0200
-Message-Id: <20250731122731.28105-5-lukasz.laguna@intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20250731122731.28105-1-lukasz.laguna@intel.com>
-References: <20250731122731.28105-1-lukasz.laguna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="200419207"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.108])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2025 05:32:54 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Dibin Moolakadan
+ Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ ankit.k.nautiyal@intel.com, uma.shankar@intel.com
+Subject: Re: [PATCH v2] drm/xe/display: Block hpd during suspend
+In-Reply-To: <aItbBXMNinP4TaEy@ideak-desk>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250723092946.1975018-1-dibin.moolakadan.subrahmanian@intel.com>
+ <aICtgAa54ESMZ2ii@ideak-desk> <aIDhTEcPoL5Y8Aoj@intel.com>
+ <7b9d3439-ad9b-4ebf-86ee-0aa1c7b87b8c@linux.intel.com>
+ <1c1510bdb0b9ade97da615f81d91e8f7cde20275@intel.com>
+ <aIjcRFU90s6Ml9Vt@intel.com> <aIjizdet9ZUXB-yx@ideak-desk>
+ <f7397d551049d81c4d59be25db23d41cbf8ed602@intel.com>
+ <aItbBXMNinP4TaEy@ideak-desk>
+Date: Thu, 31 Jul 2025 15:32:51 +0300
+Message-ID: <0abb5f2108a1b6c86766e4d8416398a40bbf993d@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,29 +76,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC reset policy is global, so disabling it on PF can affect all
-running VFs. To avoid unintended side effects, restrict setting
-upon-any-hang (2) wedged mode on the PF to debug builds only.
+On Thu, 31 Jul 2025, Imre Deak <imre.deak@intel.com> wrote:
+> Hi Rodrigo,
+>
+> On Tue, Jul 29, 2025 at 07:36:04PM +0300, Jani Nikula wrote:
+>> On Tue, 29 Jul 2025, Imre Deak <imre.deak@intel.com> wrote:
+>> > On Tue, Jul 29, 2025 at 10:35:48AM -0400, Rodrigo Vivi wrote:
+>> >> On Tue, Jul 29, 2025 at 12:44:47PM +0300, Jani Nikula wrote:
+>> >> > On Thu, 24 Jul 2025, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
+>> >> > > Hey,
+>> >> > > [...]
+>> >> > >>>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+>> >> > >>>> index e2e0771cf274..9e984a045059 100644
+>> >> > >>>> --- a/drivers/gpu/drm/xe/display/xe_display.c
+>> >> > >>>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+>> >> > >>>> @@ -96,6 +96,7 @@ static void xe_display_fini_early(void *arg)
+>> >> > >>>>  	if (!xe->info.probe_display)
+>> >> > >>>>  		return;
+>> >> > >>>>  
+>> >> > >>>> +	intel_hpd_cancel_work(display);
+>> >> > >>>>  	intel_display_driver_remove_nogem(display);
+>> >> > >>>>  	intel_display_driver_remove_noirq(display);
+>> >> > >>>>  	intel_opregion_cleanup(display);
+>> >> > >>>> @@ -340,6 +341,8 @@ void xe_display_pm_suspend(struct xe_device *xe)
+>> >> > >>>>  
+>> >> > >>>>  	xe_display_flush_cleanup_work(xe);
+>> >> > >>>>  
+>> >> > >>>> +	intel_encoder_block_all_hpds(display);
+>> >> > >>>> +
+>> >> > >>>>  	intel_hpd_cancel_work(display);
+>> >> > >>>>  
+>> >> > >>>>  	if (has_display(xe)) {
+>> >> > >>>> @@ -369,6 +372,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+>> >> > >>>>  	}
+>> >> > >>>>  
+>> >> > >>>>  	xe_display_flush_cleanup_work(xe);
+>> >> > >>>> +	intel_encoder_block_all_hpds(display);
+>> >> > >>>
+>> >> > >>> MST still needs HPD IRQs for side-band messaging, so the HPD IRQs must
+>> >> > >>> be blocked only after intel_dp_mst_suspend().
+>> >> > >>>
+>> >> > >>> Otherwise the patch looks ok to me, so with the above fixed and provided
+>> >> > >>> that Maarten is ok to disable all display IRQs only later:
+>> >> > >> 
+>> >> > >> Also probably good to identify the patch as both xe and i915 in the subject
+>> >> > >> drm/{i915,xe}/display:
+>> >> > >> 
+>> >> > >> and Maarten or Imre, any preference on which branch to go? any chance of
+>> >> > >> conflicting with any of work you might be doing in any side?
+>> >> > >> 
+>> >> > >> From my side I believe that any conflict might be easy to handle, so
+>> >> > >> 
+>> >> > >> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> >> > >> 
+>> >> > >> from either side...
+>> >> > >> 
+>> >> > >>>
+>> >> > >>> Reviewed-by: Imre Deak <imre.deak@intel.com>
+>> >> > > We had a discussion on this approach, and it seems that completely disabling interrupts here like in i915 would fail too.
+>> >> > >
+>> >> > > Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> >> > >
+>> >> > > I don't mind either branch. As long as it applies. :-)
+>> >> > 
+>> >> > Please do not merge through *any* tree.
+>> >> > 
+>> >> > How come you all think it's okay to add this xe specific thing, and make
+>> >> > unification harder?
+>> >> 
+>> >> I lost any moral or rights to complain here since I couldn't move with my
+>> >> tasks of unification of the pm flow :(
+>> >> 
+>> >> double sorry!
+>> >> 
+>> >> > 
+>> >> > intel_encoder_block_all_hpds() is *way* too specific for a high level
+>> >> > function. Neither xe nor i915 should never call something like that
+>> >> > directly.
+>> >> 
+>> >> that's a valid point indeed. But I cannot see another way to fix the
+>> >> current issue right now without trying to move with the full unification
+>> >> faster. Do you?
+>> >
+>> > Imo, this should be fixed first in xe without affecting i915. Then a
+>> > related fix would be needed in i915, which disables all display IRQs too
+>> > early now, as in:
+>> >
+>> > https://github.com/ideak/linux/commit/0fbe02b20e062
+>> >
+>> > After that the xe and i915 system suspend/resume and shutdown sequences
+>> > could be unified mostly. Fwiw I put together that now on top of Dibin's
+>> > patch:
+>> >
+>> > https://github.com/ideak/linux/commits/suspend-shutdown-refactor
+>> 
+>> If that work is actually in progress and happening, then fine, let's go
+>> with this.
+>
+> If the above is acceptable, then this change would be also needed for
+> i915. If the patch is merged to xe trees, then not sure if/when it would
+> be merged back to i915. So maybe it would make more sense to merge it to
+> i915 trees instead, considering it has more display changes already.
+> Would you be ok with that?
 
-Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Ack.
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 7b0fa360d5ef..6d0bbfbb6ac8 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1224,7 +1224,8 @@ int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
- 	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG) {
- 		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
- 		return -EINVAL;
--	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG && IS_SRIOV_VF(xe)) {
-+	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG && (IS_SRIOV_VF(xe) ||
-+		   (IS_SRIOV_PF(xe) && !IS_ENABLED(CONFIG_DRM_XE_DEBUG)))) {
- 		drm_dbg(&xe->drm, "wedged_mode: (%u) %s mode is not supported for %s\n",
- 			mode, xe_wedged_mode_to_string(mode),
- 			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+>
+> --Imre
+>
+>> BR,
+>> Jani.
+>> 
+>> >
+>> >> > 
+>> >> > BR,
+>> >> > Jani.
+>> >> > 
+>> >> > 
+>> >> > -- 
+>> >> > Jani Nikula, Intel
+>> 
+>> -- 
+>> Jani Nikula, Intel
+
 -- 
-2.40.0
-
+Jani Nikula, Intel
