@@ -4,78 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB26BC87FCC
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 10:04:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90310C83F17
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 10:05:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 807C910E263;
-	Thu, 31 Jul 2025 10:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 579EA10E755;
+	Thu, 31 Jul 2025 10:05:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="llKVSWGX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dD9OJyca";
 	dkim-atps=neutral
-X-Greylist: delayed 506 seconds by postgrey-1.36 at gabe;
- Thu, 31 Jul 2025 10:04:25 UTC
-Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com
- [51.81.35.219])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07CAC10E263
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 10:04:25 +0000 (UTC)
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com
- [159.100.248.207])
- by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 4270F223BE
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 09:55:58 +0000 (UTC)
-Received: from relay2.mymailcheap.com (relay2.mymailcheap.com
- [217.182.113.132])
- by relay5.mymailcheap.com (Postfix) with ESMTPS id BCB11262C0
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 09:55:55 +0000 (UTC)
-Received: from nf2.mymailcheap.com (nf2.mymailcheap.com [54.39.180.165])
- by relay2.mymailcheap.com (Postfix) with ESMTPS id 5C91B3E8CA;
- Thu, 31 Jul 2025 09:55:53 +0000 (UTC)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
- by nf2.mymailcheap.com (Postfix) with ESMTPSA id 622E7400F0;
- Thu, 31 Jul 2025 09:55:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
- t=1753955751; bh=WigGKFbgtCVAFw2VbTCB01cMzYJQXuFISWadikcrpjk=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=llKVSWGXoIKsVRCYYxy5skiSzvnNfmVBbfwadXWaxvBgNHEa2GH4ZiR7uu0f2dF+t
- b3FhT7NdnsIDHkLTeBizl2RE/gO3EcKKzY6RNNlO/eVhzyGi7kDSyxMDMQ7wlMUeRs
- j3ItWm29VS9iKZ/adulVluG7KlZY1kNm8kEYt4us=
-Received: from [127.0.0.1] (unknown [203.175.14.48])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mail20.mymailcheap.com (Postfix) with ESMTPSA id 704C74168E;
- Thu, 31 Jul 2025 09:55:47 +0000 (UTC)
-Message-ID: <0b4df78a-5740-415e-9939-b9c00ead84e7@aosc.io>
-Date: Thu, 31 Jul 2025 17:55:43 +0800
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3E8310E754;
+ Thu, 31 Jul 2025 10:05:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753956321; x=1785492321;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rdni38D3L6PvF1OEHcE3XsrTZd36Ze5waWkrHBp+uuE=;
+ b=dD9OJycaKNBopEFT8nwS4ZvA5rppAJo4v2YzJj7OxxkhgJsUPjj8uaHX
+ ombB2YI2JtHPOvRh2WOmGpLH9Mt4COzj9EFdi/jfKumfIjVMss6DHxrOu
+ keicpYt6cTHTNPR5ZLkrHqdz8MYgpBkFVj34/ZMIpMgzt1zOhtbOFJeG+
+ 3Y0v2qu6LTHBDOwgTDJs5zQTCKi/wSxJauCGgfVItznkS9r17wEAYVEYp
+ dSTu2VA1ylXoo/zWxL0amd82N10NrlDVp4fqbkAqFZuSM7JwryZaGD0Dy
+ M1OskpTO3q2z+5ni65FJ9aIgeNkw6CtraHvOl2YbUcKX6me+BiX6pjUDL g==;
+X-CSE-ConnectionGUID: VsowkmYVR+yAFs5ENqimKA==
+X-CSE-MsgGUID: eH7UNpvzTFCAUgH+mwwovw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="59922960"
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="59922960"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2025 03:05:21 -0700
+X-CSE-ConnectionGUID: V9dTEzvaSlCcXqvk8sPtQw==
+X-CSE-MsgGUID: qs26bQF2T+qooxI+ZrWdXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="167456216"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.108])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2025 03:05:18 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH v2 0/7] drm/i915/display: use intel_de_wait_*() functions
+Date: Thu, 31 Jul 2025 13:05:07 +0300
+Message-Id: <cover.1753956266.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] drm/xe/bo: fix alignment with non-4KiB kernel page
- sizes
-To: Simon Richter <Simon.Richter@hogyros.de>, intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Wenbin Fang <fangwenbin@vip.qq.com>,
- Haien Liang <27873200@qq.com>, Jianfeng Liu <liujianfeng1994@gmail.com>,
- Shirong Liu <lsr1024@qq.com>, Haofeng Wu <s2600cw2@126.com>,
- Shang Yatsen <429839446@qq.com>
-References: <20250723074540.2660-1-Simon.Richter@hogyros.de>
- <20250723074540.2660-2-Simon.Richter@hogyros.de>
-Content-Language: en-US
-From: Mingcong Bai <jeffbai@aosc.io>
-In-Reply-To: <20250723074540.2660-2-Simon.Richter@hogyros.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 622E7400F0
-X-Rspamd-Server: nf2.mymailcheap.com
-X-Spamd-Result: default: False [-0.10 / 10.00]; MIME_GOOD(-0.10)[text/plain];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCPT_COUNT_SEVEN(0.00)[9];
- MID_RHS_MATCH_FROM(0.00)[]; ARC_NA(0.00)[];
- RCVD_COUNT_ONE(0.00)[1];
- ASN(0.00)[asn:16276, ipnet:51.83.0.0/16, country:FR];
- MIME_TRACE(0.00)[0:+]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; FROM_HAS_DN(0.00)[];
- RECEIVED_HELO_LOCALHOST(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FREEMAIL_CC(0.00)[vger.kernel.org,vip.qq.com,qq.com,gmail.com,126.com];
- FREEMAIL_ENVRCPT(0.00)[126.com,gmail.com,qq.com,vip.qq.com];
- TO_DN_SOME(0.00)[]
-X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,38 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Simon,
+v2 of [1] with one patch fixed, another dropped.
 
-Thanks for your revision, however, there is an issue with this patch.
+BR,
+Jani.
 
-在 2025/7/23 15:45, Simon Richter 写道:
+[1] https://lore.kernel.org/r/cover.1750959689.git.jani.nikula@intel.com
 
-<snip>
 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 00ce067d5fd3..649e6d0e05a1 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1861,9 +1861,9 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->   		flags |= XE_BO_FLAG_INTERNAL_64K;
->   		alignment = align >> PAGE_SHIFT;
->   	} else {
-> -		aligned_size = ALIGN(size, SZ_4K);
-> +		aligned_size = ALIGN(size, PAGE_SIZE);
->   		flags &= ~XE_BO_FLAG_INTERNAL_64K;
-> -		alignment = SZ_4K >> PAGE_SHIFT;
-> +		alignment = PAGE_SIZE >> PAGE_SHIFT;
->   	}
->   
->   	if (type == ttm_bo_type_device && aligned_size != size)
+Jani Nikula (7):
+  drm/i915/hdmi: use intel_de_wait_for_set() instead of wait_for()
+  drm/i915/ddi: use intel_de_wait_custom() instead of wait_for_us()
+  drm/i915/dpll: use intel_de_wait_custom() instead of wait_for_us()
+  drm/i915/cdclk: use intel_de_wait_custom() instead of wait_for_us()
+  drm/i915/power: use intel_de_wait_custom() instead of wait_for_us()
+  drm/i915/pch: use intel_de_wait_custom() instead of wait_for_us()
+  drm/i915/dsi: use intel_de_wait_custom() instead of wait_for_us()
 
-A previous change under this struct:
+ drivers/gpu/drm/i915/display/icl_dsi.c        | 41 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 12 ++++--
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 14 ++++++-
+ .../drm/i915/display/intel_display_power.c    | 14 +++++--
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 20 ++++++---
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  6 +--
+ .../gpu/drm/i915/display/intel_pch_refclk.c   | 14 +++++--
+ 7 files changed, 85 insertions(+), 36 deletions(-)
 
--	bo->size = size;
-+	bo->size = aligned_size;
+-- 
+2.39.5
 
-Is actually still needed. Without this change, the kernel does not start 
-up with an Intel B580.
-
-Best Regards,
-Mingcong Bai
