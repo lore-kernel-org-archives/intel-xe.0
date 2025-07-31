@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09063C83F17
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 09:32:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA218C87FCC
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 09:38:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0B5D10E744;
-	Thu, 31 Jul 2025 09:32:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 718FA10E744;
+	Thu, 31 Jul 2025 09:38:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RtnM/8HO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nzLJTEoT";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0751410E744;
- Thu, 31 Jul 2025 09:32:45 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 6066360207;
- Thu, 31 Jul 2025 09:32:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C00A4C4CEEF;
- Thu, 31 Jul 2025 09:32:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1753954364;
- bh=ZFE6EGdQzKalpH0R9dC0w/xziTJ+GYo9LFe8xLZUnFw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=RtnM/8HOa0R+ZXybiwnUUjKGsNblS9NCrmIMypqPJlUs8vs6Snr+0D51nGVJ0wMED
- jfqphCG//V70RW4g5oqdK3a3DAKRpcu5QIJPpDXDSZzoaaJdANTECYs+3YsH+iGwG4
- tbUhbg029epON89gfSl24zZ/SxMCtpHRnCrMDWnsV1LivD0LMihqW58VXfalVkPd3P
- 5B6uiISKXJMLijhUfOUYA5R8tUI8vEjO6wq+8/Nn11f082OVJbc8devhiQloFALn4E
- wHmQD9NU6wCypnsvII1tPGaePJXtEAN4uhFzLI6eaF4h6gg3Ji8Y7HIjLmsXNMAIhF
- o6dbdslhfOtaQ==
-Date: Thu, 31 Jul 2025 11:32:41 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: dri-devel@lists.freedesktop.org, simona.vetter@ffwll.ch, 
- David Airlie <airlied@gmail.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
- =?utf-8?B?QW5kcsOp?= Almeida <andrealmeid@igalia.com>, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, 
- lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
- raag.jadav@intel.com, 
- umesh.nerlige.ramappa@intel.com, frank.scarbrough@intel.com,
- sk.anirban@intel.com, 
- maarten.lankhorst@linux.intel.com, intel-xe@lists.freedesktop.org,
- tzimmermann@suse.de
-Subject: Re: [PATCH v7 1/9] drm: Add a vendor-specific recovery method to drm
- device wedged uevent
-Message-ID: <20250731-jovial-realistic-mastiff-2ef2a7@houat>
-References: <20250728102809.502324-1-riana.tauro@intel.com>
- <20250728102809.502324-2-riana.tauro@intel.com>
- <39095bd1-2dee-4bfb-bc87-ee8cecedebce@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE00910E744
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 09:38:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753954704; x=1785490704;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=M024nvPOr4I+RBB08kEANs8bSlteeLs6vN9+m8+fHkc=;
+ b=nzLJTEoT0JOMdD4Heb8KQbYdsygOor9SManVmBK4nuatP9/coHo1811z
+ A/az99XaeNrh3DehWREJhh0NMNnAuKIPqA2hnt9ORyBZDdf4xLyfLnel2
+ S8lZmxUgyJUxPvjlH0BumVzrJxA4CaYGaOBEteq4+CElrVC0U7l4mVLfy
+ fMr783kxxxlN+Rjgs4c2Ux2fd2FX0xUAcfpqPR1DkLHgWGvMUn8LFY+FW
+ h2HVKKmeH1uDzojAedBMI+OKN3h6N9UfQEBzGB/h14ZJSa2AxS3vxnCGG
+ LH5hk54tThAcK+SJvZnIirWnxJOOSx30wRHWPwIFQvK30WkzzdnUAzhjt g==;
+X-CSE-ConnectionGUID: HfuorNcXS7mG8aTF0VYosA==
+X-CSE-MsgGUID: mkI1v3LWQWauevJGLtUCoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="43877056"
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="43877056"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2025 02:38:19 -0700
+X-CSE-ConnectionGUID: mZzDWDSKSSW0qiXXebx0iQ==
+X-CSE-MsgGUID: ctC/7l0BQyCmbKnR/MQn/g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="194056852"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.245.250])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2025 02:38:17 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 1/3] drm/xe/migrate: prevent infinite recursion
+Date: Thu, 31 Jul 2025 10:38:09 +0100
+Message-ID: <20250731093807.207572-6-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250731093807.207572-5-matthew.auld@intel.com>
+References: <20250731093807.207572-5-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="ag54fr364wevlu4z"
-Content-Disposition: inline
-In-Reply-To: <39095bd1-2dee-4bfb-bc87-ee8cecedebce@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,191 +69,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+If the buf + offset is not aligned to XE_CAHELINE_BYTES we fallback to
+using a bounce buffer. However the bounce buffer here is allocated on
+the stack, and the only alignment requirement here is that it's
+naturally aligned to u8, and not XE_CACHELINE_BYTES. If the bounce
+buffer is also misaligned we then recurse back into the function again,
+however the new bounce buffer might also not be aligned, and might never
+be until we eventually blow through the stack, as we keep recursing.
 
---ag54fr364wevlu4z
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 1/9] drm: Add a vendor-specific recovery method to drm
- device wedged uevent
-MIME-Version: 1.0
+Instead of using the stack use kmalloc, which should respect the
+power-of-two alignment request here. Fixes a kernel panic when
+triggering this path through eudebug.
 
-Hi,
+v2 (Stuart):
+ - Add build bug check for power-of-two restriction
+ - s/EINVAL/ENOMEM/
 
-On Wed, Jul 30, 2025 at 07:33:01PM +0530, Riana Tauro wrote:
-> On 7/28/2025 3:57 PM, Riana Tauro wrote:
-> > Address the need for a recovery method (firmware flash on Firmware erro=
-rs)
-> > introduced in the later patches of Xe KMD.
-> > Whenever XE KMD detects a firmware error, a firmware flash is required =
-to
-> > recover the device to normal operation.
-> >=20
-> > The initial proposal to use 'firmware-flash' as a recovery method was
-> > not applicable to other drivers and could cause multiple recovery
-> > methods specific to vendors to be added.
-> > To address this a more generic 'vendor-specific' method is introduced,
-> > guiding users to refer to vendor specific documentation and system logs
-> > for detailed vendor specific recovery procedure.
-> >=20
-> > Add a recovery method 'WEDGED=3Dvendor-specific' for such errors.
-> > Vendors must provide additional recovery documentation if this method
-> > is used.
-> >=20
-> > It is the responsibility of the consumer to refer to the correct vendor
-> > specific documentation and usecase before attempting a recovery.
-> >=20
-> > For example: If driver is XE KMD, the consumer must refer
-> > to the documentation of 'Device Wedging' under 'Documentation/gpu/xe/'.
-> >=20
-> > Recovery script contributed by Raag.
-> >=20
-> > v2: fix documentation (Raag)
-> > v3: add more details to commit message (Sima, Rodrigo, Raag)
-> >      add an example script to the documentation (Raag)
-> > v4: use consistent naming (Raag)
-> > v5: fix commit message
-> >=20
-> > Cc: Andr=E9 Almeida <andrealmeid@igalia.com>
-> > Cc: Christian K=F6nig <christian.koenig@amd.com>
-> > Cc: David Airlie <airlied@gmail.com>
-> > Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> > Co-developed-by: Raag Jadav <raag.jadav@intel.com>
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->=20
-> This patch needs an ack from drm to be merged.
-> The rest of the series have RB's. Can someone please provide an ack ?
->=20
-> Cc: drm-misc maintainers
->=20
-> Thanks
-> Riana
->=20
-> > ---
-> >   Documentation/gpu/drm-uapi.rst | 42 ++++++++++++++++++++++++++++------
-> >   drivers/gpu/drm/drm_drv.c      |  2 ++
-> >   include/drm/drm_device.h       |  4 ++++
-> >   3 files changed, 41 insertions(+), 7 deletions(-)
-> >=20
-> > diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uap=
-i.rst
-> > index 843facf01b2d..5691b29acde3 100644
-> > --- a/Documentation/gpu/drm-uapi.rst
-> > +++ b/Documentation/gpu/drm-uapi.rst
-> > @@ -418,13 +418,15 @@ needed.
-> >   Recovery
-> >   --------
-> > -Current implementation defines three recovery methods, out of which, d=
-rivers
-> > +Current implementation defines four recovery methods, out of which, dr=
-ivers
-> >   can use any one, multiple or none. Method(s) of choice will be sent i=
-n the
-> >   uevent environment as ``WEDGED=3D<method1>[,..,<methodN>]`` in order =
-of less to
-> > -more side-effects. If driver is unsure about recovery or method is unk=
-nown
-> > -(like soft/hard system reboot, firmware flashing, physical device repl=
-acement
-> > -or any other procedure which can't be attempted on the fly), ``WEDGED=
-=3Dunknown``
-> > -will be sent instead.
-> > +more side-effects. If recovery method is specific to vendor
-> > +``WEDGED=3Dvendor-specific`` will be sent and userspace should refer t=
-o vendor
-> > +specific documentation for the recovery procedure. As an example if th=
-e driver
-> > +is 'Xe' then the documentation for 'Device Wedging' of Xe driver needs=
- to be
-> > +referred for the recovery procedure. If driver is unsure about recover=
-y or
-> > +method is unknown, ``WEDGED=3Dunknown`` will be sent instead.
-> >   Userspace consumers can parse this event and attempt recovery as per =
-the
-> >   following expectations.
-> > @@ -435,6 +437,7 @@ following expectations.
-> >       none            optional telemetry collection
-> >       rebind          unbind + bind driver
-> >       bus-reset       unbind + bus reset/re-enumeration + bind
-> > +    vendor-specific vendor specific recovery method
-> >       unknown         consumer policy
-> >       =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > @@ -472,8 +475,12 @@ erroring out, all device memory should be unmapped=
- and file descriptors should
-> >   be closed to prevent leaks or undefined behaviour. The idea here is t=
-o clear the
-> >   device of all user context beforehand and set the stage for a clean r=
-ecovery.
-> > -Example
-> > --------
-> > +For ``WEDGED=3Dvendor-specific`` recovery method, it is the responsibi=
-lity of the
-> > +consumer to check the driver documentation and the usecase before atte=
-mpting
-> > +a recovery.
-> > +
-> > +Example - rebind
-> > +----------------
-> >   Udev rule::
-> > @@ -491,6 +498,27 @@ Recovery script::
-> >       echo -n $DEVICE > $DRIVER/unbind
-> >       echo -n $DEVICE > $DRIVER/bind
-> > +Example - vendor-specific
-> > +-------------------------
-> > +
-> > +Udev rule::
-> > +
-> > +    SUBSYSTEM=3D=3D"drm", ENV{WEDGED}=3D=3D"vendor-specific", DEVPATH=
-=3D=3D"*/drm/card[0-9]",
-> > +    RUN+=3D"/path/to/vendor_specific_recovery.sh $env{DEVPATH}"
-> > +
-> > +Recovery script::
-> > +
-> > +    #!/bin/sh
-> > +
-> > +    DEVPATH=3D$(readlink -f /sys/$1/device)
-> > +    DRIVERPATH=3D$(readlink -f $DEVPATH/driver)
-> > +    DRIVER=3D$(basename $DRIVERPATH)
-> > +
-> > +    if [ "$DRIVER" =3D "xe" ]; then
-> > +        # Refer XE documentation and check usecase and recovery proced=
-ure
-> > +    fi
-> > +
-> > +
+Fixes: 270172f64b11 ("drm/xe: Update xe_ttm_access_memory to use GPU for non-visible access")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_migrate.c | 32 ++++++++++++++++++++------------
+ 1 file changed, 20 insertions(+), 12 deletions(-)
 
-So I guess I'm not opposed to it on principle, but the documentation
-really needs some work.
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 3a276e2348a2..b8d1ec4c1861 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1987,15 +1987,22 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+ 	if (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||
+ 	    !IS_ALIGNED((unsigned long)buf + offset, XE_CACHELINE_BYTES)) {
+ 		int buf_offset = 0;
++		void *bounce;
++		int err;
++
++		BUILD_BUG_ON(!is_power_of_2(XE_CACHELINE_BYTES));
++		bounce = kmalloc(XE_CACHELINE_BYTES, GFP_KERNEL);
++		if (!bounce)
++			return -ENOMEM;
++
++		xe_assert(xe, IS_ALIGNED((unsigned long)bounce,
++					 XE_CACHELINE_BYTES));
+ 
+ 		/*
+ 		 * Less than ideal for large unaligned access but this should be
+ 		 * fairly rare, can fixup if this becomes common.
+ 		 */
+ 		do {
+-			u8 bounce[XE_CACHELINE_BYTES];
+-			void *ptr = (void *)bounce;
+-			int err;
+ 			int copy_bytes = min_t(int, bytes_left,
+ 					       XE_CACHELINE_BYTES -
+ 					       (offset & XE_CACHELINE_MASK));
+@@ -2004,22 +2011,22 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+ 			err = xe_migrate_access_memory(m, bo,
+ 						       offset &
+ 						       ~XE_CACHELINE_MASK,
+-						       (void *)ptr,
+-						       sizeof(bounce), 0);
++						       bounce,
++						       XE_CACHELINE_BYTES, 0);
+ 			if (err)
+-				return err;
++				break;
+ 
+ 			if (write) {
+-				memcpy(ptr + ptr_offset, buf + buf_offset, copy_bytes);
++				memcpy(bounce + ptr_offset, buf + buf_offset, copy_bytes);
+ 
+ 				err = xe_migrate_access_memory(m, bo,
+ 							       offset & ~XE_CACHELINE_MASK,
+-							       (void *)ptr,
+-							       sizeof(bounce), write);
++							       bounce,
++							       XE_CACHELINE_BYTES, write);
+ 				if (err)
+-					return err;
++					break;
+ 			} else {
+-				memcpy(buf + buf_offset, ptr + ptr_offset,
++				memcpy(buf + buf_offset, bounce + ptr_offset,
+ 				       copy_bytes);
+ 			}
+ 
+@@ -2028,7 +2035,8 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+ 			offset += copy_bytes;
+ 		} while (bytes_left);
+ 
+-		return 0;
++		kfree(bounce);
++		return err;
+ 	}
+ 
+ 	dma_addr = xe_migrate_dma_map(xe, buf, len + page_offset, write);
+-- 
+2.50.1
 
-You should at least list the valid vendor specific options, and what
-each mean exactly. Ideally, it should be a link to the datasheet/manual
-detailing the recovery procedure, but if that's under NDA, at least a
-reference to the document and section you need to look at to implement
-it properly.
-
-Or if that's still not doable, anything that tells you what to do
-instead of "run a shell script we don't provide".
-
-Also, we just discussed it with Sima on IRC, and she mentioned that we
-probably want to have a vendor specific prefix for each vendor-specific
-method.
-
-Maxime
-
---ag54fr364wevlu4z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaIs4NQAKCRAnX84Zoj2+
-dvwpAYDCR8m0Lq3zxs6Ay7KTaa2XcDHYY8CEJIKjKSYYrQqXmpCtM/prvssCmYKX
-GFoK9XkBfjijqmnXft+MracIdqWd/bjWUsBBNLu6wElLKL0tBLPYbZKqYMD4hT7+
-0zrTk1H3+A==
-=/2T4
------END PGP SIGNATURE-----
-
---ag54fr364wevlu4z--
