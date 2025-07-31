@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C18A9C83F17
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 11:38:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D35A3C87FCC
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 11:38:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 895F510E776;
-	Thu, 31 Jul 2025 11:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CC8F10E045;
+	Thu, 31 Jul 2025 11:38:37 +0000 (UTC)
 Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA3A10E776
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 11:38:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC9810E776
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 11:38:16 +0000 (UTC)
 Received: from localhost.localdomain (unknown
  [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 157583F108;
- Thu, 31 Jul 2025 13:38:16 +0200 (CEST)
+ by psionic.psi5.com (Postfix) with ESMTPSA id 336803F108;
+ Thu, 31 Jul 2025 13:38:13 +0200 (CEST)
 From: Simon Richter <Simon.Richter@hogyros.de>
 To: intel-xe@lists.freedesktop.org
 Cc: Simon Richter <Simon.Richter@hogyros.de>
-Subject: [PATCH v2 4/4] misc/mei: Xe graphics also has IME GSC interface
-Date: Thu, 31 Jul 2025 20:36:35 +0900
-Message-ID: <20250731113753.238707-5-Simon.Richter@hogyros.de>
+Subject: [PATCH v2 2/4] misc/mei: Decouple ME interfaces from GPU drivers
+Date: Thu, 31 Jul 2025 20:36:33 +0900
+Message-ID: <20250731113753.238707-3-Simon.Richter@hogyros.de>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250731113753.238707-1-Simon.Richter@hogyros.de>
 References: <20250715083132.3748-1-Simon.Richter@hogyros.de>
@@ -45,26 +45,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This driver is useful if at least one DRM driver registers an auxiliary device
-for the ME interface. With the addition of Xe, this is no longer just i915.
+These are enumerated via an auxiliary bus, so there is no functional
+dependency between these drivers, therefore allow compiling MEI as builtin
+even when i915/xe are built as modules.
 
 Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
 ---
- drivers/misc/mei/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/misc/mei/Kconfig           | 2 +-
+ drivers/misc/mei/gsc_proxy/Kconfig | 2 +-
+ drivers/misc/mei/hdcp/Kconfig      | 2 +-
+ drivers/misc/mei/pxp/Kconfig       | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/misc/mei/Kconfig b/drivers/misc/mei/Kconfig
-index 685be0c1037f..038ee2fdca43 100644
+index b8415de060c4..5841e0ab8060 100644
 --- a/drivers/misc/mei/Kconfig
 +++ b/drivers/misc/mei/Kconfig
 @@ -49,7 +49,7 @@ config INTEL_MEI_TXE
  config INTEL_MEI_GSC
  	tristate "Intel MEI GSC embedded device"
  	depends on INTEL_MEI_ME
--	depends on DRM_I915!=n || COMPILE_TEST
-+	depends on DRM_I915!=n || DRM_XE!=n || COMPILE_TEST
+-	depends on DRM_I915
++	depends on DRM_I915!=n
  	help
  	  Intel auxiliary driver for GSC devices embedded in Intel graphics devices.
+ 
+diff --git a/drivers/misc/mei/gsc_proxy/Kconfig b/drivers/misc/mei/gsc_proxy/Kconfig
+index ac78b9d1eccd..30811117fc65 100644
+--- a/drivers/misc/mei/gsc_proxy/Kconfig
++++ b/drivers/misc/mei/gsc_proxy/Kconfig
+@@ -4,7 +4,7 @@
+ config INTEL_MEI_GSC_PROXY
+ 	tristate "Intel GSC Proxy services of ME Interface"
+ 	depends on INTEL_MEI_ME
+-	depends on DRM_I915
++	depends on DRM_I915!=n
+ 	help
+          MEI Support for GSC Proxy Services on Intel platforms.
+ 
+diff --git a/drivers/misc/mei/hdcp/Kconfig b/drivers/misc/mei/hdcp/Kconfig
+index 631dd9651d7c..a9af4918e5b2 100644
+--- a/drivers/misc/mei/hdcp/Kconfig
++++ b/drivers/misc/mei/hdcp/Kconfig
+@@ -4,7 +4,7 @@
+ config INTEL_MEI_HDCP
+ 	tristate "Intel HDCP2.2 services of ME Interface"
+ 	depends on INTEL_MEI_ME
+-	depends on DRM_I915 || DRM_XE
++	depends on DRM_I915!=n || DRM_XE!=n
+ 	help
+ 	  MEI Support for HDCP2.2 Services on Intel platforms.
+ 
+diff --git a/drivers/misc/mei/pxp/Kconfig b/drivers/misc/mei/pxp/Kconfig
+index aa2dece4a927..d0f8bb6aa2de 100644
+--- a/drivers/misc/mei/pxp/Kconfig
++++ b/drivers/misc/mei/pxp/Kconfig
+@@ -4,7 +4,7 @@
+ config INTEL_MEI_PXP
+ 	tristate "Intel PXP services of ME Interface"
+ 	depends on INTEL_MEI_ME
+-	depends on DRM_I915 || DRM_XE
++	depends on DRM_I915!=n || DRM_XE!=n
+ 	help
+ 	  MEI Support for PXP Services on Intel platforms.
  
 -- 
 2.47.2
