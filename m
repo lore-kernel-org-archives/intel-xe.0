@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C7A0C87FCC
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 09:19:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78BA6C83F17
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 09:24:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5D3210E740;
-	Thu, 31 Jul 2025 09:19:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YovRUC22";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ED3F10E740;
- Thu, 31 Jul 2025 09:19:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753953583; x=1785489583;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wvli+2F54gcxoTIagoY+Dwj70FsngZ36Qhg2gLE75D8=;
- b=YovRUC22fexpBLtjbBUT/EQ2riIg45dRFLX7xFNhOBXu3ndmFLwqYdcR
- Dp2/+KpJqB5YTIVqxMCSQo+zyq6gWMV7Fu4Q7YazoTB645mrtiV+YrUaq
- gZtnFhkwtDRnXamf90YxX96DchLRoO0Dc5owUVLPE8Yfwj9g41Zq4oBns
- EMm5o5tJLMZpxNf8O0MTLjjIQlspJietDE6eny/cW9nzvXcaVWDNtmJrv
- lPlMtXCpMrR0uHOTuegKRy924bWf8jF+LcR0RZO8e3qH4xtSxIwN84jPm
- 0IiJZlUYX2pcNsy7ZvHivVjlndvXEse+iV7YncBH0XthRzmce46V79Ngq A==;
-X-CSE-ConnectionGUID: 05HR7Jj3Q+qpwIgA9MJ+1g==
-X-CSE-MsgGUID: QgURS5yoRzmlcjoRSCdHMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="56419926"
-X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="56419926"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 02:19:42 -0700
-X-CSE-ConnectionGUID: omssWDiESiKwlAzxP+Cb1A==
-X-CSE-MsgGUID: Dl1hlSwCRROCJpatkcFBaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="167448640"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.108])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 02:19:41 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 3/3] drm/i915/display: keep forward declarations together
-Date: Thu, 31 Jul 2025 12:19:22 +0300
-Message-Id: <2c74fa7f2b7d5ecf8247aa5bff05d104ad60cf9e.1753953530.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1753953530.git.jani.nikula@intel.com>
-References: <cover.1753953530.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40ABB10E740;
+	Thu, 31 Jul 2025 09:24:27 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA80210E72E;
+ Thu, 31 Jul 2025 09:24:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_globa?=
+ =?utf-8?q?l_state_cleanups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 31 Jul 2025 09:24:26 -0000
+Message-ID: <175395386675.201478.5280202568158495326@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <cover.1753953530.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1753953530.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,37 +36,133 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Adhere to prevalent style.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_global_state.h | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Series: drm/i915/display: global state cleanups
+URL   : https://patchwork.freedesktop.org/series/152335/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_global_state.h b/drivers/gpu/drm/i915/display/intel_global_state.h
-index 4f304e2c47e0..e1efa530cc86 100644
---- a/drivers/gpu/drm/i915/display/intel_global_state.h
-+++ b/drivers/gpu/drm/i915/display/intel_global_state.h
-@@ -11,6 +11,7 @@
- 
- struct intel_atomic_state;
- struct intel_display;
-+struct intel_global_commit;
- struct intel_global_obj;
- struct intel_global_state;
- 
-@@ -26,8 +27,6 @@ struct intel_global_obj {
- 	const struct intel_global_state_funcs *funcs;
- };
- 
--struct intel_global_commit;
--
- struct intel_global_state {
- 	struct intel_global_obj *obj;
- 	struct intel_atomic_state *state;
--- 
-2.39.5
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c298eac5978c38dcc62a70c0d73c91765e7cc296
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a6ab9afd5f8159ca814df4ea6e402bd425e98751
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Thu Jul 31 12:19:22 2025 +0300
+
+    drm/i915/display: keep forward declarations together
+    
+    Adhere to prevalent style.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 7f74ca5c75dd28bc57d5ea1be165919bc70609d8 drm-intel
+b35a2eec4415 drm/i915/display: hide global state iterators, remove unused
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:16:
++#define for_each_new_global_obj_in_state(__state, obj, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:16:
++#define for_each_new_global_obj_in_state(__state, obj, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:16:
++#define for_each_new_global_obj_in_state(__state, obj, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#28: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:24:
++#define for_each_old_global_obj_in_state(__state, obj, old_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (old_obj_state) = (__state)->global_objs[__i].old_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
+#28: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:24:
++#define for_each_old_global_obj_in_state(__state, obj, old_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (old_obj_state) = (__state)->global_objs[__i].old_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#28: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:24:
++#define for_each_old_global_obj_in_state(__state, obj, old_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (old_obj_state) = (__state)->global_objs[__i].old_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#36: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:32:
++#define for_each_oldnew_global_obj_in_state(__state, obj, old_obj_state, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (old_obj_state) = (__state)->global_objs[__i].old_state, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
+#36: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:32:
++#define for_each_oldnew_global_obj_in_state(__state, obj, old_obj_state, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (old_obj_state) = (__state)->global_objs[__i].old_state, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#36: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:32:
++#define for_each_oldnew_global_obj_in_state(__state, obj, old_obj_state, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (old_obj_state) = (__state)->global_objs[__i].old_state, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+total: 0 errors, 0 warnings, 9 checks, 65 lines checked
+7a64eac78bfb drm/i915/display: make struct __intel_global_objs_state opaque
+a6ab9afd5f81 drm/i915/display: keep forward declarations together
+
 
