@@ -4,27 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CA47C83F17
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 10:45:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DC44C83F17
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Jul 2025 10:48:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51B3110E765;
-	Thu, 31 Jul 2025 10:45:27 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90C4F10E765;
- Thu, 31 Jul 2025 10:45:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3022255949269786480=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54C0010E773;
+	Thu, 31 Jul 2025 10:48:18 +0000 (UTC)
+Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16C0110E773
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Jul 2025 10:48:17 +0000 (UTC)
+Received: from [IPV6:2400:2410:b120:f200:a1f3:73da:3a04:160d] (unknown
+ [IPv6:2400:2410:b120:f200:a1f3:73da:3a04:160d])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by psionic.psi5.com (Postfix) with ESMTPSA id 557563F108;
+ Thu, 31 Jul 2025 12:48:12 +0200 (CEST)
+Message-ID: <9cc7c5f9-2b1c-4b45-ad44-67923ed61757@hogyros.de>
+Date: Thu, 31 Jul 2025 19:48:09 +0900
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_global_?=
- =?utf-8?q?state_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 31 Jul 2025 10:45:26 -0000
-Message-ID: <175395872658.201917.14054072132357776122@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <cover.1753953530.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1753953530.git.jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/5] drm/xe/bo: fix alignment with non-4KiB kernel page
+ sizes
+To: Mingcong Bai <jeffbai@aosc.io>, intel-xe@lists.freedesktop.org
+Cc: Wenbin Fang <fangwenbin@vip.qq.com>, Haien Liang <27873200@qq.com>,
+ Jianfeng Liu <liujianfeng1994@gmail.com>, Shirong Liu <lsr1024@qq.com>,
+ Haofeng Wu <s2600cw2@126.com>, Shang Yatsen <429839446@qq.com>
+References: <20250723074540.2660-1-Simon.Richter@hogyros.de>
+ <20250723074540.2660-2-Simon.Richter@hogyros.de>
+ <0b4df78a-5740-415e-9939-b9c00ead84e7@aosc.io>
+Content-Language: en-US
+From: Simon Richter <Simon.Richter@hogyros.de>
+In-Reply-To: <0b4df78a-5740-415e-9939-b9c00ead84e7@aosc.io>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +48,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3022255949269786480==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+On 7/31/25 18:55, Mingcong Bai wrote:
 
-Series: drm/i915/display: global state cleanups
-URL   : https://patchwork.freedesktop.org/series/152335/
-State : success
+> -    bo->size = size;
+> +    bo->size = aligned_size;
 
-== Summary ==
+> Is actually still needed. Without this change, the kernel does not start 
+> up with an Intel B580.
 
-CI Bug Log - changes from xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8_BAT -> xe-pw-152335v1_BAT
-====================================================
+bo->size has been removed in commit ec9223b49, though -- instead, the 
+size is taken from the underlying GEM object, and the size field there 
+is taken from the third parameter to drm_gem_private_object_init, which 
+is "aligned_size" in your patch already, so this field is fully 
+redundant even if the size has been aligned.
 
-Summary
--------
+Tested on ppc64le with B580 using 64k pages, still survives a piglit run 
+just fine.
 
-  **SUCCESS**
+The field being removed was the reason for me resubmitting the patch 
+stack: it stopped compiling without dropping this line.
 
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 6)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-lnl-1 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8479 -> IGT_8481
-  * Linux: xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8 -> xe-pw-152335v1
-
-  IGT_8479: 5fea7ca6493415ce108231b0ff29f02d293f9aa6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8481: 8481
-  xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8: 7f74ca5c75dd28bc57d5ea1be165919bc70609d8
-  xe-pw-152335v1: 152335v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152335v1/index.html
-
---===============3022255949269786480==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: global state cleanups</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152335/">https://patchwork.freedesktop.org/series/152335/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152335v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152335v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8_BAT -&gt; xe-pw-152335v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 6)</h2>
-<p>Missing    (2): bat-adlp-vm bat-lnl-1 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8479 -&gt; IGT_8481</li>
-<li>Linux: xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8 -&gt; xe-pw-152335v1</li>
-</ul>
-<p>IGT_8479: 5fea7ca6493415ce108231b0ff29f02d293f9aa6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8481: 8481<br />
-  xe-3491-7f74ca5c75dd28bc57d5ea1be165919bc70609d8: 7f74ca5c75dd28bc57d5ea1be165919bc70609d8<br />
-  xe-pw-152335v1: 152335v1</p>
-
-</body>
-</html>
-
---===============3022255949269786480==--
+    Simon
