@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6529BC87FD3
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 01:50:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ECB5C87FDA
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 01:50:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BDFB10E2D5;
-	Fri,  1 Aug 2025 01:50:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D48FA10E2D7;
+	Fri,  1 Aug 2025 01:50:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WoQxuDX6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZTD/EPhN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF6E510E2D5
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 01:50:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D581E10E2D7
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 01:50:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754013029; x=1785549029;
+ t=1754013031; x=1785549031;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=w0ki8YeJXap/Qnh0KJmVBiBcBIrhXyv6UwMVGCuhqsU=;
- b=WoQxuDX6xm6Uesed065i/B+PcTDhZHsyDTyh6SccZ9A/klGABg3zWIGI
- 6iVKmWH83lRWr3U+4c/NTADOuJQMgtPpxljqwg1wXIlRUotm4oIIgpv4L
- VfdBGVrkm2+NkegPTPQbUu9y6j1dsJTE9IFYsuy6d85SdsBUPN17g6Ww7
- rp9Wlwhx9ByNsm8ECadLh34CX7fZ+By46mDkW+SKgFbJc00StjumV0LvW
- ufBE3kVp8WCsKETUnvERL1HCJhjBWx9rRkwBj4lE4kFXdCs0BYH7w5mKJ
- eeo/v1FS80AAXU39230rKhHg8kBOsi5wBL+EZcLLAjHu6rkGGw3YnsNor A==;
-X-CSE-ConnectionGUID: Z6eymCfaS3mJIPlFQtCqGA==
-X-CSE-MsgGUID: ixOiXMSuSDmK1M5tr4M4OQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="43953671"
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="43953671"
+ bh=VnVPn4os82HeWt0S+3WbsQuFFKXs9hSSIfdJ3+7L2Fg=;
+ b=ZTD/EPhNuGWvOx90KZzC5PZTT0rIRKsDe33R0ehV2VEL7qqnkfNvOdw5
+ wOxdPBPde20Mu9DxnvQiiIAgt7nYc8kMaHot35eT2wOYr0NGvB46XLizG
+ zqMpOPe8n7y/YXTUPQO7tmVNhB2yiDTUOAE67xfxYr3jlRNsPjjBIpHrH
+ xWz57fL9fyNwqJ1Fwi4djcUdsiLXHtGS7MZ7gYiVvj2g+9pRbnE/xNvKa
+ s1uf4kjKiNZkDArbTWwoIuGDp6YmZZps3U7r2V5MOY280HGEJHFuyiQsp
+ xvJrHyCTbRxMp8rWGdrOI70UtMSKmePnHmcPfDooRjKMQx+N7IO36u1Sx g==;
+X-CSE-ConnectionGUID: hieq8pXiQY+up0kE5Xh8cg==
+X-CSE-MsgGUID: Lkug+4nzQKOCdyZdfrkF/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="43953676"
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="43953676"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 18:50:28 -0700
-X-CSE-ConnectionGUID: /ogikBWHQ4y7gLM3HXFE+g==
-X-CSE-MsgGUID: SOTs/5p4Sguarg+WMBvhUw==
+ 31 Jul 2025 18:50:30 -0700
+X-CSE-ConnectionGUID: XCHe4EuARsySysWn/8rYIQ==
+X-CSE-MsgGUID: 1gtMvaAdSwq/F6xFwwECEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="194401363"
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="194401367"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa002.jf.intel.com with ESMTP; 31 Jul 2025 18:50:27 -0700
+ by orviesa002.jf.intel.com with ESMTP; 31 Jul 2025 18:50:29 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
@@ -47,10 +47,9 @@ Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v8 1/8] drm/xe/sa: Avoid caching GGTT address within the
- manager
-Date: Fri,  1 Aug 2025 03:50:38 +0200
-Message-Id: <20250801015045.957609-2-tomasz.lis@intel.com>
+Subject: [PATCH v8 2/8] drm/xe/vf: Pause submissions during RESFIX fixups
+Date: Fri,  1 Aug 2025 03:50:39 +0200
+Message-Id: <20250801015045.957609-3-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250801015045.957609-1-tomasz.lis@intel.com>
 References: <20250801015045.957609-1-tomasz.lis@intel.com>
@@ -70,146 +69,209 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Non-virtualized resources require fixups after SRIOV VF migration.
-Caching GGTT references rather than re-computing them from the
-underlying Buffer Object is something we want to avoid, as such
-code would require additional fixup step and additional locking
-around all the places where the address is accessed.
+While applying post-migration fixups to VF, GuC will not respond
+to any commands. This means submissions have no way of finishing.
 
-This change removes the cached GPU address from the Sub-Allocation
-Manager, and introduces a function which recomputes and returns
-the address instead.
+To avoid acquiring additional resources and then stalling
+on hardware access, pause the submission work. This will
+decrease the chance of depleting resources, and speed up
+the recovery.
 
-v2: renamed xe_sa_manager_gpu_addr(), added kerneldoc
+v2: Commented xe_irq_resume() call
+v3: Typo fix
 
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michal Winiarski <michal.winiarski@intel.com>
+Reviewed-by: Michal Winiarski <michal.winiarski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_debugfs.c   |  5 +++--
- drivers/gpu/drm/xe/xe_guc_buf.c      |  2 +-
- drivers/gpu/drm/xe/xe_sa.c           |  1 -
- drivers/gpu/drm/xe/xe_sa.h           | 15 ++++++++++++++-
- drivers/gpu/drm/xe/xe_sa_types.h     |  1 -
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c |  2 +-
- 6 files changed, 19 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c | 13 ++++++++
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h |  1 +
+ drivers/gpu/drm/xe/xe_guc_submit.c    | 35 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h    |  2 ++
+ drivers/gpu/drm/xe/xe_sriov_vf.c      | 46 +++++++++++++++++++++++++++
+ 5 files changed, 97 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index 8d4b66ca38b7..bf3a67b5951c 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -29,6 +29,7 @@
- #include "xe_pm.h"
- #include "xe_reg_sr.h"
- #include "xe_reg_whitelist.h"
-+#include "xe_sa.h"
- #include "xe_sriov.h"
- #include "xe_tuning.h"
- #include "xe_uc_debugfs.h"
-@@ -128,7 +129,7 @@ static int sa_info(struct xe_gt *gt, struct drm_printer *p)
- 
- 	xe_pm_runtime_get(gt_to_xe(gt));
- 	drm_suballoc_dump_debug_info(&tile->mem.kernel_bb_pool->base, p,
--				     tile->mem.kernel_bb_pool->gpu_addr);
-+				     xe_sa_manager_gpu_addr(tile->mem.kernel_bb_pool));
- 	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	return 0;
-@@ -152,7 +153,7 @@ static int sa_info_vf_ccs(struct xe_gt *gt, struct drm_printer *p)
- 
- 		drm_printf(p, "ccs %s bb suballoc info\n", ctx_id ? "write" : "read");
- 		drm_printf(p, "-------------------------\n");
--		drm_suballoc_dump_debug_info(&bb_pool->base, p, bb_pool->gpu_addr);
-+		drm_suballoc_dump_debug_info(&bb_pool->base, p, xe_sa_manager_gpu_addr(bb_pool));
- 		drm_puts(p, "\n");
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
-index 14a07dca48e7..502ca3a4ee60 100644
---- a/drivers/gpu/drm/xe/xe_guc_buf.c
-+++ b/drivers/gpu/drm/xe/xe_guc_buf.c
-@@ -164,7 +164,7 @@ u64 xe_guc_cache_gpu_addr_from_ptr(struct xe_guc_buf_cache *cache, const void *p
- 	if (offset < 0 || offset + size > cache->sam->base.size)
- 		return 0;
- 
--	return cache->sam->gpu_addr + offset;
-+	return xe_sa_manager_gpu_addr(cache->sam) + offset;
- }
- 
- #if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
-index 1d43e183ca21..fedd017d6dd3 100644
---- a/drivers/gpu/drm/xe/xe_sa.c
-+++ b/drivers/gpu/drm/xe/xe_sa.c
-@@ -69,7 +69,6 @@ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u3
- 	}
- 	sa_manager->bo = bo;
- 	sa_manager->is_iomem = bo->vmap.is_iomem;
--	sa_manager->gpu_addr = xe_bo_ggtt_addr(bo);
- 
- 	if (bo->vmap.is_iomem) {
- 		sa_manager->cpu_ptr = kvzalloc(managed_size, GFP_KERNEL);
-diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
-index 1170ee5a81a8..99dbf0eea540 100644
---- a/drivers/gpu/drm/xe/xe_sa.h
-+++ b/drivers/gpu/drm/xe/xe_sa.h
-@@ -7,6 +7,8 @@
- 
- #include <linux/sizes.h>
- #include <linux/types.h>
-+
-+#include "xe_bo.h"
- #include "xe_sa_types.h"
- 
- struct dma_fence;
-@@ -43,9 +45,20 @@ to_xe_sa_manager(struct drm_suballoc_manager *mng)
- 	return container_of(mng, struct xe_sa_manager, base);
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+index 869b43a4151d..455ccaf17314 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+@@ -101,6 +101,19 @@ void xe_sched_submission_stop(struct xe_gpu_scheduler *sched)
+ 	cancel_work_sync(&sched->work_process_msg);
  }
  
 +/**
-+ * xe_sa_manager_gpu_addr - Retrieve GPU address of a back storage BO
-+ * within suballocator.
-+ * @sa_manager: the &xe_sa_manager struct instance
-+ * Return: GGTT address of the back storage BO.
++ * xe_sched_submission_stop_async - Stop further runs of submission tasks on a scheduler.
++ * @sched: the &xe_gpu_scheduler struct instance
++ *
++ * This call disables further runs of scheduling work queue. It does not wait
++ * for any in-progress runs to finish, only makes sure no further runs happen
++ * afterwards.
 + */
-+static inline u64 xe_sa_manager_gpu_addr(struct xe_sa_manager *sa_manager)
++void xe_sched_submission_stop_async(struct xe_gpu_scheduler *sched)
 +{
-+	return xe_bo_ggtt_addr(sa_manager->bo);
++	drm_sched_wqueue_stop(&sched->base);
 +}
 +
- static inline u64 xe_sa_bo_gpu_addr(struct drm_suballoc *sa)
+ void xe_sched_submission_resume_tdr(struct xe_gpu_scheduler *sched)
  {
--	return to_xe_sa_manager(sa->manager)->gpu_addr +
-+	return xe_sa_manager_gpu_addr(to_xe_sa_manager(sa->manager)) +
- 		drm_suballoc_soffset(sa);
+ 	drm_sched_resume_timeout(&sched->base, sched->base.timeout);
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+index 308061f0cf37..e548b2aed95a 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+@@ -21,6 +21,7 @@ void xe_sched_fini(struct xe_gpu_scheduler *sched);
+ 
+ void xe_sched_submission_start(struct xe_gpu_scheduler *sched);
+ void xe_sched_submission_stop(struct xe_gpu_scheduler *sched);
++void xe_sched_submission_stop_async(struct xe_gpu_scheduler *sched);
+ 
+ void xe_sched_submission_resume_tdr(struct xe_gpu_scheduler *sched);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 751da5cd1d44..fe132d9d3156 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1830,6 +1830,19 @@ void xe_guc_submit_stop(struct xe_guc *guc)
+ 
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_sa_types.h b/drivers/gpu/drm/xe/xe_sa_types.h
-index 2b070ff1292e..cb7238799dcb 100644
---- a/drivers/gpu/drm/xe/xe_sa_types.h
-+++ b/drivers/gpu/drm/xe/xe_sa_types.h
-@@ -12,7 +12,6 @@ struct xe_bo;
- struct xe_sa_manager {
- 	struct drm_suballoc_manager base;
- 	struct xe_bo *bo;
--	u64 gpu_addr;
- 	void *cpu_ptr;
- 	bool is_iomem;
- };
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index bf9fa1238462..bc3c19c3ecef 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -169,7 +169,7 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_tile_vf_ccs *ctx)
- static void ccs_rw_update_ring(struct xe_tile_vf_ccs *ctx)
++/**
++ * xe_guc_submit_pause - Stop further runs of submission tasks on given GuC.
++ * @guc: the &xe_guc struct instance whose scheduler is to be disabled
++ */
++void xe_guc_submit_pause(struct xe_guc *guc)
++{
++	struct xe_exec_queue *q;
++	unsigned long index;
++
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
++		xe_sched_submission_stop_async(&q->guc->sched);
++}
++
+ static void guc_exec_queue_start(struct xe_exec_queue *q)
  {
- 	struct xe_lrc *lrc = xe_migrate_lrc(ctx->migrate);
--	u64 addr = ctx->mem.ccs_bb_pool->gpu_addr;
-+	u64 addr = xe_sa_manager_gpu_addr(ctx->mem.ccs_bb_pool);
- 	u32 dw[10], i = 0;
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+@@ -1870,6 +1883,28 @@ int xe_guc_submit_start(struct xe_guc *guc)
+ 	return 0;
+ }
  
- 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_ENABLE;
++static void guc_exec_queue_unpause(struct xe_exec_queue *q)
++{
++	struct xe_gpu_scheduler *sched = &q->guc->sched;
++
++	xe_sched_submission_start(sched);
++}
++
++/**
++ * xe_guc_submit_unpause - Allow further runs of submission tasks on given GuC.
++ * @guc: the &xe_guc struct instance whose scheduler is to be enabled
++ */
++void xe_guc_submit_unpause(struct xe_guc *guc)
++{
++	struct xe_exec_queue *q;
++	unsigned long index;
++
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
++		guc_exec_queue_unpause(q);
++
++	wake_up_all(&guc->ct.wq);
++}
++
+ static struct xe_exec_queue *
+ g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index 8f64e799283b..ff44500f3da2 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -18,6 +18,8 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc);
+ void xe_guc_submit_reset_wait(struct xe_guc *guc);
+ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
++void xe_guc_submit_pause(struct xe_guc *guc);
++void xe_guc_submit_unpause(struct xe_guc *guc);
+ void xe_guc_submit_wedge(struct xe_guc *guc);
+ 
+ int xe_guc_read_stopped(struct xe_guc *guc);
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index 26e243c28994..c66b17da1ce7 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -11,6 +11,8 @@
+ #include "xe_gt_sriov_printk.h"
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_guc_ct.h"
++#include "xe_guc_submit.h"
++#include "xe_irq.h"
+ #include "xe_pm.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_printk.h"
+@@ -147,6 +149,48 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
+ 		xe_sriov_info(xe, "migration not supported by this module version\n");
+ }
+ 
++/**
++ * vf_post_migration_shutdown - Stop the driver activities after VF migration.
++ * @xe: the &xe_device struct instance
++ *
++ * After this VM is migrated and assigned to a new VF, it is running on a new
++ * hardware, and therefore many hardware-dependent states and related structures
++ * require fixups. Without fixups, the hardware cannot do any work, and therefore
++ * all GPU pipelines are stalled.
++ * Stop some of kernel activities to make the fixup process faster.
++ */
++static void vf_post_migration_shutdown(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++
++	for_each_gt(gt, xe, id)
++		xe_guc_submit_pause(&gt->uc.guc);
++}
++
++/**
++ * vf_post_migration_kickstart - Re-start the driver activities under new hardware.
++ * @xe: the &xe_device struct instance
++ *
++ * After we have finished with all post-migration fixups, restart the driver
++ * activities to continue feeding the GPU with workloads.
++ */
++static void vf_post_migration_kickstart(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++
++	/*
++	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
++	 * must be working at this point, since the recovery did started,
++	 * but the rest was not enabled using the procedure from spec.
++	 */
++	xe_irq_resume(xe);
++
++	for_each_gt(gt, xe, id)
++		xe_guc_submit_unpause(&gt->uc.guc);
++}
++
+ static bool gt_vf_post_migration_needed(struct xe_gt *gt)
+ {
+ 	return test_bit(gt->info.id, &gt_to_xe(gt)->sriov.vf.migration.gt_flags);
+@@ -230,6 +274,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+ 
+ 	drm_dbg(&xe->drm, "migration recovery in progress\n");
+ 	xe_pm_runtime_get(xe);
++	vf_post_migration_shutdown(xe);
+ 
+ 	if (!vf_migration_supported(xe)) {
+ 		xe_sriov_err(xe, "migration not supported by this module version\n");
+@@ -247,6 +292,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+ 		set_bit(id, &fixed_gts);
+ 	}
+ 
++	vf_post_migration_kickstart(xe);
+ 	err = vf_post_migration_notify_resfix_done(xe, fixed_gts);
+ 	if (err)
+ 		goto fail;
 -- 
 2.25.1
 
