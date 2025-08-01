@@ -4,51 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECB4AC87FCA
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 14:28:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8A7FC87FCB
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 14:28:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9473110E863;
-	Fri,  1 Aug 2025 14:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA27410E885;
+	Fri,  1 Aug 2025 14:28:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="irsZ1k7x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C8QGP3sS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C23C810E863
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 14:28:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D33510E863
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 14:28:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754058513; x=1785594513;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GaR9rCp2ezkzW8JqiOcEINmmGgOomWugWbEmYlsL47Y=;
- b=irsZ1k7x+C5mcdvM5QzpS9GZSAjLKPzaXlyqt9DnfOHm3jc+pd/BNJ62
- NRYNzdMJoxu8sPqILK5cj0T3OYVdYtdIGW/EoQ4WTKshNJ30OVDRzyxt6
- jpdjGIcqQwnC2Ve/vI+IqdfEJ/jn6BDP6qehF0e31f9dWfHq5l5cW8WlH
- ERTl5rAqMNcYlTWaoCd34Sm0TsB9W7xNd41qii+wzIEtRxm7PyBuAVvVV
- x1a/zVo97uNHfuO+qnKyJQn3zmNH9UtgnG9TURKS1HUY4y1Wen5PFpvue
- tWTI1c/+7MmvKws+kVvv2psVnT8Tdo3CVLxWlYoXjSHEbWK2YM/8AnVQ7 w==;
-X-CSE-ConnectionGUID: gXOOrrVCSXCnC4V8RokERQ==
-X-CSE-MsgGUID: /I7kGzBQTUKqZIgyaCj4yg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="55466014"
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="55466014"
+ t=1754058514; x=1785594514;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=zkpwCoRX7U0NZueBqr1m2YEdTFkITo5khZytQedV43A=;
+ b=C8QGP3sS1fPPJ9KKP5GUX6Y+BHdQaExmE46jmYV3fOjqCFPeDjlbJYLj
+ g4BatTcPv01umT9qmA1ZNYh67Qw4t7zPFG6lrYksdZDgkwu7rNAHSn/uV
+ zbnVoy5kwuKVE3QUS1RL4cxrpI1uxTFcjcReHvrcZlEwM1O/7txO3C9MG
+ 55tyn4oAiLhyIi5RFv0MdKGBYheoUNlKOfrX1l9WXNBakqxqOdZMbT2DD
+ St0o/XoROUKIlcRF/VY4/Ey0JnWyUPxsxo14vT8PnomaGztXhWLvvXxO2
+ vx3taz7ZmT89Wcct/blHf1Bq8Jq5sIrII8flF2lzdEWbunWZL3o2a7Dof A==;
+X-CSE-ConnectionGUID: aSz8tjorRYmJcj9xiu71Hw==
+X-CSE-MsgGUID: 3CABSUJ3R1O9e8sQyAMdCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="55466015"
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="55466015"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2025 07:28:32 -0700
-X-CSE-ConnectionGUID: rsFKU//bRcmjkl2FlyZtIA==
-X-CSE-MsgGUID: oMVxAMcSRL+uxqa8IgR9Bw==
+ 01 Aug 2025 07:28:34 -0700
+X-CSE-ConnectionGUID: H5YU2R3EQJa4h0k0x46A7g==
+X-CSE-MsgGUID: Gb740+NhRFWCYXwAvclnyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="162858526"
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="162858531"
 Received: from mkolod1x-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.252.39])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2025 07:28:31 -0700
+ 01 Aug 2025 07:28:32 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 0/3] Misc PF improvements
-Date: Fri,  1 Aug 2025 16:28:19 +0200
-Message-ID: <20250801142822.180530-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: [PATCH v2 1/3] drm/xe/pf: Disable PF restart worker on device removal
+Date: Fri,  1 Aug 2025 16:28:20 +0200
+Message-ID: <20250801142822.180530-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250801142822.180530-1-michal.wajdeczko@intel.com>
+References: <20250801142822.180530-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,23 +70,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v1: https://patchwork.freedesktop.org/series/152303/#rev1
-v2: add asserts, drop logs (Piotr)
-    fix comments (Jonathan)
+We can't let restart worker run once device is removed, since other
+data that it might want to access could be already released.
+Explicitly disable worker as part of device cleanup action.
 
-Michal Wajdeczko (3):
-  drm/xe/pf: Disable PF restart worker on device removal
-  drm/xe/pf: Make sure PF is ready to configure VFs
-  drm/xe/pf: Don't resume device from restart worker
+Fixes: a4d1c5d0b99b ("drm/xe/pf: Move VFs reprovisioning to worker")
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+v2: add asserts in pf_{init|fini}_workers (Piotr)
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf.c | 32 ++++++++++++++++++++++++++++-
+ 1 file changed, 31 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c         | 79 +++++++++++++++++++--
- drivers/gpu/drm/xe/xe_gt_sriov_pf.h         |  1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c |  4 +-
- drivers/gpu/drm/xe/xe_pci_sriov.c           |  7 +-
- drivers/gpu/drm/xe/xe_sriov_pf.c            | 27 +++++++
- drivers/gpu/drm/xe/xe_sriov_pf.h            |  1 +
- 6 files changed, 113 insertions(+), 6 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+index 35489fa81825..2ea81d81c0ae 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+@@ -47,9 +47,16 @@ static int pf_alloc_metadata(struct xe_gt *gt)
+ 
+ static void pf_init_workers(struct xe_gt *gt)
+ {
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
+ 	INIT_WORK(&gt->sriov.pf.workers.restart, pf_worker_restart_func);
+ }
+ 
++static void pf_fini_workers(struct xe_gt *gt)
++{
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	disable_work_sync(&gt->sriov.pf.workers.restart);
++}
++
+ /**
+  * xe_gt_sriov_pf_init_early - Prepare SR-IOV PF data structures on PF.
+  * @gt: the &xe_gt to initialize
+@@ -79,6 +86,21 @@ int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
+ 	return 0;
+ }
+ 
++static void pf_fini_action(void *arg)
++{
++	struct xe_gt *gt = arg;
++
++	pf_fini_workers(gt);
++}
++
++static int pf_init_late(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++
++	xe_gt_assert(gt, IS_SRIOV_PF(xe));
++	return devm_add_action_or_reset(xe->drm.dev, pf_fini_action, gt);
++}
++
+ /**
+  * xe_gt_sriov_pf_init - Prepare SR-IOV PF data structures on PF.
+  * @gt: the &xe_gt to initialize
+@@ -95,7 +117,15 @@ int xe_gt_sriov_pf_init(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
+ 
+-	return xe_gt_sriov_pf_migration_init(gt);
++	err = xe_gt_sriov_pf_migration_init(gt);
++	if (err)
++		return err;
++
++	err = pf_init_late(gt);
++	if (err)
++		return err;
++
++	return 0;
+ }
+ 
+ static bool pf_needs_enable_ggtt_guest_update(struct xe_device *xe)
 -- 
 2.47.1
 
