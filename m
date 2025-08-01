@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5820C88CB9
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 18:14:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 304EFC87FCB
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 18:14:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B60F10E8E5;
-	Fri,  1 Aug 2025 18:14:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CACAE10E8E8;
+	Fri,  1 Aug 2025 18:14:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HObPoWMD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AeLc1QDN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3B8B10E8DE
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 18:14:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1831010E8E8
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 18:14:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754072046; x=1785608046;
+ t=1754072047; x=1785608047;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NoACZlo19vnvTfz+7milSWEYjSUWx2wr2ir6kmMMT4w=;
- b=HObPoWMD/DIXkKC+QQepMRL5KATlPoxJiZ9hJ/nw0qAJKt+/MLmrozX6
- vVXm0h3HXHkmJsOikRnx+GlBwNLrIAMbDSmyf41v/bKgC8KGIAfs6KImj
- SOi/oPd+QN3tJ5FCHD1gvk45Sb4CcAIuN91/xFxSrpXh6KBZUbxX8J0Sf
- 2mueR4DYCO/WlMp8TFCKLTwkq0Mv+oe5hB7o3Qwx+beDHAx32WsLT+AK4
- NfHYYJqrsECefiKy1I/Sb1JbLQ4WFkeC6uXpHuIoPY/5KYlWWilGN5cmg
- kTf66EE9HLBQeH1ubqlhdJwTzuIDL0JOevEeDxUi97W+wie/Se+YyF5ca w==;
-X-CSE-ConnectionGUID: 6hsOGBNVQM2xotFx7p9mLA==
-X-CSE-MsgGUID: Qd/Ycw3eTdaCuorpKHhqRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="56315576"
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="56315576"
+ bh=HsZBBo1/wB/TuYZGPyhQMm0uypIzKhur8wNRypq9zYA=;
+ b=AeLc1QDNtuKls/S76VmM9CWq9vIIMpvQvexbLRGUbkGoy9b6E138MFSt
+ Cih1SF0thQPTrLPKorQukQ1018nLIPnDyg2MZdaT8fkVdpN3e/pKb5oo7
+ a6y2PqT76uLrMov8EJoADZeRzMLnSdajhtc5hVJgmwDjMYPkUKoUF5WD1
+ TqTuNOx8ZI4THtdmt1rRn7MS9sbk5d+JjU6L5NFEVCA5qQ/s6EROAvfcF
+ e1ZVX89JbhmJYdVt4SGt1s5quwjb9JLcqJnmA/5vO6/4VK86QV89LzV+i
+ wo9l5Gv2sKPY3geQROwo7fZZMgB9W+qlz+VcMsELKceGRLP8Zx4XLvURU w==;
+X-CSE-ConnectionGUID: uDBcu/e/QE+sS2js/AB+7A==
+X-CSE-MsgGUID: j0sytP1YQbmoQBbJqibUpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="56315579"
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="56315579"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2025 11:14:05 -0700
-X-CSE-ConnectionGUID: klJnqxY2RkCmCfYf9fI6kw==
-X-CSE-MsgGUID: peqp2/vsTr6rgUHxTo/+JA==
+ 01 Aug 2025 11:14:07 -0700
+X-CSE-ConnectionGUID: zgUWckLmRvOOKsal4wG7Dg==
+X-CSE-MsgGUID: 42pHQ8s2QKGDFC/ap5lV0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="163553814"
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="163553820"
 Received: from mkolod1x-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.252.39])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2025 11:14:04 -0700
+ 01 Aug 2025 11:14:06 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 4/6] drm/xe/kunit: Promote fake platform parameter list
-Date: Fri,  1 Aug 2025 20:13:48 +0200
-Message-ID: <20250801181350.180780-5-michal.wajdeczko@intel.com>
+Subject: [PATCH 5/6] drm/xe/kunit: Use default GMDID version if none provided
+Date: Fri,  1 Aug 2025 20:13:49 +0200
+Message-ID: <20250801181350.180780-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250801181350.180780-1-michal.wajdeczko@intel.com>
 References: <20250801181350.180780-1-michal.wajdeczko@intel.com>
@@ -68,180 +68,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The list of all known representative platforms defined in xe_wa
-could be used in more places by othere test suites.
+For pre-GMDID platforms it is sufficient to provide platform enum
+or platform/subplatform enum pair to get full fake Xe device for use
+in KUnit tests. But if we specify GMDID platform without providing
+explicit verx100 values, we might get incomplete device test object
+that lacks any GTs.
+
+To relax tests from specifying full device config, use some default
+(or first available or defined) GMDID version if none was provided.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_pci.c      | 68 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h |  1 +
- drivers/gpu/drm/xe/tests/xe_wa_test.c  | 54 +-------------------
- 3 files changed, 70 insertions(+), 53 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_pci.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index 5c6403785984..e78d10df8359 100644
+index e78d10df8359..90c55f72d687 100644
 --- a/drivers/gpu/drm/xe/tests/xe_pci.c
 +++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -12,6 +12,74 @@
- #include <kunit/test-bug.h>
- #include <kunit/visibility.h>
+@@ -262,10 +262,10 @@ static void fake_read_gmdid(struct xe_device *xe, enum xe_gmdid_type type,
+ 	struct xe_pci_fake_data *data = test->priv;
  
-+#define PLATFORM_CASE(platform__, graphics_step__)					\
-+	{										\
-+		.platform = XE_ ## platform__,						\
-+		.subplatform = XE_SUBPLATFORM_NONE,					\
-+		.step = { .graphics = STEP_ ## graphics_step__ }			\
-+	}
-+
-+#define SUBPLATFORM_CASE(platform__, subplatform__, graphics_step__)			\
-+	{										\
-+		.platform = XE_ ## platform__,						\
-+		.subplatform = XE_SUBPLATFORM_ ## platform__ ## _ ## subplatform__,	\
-+		.step = { .graphics = STEP_ ## graphics_step__ }			\
-+	}
-+
-+#define GMDID_CASE(platform__, graphics_verx100__, graphics_step__,			\
-+		   media_verx100__, media_step__)					\
-+	{										\
-+		.platform = XE_ ## platform__,						\
-+		.subplatform = XE_SUBPLATFORM_NONE,					\
-+		.graphics_verx100 = graphics_verx100__,					\
-+		.media_verx100 = media_verx100__,					\
-+		.step = { .graphics = STEP_ ## graphics_step__,				\
-+			   .media = STEP_ ## media_step__ }				\
-+	}
-+
-+static const struct xe_pci_fake_data cases[] = {
-+	PLATFORM_CASE(TIGERLAKE, B0),
-+	PLATFORM_CASE(DG1, A0),
-+	PLATFORM_CASE(DG1, B0),
-+	PLATFORM_CASE(ALDERLAKE_S, A0),
-+	PLATFORM_CASE(ALDERLAKE_S, B0),
-+	PLATFORM_CASE(ALDERLAKE_S, C0),
-+	PLATFORM_CASE(ALDERLAKE_S, D0),
-+	PLATFORM_CASE(ALDERLAKE_P, A0),
-+	PLATFORM_CASE(ALDERLAKE_P, B0),
-+	PLATFORM_CASE(ALDERLAKE_P, C0),
-+	SUBPLATFORM_CASE(ALDERLAKE_S, RPLS, D0),
-+	SUBPLATFORM_CASE(ALDERLAKE_P, RPLU, E0),
-+	SUBPLATFORM_CASE(DG2, G10, C0),
-+	SUBPLATFORM_CASE(DG2, G11, B1),
-+	SUBPLATFORM_CASE(DG2, G12, A1),
-+	GMDID_CASE(METEORLAKE, 1270, A0, 1300, A0),
-+	GMDID_CASE(METEORLAKE, 1271, A0, 1300, A0),
-+	GMDID_CASE(METEORLAKE, 1274, A0, 1300, A0),
-+	GMDID_CASE(LUNARLAKE, 2004, A0, 2000, A0),
-+	GMDID_CASE(LUNARLAKE, 2004, B0, 2000, A0),
-+	GMDID_CASE(BATTLEMAGE, 2001, A0, 1301, A1),
-+};
-+
-+KUNIT_ARRAY_PARAM(platform, cases, xe_pci_fake_data_desc);
-+
-+/**
-+ * xe_pci_fake_data_gen_params - Generate struct xe_pci_fake_data parameters
-+ * @prev: the pointer to the previous parameter to iterate from or NULL
-+ * @desc: output buffer with minimum size of KUNIT_PARAM_DESC_SIZE
-+ *
-+ * This function prepares struct xe_pci_fake_data parameter.
-+ *
-+ * To be used only as a parameter generator function in &KUNIT_CASE_PARAM.
-+ *
-+ * Return: pointer to the next parameter or NULL if no more parameters
-+ */
-+const void *xe_pci_fake_data_gen_params(const void *prev, char *desc)
-+{
-+	return platform_gen_params(prev, desc);
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_pci_fake_data_gen_params);
-+
- static const struct xe_device_desc *lookup_desc(enum xe_platform p)
- {
- 	const struct pci_device_id *ids = pciidlist;
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-index 1195839999ab..5e9a7ffc747f 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-@@ -24,6 +24,7 @@ struct xe_pci_fake_data {
- };
- 
- int xe_pci_fake_device_init(struct xe_device *xe);
-+const void *xe_pci_fake_data_gen_params(const void *prev, char *desc);
- void xe_pci_fake_data_desc(const struct xe_pci_fake_data *param, char *desc);
- 
- const void *xe_pci_graphics_ip_gen_param(const void *prev, char *desc);
-diff --git a/drivers/gpu/drm/xe/tests/xe_wa_test.c b/drivers/gpu/drm/xe/tests/xe_wa_test.c
-index 391f9597f74c..d67bfa3ec494 100644
---- a/drivers/gpu/drm/xe/tests/xe_wa_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_wa_test.c
-@@ -15,58 +15,6 @@
- #include "xe_tuning.h"
- #include "xe_wa.h"
- 
--#define PLATFORM_CASE(platform__, graphics_step__)				\
--	{									\
--		.platform = XE_ ## platform__,					\
--		.subplatform = XE_SUBPLATFORM_NONE,				\
--		.step = { .graphics = STEP_ ## graphics_step__ }		\
--	}
--
--
--#define SUBPLATFORM_CASE(platform__, subplatform__, graphics_step__)			\
--	{										\
--		.platform = XE_ ## platform__,						\
--		.subplatform = XE_SUBPLATFORM_ ## platform__ ## _ ## subplatform__,	\
--		.step = { .graphics = STEP_ ## graphics_step__ }			\
--	}
--
--#define GMDID_CASE(platform__, graphics_verx100__, graphics_step__,		\
--		   media_verx100__, media_step__)				\
--	{									\
--		.platform = XE_ ## platform__,					\
--		.subplatform = XE_SUBPLATFORM_NONE,				\
--		.graphics_verx100 = graphics_verx100__,				\
--		.media_verx100 = media_verx100__,				\
--		.step = { .graphics = STEP_ ## graphics_step__,			\
--			   .media = STEP_ ## media_step__ }			\
--	}
--
--static const struct xe_pci_fake_data cases[] = {
--	PLATFORM_CASE(TIGERLAKE, B0),
--	PLATFORM_CASE(DG1, A0),
--	PLATFORM_CASE(DG1, B0),
--	PLATFORM_CASE(ALDERLAKE_S, A0),
--	PLATFORM_CASE(ALDERLAKE_S, B0),
--	PLATFORM_CASE(ALDERLAKE_S, C0),
--	PLATFORM_CASE(ALDERLAKE_S, D0),
--	PLATFORM_CASE(ALDERLAKE_P, A0),
--	PLATFORM_CASE(ALDERLAKE_P, B0),
--	PLATFORM_CASE(ALDERLAKE_P, C0),
--	SUBPLATFORM_CASE(ALDERLAKE_S, RPLS, D0),
--	SUBPLATFORM_CASE(ALDERLAKE_P, RPLU, E0),
--	SUBPLATFORM_CASE(DG2, G10, C0),
--	SUBPLATFORM_CASE(DG2, G11, B1),
--	SUBPLATFORM_CASE(DG2, G12, A1),
--	GMDID_CASE(METEORLAKE, 1270, A0, 1300, A0),
--	GMDID_CASE(METEORLAKE, 1271, A0, 1300, A0),
--	GMDID_CASE(METEORLAKE, 1274, A0, 1300, A0),
--	GMDID_CASE(LUNARLAKE, 2004, A0, 2000, A0),
--	GMDID_CASE(LUNARLAKE, 2004, B0, 2000, A0),
--	GMDID_CASE(BATTLEMAGE, 2001, A0, 1301, A1),
--};
--
--KUNIT_ARRAY_PARAM(platform, cases, xe_pci_fake_data_desc);
--
- static int xe_wa_test_init(struct kunit *test)
- {
- 	const struct xe_pci_fake_data *param = test->param_value;
-@@ -119,7 +67,7 @@ static void xe_wa_gt(struct kunit *test)
+ 	if (type == GMDID_MEDIA) {
+-		*ver = data->media_verx100;
++		*ver = data->media_verx100 ?: media_ips[0].verx100;
+ 		*revid = xe_step_to_gmdid(data->step.media);
+ 	} else {
+-		*ver = data->graphics_verx100;
++		*ver = data->graphics_verx100 ?: graphics_ips[0].verx100;
+ 		*revid = xe_step_to_gmdid(data->step.graphics);
+ 	}
  }
- 
- static struct kunit_case xe_wa_tests[] = {
--	KUNIT_CASE_PARAM(xe_wa_gt, platform_gen_params),
-+	KUNIT_CASE_PARAM(xe_wa_gt, xe_pci_fake_data_gen_params),
- 	{}
- };
- 
 -- 
 2.47.1
 
