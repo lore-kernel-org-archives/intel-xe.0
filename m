@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05759C87FCB
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 15:25:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03ACFC87FCA
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 15:29:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA0C510E8A4;
-	Fri,  1 Aug 2025 15:25:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0FC210E8C3;
+	Fri,  1 Aug 2025 15:29:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LNtI2ls3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mOxJNvHI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E50810E8A4;
- Fri,  1 Aug 2025 15:25:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ABA510E8C3
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 15:29:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754061916; x=1785597916;
+ t=1754062176; x=1785598176;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=r2EzLFxVNoLcKNSadECOSD1Ln1AM/rayWxhc9AsHsGs=;
- b=LNtI2ls3LUuNNM+6gB6NZLpEounhTbJYyqNxv/ddRWWTDFWx7jS/ypJV
- 8XL968sAkA6M8J0/xmR+vwoqRY3UiDDnq8kjwy0yi4FDGzHkQsW8GImwu
- S+o5yPbzrlqJc6NAyxbsuQhQAUuTtdvfHbx6nslks/rh+vJvDD8JU/Mtz
- UjXrNoIj+m6xo11+X8kdkr2eb72zFI7Obx/HNduFFPq5sciunLC3GvrCy
- wN0hrP4kkvmhe1L6tiLXCNd1LwY5ujtWpFUMs7ETOpeG69T4e7HUtuMAG
- MP9OMIx+nkcRcPiRmROsEbvS489ybOT+EOieJTSDrn08tUnta0renein+ Q==;
-X-CSE-ConnectionGUID: q8cO/K8oQuiAWQ/OaUYAyg==
-X-CSE-MsgGUID: OO8DMtowR+Gc+x1AS3dZkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="67777863"
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="67777863"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2025 08:25:16 -0700
-X-CSE-ConnectionGUID: UI3Rwh7SSo+2sd9Zy84kdg==
-X-CSE-MsgGUID: B4Nmt3ITRVmsJdmQZcgrTw==
+ bh=P8PL4Cu7yzMnyya4we6okF+ZgVdRfXQXx+hDOsdT6kc=;
+ b=mOxJNvHISv9aVd4f3oOVqefhPO4NHRl5nIRR9+J2ctjCtdswlloFwBCp
+ ONykjxezT8ToIcMu2EBCwr0Mh68GOCUb40a3tazyAHUtdohZOh1HQHG1X
+ JzTFehDukPb93jsutOz1ULbYPvWrnBlXoQ7p4qKVJs7+MDNxUicj0TPCP
+ f6zv6XGQ2Ja3JyXlXu/pqM3V4w5EhwpdoGUn5P8MD3aLUWcVQAkoADmeU
+ yyZVbysxCYplH/tThs19A4UfnqdAXkHCMNS2hVQ4tnZktfH+9tVjVPRnE
+ HvwR6Pm/S/ESNUCDehyrQM25pcfyDZMlAMJmyk5lJH1t9JnzJVxIysxZU Q==;
+X-CSE-ConnectionGUID: qTyfi79xQDyCn3qy7HxGYg==
+X-CSE-MsgGUID: 4GvPsrV7T566H/KSJyFV9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="56370786"
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="56370786"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2025 08:29:36 -0700
+X-CSE-ConnectionGUID: 4xfPjVsBT+CtGtJ/Aq3rgQ==
+X-CSE-MsgGUID: xmFsHFBvSxC2tdXFFKLBkA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="168971537"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2025 08:25:16 -0700
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="163518788"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2025 08:29:35 -0700
 Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Fri, 1 Aug 2025 08:25:15 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ 15.2.1748.26; Fri, 1 Aug 2025 08:29:35 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Fri, 1 Aug 2025 08:25:15 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.73)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.1748.26 via Frontend Transport; Fri, 1 Aug 2025 08:29:35 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.43) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Fri, 1 Aug 2025 08:25:15 -0700
+ 15.2.1748.26; Fri, 1 Aug 2025 08:29:33 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=R32t8f4tZvJNRppXiNd+DbBhX0v+sB7Fj2nPBf8hvUsYspcE4dDVfcRcjQnMU/D1L8YUWG19R/huQLyK9IiVjhfaE0o27WHQKya400j7H7GDiOw8ufII6oqkocclub01+MVw48buDR9/KxtpHtWyRTwMVmiPpw1uHe9xyIG5lBYe0kjWwDBK/Lkw4AFCKGBtkAoVINeCSaVymRh+7fAgYY+Nbj8R9WWeFBKOWzs98mrksImu4BGUhDkWsnOKw69D/NFaC43J303D2ZnZAeWvm5EYesgXn7ZUZsdJ1DKzAwUncE2ingIkB/TzVv/kNU6kiCPSqcJ6MyZ8ym1uPG4rIg==
+ b=H42LkNM/7hZWesp3sfhrO21XfxJyoLnhZlq9wakT7M7W8GFKtp5zhSDXjGHWztpDRR7JW911bXG8n/gu1EXSlMiqQQj229fanLSCpozlaByaxcym1cYl/KwtstOSNtRZejwaG8s4F43qWDpU6ca7MtVib2pLDc8jM1vDM8FNZ8I07Lf1CFNdB3hC9dUaM97BVRsrC8xxHsxNpxnjCOrF7qXnfIGPNt8cmzp4iR+gU0BJrVx7UrN2EAqehR5YOb6ki+nGTMmcRG6WZA15+xxEVRel3L8VnR2xghMoHfyB0PGfLMrFl4HCpH6X6mj7hm77d/Cr4rsBS52yBLgc9I4NXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bt3nQq6iayU1LS25F5KKm9csEsxofzLorN6HdyXCLc4=;
- b=s9up9vr0BF/zAvV3XCPBikWztK/G2dUQPCxy7YDHZs+d9L9SdlFuKLQsw0Hmq9MHTS1gjvb3hLz1FPN4/7Do4TC5qmVu+8exxPb51tE3buB07bdbadAaB0880L+xZ645GLkZBl4YS4P1U2TQRm6lpbWjuL7H3MPTcclYope5gj9ZSV+VKjAdGTUlmdgW747IhUco9Z183aZ+JPFE6ZKLTNjsEciVoLRM6TuezNJTMVOQrAEg0VJpPPuteNYNGQ62v//gKRs6w2d8tjDq7GaJDfZ7kjM+bTCxsJF5hUELy0DxUlTkmDupd7qrxdObOxuPyKVMi9wpBRNsn7GW+HEfsQ==
+ bh=gwPPZDpPA/ZKjjBcME5zszyijUSW62YETZswiP0pZSA=;
+ b=brbrKIBnE3PSmpoXkZmibxRSiKLrB3QdMcSu8aebCsPq+2sRqLXnkqkcRz1TzAooSRZP3gCxY+wcXSG7L00sEG5hNhgSnsoYHfYXHWYRNdmdg+Xff9OGs4FtDSUcJ+EOxI6aP5toQXuKsS4oU+E2BsJ/oJQCUCc+FbOkqFqxZYlCTnomhLV/eXyS3HV4F5AVCo6ClV86jcmkKXxamMLd5UGtjf0FC4iqOOYae1J8Q+xCDkzk5x/LPBivVtH0lFkrTX9pENmH0+hzbY/Fyy+oVSbN+CD/Xwdp69nC0JghWDREbutMsqzWfvFkeAIHqu7GBtrBqdeH/coGfvUSlMPY/g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,107 +69,97 @@ Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
  by BL1PR11MB5977.namprd11.prod.outlook.com (2603:10b6:208:384::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.14; Fri, 1 Aug
- 2025 15:25:06 +0000
+ 2025 15:29:16 +0000
 Received: from CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::76d2:8036:2c6b:7563%5]) with mapi id 15.20.8989.011; Fri, 1 Aug 2025
- 15:25:06 +0000
-Date: Fri, 1 Aug 2025 11:25:02 -0400
+ 15:29:16 +0000
+Date: Fri, 1 Aug 2025 11:29:13 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <imre.deak@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Dibin Moolakadan Subrahmanian
- <dibin.moolakadan.subrahmanian@intel.com>, <intel-gfx@lists.freedesktop.org>, 
- <intel-xe@lists.freedesktop.org>, <ankit.k.nautiyal@intel.com>,
- <uma.shankar@intel.com>
-Subject: Re: [PATCH v2] drm/xe/display: Block hpd during suspend
-Message-ID: <aIzcTmZ_TvpCRoKG@intel.com>
-References: <20250723092946.1975018-1-dibin.moolakadan.subrahmanian@intel.com>
- <aICtgAa54ESMZ2ii@ideak-desk> <aIDhTEcPoL5Y8Aoj@intel.com>
- <7b9d3439-ad9b-4ebf-86ee-0aa1c7b87b8c@linux.intel.com>
- <1c1510bdb0b9ade97da615f81d91e8f7cde20275@intel.com>
- <aIjcRFU90s6Ml9Vt@intel.com> <aIjizdet9ZUXB-yx@ideak-desk>
- <f7397d551049d81c4d59be25db23d41cbf8ed602@intel.com>
- <aItbBXMNinP4TaEy@ideak-desk>
- <0abb5f2108a1b6c86766e4d8416398a40bbf993d@intel.com>
+To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Stuart Summers <stuart.summers@intel.com>
+Subject: Re: [PATCH v4] drm/xe/devcoredump: Defer devcoredump initialization
+ during probe
+Message-ID: <aIzdSdvk7QwcnPSO@intel.com>
+References: <20250801052356.21885-1-balasubramani.vivekanandan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <0abb5f2108a1b6c86766e4d8416398a40bbf993d@intel.com>
-X-ClientProxiedBy: BYAPR07CA0060.namprd07.prod.outlook.com
- (2603:10b6:a03:60::37) To CYYPR11MB8430.namprd11.prod.outlook.com
+In-Reply-To: <20250801052356.21885-1-balasubramani.vivekanandan@intel.com>
+X-ClientProxiedBy: BYAPR05CA0040.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::17) To CYYPR11MB8430.namprd11.prod.outlook.com
  (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|BL1PR11MB5977:EE_
-X-MS-Office365-Filtering-Correlation-Id: 48697720-e87e-45ac-4db0-08ddd10f9830
+X-MS-Office365-Filtering-Correlation-Id: f89ce2ec-7410-46db-112e-08ddd1102cd2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?JSMx5NtwIXn4ItPc6BKEe9Vi24XZfRJCz5xnHzXo1DyijdlijgdWNnjK3d8Q?=
- =?us-ascii?Q?Bg5Yrf/MI0gMk/+qMRSDFptT3gJJJNuji0282Y8yiu5idLqQoakiE+ZVVY91?=
- =?us-ascii?Q?VdCXPjIn7PHBPHnrenNzqosOOgEvrPAVuPiFAjHjbcg11uBo7mutXXbhiQkt?=
- =?us-ascii?Q?+0e6i+tYo7IT9JwhdfoVJsjpmr4WtRkALu0eESk1IUbe2LUkv1We+4ZtSctg?=
- =?us-ascii?Q?I/smd2pxB33Z/g7mrbGMRJoU1zRfp7/TMrj4Du16RebHQUMvg4xizB26DHtM?=
- =?us-ascii?Q?83fenm26ypO/zpIwLa1vD/JOrb4E8VR4LueEE6hEJrgCUO9Ye6A/1BKGjoWe?=
- =?us-ascii?Q?/zEYb+g1xkjd0u65T5lfaKIR6NIsDR+LSgUaAIfNLzxpWmlhlc6rIaMQecgC?=
- =?us-ascii?Q?f6Q5BjGC8u57eCKQHyDCc46TXo6RM/Q1abyOIphTsdzQiFlT2lWmbkfmaoFm?=
- =?us-ascii?Q?zp1Nx00wCA/+sZ207Z1fLPp496SNHlCZkTmKQqlRS4ForO/WsNZnFNOXJmpu?=
- =?us-ascii?Q?2Uo6ddYE6fnmfZwvI05eD3eEQOjviR4NR6l+5SEsPZ6M1nlP+wMBpEoqNojY?=
- =?us-ascii?Q?BvII1Q2qgydAM2Ev5e7FtdWfF02sOundcF2dLHW0Ln73DyVs8F8aoHyJvj7n?=
- =?us-ascii?Q?82Lq0Ibpxjw10ucki/gFzQT1tbETtFDLEkAW7WDvQc3jKubJGP4zRdlo8uQo?=
- =?us-ascii?Q?OSuT7EX36dBGtvb5BtX+7vXRqhWWeDb/nn13MugtKLKhNClo65tPPOaXde1z?=
- =?us-ascii?Q?QMKD5ht364LgGYCyxg15ndRxMvrGRNDB0GShxM331G1ycc0HZPvzI8D41J7C?=
- =?us-ascii?Q?dDJhO0ycpgFeEZub1CYELKps5QYaPPEbfr1Pq8x2I9LNo0sTlXKazE5tcrBf?=
- =?us-ascii?Q?/9/gTkpZ7Zabz+2wQt2sQgvR8BSeV9gYouzjb9HF0lYnGDdL20dcubJsW6MN?=
- =?us-ascii?Q?gDeG4SCjnwCc1t0qPLbQCMjD1vLkzZq/4tsPf55o8Admj+o4totexY7o0CD9?=
- =?us-ascii?Q?gPWBAiF3aLuEMhAa4I0uuqGtIBFkemz9++ECyVxzT0akxT8MmrxYNILiw6H5?=
- =?us-ascii?Q?BQfFcruVI62LRrugQ99VC09AwydvZ7ExCu9A45OAqzKGd8niSvScFrte92Yb?=
- =?us-ascii?Q?F/dVrlATNU0hgYufbtGUsxAP5IuqOcrNSM2YyMB7FuldiuwkiCrSeDn78XpH?=
- =?us-ascii?Q?UKgmjpDs11uiS1J0CF7RAWKTXvyCHoBDfdHRj3013iR4MXJft+zfOQvXZmva?=
- =?us-ascii?Q?ci6eyl3KxYtb0o/WWwd8saIvuz8UuKhGupNy+ClrcL7eB4ebPHR2O105rQf2?=
- =?us-ascii?Q?pU9qKFCoJBEzk7CquSi79Grnm3mMgEByayl0vThrchUIZw9pJhSAqDNeF9HA?=
- =?us-ascii?Q?pfj1GxbDF4r6Uhwcll1QC5URj/j9zYDezWaJkXaVNZq29srAG5h3h2pANjcH?=
- =?us-ascii?Q?vlIe4UKuYGg=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hW6W/2NWQbUbPfP7MW8SRiXO/RWLp1HVPZzbE/uI8jZG5jOswKk6gNZ7wJdj?=
+ =?us-ascii?Q?TYlTVuxKtvg4IL2kQ6AYcPNbpkZ/hYtQWl/a3AU7U/P1Lt2RFFiPTfxsLzoj?=
+ =?us-ascii?Q?jmZZrNr84ZbSKajd0V3QBALXb7iH/LRqxkQJik4sV+tO4B3pIMtLb6o3i7wW?=
+ =?us-ascii?Q?C0GD2ptCo9r09QAugvxFtu8KopQkzwBtBIVi6GwDZLqMwcx034AtUeVNHrvg?=
+ =?us-ascii?Q?5g28xQ+IbGBoUn4pz1oexmhOENjM1jHbqy6O353bQLxzAiSy318+k088f6Vm?=
+ =?us-ascii?Q?nFSUxYZQ206yYu3nR6rz9//cu2RxuDgEDD1ll3ek1fUVpgxdWiZddt/aVz/f?=
+ =?us-ascii?Q?t5Y+3+INGaVJNbnYYtGI40EpaOWDNG5IuINgziQETKWOMHecceKWF3K9eDd0?=
+ =?us-ascii?Q?lIVBXV5m7vQUyp5J0B2b59qAxOwibJZOTYA4+9iR1UTk7Ltza0xLf/JPbpdI?=
+ =?us-ascii?Q?0xCHoOCMzqRL51VD+cdSCfpvumMFN+WHnnLvYbtNOEfjEhSS0/OkW4tukfdP?=
+ =?us-ascii?Q?9k1CMbdKUYG6JXMCuKutXIUZ3oxH1jyDDAJpMPLX3nAyiWSypWRO1IJdbdpe?=
+ =?us-ascii?Q?qSQZFIBHQdCyaZNO1nrHTC3FifNjUCF+UwVo1R8ES5iBb+EpMBlczem+YVAf?=
+ =?us-ascii?Q?kSy3KaI+usD7OxRWGI/49wMnD/bknBGfm7uAFKhWpQaKYm/KNPjeODMLcWaK?=
+ =?us-ascii?Q?gzcYLEVTrxOW/v5Q/1csbDwn6RfagwDwj2MNndPNggcyreIE2+F0/cvUWRL2?=
+ =?us-ascii?Q?TGCoUJZSyVoO3fjgGeW4ctN6mrg67anwWnQuJq9IKgMR6wl5QNs/ZYyrPAyr?=
+ =?us-ascii?Q?ateQ8siSlcjLOhXsb2lDV9v9PS/l9+rUIzjSZkn3vvUD5yBqe3+/163y1uTt?=
+ =?us-ascii?Q?xZz5lF1VdlMNC7h9YNddVcyk1hmc6AQ/zKOzaPiKGwSky5RWMN13BAI7w9Xm?=
+ =?us-ascii?Q?uKG8k1qjvTXk8s2q/EFujLZbGb36uPr+IXNN9/QLoCwgkakOort86NcxVzh6?=
+ =?us-ascii?Q?rCl4UdLh4WH7xhZvz8VzL0qQY1XXHHiYHJhGltal4s7JeWTUf6d9x0+YnEe4?=
+ =?us-ascii?Q?Dyk/IRMbC3k3Y8YeM3egTzfx7j0HGdOxd2+YyhP+U+NJXrXI/ynfT5hh7t7r?=
+ =?us-ascii?Q?0NISxKjfWkHnehbRSrzA1FGbBIyxbodsdJd7hhVEV4nehmiIwHFri7RBy/gm?=
+ =?us-ascii?Q?HAwrTkbcGDrWEHMyssEdxrrDvx3RvtOv60YC3hRPZwrdKX90YLIJs8as4IVj?=
+ =?us-ascii?Q?GjwqJ+P6FXuIheSJEgjVQSwr46NY431HE+yBaMQHojZBEL06qyHMxFmurAze?=
+ =?us-ascii?Q?Njr0JVolW6pxrB6lguvwwzz185W4kmp/kegJPgCO6DUp+iaSYXdqOgN6tMWy?=
+ =?us-ascii?Q?NvlxSLK8eHsEBmCZI85hMhDrT+lOae96UN1Qp5E0p2Y+EGIU3yGDv460LXNw?=
+ =?us-ascii?Q?Eh1IY8uCikA=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OOO5rXnVkXt9+new/4b5bQimrsA0nZMbMi56NgqXqULnZl1t0JK6MTzFno4p?=
- =?us-ascii?Q?yKG6NTot1RRa1qAruEZtEKgkT6SHjwYt2bmSpL0hMY684kAPGWKFL3IzpRc3?=
- =?us-ascii?Q?M44lnBgtDT5ZKF0bV1LwMAppVqdACXg/9csUw6zSisbpoXxSMarOgPBqTX6f?=
- =?us-ascii?Q?tisVH7pa1hFswBiBFflWMzlrfROjfkypa0sZeYeqCp8cI0iKSx0GlOEqc+Wc?=
- =?us-ascii?Q?hvTJLDMhxk8t72jRHGFVIFtOlqY7Zt4Jv6vWTlv2WpU8dSfmG30kL09nML0z?=
- =?us-ascii?Q?TYSqksOsUPbpZ3lPJwYBgiSn8GYO1pd/E0CZ55iW44wI57YAVPbLSIV7oLQy?=
- =?us-ascii?Q?gIQvTvEEdOhdft1LlyT2PoLoFlCP8PlLu2yy3N6bDR1Z0DNxIEORCRvehang?=
- =?us-ascii?Q?NmjKcOMqUacvENmtY35Eso5XxRz2F2nHsuDWL3hgmYtSujjhgWL3UlbwV7Qy?=
- =?us-ascii?Q?1eemYIh0yRCUyIsTLne3M4j/jR02No2IkfQUV+izlzZgzQZRcX99Bw9aDwWm?=
- =?us-ascii?Q?u1MasTPvA7MVrkVqlDB+Qz5xOR+2C8a0q2rbfYKsBoB4nVQeqlgkyLyqszIO?=
- =?us-ascii?Q?biuCqRoOzDpkmKFJB/emqFkZ8m0Tejq/W3CJimKyxWhfZyqdMz5jghos4Nq3?=
- =?us-ascii?Q?8AiwU/T36++hMGX8U843nOhmqwTH4YPRLc5b/vcPZcj4Ll7dlKUaoFMVROav?=
- =?us-ascii?Q?qz5TJGmQiY9g4NTSwfbcPI5w/0dZs8uiGc9VffWTuym762d00Mu87KIwPwGP?=
- =?us-ascii?Q?rBgjz/KNKqG4V9pNvCSPq10i7qS5VFD7bOCNTAb/nknkX/mTZ9f//p4hEMt/?=
- =?us-ascii?Q?xjSgBnTNdXWf2Fa9W75h4+LJ3LwvpB5XtW6Zgl3Hw2JHDdqDoe+YFz0fjDqQ?=
- =?us-ascii?Q?XiFynWBaKOKrXTz3TBt9skt+RCuBPkzDEKEelxQ4Iowi1f60bDuQ2vly7IN0?=
- =?us-ascii?Q?AL9BmFN4D2LzK+bwMVb/nV/R/AL5K5zB4ZO/ft6ce/tY7AgsoNd/Y0y80ia9?=
- =?us-ascii?Q?JSW7Q/EKc4udNVD5elKyzToyYJZ1BUDbruAJg+4rvqtCSpN+OHD7LUiAlMcc?=
- =?us-ascii?Q?n4xobrlCsPBMVEiuRP7SjHsn9Gdnz5D1HEvohTfvf3htb162RuXELNCpPUy9?=
- =?us-ascii?Q?Q6BRo4RvZ+ZU4odO6G2SZZMN28u7wvLxmF9E9+2TUWwdi5Lfh+w6RnG8iijr?=
- =?us-ascii?Q?BHnyRxDF6BoEKXHDmPgmgLexHwV84oozzE0AR4DRTwz5abu4VQyjHji1U7AA?=
- =?us-ascii?Q?Iry7XsqerGEdOeJLfNjRYRdbkcjcsUzcUQJKitPRdnPJy+Q2NGc8vYZeF9Ck?=
- =?us-ascii?Q?t9szRXH8SOmMogJEdfo0ygZRKNiLa2iA6No2cVM2kfGnrXvOrjqkQAQMTas3?=
- =?us-ascii?Q?Svsh6Jsu637sGVzDbpL9hZ/nijDxTYQVWxHiXjKpOPqxeNijEbY5CJArNJE3?=
- =?us-ascii?Q?JI0b4mCQcIFDFYbMN+rv5lRq0HNSVxbfZPUY5eZJjXbRY6A62BAtDiVcVl6o?=
- =?us-ascii?Q?BpZ//wi9pT35LARiBZcKmpjLTJMcfIjj8eoQu8wxqXj+a25OI0sbqSWF4xOx?=
- =?us-ascii?Q?T2lozFZX0Hszj4EZAfJG8fME0BEiz77fu5TkShzaTaxGdq58zmdGjS3vU+9o?=
- =?us-ascii?Q?ow=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48697720-e87e-45ac-4db0-08ddd10f9830
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5u0f3LcPRVvgjjDb9At/PcytUJsx4Mz/y2nY5/GIfZuqKY7QySt4yb0grsPr?=
+ =?us-ascii?Q?DzUx5kvN1QrNoYhKM5Ts3rwzDf1YsVQqy6K8qxkXg1qzxmVJ3XnOD28iU/pv?=
+ =?us-ascii?Q?xv0A60v/2CzJ7WR6mUMrBO+nUhRES3ou7Xbq+kxl58N7teI8b4TcivBNIXW1?=
+ =?us-ascii?Q?1SFPSy+1i2SUs5t2skzWV6++lchTiM5uTYuWOE4vFIgX7EelmgodScXPR97d?=
+ =?us-ascii?Q?EcJB4Pa/AK1XpJ3BNZOfDcoJ8aMKbdDhj9sJSTPtIR0tVsr19t+hNlf3t+Xd?=
+ =?us-ascii?Q?+r4GWl9bFsNiYCTf1JmldUlO+10YPULvy0RWx1WpruWP8AjbkRyr4/JxRnDE?=
+ =?us-ascii?Q?clqq4DeDf0/y1x3KvmNY5iNfSPoFSPE+OvTEuJADm2+zpyyeR+t83U38deup?=
+ =?us-ascii?Q?6/9hOoLFNjQbtsiC9r+N4tP61ZTUjLbzIpLa3U7WEehDjuCrr6x7GN1uSRVi?=
+ =?us-ascii?Q?dZHnjv39MReRfm6CgyvQ275Zo5rY2PWMT2hHgA0F0sqHmc2GmjnkJ9AfoJAr?=
+ =?us-ascii?Q?SD3vBxCfK3bdisnsUpyOgvfz2V+UFao7A9SmfQrPoTILG5KCqpu8LVSdzUxt?=
+ =?us-ascii?Q?uqkzbaV2qBSSlLHR3AOw94M5si0+JAp0LKWfM9r7tOHpZpicWizt8RalzUoH?=
+ =?us-ascii?Q?kGaEJ64HRc+3/BtgmPOlS8fWf7p+TL+Y1runvBj2dLor3kpaH/1u6y4MFV9l?=
+ =?us-ascii?Q?1h/N5o8BXJDVzmi5rbpbfEMdH2e7+kuaO7NYlAFP0yzqlbJLitWCa7d8TJdy?=
+ =?us-ascii?Q?+SHL/rfGK15tcI6ENkh/GW2xyY0o6FTozZxJD+MC+KFcaof9xN5SuHUf/VC7?=
+ =?us-ascii?Q?en51kti6nEyfzGRe1NE0Fm/HE3XsYVlsm7pys09zdxeMj3zZ7VECXYGRqZKU?=
+ =?us-ascii?Q?8iyBDYKzdHIapsHnnW/tCT+8Quo/Z+x4YAXf22xu4ooZRCVTn7XFaVezYjuJ?=
+ =?us-ascii?Q?QmqOV+kVyNevlbXmyeB1MFkWDYJ35qyi/WVdYcOfdK5Gm2j91coxXy2YVUbo?=
+ =?us-ascii?Q?vsh/oRn55LJUPXqoVGyaR5djhWGBByX9O8Qs2ykX4JfTeBIm5cJDbCBP87AD?=
+ =?us-ascii?Q?nlck5AWmm/yAnJQSEt3t4HN3tnaUVu9Gf916w4uqodz+aoEO/m97k2DET6RK?=
+ =?us-ascii?Q?ioBiikcpKlrvNRwq1OGEWselr/xkubN4JagezcMTAtq+sLOX0tOVI3ou05X+?=
+ =?us-ascii?Q?2xCm5djWsCSwaGXkTAOZtoeFgYP3trD6gfdw3OLpIsxAbbddFPWBTiOZbsMg?=
+ =?us-ascii?Q?zEM2q209mjGUmlkyHlSy3MRFSAOWq0RgCapzpUZVncbWSvXv6uvpxAbBxz1j?=
+ =?us-ascii?Q?OYwIg6/2ZeCkOYx1Z2py6nhZJ7CMixhg/Ec6X7AAqcbyrcVW7A1Vzb4zrX2+?=
+ =?us-ascii?Q?Y4gw/n2ZM5ERqqSbSzzDFt3rVY6iTlolYfdkPOhz9cE0q6p9JyF/6ponmdKh?=
+ =?us-ascii?Q?VSPXbIpYunMU6VzGgLMNxa0NWetJgqM/yA5dG73XGZIXVlA36e4Ou/x7823J?=
+ =?us-ascii?Q?dvhG1wlCKBrwabNHao71O++GPfetJnbsIs/OeJRz/UIOH/htmcqLzN/baT4e?=
+ =?us-ascii?Q?VqbT1v2YjN5sDiDyS7lK4gIyZxniMJtGT8eYX8FhvBOz5uemQltHOw9/59L7?=
+ =?us-ascii?Q?5w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f89ce2ec-7410-46db-112e-08ddd1102cd2
 X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2025 15:25:06.6693 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2025 15:29:16.0075 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: me46DjxzqUs60o8eicLV9IJ9+DZsRhj1/myj3y9dqw0wFNVRwChegRj3jvy0PfJcZWiTz6QoAjFhXmSSULA98Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: zXIYy51PMZUKt97BY9NypHT/eNZtjl3Ut8XUKPfCYkB+R6yoRJVTEvPW7pcqRKqVl223ZmLNZDAzG7rLRc8aIg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5977
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -186,132 +176,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 31, 2025 at 03:32:51PM +0300, Jani Nikula wrote:
-> On Thu, 31 Jul 2025, Imre Deak <imre.deak@intel.com> wrote:
-> > Hi Rodrigo,
-> >
-> > On Tue, Jul 29, 2025 at 07:36:04PM +0300, Jani Nikula wrote:
-> >> On Tue, 29 Jul 2025, Imre Deak <imre.deak@intel.com> wrote:
-> >> > On Tue, Jul 29, 2025 at 10:35:48AM -0400, Rodrigo Vivi wrote:
-> >> >> On Tue, Jul 29, 2025 at 12:44:47PM +0300, Jani Nikula wrote:
-> >> >> > On Thu, 24 Jul 2025, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
-> >> >> > > Hey,
-> >> >> > > [...]
-> >> >> > >>>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> >> >> > >>>> index e2e0771cf274..9e984a045059 100644
-> >> >> > >>>> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> >> >> > >>>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> >> >> > >>>> @@ -96,6 +96,7 @@ static void xe_display_fini_early(void *arg)
-> >> >> > >>>>  	if (!xe->info.probe_display)
-> >> >> > >>>>  		return;
-> >> >> > >>>>  
-> >> >> > >>>> +	intel_hpd_cancel_work(display);
-> >> >> > >>>>  	intel_display_driver_remove_nogem(display);
-> >> >> > >>>>  	intel_display_driver_remove_noirq(display);
-> >> >> > >>>>  	intel_opregion_cleanup(display);
-> >> >> > >>>> @@ -340,6 +341,8 @@ void xe_display_pm_suspend(struct xe_device *xe)
-> >> >> > >>>>  
-> >> >> > >>>>  	xe_display_flush_cleanup_work(xe);
-> >> >> > >>>>  
-> >> >> > >>>> +	intel_encoder_block_all_hpds(display);
-> >> >> > >>>> +
-> >> >> > >>>>  	intel_hpd_cancel_work(display);
-> >> >> > >>>>  
-> >> >> > >>>>  	if (has_display(xe)) {
-> >> >> > >>>> @@ -369,6 +372,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
-> >> >> > >>>>  	}
-> >> >> > >>>>  
-> >> >> > >>>>  	xe_display_flush_cleanup_work(xe);
-> >> >> > >>>> +	intel_encoder_block_all_hpds(display);
-> >> >> > >>>
-> >> >> > >>> MST still needs HPD IRQs for side-band messaging, so the HPD IRQs must
-> >> >> > >>> be blocked only after intel_dp_mst_suspend().
-> >> >> > >>>
-> >> >> > >>> Otherwise the patch looks ok to me, so with the above fixed and provided
-> >> >> > >>> that Maarten is ok to disable all display IRQs only later:
-> >> >> > >> 
-> >> >> > >> Also probably good to identify the patch as both xe and i915 in the subject
-> >> >> > >> drm/{i915,xe}/display:
-> >> >> > >> 
-> >> >> > >> and Maarten or Imre, any preference on which branch to go? any chance of
-> >> >> > >> conflicting with any of work you might be doing in any side?
-> >> >> > >> 
-> >> >> > >> From my side I believe that any conflict might be easy to handle, so
-> >> >> > >> 
-> >> >> > >> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >> >> > >> 
-> >> >> > >> from either side...
-> >> >> > >> 
-> >> >> > >>>
-> >> >> > >>> Reviewed-by: Imre Deak <imre.deak@intel.com>
-> >> >> > > We had a discussion on this approach, and it seems that completely disabling interrupts here like in i915 would fail too.
-> >> >> > >
-> >> >> > > Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> >> >> > >
-> >> >> > > I don't mind either branch. As long as it applies. :-)
-> >> >> > 
-> >> >> > Please do not merge through *any* tree.
-> >> >> > 
-> >> >> > How come you all think it's okay to add this xe specific thing, and make
-> >> >> > unification harder?
-> >> >> 
-> >> >> I lost any moral or rights to complain here since I couldn't move with my
-> >> >> tasks of unification of the pm flow :(
-> >> >> 
-> >> >> double sorry!
-> >> >> 
-> >> >> > 
-> >> >> > intel_encoder_block_all_hpds() is *way* too specific for a high level
-> >> >> > function. Neither xe nor i915 should never call something like that
-> >> >> > directly.
-> >> >> 
-> >> >> that's a valid point indeed. But I cannot see another way to fix the
-> >> >> current issue right now without trying to move with the full unification
-> >> >> faster. Do you?
-> >> >
-> >> > Imo, this should be fixed first in xe without affecting i915. Then a
-> >> > related fix would be needed in i915, which disables all display IRQs too
-> >> > early now, as in:
-> >> >
-> >> > https://github.com/ideak/linux/commit/0fbe02b20e062
-> >> >
-> >> > After that the xe and i915 system suspend/resume and shutdown sequences
-> >> > could be unified mostly. Fwiw I put together that now on top of Dibin's
-> >> > patch:
-> >> >
-> >> > https://github.com/ideak/linux/commits/suspend-shutdown-refactor
-> >> 
-> >> If that work is actually in progress and happening, then fine, let's go
-> >> with this.
-> >
-> > If the above is acceptable, then this change would be also needed for
-> > i915. If the patch is merged to xe trees, then not sure if/when it would
-> > be merged back to i915. So maybe it would make more sense to merge it to
-> > i915 trees instead, considering it has more display changes already.
-> > Would you be ok with that?
+On Fri, Aug 01, 2025 at 10:53:56AM +0530, Balasubramani Vivekanandan wrote:
+> Doing devcoredump initializing before GT though look harmless, it leads
+> to problem during driver unbind. Because of this order, GT/Engine
+> release functions will be called before xe devcoredump release function
+> (xe_driver_devcoredump_fini) leading to the following kernel crash[1]
+> because the devcoredump functions might still use GT/Engine
+> datastructures after those are freed.
 > 
-> Ack.
+> The following crash is observed while running the IGT
+> xe_wedged@wedged-at-any-timeout. The test forces a wedged state by
+> submitting a workload which hangs. Then does a unbind/rebind of the
+> driver to recover from the wedged state.
+> The hanged workload leads to a devcoredump. The following crash is
+> noticed when the devcoredump capture races with the driver unbind.
+> During driver unbind, the release function hw_engine_fini() will be
+> called which assigns NULL to hwe->gt. But the same data structure is
+> accessed during the coredump capture in the function
+> xe_engine_snapshot_print by reading snapshot->hwe->gt.
+> 
+> With this patch, we make sure the devcoredump is stopped before
+> deinitializing the core driver functions.
+> 
+> [1]:
+> BUG: kernel NULL pointer dereference, address: 0000000000000000
+> Workqueue: events_unbound xe_devcoredump_deferred_snap_work [xe]
+> RIP: 0010:xe_engine_snapshot_print+0x47/0x420 [xe]
+> Call Trace:
+>  <TASK>
+>  ? drm_printf+0x64/0x90
+>  __xe_devcoredump_read+0x23f/0x2d0 [xe]
+>  ? __pfx___drm_printfn_coredump+0x10/0x10
+>  ? __pfx___drm_puts_coredump+0x10/0x10
+>  xe_devcoredump_deferred_snap_work+0x17a/0x190 [xe]
+>  process_one_work+0x22e/0x6f0
+>  worker_thread+0x1e8/0x3d0
+>  ? __pfx_worker_thread+0x10/0x10
+>  kthread+0x11f/0x250
+>  ? __pfx_kthread+0x10/0x10
+>  ret_from_fork+0x47/0x70
+>  ? __pfx_kthread+0x10/0x10
+>  ret_from_fork_asm+0x1a/0x30
+> 
+> v2: Detailed commit description (Rodrigo)
+> v3: FIXME added (Rodrigo, Stuart)
 
-Agreed as well
+pushed to drm-xe-next
 
 > 
-> >
-> > --Imre
-> >
-> >> BR,
-> >> Jani.
-> >> 
-> >> >
-> >> >> > 
-> >> >> > BR,
-> >> >> > Jani.
-> >> >> > 
-> >> >> > 
-> >> >> > -- 
-> >> >> > Jani Nikula, Intel
-> >> 
-> >> -- 
-> >> Jani Nikula, Intel
+> Fixes: 4209d635a823 ("drm/xe: Remove devcoredump during driver release")
+> Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+> Link: https://lore.kernel.org/r/20250731061300.14320-1-balasubramani.vivekanandan@intel.com
+> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_device.c      | 8 ++++----
+>  drivers/gpu/drm/xe/xe_guc_capture.c | 6 ++++++
+>  2 files changed, 10 insertions(+), 4 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index d04a0ae018e6..ae48cd3c7bf0 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -821,10 +821,6 @@ int xe_device_probe(struct xe_device *xe)
+>  			return err;
+>  	}
+>  
+> -	err = xe_devcoredump_init(xe);
+> -	if (err)
+> -		return err;
+> -
+>  	/*
+>  	 * From here on, if a step fails, make sure a Driver-FLR is triggereed
+>  	 */
+> @@ -889,6 +885,10 @@ int xe_device_probe(struct xe_device *xe)
+>  	    XE_WA(xe->tiles->media_gt, 15015404425_disable))
+>  		XE_DEVICE_WA_DISABLE(xe, 15015404425);
+>  
+> +	err = xe_devcoredump_init(xe);
+> +	if (err)
+> +		return err;
+> +
+>  	xe_nvm_init(xe);
+>  
+>  	err = xe_heci_gsc_init(xe);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+> index 859a3ba91be5..243dad3e2418 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_capture.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+> @@ -1817,6 +1817,12 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+>  		   str_yes_no(snapshot->kernel_reserved));
+>  
+>  	for (type = GUC_STATE_CAPTURE_TYPE_GLOBAL; type < GUC_STATE_CAPTURE_TYPE_MAX; type++) {
+> +		/*
+> +		 * FIXME: During devcoredump print we should avoid accessing the
+> +		 * driver pointers for gt or engine. Printing should be done only
+> +		 * using the snapshot captured. Here we are accessing the gt
+> +		 * pointer. It should be fixed.
+> +		 */
+>  		list = xe_guc_capture_get_reg_desc_list(gt, GUC_CAPTURE_LIST_INDEX_PF, type,
+>  							capture_class, false);
+>  		snapshot_print_by_list_order(snapshot, p, type, list);
 > -- 
-> Jani Nikula, Intel
+> 2.34.1
+> 
