@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 808E0C87FD2
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 06:31:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4193EC87FCB
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 06:36:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 499A310E3BC;
-	Fri,  1 Aug 2025 06:31:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D505010E7FC;
+	Fri,  1 Aug 2025 06:36:13 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B142310E3BC;
- Fri,  1 Aug 2025 06:31:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1794689975541591587=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF6E810E2F4;
+ Fri,  1 Aug 2025 06:36:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/devcoredump=3A_Defer?=
- =?utf-8?q?_devcoredump_initialization_during_probe_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Make_MEI_GSC_interface_av?=
+ =?utf-8?q?ailable_if_i915_isn=27t_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+To: "Simon Richter" <simon.richter@hogyros.de>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 01 Aug 2025 06:31:05 -0000
-Message-ID: <175402986571.204281.4010816862249819688@1538d3639d33>
+Date: Fri, 01 Aug 2025 06:36:12 -0000
+Message-ID: <175403017271.204281.6019345058621813880@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250801052356.21885-1-balasubramani.vivekanandan@intel.com>
-In-Reply-To: <20250801052356.21885-1-balasubramani.vivekanandan@intel.com>
+References: <20250801060032.2416-1-Simon.Richter@hogyros.de>
+In-Reply-To: <20250801060032.2416-1-Simon.Richter@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,47 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1794689975541591587==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/devcoredump: Defer devcoredump initialization during probe (rev5)
-URL   : https://patchwork.freedesktop.org/series/152111/
-State : success
+Series: Make MEI GSC interface available if i915 isn't (rev2)
+URL   : https://patchwork.freedesktop.org/series/151618/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2_BAT -> xe-pw-152111v5_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c298eac5978c38dcc62a70c0d73c91765e7cc296
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 46c8cc2baf93cc56e41e2f9a8040a21b97a1b797
+Author: Simon Richter <Simon.Richter@hogyros.de>
+Date:   Fri Aug 1 15:00:16 2025 +0900
 
-Summary
--------
+    misc/mei: Xe graphics also has IME GSC interface
+    
+    This driver is useful if at least one DRM driver registers an auxiliary device
+    for the ME interface. With the addition of Xe, this is no longer just i915.
+    
+    Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
++ /mt/dim checkpatch 68a99106069be8ab52030c61215da008b2f6dbd2 drm-intel
+56137dfa812a misc/mei: Allow building Intel ME interface on non-x86
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+Intel dGPUs can exist on other platforms as well, and contain an Intel ME GSC
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+bcb3c4c9acfa misc/mei: Decouple ME interfaces from GPU drivers
+f9defd868dce misc/mei: Allow building standalone for compile testing
+46c8cc2baf93 misc/mei: Xe graphics also has IME GSC interface
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+This driver is useful if at least one DRM driver registers an auxiliary device
 
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-152111v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-modeset@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152111v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2 -> xe-pw-152111v5
-
-  IGT_8482: 8482
-  xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2: 68a99106069be8ab52030c61215da008b2f6dbd2
-  xe-pw-152111v5: 152111v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152111v5/index.html
-
---===============1794689975541591587==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/devcoredump: Defer devcoredump initialization during probe (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152111/">https://patchwork.freedesktop.org/series/152111/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152111v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152111v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2_BAT -&gt; xe-pw-152111v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152111v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-modeset@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152111v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2 -&gt; xe-pw-152111v5</li>
-</ul>
-<p>IGT_8482: 8482<br />
-  xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2: 68a99106069be8ab52030c61215da008b2f6dbd2<br />
-  xe-pw-152111v5: 152111v5</p>
-
-</body>
-</html>
-
---===============1794689975541591587==--
