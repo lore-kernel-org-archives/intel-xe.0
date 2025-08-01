@@ -4,37 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC508C87FCA
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 12:27:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46115C87FCB
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 13:07:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E1CE10E3D6;
-	Fri,  1 Aug 2025 12:27:29 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 926EE10E28D;
- Fri,  1 Aug 2025 12:27:28 +0000 (UTC)
-Received: from dummy.faircode.eu (om126253232019.31.openmobile.ne.jp
- [126.253.232.19])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 0BEB43F116;
- Fri,  1 Aug 2025 14:27:24 +0200 (CEST)
-Date: Fri, 1 Aug 2025 21:27:13 +0900 (GMT+09:00)
-From: Simon.Richter@hogyros.de
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Message-ID: <5adad479-1dec-41ac-a491-26a9ce2f4e50@hogyros.de>
-In-Reply-To: <460b95285cdf23dc6723972ba69ee726b3b3cfba.camel@linux.intel.com>
-References: <20250727070413.9743-1-Simon.Richter@hogyros.de>
- <20250727070413.9743-2-Simon.Richter@hogyros.de>
- <460b95285cdf23dc6723972ba69ee726b3b3cfba.camel@linux.intel.com>
-Subject: Re: [PATCH v2 1/1] Mark xe driver as BROKEN if kernel page size is
- not 4kB
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04BE510E847;
+	Fri,  1 Aug 2025 13:07:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ki/MZh5H";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BACAD10E847
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 13:07:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754053673; x=1785589673;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VwTAOX2aLb3m/qLyQNe69ezQOyyB47Plo8AEeDIqR9s=;
+ b=Ki/MZh5HdMG/0AokH2EcJqNdSrKiTZmfh1upXK5eEobz/R6p2LLyFxQH
+ xeACHitewqRpniN+dZSOc6iF+d0v8XMa3bnG3UjJkx9/85cRpxxTzpqNu
+ xWY7wAWn0RhfUiAzxaU1fdXB59HojvdcJSSu429iSmOjPaWUSXBL0Kvh6
+ gN0OdYZM8SRmF36TzxnwR08Aj1kDXw/bvAO12j23h8MJSo3ck596ih8DI
+ x3cU1yx9ZyfAHnB1jaITzPW/dWAlCmHO7kDQebzG4fJ5vcWDS7DBS3J+v
+ GuKn3C9/yLmMRedpPygIYHJoK0qtvZ8Rpx1AXMc5SMPYnyw4TJr5Qo/Vs g==;
+X-CSE-ConnectionGUID: +sln8xXWQDS5X70mFxl8MA==
+X-CSE-MsgGUID: OyzP+lpwSa6x6zGNlOc2vQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="67762902"
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="67762902"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2025 06:07:53 -0700
+X-CSE-ConnectionGUID: O0b16drJREqzPuy3un3K/w==
+X-CSE-MsgGUID: Ex9Tv+uyTBK866cZOLtRLQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="167743897"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by fmviesa003.fm.intel.com with ESMTP; 01 Aug 2025 06:07:51 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v2 0/2] Improve CCS save restore series
+Date: Fri,  1 Aug 2025 18:54:39 +0530
+Message-ID: <20250801132441.25463-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: multipart/alternative; 
- boundary="----=_Part_12_246275870.1754051233716"
-X-Correlation-ID: <5adad479-1dec-41ac-a491-26a9ce2f4e50@hogyros.de>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,51 +63,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-------=_Part_12_246275870.1754051233716
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Previously, CCS save/restore operations created separate migration
+contexts with new VM memory allocations, resulting in significant
+overhead.
 
-Hi,
+This series eliminates redundant context creation reusing the default
+migration context by registering new execution queues for CCS save and
+restore on the existing migrate VM.
 
-added COMPILE_TEST =E2=80=94 the goal behind this patch is to revert it as =
-soon as possible, which will require some more testing though, and Debian w=
-ants something we can release that does not Oops on boot.
+Also fixed corruption issue with save/restore followed by S3/S4 cycle.
 
-Presumably, the same change needs to be done for a few others (nouveau? amd=
-?), but I haven't gotten around to testing yet if they actually fail with 6=
-4k pages, because this involves moving GPUs around =E2=80=94 and testing 16=
-k and 256k is even more effort, especially 256k, because that is larger tha=
-n the default alignment of ELF binaries.
+V1 -> V2:
+- Fix kernel-doc issues reported by patchworks.
+- Added new commit "Re-register CCS save/restore contexts post S3/S4
+resume"
 
-=C2=A0=C2=A0 Simon
+Satyanarayana K V P (2):
+  drm/xe/vf: Refactor CCS save/restore to use default migration context
+  drm/xe: Re-register CCS save/restore contexts post S3/S4 resume
 
-------=_Part_12_246275870.1754051233716
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+ drivers/gpu/drm/xe/xe_migrate.c            | 18 ++++----
+ drivers/gpu/drm/xe/xe_migrate.h            |  2 +-
+ drivers/gpu/drm/xe/xe_pm.c                 |  3 ++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       | 49 ++++++++++++----------
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |  2 +
+ 5 files changed, 42 insertions(+), 32 deletions(-)
 
-<html>
- <head>
-  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
-1.0">
- </head>
- <body>
-  <span dir=3D"ltr" style=3D"margin-top:0; margin-bottom:0;">Hi,</span>
-  <br>
-  <br><span dir=3D"ltr" style=3D"margin-top:0; margin-bottom:0;">added COMP=
-ILE_TEST =E2=80=94 the goal behind this patch is to revert it as soon as po=
-ssible, which will require some more testing though, and Debian wants somet=
-hing we can release that does not Oops on boot.</span>
-  <br>
-  <br><span dir=3D"ltr" style=3D"margin-top:0; margin-bottom:0;">Presumably=
-, the same change needs to be done for a few others (nouveau? amd?), but I =
-haven't gotten around to testing yet if they actually fail with 64k pages, =
-because this involves moving GPUs around =E2=80=94 and testing 16k and 256k=
- is even more effort, especially 256k, because that is larger than the defa=
-ult alignment of ELF binaries.</span>
-  <br>
-  <br><span dir=3D"ltr" style=3D"margin-top:0; margin-bottom:0;">&nbsp;&nbs=
-p; Simon</span>
-  <br>
- </body>
-</html>
-------=_Part_12_246275870.1754051233716--
+-- 
+2.43.0
+
