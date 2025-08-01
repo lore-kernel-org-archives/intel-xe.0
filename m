@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04CE1C87FD2
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 01:50:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28D3FC87FD2
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 01:52:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBBE010E2D7;
-	Fri,  1 Aug 2025 01:50:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CUAFLOSV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71F1B10E2D7
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 01:50:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754013043; x=1785549043;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=t0r4e4Kd6/HW8sup+ILnw8iWrDFcT8YgJdAzXM6WXxg=;
- b=CUAFLOSVSn83mjEK/d87BMKamZsJg46QKfQxowoEhS5Qvi6Vsk0MLjaP
- U2los++qgBs1qZA6jFsv1Cfe600a8+3ktkr0X26yMXEIwjxYEkgr/YEkt
- OygvQZ576BNUwTxWZ958hUntDtzgxJ/J3N7gqKZKyt2ZGzT8Bhq5uYcHt
- 6HSqg9i2aHrh4lgg0eCYvfFjvizJ5d9SLro+t48QqfJRAWb1HDUsHObdV
- MYfIBvGRKi0RWgRIsRtpAl7HAeCZSF+S5Uj0nJ287smmVL9Dh/4apSsID
- 8ek8cg38KvjOGbFHEXP525wHBzHqHW2Sc+wEGNN4yLAWrHRqTTQJUbFeq Q==;
-X-CSE-ConnectionGUID: HyWXMbWwScyidpOoJFo/kw==
-X-CSE-MsgGUID: hiXhUcVyT6iybQHDuPC0cA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="43953689"
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="43953689"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 18:50:43 -0700
-X-CSE-ConnectionGUID: fBQ2W85VQHKH21TVCid4nw==
-X-CSE-MsgGUID: HcNp0lNzSHm8onb1xtYPhA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="194401400"
-Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa002.jf.intel.com with ESMTP; 31 Jul 2025 18:50:41 -0700
-From: Tomasz Lis <tomasz.lis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v8 8/8] drm/xe/vf: Rebase exec queue parallel commands during
- migration recovery
-Date: Fri,  1 Aug 2025 03:50:45 +0200
-Message-Id: <20250801015045.957609-9-tomasz.lis@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250801015045.957609-1-tomasz.lis@intel.com>
-References: <20250801015045.957609-1-tomasz.lis@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCABE10E28A;
+	Fri,  1 Aug 2025 01:52:52 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFCBE10E28A;
+ Fri,  1 Aug 2025 01:52:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6358374828798582296=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Extend_wa=5F13012?=
+ =?utf-8?q?615864_to_additional_Xe2_and_Xe3_platforms_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 01 Aug 2025 01:52:51 -0000
+Message-ID: <175401317184.203913.17605258065762047421@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250731220143.72942-2-jonathan.cavitt@intel.com>
+In-Reply-To: <20250731220143.72942-2-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,128 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Parallel exec queues have an additional command streamer buffer which holds
-a GGTT reference to data within context status. The GGTT references have to
-be fixed after VF migration.
+--===============6358374828798582296==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Properly handle nop entry, verify if parsing goes ok
-v3: Improve error/warn logging, add propagation of errors,
- give names to magic offsets
+== Series Details ==
 
-Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-Cc: Michal Winiarski <michal.winiarski@intel.com>
----
- drivers/gpu/drm/xe/abi/guc_actions_abi.h |  8 ++++
- drivers/gpu/drm/xe/xe_guc_submit.c       | 54 ++++++++++++++++++++++++
- 2 files changed, 62 insertions(+)
+Series: drm/xe: Extend wa_13012615864 to additional Xe2 and Xe3 platforms (rev2)
+URL   : https://patchwork.freedesktop.org/series/152370/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-index 81eb046aeebf..d8cf68a0516d 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-@@ -193,6 +193,14 @@ enum xe_guc_register_context_multi_lrc_param_offsets {
- 	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_MSG_MIN_LEN = 11,
- };
- 
-+enum xe_guc_context_wq_item_offsets {
-+	XE_GUC_CONTEXT_WQ_HEADER_DATA_0_TYPE_LEN = 0,
-+	XE_GUC_CONTEXT_WQ_EL_INFO_DATA_1_CTX_DESC_LOW,
-+	XE_GUC_CONTEXT_WQ_EL_INFO_DATA_2_GUCCTX_RINGTAIL_FREEZEPOCS,
-+	XE_GUC_CONTEXT_WQ_EL_INFO_DATA_3_WI_FENCE_ID,
-+	XE_GUC_CONTEXT_WQ_EL_CHILD_LIST_DATA_4_RINGTAIL,
-+};
-+
- enum xe_guc_report_status {
- 	XE_GUC_REPORT_STATUS_UNKNOWN = 0x0,
- 	XE_GUC_REPORT_STATUS_ACKED = 0x1,
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index f59fecc58fa8..427694afe0cc 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -671,12 +671,18 @@ static void wq_item_append(struct xe_exec_queue *q)
- 	if (wq_wait_for_space(q, wqi_size))
- 		return;
- 
-+	xe_gt_assert(guc_to_gt(guc), i == XE_GUC_CONTEXT_WQ_HEADER_DATA_0_TYPE_LEN);
- 	wqi[i++] = FIELD_PREP(WQ_TYPE_MASK, WQ_TYPE_MULTI_LRC) |
- 		FIELD_PREP(WQ_LEN_MASK, len_dw);
-+	xe_gt_assert(guc_to_gt(guc), i == XE_GUC_CONTEXT_WQ_EL_INFO_DATA_1_CTX_DESC_LOW);
- 	wqi[i++] = xe_lrc_descriptor(q->lrc[0]);
-+	xe_gt_assert(guc_to_gt(guc), i ==
-+		     XE_GUC_CONTEXT_WQ_EL_INFO_DATA_2_GUCCTX_RINGTAIL_FREEZEPOCS);
- 	wqi[i++] = FIELD_PREP(WQ_GUC_ID_MASK, q->guc->id) |
- 		FIELD_PREP(WQ_RING_TAIL_MASK, q->lrc[0]->ring.tail / sizeof(u64));
-+	xe_gt_assert(guc_to_gt(guc), i == XE_GUC_CONTEXT_WQ_EL_INFO_DATA_3_WI_FENCE_ID);
- 	wqi[i++] = 0;
-+	xe_gt_assert(guc_to_gt(guc), i == XE_GUC_CONTEXT_WQ_EL_CHILD_LIST_DATA_4_RINGTAIL);
- 	for (j = 1; j < q->width; ++j) {
- 		struct xe_lrc *lrc = q->lrc[j];
- 
-@@ -697,6 +703,50 @@ static void wq_item_append(struct xe_exec_queue *q)
- 	parallel_write(xe, map, wq_desc.tail, q->guc->wqi_tail);
- }
- 
-+static int wq_items_rebase(struct xe_exec_queue *q)
-+{
-+	struct xe_guc *guc = exec_queue_to_guc(q);
-+	struct xe_device *xe = guc_to_xe(guc);
-+	struct iosys_map map = xe_lrc_parallel_map(q->lrc[0]);
-+	int i = q->guc->wqi_head;
-+
-+	/* the ring starts after a header struct */
-+	iosys_map_incr(&map, offsetof(struct guc_submit_parallel_scratch, wq[0]));
-+
-+	while ((i % WQ_SIZE) != (q->guc->wqi_tail % WQ_SIZE)) {
-+		u32 len_dw, type, val;
-+
-+		if (drm_WARN_ON_ONCE(&xe->drm, i < 0 || i > 2 * WQ_SIZE))
-+			break;
-+
-+		val = xe_map_rd_ring_u32(xe, &map, i / sizeof(u32) +
-+					 XE_GUC_CONTEXT_WQ_HEADER_DATA_0_TYPE_LEN,
-+					 WQ_SIZE / sizeof(u32));
-+		len_dw = FIELD_GET(WQ_LEN_MASK, val);
-+		type = FIELD_GET(WQ_TYPE_MASK, val);
-+
-+		if (drm_WARN_ON_ONCE(&xe->drm, len_dw >= WQ_SIZE / sizeof(u32)))
-+			break;
-+
-+		if (type == WQ_TYPE_MULTI_LRC) {
-+			val = xe_lrc_descriptor(q->lrc[0]);
-+			xe_map_wr_ring_u32(xe, &map, i / sizeof(u32) +
-+					   XE_GUC_CONTEXT_WQ_EL_INFO_DATA_1_CTX_DESC_LOW,
-+					   WQ_SIZE / sizeof(u32), val);
-+		} else if (drm_WARN_ON_ONCE(&xe->drm, type != WQ_TYPE_NOOP)) {
-+			break;
-+		}
-+
-+		i += (len_dw + 1) * sizeof(u32);
-+	}
-+
-+	if ((i % WQ_SIZE) != (q->guc->wqi_tail % WQ_SIZE)) {
-+		xe_gt_err(q->gt, "Exec queue fixups incomplete - wqi parse failed\n");
-+		return -EBADMSG;
-+	}
-+	return 0;
-+}
-+
- #define RESUME_PENDING	~0x0ull
- static void submit_exec_queue(struct xe_exec_queue *q)
- {
-@@ -2543,6 +2593,10 @@ int xe_guc_contexts_hwsp_rebase(struct xe_guc *guc, void *scratch)
- 		err = xe_exec_queue_contexts_hwsp_rebase(q, scratch);
- 		if (err)
- 			break;
-+		if (xe_exec_queue_is_parallel(q))
-+			err = wq_items_rebase(q);
-+		if (err)
-+			break;
- 	}
- 	mutex_unlock(&guc->submission_state.lock);
- 
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2_BAT -> xe-pw-152370v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152370v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-modeset@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152370v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2 -> xe-pw-152370v2
+
+  IGT_8482: 8482
+  xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2: 68a99106069be8ab52030c61215da008b2f6dbd2
+  xe-pw-152370v2: 152370v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152370v2/index.html
+
+--===============6358374828798582296==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Extend wa_13012615864 to additional Xe2 and Xe3 platforms (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152370/">https://patchwork.freedesktop.org/series/152370/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152370v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152370v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2_BAT -&gt; xe-pw-152370v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152370v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-modeset@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152370v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2 -&gt; xe-pw-152370v2</li>
+</ul>
+<p>IGT_8482: 8482<br />
+  xe-3496-68a99106069be8ab52030c61215da008b2f6dbd2: 68a99106069be8ab52030c61215da008b2f6dbd2<br />
+  xe-pw-152370v2: 152370v2</p>
+
+</body>
+</html>
+
+--===============6358374828798582296==--
