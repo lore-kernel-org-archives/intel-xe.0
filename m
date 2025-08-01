@@ -4,27 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FD0EC87FCA
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 12:03:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC508C87FCA
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 12:27:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2321010E83E;
-	Fri,  1 Aug 2025 12:03:03 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D7C310E83C;
- Fri,  1 Aug 2025 12:03:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2787969885397578000=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Mark_xe_driver_as_BROKEN_if?=
- =?utf-8?q?_kernel_page_size_is_not_4kB_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Simon Richter" <simon.richter@hogyros.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 01 Aug 2025 12:03:02 -0000
-Message-ID: <175404978229.205078.11778863597735069807@1538d3639d33>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E1CE10E3D6;
+	Fri,  1 Aug 2025 12:27:29 +0000 (UTC)
+Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 926EE10E28D;
+ Fri,  1 Aug 2025 12:27:28 +0000 (UTC)
+Received: from dummy.faircode.eu (om126253232019.31.openmobile.ne.jp
+ [126.253.232.19])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by psionic.psi5.com (Postfix) with ESMTPSA id 0BEB43F116;
+ Fri,  1 Aug 2025 14:27:24 +0200 (CEST)
+Date: Fri, 1 Aug 2025 21:27:13 +0900 (GMT+09:00)
+From: Simon.Richter@hogyros.de
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Message-ID: <5adad479-1dec-41ac-a491-26a9ce2f4e50@hogyros.de>
+In-Reply-To: <460b95285cdf23dc6723972ba69ee726b3b3cfba.camel@linux.intel.com>
 References: <20250727070413.9743-1-Simon.Richter@hogyros.de>
-In-Reply-To: <20250727070413.9743-1-Simon.Richter@hogyros.de>
+ <20250727070413.9743-2-Simon.Richter@hogyros.de>
+ <460b95285cdf23dc6723972ba69ee726b3b3cfba.camel@linux.intel.com>
+Subject: Re: [PATCH v2 1/1] Mark xe driver as BROKEN if kernel page size is
+ not 4kB
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+ boundary="----=_Part_12_246275870.1754051233716"
+X-Correlation-ID: <5adad479-1dec-41ac-a491-26a9ce2f4e50@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +46,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2787969885397578000==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+------=_Part_12_246275870.1754051233716
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi,
 
-Series: Mark xe driver as BROKEN if kernel page size is not 4kB (rev2)
-URL   : https://patchwork.freedesktop.org/series/152145/
-State : success
+added COMPILE_TEST =E2=80=94 the goal behind this patch is to revert it as =
+soon as possible, which will require some more testing though, and Debian w=
+ants something we can release that does not Oops on boot.
 
-== Summary ==
+Presumably, the same change needs to be done for a few others (nouveau? amd=
+?), but I haven't gotten around to testing yet if they actually fail with 6=
+4k pages, because this involves moving GPUs around =E2=80=94 and testing 16=
+k and 256k is even more effort, especially 256k, because that is larger tha=
+n the default alignment of ELF binaries.
 
-CI Bug Log - changes from xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f_BAT -> xe-pw-152145v2_BAT
-====================================================
+=C2=A0=C2=A0 Simon
 
-Summary
--------
+------=_Part_12_246275870.1754051233716
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-152145v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152145v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f -> xe-pw-152145v2
-
-  IGT_8482: 8482
-  xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f: c4264c7406b75ed3fa043f034cb9d538d210d64f
-  xe-pw-152145v2: 152145v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152145v2/index.html
-
---===============2787969885397578000==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Mark xe driver as BROKEN if kernel page size is not 4kB (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152145/">https://patchwork.freedesktop.org/series/152145/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152145v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152145v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f_BAT -&gt; xe-pw-152145v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152145v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152145v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f -&gt; xe-pw-152145v2</li>
-</ul>
-<p>IGT_8482: 8482<br />
-  xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f: c4264c7406b75ed3fa043f034cb9d538d210d64f<br />
-  xe-pw-152145v2: 152145v2</p>
-
-</body>
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+ </head>
+ <body>
+  <span dir=3D"ltr" style=3D"margin-top:0; margin-bottom:0;">Hi,</span>
+  <br>
+  <br><span dir=3D"ltr" style=3D"margin-top:0; margin-bottom:0;">added COMP=
+ILE_TEST =E2=80=94 the goal behind this patch is to revert it as soon as po=
+ssible, which will require some more testing though, and Debian wants somet=
+hing we can release that does not Oops on boot.</span>
+  <br>
+  <br><span dir=3D"ltr" style=3D"margin-top:0; margin-bottom:0;">Presumably=
+, the same change needs to be done for a few others (nouveau? amd?), but I =
+haven't gotten around to testing yet if they actually fail with 64k pages, =
+because this involves moving GPUs around =E2=80=94 and testing 16k and 256k=
+ is even more effort, especially 256k, because that is larger than the defa=
+ult alignment of ELF binaries.</span>
+  <br>
+  <br><span dir=3D"ltr" style=3D"margin-top:0; margin-bottom:0;">&nbsp;&nbs=
+p; Simon</span>
+  <br>
+ </body>
 </html>
-
---===============2787969885397578000==--
+------=_Part_12_246275870.1754051233716--
