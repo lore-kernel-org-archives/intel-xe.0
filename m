@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A792C87FCA
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 11:58:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FD0EC87FCA
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 12:03:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66CE510E844;
-	Fri,  1 Aug 2025 11:57:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TKmiGbxT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ABC810E84C;
- Fri,  1 Aug 2025 11:57:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754049478; x=1785585478;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=k4uJWNznZjrWRAkBSWrPOnb2RYyI0II7yPHZj90bRpw=;
- b=TKmiGbxT/Ij5W7RVU0QKXGf/8ySUlDXJPlUDUrFSkNGvc6yzQqT/knce
- fWfktE0d5MephOVZdGOn1+CifQn8lqqlQkFX/Ft2NVzFIm4/8IADm5hus
- Odktr47tCf8IKVTUM1m5G6uET2+H0lV1be9cQVz549JNbaCr2Q2GTGozQ
- MJBZJBNC+kzWmGeC4Bwon7RwO0eJWj3YL9OTtH5YI/b5mKIEokTxQaNAr
- p+hOj4CjLzz8ZwKhR7mRETY/GX67rMkl7okqFeGuUBkGwMXzpuSnt7xub
- nfedzJ4gHs8qAO+qPDQ16762m8n8yFQZyXirr6zWQ0bONTSx4bSPvSPXW Q==;
-X-CSE-ConnectionGUID: +VQDQuYTS3mm038y4rax7A==
-X-CSE-MsgGUID: LtX3WRy/TROTLZW6i7Fm3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="43990993"
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="43990993"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2025 04:57:57 -0700
-X-CSE-ConnectionGUID: yA34cemMQQGS/GXT4qXCTg==
-X-CSE-MsgGUID: 4X8/13uFRfCv0W0/ZV+Qog==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="200705685"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.164])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2025 04:57:54 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, "Kandpal, Suraj"
- <suraj.kandpal@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
- <arun.r.murthy@intel.com>, "Shankar, Uma" <uma.shankar@intel.com>
-Subject: Re: [PATCH 03/28] drm/writeback: Define function to get
- drm_connector from writeback
-In-Reply-To: <pax7q7t6gqf4v2ots4ycdfpyecyb62eycht5vlzxodxfl5tlzv@axijwakktt2u>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250725050409.2687242-1-suraj.kandpal@intel.com>
- <20250725050409.2687242-4-suraj.kandpal@intel.com>
- <ng2ps7k5h74w6zo62oqazzetunjc2psooobmh3zcrrmxesi2ua@va6z7eqjst2u>
- <DM3PPF208195D8D2676D013483985D2C3FFE358A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <t5fmzuwiy2otubqftwdghakwmbeltavhbsvrfhgi4tc52uigys@sg2jgz6yjjk7>
- <DM3PPF208195D8D9147AC80569982DE55EBE326A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <pax7q7t6gqf4v2ots4ycdfpyecyb62eycht5vlzxodxfl5tlzv@axijwakktt2u>
-Date: Fri, 01 Aug 2025 14:57:48 +0300
-Message-ID: <81dccfde92580d525cab5ce95d529e08c27b972c@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2321010E83E;
+	Fri,  1 Aug 2025 12:03:03 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D7C310E83C;
+ Fri,  1 Aug 2025 12:03:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2787969885397578000=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Mark_xe_driver_as_BROKEN_if?=
+ =?utf-8?q?_kernel_page_size_is_not_4kB_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Simon Richter" <simon.richter@hogyros.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 01 Aug 2025 12:03:02 -0000
+Message-ID: <175404978229.205078.11778863597735069807@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250727070413.9743-1-Simon.Richter@hogyros.de>
+In-Reply-To: <20250727070413.9743-1-Simon.Richter@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,45 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 01 Aug 2025, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> Thinking in OOP terms, the encoder is just a field in the struct.
-> drm_connector is a base class for drm_writeback_connector. By making it
-> optional, you are definitely semi-breaking the abstraction.
+--===============2787969885397578000==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The trouble is, in OOP terms, drm_connector is the "base class" for both
-drm_writeback_connector and intel_connector. We're already stretching
-what we can do with C.
+== Series Details ==
 
-Currently, it's always guaranteed all drm_connectors i915 ever sees are
-embedded within intel_connector. Changing from one pointer to another is
-trivial, guaranteed to work, and is never NULL if the source pointer is
-non-NULL. This is a design that's been around for the longest time.
+Series: Mark xe driver as BROKEN if kernel page size is not 4kB (rev2)
+URL   : https://patchwork.freedesktop.org/series/152145/
+State : success
 
-The current writeback implementation forces a different design by always
-embedding drm_connector itself. We can't use a drm_connector that's
-embedded within an intel_connector with it. If we want to have our own
-stuff, we'd need an intel_writeback_connector wrapping
-drm_writeback_connector, and it gets even more complicated with all the
-interfaces that use intel_connector. It really shouldn't have to be this
-way.
+== Summary ==
 
-Using the current drm_writeback_connector in i915 requires careful
-auditing of all drm_connector <-> intel_connector conversions, NULL
-checks, and graceful error handling, also in places that have no
-convenient way to return errors at all.
+CI Bug Log - changes from xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f_BAT -> xe-pw-152145v2_BAT
+====================================================
 
-The OOP abstractions just break hard with C, we can't have multiple
-inheritance, and IMO the pragmatic approach is to let *drivers* do what
-they want, instead of having a midlayer helper design force something on
-them.
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152145v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152145v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
 
 
-BR,
-Jani.
+Build changes
+-------------
+
+  * Linux: xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f -> xe-pw-152145v2
+
+  IGT_8482: 8482
+  xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f: c4264c7406b75ed3fa043f034cb9d538d210d64f
+  xe-pw-152145v2: 152145v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152145v2/index.html
+
+--===============2787969885397578000==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
--- 
-Jani Nikula, Intel
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Mark xe driver as BROKEN if kernel page size is not 4kB (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152145/">https://patchwork.freedesktop.org/series/152145/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152145v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152145v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f_BAT -&gt; xe-pw-152145v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152145v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152145v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f -&gt; xe-pw-152145v2</li>
+</ul>
+<p>IGT_8482: 8482<br />
+  xe-3497-c4264c7406b75ed3fa043f034cb9d538d210d64f: c4264c7406b75ed3fa043f034cb9d538d210d64f<br />
+  xe-pw-152145v2: 152145v2</p>
+
+</body>
+</html>
+
+--===============2787969885397578000==--
