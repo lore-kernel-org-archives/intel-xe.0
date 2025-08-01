@@ -4,78 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB85EC87FD3
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 01:06:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65980C87FD3
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Aug 2025 01:08:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29C8010E089;
-	Fri,  1 Aug 2025 01:06:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="Ddd0YITd";
-	dkim-atps=neutral
-Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com
- [51.81.35.219])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80E2410E089
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 01:06:33 +0000 (UTC)
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
- by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 80B0B2037E
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 01:06:32 +0000 (UTC)
-Received: from relay3.mymailcheap.com (relay3.mymailcheap.com [217.182.66.161])
- by relay5.mymailcheap.com (Postfix) with ESMTPS id 78308200AF
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Aug 2025 01:06:29 +0000 (UTC)
-Received: from nf1.mymailcheap.com (nf1.mymailcheap.com [51.75.14.91])
- by relay3.mymailcheap.com (Postfix) with ESMTPS id F25653EA78;
- Fri,  1 Aug 2025 01:06:26 +0000 (UTC)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
- by nf1.mymailcheap.com (Postfix) with ESMTPSA id 9A24C40078;
- Fri,  1 Aug 2025 01:06:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
- t=1754010386; bh=8MmiSPhzhtxh3u5NRPKvPCoGAeSjOtcIb0GweW5j6jE=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=Ddd0YITdYaETEVBIP9kVtN3bE7rXzGnaK+m1FZ33JyWdSDulOjhQWht4tsUZfvoLN
- 2tSHWPb2Uv1DjMgIFgB4c9z2wHastb7yPW33EyRn9ENCSTwKIEPrcvTq+0MX9gEXdA
- 5I/LLVYKuRofUsa8WNhlPaKZr0vRX+AGa7qTKbaA=
-Received: from [127.0.0.1] (unknown [203.175.14.48])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mail20.mymailcheap.com (Postfix) with ESMTPSA id 2152B405E6;
- Fri,  1 Aug 2025 01:06:22 +0000 (UTC)
-Message-ID: <dcc218a7-bd02-4c21-9986-2c4c29fbc8db@aosc.io>
-Date: Fri, 1 Aug 2025 09:06:19 +0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23F8C10E089;
+	Fri,  1 Aug 2025 01:08:43 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B86F810E089;
+ Fri,  1 Aug 2025 01:08:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7204329220096182844=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] drm/xe/bo: fix alignment with non-4KiB kernel page
- sizes
-To: Simon Richter <Simon.Richter@hogyros.de>, intel-xe@lists.freedesktop.org
-Cc: Wenbin Fang <fangwenbin@vip.qq.com>, Haien Liang <27873200@qq.com>,
- Jianfeng Liu <liujianfeng1994@gmail.com>, Shirong Liu <lsr1024@qq.com>,
- Haofeng Wu <s2600cw2@126.com>, Shang Yatsen <429839446@qq.com>
-References: <20250723074540.2660-1-Simon.Richter@hogyros.de>
- <20250723074540.2660-2-Simon.Richter@hogyros.de>
- <0b4df78a-5740-415e-9939-b9c00ead84e7@aosc.io>
- <9cc7c5f9-2b1c-4b45-ad44-67923ed61757@hogyros.de>
-Content-Language: en-US
-From: Mingcong Bai <jeffbai@aosc.io>
-In-Reply-To: <9cc7c5f9-2b1c-4b45-ad44-67923ed61757@hogyros.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Server: nf1.mymailcheap.com
-X-Rspamd-Queue-Id: 9A24C40078
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.14 / 10.00]; BAYES_SPAM(0.24)[66.67%];
- MIME_GOOD(-0.10)[text/plain]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RCPT_COUNT_SEVEN(0.00)[8]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- ARC_NA(0.00)[]; RCVD_COUNT_ONE(0.00)[1];
- ASN(0.00)[asn:16276, ipnet:51.83.0.0/16, country:FR];
- MIME_TRACE(0.00)[0:+]; TO_DN_SOME(0.00)[];
- MID_RHS_MATCH_FROM(0.00)[];
- URIBL_BLOCKED(0.00)[aosc.io:mid,mail20.mymailcheap.com:helo,mail20.mymailcheap.com:rdns];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RECEIVED_HELO_LOCALHOST(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[126.com,gmail.com,qq.com,vip.qq.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- FREEMAIL_CC(0.00)[vip.qq.com,qq.com,gmail.com,126.com];
- RCVD_TLS_ALL(0.00)[]
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Updates_for_drm/xe/configfs?=
+ =?utf-8?q?_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 01 Aug 2025 01:08:41 -0000
+Message-ID: <175401052153.203649.14140093700205309365@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250731193339.179829-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250731193339.179829-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,44 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Simon,
+--===============7204329220096182844==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-在 2025/7/31 18:48, Simon Richter 写道:
-> Hi,
-> 
-> On 7/31/25 18:55, Mingcong Bai wrote:
-> 
->> -    bo->size = size;
->> +    bo->size = aligned_size;
-> 
->> Is actually still needed. Without this change, the kernel does not 
->> start up with an Intel B580.
-> 
-> bo->size has been removed in commit ec9223b49, though -- instead, the 
-> size is taken from the underlying GEM object, and the size field there 
-> is taken from the third parameter to drm_gem_private_object_init, which 
-> is "aligned_size" in your patch already, so this field is fully 
-> redundant even if the size has been aligned.
+== Series Details ==
 
-My mistake - sorry! We were testing with 6.16, the master source does 
-work without this change.
+Series: Updates for drm/xe/configfs (rev8)
+URL   : https://patchwork.freedesktop.org/series/151773/
+State : success
 
-That said, this patch is still marked Cc stable, so I would recommend 
-either dropping that, or consider submitting a separate copy suitable 
-for that purpose. I might be wrong though, so please, if any reviewers 
-could help guide Simon (and correct me), go ahead.
+== Summary ==
 
-Best Regards,
-Mingcong Bai
-> Tested on ppc64le with B580 using 64k pages, still survives a piglit run 
-> just fine.
-> 
-> The field being removed was the reason for me resubmitting the patch 
-> stack: it stopped compiling without dropping this line.
-> 
->     Simon
+CI Bug Log - changes from xe-3495-3113cfc0640b0fd319990d011901fe4174734162_BAT -> xe-pw-151773v8_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-151773v8_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3495-3113cfc0640b0fd319990d011901fe4174734162/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151773v8/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
 
 
+Build changes
+-------------
+
+  * Linux: xe-3495-3113cfc0640b0fd319990d011901fe4174734162 -> xe-pw-151773v8
+
+  IGT_8482: 8482
+  xe-3495-3113cfc0640b0fd319990d011901fe4174734162: 3113cfc0640b0fd319990d011901fe4174734162
+  xe-pw-151773v8: 151773v8
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151773v8/index.html
+
+--===============7204329220096182844==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Updates for drm/xe/configfs (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151773/">https://patchwork.freedesktop.org/series/151773/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151773v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151773v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3495-3113cfc0640b0fd319990d011901fe4174734162_BAT -&gt; xe-pw-151773v8_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-151773v8_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3495-3113cfc0640b0fd319990d011901fe4174734162/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151773v8/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3495-3113cfc0640b0fd319990d011901fe4174734162 -&gt; xe-pw-151773v8</li>
+</ul>
+<p>IGT_8482: 8482<br />
+  xe-3495-3113cfc0640b0fd319990d011901fe4174734162: 3113cfc0640b0fd319990d011901fe4174734162<br />
+  xe-pw-151773v8: 151773v8</p>
+
+</body>
+</html>
+
+--===============7204329220096182844==--
