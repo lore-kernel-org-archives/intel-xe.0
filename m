@@ -4,35 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E12CC87FCB
-	for <intel-xe@archiver.kernel.org>; Sat,  2 Aug 2025 02:42:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2885C87FCB
+	for <intel-xe@archiver.kernel.org>; Sat,  2 Aug 2025 02:48:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B8AD10E32F;
-	Sat,  2 Aug 2025 02:42:06 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE9F10E32F;
- Sat,  2 Aug 2025 02:42:04 +0000 (UTC)
-Received: from localhost.localdomain (unknown
- [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id C677E3F104;
- Sat,  2 Aug 2025 04:42:00 +0200 (CEST)
-From: Simon Richter <Simon.Richter@hogyros.de>
-To: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Simon Richter <Simon.Richter@hogyros.de>,
-	stable@vger.kernel.org
-Subject: [PATCH v4] Mark xe driver as BROKEN if kernel page size is not 4kB
-Date: Sat,  2 Aug 2025 11:40:36 +0900
-Message-ID: <20250802024152.3021-1-Simon.Richter@hogyros.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <37abb9a1a4fde174a54a9d7868d31b2615df0e47.camel@linux.intel.com>
-References: <37abb9a1a4fde174a54a9d7868d31b2615df0e47.camel@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABFF910E32F;
+	Sat,  2 Aug 2025 02:48:13 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 672D910E066;
+ Sat,  2 Aug 2025 02:48:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Mark_xe_driver_as_BROKEN_?=
+ =?utf-8?q?if_kernel_page_size_is_not_4kB_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Simon Richter" <simon.richter@hogyros.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 02 Aug 2025 02:48:13 -0000
+Message-ID: <175410289341.207063.5953426426361189305@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250727070413.9743-1-Simon.Richter@hogyros.de>
+In-Reply-To: <20250727070413.9743-1-Simon.Richter@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,31 +36,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This driver, for the time being, assumes that the kernel page size is 4kB,
-so it fails on loong64 and aarch64 with 16kB pages, and ppc64el with 64kB
-pages.
+== Series Details ==
 
-Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/xe/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+Series: Mark xe driver as BROKEN if kernel page size is not 4kB (rev3)
+URL   : https://patchwork.freedesktop.org/series/152145/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 2bb2bc052120..714d5702dfd7 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -5,6 +5,7 @@ config DRM_XE
- 	depends on KUNIT || !KUNIT
- 	depends on INTEL_VSEC || !INTEL_VSEC
- 	depends on X86_PLATFORM_DEVICES || !(X86 && ACPI)
-+	depends on PAGE_SIZE_4KB || COMPILE_TEST || BROKEN
- 	select INTERVAL_TREE
- 	# we need shmfs for the swappable backing store, and in particular
- 	# the shmem_readpage() which depends upon tmpfs
--- 
-2.47.2
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c298eac5978c38dcc62a70c0d73c91765e7cc296
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 09e3618fe0906cc11d9f7ff98c37680dd8349a32
+Author: Simon Richter <Simon.Richter@hogyros.de>
+Date:   Sat Aug 2 11:40:36 2025 +0900
+
+    Mark xe driver as BROKEN if kernel page size is not 4kB
+    
+    This driver, for the time being, assumes that the kernel page size is 4kB,
+    so it fails on loong64 and aarch64 with 16kB pages, and ppc64el with 64kB
+    pages.
+    
+    Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
+    Cc: stable@vger.kernel.org
++ /mt/dim checkpatch 1e1a350a027482a09b07628ce72a69bb7f49567f drm-intel
+09e3618fe090 Mark xe driver as BROKEN if kernel page size is not 4kB
+-:24: WARNING:MISSING_FIXES_TAG: The commit message has 'stable@', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+
 
