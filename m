@@ -4,68 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 623BEC87FD2
-	for <intel-xe@archiver.kernel.org>; Sat,  2 Aug 2025 09:45:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 278ABC87FDA
+	for <intel-xe@archiver.kernel.org>; Sat,  2 Aug 2025 09:45:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07A8110E3F5;
-	Sat,  2 Aug 2025 09:45:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA1B310E3EF;
+	Sat,  2 Aug 2025 09:45:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="K9qLMU2b";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="Gl8ns04u";
 	dkim-atps=neutral
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com
- [209.85.219.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4898110E3F3
- for <intel-xe@lists.freedesktop.org>; Sat,  2 Aug 2025 09:45:01 +0000 (UTC)
-Received: by mail-qv1-f47.google.com with SMTP id
- 6a1803df08f44-70748d1920cso37303436d6.0
- for <intel-xe@lists.freedesktop.org>; Sat, 02 Aug 2025 02:45:01 -0700 (PDT)
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
+ [209.85.160.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AA7810E485
+ for <intel-xe@lists.freedesktop.org>; Sat,  2 Aug 2025 09:45:02 +0000 (UTC)
+Received: by mail-qt1-f174.google.com with SMTP id
+ d75a77b69052e-4af1c1b5b38so2376391cf.1
+ for <intel-xe@lists.freedesktop.org>; Sat, 02 Aug 2025 02:45:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1754127900; x=1754732700;
+ d=google.com; s=20230601; t=1754127901; x=1754732701;
  darn=lists.freedesktop.org; 
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=cO89uNGcYPi4eO5n+nwIQwVtQCV764Oec4rMqddEheM=;
- b=K9qLMU2b+ot3uDc8uTmCJzJ8pk5e1rWxZC20qqVhMjpHJFiiuS1eIkhXT7SFWCAQvB
- BpjNCOaUlXibhZ78cPfVPJRKrCd2Aak6w2MySXKecr+Os+mooxwy2D0JKd0sVMngYS6o
- hcN/cxyhyeApJ1FWPtbrupyvL+gNgkzOj6bmjjZOcud3hiwnMrzvVEazOu+M8wOXaf6S
- iRfpYY00y5QHzgouDmIZNsN4xF8oRveDXhLBcFjCfNo1gcDGlhtxUHgORmZ8C57Hivb5
- +h57Vz81qLqi9mSYlXqelEWrQlxqExEye39Q7qoFRe1ovdYhA92MTH8Q0+++aNypbPTE
- vIQw==
+ bh=qm8f5gcPmOTy0U65MPBQra+alR3YTlrXX9JwlbhipGo=;
+ b=Gl8ns04uIRzDM3WgISLhLgi1h2VT9h5F4X6GBZwg9xp0e92Xr8JUaVG2z5donEFSgu
+ QcRay8yKJV+51QDhvsgDl6aQwx0BlN1Rm+KcrpEp23kyoCOiC4wiePueuwpQIDsjwShM
+ pEpIJkHgRjJJxnr/lqHBtlIDYNpNO5VtK+kiEZYm1Kwiyf0Y+Km4XWsJ8XX06C3XGiG0
+ xsjp7414zuUy7ghge85cbPbU7TNR/WJtnXaE2U1uAG7w5yo3uh4cjhu0m086t1NnnTpf
+ 216AnPdfVrssggXy1nBG6w1q2aA/NipwK35MX3gOFubZuyMQeVIL7y00gtTFVgSOJEaK
+ kQPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754127900; x=1754732700;
+ d=1e100.net; s=20230601; t=1754127901; x=1754732701;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=cO89uNGcYPi4eO5n+nwIQwVtQCV764Oec4rMqddEheM=;
- b=NVYJW+q34kMulKTQXbRz9ChUZdgpJ0tr4/iVpW8HKVEjUZyG2ib4xWL/S3OpZG21zP
- GFXyJgEdiFfQVkdJGzPvl5US/rXoYBhmK4RNPHBtY1Ruu2hthuahSvYsuTW9P+Meh4SQ
- o2Ut72rkrkp8OaUq2MKSMaA+Ukq2asb+50gZrBSSI54b/GaAYH6WH8KGK0/KMkHdcKzW
- FgZ+w6dj5hV/3yojlYAXtz+AcCRTW2Sd4BIkFuvBLCDIWfyxe1Pekbwk+dJOyUitPHCl
- ZHSvU2biTPNZSGJgd34r9vwI/PQHsUa1KRikQzxOBbf+gibFxrShms0DMpb2BQgRV5Io
- XEIw==
+ bh=qm8f5gcPmOTy0U65MPBQra+alR3YTlrXX9JwlbhipGo=;
+ b=TrnMrnFhG09baSn0uX4NKB7isb3ltzrs/iYjOs8Dk7ifZ7xhUJOSIciJ40M/ajTqzQ
+ aW6gENBv8Zf8mkMw+Q2+C0cqKjgYClAtfMQb1FYTdhHMaeQcfwipXs0kn6mAqWrCt0PC
+ arJD1SFSeBxEKqtutUj93c9fjZtw+PCCZX6HcTjNV6G76sgwmDRpeBj50JIS6O4E4bfo
+ ZKXY6IagIldLXeUYH0ibc2eM1eclUce/kTDYwG+AlhYqIZMYRu5Dj3dXjE7hKxoDv998
+ sfjuN4QYNYzup2gPwZW0SBnqa9fXM3Fth1FBWMw0lIsy33SkImByVlg5CcUU+WKa98GN
+ +N5g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWh4cbCDJIEwGuzg20LDb8sJl1/NfVcOvmOT/TwY37Eh4+hTql6Ts+/Ecy1lghGBiUM+vfffqhzyA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxoT4Ke4s+eNgdaw37zth/nHbMWeDkEC2+DgMAr+dWtEZ53JYas
- gMXakIxZHGNScd5bW78n4X6pmo7ti6e3EC0D3H7gXPoQ0TLPUCv8eFIHak5ugD+NdJnuEDa6Wu2
- yYiXiG2NlACw8O5meL+XB9CbTGwmPZkHlVfYUBArz
-X-Gm-Gg: ASbGncsvgItc2MgjN/M43GvT2EL4+xOuoisB9Qc+Y1LakQ5mr6KHG0ZKr4i9kPZrx7Z
- UGnReOXk046f1Nsd0OfA3HWxna3+zMtWpbVO2mo52+8Dodg+UIYppG28bNbnjZahPGeU1H18xLC
- JpxJkjfMJFFrEdiW+akAYD0XUCqGOEEzOwJYCnUZ+KPUqKK8BXnX9ABC63k71M0R6FZ9kv/j704
- 1CMVM54
-X-Google-Smtp-Source: AGHT+IHMp8TOhtWnJO51eOiASE8j8eD5YHeCHNwV0d0aQUEOOq4Facj9Pb8XtEQlJJ8/5jNryw9lfnT144ajU3ORXfs=
-X-Received: by 2002:a05:6214:482:b0:707:6409:d016 with SMTP id
- 6a1803df08f44-70935f60153mr38126276d6.9.1754127900103; Sat, 02 Aug 2025
- 02:45:00 -0700 (PDT)
+ AJvYcCUDBuLdtDdwMMVdoniKsRmraD+aUxCT5/bQQ+BqD2AA4MfmP3YcBGplvzJg/c1r85N6mnSJNzTuwg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwIQ4DO4z0VMA08lwWPQsH8PtEDdBzAUlpHtpxrNsUYSM7GbKBE
+ ED8CaNAJckh2gakUrbUNDI3FL33EzU8GyPYrdPv/tss9IPChC5WI+hdYRowWIJo8kqFekYOP1kE
+ rLIm3pPuf6agujGg2VWpcOt2fVK+3WG7NSE7QSlL2
+X-Gm-Gg: ASbGnct96sHkDbYlxFVyfUPW4b3H/7YgtN/B/F/V4YoJ5Va6vhG6aKIMx4ub8jvl9OP
+ 3547cHgMWn18elS3CNX83QJVFsDVgCI6w1mEisJbcEwLHdFdAPkpMAslvH6IeiR2X1QWIbbkP+K
+ 0S21zXVGsnaEgFNLc2QuX63yehPZGJp12vz3qkzjwTmtusFkQNwEL0glAW+0LEn0nhm2hcHLUh+
+ byBYb8oUgNFwkbz7vg=
+X-Google-Smtp-Source: AGHT+IFKWTJQmvl1QWhMEQf6mucfuQgcYVwwffnxEbNhn585emjBkUjxIlURPitJRkMNHco2qPBG/rAyOOqPZ8b/j4k=
+X-Received: by 2002:ac8:5802:0:b0:4ab:6c75:620 with SMTP id
+ d75a77b69052e-4af10954c19mr47286961cf.1.1754127901186; Sat, 02 Aug 2025
+ 02:45:01 -0700 (PDT)
 MIME-Version: 1.0
 References: <20250729193647.3410634-1-marievic@google.com>
- <20250729193647.3410634-5-marievic@google.com>
-In-Reply-To: <20250729193647.3410634-5-marievic@google.com>
+ <20250729193647.3410634-6-marievic@google.com>
+In-Reply-To: <20250729193647.3410634-6-marievic@google.com>
 From: David Gow <davidgow@google.com>
-Date: Sat, 2 Aug 2025 17:44:45 +0800
-X-Gm-Features: Ac12FXyD0NUtg84q97c-X3R9eBKapNZWOLNwLnhlzJzZ5xtYlZgKpFxg0pby0ik
-Message-ID: <CABVgOSnmtcjarGuZog9zKNvt9rYD2Tsox3ngVgh4pJUFMF737w@mail.gmail.com>
-Subject: Re: [PATCH 4/9] kcsan: test: Update parameter generator to new
- signature
+Date: Sat, 2 Aug 2025 17:44:48 +0800
+X-Gm-Features: Ac12FXxzj7NJuQfaw5YMY9Xgg-cu4_yvgrPf9Wxf5hDCWeBmCbl6q73Q5jmH-lY
+Message-ID: <CABVgOSmTNAOoLqLhsZq+RiBU3wj4s79hzV+WFEOS10sahZf6Mg@mail.gmail.com>
+Subject: Re: [PATCH 5/9] drm/xe: Update parameter generator to new signature
 To: Marie Zhussupova <marievic@google.com>
 Cc: rmoar@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
  elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com, 
@@ -74,7 +73,7 @@ Cc: rmoar@google.com, shuah@kernel.org, brendan.higgins@linux.dev,
  kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Content-Type: multipart/signed; protocol="application/pkcs7-signature";
- micalg=sha-256; boundary="0000000000006996a9063b5eba47"
+ micalg=sha-256; boundary="0000000000007aaab1063b5eba62"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,20 +88,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---0000000000006996a9063b5eba47
+--0000000000007aaab1063b5eba62
 Content-Type: text/plain; charset="UTF-8"
 
 On Wed, 30 Jul 2025 at 03:37, Marie Zhussupova <marievic@google.com> wrote:
 >
-> This patch modifies `nthreads_gen_params` in kcsan_test.c
-> to accept an additional `struct kunit *test` argument.
+> This patch modifies `xe_pci_live_device_gen_param`
+> in xe_pci.c to accept an additional `struct kunit *test`
+> argument.
 >
 > Signed-off-by: Marie Zhussupova <marievic@google.com>
 > ---
 
-This is a pretty straightforward fix after patch 3. KCSAN folks, would
-you prefer this kept as a separate patch, or squashed into the
-previous one (so there's no commit where this is broken)?
+
+This is a pretty straightforward fix after patch 3. xe folks, would
+you prefer this kept as a separate patch, or squashed into patch 3
+(which changed the function signature)?
 
 Either way,
 Reviewed-by: David Gow <davidgow@google.com>
@@ -110,27 +111,28 @@ Reviewed-by: David Gow <davidgow@google.com>
 
 -- David
 
->  kernel/kcsan/kcsan_test.c | 2 +-
+
+>  drivers/gpu/drm/xe/tests/xe_pci.c | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/kernel/kcsan/kcsan_test.c b/kernel/kcsan/kcsan_test.c
-> index c2871180edcc..fc76648525ac 100644
-> --- a/kernel/kcsan/kcsan_test.c
-> +++ b/kernel/kcsan/kcsan_test.c
-> @@ -1383,7 +1383,7 @@ static void test_atomic_builtins_missing_barrier(struct kunit *test)
->   * The thread counts are chosen to cover potentially interesting boundaries and
->   * corner cases (2 to 5), and then stress the system with larger counts.
+> diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
+> index 1d3e2e50c355..62c016e84227 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_pci.c
+> @@ -129,7 +129,7 @@ EXPORT_SYMBOL_IF_KUNIT(xe_pci_fake_device_init);
+>   * Return: pointer to the next &struct xe_device ready to be used as a parameter
+>   *         or NULL if there are no more Xe devices on the system.
 >   */
-> -static const void *nthreads_gen_params(const void *prev, char *desc)
-> +static const void *nthreads_gen_params(struct kunit *test, const void *prev, char *desc)
+> -const void *xe_pci_live_device_gen_param(const void *prev, char *desc)
+> +const void *xe_pci_live_device_gen_param(struct kunit *test, const void *prev, char *desc)
 >  {
->         long nthreads = (long)prev;
->
+>         const struct xe_device *xe = prev;
+>         struct device *dev = xe ? xe->drm.dev : NULL;
 > --
 > 2.50.1.552.g942d659e1b-goog
 >
 
---0000000000006996a9063b5eba47
+--0000000000007aaab1063b5eba62
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -220,13 +222,13 @@ Vumvw5QTHe29TYxSiusovM6OD5y0I+4zaIaYDx/AtF0mMOFXb1MDyynf1CDxhtkgnrBUseHSOU2e
 MYs7IqzRap5xsgpJS+t7cp/P8fdlCNvsXss9zZa279tKwaxR0U2IzGxRGsWKGxDysn1HT6pqMDGC
 Al0wggJZAgEBMGgwVDELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKjAo
 BgNVBAMTIUdsb2JhbFNpZ24gQXRsYXMgUjYgU01JTUUgQ0EgMjAyMwIQAUXA7LnOuRz2DvkWTeMc
-0TANBglghkgBZQMEAgEFAKCBxzAvBgkqhkiG9w0BCQQxIgQgXPQTK0+ipCXOMwEjmbPfX9pH7GwC
-UVAtSzbrKFbxDgwwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjUw
-ODAyMDk0NTAwWjBcBgkqhkiG9w0BCQ8xTzBNMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJ
+0TANBglghkgBZQMEAgEFAKCBxzAvBgkqhkiG9w0BCQQxIgQgCW07HzC0aE661vW+3P7Bv0AG9Nbo
+KmvKergx6moXAzAwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjUw
+ODAyMDk0NTAxWjBcBgkqhkiG9w0BCQ8xTzBNMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJ
 YIZIAWUDBAECMAoGCCqGSIb3DQMHMAsGCSqGSIb3DQEBBzALBglghkgBZQMEAgEwDQYJKoZIhvcN
-AQEBBQAEggEACuCHPAr/DyWesPxG5G7lzBTPMRvbSE6a17lHmIJGH53lwLm3SwbuF2KfOuqNEfgV
-YSgKvJQrwQRRBIRy8WnaXDfFfGK5OzyGKsBB06mqFKW6I5ArVNvg2JkK+/G7Prg3a7COI+yPim+6
-JGFpPhNxCD9iKlQrllG6W/QUYPCxNZ6UQIGSPcYSkEGtp4TmreJqsLUtAcu4KnYhLkoqywnUEDVG
-PTRHXJP3dWHw4sL+0mlsPWQHFYEzbnhegu7cLhTZ/+0LQxLnVe7gkaKzfxR0NGf46e5l6c3cm/Qj
-qJJt2zwbvp0j4JMteTN44/+NZo6IcgA9/fUbEeKIq6+Tvp3mSA==
---0000000000006996a9063b5eba47--
+AQEBBQAEggEAYWKXavasvHqVN7tILps3q0AelnwvSIP8Q4+OqW8nzGavNL4ngLkSY30gqlMHydBs
+lIX9FDZqZqVUDNIIHVq8EWcCRA77nHgy0WZoxfvO36LF0rAyuJYCxSmWryaxyen89bAEDecnMaEl
+zNldtXN/WY8jYbYy7D3qXDsCF2FKZUqJbXai/ccZZJb5ruxLdMVFh4S6LSzMWV0p4eV3aDgwwM4F
+42yZ6ZpjMpFxzk/yo90+d/29ZBZGXXYL9IDw3MGCvNrj8ht8x+zYIHBAfoGoxvoGHLInTUxBFDN0
+xQdRLeOvcFj0s/nMtda4xowTW0O+IP9RMxjt8jJERSj7LJJ1rg==
+--0000000000007aaab1063b5eba62--
