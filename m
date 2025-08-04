@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 112E1C87FCF
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Aug 2025 14:22:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29D99C87FCF
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Aug 2025 14:46:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C722E10E368;
-	Mon,  4 Aug 2025 14:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFA0E10E360;
+	Mon,  4 Aug 2025 14:46:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hyJow4K2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MGkPNKEu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A8E210E368;
- Mon,  4 Aug 2025 14:22:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D597C10E360;
+ Mon,  4 Aug 2025 14:46:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754317352; x=1785853352;
+ t=1754318813; x=1785854813;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=J24QG2wgeyWXAugf1hXQE3mvvPrlh+VucAcMGxbzLSE=;
- b=hyJow4K2KqKlcJ6MuHvk4A0MjdcaT3iaZUa+jYAaHcS79PTlsk+mL3oE
- aZDZYI1njucIBlSlX6wxrndDON8z2C0e+Rizez7hTLNuhoxxIh6NQjc97
- QmDNcBNDf4H7ZxotQwJgTjAuunvPv9i16E+a++tDOkadCzZe1qb8xj+Cj
- moBvPsi6FqURqkkqxNuBGPtDJ9cf07EoczAI9WJbN7DTLCTa3HrXTZTcE
- CocQ5r+fvJCv2aaobqRh8SSlPejRgitGgKCcZjHfquvFqFk7xEzztEduv
- iDYdwGqoVoWDwMFlo/v/gSQ5qDS5iZv57SZae4jeR7hrBiTG3aAStwmpm g==;
-X-CSE-ConnectionGUID: iaEE2G/jR8iVlgvsqyzZwQ==
-X-CSE-MsgGUID: oCa83jDjTXCIe9OGNzFoCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="56453697"
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="56453697"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2025 07:22:31 -0700
-X-CSE-ConnectionGUID: uoj6XdnkTMKZfeqPZrP9PQ==
-X-CSE-MsgGUID: bv8kmmP4T/SHFTLBID4mGg==
+ bh=najYcGyXE9RTm+PfSpq9A5fwiGXXVq4CkUOrUUM4Ntw=;
+ b=MGkPNKEufAuksslfKsZM40/HodMWU81t0N3wDVUNu/+FLqTCpD//1oKu
+ ZG3x32HlDoR1JhWCRHLpXA1pf2NAfSyMUlUt4b3NPqGHjJ2rEOhH7u60K
+ Fvjs8vu/jHmEGuzrbrWdGjEI4AqMuZNG+293rH273hKlCK+iCQK0J0JcZ
+ pcaHZYNkyDmWvdZiIo5bxdfwkA7Ki9/rwH4276Qno4yDKXfEpTfNJL5BB
+ ePjrRwOjciR+gJfrrRPsFn/BkXAdJkldUOvZBXQHXJ/a93CifBbApJqGy
+ hegK6sTTWhLVY6lpnF17u/EdqxwOXo5UZLLZ7Ll3FEkVTRmC3qenCIE9I A==;
+X-CSE-ConnectionGUID: t32O77jqRBSQvlIVYbe9gA==
+X-CSE-MsgGUID: s+4y+fXGQz+5lt1kPg/5qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="67650522"
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="67650522"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2025 07:46:52 -0700
+X-CSE-ConnectionGUID: Gk7dhWvCRsWem2ctPT2ajw==
+X-CSE-MsgGUID: le5L3j6fRryVFCIa+fsMBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="163437902"
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="163730736"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.236])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2025 07:22:29 -0700
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2025 07:46:50 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 2/4] drm/i915/vrr: Use static guardband to support
- seamless LRR switching
-In-Reply-To: <20250707043321.97343-3-ankit.k.nautiyal@intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Subject: Re: [PATCH] drm/i915/display: Use drm_crtc_vblank_count in
+ intel_crtc_get_vblank_counter()
+In-Reply-To: <20250724122616.1111673-1-dev@lankhorst.se>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250707043321.97343-1-ankit.k.nautiyal@intel.com>
- <20250707043321.97343-3-ankit.k.nautiyal@intel.com>
-Date: Mon, 04 Aug 2025 17:22:26 +0300
-Message-ID: <eeda84457c813151a3459a46a91946b4fbbb9e44@intel.com>
+References: <20250724122616.1111673-1-dev@lankhorst.se>
+Date: Mon, 04 Aug 2025 17:46:47 +0300
+Message-ID: <b4ee66fec61e424ae94024ba297b49e7586639d9@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,18 +69,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 07 Jul 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> +	io_buffer_wake_ms = intel_encoder_is_c10phy(encoder) ? 9790 : 14790;
+On Thu, 24 Jul 2025, Maarten Lankhorst <dev@lankhorst.se> wrote:
+> drm_crtc_accurate_vblank_count takes a spinlock, which we should avoid
+> in tracepoints and debug functions.
+>
+> This also prevents taking the spinlock 2x during the critical
+> section of pipe updates.
 
-9.79 or 14.79 *seconds*?
+Don't we have vblank->max_vblank_count != 0 in most cases, and don't we
+want accuracy in the rest of the cases?
 
-> +	aux_wake_latency_us =
-> +		DIV_ROUND_UP(io_buffer_wake_ms + TFW_EXIT_LATENCY_MS + FAST_WAKE_LATENCY_MS, 1000);
-
-us = ms * 1000, not ms / 1000.
+The commit message should explain why it's okay to make this change.
 
 BR,
 Jani.
+
+>
+> Link: https://lore.kernel.org/r/20250715101636.906092-9-dev@lankhorst.se
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> ---
+>  drivers/gpu/drm/i915/display/intel_crtc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> index dbdc4d9b2a33c..65a57cadfa3bf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -85,7 +85,7 @@ u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc)
+>  		return 0;
+>  
+>  	if (!vblank->max_vblank_count)
+> -		return (u32)drm_crtc_accurate_vblank_count(&crtc->base);
+> +		return (u32)drm_crtc_vblank_count(&crtc->base);
+>  
+>  	return crtc->base.funcs->get_vblank_counter(&crtc->base);
+>  }
 
 -- 
 Jani Nikula, Intel
