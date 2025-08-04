@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A681FC87FDA
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Aug 2025 09:40:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E552C87FCB
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Aug 2025 10:09:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C2BA10E04E;
-	Mon,  4 Aug 2025 09:40:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YsUTDOp4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9684F10E04E;
- Mon,  4 Aug 2025 09:40:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754300421; x=1785836421;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=za1PTKsWjFibSErq85AFsMvUwxohoDzwmMSpj4Q7Hog=;
- b=YsUTDOp4IfsO2nIkXxMt5wgurI0C64sXoFlJRWgZfOd4JkIoe0/kau1D
- VmPkFOpBeADALZyJs3tXY5ko/s1EIwRpxzZVj5i4++2VobB8RTa7lyYRG
- kc8y8xwLl1Pbd07lm0lGUZ3qA0jDh0u60nwd7Y/q26F8LV4LxtOex67KA
- ZX1dbMJJTMo9J2tNew9LShzIXYAU1VkPo16khLJqIuD0W3TW9xqonQXEa
- 05SS75B6Iu3hHO1x1UZ9xItv0M0Tgu3K7zoOVaBBv/94gKLc1efoBiYii
- Ec28F5OmdhgcoRWROC83McNRhNjsSQqViBcku5Xfm0Tdvyk6UqskD2+md g==;
-X-CSE-ConnectionGUID: NN2cM987SJOFip8rPVP9qA==
-X-CSE-MsgGUID: ZuCfnx7QQw25WW9K66xXxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11511"; a="74142328"
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="74142328"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2025 02:40:20 -0700
-X-CSE-ConnectionGUID: 7d6dt920SEexhKinLnnNRA==
-X-CSE-MsgGUID: EDZ/GzpIQ52XiYqiFjo+7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="163785264"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.245.63])
- ([10.245.245.63])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2025 02:40:18 -0700
-Message-ID: <ccf7c5b0494e46bbf86d45927e6bd130115c50fb.camel@linux.intel.com>
-Subject: Re: [PATCH v4] Mark xe driver as BROKEN if kernel page size is not 4kB
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Simon Richter <Simon.Richter@hogyros.de>,
- intel-xe@lists.freedesktop.org, 	dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-Date: Mon, 04 Aug 2025 11:40:15 +0200
-In-Reply-To: <20250802024152.3021-1-Simon.Richter@hogyros.de>
-References: <37abb9a1a4fde174a54a9d7868d31b2615df0e47.camel@linux.intel.com>
- <20250802024152.3021-1-Simon.Richter@hogyros.de>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F8B010E15E;
+	Mon,  4 Aug 2025 10:09:53 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA54710E15E;
+ Mon,  4 Aug 2025 10:09:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0671020527546376278=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_coverity_issu?=
+ =?utf-8?q?e=2C_cast=5Foverflow?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Pravalika Gurram" <pravalika.gurram@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 04 Aug 2025 10:09:51 -0000
+Message-ID: <175430219194.209865.6211589679790081501@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250804094038.3301004-1-pravalika.gurram@intel.com>
+In-Reply-To: <20250804094038.3301004-1-pravalika.gurram@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,41 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, 2025-08-02 at 11:40 +0900, Simon Richter wrote:
-> This driver, for the time being, assumes that the kernel page size is
-> 4kB,
-> so it fails on loong64 and aarch64 with 16kB pages, and ppc64el with
-> 64kB
-> pages.
->=20
-> Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
-> Cc: stable@vger.kernel.org
-> ---
-> =C2=A0drivers/gpu/drm/xe/Kconfig | 1 +
-> =C2=A01 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> index 2bb2bc052120..714d5702dfd7 100644
-> --- a/drivers/gpu/drm/xe/Kconfig
-> +++ b/drivers/gpu/drm/xe/Kconfig
-> @@ -5,6 +5,7 @@ config DRM_XE
-> =C2=A0	depends on KUNIT || !KUNIT
-> =C2=A0	depends on INTEL_VSEC || !INTEL_VSEC
-> =C2=A0	depends on X86_PLATFORM_DEVICES || !(X86 && ACPI)
-> +	depends on PAGE_SIZE_4KB || COMPILE_TEST || BROKEN
-> =C2=A0	select INTERVAL_TREE
-> =C2=A0	# we need shmfs for the swappable backing store, and in
-> particular
-> =C2=A0	# the shmem_readpage() which depends upon tmpfs
+--===============0671020527546376278==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-R-B still stands.
+== Series Details ==
 
-I've pushed this to drm-xe-next with a Fixes: tag which means it will
-likely end up in Linus' tree the upcoming weekend.
+Series: drm/xe: Fix coverity issue, cast_overflow
+URL   : https://patchwork.freedesktop.org/series/152479/
+State : success
 
-Thanks,
-Thomas
+== Summary ==
 
+CI Bug Log - changes from xe-3500-32387573a2627cb341b0f28872229d8f96f92fc6_BAT -> xe-pw-152479v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3500-32387573a2627cb341b0f28872229d8f96f92fc6 -> xe-pw-152479v1
+
+  IGT_8483: 8483
+  xe-3500-32387573a2627cb341b0f28872229d8f96f92fc6: 32387573a2627cb341b0f28872229d8f96f92fc6
+  xe-pw-152479v1: 152479v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152479v1/index.html
+
+--===============0671020527546376278==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix coverity issue, cast_overflow</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152479/">https://patchwork.freedesktop.org/series/152479/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152479v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152479v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3500-32387573a2627cb341b0f28872229d8f96f92fc6_BAT -&gt; xe-pw-152479v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3500-32387573a2627cb341b0f28872229d8f96f92fc6 -&gt; xe-pw-152479v1</li>
+</ul>
+<p>IGT_8483: 8483<br />
+  xe-3500-32387573a2627cb341b0f28872229d8f96f92fc6: 32387573a2627cb341b0f28872229d8f96f92fc6<br />
+  xe-pw-152479v1: 152479v1</p>
+
+</body>
+</html>
+
+--===============0671020527546376278==--
