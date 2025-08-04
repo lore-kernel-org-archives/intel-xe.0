@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C20E3C87FCF
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Aug 2025 13:33:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0617C87FD1
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Aug 2025 13:38:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73CAD10E51D;
-	Mon,  4 Aug 2025 13:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A8C310E535;
+	Mon,  4 Aug 2025 13:38:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F/6bJLQz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O2p9PRTk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16C1310E207
- for <intel-xe@lists.freedesktop.org>; Mon,  4 Aug 2025 13:33:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 522E210E51A;
+ Mon,  4 Aug 2025 13:38:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754314434; x=1785850434;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lFg0UKGRXkbZXVdRziNfRQzvyEvzd5ER+uhZ/JMn+nM=;
- b=F/6bJLQzJJNbczQLf43S732fwS1U48L2DMctwFRYgyOLvCtjEcMMshde
- 2jlzELctzsro3sPpfuPtnIM42JlTW1FSC18WQPAe8ZdwvKWp/hIoMHv1Z
- pj8+23l9YqmrmgUYUm5p/XtrBxqZMp4StNkRqqyx+vpriF8PaNEtZfTXv
- I8iQjOLQvL5OVa7I9qOdfpp9iSt+uaMyfd9mKYJEw9VA6h6TPFWOasMsF
- XvXkNRU2llCWrcbAAC7cqc1ot40eMRk97AKc+5D6bBe1emn0XS5jH01ZY
- Dvy5MOs03jXcdnHFn4bmKWJo9nD+61aNnrfKjm9Xd22J+w6X0J/3V+Uea w==;
-X-CSE-ConnectionGUID: mVsTMDPPQZG0QjVoHZjR0g==
-X-CSE-MsgGUID: ba7oiiQBRA+bbEVpyOSgVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="60216934"
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="60216934"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2025 06:33:53 -0700
-X-CSE-ConnectionGUID: u6e04fhyTauP1orzd3isrQ==
-X-CSE-MsgGUID: V3O3VX85TCCRpCGDAQAHuw==
+ t=1754314722; x=1785850722;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Ekkg0Y5Dk2ieELTF0jeMpbYSBdaK4H7200k8dbIH6VA=;
+ b=O2p9PRTk694vXqwODMex8TVjI8AaFLsE8dPjCihbgRtMcU+v5RUSvORX
+ dymicSCCvEZ9NCGgh3YBFm5cJtHRoo+L7opCIm8G3JH0Vchky6/MX00/c
+ AcVZzayGsFpCebkB6cF4tTbajPGE/tvL9egh7avAm0vXdmBj8v7QZHUeO
+ 9sp4Kx5FePMwM2RefGEvyVoaR+WrpRJu4SWXInyfqTgo8O7Iy+vFBeWIP
+ 5HsEWnjjtYyrf+A6Jdv4II68k9d/hEKmUHnzmIm8pmnmVsG0lOiHLRJiQ
+ CwCwe6kRO+q2uUqc3To+qnqO9Lz9sinRH8T9J2pmRxav9DtHQOkgII+b7 Q==;
+X-CSE-ConnectionGUID: WRrajzX+TYy6w+7krW/RIQ==
+X-CSE-MsgGUID: Xhe6gyNUQU63yuP+P/ZaMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="56447370"
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="56447370"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2025 06:38:41 -0700
+X-CSE-ConnectionGUID: D5UVOlfEQvG7YF3ntHciSw==
+X-CSE-MsgGUID: mulc7LvARRGkdmKWiRmnbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="168369581"
-Received: from pgurram-desk.iind.intel.com ([10.190.238.70])
- by orviesa003.jf.intel.com with ESMTP; 04 Aug 2025 06:33:52 -0700
-From: Pravalika Gurram <pravalika.gurram@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: nirmoy.das@intel.com,
-	Pravalika Gurram <pravalika.gurram@intel.com>
-Subject: [PATCH] drm/xe: Fix coverity issue, overflow_assign
-Date: Mon,  4 Aug 2025 19:15:43 +0530
-Message-Id: <20250804134543.3313558-1-pravalika.gurram@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="163430632"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2025 06:38:40 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 01/15] drm/i915/skl_watermark: Fix the scaling factor for
+ chroma subsampling
+Date: Mon,  4 Aug 2025 18:54:26 +0530
+Message-ID: <20250804132441.990441-2-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250804132441.990441-1-ankit.k.nautiyal@intel.com>
+References: <20250804132441.990441-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,28 +68,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Safe cast of error code from long to int
+The Bspec:70151, mentions Chroma subsampling is a 2x downscale
+operation. This means that the downscale factor is 2 in each direction.
+So correct the downscaling factor to 4.
 
-Fixes: cda06412c0689 ("drm/xe: Wait for migration job before unmapping pages")
-
-Signed-off-by: Pravalika Gurram <pravalika.gurram@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 1a72561f987c..a1e82c879f1e 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -988,7 +988,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 						     false,
- 						     MAX_SCHEDULE_TIMEOUT);
- 		if (timeout < 0)
--			ret = timeout;
-+			ret = (int)timeout;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 222c069fdadb..5a120c1f66f4 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2186,7 +2186,7 @@ dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
+ 				    crtc_state->hw.adjusted_mode.clock);
+ 	int num_scaler_users = hweight32(scaler_state->scaler_users);
+ 	int chroma_downscaling_factor =
+-		crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
++		crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 4 : 1;
+ 	u32 dsc_prefill_latency = 0;
  
- 		if (IS_VF_CCS_BB_VALID(xe, bo))
- 			xe_sriov_vf_ccs_detach_bo(bo);
+ 	if (!crtc_state->dsc.compression_enable ||
+@@ -2229,7 +2229,7 @@ scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
+ 		u64 hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
+ 		u64 vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
+ 		int chroma_downscaling_factor =
+-			crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
++			crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 4 : 1;
+ 		int latency;
+ 
+ 		latency = DIV_ROUND_UP_ULL((4 * linetime * hscale_k * vscale_k *
 -- 
-2.34.1
+2.45.2
 
