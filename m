@@ -4,183 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99926C87FD1
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 15:10:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 633F9C87FD1
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 15:17:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A79010E6AB;
-	Tue,  5 Aug 2025 15:10:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5A0610E6AB;
+	Tue,  5 Aug 2025 15:17:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="neA+vNqe";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="toJwPNFO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C870110E6AB
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Aug 2025 15:10:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754406602; x=1785942602;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=HZAXPJPk3HQaILTXVIsj6gdaej3Jaa55O7dXH6DaExk=;
- b=neA+vNqeDvjtlzylEi6/t6xv8n3aML3HLmGWHR8EgaY9flWV/NjIClG3
- NkpZO3DRCVzORWBHoxcDAW/rYntRUDOWf5hXZNy8nm7brGFRbVYQQwq0K
- 0BHlwKFZGpjsbA+EJImATjgW2sejrrLyyG803Q3iLTd9w4xkq3KoFwND2
- G1lW9AkcbqBk+tZqioMHyTQ8/iJDvjNNDkv8TUzBFsvevc7KqIFWwVTl1
- LIH+veTfddpuL7TpjuFtcSK2ojSWftC+zSRm12XdShgr1xO/VZCCmlOym
- jHUQ/KdDVePLf+/edpTIPHSD/wK7OXU7ZK9Hm5Pkryp353lvJPMfO/mkr Q==;
-X-CSE-ConnectionGUID: B9NHSYEsQcaA+K/xq2QFHQ==
-X-CSE-MsgGUID: 4o15rVzmQsSSWT1QWzRhIQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="60535769"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60535769"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 08:10:02 -0700
-X-CSE-ConnectionGUID: S8THn9unRxKJzIS6jt37kw==
-X-CSE-MsgGUID: ft5XdpBETB6qSLhd67dqtw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="164038958"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 08:10:01 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Tue, 5 Aug 2025 08:10:00 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Tue, 5 Aug 2025 08:10:00 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.45)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Tue, 5 Aug 2025 08:10:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aMu7x0AXtkJZkWT6APrUDp+J6DJ1lLYBJcJTNuzRXEK5Lc5X+cce076Zf1rRFLjISY7PciY5hxpJMHqIzsNrdNxOcNdSKlSL3CG0ppHHznq75HvJTsuYN31+TLbKk1iEpHpWH6uK4UXEwghZouDyuEMr/KSmYSdY94ItDjUQQTbtvXzhmL47jSh+7yoRHwLi3ZaZgFKSwCC4yOhXX7IUOVOk0rUaBNbqXTemmsvZm3sqX2bfCHJ45vRmoeV3UVtmGlBhZ68oOZYuAEyqUD3FQeuw2nlOt/tM02RsRADPDROjTnxhoTvR8/4boiVBvgTzErwR07Qe3a4qy8OtmxCW5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LcK4IsAHlffZUaINmGw4nSZe2mNBOPOLTtjG4bzXFrI=;
- b=FyoMas73CojaFTkhlwqtHw6IAKQYEnJTmNUHIPReiD/k8HKsS4dqYB/brDpOwQST66ZKPSbq3G/R0tgiQ/EpcFeBcZ3MCBIeKDbPsVMUkPaTG2y15LuKDrfLpeYND/ylukQxVqWbOOdfKCQcDzwh1qQ0X1Zy5WEAheo3JRPG8JseZTw4kVsj2NrEnTbLJJYsxprFMme3JewrNSQ93AyEJ3vuSKh7uiQcjc8tNTnv74ZlEWBq5S820eyAz3inBsa+jUMsegtot5dqg+6fyTO8uYfQ/MjGOmyoqhWcR17g2ACiO3ZD8VazRDpPhZc8zrmqobr1mz4eGz1YkJ8rHHdoeg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by DM3PPF99D0888FA.namprd11.prod.outlook.com (2603:10b6:f:fc00::f3d)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.20; Tue, 5 Aug
- 2025 15:09:55 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267%5]) with mapi id 15.20.8989.018; Tue, 5 Aug 2025
- 15:09:55 +0000
-Message-ID: <7eeeafde-329e-4bdd-bf90-f44cec920008@intel.com>
-Date: Tue, 5 Aug 2025 17:09:52 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 08/11] drm/xe/configfs: Keep default device config
- settings together
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, John Harrison <John.C.Harrison@intel.com>
-References: <20250731193339.179829-1-michal.wajdeczko@intel.com>
- <20250731193339.179829-9-michal.wajdeczko@intel.com>
- <pk56daxs2snzdqbnaaq3cqysy5rhpeioc5xd2h4cgxbdbrmh46@q6iqxhuifmgw>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <pk56daxs2snzdqbnaaq3cqysy5rhpeioc5xd2h4cgxbdbrmh46@q6iqxhuifmgw>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR0502CA0009.eurprd05.prod.outlook.com
- (2603:10a6:803:1::22) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com
+ [209.85.219.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 107F410E6AB
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Aug 2025 15:17:45 +0000 (UTC)
+Received: by mail-qv1-f48.google.com with SMTP id
+ 6a1803df08f44-70749d4c598so50732786d6.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 05 Aug 2025 08:17:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1754407065; x=1755011865;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=7IXs2Kr/JIndnkNpfZSfduZvVHbFnK3EtPg4aqdOsRc=;
+ b=toJwPNFOv/sklE63k5JvzGlh395OWdHcX75+5JHc7kjoHovcGknF/YNHa9LjejJcQv
+ nSvGfoDp7HiM5htbSD3KP/PjOZWLlaoQfhPXmrYsDwWcKeGvx/sp01YZSsVzeBPkhKAy
+ FMtJz0DuxSUilsqhsQMTz5/3IxTOUj4gPG5u5Jpm246WRppB2p7J6uFSyv1WFuH1QoOW
+ QmAJh0GPf4XDj7S2JRnEX51fnQgMOLJCADPfU+963P8W2qv+1XtPGM3/V6jjIdMCsk9e
+ jWh81S3p8YYifuMp+1wjqTvjqyCHYC/oUDFeYDMwPzeeOboZjff5TUnUeRL7LN4pxq92
+ QKCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754407065; x=1755011865;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=7IXs2Kr/JIndnkNpfZSfduZvVHbFnK3EtPg4aqdOsRc=;
+ b=YtUY0jRsP4D5x0K+2ZujHNrZ6mP0h9n12KTPkq1P/r2UTvvl7jJErfMIW23NDqsjVa
+ 8T/8PJMTfocnKk0qt6ssVvwyGskYcgB91XrcycklbfBomZa36uX6l0Ik/7V1sN5HoKwl
+ YKZQG4/v+x+eB1OEfQMaff0oJ76bOu8htcAA/+ATk/+1F67HV5OyCUeZrxFlDXKp5hlv
+ 25/QICHYu6xU9hDLa8jVHYBfephm4Kuc0fXXzkxMeKj4oaixKBEEBdvQt735jqUIco4P
+ ccLT5/jvzeN3SfdzbwpWzi1hNXUOHZR39rD4xzj4oJRtRNnmuOJfOW+ksTNgpzuzyGZi
+ 709g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU1pcvxytKA4cgfvfiwVdctucQcRI+39bb8xiDtkBEOwpF9CHLUKTgyanSQC1nweF/PRmOMUchTWg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YylTbur4kLX0JJP1nOyrEQrSXw+gg2ILfUaAQUhNe2o8ocIoWh0
+ ODPUkLw4bkgtOGMlJzagTCaJgYEyQ5nYJBk+f3aanUxUG9bMHMCTG60qC392lf3hZdSK9qFx7aO
+ FUwYf0v81BrUH0NUCwKRi9j/PPx0Zsv9Co6L8eIY9
+X-Gm-Gg: ASbGncuHgfti1+IXhnr8+4ES8dI5f05OV0nwUPvQ/qj2IY4nU7IvpcQhF+DZ6hzX6zK
+ gun0GN7xd6SW9IXp6gZ5auNsnGotY3xDD43QidFO9NXOZGu+APi1n3xnVO8dEbAwvzBMJnwC4jc
+ gdlEq5YgUaxluZt70E3pT1Q39zN5wDK8/jh6PTTyDS94Ki3o7WIdAttsQNzTosecUUtlfPnZ4ev
+ dHgGqQcuvRG7JNkUCTsNhw/fX10wCdFFJrANGLYjg==
+X-Google-Smtp-Source: AGHT+IHa9Nch2FIZBNvQFdt72fBtGdTNiWpLK+36OZqHE3rAqtd4pqYuQh8Gb7ugOeLVkjRMznl5Qph/PIQV3EAFD/c=
+X-Received: by 2002:ad4:5765:0:b0:706:f753:6b1f with SMTP id
+ 6a1803df08f44-70935fb3038mr189139186d6.21.1754407064119; Tue, 05 Aug 2025
+ 08:17:44 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|DM3PPF99D0888FA:EE_
-X-MS-Office365-Filtering-Correlation-Id: c02394ca-9eb4-45e6-0f7b-08ddd43222c4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?TkdOa3JUMFFaRGs5MVZTTGxLL25OQk1iQUZRcXE4aVFlRHVac04yVU1iQ3hV?=
- =?utf-8?B?c045a01RVkNyd1ZwMkJlRUptSlRLQTVORE43UzY4bS8xL202ejNpRnBHVkRk?=
- =?utf-8?B?SWRUYXh3Mkh3MmkxRUx0RVRBWUtNcW83T05sWThURXJaOXlHRnh6OHlyL1FT?=
- =?utf-8?B?MkNJZlU3MGtlVUdzd24vUGFUczUyalExTU9QdDd1L0RYWDNXaW1vRHU3N3lk?=
- =?utf-8?B?NFUzSWJaVVZucnp2NUo1VnZib1M0a25oclZKZzd3L3dac0hGSGwyOEN1a01T?=
- =?utf-8?B?aEpjVllXVlNVWkxBdzFrZktGN3Yva2dEbVZ5M3FGdXBiL2xqU0QrRm5ZTUI5?=
- =?utf-8?B?cHg0c3hERlV3bGp6Zjg3bXZUY2ZrS0xob2pLc2M5Z1d0d3VGdVVlUWdyNzVC?=
- =?utf-8?B?RldicmEwMmM1NW9VTUxFTm5iQlBGK2owMlo2ZUY3MDc2ak5KMG9abXhhNlVE?=
- =?utf-8?B?MThRNEprYjZQeE5NYURtRnZUR1V3aExhOFZ1M0pLWHl4LzBSZVZkRFh0dEht?=
- =?utf-8?B?UDl5ZDkrcFYyQjZjclZ2K2c5WTdNNUxWQ3pkeVlFQWFhN295NmQxNVYyZVhH?=
- =?utf-8?B?cnlndXNsL3d2OVFpd01Jd0sxYmZMVmI1ayt4S0pQMXFSMDAxVC94bzgvUmQ4?=
- =?utf-8?B?akNoYURQdTViVDlyWTJ2SlRqci9Pb0ZhZnhUL25FN1RXcEVvMms4RVlBbkwy?=
- =?utf-8?B?VHdlOXNlbzJWQVI3Wml6M2diNW1GTUcvOWFKeGx5MTlOeGNkOEZIUER1Z1cw?=
- =?utf-8?B?M1o2VHNrRGdweWppeWJkUXh6b08zTVMreEFHR2Q0L3FnVW81UnZYSTQ4YkVG?=
- =?utf-8?B?em85UlhsaDU5c2x3cnE4LzdIOUhsYzU0Tmpvcmd5MVZaV2FVdmRyOTlrWHBO?=
- =?utf-8?B?TGlzelM0SFJnZXljRkNOWGU0dE9BU2N2WWZtNHNWbCs0akg5RnY2UnhEWXVU?=
- =?utf-8?B?Ymk4TTdJWlBCaFdJaDRQQkE0WDl6NkJWSHBQUytBSFZDV3U1TGZ0aTVQeWlX?=
- =?utf-8?B?ZjFhVVUvekVFeE1VYktRUVVvLzBrSHE4ZXJDaXN1Nmo4eFY0eTd5VGdwRkVo?=
- =?utf-8?B?aDRLcEVReHN6cjB1anNSLzhVMjAyZzhyb29FR0VjaFZPMUxRS3pmeTFJRFp4?=
- =?utf-8?B?M3BqczUvODF3VUcwaDBmSC9JZUtaQ1ZuVE1oeXlVc2VsanFTNDBySHpuM0N5?=
- =?utf-8?B?eTJCVTJNcklWYlA2UlAyd1lSajI3NDUrd0R0RngxcEtlUEQzYlFvc2J6N0VR?=
- =?utf-8?B?ZWpyUWR4RFh1a0ovTENEQ3VacWVzZGNnQit2cko3U0FqMTc4TUh0TktwaWhY?=
- =?utf-8?B?ZlZNc2VWcWVGL2Vmd3FVbFdVL0RVYTVrRjJGK1NiL3l0b2lCMWZGR05uYjhu?=
- =?utf-8?B?OU8wU0dMelZicjFpWXhCdFRramFBbXZ1UXRxM1l1Z2hjZzNhVzE2ZXRIWWZJ?=
- =?utf-8?B?MnYxdHBMMjZxV0prZTN6clBrRlRHUk5hMm9vdDVpQjYyRy8yNjFsa1o2cjJ1?=
- =?utf-8?B?YXJlbVNOME1oNUtqZlEvZDJkVGYrbDAzS0FQYSs5NnJuT01DMXBpMFFXRXZG?=
- =?utf-8?B?bXJuSEZ3SXNpSTcrTVlEWjNIRHFPbG5HRlA1dmpvS0x0c0oyczRwMjR0YTVG?=
- =?utf-8?B?T3BCOEd3clpYOU5aZXFoZW4zcnlWbG1nY2J2Ri9paEpvWTZTSmpOUzZZSlpO?=
- =?utf-8?B?Q1pwYkE0V0FkdWJvZHR6dWlDZzB5R1pENy80TmwrSkFJV1NNUVAyQjVUWlZk?=
- =?utf-8?B?T2NReVpxTGloWm1HU2RXSUN0aUJwTjI4OGV5clgwODM3d0V3MzBqR0RJRUZq?=
- =?utf-8?Q?wyE/IPq4bNBIoDG95/LEnscs0wqxmXJvh243c=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YzNjWjhVYWs4SGczTWhIYTdXMnBOU3l1Y1ZlWUZPWkdDNzkvNDUwcCs5T0ZN?=
- =?utf-8?B?cGZCbmhSU2ZhaTVpeWl3ODRpTGxFeDVCbExocGQ5MTV2dXpjYmNRTHZnSW8w?=
- =?utf-8?B?QUp0MEVlMFZKaDFlVEhDY1RpNzl6Z2ppUXl1ZDM5eUI1MVQ1b3Jra1RPVXZW?=
- =?utf-8?B?M2krSm01dGN2UjM0b3FPQXRLY0E1OWljSHEvUGVWbzZLeUhybUZGYVdhelBN?=
- =?utf-8?B?cSsvTTRtWGRldUUrSEpuRDZiZUU1NWpJOU05eGEvR044SCtUOVZjMi9yZGFo?=
- =?utf-8?B?aTgzSjhaOEJJSlFiM2lPT3BiUkhHeXJPMFRoQk1XVjVLSmhtaVlVK09yb3NV?=
- =?utf-8?B?OXBaalppYkIxazRxZHIwMGxUcU9wbkNsL0YzWU54c0JOMTl6Q1ZERng3ZFZV?=
- =?utf-8?B?NytEVk1FS3dvaWNHcnMybWJsdjVjcytWcGNtMDRNRFFqZUY1Nk03UXFaVHE2?=
- =?utf-8?B?QUJwNzNXSUcraXl2Uyt0S2pJMXgyc08yL1F0dlFUdk9Nem1VVmt3U3RycTVQ?=
- =?utf-8?B?Y0dHVEhzcXVraENzdDZTdVA2aFV6cUZBaFBOZTNXZE9ZRlRmMmFWSDY3cHFE?=
- =?utf-8?B?WngxZUExLzY3UktRK3p4RkhLTWtDOTVhenF3eThSU0VWc1NEa0NpUHFzaUps?=
- =?utf-8?B?MUdMSWNFcGNJY2ZwdXlpcXluRE04OHBuMHZ4M203K0U5dFVtVis1UWREQ3BE?=
- =?utf-8?B?cUgvNDg0MmxTV21pM3ppN04yTXdxWGd2dGpLU0tJQmhIRGdENDN4VEZ1bUJV?=
- =?utf-8?B?WVN1WHhYaTZybkVhQW1ONlZ3OXJhNGlQcjdSaklBNERibnpLendnaThta0Qv?=
- =?utf-8?B?UllIVmpocXJYZzgwd0RreFQ3UFBna1dTaUpBVmhGbWRYMkxtUW9NZi9SNkV1?=
- =?utf-8?B?SldENCs4QWNPY042SHNHZGJoN1dLNExyTDE0T084VU9RbzR5NGVoWTdkOFpl?=
- =?utf-8?B?UzM0d0VMRFkxN0dpeDIvWW5pRzJ4MXl5UkFjbTd0NThNN21hdnZrdWNjU3M5?=
- =?utf-8?B?eXYwN05pYXNxZkJFV040eUlDaGFUc0RVVUQrV3FxRGZJb0RSUmFPMTZqbUhS?=
- =?utf-8?B?a3hoMU9ueHNDSW85R01XUmdIZGpoL3ZNd0pjbUJPVDhxejByOEt3TnI4a1ZV?=
- =?utf-8?B?Z3JHQ2sxTDIvYlIwTVZIT2ZOclhBNDhXUDVheElXdXROeVk2VHBqS3RZaGl5?=
- =?utf-8?B?R1RJNFZ1d2hBUHg3cW9XSWxVUDRaa0wvcEFZc2pkdVR2ZG8xVXlxS2tLemlC?=
- =?utf-8?B?clV1aC9LT3ZlUTJqSWpIOG5DNDZnQmRtOG5leVNNdDhsVkVOaElVbjRCRXBL?=
- =?utf-8?B?ZGlVcVF3Q1VsQkxQZTlTNW93cWJNaWNwRzQ5MXpvY0hreFhOWlVrVDhuQStZ?=
- =?utf-8?B?WjhFMWU2bzdrdVJrNmF0N1d3Z3BCNTFJR2IxODNhTmZNRHpUVDNDWWJPTXUv?=
- =?utf-8?B?Q0w1VXFLdUxEaVNPR0kzeFpDZ2FBWS9vSlZGWEZvaEVBQ1Y4L1RTWVFGLzhk?=
- =?utf-8?B?N3FXVjd4WWVkbnVZWjR6Y3FIWDZ3OXFzUkhXZmd3NDl0a3lMbm13TFJqM0dw?=
- =?utf-8?B?YUdSTHFjVFJZeDh6MUlDSWF5d0FHRG1neXg4Zjg2Tm9ZU2F4QWVTLzhDajE5?=
- =?utf-8?B?elk4Ty81Uk90M2hhdHhqdnBTTzIvWlVsN2d3YWw4d3k1aWxzdkdnMGFuczNE?=
- =?utf-8?B?VzV4ZU5zY21zL09nZkRVNFdiUHhLbWVybmRERVBYQi9EM25wYTV1QWRaa1Er?=
- =?utf-8?B?MXNjSm9hc2MvNjFkTkpwSEM5WHBLaU5SL2M5ZGcrYkk1aGVCbUM3M3ZhVTRr?=
- =?utf-8?B?VElUZVhudldOeUtpU3p6Y1JneExiVTBpSGdickJlZ0FIemQ2TWFHazhCdG5o?=
- =?utf-8?B?SjRuNHNOOEQvNkVHMVIxUkU3Q2I2OG84NkloTjBLc000K1N5OFJueWxEcUNS?=
- =?utf-8?B?M1d6eldHNlgzL2YwdDZROU1mR1FHRzBKZ2NqdFpjUEJNc3ZlZ25oYWVpZUlG?=
- =?utf-8?B?cE1TS0xFeHcrQkN0ZE03THlzYUdyR0pzSGVTUkprSlkxZUdlWFpkMDcrbFdJ?=
- =?utf-8?B?ZU1kaTAweWpDeGZEM1pqTG43amF4dzY1cW5UNFpBdVN0dEJzTGdiRWIrT3Q5?=
- =?utf-8?B?eFRIU3RTeGE1emZBNER6TFZwRGIxOS9iMzNSYjhkeTBwZnp2R21Na1RjZmRW?=
- =?utf-8?B?ZHc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c02394ca-9eb4-45e6-0f7b-08ddd43222c4
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2025 15:09:55.5888 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yMvUZmWEnFHeMaNzPq8lbUuhAz5MK+Dr2g2/cS6KB7h+4OgWcFPs+KWtfK1vSxkUTiwo9LskDespPkwS5Ol/C62J6oiGJO7xqfWcwKcpKvo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF99D0888FA
-X-OriginatorOrg: intel.com
+References: <20250729193647.3410634-1-marievic@google.com>
+ <20250729193647.3410634-2-marievic@google.com>
+In-Reply-To: <20250729193647.3410634-2-marievic@google.com>
+From: Rae Moar <rmoar@google.com>
+Date: Tue, 5 Aug 2025 11:17:33 -0400
+X-Gm-Features: Ac12FXze3TaZ1ItJhvvsVg6J8U-v3wToEcNYmNz4bKxujCA6Thw0S4iJb4SdDqU
+Message-ID: <CA+GJov4BQ1mRa-JaHoML+gF7rk=XY=hCRL+Shag6Aj6VbUgUeg@mail.gmail.com>
+Subject: Re: [PATCH 1/9] kunit: Add parent kunit for parameterized test context
+To: Marie Zhussupova <marievic@google.com>
+Cc: davidgow@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
+ elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com, 
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,55 +89,195 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, Jul 29, 2025 at 3:37=E2=80=AFPM Marie Zhussupova <marievic@google.c=
+om> wrote:
+>
+> Currently, KUnit parameterized tests lack a mechanism
+> to share resources across individual test invocations
+> because the same `struct kunit` instance is reused for
+> each test.
+>
+> This patch refactors kunit_run_tests() to provide each
+> parameterized test with its own `struct kunit` instance.
+> A new parent pointer is added to `struct kunit`, allowing
+> individual parameterized tests to reference a shared
+> parent kunit instance. Resources added to this parent
+> will then be accessible to all individual parameter
+> test executions.
+>
+> Signed-off-by: Marie Zhussupova <marievic@google.com>
+
+Hello!
+
+Thank you so much for sending out this series. I have wanted to see an
+update of our parameterized test framework for a while. I have a few
+comments below for this patch. But otherwise it is looking good.
+
+Reviewed-by: Rae Moar <rmoar@google.com>
+
+Thanks!
+-Rae
+
+> ---
+>  include/kunit/test.h | 12 ++++++++++--
+>  lib/kunit/test.c     | 32 +++++++++++++++++++-------------
+>  2 files changed, 29 insertions(+), 15 deletions(-)
+>
+> diff --git a/include/kunit/test.h b/include/kunit/test.h
+> index 39c768f87dc9..a42d0c8cb985 100644
+> --- a/include/kunit/test.h
+> +++ b/include/kunit/test.h
+> @@ -268,14 +268,22 @@ struct kunit_suite_set {
+>   *
+>   * @priv: for user to store arbitrary data. Commonly used to pass data
+>   *       created in the init function (see &struct kunit_suite).
+> + * @parent: for user to store data that they want to shared across
+> + *         parameterized tests.
+>   *
+
+As David mentioned, I would also prefer that this provides a more
+general description of the @parent field here. Although this is
+currently only used for parameterized tests, it could have other use
+cases in the future.
+
+>   * Used to store information about the current context under which the t=
+est
+>   * is running. Most of this data is private and should only be accessed
+> - * indirectly via public functions; the one exception is @priv which can=
+ be
+> - * used by the test writer to store arbitrary data.
+> + * indirectly via public functions; the two exceptions are @priv and @pa=
+rent
+> + * which can be used by the test writer to store arbitrary data or data =
+that is
+> + * available to all parameter test executions, respectively.
+
+In addition, I would prefer that the call out to @parent here is also
+changed to a more general description of the @parent field. However,
+feel free to also include the description of the use case for the
+parameterized tests.
+
+>   */
+>  struct kunit {
+>         void *priv;
+> +       /*
+> +        * Reference to the parent struct kunit for storing shared resour=
+ces
+> +        * during parameterized testing.
+> +        */
+
+I am more 50/50 on changing this description. Could change it just to:
+"Reference to the parent struct kunit for storing shared resources."
+
+> +       struct kunit *parent;
+>
+>         /* private: internal use only. */
+>         const char *name; /* Read only after initialization! */
+> diff --git a/lib/kunit/test.c b/lib/kunit/test.c
+> index f3c6b11f12b8..4d6a39eb2c80 100644
+> --- a/lib/kunit/test.c
+> +++ b/lib/kunit/test.c
+> @@ -647,6 +647,7 @@ int kunit_run_tests(struct kunit_suite *suite)
+>         struct kunit_case *test_case;
+>         struct kunit_result_stats suite_stats =3D { 0 };
+>         struct kunit_result_stats total_stats =3D { 0 };
+> +       const void *curr_param;
+>
+>         /* Taint the kernel so we know we've run tests. */
+>         add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
+> @@ -679,36 +680,39 @@ int kunit_run_tests(struct kunit_suite *suite)
+>                 } else {
+>                         /* Get initial param. */
+>                         param_desc[0] =3D '\0';
+> -                       test.param_value =3D test_case->generate_params(N=
+ULL, param_desc);
+> +                       /* TODO: Make generate_params try-catch */
+> +                       curr_param =3D test_case->generate_params(NULL, p=
+aram_desc);
+>                         test_case->status =3D KUNIT_SKIPPED;
+>                         kunit_log(KERN_INFO, &test, KUNIT_SUBTEST_INDENT =
+KUNIT_SUBTEST_INDENT
+>                                   "KTAP version 1\n");
+>                         kunit_log(KERN_INFO, &test, KUNIT_SUBTEST_INDENT =
+KUNIT_SUBTEST_INDENT
+>                                   "# Subtest: %s", test_case->name);
+>
+> -                       while (test.param_value) {
+> -                               kunit_run_case_catch_errors(suite, test_c=
+ase, &test);
+> +                       while (curr_param) {
+> +                               struct kunit param_test =3D {
+> +                                       .param_value =3D curr_param,
+> +                                       .param_index =3D ++test.param_ind=
+ex,
+> +                                       .parent =3D &test,
+> +                               };
+> +                               kunit_init_test(&param_test, test_case->n=
+ame, test_case->log);
+> +                               kunit_run_case_catch_errors(suite, test_c=
+ase, &param_test);
+>
+>                                 if (param_desc[0] =3D=3D '\0') {
+>                                         snprintf(param_desc, sizeof(param=
+_desc),
+>                                                  "param-%d", test.param_i=
+ndex);
+
+This probably doesn't matter too much either way but should this be
+param_test.param_index instead? This would cover the case where the
+param_index is changed during the test run even though it shouldn't.
+
+>                                 }
+>
+> -                               kunit_print_ok_not_ok(&test, KUNIT_LEVEL_=
+CASE_PARAM,
+> -                                                     test.status,
+> -                                                     test.param_index + =
+1,
+> +                               kunit_print_ok_not_ok(&param_test, KUNIT_=
+LEVEL_CASE_PARAM,
+> +                                                     param_test.status,
+> +                                                     param_test.param_in=
+dex,
+>                                                       param_desc,
+> -                                                     test.status_comment=
+);
+> +                                                     param_test.status_c=
+omment);
+>
+> -                               kunit_update_stats(&param_stats, test.sta=
+tus);
+> +                               kunit_update_stats(&param_stats, param_te=
+st.status);
+>
+>                                 /* Get next param. */
+>                                 param_desc[0] =3D '\0';
+> -                               test.param_value =3D test_case->generate_=
+params(test.param_value, param_desc);
+> -                               test.param_index++;
+> -                               test.status =3D KUNIT_SUCCESS;
+> -                               test.status_comment[0] =3D '\0';
+> -                               test.priv =3D NULL;
+> +                               curr_param =3D test_case->generate_params=
+(curr_param, param_desc);
+>                         }
+>                 }
+>
+> @@ -723,6 +727,8 @@ int kunit_run_tests(struct kunit_suite *suite)
+>
+>                 kunit_update_stats(&suite_stats, test_case->status);
+>                 kunit_accumulate_stats(&total_stats, param_stats);
+> +               /* TODO: Put this kunit_cleanup into a try-catch. */
+> +               kunit_cleanup(&test);
+
+I might be missing something here but why not do this cleanup before
+the printing stage and only if the test was a parent param test?
 
 
-On 8/5/2025 3:28 PM, Lucas De Marchi wrote:
-> On Thu, Jul 31, 2025 at 09:33:36PM +0200, Michal Wajdeczko wrote:
->> For easier maintenance add a placeholder where we can keep all
->> default device configuration settings in one place.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
->> ---
->> drivers/gpu/drm/xe/xe_configfs.c | 17 +++++++++++++----
->> 1 file changed, 13 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
->> index 7ad9fc65e21d..150e7f2becc8 100644
->> --- a/drivers/gpu/drm/xe/xe_configfs.c
->> +++ b/drivers/gpu/drm/xe/xe_configfs.c
->> @@ -97,6 +97,16 @@ struct xe_config_group_device {
->>     struct mutex lock;
->> };
->>
->> +static struct xe_config_device device_defaults = {
-> 
-> any reason why this would not be const?
-> 
 
-while today we are extending our configfs support only
-with completely new attributes (like survivability mode
-or allowed engines) I was assuming that shortly we will
-also move to configfs some of our existing modparams,
-which are device specific, rather than module specific,
-like:
- - GuC/HuC firmwares
- - max VFs
- - ...
-
-so to keep the idea of 'device_defaults' as the only
-place where default values are stored, I assumed, maybe
-wrong, that we will need this to be non-const (either as
-new location of some modparams or cached values of the
-modparam attributes)
-
-in [1] I was trying to make first step with max_vfs,
-but patch was dropped for a while until this series will
-be completed and we will have some better understanding
-how to proceed
-
-Michal
-
-[1] https://patchwork.freedesktop.org/patch/664176/?series=151660&rev=1
-
+>         }
+>
+>         if (suite->suite_exit)
+> --
+> 2.50.1.552.g942d659e1b-goog
+>
