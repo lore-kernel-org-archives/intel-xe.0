@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A9A4C87FD2
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 11:57:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BAC6C87FD1
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 11:57:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182BA10E665;
-	Tue,  5 Aug 2025 11:57:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lPDYRZ5z";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FB8E10E665;
- Tue,  5 Aug 2025 11:57:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754395023; x=1785931023;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iyk6vFm0CV9wP9U5+AR3P67YyB7CCgRy4RMX2mEDQrE=;
- b=lPDYRZ5zX7wCT8ncxxs94mGrj3sSGcClUn71Wp31miCdCYL8ms82Ua9X
- +UUAf5dVuhNLLVRCVz/ZW3SDYAKpjIrntRjHfZ04Xlxn39g61qM5uDpfR
- ldSwJJl0kZxRlRMDFQSSqfX3QjZPIGrOFbBPRdfHE2uqdES0sky8nieEH
- FTgae3yxpvS3nblllQ56ZFQ1rJuvKu8UrBv4M8bBA7bpy3sKL9dMSa1vx
- atnRdlUsHziIB3dTvdeSgDeuFQ7QP7rXYZcmNPJtXeDhCMXs/HjR8k7pQ
- /ccPBhotPFeNdwGAaL0pnTY4Mn8fCFJ5i3+Z5YoSo5YyWtEDl/rAeFGuf w==;
-X-CSE-ConnectionGUID: RJqZ/bHEQoqRzVBYdFWy0w==
-X-CSE-MsgGUID: LZX64X5kTXypZKonsto54A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="60493548"
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="60493548"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 04:57:03 -0700
-X-CSE-ConnectionGUID: IJVu6eaDTfW2BKNeUQjc3g==
-X-CSE-MsgGUID: FkC4YRAbTM6jF3BT/3CxeQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="168733040"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.8])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 04:57:00 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, "Jason A . Donenfeld" <Jason@zx2c4.com>,
- stable@vger.kernel.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH] drm/i915: silence rpm wakeref asserts on GEN11_GU_MISC_IIR
- access
-Date: Tue,  5 Aug 2025 14:56:56 +0300
-Message-Id: <20250805115656.832235-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7E1D10E66F;
+	Tue,  5 Aug 2025 11:57:38 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC1DC10E66C;
+ Tue,  5 Aug 2025 11:57:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/tc=3A_Fix_enabl?=
+ =?utf-8?q?ed/disconnected_DP-alt_sink_handling_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 05 Aug 2025 11:57:38 -0000
+Message-ID: <175439505869.213103.18317477901899428799@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250805073700.642107-1-imre.deak@intel.com>
+In-Reply-To: <20250805073700.642107-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,43 +36,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit 8d9908e8fe9c ("drm/i915/display: remove small micro-optimizations
-in irq handling") not only removed the optimizations, it also enabled
-wakeref asserts for the GEN11_GU_MISC_IIR access. Silence the asserts by
-wrapping the access inside intel_display_rpm_assert_{block,unblock}().
+== Series Details ==
 
-Reported-by: Jason A. Donenfeld <Jason@zx2c4.com>
-Closes: https://lore.kernel.org/r/aG0tWkfmxWtxl_xc@zx2c4.com
-Fixes: 8d9908e8fe9c ("drm/i915/display: remove small micro-optimizations in irq handling")
-Cc: <stable@vger.kernel.org> # v6.13+
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_irq.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Series: drm/i915/tc: Fix enabled/disconnected DP-alt sink handling (rev3)
+URL   : https://patchwork.freedesktop.org/series/152514/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index fb25ec8adae3..68157f177b6a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1506,10 +1506,14 @@ u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl)
- 	if (!(master_ctl & GEN11_GU_MISC_IRQ))
- 		return 0;
- 
-+	intel_display_rpm_assert_block(display);
-+
- 	iir = intel_de_read(display, GEN11_GU_MISC_IIR);
- 	if (likely(iir))
- 		intel_de_write(display, GEN11_GU_MISC_IIR, iir);
- 
-+	intel_display_rpm_assert_unblock(display);
-+
- 	return iir;
- }
- 
--- 
-2.39.5
+== Summary ==
+
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 22cf8ca94d0cf9e5ed0dd5a4e8fed96f6cdab2bb
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2018:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2031:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2031:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2031:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
