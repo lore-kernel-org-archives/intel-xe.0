@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76270C87FD1
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 07:48:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8995C87FD2
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 07:49:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B19810E253;
-	Tue,  5 Aug 2025 07:48:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1DB710E618;
+	Tue,  5 Aug 2025 07:49:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VRRgBCfz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yu9hQ993";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F01910E253
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Aug 2025 07:48:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87B2B10E604;
+ Tue,  5 Aug 2025 07:49:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754380106; x=1785916106;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=nRHNjxTsz1/rf6UGLaHkACwzsdqSbKP/WFP+fhD9Ls4=;
- b=VRRgBCfzh1h1+zf1/2R5FKitU6k8rvK4zhQ0qmvCZprlwH3dezOlZNtZ
- QWjjOyPO4AS3J6Po0CB567Kok6m1z5e11vbhImHsA1v+jPCLZzEuKFVig
- 1DaasORgWmT9c+ocQZfyj22HnffnP88eMbLoB1GqnLAWSRb7oygeDagqL
- Tcrqcna7pAbV+SUf7vYD0SwjNIdneFSC2PK5JEBVpopXfIbHdBDw78EeH
- bZ1bBi/DqJ09Us/BMC68koZScaap1sD9tBTkodfLMYGDUAZDLEJqyeo+G
- /3A0zB1PvaQw0ZnGibn6PPqBJAnrOTEjCQdV7b2TPT08sgCrkhbgPMzt9 A==;
-X-CSE-ConnectionGUID: 83JGp7MFSUOlhjr8eyvopg==
-X-CSE-MsgGUID: yh29PYxmRACCxAdkhcnQkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="44254267"
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="44254267"
+ t=1754380141; x=1785916141;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QXtJMi3ZyVAJtV6tOmRIQ2v1AY1U7SrTuLVtFD9bNZA=;
+ b=Yu9hQ993zVYlF8oiGscHktaN2+20fnWUcC9DTJED+w84VempEU1/qqJ0
+ FtxkVlrV4mMDIuBchwMLFdevgw6YdkORTdpyTWXCZwfrcWjzZo3yWrCBh
+ PD4jHkFXbqFqh7KxZr4pWk0qwxOq/TRXB7J+I+StqSZnfWcMXvJU+lVFV
+ M3a9b7MVSv09a7aAwmjw4a0A8W44AUWcdI2bl179VqVIhd0jFo/2DcZYN
+ MC+RSSK4+phc/EJaFtmFAbzCzKhzqI2HfR5ZawGLa2GsH4PdiwSknpLTS
+ LiojbuDvGWl2zLeX7/qHS+ta/Iw1P14dHLXOfcTnsMW3LpQd4c3DFF5Tx Q==;
+X-CSE-ConnectionGUID: NU9xCr+MR82mU5W1l+dCEQ==
+X-CSE-MsgGUID: eP84ziYsT2KubRRMMMQVOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="44254391"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="44254391"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 00:48:26 -0700
-X-CSE-ConnectionGUID: b4EhgniLRDCE2jm+M6/VBQ==
-X-CSE-MsgGUID: yhwM86f+RlixwMAOS/sBOw==
+ 05 Aug 2025 00:48:59 -0700
+X-CSE-ConnectionGUID: Vb6hoBIGQ5aC5WH+BN6OPQ==
+X-CSE-MsgGUID: vn5dVw1sQtG063OG+cD5yg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="169685537"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="169685727"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.8])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 00:48:24 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Ankit Nautiyal
- <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH v4 10/12] drm/i915/display: Add function to configure
- LFPS sending
-In-Reply-To: <20250526120512.1702815-11-jouni.hogander@intel.com>
+ 05 Aug 2025 00:48:54 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded
+ Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-next-fixes
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250526120512.1702815-1-jouni.hogander@intel.com>
- <20250526120512.1702815-11-jouni.hogander@intel.com>
-Date: Tue, 05 Aug 2025 10:48:21 +0300
-Message-ID: <7028a2b3d96cc6d4a66886d4d6ee4c74729fef6a@intel.com>
+Date: Tue, 05 Aug 2025 10:48:52 +0300
+Message-ID: <e1147bede8f219682419d198022cfe8d9d4edc28@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -72,36 +74,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 26 May 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/d=
-rm/i915/display/intel_cx0_phy.c
-> index 91118d115fd3..75caccb65513 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -3225,6 +3225,37 @@ void intel_mtl_pll_enable(struct intel_encoder *en=
-coder,
->  		intel_cx0pll_enable(encoder, crtc_state);
->  }
->=20=20
-> +/*
-> + * According to HAS we need to enable MAC Transmitting LFPS in the "PHY =
-Common
-> + * Control 0" PIPE register in case of AUX Less ALPM is going to be used=
-. This
-> + * function is doing that and is called by link retrain sequence.
-> + */
-> +void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
-> +				 const struct intel_crtc_state *crtc_state)
 
-Commenting after the fact:
+Hi Dave & Sima -
 
-Please don't combine "intel_" and platform prefixes like "lnl_" or
-"mtl_". The file is a mess wrt naming.
+Some fixes for the merge window.
+
+drm-intel-next-fixes-2025-08-05:
+drm/i915 fixes for v6.17-rc1:
+- Fixes around DP LFPS (Low-Frequency Periodic Signaling)
 
 BR,
 Jani.
 
+The following changes since commit ba0f4c4c0f9d0f90300578fc8d081f43be281a71:
 
+  Merge tag 'nova-next-v6.17-2025-07-18' of https://gitlab.freedesktop.org/=
+drm/nova into drm-next (2025-07-21 12:56:39 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fi=
+xes-2025-08-05
+
+for you to fetch changes up to 5a569ef4d4ab184a481dd8ecb58f464a89b44d2f:
+
+  drm/i915/display: Set C10_VDR_CTRL_MSGBUS_ACCESS before phy reg read (202=
+5-07-29 10:20:33 +0100)
+
+----------------------------------------------------------------
+drm/i915 fixes for v6.17-rc1:
+- Fixes around DP LFPS (Low-Frequency Periodic Signaling)
+
+----------------------------------------------------------------
+Jouni H=C3=B6gander (4):
+      drm/i915/display: Write PHY_CMN1_CONTROL only when using AUXLess ALPM
+      drm/i915/display: Avoid unnecessarily calling intel_cx0_get_owned_lan=
+e_mask
+      drm/i915/display: Ensure phy is accessible on lfps configuration
+      drm/i915/display: Set C10_VDR_CTRL_MSGBUS_ACCESS before phy reg read
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 21 +++++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
 
 --=20
 Jani Nikula, Intel
