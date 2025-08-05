@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43A75C87FCB
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 13:55:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5107C87FD1
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 14:01:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B2A710E22D;
-	Tue,  5 Aug 2025 13:55:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 846F310E69C;
+	Tue,  5 Aug 2025 14:01:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZSWS5pQk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ffY6/sJn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 183C410E122;
- Tue,  5 Aug 2025 13:55:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00D5E10E478
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Aug 2025 14:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754402148; x=1785938148;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=MbFt0O8dea0vBuwTtce0ijqpriW2ioDHraV/W6LhokI=;
- b=ZSWS5pQk/EwVjnI6r7vMJWU6xc6UzTQSwQS6qbjpaqNu2cfruOssY4Qi
- juCBLAzC9C8d4FS/C3xlvwyL+PnT7phdpeAcFMge/9sRrycd5LXAjHLyF
- uxcSm+j5H/XIa5JYwAp+M7TCW0pMKDCI927V8BKne4GtpEhqSX8sIDQd9
- TIwh8q9QGLnArTpH8sn1IcueExQZrekzOZ0AnNMquwHUpGl7/GaDnIbka
- OdICznNrsNRBOLdudCBnmN/SalPFF/EYgWHMGrzsMk8zv/OdI9Fq/VqPd
- 4NSjwiMsVm2bJSODrap8pNn3rShV37tdHZArBV2iC8MSMKykNW1x7bdrm g==;
-X-CSE-ConnectionGUID: TusLhEzzT3aEomrC3KE3Hw==
-X-CSE-MsgGUID: NMUKSUs9RWGkKxzZxCRj5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="82144598"
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="82144598"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ t=1754402474; x=1785938474;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xUStV6tzGaIo0eZxVPLvmC2Oypdw+9I10MiftqCgaWk=;
+ b=ffY6/sJneSGKqQLWJrGjwRaD+6zQnK86gE6J2VIJooR5U7K8VLqSDjhR
+ 2GT2urm22ikcHrIPbCe6ZN92vk+AufH8awLCcUNK9D/btZm9M+aVFImCX
+ +4H6gZZdDOLrZqlSVbEuK3KtJMbuUXQ/dv+mcfMnBfbOhLLdGd4w/SiZ7
+ JrqSaM6s+PFY1LtaXcXXlWQd+arniUWvowDaDSMWKp86MPLpqBY+MNEEU
+ XTbgHWvng6U42A3d1g3lB21vYk2YZbwWsNC+T/K6qsrbklVbUegJ/rGTE
+ RX5oqXc0ImmdVmMnmWEgVqIrcpWN/iWph/mdqXlRJ/YtA18R90L8U1X18 w==;
+X-CSE-ConnectionGUID: f25XeKaMTxWwEgsjUtJX1g==
+X-CSE-MsgGUID: cDZ/bz+NQnefOwkFW4sVLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="82145223"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="82145223"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 06:55:47 -0700
-X-CSE-ConnectionGUID: FKC6F+bxT6u9xbcUzfYdkQ==
-X-CSE-MsgGUID: L/5nDY5BRICM3sDyVL6kMQ==
+ 05 Aug 2025 07:01:12 -0700
+X-CSE-ConnectionGUID: 8wAaqLgVTDahcJ+iHCM9Mw==
+X-CSE-MsgGUID: Jn/vp4rfTsCXP2eQMLU9UA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="168681188"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.8])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 06:55:45 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 02/13] drm/i915/skl_watermark: Add bounds check for
- scaler array access
-In-Reply-To: <20250805132016.1250202-3-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250805132016.1250202-1-ankit.k.nautiyal@intel.com>
- <20250805132016.1250202-3-ankit.k.nautiyal@intel.com>
-Date: Tue, 05 Aug 2025 16:55:42 +0300
-Message-ID: <bc9fd888b7a7572c7861c9ed3bdb0af9151f11d5@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="201686289"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO fdugast-desk.home)
+ ([10.245.245.217])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2025 07:01:11 -0700
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com,
+	Francois Dugast <francois.dugast@intel.com>
+Subject: [PATCH v4 0/6] Prepare GPU SVM for migration of THP
+Date: Tue,  5 Aug 2025 15:59:01 +0200
+Message-ID: <20250805140028.599361-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,45 +66,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 05 Aug 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Ensure num_scaler_users does not exceed the size of scaler_state->scalers[]
-> before accessing scaler parameters in dsc_prefill_latency.
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 5a120c1f66f4..9d52727b81b1 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -2191,7 +2191,8 @@ dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
->  
->  	if (!crtc_state->dsc.compression_enable ||
->  	    !num_scaler_users ||
-> -	    num_scaler_users > crtc->num_scalers)
-> +	    num_scaler_users > crtc->num_scalers ||
-> +	    num_scaler_users > ARRAY_SIZE(scaler_state->scalers))
+v4: Minor fixes in patch #4, trigger CI to confirm absence of warnings
 
-Currently this can't happen. crtc->num_scalers is initialized from
-num_scalers[pipe] member of display runtime data, which gets initialized
-in __intel_display_device_info_runtime_init().
+Francois Dugast (6):
+  drm/pagemap: Rename drm_pagemap_device_addr to drm_pagemap_addr
+  drm/pagemap: Use struct drm_pagemap_addr in mapping and copy functions
+  drm/pagemap: DMA map folios when possible
+  drm/pagemap: Allocate folios when possible
+  drm/xe/migrate: Populate struct drm_pagemap_addr array
+  drm/xe/svm: Migrate folios when possible
 
-The only way this could happen is if some platform gains more scalers
-per pipe than SKL_NUM_SCALERS. But if that happens, we really want to
-fail loudly instead of silently falling back to dsc_prefill_latency,
-right?
-
-I'd rather see
-
-	drm_WARN_ON(display->drm, crtc->num_scalers > SKL_NUM_SCALERS);
-
-in intel_crtc_init() than this change.
-
->  		return dsc_prefill_latency;
->  
->  	dsc_prefill_latency = DIV_ROUND_UP(15 * linetime * chroma_downscaling_factor, 10);
+ drivers/gpu/drm/drm_gpusvm.c       |   4 +-
+ drivers/gpu/drm/drm_pagemap.c      | 138 +++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_bo.c         |   2 +
+ drivers/gpu/drm/xe/xe_migrate.c    |  88 ++++++++++++------
+ drivers/gpu/drm/xe/xe_migrate.h    |   5 +-
+ drivers/gpu/drm/xe/xe_res_cursor.h |  10 +--
+ drivers/gpu/drm/xe/xe_svm.c        |  49 ++++++----
+ drivers/gpu/drm/xe/xe_svm.h        |   4 +-
+ include/drm/drm_gpusvm.h           |   4 +-
+ include/drm/drm_pagemap.h          |  50 ++++++-----
+ 10 files changed, 225 insertions(+), 129 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.43.0
+
