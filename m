@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E88ADC87FD1
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 11:54:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A9A4C87FD2
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 11:57:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB0410E663;
-	Tue,  5 Aug 2025 11:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 182BA10E665;
+	Tue,  5 Aug 2025 11:57:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fs0Mubaw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lPDYRZ5z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63B1010E660
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Aug 2025 11:54:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FB8E10E665;
+ Tue,  5 Aug 2025 11:57:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754394897; x=1785930897;
+ t=1754395023; x=1785931023;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=OCGoLlp5oPFRIwPH6ow3f4rFqBpnh8NkB1A6DLQzXhg=;
- b=fs0Mubawm0N1O8uLQ1uMnfoxJrDFi6qCT19kf11sRZGvmzWUmkB0x7Ay
- c/XcUL9RoPki9dcVy5qXxxYf24X/rBVoWVTPi05g9IvbyGxXcbvkfSRUO
- hs9EdgS0fRh5bv8a7UaUySZmm8ulqJzyvFTp2LUYcDQx9T+0WzYJYwhuX
- iLGINQThf3c3W1AX70TKusyBwxqVqp/Lz9Lr51MOLbtPfAJHerMs4PVCt
- 9wPsqX3WQ2VA3WijF5vvB9+1KBbrBGtoxEbv+jejXeVmy6WvomJiDFtmk
- WoC2Mgz7ko4dls0zYvzeegDIrOQ28ggTjqVjxoqLWRd3FnJUmOMElZ0fV A==;
-X-CSE-ConnectionGUID: +17A5tQdR4C6Ym4khjBKMg==
-X-CSE-MsgGUID: ZuOtJUV6TQuLJB0b7alFOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="56763894"
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="56763894"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 04:54:57 -0700
-X-CSE-ConnectionGUID: jriBYw12QYenM+x0TE2P5g==
-X-CSE-MsgGUID: ilQpJ7eISPGiq/2dedPA4w==
+ bh=iyk6vFm0CV9wP9U5+AR3P67YyB7CCgRy4RMX2mEDQrE=;
+ b=lPDYRZ5zX7wCT8ncxxs94mGrj3sSGcClUn71Wp31miCdCYL8ms82Ua9X
+ +UUAf5dVuhNLLVRCVz/ZW3SDYAKpjIrntRjHfZ04Xlxn39g61qM5uDpfR
+ ldSwJJl0kZxRlRMDFQSSqfX3QjZPIGrOFbBPRdfHE2uqdES0sky8nieEH
+ FTgae3yxpvS3nblllQ56ZFQ1rJuvKu8UrBv4M8bBA7bpy3sKL9dMSa1vx
+ atnRdlUsHziIB3dTvdeSgDeuFQ7QP7rXYZcmNPJtXeDhCMXs/HjR8k7pQ
+ /ccPBhotPFeNdwGAaL0pnTY4Mn8fCFJ5i3+Z5YoSo5YyWtEDl/rAeFGuf w==;
+X-CSE-ConnectionGUID: RJqZ/bHEQoqRzVBYdFWy0w==
+X-CSE-MsgGUID: LZX64X5kTXypZKonsto54A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="60493548"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="60493548"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2025 04:57:03 -0700
+X-CSE-ConnectionGUID: IJVu6eaDTfW2BKNeUQjc3g==
+X-CSE-MsgGUID: FkC4YRAbTM6jF3BT/3CxeQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="169859423"
-Received: from labhost1.iind.intel.com ([10.190.230.69])
- by orviesa005.jf.intel.com with ESMTP; 05 Aug 2025 04:54:55 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v4] drm/xe/pm: Disable RPM for SR-IOV VFs with no PCIe PM
- capability
-Date: Tue,  5 Aug 2025 17:40:58 +0530
-Message-ID: <20250805121058.7103-1-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="168733040"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.8])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2025 04:57:00 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, "Jason A . Donenfeld" <Jason@zx2c4.com>,
+ stable@vger.kernel.org,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH] drm/i915: silence rpm wakeref asserts on GEN11_GU_MISC_IIR
+ access
+Date: Tue,  5 Aug 2025 14:56:56 +0300
+Message-Id: <20250805115656.832235-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,75 +71,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VFs without native PCIe Power Management (PM) capabilities inherit their
-PF's power state as per PCIe specifications(§5.10.1 PCIe Base Spec 7.0).
-Enabling Runtime Power Management (RPM) for these VFs trigger unnecessary
-driver suspend/resume operations that ultimately perform no PCI-level power
-transition.
+Commit 8d9908e8fe9c ("drm/i915/display: remove small micro-optimizations
+in irq handling") not only removed the optimizations, it also enabled
+wakeref asserts for the GEN11_GU_MISC_IIR access. Silence the asserts by
+wrapping the access inside intel_display_rpm_assert_{block,unblock}().
 
-Since VFs without PM capabilities cannot independently enter low-power
-states, the existing RPM workflow becomes redundant:
-1. Driver executes full suspend/resume sequence
-2. PCI PM transition step becomes no-op
-3. VF power state remains tied to PF's status
-
-Disabling RPM for PM-incapable VFs eliminates this redundant processing
-while maintaining proper power management through PF dependency. This
-optimization ensures VFs follow their PF's power state without superfluous
-runtime handling.
-
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
+Reported-by: Jason A. Donenfeld <Jason@zx2c4.com>
+Closes: https://lore.kernel.org/r/aG0tWkfmxWtxl_xc@zx2c4.com
+Fixes: 8d9908e8fe9c ("drm/i915/display: remove small micro-optimizations in irq handling")
+Cc: <stable@vger.kernel.org> # v6.13+
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
-V3 -> V4:
-- Fixed review comments (Rodrigo & Maarten)
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-V2 -> V3:
-- Fixed review comments (Michal Wajdeczko).
-
-V1 -> V2:
-- Disable RPM only for VF devices when PM cap is not implemented.
----
- drivers/gpu/drm/xe/xe_pm.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 5e8126ca8e27..9d62d3f99ed9 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -245,8 +245,13 @@ static bool xe_pm_pci_d3cold_capable(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index fb25ec8adae3..68157f177b6a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -1506,10 +1506,14 @@ u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl)
+ 	if (!(master_ctl & GEN11_GU_MISC_IRQ))
+ 		return 0;
  
- static void xe_pm_runtime_init(struct xe_device *xe)
- {
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	struct device *dev = xe->drm.dev;
- 
-+	/* For VF that doesn't implement pm_caps, the rpm functions are no-op */
-+	if (IS_SRIOV_VF(xe) && !pdev->pm_cap)
-+		return;
++	intel_display_rpm_assert_block(display);
 +
- 	/*
- 	 * Disable the system suspend direct complete optimization.
- 	 * We need to ensure that the regular device suspend/resume functions
-@@ -365,8 +370,13 @@ int xe_pm_init(struct xe_device *xe)
+ 	iir = intel_de_read(display, GEN11_GU_MISC_IIR);
+ 	if (likely(iir))
+ 		intel_de_write(display, GEN11_GU_MISC_IIR, iir);
  
- static void xe_pm_runtime_fini(struct xe_device *xe)
- {
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	struct device *dev = xe->drm.dev;
- 
-+	/* For VF that doesn't implement pm_caps, the rpm functions are no-op */
-+	if (IS_SRIOV_VF(xe) && !pdev->pm_cap)
-+		return;
++	intel_display_rpm_assert_unblock(display);
 +
- 	pm_runtime_get_sync(dev);
- 	pm_runtime_forbid(dev);
+ 	return iir;
  }
+ 
 -- 
-2.43.0
+2.39.5
 
