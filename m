@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FB22C87FDA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA044CA0EC2
 	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 23:42:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EEFE10E5C8;
-	Tue,  5 Aug 2025 23:42:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54EDA10E67E;
+	Tue,  5 Aug 2025 23:42:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sy7qbNI0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AdQHd7+A";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1CFC10E656
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83D4E10E2C6
  for <intel-xe@lists.freedesktop.org>; Tue,  5 Aug 2025 23:42:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754437326; x=1785973326;
+ t=1754437325; x=1785973325;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=USxq20HqLMxPg9PVj3ksv/E88WbkCwuwdp/TZm/tPrE=;
- b=Sy7qbNI0l5T7/5/QCZk/iinCIY4MmBjsfEhAGFD/pH8bH3Aa28Hx4MAr
- 4YY3j4JrCgOhVCiYwG15nE0V7s5usumq315vepO1/hx2WvPQRCBn+7i8e
- w5ElsLJfITKn0dsvd5v+K8rKURVhNpAB/gAkKWE1HOT+mWXtk20AKxnVd
- 8CyNzmHDDY0uHtedacv5121gYXzF8z7F2nqqzqfdFAmRLj4eTSA+H0oOv
- 0Hmceb0G/l28+DAQvTw4mY8q2XyNUymq2XH8rU9ebiF3GLDDFriDTHFnL
- mKs5J9maht8aJao07THlPXKfknI/K2n+mjMqkLxBDsgVZfKCwa6JsXOn1 w==;
-X-CSE-ConnectionGUID: wAVuwsC5QUm1zmMRuKxmGg==
-X-CSE-MsgGUID: q+BIopa6T4qpxd4f3zB2jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="68119072"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="68119072"
+ bh=O9Cx3qSyQVx2O6okdQ0tKC2jDLm36E60euegaePj0do=;
+ b=AdQHd7+AaxI/RWvCHVSAs7vWPohrStrGLcbek1yoj/UzRbTayZWCuusL
+ xAp6yqPZk7S9er4um8KEnrI/OYRTq72JiVQnGIk+WASDdu+/3j3dnJ5lg
+ S9G6BEr25bkxRbNHzBw7CWIjo1tuDqt7A10VjE2RRAdPOfegPy5sgsGca
+ hLOMluQy0KhVdqTIHRGVLrhjSmg310TCk45TZSowUFgGChYWSGu2ll+0O
+ 9gZg1q4DscVFpYLJSY0NguiVU0y5JbdNK0VUHhkFpkdqLVUuBAX2GV6F7
+ azt5qVTsBIHKsJUwQQQ6KJlspJMTXkdrCU3I3sQlNkNb22FnkrX+3CzW1 w==;
+X-CSE-ConnectionGUID: FUOa/ZWiQCy006I7CPUIyA==
+X-CSE-MsgGUID: Et66oKycReSJm6H7XMsvSw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="68119064"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="68119064"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 16:42:05 -0700
-X-CSE-ConnectionGUID: ks/ldwWsTmeknvhiRj+Sog==
-X-CSE-MsgGUID: 23gEhqlBQneQr8bxoPdm9w==
+ 05 Aug 2025 16:42:04 -0700
+X-CSE-ConnectionGUID: u6liAd07QAaQYys+GkhPjA==
+X-CSE-MsgGUID: eVGVyCoBQl+U2gGzxusBvw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="164641634"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="164641627"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Aug 2025 16:42:04 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: maarten.lankhorst@linux.intel.com
-Subject: [PATCH v2 15/15] drm/xe: Add modparam to enable / disable high SLPC
- on migrate queue
-Date: Tue,  5 Aug 2025 16:42:00 -0700
-Message-Id: <20250805234200.1035609-16-matthew.brost@intel.com>
+Subject: [PATCH v2 08/15] drm/xe: Add ULLS support to LRC
+Date: Tue,  5 Aug 2025 16:41:53 -0700
+Message-Id: <20250805234200.1035609-9-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250805234200.1035609-1-matthew.brost@intel.com>
 References: <20250805234200.1035609-1-matthew.brost@intel.com>
@@ -67,160 +66,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Having modparam to enable / disable high SLPC on migrate queue will help
-with quick experiments.
+Define memory layout for ULLS semaphores stored in LRC memory. Add
+support functions to return GGTT address and set semaphore based on a
+job's seqno.
 
 v2:
- - Enable by default
- - Set low latency flag at caller
+ - Add defines for LRC_MIGRATION_ULLS_SEMAPORE_SINGAL / CLEAR
+ - wmb after semaphore write
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c      |  2 ++
- drivers/gpu/drm/xe/xe_device.c       |  2 ++
- drivers/gpu/drm/xe/xe_device_types.h |  5 +++++
- drivers/gpu/drm/xe/xe_migrate.c      | 20 ++++++++------------
- drivers/gpu/drm/xe/xe_module.c       |  5 +++++
- drivers/gpu/drm/xe/xe_module.h       |  1 +
- 6 files changed, 23 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c       | 51 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h       |  3 ++
+ drivers/gpu/drm/xe/xe_lrc_types.h |  4 +++
+ 3 files changed, 58 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index a64ef860bf1f..cd243b1c2286 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -82,6 +82,8 @@ static int info(struct seq_file *m, void *data)
- 	drm_printf(&p, "vm_max_level %d\n", xe->info.vm_max_level);
- 	drm_printf(&p, "force_execlist %s\n", str_yes_no(xe->info.force_execlist));
- 	drm_printf(&p, "ulls_enable %s\n", str_yes_no(xe->info.ulls_enable));
-+	drm_printf(&p, "high_slpc_migration_queue %s\n",
-+		   str_yes_no(xe->info.high_slpc_migration_queue));
- 	drm_printf(&p, "has_flat_ccs %s\n", str_yes_no(xe->info.has_flat_ccs));
- 	drm_printf(&p, "has_usm %s\n", str_yes_no(xe->info.has_usm));
- 	drm_printf(&p, "skip_guc_pc %s\n", str_yes_no(xe->info.skip_guc_pc));
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 80c992859e90..649c81e6c68d 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -416,6 +416,8 @@ static void xe_device_parse_modparam(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 8760c4c2ca38..42462cdb0265 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -690,6 +690,7 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
+ #define LRC_CTX_JOB_TIMESTAMP_OFFSET (LRC_START_SEQNO_PPHWSP_OFFSET + 8)
+ #define LRC_ENGINE_ID_PPHWSP_OFFSET 1024
+ #define LRC_PARALLEL_PPHWSP_OFFSET 2048
++#define LRC_ULLS_PPHWSP_OFFSET 2048	/* Mutually exclusive with parallel */
+ 
+ u32 xe_lrc_regs_offset(struct xe_lrc *lrc)
  {
- 	xe->info.force_execlist = xe_modparam.force_execlist;
- 	xe->info.ulls_enable = xe_modparam.ulls_enable;
-+	xe->info.high_slpc_migration_queue =
-+		xe_modparam.high_slpc_migration_queue;
- 	xe->atomic_svm_timeslice_ms = 5;
+@@ -744,6 +745,12 @@ static inline u32 __xe_lrc_engine_id_offset(struct xe_lrc *lrc)
+ 	return xe_lrc_pphwsp_offset(lrc) + LRC_ENGINE_ID_PPHWSP_OFFSET;
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 3858387eba34..29cd10eeb89a 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -319,6 +319,11 @@ struct xe_device {
- 		 * open
- 		 */
- 		u8 ulls_enable:1;
-+		/**
-+		 * @info.high_slpc_migration_queue: High SLPC on migration
-+		 * queue
-+		 */
-+		u8 high_slpc_migration_queue:1;
- 	} info;
- 
- 	/** @wa_active: keep track of active workarounds */
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index bd9f3c446671..12ee9eb542f9 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -545,6 +545,9 @@ int xe_migrate_init(struct xe_migrate *m)
- 	struct xe_gt *primary_gt = tile->primary_gt;
- 	struct xe_device *xe = tile_to_xe(tile);
- 	struct xe_vm *vm;
-+	u32 flags = EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_PERMANENT |
-+		EXEC_QUEUE_FLAG_MIGRATE | (xe->info.high_slpc_migration_queue ?
-+					   EXEC_QUEUE_FLAG_LOW_LATENCY : 0);
- 	int err;
- 
- 	/* Special layout, prepared below.. */
-@@ -571,11 +574,9 @@ int xe_migrate_init(struct xe_migrate *m)
- 			goto err_out;
- 		}
- 
-+		flags |= EXEC_QUEUE_FLAG_HIGH_PRIORITY;
- 		m->bind_q = xe_exec_queue_create(xe, vm, logical_mask, 1, hwe,
--						 EXEC_QUEUE_FLAG_KERNEL |
--						 EXEC_QUEUE_FLAG_PERMANENT |
--						 EXEC_QUEUE_FLAG_HIGH_PRIORITY |
--						 EXEC_QUEUE_FLAG_MIGRATE, 0);
-+						 flags, 0);
- 		if (IS_ERR(m->bind_q)) {
- 			err = PTR_ERR(m->bind_q);
- 			goto err_out;
-@@ -586,10 +587,7 @@ int xe_migrate_init(struct xe_migrate *m)
- 		 * PVC, may want to revisit if performance is needed.
- 		 */
- 		m->q = xe_exec_queue_create(xe, vm, logical_mask, 1, hwe,
--					    EXEC_QUEUE_FLAG_KERNEL |
--					    EXEC_QUEUE_FLAG_PERMANENT |
--					    EXEC_QUEUE_FLAG_HIGH_PRIORITY |
--					    EXEC_QUEUE_FLAG_MIGRATE, 0);
-+					    flags, 0);
- 	} else {
- 		m->bind_q = xe_exec_queue_create_class(xe, primary_gt, vm,
- 						       XE_ENGINE_CLASS_COPY,
-@@ -602,10 +600,8 @@ int xe_migrate_init(struct xe_migrate *m)
- 		}
- 
- 		m->q = xe_exec_queue_create_class(xe, primary_gt, vm,
--						  XE_ENGINE_CLASS_COPY,
--						  EXEC_QUEUE_FLAG_KERNEL |
--						  EXEC_QUEUE_FLAG_PERMANENT |
--						  EXEC_QUEUE_FLAG_MIGRATE, 0);
-+						  XE_ENGINE_CLASS_COPY, flags,
-+						  0);
- 	}
- 	if (IS_ERR(m->q)) {
- 		err = PTR_ERR(m->q);
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index d8d9db82e71d..760c2eb78cc8 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -26,6 +26,7 @@
- 
- #define DEFAULT_PROBE_DISPLAY		true
- #define DEFAULT_ULLS_ENABLE		true
-+#define DEFAULT_HIGH_SLPC_MIGRATION_QUEUE	true
- #define DEFAULT_VRAM_BAR_SIZE		0
- #define DEFAULT_FORCE_PROBE		CONFIG_DRM_XE_FORCE_PROBE
- #define DEFAULT_MAX_VFS			~0
-@@ -36,6 +37,7 @@
- struct xe_modparam xe_modparam = {
- 	.probe_display =	DEFAULT_PROBE_DISPLAY,
- 	.ulls_enable =		DEFAULT_ULLS_ENABLE,
-+	.high_slpc_migration_queue =	DEFAULT_HIGH_SLPC_MIGRATION_QUEUE,
- 	.guc_log_level =	DEFAULT_GUC_LOG_LEVEL,
- 	.force_probe =		DEFAULT_FORCE_PROBE,
- #ifdef CONFIG_PCI_IOV
-@@ -60,6 +62,9 @@ MODULE_PARM_DESC(probe_display, "Probe display HW, otherwise it's left untouched
- module_param_named(ulls_enable, xe_modparam.ulls_enable, bool, 0444);
- MODULE_PARM_DESC(ulls_enable, "Enable ULLS on migration queue if LR VM open (default: true)");
- 
-+module_param_named(high_slpc_migration_queue, xe_modparam.high_slpc_migration_queue, bool, 0444);
-+MODULE_PARM_DESC(high_slpc_migration_queue, "High SLPC on migration queue (default: false)");
++static u32 __xe_lrc_ulls_offset(struct xe_lrc *lrc)
++{
++	/* The ulls is stored in the driver-defined portion of PPHWSP */
++	return xe_lrc_pphwsp_offset(lrc) + LRC_ULLS_PPHWSP_OFFSET;
++}
 +
- module_param_named(vram_bar_size, xe_modparam.force_vram_bar_size, int, 0600);
- MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size in MiB (<0=disable-resize, 0=max-needed-size, >0=force-size "
- 		 "[default=" __stringify(DEFAULT_VRAM_BAR_SIZE) "])");
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 8ea69a5b2141..d0afc085f443 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -13,6 +13,7 @@ struct xe_modparam {
- 	bool force_execlist;
- 	bool probe_display;
- 	bool ulls_enable;
-+	bool high_slpc_migration_queue;
- 	u32 force_vram_bar_size;
- 	int guc_log_level;
- 	char *guc_firmware_path;
+ static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
+ {
+ 	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP * sizeof(u32);
+@@ -798,6 +805,7 @@ DECL_MAP_ADDR_HELPERS(ctx_job_timestamp)
+ DECL_MAP_ADDR_HELPERS(ctx_timestamp)
+ DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw)
+ DECL_MAP_ADDR_HELPERS(parallel)
++DECL_MAP_ADDR_HELPERS(ulls)
+ DECL_MAP_ADDR_HELPERS(indirect_ring)
+ DECL_MAP_ADDR_HELPERS(engine_id)
+ 
+@@ -1708,6 +1716,49 @@ static u32 xe_lrc_engine_id(struct xe_lrc *lrc)
+ 	return xe_map_read32(xe, &map);
+ }
+ 
++#define semaphore_offset(seqno) \
++	(sizeof(u32) * ((seqno) % LRC_MIGRATION_ULLS_SEMAPORE_COUNT))
++
++/**
++ * xe_lrc_ulls_semaphore_ggtt_addr() - ULLS semaphore GGTT address
++ * @lrc: Pointer to the lrc.
++ * @seqno: seqno of current job.
++ *
++ * Calculate ULLS semaphore GGTT address based on input seqno
++ *
++ * Returns: ULLS semaphore GGTT address
++ */
++u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno)
++{
++	xe_assert(lrc_to_xe(lrc), semaphore_offset(seqno) <
++		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
++
++	return __xe_lrc_ulls_ggtt_addr(lrc) + semaphore_offset(seqno);
++}
++
++/**
++ * xe_lrc_set_ulls_semaphore() - Set ULLS semaphore
++ * @lrc: Pointer to the lrc.
++ * @seqno: seqno of current job.
++ *
++ * Set ULLS semaphore based on input seqno
++ */
++void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno)
++{
++	struct xe_device *xe = lrc_to_xe(lrc);
++	struct iosys_map map = __xe_lrc_ulls_map(lrc);
++
++	xe_assert(xe, semaphore_offset(seqno) <
++		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
++
++	xe_device_wmb(xe);	/* Ensure everything before in code is ordered */
++
++	iosys_map_incr(&map, semaphore_offset(seqno));
++	xe_map_write32(xe, &map, LRC_MIGRATION_ULLS_SEMAPORE_SINGAL);
++
++	xe_device_wmb(xe);	/* Flush write to hardware */
++}
++
+ static int instr_dw(u32 cmd_header)
+ {
+ 	/* GFXPIPE "SINGLE_DW" opcodes are a single dword */
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 188565465779..12f65d2ee78f 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -95,6 +95,9 @@ void xe_default_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe);
+ void xe_lrc_update_memirq_regs_with_address(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 					    u32 *regs);
+ 
++u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno);
++void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno);
++
+ u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr);
+ void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index e9883706e004..d6e68eaa0fdb 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -12,6 +12,10 @@
+ 
+ struct xe_bo;
+ 
++#define LRC_MIGRATION_ULLS_SEMAPORE_COUNT	64	/* Must be pow2 */
++#define LRC_MIGRATION_ULLS_SEMAPORE_CLEAR	0
++#define LRC_MIGRATION_ULLS_SEMAPORE_SINGAL	1
++
+ /**
+  * struct xe_lrc - Logical ring context (LRC) and submission ring object
+  */
 -- 
 2.34.1
 
