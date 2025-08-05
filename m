@@ -4,179 +4,188 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47EC2C87FD1
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 14:37:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE567C87FCB
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 14:51:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 104E010E478;
-	Tue,  5 Aug 2025 14:37:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 734AB10E6B6;
+	Tue,  5 Aug 2025 14:51:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gE26umXJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a67ih9aZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F67810E478;
- Tue,  5 Aug 2025 14:37:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC4E10E6B8
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Aug 2025 14:51:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754404621; x=1785940621;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=gUQz2m6xdIVD7l8tlHLt6uGk1o8mARYPG4o6R8KpOK0=;
- b=gE26umXJE8flvMsBuSp2Rvlj2e4v2rNsBOT1Ys8VF2OSeShGVLgHM0dc
- ynRVdLiyimnUJVCg4dV7K/mAql8PYlqvX0ic/ldF98BhNw3O0X+F34pdt
- ChYkr8u9gjd131UbsYZI6g9HjAE+9P6FGpp4WtUG7lYHV3+1ZMnURqDUF
- pxxWcmvNubfuqahyPR+Dj8UJCiaw853W3LOrcfb2tr7T6SQCu86YwT7NA
- Bk8GOZ2a2XY+dyj4u30G7hRTLVImp20AzwRgCLWCsVBp2Hqp0bPoYfmV7
- RBH5lYqLAWqGbGhDUSPLYd/tXbv+yR2frdhslfy1bLgmqJ39K9qjiJEr+ w==;
-X-CSE-ConnectionGUID: ytKXQUVOSt2MVGCmbTZYlw==
-X-CSE-MsgGUID: dftEbzEESQeiYapg/JkJ/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="56662107"
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="56662107"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 07:37:01 -0700
-X-CSE-ConnectionGUID: mXL1kSkHSti61HvxHaa40Q==
-X-CSE-MsgGUID: 36nqrp6zTYGEOApeXLX3AA==
+ t=1754405474; x=1785941474;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=rdf/LQvPFXSGBx49nuuhzIeCqqmRHBaRGzjvXCg/ze8=;
+ b=a67ih9aZ+irQHaJaaWK0Vqhm2hRhwXs5H4l+zSiIiN/1fFI9mCPFmsmm
+ EqZDd3tWkZVmVhgbnciz5g9O11f20X4FXYIjWsABgDQhZ8vsB8wcDOR2F
+ FsWQcHk0Ga+sOoptNdYdid/w+zH6pt51XqulHGIQ6mgSI7JnXD3d/mDFl
+ MXeugrwL0vPGVTSvDCjXMzHWJk25BWIga1PXqgbixI6T54V0Nfyh1zE/m
+ LG314mvfwENilvuJuAU7XJThid8rCbKRIWIFsD2v5oSqFcfA4N+tTQbsT
+ S1pgRJoXXaxcaBq1X2hvUkVLGucIGmsXLVSObDQlyL7mZ8IN+hzeL6EYH g==;
+X-CSE-ConnectionGUID: 4n3FaF3XQIC0RkWhpm88JQ==
+X-CSE-MsgGUID: qDWoM8d1RpK5uDQr5k6eLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="60341435"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="60341435"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2025 07:51:13 -0700
+X-CSE-ConnectionGUID: lrOlOAA7Q+yZxehWO3qU9Q==
+X-CSE-MsgGUID: 8uXYIdROQimugj4i4h1lpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="168758401"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 07:36:59 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Tue, 5 Aug 2025 07:36:59 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="164033623"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2025 07:51:11 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Tue, 5 Aug 2025 07:36:59 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.89)
+ 15.2.1748.26; Tue, 5 Aug 2025 07:51:10 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Tue, 5 Aug 2025 07:51:09 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (40.107.101.58)
  by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Tue, 5 Aug 2025 07:36:57 -0700
+ 15.2.1748.26; Tue, 5 Aug 2025 07:51:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MHbbm0poIjaY2hGRtGZbyM715/sV9GJcmlHTl0WLsSunQuNm803ux9Fb6W84v0CV07I9rOGdQBrSwhXkl7ZOFsRxIR5LBZbRjiAfb0SM81K5kp8S94VM8vnaQsHCKJPtV8jce8N/TawejdZB9ruY2uWlicWQxKAsUGjvgQOYsN4RlOQmavzFFwwW8wX4Y67yIAM/Sdzq+ROAdCBerxJ0soUXqFmSQbihlgpwdKvU0o/DLXDaCDXbQkrU3Eedt61N1YkJoush+3d6wpf6AWnZ3ZZMIGvA/qemvSwtHUXVj2gwKHPBok0S8s9nxDbOerNj91oKVM8+cza1jU5YLWK4cg==
+ b=uQtL64djQZDuFcvmEngC5Xw1+meXUG3vFIhyfDvFcRn3Pt3PU0AyT+HDLCaI/I2iZo3H/LzBSeKOamqLtspJJ+9OnEMkTe/1yl34EOQiiX8WUXiAs3CEZ4Xic6Ah6BtLCwccGwYYUXDnIAMVysfQjW/sVo7ZScEqll+Dz2apwwXaftjh8m9UxLopBjenOPzD9GWAnZSdlggqHueuKs9C8vScPa5qQX9nwRXpvJBydbD/17LjwXrgx0qfzLyvB8QOOswzDx/4TVegGjlBUi1hrCqv2nJHGlBJIlZU+ZaUnEKbnQoOLMe6gK2DAYzqDs6bwh+WvbBK3Noyj8WFeu3YwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SsNK0s3q7StAUEZoeqVhu0fTMbxn/qtHuV5RPzAmZx0=;
- b=x6cqK3UsMOSxnMGbj75xPZYk9dNEHGXUyDMi6OZyjem8wN+OWtUkWQDH+l/X0t98VIOZ39uEVIl0SXJIK8LkCbTV9dEy6CTnyf0K3p3ac2J57xV+jgpnhUZ19bRLa/u9dybokmosM6nnm45xdXeiR7QgNxFLXU5wDH4rM5dE/WZAhaV4gglJOTKCDogy1AhJWSFlTrNvCkIHx9ZuyYrw78IR4c7GGjh0imuCj60l332KYKQk/H19LuSvgBa+rXyerBDTxtDEGQztQQd1ec4y7aefvpV8VfdQG0EpdezcDglIGD8kFqrRNIyKJE/Y8Mscraj7tUBMWPL/WQ6ebLIARw==
+ bh=rdf/LQvPFXSGBx49nuuhzIeCqqmRHBaRGzjvXCg/ze8=;
+ b=R3DHav1OzerP1rUdusxlgFeMxr9iaFcj6WGOlWntZpYNeSunCGBhP6xMbvus8W7rW9XYKYX2LvGbiFXhKSK7vHJOMcaw03oVkuE1C0eCNLIFdIrRxZ69XQApFtUdKy9qcs8T4Fzr/rQ9n2Ot1+DYWeKpXvHP2+rhcStDDOsm9/85NVTgcRIN/L4iGQbOMroSQVNzXevP5u3SCu+fJawLapypmhY8YwyWiHJPWHH/jr9RSss6N3xGH7fsjdi53mYNnBG/9W1L4EfrohL10S6cFbV3KwBbvdAFV4GLQvXb57URT2HmMIXCOWpw+rjLAHfz7wOwmCmEhEDgaN56jkaswg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by LV8PR11MB8700.namprd11.prod.outlook.com (2603:10b6:408:201::22)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DM8PR11MB5573.namprd11.prod.outlook.com (2603:10b6:8:3b::7) by
+ IA4PR11MB9277.namprd11.prod.outlook.com (2603:10b6:208:55d::18) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.20; Tue, 5 Aug
- 2025 14:36:27 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%5]) with mapi id 15.20.8989.018; Tue, 5 Aug 2025
- 14:36:26 +0000
-Date: Tue, 5 Aug 2025 10:36:21 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Maxime Ripard <mripard@kernel.org>
-CC: Riana Tauro <riana.tauro@intel.com>, <dri-devel@lists.freedesktop.org>,
- <simona.vetter@ffwll.ch>, David Airlie <airlied@gmail.com>, Christian
- =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "=?iso-8859-1?Q?Andr=E9?= Almeida" <andrealmeid@igalia.com>,
- <anshuman.gupta@intel.com>, <lucas.demarchi@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <raag.jadav@intel.com>,
- <umesh.nerlige.ramappa@intel.com>, <frank.scarbrough@intel.com>,
- <sk.anirban@intel.com>, <maarten.lankhorst@linux.intel.com>,
- <intel-xe@lists.freedesktop.org>, <tzimmermann@suse.de>
-Subject: Re: [PATCH v7 1/9] drm: Add a vendor-specific recovery method to drm
- device wedged uevent
-Message-ID: <aJIW5fqaglHROx8i@intel.com>
-References: <20250728102809.502324-1-riana.tauro@intel.com>
- <20250728102809.502324-2-riana.tauro@intel.com>
- <39095bd1-2dee-4bfb-bc87-ee8cecedebce@intel.com>
- <20250731-jovial-realistic-mastiff-2ef2a7@houat>
- <13e90893-d0dd-4f25-8541-ecfe875c52be@intel.com>
- <20250731-excellent-octopus-of-acumen-ebfd30@houat>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250731-excellent-octopus-of-acumen-ebfd30@houat>
-X-ClientProxiedBy: SJ0PR03CA0284.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::19) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+ 2025 14:50:52 +0000
+Received: from DM8PR11MB5573.namprd11.prod.outlook.com
+ ([fe80::3f64:5280:3eb4:775b]) by DM8PR11MB5573.namprd11.prod.outlook.com
+ ([fe80::3f64:5280:3eb4:775b%3]) with mapi id 15.20.9009.013; Tue, 5 Aug 2025
+ 14:50:52 +0000
+From: "Summers, Stuart" <stuart.summers@intel.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>
+CC: "stable@vger.kernel.org" <stable@vger.kernel.org>, "melvyn2@dnsense.pub"
+ <melvyn2@dnsense.pub>, "Auld, Matthew" <matthew.auld@intel.com>
+Subject: Re: [PATCH v2] drm/xe: Defer buffer object shrinker write-backs and
+ GPU waits
+Thread-Topic: [PATCH v2] drm/xe: Defer buffer object shrinker write-backs and
+ GPU waits
+Thread-Index: AQHcBd119+tAtAoupEKEA1tjl2s2y7RUJO+A
+Date: Tue, 5 Aug 2025 14:50:52 +0000
+Message-ID: <4bb385f0f5ff5d40337cafb28dbd7d489758c586.camel@intel.com>
+References: <20250805074842.11359-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250805074842.11359-1-thomas.hellstrom@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.44.4-0ubuntu2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM8PR11MB5573:EE_|IA4PR11MB9277:EE_
+x-ms-office365-filtering-correlation-id: 568163b3-1fe2-4ed8-c4a7-08ddd42f796f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?Qm5LVGtCZ1VBSGhuc1ZWanlKMzBwZ3FWV1NLRWRJM1pYclRwRm5PdDdsNWxL?=
+ =?utf-8?B?RUVJOXlXOEdHbEhWSE15ajB6eW1waFMxdjVhb0Yyek9HTEh4Sm9IRlNsQ3lP?=
+ =?utf-8?B?TWpwMmUySkpISVovS3VrbFRwWHlBVVgyeXFBWjBJSm03UlE5ZmROMUZJMy9V?=
+ =?utf-8?B?NmlUd3FVNjhGam8vNmpLSzBXU1RFd01DSFNQeXZ2OE1aUHdLNWd2T2FrNjVJ?=
+ =?utf-8?B?MVcydi8ybUw2VlRmZ3F1UGwwVHU1UkE5Qk1TL0dzRjhGdERHcmZhcFdXVGhl?=
+ =?utf-8?B?aVdxWlZzU2RCcWh3L1hFREJBWVEyR2NvM21idjA2ZFFXTmtOdCtLOEFQQllI?=
+ =?utf-8?B?SVIrYWU0RGU5TzBtTzdJWkRIaWFXWmFhcGxLR2lXcjJDTStCSmozeUx2U0N4?=
+ =?utf-8?B?a3hsOGpaS2Foa2xLaDJEeHM5UmMrQUdOWFlHakVJSmFUTDBJcWVxL1pybTNT?=
+ =?utf-8?B?ZmFObTNEaVJDaldjS1cvVGdJdTlyUGRKMVUzdlZySlRBM2Z5cENvYmhhSXdi?=
+ =?utf-8?B?VUhZSUlva2lyQk1wUXMxeUJVUmdBSXRqNGluZVdaOXRXQXlWMThpMUh0SzJC?=
+ =?utf-8?B?R3RYdnFrczBXZVY4MUlRZDRQY0JzS1ZyeGZCQ1JqUWlMcC9XYXZXUzVMUHhu?=
+ =?utf-8?B?OVF4eWc5KytQSXIvVmNtK1ZKZ3lFUVNSTU1Pa25wa0VLRmUyL2srM2RLV3Mr?=
+ =?utf-8?B?MkF4eGRTY3drR0daK0FJV2NRL0c2Q3NjSE02WFA4ZGFuRnVqQ1EvL2hJZkR0?=
+ =?utf-8?B?UUxneHlZK3duVXNBK09kQVhWNWNYZnQzSlh5WnZFV3VyazNPMzhQSE9CeWJB?=
+ =?utf-8?B?MnRxU0k0R01jcVVxSmVsWnN0WHV6Mzd0R0VFNndkZTVwRC9EaDF5RFh5YW1L?=
+ =?utf-8?B?eGtmd0Zva095VzY1TUNJeW5XZnVweDVyd1RrQkhwM2YrN2JhN1FJbStrNDB3?=
+ =?utf-8?B?dGJzOVVCaEJkdFpsZVV4U3g0RGszaFdNZHBSbWFrQXhKMUxHZVVDVnBaZ3ND?=
+ =?utf-8?B?R05TWXRpTVJFK20rNUpVNi9wYnByQS9iNitSRmN2dExKOGRaRjU3a1Y1MVBV?=
+ =?utf-8?B?MUErTnlIclVxcTBXQjRROTZXSUxhdVhYaXV1NmpTNUZDQTRKQ1Q2NDZHWjlW?=
+ =?utf-8?B?Nkk3bERiU3N2NFI4dW10OGtOZ2NaQzVhOENTeWFFY3lrSUw5QTBDNW5NeU9x?=
+ =?utf-8?B?Y0RLRlN4blh4cUFOS2N2ZGVZSm9HN25ZOUhmQ3dkTXNtS3hpTWJtRCtIUjBM?=
+ =?utf-8?B?Z2MxR0lNUHN4ZHZ3MVRDL1NVS2xrVmlHNDhGdUVpaXUwUWFxajVtNHRwb2lx?=
+ =?utf-8?B?N29QT0hPNXJxbWRjZDZnV2ZQUWtvM21GeXFCT29mc1dTUGdHUjVRUVNDQ05H?=
+ =?utf-8?B?SXFqczREbzMxZXhtUmVONTh6VGRlZGIrSXcwQXZqSC9vcXpWa002NktodmVt?=
+ =?utf-8?B?d05GcHN2MnUxbWxkSWYwNmxKNU9WelFnanhJQ0ZlRkNCcm56UDhBc3FMMS9O?=
+ =?utf-8?B?K1E5dkFsT1kvTnN5L005cE02SHZDdkRlRXdVeW1sOTVReGtiYlo2dFhqWW9i?=
+ =?utf-8?B?bDFxZXk2MFlYL3RWMk1BbzJXMWcyUWdEaDFQNUlNUkJ5dHk4M2hYTk1xaHF3?=
+ =?utf-8?B?dnhOTTN0QWdVSkgzU21lS2UwVmpRMnRFcEl2Q1RGSktEaWxtQllQNG1OZmJv?=
+ =?utf-8?B?NElhczZMUnVTNFFHWkdNSG1XVkNsSnR5Y2NMTnVBNVlZVUF4UFFTMFpuUWx1?=
+ =?utf-8?B?V0d0ZzBaUkdHNk1STHA2Q2JUdXI2OHpiWE1kSlBQTTc5RFF3OG5zK0ZmbWFW?=
+ =?utf-8?B?QjVzRVZaK3ZyWE9ncWVuNTlaSDRGbFhVemlsZkV4a1h4akQ0aFl4cVVVZElB?=
+ =?utf-8?B?ZjZ0NWN3OEpEYS9GS292YXUrL01kTmdzYndUQVREZC9KN3dXZythMSt1Qy9F?=
+ =?utf-8?Q?HGx25nALafQ=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5573.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NDNiVjRHSk0xd3Q0WTZqVFBHdnIyQ3F4MzRpVDFJd1FSRGM1Y3kzMEJWN0U3?=
+ =?utf-8?B?RVRwb2diNDJIRlduZldPK3kxRTFVT2xrOWhhUkQrRUZ1VEpYMnZpOGtJc1hD?=
+ =?utf-8?B?TkhmWGJ0U2NINUFqNlI0MjR0cXpiSVF0ZnFoSXJwVWRxVExFSmVISlhDKzdq?=
+ =?utf-8?B?NFhyKzdqbWh2citYNzZTRUN4MVAvelVGT1k2bDRvdjIvTW5VeVljMCtzT3BB?=
+ =?utf-8?B?V3RTS2NJWXFHMzJjK0VRek01cC9sYks3MTVLVzBGa09IWXE0Sm5DUTVhQUNT?=
+ =?utf-8?B?MWVEOGZNaHowNXlJVjVsdFZnd295UnVjSjBRNGVyVzVpdUhtdSt1RlRrVzFo?=
+ =?utf-8?B?Zm45YmR1UnpFaXA0MjRHRE5UL1dqejlMZlBZVDB6MkgwMXY0WEF4Vm16eStY?=
+ =?utf-8?B?UElJTC9aWmxCK25RRllKVXFSQk5Yd05YR1ArMnFWM0x3ZnRhRU5EM09yNS9q?=
+ =?utf-8?B?RzJGZ3BVNVkwZXB4eHQrcFpEeE5NSklDY2dzVDNIbDl3a2gvenJWdlgrWGRS?=
+ =?utf-8?B?MlNuUnBMeUR5a0Z5VUowV2Z5aS90Qmp2L2FTbVVxaXB4YlkxOFpXbEd2RWk3?=
+ =?utf-8?B?d0Z3TUxrbGpaU3dSZGdzMHlQL0l6VW1QSU1kM1dMaUJDT0VQOTNpNkZpWGUw?=
+ =?utf-8?B?bnV0WXJQNEdHNjVvTjUwb1pPN1B2akdSbG10dU8vdnI2N1ZzNkF6UFZBTk9X?=
+ =?utf-8?B?dGlXaVIzazVRSXJZRm5JbkRZcWV2QmtwTk8rYjRKeGJscFB4UVRYVEFUNXQ0?=
+ =?utf-8?B?NnpYMmZsMGg5M25MVllYZDNCQ3ByUW1YUHcwWWZHVVRpQWxZTVdUNnE3cWZr?=
+ =?utf-8?B?NUdCL0RFdXhxaWFlUVp2bm95cGxsR1VwK3EraS9taVNpNnc2UGJyUkhNYUpO?=
+ =?utf-8?B?L0JpaUc4N3FaT3RteEdNN1FIM3JJbzhyaHF3QU10cmRNd01wTkk2WTRZKzBq?=
+ =?utf-8?B?dk5FUk5McnZzd28xSkE4a2tFTnpYWEcvWUtFeFhIalZwcjBIQTliUFpMNmZL?=
+ =?utf-8?B?MEhUUTRNaXJGU3lZRTI5Mlk4K2ZuR0JjdEsrcTR0U0dERFVScUd2cHg0dWMr?=
+ =?utf-8?B?aDF5N3F3L3dVZldZM1V2TVhoVDlwdmZPaC9uOTM2dmV5aDlzZVpJRy9NQTdF?=
+ =?utf-8?B?Z0FyaVlYaGdkUUt6R0x2WWNhQzNaaUFMOXRUcThBYkV1Mk9veG9SczhQUkNy?=
+ =?utf-8?B?dk14UGFMRllQM3NUdEJ5TnJ4UWNjMUZ5Wis4Zm1FbWc1SnBubndSRG5Wc0N5?=
+ =?utf-8?B?UWFIRjZNSzRUdk5GbWZIMkdHMlpDZW1zejZwKzNhM2RBelBXVUk4Y2JGQVR4?=
+ =?utf-8?B?K2gzYW55ZjJXR0ZXSWtTYjJ4WmdXcFZ6azluNVFLZHZIOWRadVMzYkZkc3Uz?=
+ =?utf-8?B?VFE5cVpRcExwaE1pZURwdHRVdGcwajB1U0I2KzJkMnNHSTRqU2hSV0QyRzRR?=
+ =?utf-8?B?VU9pSDhoN2tuNzl6T1Qxa1g0NW5xZEFkdWx0R2V2WVpZU1RtYVlBdERWU3RX?=
+ =?utf-8?B?M1ZsaVpXcnNxdisyQ1BlS0x6eXRxbUNCSDNhMVk2dCtHdnh4RWxjU2F0SzJu?=
+ =?utf-8?B?dDlkVWdnQlVKSnBwZmhEWHE4aUJLR0VoVERpZTB0NW9tNTRCU1ZDKzJWZ2ZK?=
+ =?utf-8?B?ZWsrOENnZHNOdHI1UWZkVkg5SFRQcEdNeEV3aFVleDIxdmo5Ui9tSXNiYWhp?=
+ =?utf-8?B?bUVCK0NHNlNiUzVBNXN1N0UxMEpPWnlyYy9nOVAxOXEwc1BhVmhsWnVxQjFL?=
+ =?utf-8?B?RlZsNGc0S3ZCa1VFOXZnMW03RnpZTndvdnNlblRYbHdMRFl0eEthMENFeW9a?=
+ =?utf-8?B?elEyM2RUdVRlMW52VDdWejA0WjMxVmVDa3BzdlF0TUF4RWg4NkI1K3NhSTBh?=
+ =?utf-8?B?QjN4ZU5na21IN2hLSUF0ZEtIdEM4MkJ1S0xxYmpoK2pLMlZoZnNnamY0bllU?=
+ =?utf-8?B?bVloR28xbEZxL2syTFJzWUlRSnloT0haVlVnZTcxaFA4OGY2TnhtUnZQWWZs?=
+ =?utf-8?B?WjlJYkE4TXY1RTlQdXBFV05Xb05LV2llWk1ZVzJITTRPYUhUemkrcnNpY3Bu?=
+ =?utf-8?B?RE5jdHY3dGVUeS90V1VUcloyYUhhTjdIVFUxUU13a0RjZGlPNHlsSEZlcDNL?=
+ =?utf-8?B?eVNBbk1Fd0VRcmt4YnZRNVJERkR0bEhRdEdKUGlWVWpwZFBtNHNBNittU1Zh?=
+ =?utf-8?B?a0E9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F1F7D83E7A36FB4984243C0296D4D0C8@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|LV8PR11MB8700:EE_
-X-MS-Office365-Filtering-Correlation-Id: 209b3c81-897e-4915-c03b-08ddd42d756a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?o5rEVcU2ClOjDvfTpW4iFdMGrkVTr/vW7O1rJm+v9QmScub93P1gHf6J4A?=
- =?iso-8859-1?Q?hp0JWlyyfvbbGf3LKMXUrXgqI2aXlx4Z9VFqG5i0Of66dqccldLxqTCHIh?=
- =?iso-8859-1?Q?cB7ylnV1BNgShwW4BYDaWBRiXv1L2veyLJv44ZnwPDBAhfdzfmvoECgzrQ?=
- =?iso-8859-1?Q?WJscsOFUxc5dMK8aFkYwbIj1Tt1QyRqI8ZwuqHij/wob27p7DCE5qECCgo?=
- =?iso-8859-1?Q?fFmPnHvDciFkeDiMVm/scPYk8KByp5F22H5ekd4QBHfZYFrAwOwfMDpayl?=
- =?iso-8859-1?Q?/dooImsEapNot+5z432JF22nyldvOSblY8SQoaz6iqBKn2h49oJvdfTOS4?=
- =?iso-8859-1?Q?qM3BpyhN7Bc6B7d7MolsKebcCnXi28WEE8LvxdaLRuKH5Yk6fwkNi7eS63?=
- =?iso-8859-1?Q?hYJ35Qiy4295rtViB2haL8bOMnISfMSpRBDq57RUwOyzCUzQA6lPftS3+h?=
- =?iso-8859-1?Q?eFKJ2jSp/fiSUsKc+Isr9Q6JVmdM/Z3mNm5d3e9SlcutnKm3m89yWv+F+3?=
- =?iso-8859-1?Q?WvdN/VpiI/3FEhrUEA6Lg3J9AWg7Fj17WlIXIuQUTi+uscR5Jyq4ibElAr?=
- =?iso-8859-1?Q?jdODI48Mdw+jxp6ZtkmY1w8gHwE6heAic97gZDJjCwF05wKuEdHsu+m96x?=
- =?iso-8859-1?Q?DXNZUCmyr+ScwLc1IT2YPiIiLVhZ1Mk9fA6JtHUo11u6GJ7GeCRdkpTV6Q?=
- =?iso-8859-1?Q?8d2TP+B0zmP4dAsl5XH97LnM6wfkzyxdliqIvVKT2tLRVvi7gQUSV99Ymi?=
- =?iso-8859-1?Q?qdDDLTYIEdfc5uqFQfHraCl6WOd8hFbQBQ9NsFBicZPrkHDOKrBO9DxXv3?=
- =?iso-8859-1?Q?CW0bmD6zcznuvL1XG9qmABp9d4zcESVLyNV40XoAk0oPMsWFXk+TZVD7Po?=
- =?iso-8859-1?Q?s3+m543Mw81WWlfaoO2wpJnL+dlxdUwZ4iOJMnrqeokEXZJD3NfVtbnlVT?=
- =?iso-8859-1?Q?ZU1TYKXxSfIUNI5Ug65PYPDj169wLfWdOZqlVzp9tc/BHQisu3eBVtlb9U?=
- =?iso-8859-1?Q?YFhSzW3RfPHdcGFD0TK5FqjHlqJgW2qeZJZcmmXXSXD1CwN/amHbKsrAWW?=
- =?iso-8859-1?Q?dgU6RjS/oKKyfnMRHYMGmHC17w1AzFQMCDIKeQBd+4flUJeOiAsgahOHOK?=
- =?iso-8859-1?Q?qL7RBHhGepoKzRQKC8Oxn8nNwINgs5m4X3YepWajEYu9YgC5dTu+xbjyhg?=
- =?iso-8859-1?Q?zJ6Db6jGPi4OQK0vk8ObA/FQ38AUE8EkzBz7PF8bWl8/RrZNcPdD4vxBEM?=
- =?iso-8859-1?Q?1boCIRsxIKB7WL8ezNYPZlXtL2NvsPN5jm3NbtcEvVEOhANw0Z+jKAvvhy?=
- =?iso-8859-1?Q?QCKFS4F6audJyRRXeno9HOhpoU/NuEwt33+2x7tUz4a1+h3KeHkagAgWpK?=
- =?iso-8859-1?Q?ThWvH3p4R+MCtYskJIIung4Gqo8EEoL5FZiGwM8lRzInGDuY+flX7FfYIP?=
- =?iso-8859-1?Q?/j0skoZeVhsYatzKFOfugk0khVEJjMmF+Rho6wuh4q8l9/DaL6w2BpE3Oq?=
- =?iso-8859-1?Q?I=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?O2p3lLCHWLIRAzwGskCEIlxXcyHF6geDbCdfmxtNlne1OaXnNoOKrO+47D?=
- =?iso-8859-1?Q?gGwTE3SY6k+AQAiLB31mGWDDJivjU1t6qZtPV/TjnShvpwfYJ+vHs4r3kO?=
- =?iso-8859-1?Q?OsxbLyJxUuydQ4l+LCxlOwXKWkGH1lzcKNziHyvoNMZqzW9/8NbD4EpDch?=
- =?iso-8859-1?Q?YYGAkySMLEbqQQ34bb0Hd68QG6vn3896VDoJ/dCgWycUPUw4js3Q6bpAUc?=
- =?iso-8859-1?Q?3feYysy5yn0Yk/n2Tt2jIO47ZuKzBnB7jP0/MnzDFDx67NCdJfwHNwvHtb?=
- =?iso-8859-1?Q?DmCv2IsMhdpJp3+JIyaMy7Oy/Kc0gbYt0W/RYBfcCQipPmkg0FurjyYVXQ?=
- =?iso-8859-1?Q?kdiFNYubNnhwUHeUnx7yJVFl3sWpTQU2/OKe4KrvyKYhxjKKcBEDpjIVBE?=
- =?iso-8859-1?Q?57tNHUxtyyJ2/lV6WC8utwD5ccCGKjX5G+NZ0D7l/5NaRTbJfzFXc6Rq2u?=
- =?iso-8859-1?Q?4dtPhXO3fcewi9pFTAqUExVhyB6XvT9TLXiYRynUcC5CsX4nsciC/tsqIH?=
- =?iso-8859-1?Q?dlwTpY3ZcaKTxz7T98fbxdbj/QRvug01CURTsCFjbm7hoqeX1b1S5Mty5H?=
- =?iso-8859-1?Q?OlkBoFpEYGcqqd/to49c0dfJAH/ZYZ3yXxyTGuVf4xRQtsf0Y1+FtCx55D?=
- =?iso-8859-1?Q?3GAwjXvESeXRwJ1N/nqe5crkNtxnA32d3iiT/IQRDqXrmQOd59cu1MiVSR?=
- =?iso-8859-1?Q?pYoNgZaehg2UOH8W7TdNgccTFRE+X5efkD++gpfcXZV7XFWZOK7say9Ga+?=
- =?iso-8859-1?Q?olR0F/W8X4glem8Bz/iCvRZJLXuWSwomNPMI1FV9e4LwASr+JCXETr1DUC?=
- =?iso-8859-1?Q?NdMtHV7c3ilD1nIb0MvzuoTsQ2mTyJywFbOAa5BPvkMeo3/mbWICoZx0kO?=
- =?iso-8859-1?Q?KIKwUjrFN7v31JUSpBu+bFoaIu0fl2wS+m+ixAIX3Sx6dBf7e2LlJHFq1Y?=
- =?iso-8859-1?Q?kDDKKUS3SPr+OIqJ/nzEWlRiHlvt5RvVhvQ8tdzQw5mR46hbsI50xBY1fL?=
- =?iso-8859-1?Q?tiXiA3lAV53MWiSUxP8cCLFr1nmw5Kmtr2uVcMyX2yjQMSqLKvItNX1ADa?=
- =?iso-8859-1?Q?B2WKBHlG2We2+tV40ZMzR85J3dzIYA5UI5LpRvl+dQwgKq0qmIareAdCH0?=
- =?iso-8859-1?Q?Joe7LGXaaZQ9YTXU2U473Xyija8I106pSSKe4bhEE5cZsWyAWlL4u1Ocws?=
- =?iso-8859-1?Q?8U2kTQGIottWUapJ0vA1jiUIemwoayMwSxznFSzzEJLk4WFE238sRV72TO?=
- =?iso-8859-1?Q?mswZwFDCWcu6eOwiz7GlaI0BaARm6K4QYbXY/D8X+VCr4vLDf8UoB2ywCp?=
- =?iso-8859-1?Q?2JLwxOoTbEMIDnPDGr2xEyTj655CmaJy/keAcbDxU8bsWDcsTIE7B1pUTx?=
- =?iso-8859-1?Q?V0JhgN1ZQd+TWpuvTnFyaZHaCfXDhp5a1wvWsyhaVna6DvLo7NePACETkg?=
- =?iso-8859-1?Q?sp5sKBekuSLTOwLEybDZ2/kAaGLb/8/2mwbRSW0bo2famr2uQsehOw+y/b?=
- =?iso-8859-1?Q?av4uCNrvfA9N1D6xILGmHkWi4V+9YlvZZdBitQytQ84ucMGl+jNxCYNlOj?=
- =?iso-8859-1?Q?qrPDszzN2I0v+J5TP6Q+c2hHJzzPRgX7RGqU0AcV98v8sHQmvxPtCIQ9of?=
- =?iso-8859-1?Q?lu9/TPjgijvlbpS+kA+x2iwFTLNW4anxP/cf4tYlPP5Ss0dr59+2VdPQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 209b3c81-897e-4915-c03b-08ddd42d756a
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2025 14:36:26.8546 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9RDAzUxkNP4jDZca4peby5TCvfnKcCmSst5mLvs9n9ORV3PayE3V3dV4T40Ck8ec9KA9/npCd2fLqJdpPUEsrQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8700
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5573.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 568163b3-1fe2-4ed8-c4a7-08ddd42f796f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Aug 2025 14:50:52.1783 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: TCjn9L129kukCfHza22IUT79yFublyfdiu/9yvQzPHkXgHmsmVV7jOTecHj5WpKWSF454UMXdBaZ2c2reKFxcL3DmO5ckz2P5jtcYhn5MtA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9277
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -192,207 +201,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 31, 2025 at 03:01:18PM +0200, Maxime Ripard wrote:
-> On Thu, Jul 31, 2025 at 04:43:46PM +0530, Riana Tauro wrote:
-> > Hi Maxim
-> > 
-> > On 7/31/2025 3:02 PM, Maxime Ripard wrote:
-> > > Hi,
-> > > 
-> > > On Wed, Jul 30, 2025 at 07:33:01PM +0530, Riana Tauro wrote:
-> > > > On 7/28/2025 3:57 PM, Riana Tauro wrote:
-> > > > > Address the need for a recovery method (firmware flash on Firmware errors)
-> > > > > introduced in the later patches of Xe KMD.
-> > > > > Whenever XE KMD detects a firmware error, a firmware flash is required to
-> > > > > recover the device to normal operation.
-> > > > > 
-> > > > > The initial proposal to use 'firmware-flash' as a recovery method was
-> > > > > not applicable to other drivers and could cause multiple recovery
-> > > > > methods specific to vendors to be added.
-> > > > > To address this a more generic 'vendor-specific' method is introduced,
-> > > > > guiding users to refer to vendor specific documentation and system logs
-> > > > > for detailed vendor specific recovery procedure.
-> > > > > 
-> > > > > Add a recovery method 'WEDGED=vendor-specific' for such errors.
-> > > > > Vendors must provide additional recovery documentation if this method
-> > > > > is used.
-> > > > > 
-> > > > > It is the responsibility of the consumer to refer to the correct vendor
-> > > > > specific documentation and usecase before attempting a recovery.
-> > > > > 
-> > > > > For example: If driver is XE KMD, the consumer must refer
-> > > > > to the documentation of 'Device Wedging' under 'Documentation/gpu/xe/'.
-> > > > > 
-> > > > > Recovery script contributed by Raag.
-> > > > > 
-> > > > > v2: fix documentation (Raag)
-> > > > > v3: add more details to commit message (Sima, Rodrigo, Raag)
-> > > > >       add an example script to the documentation (Raag)
-> > > > > v4: use consistent naming (Raag)
-> > > > > v5: fix commit message
-> > > > > 
-> > > > > Cc: André Almeida <andrealmeid@igalia.com>
-> > > > > Cc: Christian König <christian.koenig@amd.com>
-> > > > > Cc: David Airlie <airlied@gmail.com>
-> > > > > Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> > > > > Co-developed-by: Raag Jadav <raag.jadav@intel.com>
-> > > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > > > Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> > > > > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > 
-> > > > This patch needs an ack from drm to be merged.
-> > > > The rest of the series have RB's. Can someone please provide an ack ?
-> > > > 
-> > > > Cc: drm-misc maintainers
-> > > > 
-> > > > Thanks
-> > > > Riana
-> > > > 
-> > > > > ---
-> > > > >    Documentation/gpu/drm-uapi.rst | 42 ++++++++++++++++++++++++++++------
-> > > > >    drivers/gpu/drm/drm_drv.c      |  2 ++
-> > > > >    include/drm/drm_device.h       |  4 ++++
-> > > > >    3 files changed, 41 insertions(+), 7 deletions(-)
-> > > > > 
-> > > > > diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
-> > > > > index 843facf01b2d..5691b29acde3 100644
-> > > > > --- a/Documentation/gpu/drm-uapi.rst
-> > > > > +++ b/Documentation/gpu/drm-uapi.rst
-> > > > > @@ -418,13 +418,15 @@ needed.
-> > > > >    Recovery
-> > > > >    --------
-> > > > > -Current implementation defines three recovery methods, out of which, drivers
-> > > > > +Current implementation defines four recovery methods, out of which, drivers
-> > > > >    can use any one, multiple or none. Method(s) of choice will be sent in the
-> > > > >    uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
-> > > > > -more side-effects. If driver is unsure about recovery or method is unknown
-> > > > > -(like soft/hard system reboot, firmware flashing, physical device replacement
-> > > > > -or any other procedure which can't be attempted on the fly), ``WEDGED=unknown``
-> > > > > -will be sent instead.
-> > > > > +more side-effects. If recovery method is specific to vendor
-> > > > > +``WEDGED=vendor-specific`` will be sent and userspace should refer to vendor
-> > > > > +specific documentation for the recovery procedure. As an example if the driver
-> > > > > +is 'Xe' then the documentation for 'Device Wedging' of Xe driver needs to be
-> > > > > +referred for the recovery procedure. If driver is unsure about recovery or
-> > > > > +method is unknown, ``WEDGED=unknown`` will be sent instead.
-> > > > >    Userspace consumers can parse this event and attempt recovery as per the
-> > > > >    following expectations.
-> > > > > @@ -435,6 +437,7 @@ following expectations.
-> > > > >        none            optional telemetry collection
-> > > > >        rebind          unbind + bind driver
-> > > > >        bus-reset       unbind + bus reset/re-enumeration + bind
-> > > > > +    vendor-specific vendor specific recovery method
-> > > > >        unknown         consumer policy
-> > > > >        =============== ========================================
-> > > > > @@ -472,8 +475,12 @@ erroring out, all device memory should be unmapped and file descriptors should
-> > > > >    be closed to prevent leaks or undefined behaviour. The idea here is to clear the
-> > > > >    device of all user context beforehand and set the stage for a clean recovery.
-> > > > > -Example
-> > > > > --------
-> > > > > +For ``WEDGED=vendor-specific`` recovery method, it is the responsibility of the
-> > > > > +consumer to check the driver documentation and the usecase before attempting
-> > > > > +a recovery.
-> > > > > +
-> > > > > +Example - rebind
-> > > > > +----------------
-> > > > >    Udev rule::
-> > > > > @@ -491,6 +498,27 @@ Recovery script::
-> > > > >        echo -n $DEVICE > $DRIVER/unbind
-> > > > >        echo -n $DEVICE > $DRIVER/bind
-> > > > > +Example - vendor-specific
-> > > > > +-------------------------
-> > > > > +
-> > > > > +Udev rule::
-> > > > > +
-> > > > > +    SUBSYSTEM=="drm", ENV{WEDGED}=="vendor-specific", DEVPATH=="*/drm/card[0-9]",
-> > > > > +    RUN+="/path/to/vendor_specific_recovery.sh $env{DEVPATH}"
-> > > > > +
-> > > > > +Recovery script::
-> > > > > +
-> > > > > +    #!/bin/sh
-> > > > > +
-> > > > > +    DEVPATH=$(readlink -f /sys/$1/device)
-> > > > > +    DRIVERPATH=$(readlink -f $DEVPATH/driver)
-> > > > > +    DRIVER=$(basename $DRIVERPATH)
-> > > > > +
-> > > > > +    if [ "$DRIVER" = "xe" ]; then
-> > > > > +        # Refer XE documentation and check usecase and recovery procedure
-> > > > > +    fi
-> > > > > +
-> > > > > +
-> > > 
-> > > So I guess I'm not opposed to it on principle, but the documentation
-> > > really needs some work.
-> > > 
-> > > You should at least list the valid vendor specific options, and what
-> > > each mean exactly. Ideally, it should be a link to the datasheet/manual
-> > > detailing the recovery procedure,
-> > 
-> > This is added above
-> > 
-> > "If recovery method is specific to vendor ``WEDGED=vendor-specific`` will be
-> > sent and userspace should refer to vendor specific documentation for the
-> > recovery procedure. As an example if the driver is 'Xe' then the
-> > documentation for 'Device Wedging' of Xe driver needs to be referred for the
-> > recovery procedure."
-> > 
-> > The documentation of Xe is in Patch 6
-> > 
-> > https://lore.kernel.org/intel-xe/20250728102809.502324-7-riana.tauro@intel.com/
-> 
-> I'm sorry, I still don't get how, as a user, I can reimplement what that
-> tool is supposed to be doing. Or do you anticipate that there's only
-> ever be a single way to recover a Xe device, which is to reflash the
-> firmware?
-
-Well, clearly the documentation here needs some adjustments since it is failing
-to explain everything that was previously discussed already:
-
-https://lore.kernel.org/dri-devel/aHDRyZBkw-Qa_30R@phenom.ffwll.local/
-
-Since I was already familiar with the background and history, I found the
-documentation quite straightforward. However, I now believe it could be
-updated to make it clearer to anyone.
-
-> 
-> What if in ~5y, Intel comes up with a new recovery method for the newer
-> models?
-
-the vendor-specific is by definition wedge-uevent[device-specific] + specific
-indication. Either by log or sysfs. So this design as is is flexible enough.
-
-As I stated in the previous discussions I was more in favor of the
-wedge-uevent[firmware-flash] but that was too specific, single-vendor
-and single-case. So the vendor-specific with further indication was the
-chosen one.
-
-> 
-> > I'll add the link instead of just the chapter name
-> > > but if that's under NDA, at least a
-> > > reference to the document and section you need to look at to implement
-> > > it properly.
-> > > 
-> > > Or if that's still not doable, anything that tells you what to do
-> > > instead of "run a shell script we don't provide".
-> > > 
-> > > Also, we just discussed it with Sima on IRC, and she mentioned that we
-> > > probably want to have a vendor specific prefix for each vendor-specific
-> > > method.
-> > 
-> > This was discussed as part of Rev4
-> > 
-> > https://lore.kernel.org/intel-xe/aG-U9JTXDah_tu1U@black.fi.intel.com/
-> > 
-> > DEVPATH from uevent and driver should be able to identify the driver.
-> > Shouldn't that be enough?
-> 
-> See above. What happens if we start to see systems with two Xe GPUs, one
-> with a new recovery method and one with an old recovery method?
-
-The log or device's sysfs will have the correct indication for the correct
-device. Nothing to worry here.
-
-> 
-> Maxime
-
-
+T24gVHVlLCAyMDI1LTA4LTA1IGF0IDA5OjQ4ICswMjAwLCBUaG9tYXMgSGVsbHN0csO2bSB3cm90
+ZToKPiBXaGVuIHRoZSB4ZSBidWZmZXItb2JqZWN0IHNocmlua2VyIGFsbG93cyBHUFUgd2FpdHMg
+YW5kIHdyaXRlLWJhY2ssCj4gKHR5cGljYWxseSBmcm9tIGtzd2FwZCksIHBlcmZvcm0gbXVsdGlw
+bGUgcGFzc2VzLCBza2lwcGluZwo+IHN1YnNlcXVlbnQgcGFzc2VzIGlmIHRoZSBzaHJpbmtlciBu
+dW1iZXIgb2Ygc2Nhbm5lZCBvYmplY3RzIHRhcmdldAo+IGlzIHJlYWNoZWQuCj4gCj4gMSkgV2l0
+aG91dCBHUFUgd2FpdHMgYW5kIHdyaXRlLWJhY2sKPiAyKSBXaXRob3V0IHdyaXRlLWJhY2sKPiAz
+KSBXaXRoIGJvdGggR1BVLXdhaXRzIGFuZCB3cml0ZS1iYWNrCj4gCj4gVGhpcyBpcyB0byBhdm9p
+ZCBzdGFsbHMgYW5kIGNvc3RseSB3cml0ZS0gYW5kIHJlYWRiYWNrcyB1bmxlc3MgdGhleQo+IGFy
+ZSByZWFsbHkgbmVjZXNzYXJ5Lgo+IAo+IHYyOgo+IC0gRG9uJ3QgdGVzdCBmb3Igc2NhbiBjb21w
+bGV0aW9uIHR3aWNlLiAoU3R1YXJ0IFN1bW1lcnMpCj4gLSBVcGRhdGUgdGFncy4KPiAKPiBSZXBv
+cnRlZC1ieTogbWVsdnluIDxtZWx2eW4yQGRuc2Vuc2UucHViPgo+IENsb3NlczogaHR0cHM6Ly9n
+aXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS94ZS9rZXJuZWwvLS9pc3N1ZXMvNTU1Nwo+IENjOiBT
+dW1tZXJzIFN0dWFydCA8c3R1YXJ0LnN1bW1lcnNAaW50ZWwuY29tPgo+IEZpeGVzOiAwMGM4ZWZj
+MzE4MGYgKCJkcm0veGU6IEFkZCBhIHNocmlua2VyIGZvciB4ZSBib3MiKQo+IENjOiA8c3RhYmxl
+QHZnZXIua2VybmVsLm9yZz4gIyB2Ni4xNSsKPiBTaWduZWQtb2ZmLWJ5OiBUaG9tYXMgSGVsbHN0
+csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+CgpDaGFuZ2VzIGxvb2sgZ29v
+ZCB0byBtZSwgdGhhbmtzIFRob21hcy4gQmVmb3JlIG1lcmdpbmcsIHBsZWFzZSBhZGRyZXNzCnRo
+ZSBmZWVkYmFjayBmcm9tIE1hdHQgYXMgd2VsbC4KUmV2aWV3ZWQtYnk6IFN0dWFydCBTdW1tZXJz
+IDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb20+CgpUaGFua3MsClN0dWFydAoKPiAtLS0KPiDCoGRy
+aXZlcnMvZ3B1L2RybS94ZS94ZV9zaHJpbmtlci5jIHwgNTEgKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKystCj4gLS0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA0NyBpbnNlcnRpb25zKCspLCA0IGRl
+bGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfc2hyaW5r
+ZXIuYwo+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3Nocmlua2VyLmMKPiBpbmRleCAxYzNjMDRk
+NTJmNTUuLjkwMjQ0ZmU1OWI1OSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVf
+c2hyaW5rZXIuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9zaHJpbmtlci5jCj4gQEAg
+LTU0LDEwICs1NCwxMCBAQCB4ZV9zaHJpbmtlcl9tb2RfcGFnZXMoc3RydWN0IHhlX3Nocmlua2Vy
+Cj4gKnNocmlua2VyLCBsb25nIHNocmlua2FibGUsIGxvbmcgcHVyZ2VhCj4gwqDCoMKgwqDCoMKg
+wqDCoHdyaXRlX3VubG9jaygmc2hyaW5rZXItPmxvY2spOwo+IMKgfQo+IMKgCj4gLXN0YXRpYyBz
+NjQgeGVfc2hyaW5rZXJfd2FsayhzdHJ1Y3QgeGVfZGV2aWNlICp4ZSwKPiAtwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgdHRtX29wZXJh
+dGlvbl9jdHggKmN0eCwKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCBjb25zdCBzdHJ1Y3QgeGVfYm9fc2hyaW5rX2ZsYWdzIGZsYWdzLAo+IC3C
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHVuc2ln
+bmVkIGxvbmcgdG9fc2NhbiwgdW5zaWduZWQgbG9uZwo+ICpzY2FubmVkKQo+ICtzdGF0aWMgczY0
+IF9feGVfc2hyaW5rZXJfd2FsayhzdHJ1Y3QgeGVfZGV2aWNlICp4ZSwKPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IHR0bV9v
+cGVyYXRpb25fY3R4ICpjdHgsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbnN0IHN0cnVjdCB4ZV9ib19zaHJpbmtfZmxhZ3MgZmxh
+Z3MsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHVuc2lnbmVkIGxvbmcgdG9fc2NhbiwgdW5zaWduZWQgbG9uZwo+ICpzY2FubmVkKQo+
+IMKgewo+IMKgwqDCoMKgwqDCoMKgwqB1bnNpZ25lZCBpbnQgbWVtX3R5cGU7Cj4gwqDCoMKgwqDC
+oMKgwqDCoHM2NCBmcmVlZCA9IDAsIGxyZXQ7Cj4gQEAgLTkzLDYgKzkzLDQ4IEBAIHN0YXRpYyBz
+NjQgeGVfc2hyaW5rZXJfd2FsayhzdHJ1Y3QgeGVfZGV2aWNlICp4ZSwKPiDCoMKgwqDCoMKgwqDC
+oMKgcmV0dXJuIGZyZWVkOwo+IMKgfQo+IMKgCj4gKy8qCj4gKyAqIFRyeSBzaHJpbmtpbmcgaWRs
+ZSBvYmplY3RzIHdpdGhvdXQgd3JpdGViYWNrIGZpcnN0LCB0aGVuIGlmIG5vdAo+IHN1ZmZpY2ll
+bnQsCj4gKyAqIHRyeSBhbHNvIG5vbi1pZGxlIG9iamVjdHMgYW5kIGZpbmFsbHkgaWYgdGhhdCdz
+IG5vdCBzdWZmaWNpZW50Cj4gZWl0aGVyLAo+ICsgKiBhZGQgd3JpdGViYWNrLiBUaGlzIGF2b2lk
+cyBzdGFsbHMgYW5kIGV4cGxpY2l0IHdyaXRlYmFja3Mgd2l0aAo+IGxpZ2h0IG9yCj4gKyAqIG1v
+ZGVyYXRlIG1lbW9yeSBwcmVzc3VyZS4KPiArICovCj4gK3N0YXRpYyBzNjQgeGVfc2hyaW5rZXJf
+d2FsayhzdHJ1Y3QgeGVfZGV2aWNlICp4ZSwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgdHRtX29wZXJhdGlvbl9jdHggKmN0eCwK
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBj
+b25zdCBzdHJ1Y3QgeGVfYm9fc2hyaW5rX2ZsYWdzIGZsYWdzLAo+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHVuc2lnbmVkIGxvbmcgdG9fc2Nh
+biwgdW5zaWduZWQgbG9uZwo+ICpzY2FubmVkKQo+ICt7Cj4gK8KgwqDCoMKgwqDCoMKgYm9vbCBu
+b193YWl0X2dwdSA9IHRydWU7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHhlX2JvX3Nocmlua19m
+bGFncyBzYXZlX2ZsYWdzID0gZmxhZ3M7Cj4gK8KgwqDCoMKgwqDCoMKgczY0IGxyZXQsIGZyZWVk
+Owo+ICsKPiArwqDCoMKgwqDCoMKgwqBzd2FwKG5vX3dhaXRfZ3B1LCBjdHgtPm5vX3dhaXRfZ3B1
+KTsKPiArwqDCoMKgwqDCoMKgwqBzYXZlX2ZsYWdzLndyaXRlYmFjayA9IGZhbHNlOwo+ICvCoMKg
+wqDCoMKgwqDCoGxyZXQgPSBfX3hlX3Nocmlua2VyX3dhbGsoeGUsIGN0eCwgc2F2ZV9mbGFncywg
+dG9fc2NhbiwKPiBzY2FubmVkKTsKPiArwqDCoMKgwqDCoMKgwqBzd2FwKG5vX3dhaXRfZ3B1LCBj
+dHgtPm5vX3dhaXRfZ3B1KTsKPiArwqDCoMKgwqDCoMKgwqBpZiAobHJldCA8IDAgfHwgKnNjYW5u
+ZWQgPj0gdG9fc2NhbikKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGxy
+ZXQ7Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoGZyZWVkID0gbHJldDsKPiArwqDCoMKgwqDCoMKgwqBp
+ZiAoIWN0eC0+bm9fd2FpdF9ncHUpIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+bHJldCA9IF9feGVfc2hyaW5rZXJfd2Fsayh4ZSwgY3R4LCBzYXZlX2ZsYWdzLAo+IHRvX3NjYW4s
+IHNjYW5uZWQpOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAobHJldCA8IDAp
+Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4g
+bHJldDsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZnJlZWQgKz0gbHJldDsKPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKCpzY2FubmVkID49IHRvX3NjYW4pCj4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gZnJl
+ZWQ7Cj4gK8KgwqDCoMKgwqDCoMKgfQo+ICsKPiArwqDCoMKgwqDCoMKgwqBpZiAoZmxhZ3Mud3Jp
+dGViYWNrKSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxyZXQgPSBfX3hlX3No
+cmlua2VyX3dhbGsoeGUsIGN0eCwgZmxhZ3MsIHRvX3NjYW4sCj4gc2Nhbm5lZCk7Cj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChscmV0IDwgMCkKPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiBscmV0Owo+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqBmcmVlZCArPSBscmV0Owo+ICvCoMKgwqDCoMKgwqDCoH0KPiAr
+Cj4gK8KgwqDCoMKgwqDCoMKgcmV0dXJuIGZyZWVkOwo+ICt9Cj4gKwo+IMKgc3RhdGljIHVuc2ln
+bmVkIGxvbmcKPiDCoHhlX3Nocmlua2VyX2NvdW50KHN0cnVjdCBzaHJpbmtlciAqc2hyaW5rLCBz
+dHJ1Y3Qgc2hyaW5rX2NvbnRyb2wKPiAqc2MpCj4gwqB7Cj4gQEAgLTE5OSw2ICsyNDEsNyBAQCBz
+dGF0aWMgdW5zaWduZWQgbG9uZyB4ZV9zaHJpbmtlcl9zY2FuKHN0cnVjdAo+IHNocmlua2VyICpz
+aHJpbmssIHN0cnVjdCBzaHJpbmtfY29uCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqBydW50aW1lX3BtID0geGVfc2hyaW5rZXJfcnVudGltZV9wbV9nZXQoc2hyaW5rZXIsCj4gdHJ1
+ZSwgMCwgY2FuX2JhY2t1cCk7Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgc2hyaW5rX2ZsYWdzLnB1
+cmdlID0gZmFsc2U7Cj4gKwo+IMKgwqDCoMKgwqDCoMKgwqBscmV0ID0geGVfc2hyaW5rZXJfd2Fs
+ayhzaHJpbmtlci0+eGUsICZjdHgsIHNocmlua19mbGFncywKPiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbnJfdG9fc2Nhbiwg
+Jm5yX3NjYW5uZWQpOwo+IMKgwqDCoMKgwqDCoMKgwqBpZiAobHJldCA+PSAwKQoK
