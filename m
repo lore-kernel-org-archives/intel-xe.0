@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A243C87FD1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40217CA0EC0
 	for <intel-xe@archiver.kernel.org>; Tue,  5 Aug 2025 23:42:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEEEC10E2C7;
-	Tue,  5 Aug 2025 23:42:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 013E810E5C8;
+	Tue,  5 Aug 2025 23:42:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B/3vnhfE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E+5DG7HF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8735410E2C7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DFB010E2C6
  for <Intel-Xe@lists.freedesktop.org>; Tue,  5 Aug 2025 23:42:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1754437377; x=1785973377;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bsaGDhwI8Y9sCE1V8zb4sabDwJ+HD2r/d1bQU86+pU8=;
- b=B/3vnhfEy7dO57FvYx8oDgHUJc50JiPhSgK6TN3aYRO+IA7cmIs+AKx6
- 9ctviiVQmbrbymLu73ImHGiVIj1STYwv1wwoeYsMGEdvSYsDuk9ccFY84
- VG98JPeFVdueAiQS8+zw9/orimo8QBMfMqjV1XkzPRPMD8iO3fRsHdw9+
- RL48HnihN1GWS6AG46uyK6eWsDR3CeGkuAEdEoh21aVs8Ki3TkaOSxh0l
- XRFUZr3Kj0z8WV/BE6YYxf/0hYBrrKImb/H2vTOQLez5i8cmahCZhf3oC
- rK/tckcTNr0/MXnMXifgMg+oayPypxWviIdDdyUH7L15S/UdsLdJLQs0T Q==;
-X-CSE-ConnectionGUID: pLBcBulKTbKvo+Iy0UXubQ==
-X-CSE-MsgGUID: z4XL3kC2Qf6Jr73/fTaueQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="44340227"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="44340227"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yDAgkTiufhV1/zCnVcJ90hJNZOL+8JP1V/ABj4RSrSo=;
+ b=E+5DG7HFyKGOQVY/2gTw4lRqZRWZfEz/zSwAm7cuyFHRhkQ0FTPxY9aA
+ JofuYKJvJmF1XwHaYowO1R9U7WTqlDX/1THlQriQ7jMyWKNJN1/8lplCd
+ cbLcqz4KOBWcDzTL2c8bSvorhu8Y23dxezjaukk38tmu3I6uMYuBvWu4p
+ mQOc0/wSz0pGYRHJmrdyfEXedqvvTWTzD9VMaCr79LtTHVpnLeBdteC3H
+ Ah1+AsT9NMRPYaN7EH+TIaV5RqmBTUIjP/siFpqPIwlC7EiRf0M5c2kHa
+ aDq9v0f1xpkOZQ47qLaLShCuYyTbCJz4v26YTRplzWaIYFAgqYKZoyq7C g==;
+X-CSE-ConnectionGUID: AY30i21rQoOq7T7EgAdTTg==
+X-CSE-MsgGUID: c2b/8/TkQeK563fCY8s1gg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="44340226"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="44340226"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Aug 2025 16:42:57 -0700
-X-CSE-ConnectionGUID: LElAcM2zQgK7D0wW0ZMJ/w==
-X-CSE-MsgGUID: AQzbuHzuTm+f8tEBQc0EXQ==
+X-CSE-ConnectionGUID: jv2+VrmaSwuoHiVTuErYAA==
+X-CSE-MsgGUID: Z70NABpvTL2ocHHKdQjRMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="163862592"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="163862590"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by orviesa006.jf.intel.com with ESMTP; 05 Aug 2025 16:42:57 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v2 1/4] drm/xe/guc: Update CSS header structures
-Date: Tue,  5 Aug 2025 16:42:52 -0700
-Message-ID: <20250805234256.1021020-2-John.C.Harrison@Intel.com>
+Subject: [PATCH v2 0/4] Add test for G2G communications
+Date: Tue,  5 Aug 2025 16:42:51 -0700
+Message-ID: <20250805234256.1021020-1-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250805234256.1021020-1-John.C.Harrison@Intel.com>
-References: <20250805234256.1021020-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
@@ -69,175 +67,42 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Rework the CSS header structure according to recent updates to the GuC
-API spec. Also include more field definitions.
+Platforms with multiple GuCs (multi-GT and/or multi-tile) have a
+mechanism for sending messages from one GuC to another. This relies on
+the KMD configuring buffers correctly and informing the GuCs about
+them. Support for that was merged a while back. So add a test to go
+with it.
 
-v2: Also pass the new GuC specific structure to a GuC specific
-function instead of the higher level, generic structure (review
-feedback from Daniele).
-Also correct naming of CSS_TIME_* fields.
+Also, improve the firmware CSS header structure and defines to better
+match the spec and to add missing fields that are useful.
+
+v2: Tweaks for review feedback from Daniele
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/xe/xe_uc_fw.c     | 24 ++++++------
- drivers/gpu/drm/xe/xe_uc_fw_abi.h | 64 ++++++++++++++++++++-----------
- 2 files changed, 53 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index a236f1d37248..f037571865ad 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -329,7 +329,7 @@ static void uc_fw_fini(struct drm_device *drm, void *arg)
- 	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_SELECTED);
- }
- 
--static int guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
-+static int guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_guc_info *guc_info)
- {
- 	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
- 	struct xe_uc_fw_version *release = &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
-@@ -344,11 +344,11 @@ static int guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
- 		return -EINVAL;
- 	}
- 
--	compatibility->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR, css->submission_version);
--	compatibility->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR, css->submission_version);
--	compatibility->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, css->submission_version);
-+	compatibility->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR, guc_info->submission_version);
-+	compatibility->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR, guc_info->submission_version);
-+	compatibility->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, guc_info->submission_version);
- 
--	uc_fw->private_data_size = css->private_data_size;
-+	uc_fw->private_data_size = guc_info->private_data_size;
- 
- 	return 0;
- }
-@@ -417,8 +417,8 @@ static int parse_css_header(struct xe_uc_fw *uc_fw, const void *fw_data, size_t
- 	css = (struct uc_css_header *)fw_data;
- 
- 	/* Check integrity of size values inside CSS header */
--	size = (css->header_size_dw - css->key_size_dw - css->modulus_size_dw -
--		css->exponent_size_dw) * sizeof(u32);
-+	size = (css->header_size_dw - css->rsa_info.key_size_dw - css->rsa_info.modulus_size_dw -
-+		css->rsa_info.exponent_size_dw) * sizeof(u32);
- 	if (unlikely(size != sizeof(struct uc_css_header))) {
- 		drm_warn(&xe->drm,
- 			 "%s firmware %s: unexpected header size: %zu != %zu\n",
-@@ -431,7 +431,7 @@ static int parse_css_header(struct xe_uc_fw *uc_fw, const void *fw_data, size_t
- 	uc_fw->ucode_size = (css->size_dw - css->header_size_dw) * sizeof(u32);
- 
- 	/* now RSA */
--	uc_fw->rsa_size = css->key_size_dw * sizeof(u32);
-+	uc_fw->rsa_size = css->rsa_info.key_size_dw * sizeof(u32);
- 
- 	/* At least, it should have header, uCode and RSA. Size of all three. */
- 	size = sizeof(struct uc_css_header) + uc_fw->ucode_size +
-@@ -444,12 +444,12 @@ static int parse_css_header(struct xe_uc_fw *uc_fw, const void *fw_data, size_t
- 	}
- 
- 	/* Get version numbers from the CSS header */
--	release->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR, css->sw_version);
--	release->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR, css->sw_version);
--	release->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, css->sw_version);
-+	release->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR, css->guc_info.sw_version);
-+	release->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR, css->guc_info.sw_version);
-+	release->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, css->guc_info.sw_version);
- 
- 	if (uc_fw->type == XE_UC_FW_TYPE_GUC)
--		return guc_read_css_info(uc_fw, css);
-+		return guc_read_css_info(uc_fw, &css->guc_info);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw_abi.h b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-index 87ade41209d0..faceb437fd2f 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-@@ -44,6 +44,39 @@
-  *    in fw. So driver will load a truncated firmware in this case.
-  */
- 
-+struct uc_css_rsa_info {
-+	u32 key_size_dw;
-+	u32 modulus_size_dw;
-+	u32 exponent_size_dw;
-+} __packed;
-+
-+struct uc_css_guc_info {
-+	u32 time;
-+#define CSS_TIME_HOUR				(0xFF << 0)
-+#define CSS_TIME_MIN				(0xFF << 8)
-+#define CSS_TIME_SEC				(0xFFFF << 16)
-+	u32 reserved0[5];
-+	u32 sw_version;
-+#define CSS_SW_VERSION_UC_MAJOR			(0xFF << 16)
-+#define CSS_SW_VERSION_UC_MINOR			(0xFF << 8)
-+#define CSS_SW_VERSION_UC_PATCH			(0xFF << 0)
-+	u32 submission_version;
-+	u32 reserved1[11];
-+	u32 header_info;
-+#define CSS_HEADER_INFO_SVN			(0xFF)
-+#define CSS_HEADER_INFO_COPY_VALID		(0x1 << 31)
-+	u32 private_data_size;
-+	u32 ukernel_info;
-+#define CSS_UKERNEL_INFO_DEVICEID		(0xFFFF << 16)
-+#define CSS_UKERNEL_INFO_PRODKEY		(0xFF << 8)
-+#define CSS_UKERNEL_INFO_BUILDTYPE		(0x3 << 2)
-+#define CSS_UKERNEL_INFO_BUILDTYPE_PROD		0
-+#define CSS_UKERNEL_INFO_BUILDTYPE_PREPROD	1
-+#define CSS_UKERNEL_INFO_BUILDTYPE_DEBUG	2
-+#define CSS_UKERNEL_INFO_ENCSTATUS		(0x1 << 1)
-+#define CSS_UKERNEL_INFO_COPY_VALID		(0x1 << 0)
-+} __packed;
-+
- struct uc_css_header {
- 	u32 module_type;
- 	/*
-@@ -52,36 +85,21 @@ struct uc_css_header {
- 	 */
- 	u32 header_size_dw;
- 	u32 header_version;
--	u32 module_id;
-+	u32 reserved0;
- 	u32 module_vendor;
- 	u32 date;
--#define CSS_DATE_DAY			(0xFF << 0)
--#define CSS_DATE_MONTH			(0xFF << 8)
--#define CSS_DATE_YEAR			(0xFFFF << 16)
-+#define CSS_DATE_DAY				(0xFF << 0)
-+#define CSS_DATE_MONTH				(0xFF << 8)
-+#define CSS_DATE_YEAR				(0xFFFF << 16)
- 	u32 size_dw; /* uCode plus header_size_dw */
--	u32 key_size_dw;
--	u32 modulus_size_dw;
--	u32 exponent_size_dw;
--	u32 time;
--#define CSS_TIME_HOUR			(0xFF << 0)
--#define CSS_DATE_MIN			(0xFF << 8)
--#define CSS_DATE_SEC			(0xFFFF << 16)
--	char username[8];
--	char buildnumber[12];
--	u32 sw_version;
--#define CSS_SW_VERSION_UC_MAJOR		(0xFF << 16)
--#define CSS_SW_VERSION_UC_MINOR		(0xFF << 8)
--#define CSS_SW_VERSION_UC_PATCH		(0xFF << 0)
- 	union {
--		u32 submission_version; /* only applies to GuC */
--		u32 reserved2;
-+		u32 reserved1[3];
-+		struct uc_css_rsa_info rsa_info;
- 	};
--	u32 reserved0[12];
- 	union {
--		u32 private_data_size; /* only applies to GuC */
--		u32 reserved1;
-+		u32 reserved2[22];
-+		struct uc_css_guc_info guc_info;
- 	};
--	u32 header_info;
- } __packed;
- static_assert(sizeof(struct uc_css_header) == 128);
- 
+
+John Harrison (4):
+  drm/xe/guc: Update CSS header structures
+  drm/xe/guc: Add firmware build type to available info
+  drm/xe: Allow freeing of a managed bo
+  drm/xe/guc: Add test for G2G communications
+
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h    |   2 +
+ drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c  | 776 ++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   2 +
+ drivers/gpu/drm/xe/xe_bo.c                  |   5 +
+ drivers/gpu/drm/xe/xe_bo.h                  |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   7 +
+ drivers/gpu/drm/xe/xe_guc.c                 |   4 +
+ drivers/gpu/drm/xe/xe_guc.h                 |   4 +
+ drivers/gpu/drm/xe/xe_guc_ct.c              |   5 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h            |   1 +
+ drivers/gpu/drm/xe/xe_uc_fw.c               |  25 +-
+ drivers/gpu/drm/xe/xe_uc_fw_abi.h           |  64 +-
+ drivers/gpu/drm/xe/xe_uc_fw_types.h         |   3 +
+ 13 files changed, 864 insertions(+), 35 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
+
 -- 
 2.49.0
 
