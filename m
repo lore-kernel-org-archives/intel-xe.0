@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3491C87FD3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 017ABC87FDA
 	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 06:22:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA2510E735;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2D4810E737;
 	Wed,  6 Aug 2025 06:22:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gE06hgMp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmhdMaJe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C1E710E3AB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3991A10E2FE
  for <intel-xe@lists.freedesktop.org>; Wed,  6 Aug 2025 06:22:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1754461368; x=1785997368;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/ygh6gpNvENDUCYO8voFF+bVMxBOatQbjDiyyASbOxk=;
- b=gE06hgMpyk+8+4zePfMsIZLjbtrEKRgXr4JpPRqtHBrW+Cl7bPIEZKE3
- TVfTXGka2NQ+yhhnYH3GELXIxXzj+drTcD8Sg+iVRRlYdJFTfjglAvtvx
- t9yDwSt4scje7i9pCWhvidrftUYPC+YoKfyvT07FvxyaddLLEvw76oU/j
- oSbLKbs5PFuNatLZ+W5B5dQ3pLqIhYlGiUrvlhe4LYi8LyzcKynw2kd/b
- F17QyZVzHh+2kGRMEmxKrOLTmw460v2gk0TMkejH64y6Lge/qEec2Q4RX
- qij7zw/euvOl5TcVoyjM/aPwCjiCujJmLQQfxzY4tCy7Pxay7rWzkHLXq w==;
-X-CSE-ConnectionGUID: q/JQ73+LRM+BTBhFFnj3bA==
-X-CSE-MsgGUID: mVQtgwY6Sl++oeKauA/hug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="79316936"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="79316936"
+ bh=28mxNAiH9A8b4QIKbIhxs8wImUlOmjDx59WbyQl0lxk=;
+ b=hmhdMaJeWY+xs3kdOeTOSNeM6cpAai7BjvOMIPtGCfbuPrhZI5wjFCDR
+ fKq1yCla8kxZ6MJt1/iZMWNKi8K2sAeEo1cvu9eG4t4CVjNT0stN8yxdc
+ zazdHb7FTbhjME41uzvHngrH73odkaqVrhHqPefOBGkEt82xBhcNdySxk
+ 1GR2WrawVT9mtlQ0XUVwcpK4zeix0Ywm82kVggRlZODMu+72tA+XtOyb1
+ HIybOxsAP3wDXbMRPs3u+nzd7VIjwLRgSItnG4tSEMKLAG69QRvWWDZss
+ vCJXaBPhH7oQnn8vE7EwcEydXK4kWb2/6YBO4b36z3TGvKi0dDSmPWpep A==;
+X-CSE-ConnectionGUID: MusHV133RfeIDa6vpk6VQA==
+X-CSE-MsgGUID: Pz6xRVjsSo2o7dLURxihoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="79316937"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="79316937"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Aug 2025 23:22:47 -0700
-X-CSE-ConnectionGUID: 7vyDx4ORS7Sa5I17F/Tpaw==
-X-CSE-MsgGUID: g3tvF8oIQkmfR+cWQkU4ZQ==
+X-CSE-ConnectionGUID: yodAqI8vT7iC+YSFkF3wUw==
+X-CSE-MsgGUID: iQkt79f1RIaZuXNNkADT6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="201868954"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="201868957"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Aug 2025 23:22:47 -0700
@@ -45,14 +45,14 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
  francois.dugast@intel.com, michal.mrozek@intel.com
-Subject: [PATCH 07/11] drm/xe: Remove unused GT page fault code
-Date: Tue,  5 Aug 2025 23:22:38 -0700
-Message-Id: <20250806062242.1090416-8-matthew.brost@intel.com>
+Subject: [PATCH 08/11] drm/xe: Fine grained page fault locking
+Date: Tue,  5 Aug 2025 23:22:39 -0700
+Message-Id: <20250806062242.1090416-9-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250806062242.1090416-1-matthew.brost@intel.com>
 References: <20250806062242.1090416-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,817 +68,760 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the Xe page fault layer and GuC page layer in place, this is now
-dead code and can be removed. ACC code is also removed, but this was
-dead code.
+Enable page faults to be serviced while holding vm->lock in read mode.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Introduce additional locks to:
+ - Ensure only one page fault thread services a given range or VMA
+ - Serialize SVM garbage collection
+ - Protect SVM range insertion and removal
+
+While these locks may contend during page faults, expensive operations
+like migration can now run in parallel within a single VM.
+
+In addition to new locking, ranges must be reference-counted after
+lookup, as another thread could immediately remove them from the GPU SVM
+tree, potentially dropping the last reference.
+
+Lastly, decouple the VM’s ASID from the page fault queue selection to
+allow parallel page fault handling within the same VM.
+
+Lays the groundwork for prefetch IOCTLs to use threaded migration too.
+
+Signed-off-by: Matthew Brost <atthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 691 ---------------------------
- drivers/gpu/drm/xe/xe_gt_pagefault.h |  19 -
- drivers/gpu/drm/xe/xe_gt_types.h     |  65 ---
- 3 files changed, 775 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault.c
- delete mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault.h
+ drivers/gpu/drm/xe/xe_device_types.h |  2 +
+ drivers/gpu/drm/xe/xe_hmm.c          |  4 +-
+ drivers/gpu/drm/xe/xe_pagefault.c    | 33 +++++++---
+ drivers/gpu/drm/xe/xe_svm.c          | 96 +++++++++++++++++++---------
+ drivers/gpu/drm/xe/xe_svm.h          | 38 +++++++++++
+ drivers/gpu/drm/xe/xe_vm.c           | 88 +++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_vm.h           |  2 +
+ drivers/gpu/drm/xe/xe_vm_types.h     | 24 ++++++-
+ 8 files changed, 230 insertions(+), 57 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-deleted file mode 100644
-index ab43dec52776..000000000000
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ /dev/null
-@@ -1,691 +0,0 @@
--// SPDX-License-Identifier: MIT
--/*
-- * Copyright © 2022 Intel Corporation
-- */
--
--#include "xe_gt_pagefault.h"
--
--#include <linux/bitfield.h>
--#include <linux/circ_buf.h>
--
--#include <drm/drm_exec.h>
--#include <drm/drm_managed.h>
--
--#include "abi/guc_actions_abi.h"
--#include "xe_bo.h"
--#include "xe_gt.h"
--#include "xe_gt_printk.h"
--#include "xe_gt_stats.h"
--#include "xe_gt_tlb_invalidation.h"
--#include "xe_guc.h"
--#include "xe_guc_ct.h"
--#include "xe_migrate.h"
--#include "xe_svm.h"
--#include "xe_trace_bo.h"
--#include "xe_vm.h"
--#include "xe_vram_types.h"
--
--struct pagefault {
--	u64 page_addr;
--	u32 asid;
--	u16 pdata;
--	u8 vfid;
--	u8 access_type;
--	u8 fault_type;
--	u8 fault_level;
--	u8 engine_class;
--	u8 engine_instance;
--	u8 fault_unsuccessful;
--	bool trva_fault;
--};
--
--enum access_type {
--	ACCESS_TYPE_READ = 0,
--	ACCESS_TYPE_WRITE = 1,
--	ACCESS_TYPE_ATOMIC = 2,
--	ACCESS_TYPE_RESERVED = 3,
--};
--
--enum fault_type {
--	NOT_PRESENT = 0,
--	WRITE_ACCESS_VIOLATION = 1,
--	ATOMIC_ACCESS_VIOLATION = 2,
--};
--
--struct acc {
--	u64 va_range_base;
--	u32 asid;
--	u32 sub_granularity;
--	u8 granularity;
--	u8 vfid;
--	u8 access_type;
--	u8 engine_class;
--	u8 engine_instance;
--};
--
--static bool access_is_atomic(enum access_type access_type)
--{
--	return access_type == ACCESS_TYPE_ATOMIC;
--}
--
--static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
--{
--	return xe_vm_has_valid_gpu_mapping(tile, vma->tile_present,
--					   vma->tile_invalidated);
--}
--
--static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
--		       bool atomic, struct xe_vram_region *vram)
--{
--	struct xe_bo *bo = xe_vma_bo(vma);
--	struct xe_vm *vm = xe_vma_vm(vma);
--	int err;
--
--	err = xe_vm_lock_vma(exec, vma);
--	if (err)
--		return err;
--
--	if (atomic && vram) {
--		xe_assert(vm->xe, IS_DGFX(vm->xe));
--
--		if (xe_vma_is_userptr(vma)) {
--			err = -EACCES;
--			return err;
--		}
--
--		/* Migrate to VRAM, move should invalidate the VMA first */
--		err = xe_bo_migrate(bo, vram->placement);
--		if (err)
--			return err;
--	} else if (bo) {
--		/* Create backing store if needed */
--		err = xe_bo_validate(bo, vm, true);
--		if (err)
--			return err;
--	}
--
--	return 0;
--}
--
--static int handle_vma_pagefault(struct xe_gt *gt, struct xe_vma *vma,
--				bool atomic)
--{
--	struct xe_vm *vm = xe_vma_vm(vma);
--	struct xe_tile *tile = gt_to_tile(gt);
--	struct drm_exec exec;
--	struct dma_fence *fence;
--	ktime_t end = 0;
--	int err;
--
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 6aa119026ce9..02b91a698500 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -393,6 +393,8 @@ struct xe_device {
+ 		struct xarray asid_to_vm;
+ 		/** @usm.next_asid: next ASID, used to cyclical alloc asids */
+ 		u32 next_asid;
++		/** @usm.current_pf_queue: current page fault queue */
++		u32 current_pf_queue;
+ 		/** @usm.lock: protects UM state */
+ 		struct rw_semaphore lock;
+ 		/** @usm.pf_wq: page fault work queue, unbound, high priority */
+diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
+index 57b71956ddf4..c9d53ffae843 100644
+--- a/drivers/gpu/drm/xe/xe_hmm.c
++++ b/drivers/gpu/drm/xe/xe_hmm.c
+@@ -136,7 +136,7 @@ static void xe_hmm_userptr_set_mapped(struct xe_userptr_vma *uvma)
+ 	struct xe_userptr *userptr = &uvma->userptr;
+ 	struct xe_vm *vm = xe_vma_vm(&uvma->vma);
+ 
 -	lockdep_assert_held_write(&vm->lock);
--
--	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT, 1);
--	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_KB, xe_vma_size(vma) / 1024);
--
--	trace_xe_vma_pagefault(vma);
--
--	/* Check if VMA is valid, opportunistic check only */
--	if (vma_is_valid(tile, vma) && !atomic)
--		return 0;
--
--retry_userptr:
--	if (xe_vma_is_userptr(vma) &&
--	    xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
--		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
--
--		err = xe_vma_userptr_pin_pages(uvma);
--		if (err)
--			return err;
--	}
--
--	/* Lock VM and BOs dma-resv */
--	drm_exec_init(&exec, 0, 0);
--	drm_exec_until_all_locked(&exec) {
--		err = xe_pf_begin(&exec, vma, atomic, tile->mem.vram);
--		drm_exec_retry_on_contention(&exec);
--		if (xe_vm_validate_should_retry(&exec, err, &end))
--			err = -EAGAIN;
--		if (err)
--			goto unlock_dma_resv;
--
--		/* Bind VMA only to the GT that has faulted */
--		trace_xe_vma_pf_bind(vma);
--		fence = xe_vma_rebind(vm, vma, BIT(tile->id));
--		if (IS_ERR(fence)) {
--			err = PTR_ERR(fence);
--			if (xe_vm_validate_should_retry(&exec, err, &end))
--				err = -EAGAIN;
--			goto unlock_dma_resv;
--		}
--	}
--
--	dma_fence_wait(fence, false);
--	dma_fence_put(fence);
--
--unlock_dma_resv:
--	drm_exec_fini(&exec);
--	if (err == -EAGAIN)
--		goto retry_userptr;
--
--	return err;
--}
--
--static struct xe_vm *asid_to_vm(struct xe_device *xe, u32 asid)
--{
--	struct xe_vm *vm;
--
--	down_read(&xe->usm.lock);
--	vm = xa_load(&xe->usm.asid_to_vm, asid);
--	if (vm && xe_vm_in_fault_mode(vm))
--		xe_vm_get(vm);
--	else
--		vm = ERR_PTR(-EINVAL);
--	up_read(&xe->usm.lock);
--
--	return vm;
--}
--
--static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
--{
--	struct xe_device *xe = gt_to_xe(gt);
--	struct xe_vm *vm;
--	struct xe_vma *vma = NULL;
--	int err;
--	bool atomic;
--
--	/* SW isn't expected to handle TRTT faults */
--	if (pf->trva_fault)
--		return -EFAULT;
--
--	vm = asid_to_vm(xe, pf->asid);
--	if (IS_ERR(vm))
--		return PTR_ERR(vm);
--
++	lockdep_assert(xe_vma_userptr_lockdep(uvma));
+ 	lockdep_assert_held(&vm->userptr.notifier_lock);
+ 
+ 	mutex_lock(&userptr->unmap_mutex);
+@@ -154,7 +154,7 @@ void xe_hmm_userptr_unmap(struct xe_userptr_vma *uvma)
+ 	struct xe_device *xe = vm->xe;
+ 
+ 	if (!lockdep_is_held_type(&vm->userptr.notifier_lock, 0) &&
+-	    !lockdep_is_held_type(&vm->lock, 0) &&
++	    !xe_vma_userptr_lockdep(uvma) &&
+ 	    !(vma->gpuva.flags & XE_VMA_DESTROYED)) {
+ 		/* Don't unmap in exec critical section. */
+ 		xe_vm_assert_held(vm);
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index 474412c21ec3..95d2eb8566fb 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -79,7 +79,7 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 	ktime_t end = 0;
+ 	int err;
+ 
+-	lockdep_assert_held_write(&vm->lock);
++	lockdep_assert_held(&vm->lock);
+ 
+ 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT, 1);
+ 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_KB,
+@@ -87,6 +87,8 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 
+ 	trace_xe_vma_pagefault(vma);
+ 
++	guard(mutex)(&vma->fault_lock);
++
+ 	/* Check if VMA is valid, opportunistic check only */
+ 	if (xe_vm_has_valid_gpu_mapping(tile, vma->tile_present,
+ 					vma->tile_invalidated) && !atomic)
+@@ -122,10 +124,13 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 			goto unlock_dma_resv;
+ 		}
+ 	}
++	drm_exec_fini(&exec);
+ 
+ 	dma_fence_wait(fence, false);
+ 	dma_fence_put(fence);
+ 
++	return err;
++
+ unlock_dma_resv:
+ 	drm_exec_fini(&exec);
+ 	if (err == -EAGAIN)
+@@ -172,10 +177,7 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 	if (IS_ERR(vm))
+ 		return PTR_ERR(vm);
+ 
 -	/*
 -	 * TODO: Change to read lock? Using write lock for simplicity.
 -	 */
 -	down_write(&vm->lock);
--
--	if (xe_vm_is_closed(vm)) {
--		err = -ENOENT;
--		goto unlock_vm;
--	}
--
--	vma = xe_vm_find_vma_by_addr(vm, pf->page_addr);
--	if (!vma) {
--		err = -EINVAL;
--		goto unlock_vm;
--	}
--
--	atomic = access_is_atomic(pf->access_type);
--
--	if (xe_vma_is_cpu_addr_mirror(vma))
--		err = xe_svm_handle_pagefault(vm, vma, gt,
--					      pf->page_addr, atomic);
--	else
--		err = handle_vma_pagefault(gt, vma, atomic);
--
--unlock_vm:
--	if (!err)
--		vm->usm.last_fault_vma = vma;
--	up_write(&vm->lock);
--	xe_vm_put(vm);
--
--	return err;
--}
--
--static int send_pagefault_reply(struct xe_guc *guc,
--				struct xe_guc_pagefault_reply *reply)
--{
--	u32 action[] = {
--		XE_GUC_ACTION_PAGE_FAULT_RES_DESC,
--		reply->dw0,
--		reply->dw1,
--	};
--
--	return xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
--}
--
--static void print_pagefault(struct xe_gt *gt, struct pagefault *pf)
--{
--	xe_gt_dbg(gt, "\n\tASID: %d\n"
--		  "\tVFID: %d\n"
--		  "\tPDATA: 0x%04x\n"
--		  "\tFaulted Address: 0x%08x%08x\n"
--		  "\tFaultType: %d\n"
--		  "\tAccessType: %d\n"
--		  "\tFaultLevel: %d\n"
--		  "\tEngineClass: %d %s\n"
--		  "\tEngineInstance: %d\n",
--		  pf->asid, pf->vfid, pf->pdata, upper_32_bits(pf->page_addr),
--		  lower_32_bits(pf->page_addr),
--		  pf->fault_type, pf->access_type, pf->fault_level,
--		  pf->engine_class, xe_hw_engine_class_to_str(pf->engine_class),
--		  pf->engine_instance);
--}
--
--#define PF_MSG_LEN_DW	4
--
--static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
--{
--	const struct xe_guc_pagefault_desc *desc;
--	bool ret = false;
--
--	spin_lock_irq(&pf_queue->lock);
--	if (pf_queue->tail != pf_queue->head) {
--		desc = (const struct xe_guc_pagefault_desc *)
--			(pf_queue->data + pf_queue->tail);
--
--		pf->fault_level = FIELD_GET(PFD_FAULT_LEVEL, desc->dw0);
--		pf->trva_fault = FIELD_GET(XE2_PFD_TRVA_FAULT, desc->dw0);
--		pf->engine_class = FIELD_GET(PFD_ENG_CLASS, desc->dw0);
--		pf->engine_instance = FIELD_GET(PFD_ENG_INSTANCE, desc->dw0);
--		pf->pdata = FIELD_GET(PFD_PDATA_HI, desc->dw1) <<
--			PFD_PDATA_HI_SHIFT;
--		pf->pdata |= FIELD_GET(PFD_PDATA_LO, desc->dw0);
--		pf->asid = FIELD_GET(PFD_ASID, desc->dw1);
--		pf->vfid = FIELD_GET(PFD_VFID, desc->dw2);
--		pf->access_type = FIELD_GET(PFD_ACCESS_TYPE, desc->dw2);
--		pf->fault_type = FIELD_GET(PFD_FAULT_TYPE, desc->dw2);
--		pf->page_addr = (u64)(FIELD_GET(PFD_VIRTUAL_ADDR_HI, desc->dw3)) <<
--			PFD_VIRTUAL_ADDR_HI_SHIFT;
--		pf->page_addr |= FIELD_GET(PFD_VIRTUAL_ADDR_LO, desc->dw2) <<
--			PFD_VIRTUAL_ADDR_LO_SHIFT;
--
--		pf_queue->tail = (pf_queue->tail + PF_MSG_LEN_DW) %
--			pf_queue->num_dw;
--		ret = true;
--	}
--	spin_unlock_irq(&pf_queue->lock);
--
--	return ret;
--}
--
--static bool pf_queue_full(struct pf_queue *pf_queue)
--{
--	lockdep_assert_held(&pf_queue->lock);
--
--	return CIRC_SPACE(pf_queue->head, pf_queue->tail,
--			  pf_queue->num_dw) <=
--		PF_MSG_LEN_DW;
--}
--
--int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
--{
--	struct xe_gt *gt = guc_to_gt(guc);
--	struct pf_queue *pf_queue;
--	unsigned long flags;
--	u32 asid;
--	bool full;
--
--	if (unlikely(len != PF_MSG_LEN_DW))
--		return -EPROTO;
--
--	asid = FIELD_GET(PFD_ASID, msg[1]);
--	pf_queue = gt->usm.pf_queue + (asid % NUM_PF_QUEUE);
--
--	/*
--	 * The below logic doesn't work unless PF_QUEUE_NUM_DW % PF_MSG_LEN_DW == 0
--	 */
--	xe_gt_assert(gt, !(pf_queue->num_dw % PF_MSG_LEN_DW));
--
--	spin_lock_irqsave(&pf_queue->lock, flags);
--	full = pf_queue_full(pf_queue);
--	if (!full) {
--		memcpy(pf_queue->data + pf_queue->head, msg, len * sizeof(u32));
--		pf_queue->head = (pf_queue->head + len) %
--			pf_queue->num_dw;
--		queue_work(gt->usm.pf_wq, &pf_queue->worker);
--	} else {
--		xe_gt_warn(gt, "PageFault Queue full, shouldn't be possible\n");
--	}
--	spin_unlock_irqrestore(&pf_queue->lock, flags);
--
--	return full ? -ENOSPC : 0;
--}
--
--#define USM_QUEUE_MAX_RUNTIME_MS	20
--
--static void pf_queue_work_func(struct work_struct *w)
--{
--	struct pf_queue *pf_queue = container_of(w, struct pf_queue, worker);
--	struct xe_gt *gt = pf_queue->gt;
--	struct xe_guc_pagefault_reply reply = {};
--	struct pagefault pf = {};
--	unsigned long threshold;
--	int ret;
--
--	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
--
--	while (get_pagefault(pf_queue, &pf)) {
--		ret = handle_pagefault(gt, &pf);
--		if (unlikely(ret)) {
--			print_pagefault(gt, &pf);
--			pf.fault_unsuccessful = 1;
--			xe_gt_dbg(gt, "Fault response: Unsuccessful %pe\n", ERR_PTR(ret));
--		}
--
--		reply.dw0 = FIELD_PREP(PFR_VALID, 1) |
--			FIELD_PREP(PFR_SUCCESS, pf.fault_unsuccessful) |
--			FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
--			FIELD_PREP(PFR_DESC_TYPE, FAULT_RESPONSE_DESC) |
--			FIELD_PREP(PFR_ASID, pf.asid);
--
--		reply.dw1 = FIELD_PREP(PFR_VFID, pf.vfid) |
--			FIELD_PREP(PFR_ENG_INSTANCE, pf.engine_instance) |
--			FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
--			FIELD_PREP(PFR_PDATA, pf.pdata);
--
--		send_pagefault_reply(&gt->uc.guc, &reply);
--
--		if (time_after(jiffies, threshold) &&
--		    pf_queue->tail != pf_queue->head) {
--			queue_work(gt->usm.pf_wq, w);
--			break;
--		}
--	}
--}
--
--static void acc_queue_work_func(struct work_struct *w);
--
--static void pagefault_fini(void *arg)
--{
--	struct xe_gt *gt = arg;
--	struct xe_device *xe = gt_to_xe(gt);
--
--	if (!xe->info.has_usm)
--		return;
--
--	destroy_workqueue(gt->usm.acc_wq);
--	destroy_workqueue(gt->usm.pf_wq);
--}
--
--static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
--{
--	struct xe_device *xe = gt_to_xe(gt);
--	xe_dss_mask_t all_dss;
--	int num_dss, num_eus;
--
--	bitmap_or(all_dss, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
--		  XE_MAX_DSS_FUSE_BITS);
--
--	num_dss = bitmap_weight(all_dss, XE_MAX_DSS_FUSE_BITS);
--	num_eus = bitmap_weight(gt->fuse_topo.eu_mask_per_dss,
--				XE_MAX_EU_FUSE_BITS) * num_dss;
--
--	/*
--	 * user can issue separate page faults per EU and per CS
--	 *
--	 * XXX: Multiplier required as compute UMD are getting PF queue errors
--	 * without it. Follow on why this multiplier is required.
--	 */
--#define PF_MULTIPLIER	8
--	pf_queue->num_dw =
--		(num_eus + XE_NUM_HW_ENGINES) * PF_MSG_LEN_DW * PF_MULTIPLIER;
--	pf_queue->num_dw = roundup_pow_of_two(pf_queue->num_dw);
--#undef PF_MULTIPLIER
--
--	pf_queue->gt = gt;
--	pf_queue->data = devm_kcalloc(xe->drm.dev, pf_queue->num_dw,
--				      sizeof(u32), GFP_KERNEL);
--	if (!pf_queue->data)
--		return -ENOMEM;
--
--	spin_lock_init(&pf_queue->lock);
--	INIT_WORK(&pf_queue->worker, pf_queue_work_func);
--
--	return 0;
--}
--
--int xe_gt_pagefault_init(struct xe_gt *gt)
--{
--	struct xe_device *xe = gt_to_xe(gt);
--	int i, ret = 0;
--
--	if (!xe->info.has_usm)
--		return 0;
--
--	for (i = 0; i < NUM_PF_QUEUE; ++i) {
--		ret = xe_alloc_pf_queue(gt, &gt->usm.pf_queue[i]);
--		if (ret)
--			return ret;
--	}
--	for (i = 0; i < NUM_ACC_QUEUE; ++i) {
--		gt->usm.acc_queue[i].gt = gt;
--		spin_lock_init(&gt->usm.acc_queue[i].lock);
--		INIT_WORK(&gt->usm.acc_queue[i].worker, acc_queue_work_func);
--	}
--
--	gt->usm.pf_wq = alloc_workqueue("xe_gt_page_fault_work_queue",
--					WQ_UNBOUND | WQ_HIGHPRI, NUM_PF_QUEUE);
--	if (!gt->usm.pf_wq)
--		return -ENOMEM;
--
--	gt->usm.acc_wq = alloc_workqueue("xe_gt_access_counter_work_queue",
--					 WQ_UNBOUND | WQ_HIGHPRI,
--					 NUM_ACC_QUEUE);
--	if (!gt->usm.acc_wq) {
--		destroy_workqueue(gt->usm.pf_wq);
--		return -ENOMEM;
--	}
--
--	return devm_add_action_or_reset(xe->drm.dev, pagefault_fini, gt);
--}
--
--void xe_gt_pagefault_reset(struct xe_gt *gt)
--{
--	struct xe_device *xe = gt_to_xe(gt);
--	int i;
--
--	if (!xe->info.has_usm)
--		return;
--
--	for (i = 0; i < NUM_PF_QUEUE; ++i) {
--		spin_lock_irq(&gt->usm.pf_queue[i].lock);
--		gt->usm.pf_queue[i].head = 0;
--		gt->usm.pf_queue[i].tail = 0;
--		spin_unlock_irq(&gt->usm.pf_queue[i].lock);
--	}
--
--	for (i = 0; i < NUM_ACC_QUEUE; ++i) {
--		spin_lock(&gt->usm.acc_queue[i].lock);
--		gt->usm.acc_queue[i].head = 0;
--		gt->usm.acc_queue[i].tail = 0;
--		spin_unlock(&gt->usm.acc_queue[i].lock);
--	}
--}
--
--static int granularity_in_byte(int val)
--{
--	switch (val) {
--	case 0:
--		return SZ_128K;
--	case 1:
--		return SZ_2M;
--	case 2:
--		return SZ_16M;
--	case 3:
--		return SZ_64M;
--	default:
--		return 0;
--	}
--}
--
--static int sub_granularity_in_byte(int val)
--{
--	return (granularity_in_byte(val) / 32);
--}
--
--static void print_acc(struct xe_gt *gt, struct acc *acc)
--{
--	xe_gt_warn(gt, "Access counter request:\n"
--		   "\tType: %s\n"
--		   "\tASID: %d\n"
--		   "\tVFID: %d\n"
--		   "\tEngine: %d:%d\n"
--		   "\tGranularity: 0x%x KB Region/ %d KB sub-granularity\n"
--		   "\tSub_Granularity Vector: 0x%08x\n"
--		   "\tVA Range base: 0x%016llx\n",
--		   acc->access_type ? "AC_NTFY_VAL" : "AC_TRIG_VAL",
--		   acc->asid, acc->vfid, acc->engine_class, acc->engine_instance,
--		   granularity_in_byte(acc->granularity) / SZ_1K,
--		   sub_granularity_in_byte(acc->granularity) / SZ_1K,
--		   acc->sub_granularity, acc->va_range_base);
--}
--
--static struct xe_vma *get_acc_vma(struct xe_vm *vm, struct acc *acc)
--{
--	u64 page_va = acc->va_range_base + (ffs(acc->sub_granularity) - 1) *
--		sub_granularity_in_byte(acc->granularity);
--
--	return xe_vm_find_overlapping_vma(vm, page_va, SZ_4K);
--}
--
--static int handle_acc(struct xe_gt *gt, struct acc *acc)
--{
--	struct xe_device *xe = gt_to_xe(gt);
--	struct xe_tile *tile = gt_to_tile(gt);
--	struct drm_exec exec;
--	struct xe_vm *vm;
--	struct xe_vma *vma;
--	int ret = 0;
--
--	/* We only support ACC_TRIGGER at the moment */
--	if (acc->access_type != ACC_TRIGGER)
--		return -EINVAL;
--
--	vm = asid_to_vm(xe, acc->asid);
--	if (IS_ERR(vm))
--		return PTR_ERR(vm);
--
--	down_read(&vm->lock);
--
--	/* Lookup VMA */
--	vma = get_acc_vma(vm, acc);
--	if (!vma) {
--		ret = -EINVAL;
--		goto unlock_vm;
--	}
--
--	trace_xe_vma_acc(vma);
--
--	/* Userptr or null can't be migrated, nothing to do */
--	if (xe_vma_has_no_bo(vma))
--		goto unlock_vm;
--
--	/* Lock VM and BOs dma-resv */
--	drm_exec_init(&exec, 0, 0);
--	drm_exec_until_all_locked(&exec) {
--		ret = xe_pf_begin(&exec, vma, true, tile->mem.vram);
--		drm_exec_retry_on_contention(&exec);
--		if (ret)
--			break;
--	}
--
--	drm_exec_fini(&exec);
--unlock_vm:
--	up_read(&vm->lock);
--	xe_vm_put(vm);
--
--	return ret;
--}
--
--#define make_u64(hi__, low__)  ((u64)(hi__) << 32 | (u64)(low__))
--
--#define ACC_MSG_LEN_DW        4
--
--static bool get_acc(struct acc_queue *acc_queue, struct acc *acc)
--{
--	const struct xe_guc_acc_desc *desc;
--	bool ret = false;
--
--	spin_lock(&acc_queue->lock);
--	if (acc_queue->tail != acc_queue->head) {
--		desc = (const struct xe_guc_acc_desc *)
--			(acc_queue->data + acc_queue->tail);
--
--		acc->granularity = FIELD_GET(ACC_GRANULARITY, desc->dw2);
--		acc->sub_granularity = FIELD_GET(ACC_SUBG_HI, desc->dw1) << 31 |
--			FIELD_GET(ACC_SUBG_LO, desc->dw0);
--		acc->engine_class = FIELD_GET(ACC_ENG_CLASS, desc->dw1);
--		acc->engine_instance = FIELD_GET(ACC_ENG_INSTANCE, desc->dw1);
--		acc->asid =  FIELD_GET(ACC_ASID, desc->dw1);
--		acc->vfid =  FIELD_GET(ACC_VFID, desc->dw2);
--		acc->access_type = FIELD_GET(ACC_TYPE, desc->dw0);
--		acc->va_range_base = make_u64(desc->dw3 & ACC_VIRTUAL_ADDR_RANGE_HI,
--					      desc->dw2 & ACC_VIRTUAL_ADDR_RANGE_LO);
--
--		acc_queue->tail = (acc_queue->tail + ACC_MSG_LEN_DW) %
--				  ACC_QUEUE_NUM_DW;
--		ret = true;
--	}
--	spin_unlock(&acc_queue->lock);
--
--	return ret;
--}
--
--static void acc_queue_work_func(struct work_struct *w)
--{
--	struct acc_queue *acc_queue = container_of(w, struct acc_queue, worker);
--	struct xe_gt *gt = acc_queue->gt;
--	struct acc acc = {};
--	unsigned long threshold;
--	int ret;
--
--	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
--
--	while (get_acc(acc_queue, &acc)) {
--		ret = handle_acc(gt, &acc);
--		if (unlikely(ret)) {
--			print_acc(gt, &acc);
--			xe_gt_warn(gt, "ACC: Unsuccessful %pe\n", ERR_PTR(ret));
--		}
--
--		if (time_after(jiffies, threshold) &&
--		    acc_queue->tail != acc_queue->head) {
--			queue_work(gt->usm.acc_wq, w);
--			break;
--		}
--	}
--}
--
--static bool acc_queue_full(struct acc_queue *acc_queue)
--{
--	lockdep_assert_held(&acc_queue->lock);
--
--	return CIRC_SPACE(acc_queue->head, acc_queue->tail, ACC_QUEUE_NUM_DW) <=
--		ACC_MSG_LEN_DW;
--}
--
--int xe_guc_access_counter_notify_handler(struct xe_guc *guc, u32 *msg, u32 len)
--{
--	struct xe_gt *gt = guc_to_gt(guc);
--	struct acc_queue *acc_queue;
--	u32 asid;
--	bool full;
--
--	/*
--	 * The below logic doesn't work unless ACC_QUEUE_NUM_DW % ACC_MSG_LEN_DW == 0
--	 */
--	BUILD_BUG_ON(ACC_QUEUE_NUM_DW % ACC_MSG_LEN_DW);
--
--	if (unlikely(len != ACC_MSG_LEN_DW))
--		return -EPROTO;
--
--	asid = FIELD_GET(ACC_ASID, msg[1]);
--	acc_queue = &gt->usm.acc_queue[asid % NUM_ACC_QUEUE];
--
--	spin_lock(&acc_queue->lock);
--	full = acc_queue_full(acc_queue);
--	if (!full) {
--		memcpy(acc_queue->data + acc_queue->head, msg,
--		       len * sizeof(u32));
--		acc_queue->head = (acc_queue->head + len) % ACC_QUEUE_NUM_DW;
--		queue_work(gt->usm.acc_wq, &acc_queue->worker);
--	} else {
--		xe_gt_warn(gt, "ACC Queue full, dropping ACC\n");
--	}
--	spin_unlock(&acc_queue->lock);
--
--	return full ? -ENOSPC : 0;
--}
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.h b/drivers/gpu/drm/xe/xe_gt_pagefault.h
-deleted file mode 100644
-index 839c065a5e4c..000000000000
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.h
-+++ /dev/null
-@@ -1,19 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2022 Intel Corporation
-- */
--
--#ifndef _XE_GT_PAGEFAULT_H_
--#define _XE_GT_PAGEFAULT_H_
--
--#include <linux/types.h>
--
--struct xe_gt;
--struct xe_guc;
--
--int xe_gt_pagefault_init(struct xe_gt *gt);
--void xe_gt_pagefault_reset(struct xe_gt *gt);
--int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len);
--int xe_guc_access_counter_notify_handler(struct xe_guc *guc, u32 *msg, u32 len);
--
--#endif	/* _XE_GT_PAGEFAULT_ */
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index dfd4a16da5f0..48ff0c491ccc 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -239,71 +239,6 @@ struct xe_gt {
- 		 * operations (e.g. mmigrations, fixing page tables)
- 		 */
- 		u16 reserved_bcs_instance;
--		/** @usm.pf_wq: page fault work queue, unbound, high priority */
--		struct workqueue_struct *pf_wq;
--		/** @usm.acc_wq: access counter work queue, unbound, high priority */
--		struct workqueue_struct *acc_wq;
--		/**
--		 * @usm.pf_queue: Page fault queue used to sync faults so faults can
--		 * be processed not under the GuC CT lock. The queue is sized so
--		 * it can sync all possible faults (1 per physical engine).
--		 * Multiple queues exists for page faults from different VMs are
--		 * be processed in parallel.
--		 */
--		struct pf_queue {
--			/** @usm.pf_queue.gt: back pointer to GT */
--			struct xe_gt *gt;
--			/** @usm.pf_queue.data: data in the page fault queue */
--			u32 *data;
--			/**
--			 * @usm.pf_queue.num_dw: number of DWORDS in the page
--			 * fault queue. Dynamically calculated based on the number
--			 * of compute resources available.
--			 */
--			u32 num_dw;
--			/**
--			 * @usm.pf_queue.tail: tail pointer in DWs for page fault queue,
--			 * moved by worker which processes faults (consumer).
--			 */
--			u16 tail;
--			/**
--			 * @usm.pf_queue.head: head pointer in DWs for page fault queue,
--			 * moved by G2H handler (producer).
--			 */
--			u16 head;
--			/** @usm.pf_queue.lock: protects page fault queue */
--			spinlock_t lock;
--			/** @usm.pf_queue.worker: to process page faults */
--			struct work_struct worker;
--#define NUM_PF_QUEUE	4
--		} pf_queue[NUM_PF_QUEUE];
--		/**
--		 * @usm.acc_queue: Same as page fault queue, cannot process access
--		 * counters under CT lock.
--		 */
--		struct acc_queue {
--			/** @usm.acc_queue.gt: back pointer to GT */
--			struct xe_gt *gt;
--#define ACC_QUEUE_NUM_DW	128
--			/** @usm.acc_queue.data: data in the page fault queue */
--			u32 data[ACC_QUEUE_NUM_DW];
--			/**
--			 * @usm.acc_queue.tail: tail pointer in DWs for access counter queue,
--			 * moved by worker which processes counters
--			 * (consumer).
--			 */
--			u16 tail;
--			/**
--			 * @usm.acc_queue.head: head pointer in DWs for access counter queue,
--			 * moved by G2H handler (producer).
--			 */
--			u16 head;
--			/** @usm.acc_queue.lock: protects page fault queue */
--			spinlock_t lock;
--			/** @usm.acc_queue.worker: to process access counters */
--			struct work_struct worker;
--#define NUM_ACC_QUEUE	4
--		} acc_queue[NUM_ACC_QUEUE];
- 	} usm;
++	down_read(&vm->lock);
  
- 	/** @ordered_wq: used to serialize GT resets and TDRs */
+ 	if (xe_vm_is_closed(vm)) {
+ 		err = -ENOENT;
+@@ -199,7 +201,7 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ unlock_vm:
+ 	if (!err)
+ 		vm->usm.last_fault_vma = vma;
+-	up_write(&vm->lock);
++	up_read(&vm->lock);
+ 	xe_vm_put(vm);
+ 
+ 	return err;
+@@ -404,6 +406,19 @@ static bool xe_pagefault_queue_full(struct xe_pagefault_queue *pf_queue)
+ 		xe_pagefault_entry_size();
+ }
+ 
++/*
++ * This function can race with multiple page fault producers, but worst case we
++ * stick a page fault on the same queue for consumption.
++ */
++static int xe_pagefault_queue_index(struct xe_device *xe)
++{
++	u32 old_pf_queue = READ_ONCE(xe->usm.current_pf_queue);
++
++	WRITE_ONCE(xe->usm.current_pf_queue, (old_pf_queue + 1));
++
++	return old_pf_queue % XE_PAGEFAULT_QUEUE_COUNT;
++}
++
+ /**
+  * xe_pagefault_handler() - Page fault handler
+  * @xe: xe device instance
+@@ -416,8 +431,8 @@ static bool xe_pagefault_queue_full(struct xe_pagefault_queue *pf_queue)
+  */
+ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
+ {
+-	struct xe_pagefault_queue *pf_queue = xe->usm.pf_queue +
+-		(pf->consumer.asid % XE_PAGEFAULT_QUEUE_COUNT);
++	int queue_index = xe_pagefault_queue_index(xe);
++	struct xe_pagefault_queue *pf_queue = xe->usm.pf_queue + queue_index;
+ 	unsigned long flags;
+ 	bool full;
+ 
+@@ -431,7 +446,7 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
+ 	} else {
+ 		drm_warn(&xe->drm,
+ 			 "PageFault Queue (%d) full, shouldn't be possible\n",
+-			 pf->consumer.asid % XE_PAGEFAULT_QUEUE_COUNT);
++			 queue_index);
+ 	}
+ 	spin_unlock_irqrestore(&pf_queue->lock, flags);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 1bcf3ba3b350..6e5d9ce7c76e 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -82,6 +82,7 @@ xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
+ 		return NULL;
+ 
+ 	INIT_LIST_HEAD(&range->garbage_collector_link);
++	mutex_init(&range->lock);
+ 	xe_vm_get(gpusvm_to_vm(gpusvm));
+ 
+ 	return &range->base;
+@@ -89,6 +90,7 @@ xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
+ 
+ static void xe_svm_range_free(struct drm_gpusvm_range *range)
+ {
++	mutex_destroy(&to_xe_range(range)->lock);
+ 	xe_vm_put(range_to_vm(range));
+ 	kfree(range);
+ }
+@@ -103,11 +105,11 @@ xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
+ 
+ 	drm_gpusvm_range_set_unmapped(&range->base, mmu_range);
+ 
+-	spin_lock(&vm->svm.garbage_collector.lock);
++	spin_lock(&vm->svm.garbage_collector.list_lock);
+ 	if (list_empty(&range->garbage_collector_link))
+ 		list_add_tail(&range->garbage_collector_link,
+ 			      &vm->svm.garbage_collector.range_list);
+-	spin_unlock(&vm->svm.garbage_collector.lock);
++	spin_unlock(&vm->svm.garbage_collector.list_lock);
+ 
+ 	queue_work(xe->usm.pf_wq, &vm->svm.garbage_collector.work);
+ }
+@@ -238,16 +240,24 @@ static int __xe_svm_garbage_collector(struct xe_vm *vm,
+ {
+ 	struct dma_fence *fence;
+ 
+-	range_debug(range, "GARBAGE COLLECTOR");
++	scoped_guard(mutex, &range->lock) {
++		drm_gpusvm_range_get(&range->base);
++		range->removed = true;
+ 
+-	xe_vm_lock(vm, false);
+-	fence = xe_vm_range_unbind(vm, range);
+-	xe_vm_unlock(vm);
+-	if (IS_ERR(fence))
+-		return PTR_ERR(fence);
+-	dma_fence_put(fence);
++		range_debug(range, "GARBAGE COLLECTOR");
++
++		xe_vm_lock(vm, false);
++		fence = xe_vm_range_unbind(vm, range);
++		xe_vm_unlock(vm);
++		if (IS_ERR(fence))
++			return PTR_ERR(fence);
++		dma_fence_put(fence);
++
++		scoped_guard(mutex, &vm->svm.range_lock)
++			drm_gpusvm_range_remove(&vm->svm.gpusvm, &range->base);
++	}
+ 
+-	drm_gpusvm_range_remove(&vm->svm.gpusvm, &range->base);
++	drm_gpusvm_range_put(&range->base);
+ 
+ 	return 0;
+ }
+@@ -257,12 +267,14 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
+ 	struct xe_svm_range *range;
+ 	int err;
+ 
+-	lockdep_assert_held_write(&vm->lock);
++	lockdep_assert_held(&vm->lock);
+ 
+ 	if (xe_vm_is_closed_or_banned(vm))
+ 		return -ENOENT;
+ 
+-	spin_lock(&vm->svm.garbage_collector.lock);
++	guard(mutex)(&vm->svm.garbage_collector.lock);
++
++	spin_lock(&vm->svm.garbage_collector.list_lock);
+ 	for (;;) {
+ 		range = list_first_entry_or_null(&vm->svm.garbage_collector.range_list,
+ 						 typeof(*range),
+@@ -271,7 +283,7 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
+ 			break;
+ 
+ 		list_del(&range->garbage_collector_link);
+-		spin_unlock(&vm->svm.garbage_collector.lock);
++		spin_unlock(&vm->svm.garbage_collector.list_lock);
+ 
+ 		err = __xe_svm_garbage_collector(vm, range);
+ 		if (err) {
+@@ -282,9 +294,9 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
+ 			return err;
+ 		}
+ 
+-		spin_lock(&vm->svm.garbage_collector.lock);
++		spin_lock(&vm->svm.garbage_collector.list_lock);
+ 	}
+-	spin_unlock(&vm->svm.garbage_collector.lock);
++	spin_unlock(&vm->svm.garbage_collector.list_lock);
+ 
+ 	return 0;
+ }
+@@ -294,9 +306,8 @@ static void xe_svm_garbage_collector_work_func(struct work_struct *w)
+ 	struct xe_vm *vm = container_of(w, struct xe_vm,
+ 					svm.garbage_collector.work);
+ 
+-	down_write(&vm->lock);
++	guard(rwsem_read)(&vm->lock);
+ 	xe_svm_garbage_collector(vm);
+-	up_write(&vm->lock);
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+@@ -560,7 +571,9 @@ int xe_svm_init(struct xe_vm *vm)
+ {
+ 	int err;
+ 
+-	spin_lock_init(&vm->svm.garbage_collector.lock);
++	mutex_init(&vm->svm.range_lock);
++	mutex_init(&vm->svm.garbage_collector.lock);
++	spin_lock_init(&vm->svm.garbage_collector.list_lock);
+ 	INIT_LIST_HEAD(&vm->svm.garbage_collector.range_list);
+ 	INIT_WORK(&vm->svm.garbage_collector.work,
+ 		  xe_svm_garbage_collector_work_func);
+@@ -573,7 +586,7 @@ int xe_svm_init(struct xe_vm *vm)
+ 	if (err)
+ 		return err;
+ 
+-	drm_gpusvm_driver_set_lock(&vm->svm.gpusvm, &vm->lock);
++	drm_gpusvm_driver_set_lock(&vm->svm.gpusvm, &vm->svm.range_lock);
+ 
+ 	return 0;
+ }
+@@ -600,7 +613,10 @@ void xe_svm_fini(struct xe_vm *vm)
+ {
+ 	xe_assert(vm->xe, xe_vm_is_closed(vm));
+ 
+-	drm_gpusvm_fini(&vm->svm.gpusvm);
++	scoped_guard(mutex, &vm->svm.range_lock)
++		drm_gpusvm_fini(&vm->svm.gpusvm);
++	mutex_destroy(&vm->svm.range_lock);
++	mutex_destroy(&vm->svm.garbage_collector.lock);
+ }
+ 
+ static bool xe_svm_range_is_valid(struct xe_svm_range *range,
+@@ -804,19 +820,25 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ?
+ 			vm->xe->atomic_svm_timeslice_ms : 0,
+ 	};
+-	struct xe_svm_range *range;
++	struct xe_svm_range *range = NULL;
+ 	struct dma_fence *fence;
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	int migrate_try_count = ctx.devmem_only ? 3 : 1;
+ 	ktime_t end = 0;
+-	int err;
++	int err = 0;
+ 
+-	lockdep_assert_held_write(&vm->lock);
++	lockdep_assert_held(&vm->lock);
+ 	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
+ 
+ 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT, 1);
+ 
+ retry:
++	/* Release old range */
++	if (range) {
++		mutex_unlock(&range->lock);
++		drm_gpusvm_range_put(&range->base);
++	}
++
+ 	/* Always process UNMAPs first so view SVM ranges is current */
+ 	err = xe_svm_garbage_collector(vm);
+ 	if (err)
+@@ -830,8 +852,13 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (ctx.devmem_only && !range->base.flags.migrate_devmem)
+ 		return -EACCES;
+ 
++	mutex_lock(&range->lock);
++
++	if (xe_svm_range_is_removed(range))
++		goto retry;
++
+ 	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only))
+-		return 0;
++		goto err_out;
+ 
+ 	range_debug(range, "PAGE FAULT");
+ 
+@@ -849,7 +876,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 				drm_err(&vm->xe->drm,
+ 					"VRAM allocation failed, retry count exceeded, asid=%u, errno=%pe\n",
+ 					vm->usm.asid, ERR_PTR(err));
+-				return err;
++				goto err_out;
+ 			}
+ 		}
+ 	}
+@@ -899,6 +926,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	dma_fence_put(fence);
+ 
+ err_out:
++	mutex_unlock(&range->lock);
++	drm_gpusvm_range_put(&range->base);
+ 
+ 	return err;
+ }
+@@ -933,27 +962,34 @@ int xe_svm_bo_evict(struct xe_bo *bo)
+ }
+ 
+ /**
+- * xe_svm_range_find_or_insert- Find or insert GPU SVM range
++ * xe_svm_range_find_or_insert() - Find or insert GPU SVM range
+  * @vm: xe_vm pointer
+  * @addr: address for which range needs to be found/inserted
+  * @vma:  Pointer to struct xe_vma which mirrors CPU
+  * @ctx: GPU SVM context
+  *
+  * This function finds or inserts a newly allocated a SVM range based on the
+- * address.
++ * address., Take a reference to SVM range on success.
+  *
+  * Return: Pointer to the SVM range on success, ERR_PTR() on failure.
+  */
+ struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
+-						 struct xe_vma *vma, struct drm_gpusvm_ctx *ctx)
++						 struct xe_vma *vma,
++						 struct drm_gpusvm_ctx *ctx)
+ {
+ 	struct drm_gpusvm_range *r;
+ 
+-	r = drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm, max(addr, xe_vma_start(vma)),
+-					    xe_vma_start(vma), xe_vma_end(vma), ctx);
++	guard(mutex)(&vm->svm.range_lock);
++
++	r = drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm,
++					    max(addr, xe_vma_start(vma)),
++					    xe_vma_start(vma),
++					    xe_vma_end(vma), ctx);
+ 	if (IS_ERR(r))
+ 		return ERR_PTR(PTR_ERR(r));
+ 
++	drm_gpusvm_range_get(r);
++
+ 	return to_xe_range(r);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index da9a69ea0bb1..939043d6fbf1 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -29,6 +29,13 @@ struct xe_svm_range {
+ 	 * list. Protected by VM's garbage collect lock.
+ 	 */
+ 	struct list_head garbage_collector_link;
++	/**
++	 * @lock: Protects fault handler, garbage collector, and prefetch
++	 * critical sections, ensuring only one thread operates on a range at a
++	 * time. Locking order: inside vm->lock and garbage collector, outside
++	 * dma-resv locks, vm->svm.range_lock.
++	 */
++	struct mutex lock;
+ 	/**
+ 	 * @tile_present: Tile mask of binding is present for this range.
+ 	 * Protected by GPU SVM notifier lock.
+@@ -39,8 +46,22 @@ struct xe_svm_range {
+ 	 * range. Protected by GPU SVM notifier lock.
+ 	 */
+ 	u8 tile_invalidated;
++	/**
++	 * @removed: Range has been removed from GPU SVM tree, protected by
++	 * @lock.
++	 */
++	bool removed;
+ };
+ 
++/**
++ * xe_svm_range_put() - SVM range put
++ * @range: SVM range
++ */
++static inline void xe_svm_range_put(struct xe_svm_range *range)
++{
++	drm_gpusvm_range_put(&range->base);
++}
++
+ /**
+  * xe_svm_range_pages_valid() - SVM range pages valid
+  * @range: SVM range
+@@ -102,6 +123,19 @@ static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
+ 	return range->base.flags.has_dma_mapping;
+ }
+ 
++/**
++ * xe_svm_range_is_removed() - SVM range is removed from GPU SVM tree
++ * @range: SVM range
++ *
++ * Return: True if SVM range is removed from GPU SVM tree, False otherwise
++ */
++static inline bool xe_svm_range_is_removed(struct xe_svm_range *range)
++{
++	lockdep_assert_held(&range->lock);
++
++	return range->removed;
++}
++
+ /**
+  * to_xe_range - Convert a drm_gpusvm_range pointer to a xe_svm_range
+  * @r: Pointer to the drm_gpusvm_range structure
+@@ -184,6 +218,10 @@ struct xe_svm_range {
+ 	u32 tile_invalidated;
+ };
+ 
++static inline void xe_svm_range_put(struct xe_svm_range *range)
++{
++}
++
+ static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
+ {
+ 	return false;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index c9ae13c32117..2498cff58fe7 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -65,13 +65,41 @@ int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma)
+ 		-EAGAIN : 0;
+ }
+ 
++#if IS_ENABLED(CONFIG_PROVE_LOCKING)
++/**
++ * xe_vma_userptr_lockdep() - Lockdep rules for modifying userptr pages
++ * @uvma: The userptr
++ *
++ * We need either:
++ * 1. vm->lock in write mode
++ * 2. vm->lock in read mode and vma->fault_lock
++ *
++ * Return: True is lockdep rules are met, False otherwise.
++ */
++bool xe_vma_userptr_lockdep(struct xe_userptr_vma *uvma)
++{
++	struct xe_vma *vma = &uvma->vma;
++	struct xe_vm *vm = xe_vma_vm(vma);
++
++	return lockdep_is_held_type(&vm->lock, 0) ||
++		(lockdep_is_held_type(&vm->lock, 1) &&
++		 lockdep_is_held_type(&vma->fault_lock, 0));
++}
++#else
++bool xe_vma_userptr_lockdep(struct xe_userptr_vma *uvma)
++{
++	return true;
++}
++#endif
++
+ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma)
+ {
+ 	struct xe_vma *vma = &uvma->vma;
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 	struct xe_device *xe = vm->xe;
+ 
+-	lockdep_assert_held(&vm->lock);
++	lockdep_assert(xe_vma_userptr_lockdep(uvma));
++
+ 	xe_assert(xe, xe_vma_is_userptr(vma));
+ 
+ 	return xe_hmm_userptr_populate_range(uvma, false);
+@@ -799,6 +827,17 @@ static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
+ }
+ ALLOW_ERROR_INJECTION(xe_vma_ops_alloc, ERRNO);
+ 
++static void xe_vma_svm_prefetch_ranges_fini(struct xe_vma_op *op)
++{
++	struct xe_svm_range *svm_range;
++	unsigned long i;
++
++	xa_for_each(&op->prefetch_range.range, i, svm_range)
++		xe_svm_range_put(svm_range);
++
++	xa_destroy(&op->prefetch_range.range);
++}
++
+ static void xe_vma_svm_prefetch_op_fini(struct xe_vma_op *op)
+ {
+ 	struct xe_vma *vma;
+@@ -806,7 +845,7 @@ static void xe_vma_svm_prefetch_op_fini(struct xe_vma_op *op)
+ 	vma = gpuva_to_vma(op->base.prefetch.va);
+ 
+ 	if (op->base.op == DRM_GPUVA_OP_PREFETCH && xe_vma_is_cpu_addr_mirror(vma))
+-		xa_destroy(&op->prefetch_range.range);
++		xe_vma_svm_prefetch_ranges_fini(op);
+ }
+ 
+ static void xe_vma_svm_prefetch_ops_fini(struct xe_vma_ops *vops)
+@@ -1205,6 +1244,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 			vma->gpuva.gem.obj = &bo->ttm.base;
+ 	}
+ 
++	mutex_init(&vma->fault_lock);
++
+ 	INIT_LIST_HEAD(&vma->combined_links.rebind);
+ 
+ 	INIT_LIST_HEAD(&vma->gpuva.gem.entry);
+@@ -1299,6 +1340,7 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ 		xe_bo_put(xe_vma_bo(vma));
+ 	}
+ 
++	mutex_destroy(&vma->fault_lock);
+ 	xe_vma_free(vma);
+ }
+ 
+@@ -1319,11 +1361,18 @@ static void vma_destroy_cb(struct dma_fence *fence,
+ 	queue_work(system_unbound_wq, &vma->destroy_work);
+ }
+ 
++static void xe_vm_assert_write_mode_or_garbage_collector(struct xe_vm *vm)
++{
++	lockdep_assert(lockdep_is_held_type(&vm->lock, 0) ||
++		       (lockdep_is_held_type(&vm->lock, 1) &&
++			lockdep_is_held_type(&vm->svm.garbage_collector.lock, 0)));
++}
++
+ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 
+-	lockdep_assert_held_write(&vm->lock);
++	xe_vm_assert_write_mode_or_garbage_collector(vm);
+ 	xe_assert(vm->xe, list_empty(&vma->combined_links.destroy));
+ 
+ 	if (xe_vma_is_userptr(vma)) {
+@@ -2384,14 +2433,17 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 			for_each_tile(tile, vm->xe, id)
+ 				tile_mask |= 0x1 << id;
+ 
+-			xa_init_flags(&op->prefetch_range.range, XA_FLAGS_ALLOC);
++			xa_init_flags(&op->prefetch_range.range,
++				      XA_FLAGS_ALLOC);
+ 			op->prefetch_range.region = prefetch_region;
+ 			op->prefetch_range.ranges_count = 0;
+ alloc_next_range:
+-			svm_range = xe_svm_range_find_or_insert(vm, addr, vma, &ctx);
++			svm_range = xe_svm_range_find_or_insert(vm, addr, vma,
++								&ctx);
+ 
+ 			if (PTR_ERR(svm_range) == -ENOENT) {
+-				u64 ret = xe_svm_find_vma_start(vm, addr, range_end, vma);
++				u64 ret = xe_svm_find_vma_start(vm, addr,
++								range_end, vma);
+ 
+ 				addr = ret == ULONG_MAX ? 0 : ret;
+ 				if (addr)
+@@ -2405,21 +2457,24 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 				goto unwind_prefetch_ops;
+ 			}
+ 
+-			if (xe_svm_range_validate(vm, svm_range, tile_mask, !!prefetch_region)) {
+-				xe_svm_range_debug(svm_range, "PREFETCH - RANGE IS VALID");
++			if (xe_svm_range_validate(vm, svm_range, tile_mask,
++						  !!prefetch_region)) {
++				xe_svm_range_debug(svm_range,
++						   "PREFETCH - RANGE IS VALID");
++				xe_svm_range_put(svm_range);
+ 				goto check_next_range;
+ 			}
+ 
+ 			err = xa_alloc(&op->prefetch_range.range,
+ 				       &i, svm_range, xa_limit_32b,
+ 				       GFP_KERNEL);
+-
+ 			if (err)
+ 				goto unwind_prefetch_ops;
+ 
+ 			op->prefetch_range.ranges_count++;
+ 			vops->flags |= XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH;
+-			xe_svm_range_debug(svm_range, "PREFETCH - RANGE CREATED");
++			xe_svm_range_debug(svm_range,
++					   "PREFETCH - RANGE CREATED");
+ check_next_range:
+ 			if (range_end > xe_svm_range_end(svm_range) &&
+ 			    xe_svm_range_end(svm_range) < xe_vma_end(vma)) {
+@@ -2449,7 +2504,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+ 	struct xe_vma *vma;
+ 	int err = 0;
+ 
+-	lockdep_assert_held_write(&vm->lock);
++	xe_vm_assert_write_mode_or_garbage_collector(vm);
+ 
+ 	if (bo) {
+ 		drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
+@@ -2529,7 +2584,7 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ {
+ 	int err = 0;
+ 
+-	lockdep_assert_held_write(&vm->lock);
++	xe_vm_assert_write_mode_or_garbage_collector(vm);
+ 
+ 	switch (op->base.op) {
+ 	case DRM_GPUVA_OP_MAP:
+@@ -2597,7 +2652,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 	u8 id, tile_mask = 0;
+ 	int err = 0;
+ 
+-	lockdep_assert_held_write(&vm->lock);
++	xe_vm_assert_write_mode_or_garbage_collector(vm);
+ 
+ 	for_each_tile(tile, vm->xe, id)
+ 		tile_mask |= 0x1 << id;
+@@ -2776,7 +2831,7 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
+ 			     bool post_commit, bool prev_post_commit,
+ 			     bool next_post_commit)
+ {
+-	lockdep_assert_held_write(&vm->lock);
++	xe_vm_assert_write_mode_or_garbage_collector(vm);
+ 
+ 	switch (op->base.op) {
+ 	case DRM_GPUVA_OP_MAP:
+@@ -2907,6 +2962,11 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+ 
+ 	/* TODO: Threading the migration */
+ 	xa_for_each(&op->prefetch_range.range, i, svm_range) {
++		guard(mutex)(&svm_range->lock);
++
++		if (xe_svm_range_is_removed(svm_range))
++			return -ENODATA;
++
+ 		if (!region)
+ 			xe_svm_range_migrate_to_smem(vm, svm_range);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 3475a118f666..4b097b9f981d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -262,6 +262,8 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma);
+ 
+ int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma);
+ 
++bool xe_vma_userptr_lockdep(struct xe_userptr_vma *uvma);
++
+ bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end);
+ 
+ int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index bed6088e1bb3..1aabdedbfa92 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -100,6 +100,12 @@ struct xe_vma {
+ 		struct work_struct destroy_work;
+ 	};
+ 
++	/**
++	 * @fault_lock: Synchronizes fault processing. Locking order: inside
++	 * vm->lock, outside dma-resv.
++	 */
++	struct mutex fault_lock;
++
+ 	/**
+ 	 * @tile_invalidated: Tile mask of binding are invalidated for this VMA.
+ 	 * protected by BO's resv and for userptrs, vm->userptr.notifier_lock in
+@@ -157,13 +163,27 @@ struct xe_vm {
+ 	struct {
+ 		/** @svm.gpusvm: base GPUSVM used to track fault allocations */
+ 		struct drm_gpusvm gpusvm;
++		/**
++		 * @svm.range_lock: Protects insertion and removal of ranges
++		 * from GPU SVM tree.
++		 */
++		struct mutex range_lock;
+ 		/**
+ 		 * @svm.garbage_collector: Garbage collector which is used unmap
+ 		 * SVM range's GPU bindings and destroy the ranges.
+ 		 */
+ 		struct {
+-			/** @svm.garbage_collector.lock: Protect's range list */
+-			spinlock_t lock;
++			/**
++			 * @svm.garbage_collector.lock: Ensures only one thread
++			 * runs the garbage collector at a time. Locking order:
++			 * inside vm->lock, outside range->lock and dma-resv.
++			 */
++			struct mutex lock;
++			/**
++			 * @svm.garbage_collector.list_lock: Protect's range
++			 * list
++			 */
++			spinlock_t list_lock;
+ 			/**
+ 			 * @svm.garbage_collector.range_list: List of SVM ranges
+ 			 * in the garbage collector.
 -- 
 2.34.1
 
