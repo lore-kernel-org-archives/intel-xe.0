@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16653C87FCA
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 06:36:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C4F3C87FD1
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 06:36:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC04A10E3A6;
-	Wed,  6 Aug 2025 06:36:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB7B10E3A6;
+	Wed,  6 Aug 2025 06:36:54 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7925710E3A6;
- Wed,  6 Aug 2025 06:36:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02DE210E3A6;
+ Wed,  6 Aug 2025 06:36:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Pagefault_refactor=2C_fin?=
- =?utf-8?q?e_grained_fault_locking=2C_threaded_prefetch?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Pagefault_refactor=2C_fine_gra?=
+ =?utf-8?q?ined_fault_locking=2C_threaded_prefetch?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 06 Aug 2025 06:36:18 -0000
-Message-ID: <175446217849.215948.452389601059936198@1538d3639d33>
+Date: Wed, 06 Aug 2025 06:36:53 -0000
+Message-ID: <175446221300.215948.10683936409004233569@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250806062242.1090416-1-matthew.brost@intel.com>
 In-Reply-To: <20250806062242.1090416-1-matthew.brost@intel.com>
@@ -44,69 +44,42 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Pagefault refactor, fine grained fault locking, threaded prefetch
 URL   : https://patchwork.freedesktop.org/series/152565/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-c298eac5978c38dcc62a70c0d73c91765e7cc296
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 7ee7c0e5458c479b4896cf904e810b14b1953536
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Tue Aug 5 23:22:42 2025 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_vm.c: In function ‘prefetch_thread_func’:
+../drivers/gpu/drm/xe/xe_vm.c:2984:32: error: ‘struct xe_svm_range’ has no member named ‘lock’
+ 2984 |         guard(mutex)(&svm_range->lock);
+      |                                ^~
+../drivers/gpu/drm/xe/xe_vm.c:2986:13: error: implicit declaration of function ‘xe_svm_range_is_removed’; did you mean ‘xe_svm_range_size’? [-Werror=implicit-function-declaration]
+ 2986 |         if (xe_svm_range_is_removed(svm_range)) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+      |             xe_svm_range_size
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:287: drivers/gpu/drm/xe/xe_vm.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:555: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:555: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:555: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:555: drivers] Error 2
+make[2]: *** [/kernel/Makefile:2003: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe: Add num_pf_queue modparam
-    
-    Enable quick experiment to see how number of page fault queues affects
-    performance.
-    
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch d636513f71664d86e9205b92a45bd8b21ea67a2b drm-intel
-f491b29a011e drm/xe: Stub out new pagefault layer
--:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#25: 
-new file mode 100644
-
--:223: WARNING:TYPO_SPELLING: 'acknowledgement' may be misspelled - perhaps 'acknowledgment'?
-#223: FILE: drivers/gpu/drm/xe/xe_pagefault_types.h:100:
-+		 * acknowledgement to formulate response to HW/FW interface.
- 		   ^^^^^^^^^^^^^^^
-
-total: 0 errors, 2 warnings, 0 checks, 214 lines checked
-a506cb47dffa drm/xe: Implement xe_pagefault_init
-5e7c9be76dc1 drm/xe: Implement xe_pagefault_reset
-0789190d741c drm/xe: Implement xe_pagefault_handler
-99c1fae0ffc3 drm/xe: Implement xe_pagefault_queue_work
-90f57ccf361e drm/xe: Add xe_guc_pagefault layer
--:97: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#97: 
-new file mode 100644
-
--:179: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
-#179: FILE: drivers/gpu/drm/xe/xe_guc_pagefault.c:78:
-+	pf.consumer.access_type = FIELD_GET(PFD_ACCESS_TYPE, msg[2]);;
-
--:240: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
-
-total: 1 errors, 2 warnings, 0 checks, 185 lines checked
-a9748a3e20af drm/xe: Remove unused GT page fault code
--:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#13: 
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 71 lines checked
-df42d2ed34f0 drm/xe: Fine grained page fault locking
--:752: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Matthew Brost <matthew.brost@intel.com>' != 'Signed-off-by: Matthew Brost <atthew.brost@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 644 lines checked
-b90179a168fb drm/xe: Allow prefetch-only VM bind IOCTLs to use VM read lock
-78b8cb96d86e drm/xe: Thread prefetch of SVM ranges
-7ee7c0e5458c drm/xe: Add num_pf_queue modparam
+[06:36:19] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[06:36:23] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
