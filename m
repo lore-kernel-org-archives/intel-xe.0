@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85D88C87FD3
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 13:54:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AC12C87FCB
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 13:57:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B6EA10E0DA;
-	Wed,  6 Aug 2025 13:54:12 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3F5910E0DA;
- Wed,  6 Aug 2025 13:54:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6998961388254930239=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 205E010E0DA;
+	Wed,  6 Aug 2025 13:57:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EvHttZ5u";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7AD610E0DA;
+ Wed,  6 Aug 2025 13:57:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754488678; x=1786024678;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=vH4xOOkpeUxn2Q1GT2FC/TdNCuIvOcr9h3sypVYFBc8=;
+ b=EvHttZ5uji5TiYEws2fFgphddGvhc+SUFcuORlH97ERPj3IZB4dSCcfr
+ nNWs55G4LthkoE/Ih/K2upSCvkV9lYdu8PIkbzr6eH+sGi9SZLFH2fnxv
+ mZ3HEXMNVqYW04ErbpGCVbRviYn3+6yxvwltwLrEf6rErreRMAqUi49BT
+ MWCB/UYc4Nd6ukqL1gZSqlvzULNfUS/8+G+8xCCc9rqzngtZ1KlwE3Cnz
+ aPAgtEYBy+BkAgub0P3mi3LdOt9EnpyhbvnyUzj1jkWCO1qP04/j7uvf6
+ ridamRnKxOPBBhco7m7AYyEZW/PJPqX2dciVVu18dRj3N6ImM1iu1JtL/ w==;
+X-CSE-ConnectionGUID: sayvNDbjSimfZib1E7h12A==
+X-CSE-MsgGUID: X0RcCdl4SsS7/nbBX2n8Fw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="60645263"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60645263"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 06:57:58 -0700
+X-CSE-ConnectionGUID: b8PsvuKcTqeLwtcK+qPCKg==
+X-CSE-MsgGUID: JPEbkaPZRG+ng7ULqEsilg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="164304358"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.70])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 06:57:56 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 5/5] drm/i915/dram: move fsb_freq and mem_freq to dram info
+In-Reply-To: <aJKFcINrXQvsM9ZQ@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1753971617.git.jani.nikula@intel.com>
+ <e8301cbddf14c52cd7c58bd2d7fb1c6d498b69c0.1753971617.git.jani.nikula@intel.com>
+ <aJKFcINrXQvsM9ZQ@intel.com>
+Date: Wed, 06 Aug 2025 16:57:53 +0300
+Message-ID: <61895ad35a6d50a3028ff84d1eeabdf3e0eca4ef@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Improve_VF_provis?=
- =?utf-8?q?ion_stability_with_fault_injection_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 06 Aug 2025 13:54:10 -0000
-Message-ID: <175448845079.216422.9788814131347653590@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250806132748.6697-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250806132748.6697-1-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,203 +67,216 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6998961388254930239==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 05 Aug 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Thu, Jul 31, 2025 at 05:21:25PM +0300, Jani Nikula wrote:
+>> Store fsb_freq and mem_freq in dram info the same way we do for other
+>> memory info on later platforms for a slightly more unified approach.
+>>=20
+>> This allows us to remove fsb_freq, mem_freq and is_ddr3 members from
+>> struct drm_i915_private and struct xe_device.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/i9xx_wm.c | 13 +++++----
+>>  drivers/gpu/drm/i915/i915_drv.h        |  2 --
+>>  drivers/gpu/drm/i915/soc/intel_dram.c  | 38 +++++++++++---------------
+>>  drivers/gpu/drm/i915/soc/intel_dram.h  |  2 ++
+>>  drivers/gpu/drm/xe/xe_device_types.h   |  1 -
+>>  5 files changed, 26 insertions(+), 30 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i9=
+15/display/i9xx_wm.c
+>> index 1f9db5118777..591acce2a4b1 100644
+>> --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
+>> +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+>> @@ -3,6 +3,8 @@
+>>   * Copyright =C2=A9 2023 Intel Corporation
+>>   */
+>>=20=20
+>> +#include "soc/intel_dram.h"
+>> +
+>>  #include "i915_drv.h"
+>>  #include "i915_reg.h"
+>>  #include "i9xx_wm.h"
+>> @@ -85,7 +87,8 @@ static const struct cxsr_latency cxsr_latency_table[] =
+=3D {
+>>=20=20
+>>  static const struct cxsr_latency *pnv_get_cxsr_latency(struct intel_dis=
+play *display)
+>>  {
+>> -	struct drm_i915_private *i915 =3D to_i915(display->drm);
+>> +	const struct dram_info *dram_info =3D intel_dram_info(display->drm);
+>> +	bool is_ddr3 =3D dram_info->type =3D=3D INTEL_DRAM_DDR3;
+>
+> does this deserves a separate patch? I'm not sure if I followed here...
 
-== Series Details ==
+The current check in the loop below is
 
-Series: drm/xe: Improve VF provision stability with fault injection (rev4)
-URL   : https://patchwork.freedesktop.org/series/151499/
-State : success
+	i915->is_ddr3 =3D=3D latency->is_ddr3
 
-== Summary ==
+and with i915->is_ddr3 being replaced by dram_info->type, I thought it's
+simpler to have that variable.
 
-CI Bug Log - changes from xe-3509-7b7457e249a1f7db97122bc6b9384e5e2f45475c_BAT -> xe-pw-151499v4_BAT
-====================================================
+The alternative is to convert the cxsr_latency_table to use enum
+intel_dram_type and INTEL_DRAM_DDR3, but I felt that's a bit much.
 
-Summary
--------
+>
+>>  	int i;
+>>=20=20
+>>  	for (i =3D 0; i < ARRAY_SIZE(cxsr_latency_table); i++) {
+>> @@ -93,15 +96,15 @@ static const struct cxsr_latency *pnv_get_cxsr_laten=
+cy(struct intel_display *dis
+>>  		bool is_desktop =3D !display->platform.mobile;
+>>=20=20
+>>  		if (is_desktop =3D=3D latency->is_desktop &&
+>> -		    i915->is_ddr3 =3D=3D latency->is_ddr3 &&
+>> -		    DIV_ROUND_CLOSEST(i915->fsb_freq, 1000) =3D=3D latency->fsb_freq =
+&&
+>> -		    DIV_ROUND_CLOSEST(i915->mem_freq, 1000) =3D=3D latency->mem_freq)
+>> +		    is_ddr3 =3D=3D latency->is_ddr3 &&
+>> +		    DIV_ROUND_CLOSEST(dram_info->fsb_freq, 1000) =3D=3D latency->fsb_=
+freq &&
+>> +		    DIV_ROUND_CLOSEST(dram_info->mem_freq, 1000) =3D=3D latency->mem_=
+freq)
+>>  			return latency;
+>>  	}
+>>=20=20
+>>  	drm_dbg_kms(display->drm,
+>>  		    "Could not find CxSR latency for DDR%s, FSB %u kHz, MEM %u kHz\n",
+>> -		    i915->is_ddr3 ? "3" : "2", i915->fsb_freq, i915->mem_freq);
+>> +		    is_ddr3 ? "3" : "2", dram_info->fsb_freq, dram_info->mem_freq);
+>>=20=20
+>>  	return NULL;
+>>  }
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915=
+_drv.h
+>> index 4e4e89746aa6..2f3965feada1 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -237,8 +237,6 @@ struct drm_i915_private {
+>>=20=20
+>>  	bool preserve_bios_swizzle;
+>>=20=20
+>> -	unsigned int fsb_freq, mem_freq, is_ddr3;
+>> -
+>>  	unsigned int hpll_freq;
+>>  	unsigned int czclk_freq;
+>>=20=20
+>> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i91=
+5/soc/intel_dram.c
+>> index d896fb67270f..6405a3d0b930 100644
+>> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
+>> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+>> @@ -149,17 +149,6 @@ unsigned int intel_mem_freq(struct drm_i915_private=
+ *i915)
+>>  		return 0;
+>>  }
+>>=20=20
+>> -static void detect_mem_freq(struct drm_i915_private *i915)
+>> -{
+>> -	i915->mem_freq =3D intel_mem_freq(i915);
+>> -
+>> -	if (IS_PINEVIEW(i915))
+>> -		i915->is_ddr3 =3D pnv_is_ddr3(i915);
+>> -
+>> -	if (i915->mem_freq)
+>> -		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", i915->mem_freq);
+>> -}
+>> -
+>>  static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
+>>  {
+>>  	u32 fsb;
+>> @@ -252,11 +241,20 @@ unsigned int intel_fsb_freq(struct drm_i915_privat=
+e *i915)
+>>  		return 0;
+>>  }
+>>=20=20
+>> -static void detect_fsb_freq(struct drm_i915_private *i915)
+>> +static int i915_get_dram_info(struct drm_i915_private *i915, struct dra=
+m_info *dram_info)
+>>  {
+>> -	i915->fsb_freq =3D intel_fsb_freq(i915);
+>> -	if (i915->fsb_freq)
+>> -		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", i915->fsb_freq);
+>> +	dram_info->fsb_freq =3D intel_fsb_freq(i915);
+>> +	if (dram_info->fsb_freq)
+>> +		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", dram_info->fsb_freq);
+>> +
+>> +	dram_info->mem_freq =3D intel_mem_freq(i915);
+>> +	if (dram_info->mem_freq)
+>> +		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", dram_info->mem_freq);
+>> +
+>> +	if (IS_PINEVIEW(i915) && pnv_is_ddr3(i915))
+>> +		dram_info->type =3D INTEL_DRAM_DDR3;
+>> +
+>> +	return 0;
+>>  }
+>>=20=20
+>>  static int intel_dimm_num_devices(const struct dram_dimm_info *dimm)
+>> @@ -728,12 +726,6 @@ int intel_dram_detect(struct drm_i915_private *i915)
+>>  	if (IS_DG2(i915) || !HAS_DISPLAY(i915))
+>>  		return 0;
+>>=20=20
+>> -	detect_fsb_freq(i915);
+>> -	detect_mem_freq(i915);
+>> -
+>> -	if (GRAPHICS_VER(i915) < 9)
+>> -		return 0;
+>
+> oh! this responds my last question in the previous patch...
 
-  **SUCCESS**
+Yeah, I could've referred to later changes there!
 
-  No regressions found.
+>
+>> -
+>>  	dram_info =3D drmm_kzalloc(&i915->drm, sizeof(*dram_info), GFP_KERNEL);
+>>  	if (!dram_info)
+>>  		return -ENOMEM;
+>> @@ -754,8 +746,10 @@ int intel_dram_detect(struct drm_i915_private *i915)
+>>  		ret =3D gen11_get_dram_info(i915, dram_info);
+>>  	else if (IS_BROXTON(i915) || IS_GEMINILAKE(i915))
+>>  		ret =3D bxt_get_dram_info(i915, dram_info);
+>> -	else
+>> +	else if (GRAPHICS_VER(i915) >=3D 9)
+>>  		ret =3D skl_get_dram_info(i915, dram_info);
+>> +	else
+>> +		ret =3D i915_get_dram_info(i915, dram_info);
+>>=20=20
+>>  	drm_dbg_kms(&i915->drm, "DRAM type: %s\n",
+>>  		    intel_dram_type_str(dram_info->type));
+>> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i91=
+5/soc/intel_dram.h
+>> index 5ba75e279e84..97d21894abdc 100644
+>> --- a/drivers/gpu/drm/i915/soc/intel_dram.h
+>> +++ b/drivers/gpu/drm/i915/soc/intel_dram.h
+>> @@ -29,6 +29,8 @@ struct dram_info {
+>>  	} type;
+>>  	u8 num_qgv_points;
+>>  	u8 num_psf_gv_points;
+>> +	unsigned int fsb_freq;
+>> +	unsigned int mem_freq;
+>>  };
+>>=20=20
+>>  void intel_dram_edram_detect(struct drm_i915_private *i915);
+>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/x=
+e_device_types.h
+>> index 38c8329b4d2c..e2206e867b33 100644
+>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>> @@ -609,7 +609,6 @@ struct xe_device {
+>>  	struct {
+>>  		unsigned int hpll_freq;
+>>  		unsigned int czclk_freq;
+>> -		unsigned int fsb_freq, mem_freq, is_ddr3;
+>>  	};
+>>  #endif
+>>  };
+>> --=20
+>> 2.39.5
+>>=20
 
-  
-
-Participating hosts (8 -> 9)
-------------------------------
-
-  Additional (2): bat-ptl-1 bat-ptl-2 
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-151499v4_BAT:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - {bat-ptl-1}:        NOTRUN -> [SKIP][1] +46 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-ptl-1/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - {bat-ptl-1}:        NOTRUN -> [DMESG-WARN][2] +1 other test dmesg-warn
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
-    - {bat-ptl-2}:        NOTRUN -> [DMESG-WARN][3] +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-
-  * igt@xe_evict@evict-beng-small:
-    - {bat-ptl-2}:        NOTRUN -> [SKIP][4] +20 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-ptl-2/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-2}:        NOTRUN -> [FAIL][5]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-151499v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][6] ([Intel XE#4543]) -> [PASS][7] +1 other test pass
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3509-7b7457e249a1f7db97122bc6b9384e5e2f45475c/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3509-7b7457e249a1f7db97122bc6b9384e5e2f45475c -> xe-pw-151499v4
-
-  IGT_8487: 8487
-  xe-3509-7b7457e249a1f7db97122bc6b9384e5e2f45475c: 7b7457e249a1f7db97122bc6b9384e5e2f45475c
-  xe-pw-151499v4: 151499v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/index.html
-
---===============6998961388254930239==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Improve VF provision stability with fault injection (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151499/">https://patchwork.freedesktop.org/series/151499/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3509-7b7457e249a1f7db97122bc6b9384e5e2f45475c_BAT -&gt; xe-pw-151499v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 9)</h2>
-<p>Additional (2): bat-ptl-1 bat-ptl-2 <br />
-  Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-151499v4_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset:</p>
-<ul>
-<li>{bat-ptl-1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-ptl-1/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> +46 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>{bat-ptl-1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
-<ul>
-<li>{bat-ptl-2}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>{bat-ptl-2}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-ptl-2/igt@xe_evict@evict-beng-small.html">SKIP</a> +20 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-2}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-151499v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3509-7b7457e249a1f7db97122bc6b9384e5e2f45475c/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151499v4/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3509-7b7457e249a1f7db97122bc6b9384e5e2f45475c -&gt; xe-pw-151499v4</li>
-</ul>
-<p>IGT_8487: 8487<br />
-  xe-3509-7b7457e249a1f7db97122bc6b9384e5e2f45475c: 7b7457e249a1f7db97122bc6b9384e5e2f45475c<br />
-  xe-pw-151499v4: 151499v4</p>
-
-</body>
-</html>
-
---===============6998961388254930239==--
+--=20
+Jani Nikula, Intel
