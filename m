@@ -4,59 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABD81C87FCB
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 17:43:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67722C87FCB
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 17:50:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7293E10E2FA;
-	Wed,  6 Aug 2025 17:43:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33AAF10E2EF;
+	Wed,  6 Aug 2025 17:50:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kC9BjhyJ";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="WIysqVOC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C368510E2F8;
- Wed,  6 Aug 2025 17:43:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754502239; x=1786038239;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=7MFf4dbnziN4nSbCo3AqRmR+l3LmOXSFj+wnbUlHOt4=;
- b=kC9BjhyJqDR/RzWeA1Pc9SyKd6jjESekD+iOcP/9DuyJ0zQDyzejhja3
- b3u563ye+ENHuLbdE6qcNQBQ3yZcoPwnjGLHe+UXQhWvRzbRaXMj3me+q
- zN/ceA3ZHEfAXtJLQqoqrOv/oAP11WbylPK71gRMdRuHi7a1x0+difUGR
- Rlfv40mgsYnLE/EsfW6MxrjS8q+BKBDQJhz+ZdqWNYKpGHD5gcxj0usBO
- MqMzGn3nHsC1ylnASZMIOm15aIoy1snkHDXnA/NSzuazWVjoXZTjP6Tp7
- zzmDtapBcQrXwhIxFxZHInAIFf28PcxJi4/a+U4BLZGzUoEQ77ayRAFMI A==;
-X-CSE-ConnectionGUID: 6oeHZi5jTtG+wauhZBKkNA==
-X-CSE-MsgGUID: ZBjKGUMFTTihUe5i9GjsAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="68278128"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="68278128"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 10:43:58 -0700
-X-CSE-ConnectionGUID: POqkzQiQSPqS2wn5vC1Nvw==
-X-CSE-MsgGUID: tXsXoAsiQwqbWecLDL+/YQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="165242784"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.244.159])
- ([10.245.244.159])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 10:43:56 -0700
-Message-ID: <3ff97e0ee433817c0c071c264d3a28622d717dfa.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/ttm: WIP limit the TTM pool to 32bit CPUs
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: airlied@gmail.com, matthew.brost@intel.com
-Date: Wed, 06 Aug 2025 19:43:54 +0200
-In-Reply-To: <20250806132838.1831-1-christian.koenig@amd.com>
-References: <20250806132838.1831-1-christian.koenig@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+ [209.85.208.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5C0C10E2EF
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Aug 2025 17:50:44 +0000 (UTC)
+Received: by mail-ed1-f42.google.com with SMTP id
+ 4fb4d7f45d1cf-5f438523d6fso1112a12.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 06 Aug 2025 10:50:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1754502643; x=1755107443;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=O6ZQ/5BaV6mQdffgVaaglAdkdHfzgWg/eTO8QxYBPeU=;
+ b=WIysqVOC2AkO4UbdOtDedpYLFlZxM0++MhCYXk/RNLHAHdXoG+D9nmNioEe9n1Mmae
+ mYUGj+9tp44LBw+QKZZYsyicpNfII70+Qq34wJywF1fbDqRd0OGkg9Gk43OjBnqIBek9
+ me2mlMnSh6CQbLZScLY4RlpFw0d6UE1DQfgLrmEks9MVy+7VWn3TZp89k+/1LR5G8p+J
+ nX9FiwJxfdv3YGa69RvuGmMGd/wcx7iNhb8TdQb0kBcwc4fbLR2NcdeXODugmahdSCBJ
+ bqhHE+fwbRdZ4KLP+Sd/j6jx53LY8gWPUgDSsMqND2llw0FtXRD9RGRnzqxu4YMNxTYa
+ KPeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754502643; x=1755107443;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=O6ZQ/5BaV6mQdffgVaaglAdkdHfzgWg/eTO8QxYBPeU=;
+ b=B7Gn4P5IAmQOArEbsahT82RUOk49hkcKBo4yhsrJ+oiwuRSNhbP9jmzrOeOlNliJnq
+ Y7LaiIDQEZ+Bgf7BwsGFpjgErSUtxgSZ5k3V16cdoRTLrOX4yoFNNLqddJmhk94+I5en
+ CUmnI8shaBhymnvV1MyMenzRsr1o3EET6/nyhsiBi4TtEW8M5JJBObgXyYuZKL0alWNo
+ fz8YSU5qF+bkqsKoX1us9Tsk1Oi/NUJXor9aAqtYwIweGYvS0FySq4ttU2Uyhd6ZhwMi
+ fe0n50Z9iqWHORWbV4GmNdJ8exo2QabZvOsJQakZF0coDEfCy28lQH50Q0SZCyeojWCP
+ IrYg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU/ox3cwnEkKWwDt54ugTBPu2hKfqLQSYpUqBSZxTbo3yHdgUT5SSILm2jR+QrwMnDkYOf5V3qvCg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxTViyDDOOLeDZwrujsk5ht1nMaZOVy1KiMCFrwmU5itvtNW22f
+ p/mIbDPS0p1K+lOMu1BS5HZF3YS7waWUJMy1rfdO9zkrPvWLQjx7HgVXec0eE6Tk/7sy3LB7ftP
+ m4pjYoFCscTpODgXOgbOBMB9GvTDzIsgM9+KF2Dai
+X-Gm-Gg: ASbGnct5fP3jMnA2ci0U1C2KEeZnwTgrfM+x7aEVKQZmKQrCtfdgKWXZKPjw0GHHsC5
+ UgCP7tTReJFQB29k30k+mer3VyEZwpvSTHQnoEOfdaryJ9BqgJSUseatg93a6MNvjsKdMvjRn4+
+ B80Fd6EvnqozL1n7v7VLqZW5WV040yxXy/0jyyXuspKe2pfApWv4Qy7Lgicb8T0lqGLgezb6oii
+ wRPZ0jhXeO84Y/bov4=
+X-Google-Smtp-Source: AGHT+IE+QDtUPARPU2wN4XerAfKdVLgsMbZ03V31aP2LxZYSJjBTKBDhaE0pgDwg/Hur4O5WYOACGm9GKfssEMe+4GQ=
+X-Received: by 2002:a05:6402:4c1:b0:615:6167:4835 with SMTP id
+ 4fb4d7f45d1cf-61797ec0988mr91110a12.7.1754502642599; Wed, 06 Aug 2025
+ 10:50:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20250729193647.3410634-1-marievic@google.com>
+ <20250729193647.3410634-8-marievic@google.com>
+ <CABVgOSmBssmMz3qQi+TdEoaGQJNXaSVBrsO8RSW0MjLUUHPakg@mail.gmail.com>
+In-Reply-To: <CABVgOSmBssmMz3qQi+TdEoaGQJNXaSVBrsO8RSW0MjLUUHPakg@mail.gmail.com>
+From: Marie Zhussupova <marievic@google.com>
+Date: Wed, 6 Aug 2025 13:50:31 -0400
+X-Gm-Features: Ac12FXxZ0gzQXyQ3JCYs61KiK41rHInNvNCX1ufle-31wpGuIXR7lV23iXdDrBU
+Message-ID: <CAAkQn5KnBZ7O6TkHL8UR0UaJ-v0P51TjtEwoRu7VWaPYd8oeSg@mail.gmail.com>
+Subject: Re: [PATCH 7/9] kunit: Add example parameterized test with shared
+ resources and direct static parameter array setup
+To: David Gow <davidgow@google.com>
+Cc: rmoar@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
+ elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com, 
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
-MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,140 +91,235 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Christian
+On Sat, Aug 2, 2025 at 5:45=E2=80=AFAM David Gow <davidgow@google.com> wrot=
+e:
+>
+> On Wed, 30 Jul 2025 at 03:37, Marie Zhussupova <marievic@google.com> wrot=
+e:
+> >
+> > Add `example_params_test_with_init` to illustrate how to manage
+> > shared resources across parameterized KUnit tests. This example
+> > showcases the use of the new `param_init` function and its registration
+> > to a test using the `KUNIT_CASE_PARAM_WITH_INIT` macro.
+> >
+> > Additionally, the test demonstrates:
+> > - How to directly assign a static parameter array to a test via
+> >   `kunit_register_params_array`.
+> > - Leveraging the Resource API for test resource management.
+> >
+> > Signed-off-by: Marie Zhussupova <marievic@google.com>
+> > ---
+>
+> Thanks for writing some examples! This is great, and makes the rest of
+> the series much easier to understand.
+>
+> (It also reminds me how much I hate the verbose parts of the resource
+> API, but it's definitely out of scope to refactor that here. :-))
+>
+> It does seem like this is a lot of effort to go through for one shared
+> integer, though. In the real world, I'd suggest using
+> kunit->parent->priv here. As an example, though, it's fine (though
+> maybe using a named resource or even kunit_kzalloc() or similar would
+> give a better example of how convenient this could be.
+>
+> It's also not entirely clear why we're using
+> kunit_register_params_array() for a static array, when
+> KUNIT_ARRAY_PARAM() exists. (This is clearly because the latter
+> doesn't support init functions; and I see why we don't necessarily
+> want to make the number of macros explode through adding
+> KUNIT_ARRAY_PARAM_WITH_INIT() et al, but maybe we should note that in
+> the commit description, either here or before.)
+>
+> Actual test looks fine, though:
+>
+> Reviewed-by: David Gow <davidgow@google.com>
+>
+> Cheers,
+> -- David
+>
 
-On Wed, 2025-08-06 at 15:28 +0200, Christian K=C3=B6nig wrote:
-> On some old x86 systems we had the problem that changing the caching
-> flags
-> of system memory requires changing the global MTRR/PAT tables.
->=20
-> But on any modern x86 system (CPUs introduced rughly after 2004) we
-> actually don't need that any more and can update the caching flags
-> directly in the PTEs of the CPU mapping. It was just never disabled
-> because of the fear of regressions.
->=20
-> We already use the PTE flags for encryption on x86 64bit for quite a
-> while
-> and all other supported platforms (Sparc, PowerPC, ARM, MIPS,
-> LONGARCH)
-> have never done anything different either.
+Hello David,
 
-IIRC from my VMWARE days, changing SEV encryption mode of a page still
-requires changing all mappings including kernel maps?
-__set_memory_enc_pgtable()
+I agree that using the Resource API for a single integer is a bit extra.
+My idea behind this test was to demonstrate that the Resource API
+could be used for managing shared resources and to have the
+style of the existing example tests that do simple things with integers.
 
->=20
-> So disable the page pool completely for 64bit systems and just insert
-> a
-> clflush to be on the safe side so that we never return memory with
-> dirty
-> cache lines.
->=20
-> Testing on a Ryzen 5 and 7 shows that this has absolutely no
-> performance
-> impact and of hand the AMD CI can't find a problem either.
->=20
-> Let's see what the i915 and XE CI systems say to that.
->=20
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+Using kunit_kzalloc() would be a great simplification. As for a named
+resource, we don't have a function to allocate named resources yet
+as would be needed here, but that sounds like a great future patch.
 
-I don't think we can do this. First Lunar Lake can in some situations,
-just like the old Athlons, write-back clean cache lines which means
-writebacks of speculative prefetches may overwrite GPU data. LNL makes
-heavy use of non-coherent GPU mappings for performance.
+We can actually use the KUNIT_ARRAY_PARAM() macro with
+KUNIT_CASE_PARAM_WITH_INIT(). We would just pass that created
+`*_gen_params` function to KUNIT_CASE_PARAM_WITH_INIT()
+instead of NULL. The reason I used kunit_register_params_array() with
+the static array was to show that test users can pass a static array
+this way, as well, and also to avoid making the test too long with the
+dynamic array
+creation. But I do like the consistency of using KUNIT_ARRAY_PARAM()
+for static arrays and kunit_register_params_array() only for
+dynamic ones.
 
-Second, IIRC vm_insert_pfn_prot() on X86 will override the given
-caching mode with the last caching mode set for the kernel linear map,
-so if you try to set up a write-combined GPU mapping without a previous
-call to set_pages_xxxxx it will actually end up cached. see
-track_pfn_insert().
+Thank you,
+-Marie
 
-/Thomas
-
-
-> ---
-> =C2=A0drivers/gpu/drm/ttm/ttm_pool.c | 16 +++++++++++-----
-> =C2=A01 file changed, 11 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
-> b/drivers/gpu/drm/ttm/ttm_pool.c
-> index baf27c70a419..7487eac29398 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -38,7 +38,7 @@
-> =C2=A0#include <linux/highmem.h>
-> =C2=A0#include <linux/sched/mm.h>
-> =C2=A0
-> -#ifdef CONFIG_X86
-> +#ifdef CONFIG_X86_32
-> =C2=A0#include <asm/set_memory.h>
-> =C2=A0#endif
-> =C2=A0
-> @@ -46,6 +46,7 @@
-> =C2=A0#include <drm/ttm/ttm_pool.h>
-> =C2=A0#include <drm/ttm/ttm_tt.h>
-> =C2=A0#include <drm/ttm/ttm_bo.h>
-> +#include <drm/drm_cache.h>
-> =C2=A0
-> =C2=A0#include "ttm_module.h"
-> =C2=A0
-> @@ -192,7 +193,7 @@ static void ttm_pool_free_page(struct ttm_pool
-> *pool, enum ttm_caching caching,
-> =C2=A0	struct ttm_pool_dma *dma;
-> =C2=A0	void *vaddr;
-> =C2=A0
-> -#ifdef CONFIG_X86
-> +#ifdef CONFIG_X86_32
-> =C2=A0	/* We don't care that set_pages_wb is inefficient here. This
-> is only
-> =C2=A0	 * used when we have to shrink and CPU overhead is
-> irrelevant then.
-> =C2=A0	 */
-> @@ -218,7 +219,7 @@ static void ttm_pool_free_page(struct ttm_pool
-> *pool, enum ttm_caching caching,
-> =C2=A0/* Apply any cpu-caching deferred during page allocation */
-> =C2=A0static int ttm_pool_apply_caching(struct ttm_pool_alloc_state
-> *alloc)
-> =C2=A0{
-> -#ifdef CONFIG_X86
-> +#ifdef CONFIG_X86_32
-> =C2=A0	unsigned int num_pages =3D alloc->pages - alloc-
-> >caching_divide;
-> =C2=A0
-> =C2=A0	if (!num_pages)
-> @@ -232,6 +233,11 @@ static int ttm_pool_apply_caching(struct
-> ttm_pool_alloc_state *alloc)
-> =C2=A0	case ttm_uncached:
-> =C2=A0		return set_pages_array_uc(alloc->caching_divide,
-> num_pages);
-> =C2=A0	}
-> +
-> +#elif defined(CONFIG_X86_64)
-> +	unsigned int num_pages =3D alloc->pages - alloc-
-> >caching_divide;
-> +
-> +	drm_clflush_pages(alloc->caching_divide, num_pages);
-> =C2=A0#endif
-> =C2=A0	alloc->caching_divide =3D alloc->pages;
-> =C2=A0	return 0;
-> @@ -342,7 +348,7 @@ static struct ttm_pool_type
-> *ttm_pool_select_type(struct ttm_pool *pool,
-> =C2=A0	if (pool->use_dma_alloc)
-> =C2=A0		return &pool->caching[caching].orders[order];
-> =C2=A0
-> -#ifdef CONFIG_X86
-> +#ifdef CONFIG_X86_32
-> =C2=A0	switch (caching) {
-> =C2=A0	case ttm_write_combined:
-> =C2=A0		if (pool->nid !=3D NUMA_NO_NODE)
-> @@ -980,7 +986,7 @@ long ttm_pool_backup(struct ttm_pool *pool,
-> struct ttm_tt *tt,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 pool->use_dma_alloc || ttm_tt_is_backed_up(tt))
-> =C2=A0		return -EBUSY;
-> =C2=A0
-> -#ifdef CONFIG_X86
-> +#ifdef CONFIG_X86_32
-> =C2=A0	/* Anything returned to the system needs to be cached. */
-> =C2=A0	if (tt->caching !=3D ttm_cached)
-> =C2=A0		set_pages_array_wb(tt->pages, tt->num_pages);
-
+>
+> >  lib/kunit/kunit-example-test.c | 112 +++++++++++++++++++++++++++++++++
+> >  1 file changed, 112 insertions(+)
+> >
+> > diff --git a/lib/kunit/kunit-example-test.c b/lib/kunit/kunit-example-t=
+est.c
+> > index 3056d6bc705d..5bf559e243f6 100644
+> > --- a/lib/kunit/kunit-example-test.c
+> > +++ b/lib/kunit/kunit-example-test.c
+> > @@ -277,6 +277,116 @@ static void example_slow_test(struct kunit *test)
+> >         KUNIT_EXPECT_EQ(test, 1 + 1, 2);
+> >  }
+> >
+> > +/*
+> > + * This custom function allocates memory for the kunit_resource data f=
+ield.
+> > + * The function is passed to kunit_alloc_resource() and executed once
+> > + * by the internal helper __kunit_add_resource().
+> > + */
+> > +static int example_resource_init(struct kunit_resource *res, void *con=
+text)
+> > +{
+> > +       int *info =3D kmalloc(sizeof(*info), GFP_KERNEL);
+> > +
+> > +       if (!info)
+> > +               return -ENOMEM;
+> > +       *info =3D *(int *)context;
+> > +       res->data =3D info;
+> > +       return 0;
+> > +}
+> > +
+> > +/*
+> > + * This function deallocates memory for the 'kunit_resource' data fiel=
+d.
+> > + * The function is passed to kunit_alloc_resource() and automatically
+> > + * executes within kunit_release_resource() when the resource's refere=
+nce
+> > + * count, via kunit_put_resource(), drops to zero. KUnit uses referenc=
+e
+> > + * counting to ensure that resources are not freed prematurely.
+> > + */
+> > +static void example_resource_free(struct kunit_resource *res)
+> > +{
+> > +       kfree(res->data);
+> > +}
+> > +
+> > +/*
+> > + * This match function is invoked by kunit_find_resource() to locate
+> > + * a test resource based on defined criteria. The current example
+> > + * uniquely identifies the resource by its free function; however,
+> > + * alternative custom criteria can be implemented. Refer to
+> > + * lib/kunit/platform.c and lib/kunit/static_stub.c for further exampl=
+es.
+> > + */
+> > +static bool example_resource_alloc_match(struct kunit *test,
+> > +                                        struct kunit_resource *res,
+> > +                                        void *match_data)
+> > +{
+> > +       return res->data && res->free =3D=3D example_resource_free;
+> > +}
+> > +
+> > +/*
+> > + * This is an example of a function that provides a description for ea=
+ch of the
+> > + * parameters.
+> > + */
+> > +static void example_param_array_get_desc(const void *p, char *desc)
+> > +{
+> > +       const struct example_param *param =3D p;
+> > +
+> > +       snprintf(desc, KUNIT_PARAM_DESC_SIZE,
+> > +                "example check if %d is less than or equal to 3", para=
+m->value);
+> > +}
+> > +
+> > +/*
+> > + * Initializes the parent kunit struct for parameterized KUnit tests.
+> > + * This function enables sharing resources across all parameterized
+> > + * tests by adding them to the `parent` kunit test struct. It also sup=
+ports
+> > + * registering either static or dynamic arrays of test parameters.
+> > + */
+> > +static int example_param_init(struct kunit *test)
+> > +{
+> > +       int ctx =3D 3; /* Data to be stored. */
+> > +       int arr_size =3D ARRAY_SIZE(example_params_array);
+> > +
+> > +       /*
+> > +        * This allocates a struct kunit_resource, sets its data field =
+to
+> > +        * ctx, and adds it to the kunit struct's resources list. Note =
+that
+> > +        * this is test managed so we don't need to have a custom exit =
+function
+> > +        * to free it.
+> > +        */
+> > +       void *data =3D kunit_alloc_resource(test, example_resource_init=
+, example_resource_free,
+> > +                                         GFP_KERNEL, &ctx);
+> > +
+> > +       if (!data)
+> > +               return -ENOMEM;
+> > +       /* Pass the static param array information to the parent struct=
+ kunit. */
+> > +       kunit_register_params_array(test, example_params_array, arr_siz=
+e,
+> > +                                   example_param_array_get_desc);
+> > +       return 0;
+> > +}
+> > +
+> > +/*
+> > + * This is an example of a parameterized test that uses shared resourc=
+es
+> > + * available from the struct kunit parent field of the kunit struct.
+> > + */
+> > +static void example_params_test_with_init(struct kunit *test)
+> > +{
+> > +       int threshold;
+> > +       struct kunit_resource *res;
+> > +       const struct example_param *param =3D test->param_value;
+> > +
+> > +       /* By design, param pointer will not be NULL. */
+> > +       KUNIT_ASSERT_NOT_NULL(test, param);
+> > +
+> > +       /* Here we access the parent pointer of the test to find the sh=
+ared resource. */
+> > +       res =3D kunit_find_resource(test->parent, example_resource_allo=
+c_match, NULL);
+> > +
+> > +       KUNIT_ASSERT_NOT_NULL(test, res);
+> > +
+> > +       /* Since the data field in kunit_resource is a void pointer we =
+need to typecast it. */
+> > +       threshold =3D *((int *)res->data);
+> > +
+> > +       /* Assert that the parameter is less than or equal to a certain=
+ threshold. */
+> > +       KUNIT_ASSERT_LE(test, param->value, threshold);
+> > +
+> > +       /* This decreases the reference count after calling kunit_find_=
+resource(). */
+> > +       kunit_put_resource(res);
+> > +}
+> > +
+> >  /*
+> >   * Here we make a list of all the test cases we want to add to the tes=
+t suite
+> >   * below.
+> > @@ -296,6 +406,8 @@ static struct kunit_case example_test_cases[] =3D {
+> >         KUNIT_CASE(example_static_stub_using_fn_ptr_test),
+> >         KUNIT_CASE(example_priv_test),
+> >         KUNIT_CASE_PARAM(example_params_test, example_gen_params),
+> > +       KUNIT_CASE_PARAM_WITH_INIT(example_params_test_with_init, NULL,
+> > +                                  example_param_init, NULL),
+> >         KUNIT_CASE_SLOW(example_slow_test),
+> >         {}
+> >  };
+> > --
+> > 2.50.1.552.g942d659e1b-goog
+> >
