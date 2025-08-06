@@ -4,38 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9593C87FCB
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 13:16:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD94AC87FCB
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 13:18:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 634FA10E3E1;
-	Wed,  6 Aug 2025 13:16:39 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 992A210E079;
- Wed,  6 Aug 2025 13:16:37 +0000 (UTC)
-Received: from 91-155-254-205.elisa-laajakaista.fi ([91.155.254.205]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1uje0P-00000009Va6-2H64; Wed, 06 Aug 2025 16:16:35 +0300
-Message-ID: <52c79b8181d30a58dfa3969c7cb5f0bca4ce86fd.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Charlton Lin <charlton.lin@intel.com>, Khaled Almahallawy
- <khaled.almahallawy@intel.com>
-Date: Wed, 06 Aug 2025 16:16:32 +0300
-In-Reply-To: <aJNU0W_bJOFRflwF@ideak-desk>
-References: <20250805073700.642107-1-imre.deak@intel.com>
- <7920b8ed0ae141aecae8d40177f35e642cb1ca16.camel@coelho.fi>
- <aJNCicpwIY2YtAun@ideak-desk>
- <c87c116fac9f588c177f0c957567844a36748274.camel@coelho.fi>
- <aJNU0W_bJOFRflwF@ideak-desk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7630110E775;
+	Wed,  6 Aug 2025 13:18:28 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F66B10E3E1;
+ Wed,  6 Aug 2025 13:18:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [PATCH 00/19] drm/i915/tc: Fix enabled/disconnected DP-alt sink
- handling
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Improve_VF_prov?=
+ =?utf-8?q?ision_stability_with_fault_injection_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 06 Aug 2025 13:18:27 -0000
+Message-ID: <175448630712.216422.6997893180279603926@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250806132748.6697-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250806132748.6697-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,61 +36,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2025-08-06 at 16:12 +0300, Imre Deak wrote:
-> On Wed, Aug 06, 2025 at 03:54:00PM +0300, Luca Coelho wrote:
-> > On Wed, 2025-08-06 at 14:54 +0300, Imre Deak wrote:
-> > > On Wed, Aug 06, 2025 at 02:44:41PM +0300, Luca Coelho wrote:
-> > > > On Tue, 2025-08-05 at 10:36 +0300, Imre Deak wrote:
-> > > > > This patchset fixes an issue on LNL+, where the TypeC PHY's mode/=
-state
-> > > > > is detected incorrectly during HW readout for a DP-alt sink that =
-got
-> > > > > enabled by BIOS/GOP, but later the sink got disconnected by the u=
-ser
-> > > > > before the driver got loaded.
-> > > > >=20
-> > > > > The issue in the driver is due to overlooking a change on LNL+ in=
- the
-> > > > > way the PHY ready flag and pin assignment is set/cleared in the P=
-HY
-> > > > > registers by the HW/FW wrt. how this works on all the earlier (IC=
-L-MTL)
-> > > > > TypeC platforms.
-> > > > >=20
-> > > > > The first 5 patches fix the issue, the rest refactor the PHY's ma=
-x lane
-> > > > > count and pin assignment query functions, sanitizing the code, re=
-moving
-> > > > > duplications and validating the register values read out from the=
- HW.
-> > > >=20
-> > > > If you have 5 fix patches and the rest is refactoring, wouldn't it =
-be
-> > > > better to split the series in two?
-> > >=20
-> > > The refactoring part depends on the changes in the fixes part, so I
-> > > couldn't send the refactoring part separately.
-> >=20
-> > Okay, fair enough.  I'd usually send the second part _after_ sending
-> > the first one, of course, but you'd have to somehow mark the dependency
-> > for CI and such.  Is that possible with our infra?
->=20
-> Not aware of such. (There was a way to specify an IGT patchset to test
-> the kernel changes with, but that's a different thing.)
->=20
-> I agree it's better to have a separate CI run for the fixes part and
-> also merge it separately. I think the reviewing could still happen for
-> the current patchset and I could resend the fixes part only for CI. Are
-> you ok with that?
+== Series Details ==
 
-Of course, totally okay and I'll review them in a bit.  Resending the
-fixes part only, for CI, would indeed be a good idea, so we'll know if
-there are any issues if they're taken without the refactoring (as what
-would happen for stable or other cherry-picks).
+Series: drm/xe: Improve VF provision stability with fault injection (rev4)
+URL   : https://patchwork.freedesktop.org/series/151499/
+State : warning
 
---
-Cheers,
-Luca.
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c298eac5978c38dcc62a70c0d73c91765e7cc296
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 56939294f494933db91e8306105410e1fced4032
+Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Date:   Wed Aug 6 18:57:48 2025 +0530
+
+    drm/xe: Improve VF provision stability with fault injection
+    
+    When a buffer object (BO) is allocated with the XE_BO_FLAG_GGTT_INVALIDATE
+    flag, the driver initiates TLB invalidation requests via the CTB mechanism
+    while releasing the BO. However a premature release of the CTB BO can lead
+    to system crashes, as observed in:
+    
+    Oops: Oops: 0000 [#1] SMP NOPTI
+    RIP: 0010:h2g_write+0x2f3/0x7c0 [xe]
+    Call Trace:
+     guc_ct_send_locked+0x8b/0x670 [xe]
+     xe_guc_ct_send_locked+0x19/0x60 [xe]
+     send_tlb_invalidation+0xb4/0x460 [xe]
+     xe_gt_tlb_invalidation_ggtt+0x15e/0x2e0 [xe]
+     ggtt_invalidate_gt_tlb.part.0+0x16/0x90 [xe]
+     ggtt_node_remove+0x110/0x140 [xe]
+     xe_ggtt_node_remove+0x40/0xa0 [xe]
+     xe_ggtt_remove_bo+0x87/0x250 [xe]
+    
+    Introduce a devm-managed release action during xe_guc_ct_init() to ensure
+    proper CTB disablement before resource deallocation, preventing the
+    use-after-free scenario.
+    
+    Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Summers Stuart <stuart.summers@intel.com>
++ /mt/dim checkpatch 886b8d8ef3839f604e3e7f6187ac6c46eb21b802 drm-intel
+56939294f494 drm/xe: Improve VF provision stability with fault injection
+-:77: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 1 warnings, 0 checks, 38 lines checked
+
+
