@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A23FCA0EC1
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 22:24:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76FEFCA0EC2
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 22:24:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39A1210E7CF;
-	Wed,  6 Aug 2025 22:24:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37E0F10E7D1;
+	Wed,  6 Aug 2025 22:24:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EX2bvOaQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NOdwEIgU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A25B710E156
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Aug 2025 22:24:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4EAB10E156
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Aug 2025 22:24:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754519048; x=1786055048;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/BlxeOqxvM5CNTkezhPTF0g9N+p2nTxlCIvgCCSRbuk=;
- b=EX2bvOaQh0ron7Zre1sAQOohym40OfPrcXJIryvBJjXcHMEoayDJi2Ef
- WmVbk6R2f/tVNKghhJgMWdyn+++VpPqYmkrdUjJ2dfflwFfeAlzg69B/3
- OA5IbCZ+aW1uXvydE7zUZkd1S9nFsMYim68SrVTQrUcSYCF+KsIdYCoUt
- cg1YEvBAWKHlp1YRo0NDkR9Dr6G5UmZZgkcvU6PekbqBkeliIYcnzuEda
- b4s8r30HMoV589NNiY2em1QWkFrqsOlgdbbmrE7+x7OblaqcQxPbP9sDr
- lFnqysIUrKGbkvxNvbXn7LILyfrMly4duaJMLpRe7gkc0wUmha0Vxv7zB w==;
-X-CSE-ConnectionGUID: JL8L7FfKSOafgVHEmSB/Zw==
-X-CSE-MsgGUID: 84gQgm4aTYePWf/K0Dum4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56928156"
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56928156"
+ t=1754519047; x=1786055047;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=miTLcLE/fqOEWPlgky7US5wfEUV7LhiNG5GMKBxYq/I=;
+ b=NOdwEIgU30l6+D7IsgHYEDRtc8LbEYlC1wfiSFyJ2rNVeDAJ7B75d+82
+ mJALz8yVglVukbYvcRTzxnsLk/Mpp526/J1zln5GGz8tICXEUx82IeegT
+ mhrWRMM09zmPpejXoz5QmRlMM90h0SDGmDKttKQ/N0d/zWcoo/ZqXxKtj
+ FDRShZG8Bv1dcIDXPbqKxDBBRukgkUcc/ZDdBVRNB5iuzI54ZlZZAMCg9
+ pofRHovtaNpQadyXrfAN6K42kvLveCJM1K4t9FyKUDPD7VGNuk7+Tt2SA
+ oQ7fp15HT8KA23yChWqGOUWPiru392T80aVOQ3liILRxcGI/9Q8r4z5z4 g==;
+X-CSE-ConnectionGUID: c2nRUZ2yTZuNjX3W74k9Ug==
+X-CSE-MsgGUID: Lb69ohymTuqc1t3eVY0YOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56928149"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56928149"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Aug 2025 15:24:07 -0700
-X-CSE-ConnectionGUID: j+0Hj0fbRfu2Xhx7KxhK3A==
-X-CSE-MsgGUID: d09ySOkgSEKwAqp7AFASog==
+X-CSE-ConnectionGUID: 8mYXwM4sS52gmuA+2A8qtg==
+X-CSE-MsgGUID: htckEFgCTsiO0JJVsTodRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="188560837"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="188560817"
 Received: from dut136arlu.fm.intel.com ([10.105.23.73])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 15:24:07 -0700
+ 06 Aug 2025 15:24:06 -0700
 From: stuartsummers <stuart.summers@intel.com>
 To: 
 Cc: matthew.brost@intel.com, farah.kassabri@intel.com,
- intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 7/8] drm/xe: Add helpers to send TLB invalidations
-Date: Wed,  6 Aug 2025 22:24:03 +0000
-Message-Id: <20250806222404.30333-8-stuart.summers@intel.com>
+ intel-xe@lists.freedesktop.org, stuartsummers <stuart.summers@intel.com>
+Subject: [PATCH 0/8] Add TLB invalidation abstraction
+Date: Wed,  6 Aug 2025 22:23:56 +0000
+Message-Id: <20250806222404.30333-1-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250806222404.30333-1-stuart.summers@intel.com>
-References: <20250806222404.30333-1-stuart.summers@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,311 +65,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+This is a new collection of patches from Matt that has
+been floating around internally and on the mailing list.
+The goal here is to abstract the actual mechanism of
+the invalidation from the higher level invalidation triggers
+(like page table updates).
 
-Break out the GuC specific code into helpers as part of the process to
-decouple frontback TLB invalidation code from the backend.
+Most of these were brought in unmodified by Matt, but
+I've done some minor rebase work here and there and
+added my signoff where those rebases seemed a little
+more extensive.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/xe_tlb_inval.c | 230 +++++++++++++++---------------
- 1 file changed, 115 insertions(+), 115 deletions(-)
+Tested on BMG locally.
 
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-index 2ffd677ee180..5db7f26bce2e 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-@@ -199,12 +199,11 @@ static bool tlb_inval_seqno_past(struct xe_gt *gt, int seqno)
- 	return seqno_recv >= seqno;
- }
- 
--static int send_tlb_inval(struct xe_guc *guc, struct xe_tlb_inval_fence *fence,
--			  u32 *action, int len)
-+static int send_tlb_inval(struct xe_guc *guc, const u32 *action, int len)
- {
- 	struct xe_gt *gt = guc_to_gt(guc);
- 
--	xe_gt_assert(gt, fence);
-+	xe_gt_assert(gt, action[1]);	/* Seqno */
- 
- 	/*
- 	 * XXX: The seqno algorithm relies on TLB invalidation being processed
-@@ -213,7 +212,6 @@ static int send_tlb_inval(struct xe_guc *guc, struct xe_tlb_inval_fence *fence,
- 	 */
- 
- 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_TLB_INVAL, 1);
--	action[1] = fence->seqno;
- 
- 	return xe_guc_ct_send(&guc->ct, action, len,
- 			      G2H_LEN_DW_TLB_INVALIDATE, 1);
-@@ -248,89 +246,15 @@ static void xe_tlb_inval_fence_prep(struct xe_tlb_inval_fence *fence)
- 		XE_GUC_TLB_INVAL_MODE_HEAVY << XE_GUC_TLB_INVAL_MODE_SHIFT | \
- 		XE_GUC_TLB_INVAL_FLUSH_CACHE)
- 
--/**
-- * xe_tlb_inval_guc - Issue a TLB invalidation on this GT for the GuC
-- * @gt: GT structure
-- * @fence: invalidation fence which will be signal on TLB invalidation
-- * completion
-- *
-- * Issue a TLB invalidation for the GuC. Completion of TLB is asynchronous and
-- * caller can use the invalidation fence to wait for completion.
-- *
-- * Return: 0 on success, negative error code on error
-- */
--static int xe_tlb_inval_guc(struct xe_gt *gt,
--			    struct xe_tlb_inval_fence *fence)
-+static int send_tlb_inval_ggtt(struct xe_gt *gt, int seqno)
- {
- 	u32 action[] = {
- 		XE_GUC_ACTION_TLB_INVALIDATION,
--		0,  /* seqno, replaced in send_tlb_inval */
-+		seqno,
- 		MAKE_INVAL_OP(XE_GUC_TLB_INVAL_GUC),
- 	};
--	int ret;
--
--	xe_tlb_inval_fence_prep(fence);
--
--	ret = send_tlb_inval(&gt->uc.guc, fence, action, ARRAY_SIZE(action));
--	if (ret < 0)
--		inval_fence_signal_unlocked(gt_to_xe(gt), fence);
--
--	/*
--	 * -ECANCELED indicates the CT is stopped for a GT reset. TLB caches
--	 *  should be nuked on a GT reset so this error can be ignored.
--	 */
--	if (ret == -ECANCELED)
--		return 0;
--
--	return ret;
--}
--
--/**
-- * xe_tlb_inval_ggtt - Issue a TLB invalidation on this GT for the GGTT
-- * @tlb_inval: TLB invalidation client
-- *
-- * Issue a TLB invalidation for the GGTT. Completion of TLB invalidation is
-- * synchronous.
-- *
-- * Return: 0 on success, negative error code on error
-- */
--int xe_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval)
--{
--	struct xe_gt *gt = tlb_inval->private;
--	struct xe_device *xe = gt_to_xe(gt);
--	unsigned int fw_ref;
--
--	if (xe_guc_ct_enabled(&gt->uc.guc.ct) &&
--	    gt->uc.guc.submission_state.enabled) {
--		struct xe_tlb_inval_fence fence;
--		int ret;
--
--		xe_tlb_inval_fence_init(tlb_inval, &fence, true);
--		ret = xe_tlb_inval_guc(gt, &fence);
--		if (ret)
--			return ret;
- 
--		xe_tlb_inval_fence_wait(&fence);
--	} else if (xe_device_uc_enabled(xe) && !xe_device_wedged(xe)) {
--		struct xe_mmio *mmio = &gt->mmio;
--
--		if (IS_SRIOV_VF(xe))
--			return 0;
--
--		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--		if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
--			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1,
--					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
--			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC0,
--					PVC_GUC_TLB_INV_DESC0_VALID);
--		} else {
--			xe_mmio_write32(mmio, GUC_TLB_INV_CR,
--					GUC_TLB_INV_CR_INVALIDATE);
--		}
--		xe_force_wake_put(gt_to_fw(gt), fw_ref);
--	}
--
--	return 0;
-+	return send_tlb_inval(&gt->uc.guc, action, ARRAY_SIZE(action));
- }
- 
- static int send_tlb_inval_all(struct xe_tlb_inval *tlb_inval,
-@@ -345,7 +269,7 @@ static int send_tlb_inval_all(struct xe_tlb_inval *tlb_inval,
- 
- 	xe_gt_assert(gt, fence);
- 
--	return send_tlb_inval(&gt->uc.guc, fence, action, ARRAY_SIZE(action));
-+	return send_tlb_inval(&gt->uc.guc, action, ARRAY_SIZE(action));
- }
- 
- /**
-@@ -377,43 +301,17 @@ int xe_tlb_inval_all(struct xe_tlb_inval *tlb_inval,
-  */
- #define MAX_RANGE_TLB_INVALIDATION_LENGTH (rounddown_pow_of_two(ULONG_MAX))
- 
--/**
-- * xe_tlb_inval_range - Issue a TLB invalidation on this GT for an address range
-- * @tlb_inval: TLB invalidation client
-- * @fence: invalidation fence which will be signal on TLB invalidation
-- * completion
-- * @start: start address
-- * @end: end address
-- * @asid: address space id
-- *
-- * Issue a range based TLB invalidation if supported, if not fallback to a full
-- * TLB invalidation. Completion of TLB is asynchronous and caller can use
-- * the invalidation fence to wait for completion.
-- *
-- * Return: Negative error code on error, 0 on success
-- */
--int xe_tlb_inval_range(struct xe_tlb_inval *tlb_inval,
--		       struct xe_tlb_inval_fence *fence, u64 start, u64 end,
--		       u32 asid)
-+static int send_tlb_inval_ppgtt(struct xe_gt *gt, u64 start, u64 end,
-+				u32 asid, int seqno)
- {
--	struct xe_gt *gt = tlb_inval->private;
--	struct xe_device *xe = gt_to_xe(gt);
- #define MAX_TLB_INVALIDATION_LEN	7
- 	u32 action[MAX_TLB_INVALIDATION_LEN];
- 	u64 length = end - start;
--	int len = 0, ret;
--
--	xe_gt_assert(gt, fence);
--
--	/* Execlists not supported */
--	if (gt_to_xe(gt)->info.force_execlist) {
--		__inval_fence_signal(xe, fence);
--		return 0;
--	}
-+	int len = 0;
- 
- 	action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
--	action[len++] = 0; /* seqno, replaced in send_tlb_inval */
--	if (!xe->info.has_range_tlb_inval ||
-+	action[len++] = seqno;
-+	if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
- 	    length > MAX_RANGE_TLB_INVALIDATION_LENGTH) {
- 		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
- 	} else {
-@@ -462,10 +360,112 @@ int xe_tlb_inval_range(struct xe_tlb_inval *tlb_inval,
- 
- 	xe_gt_assert(gt, len <= MAX_TLB_INVALIDATION_LEN);
- 
-+	return send_tlb_inval(&gt->uc.guc, action, len);
-+}
-+
-+static int __xe_tlb_inval_ggtt(struct xe_gt *gt,
-+			       struct xe_tlb_inval_fence *fence)
-+{
-+	int ret;
-+
-+	xe_tlb_inval_fence_prep(fence);
-+
-+	ret = send_tlb_inval_ggtt(gt, fence->seqno);
-+	if (ret < 0)
-+		inval_fence_signal_unlocked(gt_to_xe(gt), fence);
-+
-+	/*
-+	 * -ECANCELED indicates the CT is stopped for a GT reset. TLB caches
-+	 *  should be nuked on a GT reset so this error can be ignored.
-+	 */
-+	if (ret == -ECANCELED)
-+		return 0;
-+
-+	return ret;
-+}
-+
-+/**
-+ * xe_tlb_inval_ggtt - Issue a TLB invalidation on this GT for the GGTT
-+ * @tlb_inval: TLB invalidation client
-+ *
-+ * Issue a TLB invalidation for the GGTT. Completion of TLB invalidation is
-+ * synchronous.
-+ *
-+ * Return: 0 on success, negative error code on error
-+ */
-+int xe_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval)
-+{
-+	struct xe_gt *gt = tlb_inval->private;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	unsigned int fw_ref;
-+
-+	if (xe_guc_ct_enabled(&gt->uc.guc.ct) &&
-+	    gt->uc.guc.submission_state.enabled) {
-+		struct xe_tlb_inval_fence fence;
-+		int ret;
-+
-+		xe_tlb_inval_fence_init(tlb_inval, &fence, true);
-+		ret = __xe_tlb_inval_ggtt(gt, &fence);
-+		if (ret)
-+			return ret;
-+
-+		xe_tlb_inval_fence_wait(&fence);
-+	} else if (xe_device_uc_enabled(xe) && !xe_device_wedged(xe)) {
-+		struct xe_mmio *mmio = &gt->mmio;
-+
-+		if (IS_SRIOV_VF(xe))
-+			return 0;
-+
-+		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+		if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
-+			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1,
-+					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
-+			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC0,
-+					PVC_GUC_TLB_INV_DESC0_VALID);
-+		} else {
-+			xe_mmio_write32(mmio, GUC_TLB_INV_CR,
-+					GUC_TLB_INV_CR_INVALIDATE);
-+		}
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * xe_tlb_inval_range - Issue a TLB invalidation on this GT for an address range
-+ * @tlb_inval: TLB invalidation client
-+ * @fence: invalidation fence which will be signal on TLB invalidation
-+ * completion
-+ * @start: start address
-+ * @end: end address
-+ * @asid: address space id
-+ *
-+ * Issue a range based TLB invalidation if supported, if not fallback to a full
-+ * TLB invalidation. Completion of TLB is asynchronous and caller can use
-+ * the invalidation fence to wait for completion.
-+ *
-+ * Return: Negative error code on error, 0 on success
-+ */
-+int xe_tlb_inval_range(struct xe_tlb_inval *tlb_inval,
-+		       struct xe_tlb_inval_fence *fence, u64 start, u64 end,
-+		       u32 asid)
-+{
-+	struct xe_gt *gt = tlb_inval->private;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	int  ret;
-+
-+	xe_gt_assert(gt, fence);
-+
-+	/* Execlists not supported */
-+	if (xe->info.force_execlist) {
-+		__inval_fence_signal(xe, fence);
-+		return 0;
-+	}
-+
- 	xe_tlb_inval_fence_prep(fence);
- 
--	ret = send_tlb_inval(&gt->uc.guc, fence, action,
--			     ARRAY_SIZE(action));
-+	ret = send_tlb_inval_ppgtt(gt, start, end, asid, fence->seqno);
- 	if (ret < 0)
- 		inval_fence_signal_unlocked(xe, fence);
- 
+v3: Minor spelling fixes and added R-B's per updates on
+    on the mailing list
+v2: Start the series with a new patch to drop the
+    explicit CT lock (Matt)
+    Pull in the remaining patches from [1]
+
+[1] https://patchwork.freedesktop.org/series/151670/#rev1
+
+Matthew Brost (7):
+  drm/xe: s/tlb_invalidation/tlb_inval
+  drm/xe: Add xe_tlb_inval structure
+  drm/xe: Add xe_gt_tlb_invalidation_done_handler
+  drm/xe: Decouple TLB invalidations from GT
+  drm/xe: Prep TLB invalidation fence before sending
+  drm/xe: Add helpers to send TLB invalidations
+  drm/xe: Split TLB invalidation code in frontend and backend
+
+stuartsummers (1):
+  drm/xe: Move explicit CT lock in TLB invalidation sequence
+
+ drivers/gpu/drm/xe/Makefile                   |   5 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |   4 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c            |   2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                  |   4 +-
+ drivers/gpu/drm/xe/xe_gt.c                    |   8 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c          |   1 -
+ drivers/gpu/drm/xe/xe_gt_tlb_inval_job.h      |  34 -
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   | 604 ------------------
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h   |  40 --
+ .../gpu/drm/xe/xe_gt_tlb_invalidation_types.h |  32 -
+ drivers/gpu/drm/xe/xe_gt_types.h              |  33 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c                |   8 +-
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c         | 242 +++++++
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.h         |  19 +
+ drivers/gpu/drm/xe/xe_lmtt.c                  |  12 +-
+ drivers/gpu/drm/xe/xe_migrate.h               |  10 +-
+ drivers/gpu/drm/xe/xe_pci.c                   |   6 +-
+ drivers/gpu/drm/xe/xe_pci_types.h             |   2 +-
+ drivers/gpu/drm/xe/xe_pt.c                    |  63 +-
+ drivers/gpu/drm/xe/xe_svm.c                   |   3 +-
+ drivers/gpu/drm/xe/xe_tlb_inval.c             | 407 ++++++++++++
+ drivers/gpu/drm/xe/xe_tlb_inval.h             |  46 ++
+ ..._gt_tlb_inval_job.c => xe_tlb_inval_job.c} | 154 +++--
+ drivers/gpu/drm/xe/xe_tlb_inval_job.h         |  33 +
+ drivers/gpu/drm/xe/xe_tlb_inval_types.h       | 128 ++++
+ drivers/gpu/drm/xe/xe_trace.h                 |  24 +-
+ drivers/gpu/drm/xe/xe_vm.c                    |  66 +-
+ drivers/gpu/drm/xe/xe_vm.h                    |   4 +-
+ 28 files changed, 1069 insertions(+), 925 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_inval_job.h
+ delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+ delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+ delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_tlb_inval.h
+ create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval.c
+ create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval.h
+ rename drivers/gpu/drm/xe/{xe_gt_tlb_inval_job.c => xe_tlb_inval_job.c} (50%)
+ create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval_job.h
+ create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval_types.h
+
 -- 
 2.34.1
 
