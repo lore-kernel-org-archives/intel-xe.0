@@ -4,79 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67722C87FCB
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 17:50:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82F33C87FD3
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Aug 2025 18:09:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33AAF10E2EF;
-	Wed,  6 Aug 2025 17:50:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="WIysqVOC";
-	dkim-atps=neutral
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
- [209.85.208.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5C0C10E2EF
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Aug 2025 17:50:44 +0000 (UTC)
-Received: by mail-ed1-f42.google.com with SMTP id
- 4fb4d7f45d1cf-5f438523d6fso1112a12.1
- for <intel-xe@lists.freedesktop.org>; Wed, 06 Aug 2025 10:50:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1754502643; x=1755107443;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=O6ZQ/5BaV6mQdffgVaaglAdkdHfzgWg/eTO8QxYBPeU=;
- b=WIysqVOC2AkO4UbdOtDedpYLFlZxM0++MhCYXk/RNLHAHdXoG+D9nmNioEe9n1Mmae
- mYUGj+9tp44LBw+QKZZYsyicpNfII70+Qq34wJywF1fbDqRd0OGkg9Gk43OjBnqIBek9
- me2mlMnSh6CQbLZScLY4RlpFw0d6UE1DQfgLrmEks9MVy+7VWn3TZp89k+/1LR5G8p+J
- nX9FiwJxfdv3YGa69RvuGmMGd/wcx7iNhb8TdQb0kBcwc4fbLR2NcdeXODugmahdSCBJ
- bqhHE+fwbRdZ4KLP+Sd/j6jx53LY8gWPUgDSsMqND2llw0FtXRD9RGRnzqxu4YMNxTYa
- KPeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754502643; x=1755107443;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=O6ZQ/5BaV6mQdffgVaaglAdkdHfzgWg/eTO8QxYBPeU=;
- b=B7Gn4P5IAmQOArEbsahT82RUOk49hkcKBo4yhsrJ+oiwuRSNhbP9jmzrOeOlNliJnq
- Y7LaiIDQEZ+Bgf7BwsGFpjgErSUtxgSZ5k3V16cdoRTLrOX4yoFNNLqddJmhk94+I5en
- CUmnI8shaBhymnvV1MyMenzRsr1o3EET6/nyhsiBi4TtEW8M5JJBObgXyYuZKL0alWNo
- fz8YSU5qF+bkqsKoX1us9Tsk1Oi/NUJXor9aAqtYwIweGYvS0FySq4ttU2Uyhd6ZhwMi
- fe0n50Z9iqWHORWbV4GmNdJ8exo2QabZvOsJQakZF0coDEfCy28lQH50Q0SZCyeojWCP
- IrYg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU/ox3cwnEkKWwDt54ugTBPu2hKfqLQSYpUqBSZxTbo3yHdgUT5SSILm2jR+QrwMnDkYOf5V3qvCg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxTViyDDOOLeDZwrujsk5ht1nMaZOVy1KiMCFrwmU5itvtNW22f
- p/mIbDPS0p1K+lOMu1BS5HZF3YS7waWUJMy1rfdO9zkrPvWLQjx7HgVXec0eE6Tk/7sy3LB7ftP
- m4pjYoFCscTpODgXOgbOBMB9GvTDzIsgM9+KF2Dai
-X-Gm-Gg: ASbGnct5fP3jMnA2ci0U1C2KEeZnwTgrfM+x7aEVKQZmKQrCtfdgKWXZKPjw0GHHsC5
- UgCP7tTReJFQB29k30k+mer3VyEZwpvSTHQnoEOfdaryJ9BqgJSUseatg93a6MNvjsKdMvjRn4+
- B80Fd6EvnqozL1n7v7VLqZW5WV040yxXy/0jyyXuspKe2pfApWv4Qy7Lgicb8T0lqGLgezb6oii
- wRPZ0jhXeO84Y/bov4=
-X-Google-Smtp-Source: AGHT+IE+QDtUPARPU2wN4XerAfKdVLgsMbZ03V31aP2LxZYSJjBTKBDhaE0pgDwg/Hur4O5WYOACGm9GKfssEMe+4GQ=
-X-Received: by 2002:a05:6402:4c1:b0:615:6167:4835 with SMTP id
- 4fb4d7f45d1cf-61797ec0988mr91110a12.7.1754502642599; Wed, 06 Aug 2025
- 10:50:42 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D16D10E307;
+	Wed,  6 Aug 2025 18:09:31 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D7B110E307;
+ Wed,  6 Aug 2025 18:09:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4667679499252329396=="
 MIME-Version: 1.0
-References: <20250729193647.3410634-1-marievic@google.com>
- <20250729193647.3410634-8-marievic@google.com>
- <CABVgOSmBssmMz3qQi+TdEoaGQJNXaSVBrsO8RSW0MjLUUHPakg@mail.gmail.com>
-In-Reply-To: <CABVgOSmBssmMz3qQi+TdEoaGQJNXaSVBrsO8RSW0MjLUUHPakg@mail.gmail.com>
-From: Marie Zhussupova <marievic@google.com>
-Date: Wed, 6 Aug 2025 13:50:31 -0400
-X-Gm-Features: Ac12FXxZ0gzQXyQ3JCYs61KiK41rHInNvNCX1ufle-31wpGuIXR7lV23iXdDrBU
-Message-ID: <CAAkQn5KnBZ7O6TkHL8UR0UaJ-v0P51TjtEwoRu7VWaPYd8oeSg@mail.gmail.com>
-Subject: Re: [PATCH 7/9] kunit: Add example parameterized test with shared
- resources and direct static parameter array setup
-To: David Gow <davidgow@google.com>
-Cc: rmoar@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
- elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com, 
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_drop_=5F=5Fto?=
+ =?utf-8?q?=5Fintel=5Fdisplay=28=29_transitional_macro?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 06 Aug 2025 18:09:29 -0000
+Message-ID: <175450376963.217482.15686455936328117989@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <cover.1754499174.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1754499174.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,238 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Aug 2, 2025 at 5:45=E2=80=AFAM David Gow <davidgow@google.com> wrot=
-e:
->
-> On Wed, 30 Jul 2025 at 03:37, Marie Zhussupova <marievic@google.com> wrot=
-e:
-> >
-> > Add `example_params_test_with_init` to illustrate how to manage
-> > shared resources across parameterized KUnit tests. This example
-> > showcases the use of the new `param_init` function and its registration
-> > to a test using the `KUNIT_CASE_PARAM_WITH_INIT` macro.
-> >
-> > Additionally, the test demonstrates:
-> > - How to directly assign a static parameter array to a test via
-> >   `kunit_register_params_array`.
-> > - Leveraging the Resource API for test resource management.
-> >
-> > Signed-off-by: Marie Zhussupova <marievic@google.com>
-> > ---
->
-> Thanks for writing some examples! This is great, and makes the rest of
-> the series much easier to understand.
->
-> (It also reminds me how much I hate the verbose parts of the resource
-> API, but it's definitely out of scope to refactor that here. :-))
->
-> It does seem like this is a lot of effort to go through for one shared
-> integer, though. In the real world, I'd suggest using
-> kunit->parent->priv here. As an example, though, it's fine (though
-> maybe using a named resource or even kunit_kzalloc() or similar would
-> give a better example of how convenient this could be.
->
-> It's also not entirely clear why we're using
-> kunit_register_params_array() for a static array, when
-> KUNIT_ARRAY_PARAM() exists. (This is clearly because the latter
-> doesn't support init functions; and I see why we don't necessarily
-> want to make the number of macros explode through adding
-> KUNIT_ARRAY_PARAM_WITH_INIT() et al, but maybe we should note that in
-> the commit description, either here or before.)
->
-> Actual test looks fine, though:
->
-> Reviewed-by: David Gow <davidgow@google.com>
->
-> Cheers,
-> -- David
->
+--===============4667679499252329396==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hello David,
+== Series Details ==
 
-I agree that using the Resource API for a single integer is a bit extra.
-My idea behind this test was to demonstrate that the Resource API
-could be used for managing shared resources and to have the
-style of the existing example tests that do simple things with integers.
+Series: drm/i915: drop __to_intel_display() transitional macro
+URL   : https://patchwork.freedesktop.org/series/152595/
+State : success
 
-Using kunit_kzalloc() would be a great simplification. As for a named
-resource, we don't have a function to allocate named resources yet
-as would be needed here, but that sounds like a great future patch.
+== Summary ==
 
-We can actually use the KUNIT_ARRAY_PARAM() macro with
-KUNIT_CASE_PARAM_WITH_INIT(). We would just pass that created
-`*_gen_params` function to KUNIT_CASE_PARAM_WITH_INIT()
-instead of NULL. The reason I used kunit_register_params_array() with
-the static array was to show that test users can pass a static array
-this way, as well, and also to avoid making the test too long with the
-dynamic array
-creation. But I do like the consistency of using KUNIT_ARRAY_PARAM()
-for static arrays and kunit_register_params_array() only for
-dynamic ones.
+CI Bug Log - changes from xe-3510-886b8d8ef3839f604e3e7f6187ac6c46eb21b802_BAT -> xe-pw-152595v1_BAT
+====================================================
 
-Thank you,
--Marie
+Summary
+-------
 
->
-> >  lib/kunit/kunit-example-test.c | 112 +++++++++++++++++++++++++++++++++
-> >  1 file changed, 112 insertions(+)
-> >
-> > diff --git a/lib/kunit/kunit-example-test.c b/lib/kunit/kunit-example-t=
-est.c
-> > index 3056d6bc705d..5bf559e243f6 100644
-> > --- a/lib/kunit/kunit-example-test.c
-> > +++ b/lib/kunit/kunit-example-test.c
-> > @@ -277,6 +277,116 @@ static void example_slow_test(struct kunit *test)
-> >         KUNIT_EXPECT_EQ(test, 1 + 1, 2);
-> >  }
-> >
-> > +/*
-> > + * This custom function allocates memory for the kunit_resource data f=
-ield.
-> > + * The function is passed to kunit_alloc_resource() and executed once
-> > + * by the internal helper __kunit_add_resource().
-> > + */
-> > +static int example_resource_init(struct kunit_resource *res, void *con=
-text)
-> > +{
-> > +       int *info =3D kmalloc(sizeof(*info), GFP_KERNEL);
-> > +
-> > +       if (!info)
-> > +               return -ENOMEM;
-> > +       *info =3D *(int *)context;
-> > +       res->data =3D info;
-> > +       return 0;
-> > +}
-> > +
-> > +/*
-> > + * This function deallocates memory for the 'kunit_resource' data fiel=
-d.
-> > + * The function is passed to kunit_alloc_resource() and automatically
-> > + * executes within kunit_release_resource() when the resource's refere=
-nce
-> > + * count, via kunit_put_resource(), drops to zero. KUnit uses referenc=
-e
-> > + * counting to ensure that resources are not freed prematurely.
-> > + */
-> > +static void example_resource_free(struct kunit_resource *res)
-> > +{
-> > +       kfree(res->data);
-> > +}
-> > +
-> > +/*
-> > + * This match function is invoked by kunit_find_resource() to locate
-> > + * a test resource based on defined criteria. The current example
-> > + * uniquely identifies the resource by its free function; however,
-> > + * alternative custom criteria can be implemented. Refer to
-> > + * lib/kunit/platform.c and lib/kunit/static_stub.c for further exampl=
-es.
-> > + */
-> > +static bool example_resource_alloc_match(struct kunit *test,
-> > +                                        struct kunit_resource *res,
-> > +                                        void *match_data)
-> > +{
-> > +       return res->data && res->free =3D=3D example_resource_free;
-> > +}
-> > +
-> > +/*
-> > + * This is an example of a function that provides a description for ea=
-ch of the
-> > + * parameters.
-> > + */
-> > +static void example_param_array_get_desc(const void *p, char *desc)
-> > +{
-> > +       const struct example_param *param =3D p;
-> > +
-> > +       snprintf(desc, KUNIT_PARAM_DESC_SIZE,
-> > +                "example check if %d is less than or equal to 3", para=
-m->value);
-> > +}
-> > +
-> > +/*
-> > + * Initializes the parent kunit struct for parameterized KUnit tests.
-> > + * This function enables sharing resources across all parameterized
-> > + * tests by adding them to the `parent` kunit test struct. It also sup=
-ports
-> > + * registering either static or dynamic arrays of test parameters.
-> > + */
-> > +static int example_param_init(struct kunit *test)
-> > +{
-> > +       int ctx =3D 3; /* Data to be stored. */
-> > +       int arr_size =3D ARRAY_SIZE(example_params_array);
-> > +
-> > +       /*
-> > +        * This allocates a struct kunit_resource, sets its data field =
-to
-> > +        * ctx, and adds it to the kunit struct's resources list. Note =
-that
-> > +        * this is test managed so we don't need to have a custom exit =
-function
-> > +        * to free it.
-> > +        */
-> > +       void *data =3D kunit_alloc_resource(test, example_resource_init=
-, example_resource_free,
-> > +                                         GFP_KERNEL, &ctx);
-> > +
-> > +       if (!data)
-> > +               return -ENOMEM;
-> > +       /* Pass the static param array information to the parent struct=
- kunit. */
-> > +       kunit_register_params_array(test, example_params_array, arr_siz=
-e,
-> > +                                   example_param_array_get_desc);
-> > +       return 0;
-> > +}
-> > +
-> > +/*
-> > + * This is an example of a parameterized test that uses shared resourc=
-es
-> > + * available from the struct kunit parent field of the kunit struct.
-> > + */
-> > +static void example_params_test_with_init(struct kunit *test)
-> > +{
-> > +       int threshold;
-> > +       struct kunit_resource *res;
-> > +       const struct example_param *param =3D test->param_value;
-> > +
-> > +       /* By design, param pointer will not be NULL. */
-> > +       KUNIT_ASSERT_NOT_NULL(test, param);
-> > +
-> > +       /* Here we access the parent pointer of the test to find the sh=
-ared resource. */
-> > +       res =3D kunit_find_resource(test->parent, example_resource_allo=
-c_match, NULL);
-> > +
-> > +       KUNIT_ASSERT_NOT_NULL(test, res);
-> > +
-> > +       /* Since the data field in kunit_resource is a void pointer we =
-need to typecast it. */
-> > +       threshold =3D *((int *)res->data);
-> > +
-> > +       /* Assert that the parameter is less than or equal to a certain=
- threshold. */
-> > +       KUNIT_ASSERT_LE(test, param->value, threshold);
-> > +
-> > +       /* This decreases the reference count after calling kunit_find_=
-resource(). */
-> > +       kunit_put_resource(res);
-> > +}
-> > +
-> >  /*
-> >   * Here we make a list of all the test cases we want to add to the tes=
-t suite
-> >   * below.
-> > @@ -296,6 +406,8 @@ static struct kunit_case example_test_cases[] =3D {
-> >         KUNIT_CASE(example_static_stub_using_fn_ptr_test),
-> >         KUNIT_CASE(example_priv_test),
-> >         KUNIT_CASE_PARAM(example_params_test, example_gen_params),
-> > +       KUNIT_CASE_PARAM_WITH_INIT(example_params_test_with_init, NULL,
-> > +                                  example_param_init, NULL),
-> >         KUNIT_CASE_SLOW(example_slow_test),
-> >         {}
-> >  };
-> > --
-> > 2.50.1.552.g942d659e1b-goog
-> >
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3510-886b8d8ef3839f604e3e7f6187ac6c46eb21b802 -> xe-pw-152595v1
+
+  IGT_8487: 8487
+  xe-3510-886b8d8ef3839f604e3e7f6187ac6c46eb21b802: 886b8d8ef3839f604e3e7f6187ac6c46eb21b802
+  xe-pw-152595v1: 152595v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152595v1/index.html
+
+--===============4667679499252329396==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: drop __to_intel_display() transitional macro</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152595/">https://patchwork.freedesktop.org/series/152595/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152595v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152595v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3510-886b8d8ef3839f604e3e7f6187ac6c46eb21b802_BAT -&gt; xe-pw-152595v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3510-886b8d8ef3839f604e3e7f6187ac6c46eb21b802 -&gt; xe-pw-152595v1</li>
+</ul>
+<p>IGT_8487: 8487<br />
+  xe-3510-886b8d8ef3839f604e3e7f6187ac6c46eb21b802: 886b8d8ef3839f604e3e7f6187ac6c46eb21b802<br />
+  xe-pw-152595v1: 152595v1</p>
+
+</body>
+</html>
+
+--===============4667679499252329396==--
