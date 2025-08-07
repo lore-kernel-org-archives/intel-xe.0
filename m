@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63FE2C87FCA
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 12:19:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08004C87FCA
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 12:19:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2552D10E487;
-	Thu,  7 Aug 2025 12:19:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jWR3G7j9";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F93310E33A;
- Thu,  7 Aug 2025 12:19:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754569164; x=1786105164;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=wpfQYs2R/Srz86OmlghcfoY5IcTWlEu5/UAtk74IDhM=;
- b=jWR3G7j9UclH6ERZTRMOiCqKy8qk+WKoJtf1Y5Er1jkz0vma91oh68xq
- T8vr8BHAFePNC+vezQ9O5z5C3pCSC/UnjU57c/7chD6ySzH/6gMv8CzKP
- aMCakwJcRa3IZRe2RSsMgvGorQkJA+lRr6S/4PYPVKA2PqyRfhcm8gPXC
- lduOnseMN2MBtqhx1SoHuBmiDvDlgYckBHXt1r1/8yzhQLFhdiai4fIzX
- ODdiedQphMo/4nncvO36bBEGStRi0fgShCxGFHxD7AQeTcGEp76Q8si91
- RLe7A5rVIz6QUnDv0Lmx4qSNFLhIjBrCyZQZ61eIcOwQMQncHpgaXn96E w==;
-X-CSE-ConnectionGUID: MJnpFtEGTRS5cnb8T0iujQ==
-X-CSE-MsgGUID: KI7/tqD1TxiZyTA2QA8geg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="55938624"
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="55938624"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 05:19:23 -0700
-X-CSE-ConnectionGUID: 2UB5wCxJScuaAYpPhubO7g==
-X-CSE-MsgGUID: mJad/twUR++T+ZfDQyvQzA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="169302046"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.96])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 05:19:21 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: imre.deak@intel.com, Luca Coelho <luca@coelho.fi>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- stable@vger.kernel.org, Charlton Lin <charlton.lin@intel.com>, Khaled
- Almahallawy <khaled.almahallawy@intel.com>
-Subject: Re: [PATCH 01/19] drm/i915/lnl+/tc: Fix handling of an
- enabled/disconnected dp-alt sink
-In-Reply-To: <aJSQKu72vVYmUd4Y@ideak-desk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250805073700.642107-1-imre.deak@intel.com>
- <20250805073700.642107-2-imre.deak@intel.com>
- <95999d2602067f556dc2e5739758deef7c462e17.camel@coelho.fi>
- <aJSQKu72vVYmUd4Y@ideak-desk>
-Date: Thu, 07 Aug 2025 15:19:17 +0300
-Message-ID: <d8e9cabb243cd8bbe7ac942d117146bf7f68b631@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A65B910E11C;
+	Thu,  7 Aug 2025 12:19:32 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A78B10E11C;
+ Thu,  7 Aug 2025 12:19:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1623996325821246123=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Improve_CCS_save_restore_se?=
+ =?utf-8?q?ries_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 07 Aug 2025 12:19:32 -0000
+Message-ID: <175456917216.219545.11321055049045158670@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250807112740.2421-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250807112740.2421-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,126 +36,134 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 07 Aug 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Thu, Aug 07, 2025 at 01:59:21PM +0300, Luca Coelho wrote:
->> On Tue, 2025-08-05 at 10:36 +0300, Imre Deak wrote:
->> > The TypeC PHY HW readout during driver loading and system resume
->> > determines which TypeC mode the PHY is in (legacy/DP-alt/TBT-alt) and
->> > whether the PHY is connected, based on the PHY's Owned and Ready flags.
->> > For the PHY to be in DP-alt or legacy mode and for the PHY to be in the
->> > connected state in these modes, both the Owned (set by the BIOS/driver)
->> > and the Ready (set by the HW) flags should be set.
->> > 
->> > On ICL-MTL the HW kept the PHY's Ready flag set after the driver
->> > connected the PHY by acquiring the PHY ownership (by setting the Owned
->> > flag), until the driver disconnected the PHY by releasing the PHY
->> > ownership (by clearing the Owned flag). On LNL+ this has changed, in
->> > that the HW clears the Ready flag as soon as the sink gets disconnected,
->> > even if the PHY ownership was acquired already and hence the PHY is
->> > being used by the display.
->> > 
->> > When inheriting the HW state from BIOS for a PHY connected in DP-alt
->> > mode on which the sink got disconnected - i.e. in a case where the sink
->> > was connected while BIOS/GOP was running and so the sink got enabled
->> > connecting the PHY, but the user disconnected the sink by the time the
->> > driver loaded - the PHY Owned but not Ready state must be accounted for
->> > on LNL+ according to the above. Do that by assuming on LNL+ that the PHY
->> > is connected in DP-alt mode whenever the PHY Owned flag is set,
->> > regardless of the PHY Ready flag.
->> > 
->> > This fixes a problem on LNL+, where the PHY TypeC mode / connected state
->> > was detected incorrectly for a DP-alt sink, which got connected and then
->> > disconnected by the user in the above way.
->> > 
->> > Cc: stable@vger.kernel.org # v6.8+
->> > Reported-by: Charlton Lin <charlton.lin@intel.com>
->> > Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
->> > Signed-off-by: Imre Deak <imre.deak@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_tc.c | 16 ++++++++++------
->> >  1 file changed, 10 insertions(+), 6 deletions(-)
->> > 
->> > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
->> > index 3bc57579fe53e..73a08bd84a70a 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_tc.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
->> > @@ -1226,14 +1226,18 @@ static void tc_phy_get_hw_state(struct intel_tc_port *tc)
->> >  	tc->phy_ops->get_hw_state(tc);
->> >  }
->> >  
->> > -static bool tc_phy_is_ready_and_owned(struct intel_tc_port *tc,
->> > -				      bool phy_is_ready, bool phy_is_owned)
->> > +static bool tc_phy_in_legacy_or_dp_alt_mode(struct intel_tc_port *tc,
->> > +					    bool phy_is_ready, bool phy_is_owned)
->> 
->> Personally I don't like the "or" in the function name.  You're
->> returning a boolean which is true or false.  The return value is akin
->> to answering "Yes/No" to the question "Is it black or white".
->
-> The question the function is meant to answer is "Is the PHY in legacy or
-> DP-alt mode?". The return value is true (yes) if the PHY is in either
-> legacy or DP-alt mode, false (no) if the PHY is neither in legacy or
-> DP-alt mode. There are many other uses of "or" in function names in this
-> sense, so not sure how else I'd name this one. Simply leaving out "or"
-> would make it less clear that the legacy and DP-alt modes are two
-> separate modes.
+--===============1623996325821246123==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-What's the opposite of "Is the PHY in legacy or DP-alt mode"?
+== Series Details ==
 
-Would that lead to a simpler name, with the reversed return value?
+Series: Improve CCS save restore series (rev4)
+URL   : https://patchwork.freedesktop.org/series/152316/
+State : success
 
-BR,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from xe-3513-e75fad13646be2a02f21a8e9d438b3150108950d_BAT -> xe-pw-152316v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152316v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-1}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3513-e75fad13646be2a02f21a8e9d438b3150108950d/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152316v4/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+    - {bat-ptl-2}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3513-e75fad13646be2a02f21a8e9d438b3150108950d/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152316v4/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
 
 
+Build changes
+-------------
 
->
->> This is a nitpick, obviously, so I'll leave it up to you.
->> 
->> Regardless:
->> 
->> Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
->> 
->> --
->> Cheers,
->> Luca.
->> 
->> >  {
->> >  	struct intel_display *display = to_intel_display(tc->dig_port);
->> >  
->> > -	drm_WARN_ON(display->drm, phy_is_owned && !phy_is_ready);
->> > +	if (DISPLAY_VER(display) < 20) {
->> > +		drm_WARN_ON(display->drm, phy_is_owned && !phy_is_ready);
->> >  
->> > -	return phy_is_ready && phy_is_owned;
->> > +		return phy_is_ready && phy_is_owned;
->> > +	} else {
->> > +		return phy_is_owned;
->> > +	}
->> >  }
->> >  
->> >  static bool tc_phy_is_connected(struct intel_tc_port *tc,
->> > @@ -1244,7 +1248,7 @@ static bool tc_phy_is_connected(struct intel_tc_port *tc,
->> >  	bool phy_is_owned = tc_phy_is_owned(tc);
->> >  	bool is_connected;
->> >  
->> > -	if (tc_phy_is_ready_and_owned(tc, phy_is_ready, phy_is_owned))
->> > +	if (tc_phy_in_legacy_or_dp_alt_mode(tc, phy_is_ready, phy_is_owned))
->> >  		is_connected = port_pll_type == ICL_PORT_DPLL_MG_PHY;
->> >  	else
->> >  		is_connected = port_pll_type == ICL_PORT_DPLL_DEFAULT;
->> > @@ -1352,7 +1356,7 @@ tc_phy_get_current_mode(struct intel_tc_port *tc)
->> >  	phy_is_ready = tc_phy_is_ready(tc);
->> >  	phy_is_owned = tc_phy_is_owned(tc);
->> >  
->> > -	if (!tc_phy_is_ready_and_owned(tc, phy_is_ready, phy_is_owned)) {
->> > +	if (!tc_phy_in_legacy_or_dp_alt_mode(tc, phy_is_ready, phy_is_owned)) {
->> >  		mode = get_tc_mode_in_phy_not_owned_state(tc, live_mode);
->> >  	} else {
->> >  		drm_WARN_ON(display->drm, live_mode == TC_PORT_TBT_ALT);
+  * Linux: xe-3513-e75fad13646be2a02f21a8e9d438b3150108950d -> xe-pw-152316v4
 
--- 
-Jani Nikula, Intel
+  IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3513-e75fad13646be2a02f21a8e9d438b3150108950d: e75fad13646be2a02f21a8e9d438b3150108950d
+  xe-pw-152316v4: 152316v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152316v4/index.html
+
+--===============1623996325821246123==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Improve CCS save restore series (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152316/">https://patchwork.freedesktop.org/series/152316/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152316v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152316v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3513-e75fad13646be2a02f21a8e9d438b3150108950d_BAT -&gt; xe-pw-152316v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152316v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3513-e75fad13646be2a02f21a8e9d438b3150108950d/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152316v4/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3513-e75fad13646be2a02f21a8e9d438b3150108950d/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152316v4/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3513-e75fad13646be2a02f21a8e9d438b3150108950d -&gt; xe-pw-152316v4</li>
+</ul>
+<p>IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3513-e75fad13646be2a02f21a8e9d438b3150108950d: e75fad13646be2a02f21a8e9d438b3150108950d<br />
+  xe-pw-152316v4: 152316v4</p>
+
+</body>
+</html>
+
+--===============1623996325821246123==--
