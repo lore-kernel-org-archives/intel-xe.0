@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A623C87FCA
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 09:32:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CFD9C87FCF
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 09:33:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB5D410E0A4;
-	Thu,  7 Aug 2025 09:32:46 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 759F610E0A4;
- Thu,  7 Aug 2025 09:32:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8320984332158594728=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F44710E32B;
+	Thu,  7 Aug 2025 09:33:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bk7dA+Ig";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8794410E0A4;
+ Thu,  7 Aug 2025 09:33:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754559231; x=1786095231;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=U0W/Ud+ztqd9qbgCgIOXl0GPLWURlsY1ZwUV6f+RAY8=;
+ b=bk7dA+IgkAwrQaTjjPUZ7QiZm5o2kd9yk1yKVYIC777caX1CSHjVzkBb
+ p9jzXz/4tIKs7qkPAtRqG1eW6ixQ2s6BbfaL7nwoFyNm5trEFTyOzYC5q
+ LyViUhCPk4qxX+B01YAz3P9eKa59+8fryJLRljJcHWC85tWpgdgpjwtHv
+ x91A0QN77i+SHOAQxzNk5uh0M+jazZFsDDLEcb3WXuu4cRN26ixcnJVhc
+ QnAMkrhbRfubffPWFqvfz3WRt2v1E0XY3RYVu6E0xCI5GL0txupVlFW3T
+ jGQQUNk+eVuD4Fl/MtJDijWCGXLtVEQMc+fKhpgG9zm//ie+rM6tdiUud Q==;
+X-CSE-ConnectionGUID: 9hbsyzHdQbSBIhovlVvXpg==
+X-CSE-MsgGUID: scnzGl83R+G3lHOYZQ/Y3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56597238"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56597238"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 02:33:50 -0700
+X-CSE-ConnectionGUID: 2MpQawJyTMqy9gEnngQGrw==
+X-CSE-MsgGUID: TPfzUW0FQ6K2FvCMA3qooQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="164918504"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa006.fm.intel.com with ESMTP; 07 Aug 2025 02:33:48 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 00/10]  Introduce drm sharpness property
+Date: Thu,  7 Aug 2025 14:58:31 +0530
+Message-Id: <20250807092841.3169436-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Optimiz?=
- =?utf-8?q?e_panel_power-on_wait_time_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 07 Aug 2025 09:32:45 -0000
-Message-ID: <175455916547.218818.17987013668784954137@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250807082402.79018-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20250807082402.79018-1-dibin.moolakadan.subrahmanian@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,165 +61,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8320984332158594728==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+      Many a times images are blurred or upscaled content is also not as
+crisp as original rendered image. Traditional sharpening techniques often
+apply a uniform level of enhancement across entire image, which sometimes
+result in over-sharpening of some areas and potential loss of natural details. 
 
-== Series Details ==
+Intel has come up with Display Engine based adaptive sharpening filter 
+with minimal power and performance impact. From LNL onwards, the Display
+hardware can use one of the pipe scaler for adaptive sharpness filter.
+This can be used for both gaming and non-gaming use cases like photos,
+image viewing. It works on a region of pixels depending on the tap size.
 
-Series: drm/i915/display: Optimize panel power-on wait time (rev8)
-URL   : https://patchwork.freedesktop.org/series/150958/
-State : success
+This is an attempt to introduce an adaptive sharpness solution which
+helps in improving the image quality. For this new CRTC property is added.
+The user can set this property with desired sharpness strength value with
+0-255. A value of 1 representing minimum sharpening strength and 255
+representing maximum sharpness strength. A strength value of 0 means no
+sharpening or sharpening feature disabled.
+It works on a region of pixels depending on the tap size. The coefficients
+are used to generate an alpha value which is used to blend the sharpened
+image to original image.
+ 
+Middleware MR link: https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3665
+IGT patchwork link: https://patchwork.freedesktop.org/series/130218/
 
-== Summary ==
+Continuing discussions from:  https://patchwork.freedesktop.org/series/129888/
 
-CI Bug Log - changes from xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8_BAT -> xe-pw-150958v8_BAT
-====================================================
+Got ack from kwin maintainer on the UAPI patch.
 
-Summary
--------
+Nemesa Garg (10):
+  drm/drm_crtc: Introduce sharpness strength property
+  drm/i915/display: Introduce HAS_CASF for sharpness support
+  drm/i915/display: Add strength and winsize register
+  drm/i915/display: Add filter lut values
+  drm/i915/display: Compute the scaler coefficients
+  drm/i915/display: Add and compute scaler parameter
+  drm/i915/display: Configure the second scaler
+  drm/i915/display: Set and get the casf config
+  drm/i915/display: Enable/disable casf
+  drm/i915/display: Expose sharpness strength property
 
-  **SUCCESS**
+ drivers/gpu/drm/drm_atomic_uapi.c             |   4 +
+ drivers/gpu/drm/drm_crtc.c                    |  35 +++
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_casf.c     | 293 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_casf.h     |  24 ++
+ .../gpu/drm/i915/display/intel_casf_regs.h    |  33 ++
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   3 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  37 ++-
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |  15 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  90 +++++-
+ drivers/gpu/drm/i915/display/skl_scaler.h     |   2 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ include/drm/drm_crtc.h                        |  18 ++
+ 15 files changed, 551 insertions(+), 13 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf_regs.h
 
-  No regressions found.
+-- 
+2.25.1
 
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-150958v8_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@sriov_basic@enable-vfs-autoprobe-off:
-    - bat-bmg-2:          [SKIP][1] ([Intel XE#1091] / [Intel XE#2849]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
-    - bat-bmg-1:          [SKIP][3] ([Intel XE#1091] / [Intel XE#2849]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-off.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-off.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-bmg-1:          [SKIP][5] ([Intel XE#3342]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8/bat-bmg-1/igt@xe_sriov_flr@flr-vf1-clear.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/bat-bmg-1/igt@xe_sriov_flr@flr-vf1-clear.html
-    - bat-bmg-2:          [SKIP][7] ([Intel XE#3342]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8/bat-bmg-2/igt@xe_sriov_flr@flr-vf1-clear.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/bat-bmg-2/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][9] ([Intel XE#5783]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
-  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8 -> xe-pw-150958v8
-
-  IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8: 8463eb0394270c7f78c091aa5f5c7af0abf6fdf8
-  xe-pw-150958v8: 150958v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/index.html
-
---===============8320984332158594728==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Optimize panel power-on wait time (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150958/">https://patchwork.freedesktop.org/series/150958/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8_BAT -&gt; xe-pw-150958v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-150958v8_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">PASS</a> +1 other test pass</li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-off.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8/bat-bmg-1/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/bat-bmg-1/igt@xe_sriov_flr@flr-vf1-clear.html">PASS</a></li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8/bat-bmg-2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/bat-bmg-2/igt@xe_sriov_flr@flr-vf1-clear.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150958v8/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8 -&gt; xe-pw-150958v8</li>
-</ul>
-<p>IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3512-8463eb0394270c7f78c091aa5f5c7af0abf6fdf8: 8463eb0394270c7f78c091aa5f5c7af0abf6fdf8<br />
-  xe-pw-150958v8: 150958v8</p>
-
-</body>
-</html>
-
---===============8320984332158594728==--
