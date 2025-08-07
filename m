@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AEE0C87FCF
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 20:39:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B425C87FCF
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 20:49:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C533710E8B5;
-	Thu,  7 Aug 2025 20:39:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nCMe2RNg";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71F5A10E48E
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 20:39:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754599174; x=1786135174;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dpgkisnaYt/7cS5esFfM72QzLr8iPDZsOODorQ2YSyw=;
- b=nCMe2RNgvL33w1nWn5EVkFMLqVB2h2AkjIeWE+u2CgSarR8B2ofdiN5l
- dvyMgvXqifUCN7QRb5xFelmIV/t443ogfiOQb9JJ+sSXodVXKIbq5mOUK
- eYDyaVERMgQ6ZUTBQVhtT0fUdUBQbkDfvQWpPTB/m+86ltCyPQU+55ykD
- JOGZDgTKiXgJuH7S/sGUfJWxJ6qrqvLGmrQ+/oMqqapsVi8ahT7DiRA1j
- Y8doQtABDCoAPPOd98AOEujdQHMIC18qkJCcKlNurYUGN2VHBnWoUt9y/
- 7/nRFqKed/+6iLw/5YaENrOsBA8kefPQcZNvxTQ/i00X18hy5Tned0lwn A==;
-X-CSE-ConnectionGUID: JZ4ECXyOQXKjGzprkvfCaQ==
-X-CSE-MsgGUID: VOOYBxgLRdKh7BuAxq4luA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="60575141"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="60575141"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 13:39:33 -0700
-X-CSE-ConnectionGUID: WcvtB+n1S625j+PqUXV13A==
-X-CSE-MsgGUID: gopOCo/jTOCZfKnQ4xPSqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="164380336"
-Received: from dut136arlu.fm.intel.com ([10.105.23.75])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 13:39:34 -0700
-From: stuartsummers <stuart.summers@intel.com>
-To: 
-Cc: matthew.brost@intel.com, farah.kassabri@intel.com,
- intel-xe@lists.freedesktop.org, stuartsummers <stuart.summers@intel.com>
-Subject: [PATCH 0/8] Add TLB invalidation abstraction
-Date: Thu,  7 Aug 2025 20:39:24 +0000
-Message-Id: <20250807203932.103341-1-stuart.summers@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0113F10E48E;
+	Thu,  7 Aug 2025 20:49:12 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C44910E012;
+ Thu,  7 Aug 2025 20:49:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4214602197605445310=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_TLB_invalidation_abstra?=
+ =?utf-8?q?ction_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "stuartsummers" <stuart.summers@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 07 Aug 2025 20:49:10 -0000
+Message-ID: <175459975063.220878.16110911860935186839@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250807193649.55399-1-stuart.summers@intel.com>
+In-Reply-To: <20250807193649.55399-1-stuart.summers@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,86 +36,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a new collection of patches from Matt that has
-been floating around internally and on the mailing list.
-The goal here is to abstract the actual mechanism of
-the invalidation from the higher level invalidation triggers
-(like page table updates).
+--===============4214602197605445310==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Most of these were brought in unmodified by Matt, but
-I've done some minor rebase work here and there and
-added my signoff where those rebases seemed a little
-more extensive.
+== Series Details ==
 
-Tested on BMG locally.
+Series: Add TLB invalidation abstraction (rev4)
+URL   : https://patchwork.freedesktop.org/series/152022/
+State : success
 
-v5: Make sure seqno_lock covers the prep and send in
-    the later patches (Matt)
-v4: Replace CT lock with seqno_lock
-v3: Minor spelling fixes and added R-B's per updates on
-    on the mailing list
-v2: Start the series with a new patch to drop the
-    explicit CT lock (Matt)
-    Pull in the remaining patches from [1]
+== Summary ==
 
-[1] https://patchwork.freedesktop.org/series/151670/#rev1
+CI Bug Log - changes from xe-3515-76741379fba333222be8a15bebf1e659eb84088a_BAT -> xe-pw-152022v4_BAT
+====================================================
 
-Matthew Brost (7):
-  drm/xe: s/tlb_invalidation/tlb_inval
-  drm/xe: Add xe_tlb_inval structure
-  drm/xe: Add xe_gt_tlb_invalidation_done_handler
-  drm/xe: Decouple TLB invalidations from GT
-  drm/xe: Prep TLB invalidation fence before sending
-  drm/xe: Add helpers to send TLB invalidations
-  drm/xe: Split TLB invalidation code in frontend and backend
+Summary
+-------
 
-stuartsummers (1):
-  drm/xe: Move explicit CT lock in TLB invalidation sequence
+  **SUCCESS**
 
- drivers/gpu/drm/xe/Makefile                   |   5 +-
- drivers/gpu/drm/xe/xe_device_types.h          |   4 +-
- drivers/gpu/drm/xe/xe_exec_queue.c            |   2 +-
- drivers/gpu/drm/xe/xe_ggtt.c                  |   4 +-
- drivers/gpu/drm/xe/xe_gt.c                    |   8 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c          |   1 -
- drivers/gpu/drm/xe/xe_gt_tlb_inval_job.h      |  34 -
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   | 604 ------------------
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h   |  40 --
- .../gpu/drm/xe/xe_gt_tlb_invalidation_types.h |  32 -
- drivers/gpu/drm/xe/xe_gt_types.h              |  33 +-
- drivers/gpu/drm/xe/xe_guc_ct.c                |   8 +-
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c         | 242 +++++++
- drivers/gpu/drm/xe/xe_guc_tlb_inval.h         |  19 +
- drivers/gpu/drm/xe/xe_lmtt.c                  |  12 +-
- drivers/gpu/drm/xe/xe_migrate.h               |  10 +-
- drivers/gpu/drm/xe/xe_pci.c                   |   6 +-
- drivers/gpu/drm/xe/xe_pci_types.h             |   2 +-
- drivers/gpu/drm/xe/xe_pt.c                    |  63 +-
- drivers/gpu/drm/xe/xe_svm.c                   |   3 +-
- drivers/gpu/drm/xe/xe_tlb_inval.c             | 419 ++++++++++++
- drivers/gpu/drm/xe/xe_tlb_inval.h             |  46 ++
- ..._gt_tlb_inval_job.c => xe_tlb_inval_job.c} | 154 +++--
- drivers/gpu/drm/xe/xe_tlb_inval_job.h         |  33 +
- drivers/gpu/drm/xe/xe_tlb_inval_types.h       | 130 ++++
- drivers/gpu/drm/xe/xe_trace.h                 |  24 +-
- drivers/gpu/drm/xe/xe_vm.c                    |  66 +-
- drivers/gpu/drm/xe/xe_vm.h                    |   4 +-
- 28 files changed, 1083 insertions(+), 925 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_inval_job.h
- delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
- delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
- delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_tlb_inval.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_tlb_inval.h
- create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval.c
- create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval.h
- rename drivers/gpu/drm/xe/{xe_gt_tlb_inval_job.c => xe_tlb_inval_job.c} (50%)
- create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval_job.h
- create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval_types.h
+  No regressions found.
 
--- 
-2.34.1
+  
 
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152022v4_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3515-76741379fba333222be8a15bebf1e659eb84088a -> xe-pw-152022v4
+
+  IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3515-76741379fba333222be8a15bebf1e659eb84088a: 76741379fba333222be8a15bebf1e659eb84088a
+  xe-pw-152022v4: 152022v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v4/index.html
+
+--===============4214602197605445310==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add TLB invalidation abstraction (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152022/">https://patchwork.freedesktop.org/series/152022/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3515-76741379fba333222be8a15bebf1e659eb84088a_BAT -&gt; xe-pw-152022v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152022v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3515-76741379fba333222be8a15bebf1e659eb84088a -&gt; xe-pw-152022v4</li>
+</ul>
+<p>IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3515-76741379fba333222be8a15bebf1e659eb84088a: 76741379fba333222be8a15bebf1e659eb84088a<br />
+  xe-pw-152022v4: 152022v4</p>
+
+</body>
+</html>
+
+--===============4214602197605445310==--
