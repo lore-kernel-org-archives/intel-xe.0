@@ -4,60 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5761AC87FCF
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 19:14:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FABEC87FCA
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 19:36:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCAB10E490;
-	Thu,  7 Aug 2025 19:14:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B03A810E48D;
+	Thu,  7 Aug 2025 19:36:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VW1IW5PB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GbsuPzCt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB0CF10E490
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 19:14:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1732A10E48D
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 19:36:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754594043; x=1786130043;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=sGz2ipXndUQ5T360LzDkxvtuOy3+lzIyo5SP6j0WLjA=;
- b=VW1IW5PBIbTnrRp49MEHqkxkBH2SDbU4P+RpG1mFJkeQ3Lyeqrl9SZf+
- W1bkc6P50U7Ra2dNDhnDPLains+KlK0MHXm0VQti7exwJRLLYjq6FTznR
- 9q+J0AfHZMhgHZ1UdjP3Gu7QThpfOViUhXEOhslq/hXOPskbBt9suZvxR
- dQiJV5S7M8BCqarZ8BnpBukoEgwwtSGbEq32KbWWOg2bbEAqyRmkDACEZ
- UcR5zhfXT7evOJNpPMoNeJ1jAmurtQgvzu2awDRD1Y0/hAcEXpPJzjMhp
- RxvqRbE7yZqb/c4KhpBbCqeDW/N7FmgbWrYMDp4Xxa7EKMwMxmNTFm8KJ w==;
-X-CSE-ConnectionGUID: tRF3FLzPTKufXrZssGudXg==
-X-CSE-MsgGUID: nsJRKyr9SMCGCeprBESTcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="57082346"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="57082346"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 12:14:03 -0700
-X-CSE-ConnectionGUID: m4WzzwB5TMeotmbQOeQAjw==
-X-CSE-MsgGUID: u00yTYCeRFuqPwQ6SUEnwg==
+ t=1754595413; x=1786131413;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=zIIXh8AbyB9t1Rd83j3plz8IQ21mVIBl56uP1ZZXGMc=;
+ b=GbsuPzCte6BueIGiHc5d5vI6hf6mxt1m10wErD3/6bdQiZglKzqj4sCZ
+ /UQqlpGE384VBDR6QI1gvsO1HDkAel7my1ut/yiRnqTdTMSVrlbIqcP3x
+ YDAijQg/Fb53ehMTfkgLPL44Igbs4agWQOvR1lLpPlyW1YMzJhgKJr6IM
+ hEA8T0giIuhvuafCSblxWsHxycKr48nvJSLKUu6MGj581SbjRIo4wtWyj
+ GoyPAjYqiu1tTdrmvvR/0Xae09kkvewVDIMPHwEkXCV3HHCkh0p0oKRdm
+ T5YB4Gax1noblMqaxm62jSfpd6aorn/z+5iwjTLX+H5fsr+iN5nVYjsfQ g==;
+X-CSE-ConnectionGUID: 8cXTX6mhTxGDWhjS0PaT8Q==
+X-CSE-MsgGUID: WeThlSpeQUeSMvXYVjZaQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56842543"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="56842543"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 12:36:52 -0700
+X-CSE-ConnectionGUID: t2P/pYQgSSeZGsCT9roElQ==
+X-CSE-MsgGUID: +2FsiWVORfSHARxmGnpP8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="165155383"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.121])
- ([10.245.245.121])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 12:14:01 -0700
-Message-ID: <06cb2b34897415e574a7c55b54757000958cdcee.camel@linux.intel.com>
-Subject: Re: [PATCH v2] drm/xe: Defer buffer object shrinker write-backs and
- GPU waits
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: melvyn <melvyn2@dnsense.pub>, Summers Stuart <stuart.summers@intel.com>
-Date: Thu, 07 Aug 2025 21:13:59 +0200
-In-Reply-To: <3e90708318a368704a8aa7aa89682fb3743d7f3f.camel@linux.intel.com>
-References: <20250805074842.11359-1-thomas.hellstrom@linux.intel.com>
- <c4346dd6-ec12-46cc-93c2-7bc3aa16c6c4@intel.com>
- <3e90708318a368704a8aa7aa89682fb3743d7f3f.camel@linux.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="202308339"
+Received: from dut136arlu.fm.intel.com ([10.105.23.75])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 12:36:51 -0700
+From: stuartsummers <stuart.summers@intel.com>
+To: 
+Cc: matthew.brost@intel.com, farah.kassabri@intel.com,
+ intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH 4/8] drm/xe: Add xe_gt_tlb_invalidation_done_handler
+Date: Thu,  7 Aug 2025 19:36:45 +0000
+Message-Id: <20250807193649.55399-5-stuart.summers@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250807193649.55399-1-stuart.summers@intel.com>
+References: <20250807193649.55399-1-stuart.summers@intel.com>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,192 +67,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-08-05 at 18:27 +0200, Thomas Hellstr=C3=B6m wrote:
-> On Tue, 2025-08-05 at 14:40 +0100, Matthew Auld wrote:
-> > On 05/08/2025 08:48, Thomas Hellstr=C3=B6m wrote:
-> > > When the xe buffer-object shrinker allows GPU waits and write-
-> > > back,
-> > > (typically from kswapd), perform multiple passes, skipping
-> > > subsequent passes if the shrinker number of scanned objects
-> > > target
-> > > is reached.
-> > >=20
-> > > 1) Without GPU waits and write-back
-> > > 2) Without write-back
-> > > 3) With both GPU-waits and write-back
-> > >=20
-> > > This is to avoid stalls and costly write- and readbacks unless
-> > > they
-> > > are really necessary.
-> > >=20
-> > > v2:
-> > > - Don't test for scan completion twice. (Stuart Summers)
-> > > - Update tags.
-> > >=20
-> > > Reported-by: melvyn <melvyn2@dnsense.pub>
-> > > Closes:
-> > > https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5557
-> > > Cc: Summers Stuart <stuart.summers@intel.com>
-> > > Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
-> > > Cc: <stable@vger.kernel.org> # v6.15+
-> > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > > =C2=A0 drivers/gpu/drm/xe/xe_shrinker.c | 51
-> > > +++++++++++++++++++++++++++++---
-> > > =C2=A0 1 file changed, 47 insertions(+), 4 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
-> > > b/drivers/gpu/drm/xe/xe_shrinker.c
-> > > index 1c3c04d52f55..90244fe59b59 100644
-> > > --- a/drivers/gpu/drm/xe/xe_shrinker.c
-> > > +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-> > > @@ -54,10 +54,10 @@ xe_shrinker_mod_pages(struct xe_shrinker
-> > > *shrinker, long shrinkable, long purgea
-> > > =C2=A0=C2=A0	write_unlock(&shrinker->lock);
-> > > =C2=A0 }
-> > > =C2=A0=20
-> > > -static s64 xe_shrinker_walk(struct xe_device *xe,
-> > > -			=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
-> > > -			=C2=A0=C2=A0=C2=A0 const struct xe_bo_shrink_flags
-> > > flags,
-> > > -			=C2=A0=C2=A0=C2=A0 unsigned long to_scan, unsigned long
-> > > *scanned)
-> > > +static s64 __xe_shrinker_walk(struct xe_device *xe,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct xe_bo_shrink_flags
-> > > flags,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long to_scan, unsigned
-> > > long
-> > > *scanned)
-> > > =C2=A0 {
-> > > =C2=A0=C2=A0	unsigned int mem_type;
-> > > =C2=A0=C2=A0	s64 freed =3D 0, lret;
-> > > @@ -93,6 +93,48 @@ static s64 xe_shrinker_walk(struct xe_device
-> > > *xe,
-> > > =C2=A0=C2=A0	return freed;
-> > > =C2=A0 }
-> > > =C2=A0=20
-> > > +/*
-> > > + * Try shrinking idle objects without writeback first, then if
-> > > not
-> > > sufficient,
-> > > + * try also non-idle objects and finally if that's not
-> > > sufficient
-> > > either,
-> > > + * add writeback. This avoids stalls and explicit writebacks
-> > > with
-> > > light or
-> > > + * moderate memory pressure.
-> >=20
-> > Just one question here, with writeback=3Dfalse it doesn't really
-> > influence=20
-> > which objects are chosen for shrinking, unlike with no_wait_gpu,
-> > right?=20
-> > Will having another pass just with writeback=3Dtrue yield anything=20
-> > different, assuming here that the previous two passes would have
-> > already=20
-> > hoovered ~everything up that was a possible candidate, so this pass
-> > won't really find anything in practice? If so, does that also mean
-> > we
-> > never really end up using the writeback=3Dtrue behaviour any more?
->=20
-> Good point.
->=20
-> The assumption is that if allocating shmem backing-store fails during
-> shrinking, we'd see an -ENOMEM and fail our target, and the next pass
-> with writeback would help avoiding that.
->=20
-> Ofc that requires that a shmem_read_folio() from within reclaim
-> returns
-> an ERR_PTR(-ENOMEM) if the kernel reserves are depleted rather than
-> to
-> invoke the OOM killer. I should perhaps test that.
+From: Matthew Brost <matthew.brost@intel.com>
 
-So for reference I tested allocing pages from a loop with
-__GFP_RETRY_MAYFAIl | __GFP_NOWARN from reclaim (on each shrinker scan)
-until I received a failure, (which is the GFP flags we use for shmem
-page allocation), and then freed them again. That worked and no OOM
-killer was invoked.
+Decouple GT TLB seqno handling from G2H handler.
 
-So this makes me more confident in merging v2. We need to keep an eye
-on reports for unexpected OOM kills, though.
+v2:
+ - Add kernel doc
 
-/Thomas
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_tlb_inval.c | 47 ++++++++++++++++++----------
+ 1 file changed, 30 insertions(+), 17 deletions(-)
 
-
->=20
-> Other options would ofc be to include the writeback in pass 2, which
-> would be similar to what the i915 shrinker does.
->=20
-> Thoughts?
->=20
-> Thanks,
-> Thomas
->=20
->=20
->=20
-> >=20
-> > > + */
-> > > +static s64 xe_shrinker_walk(struct xe_device *xe,
-> > > +			=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
-> > > +			=C2=A0=C2=A0=C2=A0 const struct xe_bo_shrink_flags
-> > > flags,
-> > > +			=C2=A0=C2=A0=C2=A0 unsigned long to_scan, unsigned long
-> > > *scanned)
-> > > +{
-> > > +	bool no_wait_gpu =3D true;
-> > > +	struct xe_bo_shrink_flags save_flags =3D flags;
-> > > +	s64 lret, freed;
-> > > +
-> > > +	swap(no_wait_gpu, ctx->no_wait_gpu);
-> > > +	save_flags.writeback =3D false;
-> > > +	lret =3D __xe_shrinker_walk(xe, ctx, save_flags, to_scan,
-> > > scanned);
-> > > +	swap(no_wait_gpu, ctx->no_wait_gpu);
-> > > +	if (lret < 0 || *scanned >=3D to_scan)
-> > > +		return lret;
-> > > +
-> > > +	freed =3D lret;
-> > > +	if (!ctx->no_wait_gpu) {
-> > > +		lret =3D __xe_shrinker_walk(xe, ctx, save_flags,
-> > > to_scan, scanned);
-> > > +		if (lret < 0)
-> > > +			return lret;
-> > > +		freed +=3D lret;
-> > > +		if (*scanned >=3D to_scan)
-> > > +			return freed;
-> > > +	}
-> > > +
-> > > +	if (flags.writeback) {
-> > > +		lret =3D __xe_shrinker_walk(xe, ctx, flags,
-> > > to_scan,
-> > > scanned);
-> > > +		if (lret < 0)
-> > > +			return lret;
-> > > +		freed +=3D lret;
-> > > +	}
-> > > +
-> > > +	return freed;
-> > > +}
-> > > +
-> > > =C2=A0 static unsigned long
-> > > =C2=A0 xe_shrinker_count(struct shrinker *shrink, struct
-> > > shrink_control
-> > > *sc)
-> > > =C2=A0 {
-> > > @@ -199,6 +241,7 @@ static unsigned long xe_shrinker_scan(struct
-> > > shrinker *shrink, struct shrink_con
-> > > =C2=A0=C2=A0		runtime_pm =3D
-> > > xe_shrinker_runtime_pm_get(shrinker,
-> > > true, 0, can_backup);
-> > > =C2=A0=20
-> > > =C2=A0=C2=A0	shrink_flags.purge =3D false;
-> > > +
-> > > =C2=A0=C2=A0	lret =3D xe_shrinker_walk(shrinker->xe, &ctx,
-> > > shrink_flags,
-> > > =C2=A0=C2=A0				nr_to_scan, &nr_scanned);
-> > > =C2=A0=C2=A0	if (lret >=3D 0)
-> >=20
->=20
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_inval.c b/drivers/gpu/drm/xe/xe_gt_tlb_inval.c
+index 5eae60823fb6..ecbfcc3bf1df 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_inval.c
+@@ -494,27 +494,18 @@ void xe_gt_tlb_inval_vm(struct xe_gt *gt, struct xe_vm *vm)
+ }
+ 
+ /**
+- * xe_guc_tlb_inval_done_handler - TLB invalidation done handler
+- * @guc: guc
+- * @msg: message indicating TLB invalidation done
+- * @len: length of message
+- *
+- * Parse seqno of TLB invalidation, wake any waiters for seqno, and signal any
+- * invalidation fences for seqno. Algorithm for this depends on seqno being
+- * received in-order and asserts this assumption.
++ * xe_gt_tlb_inval_done_handler - GT TLB invalidation done handler
++ * @gt: gt
++ * @seqno: seqno of invalidation that is done
+  *
+- * Return: 0 on success, -EPROTO for malformed messages.
++ * Update recv seqno, signal any GT TLB invalidation fences, and restart TDR
+  */
+-int xe_guc_tlb_inval_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
++static void xe_gt_tlb_inval_done_handler(struct xe_gt *gt, int seqno)
+ {
+-	struct xe_gt *gt = guc_to_gt(guc);
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_gt_tlb_inval_fence *fence, *next;
+ 	unsigned long flags;
+ 
+-	if (unlikely(len != 1))
+-		return -EPROTO;
+-
+ 	/*
+ 	 * This can also be run both directly from the IRQ handler and also in
+ 	 * process_g2h_msg(). Only one may process any individual CT message,
+@@ -531,12 +522,12 @@ int xe_guc_tlb_inval_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 	 * process_g2h_msg().
+ 	 */
+ 	spin_lock_irqsave(&gt->tlb_inval.pending_lock, flags);
+-	if (tlb_inval_seqno_past(gt, msg[0])) {
++	if (tlb_inval_seqno_past(gt, seqno)) {
+ 		spin_unlock_irqrestore(&gt->tlb_inval.pending_lock, flags);
+-		return 0;
++		return;
+ 	}
+ 
+-	WRITE_ONCE(gt->tlb_inval.seqno_recv, msg[0]);
++	WRITE_ONCE(gt->tlb_inval.seqno_recv, seqno);
+ 
+ 	list_for_each_entry_safe(fence, next,
+ 				 &gt->tlb_inval.pending_fences, link) {
+@@ -556,6 +547,28 @@ int xe_guc_tlb_inval_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 		cancel_delayed_work(&gt->tlb_inval.fence_tdr);
+ 
+ 	spin_unlock_irqrestore(&gt->tlb_inval.pending_lock, flags);
++}
++
++/**
++ * xe_guc_tlb_inval_done_handler - TLB invalidation done handler
++ * @guc: guc
++ * @msg: message indicating TLB invalidation done
++ * @len: length of message
++ *
++ * Parse seqno of TLB invalidation, wake any waiters for seqno, and signal any
++ * invalidation fences for seqno. Algorithm for this depends on seqno being
++ * received in-order and asserts this assumption.
++ *
++ * Return: 0 on success, -EPROTO for malformed messages.
++ */
++int xe_guc_tlb_inval_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++
++	if (unlikely(len != 1))
++		return -EPROTO;
++
++	xe_gt_tlb_inval_done_handler(gt, msg[0]);
+ 
+ 	return 0;
+ }
+-- 
+2.34.1
 
