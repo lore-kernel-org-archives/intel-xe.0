@@ -4,191 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B41DC87FCF
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 15:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8668DC87FCA
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 15:14:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7ABD10E878;
-	Thu,  7 Aug 2025 15:08:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA3410E178;
+	Thu,  7 Aug 2025 15:14:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RlfSFBxP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gcA4DpCw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A39110E878
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 15:08:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04DE110E178
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 15:14:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754579317; x=1786115317;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=6lZVHYPki2uHdn+Mtmk3gPP2TZrykiYKSrEX5k6Dj5g=;
- b=RlfSFBxPLNZ6sNf9svyNBbM5LdnmhIBjR4zTq5jgnJ+EFx0v/8ytRClP
- 2BWQ3An/g2wb51yGn0tUzXm2sFDlA9K1zlpVmC++RONg652zyuNTzP77V
- g/xaqZDsFeHfU5QCcMsLG5X57c4pwOgkBzgCSUV1x93qQfxSR5vKAUdCK
- Kumi1iOnIkEAnYE2R2YPXy92rzS+S9ao5g8ZPewhoUAv+hvsKUkhgthPK
- sJ1KC5+42z0DoCjkZ8PKOGBCJwVOv+EzdrJ7vQAN76+abB/BIe0hNnQ3O
- dhVc2TwXxkFpjVX4cKyHTzD3xbQPVLcOLUInXYjy9FaL2X5QxVHXLjHHz A==;
-X-CSE-ConnectionGUID: ub9KrxGlQsG4SCux2HDTDQ==
-X-CSE-MsgGUID: Z4nMMZxAQSSGlZwRanpeiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="67509457"
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="67509457"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 08:08:36 -0700
-X-CSE-ConnectionGUID: 1bfiYbVyR9a13yUlkH2o+A==
-X-CSE-MsgGUID: 0szk3WkhTJS127CDFeK64Q==
+ t=1754579650; x=1786115650;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cxtFAjjqWEuLQOOAdVkpQNGG8kBEBADKsQS87R5xPuU=;
+ b=gcA4DpCws5cdXi1Rn8m2oKRSACwvrrlzSv/h5fXJ0pyIwt2sPoZlyMXj
+ 1PVmD+i0BDTkitL12RBtfrtLyW1PwOOB83h2Q1j7qlEeXep8v1/hsH6Rk
+ ltPUicost+FL1ZO7AU/OVFZG1AJdv8PDXFWWDZ/5sZHTDK4XZPUF96ztD
+ NaWMG2oWFi5qkpmZQiwdNRF/SwtpgZ3b1j4oPv9zWbTG1nMndYTRflTuL
+ iflI+Py1MrcEFpq956bGBhG9FDPQSa5caxCV7WjLB68Q85CgSk0uhEpn1
+ JEIZsQfLABwxUU3cpF045SVXt+cVqvBEdsiC9Ud87/r1XTv7V6Uw2CfNR Q==;
+X-CSE-ConnectionGUID: /5LBB3xETBqm46odHiZQkw==
+X-CSE-MsgGUID: cFkoYhC7RbizKdcyxWNFWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56787648"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56787648"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 08:14:09 -0700
+X-CSE-ConnectionGUID: t5jw6rp8RkOG5jkVtStVqg==
+X-CSE-MsgGUID: /yBJHbLWQ2qaVObaRs0JOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="165440485"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 08:08:35 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 7 Aug 2025 08:08:34 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Thu, 7 Aug 2025 08:08:34 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (40.107.102.46)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 7 Aug 2025 08:08:34 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=frxf6Gn41eUvzhmJE1AGeyGgggOdCzDLJp/ie3EEu8xpmwrFhpuCktdSai4FglcCWNAQ8zDmXzmyihHn8JcjaCM/uPLfz9R2T3n5RRbKIt7TZqfdeZI/LhcYyB+u3xY9YtDPoXMMF6U6zUGzsyenzreLQdrhac3x1ToxkzGLLoUcClYuVJio8ECDG5mBcul6xCjlIsAinM87S9OrzM4qrcllMe86yi/raxJAGTSsrhwbcwWY/SvJnuuQ5vXEL2Rr9Z3BT9uM5trl7YEcx66iBNjks5pYEIG+9s5ASYlMMStKpRVX4/vAce1fT1fzy4Iwd3yAwNs7D9AUsAJdmkLx/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6lZVHYPki2uHdn+Mtmk3gPP2TZrykiYKSrEX5k6Dj5g=;
- b=BJ09a50fPtivTe/CdptQr1gqMjyWy7ycmyPjMuZ2k/v2E8CHdi/jelTyI7sqCHas7sfQNcOtjCtPMKcual8bWfrcSTX+ihvB5k6Y252CAYvPeWDBtlj8WPaqJDvCtgeDF9PEnjQv/chgPgKEpGJtRfto7U8kvBOtumYkfqfQi+W1aKGFfSlpR9gPWDqLAwVXRjSRXOE+Q4pxXra9Kz3OnfQuz51tOQH0UlJDmGzP+6HdcX4ehJyLCu7dcSoiGQ3BH/hRX2Kn6kWQcH5wR5nlr9aGjXXCX2siSjrdXqChtqbrhng1Y3F0COeoX6ciVGkPZmtb0vutpxXNwCYS6PioUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5573.namprd11.prod.outlook.com (2603:10b6:8:3b::7) by
- MW4PR11MB6786.namprd11.prod.outlook.com (2603:10b6:303:20b::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.20; Thu, 7 Aug
- 2025 15:08:32 +0000
-Received: from DM8PR11MB5573.namprd11.prod.outlook.com
- ([fe80::3f64:5280:3eb4:775b]) by DM8PR11MB5573.namprd11.prod.outlook.com
- ([fe80::3f64:5280:3eb4:775b%3]) with mapi id 15.20.9009.016; Thu, 7 Aug 2025
- 15:08:32 +0000
-From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "K V P, 
- Satyanarayana" <satyanarayana.k.v.p@intel.com>
-CC: "Brost, Matthew" <matthew.brost@intel.com>, "Harrison, John C"
- <john.c.harrison@intel.com>, "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>
-Subject: Re: [PATCH v4 1/1] drm/xe/vf: Refactor CCS save/restore to use
- default migration context
-Thread-Topic: [PATCH v4 1/1] drm/xe/vf: Refactor CCS save/restore to use
- default migration context
-Thread-Index: AQHcB4v38WTmksTUcEOxoOQxS8lTsLRXSywA
-Date: Thu, 7 Aug 2025 15:08:31 +0000
-Message-ID: <05a444104af42707fc7dd0b3cf2ff7f37c22e412.camel@intel.com>
-References: <20250807112740.2421-1-satyanarayana.k.v.p@intel.com>
- <20250807112740.2421-2-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250807112740.2421-2-satyanarayana.k.v.p@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5573:EE_|MW4PR11MB6786:EE_
-x-ms-office365-filtering-correlation-id: 1d5597e1-c44d-47e7-a98b-08ddd5c445eb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?cU5WODhVY0lOeWhpMkF1MitzOU5TOUU0a2FVZEhKdVBSTEJYQnd3Zk94bDY5?=
- =?utf-8?B?alpET2h1UVZIaDNtNnd2TjY3NGhwcnJPME1tYktnamcrZVUxbGtEcEVaVGhE?=
- =?utf-8?B?Q3ZYY0h2YlFTelRST0hNanVGRHhiV3JvbDhaeUFDcXlQOVpoUUZxOWhvZjRR?=
- =?utf-8?B?cXVjSEltMURkem9WYVZCMEdkZFR0VlhjOXpscXhEUXhiTTM3MkFaLzM1akhj?=
- =?utf-8?B?ZEhHdFJvTThkL2FKenhBa3dsbHR0akNtYmJjZUFSRU83NHNYSzdFalRmbnhh?=
- =?utf-8?B?M3V5dDl3SGY2TmJKaWV6Rm1rRXIyQi9ZbGMrYjJzZi83YnprWWNtWWVtazE2?=
- =?utf-8?B?WWZUUHZmS21vUjh3NTlnMXArTHMyS0x6UHRuY1c2T2ZuVGFLSVFiQVd2clBw?=
- =?utf-8?B?TU5DUzRGWmRmMGMwcmdjOVh3M2QvMmZsYnpBMHA0TWJJTXgwNVptWVQwbTRR?=
- =?utf-8?B?blhCcVExQlJ3WjZmSU1wRFlPNW9XTS9KRVBjelF0ckdHTmxCNTdKVXJrc0Rm?=
- =?utf-8?B?V3BUa2VPTHAzMzFtYjZlTXdxWHJ4bEd5bzdPODBGdlY4NWVHN0hhVHJGWXRQ?=
- =?utf-8?B?dUswdVVFeS90QjlFRmh6QitDd1l6RElHejVUT3hqVVEybVRKeG5qTi8xVFYx?=
- =?utf-8?B?N0lJU2orWmFNWE5OOHlOQzZCT3pnRnM4b09HYW1HSS9oWk1GT2xIUGFVUlBu?=
- =?utf-8?B?bURyT1pKU2ZNODUwYkFiaDQ5emdaanBxTXlBTFBrdmlZVG13OU0wYWZNcWNU?=
- =?utf-8?B?TkxHSXlQcUlYa1d5T2d3M1A3SDM1b0JRZDE3K1o1U1ZHMmd1NEJRUzRKQ3hJ?=
- =?utf-8?B?Y3BaYkhWTDRBMHpxbDM3Q3llUUtEaVBRcE14bDNOMWo4VkdTRkFQTTdqUHdO?=
- =?utf-8?B?OTQvMlBaUXVTdU9oKytIWmFaNWpOQXZremphenAzQXB1RjBOT1lBNGx4VGJD?=
- =?utf-8?B?MUFRbDdBTXcrVWFlM2Yvekgyb1krNjRRWFU5MXpYdUNEN1QxL0F0S0l0eEhK?=
- =?utf-8?B?NmFhU0RHUlRNL0o1MVV2dnVBdFhrTE9UWjdmRU4vdWdjRk92TW5pWGlDVnZ1?=
- =?utf-8?B?SzZmMCtBUXNKSHM0RDNCWlVRcXY5UWFSa2VTYWtJbzRaNXd0aDdkaW03cDhQ?=
- =?utf-8?B?QVU4NGJITEJGakJ4VDJuYWc0STBmK0FsdjYrR3NYaWJHUFhpMThXSTl4d2RM?=
- =?utf-8?B?T09kWTFMNkMyQWs0dkhteWpFT2ZRSy9IS0VheU9UNFhSd2FSMG41QWdRNlZW?=
- =?utf-8?B?THJ1UTBHcEw2d3RzVjdzeG1DWWVSaWlhOWNmR0pOb1N6RkxQekp5ZDVJVUFY?=
- =?utf-8?B?akVRMHlBVWt5TUgzdEhvSDBjZ3hzWTFSZUI5OFExK2NGWk9sNHhoS0gzYi80?=
- =?utf-8?B?M2Rua242UWZEQ3JQbm1xYXpNMk5TMXNFUEh5Vyt5bjNnd3hocVZtN25udzRW?=
- =?utf-8?B?cDJVblE0SEk0bEZyY0pDc2RZMFBtYlVVcUJQNzFJZHA1UFloQlpJcVpvbWYv?=
- =?utf-8?B?UE44eCsxUHg3djYrM3hOb0ZDV0pBcTk4M0hUVTVzdHJpZ3dtbk45Qnp3WXF3?=
- =?utf-8?B?bElkc2NaaTBJUnNvbndWRm1GbHNYWEx3d2N4WlpveEZGeXRxL2Z5cktwNk1z?=
- =?utf-8?B?QVpaRThDNzJBbUZ1OHUvZDZxQmNrd0VMbE9aWDlYa2NEQ3JBWitIUXdaMU9I?=
- =?utf-8?B?Qk1BOVZ1MEhrd1RDZSttOUh5dGNNSnJ5bld4UmNnY0Z0cGVGaXFjOGYvZ0Nm?=
- =?utf-8?B?NXVmdDlXclRMUzI1T2FWTytEb0dDRGRKZ2g0NU5Wazl2VHhTMmx4L2JicWlx?=
- =?utf-8?B?SEZIOThrQ0pJL0xSRmdUaU1yWFF1dzBUY3JxZVYyeVNrTUI5aHpYVjlyWlNM?=
- =?utf-8?B?bmxmeVJsNERHZVQ1cUNTU2wxL1lIZ2d2MkhMQmtLMG9UME9ucm04YWx5Ukhk?=
- =?utf-8?B?VFNZVlVVZktKNzZ6dno2QTIxdytBTkNqdHVWeXVxb2JlbEtrZmJRSU4wdTZY?=
- =?utf-8?Q?aBrCOnE4l3AQvyi+mLM7nAaq4A5Pis=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5573.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MU9DU2hEdnFzdEs3dlM1R1BaTGE0VCtKa3JNYmdBcEhYRCtHTHAwN1lDVmYx?=
- =?utf-8?B?enBVa2dTaVpkVGpCUlIySlFaRlBRMVZPTFpnZTRuN0QwenhrVS8vRzFPU3Ny?=
- =?utf-8?B?allmUzliY0FSMFdhNXMzTzlaY3ZWb3JWSDU1K2ZrM29FNDliRGFZd0pHOUZo?=
- =?utf-8?B?RWxTdkhzM3FzNCtHdDI3MWxJWmxCVlc5YTNJcnY4V2dDMWhnOVRhVkpYaXky?=
- =?utf-8?B?ZFFQc0dJTUNmMFJ0TTl0QklXYzYrbGJYZDl5Z0lOdjJxbjNnaUViejc0VGhI?=
- =?utf-8?B?VGN2c29MMEg2L0NlQlFDSlNUMzQ3SG5Hek83b1dMWHhJWmJmSWJtaUJPWHFx?=
- =?utf-8?B?amoyRGZYZHNIaE1JMUdPM3I4T0lkWnVhVDFrMXhoQ1JndUp1YjQ0NnMrNi9q?=
- =?utf-8?B?MjZrN05NbjJMUlJkcjdqbCtPZ2U3S0YxSGtwQXJhVDliWXBlVVRXMTVvM0ts?=
- =?utf-8?B?dGNPbVl0STBPRWJ6OFBLalNmY0dKQ3ZjbEdKWTNtM0s5clBSSlhvbkNRNFVQ?=
- =?utf-8?B?SkRFTHA5aUJiK2o5L2R0aDRVbkwxQk54TjNCeFhqVHh3enpBdy9sV0xISE5w?=
- =?utf-8?B?d0pVdXN2d2xPN3R6UFBLMTVxNmRlRXJWR3FHbUdMS1gyWHNhc0hVRGF3QkFC?=
- =?utf-8?B?a3h3ZFVwNHJGSkx4WXdBTUxFZm8zdTVRMWszMFJPMHlveFdWSzBRTUt0ODUx?=
- =?utf-8?B?dSszQldRenJVY1JxT3gzdUM5bXFhRmV2WGpNZDU1U2p5MUtOVHBhL1BEWjJS?=
- =?utf-8?B?cDNyeGx0QURPMGVNcEYybGhQZ0h1Qm1uMjcyMmxLcFFkd0g2UzJuZWpnUFJl?=
- =?utf-8?B?RllkZGxwQnRHUHJ4THNNWnJSaXFKSW56bVJteG9vQlRJbTZNOTBjaGpBUnBL?=
- =?utf-8?B?SW5pcTN6UlgxWFlCQUtnVy9KSHNRK25GbjZCM0U3ZlJwaytVclUzM1JudXhW?=
- =?utf-8?B?NG1kVmpnNlUzL2hMNDA0S3d1ZVVMb3VpRHlTUzR4dmkraHBRN28yV0tsMCsw?=
- =?utf-8?B?NEpmSUlwdzN4aFZHRGUybUo5V3NuaU1uNFA3bTRMZWx5QTcvUjJIRU5CYTJs?=
- =?utf-8?B?ejloOWpZZlNCcVZJbTFKWmk2WmRYVng4Wkw2K2lZUEtPazVuYmEwb1BVZnVl?=
- =?utf-8?B?bDE5Q3FCZlU1d1JmbHJWUCtLaWpXU3FqZmhFckJrc3VReWp4YUR4d0paNkhI?=
- =?utf-8?B?UVpLbTdseVlrN3ZmaUpOWVlMSzdJR2lwU0V2WjJmSzBpT2hScEpWTmxUd2pW?=
- =?utf-8?B?N0JXMlJob0RjbEQ3ZWMydlZxcWI3cFpLazQ5d2hiM3ZCMm0zMGpkaWJnSDZx?=
- =?utf-8?B?MWR6ZzlkNnZOcGkvMEtha2xHK3plek5oV2pqTHhyekFGZUdnYUVKZy9qOHNH?=
- =?utf-8?B?RnoxelpKRGpZSUV2SHUvR2ZDYXg2bllyQlBsSkltb1Z3disxV0h0bTJqSjEv?=
- =?utf-8?B?T01USk1QbWt0Y2xIc3Z2ODVwMmFKN3JleENBcUYwOGQ1RHBlTGF3a1N0QU9T?=
- =?utf-8?B?dWZoT3k3NXBWV0hvVWdoZHErakJYK0t5OVQreHduZVMwUEJpSi9sTVpYQ0pm?=
- =?utf-8?B?c0FKK05rbVFSY1lKam1kTTZkQWp0VCs4b2JDZ1lYdXY4aHZ2QjUwbFpMTmxv?=
- =?utf-8?B?d2U1MEFSc0xXbWI0elYyZ3NqdkV3Mk9KdmptRFM0S2M3SVRiYnVpN0hsUUNM?=
- =?utf-8?B?UXJxOWQzc1JaVzZMM3dBT1QxQVV4b0VpMkpLdkJFZldGbHdJa3hhTTYxMVpH?=
- =?utf-8?B?OTIrM2FWS0xHR3FpbHRhdzlCMEdMdVkyTXZyNXpMbDFWc0c4SmFmbzNVN25j?=
- =?utf-8?B?cmRUeHBpOWozSjhIcmxaSWZmcjdNYVdGTGg0akgrTk5NYVZ4SDBBNEJZMG9S?=
- =?utf-8?B?VURxczkvUHZXS0FTUHdieEJrTlpUTFJNSkZwSE9qaEpMZG9EcVptbWxrUVBZ?=
- =?utf-8?B?aEh2VGhxV3ltZ1orcmF6K1hhVjhsRlR0T0w5aVB5K2hYZW5jTXpTaStwaUdQ?=
- =?utf-8?B?TURCZFc3aUlxSVIwUmJrdUt1Tm9HaGVLQ0xZUkVwKzJoVzV2eG5URWVjWTNw?=
- =?utf-8?B?TGRoYWNXNDdrU3pCcUpKMmdab3Z1MjFmNEhWenpMUWsrejVEWWNhbG5XM1Fn?=
- =?utf-8?B?WXZoZEdHNVF5RTQrSXpKYS9oUko3NzJDZ1ZoTEllRWZoNU9pYjFNR0prRzl3?=
- =?utf-8?B?MXc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9D1A2E9559617742ABB7957F25C75058@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="195919237"
+Received: from unknown (HELO himal-Super-Server.iind.intel.com)
+ ([10.190.239.34])
+ by fmviesa001.fm.intel.com with ESMTP; 07 Aug 2025 08:14:07 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH] drm/xe: MADVISE SQUASH for
+ CI-v6_with_comments_addressed_gpuvm_changes
+Date: Thu,  7 Aug 2025 21:11:07 +0530
+Message-Id: <20250807154107.1692656-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5573.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d5597e1-c44d-47e7-a98b-08ddd5c445eb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2025 15:08:31.9495 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ezGA3awg97dfH27N+/SX4LVu2ErHmWL/IWpUpkxa8ga7CLS0k4O7OYhPbA+uEh9o+sCf5pQ7KK0Vjhr/+DpBSebllzQknB45wTXbqsd9GHw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6786
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -203,296 +66,3103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDI1LTA4LTA3IGF0IDE2OjU3ICswNTMwLCBTYXR5YW5hcmF5YW5hIEsgViBQIHdy
-b3RlOgo+IFByZXZpb3VzbHksIENDUyBzYXZlL3Jlc3RvcmUgb3BlcmF0aW9ucyBjcmVhdGVkIHNl
-cGFyYXRlIG1pZ3JhdGlvbgo+IGNvbnRleHRzIHdpdGggbmV3IFZNIG1lbW9yeSBhbGxvY2F0aW9u
-cywgcmVzdWx0aW5nIGluIHNpZ25pZmljYW50Cj4gb3ZlcmhlYWQuCj4gCj4gVGhpcyBjb21taXQg
-ZWxpbWluYXRlcyByZWR1bmRhbnQgY29udGV4dCBjcmVhdGlvbiByZXVzaW5nIHRoZSBkZWZhdWx0
-Cj4gbWlncmF0aW9uIGNvbnRleHQgYnkgcmVnaXN0ZXJpbmcgbmV3IGV4ZWN1dGlvbiBxdWV1ZXMg
-Zm9yIENDUyBzYXZlCj4gYW5kCj4gcmVzdG9yZSBvbiB0aGUgZXhpc3RpbmcgbWlncmF0ZSBWTS4K
-PiAKPiBTaWduZWQtb2ZmLWJ5OiBTYXR5YW5hcmF5YW5hIEsgViBQIDxzYXR5YW5hcmF5YW5hLmsu
-di5wQGludGVsLmNvbT4KPiBTdWdnZXN0ZWQtYnk6IE1hdHRoZXcgQnJvc3QgPG1hdHRoZXcuYnJv
-c3RAaW50ZWwuY29tPgo+IENjOiBNaWNoYWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGlu
-dGVsLmNvbT4KPiBDYzogSm9obiBIYXJyaXNvbiA8Sm9obi5DLkhhcnJpc29uQEludGVsLmNvbT4K
-PiBSZXZpZXdlZC1ieTogTWF0dGhldyBCcm9zdCA8bWF0dGhldy5icm9zdEBpbnRlbC5jb20+Cj4g
-UmV2aWV3ZWQtYnk6IFN0dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb20+Cj4g
-Cj4gLS0tCj4gVjMgLT4gVjQ6Cj4gLSBDcmVhdGVkIGEgbmV3IGhlbHBlciBmdW5jdGlvbiB0byBn
-ZXQgbHJjIGZyb20gcXVldSAoSm9obiBIYXJyaXNvbikKPiAtIFJlbmFtZSBxIHRvIG1pZ19xIGlu
-IHhlX3RpbGVfdmZfY2NzwqAgc3RydWN0dXJlIChKb2huIEhhcnJpc29uKQo+IC0gQ29ycmVjdGVk
-IGVycm9yIGhhbmRsaW5nIGluIHhlX3NyaW92X3ZmX2Njc19pbml0KCkgd2hlbgo+IGRldm1fYWRk
-X2FjdGlvbl9vcl9yZXNldCgpIHJldHVybnMgZXJyb3IuCj4gCj4gVjIgLT4gVjM6Cj4gLSBGaXhl
-ZCByZXZpZXcgY29tbWVudHMgKE1hdHRoZXcgQnJvc3QpLgo+IAo+IFYxIC0+IFYyOgo+IC0gRml4
-ZWQga2VybmVsLWRvYyBpc3N1ZXMgcmVwb3J0ZWQgYnkgcGF0Y2h3b3Jrcy4KPiAtLS0KPiDCoGRy
-aXZlcnMvZ3B1L2RybS94ZS94ZV9leGVjX3F1ZXVlLmPCoMKgwqDCoMKgwqDCoMKgIHwgMTEgKysr
-KysKPiDCoGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9leGVjX3F1ZXVlLmjCoMKgwqDCoMKgwqDCoMKg
-IHzCoCAxICsKPiDCoGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRlLmPCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIHwgMjEgKysrKystLS0tCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfbWlncmF0
-ZS5owqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMiArLQo+IMKgZHJpdmVycy9ncHUvZHJtL3hl
-L3hlX3BtLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMyArKwo+IMKgZHJp
-dmVycy9ncHUvZHJtL3hlL3hlX3NyaW92X3ZmX2Njcy5jwqDCoMKgwqDCoMKgIHwgNTEgKysrKysr
-KysrKysrLS0tLS0tLS0KPiAtLQo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX3NyaW92X3ZmX2Nj
-c190eXBlcy5oIHzCoCA2ICstLQo+IMKgNyBmaWxlcyBjaGFuZ2VkLCA1OSBpbnNlcnRpb25zKCsp
-LCAzNiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hl
-X2V4ZWNfcXVldWUuYwo+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2V4ZWNfcXVldWUuYwo+IGlu
-ZGV4IDZjMTc2MTgzZWQ1OC4uYmY1OTNlMGQzN2M1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS94ZS94ZV9leGVjX3F1ZXVlLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZXhl
-Y19xdWV1ZS5jCj4gQEAgLTc4OSw2ICs3ODksMTcgQEAgaW50IHhlX2V4ZWNfcXVldWVfZ2V0X3By
-b3BlcnR5X2lvY3RsKHN0cnVjdAo+IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKPiDCoMKg
-wqDCoMKgwqDCoMKgcmV0dXJuIHJldDsKPiDCoH0KPiDCoAo+ICsvKioKPiArICogeGVfZXhlY19x
-dWV1ZV9scmMoKSAtIEdldCB0aGUgTFJDIGZyb20gZXhlYyBxdWV1ZS4KCkNhbiB5b3UgYWRkIGEg
-cXVpY2sgbm90ZSBoZXJlIHRoYXQgdGhpcyBpcyBnZXR0aW5nIG9ubHkgdGhlIGZpcnN0IChvcgpw
-cmltYXJ5PykgTFJDIGZvciB0aGUgZXhlYyBxdWV1ZS4gSWYgd2UgaGF2ZSBwYXJhbGxlbCBMUkNz
-IGRlZmluZWQKaGVyZSwgaXQgd2lsbCBvbmx5IHRha2UgdGhlIGZpcnN0IGluIHRoZSBsaXN0LgoK
-VGhhbmtzLApTdHVhcnQKCj4gKyAqIEBxOiBUaGUgZXhlY19xdWV1ZS4KPiArICoKPiArICogUmV0
-dXJuOiBQb2ludGVyIHRvIExSQyBvbiBzdWNjZXNzLCBlcnJvciBvbiBmYWlsdXJlCj4gKyAqLwo+
-ICtzdHJ1Y3QgeGVfbHJjICp4ZV9leGVjX3F1ZXVlX2xyYyhzdHJ1Y3QgeGVfZXhlY19xdWV1ZSAq
-cSkKPiArewo+ICvCoMKgwqDCoMKgwqDCoHJldHVybiBxLT5scmNbMF07Cj4gK30KPiArCj4gwqAv
-KioKPiDCoCAqIHhlX2V4ZWNfcXVldWVfaXNfbHIoKSAtIFdoZXRoZXIgYW4gZXhlY19xdWV1ZSBp
-cyBsb25nLXJ1bm5pbmcKPiDCoCAqIEBxOiBUaGUgZXhlY19xdWV1ZQo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0veGUveGVfZXhlY19xdWV1ZS5oCj4gYi9kcml2ZXJzL2dwdS9kcm0veGUv
-eGVfZXhlY19xdWV1ZS5oCj4gaW5kZXggNGQ0MTZmMjMwMDFjLi4xNWVjODUyZTdmN2UgMTAwNjQ0
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2V4ZWNfcXVldWUuaAo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS94ZS94ZV9leGVjX3F1ZXVlLmgKPiBAQCAtOTQsNCArOTQsNSBAQCBpbnQgeGVf
-ZXhlY19xdWV1ZV9jb250ZXh0c19od3NwX3JlYmFzZShzdHJ1Y3QKPiB4ZV9leGVjX3F1ZXVlICpx
-LCB2b2lkICpzY3JhdGNoKTsKPiDCoAo+IMKgdm9pZCB4ZV9leGVjX3F1ZXVlX2pvYnNfcmluZ19y
-ZXN0b3JlKHN0cnVjdCB4ZV9leGVjX3F1ZXVlICpxKTsKPiDCoAo+ICtzdHJ1Y3QgeGVfbHJjICp4
-ZV9leGVjX3F1ZXVlX2xyYyhzdHJ1Y3QgeGVfZXhlY19xdWV1ZSAqcSk7Cj4gwqAjZW5kaWYKPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX21pZ3JhdGUuYwo+IGIvZHJpdmVycy9n
-cHUvZHJtL3hlL3hlX21pZ3JhdGUuYwo+IGluZGV4IDBmOTYzNmEwNjA4My4uMTgzNzg3NzgyYTZm
-IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRlLmMKPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0veGUveGVfbWlncmF0ZS5jCj4gQEAgLTk1MSw3ICs5NTEsNyBAQCBzdHJ1
-Y3QgZG1hX2ZlbmNlICp4ZV9taWdyYXRlX2NvcHkoc3RydWN0Cj4geGVfbWlncmF0ZSAqbSwKPiDC
-oH0KPiDCoAo+IMKgLyoqCj4gLSAqIHhlX2dldF9taWdyYXRlX2xyYygpIC0gR2V0IHRoZSBMUkMg
-ZnJvbSBtaWdyYXRlIGNvbnRleHQuCj4gKyAqIHhlX21pZ3JhdGVfbHJjKCkgLSBHZXQgdGhlIExS
-QyBmcm9tIG1pZ3JhdGUgY29udGV4dC4KPiDCoCAqIEBtaWdyYXRlOiBNaWdyYXRlIGNvbnRleHQu
-Cj4gwqAgKgo+IMKgICogUmV0dXJuOiBQb2ludGVyIHRvIExSQyBvbiBzdWNjZXNzLCBlcnJvciBv
-biBmYWlsdXJlCj4gQEAgLTk2MSwxNCArOTYxLDE1IEBAIHN0cnVjdCB4ZV9scmMgKnhlX21pZ3Jh
-dGVfbHJjKHN0cnVjdCB4ZV9taWdyYXRlCj4gKm1pZ3JhdGUpCj4gwqDCoMKgwqDCoMKgwqDCoHJl
-dHVybiBtaWdyYXRlLT5xLT5scmNbMF07Cj4gwqB9Cj4gwqAKPiAtc3RhdGljIGludCBlbWl0X2Zs
-dXNoX2ludmFsaWRhdGUoc3RydWN0IHhlX21pZ3JhdGUgKm0sIHUzMiAqZHcsIGludAo+IGksCj4g
-K3N0YXRpYyBpbnQgZW1pdF9mbHVzaF9pbnZhbGlkYXRlKHN0cnVjdCB4ZV9leGVjX3F1ZXVlICpx
-LCB1MzIgKmR3LAo+IGludCBpLAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdTMyIGZsYWdzKQo+IMKgewo+ICvCoMKgwqDC
-oMKgwqDCoHN0cnVjdCB4ZV9scmMgKmxyYyA9IHhlX2V4ZWNfcXVldWVfbHJjKHEpOwo+IMKgwqDC
-oMKgwqDCoMKgwqBkd1tpKytdID0gTUlfRkxVU0hfRFcgfCBNSV9JTlZBTElEQVRFX1RMQiB8Cj4g
-TUlfRkxVU0hfRFdfT1BfU1RPUkVEVyB8Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBNSV9GTFVTSF9JTU1fRFcgfCBmbGFnczsKPiAtwqDCoMKgwqDCoMKgwqBkd1tpKytdID0K
-PiBsb3dlcl8zMl9iaXRzKHhlX2xyY19zdGFydF9zZXFub19nZ3R0X2FkZHIoeGVfbWlncmF0ZV9s
-cmMobSkpKSB8Cj4gK8KgwqDCoMKgwqDCoMKgZHdbaSsrXSA9IGxvd2VyXzMyX2JpdHMoeGVfbHJj
-X3N0YXJ0X3NlcW5vX2dndHRfYWRkcihscmMpKSB8Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBNSV9GTFVTSF9EV19VU0VfR1RUOwo+IC3CoMKgwqDCoMKgwqDCoGR3W2krK10g
-PQo+IHVwcGVyXzMyX2JpdHMoeGVfbHJjX3N0YXJ0X3NlcW5vX2dndHRfYWRkcih4ZV9taWdyYXRl
-X2xyYyhtKSkpOwo+ICvCoMKgwqDCoMKgwqDCoGR3W2krK10gPSB1cHBlcl8zMl9iaXRzKHhlX2xy
-Y19zdGFydF9zZXFub19nZ3R0X2FkZHIobHJjKSk7Cj4gwqDCoMKgwqDCoMKgwqDCoGR3W2krK10g
-PSBNSV9OT09QOwo+IMKgwqDCoMKgwqDCoMKgwqBkd1tpKytdID0gTUlfTk9PUDsKPiDCoAo+IEBA
-IC05NzcsNyArOTc4LDggQEAgc3RhdGljIGludCBlbWl0X2ZsdXNoX2ludmFsaWRhdGUoc3RydWN0
-Cj4geGVfbWlncmF0ZSAqbSwgdTMyICpkdywgaW50IGksCj4gwqAKPiDCoC8qKgo+IMKgICogeGVf
-bWlncmF0ZV9jY3NfcndfY29weSgpIC0gQ29weSBjb250ZW50IG9mIFRUTSByZXNvdXJjZXMuCj4g
-LSAqIEBtOiBUaGUgbWlncmF0aW9uIGNvbnRleHQuCj4gKyAqIEB0aWxlOiBUaWxlIHdob3NlIG1p
-Z3JhdGlvbiBjb250ZXh0IHRvIGJlIHVzZWQuCj4gKyAqIEBxIDogRXhlY3V0aW9uIHRvIGJlIHVz
-ZWQgYWxvbmcgd2l0aCBtaWdyYXRpb24gY29udGV4dC4KPiDCoCAqIEBzcmNfYm86IFRoZSBidWZm
-ZXIgb2JqZWN0IEBzcmMgaXMgY3VycmVudGx5IGJvdW5kIHRvLgo+IMKgICogQHJlYWRfd3JpdGUg
-OiBDcmVhdGVzIEJCIGNvbW1hbmRzIGZvciBDQ1MgcmVhZC93cml0ZS4KPiDCoCAqCj4gQEAgLTk4
-OCw3ICs5OTAsNyBAQCBzdGF0aWMgaW50IGVtaXRfZmx1c2hfaW52YWxpZGF0ZShzdHJ1Y3QKPiB4
-ZV9taWdyYXRlICptLCB1MzIgKmR3LCBpbnQgaSwKPiDCoCAqCj4gwqAgKiBSZXR1cm46IDAgaWYg
-c3VjY2Vzc2Z1bCwgbmVnYXRpdmUgZXJyb3IgY29kZSBvbiBmYWlsdXJlLgo+IMKgICovCj4gLWlu
-dCB4ZV9taWdyYXRlX2Njc19yd19jb3B5KHN0cnVjdCB4ZV9taWdyYXRlICptLAo+ICtpbnQgeGVf
-bWlncmF0ZV9jY3NfcndfY29weShzdHJ1Y3QgeGVfdGlsZSAqdGlsZSwgc3RydWN0Cj4geGVfZXhl
-Y19xdWV1ZSAqcSwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIHN0cnVjdCB4ZV9ibyAqc3JjX2JvLAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZW51bSB4ZV9zcmlvdl92Zl9jY3NfcndfY3R4
-cyByZWFkX3dyaXRlKQo+IMKgCj4gQEAgLTk5Niw3ICs5OTgsOCBAQCBpbnQgeGVfbWlncmF0ZV9j
-Y3NfcndfY29weShzdHJ1Y3QgeGVfbWlncmF0ZSAqbSwKPiDCoMKgwqDCoMKgwqDCoMKgYm9vbCBz
-cmNfaXNfcGx0dCA9IHJlYWRfd3JpdGUgPT0gWEVfU1JJT1ZfVkZfQ0NTX1JFQURfQ1RYOwo+IMKg
-wqDCoMKgwqDCoMKgwqBib29sIGRzdF9pc19wbHR0ID0gcmVhZF93cml0ZSA9PSBYRV9TUklPVl9W
-Rl9DQ1NfV1JJVEVfQ1RYOwo+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgdHRtX3Jlc291cmNlICpz
-cmMgPSBzcmNfYm8tPnR0bS5yZXNvdXJjZTsKPiAtwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfZ3Qg
-Kmd0ID0gbS0+dGlsZS0+cHJpbWFyeV9ndDsKPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfbWln
-cmF0ZSAqbSA9IHRpbGUtPm1pZ3JhdGU7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHhlX2d0ICpn
-dCA9IHRpbGUtPnByaW1hcnlfZ3Q7Cj4gwqDCoMKgwqDCoMKgwqDCoHUzMiBiYXRjaF9zaXplLCBi
-YXRjaF9zaXplX2FsbG9jYXRlZDsKPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHhlX2RldmljZSAq
-eGUgPSBndF90b194ZShndCk7Cj4gwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV9yZXNfY3Vyc29y
-IHNyY19pdCwgY2NzX2l0Owo+IEBAIC0xMDc5LDExICsxMDgyLDExIEBAIGludCB4ZV9taWdyYXRl
-X2Njc19yd19jb3B5KHN0cnVjdCB4ZV9taWdyYXRlCj4gKm0sCj4gwqAKPiDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoGVtaXRfcHRlKG0sIGJiLCBjY3NfcHQsIGZhbHNlLCBmYWxzZSwg
-JmNjc19pdCwKPiBjY3Nfc2l6ZSwgc3JjKTsKPiDCoAo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqBiYi0+bGVuID0gZW1pdF9mbHVzaF9pbnZhbGlkYXRlKG0sIGJiLT5jcywgYmItPmxl
-biwKPiBmbHVzaF9mbGFncyk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGJiLT5s
-ZW4gPSBlbWl0X2ZsdXNoX2ludmFsaWRhdGUocSwgYmItPmNzLCBiYi0+bGVuLAo+IGZsdXNoX2Zs
-YWdzKTsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGZsdXNoX2ZsYWdzID0geGVf
-bWlncmF0ZV9jY3NfY29weShtLCBiYiwgc3JjX0wwX29mcywKPiBzcmNfaXNfcGx0dCwKPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzcmNfTDBfb2ZzLAo+IGRzdF9p
-c19wbHR0LAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHNyY19M
-MCwgY2NzX29mcywKPiB0cnVlKTsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYmIt
-PmxlbiA9IGVtaXRfZmx1c2hfaW52YWxpZGF0ZShtLCBiYi0+Y3MsIGJiLT5sZW4sCj4gZmx1c2hf
-ZmxhZ3MpOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBiYi0+bGVuID0gZW1pdF9m
-bHVzaF9pbnZhbGlkYXRlKHEsIGJiLT5jcywgYmItPmxlbiwKPiBmbHVzaF9mbGFncyk7Cj4gwqAK
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNpemUgLT0gc3JjX0wwOwo+IMKgwqDC
-oMKgwqDCoMKgwqB9Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRl
-LmgKPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRlLmgKPiBpbmRleCBhM2YzZmEyODFl
-MDQuLjg5NzhkMmNjMWE3NSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfbWln
-cmF0ZS5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX21pZ3JhdGUuaAo+IEBAIC0xMjUs
-NyArMTI1LDcgQEAgc3RydWN0IGRtYV9mZW5jZSAqeGVfbWlncmF0ZV9jb3B5KHN0cnVjdAo+IHhl
-X21pZ3JhdGUgKm0sCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCB0dG1fcmVzb3VyY2UgKmRzdCwKPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgYm9vbCBjb3B5X29ubHlfY2NzKTsKPiDCoAo+IC1pbnQgeGVfbWlncmF0ZV9jY3Nfcndf
-Y29weShzdHJ1Y3QgeGVfbWlncmF0ZSAqbSwKPiAraW50IHhlX21pZ3JhdGVfY2NzX3J3X2NvcHko
-c3RydWN0IHhlX3RpbGUgKnRpbGUsIHN0cnVjdAo+IHhlX2V4ZWNfcXVldWUgKnEsCj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgeGVf
-Ym8gKnNyY19ibywKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIGVudW0geGVfc3Jpb3ZfdmZfY2NzX3J3X2N0eHMgcmVhZF93cml0ZSk7Cj4gwqAK
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3BtLmMgYi9kcml2ZXJzL2dwdS9k
-cm0veGUveGVfcG0uYwo+IGluZGV4IDQ0YWFmMTU0ZGRmNy4uNWU4MTI2Y2E4ZTI3IDEwMDY0NAo+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wbS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L3hlL3hlX3BtLmMKPiBAQCAtMjA5LDYgKzIwOSw5IEBAIGludCB4ZV9wbV9yZXN1bWUoc3RydWN0
-IHhlX2RldmljZSAqeGUpCj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgeGVfcHhwX3BtX3Jlc3VtZSh4
-ZS0+cHhwKTsKPiDCoAo+ICvCoMKgwqDCoMKgwqDCoGlmIChJU19TUklPVl9WRih4ZSkpCj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHhlX3NyaW92X3ZmX2Njc19yZWdpc3Rlcl9jb250
-ZXh0KHhlKTsKPiArCj4gwqDCoMKgwqDCoMKgwqDCoGRybV9kYmcoJnhlLT5kcm0sICJEZXZpY2Ug
-cmVzdW1lZFxuIik7Cj4gwqDCoMKgwqDCoMKgwqDCoHJldHVybiAwOwo+IMKgZXJyOgo+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfc3Jpb3ZfdmZfY2NzLmMKPiBiL2RyaXZlcnMv
-Z3B1L2RybS94ZS94ZV9zcmlvdl92Zl9jY3MuYwo+IGluZGV4IGYwY2EyYTliMmJiNy4uNDg3MmU0
-M2ViNDQwIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9zcmlvdl92Zl9jY3Mu
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9zcmlvdl92Zl9jY3MuYwo+IEBAIC04LDYg
-KzgsNyBAQAo+IMKgI2luY2x1ZGUgInhlX2JiLmgiCj4gwqAjaW5jbHVkZSAieGVfYm8uaCIKPiDC
-oCNpbmNsdWRlICJ4ZV9kZXZpY2UuaCIKPiArI2luY2x1ZGUgInhlX2V4ZWNfcXVldWUuaCIKPiDC
-oCNpbmNsdWRlICJ4ZV9leGVjX3F1ZXVlX3R5cGVzLmgiCj4gwqAjaW5jbHVkZSAieGVfZ3VjX3N1
-Ym1pdC5oIgo+IMKgI2luY2x1ZGUgInhlX2xyYy5oIgo+IEBAIC0xNjgsOCArMTY5LDggQEAgc3Rh
-dGljIGludCBhbGxvY19iYl9wb29sKHN0cnVjdCB4ZV90aWxlICp0aWxlLAo+IHN0cnVjdCB4ZV90
-aWxlX3ZmX2NjcyAqY3R4KQo+IMKgCj4gwqBzdGF0aWMgdm9pZCBjY3NfcndfdXBkYXRlX3Jpbmco
-c3RydWN0IHhlX3RpbGVfdmZfY2NzICpjdHgpCj4gwqB7Cj4gLcKgwqDCoMKgwqDCoMKgc3RydWN0
-IHhlX2xyYyAqbHJjID0geGVfbWlncmF0ZV9scmMoY3R4LT5taWdyYXRlKTsKPiDCoMKgwqDCoMKg
-wqDCoMKgdTY0IGFkZHIgPSB4ZV9zYV9tYW5hZ2VyX2dwdV9hZGRyKGN0eC0+bWVtLmNjc19iYl9w
-b29sKTsKPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfbHJjICpscmMgPSB4ZV9leGVjX3F1ZXVl
-X2xyYyhjdHgtPm1pZ19xKTsKPiDCoMKgwqDCoMKgwqDCoMKgdTMyIGR3WzEwXSwgaSA9IDA7Cj4g
-wqAKPiDCoMKgwqDCoMKgwqDCoMKgZHdbaSsrXSA9IE1JX0FSQl9PTl9PRkYgfCBNSV9BUkJfRU5B
-QkxFOwo+IEBAIC0xODMsMTMgKzE4NCwxMiBAQCBzdGF0aWMgdm9pZCBjY3NfcndfdXBkYXRlX3Jp
-bmcoc3RydWN0Cj4geGVfdGlsZV92Zl9jY3MgKmN0eCkKPiDCoMKgwqDCoMKgwqDCoMKgeGVfbHJj
-X3NldF9yaW5nX3RhaWwobHJjLCBscmMtPnJpbmcudGFpbCk7Cj4gwqB9Cj4gwqAKPiAtc3RhdGlj
-IGludCByZWdpc3Rlcl9zYXZlX3Jlc3RvcmVfY29udGV4dChzdHJ1Y3QgeGVfbWlncmF0ZSAqbSwK
-PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVudW0geGVfc3Jpb3ZfdmZfY2NzX3J3X2N0eHMKPiBj
-dHhfaWQpCj4gK3N0YXRpYyBpbnQgcmVnaXN0ZXJfc2F2ZV9yZXN0b3JlX2NvbnRleHQoc3RydWN0
-IHhlX3RpbGVfdmZfY2NzICpjdHgpCj4gwqB7Cj4gwqDCoMKgwqDCoMKgwqDCoGludCBlcnIgPSAt
-RUlOVkFMOwo+IMKgwqDCoMKgwqDCoMKgwqBpbnQgY3R4X3R5cGU7Cj4gwqAKPiAtwqDCoMKgwqDC
-oMKgwqBzd2l0Y2ggKGN0eF9pZCkgewo+ICvCoMKgwqDCoMKgwqDCoHN3aXRjaCAoY3R4LT5jdHhf
-aWQpIHsKPiDCoMKgwqDCoMKgwqDCoMKgY2FzZSBYRV9TUklPVl9WRl9DQ1NfUkVBRF9DVFg6Cj4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjdHhfdHlwZSA9IEdVQ19DT05URVhUX0NP
-TVBSRVNTSU9OX1NBVkU7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBicmVhazsK
-PiBAQCAtMjAwLDcgKzIwMCw3IEBAIHN0YXRpYyBpbnQgcmVnaXN0ZXJfc2F2ZV9yZXN0b3JlX2Nv
-bnRleHQoc3RydWN0Cj4geGVfbWlncmF0ZSAqbSwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoHJldHVybiBlcnI7Cj4gwqDCoMKgwqDCoMKgwqDCoH0KPiDCoAo+IC3CoMKgwqDCoMKg
-wqDCoHhlX2d1Y19yZWdpc3Rlcl9leGVjX3F1ZXVlKHhlX21pZ3JhdGVfZXhlY19xdWV1ZShtKSwK
-PiBjdHhfdHlwZSk7Cj4gK8KgwqDCoMKgwqDCoMKgeGVfZ3VjX3JlZ2lzdGVyX2V4ZWNfcXVldWUo
-Y3R4LT5taWdfcSwgY3R4X3R5cGUpOwo+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsKPiDCoH0K
-PiDCoAo+IEBAIC0yMjUsNyArMjI1LDcgQEAgaW50IHhlX3NyaW92X3ZmX2Njc19yZWdpc3Rlcl9j
-b250ZXh0KHN0cnVjdAo+IHhlX2RldmljZSAqeGUpCj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgZm9y
-X2VhY2hfY2NzX3J3X2N0eChjdHhfaWQpIHsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoGN0eCA9ICZ0aWxlLT5zcmlvdi52Zi5jY3NbY3R4X2lkXTsKPiAtwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgZXJyID0gcmVnaXN0ZXJfc2F2ZV9yZXN0b3JlX2NvbnRleHQoY3R4LT5t
-aWdyYXRlLAo+IGN0eF9pZCk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGVyciA9
-IHJlZ2lzdGVyX3NhdmVfcmVzdG9yZV9jb250ZXh0KGN0eCk7Cj4gwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBpZiAoZXJyKQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHJldHVybiBlcnI7Cj4gwqDCoMKgwqDCoMKgwqDCoH0KPiBAQCAtMjM2
-LDEzICsyMzYsMTQgQEAgaW50IHhlX3NyaW92X3ZmX2Njc19yZWdpc3Rlcl9jb250ZXh0KHN0cnVj
-dAo+IHhlX2RldmljZSAqeGUpCj4gwqBzdGF0aWMgdm9pZCB4ZV9zcmlvdl92Zl9jY3NfZmluaSh2
-b2lkICphcmcpCj4gwqB7Cj4gwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV90aWxlX3ZmX2NjcyAq
-Y3R4ID0gYXJnOwo+IC3CoMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV9scmMgKmxyYyA9IHhlX21pZ3Jh
-dGVfbHJjKGN0eC0+bWlncmF0ZSk7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHhlX2xyYyAqbHJj
-ID0geGVfZXhlY19xdWV1ZV9scmMoY3R4LT5taWdfcSk7Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKg
-LyoKPiDCoMKgwqDCoMKgwqDCoMKgICogTWFrZSBUQUlMID0gSEVBRCBpbiB0aGUgcmluZyBzbyB0
-aGF0IG5vIGlzc3VlcyBhcmUgc2VlbiBpZgo+IEd1Ywo+IMKgwqDCoMKgwqDCoMKgwqAgKiBzdWJt
-aXRzIHRoaXMgY29udGV4dCB0byBIVyBvbiBWRiBwYXVzZSBhZnRlciB1bmJpbmRpbmcKPiBkZXZp
-Y2UuCj4gwqDCoMKgwqDCoMKgwqDCoCAqLwo+IMKgwqDCoMKgwqDCoMKgwqB4ZV9scmNfc2V0X3Jp
-bmdfdGFpbChscmMsIHhlX2xyY19yaW5nX2hlYWQobHJjKSk7Cj4gK8KgwqDCoMKgwqDCoMKgeGVf
-ZXhlY19xdWV1ZV9wdXQoY3R4LT5taWdfcSk7Cj4gwqB9Cj4gwqAKPiDCoC8qKgo+IEBAIC0yNTgs
-OCArMjU5LDkgQEAgaW50IHhlX3NyaW92X3ZmX2Njc19pbml0KHN0cnVjdCB4ZV9kZXZpY2UgKnhl
-KQo+IMKgewo+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfdGlsZSAqdGlsZSA9IHhlX2Rldmlj
-ZV9nZXRfcm9vdF90aWxlKHhlKTsKPiDCoMKgwqDCoMKgwqDCoMKgZW51bSB4ZV9zcmlvdl92Zl9j
-Y3NfcndfY3R4cyBjdHhfaWQ7Cj4gLcKgwqDCoMKgwqDCoMKgc3RydWN0IHhlX21pZ3JhdGUgKm1p
-Z3JhdGU7Cj4gwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV90aWxlX3ZmX2NjcyAqY3R4Owo+ICvC
-oMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV9leGVjX3F1ZXVlICpxOwo+ICvCoMKgwqDCoMKgwqDCoHUz
-MiBmbGFnczsKPiDCoMKgwqDCoMKgwqDCoMKgaW50IGVycjsKPiDCoAo+IMKgwqDCoMKgwqDCoMKg
-wqB4ZV9hc3NlcnQoeGUsIElTX1NSSU9WX1ZGKHhlKSk7Cj4gQEAgLTI3MCwzNyArMjcyLDQwIEBA
-IGludCB4ZV9zcmlvdl92Zl9jY3NfaW5pdChzdHJ1Y3QgeGVfZGV2aWNlICp4ZSkKPiDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGN0eCA9ICZ0aWxlLT5zcmlvdi52Zi5jY3NbY3R4X2lk
-XTsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGN0eC0+Y3R4X2lkID0gY3R4X2lk
-Owo+IMKgCj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1pZ3JhdGUgPSB4ZV9taWdy
-YXRlX2FsbG9jKHRpbGUpOwo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAoIW1p
-Z3JhdGUpIHsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGVyciA9IC1FTk9NRU07Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGZsYWdzID0g
-RVhFQ19RVUVVRV9GTEFHX0tFUk5FTCB8Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBFWEVDX1FVRVVFX0ZMQUdfUEVSTUFORU5UIHwKPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoEVYRUNfUVVFVUVfRkxBR19NSUdS
-QVRFOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBxID0geGVfZXhlY19xdWV1ZV9j
-cmVhdGVfYmluZCh4ZSwgdGlsZSwgZmxhZ3MsIDApOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqBpZiAoSVNfRVJSKHEpKSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBlcnIgPSBQVFJfRVJSKHEpOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGdvdG8gZXJyX3JldDsKPiDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoH0KPiAtCj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGVyciA9IHhlX21pZ3JhdGVfaW5pdChtaWdyYXRlKTsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgaWYgKGVycikKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoGdvdG8gZXJyX3JldDsKPiAtCj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoGN0eC0+bWlncmF0ZSA9IG1pZ3JhdGU7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoGN0eC0+bWlnX3EgPSBxOwo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqBlcnIgPSBhbGxvY19iYl9wb29sKHRpbGUsIGN0eCk7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqBpZiAoZXJyKQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgZ290byBlcnJfcmV0Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgZ290byBlcnJfZnJlZV9xdWV1ZTsKPiDCoAo+IMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgY2NzX3J3X3VwZGF0ZV9yaW5nKGN0eCk7Cj4gwqAKPiAtwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZXJyID0gcmVnaXN0ZXJfc2F2ZV9yZXN0b3JlX2Nv
-bnRleHQoY3R4LT5taWdyYXRlLAo+IGN0eF9pZCk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoGVyciA9IHJlZ2lzdGVyX3NhdmVfcmVzdG9yZV9jb250ZXh0KGN0eCk7Cj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAoZXJyKQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ290byBlcnJfcmV0Owo+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ290byBlcnJfZnJlZV9xdWV1ZTsKPiDC
-oAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZXJyID0gZGV2bV9hZGRfYWN0aW9u
-X29yX3Jlc2V0KHhlLT5kcm0uZGV2LAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHhlX3NyaW92X3ZmX2Njc19maW5pLAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIGN0eCk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChlcnIpCj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBnb3RvIGVycl9y
-ZXQ7Cj4gwqDCoMKgwqDCoMKgwqDCoH0KPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqB4ZS0+c3Jpb3Yu
-dmYuY2NzLmluaXRpYWxpemVkID0gMTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsK
-PiDCoAo+ICtlcnJfZnJlZV9xdWV1ZToKPiArwqDCoMKgwqDCoMKgwqB4ZV9leGVjX3F1ZXVlX3B1
-dChxKTsKPiArCj4gwqBlcnJfcmV0Ogo+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gZXJyOwo+IMKg
-fQo+IEBAIC0zMTksNyArMzI0LDcgQEAgaW50IHhlX3NyaW92X3ZmX2Njc19hdHRhY2hfYm8oc3Ry
-dWN0IHhlX2JvICpibykKPiDCoHsKPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHhlX2RldmljZSAq
-eGUgPSB4ZV9ib19kZXZpY2UoYm8pOwo+IMKgwqDCoMKgwqDCoMKgwqBlbnVtIHhlX3NyaW92X3Zm
-X2Njc19yd19jdHhzIGN0eF9pZDsKPiAtwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfbWlncmF0ZSAq
-bWlncmF0ZTsKPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfdGlsZV92Zl9jY3MgKmN0eDsKPiDC
-oMKgwqDCoMKgwqDCoMKgc3RydWN0IHhlX3RpbGUgKnRpbGU7Cj4gwqDCoMKgwqDCoMKgwqDCoHN0
-cnVjdCB4ZV9iYiAqYmI7Cj4gwqDCoMKgwqDCoMKgwqDCoGludCBlcnIgPSAwOwo+IEBAIC0zMzQs
-OCArMzM5LDggQEAgaW50IHhlX3NyaW92X3ZmX2Njc19hdHRhY2hfYm8oc3RydWN0IHhlX2JvICpi
-bykKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qIGJiIHNob3VsZCBiZSBOVUxM
-IGhlcmUuIEFzc2VydCBpZiBub3QgTlVMTCAqLwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgeGVfYXNzZXJ0KHhlLCAhYmIpOwo+IMKgCj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoG1pZ3JhdGUgPSB0aWxlLT5zcmlvdi52Zi5jY3NbY3R4X2lkXS5taWdyYXRlOwo+IC3C
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBlcnIgPSB4ZV9taWdyYXRlX2Njc19yd19jb3B5
-KG1pZ3JhdGUsIGJvLCBjdHhfaWQpOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBj
-dHggPSAmdGlsZS0+c3Jpb3YudmYuY2NzW2N0eF9pZF07Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoGVyciA9IHhlX21pZ3JhdGVfY2NzX3J3X2NvcHkodGlsZSwgY3R4LT5taWdfcSwg
-Ym8sCj4gY3R4X2lkKTsKPiDCoMKgwqDCoMKgwqDCoMKgfQo+IMKgwqDCoMKgwqDCoMKgwqByZXR1
-cm4gZXJyOwo+IMKgfQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfc3Jpb3Zf
-dmZfY2NzX3R5cGVzLmgKPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9zcmlvdl92Zl9jY3NfdHlw
-ZXMuaAo+IGluZGV4IGUyNDBmM2ZkMThhZi4uOTM0MzVhNmY0Y2I2IDEwMDY0NAo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS94ZS94ZV9zcmlvdl92Zl9jY3NfdHlwZXMuaAo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS94ZS94ZV9zcmlvdl92Zl9jY3NfdHlwZXMuaAo+IEBAIC00MSwxMSArNDEsMTEgQEAg
-c3RydWN0IHhlX3NhX21hbmFnZXI7Cj4gwqBzdHJ1Y3QgeGVfdGlsZV92Zl9jY3Mgewo+IMKgwqDC
-oMKgwqDCoMKgwqAvKiogQGlkOiBJZCB0byB3aGljaCBjb250ZXh0IGl0IGJlbG9uZ3MgdG8gKi8K
-PiDCoMKgwqDCoMKgwqDCoMKgZW51bSB4ZV9zcmlvdl92Zl9jY3NfcndfY3R4cyBjdHhfaWQ7Cj4g
-LcKgwqDCoMKgwqDCoMKgLyoqIEBtaWdyYXRlOiBNaWdyYXRpb24gaGVscGVyIGZvciBzYXZlL3Jl
-c3RvcmUgb2YgQ0NTIGRhdGEKPiAqLwo+IC3CoMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV9taWdyYXRl
-ICptaWdyYXRlOwo+ICvCoMKgwqDCoMKgwqDCoC8qKiBAbWlnX3E6IGV4ZWMgcXVldWVzIHVzZWQg
-Zm9yIG1pZ3JhdGlvbiAqLwo+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV9leGVjX3F1ZXVlICpt
-aWdfcTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3Qgewo+IC3CoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAvKiogQGNjc19yd19iYl9wb29sOiBQb29sIGZyb20gd2hpY2ggYmF0Y2gg
-YnVmZmVycwo+IGFyZSBhbGxvY2F0ZWQuICovCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoC8qKiBAY2NzX2JiX3Bvb2w6IFBvb2wgZnJvbSB3aGljaCBiYXRjaCBidWZmZXJzIGFyZQo+
-IGFsbG9jYXRlZC4gKi8KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCB4
-ZV9zYV9tYW5hZ2VyICpjY3NfYmJfcG9vbDsKPiDCoMKgwqDCoMKgwqDCoMKgfSBtZW07Cj4gwqB9
-OwoK
+DONOT REVIEW
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ drivers/gpu/drm/drm_gpusvm.c           | 122 ++-----
+ drivers/gpu/drm/drm_gpuvm.c            | 190 ++++++-----
+ drivers/gpu/drm/imagination/pvr_vm.c   |  15 +-
+ drivers/gpu/drm/msm/msm_gem_vma.c      |  33 +-
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c |  11 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c  |  13 +-
+ drivers/gpu/drm/xe/Makefile            |   1 +
+ drivers/gpu/drm/xe/xe_bo.c             |  29 +-
+ drivers/gpu/drm/xe/xe_bo_types.h       |   8 +
+ drivers/gpu/drm/xe/xe_device.c         |   4 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c   |  35 +-
+ drivers/gpu/drm/xe/xe_pat.c            |  10 +
+ drivers/gpu/drm/xe/xe_pat.h            |  10 +
+ drivers/gpu/drm/xe/xe_pt.c             |  39 ++-
+ drivers/gpu/drm/xe/xe_svm.c            | 256 ++++++++++++--
+ drivers/gpu/drm/xe/xe_svm.h            |  23 ++
+ drivers/gpu/drm/xe/xe_vm.c             | 419 +++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.h             |  10 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c     | 447 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm_madvise.h     |  15 +
+ drivers/gpu/drm/xe/xe_vm_types.h       |  50 ++-
+ include/drm/drm_gpusvm.h               |  70 ++++
+ include/drm/drm_gpuvm.h                |  58 +++-
+ include/uapi/drm/xe_drm.h              | 274 +++++++++++++++
+ 24 files changed, 1853 insertions(+), 289 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_vm_madvise.c
+ create mode 100644 drivers/gpu/drm/xe/xe_vm_madvise.h
+
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index 5bb4c77db2c3..647b49ff2da5 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -271,107 +271,50 @@ npages_in_range(unsigned long start, unsigned long end)
+ }
+ 
+ /**
+- * drm_gpusvm_range_find() - Find GPU SVM range from GPU SVM notifier
+- * @notifier: Pointer to the GPU SVM notifier structure.
+- * @start: Start address of the range
+- * @end: End address of the range
++ * drm_gpusvm_notifier_find() - Find GPU SVM notifier from GPU SVM
++ * @gpusvm: Pointer to the GPU SVM structure.
++ * @start: Start address of the notifier
++ * @end: End address of the notifier
+  *
+- * Return: A pointer to the drm_gpusvm_range if found or NULL
++ * Return: A pointer to the drm_gpusvm_notifier if found or NULL
+  */
+-struct drm_gpusvm_range *
+-drm_gpusvm_range_find(struct drm_gpusvm_notifier *notifier, unsigned long start,
+-		      unsigned long end)
++struct drm_gpusvm_notifier *
++drm_gpusvm_notifier_find(struct drm_gpusvm *gpusvm, unsigned long start,
++			 unsigned long end)
+ {
+ 	struct interval_tree_node *itree;
+ 
+-	itree = interval_tree_iter_first(&notifier->root, start, end - 1);
++	itree = interval_tree_iter_first(&gpusvm->root, start, end - 1);
+ 
+ 	if (itree)
+-		return container_of(itree, struct drm_gpusvm_range, itree);
++		return container_of(itree, struct drm_gpusvm_notifier, itree);
+ 	else
+ 		return NULL;
+ }
+-EXPORT_SYMBOL_GPL(drm_gpusvm_range_find);
++EXPORT_SYMBOL_GPL(drm_gpusvm_notifier_find);
+ 
+ /**
+- * drm_gpusvm_for_each_range_safe() - Safely iterate over GPU SVM ranges in a notifier
+- * @range__: Iterator variable for the ranges
+- * @next__: Iterator variable for the ranges temporay storage
+- * @notifier__: Pointer to the GPU SVM notifier
+- * @start__: Start address of the range
+- * @end__: End address of the range
+- *
+- * This macro is used to iterate over GPU SVM ranges in a notifier while
+- * removing ranges from it.
+- */
+-#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
+-	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
+-	     (next__) = __drm_gpusvm_range_next(range__);				\
+-	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
+-	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
+-
+-/**
+- * __drm_gpusvm_notifier_next() - get the next drm_gpusvm_notifier in the list
+- * @notifier: a pointer to the current drm_gpusvm_notifier
++ * drm_gpusvm_range_find() - Find GPU SVM range from GPU SVM notifier
++ * @notifier: Pointer to the GPU SVM notifier structure.
++ * @start: Start address of the range
++ * @end: End address of the range
+  *
+- * Return: A pointer to the next drm_gpusvm_notifier if available, or NULL if
+- *         the current notifier is the last one or if the input notifier is
+- *         NULL.
++ * Return: A pointer to the drm_gpusvm_range if found or NULL
+  */
+-static struct drm_gpusvm_notifier *
+-__drm_gpusvm_notifier_next(struct drm_gpusvm_notifier *notifier)
+-{
+-	if (notifier && !list_is_last(&notifier->entry,
+-				      &notifier->gpusvm->notifier_list))
+-		return list_next_entry(notifier, entry);
+-
+-	return NULL;
+-}
+-
+-static struct drm_gpusvm_notifier *
+-notifier_iter_first(struct rb_root_cached *root, unsigned long start,
+-		    unsigned long last)
++struct drm_gpusvm_range *
++drm_gpusvm_range_find(struct drm_gpusvm_notifier *notifier, unsigned long start,
++		      unsigned long end)
+ {
+ 	struct interval_tree_node *itree;
+ 
+-	itree = interval_tree_iter_first(root, start, last);
++	itree = interval_tree_iter_first(&notifier->root, start, end - 1);
+ 
+ 	if (itree)
+-		return container_of(itree, struct drm_gpusvm_notifier, itree);
++		return container_of(itree, struct drm_gpusvm_range, itree);
+ 	else
+ 		return NULL;
+ }
+-
+-/**
+- * drm_gpusvm_for_each_notifier() - Iterate over GPU SVM notifiers in a gpusvm
+- * @notifier__: Iterator variable for the notifiers
+- * @notifier__: Pointer to the GPU SVM notifier
+- * @start__: Start address of the notifier
+- * @end__: End address of the notifier
+- *
+- * This macro is used to iterate over GPU SVM notifiers in a gpusvm.
+- */
+-#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
+-	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1);	\
+-	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
+-	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
+-
+-/**
+- * drm_gpusvm_for_each_notifier_safe() - Safely iterate over GPU SVM notifiers in a gpusvm
+- * @notifier__: Iterator variable for the notifiers
+- * @next__: Iterator variable for the notifiers temporay storage
+- * @notifier__: Pointer to the GPU SVM notifier
+- * @start__: Start address of the notifier
+- * @end__: End address of the notifier
+- *
+- * This macro is used to iterate over GPU SVM notifiers in a gpusvm while
+- * removing notifiers from it.
+- */
+-#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
+-	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1),	\
+-	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
+-	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
+-	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
++EXPORT_SYMBOL_GPL(drm_gpusvm_range_find);
+ 
+ /**
+  * drm_gpusvm_notifier_invalidate() - Invalidate a GPU SVM notifier.
+@@ -472,22 +415,6 @@ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+ }
+ EXPORT_SYMBOL_GPL(drm_gpusvm_init);
+ 
+-/**
+- * drm_gpusvm_notifier_find() - Find GPU SVM notifier
+- * @gpusvm: Pointer to the GPU SVM structure
+- * @fault_addr: Fault address
+- *
+- * This function finds the GPU SVM notifier associated with the fault address.
+- *
+- * Return: Pointer to the GPU SVM notifier on success, NULL otherwise.
+- */
+-static struct drm_gpusvm_notifier *
+-drm_gpusvm_notifier_find(struct drm_gpusvm *gpusvm,
+-			 unsigned long fault_addr)
+-{
+-	return notifier_iter_first(&gpusvm->root, fault_addr, fault_addr + 1);
+-}
+-
+ /**
+  * to_drm_gpusvm_notifier() - retrieve the container struct for a given rbtree node
+  * @node: a pointer to the rbtree node embedded within a drm_gpusvm_notifier struct
+@@ -943,7 +870,7 @@ drm_gpusvm_range_find_or_insert(struct drm_gpusvm *gpusvm,
+ 	if (!mmget_not_zero(mm))
+ 		return ERR_PTR(-EFAULT);
+ 
+-	notifier = drm_gpusvm_notifier_find(gpusvm, fault_addr);
++	notifier = drm_gpusvm_notifier_find(gpusvm, fault_addr, fault_addr + 1);
+ 	if (!notifier) {
+ 		notifier = drm_gpusvm_notifier_alloc(gpusvm, fault_addr);
+ 		if (IS_ERR(notifier)) {
+@@ -1107,7 +1034,8 @@ void drm_gpusvm_range_remove(struct drm_gpusvm *gpusvm,
+ 	drm_gpusvm_driver_lock_held(gpusvm);
+ 
+ 	notifier = drm_gpusvm_notifier_find(gpusvm,
+-					    drm_gpusvm_range_start(range));
++					    drm_gpusvm_range_start(range),
++					    drm_gpusvm_range_start(range) + 1);
+ 	if (WARN_ON_ONCE(!notifier))
+ 		return;
+ 
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index bbc7fecb6f4a..d8f5f594a415 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -486,13 +486,18 @@
+  *				  u64 addr, u64 range,
+  *				  struct drm_gem_object *obj, u64 offset)
+  *	{
++ *		struct drm_gpuvm_map_req map_req = {
++ *		        .op_map.va.addr = addr,
++ *	                .op_map.va.range = range,
++ *	                .op_map.gem.obj = obj,
++ *	                .op_map.gem.offset = offset,
++ *	           };
+  *		struct drm_gpuva_ops *ops;
+  *		struct drm_gpuva_op *op
+  *		struct drm_gpuvm_bo *vm_bo;
+  *
+  *		driver_lock_va_space();
+- *		ops = drm_gpuvm_sm_map_ops_create(gpuvm, addr, range,
+- *						  obj, offset);
++ *		ops = drm_gpuvm_sm_map_ops_create(gpuvm, &map_req);
+  *		if (IS_ERR(ops))
+  *			return PTR_ERR(ops);
+  *
+@@ -2054,16 +2059,15 @@ EXPORT_SYMBOL_GPL(drm_gpuva_unmap);
+ 
+ static int
+ op_map_cb(const struct drm_gpuvm_ops *fn, void *priv,
+-	  u64 addr, u64 range,
+-	  struct drm_gem_object *obj, u64 offset)
++	  const struct drm_gpuvm_map_req *req)
+ {
+ 	struct drm_gpuva_op op = {};
+ 
+ 	op.op = DRM_GPUVA_OP_MAP;
+-	op.map.va.addr = addr;
+-	op.map.va.range = range;
+-	op.map.gem.obj = obj;
+-	op.map.gem.offset = offset;
++	op.map.va.addr = req->op_map.va.addr;
++	op.map.va.range = req->op_map.va.range;
++	op.map.gem.obj = req->op_map.gem.obj;
++	op.map.gem.offset = req->op_map.gem.offset;
+ 
+ 	return fn->sm_step_map(&op, priv);
+ }
+@@ -2102,48 +2106,58 @@ op_unmap_cb(const struct drm_gpuvm_ops *fn, void *priv,
+ static int
+ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 		   const struct drm_gpuvm_ops *ops, void *priv,
+-		   u64 req_addr, u64 req_range,
+-		   struct drm_gem_object *req_obj, u64 req_offset)
++		   const struct drm_gpuvm_map_req *req)
+ {
+ 	struct drm_gpuva *va, *next;
+-	u64 req_end = req_addr + req_range;
++	u64 req_end = req->op_map.va.addr + req->op_map.va.range;
++	bool is_madvise_ops = (req->flags & DRM_GPUVM_SM_MAP_OPS_FLAG_SPLIT_MADVISE);
++	bool needs_map = !is_madvise_ops;
+ 	int ret;
+ 
+-	if (unlikely(!drm_gpuvm_range_valid(gpuvm, req_addr, req_range)))
++	if (unlikely(!drm_gpuvm_range_valid(gpuvm, req->op_map.va.addr, req->op_map.va.range)))
+ 		return -EINVAL;
+ 
+-	drm_gpuvm_for_each_va_range_safe(va, next, gpuvm, req_addr, req_end) {
++	drm_gpuvm_for_each_va_range_safe(va, next, gpuvm, req->op_map.va.addr, req_end) {
+ 		struct drm_gem_object *obj = va->gem.obj;
+ 		u64 offset = va->gem.offset;
+ 		u64 addr = va->va.addr;
+ 		u64 range = va->va.range;
+ 		u64 end = addr + range;
+ 		bool merge = !!va->gem.obj;
++		bool skip_madvise_ops = is_madvise_ops && merge;
+ 
+-		if (addr == req_addr) {
+-			merge &= obj == req_obj &&
+-				 offset == req_offset;
++		needs_map = !is_madvise_ops;
++		if (addr == req->op_map.va.addr) {
++			merge &= obj == req->op_map.gem.obj &&
++				 offset == req->op_map.gem.offset;
+ 
+ 			if (end == req_end) {
+-				ret = op_unmap_cb(ops, priv, va, merge);
+-				if (ret)
+-					return ret;
++				if (!is_madvise_ops) {
++					ret = op_unmap_cb(ops, priv, va, merge);
++					if (ret)
++						return ret;
++				}
+ 				break;
+ 			}
+ 
+ 			if (end < req_end) {
+-				ret = op_unmap_cb(ops, priv, va, merge);
+-				if (ret)
+-					return ret;
++				if (!is_madvise_ops) {
++					ret = op_unmap_cb(ops, priv, va, merge);
++					if (ret)
++						return ret;
++				}
+ 				continue;
+ 			}
+ 
+ 			if (end > req_end) {
++				if (skip_madvise_ops)
++					break;
++
+ 				struct drm_gpuva_op_map n = {
+ 					.va.addr = req_end,
+-					.va.range = range - req_range,
++					.va.range = range - req->op_map.va.range,
+ 					.gem.obj = obj,
+-					.gem.offset = offset + req_range,
++					.gem.offset = offset + req->op_map.va.range,
+ 				};
+ 				struct drm_gpuva_op_unmap u = {
+ 					.va = va,
+@@ -2153,10 +2167,13 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 				ret = op_remap_cb(ops, priv, NULL, &n, &u);
+ 				if (ret)
+ 					return ret;
++
++				if (is_madvise_ops)
++					needs_map = true;
+ 				break;
+ 			}
+-		} else if (addr < req_addr) {
+-			u64 ls_range = req_addr - addr;
++		} else if (addr < req->op_map.va.addr) {
++			u64 ls_range = req->op_map.va.addr - addr;
+ 			struct drm_gpuva_op_map p = {
+ 				.va.addr = addr,
+ 				.va.range = ls_range,
+@@ -2165,58 +2182,95 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 			};
+ 			struct drm_gpuva_op_unmap u = { .va = va };
+ 
+-			merge &= obj == req_obj &&
+-				 offset + ls_range == req_offset;
++			merge &= obj == req->op_map.gem.obj &&
++				 offset + ls_range == req->op_map.gem.offset;
+ 			u.keep = merge;
+ 
+ 			if (end == req_end) {
++				if (skip_madvise_ops)
++					break;
++
+ 				ret = op_remap_cb(ops, priv, &p, NULL, &u);
+ 				if (ret)
+ 					return ret;
++
++				if (is_madvise_ops)
++					needs_map = true;
++
+ 				break;
+ 			}
+ 
+ 			if (end < req_end) {
++				if (skip_madvise_ops)
++					continue;
++
+ 				ret = op_remap_cb(ops, priv, &p, NULL, &u);
+ 				if (ret)
+ 					return ret;
++
++				if (is_madvise_ops) {
++					struct drm_gpuvm_map_req map_req = {
++						.op_map.va.addr =  req->op_map.va.addr,
++						.op_map.va.range = end - req->op_map.va.addr,
++					};
++
++					ret = op_map_cb(ops, priv, &map_req);
++					if (ret)
++						return ret;
++				}
++
+ 				continue;
+ 			}
+ 
+ 			if (end > req_end) {
++				if (skip_madvise_ops)
++					break;
++
+ 				struct drm_gpuva_op_map n = {
+ 					.va.addr = req_end,
+ 					.va.range = end - req_end,
+ 					.gem.obj = obj,
+ 					.gem.offset = offset + ls_range +
+-						      req_range,
++						      req->op_map.va.range,
+ 				};
+ 
+ 				ret = op_remap_cb(ops, priv, &p, &n, &u);
+ 				if (ret)
+ 					return ret;
++
++				if (is_madvise_ops)
++					needs_map = true;
+ 				break;
+ 			}
+-		} else if (addr > req_addr) {
+-			merge &= obj == req_obj &&
+-				 offset == req_offset +
+-					   (addr - req_addr);
++		} else if (addr > req->op_map.va.addr) {
++			merge &= obj == req->op_map.gem.obj &&
++				 offset == req->op_map.gem.offset +
++					   (addr - req->op_map.va.addr);
+ 
+ 			if (end == req_end) {
+-				ret = op_unmap_cb(ops, priv, va, merge);
+-				if (ret)
+-					return ret;
++				if (!is_madvise_ops) {
++					ret = op_unmap_cb(ops, priv, va, merge);
++					if (ret)
++						return ret;
++				}
++
+ 				break;
+ 			}
+ 
+ 			if (end < req_end) {
+-				ret = op_unmap_cb(ops, priv, va, merge);
+-				if (ret)
+-					return ret;
++				if (!is_madvise_ops) {
++					ret = op_unmap_cb(ops, priv, va, merge);
++					if (ret)
++						return ret;
++				}
++
+ 				continue;
+ 			}
+ 
+ 			if (end > req_end) {
++				if (skip_madvise_ops)
++					break;
++
+ 				struct drm_gpuva_op_map n = {
+ 					.va.addr = req_end,
+ 					.va.range = end - req_end,
+@@ -2231,14 +2285,20 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 				ret = op_remap_cb(ops, priv, NULL, &n, &u);
+ 				if (ret)
+ 					return ret;
++
++				if (is_madvise_ops) {
++					struct drm_gpuvm_map_req map_req = {
++						.op_map.va.addr =  addr,
++						.op_map.va.range = req_end - addr,
++					};
++
++					return op_map_cb(ops, priv, &map_req);
++				}
+ 				break;
+ 			}
+ 		}
+ 	}
+-
+-	return op_map_cb(ops, priv,
+-			 req_addr, req_range,
+-			 req_obj, req_offset);
++	return needs_map ? op_map_cb(ops, priv, req) : 0;
+ }
+ 
+ static int
+@@ -2303,10 +2363,7 @@ __drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm,
+  * drm_gpuvm_sm_map() - calls the &drm_gpuva_op split/merge steps
+  * @gpuvm: the &drm_gpuvm representing the GPU VA space
+  * @priv: pointer to a driver private data structure
+- * @req_addr: the start address of the new mapping
+- * @req_range: the range of the new mapping
+- * @req_obj: the &drm_gem_object to map
+- * @req_offset: the offset within the &drm_gem_object
++ * @req: ptr to struct drm_gpuvm_map_req
+  *
+  * This function iterates the given range of the GPU VA space. It utilizes the
+  * &drm_gpuvm_ops to call back into the driver providing the split and merge
+@@ -2333,8 +2390,7 @@ __drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm,
+  */
+ int
+ drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+-		 u64 req_addr, u64 req_range,
+-		 struct drm_gem_object *req_obj, u64 req_offset)
++		 const struct drm_gpuvm_map_req *req)
+ {
+ 	const struct drm_gpuvm_ops *ops = gpuvm->ops;
+ 
+@@ -2343,9 +2399,7 @@ drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+ 		       ops->sm_step_unmap)))
+ 		return -EINVAL;
+ 
+-	return __drm_gpuvm_sm_map(gpuvm, ops, priv,
+-				  req_addr, req_range,
+-				  req_obj, req_offset);
++	return __drm_gpuvm_sm_map(gpuvm, ops, priv, req);
+ }
+ EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map);
+ 
+@@ -2421,10 +2475,7 @@ static const struct drm_gpuvm_ops lock_ops = {
+  * @gpuvm: the &drm_gpuvm representing the GPU VA space
+  * @exec: the &drm_exec locking context
+  * @num_fences: for newly mapped objects, the # of fences to reserve
+- * @req_addr: the start address of the range to unmap
+- * @req_range: the range of the mappings to unmap
+- * @req_obj: the &drm_gem_object to map
+- * @req_offset: the offset within the &drm_gem_object
++ * @req: ptr to drm_gpuvm_map_req struct
+  *
+  * This function locks (drm_exec_lock_obj()) objects that will be unmapped/
+  * remapped, and locks+prepares (drm_exec_prepare_object()) objects that
+@@ -2445,9 +2496,7 @@ static const struct drm_gpuvm_ops lock_ops = {
+  *                    ret = drm_gpuvm_sm_unmap_exec_lock(gpuvm, &exec, op->addr, op->range);
+  *                    break;
+  *                case DRIVER_OP_MAP:
+- *                    ret = drm_gpuvm_sm_map_exec_lock(gpuvm, &exec, num_fences,
+- *                                                     op->addr, op->range,
+- *                                                     obj, op->obj_offset);
++ *                    ret = drm_gpuvm_sm_map_exec_lock(gpuvm, &exec, num_fences, &req);
+  *                    break;
+  *                }
+  *
+@@ -2478,18 +2527,15 @@ static const struct drm_gpuvm_ops lock_ops = {
+ int
+ drm_gpuvm_sm_map_exec_lock(struct drm_gpuvm *gpuvm,
+ 			   struct drm_exec *exec, unsigned int num_fences,
+-			   u64 req_addr, u64 req_range,
+-			   struct drm_gem_object *req_obj, u64 req_offset)
++			   struct drm_gpuvm_map_req *req)
+ {
+-	if (req_obj) {
+-		int ret = drm_exec_prepare_obj(exec, req_obj, num_fences);
++	if (req->op_map.gem.obj) {
++		int ret = drm_exec_prepare_obj(exec, req->op_map.gem.obj, num_fences);
+ 		if (ret)
+ 			return ret;
+ 	}
+ 
+-	return __drm_gpuvm_sm_map(gpuvm, &lock_ops, exec,
+-				  req_addr, req_range,
+-				  req_obj, req_offset);
++	return __drm_gpuvm_sm_map(gpuvm, &lock_ops, exec, req);
+ 
+ }
+ EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map_exec_lock);
+@@ -2611,10 +2657,7 @@ static const struct drm_gpuvm_ops gpuvm_list_ops = {
+ /**
+  * drm_gpuvm_sm_map_ops_create() - creates the &drm_gpuva_ops to split and merge
+  * @gpuvm: the &drm_gpuvm representing the GPU VA space
+- * @req_addr: the start address of the new mapping
+- * @req_range: the range of the new mapping
+- * @req_obj: the &drm_gem_object to map
+- * @req_offset: the offset within the &drm_gem_object
++ * @req: map request arguments
+  *
+  * This function creates a list of operations to perform splitting and merging
+  * of existent mapping(s) with the newly requested one.
+@@ -2642,8 +2685,7 @@ static const struct drm_gpuvm_ops gpuvm_list_ops = {
+  */
+ struct drm_gpuva_ops *
+ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+-			    u64 req_addr, u64 req_range,
+-			    struct drm_gem_object *req_obj, u64 req_offset)
++			    const struct drm_gpuvm_map_req *req)
+ {
+ 	struct drm_gpuva_ops *ops;
+ 	struct {
+@@ -2661,9 +2703,7 @@ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+ 	args.vm = gpuvm;
+ 	args.ops = ops;
+ 
+-	ret = __drm_gpuvm_sm_map(gpuvm, &gpuvm_list_ops, &args,
+-				 req_addr, req_range,
+-				 req_obj, req_offset);
++	ret = __drm_gpuvm_sm_map(gpuvm, &gpuvm_list_ops, &args, req);
+ 	if (ret)
+ 		goto err_free_ops;
+ 
+diff --git a/drivers/gpu/drm/imagination/pvr_vm.c b/drivers/gpu/drm/imagination/pvr_vm.c
+index 2896fa7501b1..0f6b4cdb5fd8 100644
+--- a/drivers/gpu/drm/imagination/pvr_vm.c
++++ b/drivers/gpu/drm/imagination/pvr_vm.c
+@@ -185,12 +185,17 @@ struct pvr_vm_bind_op {
+ static int pvr_vm_bind_op_exec(struct pvr_vm_bind_op *bind_op)
+ {
+ 	switch (bind_op->type) {
+-	case PVR_VM_BIND_TYPE_MAP:
++	case PVR_VM_BIND_TYPE_MAP: {
++		const struct drm_gpuvm_map_req map_req = {
++			.op_map.va.addr = bind_op->device_addr,
++			.op_map.va.range = bind_op->size,
++			.op_map.gem.obj = gem_from_pvr_gem(bind_op->pvr_obj),
++			.op_map.gem.offset = bind_op->offset,
++		};
++
+ 		return drm_gpuvm_sm_map(&bind_op->vm_ctx->gpuvm_mgr,
+-					bind_op, bind_op->device_addr,
+-					bind_op->size,
+-					gem_from_pvr_gem(bind_op->pvr_obj),
+-					bind_op->offset);
++					bind_op, &map_req);
++	}
+ 
+ 	case PVR_VM_BIND_TYPE_UNMAP:
+ 		return drm_gpuvm_sm_unmap(&bind_op->vm_ctx->gpuvm_mgr,
+diff --git a/drivers/gpu/drm/msm/msm_gem_vma.c b/drivers/gpu/drm/msm/msm_gem_vma.c
+index 3cd8562a5109..9d833b7ae13c 100644
+--- a/drivers/gpu/drm/msm/msm_gem_vma.c
++++ b/drivers/gpu/drm/msm/msm_gem_vma.c
+@@ -371,6 +371,12 @@ struct drm_gpuva *
+ msm_gem_vma_new(struct drm_gpuvm *gpuvm, struct drm_gem_object *obj,
+ 		u64 offset, u64 range_start, u64 range_end)
+ {
++	struct drm_gpuva_op_map op_map = {
++		.va.addr = range_start,
++		.va.range = range_end - range_start,
++		.gem.obj = obj,
++		.gem.offset = offset,
++	};
+ 	struct msm_gem_vm *vm = to_msm_vm(gpuvm);
+ 	struct drm_gpuvm_bo *vm_bo;
+ 	struct msm_gem_vma *vma;
+@@ -399,7 +405,7 @@ msm_gem_vma_new(struct drm_gpuvm *gpuvm, struct drm_gem_object *obj,
+ 	if (obj)
+ 		GEM_WARN_ON((range_end - range_start) > obj->size);
+ 
+-	drm_gpuva_init(&vma->base, range_start, range_end - range_start, obj, offset);
++	drm_gpuva_init_from_op(&vma->base, &op_map);
+ 	vma->mapped = false;
+ 
+ 	ret = drm_gpuva_insert(&vm->base, &vma->base);
+@@ -1172,10 +1178,17 @@ vm_bind_job_lock_objects(struct msm_vm_bind_job *job, struct drm_exec *exec)
+ 				break;
+ 			case MSM_VM_BIND_OP_MAP:
+ 			case MSM_VM_BIND_OP_MAP_NULL:
+-				ret = drm_gpuvm_sm_map_exec_lock(job->vm, exec, 1,
+-							    op->iova, op->range,
+-							    op->obj, op->obj_offset);
++			{
++				struct drm_gpuvm_map_req map_req = {
++					.op_map.va.addr = op->iova,
++					.op_map.va.range = op->range,
++					.op_map.gem.obj = op->obj,
++					.op_map.gem.offset = op->obj_offset,
++				};
++
++				ret = drm_gpuvm_sm_map_exec_lock(job->vm, exec, 1, &map_req);
+ 				break;
++			}
+ 			default:
+ 				/*
+ 				 * lookup_op() should have already thrown an error for
+@@ -1283,9 +1296,17 @@ vm_bind_job_prepare(struct msm_vm_bind_job *job)
+ 				arg.flags |= MSM_VMA_DUMP;
+ 			fallthrough;
+ 		case MSM_VM_BIND_OP_MAP_NULL:
+-			ret = drm_gpuvm_sm_map(job->vm, &arg, op->iova,
+-					       op->range, op->obj, op->obj_offset);
++		{
++			struct drm_gpuvm_map_req map_req = {
++				.op_map.va.addr = op->iova,
++				.op_map.va.range = op->range,
++				.op_map.gem.obj = op->obj,
++				.op_map.gem.offset = op->obj_offset,
++			};
++
++			ret = drm_gpuvm_sm_map(job->vm, &arg, &map_req);
+ 			break;
++		}
+ 		default:
+ 			/*
+ 			 * lookup_op() should have already thrown an error for
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index ddfc46bc1b3e..92f87520eeb8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -1276,6 +1276,12 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
+ 			break;
+ 		case OP_MAP: {
+ 			struct nouveau_uvma_region *reg;
++			struct drm_gpuvm_map_req map_req = {
++				.op_map.va.addr = op->va.addr,
++				.op_map.va.range = op->va.range,
++				.op_map.gem.obj = op->gem.obj,
++				.op_map.gem.offset = op->gem.offset,
++			};
+ 
+ 			reg = nouveau_uvma_region_find_first(uvmm,
+ 							     op->va.addr,
+@@ -1301,10 +1307,7 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
+ 			}
+ 
+ 			op->ops = drm_gpuvm_sm_map_ops_create(&uvmm->base,
+-							      op->va.addr,
+-							      op->va.range,
+-							      op->gem.obj,
+-							      op->gem.offset);
++							      &map_req);
+ 			if (IS_ERR(op->ops)) {
+ 				ret = PTR_ERR(op->ops);
+ 				goto unwind_continue;
+diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
+index 4140f697ba5a..5ed4573b3a6b 100644
+--- a/drivers/gpu/drm/panthor/panthor_mmu.c
++++ b/drivers/gpu/drm/panthor/panthor_mmu.c
+@@ -2169,15 +2169,22 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct panthor_vm_op_ctx *op,
+ 	mutex_lock(&vm->op_lock);
+ 	vm->op_ctx = op;
+ 	switch (op_type) {
+-	case DRM_PANTHOR_VM_BIND_OP_TYPE_MAP:
++	case DRM_PANTHOR_VM_BIND_OP_TYPE_MAP: {
++		const struct drm_gpuvm_map_req map_req = {
++			.op_map.va.addr = op->va.addr,
++			.op_map.va.range = op->va.range,
++			.op_map.gem.obj = op->map.vm_bo->obj,
++			.op_map.gem.offset = op->map.bo_offset,
++		};
++
+ 		if (vm->unusable) {
+ 			ret = -EINVAL;
+ 			break;
+ 		}
+ 
+-		ret = drm_gpuvm_sm_map(&vm->base, vm, op->va.addr, op->va.range,
+-				       op->map.vm_bo->obj, op->map.bo_offset);
++		ret = drm_gpuvm_sm_map(&vm->base, vm, &map_req);
+ 		break;
++	}
+ 
+ 	case DRM_PANTHOR_VM_BIND_OP_TYPE_UNMAP:
+ 		ret = drm_gpuvm_sm_unmap(&vm->base, vm, op->va.addr, op->va.range);
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 8e0c3412a757..d0ea869fcd24 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -128,6 +128,7 @@ xe-y += xe_bb.o \
+ 	xe_uc.o \
+ 	xe_uc_fw.o \
+ 	xe_vm.o \
++	xe_vm_madvise.o \
+ 	xe_vram.o \
+ 	xe_vram_freq.o \
+ 	xe_vsec.o \
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 1a72561f987c..90b634ab3f69 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1709,6 +1709,18 @@ static void xe_gem_object_close(struct drm_gem_object *obj,
+ 	}
+ }
+ 
++static bool should_migrate_to_smem(struct xe_bo *bo)
++{
++	/*
++	 * NOTE: The following atomic checks are platform-specific. For example,
++	 * if a device supports CXL atomics, these may not be necessary or
++	 * may behave differently.
++	 */
++
++	return bo->attr.atomic_access == DRM_XE_ATOMIC_GLOBAL ||
++	       bo->attr.atomic_access == DRM_XE_ATOMIC_CPU;
++}
++
+ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ {
+ 	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
+@@ -1717,7 +1729,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 	struct xe_bo *bo = ttm_to_xe_bo(tbo);
+ 	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
+ 	vm_fault_t ret;
+-	int idx;
++	int idx, r = 0;
+ 
+ 	if (needs_rpm)
+ 		xe_pm_runtime_get(xe);
+@@ -1729,8 +1741,19 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 	if (drm_dev_enter(ddev, &idx)) {
+ 		trace_xe_bo_cpu_fault(bo);
+ 
+-		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+-					       TTM_BO_VM_NUM_PREFAULT);
++		if (should_migrate_to_smem(bo)) {
++			xe_assert(xe, bo->flags & XE_BO_FLAG_SYSTEM);
++
++			r = xe_bo_migrate(bo, XE_PL_TT);
++			if (r == -EBUSY || r == -ERESTARTSYS || r == -EINTR)
++				ret = VM_FAULT_NOPAGE;
++			else if (r)
++				ret = VM_FAULT_SIGBUS;
++		}
++		if (!ret)
++			ret = ttm_bo_vm_fault_reserved(vmf,
++						       vmf->vma->vm_page_prot,
++						       TTM_BO_VM_NUM_PREFAULT);
+ 		drm_dev_exit(idx);
+ 
+ 		if (ret == VM_FAULT_RETRY &&
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index cf604adc13a3..314652afdca7 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -61,6 +61,14 @@ struct xe_bo {
+ 	 */
+ 	struct list_head client_link;
+ #endif
++	/** @attr: User controlled attributes for bo */
++	struct {
++		/**
++		 * @atomic_access: type of atomic access bo needs
++		 * protected by bo dma-resv lock
++		 */
++		u32 atomic_access;
++	} attr;
+ 	/**
+ 	 * @pxp_key_instance: PXP key instance this BO was created against. A
+ 	 * 0 in this variable indicates that the BO does not use PXP encryption.
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 57edbc63da6f..e3bb03dec180 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -63,6 +63,7 @@
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_ttm_sys_mgr.h"
+ #include "xe_vm.h"
++#include "xe_vm_madvise.h"
+ #include "xe_vram.h"
+ #include "xe_vram_types.h"
+ #include "xe_vsec.h"
+@@ -201,6 +202,9 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(XE_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(XE_VM_QUERY_MEM_RANGE_ATTRS, xe_vm_query_vmas_attrs_ioctl,
++			  DRM_RENDER_ALLOW),
+ };
+ 
+ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index ab43dec52776..4ea30fbce9bd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -75,7 +75,7 @@ static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
+ }
+ 
+ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+-		       bool atomic, struct xe_vram_region *vram)
++		       bool need_vram_move, struct xe_vram_region *vram)
+ {
+ 	struct xe_bo *bo = xe_vma_bo(vma);
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+@@ -85,26 +85,13 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+ 	if (err)
+ 		return err;
+ 
+-	if (atomic && vram) {
+-		xe_assert(vm->xe, IS_DGFX(vm->xe));
++	if (!bo)
++		return 0;
+ 
+-		if (xe_vma_is_userptr(vma)) {
+-			err = -EACCES;
+-			return err;
+-		}
++	err = need_vram_move ? xe_bo_migrate(bo, vram->placement) :
++			       xe_bo_validate(bo, vm, true);
+ 
+-		/* Migrate to VRAM, move should invalidate the VMA first */
+-		err = xe_bo_migrate(bo, vram->placement);
+-		if (err)
+-			return err;
+-	} else if (bo) {
+-		/* Create backing store if needed */
+-		err = xe_bo_validate(bo, vm, true);
+-		if (err)
+-			return err;
+-	}
+-
+-	return 0;
++	return err;
+ }
+ 
+ static int handle_vma_pagefault(struct xe_gt *gt, struct xe_vma *vma,
+@@ -115,10 +102,14 @@ static int handle_vma_pagefault(struct xe_gt *gt, struct xe_vma *vma,
+ 	struct drm_exec exec;
+ 	struct dma_fence *fence;
+ 	ktime_t end = 0;
+-	int err;
++	int err, needs_vram;
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+ 
++	needs_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
++	if (needs_vram < 0 || (needs_vram && xe_vma_is_userptr(vma)))
++		return needs_vram < 0 ? needs_vram : -EACCES;
++
+ 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT, 1);
+ 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_KB, xe_vma_size(vma) / 1024);
+ 
+@@ -141,7 +132,7 @@ static int handle_vma_pagefault(struct xe_gt *gt, struct xe_vma *vma,
+ 	/* Lock VM and BOs dma-resv */
+ 	drm_exec_init(&exec, 0, 0);
+ 	drm_exec_until_all_locked(&exec) {
+-		err = xe_pf_begin(&exec, vma, atomic, tile->mem.vram);
++		err = xe_pf_begin(&exec, vma, needs_vram == 1, tile->mem.vram);
+ 		drm_exec_retry_on_contention(&exec);
+ 		if (xe_vm_validate_should_retry(&exec, err, &end))
+ 			err = -EAGAIN;
+@@ -576,7 +567,7 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
+ 	/* Lock VM and BOs dma-resv */
+ 	drm_exec_init(&exec, 0, 0);
+ 	drm_exec_until_all_locked(&exec) {
+-		ret = xe_pf_begin(&exec, vma, true, tile->mem.vram);
++		ret = xe_pf_begin(&exec, vma, IS_DGFX(vm->xe), tile->mem.vram);
+ 		drm_exec_retry_on_contention(&exec);
+ 		if (ret)
+ 			break;
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 2e7cb99ae87a..ac1767c812aa 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -154,6 +154,16 @@ static const struct xe_pat_table_entry xe2_pat_table[] = {
+ static const struct xe_pat_table_entry xe2_pat_ats = XE2_PAT( 0, 0, 0, 0, 3, 3 );
+ static const struct xe_pat_table_entry xe2_pat_pta = XE2_PAT( 0, 0, 0, 0, 3, 0 );
+ 
++bool xe_pat_index_get_comp_mode(struct xe_device *xe, u16 pat_index)
++{
++	WARN_ON(pat_index >= xe->pat.n_entries);
++
++	if (xe->pat.table != xe2_pat_table)
++		return false;
++
++	return xe->pat.table[pat_index].value & XE2_COMP_EN;
++}
++
+ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
+ {
+ 	WARN_ON(pat_index >= xe->pat.n_entries);
+diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+index fa0dfbe525cd..8be2856a73af 100644
+--- a/drivers/gpu/drm/xe/xe_pat.h
++++ b/drivers/gpu/drm/xe/xe_pat.h
+@@ -58,4 +58,14 @@ void xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
+  */
+ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
+ 
++/**
++ * xe_pat_index_get_comp_mode() = Extract the compression mode for the given
++ * pat_index.
++ * @xe: xe device
++ * @pat_index: The pat_index to query
++ *
++ * Return: True if pat_index is compressed, False otherwise
++ */
++bool xe_pat_index_get_comp_mode(struct xe_device *xe, u16 pat_index);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 330cc0f54a3f..6f5b384991cd 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -518,7 +518,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ {
+ 	struct xe_pt_stage_bind_walk *xe_walk =
+ 		container_of(walk, typeof(*xe_walk), base);
+-	u16 pat_index = xe_walk->vma->pat_index;
++	u16 pat_index = xe_walk->vma->attr.pat_index;
+ 	struct xe_pt *xe_parent = container_of(parent, typeof(*xe_parent), base);
+ 	struct xe_vm *vm = xe_walk->vm;
+ 	struct xe_pt *xe_child;
+@@ -640,28 +640,31 @@ static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
+  *    - In all other cases device atomics will be disabled with AE=0 until an application
+  *      request differently using a ioctl like madvise.
+  */
+-static bool xe_atomic_for_vram(struct xe_vm *vm)
++static bool xe_atomic_for_vram(struct xe_vm *vm, struct xe_vma *vma)
+ {
++	if (vma->attr.atomic_access == DRM_XE_ATOMIC_CPU)
++		return false;
++
+ 	return true;
+ }
+ 
+-static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_bo *bo)
++static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_vma *vma)
+ {
+ 	struct xe_device *xe = vm->xe;
++	struct xe_bo *bo = xe_vma_bo(vma);
+ 
+-	if (!xe->info.has_device_atomics_on_smem)
++	if (!xe->info.has_device_atomics_on_smem ||
++	    vma->attr.atomic_access == DRM_XE_ATOMIC_CPU)
+ 		return false;
+ 
++	if (vma->attr.atomic_access == DRM_XE_ATOMIC_DEVICE)
++		return true;
++
+ 	/*
+ 	 * If a SMEM+LMEM allocation is backed by SMEM, a device
+ 	 * atomics will cause a gpu page fault and which then
+ 	 * gets migrated to LMEM, bind such allocations with
+ 	 * device atomics enabled.
+-	 *
+-	 * TODO: Revisit this. Perhaps add something like a
+-	 * fault_on_atomics_in_system UAPI flag.
+-	 * Note that this also prohibits GPU atomics in LR mode for
+-	 * userptr and system memory on DGFX.
+ 	 */
+ 	return (!IS_DGFX(xe) || (!xe_vm_in_lr_mode(vm) ||
+ 				 (bo && xe_bo_has_single_placement(bo))));
+@@ -744,8 +747,8 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 		goto walk_pt;
+ 
+ 	if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) {
+-		xe_walk.default_vram_pte = xe_atomic_for_vram(vm) ? XE_USM_PPGTT_PTE_AE : 0;
+-		xe_walk.default_system_pte = xe_atomic_for_system(vm, bo) ?
++		xe_walk.default_vram_pte = xe_atomic_for_vram(vm, vma) ? XE_USM_PPGTT_PTE_AE : 0;
++		xe_walk.default_system_pte = xe_atomic_for_system(vm, vma) ?
+ 			XE_USM_PPGTT_PTE_AE : 0;
+ 	}
+ 
+@@ -950,7 +953,19 @@ bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
+ 	struct xe_pt *pt = vm->pt_root[tile->id];
+ 	u8 pt_mask = (range->tile_present & ~range->tile_invalidated);
+ 
+-	xe_svm_assert_in_notifier(vm);
++	/*
++	 * Locking rules:
++	 *
++	 * - notifier_lock (write): full protection against page table changes
++	 *   and MMU notifier invalidations.
++	 *
++	 * - notifier_lock (read) + vm_lock (write): combined protection against
++	 *   invalidations and concurrent page table modifications. (e.g., madvise)
++	 *
++	 */
++	lockdep_assert(lockdep_is_held_type(&vm->svm.gpusvm.notifier_lock, 0) ||
++		       (lockdep_is_held_type(&vm->svm.gpusvm.notifier_lock, 1) &&
++		       lockdep_is_held_type(&vm->lock, 0)));
+ 
+ 	if (!(pt_mask & BIT(tile->id)))
+ 		return false;
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 10c8a1bcb86e..e380e597345e 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -253,10 +253,56 @@ static int __xe_svm_garbage_collector(struct xe_vm *vm,
+ 	return 0;
+ }
+ 
++static int xe_svm_range_set_default_attr(struct xe_vm *vm, u64 range_start, u64 range_end)
++{
++	struct xe_vma *vma;
++	struct xe_vma_mem_attr default_attr = {
++		.preferred_loc = {
++			.devmem_fd = DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE,
++			.migration_policy = DRM_XE_MIGRATE_ALL_PAGES,
++		},
++		.atomic_access = DRM_XE_ATOMIC_UNDEFINED,
++	};
++	int err = 0;
++
++	vma = xe_vm_find_vma_by_addr(vm, range_start);
++	if (!vma)
++		return -EINVAL;
++
++	if (xe_vma_has_default_mem_attrs(vma))
++		return 0;
++
++	vm_dbg(&vm->xe->drm, "Existing VMA start=0x%016llx, vma_end=0x%016llx",
++	       xe_vma_start(vma), xe_vma_end(vma));
++
++	if (xe_vma_start(vma) == range_start && xe_vma_end(vma) == range_end) {
++		default_attr.pat_index = vma->attr.default_pat_index;
++		default_attr.default_pat_index  = vma->attr.default_pat_index;
++		vma->attr = default_attr;
++	} else {
++		vm_dbg(&vm->xe->drm, "Split VMA start=0x%016llx, vma_end=0x%016llx",
++		       range_start, range_end);
++		err = xe_vm_alloc_cpu_addr_mirror_vma(vm, range_start, range_end - range_start);
++		if (err) {
++			drm_warn(&vm->xe->drm, "VMA SPLIT failed: %pe\n", ERR_PTR(err));
++			xe_vm_kill(vm, true);
++			return err;
++		}
++	}
++
++	/*
++	 * On call from xe_svm_handle_pagefault original VMA might be changed
++	 * signal this to lookup for VMA again.
++	 */
++	return -EAGAIN;
++}
++
+ static int xe_svm_garbage_collector(struct xe_vm *vm)
+ {
+ 	struct xe_svm_range *range;
+-	int err;
++	u64 range_start;
++	u64 range_end;
++	int err, ret = 0;
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+ 
+@@ -271,6 +317,9 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
+ 		if (!range)
+ 			break;
+ 
++		range_start = xe_svm_range_start(range);
++		range_end = xe_svm_range_end(range);
++
+ 		list_del(&range->garbage_collector_link);
+ 		spin_unlock(&vm->svm.garbage_collector.lock);
+ 
+@@ -283,11 +332,19 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
+ 			return err;
+ 		}
+ 
++		err = xe_svm_range_set_default_attr(vm, range_start, range_end);
++		if (err) {
++			if (err == -EAGAIN)
++				ret = -EAGAIN;
++			else
++				return err;
++		}
++
+ 		spin_lock(&vm->svm.garbage_collector.lock);
+ 	}
+ 	spin_unlock(&vm->svm.garbage_collector.lock);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static void xe_svm_garbage_collector_work_func(struct work_struct *w)
+@@ -776,22 +833,9 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
+ 	return true;
+ }
+ 
+-/**
+- * xe_svm_handle_pagefault() - SVM handle page fault
+- * @vm: The VM.
+- * @vma: The CPU address mirror VMA.
+- * @gt: The gt upon the fault occurred.
+- * @fault_addr: The GPU fault address.
+- * @atomic: The fault atomic access bit.
+- *
+- * Create GPU bindings for a SVM page fault. Optionally migrate to device
+- * memory.
+- *
+- * Return: 0 on success, negative error code on error.
+- */
+-int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+-			    struct xe_gt *gt, u64 fault_addr,
+-			    bool atomic)
++static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
++				     struct xe_gt *gt, u64 fault_addr,
++				     bool need_vram)
+ {
+ 	struct drm_gpusvm_ctx ctx = {
+ 		.read_only = xe_vma_read_only(vma),
+@@ -799,14 +843,14 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
+ 		.check_pages_threshold = IS_DGFX(vm->xe) &&
+ 			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ? SZ_64K : 0,
+-		.devmem_only = atomic && IS_DGFX(vm->xe) &&
+-			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
+-		.timeslice_ms = atomic && IS_DGFX(vm->xe) &&
++		.devmem_only = need_vram && IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
++		.timeslice_ms = need_vram && IS_DGFX(vm->xe) &&
+ 			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ?
+ 			vm->xe->atomic_svm_timeslice_ms : 0,
+ 	};
+ 	struct xe_svm_range *range;
+ 	struct dma_fence *fence;
++	struct drm_pagemap *dpagemap;
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	int migrate_try_count = ctx.devmem_only ? 3 : 1;
+ 	ktime_t end = 0;
+@@ -836,8 +880,14 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 
+ 	range_debug(range, "PAGE FAULT");
+ 
++	dpagemap = xe_vma_resolve_pagemap(vma, tile);
+ 	if (--migrate_try_count >= 0 &&
+-	    xe_svm_range_needs_migrate_to_vram(range, vma, IS_DGFX(vm->xe))) {
++	    xe_svm_range_needs_migrate_to_vram(range, vma, !!dpagemap || ctx.devmem_only)) {
++		/* TODO : For multi-device dpagemap will be used to find the
++		 * remote tile and remote device. Will need to modify
++		 * xe_svm_alloc_vram to use dpagemap for future multi-device
++		 * support.
++		 */
+ 		err = xe_svm_alloc_vram(tile, range, &ctx);
+ 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+ 		if (err) {
+@@ -904,6 +954,47 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	return err;
+ }
+ 
++/**
++ * xe_svm_handle_pagefault() - SVM handle page fault
++ * @vm: The VM.
++ * @vma: The CPU address mirror VMA.
++ * @gt: The gt upon the fault occurred.
++ * @fault_addr: The GPU fault address.
++ * @atomic: The fault atomic access bit.
++ *
++ * Create GPU bindings for a SVM page fault. Optionally migrate to device
++ * memory.
++ *
++ * Return: 0 on success, negative error code on error.
++ */
++int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
++			    struct xe_gt *gt, u64 fault_addr,
++			    bool atomic)
++{
++	bool is_retry = false;
++	int need_vram, ret;
++retry:
++	need_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
++	if (need_vram < 0)
++		return need_vram;
++
++	ret =  __xe_svm_handle_pagefault(vm, vma, gt, fault_addr,
++					 need_vram ? true : false);
++	if (ret == -EAGAIN && !is_retry) {
++		/*
++		 * Retry once on -EAGAIN to re-lookup the VMA, as the original VMA
++		 * may have been split by xe_svm_range_set_default_attr.
++		 */
++		vma = xe_vm_find_vma_by_addr(vm, fault_addr);
++		if (!vma)
++			return -EINVAL;
++
++		is_retry = true;
++		goto retry;
++	}
++	return ret;
++}
++
+ /**
+  * xe_svm_has_mapping() - SVM has mappings
+  * @vm: The VM.
+@@ -919,6 +1010,41 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
+ 	return drm_gpusvm_has_mapping(&vm->svm.gpusvm, start, end);
+ }
+ 
++/**
++ * xe_svm_unmap_address_range - UNMAP SVM mappings and ranges
++ * @vm: The VM
++ * @start: start addr
++ * @end: end addr
++ *
++ * This function UNMAPS svm ranges if start or end address are inside them.
++ */
++void xe_svm_unmap_address_range(struct xe_vm *vm, u64 start, u64 end)
++{
++	struct drm_gpusvm_notifier *notifier, *next;
++
++	lockdep_assert_held_write(&vm->lock);
++
++	drm_gpusvm_for_each_notifier_safe(notifier, next, &vm->svm.gpusvm, start, end) {
++		struct drm_gpusvm_range *range, *__next;
++
++		drm_gpusvm_for_each_range_safe(range, __next, notifier, start, end) {
++			if (start > drm_gpusvm_range_start(range) ||
++			    end < drm_gpusvm_range_end(range)) {
++				if (IS_DGFX(vm->xe) && xe_svm_range_in_vram(to_xe_range(range)))
++					drm_gpusvm_range_evict(&vm->svm.gpusvm, range);
++				drm_gpusvm_range_get(range);
++				__xe_svm_garbage_collector(vm, to_xe_range(range));
++				if (!list_empty(&to_xe_range(range)->garbage_collector_link)) {
++					spin_lock(&vm->svm.garbage_collector.lock);
++					list_del(&to_xe_range(range)->garbage_collector_link);
++					spin_unlock(&vm->svm.garbage_collector.lock);
++				}
++				drm_gpusvm_range_put(range);
++			}
++		}
++	}
++}
++
+ /**
+  * xe_svm_bo_evict() - SVM evict BO to system memory
+  * @bo: BO to evict
+@@ -983,6 +1109,56 @@ int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
+ 	return err;
+ }
+ 
++/**
++ * xe_svm_ranges_zap_ptes_in_range - clear ptes of svm ranges in input range
++ * @vm: Pointer to the xe_vm structure
++ * @start: Start of the input range
++ * @end: End of the input range
++ *
++ * This function removes the page table entries (PTEs) associated
++ * with the svm ranges within the given input start and end
++ *
++ * Return: tile_mask for which gt's need to be tlb invalidated.
++ */
++u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end)
++{
++	struct drm_gpusvm_notifier *notifier;
++	struct xe_svm_range *range;
++	u64 adj_start, adj_end;
++	struct xe_tile *tile;
++	u8 tile_mask = 0;
++	u8 id;
++
++	lockdep_assert(lockdep_is_held_type(&vm->svm.gpusvm.notifier_lock, 1) &&
++		       lockdep_is_held_type(&vm->lock, 0));
++
++	drm_gpusvm_for_each_notifier(notifier, &vm->svm.gpusvm, start, end) {
++		struct drm_gpusvm_range *r = NULL;
++
++		adj_start = max(start, drm_gpusvm_notifier_start(notifier));
++		adj_end = min(end, drm_gpusvm_notifier_end(notifier));
++		drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end) {
++			range = to_xe_range(r);
++			for_each_tile(tile, vm->xe, id) {
++				if (xe_pt_zap_ptes_range(tile, vm, range)) {
++					tile_mask |= BIT(id);
++					/*
++					 * WRITE_ONCE pairs with READ_ONCE in
++					 * xe_vm_has_valid_gpu_mapping().
++					 * Must not fail after setting
++					 * tile_invalidated and before
++					 * TLB invalidation.
++					 */
++					WRITE_ONCE(range->tile_invalidated,
++						   range->tile_invalidated | BIT(id));
++				}
++			}
++		}
++	}
++
++	return tile_mask;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+ 
+ static struct drm_pagemap *tile_local_pagemap(struct xe_tile *tile)
+@@ -990,6 +1166,37 @@ static struct drm_pagemap *tile_local_pagemap(struct xe_tile *tile)
+ 	return &tile->mem.vram->dpagemap;
+ }
+ 
++/**
++ * xe_vma_resolve_pagemap - Resolve the appropriate DRM pagemap for a VMA
++ * @vma: Pointer to the xe_vma structure containing memory attributes
++ * @tile: Pointer to the xe_tile structure used as fallback for VRAM mapping
++ *
++ * This function determines the correct DRM pagemap to use for a given VMA.
++ * It first checks if a valid devmem_fd is provided in the VMA's preferred
++ * location. If the devmem_fd is negative, it returns NULL, indicating no
++ * pagemap is available and smem to be used as preferred location.
++ * If the devmem_fd is equal to the default faulting
++ * GT identifier, it returns the VRAM pagemap associated with the tile.
++ *
++ * Future support for multi-device configurations may use drm_pagemap_from_fd()
++ * to resolve pagemaps from arbitrary file descriptors.
++ *
++ * Return: A pointer to the resolved drm_pagemap, or NULL if none is applicable.
++ */
++struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile)
++{
++	s32 fd = (s32)vma->attr.preferred_loc.devmem_fd;
++
++	if (fd == DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM)
++		return NULL;
++
++	if (fd == DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE)
++		return IS_DGFX(tile_to_xe(tile)) ? tile_local_pagemap(tile) : NULL;
++
++	/* TODO: Support multi-device with drm_pagemap_from_fd(fd) */
++	return NULL;
++}
++
+ /**
+  * xe_svm_alloc_vram()- Allocate device memory pages for range,
+  * migrating existing data.
+@@ -1102,6 +1309,11 @@ int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
+ {
+ 	return 0;
+ }
++
++struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile)
++{
++	return NULL;
++}
+ #endif
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index da9a69ea0bb1..494823afaa98 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -90,6 +90,12 @@ bool xe_svm_range_validate(struct xe_vm *vm,
+ 
+ u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 addr, u64 end,  struct xe_vma *vma);
+ 
++void xe_svm_unmap_address_range(struct xe_vm *vm, u64 start, u64 end);
++
++u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end);
++
++struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile);
++
+ /**
+  * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
+  * @range: SVM range
+@@ -303,6 +309,23 @@ u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 addr, u64 end, struct xe_vma *vm
+ 	return ULONG_MAX;
+ }
+ 
++static inline
++void xe_svm_unmap_address_range(struct xe_vm *vm, u64 start, u64 end)
++{
++}
++
++static inline
++u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end)
++{
++	return 0;
++}
++
++static inline
++struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile)
++{
++	return NULL;
++}
++
+ #define xe_svm_assert_in_notifier(...) do {} while (0)
+ #define xe_svm_range_has_dma_mapping(...) false
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 432ea325677d..364470212c21 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -38,6 +38,7 @@
+ #include "xe_res_cursor.h"
+ #include "xe_svm.h"
+ #include "xe_sync.h"
++#include "xe_tile.h"
+ #include "xe_trace_bo.h"
+ #include "xe_wa.h"
+ #include "xe_hmm.h"
+@@ -1168,7 +1169,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 				    struct xe_bo *bo,
+ 				    u64 bo_offset_or_userptr,
+ 				    u64 start, u64 end,
+-				    u16 pat_index, unsigned int flags)
++				    struct xe_vma_mem_attr *attr,
++				    unsigned int flags)
+ {
+ 	struct xe_vma *vma;
+ 	struct xe_tile *tile;
+@@ -1223,7 +1225,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	if (vm->xe->info.has_atomic_enable_pte_bit)
+ 		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
+ 
+-	vma->pat_index = pat_index;
++	vma->attr = *attr;
+ 
+ 	if (bo) {
+ 		struct drm_gpuvm_bo *vm_bo;
+@@ -2169,6 +2171,108 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
+ 	return err;
+ }
+ 
++static int xe_vm_query_vmas(struct xe_vm *vm, u64 start, u64 end)
++{
++	struct drm_gpuva *gpuva;
++	u32 num_vmas = 0;
++
++	lockdep_assert_held(&vm->lock);
++	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end)
++		num_vmas++;
++
++	return num_vmas;
++}
++
++static int get_mem_attrs(struct xe_vm *vm, u32 *num_vmas, u64 start,
++			 u64 end, struct drm_xe_mem_range_attr *attrs)
++{
++	struct drm_gpuva *gpuva;
++	int i = 0;
++
++	lockdep_assert_held(&vm->lock);
++
++	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
++		struct xe_vma *vma = gpuva_to_vma(gpuva);
++
++		if (i == *num_vmas)
++			return -ENOSPC;
++
++		attrs[i].start = xe_vma_start(vma);
++		attrs[i].end = xe_vma_end(vma);
++		attrs[i].atomic.val = vma->attr.atomic_access;
++		attrs[i].pat_index.val = vma->attr.pat_index;
++		attrs[i].preferred_mem_loc.devmem_fd = vma->attr.preferred_loc.devmem_fd;
++		attrs[i].preferred_mem_loc.migration_policy =
++		vma->attr.preferred_loc.migration_policy;
++
++		i++;
++	}
++
++	*num_vmas = i;
++	return 0;
++}
++
++int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
++{
++	struct xe_device *xe = to_xe_device(dev);
++	struct xe_file *xef = to_xe_file(file);
++	struct drm_xe_mem_range_attr *mem_attrs;
++	struct drm_xe_vm_query_mem_range_attr *args = data;
++	u64 __user *attrs_user = u64_to_user_ptr(args->vector_of_mem_attr);
++	struct xe_vm *vm;
++	int err = 0;
++
++	if (XE_IOCTL_DBG(xe,
++			 ((args->num_mem_ranges == 0 &&
++			  (attrs_user || args->sizeof_mem_range_attr != 0)) ||
++			 (args->num_mem_ranges > 0 &&
++			  (!attrs_user ||
++			   args->sizeof_mem_range_attr !=
++			   sizeof(struct drm_xe_mem_range_attr))))))
++		return -EINVAL;
++
++	vm = xe_vm_lookup(xef, args->vm_id);
++	if (XE_IOCTL_DBG(xe, !vm))
++		return -EINVAL;
++
++	err = down_read_interruptible(&vm->lock);
++	if (err)
++		goto put_vm;
++
++	attrs_user = u64_to_user_ptr(args->vector_of_mem_attr);
++
++	if (args->num_mem_ranges == 0 && !attrs_user) {
++		args->num_mem_ranges = xe_vm_query_vmas(vm, args->start, args->start + args->range);
++		args->sizeof_mem_range_attr = sizeof(struct drm_xe_mem_range_attr);
++		goto unlock_vm;
++	}
++
++	mem_attrs = kvmalloc_array(args->num_mem_ranges, args->sizeof_mem_range_attr,
++				   GFP_KERNEL | __GFP_ACCOUNT |
++				   __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
++	if (!mem_attrs) {
++		err = args->num_mem_ranges > 1 ? -ENOBUFS : -ENOMEM;
++		goto unlock_vm;
++	}
++
++	memset(mem_attrs, 0, args->num_mem_ranges * args->sizeof_mem_range_attr);
++	err = get_mem_attrs(vm, &args->num_mem_ranges, args->start,
++			    args->start + args->range, mem_attrs);
++	if (err)
++		goto free_mem_attrs;
++
++	err = copy_to_user(attrs_user, mem_attrs,
++			   args->sizeof_mem_range_attr * args->num_mem_ranges);
++
++free_mem_attrs:
++	kvfree(mem_attrs);
++unlock_vm:
++	up_read(&vm->lock);
++put_vm:
++	xe_vm_put(vm);
++	return err;
++}
++
+ static bool vma_matches(struct xe_vma *vma, u64 page_addr)
+ {
+ 	if (page_addr > xe_vma_end(vma) - 1 ||
+@@ -2316,10 +2420,17 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 
+ 	switch (operation) {
+ 	case DRM_XE_VM_BIND_OP_MAP:
+-	case DRM_XE_VM_BIND_OP_MAP_USERPTR:
+-		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, addr, range,
+-						  obj, bo_offset_or_userptr);
++	case DRM_XE_VM_BIND_OP_MAP_USERPTR: {
++		struct drm_gpuvm_map_req map_req = {
++			.op_map.va.addr = addr,
++			.op_map.va.range = range,
++			.op_map.gem.obj = obj,
++			.op_map.gem.offset = bo_offset_or_userptr,
++		};
++
++		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, &map_req);
+ 		break;
++	}
+ 	case DRM_XE_VM_BIND_OP_UNMAP:
+ 		ops = drm_gpuvm_sm_unmap_ops_create(&vm->gpuvm, addr, range);
+ 		break;
+@@ -2443,7 +2554,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_create, ERRNO);
+ 
+ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+-			      u16 pat_index, unsigned int flags)
++			      struct xe_vma_mem_attr *attr, unsigned int flags)
+ {
+ 	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) : NULL;
+ 	struct drm_exec exec;
+@@ -2472,7 +2583,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+ 	}
+ 	vma = xe_vma_create(vm, bo, op->gem.offset,
+ 			    op->va.addr, op->va.addr +
+-			    op->va.range - 1, pat_index, flags);
++			    op->va.range - 1, attr, flags);
+ 	if (IS_ERR(vma))
+ 		goto err_unlock;
+ 
+@@ -2589,6 +2700,29 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ 	return err;
+ }
+ 
++/**
++ * xe_vma_has_default_mem_attrs - Check if a VMA has default memory attributes
++ * @vma: Pointer to the xe_vma structure to check
++ *
++ * This function determines whether the given VMA (Virtual Memory Area)
++ * has its memory attributes set to their default values. Specifically,
++ * it checks the following conditions:
++ *
++ * - `atomic_access` is `DRM_XE_VMA_ATOMIC_UNDEFINED`
++ * - `pat_index` is equal to `default_pat_index`
++ * - `preferred_loc.devmem_fd` is `DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE`
++ * - `preferred_loc.migration_policy` is `DRM_XE_MIGRATE_ALL_PAGES`
++ *
++ * Return: true if all attributes are at their default values, false otherwise.
++ */
++bool xe_vma_has_default_mem_attrs(struct xe_vma *vma)
++{
++	return (vma->attr.atomic_access == DRM_XE_ATOMIC_UNDEFINED &&
++		vma->attr.pat_index ==  vma->attr.default_pat_index &&
++		vma->attr.preferred_loc.devmem_fd == DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE &&
++		vma->attr.preferred_loc.migration_policy == DRM_XE_MIGRATE_ALL_PAGES);
++}
++
+ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				   struct xe_vma_ops *vops)
+ {
+@@ -2615,6 +2749,16 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 		switch (op->base.op) {
+ 		case DRM_GPUVA_OP_MAP:
+ 		{
++			struct xe_vma_mem_attr default_attr = {
++				.preferred_loc = {
++					.devmem_fd = DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE,
++					.migration_policy = DRM_XE_MIGRATE_ALL_PAGES,
++				},
++				.atomic_access = DRM_XE_ATOMIC_UNDEFINED,
++				.default_pat_index = op->map.pat_index,
++				.pat_index = op->map.pat_index,
++			};
++
+ 			flags |= op->map.read_only ?
+ 				VMA_CREATE_FLAG_READ_ONLY : 0;
+ 			flags |= op->map.is_null ?
+@@ -2624,7 +2768,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 			flags |= op->map.is_cpu_addr_mirror ?
+ 				VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR : 0;
+ 
+-			vma = new_vma(vm, &op->base.map, op->map.pat_index,
++			vma = new_vma(vm, &op->base.map, &default_attr,
+ 				      flags);
+ 			if (IS_ERR(vma))
+ 				return PTR_ERR(vma);
+@@ -2652,8 +2796,12 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				end = op->base.remap.next->va.addr;
+ 
+ 			if (xe_vma_is_cpu_addr_mirror(old) &&
+-			    xe_svm_has_mapping(vm, start, end))
+-				return -EBUSY;
++			    xe_svm_has_mapping(vm, start, end)) {
++				if (vops->flags & XE_VMA_OPS_FLAG_MADVISE)
++					xe_svm_unmap_address_range(vm, start, end);
++				else
++					return -EBUSY;
++			}
+ 
+ 			op->remap.start = xe_vma_start(old);
+ 			op->remap.range = xe_vma_size(old);
+@@ -2672,7 +2820,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 
+ 			if (op->base.remap.prev) {
+ 				vma = new_vma(vm, op->base.remap.prev,
+-					      old->pat_index, flags);
++					      &old->attr, flags);
+ 				if (IS_ERR(vma))
+ 					return PTR_ERR(vma);
+ 
+@@ -2702,7 +2850,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 
+ 			if (op->base.remap.next) {
+ 				vma = new_vma(vm, op->base.remap.next,
+-					      old->pat_index, flags);
++					      &old->attr, flags);
+ 				if (IS_ERR(vma))
+ 					return PTR_ERR(vma);
+ 
+@@ -2892,15 +3040,28 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+ 	int err = 0;
+ 
+ 	struct xe_svm_range *svm_range;
++	struct drm_pagemap *dpagemap;
+ 	struct drm_gpusvm_ctx ctx = {};
+-	struct xe_tile *tile;
++	struct xe_tile *tile = NULL;
+ 	unsigned long i;
+ 	u32 region;
+ 
+ 	if (!xe_vma_is_cpu_addr_mirror(vma))
+ 		return 0;
+ 
+-	region = op->prefetch_range.region;
++	if (op->prefetch_range.region == DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC) {
++		dpagemap = xe_vma_resolve_pagemap(vma, xe_device_get_root_tile(vm->xe));
++		/*
++		 * TODO: Once multigpu support is enabled will need
++		 * something to dereference tile from dpagemap.
++		 */
++		if (dpagemap)
++			tile = xe_device_get_root_tile(vm->xe);
++	} else {
++		region = op->prefetch_range.region;
++		if (region)
++			tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
++	}
+ 
+ 	ctx.read_only = xe_vma_read_only(vma);
+ 	ctx.devmem_possible = devmem_possible;
+@@ -2908,11 +3069,10 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+ 
+ 	/* TODO: Threading the migration */
+ 	xa_for_each(&op->prefetch_range.range, i, svm_range) {
+-		if (!region)
++		if (!tile)
+ 			xe_svm_range_migrate_to_smem(vm, svm_range);
+ 
+-		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, region)) {
+-			tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
++		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, !!tile)) {
+ 			err = xe_svm_alloc_vram(tile, svm_range, &ctx);
+ 			if (err) {
+ 				drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
+@@ -2980,7 +3140,8 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 		else
+ 			region = op->prefetch.region;
+ 
+-		xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
++		xe_assert(vm->xe, region == DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC ||
++			  region <= ARRAY_SIZE(region_to_mem_type));
+ 
+ 		err = vma_lock_and_validate(exec,
+ 					    gpuva_to_vma(op->base.prefetch.va),
+@@ -3398,8 +3559,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_DBG(xe, prefetch_region &&
+ 				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
+-		    XE_IOCTL_DBG(xe, !(BIT(prefetch_region) &
+-				       xe->info.mem_region_mask)) ||
++		    XE_IOCTL_DBG(xe,  (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
++				       !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+ 				 op == DRM_XE_VM_BIND_OP_UNMAP)) {
+ 			err = -EINVAL;
+@@ -4161,3 +4322,221 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
+ 	}
+ 	kvfree(snap);
+ }
++
++/**
++ * xe_vma_need_vram_for_atomic - Check if VMA needs VRAM migration for atomic operations
++ * @xe: Pointer to the XE device structure
++ * @vma: Pointer to the virtual memory area (VMA) structure
++ * @is_atomic: In pagefault path and atomic operation
++ *
++ * This function determines whether the given VMA needs to be migrated to
++ * VRAM in order to do atomic GPU operation.
++ *
++ * Return:
++ *   1        - Migration to VRAM is required
++ *   0        - Migration is not required
++ *   -EACCES  - Invalid access for atomic memory attr
++ *
++ */
++int xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool is_atomic)
++{
++	u32 atomic_access = xe_vma_bo(vma) ? xe_vma_bo(vma)->attr.atomic_access :
++					     vma->attr.atomic_access;
++
++	if (!IS_DGFX(xe) || !is_atomic)
++		return false;
++
++	/*
++	 * NOTE: The checks implemented here are platform-specific. For
++	 * instance, on a device supporting CXL atomics, these would ideally
++	 * work universally without additional handling.
++	 */
++	switch (atomic_access) {
++	case DRM_XE_ATOMIC_DEVICE:
++		return !xe->info.has_device_atomics_on_smem;
++
++	case DRM_XE_ATOMIC_CPU:
++		return -EACCES;
++
++	case DRM_XE_ATOMIC_UNDEFINED:
++	case DRM_XE_ATOMIC_GLOBAL:
++	default:
++		return 1;
++	}
++}
++
++static int xe_vm_alloc_vma(struct xe_vm *vm, struct drm_gpuvm_map_req *map_req)
++{
++	struct xe_vma_ops vops;
++	struct drm_gpuva_ops *ops = NULL;
++	struct drm_gpuva_op *__op;
++	bool is_cpu_addr_mirror = false;
++	bool remap_op = false;
++	bool is_madvise = (map_req->flags & DRM_GPUVM_SM_MAP_OPS_FLAG_SPLIT_MADVISE);
++	struct xe_vma_mem_attr tmp_attr;
++	u16 default_pat;
++	int err;
++
++	lockdep_assert_held_write(&vm->lock);
++
++	vm_dbg(&vm->xe->drm, "MADVISE_OPS_CREATE: addr=0x%016llx, size=0x%016llx",
++	       map_req->op_map.va.addr, map_req->op_map.va.range);
++
++	ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, map_req);
++	if (IS_ERR(ops))
++		return PTR_ERR(ops);
++
++	if (list_empty(&ops->list)) {
++		err = 0;
++		goto free_ops;
++	}
++
++	drm_gpuva_for_each_op(__op, ops) {
++		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
++		struct xe_vma *vma = NULL;
++
++		if (!is_madvise) {
++			if (__op->op == DRM_GPUVA_OP_UNMAP) {
++				vma = gpuva_to_vma(op->base.unmap.va);
++				XE_WARN_ON(!xe_vma_has_default_mem_attrs(vma));
++				default_pat = vma->attr.default_pat_index;
++			}
++
++			if (__op->op == DRM_GPUVA_OP_REMAP) {
++				vma = gpuva_to_vma(op->base.remap.unmap->va);
++				default_pat = vma->attr.default_pat_index;
++			}
++
++			if (__op->op == DRM_GPUVA_OP_MAP) {
++				op->map.is_cpu_addr_mirror = true;
++				op->map.pat_index = default_pat;
++			}
++		} else {
++			if (__op->op == DRM_GPUVA_OP_REMAP) {
++				vma = gpuva_to_vma(op->base.remap.unmap->va);
++				xe_assert(vm->xe, !remap_op);
++				remap_op = true;
++
++				if (xe_vma_is_cpu_addr_mirror(vma))
++					is_cpu_addr_mirror = true;
++				else
++					is_cpu_addr_mirror = false;
++			}
++
++			if (__op->op == DRM_GPUVA_OP_MAP) {
++				xe_assert(vm->xe, remap_op);
++				remap_op = false;
++				/*
++				 * In case of madvise ops DRM_GPUVA_OP_MAP is
++				 * always after DRM_GPUVA_OP_REMAP, so ensure
++				 * we assign op->map.is_cpu_addr_mirror true
++				 * if REMAP is for xe_vma_is_cpu_addr_mirror vma
++				 */
++				op->map.is_cpu_addr_mirror = is_cpu_addr_mirror;
++			}
++		}
++		print_op(vm->xe, __op);
++	}
++
++	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
++
++	if (is_madvise)
++		vops.flags |= XE_VMA_OPS_FLAG_MADVISE;
++
++	err = vm_bind_ioctl_ops_parse(vm, ops, &vops);
++	if (err)
++		goto unwind_ops;
++
++	xe_vm_lock(vm, false);
++
++	drm_gpuva_for_each_op(__op, ops) {
++		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
++		struct xe_vma *vma;
++
++		if (__op->op == DRM_GPUVA_OP_UNMAP) {
++			vma = gpuva_to_vma(op->base.unmap.va);
++			/* There should be no unmap for madvise */
++			if (is_madvise)
++				XE_WARN_ON("UNEXPECTED UNMAP");
++
++			xe_vma_destroy(vma, NULL);
++		} else if (__op->op == DRM_GPUVA_OP_REMAP) {
++			vma = gpuva_to_vma(op->base.remap.unmap->va);
++			/* In case of madvise ops Store attributes for REMAP UNMAPPED
++			 * VMA, so they can be assigned to newly MAP created vma.
++			 */
++			if (is_madvise)
++				tmp_attr = vma->attr;
++
++			xe_vma_destroy(gpuva_to_vma(op->base.remap.unmap->va), NULL);
++		} else if (__op->op == DRM_GPUVA_OP_MAP) {
++			vma = op->map.vma;
++			/* In case of madvise call, MAP will always be follwed by REMAP.
++			 * Therefore temp_attr will always have sane values, making it safe to
++			 * copy them to new vma.
++			 */
++			if (is_madvise)
++				vma->attr = tmp_attr;
++		}
++	}
++
++	xe_vm_unlock(vm);
++	drm_gpuva_ops_free(&vm->gpuvm, ops);
++	return 0;
++
++unwind_ops:
++	vm_bind_ioctl_ops_unwind(vm, &ops, 1);
++free_ops:
++	drm_gpuva_ops_free(&vm->gpuvm, ops);
++	return err;
++}
++
++/**
++ * xe_vm_alloc_madvise_vma - Allocate VMA's with madvise ops
++ * @vm: Pointer to the xe_vm structure
++ * @start: Starting input address
++ * @range: Size of the input range
++ *
++ * This function splits existing vma to create new vma for user provided input range
++ *
++ * Return: 0 if success
++ */
++int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
++{
++	struct drm_gpuvm_map_req map_req = {
++		.op_map.va.addr = start,
++		.op_map.va.range = range,
++		.flags = DRM_GPUVM_SM_MAP_OPS_FLAG_SPLIT_MADVISE,
++	};
++
++	lockdep_assert_held_write(&vm->lock);
++
++	vm_dbg(&vm->xe->drm, "MADVISE_OPS_CREATE: addr=0x%016llx, size=0x%016llx", start, range);
++
++	return xe_vm_alloc_vma(vm, &map_req);
++}
++
++/**
++ * xe_vm_alloc_cpu_addr_mirror_vma - Allocate CPU addr mirror vma
++ * @vm: Pointer to the xe_vm structure
++ * @start: Starting input address
++ * @range: Size of the input range
++ *
++ * This function splits/merges existing vma to create new vma for user provided input range
++ *
++ * Return: 0 if success
++ */
++int xe_vm_alloc_cpu_addr_mirror_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
++{
++	struct drm_gpuvm_map_req map_req = {
++		.op_map.va.addr = start,
++		.op_map.va.range = range,
++	};
++
++	lockdep_assert_held_write(&vm->lock);
++
++	vm_dbg(&vm->xe->drm, "CPU_ADDR_MIRROR_VMA_OPS_CREATE: addr=0x%016llx, size=0x%016llx",
++	       start, range);
++
++	return xe_vm_alloc_vma(vm, &map_req);
++}
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 3475a118f666..3953b3ee2955 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -66,6 +66,8 @@ static inline bool xe_vm_is_closed_or_banned(struct xe_vm *vm)
+ struct xe_vma *
+ xe_vm_find_overlapping_vma(struct xe_vm *vm, u64 start, u64 range);
+ 
++bool xe_vma_has_default_mem_attrs(struct xe_vma *vma);
++
+ /**
+  * xe_vm_has_scratch() - Whether the vm is configured for scratch PTEs
+  * @vm: The vm
+@@ -171,6 +173,12 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
+ 
+ struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
+ 
++int xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool is_atomic);
++
++int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
++
++int xe_vm_alloc_cpu_addr_mirror_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
++
+ /**
+  * to_userptr_vma() - Return a pointer to an embedding userptr vma
+  * @vma: Pointer to the embedded struct xe_vma
+@@ -191,7 +199,7 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file);
+ int xe_vm_bind_ioctl(struct drm_device *dev, void *data,
+ 		     struct drm_file *file);
+-
++int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
+ void xe_vm_close_and_put(struct xe_vm *vm);
+ 
+ static inline bool xe_vm_in_fault_mode(struct xe_vm *vm)
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+new file mode 100644
+index 000000000000..8a3b4cb59593
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -0,0 +1,447 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include "xe_vm_madvise.h"
++
++#include <linux/nospec.h>
++#include <drm/xe_drm.h>
++
++#include "xe_bo.h"
++#include "xe_pat.h"
++#include "xe_pt.h"
++#include "xe_svm.h"
++
++struct xe_vmas_in_madvise_range {
++	u64 addr;
++	u64 range;
++	struct xe_vma **vmas;
++	int num_vmas;
++	bool has_svm_vmas;
++	bool has_bo_vmas;
++	bool has_userptr_vmas;
++};
++
++static int get_vmas(struct xe_vm *vm, struct xe_vmas_in_madvise_range *madvise_range)
++{
++	u64 addr = madvise_range->addr;
++	u64 range = madvise_range->range;
++
++	struct xe_vma  **__vmas;
++	struct drm_gpuva *gpuva;
++	int max_vmas = 8;
++
++	lockdep_assert_held(&vm->lock);
++
++	madvise_range->num_vmas = 0;
++	madvise_range->vmas = kmalloc_array(max_vmas, sizeof(*madvise_range->vmas), GFP_KERNEL);
++	if (!madvise_range->vmas)
++		return -ENOMEM;
++
++	vm_dbg(&vm->xe->drm, "VMA's in range: start=0x%016llx, end=0x%016llx", addr, addr + range);
++
++	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, addr, addr + range) {
++		struct xe_vma *vma = gpuva_to_vma(gpuva);
++
++		if (xe_vma_bo(vma))
++			madvise_range->has_bo_vmas = true;
++		else if (xe_vma_is_cpu_addr_mirror(vma))
++			madvise_range->has_svm_vmas = true;
++		else if (xe_vma_is_userptr(vma))
++			madvise_range->has_userptr_vmas = true;
++
++		if (madvise_range->num_vmas == max_vmas) {
++			max_vmas <<= 1;
++			__vmas = krealloc(madvise_range->vmas,
++					  max_vmas * sizeof(*madvise_range->vmas),
++					  GFP_KERNEL);
++			if (!__vmas) {
++				kfree(madvise_range->vmas);
++				return -ENOMEM;
++			}
++			madvise_range->vmas = __vmas;
++		}
++
++		madvise_range->vmas[madvise_range->num_vmas] = vma;
++		(madvise_range->num_vmas)++;
++	}
++
++	if (!madvise_range->num_vmas)
++		kfree(madvise_range->vmas);
++
++	vm_dbg(&vm->xe->drm, "madvise_range-num_vmas = %d\n", madvise_range->num_vmas);
++
++	return 0;
++}
++
++static void madvise_preferred_mem_loc(struct xe_device *xe, struct xe_vm *vm,
++				      struct xe_vma **vmas, int num_vmas,
++				      struct drm_xe_madvise *op)
++{
++	int i;
++
++	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC);
++
++	for (i = 0; i < num_vmas; i++) {
++		/*TODO: Extend attributes to bo based vmas */
++		if ((vmas[i]->attr.preferred_loc.devmem_fd == op->preferred_mem_loc.devmem_fd &&
++		     vmas[i]->attr.preferred_loc.migration_policy ==
++		     op->preferred_mem_loc.migration_policy) ||
++		    !xe_vma_is_cpu_addr_mirror(vmas[i])) {
++			vmas[i]->skip_invalidation = true;
++		} else {
++			vmas[i]->skip_invalidation = false;
++			vmas[i]->attr.preferred_loc.devmem_fd = op->preferred_mem_loc.devmem_fd;
++			/* Till multi-device support is not added migration_policy
++			 * is of no use and can be ignored.
++			 */
++			vmas[i]->attr.preferred_loc.migration_policy =
++						op->preferred_mem_loc.migration_policy;
++		}
++	}
++}
++
++static void madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
++			   struct xe_vma **vmas, int num_vmas,
++			   struct drm_xe_madvise *op)
++{
++	struct xe_bo *bo;
++	int i;
++
++	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_ATOMIC);
++	xe_assert(vm->xe, op->atomic.val <= DRM_XE_ATOMIC_CPU);
++
++	for (i = 0; i < num_vmas; i++) {
++		if (xe_vma_is_userptr(vmas[i]) &&
++		    !(op->atomic.val == DRM_XE_ATOMIC_DEVICE &&
++		      xe->info.has_device_atomics_on_smem)) {
++			vmas[i]->skip_invalidation = true;
++			continue;
++		}
++
++		if (vmas[i]->attr.atomic_access == op->atomic.val) {
++			vmas[i]->skip_invalidation = true;
++		} else {
++			vmas[i]->skip_invalidation = false;
++			vmas[i]->attr.atomic_access = op->atomic.val;
++		}
++
++		vmas[i]->attr.atomic_access = op->atomic.val;
++
++		bo = xe_vma_bo(vmas[i]);
++		if (!bo || bo->attr.atomic_access == op->atomic.val)
++			continue;
++
++		vmas[i]->skip_invalidation = false;
++		xe_bo_assert_held(bo);
++		bo->attr.atomic_access = op->atomic.val;
++
++		/* Invalidate cpu page table, so bo can migrate to smem in next access */
++		if (xe_bo_is_vram(bo) &&
++		    (bo->attr.atomic_access == DRM_XE_ATOMIC_CPU ||
++		     bo->attr.atomic_access == DRM_XE_ATOMIC_GLOBAL))
++			ttm_bo_unmap_virtual(&bo->ttm);
++	}
++}
++
++static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
++			      struct xe_vma **vmas, int num_vmas,
++			      struct drm_xe_madvise *op)
++{
++	int i;
++
++	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_PAT);
++
++	for (i = 0; i < num_vmas; i++) {
++		if ((!xe_vma_bo(vmas[i]) &&
++		     xe_pat_index_get_comp_mode(xe, op->pat_index.val)) ||
++		    vmas[i]->attr.pat_index == op->pat_index.val) {
++			vmas[i]->skip_invalidation = true;
++		} else {
++			vmas[i]->skip_invalidation = false;
++			vmas[i]->attr.pat_index = op->pat_index.val;
++		}
++	}
++}
++
++typedef void (*madvise_func)(struct xe_device *xe, struct xe_vm *vm,
++			     struct xe_vma **vmas, int num_vmas,
++			     struct drm_xe_madvise *op);
++
++static const madvise_func madvise_funcs[] = {
++	[DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC] = madvise_preferred_mem_loc,
++	[DRM_XE_MEM_RANGE_ATTR_ATOMIC] = madvise_atomic,
++	[DRM_XE_MEM_RANGE_ATTR_PAT] = madvise_pat_index,
++};
++
++static u8 xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start, u64 end)
++{
++	struct drm_gpuva *gpuva;
++	struct xe_tile *tile;
++	u8 id, tile_mask = 0;
++
++	lockdep_assert_held_write(&vm->lock);
++
++	/* Wait for pending binds */
++	if (dma_resv_wait_timeout(xe_vm_resv(vm), DMA_RESV_USAGE_BOOKKEEP,
++				  false, MAX_SCHEDULE_TIMEOUT) <= 0)
++		XE_WARN_ON(1);
++
++	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
++		struct xe_vma *vma = gpuva_to_vma(gpuva);
++
++		if (vma->skip_invalidation || xe_vma_is_null(vma))
++			continue;
++
++		if (xe_vma_is_cpu_addr_mirror(vma)) {
++			tile_mask |= xe_svm_ranges_zap_ptes_in_range(vm,
++								      xe_vma_start(vma),
++								      xe_vma_end(vma));
++		} else {
++			for_each_tile(tile, vm->xe, id) {
++				if (xe_pt_zap_ptes(tile, vma)) {
++					tile_mask |= BIT(id);
++
++				/*
++				 * WRITE_ONCE pairs with READ_ONCE
++				 * in xe_vm_has_valid_gpu_mapping()
++				 */
++				WRITE_ONCE(vma->tile_invalidated,
++					   vma->tile_invalidated | BIT(id));
++				}
++			}
++		}
++	}
++
++	return tile_mask;
++}
++
++static int xe_vm_invalidate_madvise_range(struct xe_vm *vm, u64 start, u64 end)
++{
++	u8 tile_mask = xe_zap_ptes_in_madvise_range(vm, start, end);
++
++	if (!tile_mask)
++		return 0;
++
++	xe_device_wmb(vm->xe);
++
++	return xe_vm_range_tilemask_tlb_invalidation(vm, start, end, tile_mask);
++}
++
++static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madvise *args)
++{
++	if (XE_IOCTL_DBG(xe, !args))
++		return false;
++
++	if (XE_IOCTL_DBG(xe, !IS_ALIGNED(args->start, SZ_4K)))
++		return false;
++
++	if (XE_IOCTL_DBG(xe, !IS_ALIGNED(args->range, SZ_4K)))
++		return false;
++
++	if (XE_IOCTL_DBG(xe, args->range < SZ_4K))
++		return false;
++
++	switch (args->type) {
++	case DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC:
++	{
++		s32 fd = (s32)args->preferred_mem_loc.devmem_fd;
++
++		if (XE_IOCTL_DBG(xe, fd < DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->preferred_mem_loc.migration_policy >
++				     DRM_XE_MIGRATE_ONLY_SYSTEM_PAGES))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->preferred_mem_loc.pad))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->atomic.reserved))
++			return false;
++		break;
++	}
++	case DRM_XE_MEM_RANGE_ATTR_ATOMIC:
++		if (XE_IOCTL_DBG(xe, args->atomic.val > DRM_XE_ATOMIC_CPU))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->atomic.pad))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->atomic.reserved))
++			return false;
++
++		break;
++	case DRM_XE_MEM_RANGE_ATTR_PAT:
++	{
++		u16 coh_mode = xe_pat_index_get_coh_mode(xe, args->pat_index.val);
++
++		if (XE_IOCTL_DBG(xe, !coh_mode))
++			return false;
++
++		if (XE_WARN_ON(coh_mode > XE_COH_AT_LEAST_1WAY))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->pat_index.pad))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->pat_index.reserved))
++			return false;
++		break;
++	}
++	default:
++		if (XE_IOCTL_DBG(xe, 1))
++			return false;
++	}
++
++	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
++		return false;
++
++	return true;
++}
++
++static bool check_bo_args_are_sane(struct xe_vm *vm, struct xe_vma **vmas,
++				   int num_vmas, u32 atomic_val)
++{
++	struct xe_device *xe = vm->xe;
++	struct xe_bo *bo;
++	int i;
++
++	for (i = 0; i < num_vmas; i++) {
++		bo = xe_vma_bo(vmas[i]);
++		if (!bo)
++			continue;
++		/*
++		 * NOTE: The following atomic checks are platform-specific. For example,
++		 * if a device supports CXL atomics, these may not be necessary or
++		 * may behave differently.
++		 */
++		if (XE_IOCTL_DBG(xe, atomic_val == DRM_XE_ATOMIC_CPU &&
++				 !(bo->flags & XE_BO_FLAG_SYSTEM)))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, atomic_val == DRM_XE_ATOMIC_DEVICE &&
++				 !(bo->flags & XE_BO_FLAG_VRAM0) &&
++				 !(bo->flags & XE_BO_FLAG_VRAM1) &&
++				 !(bo->flags & XE_BO_FLAG_SYSTEM &&
++				   xe->info.has_device_atomics_on_smem)))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, atomic_val == DRM_XE_ATOMIC_GLOBAL &&
++				 (!(bo->flags & XE_BO_FLAG_SYSTEM) ||
++				  (!(bo->flags & XE_BO_FLAG_VRAM0) &&
++				   !(bo->flags & XE_BO_FLAG_VRAM1)))))
++			return false;
++	}
++	return true;
++}
++/**
++ * xe_vm_madvise_ioctl - Handle MADVise ioctl for a VM
++ * @dev: DRM device pointer
++ * @data: Pointer to ioctl data (drm_xe_madvise*)
++ * @file: DRM file pointer
++ *
++ * Handles the MADVISE ioctl to provide memory advice for vma's within
++ * input range.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
++{
++	struct xe_device *xe = to_xe_device(dev);
++	struct xe_file *xef = to_xe_file(file);
++	struct drm_xe_madvise *args = data;
++	struct xe_vmas_in_madvise_range madvise_range = {.addr = args->start,
++							 .range =  args->range, };
++	struct xe_vm *vm;
++	struct drm_exec exec;
++	int err, attr_type;
++
++	vm = xe_vm_lookup(xef, args->vm_id);
++	if (XE_IOCTL_DBG(xe, !vm))
++		return -EINVAL;
++
++	if (!madvise_args_are_sane(vm->xe, args)) {
++		err = -EINVAL;
++		goto put_vm;
++	}
++
++	xe_svm_flush(vm);
++
++	err = down_write_killable(&vm->lock);
++	if (err)
++		goto put_vm;
++
++	if (XE_IOCTL_DBG(xe, xe_vm_is_closed_or_banned(vm))) {
++		err = -ENOENT;
++		goto unlock_vm;
++	}
++
++	err = xe_vm_alloc_madvise_vma(vm, args->start, args->range);
++	if (err)
++		goto unlock_vm;
++
++	err = get_vmas(vm, &madvise_range);
++	if (err || !madvise_range.num_vmas)
++		goto unlock_vm;
++
++	if (madvise_range.has_bo_vmas) {
++		if (args->type == DRM_XE_MEM_RANGE_ATTR_ATOMIC) {
++			if (!check_bo_args_are_sane(vm, madvise_range.vmas,
++						    madvise_range.num_vmas,
++						    args->atomic.val)) {
++				err = -EINVAL;
++				goto unlock_vm;
++			}
++		}
++
++		drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES | DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
++		drm_exec_until_all_locked(&exec) {
++			for (int i = 0; i < madvise_range.num_vmas; i++) {
++				struct xe_bo *bo = xe_vma_bo(madvise_range.vmas[i]);
++
++				if (!bo)
++					continue;
++				err = drm_exec_lock_obj(&exec, &bo->ttm.base);
++				drm_exec_retry_on_contention(&exec);
++				if (err)
++					goto err_fini;
++			}
++		}
++	}
++
++	if (madvise_range.has_userptr_vmas) {
++		err = down_read_interruptible(&vm->userptr.notifier_lock);
++		if (err)
++			goto err_fini;
++	}
++
++	if (madvise_range.has_svm_vmas) {
++		err = down_read_interruptible(&vm->svm.gpusvm.notifier_lock);
++		if (err)
++			goto unlock_userptr;
++	}
++
++	attr_type = array_index_nospec(args->type, ARRAY_SIZE(madvise_funcs));
++	madvise_funcs[attr_type](xe, vm, madvise_range.vmas, madvise_range.num_vmas, args);
++
++	err = xe_vm_invalidate_madvise_range(vm, args->start, args->start + args->range);
++
++	if (madvise_range.has_svm_vmas)
++		xe_svm_notifier_unlock(vm);
++
++unlock_userptr:
++	if (madvise_range.has_userptr_vmas)
++		up_read(&vm->userptr.notifier_lock);
++err_fini:
++	if (madvise_range.has_bo_vmas)
++		drm_exec_fini(&exec);
++	kfree(madvise_range.vmas);
++	madvise_range.vmas = NULL;
++unlock_vm:
++	up_write(&vm->lock);
++put_vm:
++	xe_vm_put(vm);
++	return err;
++}
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.h b/drivers/gpu/drm/xe/xe_vm_madvise.h
+new file mode 100644
+index 000000000000..b0e1fc445f23
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_VM_MADVISE_H_
++#define _XE_VM_MADVISE_H_
++
++struct drm_device;
++struct drm_file;
++
++int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
++			struct drm_file *file);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index bed6088e1bb3..351242c92c12 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -77,6 +77,44 @@ struct xe_userptr {
+ #endif
+ };
+ 
++/**
++ * struct xe_vma_mem_attr - memory attributes associated with vma
++ */
++struct xe_vma_mem_attr {
++	/** @preferred_loc: perferred memory_location */
++	struct {
++		/** @preferred_loc.migration_policy: Pages migration policy */
++		u32 migration_policy;
++
++		/**
++		 * @preferred_loc.devmem_fd: used for determining pagemap_fd
++		 * requested by user DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM and
++		 * DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE mean system memory or
++		 * closest device memory respectively.
++		 */
++		u32 devmem_fd;
++	} preferred_loc;
++
++	/**
++	 * @atomic_access: The atomic access type for the vma
++	 * See %DRM_XE_VMA_ATOMIC_UNDEFINED, %DRM_XE_VMA_ATOMIC_DEVICE,
++	 * %DRM_XE_VMA_ATOMIC_GLOBAL, and %DRM_XE_VMA_ATOMIC_CPU for possible
++	 * values. These are defined in uapi/drm/xe_drm.h.
++	 */
++	u32 atomic_access;
++
++	/**
++	 * @default_pat_index: The pat index for VMA set during first bind by user.
++	 */
++	u16 default_pat_index;
++
++	/**
++	 * @pat_index: The pat index to use when encoding the PTEs for this vma.
++	 * same as default_pat_index unless overwritten by madvise.
++	 */
++	u16 pat_index;
++};
++
+ struct xe_vma {
+ 	/** @gpuva: Base GPUVA object */
+ 	struct drm_gpuva gpuva;
+@@ -126,15 +164,22 @@ struct xe_vma {
+ 	u8 tile_staged;
+ 
+ 	/**
+-	 * @pat_index: The pat index to use when encoding the PTEs for this vma.
++	 * @skip_invalidation: Used in madvise to avoid invalidation
++	 * if mem attributes doesn't change
+ 	 */
+-	u16 pat_index;
++	bool skip_invalidation;
+ 
+ 	/**
+ 	 * @ufence: The user fence that was provided with MAP.
+ 	 * Needs to be signalled before UNMAP can be processed.
+ 	 */
+ 	struct xe_user_fence *ufence;
++
++	/**
++	 * @attr: The attributes of vma which determines the migration policy
++	 * and encoding of the PTEs for this vma.
++	 */
++	struct xe_vma_mem_attr attr;
+ };
+ 
+ /**
+@@ -462,6 +507,7 @@ struct xe_vma_ops {
+ 	struct xe_vm_pgtable_update_ops pt_update_ops[XE_MAX_TILES_PER_DEVICE];
+ 	/** @flag: signify the properties within xe_vma_ops*/
+ #define XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH BIT(0)
++#define XE_VMA_OPS_FLAG_MADVISE          BIT(1)
+ 	u32 flags;
+ #ifdef TEST_VM_OPS_ERROR
+ 	/** @inject_error: inject error to test error handling */
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index 4aedc5423aff..142fc2af1716 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -282,6 +282,10 @@ void drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
+ bool drm_gpusvm_has_mapping(struct drm_gpusvm *gpusvm, unsigned long start,
+ 			    unsigned long end);
+ 
++struct drm_gpusvm_notifier *
++drm_gpusvm_notifier_find(struct drm_gpusvm *gpusvm, unsigned long start,
++			 unsigned long end);
++
+ struct drm_gpusvm_range *
+ drm_gpusvm_range_find(struct drm_gpusvm_notifier *notifier, unsigned long start,
+ 		      unsigned long end);
+@@ -434,4 +438,70 @@ __drm_gpusvm_range_next(struct drm_gpusvm_range *range)
+ 	     (range__) && (drm_gpusvm_range_start(range__) < (end__));	\
+ 	     (range__) = __drm_gpusvm_range_next(range__))
+ 
++/**
++ * drm_gpusvm_for_each_range_safe() - Safely iterate over GPU SVM ranges in a notifier
++ * @range__: Iterator variable for the ranges
++ * @next__: Iterator variable for the ranges temporay storage
++ * @notifier__: Pointer to the GPU SVM notifier
++ * @start__: Start address of the range
++ * @end__: End address of the range
++ *
++ * This macro is used to iterate over GPU SVM ranges in a notifier while
++ * removing ranges from it.
++ */
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
++
++/**
++ * __drm_gpusvm_notifier_next() - get the next drm_gpusvm_notifier in the list
++ * @notifier: a pointer to the current drm_gpusvm_notifier
++ *
++ * Return: A pointer to the next drm_gpusvm_notifier if available, or NULL if
++ *         the current notifier is the last one or if the input notifier is
++ *         NULL.
++ */
++static inline struct drm_gpusvm_notifier *
++__drm_gpusvm_notifier_next(struct drm_gpusvm_notifier *notifier)
++{
++	if (notifier && !list_is_last(&notifier->entry,
++				      &notifier->gpusvm->notifier_list))
++		return list_next_entry(notifier, entry);
++
++	return NULL;
++}
++
++/**
++ * drm_gpusvm_for_each_notifier() - Iterate over GPU SVM notifiers in a gpusvm
++ * @notifier__: Iterator variable for the notifiers
++ * @gpusvm__: Pointer to the GPU SVM notifier
++ * @start__: Start address of the notifier
++ * @end__: End address of the notifier
++ *
++ * This macro is used to iterate over GPU SVM notifiers in a gpusvm.
++ */
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__));	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
++
++/**
++ * drm_gpusvm_for_each_notifier_safe() - Safely iterate over GPU SVM notifiers in a gpusvm
++ * @notifier__: Iterator variable for the notifiers
++ * @next__: Iterator variable for the notifiers temporay storage
++ * @gpusvm__: Pointer to the GPU SVM notifier
++ * @start__: Start address of the notifier
++ * @end__: End address of the notifier
++ *
++ * This macro is used to iterate over GPU SVM notifiers in a gpusvm while
++ * removing notifiers from it.
++ */
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
++
+ #endif /* __DRM_GPUSVM_H__ */
+diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+index 274532facfd6..fa2b74a54534 100644
+--- a/include/drm/drm_gpuvm.h
++++ b/include/drm/drm_gpuvm.h
+@@ -160,15 +160,6 @@ struct drm_gpuva *drm_gpuva_find_first(struct drm_gpuvm *gpuvm,
+ struct drm_gpuva *drm_gpuva_find_prev(struct drm_gpuvm *gpuvm, u64 start);
+ struct drm_gpuva *drm_gpuva_find_next(struct drm_gpuvm *gpuvm, u64 end);
+ 
+-static inline void drm_gpuva_init(struct drm_gpuva *va, u64 addr, u64 range,
+-				  struct drm_gem_object *obj, u64 offset)
+-{
+-	va->va.addr = addr;
+-	va->va.range = range;
+-	va->gem.obj = obj;
+-	va->gem.offset = offset;
+-}
+-
+ /**
+  * drm_gpuva_invalidate() - sets whether the backing GEM of this &drm_gpuva is
+  * invalidated
+@@ -1058,10 +1049,43 @@ struct drm_gpuva_ops {
+  */
+ #define drm_gpuva_next_op(op) list_next_entry(op, entry)
+ 
++enum drm_gpuvm_sm_map_ops_flags {
++	 /**
++	  * %DRM_GPUVM_SM_MAP_OPS_FLAG_NONE: DEFAULT sm_map ops
++	  */
++	DRM_GPUVM_SM_MAP_OPS_FLAG_NONE = 0,
++
++	/**
++	 * @DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE: This flag is used by
++	 * drm_gpuvm_sm_map_ops_create to iterate over GPUVMA's in the
++	 * user-provided range and split the existing non-GEM object VMA if the
++	 * start or end of the input range lies within it. The operations can
++	 * create up to 2 REMAPS and 2 MAPs. Unlike drm_gpuvm_sm_map_ops_flags
++	 * in default mode, the operation with this flag will never have UNMAPs
++	 * and merges, and can be without any final operations.
++	 */
++	DRM_GPUVM_SM_MAP_OPS_FLAG_SPLIT_MADVISE = BIT(0),
++};
++
++/**
++ * struct drm_gpuvm_map_req - arguments passed to drm_gpuvm_sm_map[_ops_create]()
++ */
++struct drm_gpuvm_map_req {
++	/**
++	 * @op_map: struct drm_gpuva_op_map
++	 */
++	struct drm_gpuva_op_map op_map;
++
++	/**
++	 * @flags: drm_gpuvm_sm_map_ops_flags for this mapping request
++	 */
++	enum drm_gpuvm_sm_map_ops_flags flags;
++};
++
+ struct drm_gpuva_ops *
+ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+-			    u64 addr, u64 range,
+-			    struct drm_gem_object *obj, u64 offset);
++			    const struct drm_gpuvm_map_req *req);
++
+ struct drm_gpuva_ops *
+ drm_gpuvm_sm_unmap_ops_create(struct drm_gpuvm *gpuvm,
+ 			      u64 addr, u64 range);
+@@ -1079,8 +1103,10 @@ void drm_gpuva_ops_free(struct drm_gpuvm *gpuvm,
+ static inline void drm_gpuva_init_from_op(struct drm_gpuva *va,
+ 					  struct drm_gpuva_op_map *op)
+ {
+-	drm_gpuva_init(va, op->va.addr, op->va.range,
+-		       op->gem.obj, op->gem.offset);
++	va->va.addr = op->va.addr;
++	va->va.range = op->va.range;
++	va->gem.obj = op->gem.obj;
++	va->gem.offset = op->gem.offset;
+ }
+ 
+ /**
+@@ -1205,16 +1231,14 @@ struct drm_gpuvm_ops {
+ };
+ 
+ int drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+-		     u64 addr, u64 range,
+-		     struct drm_gem_object *obj, u64 offset);
++		     const struct drm_gpuvm_map_req *req);
+ 
+ int drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm, void *priv,
+ 		       u64 addr, u64 range);
+ 
+ int drm_gpuvm_sm_map_exec_lock(struct drm_gpuvm *gpuvm,
+ 			  struct drm_exec *exec, unsigned int num_fences,
+-			  u64 req_addr, u64 req_range,
+-			  struct drm_gem_object *obj, u64 offset);
++			  struct drm_gpuvm_map_req *req);
+ 
+ int drm_gpuvm_sm_unmap_exec_lock(struct drm_gpuvm *gpuvm, struct drm_exec *exec,
+ 				 u64 req_addr, u64 req_range);
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index c721e130c1d2..eaf713706387 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -81,6 +81,8 @@ extern "C" {
+  *  - &DRM_IOCTL_XE_EXEC
+  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
+  *  - &DRM_IOCTL_XE_OBSERVATION
++ *  - &DRM_IOCTL_XE_MADVISE
++ *  - &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
+  */
+ 
+ /*
+@@ -102,6 +104,8 @@ extern "C" {
+ #define DRM_XE_EXEC			0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+ #define DRM_XE_OBSERVATION		0x0b
++#define DRM_XE_MADVISE			0x0c
++#define DRM_XE_VM_QUERY_MEM_RANGE_ATTRS	0x0d
+ 
+ /* Must be kept compact -- no holes */
+ 
+@@ -117,6 +121,8 @@ extern "C" {
+ #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
++#define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
++#define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
+ 
+ /**
+  * DOC: Xe IOCTL Extensions
+@@ -1007,6 +1013,10 @@ struct drm_xe_vm_destroy {
+  *    valid on VMs with DRM_XE_VM_CREATE_FLAG_FAULT_MODE set. The CPU address
+  *    mirror flag are only valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
+  *    handle MBZ, and the BO offset MBZ.
++ *
++ * The @prefetch_mem_region_instance for %DRM_XE_VM_BIND_OP_PREFETCH can also be:
++ *  - %DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, which ensures prefetching occurs in
++ *    the memory region advised by madvise.
+  */
+ struct drm_xe_vm_bind_op {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+@@ -1112,6 +1122,7 @@ struct drm_xe_vm_bind_op {
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
++#define DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC	-1
+ 	/**
+ 	 * @prefetch_mem_region_instance: Memory region to prefetch VMA to.
+ 	 * It is a region instance, not a mask.
+@@ -1978,6 +1989,269 @@ struct drm_xe_query_eu_stall {
+ 	__u64 sampling_rates[];
+ };
+ 
++/**
++ * struct drm_xe_madvise - Input of &DRM_IOCTL_XE_MADVISE
++ *
++ * This structure is used to set memory attributes for a virtual address range
++ * in a VM. The type of attribute is specified by @type, and the corresponding
++ * union member is used to provide additional parameters for @type.
++ *
++ * Supported attribute types:
++ * - DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC: Set preferred memory location.
++ * - DRM_XE_MEM_RANGE_ATTR_ATOMIC: Set atomic access policy.
++ * - DRM_XE_MEM_RANGE_ATTR_PAT: Set page attribute table index.
++ *
++ * Example:
++ *
++ * .. code-block:: C
++ *
++ * struct drm_xe_madvise madvise = {
++ *          .vm_id = vm_id,
++ *          .start = 0x100000,
++ *          .range = 0x2000,
++ *          .type = DRM_XE_MEM_RANGE_ATTR_ATOMIC,
++ *          .atomic_val = DRM_XE_ATOMIC_DEVICE,
++ *         };
++ *
++ * ioctl(fd, DRM_IOCTL_XE_MADVISE, &madvise);
++ *
++ */
++struct drm_xe_madvise {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @start: start of the virtual address range */
++	__u64 start;
++
++	/** @range: size of the virtual address range */
++	__u64 range;
++
++	/** @vm_id: vm_id of the virtual range */
++	__u32 vm_id;
++
++#define DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC	0
++#define DRM_XE_MEM_RANGE_ATTR_ATOMIC		1
++#define DRM_XE_MEM_RANGE_ATTR_PAT		2
++	/** @type: type of attribute */
++	__u32 type;
++
++	union {
++		/**
++		 * @preferred_mem_loc: preferred memory location
++		 *
++		 * Used when @type == DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC
++		 *
++		 * Supported values for @preferred_mem_loc.devmem_fd:
++		 * - DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE: set vram of faulting tile as preferred loc
++		 * - DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM: set smem as preferred loc
++		 *
++		 * Supported values for @preferred_mem_loc.migration_policy:
++		 * - DRM_XE_MIGRATE_ALL_PAGES
++		 * - DRM_XE_MIGRATE_ONLY_SYSTEM_PAGES
++		 */
++		struct {
++#define DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE	0
++#define DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM	-1
++			/** @preferred_mem_loc.devmem_fd: fd for preferred loc */
++			__u32 devmem_fd;
++
++#define DRM_XE_MIGRATE_ALL_PAGES		0
++#define DRM_XE_MIGRATE_ONLY_SYSTEM_PAGES	1
++			/** @preferred_mem_loc.migration_policy: Page migration policy */
++			__u16 migration_policy;
++
++			/** @preferred_mem_loc.pad : MBZ */
++			__u16 pad;
++
++			/** @preferred_mem_loc.reserved : Reserved */
++			__u64 reserved;
++		} preferred_mem_loc;
++
++		/**
++		 * @atomic: Atomic access policy
++		 *
++		 * Used when @type == DRM_XE_MEM_RANGE_ATTR_ATOMIC.
++		 *
++		 * Supported values for @atomic.val:
++		 * - DRM_XE_ATOMIC_UNDEFINED: Undefined or default behaviour
++		 *   Support both GPU and CPU atomic operations for system allocator
++		 *   Support GPU atomic operations for normal(bo) allocator
++		 * - DRM_XE_ATOMIC_DEVICE: Support GPU atomic operations
++		 * - DRM_XE_ATOMIC_GLOBAL: Support both GPU and CPU atomic operations
++		 * - DRM_XE_ATOMIC_CPU: Support CPU atomic
++		 */
++		struct {
++#define DRM_XE_ATOMIC_UNDEFINED	0
++#define DRM_XE_ATOMIC_DEVICE	1
++#define DRM_XE_ATOMIC_GLOBAL	2
++#define DRM_XE_ATOMIC_CPU	3
++			/** @atomic.val: value of atomic operation */
++			__u32 val;
++
++			/** @atomic.pad: MBZ */
++			__u32 pad;
++
++			/** @atomic.reserved: Reserved */
++			__u64 reserved;
++		} atomic;
++
++		/**
++		 * @pat_index: Page attribute table index
++		 *
++		 * Used when @type == DRM_XE_MEM_RANGE_ATTR_PAT.
++		 */
++		struct {
++			/** @pat_index.val: PAT index value */
++			__u32 val;
++
++			/** @pat_index.pad: MBZ */
++			__u32 pad;
++
++			/** @pat_index.reserved: Reserved */
++			__u64 reserved;
++		} pat_index;
++	};
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++};
++
++/**
++ * struct drm_xe_mem_range_attr - Output of &DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS
++ *
++ * This structure is provided by userspace and filled by KMD in response to the
++ * DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS ioctl. It describes memory attributes of
++ * a memory ranges within a user specified address range in a VM.
++ *
++ * The structure includes information such as atomic access policy,
++ * page attribute table (PAT) index, and preferred memory location.
++ * Userspace allocates an array of these structures and passes a pointer to the
++ * ioctl to retrieve attributes for each memory ranges
++ *
++ * @extensions: Pointer to the first extension struct, if any
++ * @start: Start address of the memory range
++ * @end: End address of the virtual memory range
++ *
++ */
++struct drm_xe_mem_range_attr {
++	 /** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @start: start of the memory range */
++	__u64 start;
++
++	/** @end: end of the memory range */
++	__u64 end;
++
++	/** @preferred_mem_loc: preferred memory location */
++	struct {
++		/** @preferred_mem_loc.devmem_fd: fd for preferred loc */
++		__u32 devmem_fd;
++
++		/** @preferred_mem_loc.migration_policy: Page migration policy */
++		__u32 migration_policy;
++	} preferred_mem_loc;
++
++	/** @atomic: Atomic access policy */
++	struct {
++		/** @atomic.val: atomic attribute */
++		__u32 val;
++
++		/** @atomic.reserved: Reserved */
++		__u32 reserved;
++	} atomic;
++
++	 /** @pat_index: Page attribute table index */
++	struct {
++		/** @pat_index.val: PAT index */
++		__u32 val;
++
++		/** @pat_index.reserved: Reserved */
++		__u32 reserved;
++	} pat_index;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++};
++
++/**
++ * struct drm_xe_vm_query_mem_range_attr - Input of &DRM_IOCTL_XE_VM_QUERY_MEM_ATTRIBUTES
++ *
++ * This structure is used to query memory attributes of memory regions
++ * within a user specified address range in a VM. It provides detailed
++ * information about each memory range, including atomic access policy,
++ * page attribute table (PAT) index, and preferred memory location.
++ *
++ * Userspace first calls the ioctl with @num_mem_ranges = 0,
++ * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL to retrieve
++ * the number of memory regions and size of each memory range attribute.
++ * Then, it allocates a buffer of that size and calls the ioctl again to fill
++ * the buffer with memory range attributes.
++ *
++ * If second call fails with -ENOSPC, it means memory ranges changed between
++ * first call and now, retry IOCTL again with @num_mem_ranges = 0,
++ * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL followed by
++ * Second ioctl call.
++ *
++ * Example:
++ *
++ * .. code-block:: C
++ *    struct drm_xe_vm_query_mem_range_attr query = {
++ *         .vm_id = vm_id,
++ *         .start = 0x100000,
++ *         .range = 0x2000,
++ *     };
++ *
++ *    // First ioctl call to get num of mem regions and sizeof each attribute
++ *    ioctl(fd, DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS, &query);
++ *
++ *    // Allocate buffer for the memory region attributes
++ *    void *ptr = malloc(query.num_mem_ranges * query.sizeof_mem_range_attr);
++ *
++ *    query.vector_of_mem_attr = (uintptr_t)ptr;
++ *
++ *    // Second ioctl call to actually fill the memory attributes
++ *    ioctl(fd, DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS, &query);
++ *
++ *    // Iterate over the returned memory region attributes
++ *    for (unsigned int i = 0; i < query.num_mem_ranges; ++i) {
++ *       struct drm_xe_mem_range_attr *attr = (struct drm_xe_mem_range_attr *)ptr;
++ *
++ *       // Do something with attr
++ *
++ *       // Move pointer by one entry
++ *       ptr += query.sizeof_mem_range_attr;
++ *     }
++ *
++ *    free(ptr);
++ */
++struct drm_xe_vm_query_mem_range_attr {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @vm_id: vm_id of the virtual range */
++	__u32 vm_id;
++
++	/** @num_mem_ranges: number of mem_ranges in range */
++	__u32 num_mem_ranges;
++
++	/** @start: start of the virtual address range */
++	__u64 start;
++
++	/** @range: size of the virtual address range */
++	__u64 range;
++
++	/** @sizeof_mem_range_attr: size of struct drm_xe_mem_range_attr */
++	__u64 sizeof_mem_range_attr;
++
++	/** @vector_of_mem_attr: userptr to array of struct drm_xe_mem_range_attr */
++	__u64 vector_of_mem_attr;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
+-- 
+2.34.1
+
