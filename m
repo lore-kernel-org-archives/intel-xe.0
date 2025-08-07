@@ -4,54 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 947CBC87FCF
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 14:06:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2A8EC87FCA
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 14:10:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FA8F10E85E;
-	Thu,  7 Aug 2025 14:06:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W7KT/k0w";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4624710E85E
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 14:06:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754575571; x=1786111571;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+YKSRhBNAee0/4ZXwu0L5F4s1qC3xrukMc5wahL3EwM=;
- b=W7KT/k0wbGuI3sRdyWUpIAKFVea6xHkwYABjaIDAQdfHh4Oddz1spfFF
- /ZWSVjFFq/OqjvGay5ENgv2FfCMW0KIJ0nzvskapHU6uwKU9mO8CrMwBw
- +iKFZ5uN2nAYzSj06OxwPXbwI/0oMh9nCiDrU5o02PR0/bkKRv+d78Ylo
- 7iBYDBClGE5yNLN38imj4zSq1+WLNaU0Sg92u5Z6Tkjpk2kn4b69R0whg
- 6s0TDEaYKasbDjJ+HUKoaoTlDu4YQtKlik09DuRmHKkS0OcpLW1m6ackb
- CoVjxQ4v3TThA/2Zx9nmn8T4/aFSWZYnwxy8mODV/xU5dh1qqR8DwHVfi g==;
-X-CSE-ConnectionGUID: UIOYKRJQTKG99azSHHqe8g==
-X-CSE-MsgGUID: eXOowYoqQn+BqrvGwuiHqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56830384"
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56830384"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 07:06:11 -0700
-X-CSE-ConnectionGUID: Z9C314CuSHeWbuQ2vxYHig==
-X-CSE-MsgGUID: sJpWzvGPRFGCJPKUHZ871w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="164320534"
-Received: from unknown (HELO sinjan-Super-Server.iind.intel.com)
- ([10.190.239.39])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 07:06:08 -0700
-From: Karthik Poosa <karthik.poosa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
- rodrigo.vivi@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v3] drm/xe/hwmon: Add SW clamp for power limits writes
-Date: Thu,  7 Aug 2025 19:36:02 +0530
-Message-Id: <20250807140602.3247853-1-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B30A10E860;
+	Thu,  7 Aug 2025 14:10:20 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68BBA10E85E;
+ Thu,  7 Aug 2025 14:10:19 +0000 (UTC)
+Received: from 91-155-254-205.elisa-laajakaista.fi ([91.155.254.205]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1uk1Jt-00000009X6s-0XuX; Thu, 07 Aug 2025 17:10:15 +0300
+Message-ID: <1e1a3f0db25d4487a3b10522404ea004139ce8e7.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: imre.deak@intel.com, Jani Nikula <jani.nikula@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ stable@vger.kernel.org, Charlton Lin <charlton.lin@intel.com>, Khaled
+ Almahallawy <khaled.almahallawy@intel.com>
+Date: Thu, 07 Aug 2025 17:10:11 +0300
+In-Reply-To: <aJShB9ufOBH9AWLY@ideak-desk>
+References: <20250805073700.642107-1-imre.deak@intel.com>
+ <20250805073700.642107-2-imre.deak@intel.com>
+ <95999d2602067f556dc2e5739758deef7c462e17.camel@coelho.fi>
+ <aJSQKu72vVYmUd4Y@ideak-desk>
+ <d8e9cabb243cd8bbe7ac942d117146bf7f68b631@intel.com>
+ <aJSc9UaVwn132FqX@ideak-desk> <aJShB9ufOBH9AWLY@ideak-desk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 01/19] drm/i915/lnl+/tc: Fix handling of an
+ enabled/disconnected dp-alt sink
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,88 +51,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Clamp writes to power limits powerX_crit/currX_crit, powerX_cap,
-powerX_max, to the maximum supported by the pcode mailbox
-when sysfs-provided values exceed this limit.
-Although the pcode already performs clamping, values beyond the pcode
-mailbox's supported range get truncated, leading to incorrect
-critical power settings.
-This patch ensures proper clamping to prevent such truncation.
+On Thu, 2025-08-07 at 15:50 +0300, Imre Deak wrote:
+> On Thu, Aug 07, 2025 at 03:33:04PM +0300, Imre Deak wrote:
+> > On Thu, Aug 07, 2025 at 03:19:17PM +0300, Jani Nikula wrote:
+> > > On Thu, 07 Aug 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > > > On Thu, Aug 07, 2025 at 01:59:21PM +0300, Luca Coelho wrote:
+> > > > > On Tue, 2025-08-05 at 10:36 +0300, Imre Deak wrote:
+> > > > > > The TypeC PHY HW readout during driver loading and system resum=
+e
+> > > > > > determines which TypeC mode the PHY is in (legacy/DP-alt/TBT-al=
+t) and
+> > > > > > whether the PHY is connected, based on the PHY's Owned and Read=
+y flags.
+> > > > > > For the PHY to be in DP-alt or legacy mode and for the PHY to b=
+e in the
+> > > > > > connected state in these modes, both the Owned (set by the BIOS=
+/driver)
+> > > > > > and the Ready (set by the HW) flags should be set.
+> > > > > >=20
+> > > > > > On ICL-MTL the HW kept the PHY's Ready flag set after the drive=
+r
+> > > > > > connected the PHY by acquiring the PHY ownership (by setting th=
+e Owned
+> > > > > > flag), until the driver disconnected the PHY by releasing the P=
+HY
+> > > > > > ownership (by clearing the Owned flag). On LNL+ this has change=
+d, in
+> > > > > > that the HW clears the Ready flag as soon as the sink gets disc=
+onnected,
+> > > > > > even if the PHY ownership was acquired already and hence the PH=
+Y is
+> > > > > > being used by the display.
+> > > > > >=20
+> > > > > > When inheriting the HW state from BIOS for a PHY connected in D=
+P-alt
+> > > > > > mode on which the sink got disconnected - i.e. in a case where =
+the sink
+> > > > > > was connected while BIOS/GOP was running and so the sink got en=
+abled
+> > > > > > connecting the PHY, but the user disconnected the sink by the t=
+ime the
+> > > > > > driver loaded - the PHY Owned but not Ready state must be accou=
+nted for
+> > > > > > on LNL+ according to the above. Do that by assuming on LNL+ tha=
+t the PHY
+> > > > > > is connected in DP-alt mode whenever the PHY Owned flag is set,
+> > > > > > regardless of the PHY Ready flag.
+> > > > > >=20
+> > > > > > This fixes a problem on LNL+, where the PHY TypeC mode / connec=
+ted state
+> > > > > > was detected incorrectly for a DP-alt sink, which got connected=
+ and then
+> > > > > > disconnected by the user in the above way.
+> > > > > >=20
+> > > > > > Cc: stable@vger.kernel.org # v6.8+
+> > > > > > Reported-by: Charlton Lin <charlton.lin@intel.com>
+> > > > > > Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> > > > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/i915/display/intel_tc.c | 16 ++++++++++------
+> > > > > >  1 file changed, 10 insertions(+), 6 deletions(-)
+> > > > > >=20
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/=
+gpu/drm/i915/display/intel_tc.c
+> > > > > > index 3bc57579fe53e..73a08bd84a70a 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> > > > > > @@ -1226,14 +1226,18 @@ static void tc_phy_get_hw_state(struct =
+intel_tc_port *tc)
+> > > > > >  	tc->phy_ops->get_hw_state(tc);
+> > > > > >  }
+> > > > > > =20
+> > > > > > -static bool tc_phy_is_ready_and_owned(struct intel_tc_port *tc=
+,
+> > > > > > -				      bool phy_is_ready, bool phy_is_owned)
+> > > > > > +static bool tc_phy_in_legacy_or_dp_alt_mode(struct intel_tc_po=
+rt *tc,
+> > > > > > +					    bool phy_is_ready, bool phy_is_owned)
+> > > > >=20
+> > > > > Personally I don't like the "or" in the function name.  You're
+> > > > > returning a boolean which is true or false.  The return value is =
+akin
+> > > > > to answering "Yes/No" to the question "Is it black or white".
+> > > >=20
+> > > > The question the function is meant to answer is "Is the PHY in lega=
+cy or
+> > > > DP-alt mode?". The return value is true (yes) if the PHY is in eith=
+er
+> > > > legacy or DP-alt mode, false (no) if the PHY is neither in legacy o=
+r
+> > > > DP-alt mode. There are many other uses of "or" in function names in=
+ this
+> > > > sense, so not sure how else I'd name this one. Simply leaving out "=
+or"
+> > > > would make it less clear that the legacy and DP-alt modes are two
+> > > > separate modes.
 
-v2:
- - Address below review comments. (Riana)
- - Split comments into multiple sentences.
- - Use local variables for readability.
- - Add a debug log.
- - Use u64 instead of unsigned long.
+Right, I missed that.  But one shouldn't have to go read the function
+implementation to know what it's doing.
 
-v3:
- - Change drm_dbg logs to drm_info. (Badal)
 
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Fixes: 92d44a422d0d ("drm/xe/hwmon: Expose card reactive critical power")
-Fixes: fb1b70607f73 ("drm/xe/hwmon: Expose power attributes")
----
- drivers/gpu/drm/xe/xe_hwmon.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+> > >=20
+> > > What's the opposite of "Is the PHY in legacy or DP-alt mode"?
+> > >=20
+> > > Would that lead to a simpler name, with the reversed return value?
+> >=20
+> > The opposite is either TBT-alt or disconnected mode, so the reversal
+> > would result in the same function name format.
+>=20
+> Would you be ok with
+>=20
+> tc_phy_owned_by_display()
+>=20
+> ?
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index f08fc4377d25..a43bc8b91fea 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -332,6 +332,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
- 	int ret = 0;
- 	u32 reg_val, max;
- 	struct xe_reg rapl_limit;
-+	u64 max_mbx_power_limit = 0;
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
-@@ -356,6 +357,20 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
- 		goto unlock;
- 	}
- 
-+	/*
-+	 * If the sysfs value exceeds the pcode mailbox cmd WRITE_PSYSGPU/PACKAGE_POWER_LIMIT
-+	 * max supported value, clamp it to the command's max (U12.3 format).
-+	 * This is to avoid truncation during reg_val calculation below and ensure the valid
-+	 * power limit is sent for pcode which would clamp it to card-supported value.
-+	 */
-+	max_mbx_power_limit = ((PWR_LIM_VAL) >> hwmon->scl_shift_power) * SF_POWER;
-+	if (value > max_mbx_power_limit) {
-+		value = max_mbx_power_limit;
-+		drm_info(&hwmon->xe->drm,
-+			 "Sysfs value for ch %d %s exceeds limit; clamped to supported maximum\n",
-+			 channel, PWR_ATTR_TO_STR(attr));
-+	}
-+
- 	/* Computation in 64-bits to avoid overflow. Round to nearest. */
- 	reg_val = DIV_ROUND_CLOSEST_ULL((u64)value << hwmon->scl_shift_power, SF_POWER);
- 
-@@ -739,9 +754,23 @@ static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, int channel,
- {
- 	int ret;
- 	u32 uval;
-+	u64 max_crit_power_curr = 0;
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
-+	/*
-+	 * If the sysfs value exceeds the pcode mailbox cmd POWER_SETUP_SUBCOMMAND_WRITE_I1
-+	 * max supported value, clamp it to the command's max (U10.6 format).
-+	 * This is to avoid truncation during uval calculation below and ensure the valid power
-+	 * limit is sent for pcode which would clamp it to card-supported value.
-+	 */
-+	max_crit_power_curr = (POWER_SETUP_I1_DATA_MASK >> POWER_SETUP_I1_SHIFT) * scale_factor;
-+	if (value > max_crit_power_curr) {
-+		value = max_crit_power_curr;
-+		drm_info(&hwmon->xe->drm,
-+			 "Sysfs value for ch %d exceeds limit; clamped to supported maximum\n",
-+			 channel);
-+	}
- 	uval = DIV_ROUND_CLOSEST_ULL(value << POWER_SETUP_I1_SHIFT, scale_factor);
- 	ret = xe_hwmon_pcode_write_i1(hwmon, uval);
- 
--- 
-2.25.1
+This sounds much better! And it's indeed what you're looking for.  It
+doesn't matter if it's legacy DP-alt, TBT-alt or whatever.  What you're
+checking is actually whether display owns the PHY.  So this is a much
+better choice IMHO. :)
 
+--
+Cheers,
+Luca.
