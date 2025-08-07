@@ -4,59 +4,175 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CE86C87FCF
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 16:17:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED32C87FCA
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 16:19:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6157710E89C;
-	Thu,  7 Aug 2025 16:17:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3297510E896;
+	Thu,  7 Aug 2025 16:19:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W200Tt6x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UiP/XoPJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A38AB10E89F
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 16:17:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C098D10E898;
+ Thu,  7 Aug 2025 16:19:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754583446; x=1786119446;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hjFhIs9FcKpZPe3y7FA5JB0uTdiWnel5sbsaJpM5KwM=;
- b=W200Tt6x3q05XcM96m6WU8bI82YmEdz3H9Ltv4HyhgDOwTjdqPlsECqH
- QwLIeyJucbBUoyhfNjpy5lJgR+yzcBinUrl+H1oVIIq9rnsBQdQBZA8xX
- VzxtJFT/i+3yDG+xEmDPrzpPiPrFqX/CqtfSYjd3GkG7nkkwY+ssPiweM
- 34j+wIxFMWdHpmHkLoASzN7CM2j4WKTYH8BoJ3luNnt2pd/uJAQOHX7pf
- rEs7CS9kul5klCUIDWm7TzlwuXZlSBhc0LACDg7fA4Ska5COY4cacQSts
- OXAbf/vPSYL15r0ZDQNqeYJfW1QRa9pj+juR/lGN5bisNS5u0ff2hHCNP g==;
-X-CSE-ConnectionGUID: /4WWBEpBSRuY3xrXHeZsaw==
-X-CSE-MsgGUID: V1Z32Gm0Ti2cohM92RaPpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56845660"
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56845660"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 09:17:25 -0700
-X-CSE-ConnectionGUID: ibDXVd2xQQ+joOMerHMUdg==
-X-CSE-MsgGUID: L6KUksJjRb2eh75xPRkzPw==
+ t=1754583553; x=1786119553;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=2cbXIw9h1i0qR9pcWUTJ1WwfotTYwkS3t9F9MpQKO+k=;
+ b=UiP/XoPJR47MWEA5pZXo2pjcEafDBNd1rttX6R2D2G4vNpMoKwO5hjF5
+ Zu2eq1EVpJMmlc9stwhkpkcS5KrPKBeAN/LQBWBEN7c5r7ZURL0l0rOvL
+ Qmm3kCigIwtv9JN7fP9LFLxa8Koc4wNHvd0gvLNYA1ffet8+oBn4gjw5W
+ HZbtvhd5HwzPM2SlHBNCdv8zayYWwyDhymYT2knJDrZBl+CWxGu8e4nYX
+ QI2w4K8BxsuBvyGXqepSGK5axLIrisJtTozHtjPI4tC9457i30ZLIuGQW
+ tAbn5SCEE0PPuwJ83lMww/W9GCfpEBG+MUcAvIKBezY9iFvzp2a/bi2GI A==;
+X-CSE-ConnectionGUID: Xz0ElkJ1TAy+tl4HhnOpPw==
+X-CSE-MsgGUID: m/bWDSgwTyirZh7QlbU7Ug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="82371087"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="82371087"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 09:19:12 -0700
+X-CSE-ConnectionGUID: 7WWm8ZWRQzCVhivOI8qUcA==
+X-CSE-MsgGUID: eWxrruGRQ7G8lptzQf4Zvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="195937976"
-Received: from unknown (HELO himal-Super-Server.iind.intel.com)
- ([10.190.239.34])
- by fmviesa001.fm.intel.com with ESMTP; 07 Aug 2025 09:17:23 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Shuicheng Lin <shuicheng.lin@intel.com>
-Subject: [PATCH v6 26/26] drm/xe/uapi: Add UAPI for querying VMA count and
- memory attributes
-Date: Thu,  7 Aug 2025 22:13:38 +0530
-Message-Id: <20250807164338.1832254-27-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250807164338.1832254-1-himal.prasad.ghimiray@intel.com>
-References: <20250807164338.1832254-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="165453843"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 09:19:13 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Thu, 7 Aug 2025 09:19:11 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Thu, 7 Aug 2025 09:19:11 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (40.107.102.46)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Thu, 7 Aug 2025 09:19:11 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=I1e1RASuGQqUFSsisHDuVgqAHq1E3d3S1ieC4ZlbNknLjJ5JLWk8SjzptXtUCFLfjVqOkR1ktuiD5IjoB76Y2P+ZUD1MiRy3r7ApV2VlEw3+bn+yTs1jK86+Ytfr7pM0MXkYqXNBV+XAb1Fv7bUtBsoCxjlwomYVLyagrELkgBxj7c55NEUXjV/LnnBzioyk/QL74cMUKtGOC8QfSeandA209m3jACwlfADIxkeHbD0Ajzj8Urlo2oC0gtFqCqt+tALRy+uVPHzdDtdGtGp9JhFKyqTPY8m+YjKBYgb2rNHkmCG8tBg24jHMjdENczo99/cHsyyPVNXiuiSHmZIXeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xZEGQjM/3cCYz19pdHptS6p5k8GbfJ17TghEn+zvGt0=;
+ b=E7dcnBooxMj8z8KkEV57xG9DPwW/D32+0mqSeBfdzGEfBB33JIyeUJr5GPdq1dJleBpjDE/5whKyl4LT83B2t8sVnFUnkPaL9MOZKKARHu031z7xhQNCIyQb6RvwcFTkdnIntLZ6Rp1UUqaidy4S2kGC70Xk0qXRi25v+/zf5lZCa0uE6EvQdRAy9v3wgTbYMJhz2i64Pyos/pTmPvsew1cIRc+LmemW6NOHNxjAnjWhJC7WThSppwq9I9720Kx7Brk+QhthegML6uEyHlbfnqE0VJBAajjkCkBuTq++Q+m5d/EXs3r9a6Ix94LP3P2ev6h0/UVsCUjs8PtKhMc9XQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
+ by CO1PR11MB4916.namprd11.prod.outlook.com (2603:10b6:303:9c::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.15; Thu, 7 Aug
+ 2025 16:19:09 +0000
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::4db5:b0d9:b6b3:bb52]) by IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::4db5:b0d9:b6b3:bb52%6]) with mapi id 15.20.9009.013; Thu, 7 Aug 2025
+ 16:19:09 +0000
+From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+Subject: RE: [PATCH 02/12] drm/i915/skl_watermark: Pass linetime as argument
+ to latency helpers
+Thread-Topic: [PATCH 02/12] drm/i915/skl_watermark: Pass linetime as argument
+ to latency helpers
+Thread-Index: AQHcB46lFeTiijrkW0+2EKWV2XDa0bRXXqzw
+Date: Thu, 7 Aug 2025 16:19:09 +0000
+Message-ID: <IA1PR11MB6348515DD353742CD3EDF195B22CA@IA1PR11MB6348.namprd11.prod.outlook.com>
+References: <20250807111548.1490624-1-ankit.k.nautiyal@intel.com>
+ <20250807111548.1490624-3-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250807111548.1490624-3-ankit.k.nautiyal@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|CO1PR11MB4916:EE_
+x-ms-office365-filtering-correlation-id: 4e781c4a-9d56-4102-7190-08ddd5ce2392
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?TubnCMDpKqspvMnD7gIy00iO3kfUk2tc1cyxtmuPFUkh66hxluhH+VIGdWef?=
+ =?us-ascii?Q?c61GsbvZYNM9UyWja/t+gCnwkZlBd9J4hqlxGWJ0EV3EQEWLJyPkELVAXtUv?=
+ =?us-ascii?Q?PN2O8PMJIxClAViqTzMvWoVbCuOrXsx7jLmjaBMyFzB5npk/na0C4lB+7WZV?=
+ =?us-ascii?Q?wQnXourRVfRouY/ahWNaI49nfQLL4s8XoL72Zdhih1lNcrWlRUk0KRup4Ykh?=
+ =?us-ascii?Q?O1zu0iQl2OiTdsaUYGFt6ZwanPMTtwqcXpjcWjy2Jy8spQfm1G0LeUN2y43z?=
+ =?us-ascii?Q?SzizN+pcxRF8Ay8+eoxw8oeTmN1rRoQPbtYgDIHSlfL9TVWnMWyxAZJfDlhj?=
+ =?us-ascii?Q?kA5CEXgETqG/aU6n7VokJw48Rfp6HeToi60FBdWG7OE6nxAO0vutJvZLxxEm?=
+ =?us-ascii?Q?amS37o6W3LWMv6mJDVBjGXvpUlp5cHw5xKXG5geT9NQnVN1qF1aLFemMvtkb?=
+ =?us-ascii?Q?3eC/+4PJUBGxJ9VL9liw4uErxkgRdnwXRbFIuvCEdl8OMkmPTANTfKrpun1t?=
+ =?us-ascii?Q?FG/t0YihVms41lsseAcuDxWL+u26atRRWpgSTYh9I/TuSkEY55yAkrQC5vKV?=
+ =?us-ascii?Q?K/0FH0vfDTp8/RuILMxN8GJIF8q1tAnm8GflVPq4idWGSfARj8h0IEbWkU1g?=
+ =?us-ascii?Q?XcBxOuceL8IzjM/2geKiPWIn1UxpJmdYQoSgAHF8khT2nPPFrpxEn9WGGA0y?=
+ =?us-ascii?Q?5XoNC1xan83pBeypLHmTxvW/9tcz8WTsud7s/0eyI0ctu9HMHRdlL3veLj9a?=
+ =?us-ascii?Q?8r47Umr83dyjhNIqmB7PqBWvoD788syOFAE5n9T/336VT99tZenXKxlBwWEN?=
+ =?us-ascii?Q?QGEJbC3bey7nNAfbADImq2WP4RbprgGW05edPQweJW/NRugJ/BEIxyyRrr5k?=
+ =?us-ascii?Q?hZOsgdDgQwsNyPq19GoyWNNoBRncW5xePp4IkhQSgEq21lTlkQHhuRhPHeuT?=
+ =?us-ascii?Q?PVPDB6OwU46iB4FIG0ikv9TZwMcp/x9p7paI3M/RpWtIqWQbStpfbGsgkYNH?=
+ =?us-ascii?Q?NaZaz94ibOGSXHIvBm+p2Q4ClXjtnBhsrpPv93wZziTv5JbqH3mCHf/HrowO?=
+ =?us-ascii?Q?L7vfu7s92HjGxjzFy2WAwNck4GzHMsbKCl2FLPlyXDOxi5/Bht7hL4+oH2pB?=
+ =?us-ascii?Q?HPiHzuS6ZwELh2fllrwpnuRbmiKXoRshQfXUY7SKzFSuXzzZe6h24YCJVVA/?=
+ =?us-ascii?Q?rMbJ3dPMI3QiU8KVeejyRligGwPrvSM7Dk4VsHs70Dv37cvnj/n8HvgmOdQa?=
+ =?us-ascii?Q?NTP8rK0UcjYu3Rp21WACTpR+InS2vQ/bzivnVZLgAiIVlPeLIHCwy3OO75PH?=
+ =?us-ascii?Q?pZ4xZPFhvc0MWH2YrVAQVVjNcbziw8ezj581gbcfG2ZBI7w4+FTqakkPVhwC?=
+ =?us-ascii?Q?wgP2xREJIDySiwD/b8gUQfKJDM2KLXeLQq+0hRoHjzEZfeTETznFYUvn5bv9?=
+ =?us-ascii?Q?KpVMXTBNgdkzVwbirQfs7JYE0lOLwLb3gj4mqoka/+zQJMF25DP1pJkx6i4H?=
+ =?us-ascii?Q?me6fb24OmBf52lo=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9DBYKGW/2UbVeyJ8ZKVLw5YqPb2pzgunQTHtXlzbPJz8GahnHa4nKuZIXN96?=
+ =?us-ascii?Q?u9y/Esna8EaTFAE1EFC3hYVpgniPHP3w/AIHajQFYSDffeHIWz2a/1YWu1wC?=
+ =?us-ascii?Q?HtEz4zVbtNJ5xUdbJgnGf56xYhaNQMu8zJC1qtrkcpsaUY/QfNerC7xkWdHZ?=
+ =?us-ascii?Q?LqH9hcfOT4iADRIlyDgjQmM7TXSyr+z0imydz4FLijdVdWYF60j+pEJqFXuG?=
+ =?us-ascii?Q?C98DEGv/Xz0uqdOk0ZY/bGPxHYrHKm8lm9nVEiUQ+E4VKb6FJzWrTIAz4JjJ?=
+ =?us-ascii?Q?chPdVsniG62gqQ0pEEPfS0cX2GKuJV8n+KDQBkKk37K8bGC21dzzLn4kesFv?=
+ =?us-ascii?Q?VTzK1KS7NjEuymJEOBUapF/Ak3TIow5jYGoWozloH3ZSJtB98xgn83u2adOq?=
+ =?us-ascii?Q?xh+/82YlHc82B374N1G9ZkRC/eJFAh681bdu8WPskqK458eHNM/H2YTD7y/e?=
+ =?us-ascii?Q?mOBeYfeyogDIteM2bpKKbd85ObxVj5ymTsWOI6LPLBOHlr9SqvylM7GJ9xKz?=
+ =?us-ascii?Q?zCOJU0uhGaHpAaAHUXHN7HAkVm3eisUE2aQMH0RCx8n9KkrwtD+IZ0QP3OF9?=
+ =?us-ascii?Q?tttReA1o013qXbFSktEcV4xHMVKb3ZZE1OK88G3yy+ev1QXKz9z9uSL5dxNZ?=
+ =?us-ascii?Q?ZQiqQonBHi3iqkTrhF30h2piKwxsTRF9Fkk1LL+FFuMdUMi9Yk+LRcP/grtG?=
+ =?us-ascii?Q?1Y654uLkOH9TaLFvNsPZ+dUJQmG3ISJjJzQuq6/x6jJIzGx5dQFDKzEWYFga?=
+ =?us-ascii?Q?QvcIOHO6me32rDKjW6fP9FkNh7XCW0PXG7OwVpXjomXrjg9ANavoDsTFqMOO?=
+ =?us-ascii?Q?SXJdlVv01r/Z8Rg8cDJlQEOUNrWs/xzg3GcJFkr7osMdj3PPCQUEW0c3dLDr?=
+ =?us-ascii?Q?Q7WWYi1xVyeXKoUGDsTUGQcK1bdbSG4OsWUWlHJn2Vp2R4UHyq13Bkdbwoqi?=
+ =?us-ascii?Q?oUyuOU2v2v0DhIhE5KCJEd/aAabfE85mSF0y6t36XB078mOGUCMRGI5unn/8?=
+ =?us-ascii?Q?QV3cbNqhfk16RDm81q5nJ+ssCDwc4M8msSRLcdvxiInKyQM4CvKHlOKOD/dk?=
+ =?us-ascii?Q?f66O4X9KiVG34GuIDrGjQVWAchj63jl8DinJ8Q55pigp7QdKGwdQngZUcTyn?=
+ =?us-ascii?Q?rvO2+lksT7fGg3mFJfUMD5rN85D/qnIE9p/I8r3aR166Xklo95o1B2q9WZxP?=
+ =?us-ascii?Q?OjqFqcpG5DmiNLeaJqn0Q8xYPY90PSm8dAtC2W1KszEa3y3RPHKSySM/HQA3?=
+ =?us-ascii?Q?qYWFkn7f1x3GqaakhJXzVKGtXpoZRYoC3kvC3haYVSL3zOaNpnx/NVilVCcp?=
+ =?us-ascii?Q?rNmc9tmAvureFygUxfamF4HbP/3WY6djxeKCdBsMocZv+FfOBtG5W1acRv9O?=
+ =?us-ascii?Q?I3H9gIxiEDeHLznA0Nwc/hBpEuGHYDHzadVgMRhvVr1Yb5yNn5w1k5f3jYQX?=
+ =?us-ascii?Q?zqouVGd8ZcSZkN3Gf43K10zSXKD8YVmuQZRJfyJAYo6zZYvl+gdbipVQJ4ZX?=
+ =?us-ascii?Q?R+Jf8No3mbDL8/bCmvSMqy2kUuZkFUgeLsvdUH150zL+qkkuBTKRWchTlup6?=
+ =?us-ascii?Q?0cGPCgKMPT2rvOs9kuVYDlZzNiuoqmQQNIvs1IAT54U8D6obFQYaNuYBaGgh?=
+ =?us-ascii?Q?FtPEN4eH950eoFfpCkobpEU=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e781c4a-9d56-4102-7190-08ddd5ce2392
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2025 16:19:09.3028 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: I4e+r1BUA54dQahzvnWN9pOv6t0DEyQ2xAvQbHfibr4FqiJDohTtTmLQoFIMBpgs8RPqyOfjINO3N2slXJdk53OnBHks8H4zpfOawrUdjYYVh9Vhq8DgqKK1dp58eQeH
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4916
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,359 +187,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce the DRM_IOCTL_XE_VM_QUERY_MEMORY_RANGE_ATTRS ioctl to allow
-userspace to query memory attributes of VMAs within a user specified
-virtual address range.
 
-Userspace first calls the ioctl with num_mem_ranges = 0,
-sizeof_mem_ranges_attr = 0 and vector_of_vma_mem_attr = NULL to retrieve
-the number of memory ranges (vmas) and size of each memory range attribute.
-Then, it allocates a buffer of that size and calls the ioctl again to fill
-the buffer with memory range attributes.
 
-This two-step interface allows userspace to first query the required
-buffer size, then retrieve detailed attributes efficiently.
+> -----Original Message-----
+> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+> Sent: 07 August 2025 16:46
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: ville.syrjala@linux.intel.com; jani.nikula@linux.intel.com; Golani,
+> Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>; Nautiyal,
+> Ankit K <ankit.k.nautiyal@intel.com>
+> Subject: [PATCH 02/12] drm/i915/skl_watermark: Pass linetime as argument =
+to
+> latency helpers
+>=20
+> Refactor dsc_prefill_latency and scaler_prefill_latency to take linetime =
+as an
+> explicit parameter instead of computing it internally.
+>=20
+> This avoids redundant calculations and simplifies scanline conversion log=
+ic in
+> skl_is_vblank_too_short().
+>=20
+> This change also facilitates future extraction of these helpers for use c=
+ases
+> where latencies are computed for an optimized guardband, based on the
+> highest resolution mode, rather than the current mode.
+>=20
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 18 ++++++++----------
+>  1 file changed, 8 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c
+> b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index df586509a742..74ab10a04e83 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -2176,13 +2176,11 @@ cdclk_prefill_adjustment(const struct
+> intel_crtc_state *crtc_state)  }
+>=20
+>  static int
+> -dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
+> +dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int
+> +linetime)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	const struct intel_crtc_scaler_state *scaler_state =3D
+>  					&crtc_state->scaler_state;
+> -	int linetime =3D DIV_ROUND_UP(1000 * crtc_state-
+> >hw.adjusted_mode.htotal,
+> -				    crtc_state->hw.adjusted_mode.clock);
+>  	int num_scaler_users =3D hweight32(scaler_state->scaler_users);
+>  	int chroma_downscaling_factor =3D
+>  		crtc_state->output_format =3D=3D
+> INTEL_OUTPUT_FORMAT_YCBCR420 ? 4 : 1; @@ -2206,18 +2204,16 @@
+> dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
+>=20
+>  	dsc_prefill_latency *=3D cdclk_prefill_adjustment(crtc_state);
+>=20
+> -	return intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
+> dsc_prefill_latency);
+> +	return dsc_prefill_latency;
+>  }
+>=20
+>  static int
+> -scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
+> +scaler_prefill_latency(const struct intel_crtc_state *crtc_state, int
+> +linetime)
+>  {
+>  	const struct intel_crtc_scaler_state *scaler_state =3D
+>  					&crtc_state->scaler_state;
+>  	int num_scaler_users =3D hweight32(scaler_state->scaler_users);
+>  	int scaler_prefill_latency =3D 0;
+> -	int linetime =3D DIV_ROUND_UP(1000 * crtc_state-
+> >hw.adjusted_mode.htotal,
+> -				    crtc_state->hw.adjusted_mode.clock);
+>=20
+>  	if (!num_scaler_users)
+>  		return scaler_prefill_latency;
+> @@ -2238,7 +2234,7 @@ scaler_prefill_latency(const struct intel_crtc_stat=
+e
+> *crtc_state)
+>=20
+>  	scaler_prefill_latency *=3D cdclk_prefill_adjustment(crtc_state);
+>=20
+> -	return intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
+> scaler_prefill_latency);
+> +	return scaler_prefill_latency;
+>  }
+>=20
+>  static bool
+> @@ -2247,11 +2243,13 @@ skl_is_vblank_too_short(const struct
+> intel_crtc_state *crtc_state,  {
+>  	const struct drm_display_mode *adjusted_mode =3D
+>  		&crtc_state->hw.adjusted_mode;
+> +	int linetime =3D DIV_ROUND_UP(1000 * adjusted_mode->htotal,
+> +				    adjusted_mode->clock);
+>=20
+>  	return crtc_state->framestart_delay +
+>  		intel_usecs_to_scanlines(adjusted_mode, latency) +
+> -		scaler_prefill_latency(crtc_state) +
+> -		dsc_prefill_latency(crtc_state) +
+> +		DIV_ROUND_UP(scaler_prefill_latency(crtc_state, linetime),
+> linetime) +
+> +		DIV_ROUND_UP(dsc_prefill_latency(crtc_state, linetime),
+> linetime) +
 
-v2 (Matthew Brost)
-- Use same ioctl to overload functionality
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 
-v3
-- Add kernel-doc
-
-v4
-- Make uapi future proof by passing struct size (Matthew Brost)
-- make lock interruptible (Matthew Brost)
-- set reserved bits to zero (Matthew Brost)
-- s/__copy_to_user/copy_to_user (Matthew Brost)
-- Avod using VMA term in uapi (Thomas)
-- xe_vm_put(vm) is missing (Shuicheng)
-
-v5
-- Nits
-- Fix kernel-doc
-
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c |   2 +
- drivers/gpu/drm/xe/xe_vm.c     | 102 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h     |   2 +-
- include/uapi/drm/xe_drm.h      | 139 +++++++++++++++++++++++++++++++++
- 4 files changed, 244 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 09b28fb9eb41..e3bb03dec180 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -203,6 +203,8 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 			  DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_VM_QUERY_MEM_RANGE_ATTRS, xe_vm_query_vmas_attrs_ioctl,
-+			  DRM_RENDER_ALLOW),
- };
- 
- static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 6d1ae88313e9..364470212c21 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2171,6 +2171,108 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 	return err;
- }
- 
-+static int xe_vm_query_vmas(struct xe_vm *vm, u64 start, u64 end)
-+{
-+	struct drm_gpuva *gpuva;
-+	u32 num_vmas = 0;
-+
-+	lockdep_assert_held(&vm->lock);
-+	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end)
-+		num_vmas++;
-+
-+	return num_vmas;
-+}
-+
-+static int get_mem_attrs(struct xe_vm *vm, u32 *num_vmas, u64 start,
-+			 u64 end, struct drm_xe_mem_range_attr *attrs)
-+{
-+	struct drm_gpuva *gpuva;
-+	int i = 0;
-+
-+	lockdep_assert_held(&vm->lock);
-+
-+	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
-+		struct xe_vma *vma = gpuva_to_vma(gpuva);
-+
-+		if (i == *num_vmas)
-+			return -ENOSPC;
-+
-+		attrs[i].start = xe_vma_start(vma);
-+		attrs[i].end = xe_vma_end(vma);
-+		attrs[i].atomic.val = vma->attr.atomic_access;
-+		attrs[i].pat_index.val = vma->attr.pat_index;
-+		attrs[i].preferred_mem_loc.devmem_fd = vma->attr.preferred_loc.devmem_fd;
-+		attrs[i].preferred_mem_loc.migration_policy =
-+		vma->attr.preferred_loc.migration_policy;
-+
-+		i++;
-+	}
-+
-+	*num_vmas = i;
-+	return 0;
-+}
-+
-+int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-+{
-+	struct xe_device *xe = to_xe_device(dev);
-+	struct xe_file *xef = to_xe_file(file);
-+	struct drm_xe_mem_range_attr *mem_attrs;
-+	struct drm_xe_vm_query_mem_range_attr *args = data;
-+	u64 __user *attrs_user = u64_to_user_ptr(args->vector_of_mem_attr);
-+	struct xe_vm *vm;
-+	int err = 0;
-+
-+	if (XE_IOCTL_DBG(xe,
-+			 ((args->num_mem_ranges == 0 &&
-+			  (attrs_user || args->sizeof_mem_range_attr != 0)) ||
-+			 (args->num_mem_ranges > 0 &&
-+			  (!attrs_user ||
-+			   args->sizeof_mem_range_attr !=
-+			   sizeof(struct drm_xe_mem_range_attr))))))
-+		return -EINVAL;
-+
-+	vm = xe_vm_lookup(xef, args->vm_id);
-+	if (XE_IOCTL_DBG(xe, !vm))
-+		return -EINVAL;
-+
-+	err = down_read_interruptible(&vm->lock);
-+	if (err)
-+		goto put_vm;
-+
-+	attrs_user = u64_to_user_ptr(args->vector_of_mem_attr);
-+
-+	if (args->num_mem_ranges == 0 && !attrs_user) {
-+		args->num_mem_ranges = xe_vm_query_vmas(vm, args->start, args->start + args->range);
-+		args->sizeof_mem_range_attr = sizeof(struct drm_xe_mem_range_attr);
-+		goto unlock_vm;
-+	}
-+
-+	mem_attrs = kvmalloc_array(args->num_mem_ranges, args->sizeof_mem_range_attr,
-+				   GFP_KERNEL | __GFP_ACCOUNT |
-+				   __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
-+	if (!mem_attrs) {
-+		err = args->num_mem_ranges > 1 ? -ENOBUFS : -ENOMEM;
-+		goto unlock_vm;
-+	}
-+
-+	memset(mem_attrs, 0, args->num_mem_ranges * args->sizeof_mem_range_attr);
-+	err = get_mem_attrs(vm, &args->num_mem_ranges, args->start,
-+			    args->start + args->range, mem_attrs);
-+	if (err)
-+		goto free_mem_attrs;
-+
-+	err = copy_to_user(attrs_user, mem_attrs,
-+			   args->sizeof_mem_range_attr * args->num_mem_ranges);
-+
-+free_mem_attrs:
-+	kvfree(mem_attrs);
-+unlock_vm:
-+	up_read(&vm->lock);
-+put_vm:
-+	xe_vm_put(vm);
-+	return err;
-+}
-+
- static bool vma_matches(struct xe_vma *vma, u64 page_addr)
- {
- 	if (page_addr > xe_vma_end(vma) - 1 ||
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 6538cddf158b..3953b3ee2955 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -199,7 +199,7 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file);
- int xe_vm_bind_ioctl(struct drm_device *dev, void *data,
- 		     struct drm_file *file);
--
-+int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
- void xe_vm_close_and_put(struct xe_vm *vm);
- 
- static inline bool xe_vm_in_fault_mode(struct xe_vm *vm)
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 115b9bca2a25..eaf713706387 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -82,6 +82,7 @@ extern "C" {
-  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
-  *  - &DRM_IOCTL_XE_OBSERVATION
-  *  - &DRM_IOCTL_XE_MADVISE
-+ *  - &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
-  */
- 
- /*
-@@ -104,6 +105,7 @@ extern "C" {
- #define DRM_XE_WAIT_USER_FENCE		0x0a
- #define DRM_XE_OBSERVATION		0x0b
- #define DRM_XE_MADVISE			0x0c
-+#define DRM_XE_VM_QUERY_MEM_RANGE_ATTRS	0x0d
- 
- /* Must be kept compact -- no holes */
- 
-@@ -120,6 +122,7 @@ extern "C" {
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
- #define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
-+#define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -2113,6 +2116,142 @@ struct drm_xe_madvise {
- 	__u64 reserved[2];
- };
- 
-+/**
-+ * struct drm_xe_mem_range_attr - Output of &DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS
-+ *
-+ * This structure is provided by userspace and filled by KMD in response to the
-+ * DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS ioctl. It describes memory attributes of
-+ * a memory ranges within a user specified address range in a VM.
-+ *
-+ * The structure includes information such as atomic access policy,
-+ * page attribute table (PAT) index, and preferred memory location.
-+ * Userspace allocates an array of these structures and passes a pointer to the
-+ * ioctl to retrieve attributes for each memory ranges
-+ *
-+ * @extensions: Pointer to the first extension struct, if any
-+ * @start: Start address of the memory range
-+ * @end: End address of the virtual memory range
-+ *
-+ */
-+struct drm_xe_mem_range_attr {
-+	 /** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @start: start of the memory range */
-+	__u64 start;
-+
-+	/** @end: end of the memory range */
-+	__u64 end;
-+
-+	/** @preferred_mem_loc: preferred memory location */
-+	struct {
-+		/** @preferred_mem_loc.devmem_fd: fd for preferred loc */
-+		__u32 devmem_fd;
-+
-+		/** @preferred_mem_loc.migration_policy: Page migration policy */
-+		__u32 migration_policy;
-+	} preferred_mem_loc;
-+
-+	/** @atomic: Atomic access policy */
-+	struct {
-+		/** @atomic.val: atomic attribute */
-+		__u32 val;
-+
-+		/** @atomic.reserved: Reserved */
-+		__u32 reserved;
-+	} atomic;
-+
-+	 /** @pat_index: Page attribute table index */
-+	struct {
-+		/** @pat_index.val: PAT index */
-+		__u32 val;
-+
-+		/** @pat_index.reserved: Reserved */
-+		__u32 reserved;
-+	} pat_index;
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved[2];
-+};
-+
-+/**
-+ * struct drm_xe_vm_query_mem_range_attr - Input of &DRM_IOCTL_XE_VM_QUERY_MEM_ATTRIBUTES
-+ *
-+ * This structure is used to query memory attributes of memory regions
-+ * within a user specified address range in a VM. It provides detailed
-+ * information about each memory range, including atomic access policy,
-+ * page attribute table (PAT) index, and preferred memory location.
-+ *
-+ * Userspace first calls the ioctl with @num_mem_ranges = 0,
-+ * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL to retrieve
-+ * the number of memory regions and size of each memory range attribute.
-+ * Then, it allocates a buffer of that size and calls the ioctl again to fill
-+ * the buffer with memory range attributes.
-+ *
-+ * If second call fails with -ENOSPC, it means memory ranges changed between
-+ * first call and now, retry IOCTL again with @num_mem_ranges = 0,
-+ * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL followed by
-+ * Second ioctl call.
-+ *
-+ * Example:
-+ *
-+ * .. code-block:: C
-+ *    struct drm_xe_vm_query_mem_range_attr query = {
-+ *         .vm_id = vm_id,
-+ *         .start = 0x100000,
-+ *         .range = 0x2000,
-+ *     };
-+ *
-+ *    // First ioctl call to get num of mem regions and sizeof each attribute
-+ *    ioctl(fd, DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS, &query);
-+ *
-+ *    // Allocate buffer for the memory region attributes
-+ *    void *ptr = malloc(query.num_mem_ranges * query.sizeof_mem_range_attr);
-+ *
-+ *    query.vector_of_mem_attr = (uintptr_t)ptr;
-+ *
-+ *    // Second ioctl call to actually fill the memory attributes
-+ *    ioctl(fd, DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS, &query);
-+ *
-+ *    // Iterate over the returned memory region attributes
-+ *    for (unsigned int i = 0; i < query.num_mem_ranges; ++i) {
-+ *       struct drm_xe_mem_range_attr *attr = (struct drm_xe_mem_range_attr *)ptr;
-+ *
-+ *       // Do something with attr
-+ *
-+ *       // Move pointer by one entry
-+ *       ptr += query.sizeof_mem_range_attr;
-+ *     }
-+ *
-+ *    free(ptr);
-+ */
-+struct drm_xe_vm_query_mem_range_attr {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @vm_id: vm_id of the virtual range */
-+	__u32 vm_id;
-+
-+	/** @num_mem_ranges: number of mem_ranges in range */
-+	__u32 num_mem_ranges;
-+
-+	/** @start: start of the virtual address range */
-+	__u64 start;
-+
-+	/** @range: size of the virtual address range */
-+	__u64 range;
-+
-+	/** @sizeof_mem_range_attr: size of struct drm_xe_mem_range_attr */
-+	__u64 sizeof_mem_range_attr;
-+
-+	/** @vector_of_mem_attr: userptr to array of struct drm_xe_mem_range_attr */
-+	__u64 vector_of_mem_attr;
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved[2];
-+
-+};
-+
- #if defined(__cplusplus)
- }
- #endif
--- 
-2.34.1
+>  		wm0_lines >
+>  		adjusted_mode->crtc_vtotal - adjusted_mode-
+> >crtc_vblank_start;  }
+> --
+> 2.45.2
 
