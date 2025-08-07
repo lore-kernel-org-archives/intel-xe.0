@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87F82C87FCF
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 17:57:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B18F6C87FCA
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 18:02:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F49710E17F;
-	Thu,  7 Aug 2025 17:57:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26B6410E891;
+	Thu,  7 Aug 2025 18:02:42 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A73E910E17F;
- Thu,  7 Aug 2025 17:57:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8432059340004802968=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADD7B10E8B5;
+ Thu,  7 Aug 2025 18:02:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJtL3hlOiBGaXggYSBOVUxMIHZz?=
- =?utf-8?b?IElTX0VSUigpIGluIHhlX3ZtX2FkZF9jb21wdXRlX2V4ZWNfcXVldWUoKQ==?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_MADVISE_FOR_XE_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dan Carpenter" <dan.carpenter@linaro.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 07 Aug 2025 17:57:12 -0000
-Message-ID: <175458943267.220109.11505486388549545760@1538d3639d33>
+Date: Thu, 07 Aug 2025 18:02:40 -0000
+Message-ID: <175458976070.220109.15257666496597317411@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <aJTMBdX97cof_009@stanley.mountain>
-In-Reply-To: <aJTMBdX97cof_009@stanley.mountain>
+References: <20250807164338.1832254-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250807164338.1832254-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,127 +39,169 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8432059340004802968==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix a NULL vs IS_ERR() in xe_vm_add_compute_exec_queue()
-URL   : https://patchwork.freedesktop.org/series/152640/
-State : success
+Series: MADVISE FOR XE (rev6)
+URL   : https://patchwork.freedesktop.org/series/149550/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3514-922b0dea064e07d9d19f9241723debd67572b611_BAT -> xe-pw-152640v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c298eac5978c38dcc62a70c0d73c91765e7cc296
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fa7a4dd3f3842dc526a0b907e528be5f91984aa1
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Thu Aug 7 22:13:38 2025 +0530
 
-Summary
--------
+    drm/xe/uapi: Add UAPI for querying VMA count and memory attributes
+    
+    Introduce the DRM_IOCTL_XE_VM_QUERY_MEMORY_RANGE_ATTRS ioctl to allow
+    userspace to query memory attributes of VMAs within a user specified
+    virtual address range.
+    
+    Userspace first calls the ioctl with num_mem_ranges = 0,
+    sizeof_mem_ranges_attr = 0 and vector_of_vma_mem_attr = NULL to retrieve
+    the number of memory ranges (vmas) and size of each memory range attribute.
+    Then, it allocates a buffer of that size and calls the ioctl again to fill
+    the buffer with memory range attributes.
+    
+    This two-step interface allows userspace to first query the required
+    buffer size, then retrieve detailed attributes efficiently.
+    
+    v2 (Matthew Brost)
+    - Use same ioctl to overload functionality
+    
+    v3
+    - Add kernel-doc
+    
+    v4
+    - Make uapi future proof by passing struct size (Matthew Brost)
+    - make lock interruptible (Matthew Brost)
+    - set reserved bits to zero (Matthew Brost)
+    - s/__copy_to_user/copy_to_user (Matthew Brost)
+    - Avod using VMA term in uapi (Thomas)
+    - xe_vm_put(vm) is missing (Shuicheng)
+    
+    v5
+    - Nits
+    - Fix kernel-doc
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 76741379fba333222be8a15bebf1e659eb84088a drm-intel
+23eb1aea1421 drm/gpuvm: Pass map arguments through a struct
+26e58a45c824 drm/gpuvm: Kill drm_gpuva_init()
+47131ad3be2e drm/gpuvm: Support flags in drm_gpuvm_map_req
+0b0b3fac1662 drm/gpuvm: Introduce DRM_GPUVM_SM_MAP_OPS_FLAG_SPLIT_MADVISE flag
+b6838914e3a5 drm/xe/uapi: Add madvise interface
+-:51: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#51: FILE: include/uapi/drm/xe_drm.h:122:
++#define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 154 lines checked
+3c8ee1f51c0a drm/xe/vm: Add attributes struct as member of vma
+8b3317dc8c75 drm/xe/vma: Move pat_index to vma attributes
+22743f774f84 drm/xe/vma: Modify new_vma to accept struct xe_vma_mem_attr as parameter
+ecd2e1e04a42 drm/gpusvm: Make drm_gpusvm_for_each_* macros public
+-:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'range__' - possible side-effects?
+#225: FILE: include/drm/drm_gpusvm.h:452:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
 
-  No regressions found.
+-:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
+#225: FILE: include/drm/drm_gpusvm.h:452:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
 
-  
+-:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#225: FILE: include/drm/drm_gpusvm.h:452:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
 
-Participating hosts (8 -> 9)
-------------------------------
+-:258: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'notifier__' - possible side-effects?
+#258: FILE: include/drm/drm_gpusvm.h:485:
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__));	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
 
-  Additional (2): bat-ptl-1 bat-ptl-2 
-  Missing    (1): bat-adlp-vm 
+-:258: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#258: FILE: include/drm/drm_gpusvm.h:485:
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__));	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
 
-Known issues
-------------
+-:274: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'notifier__' - possible side-effects?
+#274: FILE: include/drm/drm_gpusvm.h:501:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
 
-  Here are the changes found in xe-pw-152640v1_BAT that come from known issues:
+-:274: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
+#274: FILE: include/drm/drm_gpusvm.h:501:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
 
-### IGT changes ###
+-:274: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#274: FILE: include/drm/drm_gpusvm.h:501:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
 
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+total: 0 errors, 0 warnings, 8 checks, 248 lines checked
+6696856c535c drm/xe/svm: Split system allocator vma incase of madvise call
+5a268a8f7470 drm/xe: Allow CPU address mirror VMA unbind with gpu bindings for madvise
+1ea78420534e drm/xe/svm: Add xe_svm_ranges_zap_ptes_in_range() for PTE zapping
+e22fb48651bd drm/xe: Implement madvise ioctl for xe
+-:53: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#53: 
+new file mode 100644
 
-  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
-  [Intel XE#5765]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5765
-  [Intel XE#5766]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5766
-  [Intel XE#5769]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5769
-  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
-  [Intel XE#5772]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5772
-  [Intel XE#5773]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5773
-  [Intel XE#5774]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5774
-  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
-  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
-  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
-  [Intel XE#5778]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5778
-  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
-  [Intel XE#5781]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5781
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+total: 0 errors, 1 warnings, 0 checks, 330 lines checked
+f175910a9e8f drm/xe/svm : Add svm ranges migration policy on atomic access
+1892288b275e drm/xe/madvise: Update migration policy based on preferred location
+5b342e844bb1 drm/xe/pat: Add helper for compression mode of pat index
+1e6d3673d188 drm/xe/svm: Support DRM_XE_SVM_MEM_RANGE_ATTR_PAT memory attribute
+d62924a44fc9 drm/xe/uapi: Add flag for consulting madvise hints on svm prefetch
+ad08269caf59 drm/xe/svm: Consult madvise preferred location in prefetch
+f52fbe553744 drm/xe/bo: Add attributes field to xe_bo
+3965593c9e28 drm/xe/bo: Update atomic_access attribute on madvise
+f47dd232d183 drm/xe/madvise: Skip vma invalidation if mem attr are unchanged
+b3d3191df88c drm/xe/vm: Add helper to check for default VMA memory attributes
+188affbc0731 drm/xe: Reset VMA attributes to default in SVM garbage collector
+1b1fe7d76dea drm/xe: Enable madvise ioctl for xe
+fa7a4dd3f384 drm/xe/uapi: Add UAPI for querying VMA count and memory attributes
+-:210: WARNING:LONG_LINE: line length of 147 exceeds 100 columns
+#210: FILE: include/uapi/drm/xe_drm.h:125:
++#define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
 
-
-Build changes
--------------
-
-  * Linux: xe-3514-922b0dea064e07d9d19f9241723debd67572b611 -> xe-pw-152640v1
-
-  IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3514-922b0dea064e07d9d19f9241723debd67572b611: 922b0dea064e07d9d19f9241723debd67572b611
-  xe-pw-152640v1: 152640v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152640v1/index.html
-
---===============8432059340004802968==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix a NULL vs IS_ERR() in xe_vm_add_compute_exec_queue()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152640/">https://patchwork.freedesktop.org/series/152640/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152640v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152640v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 287 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-3514-922b0dea064e07d9d19f9241723debd67572b611_BAT -&gt; xe-pw-152640v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 9)</h2>
-<p>Additional (2): bat-ptl-1 bat-ptl-2 <br />
-  Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152640v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3514-922b0dea064e07d9d19f9241723debd67572b611 -&gt; xe-pw-152640v1</li>
-</ul>
-<p>IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3514-922b0dea064e07d9d19f9241723debd67572b611: 922b0dea064e07d9d19f9241723debd67572b611<br />
-  xe-pw-152640v1: 152640v1</p>
-
-</body>
-</html>
-
---===============8432059340004802968==--
