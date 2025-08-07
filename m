@@ -4,78 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1755C87FCA
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 14:02:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 947CBC87FCF
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 14:06:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A13DA10E859;
-	Thu,  7 Aug 2025 14:02:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FA8F10E85E;
+	Thu,  7 Aug 2025 14:06:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="PwPd2/L2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W7KT/k0w";
 	dkim-atps=neutral
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
- [209.85.215.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D04E10E004
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 11:11:47 +0000 (UTC)
-Received: by mail-pg1-f179.google.com with SMTP id
- 41be03b00d2f7-b42348bae1fso490383a12.0
- for <intel-xe@lists.freedesktop.org>; Thu, 07 Aug 2025 04:11:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1754565107; x=1755169907;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=CoXNXUKeiOUNFFg2C7vkQ9nmMli8YvVdClg8JNyIxRk=;
- b=PwPd2/L2W5T+RGJhXtTpHUjbepm5p7XhR1+SdMppL9Rbgh/AmRvbEI7JDidCZ7C25X
- ug89I37zNiG6s3V+tawbCObHSNeK7panKh9DBFjJfD9t5/6XSJWpEc2WPGSi8YD7KmZd
- 4Ksv+PQ4Mobgg3jQdAljwRuKtlFWl/JF178W9VD3HmjRX+LXb1qKr7EBD1nwAdgjR0KF
- HM/ixCIhJw+ktxWSxQ4DFk+BoLOgaMxmhCoTtVO7JeYQcAyqTNnkY9h42bLfo2u/nwcJ
- ELpZjiBBbtCzc3K7H+Sdqw+hvG0erXcViszApL7R60w56ZA8seMdumbNmuDYqUcdO+zC
- eJaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754565107; x=1755169907;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=CoXNXUKeiOUNFFg2C7vkQ9nmMli8YvVdClg8JNyIxRk=;
- b=hE2LUfcrMm+pTQdTVbp5ics4KnwfZAbfCtFM/y0GS25XnLvuTkghIVpbULQ/Yo411n
- TiW+aj6LbgellSHlUUiktvbI0Lva/8oWJsop+oIvQWjzSU6ndIjqHVu8Aj6HAezcApSk
- z+wEVzoRynv+le11Knf9rXU/SeJ712qBGhbLCj5g8jZBB7E5km7cq/zn/C5G5iW/6WKe
- dlDvZcSRfk6XhYjBESH5wWfNIy4pp8FM1/FEHlOk2WOYPCqyytlm0k83wpumJk2ByOpL
- E339I0QnLNC/+iFuWceWOGhcQCWwUz8/W9GQ8iJgMosq9cJLCzFMLE1umVvT+JxCHkcI
- H6dA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUOK7fG/mQzS/UOzWIHC5QXNUzVoPqednG7ELvqgpBR7zyHrtTcjAKPu6isMtm6oXvE2609r4OhnQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwX6xT2OvOKiB7h4f4mb423ydBi8L3G3INgV+Gf6k1E+/PTSjWE
- Y0eeeWqfzpQbyBUDReo9fkFNejlz9hb7rGnDekVQ7Er1o8TGYSvD/CAFXdNz465QETyFKubeR/U
- mZhUl66pD1jGB+g0lRCRzIEVXshwfWzMXzHdVgLJ4
-X-Gm-Gg: ASbGncvcnJRkjBmhcH88KqTmPB7/o0j2akyByUn+F/3lu5acbeJDr8apitHEZ18b9BJ
- 8Dv6eSJeFOwizKhU4eb81HgqIFhm1+S5qtfXRSitNpzyA7dhOJKJ1A7BDI/RgmDAgZy3kcx0ejg
- 77/47I+D/pcAP/voqteL+OQr7FtbNaO3IfcRhgggdKSSwoibt2LXzDChY7NKCA86jS3r+/85eK0
- RWkpvYhjwTqHwHVGfa9qa/FNUwUFXJpua751XM=
-X-Google-Smtp-Source: AGHT+IHWtnkQaumsTew0jXS9kaK3+ePJQyaqgUXoTNxp2BPH6vF9Q5lSXC7XsOCAVRCtweFXeukJL89E4f1X03Xzmvc=
-X-Received: by 2002:a17:902:f54b:b0:240:8f4:b36e with SMTP id
- d9443c01a7336-2429f30a072mr90455775ad.34.1754565106720; Thu, 07 Aug 2025
- 04:11:46 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4624710E85E
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 14:06:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754575571; x=1786111571;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+YKSRhBNAee0/4ZXwu0L5F4s1qC3xrukMc5wahL3EwM=;
+ b=W7KT/k0wbGuI3sRdyWUpIAKFVea6xHkwYABjaIDAQdfHh4Oddz1spfFF
+ /ZWSVjFFq/OqjvGay5ENgv2FfCMW0KIJ0nzvskapHU6uwKU9mO8CrMwBw
+ +iKFZ5uN2nAYzSj06OxwPXbwI/0oMh9nCiDrU5o02PR0/bkKRv+d78Ylo
+ 7iBYDBClGE5yNLN38imj4zSq1+WLNaU0Sg92u5Z6Tkjpk2kn4b69R0whg
+ 6s0TDEaYKasbDjJ+HUKoaoTlDu4YQtKlik09DuRmHKkS0OcpLW1m6ackb
+ CoVjxQ4v3TThA/2Zx9nmn8T4/aFSWZYnwxy8mODV/xU5dh1qqR8DwHVfi g==;
+X-CSE-ConnectionGUID: UIOYKRJQTKG99azSHHqe8g==
+X-CSE-MsgGUID: eXOowYoqQn+BqrvGwuiHqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56830384"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56830384"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 07:06:11 -0700
+X-CSE-ConnectionGUID: Z9C314CuSHeWbuQ2vxYHig==
+X-CSE-MsgGUID: sJpWzvGPRFGCJPKUHZ871w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="164320534"
+Received: from unknown (HELO sinjan-Super-Server.iind.intel.com)
+ ([10.190.239.39])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 07:06:08 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ rodrigo.vivi@intel.com, Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v3] drm/xe/hwmon: Add SW clamp for power limits writes
+Date: Thu,  7 Aug 2025 19:36:02 +0530
+Message-Id: <20250807140602.3247853-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20250729193647.3410634-1-marievic@google.com>
- <20250729193647.3410634-5-marievic@google.com>
- <CABVgOSnmtcjarGuZog9zKNvt9rYD2Tsox3ngVgh4pJUFMF737w@mail.gmail.com>
-In-Reply-To: <CABVgOSnmtcjarGuZog9zKNvt9rYD2Tsox3ngVgh4pJUFMF737w@mail.gmail.com>
-From: Marco Elver <elver@google.com>
-Date: Thu, 7 Aug 2025 13:11:10 +0200
-X-Gm-Features: Ac12FXxEPQeFs5tHqqfxXkjXiWaH8qt7LNAFX9V6D-alLoCQyoAF_FdJ5KU_fBk
-Message-ID: <CANpmjNMkcZaZ_dbXdd40dHrD3Wo2muv14ojmz4diwLG68LiFyQ@mail.gmail.com>
-Subject: Re: [PATCH 4/9] kcsan: test: Update parameter generator to new
- signature
-To: David Gow <davidgow@google.com>
-Cc: Marie Zhussupova <marievic@google.com>, rmoar@google.com, shuah@kernel.org,
- brendan.higgins@linux.dev, dvyukov@google.com, lucas.demarchi@intel.com, 
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Thu, 07 Aug 2025 14:02:01 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,49 +66,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, 2 Aug 2025 at 11:45, David Gow <davidgow@google.com> wrote:
->
-> On Wed, 30 Jul 2025 at 03:37, Marie Zhussupova <marievic@google.com> wrote:
-> >
-> > This patch modifies `nthreads_gen_params` in kcsan_test.c
-> > to accept an additional `struct kunit *test` argument.
-> >
-> > Signed-off-by: Marie Zhussupova <marievic@google.com>
-> > ---
->
-> This is a pretty straightforward fix after patch 3. KCSAN folks, would
-> you prefer this kept as a separate patch, or squashed into the
-> previous one (so there's no commit where this is broken)?
+Clamp writes to power limits powerX_crit/currX_crit, powerX_cap,
+powerX_max, to the maximum supported by the pcode mailbox
+when sysfs-provided values exceed this limit.
+Although the pcode already performs clamping, values beyond the pcode
+mailbox's supported range get truncated, leading to incorrect
+critical power settings.
+This patch ensures proper clamping to prevent such truncation.
 
-Normally patch series should be structured so that bisection does not
-break. Having this fixup as a separate patch means that bisections
-where the KCSAN test is enabled will break.
+v2:
+ - Address below review comments. (Riana)
+ - Split comments into multiple sentences.
+ - Use local variables for readability.
+ - Add a debug log.
+ - Use u64 instead of unsigned long.
 
-This is a tiny change, so I'd just squash it.
+v3:
+ - Change drm_dbg logs to drm_info. (Badal)
 
+Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+Fixes: 92d44a422d0d ("drm/xe/hwmon: Expose card reactive critical power")
+Fixes: fb1b70607f73 ("drm/xe/hwmon: Expose power attributes")
+---
+ drivers/gpu/drm/xe/xe_hwmon.c | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-> Either way,
-> Reviewed-by: David Gow <davidgow@google.com>
->
->
-> -- David
->
-> >  kernel/kcsan/kcsan_test.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/kernel/kcsan/kcsan_test.c b/kernel/kcsan/kcsan_test.c
-> > index c2871180edcc..fc76648525ac 100644
-> > --- a/kernel/kcsan/kcsan_test.c
-> > +++ b/kernel/kcsan/kcsan_test.c
-> > @@ -1383,7 +1383,7 @@ static void test_atomic_builtins_missing_barrier(struct kunit *test)
-> >   * The thread counts are chosen to cover potentially interesting boundaries and
-> >   * corner cases (2 to 5), and then stress the system with larger counts.
-> >   */
-> > -static const void *nthreads_gen_params(const void *prev, char *desc)
-> > +static const void *nthreads_gen_params(struct kunit *test, const void *prev, char *desc)
-> >  {
-> >         long nthreads = (long)prev;
-> >
-> > --
-> > 2.50.1.552.g942d659e1b-goog
-> >
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index f08fc4377d25..a43bc8b91fea 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -332,6 +332,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
+ 	int ret = 0;
+ 	u32 reg_val, max;
+ 	struct xe_reg rapl_limit;
++	u64 max_mbx_power_limit = 0;
+ 
+ 	mutex_lock(&hwmon->hwmon_lock);
+ 
+@@ -356,6 +357,20 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
+ 		goto unlock;
+ 	}
+ 
++	/*
++	 * If the sysfs value exceeds the pcode mailbox cmd WRITE_PSYSGPU/PACKAGE_POWER_LIMIT
++	 * max supported value, clamp it to the command's max (U12.3 format).
++	 * This is to avoid truncation during reg_val calculation below and ensure the valid
++	 * power limit is sent for pcode which would clamp it to card-supported value.
++	 */
++	max_mbx_power_limit = ((PWR_LIM_VAL) >> hwmon->scl_shift_power) * SF_POWER;
++	if (value > max_mbx_power_limit) {
++		value = max_mbx_power_limit;
++		drm_info(&hwmon->xe->drm,
++			 "Sysfs value for ch %d %s exceeds limit; clamped to supported maximum\n",
++			 channel, PWR_ATTR_TO_STR(attr));
++	}
++
+ 	/* Computation in 64-bits to avoid overflow. Round to nearest. */
+ 	reg_val = DIV_ROUND_CLOSEST_ULL((u64)value << hwmon->scl_shift_power, SF_POWER);
+ 
+@@ -739,9 +754,23 @@ static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, int channel,
+ {
+ 	int ret;
+ 	u32 uval;
++	u64 max_crit_power_curr = 0;
+ 
+ 	mutex_lock(&hwmon->hwmon_lock);
+ 
++	/*
++	 * If the sysfs value exceeds the pcode mailbox cmd POWER_SETUP_SUBCOMMAND_WRITE_I1
++	 * max supported value, clamp it to the command's max (U10.6 format).
++	 * This is to avoid truncation during uval calculation below and ensure the valid power
++	 * limit is sent for pcode which would clamp it to card-supported value.
++	 */
++	max_crit_power_curr = (POWER_SETUP_I1_DATA_MASK >> POWER_SETUP_I1_SHIFT) * scale_factor;
++	if (value > max_crit_power_curr) {
++		value = max_crit_power_curr;
++		drm_info(&hwmon->xe->drm,
++			 "Sysfs value for ch %d exceeds limit; clamped to supported maximum\n",
++			 channel);
++	}
+ 	uval = DIV_ROUND_CLOSEST_ULL(value << POWER_SETUP_I1_SHIFT, scale_factor);
+ 	ret = xe_hwmon_pcode_write_i1(hwmon, uval);
+ 
+-- 
+2.25.1
+
