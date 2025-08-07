@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A270BC87FCF
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 16:17:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B3B7C87FDA
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 16:17:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6818510E88D;
-	Thu,  7 Aug 2025 16:17:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0691010E891;
+	Thu,  7 Aug 2025 16:17:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LcSsQ5e4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nOpKE9m4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10E4010E88D
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 16:17:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C112410E891
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 16:17:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754583438; x=1786119438;
+ t=1754583440; x=1786119440;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9NzuoHL40YhCKvl+vruq7a/KM2LYsxaCpYK4tF6N09s=;
- b=LcSsQ5e4tK1Bppz/9fzK82K+wHfXgTixOJgjVU3ZfIhXjsxBxfo8H1NX
- 4wuwsoL/oO8qPH4mmp7EMZuE2WtsbzK+HP2aScEG5EyBqh1ijV+U9Lr0j
- p6dN3Y3kGHoakg/zvXiS+sG498P3BLLnwVIRCRyszuPEQSMNtzy0hqH3Q
- n7/bRWES/WQ1RB0M8ED+sQ/x+6WPPqIZcs/DT6/J0s+mKdCe0EGy5pSzO
- lJgPr/3VQS+ZQlpdjkwputfv45CTvFl6GA8gxNgbXBllEzNlrZ1bU4J+C
- U5+gwgQboD1Uy3ChBFG2+uCYgSSD1d5lL0/KLGyIqMzoHBHlNKE5zkS+L g==;
-X-CSE-ConnectionGUID: U+HSdOJnT7CnQPT8uTuhxA==
-X-CSE-MsgGUID: zxCQqwMSQTGmTXR+cd0uvw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56845627"
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56845627"
+ bh=4h7cweoTo1YZy4sbwkKCzhXyhHrpiYUaPqhLKdNyOuM=;
+ b=nOpKE9m472nEK+b61qDQ2aHJKPrBDTQ70Fl340omFVkLRT6MHtBkrH6K
+ YLYvFJAVYSex5oVn3o7GaIROt7KDwUwhulGgp8lRwY1ks+vIWa1MIB8sp
+ dKekQ2HEaOG1GdkIuHhRKFnfwNuVr2OfV80QQpmJoDA3Va4oK28ZvR7i7
+ cU5CyoqUescdl+iqfNT/h8f4pSARmdpcosCKrKYNdScqlhKBGnMAIvjkg
+ cOUSZT3BOCDgJv5KoSja/dirS6AYnO9sceCZx1kj8RcJqoUgcotd7og2j
+ TrPODQb4k3P/k1/jHfl+NZ25AIWSKOT3PvErAB+nOAI/L8hSOxzUblXEl A==;
+X-CSE-ConnectionGUID: X7C3o8J5RdSeORq26sRFMg==
+X-CSE-MsgGUID: Ih8acCOuRFK69zwXP6f15g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56845633"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56845633"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 09:17:18 -0700
-X-CSE-ConnectionGUID: yciLKLvFTr+v1z4XNxBdRQ==
-X-CSE-MsgGUID: ftI13ZpCRSCzlcBwZfj0wg==
+ 07 Aug 2025 09:17:20 -0700
+X-CSE-ConnectionGUID: EEBGfB1jSp+08XjCJVnknw==
+X-CSE-MsgGUID: 1Hn33Z0qS5K/SR73RX/Bfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="195937934"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="195937945"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa001.fm.intel.com with ESMTP; 07 Aug 2025 09:17:16 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 07 Aug 2025 09:17:18 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v6 22/26] drm/xe/madvise: Skip vma invalidation if mem attr
- are unchanged
-Date: Thu,  7 Aug 2025 22:13:34 +0530
-Message-Id: <20250807164338.1832254-23-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v6 23/26] drm/xe/vm: Add helper to check for default VMA
+ memory attributes
+Date: Thu,  7 Aug 2025 22:13:35 +0530
+Message-Id: <20250807164338.1832254-24-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250807164338.1832254-1-himal.prasad.ghimiray@intel.com>
 References: <20250807164338.1832254-1-himal.prasad.ghimiray@intel.com>
@@ -69,170 +69,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a VMA within the madvise input range already has the same memory
-attribute as the one requested by the user, skip PTE zapping for that
-VMA to avoid unnecessary invalidation.
+Introduce a new helper function `xe_vma_has_default_mem_attrs()` to
+determine whether a VMA's memory attributes are set to their default
+values. This includes checks for atomic access, PAT index, and preferred
+location.
 
-v2 (Matthew Brost)
-- fix skip_invalidation for new attributes
-- s/u32/bool
-- Remove unnecessary assignment  for kzalloc'ed
+Also, add a new field `default_pat_index` to `struct xe_vma_mem_attr`
+to track the initial PAT index set during the first bind. This helps
+distinguish between default and user-modified pat index, such as those
+changed via madvise.
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm_madvise.c | 71 +++++++++++++++++++-----------
- drivers/gpu/drm/xe/xe_vm_types.h   |  6 +++
- 2 files changed, 52 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h       |  2 ++
+ drivers/gpu/drm/xe/xe_vm_types.h |  6 ++++++
+ 3 files changed, 32 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index b2a78774ca83..8a3b4cb59593 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -85,16 +85,20 @@ static void madvise_preferred_mem_loc(struct xe_device *xe, struct xe_vm *vm,
- 
- 	for (i = 0; i < num_vmas; i++) {
- 		/*TODO: Extend attributes to bo based vmas */
--		if (!xe_vma_is_cpu_addr_mirror(vmas[i]))
--			continue;
--
--		vmas[i]->attr.preferred_loc.devmem_fd = op->preferred_mem_loc.devmem_fd;
--
--		/* Till multi-device support is not added migration_policy
--		 * is of no use and can be ignored.
--		 */
--		vmas[i]->attr.preferred_loc.migration_policy =
-+		if ((vmas[i]->attr.preferred_loc.devmem_fd == op->preferred_mem_loc.devmem_fd &&
-+		     vmas[i]->attr.preferred_loc.migration_policy ==
-+		     op->preferred_mem_loc.migration_policy) ||
-+		    !xe_vma_is_cpu_addr_mirror(vmas[i])) {
-+			vmas[i]->skip_invalidation = true;
-+		} else {
-+			vmas[i]->skip_invalidation = false;
-+			vmas[i]->attr.preferred_loc.devmem_fd = op->preferred_mem_loc.devmem_fd;
-+			/* Till multi-device support is not added migration_policy
-+			 * is of no use and can be ignored.
-+			 */
-+			vmas[i]->attr.preferred_loc.migration_policy =
- 						op->preferred_mem_loc.migration_policy;
-+		}
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 8eac7a4ab22f..c4d1c3e1c974 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2598,6 +2598,29 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ 	return err;
  }
  
-@@ -109,17 +113,27 @@ static void madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
- 	xe_assert(vm->xe, op->atomic.val <= DRM_XE_ATOMIC_CPU);
- 
- 	for (i = 0; i < num_vmas; i++) {
--		if ((xe_vma_is_userptr(vmas[i]) &&
--		     !(op->atomic.val == DRM_XE_ATOMIC_DEVICE &&
--		       xe->info.has_device_atomics_on_smem)))
-+		if (xe_vma_is_userptr(vmas[i]) &&
-+		    !(op->atomic.val == DRM_XE_ATOMIC_DEVICE &&
-+		      xe->info.has_device_atomics_on_smem)) {
-+			vmas[i]->skip_invalidation = true;
- 			continue;
-+		}
++/**
++ * xe_vma_has_default_mem_attrs - Check if a VMA has default memory attributes
++ * @vma: Pointer to the xe_vma structure to check
++ *
++ * This function determines whether the given VMA (Virtual Memory Area)
++ * has its memory attributes set to their default values. Specifically,
++ * it checks the following conditions:
++ *
++ * - `atomic_access` is `DRM_XE_VMA_ATOMIC_UNDEFINED`
++ * - `pat_index` is equal to `default_pat_index`
++ * - `preferred_loc.devmem_fd` is `DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE`
++ * - `preferred_loc.migration_policy` is `DRM_XE_MIGRATE_ALL_PAGES`
++ *
++ * Return: true if all attributes are at their default values, false otherwise.
++ */
++bool xe_vma_has_default_mem_attrs(struct xe_vma *vma)
++{
++	return (vma->attr.atomic_access == DRM_XE_ATOMIC_UNDEFINED &&
++		vma->attr.pat_index ==  vma->attr.default_pat_index &&
++		vma->attr.preferred_loc.devmem_fd == DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE &&
++		vma->attr.preferred_loc.migration_policy == DRM_XE_MIGRATE_ALL_PAGES);
++}
 +
-+		if (vmas[i]->attr.atomic_access == op->atomic.val) {
-+			vmas[i]->skip_invalidation = true;
-+		} else {
-+			vmas[i]->skip_invalidation = false;
-+			vmas[i]->attr.atomic_access = op->atomic.val;
-+		}
- 
- 		vmas[i]->attr.atomic_access = op->atomic.val;
- 
- 		bo = xe_vma_bo(vmas[i]);
--		if (!bo)
-+		if (!bo || bo->attr.atomic_access == op->atomic.val)
- 			continue;
- 
-+		vmas[i]->skip_invalidation = false;
- 		xe_bo_assert_held(bo);
- 		bo->attr.atomic_access = op->atomic.val;
- 
-@@ -140,11 +154,14 @@ static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
- 	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_PAT);
- 
- 	for (i = 0; i < num_vmas; i++) {
--		if (!xe_vma_bo(vmas[i]) &&
--		    xe_pat_index_get_comp_mode(xe, op->pat_index.val))
--			continue;
--
--		vmas[i]->attr.pat_index = op->pat_index.val;
-+		if ((!xe_vma_bo(vmas[i]) &&
-+		     xe_pat_index_get_comp_mode(xe, op->pat_index.val)) ||
-+		    vmas[i]->attr.pat_index == op->pat_index.val) {
-+			vmas[i]->skip_invalidation = true;
-+		} else {
-+			vmas[i]->skip_invalidation = false;
-+			vmas[i]->attr.pat_index = op->pat_index.val;
-+		}
- 	}
- }
- 
-@@ -162,7 +179,7 @@ static u8 xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start, u64 end)
+ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				   struct xe_vma_ops *vops)
  {
- 	struct drm_gpuva *gpuva;
- 	struct xe_tile *tile;
--	u8 id, tile_mask;
-+	u8 id, tile_mask = 0;
+@@ -2630,6 +2653,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 					.migration_policy = DRM_XE_MIGRATE_ALL_PAGES,
+ 				},
+ 				.atomic_access = DRM_XE_ATOMIC_UNDEFINED,
++				.default_pat_index = op->map.pat_index,
+ 				.pat_index = op->map.pat_index,
+ 			};
  
- 	lockdep_assert_held_write(&vm->lock);
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 05ac3118d9f4..f735d994806d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -66,6 +66,8 @@ static inline bool xe_vm_is_closed_or_banned(struct xe_vm *vm)
+ struct xe_vma *
+ xe_vm_find_overlapping_vma(struct xe_vm *vm, u64 start, u64 range);
  
-@@ -171,17 +188,20 @@ static u8 xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start, u64 end)
- 				  false, MAX_SCHEDULE_TIMEOUT) <= 0)
- 		XE_WARN_ON(1);
- 
--	tile_mask = xe_svm_ranges_zap_ptes_in_range(vm, start, end);
--
- 	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
- 		struct xe_vma *vma = gpuva_to_vma(gpuva);
- 
--		if (xe_vma_is_cpu_addr_mirror(vma) || xe_vma_is_null(vma))
-+		if (vma->skip_invalidation || xe_vma_is_null(vma))
- 			continue;
- 
--		for_each_tile(tile, vm->xe, id) {
--			if (xe_pt_zap_ptes(tile, vma)) {
--				tile_mask |= BIT(id);
-+		if (xe_vma_is_cpu_addr_mirror(vma)) {
-+			tile_mask |= xe_svm_ranges_zap_ptes_in_range(vm,
-+								      xe_vma_start(vma),
-+								      xe_vma_end(vma));
-+		} else {
-+			for_each_tile(tile, vm->xe, id) {
-+				if (xe_pt_zap_ptes(tile, vma)) {
-+					tile_mask |= BIT(id);
- 
- 				/*
- 				 * WRITE_ONCE pairs with READ_ONCE
-@@ -189,6 +209,7 @@ static u8 xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start, u64 end)
- 				 */
- 				WRITE_ONCE(vma->tile_invalidated,
- 					   vma->tile_invalidated | BIT(id));
-+				}
- 			}
- 		}
- 	}
++bool xe_vma_has_default_mem_attrs(struct xe_vma *vma);
++
+ /**
+  * xe_vm_has_scratch() - Whether the vm is configured for scratch PTEs
+  * @vm: The vm
 diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index cd94d8b5819d..81d92d886578 100644
+index 81d92d886578..351242c92c12 100644
 --- a/drivers/gpu/drm/xe/xe_vm_types.h
 +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -157,6 +157,12 @@ struct xe_vma {
- 	/** @tile_staged: bind is staged for this VMA */
- 	u8 tile_staged;
+@@ -103,8 +103,14 @@ struct xe_vma_mem_attr {
+ 	 */
+ 	u32 atomic_access;
  
 +	/**
-+	 * @skip_invalidation: Used in madvise to avoid invalidation
-+	 * if mem attributes doesn't change
++	 * @default_pat_index: The pat index for VMA set during first bind by user.
 +	 */
-+	bool skip_invalidation;
++	u16 default_pat_index;
 +
  	/**
- 	 * @ufence: The user fence that was provided with MAP.
- 	 * Needs to be signalled before UNMAP can be processed.
+ 	 * @pat_index: The pat index to use when encoding the PTEs for this vma.
++	 * same as default_pat_index unless overwritten by madvise.
+ 	 */
+ 	u16 pat_index;
+ };
 -- 
 2.34.1
 
