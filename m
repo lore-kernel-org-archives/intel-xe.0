@@ -4,175 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED32C87FCA
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 16:19:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 799B5C87FCF
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Aug 2025 16:23:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3297510E896;
-	Thu,  7 Aug 2025 16:19:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 466B510E892;
+	Thu,  7 Aug 2025 16:23:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UiP/XoPJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HlGto2Wn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C098D10E898;
- Thu,  7 Aug 2025 16:19:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F417A10E892
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Aug 2025 16:23:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754583553; x=1786119553;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=2cbXIw9h1i0qR9pcWUTJ1WwfotTYwkS3t9F9MpQKO+k=;
- b=UiP/XoPJR47MWEA5pZXo2pjcEafDBNd1rttX6R2D2G4vNpMoKwO5hjF5
- Zu2eq1EVpJMmlc9stwhkpkcS5KrPKBeAN/LQBWBEN7c5r7ZURL0l0rOvL
- Qmm3kCigIwtv9JN7fP9LFLxa8Koc4wNHvd0gvLNYA1ffet8+oBn4gjw5W
- HZbtvhd5HwzPM2SlHBNCdv8zayYWwyDhymYT2knJDrZBl+CWxGu8e4nYX
- QI2w4K8BxsuBvyGXqepSGK5axLIrisJtTozHtjPI4tC9457i30ZLIuGQW
- tAbn5SCEE0PPuwJ83lMww/W9GCfpEBG+MUcAvIKBezY9iFvzp2a/bi2GI A==;
-X-CSE-ConnectionGUID: Xz0ElkJ1TAy+tl4HhnOpPw==
-X-CSE-MsgGUID: m/bWDSgwTyirZh7QlbU7Ug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="82371087"
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="82371087"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 09:19:12 -0700
-X-CSE-ConnectionGUID: 7WWm8ZWRQzCVhivOI8qUcA==
-X-CSE-MsgGUID: eWxrruGRQ7G8lptzQf4Zvg==
+ t=1754583829; x=1786119829;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=/147DlY+5Anec8Pq7wvRIdQwIp01xCnPqi1Nb0xjGZ4=;
+ b=HlGto2Wn4w+kFWOd38x2Y336dNaM6Xd54nl7sYZnrI6I5JwQ9XDOeRP3
+ vmzCAzBJA7t+gOqLS3ikAt/+lGlpJVXzKrh+lzUtaLprWdUg88XIGZDRD
+ D1da6avOfhnsgsUk5RIwtluc5rZ2d5zmDtgVUXiXJ/HXjXobBRLLqqJK5
+ tl15ZqNMAL1a1tpejf25Kjs0qhAW9Pe9nmB+ASzcPMWbIOoDwW1pYbzIP
+ 8qvliAVOJl75OdbIZm0i9ZyOlqb3gQcWYDMNfKvjEPQFBGwPVCOSzLnFd
+ SZQWuEOGEwpc+uQWeqGHRVl0eDn9rjZF7p6YCm7rVhuSUnVykOnoDkeE6 A==;
+X-CSE-ConnectionGUID: 2qsXPHKnT2+2yTorpdZs2g==
+X-CSE-MsgGUID: qV5AVT68S/y1+zwirroHUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="57059224"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="57059224"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 09:23:49 -0700
+X-CSE-ConnectionGUID: 12+G3iLAR9asl0kE9GF4Dw==
+X-CSE-MsgGUID: sJUs6XucSCCFCwweCXsWQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="165453843"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 09:19:13 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 7 Aug 2025 09:19:11 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Thu, 7 Aug 2025 09:19:11 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (40.107.102.46)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 7 Aug 2025 09:19:11 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I1e1RASuGQqUFSsisHDuVgqAHq1E3d3S1ieC4ZlbNknLjJ5JLWk8SjzptXtUCFLfjVqOkR1ktuiD5IjoB76Y2P+ZUD1MiRy3r7ApV2VlEw3+bn+yTs1jK86+Ytfr7pM0MXkYqXNBV+XAb1Fv7bUtBsoCxjlwomYVLyagrELkgBxj7c55NEUXjV/LnnBzioyk/QL74cMUKtGOC8QfSeandA209m3jACwlfADIxkeHbD0Ajzj8Urlo2oC0gtFqCqt+tALRy+uVPHzdDtdGtGp9JhFKyqTPY8m+YjKBYgb2rNHkmCG8tBg24jHMjdENczo99/cHsyyPVNXiuiSHmZIXeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xZEGQjM/3cCYz19pdHptS6p5k8GbfJ17TghEn+zvGt0=;
- b=E7dcnBooxMj8z8KkEV57xG9DPwW/D32+0mqSeBfdzGEfBB33JIyeUJr5GPdq1dJleBpjDE/5whKyl4LT83B2t8sVnFUnkPaL9MOZKKARHu031z7xhQNCIyQb6RvwcFTkdnIntLZ6Rp1UUqaidy4S2kGC70Xk0qXRi25v+/zf5lZCa0uE6EvQdRAy9v3wgTbYMJhz2i64Pyos/pTmPvsew1cIRc+LmemW6NOHNxjAnjWhJC7WThSppwq9I9720Kx7Brk+QhthegML6uEyHlbfnqE0VJBAajjkCkBuTq++Q+m5d/EXs3r9a6Ix94LP3P2ev6h0/UVsCUjs8PtKhMc9XQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
- by CO1PR11MB4916.namprd11.prod.outlook.com (2603:10b6:303:9c::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.15; Thu, 7 Aug
- 2025 16:19:09 +0000
-Received: from IA1PR11MB6348.namprd11.prod.outlook.com
- ([fe80::4db5:b0d9:b6b3:bb52]) by IA1PR11MB6348.namprd11.prod.outlook.com
- ([fe80::4db5:b0d9:b6b3:bb52%6]) with mapi id 15.20.9009.013; Thu, 7 Aug 2025
- 16:19:09 +0000
-From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-Subject: RE: [PATCH 02/12] drm/i915/skl_watermark: Pass linetime as argument
- to latency helpers
-Thread-Topic: [PATCH 02/12] drm/i915/skl_watermark: Pass linetime as argument
- to latency helpers
-Thread-Index: AQHcB46lFeTiijrkW0+2EKWV2XDa0bRXXqzw
-Date: Thu, 7 Aug 2025 16:19:09 +0000
-Message-ID: <IA1PR11MB6348515DD353742CD3EDF195B22CA@IA1PR11MB6348.namprd11.prod.outlook.com>
-References: <20250807111548.1490624-1-ankit.k.nautiyal@intel.com>
- <20250807111548.1490624-3-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250807111548.1490624-3-ankit.k.nautiyal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|CO1PR11MB4916:EE_
-x-ms-office365-filtering-correlation-id: 4e781c4a-9d56-4102-7190-08ddd5ce2392
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?TubnCMDpKqspvMnD7gIy00iO3kfUk2tc1cyxtmuPFUkh66hxluhH+VIGdWef?=
- =?us-ascii?Q?c61GsbvZYNM9UyWja/t+gCnwkZlBd9J4hqlxGWJ0EV3EQEWLJyPkELVAXtUv?=
- =?us-ascii?Q?PN2O8PMJIxClAViqTzMvWoVbCuOrXsx7jLmjaBMyFzB5npk/na0C4lB+7WZV?=
- =?us-ascii?Q?wQnXourRVfRouY/ahWNaI49nfQLL4s8XoL72Zdhih1lNcrWlRUk0KRup4Ykh?=
- =?us-ascii?Q?O1zu0iQl2OiTdsaUYGFt6ZwanPMTtwqcXpjcWjy2Jy8spQfm1G0LeUN2y43z?=
- =?us-ascii?Q?SzizN+pcxRF8Ay8+eoxw8oeTmN1rRoQPbtYgDIHSlfL9TVWnMWyxAZJfDlhj?=
- =?us-ascii?Q?kA5CEXgETqG/aU6n7VokJw48Rfp6HeToi60FBdWG7OE6nxAO0vutJvZLxxEm?=
- =?us-ascii?Q?amS37o6W3LWMv6mJDVBjGXvpUlp5cHw5xKXG5geT9NQnVN1qF1aLFemMvtkb?=
- =?us-ascii?Q?3eC/+4PJUBGxJ9VL9liw4uErxkgRdnwXRbFIuvCEdl8OMkmPTANTfKrpun1t?=
- =?us-ascii?Q?FG/t0YihVms41lsseAcuDxWL+u26atRRWpgSTYh9I/TuSkEY55yAkrQC5vKV?=
- =?us-ascii?Q?K/0FH0vfDTp8/RuILMxN8GJIF8q1tAnm8GflVPq4idWGSfARj8h0IEbWkU1g?=
- =?us-ascii?Q?XcBxOuceL8IzjM/2geKiPWIn1UxpJmdYQoSgAHF8khT2nPPFrpxEn9WGGA0y?=
- =?us-ascii?Q?5XoNC1xan83pBeypLHmTxvW/9tcz8WTsud7s/0eyI0ctu9HMHRdlL3veLj9a?=
- =?us-ascii?Q?8r47Umr83dyjhNIqmB7PqBWvoD788syOFAE5n9T/336VT99tZenXKxlBwWEN?=
- =?us-ascii?Q?QGEJbC3bey7nNAfbADImq2WP4RbprgGW05edPQweJW/NRugJ/BEIxyyRrr5k?=
- =?us-ascii?Q?hZOsgdDgQwsNyPq19GoyWNNoBRncW5xePp4IkhQSgEq21lTlkQHhuRhPHeuT?=
- =?us-ascii?Q?PVPDB6OwU46iB4FIG0ikv9TZwMcp/x9p7paI3M/RpWtIqWQbStpfbGsgkYNH?=
- =?us-ascii?Q?NaZaz94ibOGSXHIvBm+p2Q4ClXjtnBhsrpPv93wZziTv5JbqH3mCHf/HrowO?=
- =?us-ascii?Q?L7vfu7s92HjGxjzFy2WAwNck4GzHMsbKCl2FLPlyXDOxi5/Bht7hL4+oH2pB?=
- =?us-ascii?Q?HPiHzuS6ZwELh2fllrwpnuRbmiKXoRshQfXUY7SKzFSuXzzZe6h24YCJVVA/?=
- =?us-ascii?Q?rMbJ3dPMI3QiU8KVeejyRligGwPrvSM7Dk4VsHs70Dv37cvnj/n8HvgmOdQa?=
- =?us-ascii?Q?NTP8rK0UcjYu3Rp21WACTpR+InS2vQ/bzivnVZLgAiIVlPeLIHCwy3OO75PH?=
- =?us-ascii?Q?pZ4xZPFhvc0MWH2YrVAQVVjNcbziw8ezj581gbcfG2ZBI7w4+FTqakkPVhwC?=
- =?us-ascii?Q?wgP2xREJIDySiwD/b8gUQfKJDM2KLXeLQq+0hRoHjzEZfeTETznFYUvn5bv9?=
- =?us-ascii?Q?KpVMXTBNgdkzVwbirQfs7JYE0lOLwLb3gj4mqoka/+zQJMF25DP1pJkx6i4H?=
- =?us-ascii?Q?me6fb24OmBf52lo=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9DBYKGW/2UbVeyJ8ZKVLw5YqPb2pzgunQTHtXlzbPJz8GahnHa4nKuZIXN96?=
- =?us-ascii?Q?u9y/Esna8EaTFAE1EFC3hYVpgniPHP3w/AIHajQFYSDffeHIWz2a/1YWu1wC?=
- =?us-ascii?Q?HtEz4zVbtNJ5xUdbJgnGf56xYhaNQMu8zJC1qtrkcpsaUY/QfNerC7xkWdHZ?=
- =?us-ascii?Q?LqH9hcfOT4iADRIlyDgjQmM7TXSyr+z0imydz4FLijdVdWYF60j+pEJqFXuG?=
- =?us-ascii?Q?C98DEGv/Xz0uqdOk0ZY/bGPxHYrHKm8lm9nVEiUQ+E4VKb6FJzWrTIAz4JjJ?=
- =?us-ascii?Q?chPdVsniG62gqQ0pEEPfS0cX2GKuJV8n+KDQBkKk37K8bGC21dzzLn4kesFv?=
- =?us-ascii?Q?VTzK1KS7NjEuymJEOBUapF/Ak3TIow5jYGoWozloH3ZSJtB98xgn83u2adOq?=
- =?us-ascii?Q?xh+/82YlHc82B374N1G9ZkRC/eJFAh681bdu8WPskqK458eHNM/H2YTD7y/e?=
- =?us-ascii?Q?mOBeYfeyogDIteM2bpKKbd85ObxVj5ymTsWOI6LPLBOHlr9SqvylM7GJ9xKz?=
- =?us-ascii?Q?zCOJU0uhGaHpAaAHUXHN7HAkVm3eisUE2aQMH0RCx8n9KkrwtD+IZ0QP3OF9?=
- =?us-ascii?Q?tttReA1o013qXbFSktEcV4xHMVKb3ZZE1OK88G3yy+ev1QXKz9z9uSL5dxNZ?=
- =?us-ascii?Q?ZQiqQonBHi3iqkTrhF30h2piKwxsTRF9Fkk1LL+FFuMdUMi9Yk+LRcP/grtG?=
- =?us-ascii?Q?1Y654uLkOH9TaLFvNsPZ+dUJQmG3ISJjJzQuq6/x6jJIzGx5dQFDKzEWYFga?=
- =?us-ascii?Q?QvcIOHO6me32rDKjW6fP9FkNh7XCW0PXG7OwVpXjomXrjg9ANavoDsTFqMOO?=
- =?us-ascii?Q?SXJdlVv01r/Z8Rg8cDJlQEOUNrWs/xzg3GcJFkr7osMdj3PPCQUEW0c3dLDr?=
- =?us-ascii?Q?Q7WWYi1xVyeXKoUGDsTUGQcK1bdbSG4OsWUWlHJn2Vp2R4UHyq13Bkdbwoqi?=
- =?us-ascii?Q?oUyuOU2v2v0DhIhE5KCJEd/aAabfE85mSF0y6t36XB078mOGUCMRGI5unn/8?=
- =?us-ascii?Q?QV3cbNqhfk16RDm81q5nJ+ssCDwc4M8msSRLcdvxiInKyQM4CvKHlOKOD/dk?=
- =?us-ascii?Q?f66O4X9KiVG34GuIDrGjQVWAchj63jl8DinJ8Q55pigp7QdKGwdQngZUcTyn?=
- =?us-ascii?Q?rvO2+lksT7fGg3mFJfUMD5rN85D/qnIE9p/I8r3aR166Xklo95o1B2q9WZxP?=
- =?us-ascii?Q?OjqFqcpG5DmiNLeaJqn0Q8xYPY90PSm8dAtC2W1KszEa3y3RPHKSySM/HQA3?=
- =?us-ascii?Q?qYWFkn7f1x3GqaakhJXzVKGtXpoZRYoC3kvC3haYVSL3zOaNpnx/NVilVCcp?=
- =?us-ascii?Q?rNmc9tmAvureFygUxfamF4HbP/3WY6djxeKCdBsMocZv+FfOBtG5W1acRv9O?=
- =?us-ascii?Q?I3H9gIxiEDeHLznA0Nwc/hBpEuGHYDHzadVgMRhvVr1Yb5yNn5w1k5f3jYQX?=
- =?us-ascii?Q?zqouVGd8ZcSZkN3Gf43K10zSXKD8YVmuQZRJfyJAYo6zZYvl+gdbipVQJ4ZX?=
- =?us-ascii?Q?R+Jf8No3mbDL8/bCmvSMqy2kUuZkFUgeLsvdUH150zL+qkkuBTKRWchTlup6?=
- =?us-ascii?Q?0cGPCgKMPT2rvOs9kuVYDlZzNiuoqmQQNIvs1IAT54U8D6obFQYaNuYBaGgh?=
- =?us-ascii?Q?FtPEN4eH950eoFfpCkobpEU=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="165896977"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+ by fmviesa010.fm.intel.com with ESMTP; 07 Aug 2025 09:23:47 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1uk3P7-0002yY-0D;
+ Thu, 07 Aug 2025 16:23:45 +0000
+Date: Fri, 08 Aug 2025 00:23:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?utf-8?Q?"Micha=C5=82?= Winiarski" <michal.winiarski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ ad69d62588cd6bf8cddaff5e3e2eb1b8dd876d35
+Message-ID: <202508080024.KKqJyzdm-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e781c4a-9d56-4102-7190-08ddd5ce2392
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2025 16:19:09.3028 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: I4e+r1BUA54dQahzvnWN9pOv6t0DEyQ2xAvQbHfibr4FqiJDohTtTmLQoFIMBpgs8RPqyOfjINO3N2slXJdk53OnBHks8H4zpfOawrUdjYYVh9Vhq8DgqKK1dp58eQeH
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4916
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -187,117 +66,245 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: ad69d62588cd6bf8cddaff5e3e2eb1b8dd876d35  drm/xe/pf: Program LMTT directory pointer on all GTs within a tile
 
+elapsed time: 1221m
 
-> -----Original Message-----
-> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
-> Sent: 07 August 2025 16:46
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: ville.syrjala@linux.intel.com; jani.nikula@linux.intel.com; Golani,
-> Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>; Nautiyal,
-> Ankit K <ankit.k.nautiyal@intel.com>
-> Subject: [PATCH 02/12] drm/i915/skl_watermark: Pass linetime as argument =
-to
-> latency helpers
->=20
-> Refactor dsc_prefill_latency and scaler_prefill_latency to take linetime =
-as an
-> explicit parameter instead of computing it internally.
->=20
-> This avoids redundant calculations and simplifies scanline conversion log=
-ic in
-> skl_is_vblank_too_short().
->=20
-> This change also facilitates future extraction of these helpers for use c=
-ases
-> where latencies are computed for an optimized guardband, based on the
-> highest resolution mode, rather than the current mode.
->=20
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 18 ++++++++----------
->  1 file changed, 8 insertions(+), 10 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c
-> b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index df586509a742..74ab10a04e83 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -2176,13 +2176,11 @@ cdclk_prefill_adjustment(const struct
-> intel_crtc_state *crtc_state)  }
->=20
->  static int
-> -dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
-> +dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int
-> +linetime)
->  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	const struct intel_crtc_scaler_state *scaler_state =3D
->  					&crtc_state->scaler_state;
-> -	int linetime =3D DIV_ROUND_UP(1000 * crtc_state-
-> >hw.adjusted_mode.htotal,
-> -				    crtc_state->hw.adjusted_mode.clock);
->  	int num_scaler_users =3D hweight32(scaler_state->scaler_users);
->  	int chroma_downscaling_factor =3D
->  		crtc_state->output_format =3D=3D
-> INTEL_OUTPUT_FORMAT_YCBCR420 ? 4 : 1; @@ -2206,18 +2204,16 @@
-> dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
->=20
->  	dsc_prefill_latency *=3D cdclk_prefill_adjustment(crtc_state);
->=20
-> -	return intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
-> dsc_prefill_latency);
-> +	return dsc_prefill_latency;
->  }
->=20
->  static int
-> -scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
-> +scaler_prefill_latency(const struct intel_crtc_state *crtc_state, int
-> +linetime)
->  {
->  	const struct intel_crtc_scaler_state *scaler_state =3D
->  					&crtc_state->scaler_state;
->  	int num_scaler_users =3D hweight32(scaler_state->scaler_users);
->  	int scaler_prefill_latency =3D 0;
-> -	int linetime =3D DIV_ROUND_UP(1000 * crtc_state-
-> >hw.adjusted_mode.htotal,
-> -				    crtc_state->hw.adjusted_mode.clock);
->=20
->  	if (!num_scaler_users)
->  		return scaler_prefill_latency;
-> @@ -2238,7 +2234,7 @@ scaler_prefill_latency(const struct intel_crtc_stat=
-e
-> *crtc_state)
->=20
->  	scaler_prefill_latency *=3D cdclk_prefill_adjustment(crtc_state);
->=20
-> -	return intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
-> scaler_prefill_latency);
-> +	return scaler_prefill_latency;
->  }
->=20
->  static bool
-> @@ -2247,11 +2243,13 @@ skl_is_vblank_too_short(const struct
-> intel_crtc_state *crtc_state,  {
->  	const struct drm_display_mode *adjusted_mode =3D
->  		&crtc_state->hw.adjusted_mode;
-> +	int linetime =3D DIV_ROUND_UP(1000 * adjusted_mode->htotal,
-> +				    adjusted_mode->clock);
->=20
->  	return crtc_state->framestart_delay +
->  		intel_usecs_to_scanlines(adjusted_mode, latency) +
-> -		scaler_prefill_latency(crtc_state) +
-> -		dsc_prefill_latency(crtc_state) +
-> +		DIV_ROUND_UP(scaler_prefill_latency(crtc_state, linetime),
-> linetime) +
-> +		DIV_ROUND_UP(dsc_prefill_latency(crtc_state, linetime),
-> linetime) +
+configs tested: 226
+configs skipped: 5
 
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
->  		wm0_lines >
->  		adjusted_mode->crtc_vtotal - adjusted_mode-
-> >crtc_vblank_start;  }
-> --
-> 2.45.2
+tested configs:
+alpha                             allnoconfig    clang-22
+alpha                             allnoconfig    gcc-15.1.0
+alpha                            allyesconfig    clang-19
+alpha                            allyesconfig    gcc-15.1.0
+alpha                               defconfig    clang-19
+arc                              allmodconfig    gcc-15.1.0
+arc                               allnoconfig    clang-22
+arc                               allnoconfig    gcc-15.1.0
+arc                              allyesconfig    gcc-15.1.0
+arc                                 defconfig    clang-19
+arc                   randconfig-001-20250807    clang-22
+arc                   randconfig-001-20250807    gcc-13.4.0
+arc                   randconfig-002-20250807    clang-22
+arc                   randconfig-002-20250807    gcc-12.5.0
+arm                              allmodconfig    gcc-15.1.0
+arm                               allnoconfig    clang-22
+arm                              allyesconfig    gcc-15.1.0
+arm                         axm55xx_defconfig    clang-22
+arm                                 defconfig    clang-19
+arm                      jornada720_defconfig    clang-22
+arm                   randconfig-001-20250807    clang-22
+arm                   randconfig-002-20250807    clang-22
+arm                   randconfig-002-20250807    gcc-10.5.0
+arm                   randconfig-003-20250807    clang-22
+arm                   randconfig-004-20250807    clang-22
+arm                   randconfig-004-20250807    gcc-8.5.0
+arm64                            allmodconfig    clang-19
+arm64                             allnoconfig    clang-22
+arm64                             allnoconfig    gcc-15.1.0
+arm64                               defconfig    clang-19
+arm64                 randconfig-001-20250807    clang-22
+arm64                 randconfig-001-20250807    gcc-8.5.0
+arm64                 randconfig-002-20250807    clang-22
+arm64                 randconfig-002-20250807    gcc-8.5.0
+arm64                 randconfig-003-20250807    clang-22
+arm64                 randconfig-004-20250807    clang-22
+arm64                 randconfig-004-20250807    gcc-14.3.0
+csky                              allnoconfig    clang-22
+csky                              allnoconfig    gcc-15.1.0
+csky                                defconfig    clang-19
+csky                                defconfig    clang-22
+csky                  randconfig-001-20250807    gcc-15.1.0
+csky                  randconfig-002-20250807    gcc-15.1.0
+hexagon                          allmodconfig    clang-17
+hexagon                          allmodconfig    clang-19
+hexagon                           allnoconfig    clang-22
+hexagon                          allyesconfig    clang-19
+hexagon                          allyesconfig    clang-22
+hexagon                             defconfig    clang-19
+hexagon               randconfig-001-20250807    clang-22
+hexagon               randconfig-002-20250807    clang-22
+i386                             allmodconfig    clang-20
+i386                             allmodconfig    gcc-12
+i386                              allnoconfig    clang-20
+i386                              allnoconfig    gcc-12
+i386                             allyesconfig    clang-20
+i386                             allyesconfig    gcc-12
+i386        buildonly-randconfig-001-20250807    clang-20
+i386        buildonly-randconfig-001-20250807    gcc-12
+i386        buildonly-randconfig-002-20250807    clang-20
+i386        buildonly-randconfig-002-20250807    gcc-12
+i386        buildonly-randconfig-003-20250807    gcc-12
+i386        buildonly-randconfig-004-20250807    gcc-11
+i386        buildonly-randconfig-004-20250807    gcc-12
+i386        buildonly-randconfig-005-20250807    gcc-12
+i386        buildonly-randconfig-006-20250807    gcc-12
+i386                                defconfig    clang-20
+i386                  randconfig-001-20250807    gcc-12
+i386                  randconfig-002-20250807    gcc-12
+i386                  randconfig-003-20250807    gcc-12
+i386                  randconfig-004-20250807    gcc-12
+i386                  randconfig-005-20250807    gcc-12
+i386                  randconfig-006-20250807    gcc-12
+i386                  randconfig-007-20250807    gcc-12
+i386                  randconfig-011-20250807    clang-20
+i386                  randconfig-012-20250807    clang-20
+i386                  randconfig-013-20250807    clang-20
+i386                  randconfig-014-20250807    clang-20
+i386                  randconfig-015-20250807    clang-20
+i386                  randconfig-016-20250807    clang-20
+i386                  randconfig-017-20250807    clang-20
+loongarch                        allmodconfig    clang-19
+loongarch                         allnoconfig    clang-22
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20250807    clang-22
+loongarch             randconfig-002-20250807    gcc-15.1.0
+m68k                             allmodconfig    clang-19
+m68k                             allmodconfig    gcc-15.1.0
+m68k                              allnoconfig    gcc-15.1.0
+m68k                             allyesconfig    clang-19
+m68k                             allyesconfig    gcc-15.1.0
+m68k                                defconfig    clang-19
+microblaze                       allmodconfig    clang-19
+microblaze                       allmodconfig    gcc-15.1.0
+microblaze                        allnoconfig    gcc-15.1.0
+microblaze                       allyesconfig    clang-19
+microblaze                       allyesconfig    gcc-15.1.0
+microblaze                          defconfig    gcc-15.1.0
+mips                              allnoconfig    gcc-15.1.0
+nios2                            alldefconfig    clang-22
+nios2                             allnoconfig    gcc-11.5.0
+nios2                             allnoconfig    gcc-15.1.0
+nios2                               defconfig    gcc-11.5.0
+nios2                               defconfig    gcc-15.1.0
+nios2                 randconfig-001-20250807    gcc-11.5.0
+nios2                 randconfig-002-20250807    gcc-8.5.0
+openrisc                          allnoconfig    gcc-15.1.0
+openrisc                         allyesconfig    gcc-15.1.0
+openrisc                            defconfig    gcc-12
+openrisc                            defconfig    gcc-15.1.0
+parisc                           allmodconfig    gcc-15.1.0
+parisc                            allnoconfig    gcc-15.1.0
+parisc                           allyesconfig    gcc-15.1.0
+parisc                              defconfig    gcc-15.1.0
+parisc                randconfig-001-20250807    gcc-8.5.0
+parisc                randconfig-002-20250807    gcc-11.5.0
+parisc64                            defconfig    gcc-15.1.0
+powerpc                           allnoconfig    gcc-15.1.0
+powerpc                          allyesconfig    clang-22
+powerpc                    amigaone_defconfig    clang-22
+powerpc                       ppc64_defconfig    clang-22
+powerpc               randconfig-001-20250807    gcc-12.5.0
+powerpc               randconfig-002-20250807    gcc-10.5.0
+powerpc               randconfig-003-20250807    gcc-11.5.0
+powerpc64             randconfig-001-20250807    gcc-11.5.0
+powerpc64             randconfig-002-20250807    clang-22
+powerpc64             randconfig-003-20250807    gcc-13.4.0
+riscv                            allmodconfig    clang-22
+riscv                             allnoconfig    gcc-15.1.0
+riscv                            allyesconfig    clang-16
+riscv                               defconfig    clang-22
+riscv                               defconfig    gcc-12
+riscv                    nommu_virt_defconfig    clang-22
+riscv                 randconfig-001-20250807    gcc-12.5.0
+riscv                 randconfig-002-20250807    gcc-12.5.0
+riscv                 randconfig-002-20250807    gcc-8.5.0
+s390                             allmodconfig    clang-18
+s390                             allmodconfig    gcc-15.1.0
+s390                              allnoconfig    clang-22
+s390                             allyesconfig    gcc-15.1.0
+s390                                defconfig    clang-22
+s390                                defconfig    gcc-12
+s390                  randconfig-001-20250807    clang-22
+s390                  randconfig-001-20250807    gcc-12.5.0
+s390                  randconfig-002-20250807    clang-22
+s390                  randconfig-002-20250807    gcc-12.5.0
+sh                               allmodconfig    gcc-15.1.0
+sh                                allnoconfig    gcc-15.1.0
+sh                               allyesconfig    gcc-15.1.0
+sh                                  defconfig    gcc-12
+sh                                  defconfig    gcc-15.1.0
+sh                    randconfig-001-20250807    gcc-12.5.0
+sh                    randconfig-001-20250807    gcc-14.3.0
+sh                    randconfig-002-20250807    gcc-12.5.0
+sh                    randconfig-002-20250807    gcc-9.5.0
+sh                           se7721_defconfig    clang-22
+sparc                            allmodconfig    gcc-15.1.0
+sparc                             allnoconfig    gcc-15.1.0
+sparc                               defconfig    gcc-15.1.0
+sparc                 randconfig-001-20250807    gcc-12.5.0
+sparc                 randconfig-001-20250807    gcc-14.3.0
+sparc                 randconfig-002-20250807    gcc-12.5.0
+sparc                 randconfig-002-20250807    gcc-15.1.0
+sparc64                             defconfig    clang-20
+sparc64                             defconfig    gcc-12
+sparc64               randconfig-001-20250807    clang-22
+sparc64               randconfig-001-20250807    gcc-12.5.0
+sparc64               randconfig-002-20250807    clang-22
+sparc64               randconfig-002-20250807    gcc-12.5.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-22
+um                               allyesconfig    clang-19
+um                               allyesconfig    gcc-12
+um                                  defconfig    clang-22
+um                                  defconfig    gcc-12
+um                             i386_defconfig    gcc-12
+um                    randconfig-001-20250807    gcc-12
+um                    randconfig-001-20250807    gcc-12.5.0
+um                    randconfig-002-20250807    gcc-11
+um                    randconfig-002-20250807    gcc-12.5.0
+um                           x86_64_defconfig    clang-22
+um                           x86_64_defconfig    gcc-12
+x86_64                            allnoconfig    clang-20
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20250807    clang-20
+x86_64      buildonly-randconfig-001-20250807    gcc-11
+x86_64      buildonly-randconfig-002-20250807    gcc-11
+x86_64      buildonly-randconfig-002-20250807    gcc-12
+x86_64      buildonly-randconfig-003-20250807    clang-20
+x86_64      buildonly-randconfig-003-20250807    gcc-11
+x86_64      buildonly-randconfig-004-20250807    clang-20
+x86_64      buildonly-randconfig-004-20250807    gcc-11
+x86_64      buildonly-randconfig-005-20250807    gcc-11
+x86_64      buildonly-randconfig-006-20250807    gcc-11
+x86_64      buildonly-randconfig-006-20250807    gcc-12
+x86_64                              defconfig    clang-20
+x86_64                              defconfig    gcc-11
+x86_64                                  kexec    clang-20
+x86_64                randconfig-001-20250807    gcc-12
+x86_64                randconfig-002-20250807    gcc-12
+x86_64                randconfig-003-20250807    gcc-12
+x86_64                randconfig-004-20250807    gcc-12
+x86_64                randconfig-005-20250807    gcc-12
+x86_64                randconfig-006-20250807    gcc-12
+x86_64                randconfig-007-20250807    gcc-12
+x86_64                randconfig-008-20250807    gcc-12
+x86_64                randconfig-071-20250807    clang-20
+x86_64                randconfig-072-20250807    clang-20
+x86_64                randconfig-073-20250807    clang-20
+x86_64                randconfig-074-20250807    clang-20
+x86_64                randconfig-075-20250807    clang-20
+x86_64                randconfig-076-20250807    clang-20
+x86_64                randconfig-077-20250807    clang-20
+x86_64                randconfig-078-20250807    clang-20
+x86_64                               rhel-9.4    clang-20
+x86_64                           rhel-9.4-bpf    gcc-12
+x86_64                          rhel-9.4-func    clang-20
+x86_64                    rhel-9.4-kselftests    clang-20
+x86_64                         rhel-9.4-kunit    gcc-12
+x86_64                           rhel-9.4-ltp    gcc-12
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    gcc-15.1.0
+xtensa                randconfig-001-20250807    gcc-12.5.0
+xtensa                randconfig-001-20250807    gcc-15.1.0
+xtensa                randconfig-002-20250807    gcc-12.5.0
+xtensa                randconfig-002-20250807    gcc-8.5.0
 
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
