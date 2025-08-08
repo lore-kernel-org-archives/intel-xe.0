@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DD10C87FD2
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 07:52:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09EC8C87FD3
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 07:52:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 627B810E8CA;
-	Fri,  8 Aug 2025 07:52:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDCC910E8D0;
+	Fri,  8 Aug 2025 07:52:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UdPVyfa3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AKHiYA/L";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF40410E8C8;
- Fri,  8 Aug 2025 07:52:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25E4310E8D0;
+ Fri,  8 Aug 2025 07:52:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754639563; x=1786175563;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wjjwp6v+fkr3fEY0WYGgOO8lIIl76n2JFwPJO7khcAg=;
- b=UdPVyfa3UthDBS4k9n+P/+vzxb5Pm14WXVEGS0AM2Z2+TDPS4gAe31B5
- 7NvA94xx7FWUwVXyVX9hv9AF8jju7+v3wxOVwPXSSn10UYF/NMFU1ZD9L
- 0SrtqNjJi/pzUG2jcgxWUsQ2nuR8+t13rLAYiFvFqaHugRoB20VvltrVR
- GjQ+ANxRKrVtEStVKu9yHpn9dpmmLeS7b+ofrG/Um4N3ljTNM60vlmmUn
- yvfodVbtTy/FpLdG42Nt9ks9EZPqw7miKCpFq37egZXm+miWJEzTp0lCR
- 6g3cw4Ko6JVsUGykLpgHTgCjOiPYsdbWteX82oJGMkpjxFBK0LT8Pzts8 Q==;
-X-CSE-ConnectionGUID: 36afVZPyS0WiMo4jUUljKg==
-X-CSE-MsgGUID: MckGLqn3R8y3hvPkyRx1ew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="74439096"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="74439096"
+ t=1754639567; x=1786175567;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Co6J2eHRIuyHvkI0Kv1OOboUzB4TChqCiN94kYIxbcU=;
+ b=AKHiYA/Lo8sZHkadS26yfUAB5hwcsHVXyz0GLcLZ5rPPDwWxR0qbW4U2
+ V04yMgBf1LlYyoIJKX/Fbfhy3E3YaFAF2gzwxzAnJq4tBx0dGJx6wyzME
+ p4Gt8vi1ls0RORqWx2dtPD9ivW6M5lVehAjjVwfWiywRFXxpOk3wwDzdP
+ VLNfPdlSxxYIO1HQiQ7QCMv1W438Vk217WQLrU3k1cKSYmNdut5lD34+o
+ JY8a5SPoqFLpmZNP5BZ0nR2t3TezxeVPFVZ6zVLvKuUet/fn4W1DG6pEp
+ WXAKAKMiDsk/8vou7Uq+pAfJfHow640XsVI9BjQuVa28iK3G/pPRH5E3G w==;
+X-CSE-ConnectionGUID: 2mhc8i/2RMqH9iHsYborrw==
+X-CSE-MsgGUID: jph9NRzKS8mUnjxfgBV4Aw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="74439102"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="74439102"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 00:52:43 -0700
-X-CSE-ConnectionGUID: n8xLPQHJQrmfkTMMBf9YJA==
-X-CSE-MsgGUID: tDRApsaaT/SPl8Zrbkc7MA==
+ 08 Aug 2025 00:52:47 -0700
+X-CSE-ConnectionGUID: GPDL2mreSrWZHb+oGOgPVw==
+X-CSE-MsgGUID: ZQXxWmbCQXO5ANQ7QWddPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="169481602"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="169481621"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 00:52:41 -0700
+ 08 Aug 2025 00:52:45 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com,
 	jani.nikula@intel.com
-Subject: [PATCH 0/3] drm/i915: Add debugfs control to prefer YCbCr 4:2:0
- output for HDMI/DP
-Date: Fri,  8 Aug 2025 13:22:40 +0530
-Message-ID: <20250808075351.304612-1-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH 2/3] drm/i915/hdmi: Honor prefer_sink_yuv420 debugfs override
+ for HDMI
+Date: Fri,  8 Aug 2025 13:22:42 +0530
+Message-ID: <20250808075351.304612-3-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250808075351.304612-1-dibin.moolakadan.subrahmanian@intel.com>
+References: <20250808075351.304612-1-dibin.moolakadan.subrahmanian@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=yes
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,32 +69,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-By default, Intel display drivers select RGB output format.
-However, in certain validation scenarios—such as scaling and color,
-forcing YCbCr 4:2:0 output will help  to exercise specific code paths.
+If the `prefer_sink_yuv420` flag is set via debugfs and the sink
+supports YCbCr 4:2:0 output for the current mode, prefer YCbCr 4:2:0
+over the default RGB when computing the sink format.
 
-Add  a new `prefer_sink_yuv420` flag in `intel_connector`,
-exposed via a new per-connector debugfs file `i915_prefer_sink_yuv420`.
+This enables explicit testing and validation of 4:2:0 output handling
+via the debugfs interface, particularly useful in IGT tests targeting
+scaling and color.
 
-When enabled:
- - The driver checks if the sink and mode support YCbCr 4:2:0
- - If compatible, it overrides the default RGB format and chooses 4:2:0
-   instead
+Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-This helps validating yuv420 format handling  either using supported
-panels or Chamelium test setups.
-
-Dibin Moolakadan Subrahmanian (3):
-  drm/i915/debugfs: Add debugfs entry to prefer YCbCr 4:2:0 output
-  drm/i915/hdmi: Honor prefer_sink_yuv420 debugfs override for HDMI
-  drm/i915/dp: Honor prefer_sink_yuv420 debugfs override for DP
-
- .../drm/i915/display/intel_display_debugfs.c  | 75 +++++++++++++++++++
- .../drm/i915/display/intel_display_types.h    |  6 ++
- drivers/gpu/drm/i915/display/intel_dp.c       |  9 +++
- drivers/gpu/drm/i915/display/intel_hdmi.c     |  8 ++
- 4 files changed, 98 insertions(+)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index cbee628eb26b..3ed6c9adf1a5 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2268,6 +2268,14 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
+ 		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+ 	}
+ 
++	/* Check if prefer_sink_yuv420 is enabled and sink supports it, then override RGB */
++	else if (connector->prefer_sink_yuv420 &&
++		 drm_mode_is_420_also(info, adjusted_mode)) {
++		crtc_state->sink_format = intel_hdmi_sink_format(crtc_state, connector, true);
++		drm_dbg_kms(display->drm, "prefer_sink_yuv420 enabled, selected format %d\n",
++			    crtc_state->sink_format);
++	}
++
+ 	crtc_state->output_format = intel_hdmi_output_format(crtc_state);
+ 	ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
+ 	if (ret) {
 -- 
 2.43.0
 
