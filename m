@@ -4,49 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B53CC87FCB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 109E5C87FD3
 	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 07:19:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF41910E4D2;
-	Fri,  8 Aug 2025 07:19:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF25810E4D1;
+	Fri,  8 Aug 2025 07:19:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l2VXlrta";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UavmmhWX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9067610E4D1
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 07:19:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD84010E4D1
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 07:19:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754637578; x=1786173578;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xsVhUhyw0eyBO2OikpcmInP0VEJHUn7A8hTfk2907+k=;
- b=l2VXlrtamQDWhG9npFBin1joobMtBHbfoiCcJDthkGddMBMTDiWzAVrO
- rTQK8Oo6NaqXXmUzG2gk50fgCOZddXkFmlr0PsvEe+qgubIGyqPeQQZGl
- /ei6pBoo/M2RZbm6FNhQEqBeHeJKu9ZAzaO4cxTkdN0y+qxQamunqCAhU
- bskUc4BshUc5sj5SvJbZVHYNu6KsgQ3GI0ePdrEqraYBXHgB4qgLMMCPZ
- DRJ9VgKR3Xi9gcBK5ujOjqBpPTWu1UM9giVswwokDXsZj5xYdEVmbBFej
- bwE0dRss2Cb3I0To+e8euRbXNKHmeZyEJ/WAPxco9IGguQk7g2E2LR2G9 g==;
-X-CSE-ConnectionGUID: l1+vSGGJTYep8otdSKRezA==
-X-CSE-MsgGUID: QmWV0AY1S9a/IE4xhIfjkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56904802"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="56904802"
+ t=1754637581; x=1786173581;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=u3iDE2KDmcRllvUdzTCdtlMIZjnRUHH3rwSEMXQGy/s=;
+ b=UavmmhWX2KQUC9gu01mnApL3+SeefSZXI9mAmaiK4k0kX7AgTby4Z2oM
+ YYiDnpkG2cgy/0zlK9nc3r2IXYxsJaS6SY4oh+SkkQcUaKs0tmkWuqvIX
+ L9Mlz33sjlqWKlTIDxEFO8FJuvYmsg6gtvzsws2Pda72Ua2KJcwEKsPcx
+ Bg3ZzhkYXPMTvbxu+5/XtsWteVXVIWq2jHy2lzEgi4y2Fu4e6seEBPHeX
+ m3J2+Ymvu1mq2lMEiYutG/SBYkwOJzLyRsk5E0Vb8L+KhzFCAYiNnyveS
+ 1gssp3AHURLJh4NIRNlV/RI3EQsZvYncpiovnQ3MD6MlR01/DTuI9ghBE w==;
+X-CSE-ConnectionGUID: wu05l9EcRWmt5cwown7pbw==
+X-CSE-MsgGUID: N8vancorTKOMTABpN86Bsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56904807"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="56904807"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 00:19:38 -0700
-X-CSE-ConnectionGUID: nUzx/5cTScW4rsBrqXxCLA==
-X-CSE-MsgGUID: 9ddUqlciR0WcXoCuyTocbQ==
+ 08 Aug 2025 00:19:40 -0700
+X-CSE-ConnectionGUID: MWwaN92tTVqPK6eiKR6zkg==
+X-CSE-MsgGUID: 7g3RaJt3Tu6f6tFrMyi/lA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="196091506"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="196091522"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa001.fm.intel.com with ESMTP; 08 Aug 2025 00:19:37 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 08 Aug 2025 00:19:38 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH v5 0/1] Improve CCS save restore series
-Date: Fri,  8 Aug 2025 13:06:27 +0530
-Message-ID: <20250808073628.32745-1-satyanarayana.k.v.p@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH v5 1/1] drm/xe/vf: Refactor CCS save/restore to use default
+ migration context
+Date: Fri,  8 Aug 2025 13:06:28 +0530
+Message-ID: <20250808073628.32745-2-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250808073628.32745-1-satyanarayana.k.v.p@intel.com>
+References: <20250808073628.32745-1-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,40 +74,33 @@ Previously, CCS save/restore operations created separate migration
 contexts with new VM memory allocations, resulting in significant
 overhead.
 
-This series eliminates redundant context creation reusing the default
+This commit eliminates redundant context creation reusing the default
 migration context by registering new execution queues for CCS save and
 restore on the existing migrate VM.
 
-Also fixed corruption issue with save/restore followed by S3/S4 cycle.
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 
+---
 V4 -> V5:
-- Updated description of xe_exec_queue_lrc() (Stuart Summers)
+- Update description of xe_exec_queue_lrc() (Stuart Summers)
+
 V3 -> V4:
-- Created a new helper function to get lrc from queue xe_exec_queue_lrc()
-(John Harrison)
-- Rename q to mig_q in xe_tile_vf_ccs structure (John Harrison)
+- Created a new helper function to get lrc from queu (John Harrison)
+- Rename q to mig_q in xe_tile_vf_ccs  structure (John Harrison)
 - Corrected error handling in xe_sriov_vf_ccs_init() when
 devm_add_action_or_reset() returns error.
-- Removed commit "Scale mmio send/recv timeout for CCS save/restore with
-smem size" from this series and will submit a new series as it may
-take time to close some opens around it.
 
 V2 -> V3:
-- Fixed review comments.
-- Added new commit "Scale mmio send/recv timeout for CCS save/restore with
-smem size"
-- Squashed "Re-register CCS save/restore contexts post S3/S4 resume" into
-"Refactor CCS save/restore to use default migration context" commit as per
-review comments.
+- Fixed review comments (Matthew Brost).
 
 V1 -> V2:
-- Fix kernel-doc issues reported by patchworks.
-- Added new commit "Re-register CCS save/restore contexts post S3/S4
-resume"
-
-Satyanarayana K V P (1):
-  drm/xe/vf: Refactor CCS save/restore to use default migration context
-
+- Fixed kernel-doc issues reported by patchworks.
+---
  drivers/gpu/drm/xe/xe_exec_queue.c         | 15 +++++++
  drivers/gpu/drm/xe/xe_exec_queue.h         |  1 +
  drivers/gpu/drm/xe/xe_migrate.c            | 21 +++++----
@@ -110,6 +110,319 @@ Satyanarayana K V P (1):
  drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |  6 +--
  7 files changed, 63 insertions(+), 36 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 6c176183ed58..2d10a53f701d 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -789,6 +789,21 @@ int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
+ 	return ret;
+ }
+ 
++/**
++ * xe_exec_queue_lrc() - Get the LRC from exec queue.
++ * @q: The exec_queue.
++ *
++ * Retrieves the primary LRC for the exec queue. Note that this function
++ * returns only the first LRC instance, even when multiple parallel LRCs
++ * are configured.
++ *
++ * Return: Pointer to LRC on success, error on failure
++ */
++struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q)
++{
++	return q->lrc[0];
++}
++
+ /**
+  * xe_exec_queue_is_lr() - Whether an exec_queue is long-running
+  * @q: The exec_queue
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+index 4d416f23001c..15ec852e7f7e 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+@@ -94,4 +94,5 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
+ 
+ void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q);
+ 
++struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 4effe10d815b..ac9f4d4988d2 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -951,7 +951,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ }
+ 
+ /**
+- * xe_get_migrate_lrc() - Get the LRC from migrate context.
++ * xe_migrate_lrc() - Get the LRC from migrate context.
+  * @migrate: Migrate context.
+  *
+  * Return: Pointer to LRC on success, error on failure
+@@ -961,14 +961,15 @@ struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate)
+ 	return migrate->q->lrc[0];
+ }
+ 
+-static int emit_flush_invalidate(struct xe_migrate *m, u32 *dw, int i,
++static int emit_flush_invalidate(struct xe_exec_queue *q, u32 *dw, int i,
+ 				 u32 flags)
+ {
++	struct xe_lrc *lrc = xe_exec_queue_lrc(q);
+ 	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
+ 		  MI_FLUSH_IMM_DW | flags;
+-	dw[i++] = lower_32_bits(xe_lrc_start_seqno_ggtt_addr(xe_migrate_lrc(m))) |
++	dw[i++] = lower_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc)) |
+ 		  MI_FLUSH_DW_USE_GTT;
+-	dw[i++] = upper_32_bits(xe_lrc_start_seqno_ggtt_addr(xe_migrate_lrc(m)));
++	dw[i++] = upper_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc));
+ 	dw[i++] = MI_NOOP;
+ 	dw[i++] = MI_NOOP;
+ 
+@@ -977,7 +978,8 @@ static int emit_flush_invalidate(struct xe_migrate *m, u32 *dw, int i,
+ 
+ /**
+  * xe_migrate_ccs_rw_copy() - Copy content of TTM resources.
+- * @m: The migration context.
++ * @tile: Tile whose migration context to be used.
++ * @q : Execution to be used along with migration context.
+  * @src_bo: The buffer object @src is currently bound to.
+  * @read_write : Creates BB commands for CCS read/write.
+  *
+@@ -988,7 +990,7 @@ static int emit_flush_invalidate(struct xe_migrate *m, u32 *dw, int i,
+  *
+  * Return: 0 if successful, negative error code on failure.
+  */
+-int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
++int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 			   struct xe_bo *src_bo,
+ 			   enum xe_sriov_vf_ccs_rw_ctxs read_write)
+ 
+@@ -996,7 +998,8 @@ int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
+ 	bool src_is_pltt = read_write == XE_SRIOV_VF_CCS_READ_CTX;
+ 	bool dst_is_pltt = read_write == XE_SRIOV_VF_CCS_WRITE_CTX;
+ 	struct ttm_resource *src = src_bo->ttm.resource;
+-	struct xe_gt *gt = m->tile->primary_gt;
++	struct xe_migrate *m = tile->migrate;
++	struct xe_gt *gt = tile->primary_gt;
+ 	u32 batch_size, batch_size_allocated;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_res_cursor src_it, ccs_it;
+@@ -1079,11 +1082,11 @@ int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
+ 
+ 		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+ 
+-		bb->len = emit_flush_invalidate(m, bb->cs, bb->len, flush_flags);
++		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
+ 		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
+ 						  src_L0_ofs, dst_is_pltt,
+ 						  src_L0, ccs_ofs, true);
+-		bb->len = emit_flush_invalidate(m, bb->cs, bb->len, flush_flags);
++		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
+ 
+ 		size -= src_L0;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index a3f3fa281e04..8978d2cc1a75 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -125,7 +125,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 				  struct ttm_resource *dst,
+ 				  bool copy_only_ccs);
+ 
+-int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
++int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 			   struct xe_bo *src_bo,
+ 			   enum xe_sriov_vf_ccs_rw_ctxs read_write);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 44aaf154ddf7..5e8126ca8e27 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -209,6 +209,9 @@ int xe_pm_resume(struct xe_device *xe)
+ 
+ 	xe_pxp_pm_resume(xe->pxp);
+ 
++	if (IS_SRIOV_VF(xe))
++		xe_sriov_vf_ccs_register_context(xe);
++
+ 	drm_dbg(&xe->drm, "Device resumed\n");
+ 	return 0;
+ err:
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index f0ca2a9b2bb7..4872e43eb440 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -8,6 +8,7 @@
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
++#include "xe_exec_queue.h"
+ #include "xe_exec_queue_types.h"
+ #include "xe_guc_submit.h"
+ #include "xe_lrc.h"
+@@ -168,8 +169,8 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_tile_vf_ccs *ctx)
+ 
+ static void ccs_rw_update_ring(struct xe_tile_vf_ccs *ctx)
+ {
+-	struct xe_lrc *lrc = xe_migrate_lrc(ctx->migrate);
+ 	u64 addr = xe_sa_manager_gpu_addr(ctx->mem.ccs_bb_pool);
++	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
+ 	u32 dw[10], i = 0;
+ 
+ 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+@@ -183,13 +184,12 @@ static void ccs_rw_update_ring(struct xe_tile_vf_ccs *ctx)
+ 	xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
+ }
+ 
+-static int register_save_restore_context(struct xe_migrate *m,
+-					 enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
++static int register_save_restore_context(struct xe_tile_vf_ccs *ctx)
+ {
+ 	int err = -EINVAL;
+ 	int ctx_type;
+ 
+-	switch (ctx_id) {
++	switch (ctx->ctx_id) {
+ 	case XE_SRIOV_VF_CCS_READ_CTX:
+ 		ctx_type = GUC_CONTEXT_COMPRESSION_SAVE;
+ 		break;
+@@ -200,7 +200,7 @@ static int register_save_restore_context(struct xe_migrate *m,
+ 		return err;
+ 	}
+ 
+-	xe_guc_register_exec_queue(xe_migrate_exec_queue(m), ctx_type);
++	xe_guc_register_exec_queue(ctx->mig_q, ctx_type);
+ 	return 0;
+ }
+ 
+@@ -225,7 +225,7 @@ int xe_sriov_vf_ccs_register_context(struct xe_device *xe)
+ 
+ 	for_each_ccs_rw_ctx(ctx_id) {
+ 		ctx = &tile->sriov.vf.ccs[ctx_id];
+-		err = register_save_restore_context(ctx->migrate, ctx_id);
++		err = register_save_restore_context(ctx);
+ 		if (err)
+ 			return err;
+ 	}
+@@ -236,13 +236,14 @@ int xe_sriov_vf_ccs_register_context(struct xe_device *xe)
+ static void xe_sriov_vf_ccs_fini(void *arg)
+ {
+ 	struct xe_tile_vf_ccs *ctx = arg;
+-	struct xe_lrc *lrc = xe_migrate_lrc(ctx->migrate);
++	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
+ 
+ 	/*
+ 	 * Make TAIL = HEAD in the ring so that no issues are seen if Guc
+ 	 * submits this context to HW on VF pause after unbinding device.
+ 	 */
+ 	xe_lrc_set_ring_tail(lrc, xe_lrc_ring_head(lrc));
++	xe_exec_queue_put(ctx->mig_q);
+ }
+ 
+ /**
+@@ -258,8 +259,9 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
+ {
+ 	struct xe_tile *tile = xe_device_get_root_tile(xe);
+ 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
+-	struct xe_migrate *migrate;
+ 	struct xe_tile_vf_ccs *ctx;
++	struct xe_exec_queue *q;
++	u32 flags;
+ 	int err;
+ 
+ 	xe_assert(xe, IS_SRIOV_VF(xe));
+@@ -270,37 +272,40 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
+ 		ctx = &tile->sriov.vf.ccs[ctx_id];
+ 		ctx->ctx_id = ctx_id;
+ 
+-		migrate = xe_migrate_alloc(tile);
+-		if (!migrate) {
+-			err = -ENOMEM;
++		flags = EXEC_QUEUE_FLAG_KERNEL |
++			EXEC_QUEUE_FLAG_PERMANENT |
++			EXEC_QUEUE_FLAG_MIGRATE;
++		q = xe_exec_queue_create_bind(xe, tile, flags, 0);
++		if (IS_ERR(q)) {
++			err = PTR_ERR(q);
+ 			goto err_ret;
+ 		}
+-
+-		err = xe_migrate_init(migrate);
+-		if (err)
+-			goto err_ret;
+-
+-		ctx->migrate = migrate;
++		ctx->mig_q = q;
+ 
+ 		err = alloc_bb_pool(tile, ctx);
+ 		if (err)
+-			goto err_ret;
++			goto err_free_queue;
+ 
+ 		ccs_rw_update_ring(ctx);
+ 
+-		err = register_save_restore_context(ctx->migrate, ctx_id);
++		err = register_save_restore_context(ctx);
+ 		if (err)
+-			goto err_ret;
++			goto err_free_queue;
+ 
+ 		err = devm_add_action_or_reset(xe->drm.dev,
+ 					       xe_sriov_vf_ccs_fini,
+ 					       ctx);
++		if (err)
++			goto err_ret;
+ 	}
+ 
+ 	xe->sriov.vf.ccs.initialized = 1;
+ 
+ 	return 0;
+ 
++err_free_queue:
++	xe_exec_queue_put(q);
++
+ err_ret:
+ 	return err;
+ }
+@@ -319,7 +324,7 @@ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
+-	struct xe_migrate *migrate;
++	struct xe_tile_vf_ccs *ctx;
+ 	struct xe_tile *tile;
+ 	struct xe_bb *bb;
+ 	int err = 0;
+@@ -334,8 +339,8 @@ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
+ 		/* bb should be NULL here. Assert if not NULL */
+ 		xe_assert(xe, !bb);
+ 
+-		migrate = tile->sriov.vf.ccs[ctx_id].migrate;
+-		err = xe_migrate_ccs_rw_copy(migrate, bo, ctx_id);
++		ctx = &tile->sriov.vf.ccs[ctx_id];
++		err = xe_migrate_ccs_rw_copy(tile, ctx->mig_q, bo, ctx_id);
+ 	}
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
+index e240f3fd18af..93435a6f4cb6 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
+@@ -41,11 +41,11 @@ struct xe_sa_manager;
+ struct xe_tile_vf_ccs {
+ 	/** @id: Id to which context it belongs to */
+ 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
+-	/** @migrate: Migration helper for save/restore of CCS data */
+-	struct xe_migrate *migrate;
++	/** @mig_q: exec queues used for migration */
++	struct xe_exec_queue *mig_q;
+ 
+ 	struct {
+-		/** @ccs_rw_bb_pool: Pool from which batch buffers are allocated. */
++		/** @ccs_bb_pool: Pool from which batch buffers are allocated. */
+ 		struct xe_sa_manager *ccs_bb_pool;
+ 	} mem;
+ };
 -- 
 2.43.0
 
