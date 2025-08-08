@@ -4,151 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66BE6C87FD3
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 12:49:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B61DDC87FD2
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 13:01:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BBE910E1DA;
-	Fri,  8 Aug 2025 12:49:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6314910E92A;
+	Fri,  8 Aug 2025 13:01:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Zglf74F4";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="H76z+Tm5";
 	dkim-atps=neutral
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2053.outbound.protection.outlook.com [40.107.243.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA83C10E1DA
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 12:49:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xacRP9x9yAQksV+XO3t3pPKxp3MBQoRfNKAchTnf9wuwSc222mRBSZ4F1aVXydiAbMvRJn5p9cmeR0+Jk9TR3qr31BjzpY1xHUUvnTuoadoJyFKxWZ/xiGpUHPE7HKGGq21oqukbKnaelL+BDHn0p1q9YrGDI2SYIYfELMceL/9CyVvBDWjNdufmi+/X5LRlM6ZZilzr9a/+N02JNuyBMi0geJ3WBmeXQfFpq/4OMZcYrVW5KpIB0gn94NeR7dCVFN8rDpBeVF88RnltzrkdJyjTKeNhWwwxOUReRV/ucrZBKpCBNLAeYCOEW+kxziFi3bhkPfedmHiP0cNrGa667w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+yIUz9X4xF2OwMAfuOD9F8V1UmV/4OqGAdB3U52nNoI=;
- b=VZhrYpPtiYgZk51bEFfqQHiMXCb4m2XkTN/LaJjXPeYpAlLlT+buLEBxjj3U15XQCu/P7E6DQ3wR2UkLJ8DU/faY/vxhKk3YeUox5RP85GFNQ/NpQ5e0gjGDdCi/y63Ye8kb9wh5gWk3PRKpZzgABm6EnGhnwSsUR5nor5i8FQdCxWnmUDlVrc5l/IcVIgH137whLfNDLnJwevyl7VldQGRwDbXNPVeougxvJ7Wy8cJ7X93TXmkB1ZdBB/ByBL9FMCbtzYjko2JY3oxta1jtXwCCmG3a51upWZ9IUUgJxeBCCu+fM5dLeYZU2Ri3FURcFOLipnLHZSKw9hHWl0tkeg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+yIUz9X4xF2OwMAfuOD9F8V1UmV/4OqGAdB3U52nNoI=;
- b=Zglf74F4YN85zRlamVfl/ExTk6JT9AOUo0eRvXfTOr0CfywCcAJjy4CRJBEHiLqL2jDA4NNYfx0mSAoA7ZCFmpH3R5JntOf56j87thRNMUcnnmAaaAZqzwmxKDRQwFSMdl5a7dJd/YqCq7UYU9wbb7Bxh5dIMQH98XZIQurulvw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA0PR12MB7075.namprd12.prod.outlook.com (2603:10b6:806:2d5::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.18; Fri, 8 Aug
- 2025 12:49:26 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.9009.013; Fri, 8 Aug 2025
- 12:49:26 +0000
-Message-ID: <49a1024b-a318-446f-8c97-4076fc647fdd@amd.com>
-Date: Fri, 8 Aug 2025 14:49:21 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/15] Intel Xe GPU Debug Support (eudebug) v4
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, joonas.lahtinen@linux.intel.com,
- christoph.manszewski@intel.com, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, andrzej.hajda@intel.com, matthew.auld@intel.com,
- maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com
-References: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0108.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9c::19) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D48A10E92A
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 13:01:26 +0000 (UTC)
+Received: by mail-ed1-f41.google.com with SMTP id
+ 4fb4d7f45d1cf-6156c3301ccso8642a12.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 08 Aug 2025 06:01:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1754658085; x=1755262885;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=el10QOQEfFkF9p6pSruNEIfZL6m4W9xzMCWGyL33LoI=;
+ b=H76z+Tm5MbzNhcxDuna1QGx4WRx/uzYsLNwCwBH637HdTQkFHVCNhLfgP/Ib20ar68
+ c8eInMrKzK27hpgLKKazHzENFcTfOkOt81UUenpx1V+ScCoidmOTCqVSv9+34H32jQh4
+ 8vn2+ee2r+SEBDRarjkbzzF8hw8hIv2blvVepC8YvMy6aUg/P1XvZ2nRX5l3KyERBui2
+ 6VLUfhqNpmzDRoJ3HqgvY+4sAxtk8EDCzKJBO5zRv6c/1+AbpuX8LUoyWQzZoAH4E0sw
+ VLw76ViRLLGsnPYMGXHBlLZfghdshJRr6rn7mNmBucvatC87o13HYkd3o4MP3mjeZsGu
+ VAvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754658085; x=1755262885;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=el10QOQEfFkF9p6pSruNEIfZL6m4W9xzMCWGyL33LoI=;
+ b=V+xb163u4ZxV2XrI6BCtoaz8FkmncEOb/mrQU7adTgeo6jXOjMqUUUemYwhOvn8GDR
+ qLd0mDThNbjlMjDPwJ3RUcEQWZY4W66yNLEb5UySo7l9khjgxbxDlKlrp1RJEx0JAn+v
+ 9x6qm+THRNl1CBAmE/Pscb0GTnxeqPbwY+OMHMXcuUfMoj7513CX5U9oE9k6W4/avNnF
+ cK2vTpQMAYeNw5HjNLPt5hqYie45k+wrTE9QS2ko5dBx36BRnQ4gSOFN/3OPEFQmvYUz
+ GHZB5S3xv+lrqigBOwbZDDX1cXMh+KkUmRuQHTtJn+Yz9vJc42Ez59+TzAIk8WSdDVJ2
+ EQJA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWzCZntrQeBof4sEAwbjrSzXocfKGFpNURowPjB5ZWmV/uu+8NRgYWFTm9Wh01dE1+ZWNc9rvNuAQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyDqVEV7GK9IjmbEzJTPdn8sDkVTN7D5lzHXT1s0KxWWt6xYxop
+ PpQmZR1zWWCIoWG6meGYtby17IN2sTX6+xcKuTxBLH+FOOJa+Wa/fyL+yERSECM9YIPYexkQ5cn
+ HI0BfLYnZVWg9VIB4j+ArsjwWMavstR31m+ToxjNO
+X-Gm-Gg: ASbGncsbvGn/y576J7mZDt9u8o56/9l5mVwluaTjOxaiprFovxIa46iT6SkWiiQd/iI
+ bFX3jzcjU8MRDj9+bqIuPYCWbCpxic8btv9CrMc87Jnvzx4vA1zXizI4Hf7fAzo37rYeEmqP34J
+ av9z9zsbksFxpuvVsexRY2SynTn2nwNVpAs50wjWliCZC0caFbsypcAFs+lUlIGMkPIcQbLcT/e
+ Aq8ndaW
+X-Google-Smtp-Source: AGHT+IHtuiN9mDRQxccaUEGnFq3haaKpvRXvsbPz32ZppWzDXTwGOn/a0aI41FhPm9sgUkEKck1hcKgb1YiS54Za1Lw=
+X-Received: by 2002:a05:6402:292f:b0:615:63af:84c7 with SMTP id
+ 4fb4d7f45d1cf-617e0c2fea6mr72212a12.0.1754658084244; Fri, 08 Aug 2025
+ 06:01:24 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA0PR12MB7075:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c86acad-a8e5-4b7f-01e9-08ddd67a0202
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?MjdDdk9zU3BsbEVER094bWk5aXl3UVZLQWFNYXA1SjRRQy9DUkNlWk5QWUhr?=
- =?utf-8?B?Y0pYSnA0alZaL3IrZzhiMG5uaWsvc2s2blFvV2xQQ3dtY0c3RnRPWk9CMlVP?=
- =?utf-8?B?SnY2WGFTZWlNQ2hkTFRaR1RFUEFlUzdOcEw1MnVGaU5sYWdyQ3dwYXh6eC91?=
- =?utf-8?B?ZkNDTnZ3MTJaQTBNNmxHN2JGcnU3dWVRYnFzOFhFL1Z1UW9CMHhPMmlqM1o0?=
- =?utf-8?B?Rk56dk8rOHY5eGRXaUZUZzIwWDRDbUJzT1Z0eldYWFBJUCt5TkZzM1VsaU8w?=
- =?utf-8?B?T2JSQmwwZEdMWFhEYnFFVkFzdk5wRGwybklWRUZha2Q2SFRPYXFGSkUvbnNQ?=
- =?utf-8?B?V2JtMFEzME5BUDEzMWlxY0V1SjNEeFJxQktEY1VVZTZzcXJIWUVTeVJCemZN?=
- =?utf-8?B?Tkk3WEZOZHRMSCszeUlBeUFsdUljNGZIQ3B6SXk3ditNN0M5cm54ZG1JVEZC?=
- =?utf-8?B?N1Z0VHZPSE95QUwydEhQdmRFSnhtYVVqZU45bXZjeDJCSm1tS21GQ1JJdm5X?=
- =?utf-8?B?QjgxTzc5c25BWnFDczB3cnh6U0V6VVhkemFGVXpPRjl0NkZzZ3lRRGpFNG1u?=
- =?utf-8?B?VmJlQ1lzY1MrZ01ITERWckFDMnVTZzhYNC9iSGg0YjFDUDhhU3BDcHo3ZXlM?=
- =?utf-8?B?MkJpSll3WkhNcnhNYmN6Z0xPSGtMaC8zR3BzZ0prMC8rS1M0eU1zdjg3WVYv?=
- =?utf-8?B?NlEzaHBjenROUW13K0xsd2JBMVJweGczakthTm1vUnpxL1FzajZvTU9YVzlY?=
- =?utf-8?B?c3paT01HaXd5UldlRjRSTEpjdzlOZFN2dnMvVXRVZnk4bytXNSsxSkpGUEd2?=
- =?utf-8?B?T1RudW5pMkVQKys1L2VEaWhBajFrTWZOakJ3T0tkYVhMUjArS0IyUDYxWFBp?=
- =?utf-8?B?ekJVRmZzazQrSnRGZTJ2WmoyRGppOS9qRkV5UGVaTFVFVm00V0FzVWVBaEVF?=
- =?utf-8?B?MHZISldjQnc3RGJzSGVCVmhuOFJvRytnVUxaWGlGNEw5Ylo1bmVyNzNMdVU4?=
- =?utf-8?B?N3RzK1Z1c0lXNkFzUnJ6eDF4Zkt5S0Z4V1R2dEsrK3Y4UjZNWUNoWmtmSjFK?=
- =?utf-8?B?RnRZcTdwczJ5Q1JPWjBybzVLcFlMZ1pZTk83eS9hTVhjL0hrZWowLzBTNVVR?=
- =?utf-8?B?T1pCWkZya3pqV2JTWmpIRjlwQmJkTkxRK0paYi9TK0dic2hISW9RN2VMRzlh?=
- =?utf-8?B?bUcxUGZKMVliaElSTlFIckZPVzhOSTl4NGZKYUI0WTFEQzlob1FpL2lRMmZj?=
- =?utf-8?B?ZWxDZDBXWEtwblpuNDIyaEpZWWRsVWZsMzRJRWo2cE05eGVhZWJCM3Nqb1Ny?=
- =?utf-8?B?ZVUxQ2F5YlpnUWw5MmZ1blFhOTROQnpSUHBZOXRrSW0rUUVydHRNa3ZFb1ps?=
- =?utf-8?B?UWFNNUZ0ZVY0MGdNdFd3YU1lWWcxM1kzNkpER3p5VnlBR3dCZVZoc012YXhP?=
- =?utf-8?B?MXZ2N2ZzR3JSRFVDRjBwMnhSUFlsSVJkd0VYN2phUWNPZlNsRUZlRytmdFJE?=
- =?utf-8?B?SHdKY2FmSFRHOTllbmhPR3MzTldabjVFVDJYZytaVnpIVDBXYUF3ay9QUE9U?=
- =?utf-8?B?TnNJTGpsS0xEaGk0S1ZlakpDRE1MQUZCZHFXZW4reFZWQkJLbWpSd0Y0K2tV?=
- =?utf-8?B?NkN2QUxkeGxMbHdyc0I3MXVla2xwK08xcHVGaGlhQVp1aVdoODdWTkwzY2xs?=
- =?utf-8?B?aTdwVnhIQmdWc2V0ejRjcmZhMUw5Y3BGcmJEc1dDdW9icjh2VVhndjI0MC95?=
- =?utf-8?B?ODA5d2ovNU14OEZGMXZjNGwyRTRWOENRcHRFVHJZK3dNTG1EQUFjQ1ArSHo4?=
- =?utf-8?Q?uQ5EJ2qTNX/DrvJ0SIIz3zy8kP9n1bpJvKBw0=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnI1MFl2V0hoMFVka20zQk9zQXNJQmZaWWdJbEprOVlpWVJCNTUyQm16bnFF?=
- =?utf-8?B?dTk2VmE2dFlPenp5dzhxdjZwMnJGUHlGY0Z2K0o5OEY3MlovbjY1WGlkSW9t?=
- =?utf-8?B?TWx4V2l0T3B1SmZBY2prQkoyY2IrNndCSXBtbkQ4Q29aZHd3elNMK2V6eFhx?=
- =?utf-8?B?Qm8wTUwvUlcyVExjWC9WR3BtL2IrY1VSdHQ4MjZFUWsrTXR4UEdseXlsc1dr?=
- =?utf-8?B?ZERvZEt4QnlSZXBKaXkvSXJwVUxibU04bDdUdWZFRXRMQUkzRW9majBYUG13?=
- =?utf-8?B?L01oaFV3QnVPSHI3UzgrM1F6cCtjbUU1d3g1alhhb2drYUJHYVBVajh3cmRN?=
- =?utf-8?B?cnVOTEtXbVErTVZLZGZvVk9QQmdxUmxHRHdGVVBRSVZtMzRKSXVBK2NvOFpN?=
- =?utf-8?B?VjIyWmNISlR4MWxpOWpDL29yY0dETW12Ri9PN1oxZEFBVkJuYVdpUVJMdUVn?=
- =?utf-8?B?R0c5TTEyTUtKS0ZTZTNVMXRvOWZLcGswQ2JSK3Jidzh4bnBhZmVQZ1QyMmIr?=
- =?utf-8?B?VFBxU2xraEtvcmVZYjZqUnhyRzdQcko3QWZ6MkhQVWNFVmZvZVpMSlR4MXFl?=
- =?utf-8?B?TmQzWkd3QjRQZ3pDT1g1SCt1aWQyUDc4L3V4YlEydmxWK25iaDI4M1l5U2Ru?=
- =?utf-8?B?ZTZzSXZRMVdFY2N3eGd0M1E3MzU3ZVlDdUM3Tkx0VmtRaVpTcTF3SnVBUGdT?=
- =?utf-8?B?UGkrVFJEaFYwYVFwS3N2a1JzV0llNlkydExweTF5NVpqQ1FaTktEOW1pR0xF?=
- =?utf-8?B?dEp1eFlQRiswS3ZVTHBwOEZleitvSHgrcm1KTC9rWXd5ak1id0Q4azJJMGtJ?=
- =?utf-8?B?clhBbm5DOGsyMDI4Mlpnbmhoa2Yxenp6TEp5K1d1eithUGc1UjhxZ3hjV2kw?=
- =?utf-8?B?SytYMFgxcDA1Qjd3SjBTdmcrY0R3eVN1N3pnMm5Jbys0U0xrK2V6cGhZeXRP?=
- =?utf-8?B?WFVleTRSYVpvNjFVVXZON0dxVjRDM09PdnBpNTBHZUlqZUxmN29ybnYzMHZo?=
- =?utf-8?B?UlRwT25GbDlyY21NU1pGQ3N1cmJ2S2p2d0kxN29hVTlRWnFBOFJhT2pTajZT?=
- =?utf-8?B?NEZxMlc2cSttWGNPNmRnYXliTTZvV0YwSVYvQjM2SGlGd0pKN1dXRC9PNmt6?=
- =?utf-8?B?dEhaMVNNdjVYRHUyUTRkZmpjMVl0RlBKSHJwN3ZzbmZhbVlsVW9QQnB6WjRP?=
- =?utf-8?B?cDZSNzJjRS9yaWdSQU41WDBPM3JxbGJDdHhlM25pRmhNNW9vNHQwbmttNzBu?=
- =?utf-8?B?MGF2ZmxKVXNubVh1QnQvNnMvcVJmTXJadDhiMjNOcFBTS0hUekZDWVFRZVlF?=
- =?utf-8?B?MVNLVGJvNW03R3lPbDdlQUEyclVlZVlXZUw5dmFYT01QTlB2NkdQbjNRRmNy?=
- =?utf-8?B?ajNkeXdjYTFDRkV6ZFl0SVNkWENvS1Q4cklTbEtNeGI1V2hXclJibWdIWENC?=
- =?utf-8?B?K2VJVVlGTkRFL2xVUE5RM3hCbkltM3NibitpWEFBejNtMHRtdkY0Tk9TakNi?=
- =?utf-8?B?czdBbUVrL3RlNTNRQjFEWnlyL1EyTCtPTXNzMm5EcmxHQzhwS1ozQnVQampD?=
- =?utf-8?B?dnZ2S1JvRjl1SVk4YUQydjhxblV1NVE2QjhqVm1qWUNVOWwrMjB0cXJkTncy?=
- =?utf-8?B?QkZqZkw3cFFpUWNSVkFPbmxuRWZIbHBzNWpBMjM5b2d2SW5ub0ZLMmdmd3NV?=
- =?utf-8?B?Tyt1RmZHb1Y4K25hWk4vZEZsZmM3aG5mbzdQV2RLVTBiQTdPYmNrUzR4OTA5?=
- =?utf-8?B?M3JEbE1VdDB3dG9hQVFBVnRjQlN0TFZTeHZRY004ZHp3RlhtK09jdW41U2tT?=
- =?utf-8?B?VFJOc1pkeDhTb0xPNDlnTFg1OE42alVBc1JNa3EvaENSTW5QUFZhWjFUazNO?=
- =?utf-8?B?SGNHcG9jWHJWNHhzNGd4QXdqY0FOK1lTT1dBQmRtbG9RTmpFVmFCSzVSKzdK?=
- =?utf-8?B?UVE1TUpsbzE5bUxtSkZocWd6bGVHdUhsbDd3dmNxSDJPWE9OaklRQ3RZL0l3?=
- =?utf-8?B?eklqa0VyKzg4dVJXaDFRNzA5MEM1R0dIUzJlRC9wbXVPekxwcEdUemZUVHFP?=
- =?utf-8?B?T01HeXJ3Z1FxbnlaZ1p2ZUhqT1JkZW1SaWdzcy9raW1NSU5jN1VvcTV4ZVYx?=
- =?utf-8?Q?7MmS51Bzs60FIT7pxfrZfVqEb?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c86acad-a8e5-4b7f-01e9-08ddd67a0202
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 12:49:26.6015 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: r9NFp5ryGY6MCoKrRLjBgbCUSn/Q3QLOXXokXjvpZwMyyFfwoMRgYO880VzoLw44
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7075
+References: <20250729193647.3410634-1-marievic@google.com>
+ <20250729193647.3410634-3-marievic@google.com>
+ <CA+GJov5R2GnBfxXR=28vS3F4b1E-=WLDXpgdJo0SpKAXb1dpsw@mail.gmail.com>
+In-Reply-To: <CA+GJov5R2GnBfxXR=28vS3F4b1E-=WLDXpgdJo0SpKAXb1dpsw@mail.gmail.com>
+From: Marie Zhussupova <marievic@google.com>
+Date: Fri, 8 Aug 2025 09:01:11 -0400
+X-Gm-Features: Ac12FXyqcN3QWXqYkDaIcNwJHxUBYobG5GbAMtvuIIACGkmsNKYyn--VKTTbYU0
+Message-ID: <CAAkQn5JXHFRXRRfUCWZDi+d0mDvGsgKW0poWgj5XCJGz_YTw8w@mail.gmail.com>
+Subject: Re: [PATCH 2/9] kunit: Introduce param_init/exit for parameterized
+ test shared context management
+To: Rae Moar <rmoar@google.com>
+Cc: davidgow@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
+ elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com, 
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,153 +91,267 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 08.08.25 12:43, Mika Kuoppala wrote:
-> Hi,
-> 
-> This is the v4 patch series for Intel Xe GPU debug support (eudebug).
-> 
-> This series continues from the following previous submissions:
-> - v1: https://lists.freedesktop.org/archives/intel-xe/2024-July/043605.html
-> - v2: https://lists.freedesktop.org/archives/intel-xe/2024-October/052260.html
-> - v3: https://lists.freedesktop.org/archives/intel-xe/2024-December/061476.html
-> 
-> This is a major cleanup and rework of eudebug patch series to address the
-> feedback for v3. Page fault handling is omitted for until we receive
-> ack on core design, as there was no feedback on it on previous iterations.
-> 
-> ### Major Changes
-> 
-> #### 1. Elimination of ptrace_may_access() and pid
-> 
-> In previous series, the connection attempt was made using the process ID
-> (PID) as the target. Access was checked using the `ptrace_may_access()`
-> helper to achieve security parity with CPU-side debugging.
-> 
-> In v4, this has been changed to connect to a DRM client, using a file
-> descriptor as the target. This approach eliminates the need for the
-> `ptrace_may_access()` symbol export, as access control is now managed
-> through the debugger process's access to the file descriptor. For example,
-> accessing a remote DRM client requires the debugger process to
-> successfully call `pidfd_getfd()` to obtain a duplicate of the target
-> file descriptor.The 1:1 mapping between DRM clients and their debuggers
-> eliminates the need for `EVENT_OPEN` and simplifies overall connection
-> tracking.
+On Tue, Aug 5, 2025 at 11:18=E2=80=AFAM Rae Moar <rmoar@google.com> wrote:
+>
+> On Tue, Jul 29, 2025 at 3:37=E2=80=AFPM Marie Zhussupova <marievic@google=
+.com> wrote:
+> >
+> > Add `param_init` and `param_exit` function pointers to
+> > `struct kunit_case`. Users will be able to set them
+> > via the new `KUNIT_CASE_PARAM_WITH_INIT` macro.
+>
+> Hello!
+>
+> Very intrigued by this idea to add an init and exit function for
+> parameterized tests. In a way, this allows parameterized test series
+> to act more like suites. Either way I am happy to see more flexibility
+> being brought to the parameterized test framework.
+>
+> I have a few comments below that I would like to discuss before a
+> final review. But this patch is looking good.
+>
+> Thanks!
+> -Rae
+>
+> >
+> > These functions are invoked by kunit_run_tests() once before
+> > and once after the entire parameterized test series, respectively.
+>
+> This is a philosophical question but should we refer to a group of
+> parameterized tests as a parameterized test series or a parameterized
+> test suite? In the KTAP, the appearance is identical to a suite but in
+> the running of the tests it acts distinct to a test case or suite.
+> Curious on David's opinion here.
+>
 
-It would be really nice if we could document that approach under Documentation/gpu.
+Thank you for bringing this up! Using the wording of the patch that
+introduced the parameterized tests:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/l=
+ib/kunit?id=3Dfadb08e7c7501ed42949e646c6865ba4ec5dd948,
+"parameterized test" will refer to a group of parameterized tests and
+"parameter run" will refer to a single parameter execution. I will also
+specify this terminology in the docs for v2.
 
-> 
-> #### 2. ELF binaries not held in kernel memory
-> 
-> In v4, debug data is delivered as a VM bind 'OP_ADD_DEBUG_DATA' extension.
-> The ELF binaries are no longer stored within the Xe KMD but are instead
-> kept in a file. The file path is passed as part of an extension in
-> the newly introduced 'OP_ADD_DEBUG_DATA' VM bind operation. Alternatively
-> pseudo-paths can be used to annotate special address ranges similar to
-> /proc/<pid>/maps.
-> 
-> #### 3. Debug metadata not carried in VMA struct
-> 
-> Instead of attaching debug data to vma created by 'OP_MAP',
-> we introduce separate ops for managing the metadata.
-> Debug data is no longer held in the VMA struct. xe_vm contains a
-> list of all associated debug data.
+> > They will receive the parent kunit test instance, allowing users
+> > to register and manage shared resources. Resources added to this
+> > parent kunit test will be accessible to all individual parameterized
+> > tests, facilitating init and exit for shared state.
+> >
+> > Signed-off-by: Marie Zhussupova <marievic@google.com>
+> > ---
+> >  include/kunit/test.h | 33 ++++++++++++++++++++++++++++++++-
+> >  lib/kunit/test.c     | 23 ++++++++++++++++++++++-
+> >  2 files changed, 54 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/include/kunit/test.h b/include/kunit/test.h
+> > index a42d0c8cb985..d8dac7efd745 100644
+> > --- a/include/kunit/test.h
+> > +++ b/include/kunit/test.h
+> > @@ -92,6 +92,8 @@ struct kunit_attributes {
+> >   * @name:     the name of the test case.
+> >   * @generate_params: the generator function for parameterized tests.
+> >   * @attr:     the attributes associated with the test
+> > + * @param_init: The init function to run before parameterized tests.
+> > + * @param_exit: The exit function to run after parameterized tests.
+>
+> If we decide on a terminology for the parameterized test group, it
+> might be clearer to label these "The init function to run before
+> parameterized test [suite/series]." and same for the exit function.
+>
 
-I need to take a closer look but that sounds like it takes a big step into the right direction.
+Will update this in v2.
 
-Regards,
-Christian.
+> >   *
+> >   * A test case is a function with the signature,
+> >   * ``void (*)(struct kunit *)``
+> > @@ -129,6 +131,13 @@ struct kunit_case {
+> >         const void* (*generate_params)(const void *prev, char *desc);
+> >         struct kunit_attributes attr;
+> >
+> > +       /*
+> > +        * Optional user-defined functions: one to register shared reso=
+urces once
+> > +        * before the parameterized test series, and another to release=
+ them after.
+> > +        */
+> > +       int (*param_init)(struct kunit *test);
+> > +       void (*param_exit)(struct kunit *test);
+> > +
+> >         /* private: internal use only. */
+> >         enum kunit_status status;
+> >         char *module_name;
+> > @@ -218,6 +227,27 @@ static inline char *kunit_status_to_ok_not_ok(enum=
+ kunit_status status)
+> >                   .generate_params =3D gen_params,                     =
+           \
+> >                   .attr =3D attributes, .module_name =3D KBUILD_MODNAME=
+}
+> >
+> > +/**
+> > + * KUNIT_CASE_PARAM_WITH_INIT() - Define a parameterized KUnit test ca=
+se with custom
+> > + * init and exit functions.
+> > + * @test_name: The function implementing the test case.
+> > + * @gen_params: The function to generate parameters for the test case.
+> > + * @init: The init function to run before parameterized tests.
+> > + * @exit: The exit function to run after parameterized tests.
+>
+> If we do change the description above of param_init/param_exit, it
+> might be nice to change it here too.
+>
 
-> 
-> ### Supported Hardware with v4
-> - Lunarlake (LNL)
-> - Battlemage (BMG)
-> - Pantherlake (PTL)
-> 
-> The code for this submission can be found at:
-> https://gitlab.freedesktop.org/miku/kernel/-/tree/eudebug-v4
-> 
-> Christoph Manszewski (5):
->   drm/xe: Introduce ADD_DEBUG_DATA and REMOVE_DEBUG_DATA vm bind ops
->   drm/xe/eudebug: Introduce vm bind and vm bind debug data events
->   drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
->   drm/xe: Implement SR-IOV and eudebug exclusivity
->   drm/xe: Add xe_client_debugfs and introduce debug_data file
-> 
-> Dominik Grzegorzek (5):
->   drm/xe/eudebug: Introduce exec_queue events
->   drm/xe: Add EUDEBUG_ENABLE exec queue property
->   drm/xe/eudebug: hw enablement for eudebug
->   drm/xe/eudebug: Introduce EU control interface
->   drm/xe/eudebug: Introduce per device attention scan worker
-> 
-> Mika Kuoppala (5):
->   drm/xe/eudebug: Introduce eudebug interface
->   drm/xe/eudebug: Introduce discovery for resources
->   drm/xe/eudebug: Add UFENCE events with acks
->   drm/xe/eudebug: vm open/pread/pwrite
->   drm/xe/eudebug: userptr vm pread/pwrite
-> 
->  drivers/gpu/drm/xe/Kconfig                  |   10 +
->  drivers/gpu/drm/xe/Makefile                 |    7 +-
->  drivers/gpu/drm/xe/regs/xe_engine_regs.h    |    7 +
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h        |   43 +
->  drivers/gpu/drm/xe/tests/xe_eudebug.c       |  189 ++
->  drivers/gpu/drm/xe/tests/xe_live_test_mod.c |    5 +
->  drivers/gpu/drm/xe/xe_client_debugfs.c      |  118 +
->  drivers/gpu/drm/xe/xe_client_debugfs.h      |   19 +
->  drivers/gpu/drm/xe/xe_debug_data.c          |  279 +++
->  drivers/gpu/drm/xe/xe_debug_data.h          |   22 +
->  drivers/gpu/drm/xe/xe_debug_data_types.h    |   25 +
->  drivers/gpu/drm/xe/xe_device.c              |   30 +-
->  drivers/gpu/drm/xe/xe_device.h              |   42 +
->  drivers/gpu/drm/xe/xe_device_types.h        |   40 +
->  drivers/gpu/drm/xe/xe_eudebug.c             | 2309 +++++++++++++++++++
->  drivers/gpu/drm/xe/xe_eudebug.h             |  116 +
->  drivers/gpu/drm/xe/xe_eudebug_hw.c          |  730 ++++++
->  drivers/gpu/drm/xe/xe_eudebug_hw.h          |   32 +
->  drivers/gpu/drm/xe/xe_eudebug_types.h       |  174 ++
->  drivers/gpu/drm/xe/xe_eudebug_vm.c          |  434 ++++
->  drivers/gpu/drm/xe/xe_eudebug_vm.h          |    8 +
->  drivers/gpu/drm/xe/xe_exec.c                |    2 +-
->  drivers/gpu/drm/xe/xe_exec_queue.c          |   51 +-
->  drivers/gpu/drm/xe/xe_exec_queue.h          |    2 +
->  drivers/gpu/drm/xe/xe_exec_queue_types.h    |    7 +
->  drivers/gpu/drm/xe/xe_gt.c                  |    1 +
->  drivers/gpu/drm/xe/xe_gt_debug.c            |  179 ++
->  drivers/gpu/drm/xe/xe_gt_debug.h            |   41 +
->  drivers/gpu/drm/xe/xe_hw_engine.h           |   14 +
->  drivers/gpu/drm/xe/xe_lrc.c                 |   10 +
->  drivers/gpu/drm/xe/xe_oa.c                  |    3 +-
->  drivers/gpu/drm/xe/xe_pci_sriov.c           |   10 +
->  drivers/gpu/drm/xe/xe_reg_sr.c              |   21 +-
->  drivers/gpu/drm/xe/xe_reg_sr.h              |    4 +-
->  drivers/gpu/drm/xe/xe_reg_whitelist.c       |    2 +-
->  drivers/gpu/drm/xe/xe_rtp.c                 |    2 +-
->  drivers/gpu/drm/xe/xe_sync.c                |   45 +-
->  drivers/gpu/drm/xe/xe_sync.h                |    8 +-
->  drivers/gpu/drm/xe/xe_sync_types.h          |   28 +-
->  drivers/gpu/drm/xe/xe_vm.c                  |  186 +-
->  drivers/gpu/drm/xe/xe_vm.h                  |   26 +
->  drivers/gpu/drm/xe/xe_vm_types.h            |   38 +
->  drivers/gpu/drm/xe/xe_wa_oob.rules          |    4 +
->  include/uapi/drm/xe_drm.h                   |   59 +
->  include/uapi/drm/xe_drm_eudebug.h           |  217 ++
->  45 files changed, 5552 insertions(+), 47 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
->  create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.c
->  create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.h
->  create mode 100644 drivers/gpu/drm/xe/xe_debug_data.c
->  create mode 100644 drivers/gpu/drm/xe/xe_debug_data.h
->  create mode 100644 drivers/gpu/drm/xe/xe_debug_data_types.h
->  create mode 100644 drivers/gpu/drm/xe/xe_eudebug.c
->  create mode 100644 drivers/gpu/drm/xe/xe_eudebug.h
->  create mode 100644 drivers/gpu/drm/xe/xe_eudebug_hw.c
->  create mode 100644 drivers/gpu/drm/xe/xe_eudebug_hw.h
->  create mode 100644 drivers/gpu/drm/xe/xe_eudebug_types.h
->  create mode 100644 drivers/gpu/drm/xe/xe_eudebug_vm.c
->  create mode 100644 drivers/gpu/drm/xe/xe_eudebug_vm.h
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.c
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.h
->  create mode 100644 include/uapi/drm/xe_drm_eudebug.h
-> 
+Will update this, as well.
 
+> > + *
+> > + * Provides the option to register init and exit functions that take i=
+n the
+> > + * parent of the parameterized tests and run once before and once afte=
+r the
+> > + * parameterized test series. The init function can be used to add any=
+ resources
+> > + * to share between the parameterized tests or to pass parameter array=
+s. The
+> > + * exit function can be used to clean up any resources that are not ma=
+naged by
+> > + * the test.
+> > + */
+> > +#define KUNIT_CASE_PARAM_WITH_INIT(test_name, gen_params, init, exit) =
+         \
+> > +               { .run_case =3D test_name, .name =3D #test_name,       =
+             \
+> > +                 .generate_params =3D gen_params,                     =
+           \
+> > +                 .param_init =3D init, .param_exit =3D exit,          =
+             \
+> > +                 .module_name =3D KBUILD_MODNAME}
+> > +
+> >  /**
+> >   * struct kunit_suite - describes a related collection of &struct kuni=
+t_case
+> >   *
+> > @@ -269,7 +299,8 @@ struct kunit_suite_set {
+> >   * @priv: for user to store arbitrary data. Commonly used to pass data
+> >   *       created in the init function (see &struct kunit_suite).
+> >   * @parent: for user to store data that they want to shared across
+> > - *         parameterized tests.
+> > + *         parameterized tests. Typically, the data is provided in
+> > + *         the param_init function (see &struct kunit_case).
+> >   *
+> >   * Used to store information about the current context under which the=
+ test
+> >   * is running. Most of this data is private and should only be accesse=
+d
+> > diff --git a/lib/kunit/test.c b/lib/kunit/test.c
+> > index 4d6a39eb2c80..d80b5990d85d 100644
+> > --- a/lib/kunit/test.c
+> > +++ b/lib/kunit/test.c
+> > @@ -641,6 +641,19 @@ static void kunit_accumulate_stats(struct kunit_re=
+sult_stats *total,
+> >         total->total +=3D add.total;
+> >  }
+> >
+> > +static void __kunit_init_parent_test(struct kunit_case *test_case, str=
+uct kunit *test)
+>
+> It would be nice to include "param" in this function name. Currently
+> it sounds more like you are initializing the @parent field of struct
+> kunit *test.
+
+That is a great suggestion, I will incorporate it in v2.
+
+>
+> > +{
+> > +       if (test_case->param_init) {
+> > +               int err =3D test_case->param_init(test);
+> > +
+> > +               if (err) {
+> > +                       kunit_err(test_case, KUNIT_SUBTEST_INDENT KUNIT=
+_SUBTEST_INDENT
+> > +                               "# failed to initialize parent paramete=
+r test.");
+> > +                       test_case->status =3D KUNIT_FAILURE;
+> > +               }
+> > +       }
+> > +}
+> > +
+> >  int kunit_run_tests(struct kunit_suite *suite)
+> >  {
+> >         char param_desc[KUNIT_PARAM_DESC_SIZE];
+> > @@ -668,6 +681,8 @@ int kunit_run_tests(struct kunit_suite *suite)
+> >                 struct kunit_result_stats param_stats =3D { 0 };
+> >
+> >                 kunit_init_test(&test, test_case->name, test_case->log)=
+;
+> > +               __kunit_init_parent_test(test_case, &test);
+> > +
+>
+> Is it possible to move this so this function is only called when it is
+> a parameterized test? I see the check for KUNIT_FAILURE is useful but
+> I think I would still prefer this within the section for parameterized
+> tests.
+
+Yes, I will do that, unless we decide to go with the route
+to set generate_params to point to kunit_get_next_param_and_desc
+in the __kunit_init_parent_test function.
+
+>
+> >                 if (test_case->status =3D=3D KUNIT_SKIPPED) {
+> >                         /* Test marked as skip */
+> >                         test.status =3D KUNIT_SKIPPED;
+> > @@ -677,7 +692,7 @@ int kunit_run_tests(struct kunit_suite *suite)
+> >                         test_case->status =3D KUNIT_SKIPPED;
+> >                         kunit_run_case_catch_errors(suite, test_case, &=
+test);
+> >                         kunit_update_stats(&param_stats, test.status);
+> > -               } else {
+> > +               } else if (test_case->status !=3D KUNIT_FAILURE) {
+> >                         /* Get initial param. */
+> >                         param_desc[0] =3D '\0';
+> >                         /* TODO: Make generate_params try-catch */
+> > @@ -727,6 +742,12 @@ int kunit_run_tests(struct kunit_suite *suite)
+> >
+> >                 kunit_update_stats(&suite_stats, test_case->status);
+> >                 kunit_accumulate_stats(&total_stats, param_stats);
+> > +               /*
+> > +                * TODO: Put into a try catch. Since we don't need suit=
+e->exit
+> > +                * for it we can't reuse kunit_try_run_cleanup for this=
+ yet.
+> > +                */
+> > +               if (test_case->param_exit)
+> > +                       test_case->param_exit(&test);
+>
+> Also here I am not sure why this is done outside of the check for if
+> the test is parameterized? Either way this should definitely be done
+> before the test stats and ok/not ok line are printed because if there
+> is any log output during the param_exit function it is necessary to
+> print that before the status line to identify that that log
+> corresponds with that test.
+
+Thank you for catching this! Yes, it should be inside the check for if
+the test is parameterized.
+
+>
+> Also just curious why you chose to implement a function to perform the
+> param_init but not the param_exit?
+
+To be consistent with the existing style of "exit" functions in KUnit,
+test->param_exit returns void. Therefore, similar to how it's done for
+suite->suite_exit
+(https://elixir.bootlin.com/linux/v6.16/source/lib/kunit/test.c#L685),
+I didn't do extra error handling as the function itself doesn't
+indicate an error and
+therefore, didn't put it in a separate function. To do error handling
+for it, it would
+need to be in a try catch, then we could check if the cleanup timed out or
+if there was an internal error.
+
+>
+>
+>
+> >                 /* TODO: Put this kunit_cleanup into a try-catch. */
+> >                 kunit_cleanup(&test);
+> >         }
+> > --
+> > 2.50.1.552.g942d659e1b-goog
+> >
