@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C894ACA0EC5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D9B0CA0EC1
 	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 17:30:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25CF810E971;
-	Fri,  8 Aug 2025 17:30:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44B6C10E96F;
+	Fri,  8 Aug 2025 17:30:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YKzce0z+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mR6aEh9g";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDAAC10E1EB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C57F10E1EB
  for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 17:30:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1754674210; x=1786210210;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+jUmQwUYg4lqXvJih90pvRxFb3IACTXSnO8LPQDPbF4=;
- b=YKzce0z+iZeOqmMMAGDgaFYKcyFOWJaNMBqC6dO67QnTPASWHAnSasXO
- YRf+RUXJjXHvTnhOgme7Z0+1r4JEcoo7ma7k+n9Hs7siM713QQeNsgBSB
- EhO/YZZDxEFw6EoBxAeHnlxdb54AVNOiYXMEJXyUoys/ZZB18Obiar0jg
- xeFBeQXJPEV7Ehb2tD5JezbnYhRnDzz2+bXxz+0/d32zdsqJ7csJBFeby
- qIAC1wVtgTMoUTTMtiClLj+dxqGV/SV9kSK5my+tk/vYcfwie9DxZk1NM
- gTorfp8FEn8hiEUbdKKOOggV6IOtEslS1wd4pgby3MHetxq9maJp+zZ2E A==;
-X-CSE-ConnectionGUID: sfx7vYXuTuq9rQcCvxR5yA==
-X-CSE-MsgGUID: 9BienwBLTPmuFmBxlRvRog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11515"; a="68109821"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208,223";a="68109821"
+ bh=yro/rCUYnt2rPBJUMXCv8rvT77z5gRJaNwvjgzJi06A=;
+ b=mR6aEh9grixelVZd5kDRG2Rlvxs9mLHBrqb1rOJEPrLmIkJkP+rK4U6p
+ aDUGg+h6iBMFgjNrt2zO2h5PWC3786h/hQ8Q0FDXuvkMunEFuoWy1lmZt
+ XPZLUDvS88d0ldvyV13OC2rqB98x9exZthofbLdLXj1px8C3wkmaEygFn
+ MD3pA5AFgMXEFFYlyAJbpAr4Cj/63eygZyN8+PySSADsdI7nXw9pD92ja
+ LJcAhZ4P7+nz+vhu00wIhdBS6izL8YuR/qtrIu95PcUsBcua+FFVrm65I
+ 4z1RqODRJwtXhEWygkBDVBAe+424hOciazSS06iC12vK+VPAYiFQnwv8n A==;
+X-CSE-ConnectionGUID: TQdzaactQPqoMM26ThcTUw==
+X-CSE-MsgGUID: fhJ+3HX7T9KMl44/s2DfDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11515"; a="68109818"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="68109818"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Aug 2025 10:30:09 -0700
-X-CSE-ConnectionGUID: PnkQsRgOTzqwbxvvewG7sg==
-X-CSE-MsgGUID: W7YcVJPCSlSheSE+Ji7KXg==
+X-CSE-ConnectionGUID: taLoUhq5SgmgHDaf3nt/Ig==
+X-CSE-MsgGUID: E9tKJm3rTQKZi5avQs37nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; 
- d="scan'208,223";a="165387413"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="165387400"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Aug 2025 10:30:08 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>, prashanth.kumar@intel.com,
- dnyaneshwar.bhadane@intel.com
-Subject: [PATCH v3 06/13] drm/xe/configfs: Simplify kernel doc
-Date: Fri,  8 Aug 2025 10:29:49 -0700
-Message-ID: <20250808-psmi-v3-6-a111e9f1e4b7@intel.com>
+ dnyaneshwar.bhadane@intel.com, Matt Roper <matthew.d.roper@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Brian Welty <brian.welty@intel.com>
+Subject: [PATCH v3 02/13] drm/xe/psmi: Add debugfs interface for PSMI
+Date: Fri,  8 Aug 2025 10:29:45 -0700
+Message-ID: <20250808-psmi-v3-2-a111e9f1e4b7@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250808-psmi-v3-0-a111e9f1e4b7@intel.com>
 References: <20250808-psmi-v3-0-a111e9f1e4b7@intel.com>
@@ -70,56 +71,467 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From the caller perspective reading the documentation, there's no need
-to be so specific about everything the function is doing/checking. Just
-document the functionality a caller cares about.
+Requirement for PSMI capture is to have a physically contiguous buffer.
+All the needed configuration is done by the userspace tool directly to
+the GPU via mmio access.
 
+This interface only support allocating from VRAM regions. For integrated
+devices, the PSMI buffer is in SYSTEM memory and should be allocated by
+userspace using hugetlbfs.
+
+Here we add the ability to allocate a region of physically contiguous
+memory by writing to debugfs file (listed below). For multi-tile devices,
+the capture tool requires ability to allocate a capture buffer per tile
+(VRAM region) and so user can specify a region_mask. The tool then
+can mmap the buffers via direct mmap of the PCIBAR via sysfs.
+
+To support the capture tool, 3 new debugfs entries are added:
+
+   psmi_capture_addr - physical address per VRAM region's capture buffer
+   psmi_capture_region_mask - select which region(s) to allocate a buffer
+   psmi_capture_size - size of current capture buffer
+
+Writing psmi_capture_size will allocate new buffer of requested size per
+region after freeing any current buffers.
+
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Original-author: Brian Welty <brian.welty@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 15 +++------------
- 1 file changed, 3 insertions(+), 12 deletions(-)
+v2:
+ - Fix kernel-doc
+ - Do not walk all region_mask on cleanup: it should never be needed
+ - Replace sysmem checks by asserts as they should never be set
+ - s/debugfs_create/debugfs_register/ and do not pass the root dir:
+   this makes it similar to other parts registering debugfs
+ - Do not export a cleanup function, rather use a init that registers
+   a devm action if needed
+ - Drop modparam in favor of configfs whose attribute will be
+   implemented when everything is ready
+---
+ drivers/gpu/drm/xe/Makefile          |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c      |   3 +
+ drivers/gpu/drm/xe/xe_device.c       |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h |   8 +
+ drivers/gpu/drm/xe/xe_psmi.c         | 313 +++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_psmi.h         |  14 ++
+ 6 files changed, 344 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 853da2ee837ac..17b1d6ae1ff6a 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -389,10 +389,7 @@ static struct xe_config_group_device *find_xe_config_group_device(struct pci_dev
-  * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
-  * @pdev: pci device
-  *
-- * find the configfs group that belongs to the pci device and return
-- * the survivability mode attribute
-- *
-- * Return: survivability mode if config group is found, false otherwise
-+ * Return: survivability_mode attribute in configfs
-  */
- bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
- {
-@@ -409,11 +406,8 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
- }
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 8e0c3412a757c..85b8d3a59ef07 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -98,6 +98,7 @@ xe-y += xe_bb.o \
+ 	xe_pcode.o \
+ 	xe_pm.o \
+ 	xe_preempt_fence.o \
++	xe_psmi.o \
+ 	xe_pt.o \
+ 	xe_pt_walk.o \
+ 	xe_pxp.o \
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 0b4a532f7c45c..bc717519502dd 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -20,6 +20,7 @@
+ #include "xe_guc_ads.h"
+ #include "xe_mmio.h"
+ #include "xe_pm.h"
++#include "xe_psmi.h"
+ #include "xe_pxp_debugfs.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_pf.h"
+@@ -400,6 +401,8 @@ void xe_debugfs_register(struct xe_device *xe)
  
- /**
-- * xe_configfs_clear_survivability_mode - clear configfs survivability mode attribute
-+ * xe_configfs_clear_survivability_mode - clear configfs survivability mode
-  * @pdev: pci device
-- *
-- * find the configfs group that belongs to the pci device and clear survivability
-- * mode attribute
-  */
- void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
- {
-@@ -433,10 +427,7 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
-  * xe_configfs_get_engines_allowed - get engine allowed mask from configfs
-  * @pdev: pci device
-  *
-- * Find the configfs group that belongs to the pci device and return
-- * the mask of engines allowed to be used.
-- *
-- * Return: engine mask with allowed engines
-+ * Return: engine mask with allowed engines set in configfs
-  */
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
- {
+ 	xe_pxp_debugfs_register(xe->pxp);
+ 
++	xe_psmi_debugfs_register(xe);
++
+ 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
+ 
+ 	if (IS_SRIOV_PF(xe))
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 57edbc63da6f4..62edb39b61fb0 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -54,6 +54,7 @@
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
+ #include "xe_pmu.h"
++#include "xe_psmi.h"
+ #include "xe_pxp.h"
+ #include "xe_query.h"
+ #include "xe_shrinker.h"
+@@ -908,6 +909,10 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++	err = xe_psmi_init(xe);
++	if (err)
++		return err;
++
+ 	err = drm_dev_register(&xe->drm, 0);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 01e8fa0d2f9f7..bf9af8d0b84ae 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -576,6 +576,14 @@ struct xe_device {
+ 	atomic64_t global_total_pages;
+ #endif
+ 
++	/** @psmi: GPU debugging via additional validation HW */
++	struct {
++		/** @psmi.capture_obj: PSMI buffer for VRAM */
++		struct xe_bo *capture_obj[XE_MAX_TILES_PER_DEVICE + 1];
++		/** @psmi.region_mask: Mask of valid memory regions */
++		u8 region_mask;
++	} psmi;
++
+ 	/* private: */
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+diff --git a/drivers/gpu/drm/xe/xe_psmi.c b/drivers/gpu/drm/xe/xe_psmi.c
+new file mode 100644
+index 0000000000000..e6a67e85e1bb2
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_psmi.c
+@@ -0,0 +1,313 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include <linux/debugfs.h>
++
++#include "xe_bo.h"
++#include "xe_device.h"
++#include "xe_configfs.h"
++#include "xe_psmi.h"
++
++/*
++ * PSMI capture support
++ *
++ * Requirement for PSMI capture is to have a physically contiguous buffer.  The
++ * PSMI tool owns doing all necessary configuration (MMIO register writes are
++ * done from user-space). However, KMD needs to provide the PSMI tool with the
++ * required physical address of the base of PSMI buffer in case of VRAM.
++ *
++ * VRAM backed PSMI buffer:
++ * Buffer is allocated as GEM object and with XE_BO_CREATE_PINNED_BIT flag which
++ * creates a contiguous allocation. The physical address is returned from
++ * psmi_debugfs_capture_addr_show(). PSMI tool can mmap the buffer via the
++ * PCIBAR through sysfs.
++ *
++ * SYSTEM memory backed PSMI buffer:
++ * Interface here does not support allocating from SYSTEM memory region.  The
++ * PSMI tool needs to allocate memory themselves using hugetlbfs. In order to
++ * get the physical address, user-space can query /proc/[pid]/pagemap. As an
++ * alternative, CMA debugfs could also be used to allocate reserved CMA memory.
++ */
++
++static bool psmi_enabled(struct xe_device *xe)
++{
++	return xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev));
++}
++
++static void psmi_free_object(struct xe_bo *bo)
++{
++	xe_bo_lock(bo, NULL);
++	xe_bo_unpin(bo);
++	xe_bo_unlock(bo);
++	xe_bo_put(bo);
++}
++
++/*
++ * Free PSMI capture buffer objects.
++ */
++static void psmi_cleanup(struct xe_device *xe)
++{
++	unsigned long id, region_mask = xe->psmi.region_mask;
++	struct xe_bo *bo;
++
++	for_each_set_bit(id, &region_mask,
++			 ARRAY_SIZE(xe->psmi.capture_obj)) {
++		/* smem should never be set */
++		xe_assert(xe, id);
++
++		bo = xe->psmi.capture_obj[id];
++		if (bo) {
++			psmi_free_object(bo);
++			xe->psmi.capture_obj[id] = NULL;
++		}
++	}
++}
++
++static struct xe_bo *psmi_alloc_object(struct xe_device *xe,
++				       unsigned int id, size_t bo_size)
++{
++	struct xe_bo *bo = NULL;
++	struct xe_tile *tile;
++	int err;
++
++	if (!id || !bo_size)
++		return NULL;
++
++	tile = &xe->tiles[id - 1];
++
++	/* VRAM: Allocate GEM object for the capture buffer */
++	bo = xe_bo_create_locked(xe, tile, NULL, bo_size,
++				 ttm_bo_type_kernel,
++				 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
++				 XE_BO_FLAG_PINNED |
++				 XE_BO_FLAG_NEEDS_CPU_ACCESS);
++
++	if (!IS_ERR(bo)) {
++		/* Buffer written by HW, ensure stays resident */
++		err = xe_bo_pin(bo);
++		if (err)
++			bo = ERR_PTR(err);
++		xe_bo_unlock(bo);
++	}
++
++	return bo;
++}
++
++/*
++ * Allocate PSMI capture buffer objects (via debugfs set function), based on
++ * which regions the user has selected in region_mask.  @size: size in bytes
++ * (should be power of 2)
++ *
++ * Always release/free the current buffer objects before attempting to allocate
++ * new ones.  Size == 0 will free all current buffers.
++ *
++ * Note, we don't write any registers as the capture tool is already configuring
++ * all PSMI registers itself via mmio space.
++ */
++static int psmi_resize_object(struct xe_device *xe, size_t size)
++{
++	unsigned long id, region_mask = xe->psmi.region_mask;
++	struct xe_bo *bo = NULL;
++	int err = 0;
++
++	/*
++	 * Buddy allocator anyway will roundup to next power of 2,
++	 * so rather than waste unused pages, require user to ask for
++	 * power of 2 sized PSMI buffers.
++	 */
++	if (size && !is_power_of_2(size))
++		return -EINVAL;
++
++	/* if resizing, free currently allocated buffers first */
++	psmi_cleanup(xe);
++
++	/* can set size to 0, in which case, now done */
++	if (!size)
++		return 0;
++
++	for_each_set_bit(id, &region_mask,
++			 ARRAY_SIZE(xe->psmi.capture_obj)) {
++		/* smem should never be set */
++		xe_assert(xe, id);
++
++		bo = psmi_alloc_object(xe, id, size);
++		if (IS_ERR(bo)) {
++			err = PTR_ERR(bo);
++			break;
++		}
++		xe->psmi.capture_obj[id] = bo;
++
++		drm_info(&xe->drm,
++			 "PSMI capture size requested: %zu bytes, allocated: %lu:%zu\n",
++			 size, id, bo ? xe_bo_size(bo) : 0);
++	}
++
++	/* on error, reverse what was allocated */
++	if (err)
++		psmi_cleanup(xe);
++
++	return err;
++}
++
++/*
++ * Returns an address for the capture tool to use to find start of capture
++ * buffer. Capture tool requires the capability to have a buffer allocated per
++ * each tile (VRAM region), thus we return an address for each region.
++ */
++static int psmi_debugfs_capture_addr_show(struct seq_file *m, void *data)
++{
++	struct xe_device *xe = m->private;
++	unsigned long id, region_mask;
++	struct xe_bo *bo;
++	u64 val;
++
++	region_mask = xe->psmi.region_mask;
++	for_each_set_bit(id, &region_mask,
++			 ARRAY_SIZE(xe->psmi.capture_obj)) {
++		/* smem should never be set */
++		xe_assert(xe, id);
++
++		/* VRAM region */
++		bo = xe->psmi.capture_obj[id];
++		if (!bo)
++			continue;
++
++		/* pinned, so don't need bo_lock */
++		val = __xe_bo_addr(bo, 0, PAGE_SIZE);
++		seq_printf(m, "%ld: 0x%llx\n", id, val);
++	}
++
++	return 0;
++}
++
++/*
++ * Return capture buffer size, using the size from first allocated object that
++ * is found. This works because all objects must be of the same size.
++ */
++static int psmi_debugfs_capture_size_get(void *data, u64 *val)
++{
++	unsigned long id, region_mask;
++	struct xe_device *xe = data;
++	struct xe_bo *bo;
++
++	region_mask = xe->psmi.region_mask;
++	for_each_set_bit(id, &region_mask,
++			 ARRAY_SIZE(xe->psmi.capture_obj)) {
++		/* smem should never be set */
++		xe_assert(xe, id);
++
++		bo = xe->psmi.capture_obj[id];
++		if (bo) {
++			*val = xe_bo_size(bo);
++			return 0;
++		}
++	}
++
++	/* no capture objects are allocated */
++	*val = 0;
++
++	return 0;
++}
++
++/*
++ * Set size of PSMI capture buffer. This triggers the allocation of capture
++ * buffer in each memory region as specified with prior write to
++ * psmi_capture_region_mask.
++ */
++static int psmi_debugfs_capture_size_set(void *data, u64 val)
++{
++	struct xe_device *xe = data;
++
++	/* user must have specified at least one region */
++	if (!xe->psmi.region_mask)
++		return -EINVAL;
++
++	return psmi_resize_object(xe, val);
++}
++
++static int psmi_debugfs_capture_region_mask_get(void *data, u64 *val)
++{
++	struct xe_device *xe = data;
++
++	*val = xe->psmi.region_mask;
++
++	return 0;
++}
++
++/*
++ * Select VRAM regions for multi-tile devices, only allowed when buffer is not
++ * currently allocated.
++ */
++static int psmi_debugfs_capture_region_mask_set(void *data, u64 region_mask)
++{
++	struct xe_device *xe = data;
++	u64 size = 0;
++
++	/* SMEM is not supported (see comments at top of file) */
++	if (region_mask & 0x1)
++		return -EOPNOTSUPP;
++
++	/* input bitmask should contain only valid TTM regions */
++	if (!region_mask || region_mask & ~xe->info.mem_region_mask)
++		return -EINVAL;
++
++	/* only allow setting mask if buffer is not yet allocated */
++	psmi_debugfs_capture_size_get(xe, &size);
++	if (size)
++		return -EBUSY;
++
++	xe->psmi.region_mask = region_mask;
++
++	return 0;
++}
++
++DEFINE_SHOW_ATTRIBUTE(psmi_debugfs_capture_addr);
++
++DEFINE_DEBUGFS_ATTRIBUTE(psmi_debugfs_capture_region_mask_fops,
++			 psmi_debugfs_capture_region_mask_get,
++			 psmi_debugfs_capture_region_mask_set,
++			 "0x%llx\n");
++
++DEFINE_DEBUGFS_ATTRIBUTE(psmi_debugfs_capture_size_fops,
++			 psmi_debugfs_capture_size_get,
++			 psmi_debugfs_capture_size_set,
++			 "%lld\n");
++
++void xe_psmi_debugfs_register(struct xe_device *xe)
++{
++	struct drm_minor *minor;
++
++	if (!psmi_enabled(xe))
++		return;
++
++	minor = xe->drm.primary;
++	if (!minor->debugfs_root)
++		return;
++
++	debugfs_create_file("psmi_capture_addr",
++			    0400, minor->debugfs_root, xe,
++			    &psmi_debugfs_capture_addr_fops);
++
++	debugfs_create_file("psmi_capture_region_mask",
++			    0600, minor->debugfs_root, xe,
++			    &psmi_debugfs_capture_region_mask_fops);
++
++	debugfs_create_file("psmi_capture_size",
++			    0600, minor->debugfs_root, xe,
++			    &psmi_debugfs_capture_size_fops);
++}
++
++static void psmi_fini(void *arg)
++{
++	psmi_cleanup(arg);
++}
++
++int xe_psmi_init(struct xe_device *xe)
++{
++	if (!psmi_enabled(xe))
++		return 0;
++
++	return devm_add_action(xe->drm.dev, psmi_fini, xe);
++}
+diff --git a/drivers/gpu/drm/xe/xe_psmi.h b/drivers/gpu/drm/xe/xe_psmi.h
+new file mode 100644
+index 0000000000000..b1dfba80d893d
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_psmi.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_PSMI_H_
++#define _XE_PSMI_H_
++
++struct xe_device;
++
++int xe_psmi_init(struct xe_device *xe);
++void xe_psmi_debugfs_register(struct xe_device *xe);
++
++#endif
 
 -- 
 2.50.1
