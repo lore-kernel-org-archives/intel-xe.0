@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC4DEC87FD2
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 10:44:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80813C87FD3
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 10:44:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6CDC10E03F;
-	Fri,  8 Aug 2025 10:44:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B8CE10E1E1;
+	Fri,  8 Aug 2025 10:44:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IGnSMWzr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VgCtCuKW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0A110E03F
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 10:44:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EC4F10E1E1
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 10:44:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754649851; x=1786185851;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
+ t=1754649855; x=1786185855;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
  bh=b3LmcSUL9popM7KWXD/lksJvUWU4cRkep2AJWLWr+Go=;
- b=IGnSMWzrlBN92glzyxL5J+z2IVbQ8oxsKHRAPIUzCIajBkwIBr0dVKVe
- Vfe8LSou7+3M46J/uC6JXZGbc/w3hnMZN5H9qR0GZonDK19np69lkWYVR
- I74j+D+RFYIPvFItt+WS8YGm9upP7cZbqwrkevUr52lexfpxV7UpD7UXZ
- J+nxWbFYm3jUjm4ggGi5ndRaaCG1lrdbLPouBysVJFTZqCXhVskgQoJr9
- 5cFJDSeJNpHZuYIb3hfBWbWad2wO4MaLnKXfLA/k71PIDxRNtt+QvN3Rz
- ccuzrrDIsynrnWXA7buIG3OjxGSkXFPWDX9eWmDfUq/xrULSXKG+1eQeF w==;
-X-CSE-ConnectionGUID: gD8hCzFlSCyP/RXghJKkxg==
-X-CSE-MsgGUID: lgZczgxtQB+H1rVSzHYAvQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="67265577"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="67265577"
+ b=VgCtCuKWT64iyHndVWE0AVWB9N/DHQrd36Zu0URlzcvjR4Ki7L8KPSuu
+ 6pz5g5dCW1KFPjjQ9A6euDLYIY3H+ZuhmpdCDtsGtW2Wfa/rJ3ciY+oO1
+ EuwlRG95cI8SCyUJvHp/VdOByfUDCI45rDibhyzpCmSvqrLXUCibpwQ9p
+ ku2WKybbIel3EKO3xJn4/gFXaD2/BOp4pRLIwmCfO4WNvP9ls3vU190RR
+ QBXOO+VDovOmgUeGTPHt6W38FksuYE5tDQwoaMw9n2aH6xOIAcGT4+pM1
+ ffMmlwK+PU9Vl2s1Q8WjgRl47so9iwxLdGG2WRcmbu0ELNkN4sF/4TaDN Q==;
+X-CSE-ConnectionGUID: KKq2pXppS5WUDYJoWeP6Gg==
+X-CSE-MsgGUID: orRrwBbAR7yDoE8jolSzyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="67265582"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="67265582"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 03:44:11 -0700
-X-CSE-ConnectionGUID: yD3saYGXTNqmdIv1A71aag==
-X-CSE-MsgGUID: Pk0NJBUAS6encwARV9enuA==
+ 08 Aug 2025 03:44:14 -0700
+X-CSE-ConnectionGUID: fx4f2p0RR/2hX64GqlXjQg==
+X-CSE-MsgGUID: 8t2+ZADPT72+OMOHMnRSgw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="164518837"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="164518843"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO mkuoppal-desk.lan)
  ([10.245.245.185])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 03:44:08 -0700
+ 08 Aug 2025 03:44:11 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
@@ -51,9 +51,11 @@ Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
  maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
 Subject: [PATCH 00/15] Intel Xe GPU Debug Support (eudebug) v4
-Date: Fri,  8 Aug 2025 13:43:34 +0300
-Message-ID: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
+Date: Fri,  8 Aug 2025 13:43:35 +0300
+Message-ID: <20250808104356.3294210-2-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
+References: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
