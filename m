@@ -4,53 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D63CC87FD2
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 10:35:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC4DEC87FD2
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 10:44:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2068010E921;
-	Fri,  8 Aug 2025 10:35:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6CDC10E03F;
+	Fri,  8 Aug 2025 10:44:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W89BWFj1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IGnSMWzr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48D6110E921
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 10:35:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0A110E03F
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 10:44:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754649311; x=1786185311;
+ t=1754649851; x=1786185851;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=bdbTVHKIiduf9FlFdBr0DLtVq1GbPFZ9cPfulNoiOf4=;
- b=W89BWFj14+eRnY+aCtRODg5rOAV5kvwkPkWipPViZoUvvFFWoHkATaH5
- BYebXscQf6WgWLQZFbbJ/jsQgJEICmbF5wlE8Dzj952MNetkU53fKkKwZ
- 4IkZ5un2Y+z+IBQCfPugPKOaqby02/NHEljU3j4E+5YtQ/1r8hPU98eRX
- hTcY2kCy6rJ1e4YgV/fXTUyhNj8ceT1A8sA8EHjmfmatIUdjQaQekrian
- UaeHBtmivvMEKYoUITo0ElyLek7EPJSlAJx35xhG7EyBPh4GlW2T0rL9J
- 5F5yzqUjFsitcggKmIRJyEk0qytZ+oIDmJz26MTyM683kkukHLnx+sy1K Q==;
-X-CSE-ConnectionGUID: LfEtFB48T5qaUFpyOjGoZQ==
-X-CSE-MsgGUID: ySfCKycjRKuVarC9En8kZg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="44587770"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="44587770"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 03:35:11 -0700
-X-CSE-ConnectionGUID: KLE98BUHTKq1yias2HyoYg==
-X-CSE-MsgGUID: 2vcUkhJlRMatrng5u7P7BQ==
+ bh=b3LmcSUL9popM7KWXD/lksJvUWU4cRkep2AJWLWr+Go=;
+ b=IGnSMWzrlBN92glzyxL5J+z2IVbQ8oxsKHRAPIUzCIajBkwIBr0dVKVe
+ Vfe8LSou7+3M46J/uC6JXZGbc/w3hnMZN5H9qR0GZonDK19np69lkWYVR
+ I74j+D+RFYIPvFItt+WS8YGm9upP7cZbqwrkevUr52lexfpxV7UpD7UXZ
+ J+nxWbFYm3jUjm4ggGi5ndRaaCG1lrdbLPouBysVJFTZqCXhVskgQoJr9
+ 5cFJDSeJNpHZuYIb3hfBWbWad2wO4MaLnKXfLA/k71PIDxRNtt+QvN3Rz
+ ccuzrrDIsynrnWXA7buIG3OjxGSkXFPWDX9eWmDfUq/xrULSXKG+1eQeF w==;
+X-CSE-ConnectionGUID: gD8hCzFlSCyP/RXghJKkxg==
+X-CSE-MsgGUID: lgZczgxtQB+H1rVSzHYAvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="67265577"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="67265577"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2025 03:44:11 -0700
+X-CSE-ConnectionGUID: yD3saYGXTNqmdIv1A71aag==
+X-CSE-MsgGUID: Pk0NJBUAS6encwARV9enuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="164955195"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.211])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 03:35:10 -0700
-From: Matthew Auld <matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="164518837"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO mkuoppal-desk.lan)
+ ([10.245.245.185])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2025 03:44:08 -0700
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Stuart Summers <stuart.summers@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2] drm/xe: rework PDE PAT index selection
-Date: Fri,  8 Aug 2025 11:34:56 +0100
-Message-ID: <20250808103455.462424-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.50.1
+Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
+ thomas.hellstrom@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ christoph.manszewski@intel.com, rodrigo.vivi@intel.com,
+ lucas.demarchi@intel.com, andrzej.hajda@intel.com, matthew.auld@intel.com,
+ maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Subject: [PATCH 00/15] Intel Xe GPU Debug Support (eudebug) v4
+Date: Fri,  8 Aug 2025 13:43:34 +0300
+Message-ID: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,173 +71,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For non-leaf paging structures we end up selecting a random index
-between [0, 3], depending on the first user if the page-table is shared,
-since non-leaf structures only have two bits in the HW for encoding the
-PAT index, and here we are just passing along the full user provided
-index, which can be an index as large as ~31 on xe2+. The user provided
-index is meant for the leaf node, which maps the actual BO pages where
-we have more PAT bits, and not the non-leaf nodes which are only mapping
-other paging structures, and so only needs a minimal PAT index range.
-Also the chosen index might need to consider how the driver mapped the
-paging structures on the host side, like wc vs wb, which is separate
-from the user provided index.
+Hi,
 
-With that move the PDE PAT index selection under driver control. For now
-just use a coherent index on platforms with page-tables that are cached
-on host side, and incoherent otherwise. Using a coherent index could
-potentially be expensive, and would be overkill if we know the page-table
-is always uncached on host side.
+This is the v4 patch series for Intel Xe GPU debug support (eudebug).
 
-v2 (Stuart):
-  - Add some documentation and split into separate helper.
+This series continues from the following previous submissions:
+- v1: https://lists.freedesktop.org/archives/intel-xe/2024-July/043605.html
+- v2: https://lists.freedesktop.org/archives/intel-xe/2024-October/052260.html
+- v3: https://lists.freedesktop.org/archives/intel-xe/2024-December/061476.html
 
-BSpec: 59510
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/xe_migrate.c  | 10 ++++------
- drivers/gpu/drm/xe/xe_pt.c       |  4 ++--
- drivers/gpu/drm/xe/xe_pt_types.h |  3 +--
- drivers/gpu/drm/xe/xe_vm.c       | 34 +++++++++++++++++++++++++++-----
- 4 files changed, 36 insertions(+), 15 deletions(-)
+This is a major cleanup and rework of eudebug patch series to address the
+feedback for v3. Page fault handling is omitted for until we receive
+ack on core design, as there was no feedback on it on previous iterations.
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 4effe10d815b..9da56c2e0eaa 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -152,8 +152,7 @@ static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm,
- 	for (pos = dpa_base; pos < vram_limit;
- 	     pos += SZ_1G, ofs += 8) {
- 		if (pos + SZ_1G >= vram_limit) {
--			entry = vm->pt_ops->pde_encode_bo(bo, pt_2m_ofs,
--							  pat_index);
-+			entry = vm->pt_ops->pde_encode_bo(bo, pt_2m_ofs);
- 			xe_map_wr(xe, &bo->vmap, ofs, u64, entry);
- 
- 			flags = vm->pt_ops->pte_encode_addr(xe, 0,
-@@ -207,7 +206,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 
- 	/* PT30 & PT31 reserved for 2M identity map */
- 	pt29_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
--	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs, pat_index);
-+	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs);
- 	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
- 
- 	map_ofs = (num_entries - num_setup) * XE_PAGE_SIZE;
-@@ -275,15 +274,14 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 			flags = XE_PDE_64K;
- 
- 		entry = vm->pt_ops->pde_encode_bo(bo, map_ofs + (u64)(level - 1) *
--						  XE_PAGE_SIZE, pat_index);
-+						  XE_PAGE_SIZE);
- 		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE * level, u64,
- 			  entry | flags);
- 	}
- 
- 	/* Write PDE's that point to our BO. */
- 	for (i = 0; i < map_ofs / PAGE_SIZE; i++) {
--		entry = vm->pt_ops->pde_encode_bo(bo, (u64)i * XE_PAGE_SIZE,
--						  pat_index);
-+		entry = vm->pt_ops->pde_encode_bo(bo, (u64)i * XE_PAGE_SIZE);
- 
- 		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE +
- 			  (i + 1) * 8, u64, entry);
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 330cc0f54a3f..f3a39e734a90 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -69,7 +69,7 @@ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
- 
- 	if (level > MAX_HUGEPTE_LEVEL)
- 		return vm->pt_ops->pde_encode_bo(vm->scratch_pt[id][level - 1]->bo,
--						 0, pat_index);
-+						 0);
- 
- 	return vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level, IS_DGFX(xe), 0) |
- 		XE_PTE_NULL;
-@@ -616,7 +616,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 			xe_child->is_compact = true;
- 		}
- 
--		pte = vm->pt_ops->pde_encode_bo(xe_child->bo, 0, pat_index) | flags;
-+		pte = vm->pt_ops->pde_encode_bo(xe_child->bo, 0) | flags;
- 		ret = xe_pt_insert_entry(xe_walk, xe_parent, offset, xe_child,
- 					 pte);
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-index 69eab6f37cfe..17cdd7c7e9f5 100644
---- a/drivers/gpu/drm/xe/xe_pt_types.h
-+++ b/drivers/gpu/drm/xe/xe_pt_types.h
-@@ -45,8 +45,7 @@ struct xe_pt_ops {
- 	u64 (*pte_encode_addr)(struct xe_device *xe, u64 addr,
- 			       u16 pat_index,
- 			       u32 pt_level, bool devmem, u64 flags);
--	u64 (*pde_encode_bo)(struct xe_bo *bo, u64 bo_offset,
--			     u16 pat_index);
-+	u64 (*pde_encode_bo)(struct xe_bo *bo, u64 bo_offset);
- };
- 
- struct xe_pt_entry {
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 432ea325677d..dbe6ac889f4e 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1512,14 +1512,39 @@ static u64 pte_encode_ps(u32 pt_level)
- 	return 0;
- }
- 
--static u64 xelp_pde_encode_bo(struct xe_bo *bo, u64 bo_offset,
--			      const u16 pat_index)
-+static u16 pde_pat_index(struct xe_bo *bo)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	u16 pat_index;
-+
-+	/*
-+	 * We only have two bits to encode the PAT index in non-leaf nodes, but
-+	 * these only point to other paging structures so we only need a minimal
-+	 * selection of options. The user PAT index is only for encoding leaf
-+	 * nodes, where we have use of more bits to do the encoding. The
-+	 * non-leaf nodes are instead under driver control so the chosen index
-+	 * here should be distict from the user PAT index. Also the
-+	 * corresponding coherency of the PAT index should be tied to the
-+	 * allocation type of the page table (or at least we should pick
-+	 * something which is always safe).
-+	 */
-+	if (!xe_bo_is_vram(bo) && bo->ttm.ttm->caching == ttm_cached)
-+		pat_index = xe->pat.idx[XE_CACHE_WB];
-+	else
-+		pat_index = xe->pat.idx[XE_CACHE_NONE];
-+
-+	xe_assert(xe, pat_index <= 3);
-+
-+	return pat_index;
-+}
-+
-+static u64 xelp_pde_encode_bo(struct xe_bo *bo, u64 bo_offset)
- {
- 	u64 pde;
- 
- 	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
- 	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
--	pde |= pde_encode_pat_index(pat_index);
-+	pde |= pde_encode_pat_index(pde_pat_index(bo));
- 
- 	return pde;
- }
-@@ -2024,8 +2049,7 @@ struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
- 
- u64 xe_vm_pdp4_descriptor(struct xe_vm *vm, struct xe_tile *tile)
- {
--	return vm->pt_ops->pde_encode_bo(vm->pt_root[tile->id]->bo, 0,
--					 tile_to_xe(tile)->pat.idx[XE_CACHE_WB]);
-+	return vm->pt_ops->pde_encode_bo(vm->pt_root[tile->id]->bo, 0);
- }
- 
- static struct xe_exec_queue *
+### Major Changes
+
+#### 1. Elimination of ptrace_may_access() and pid
+
+In previous series, the connection attempt was made using the process ID
+(PID) as the target. Access was checked using the `ptrace_may_access()`
+helper to achieve security parity with CPU-side debugging.
+
+In v4, this has been changed to connect to a DRM client, using a file
+descriptor as the target. This approach eliminates the need for the
+`ptrace_may_access()` symbol export, as access control is now managed
+through the debugger process's access to the file descriptor. For example,
+accessing a remote DRM client requires the debugger process to
+successfully call `pidfd_getfd()` to obtain a duplicate of the target
+file descriptor.The 1:1 mapping between DRM clients and their debuggers
+eliminates the need for `EVENT_OPEN` and simplifies overall connection
+tracking.
+
+#### 2. ELF binaries not held in kernel memory
+
+In v4, debug data is delivered as a VM bind 'OP_ADD_DEBUG_DATA' extension.
+The ELF binaries are no longer stored within the Xe KMD but are instead
+kept in a file. The file path is passed as part of an extension in
+the newly introduced 'OP_ADD_DEBUG_DATA' VM bind operation. Alternatively
+pseudo-paths can be used to annotate special address ranges similar to
+/proc/<pid>/maps.
+
+#### 3. Debug metadata not carried in VMA struct
+
+Instead of attaching debug data to vma created by 'OP_MAP',
+we introduce separate ops for managing the metadata.
+Debug data is no longer held in the VMA struct. xe_vm contains a
+list of all associated debug data.
+
+### Supported Hardware with v4
+- Lunarlake (LNL)
+- Battlemage (BMG)
+- Pantherlake (PTL)
+
+The code for this submission can be found at:
+https://gitlab.freedesktop.org/miku/kernel/-/tree/eudebug-v4
+
+Christoph Manszewski (5):
+  drm/xe: Introduce ADD_DEBUG_DATA and REMOVE_DEBUG_DATA vm bind ops
+  drm/xe/eudebug: Introduce vm bind and vm bind debug data events
+  drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
+  drm/xe: Implement SR-IOV and eudebug exclusivity
+  drm/xe: Add xe_client_debugfs and introduce debug_data file
+
+Dominik Grzegorzek (5):
+  drm/xe/eudebug: Introduce exec_queue events
+  drm/xe: Add EUDEBUG_ENABLE exec queue property
+  drm/xe/eudebug: hw enablement for eudebug
+  drm/xe/eudebug: Introduce EU control interface
+  drm/xe/eudebug: Introduce per device attention scan worker
+
+Mika Kuoppala (5):
+  drm/xe/eudebug: Introduce eudebug interface
+  drm/xe/eudebug: Introduce discovery for resources
+  drm/xe/eudebug: Add UFENCE events with acks
+  drm/xe/eudebug: vm open/pread/pwrite
+  drm/xe/eudebug: userptr vm pread/pwrite
+
+ drivers/gpu/drm/xe/Kconfig                  |   10 +
+ drivers/gpu/drm/xe/Makefile                 |    7 +-
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h    |    7 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h        |   43 +
+ drivers/gpu/drm/xe/tests/xe_eudebug.c       |  189 ++
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c |    5 +
+ drivers/gpu/drm/xe/xe_client_debugfs.c      |  118 +
+ drivers/gpu/drm/xe/xe_client_debugfs.h      |   19 +
+ drivers/gpu/drm/xe/xe_debug_data.c          |  279 +++
+ drivers/gpu/drm/xe/xe_debug_data.h          |   22 +
+ drivers/gpu/drm/xe/xe_debug_data_types.h    |   25 +
+ drivers/gpu/drm/xe/xe_device.c              |   30 +-
+ drivers/gpu/drm/xe/xe_device.h              |   42 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   40 +
+ drivers/gpu/drm/xe/xe_eudebug.c             | 2309 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eudebug.h             |  116 +
+ drivers/gpu/drm/xe/xe_eudebug_hw.c          |  730 ++++++
+ drivers/gpu/drm/xe/xe_eudebug_hw.h          |   32 +
+ drivers/gpu/drm/xe/xe_eudebug_types.h       |  174 ++
+ drivers/gpu/drm/xe/xe_eudebug_vm.c          |  434 ++++
+ drivers/gpu/drm/xe/xe_eudebug_vm.h          |    8 +
+ drivers/gpu/drm/xe/xe_exec.c                |    2 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c          |   51 +-
+ drivers/gpu/drm/xe/xe_exec_queue.h          |    2 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h    |    7 +
+ drivers/gpu/drm/xe/xe_gt.c                  |    1 +
+ drivers/gpu/drm/xe/xe_gt_debug.c            |  179 ++
+ drivers/gpu/drm/xe/xe_gt_debug.h            |   41 +
+ drivers/gpu/drm/xe/xe_hw_engine.h           |   14 +
+ drivers/gpu/drm/xe/xe_lrc.c                 |   10 +
+ drivers/gpu/drm/xe/xe_oa.c                  |    3 +-
+ drivers/gpu/drm/xe/xe_pci_sriov.c           |   10 +
+ drivers/gpu/drm/xe/xe_reg_sr.c              |   21 +-
+ drivers/gpu/drm/xe/xe_reg_sr.h              |    4 +-
+ drivers/gpu/drm/xe/xe_reg_whitelist.c       |    2 +-
+ drivers/gpu/drm/xe/xe_rtp.c                 |    2 +-
+ drivers/gpu/drm/xe/xe_sync.c                |   45 +-
+ drivers/gpu/drm/xe/xe_sync.h                |    8 +-
+ drivers/gpu/drm/xe/xe_sync_types.h          |   28 +-
+ drivers/gpu/drm/xe/xe_vm.c                  |  186 +-
+ drivers/gpu/drm/xe/xe_vm.h                  |   26 +
+ drivers/gpu/drm/xe/xe_vm_types.h            |   38 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules          |    4 +
+ include/uapi/drm/xe_drm.h                   |   59 +
+ include/uapi/drm/xe_drm_eudebug.h           |  217 ++
+ 45 files changed, 5552 insertions(+), 47 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_data.c
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_data.h
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_data_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_hw.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_hw.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_vm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_vm.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.h
+ create mode 100644 include/uapi/drm/xe_drm_eudebug.h
+
 -- 
-2.50.1
+2.43.0
 
