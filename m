@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2E16C87FDA
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 18:53:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EA17C87FCB
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 18:59:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8260910E055;
-	Fri,  8 Aug 2025 18:53:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B47210E971;
+	Fri,  8 Aug 2025 18:59:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lb/SxV13";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ksbqEroY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC2110E055
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 18:53:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1576310E971
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 18:59:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754679200; x=1786215200;
+ t=1754679548; x=1786215548;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=T/R8HEjHGNHkTluGFOveW3Bg1JNAIdcxmkibikGHkuk=;
- b=lb/SxV13S4Uc2GHIn1n/6xdkGl4U0KfJSm6hc/TwjSK1GBKQ0SDZux9/
- Gbz7l/G7LGs7tsoU5rbr0Xicu5BjfqvAYpoVp5TozrxiC5qHTFMGlq2bT
- vtsX1E5Rm9EvzO9i32NzVGlw03kmPkW+mwMt01MKKZijjW0ll3MV/7hyQ
- zdFvmtPESvVOIWDaVWAcap37vFXXgJFfJuPG5Ib6b+idHgP4lAGZXtmMM
- a/AZ/dad+yztDbOqqEvHU2PaMg7Tr3+2eD/YzePYWsK13X6CLxoFLFu+T
- UP+t6GJwyvIWlUco+gAddBBHZUnUAc3jmPtEFQXpUHKlI9PRgVmMewxnI w==;
-X-CSE-ConnectionGUID: a+y+zs+oS2iqoNMUr6NHqA==
-X-CSE-MsgGUID: vmsuLZZASIO114njzdBVIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11515"; a="60657788"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="60657788"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 11:53:20 -0700
-X-CSE-ConnectionGUID: TZKvThsmTnK5CSWjJSa11g==
-X-CSE-MsgGUID: 6HCNdgD0QJCLCrBadwp3Lw==
+ bh=XXZzMsYPEJWjXOaLVmJCgv9W5F92MhgeyufvYVdyG+w=;
+ b=ksbqEroYQcuGsKmGurjFPDYVYzx2rYs+BGo+iDnlPXA6gea1V/WmLRmP
+ 5MpJT7ojX5jMVXjn3tMdUUorI8z5MHjzGwjRDvhibVBoVPH452RdIj58m
+ 6Z+FafjNAoE/E4YGeFXVcPZ4siqbgLHY95mXaVL0UoJCxbuoJ4jTdhNPg
+ V+XasKi5YXXcHu4HwCOL6uL0vp1wyhuEzHrUStXuieGUM7kfzoccB1orA
+ 7Bu3ol6R3GTAuTc/exjJOy2HwT955E5Hn4O4RQcG+dlrgOCEqzpl3wPmi
+ Y0T9CgM0DpH1vmb6Gbq3UTYiSC70UDSeuwioumNmTaQBWvj+ZdnY4JcaE A==;
+X-CSE-ConnectionGUID: PrGcztIsTqWTj/qYU+e6DA==
+X-CSE-MsgGUID: OwI1FOUIRMmEL3y4fhG2SA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11515"; a="44625511"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="44625511"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2025 11:59:08 -0700
+X-CSE-ConnectionGUID: 6Vq6148uSxeH4+mb0Uwfqw==
+X-CSE-MsgGUID: cF6XBgNXRsuSF9tBw4TfBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="165398373"
-Received: from unknown (HELO sinjan-Super-Server.iind.intel.com)
- ([10.190.239.39])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 11:53:18 -0700
-From: Karthik Poosa <karthik.poosa@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="165291936"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2025 11:59:07 -0700
+From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
- rodrigo.vivi@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v4] drm/xe/hwmon: Add SW clamp for power limits writes
-Date: Sat,  9 Aug 2025 00:23:10 +0530
-Message-Id: <20250808185310.3466529-1-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.25.1
+Cc: francois.dugast@intel.com
+Subject: [PATCH] drm/xe: Enable 2M pages in xe_migrate_vram
+Date: Fri,  8 Aug 2025 11:59:02 -0700
+Message-Id: <20250808185902.1948431-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,95 +64,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Clamp writes to power limits powerX_crit/currX_crit, powerX_cap,
-powerX_max, to the maximum supported by the pcode mailbox
-when sysfs-provided values exceed this limit.
-Although the pcode already performs clamping, values beyond the pcode
-mailbox's supported range get truncated, leading to incorrect
-critical power settings.
-This patch ensures proper clamping to prevent such truncation.
+Using 2M pages in xe_migrate_vram has two benefits: we issue fewer
+instructions per 2M copy (1 vs. 512), and the cache hit rate should be
+higher. This results in increased copy engine bandwidth, as shown by
+benchmark IGTs.
 
-v2:
- - Address below review comments. (Riana)
- - Split comments into multiple sentences.
- - Use local variables for readability.
- - Add a debug log.
- - Use u64 instead of unsigned long.
+Enable 2M pages by reserving PDEs in the migrate VM and using 2M pages
+in xe_migrate_vram if the DMA address order matches 2M.
 
-v3:
- - Change drm_dbg logs to drm_info. (Badal)
-
-v4:
- - Rephrase the drm_info log. (Rodrigo, Riana)
- - Rename variable max_mbx_power_limit to max_supp_power_limit, as
-   limit is same for platforms with and without mailbox power limit
-   support.
-
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Fixes: 92d44a422d0d ("drm/xe/hwmon: Expose card reactive critical power")
-Fixes: fb1b70607f73 ("drm/xe/hwmon: Expose power attributes")
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ drivers/gpu/drm/xe/xe_migrate.c | 82 +++++++++++++++++++++++++++++++--
+ 1 file changed, 78 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index f08fc4377d25..c17ed1ae8649 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -332,6 +332,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
- 	int ret = 0;
- 	u32 reg_val, max;
- 	struct xe_reg rapl_limit;
-+	u64 max_supp_power_limit = 0;
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
-@@ -356,6 +357,20 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
- 		goto unlock;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index ac9f4d4988d2..9021aa3ac1e0 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -56,6 +56,13 @@ struct xe_migrate {
+ 	u64 usm_batch_base_ofs;
+ 	/** @cleared_mem_ofs: VM offset of @cleared_bo. */
+ 	u64 cleared_mem_ofs;
++	/** @large_page_copy_ofs: VM offset of 2M pages used for large copies */
++	u64 large_page_copy_ofs;
++	/**
++	 * @large_page_copy_pdes: BO offset to writeout 2M pages (PDEs) used for
++	 * large copies
++	 */
++	u64 large_page_copy_pdes;
+ 	/**
+ 	 * @fence: dma-fence representing the last migration job batch.
+ 	 * Protected by @job_mutex.
+@@ -289,6 +296,12 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 			  (i + 1) * 8, u64, entry);
  	}
  
-+	/*
-+	 * If the sysfs value exceeds the maximum pcode supported power limit value, clamp it to
-+	 * the supported maximum (U12.3 format).
-+	 * This is to avoid truncation during reg_val calculation below and ensure the valid
-+	 * power limit is sent for pcode which would clamp it to card-supported value.
-+	 */
-+	max_supp_power_limit = ((PWR_LIM_VAL) >> hwmon->scl_shift_power) * SF_POWER;
-+	if (value > max_supp_power_limit) {
-+		value = max_supp_power_limit;
-+		drm_info(&hwmon->xe->drm,
-+			 "Power limit clamped as selected %s exceeds channel %d limit\n",
-+			 PWR_ATTR_TO_STR(attr), channel);
++	/* Reserve 2M PDEs */
++	level = 1;
++	m->large_page_copy_ofs = NUM_PT_SLOTS << xe_pt_shift(level);
++	m->large_page_copy_pdes = map_ofs + XE_PAGE_SIZE * level +
++		NUM_PT_SLOTS * 8;
++
+ 	/* Set up a 1GiB NULL mapping at 255GiB offset. */
+ 	level = 2;
+ 	xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE * level + 255 * 8, u64,
+@@ -1740,6 +1753,40 @@ static u32 pte_update_cmd_size(u64 size)
+ 	return num_dword;
+ }
+ 
++static void build_large_pt_update_batch_sram(struct xe_migrate *m,
++					     struct xe_bb *bb,
++					     struct drm_pagemap_addr *sram_addr,
++					     u32 size)
++{
++	u16 pat_index = tile_to_xe(m->tile)->pat.idx[XE_CACHE_WB];
++	u32 ptes, i = 0, large_size = (0x1 << xe_pt_shift(1));
++
++	ptes = DIV_ROUND_UP(size, large_size);
++
++	bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(ptes);
++	bb->cs[bb->len++] = m->large_page_copy_pdes;
++	bb->cs[bb->len++] = 0;
++
++	while (ptes--) {
++		u64 addr = sram_addr[i].addr & ~(((u64)large_size) - 1);
++
++		xe_tile_assert(m->tile, sram_addr[i].proto ==
++			       DRM_INTERCONNECT_SYSTEM);
++		xe_tile_assert(m->tile, PAGE_SIZE << sram_addr[i].order ==
++			       large_size);
++		xe_tile_assert(m->tile, addr);
++
++		addr = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
++							 addr, pat_index,
++							 1, false, 0);
++
++		bb->cs[bb->len++] = lower_32_bits(addr);
++		bb->cs[bb->len++] = upper_32_bits(addr);
++
++		i += large_size / PAGE_SIZE;
++	}
++}
++
+ static void build_pt_update_batch_sram(struct xe_migrate *m,
+ 				       struct xe_bb *bb, u32 pt_offset,
+ 				       struct drm_pagemap_addr *sram_addr,
+@@ -1777,6 +1824,22 @@ static void build_pt_update_batch_sram(struct xe_migrate *m,
+ 	}
+ }
+ 
++static bool xe_migrate_vram_use_pde(struct drm_pagemap_addr *sram_addr,
++				    unsigned long size)
++{
++	u32 large_size = (0x1 << xe_pt_shift(1));
++	unsigned long i;
++
++	for (i = 0; i < DIV_ROUND_UP(size, PAGE_SIZE); ++i) {
++		if (PAGE_SIZE << sram_addr[i].order != large_size)
++			return false;
++
++		i += large_size / PAGE_SIZE;
 +	}
 +
- 	/* Computation in 64-bits to avoid overflow. Round to nearest. */
- 	reg_val = DIV_ROUND_CLOSEST_ULL((u64)value << hwmon->scl_shift_power, SF_POWER);
++	return true;
++}
++
+ enum xe_migrate_copy_dir {
+ 	XE_MIGRATE_COPY_TO_VRAM,
+ 	XE_MIGRATE_COPY_TO_SRAM,
+@@ -1806,6 +1869,7 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+ 		PAGE_SIZE : 4;
+ 	int err;
+ 	unsigned long i, j;
++	bool use_pde = xe_migrate_vram_use_pde(sram_addr, len + sram_offset);
  
-@@ -739,9 +754,23 @@ static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, int channel,
- {
- 	int ret;
- 	u32 uval;
-+	u64 max_crit_power_curr = 0;
+ 	if (drm_WARN_ON(&xe->drm, (len & XE_CACHELINE_MASK) ||
+ 			(sram_offset | vram_addr) & XE_CACHELINE_MASK))
+@@ -1840,16 +1904,26 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+ 		i += NR_PAGES(order);
+ 	}
  
- 	mutex_lock(&hwmon->hwmon_lock);
+-	build_pt_update_batch_sram(m, bb, pt_slot * XE_PAGE_SIZE,
+-				   sram_addr, len + sram_offset);
++	if (use_pde)
++		build_large_pt_update_batch_sram(m, bb, sram_addr,
++						 len + sram_offset);
++	else
++		build_pt_update_batch_sram(m, bb, pt_slot * XE_PAGE_SIZE,
++					   sram_addr, len + sram_offset);
  
-+	/*
-+	 * If the sysfs value exceeds the pcode mailbox cmd POWER_SETUP_SUBCOMMAND_WRITE_I1
-+	 * max supported value, clamp it to the command's max (U10.6 format).
-+	 * This is to avoid truncation during uval calculation below and ensure the valid power
-+	 * limit is sent for pcode which would clamp it to card-supported value.
-+	 */
-+	max_crit_power_curr = (POWER_SETUP_I1_DATA_MASK >> POWER_SETUP_I1_SHIFT) * scale_factor;
-+	if (value > max_crit_power_curr) {
-+		value = max_crit_power_curr;
-+		drm_info(&hwmon->xe->drm,
-+			 "Power limit clamped as selected exceeds channel %d limit\n",
-+			 channel);
-+	}
- 	uval = DIV_ROUND_CLOSEST_ULL(value << POWER_SETUP_I1_SHIFT, scale_factor);
- 	ret = xe_hwmon_pcode_write_i1(hwmon, uval);
+ 	if (dir == XE_MIGRATE_COPY_TO_VRAM) {
+-		src_L0_ofs = xe_migrate_vm_addr(pt_slot, 0) + sram_offset;
++		if (use_pde)
++			src_L0_ofs = m->large_page_copy_ofs + sram_offset;
++		else
++			src_L0_ofs = xe_migrate_vm_addr(pt_slot, 0) + sram_offset;
+ 		dst_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr, false);
  
+ 	} else {
+ 		src_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr, false);
+-		dst_L0_ofs = xe_migrate_vm_addr(pt_slot, 0) + sram_offset;
++		if (use_pde)
++			dst_L0_ofs = m->large_page_copy_ofs + sram_offset;
++		else
++			dst_L0_ofs = xe_migrate_vm_addr(pt_slot, 0) + sram_offset;
+ 	}
+ 
+ 	bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
 -- 
-2.25.1
+2.34.1
 
