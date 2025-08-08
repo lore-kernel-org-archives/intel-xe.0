@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B21F3C87FD3
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 13:02:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFA50C87FD2
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 13:05:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7806F10E930;
-	Fri,  8 Aug 2025 13:02:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D88310E12B;
+	Fri,  8 Aug 2025 13:05:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="vHk2g+Hv";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="da3Yjl1d";
 	dkim-atps=neutral
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
- [209.85.208.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CA7F10E92A
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 13:02:25 +0000 (UTC)
-Received: by mail-ed1-f53.google.com with SMTP id
- 4fb4d7f45d1cf-61543b05b7cso11114a12.0
- for <intel-xe@lists.freedesktop.org>; Fri, 08 Aug 2025 06:02:25 -0700 (PDT)
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com
+ [209.85.166.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0F3410E12B
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 13:05:31 +0000 (UTC)
+Received: by mail-il1-f179.google.com with SMTP id
+ e9e14a558f8ab-3e40df3c68fso149405ab.0
+ for <intel-xe@lists.freedesktop.org>; Fri, 08 Aug 2025 06:05:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1754658144; x=1755262944;
+ d=google.com; s=20230601; t=1754658331; x=1755263131;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=kAJ6FGqkbh717pDwmHpln0U4/PfoZkwnb7I/ttxK6oI=;
- b=vHk2g+Hv3GPdF5ebpNsYa1Qqm2kY97ey7S6+2lOI8bw9Ljn51nNUvLuleZkghmaa3w
- lwEK1lycmIaXySFU/RJTGSvDmsdUhtORDFUFUm53HW/Uehyyvxp2+hbYxfLCTgiGyYC5
- G1dSurfw04y9ff6keER+w0tkoZjxkZvt1OLC8rJ8EHevI6zMY3TOIXa8eTwZS2awrndZ
- 3/cZlM9OJvKTIXN9VweLWo3DGQawhfY4z/XU0mpZ/C+S1IdKmG+gyG0AUiBF3/yzvYlu
- 7mtErx+lil6vhwm/hNag/NcJo8cDkLB1hJQtVy9VoT6M9U1H2tW60Ul2QxBTo8QAZHPS
- 9l8A==
+ bh=w6neGwwteSVypDmYCIRvpySKaDxtfHqm3VMcPtWq+jw=;
+ b=da3Yjl1dUgWmzqBtwz8Z2HqNCjnxheEsEHnmCINBic0i5xDn0m8Ne2ELgMudgbfN4T
+ MTxevx49hsFi0dm2WueGSX5qnGzk/HUIwGzc9Wkd2/SbJb1/pwTZMkotyNVQimHDgg85
+ Ez3+AyTFlm7KIsLzwy78XZg/fgJAVXsWtsQ2U9QN1BOwMZVD4XXxqdwQK2S3AeW64RpU
+ fg/Em3pwkHW94s1Fd9SbWTKifAXDGWF6X3bby1f4+tawWqt86SQsHsivT4yu8c1h3lVT
+ gtFkf71piAIceIm9maZ8VKZv5xu7Qo2ASgP2YMsLvYQ98SYBf9p9oZ2qVF1KcW25crAy
+ Gt/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754658144; x=1755262944;
+ d=1e100.net; s=20230601; t=1754658331; x=1755263131;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=kAJ6FGqkbh717pDwmHpln0U4/PfoZkwnb7I/ttxK6oI=;
- b=QtdiB5haHbPBK5h0EFxugYR8Uj0dNDAOr+LZq4UxqbtJ3V00HQFw5BbfItY5clpJ30
- mpIiLlT5OWO2wsl9Jp/OpTRC49ADUfi0T8dhQkER1Dw8YUNpJlslDURa2KQiKYxoD5w1
- soH6j41/mT7x+6H/Q7xBJjQUpcnd/TJ5o+wc6XPBisTcO3heO1L2J2MDOmreNwILnkyN
- OFE4kGS2d4s/7Dw5p8TWxwfUduQ0dh1Xh7mLeW891WaPYee3OgZ9X/7wV97qzDVnGwzY
- mCWjNSqPVqoh57evJOT3TnbjlJYPNAy7onLsZ3CsjdiJoD9HqrPWt4rGP1TR8bf25cuh
- VHEg==
+ bh=w6neGwwteSVypDmYCIRvpySKaDxtfHqm3VMcPtWq+jw=;
+ b=uNiZO1w2l3LLeMOlQSZpJKwfG3kTbwt5RUjotsGgLmjDwPG9/9SsTIDjGDwi56mmU2
+ bIA9y1s5Zv1ij7PeRmUnHGRweo+1qohFjx5xl5WrnkDC2V6kWtSJAVo86hM20avt0i/J
+ eQUi/PmEjx43r43i8YCuu85A6K90NX5sWJepYK3n3BrOzcouK2SYA2URZ4M14h3588eq
+ 0tmBaT7rwsdFaQo9Wc+B2IW9+2hsOZC8ftekniRJweX0EUeGY3EqBVH0hfktPuvfeWI5
+ pPHAzK5ecS6ULgAWrsGUsU+a4ikH8Q8okevIL8tTDUIPeO351diluOcpcJ4nhqNebO5Y
+ SLlA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVWCi4mejml23VEC9TdEnt5w1v+IW4PubC0HDnWOyqpWE2ty32SzXpqk3lcUfwNRuIY9J4L7TTvug==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxLfTcFFUYZtB2CH/+qXZxbAdph6VAWVYTBvfqaUUnd3Hh89LEC
- 42kAVoYkucv2AsdZLGKby1OAgIdK9y8NquSM+GKCvHkak1md7zlQQmLUQ4Un7mmvumh252f+O7F
- E5AEbUBzYvRbLg2B5St8rKg52T0Fs9I/ffJkWSMTx
-X-Gm-Gg: ASbGncuv2J0juY2HvKGxg/svqnR5UEFirG8EqndJ2KVRTlmO0Fcdj8cHdSm7nXR+kw1
- aOJY0gopwCaJkHpviw0BDF3yEhk/NaSbW7w1y/Lddz2hhwobuxNzbk2wlzIz4jnAchU5tZzdJEe
- YavVlsg/pWqaisfvu1C6OeOGr5LgbtinMxivRQtV5YLgnwJIWsa1tbPsWWdsHM98a0ulkmGNeoH
- 5Q9hqA+
-X-Google-Smtp-Source: AGHT+IEZZ9bSdNQYUF48wJ7cTr+Cqhvr1Umls+vnMWstmvYQgL7eeX2CKS06elQmW7cRVjFhgDgbZvEijt7OPx0SlUc=
-X-Received: by 2002:aa7:cccd:0:b0:615:4bd4:5798 with SMTP id
- 4fb4d7f45d1cf-617f230879amr19448a12.6.1754658143141; Fri, 08 Aug 2025
- 06:02:23 -0700 (PDT)
+ AJvYcCXOTt+jDq3jDgABh6xFcq3fzplAnS7WGmzQU71biLDhT0Z/JaO+NYPkqfqXctOkD6PqvGWaiA7LOQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzYUUlJPHgIGAJQ41cCtIMC1aDtxaf8BGChOfuncU4j2/I9mGKw
+ 2g/e+xAJ7XT1Q04puMgGSRN0tdQmYjmLKRSACfNzTnT9fr9EPNIw5+QwwLEYK/uDg7imJjNKG0T
+ 9OdMrj6YPiK4RtVOl/YGkOIU+KfmP+aLgpHLzkfAG
+X-Gm-Gg: ASbGncuAKO5ZWtr5xqp5kvCNeMyxWwesWVqskvozBcJjWet5SqImUzSaIIQm/nEnOBx
+ yBui1m+g3YqdQ+2joMlpquWZKHK5UTQTb1kSQBfRFeI9GUV2JVSJAGk2zaaTxVAB6TKvAuqgDiS
+ l8y68tCM5fjHr+BkhVBg9B3dIHnbYf8p22+6eoUxjs49LBjgdTu3tyuGWsiV4kKC7TB/hqPwMAM
+ Tn/apJvrt70W1biiSY=
+X-Google-Smtp-Source: AGHT+IElda8Px3WBkuAh+8esNh5W/6PzA9lCZzA5dDUubyQK+2MWaXBkidAPg3lcnQIigGwLuSLe2dzRKNkf5liJ1ns=
+X-Received: by 2002:a05:6e02:12ca:b0:3e2:865b:6b64 with SMTP id
+ e9e14a558f8ab-3e5340e2741mr3830955ab.3.1754658330147; Fri, 08 Aug 2025
+ 06:05:30 -0700 (PDT)
 MIME-Version: 1.0
 References: <20250729193647.3410634-1-marievic@google.com>
  <20250729193647.3410634-10-marievic@google.com>
- <CABVgOSnWF=xnfSJjCJ4KYAPhnY7OyeU7w1e2MXi5U25nwaT+MQ@mail.gmail.com>
-In-Reply-To: <CABVgOSnWF=xnfSJjCJ4KYAPhnY7OyeU7w1e2MXi5U25nwaT+MQ@mail.gmail.com>
+ <CA+GJov5q-mAHuchZNqS6DEv1zFmDzhF1SSdjBfJyB0ZnqUCQfg@mail.gmail.com>
+In-Reply-To: <CA+GJov5q-mAHuchZNqS6DEv1zFmDzhF1SSdjBfJyB0ZnqUCQfg@mail.gmail.com>
 From: Marie Zhussupova <marievic@google.com>
-Date: Fri, 8 Aug 2025 09:02:09 -0400
-X-Gm-Features: Ac12FXw6AWC0LnlsOC2ttnJifRxiBAp52bTOP9hWwsV4WLPHuDfkPnVssu6-H-I
-Message-ID: <CAAkQn5LCgSdYdp4X0Ucum+TVyf5U+X-j3gdD_qYXtzf6XDBGMA@mail.gmail.com>
+Date: Fri, 8 Aug 2025 09:05:15 -0400
+X-Gm-Features: Ac12FXznLJ3D8UlToiHeLT2K71-cEF7aX5NUvAOWyQU8KC2MUoJs-V9Mnp3-vlM
+Message-ID: <CAAkQn5+Z2mb0yrQt3Q4zOmM-7xA+dVzT7dEOi7W-1HphYAFTcw@mail.gmail.com>
 Subject: Re: [PATCH 9/9] Documentation: kunit: Document new parameterized test
  features
-To: David Gow <davidgow@google.com>
-Cc: rmoar@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
+To: Rae Moar <rmoar@google.com>
+Cc: davidgow@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
  elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com, 
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
  linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
@@ -91,11 +91,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Aug 2, 2025 at 5:45=E2=80=AFAM David Gow <davidgow@google.com> wrot=
-e:
+On Tue, Aug 5, 2025 at 11:19=E2=80=AFAM Rae Moar <rmoar@google.com> wrote:
 >
-> On Wed, 30 Jul 2025 at 03:37, Marie Zhussupova <marievic@google.com> wrot=
-e:
+> On Tue, Jul 29, 2025 at 3:37=E2=80=AFPM Marie Zhussupova <marievic@google=
+.com> wrote:
 > >
 > > -Update the KUnit documentation to explain the concept
 > > of a parent parameterized test.
@@ -103,29 +102,20 @@ e:
 > > parameters to parameterized tests and how to manage
 > > shared resources between them.
 > >
->
-> Nit: We don't need the dot points ('-') here. Just make them paragraphs.
-
-Will do!
-
->
 > > Signed-off-by: Marie Zhussupova <marievic@google.com>
+>
+> Hello!
+>
+> This is amazing! I have a few comments below but I appreciate the
+> effort to document this new feature. It is always incredibly helpful
+> to have documentation to go along with the code.
+>
+> Reviewed-by: Rae Moar <rmoar@google.com>
+>
+> Thanks!
+> -Rae
+>
 > > ---
->
-> Thanks very, very much for including such detailed documentation.
->
-> I do think some of the examples could be trimmed / left in the
-> kunit-example-test.c file and referenced, as they're long enough that
-> it's difficult to focus on the essentials. But otherwise, this looks
-> great.
->
-> A few small notes below, but otherwise:
->
-> Reviewed-by: David Gow <davidgow@google.com>
->
-> Cheers,
-> -- David
->
 > >  Documentation/dev-tools/kunit/usage.rst | 455 +++++++++++++++++++++++-
 > >  1 file changed, 449 insertions(+), 6 deletions(-)
 > >
@@ -155,14 +145,6 @@ fering
 > > +a more integrated and flexible way to handle multiple test scenarios w=
 ith
 > > +minimal code duplication.
->
-> Nit: maybe we can tone down the adjectives slightly here. I do like
-> parameterised testing a lot, but it probably doesn't need to be
-> "efficient", "elegant", "integrated", and "flexible".
-
-Will do that in v2.
-
->
 > > +
 > > +Passing Parameters to the Test Cases
 > > +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -177,6 +159,17 @@ C`` to the
 > > +   ``cases`` array from the previous section, we can create a paramete=
 rized test
 > > +   as shown below:
+>
+> Is it possible to bold the titles of the ways to pass in parameters:
+> Array Parameter Macros, etc.? I feel like they should stand out more
+> from the rest of the text. Also I think I would prefer if there was an
+> empty line between the title and the rest of the indented text, to
+> again further separate these titles from the rest of the text.
+
+Bolding may clutter the title a bit for people reading the .rst file.
+Adding an empty line is a great idea, I will do that in v2.
+
+>
 > >
 > >  .. code-block:: c
 > >
@@ -268,13 +261,6 @@ ms),
 > > +
 > > +Direct Registration in Parameter Init Function (using ``kunit_register=
 _params_array``):
->
-> Maybe we should highlight this as being array-based more explicitly.
-> "Runtime Array Registration in the Init function" or similar?
-
-That would make it clearer, will make this edit in v2.
-
->
 > > +   For more complex scenarios, you can directly register a parameter a=
 rray with
 > > +   a test case instead of using a ``generate_params`` function. This i=
@@ -299,6 +285,15 @@ ynamically
 > > +   allocated params array after the parameterized test series ends.
 > > +
 > > +.. code-block:: c
+>
+> As David mentioned, this example code is a bit long. I would also
+> prefer if this example had just the highlights and then a link to the
+> source code.
+>
+
+I agree it's a bit long. I will do highlights and a link to the source code
+in v2.
+
 > > +
 > > +       /*
 > > +        * Helper function to create a parameter array of Fibonacci num=
@@ -417,15 +412,7 @@ rr),
 > > +               {}
 > > +       };
 > > +
->
-> This is a long example, which already exists in the source code
-> (kunit-example-test.c). Could we just include some highlights (e.g.,
-> the init function and the KUNIT_CASE_PARAM_WITH_INIT call), and link
-> to the source code for the rest?
-
-Thank you for the suggestion! I will do that in v2.
-
->
+> > +
 > > +Adding Shared Resources
 > > +^^^^^^^^^^^^^^^^^^^^^^^
 > > +All parameterized test executions in this framework have a parent test=
@@ -465,13 +452,6 @@ RAM_WITH_INIT``
 > > +   ``param_init``, the ``generate_params`` function will be used to ge=
 t
 > > +   the parameters.
->
-> Maybe note that the ``generate_params`` function can use the array
-> passed, though?
-
-Will make this edit in v2
-
->
 > > +
 > > +Both ``param_init`` and ``param_exit`` are passed the parent instance =
 of a test
@@ -505,6 +485,15 @@ extends to
 his code
 > > +utilizes the Resource API, which you can read more about here:
 > > +Documentation/dev-tools/kunit/api/resource.rst.
+>
+> It would be nice if these references to the Documentation files were
+> actual links to the webpages. This would look something like -
+> ":ref:`kunit-resource`" and then also labeling that section: "..
+> _kunit-resource:".
+
+Thank you for this suggestion, I will do that in v2.
+
+>
 > > +
 > > +.. code-block:: c
 > > +
@@ -671,16 +660,6 @@ t, NULL,
 > > +               {}
 > > +       };
 > > +
->
-> This is a really long example, which already exists in
-> kunit-example-test.c. Can we either link to it there (and just include
-> the most critical lines here), or have a smaller, less-complete
-> example inline here?
-
-Yes, I will do that in v2.
-
->
->
 > > +As an alternative to using the KUnit Resource API for shared resources=
 , you can
 > > +place them in ``test->parent->priv``. It can store data that needs to =
@@ -700,16 +679,15 @@ ose same
 > > +
 > > +The resources placed in ``test->parent-priv`` will also need to be all=
 ocated in
+>
+> Nit: I think this is a typo for test->parent->priv.
+>
+Thank you for catching this!
+
+>
+>
 > > +memory to persist across the parameterized tests executions. If memory=
  is
->
-> Nit: 'parameterized test executions' singular?
-
-Thank you for catching this! Though I will be changing all references to
-parameter executions to "parameter runs" to be consistent with the
-terminology in v2.
-
->
 > > +allocated using the memory allocation APIs provided by KUnit (describe=
 d more in
 > > +the section below), you will not need to worry about deallocating them=
@@ -808,17 +786,6 @@ L),
 > > +               {}
 > > +       };
 > > +
->
-> Again, this is a little long, but it's not as bad as the others, and
-> isn't in the example tests, so I'm okay with leaving it. Though maybe
-> we could get rid of some of the asserts for the purpose of keeping the
-> documentation focused and readable.
-
-Sounds good!
-
-
->
->
 > >  Allocating Memory
 > >  -----------------
 > >
