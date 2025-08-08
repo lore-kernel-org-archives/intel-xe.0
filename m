@@ -4,170 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39CB1C87FD3
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 04:53:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06F0DC87FD3
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 05:03:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E581310E05F;
-	Fri,  8 Aug 2025 04:53:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B845610E4A9;
+	Fri,  8 Aug 2025 05:03:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NvEH+80W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m3fprDmD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B65CB10E05F
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 04:53:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDB9210E4A9;
+ Fri,  8 Aug 2025 05:03:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754628826; x=1786164826;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=vbJb7tDvBMilPBghJAP0G2lTdkGpHL2ITVUY6LxAr50=;
- b=NvEH+80W8+PI+LNE9UVjH48WQC7vfwZWSC3l4iPKJlPxf4aPrGTywicV
- kqQ7fTszXmjZhW7BdofV5EX/0zedRaDToCtXCpVfVXN+wWpc2xOp3aAPn
- bv8vIdpu6UDlvtbrH1BlBxzLtZp2J2zzfTjb6tzIEOHNGr/jDQA7RZjz0
- AO2KIR12u5vBPCmM328fthG/hw4xNzawTop2XROdcZO26pKSC2RxFotqP
- gxZ0ImaRlJo/Nb+9L3IYqQOLwi9BG11aRm4t0QoyO7xclS/wsaMFK9QKF
- 5Q8peFKDYiXnWQLNGv1kkybFV7ALSqCt1I6ckVimcDPMxRmQEvO7wmqN1 A==;
-X-CSE-ConnectionGUID: A3iLDmWHRZCxSLl5uXOV8Q==
-X-CSE-MsgGUID: cJ0CZPwdQi6OoHajW5HaOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="57053617"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="57053617"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 21:53:46 -0700
-X-CSE-ConnectionGUID: ooqfyLLiQG2/9klLHM0tUQ==
-X-CSE-MsgGUID: mgNXnvcSSpax3hr3eEMxww==
+ t=1754629411; x=1786165411;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=04fnyUOSLqPPeNEZJcL548uWUgxNgasY35XaAZVnUoc=;
+ b=m3fprDmDG0+w+pbV30i98m8rJ9SnqnfiEk8mJvmH+BmwZ5YrfwRB/prF
+ BqiSeYhbPLoWH4Sp+HnAq327qldNEksO9Qf28zd0BXiEzwGMdalH87g1Y
+ kOYDeAs530rsvNNJNLjKvSWWQLPeHE6bkTdXKjvHvbCp+zLBl9g3owLZb
+ 6J//Z78V3LdjyEeuzpAIC0RqS9I7FxeVieqOle4p+sxAFz37wdljztueF
+ BSwOxwsvdhjTuH19d5BpadFK2ymPatuXdM6U7DaUUjQzHkX0HMvGq4b+3
+ DMjXVnahdspUQbZZNoG0lYJVD7/Pex8nWiqviz1M/IhjcOdnistjX1J3v A==;
+X-CSE-ConnectionGUID: 6hxdt32sQPStFtq0va07WQ==
+X-CSE-MsgGUID: 1WawtNQYQreHAeSr08ZqOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="68344397"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="68344397"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 22:03:27 -0700
+X-CSE-ConnectionGUID: mMI12PEFTAGOkdopQjH0Jg==
+X-CSE-MsgGUID: D41m5Cr0Q4WHJ0Lyt/N9Tg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="169361137"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 21:53:46 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="165142594"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 22:03:26 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 7 Aug 2025 21:53:45 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.1748.26; Thu, 7 Aug 2025 22:03:25 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Thu, 7 Aug 2025 21:53:45 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.61) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.1748.26 via Frontend Transport; Thu, 7 Aug 2025 22:03:25 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.60) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 7 Aug 2025 21:53:45 -0700
+ 15.2.1544.25; Thu, 7 Aug 2025 22:03:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Jbkvy2j7BZzU1ujAOZ/jWHk5mP09lhhecJIQFZntoiiES5TkYQLZKG96R5Vjv2y181bkPhxRmnnDcQJY4YPI7/icdg2nIUUIQOxfyGPeiUfptwCu9vGRPGJq25F2mND6emwTAk8D1RstdGDUlCu4zExh+qHZyFtFyE1p0QKI/iE+LD8bx0ZS5c89usEzG6s+y5eYFUrzLXSH4S2Zvk1mfUlt3ms6JHjxLfCA657/wXrP+UdNl8Uxy32hu3hHggsou5n+6xFhdkwwiERlUjCU+tdexnIG7Bx52fIYf9gCrgPzOoAGBc9w8HFQJbkCuXwf8yDDHjGjWCP9S2hxUqGjcQ==
+ b=IK85Tn/ctq2F+qj/22mg55wL/MnhOcoyAgsyKsOiSD9mgRnyFxXItrgXw8Vgby+t5SBaC+QLPX/YkKLKMlOQc4R/yN0KExbfmcYo/n6SDiq2zsIBxusm7J8w8d1sVI0iPUFB3eqWUm2XYY/M1uXb/uCUFPtv0jD0VB1PfJ4A1x0bJrun9ihbOBJh+XjWfl+fFfoo+iqhLn40QTjli/fo2qckM4Fx9YnVfGBw1MG8u3kUFS+ZOlPYzIXPZ9jo98XqNOZufZafxa0CKAG0IjRWIbK2QyPsUxSp/plrn7QZYPCJ0vxioUnLNAN4RGmIpR7rJjEh9bZxjsh306cSiXDmdg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XrxPHiSdBTGkmB+0rOxqnEwRkXFdaTZ+UOCfsrAzars=;
- b=P5YvoCo3t4QPs0fML8VtgnOzJMh7bMfkJdo83AavwumkeijerpIm4E7VLtX2geLkJsMpPN3K/AD1qfuaxzTCQV4RIPO5S2FVQ6ItJsLCdmyvPA0Lp4AkpTEWm/ozz3IkuCwnRToJzRgyfTt4MksYDI2NyFfQ2JmEH5pHd1HgCuocCAJs70aTFWQjDzr+eNkAu39B1MpHDxsMs4I6/Dw4ddJbyjy5Sxzr1Biypbt88eAdVnxCb9JNk7qBcgxEiGa+V1sVk7vUzFLNuUu3DvDK+ARULYPXJXCEssixRZ3IFpjClUyPTEQUsH5cu86ohIpsElwanzIYkgC6pBh8QLDTxA==
+ bh=UYDAmjpYhY4HRFB//DikRKKiljGKUzbwIj/lwNbD++4=;
+ b=s8FlWEZFzFXMiaVsar2+AFOk16DKX7rgjRFYjTv/lyt0TolkZLqt1iUd1BSu/E2HPXEaZ4J+d7M7m1q9Oay02qQJt5XSMs9CPqznYG9RDOKEAWASKknFXTRjTCePTNVwxrfe8UCqZpPGbiqP/SDJDUQ06dzEpgvbncPDyCWsft9R99VjIQwY+0Fm+gpa8wUwhw6bH8LS3zKEOsdWqk4MEtIFL/k/7oAK68816TwdiPJrS7pyS+Ul43IcHbHCP67loSyqMLutzKwbBId5ad6a9INHCIs26vW9PQcs4B00qTsepVmv2xGUoFZ5FTwy1YLEhGmOgBBPS9h5S1sTZ6NL0Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5456.namprd11.prod.outlook.com (2603:10b6:5:39c::14)
- by IA0PR11MB8397.namprd11.prod.outlook.com (2603:10b6:208:48b::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.18; Fri, 8 Aug
- 2025 04:53:43 +0000
-Received: from DM4PR11MB5456.namprd11.prod.outlook.com
- ([fe80::b23b:735f:b015:26ad]) by DM4PR11MB5456.namprd11.prod.outlook.com
- ([fe80::b23b:735f:b015:26ad%5]) with mapi id 15.20.9009.016; Fri, 8 Aug 2025
- 04:53:43 +0000
-From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH v2] drm/xe: Misc refine for svm
-Thread-Topic: [PATCH v2] drm/xe: Misc refine for svm
-Thread-Index: AQHb+lUMsfS56F0ERk2nF4kFDE1p2bQ85YeAgBtl79A=
-Date: Fri, 8 Aug 2025 04:53:43 +0000
-Message-ID: <DM4PR11MB5456CA65B950D1D096E360AFEA2FA@DM4PR11MB5456.namprd11.prod.outlook.com>
-References: <20250718212409.86516-2-shuicheng.lin@intel.com>
- <20250721153339.369318-2-shuicheng.lin@intel.com>
- <aH6Gib4X+cHLi/Dj@lstrano-desk.jf.intel.com>
-In-Reply-To: <aH6Gib4X+cHLi/Dj@lstrano-desk.jf.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|IA0PR11MB8397:EE_
-x-ms-office365-filtering-correlation-id: f09856c7-b1bf-4831-8b58-08ddd6378d1d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|10070799003|366016|1800799024|376014|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?fin3nQ0ILrhZQTefANRXK9tKpnIwGUnakiT8efgR7A9j6XbptWgdCBBoun6q?=
- =?us-ascii?Q?5Xivq0l/dOYtNa0T0X92un+noem6VGewOVzMNa1AxH+H7m1VY1b8ETXocUbB?=
- =?us-ascii?Q?dD0Y/zDAhM/EooTktpkwCnI+z+irYqn74bClLk1vMiKthFFUYTBN+dUrWz/D?=
- =?us-ascii?Q?e+cl+5bdHCTi3Que2uAPWg3cjrGoB+iYbxdVmYr4AQQnhDXNbD6LoDxcQz+E?=
- =?us-ascii?Q?uE3zLdpU8wOuOgP8M/q2IY8Vu0vyvoNarFy7PulL3fwIsjO4oTXmIoKdEzSe?=
- =?us-ascii?Q?1ZlHvFiR5ywOCAohyoVXHFJgdx5GixYjspKNpO/rMt1ZVgvLeoJ0wDxibemV?=
- =?us-ascii?Q?xElzQLDlg6EVOAFtIrlkA+Q3LhqnHEEzTU8DFtXGlBlqEryKuyYa18W/q0P4?=
- =?us-ascii?Q?3qFYJNoVr88BFxz3FlLGxSc8B6N0qZX9R6rdhBLAlzzVXAEybQczAJ0GPOgN?=
- =?us-ascii?Q?e9crEFVvmrilvnuibqvWQJCFSuIrIAwuNw6yVv1l6avTvS1E2X0QT9iMxxDp?=
- =?us-ascii?Q?ViY33RjAH65Kx7aMsuT103IexeMYKfZI/YAMTsIikYKogH7U0IoDXmpBxMLM?=
- =?us-ascii?Q?WY8XBcfxbtB+ZpRpxvdgHyscoSrbV+ULk2FOFrO47Wgs3g/x5NldmwzIowjb?=
- =?us-ascii?Q?iLsg15m5K9moNXZShDMxEZIVPF8K4IwuHsKdjc9GIzlbwVA+h9ls4GkQxc+7?=
- =?us-ascii?Q?bvtJDmuYQnNgWPVqAbYSsJPJSCY8kEsFdrOz7rzKjnzAO8rmDs2TSVvDK4Q6?=
- =?us-ascii?Q?7BzflDddzHV7l7Ktdn3vYr635AGv9f2dgy/Ik7oDsoe7y2PZIrA9QIY0XY+I?=
- =?us-ascii?Q?yEu8AchoLw7bUiq586ppmm8Kx3MStzecKaGNJZW7mbgBwNu01SiL9Ge0DUXS?=
- =?us-ascii?Q?06GTLwGSKWbToj3olRW3IbYqDFxoukYkGJgfWYd7vLfLNehnWBnJCREoRkt4?=
- =?us-ascii?Q?zuhpGahytTdAhLUivi6CHjRYHRnFZFdQobabVB7ZspfU8N4OzTadvYtmlRak?=
- =?us-ascii?Q?oywg12xeprHSeIM4C9FjZwd8CK/9EerrEibkEn2nUjtH/CKdlgokNoC666za?=
- =?us-ascii?Q?WLaLOACWFZ3vybXmcDVTZp4e0pua8MlLNkS3Ct4gYE16T7oVgkOaHR9hUDMN?=
- =?us-ascii?Q?i/qDh37hGv1Ea21Wdp/aYmJ7dHc/fRnRfjI66QoDmDdXSCp21VtnDCfDZwtN?=
- =?us-ascii?Q?vWwSXCxx1TIixOvG2U2Y+MaIilDwuP4rT7o4JvRLoqv4H5ZzpzhcP0qAYFKw?=
- =?us-ascii?Q?it5OZLU5W0+RjUKMCDDWZay5WtfyX6AcpJTUSgAbjKdPhqLGFl1Os3YkmIA1?=
- =?us-ascii?Q?HAA1DBoyCVHI9uDykfiKvQCEvdewOk5G0Kqwv7wNMFNN89tLyjIqxtxQjfZf?=
- =?us-ascii?Q?RRyZq4sQHI5zMqhK1yAqLEVEs6pJylp8U54Nv3/2cWpuMLlw5vtR3uYKcLGF?=
- =?us-ascii?Q?io+Ph13dsRK7WbHuWh19qMqdRp5L6hoMuaqGOwwK+3FRTintSUQw+SUeNYrE?=
- =?us-ascii?Q?mmxHTk5S3kRa6iQ=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5456.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(366016)(1800799024)(376014)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?mJj+qE9XYPf4apY8QjXug/c0JF0vEybslz74h0ojb4QGWsLQFq1gQwyKC7Tq?=
- =?us-ascii?Q?3HN4jhjytFu08/FpBovm+7JdXO/pFVzB9vN3srq8XsJjtaONimRtTMybSCvA?=
- =?us-ascii?Q?OZBrSbl4Ox2g5FOsonHmc7dq973rQOb1jXio2xuoU4qzdNAIMEW87no+ZbfW?=
- =?us-ascii?Q?dcFCFfGvmdGSyPRSGJWs3zqa6foin+xozsfeKLZN8nsIgpN33U6Prgo9fPxT?=
- =?us-ascii?Q?J4nFqkjjSGW0VoP8TJRq/2o2l50YY+gOlxRSx/4Mvf2uDPq58iTItI4S6Klk?=
- =?us-ascii?Q?R/M8D3pFMbLfRBRy+8LFr6Soxir/wVLPEI/BebVBjliBorqAtmKDKWLYJeAl?=
- =?us-ascii?Q?+RHtZoNIyFBEveQ2S8QCG51W5ykbhuP+xR8u5QN25XjxAK50nKwoghj5avLO?=
- =?us-ascii?Q?nu8iMHH1vElncqNpYO9OBDj4i1W4sJfCTrdxsnFk8/EYflaYomeRi+m4jWLd?=
- =?us-ascii?Q?MEkeODeGsADQN7vNAMhlGEvm3bKlw4+I/fPfTw3kAEg1SP9Fk3+mmGPxgNrV?=
- =?us-ascii?Q?HJDd984aDkbE8fHIZJrRjluUIrhKdt+1fy8g1hdPEyFojdZwckyscY4jqX7Y?=
- =?us-ascii?Q?ewUf2zYY2NoGBevfz19oHz/NsSKTkGmrOHtMtGtfihSGigY7ImScAXziBEtu?=
- =?us-ascii?Q?JAG4i/Lxd7Y8tC7xuWUO5zxytHegLT/Uu1bqY7rUqitvyAfpIlhkIHX/gyWC?=
- =?us-ascii?Q?6jnuEmPzj3IX4Jk8Jjju66TeX0tbQBXlCsWiKSWgYTn9GnVZhMQxSbe8ernC?=
- =?us-ascii?Q?LI7vVo8LX2vWNuRzap8lELTqshQND1gC8TpBgwuw0enIORha25O8lcz4Py9V?=
- =?us-ascii?Q?8YAmaYktcNttFFCbcHutU57jTNywKKeRfpc8cc9GYBlxo/1aPwsPxFIDcOGa?=
- =?us-ascii?Q?lIX18rYn5NlCVzL7gQwtol8da3dflAJcAmq76/wUP337/991T9Rmb+vBKy3/?=
- =?us-ascii?Q?gEPjxKe91rcUfgu/SLKnrmmLSzUk5G/gSsnOjuI8m/LOaYsHB/Wkdb68fseH?=
- =?us-ascii?Q?Dij8yyg2nK7inoAe+uzKFldZ1rQVHdLw5hqmOhtrVF/BHWxiKgze2MY3Q9Md?=
- =?us-ascii?Q?xgf8HPskTqAbs7t0fayxaKk1+lPogsL1z6LSqcfVabkl7VlOLN8zsFiF2ov2?=
- =?us-ascii?Q?X7cp9swpvpAdsCuQifpafNIeAlvAelOYHu4Hht4DBElNoBVyaULqSCbnruSg?=
- =?us-ascii?Q?RVQZ8SOapTAgmtz5QoZMKiNj9drXXgSLdWtcYz7Mq8xd/SLFRbtHm+SoXTcd?=
- =?us-ascii?Q?ANvT/cjvD9K1UiaNVAPWc6VFIj/JuWLM4fUBivRf1lOocI8tKfqv8mz0qAy7?=
- =?us-ascii?Q?REbs6s1YhO1irHgCUfMJKaBjQ1Yf9oGbK1I6yF5vFP0Lps66JL8QOAgezEpk?=
- =?us-ascii?Q?uZQbaWoFHF99GznkLqFMSehhooRwLtabEUnj7wbeile5E8Q7jz1V1/mqNZb9?=
- =?us-ascii?Q?vaVbvmlWU13u3x6y3Zzha7Azm+inZjANO0LlOOtbaMOR5zh4kv9cy6sMVKKW?=
- =?us-ascii?Q?lri1LNgVdWJ3hD2hb3Cy85YH8qvcdSbeqxGnuufTEI6ikGc2HwvyStJK96R9?=
- =?us-ascii?Q?Wy+JtRBs+3FHwhgXtrTt0q6QeC4NJE9uBqzrN4kGnDt+ODm+bcPzgIb1udMj?=
- =?us-ascii?Q?jvHwLlzULLyxUOfNKh7u9RYQM5S1wxYrnuPzAT8cweRi?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by IA0PR11MB7840.namprd11.prod.outlook.com (2603:10b6:208:403::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.15; Fri, 8 Aug
+ 2025 05:03:22 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.9009.013; Fri, 8 Aug 2025
+ 05:03:22 +0000
+Date: Thu, 7 Aug 2025 22:03:19 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Boris Brezillon
+ <boris.brezillon@collabora.com>, Danilo Krummrich <dakr@kernel.org>, "Brendan
+ King" <Brendan.King@imgtec.com>, Boris Brezillon <bbrezillon@kernel.org>,
+ Caterina Shablia <caterina.shablia@collabora.com>, Rob Clark
+ <robin.clark@oss.qualcomm.com>, <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH v6 01/26] drm/gpuvm: Pass map arguments through a struct
+Message-ID: <aJWFF7tKhpkHwzXL@lstrano-desk.jf.intel.com>
+References: <20250807164338.1832254-1-himal.prasad.ghimiray@intel.com>
+ <20250807164338.1832254-2-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250807164338.1832254-2-himal.prasad.ghimiray@intel.com>
+X-ClientProxiedBy: MW4PR04CA0226.namprd04.prod.outlook.com
+ (2603:10b6:303:87::21) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA0PR11MB7840:EE_
+X-MS-Office365-Filtering-Correlation-Id: 915baa51-dddf-442b-2292-08ddd638e600
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?N2ZRWkJvMEtyZDFBT3FIb2NLdnpjQkI2MjRVakhkZ2FTWXozTjFZaW1na1gv?=
+ =?utf-8?B?RlFWaGc0RTkxMGJWYkZxb3ZCZ292Lzcwd09hUUo0aWlGYkR5Y1NnMW41NkJS?=
+ =?utf-8?B?blZnUlBwMnNCdE0yeDRMNmxBNlR2Y0JneHlHWnVhTTEwV29ab3E3Ung4NzBL?=
+ =?utf-8?B?Vmd2NUxqNnJYWnNyeW50WXpCNTNXd3VQRmxpeVNVN1ZCeXp2RzZPTCt5cDg2?=
+ =?utf-8?B?MG5pU2ZVQS91RlFBdFg2Sk5WVUd6V3lHWlhHaXoxRkFpYW8zTlFpN2NDcnhG?=
+ =?utf-8?B?eWRVSUJDM3krNUhHRWJaV0FYSzVvQ0xzUE9Qa1JzZDZqVnIrZnlMSWJxdmRG?=
+ =?utf-8?B?ajdWQmZ4a3BTUjRIdy8vZlBkMXJOY2tYcjdTcFZNMjdOVjdPRXZMaTZUazho?=
+ =?utf-8?B?Szcvc2tkV09Lb0F5WlQvWDNrNWE0b3A1RVo2N1RPa0xIaUY4Zmc1cmplVHcv?=
+ =?utf-8?B?dGlFQU5QVU1iRkY2ZXU5Y0dZa0JkSGh5WXdDMm53bXNyUGE4ZUpWdmVrTk5u?=
+ =?utf-8?B?QTIzRlYwYzRaNEg3OFdQMDEwUk05RUl2YUU0bnJWUU14Z3VVMk1TM0dORy9j?=
+ =?utf-8?B?RWttb0RvSVpGUTROK1RIZmREZm5SRFVPdFVWZVBNYWl1NU5GUmJSVDNJWm8v?=
+ =?utf-8?B?S1ZMbzJ2K2thYUphejR3MWlaU1FSbW01Mk5WN3FqNXFRZHg3djdhM1QyeExy?=
+ =?utf-8?B?VEIvUnFrTEVvdldKdFFZRGl1aFpCcTN3TmN1N0ViMUtBRm9sR1NzVlZ4b1FW?=
+ =?utf-8?B?WWhFSC9VcTBSbzVsaGh5S1ljRzdkc0ZkbjVSU0dmVi9WU01WK2gwYmRHak1a?=
+ =?utf-8?B?MUpyYmREcDNBVitlY0Y0OGpUT2RWWEY4MXg4WHlRdUl2V2dQV2JQUW9MVlNw?=
+ =?utf-8?B?RW5Na0lxMWV3RUl2dkR1aitOM3V2U0tsM0o1QkVvcUVNUElkZDZwd3JQQ29S?=
+ =?utf-8?B?NWIrZ2dNS0Y0c0FRS052eW11aXNzeHRubElEK1c0ZnJTZFh4REtwRkNGcTFG?=
+ =?utf-8?B?SDNFZndOQ29FSXR5VDJ2Q0R6R09Oa0xHYzg4c0dXZk00bEtYS0tEcVc1eENn?=
+ =?utf-8?B?TEN4d3RGak03eVU4eGdvcEZKN1RkS0o3YVc5SHUwSlc2dXVidG1pWVBQMFIw?=
+ =?utf-8?B?cWR1T0pVNTFpMVFINlA3YkRwK3hTQTF2NUpJRmNCTWowbnRuRUtnNkV4dkRJ?=
+ =?utf-8?B?NU4xOVo4V2xRWEVUNFdOdU9KS0t6RGdwbExCR0p3bU5rU2tweW9Ob2JhTHY0?=
+ =?utf-8?B?WTh2dTdtdW9RVVhxWGVTbk5mK1I3L1IwVXZWQVBxOWlnYm9uSzgxWXI5V3Yz?=
+ =?utf-8?B?QkdveTFlZndGUmQwSmtmSHhpRzlLTWE3VGdmd3F0THVldWxNVVExUlFQajg3?=
+ =?utf-8?B?azUwZFZ4NUlJQ2IweHVDaEd2b2t3WlhvWkREKy9OcW53eHpsRVYwdWhiL1p5?=
+ =?utf-8?B?cWY1SGcyN25lNHlMT3RGRWFMM2VJQUJJTXlLQm01ZzB0Nldld2xsZWV4UXcy?=
+ =?utf-8?B?VW8vdmFxRHVTS3h6dDE2c3JISVBWVXFqSkNDZVlrKzRhMEw1M2IzM0h0eWVG?=
+ =?utf-8?B?RTFIbCtMZllWZWlxZ1NQTytzT1VpUzcrcTY5ZFFxcHV1ZzZnRU9aYmM4Q1Nj?=
+ =?utf-8?B?R0hNbEl4Vm91SktISERoSTVyVVZaSTJyQzVBeFZEKzVKN1VpVFJRMTVlcDJp?=
+ =?utf-8?B?LzdVZ2gyRmllZ1lhRmJpUXRjM0J0K1dTNi92NnhaODlSYWtXZytLTEk0RCts?=
+ =?utf-8?B?M3FiNWkwNHVKNy9Gd1ZpYS9UZllBNXpTNm5IRWZVeWwzaTduRGllVEJZOXQy?=
+ =?utf-8?B?RjF6NDVZdmp3NmtackU1Z2lCUy80SUZRYkZMWG9qTlJjOVpKYTFwY1RmUGxS?=
+ =?utf-8?B?aHpoZUNxS3pJSHJQbFV6bVpNUldObGZneEwrZVRndkF4bGE2YWQyWnFGUHFu?=
+ =?utf-8?Q?X8OmV4X6Ib4=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MXFXam9JS2Mwb0hIclBMY05mTUFiRjFiWXBiSlB2RERwck1jQ3ZGdWQ5NSs0?=
+ =?utf-8?B?TFRiTzdCZXF6QUtTa1p0SmVKdzYwbnhicG54S2lGNm1scHJLY0drNjhxcHRz?=
+ =?utf-8?B?MFpXTVJabmRzYjBST3V1R1QwbFEzYmhucEFwSHJvanVLZnBmZ3YzZ3YwTnRU?=
+ =?utf-8?B?OHNLZEZrUWxtaVA4SHMwU2dDWnFYN1pudWgxbXdrdWptNUNaeWxOanhDTG1z?=
+ =?utf-8?B?ZWdrVUtLQjMzcHFEaUhLVUdCcGt5MVBkN0ZjN2NCbk9PZEd4TGRNdVhTRFRN?=
+ =?utf-8?B?dFJBQjY0TkU3ays2WFlzOFltR0N6bEhIWmlIblNDKzFXWGs0K3U4WHRWWCtp?=
+ =?utf-8?B?OFVGYzY3OGszNUVLRXVtdlIrUG9FMm1HekRpdlBEbnVIY3l2QlJCZi9YaDhF?=
+ =?utf-8?B?SUFvUDlPWjFIUys5VDhhMFVMTmxZV0ttMWo2M0I5dkRodGNDTTlrNC8zcjhG?=
+ =?utf-8?B?TUpCaFVxdzlxT2prVFdNalh6L2NZM3Y5ejl1SkNURGI2RVF1cDkyS0NDVlJF?=
+ =?utf-8?B?NnREU0JBbUo3Y29PVUtMQXVZMHR5dzdNUlhSUVpRSURkT3UvbmJxU3RSTDBE?=
+ =?utf-8?B?RlFBc2JJOW9kR0J5TGtRRGNVb2JFcVBCa0dVRStpYkNYaXIwazZoTHR3Y0JX?=
+ =?utf-8?B?Wm9DS3dqbGZOb2EvWmpwcWN4U3NINldyZEN4YkJIdHovdXlseXVFN3NQSVpq?=
+ =?utf-8?B?VVZIYjJKQndHWERjR2c0eDFneVVWa3pvRkZTaDk1bmpnemxXT1ZyZWlsUVIv?=
+ =?utf-8?B?M3JSTW02TWJ3YmJnNDcrN1RMZ3lMMjBvU3pZeTRQUmxTc2kvZGdTTWpVTHRB?=
+ =?utf-8?B?TXpGL0Y4UVpvTGZvaUkyT293cHpxM25pd3Y4dk9sdThPeFFUNDVDVC9jNWxM?=
+ =?utf-8?B?RDNzRUFvamNRVnd2c0puaUpTdUFQRjZhUklZUEhCN3MxUkYwc1lGZ1prcFZz?=
+ =?utf-8?B?eHFyRzhMZHNjN2IrSDlKZUlUMnV5VjVtZXJmN1E0V1VQbUJIWGJjRmpDd3pE?=
+ =?utf-8?B?OWsyZE5BL0hDOUhaSTZaRFB2UTdtYzh5RmVjUzBLU00xQk0xTjdKVW0rVXJk?=
+ =?utf-8?B?ZEVxS0lWak43T2U3bktyVkNobjY2dWpwWkV3RkJ2U2lOSmF1R1YvM2JDZ1Jv?=
+ =?utf-8?B?cU9xTyt1ZGRUTUNTVDZWVjl1bVl3elA4ZThlakd5N2VEa1d5cnBCcU41MGp5?=
+ =?utf-8?B?TmZoZUs2K3cyUjVjY0loY3ZGZFMzc2lhdVVhMzVFc2s4TFIxT2lwQ2NRdzg2?=
+ =?utf-8?B?L0gxMlBNNGNVOFZ6cVlPemJIeVF3T2ljNzg0Tmladlg4MVpTT3VlbS9HSFo0?=
+ =?utf-8?B?NnBvQkN2RytQQ1hQMkNFRU1RbnpaTktrWHc0N0tXRm1VRzVxdEFpUHBqUDZz?=
+ =?utf-8?B?dnpIbnY3WTI0bDVkY3hHSG9aeC92Um5jdTV5VGYyRW5jVHlsUmdtcHN0cGw2?=
+ =?utf-8?B?M0dWV3MraHBiTFp4MTVwYStpeWRaRStVcXo0dEkzNE1RNTdVeXg2MUFnOWgv?=
+ =?utf-8?B?b2RmeTlTU011SlBNMzZieVN4RFY3NGduSXE4bG53WkFRaXFoLzFnR3pjZWRo?=
+ =?utf-8?B?T2VXUStFT0FGcUpHaVhFM2cyd1p0cUg2NTJxWGRFcFdSQ0RNZ1JtWFpMQ0x1?=
+ =?utf-8?B?Mkd1NDVEVk5ESmlVRDhOTmF3YzdCRTROdWlKdldIc1hBTytuRmNSRHdEUDVJ?=
+ =?utf-8?B?WnRFd3U4UGtKTGcxSTBuV2RyZDhMZThOKzd5ZTltejlwUnJ5WmUwQnFXbU9L?=
+ =?utf-8?B?R1ZDK1pROFNSTFdPdjdSck96dytxb1FIdGJMWmplaXh0MEZDSEdJWS9yZ0Fz?=
+ =?utf-8?B?eFl2Y3RXa0tEWlovT0xqWlZmWnBPYWZyaHR3cG9ZRHBGMll0dklMM3JNdkhD?=
+ =?utf-8?B?cWh6QWU0cEtKQTNtK3RYNXRnUG5rTXBpT1FIdHFNSGs2ZnJUaWlmOXFBa0pL?=
+ =?utf-8?B?ZWZpNFJtTDUrRzByTlM1YXlTOWlIOExrbVlBNTVjV2tZSnoyc2djdzdDMStN?=
+ =?utf-8?B?NG9TRkhZRlBUb2dLL2pVRFpaRXhmVUJiNG5yOWxnV2ZiWkpUWUxMeEpBVXow?=
+ =?utf-8?B?cWM5SzhTaTE2K1IrK1dwclYxYkNNdWpkR254aTdXcnhLMUdrbDJLaHZ4WFc3?=
+ =?utf-8?B?c1dwaWpwMWRFdW5zcW9DeFlMOEVzOXhxMjBGcU5kMzVweGtQOWpHelhmR3Fl?=
+ =?utf-8?B?bEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 915baa51-dddf-442b-2292-08ddd638e600
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5456.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f09856c7-b1bf-4831-8b58-08ddd6378d1d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Aug 2025 04:53:43.5469 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /0gxwkFDkzy31d9EjubRXNCHptnqwx4r25y8j/ol14aYFvtfcGAhmYGhWkY7sZmb5mxhGAxjFnmABIBIP3af1A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB8397
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 05:03:22.3713 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oZTpVCBt6SGBjW+/JKeWrV2nw3vQMZkmh6sVHHAKwSayKNjmcfm3Q6O13L1VA94DJvW5ovRHIrMWugpTnjWbyw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7840
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -183,150 +199,509 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi maintainers,
-Could you please help me review and merge the patch.
-Thanks in advance.
+On Thu, Aug 07, 2025 at 10:13:13PM +0530, Himal Prasad Ghimiray wrote:
+> From: Boris Brezillon <boris.brezillon@collabora.com>
+> 
+> We are about to pass more arguments to drm_gpuvm_sm_map[_ops_create](),
+> so, before we do that, let's pass arguments through a struct instead
+> of changing each call site every time a new optional argument is added.
+> 
+> v5
+>  - Use drm_gpuva_op_map—same as drm_gpuvm_map_req
+>  - Rebase changes for drm_gpuvm_sm_map_exec_lock()
+>  - Fix kernel-docs
+> 
+> v6
+>  - Use drm_gpuvm_map_req (Danilo/Matt)
+> 
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Brendan King <Brendan.King@imgtec.com>
+> Cc: Boris Brezillon <bbrezillon@kernel.org>
+> Cc: Caterina Shablia <caterina.shablia@collabora.com>
+> Cc: Rob Clark <robin.clark@oss.qualcomm.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-Best Regards
-Shuicheng
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-On Mon, July 21, 2025 11:27 AM, Matthew Brost wrote:
-> On Mon, Jul 21, 2025 at 03:33:40PM +0000, Shuicheng Lin wrote:
-> > Below changes should have no function effect.
-> > 1. Correct typo of "operation"in macro range_debug().
-> > 2. Combine 2 spin_lock() call in xe_svm_garbage_collector() into 1.
-> > 3. Remove preferred_region_is_vram check in
-> xe_svm_range_needs_migrate_to_vram()
-> >    as it is already checked in the begin of this function.
-> > 4. Combine the devmem_possible check in xe_svm_handle_pagefault().
-> > 5. Combine 2 xe_vm_unlock() call in xe_svm_handle_pagefault() into 1.
-> >
-> > v2: revert !ctx.devmem_only change (Matt)
-> >
-> > Cc: Matthew Brost <matthew.brost@intel.com>
->=20
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
->=20
-> > Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_svm.c | 30 ++++++++++++------------------
-> >  1 file changed, 12 insertions(+), 18 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-> > index 10c8a1bcb86e..a35bca95ab95 100644
-> > --- a/drivers/gpu/drm/xe/xe_svm.c
-> > +++ b/drivers/gpu/drm/xe/xe_svm.c
-> > @@ -50,11 +50,11 @@ static struct xe_vm *range_to_vm(struct
-> drm_gpusvm_range *r)
-> >  	return gpusvm_to_vm(r->gpusvm);
-> >  }
-> >
-> > -#define range_debug(r__, operaton__)
-> 	\
-> > +#define range_debug(r__, operation__)
-> 	\
-> >  	vm_dbg(&range_to_vm(&(r__)->base)->xe->drm,
-> 	\
-> >  	       "%s: asid=3D%u, gpusvm=3D%p, vram=3D%d,%d, seqno=3D%lu, " \
-> >  	       "start=3D0x%014lx, end=3D0x%014lx, size=3D%lu",		\
-> > -	       (operaton__), range_to_vm(&(r__)->base)->usm.asid,	\
-> > +	       (operation__), range_to_vm(&(r__)->base)->usm.asid,	\
-> >  	       (r__)->base.gpusvm,					\
-> >  	       xe_svm_range_in_vram((r__)) ? 1 : 0,			\
-> >  	       xe_svm_range_has_vram_binding((r__)) ? 1 : 0,		\
-> > @@ -263,8 +263,8 @@ static int xe_svm_garbage_collector(struct xe_vm
-> *vm)
-> >  	if (xe_vm_is_closed_or_banned(vm))
-> >  		return -ENOENT;
-> >
-> > -	spin_lock(&vm->svm.garbage_collector.lock);
-> >  	for (;;) {
-> > +		spin_lock(&vm->svm.garbage_collector.lock);
-> >  		range =3D list_first_entry_or_null(&vm-
-> >svm.garbage_collector.range_list,
-> >  						 typeof(*range),
-> >  						 garbage_collector_link);
-> > @@ -282,8 +282,6 @@ static int xe_svm_garbage_collector(struct xe_vm
-> *vm)
-> >  			xe_vm_kill(vm, true);
-> >  			return err;
-> >  		}
-> > -
-> > -		spin_lock(&vm->svm.garbage_collector.lock);
-> >  	}
-> >  	spin_unlock(&vm->svm.garbage_collector.lock);
-> >
-> > @@ -763,12 +761,12 @@ bool
-> xe_svm_range_needs_migrate_to_vram(struct
-> > xe_svm_range *range, struct xe_vm
-> >
-> >  	xe_assert(vm->xe, IS_DGFX(vm->xe));
-> >
-> > -	if (preferred_region_is_vram && xe_svm_range_in_vram(range)) {
-> > +	if (xe_svm_range_in_vram(range)) {
-> >  		drm_info(&vm->xe->drm, "Range is already in VRAM\n");
-> >  		return false;
-> >  	}
-> >
-> > -	if (preferred_region_is_vram && range_size < SZ_64K
-> && !supports_4K_migration(vm->xe)) {
-> > +	if (range_size < SZ_64K && !supports_4K_migration(vm->xe)) {
-> >  		drm_dbg(&vm->xe->drm, "Platform doesn't support SZ_4K
-> range migration\n");
-> >  		return false;
-> >  	}
-> > @@ -793,16 +791,14 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
-> struct xe_vma *vma,
-> >  			    struct xe_gt *gt, u64 fault_addr,
-> >  			    bool atomic)
-> >  {
-> > +	int devmem_possible =3D IS_DGFX(vm->xe) &&
-> > +		IS_ENABLED(CONFIG_DRM_XE_PAGEMAP);
-> >  	struct drm_gpusvm_ctx ctx =3D {
-> >  		.read_only =3D xe_vma_read_only(vma),
-> > -		.devmem_possible =3D IS_DGFX(vm->xe) &&
-> > -			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
-> > -		.check_pages_threshold =3D IS_DGFX(vm->xe) &&
-> > -			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ? SZ_64K :
-> 0,
-> > -		.devmem_only =3D atomic && IS_DGFX(vm->xe) &&
-> > -			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
-> > -		.timeslice_ms =3D atomic && IS_DGFX(vm->xe) &&
-> > -			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ?
-> > +		.devmem_possible =3D devmem_possible,
-> > +		.check_pages_threshold =3D devmem_possible ? SZ_64K : 0,
-> > +		.devmem_only =3D atomic && devmem_possible,
-> > +		.timeslice_ms =3D atomic && devmem_possible ?
-> >  			vm->xe->atomic_svm_timeslice_ms : 0,
-> >  	};
-> >  	struct xe_svm_range *range;
-> > @@ -882,8 +878,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
-> > struct xe_vma *vma,
-> >  retry_bind:
-> >  	xe_vm_lock(vm, false);
-> >  	fence =3D xe_vm_range_rebind(vm, vma, range, BIT(tile->id));
-> > +	xe_vm_unlock(vm);
-> >  	if (IS_ERR(fence)) {
-> > -		xe_vm_unlock(vm);
-> >  		err =3D PTR_ERR(fence);
-> >  		if (err =3D=3D -EAGAIN) {
-> >  			ctx.timeslice_ms <<=3D 1;	/* Double timeslice if we have
-> to retry */
-> > @@ -894,13 +890,11 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
-> struct xe_vma *vma,
-> >  			goto retry_bind;
-> >  		goto err_out;
-> >  	}
-> > -	xe_vm_unlock(vm);
-> >
-> >  	dma_fence_wait(fence, false);
-> >  	dma_fence_put(fence);
-> >
-> >  err_out:
-> > -
-> >  	return err;
-> >  }
-> >
-> > --
-> > 2.49.0
-> >
+> Cc: <dri-devel@lists.freedesktop.org>
+> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+> Signed-off-by: Caterina Shablia <caterina.shablia@collabora.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/drm_gpuvm.c            | 105 ++++++++++---------------
+>  drivers/gpu/drm/imagination/pvr_vm.c   |  15 ++--
+>  drivers/gpu/drm/msm/msm_gem_vma.c      |  25 ++++--
+>  drivers/gpu/drm/nouveau/nouveau_uvmm.c |  11 ++-
+>  drivers/gpu/drm/panthor/panthor_mmu.c  |  13 ++-
+>  drivers/gpu/drm/xe/xe_vm.c             |  13 ++-
+>  include/drm/drm_gpuvm.h                |  20 +++--
+>  7 files changed, 114 insertions(+), 88 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+> index bbc7fecb6f4a..b3a01c40001b 100644
+> --- a/drivers/gpu/drm/drm_gpuvm.c
+> +++ b/drivers/gpu/drm/drm_gpuvm.c
+> @@ -486,13 +486,18 @@
+>   *				  u64 addr, u64 range,
+>   *				  struct drm_gem_object *obj, u64 offset)
+>   *	{
+> + *		struct drm_gpuvm_map_req map_req = {
+> + *		        .op_map.va.addr = addr,
+> + *	                .op_map.va.range = range,
+> + *	                .op_map.gem.obj = obj,
+> + *	                .op_map.gem.offset = offset,
+> + *	           };
+>   *		struct drm_gpuva_ops *ops;
+>   *		struct drm_gpuva_op *op
+>   *		struct drm_gpuvm_bo *vm_bo;
+>   *
+>   *		driver_lock_va_space();
+> - *		ops = drm_gpuvm_sm_map_ops_create(gpuvm, addr, range,
+> - *						  obj, offset);
+> + *		ops = drm_gpuvm_sm_map_ops_create(gpuvm, &map_req);
+>   *		if (IS_ERR(ops))
+>   *			return PTR_ERR(ops);
+>   *
+> @@ -2054,16 +2059,15 @@ EXPORT_SYMBOL_GPL(drm_gpuva_unmap);
+>  
+>  static int
+>  op_map_cb(const struct drm_gpuvm_ops *fn, void *priv,
+> -	  u64 addr, u64 range,
+> -	  struct drm_gem_object *obj, u64 offset)
+> +	  const struct drm_gpuvm_map_req *req)
+>  {
+>  	struct drm_gpuva_op op = {};
+>  
+>  	op.op = DRM_GPUVA_OP_MAP;
+> -	op.map.va.addr = addr;
+> -	op.map.va.range = range;
+> -	op.map.gem.obj = obj;
+> -	op.map.gem.offset = offset;
+> +	op.map.va.addr = req->op_map.va.addr;
+> +	op.map.va.range = req->op_map.va.range;
+> +	op.map.gem.obj = req->op_map.gem.obj;
+> +	op.map.gem.offset = req->op_map.gem.offset;
+>  
+>  	return fn->sm_step_map(&op, priv);
+>  }
+> @@ -2102,17 +2106,16 @@ op_unmap_cb(const struct drm_gpuvm_ops *fn, void *priv,
+>  static int
+>  __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  		   const struct drm_gpuvm_ops *ops, void *priv,
+> -		   u64 req_addr, u64 req_range,
+> -		   struct drm_gem_object *req_obj, u64 req_offset)
+> +		   const struct drm_gpuvm_map_req *req)
+>  {
+>  	struct drm_gpuva *va, *next;
+> -	u64 req_end = req_addr + req_range;
+> +	u64 req_end = req->op_map.va.addr + req->op_map.va.range;
+>  	int ret;
+>  
+> -	if (unlikely(!drm_gpuvm_range_valid(gpuvm, req_addr, req_range)))
+> +	if (unlikely(!drm_gpuvm_range_valid(gpuvm, req->op_map.va.addr, req->op_map.va.range)))
+>  		return -EINVAL;
+>  
+> -	drm_gpuvm_for_each_va_range_safe(va, next, gpuvm, req_addr, req_end) {
+> +	drm_gpuvm_for_each_va_range_safe(va, next, gpuvm, req->op_map.va.addr, req_end) {
+>  		struct drm_gem_object *obj = va->gem.obj;
+>  		u64 offset = va->gem.offset;
+>  		u64 addr = va->va.addr;
+> @@ -2120,9 +2123,9 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  		u64 end = addr + range;
+>  		bool merge = !!va->gem.obj;
+>  
+> -		if (addr == req_addr) {
+> -			merge &= obj == req_obj &&
+> -				 offset == req_offset;
+> +		if (addr == req->op_map.va.addr) {
+> +			merge &= obj == req->op_map.gem.obj &&
+> +				 offset == req->op_map.gem.offset;
+>  
+>  			if (end == req_end) {
+>  				ret = op_unmap_cb(ops, priv, va, merge);
+> @@ -2141,9 +2144,9 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  			if (end > req_end) {
+>  				struct drm_gpuva_op_map n = {
+>  					.va.addr = req_end,
+> -					.va.range = range - req_range,
+> +					.va.range = range - req->op_map.va.range,
+>  					.gem.obj = obj,
+> -					.gem.offset = offset + req_range,
+> +					.gem.offset = offset + req->op_map.va.range,
+>  				};
+>  				struct drm_gpuva_op_unmap u = {
+>  					.va = va,
+> @@ -2155,8 +2158,8 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  					return ret;
+>  				break;
+>  			}
+> -		} else if (addr < req_addr) {
+> -			u64 ls_range = req_addr - addr;
+> +		} else if (addr < req->op_map.va.addr) {
+> +			u64 ls_range = req->op_map.va.addr - addr;
+>  			struct drm_gpuva_op_map p = {
+>  				.va.addr = addr,
+>  				.va.range = ls_range,
+> @@ -2165,8 +2168,8 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  			};
+>  			struct drm_gpuva_op_unmap u = { .va = va };
+>  
+> -			merge &= obj == req_obj &&
+> -				 offset + ls_range == req_offset;
+> +			merge &= obj == req->op_map.gem.obj &&
+> +				 offset + ls_range == req->op_map.gem.offset;
+>  			u.keep = merge;
+>  
+>  			if (end == req_end) {
+> @@ -2189,7 +2192,7 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  					.va.range = end - req_end,
+>  					.gem.obj = obj,
+>  					.gem.offset = offset + ls_range +
+> -						      req_range,
+> +						      req->op_map.va.range,
+>  				};
+>  
+>  				ret = op_remap_cb(ops, priv, &p, &n, &u);
+> @@ -2197,10 +2200,10 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  					return ret;
+>  				break;
+>  			}
+> -		} else if (addr > req_addr) {
+> -			merge &= obj == req_obj &&
+> -				 offset == req_offset +
+> -					   (addr - req_addr);
+> +		} else if (addr > req->op_map.va.addr) {
+> +			merge &= obj == req->op_map.gem.obj &&
+> +				 offset == req->op_map.gem.offset +
+> +					   (addr - req->op_map.va.addr);
+>  
+>  			if (end == req_end) {
+>  				ret = op_unmap_cb(ops, priv, va, merge);
+> @@ -2236,9 +2239,7 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  		}
+>  	}
+>  
+> -	return op_map_cb(ops, priv,
+> -			 req_addr, req_range,
+> -			 req_obj, req_offset);
+> +	return op_map_cb(ops, priv, req);
+>  }
+>  
+>  static int
+> @@ -2303,10 +2304,7 @@ __drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm,
+>   * drm_gpuvm_sm_map() - calls the &drm_gpuva_op split/merge steps
+>   * @gpuvm: the &drm_gpuvm representing the GPU VA space
+>   * @priv: pointer to a driver private data structure
+> - * @req_addr: the start address of the new mapping
+> - * @req_range: the range of the new mapping
+> - * @req_obj: the &drm_gem_object to map
+> - * @req_offset: the offset within the &drm_gem_object
+> + * @req: ptr to struct drm_gpuvm_map_req
+>   *
+>   * This function iterates the given range of the GPU VA space. It utilizes the
+>   * &drm_gpuvm_ops to call back into the driver providing the split and merge
+> @@ -2333,8 +2331,7 @@ __drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm,
+>   */
+>  int
+>  drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+> -		 u64 req_addr, u64 req_range,
+> -		 struct drm_gem_object *req_obj, u64 req_offset)
+> +		 const struct drm_gpuvm_map_req *req)
+>  {
+>  	const struct drm_gpuvm_ops *ops = gpuvm->ops;
+>  
+> @@ -2343,9 +2340,7 @@ drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+>  		       ops->sm_step_unmap)))
+>  		return -EINVAL;
+>  
+> -	return __drm_gpuvm_sm_map(gpuvm, ops, priv,
+> -				  req_addr, req_range,
+> -				  req_obj, req_offset);
+> +	return __drm_gpuvm_sm_map(gpuvm, ops, priv, req);
+>  }
+>  EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map);
+>  
+> @@ -2421,10 +2416,7 @@ static const struct drm_gpuvm_ops lock_ops = {
+>   * @gpuvm: the &drm_gpuvm representing the GPU VA space
+>   * @exec: the &drm_exec locking context
+>   * @num_fences: for newly mapped objects, the # of fences to reserve
+> - * @req_addr: the start address of the range to unmap
+> - * @req_range: the range of the mappings to unmap
+> - * @req_obj: the &drm_gem_object to map
+> - * @req_offset: the offset within the &drm_gem_object
+> + * @req: ptr to drm_gpuvm_map_req struct
+>   *
+>   * This function locks (drm_exec_lock_obj()) objects that will be unmapped/
+>   * remapped, and locks+prepares (drm_exec_prepare_object()) objects that
+> @@ -2445,9 +2437,7 @@ static const struct drm_gpuvm_ops lock_ops = {
+>   *                    ret = drm_gpuvm_sm_unmap_exec_lock(gpuvm, &exec, op->addr, op->range);
+>   *                    break;
+>   *                case DRIVER_OP_MAP:
+> - *                    ret = drm_gpuvm_sm_map_exec_lock(gpuvm, &exec, num_fences,
+> - *                                                     op->addr, op->range,
+> - *                                                     obj, op->obj_offset);
+> + *                    ret = drm_gpuvm_sm_map_exec_lock(gpuvm, &exec, num_fences, &req);
+>   *                    break;
+>   *                }
+>   *
+> @@ -2478,18 +2468,15 @@ static const struct drm_gpuvm_ops lock_ops = {
+>  int
+>  drm_gpuvm_sm_map_exec_lock(struct drm_gpuvm *gpuvm,
+>  			   struct drm_exec *exec, unsigned int num_fences,
+> -			   u64 req_addr, u64 req_range,
+> -			   struct drm_gem_object *req_obj, u64 req_offset)
+> +			   struct drm_gpuvm_map_req *req)
+>  {
+> -	if (req_obj) {
+> -		int ret = drm_exec_prepare_obj(exec, req_obj, num_fences);
+> +	if (req->op_map.gem.obj) {
+> +		int ret = drm_exec_prepare_obj(exec, req->op_map.gem.obj, num_fences);
+>  		if (ret)
+>  			return ret;
+>  	}
+>  
+> -	return __drm_gpuvm_sm_map(gpuvm, &lock_ops, exec,
+> -				  req_addr, req_range,
+> -				  req_obj, req_offset);
+> +	return __drm_gpuvm_sm_map(gpuvm, &lock_ops, exec, req);
+>  
+>  }
+>  EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map_exec_lock);
+> @@ -2611,10 +2598,7 @@ static const struct drm_gpuvm_ops gpuvm_list_ops = {
+>  /**
+>   * drm_gpuvm_sm_map_ops_create() - creates the &drm_gpuva_ops to split and merge
+>   * @gpuvm: the &drm_gpuvm representing the GPU VA space
+> - * @req_addr: the start address of the new mapping
+> - * @req_range: the range of the new mapping
+> - * @req_obj: the &drm_gem_object to map
+> - * @req_offset: the offset within the &drm_gem_object
+> + * @req: map request arguments
+>   *
+>   * This function creates a list of operations to perform splitting and merging
+>   * of existent mapping(s) with the newly requested one.
+> @@ -2642,8 +2626,7 @@ static const struct drm_gpuvm_ops gpuvm_list_ops = {
+>   */
+>  struct drm_gpuva_ops *
+>  drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+> -			    u64 req_addr, u64 req_range,
+> -			    struct drm_gem_object *req_obj, u64 req_offset)
+> +			    const struct drm_gpuvm_map_req *req)
+>  {
+>  	struct drm_gpuva_ops *ops;
+>  	struct {
+> @@ -2661,9 +2644,7 @@ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+>  	args.vm = gpuvm;
+>  	args.ops = ops;
+>  
+> -	ret = __drm_gpuvm_sm_map(gpuvm, &gpuvm_list_ops, &args,
+> -				 req_addr, req_range,
+> -				 req_obj, req_offset);
+> +	ret = __drm_gpuvm_sm_map(gpuvm, &gpuvm_list_ops, &args, req);
+>  	if (ret)
+>  		goto err_free_ops;
+>  
+> diff --git a/drivers/gpu/drm/imagination/pvr_vm.c b/drivers/gpu/drm/imagination/pvr_vm.c
+> index 2896fa7501b1..0f6b4cdb5fd8 100644
+> --- a/drivers/gpu/drm/imagination/pvr_vm.c
+> +++ b/drivers/gpu/drm/imagination/pvr_vm.c
+> @@ -185,12 +185,17 @@ struct pvr_vm_bind_op {
+>  static int pvr_vm_bind_op_exec(struct pvr_vm_bind_op *bind_op)
+>  {
+>  	switch (bind_op->type) {
+> -	case PVR_VM_BIND_TYPE_MAP:
+> +	case PVR_VM_BIND_TYPE_MAP: {
+> +		const struct drm_gpuvm_map_req map_req = {
+> +			.op_map.va.addr = bind_op->device_addr,
+> +			.op_map.va.range = bind_op->size,
+> +			.op_map.gem.obj = gem_from_pvr_gem(bind_op->pvr_obj),
+> +			.op_map.gem.offset = bind_op->offset,
+> +		};
+> +
+>  		return drm_gpuvm_sm_map(&bind_op->vm_ctx->gpuvm_mgr,
+> -					bind_op, bind_op->device_addr,
+> -					bind_op->size,
+> -					gem_from_pvr_gem(bind_op->pvr_obj),
+> -					bind_op->offset);
+> +					bind_op, &map_req);
+> +	}
+>  
+>  	case PVR_VM_BIND_TYPE_UNMAP:
+>  		return drm_gpuvm_sm_unmap(&bind_op->vm_ctx->gpuvm_mgr,
+> diff --git a/drivers/gpu/drm/msm/msm_gem_vma.c b/drivers/gpu/drm/msm/msm_gem_vma.c
+> index 3cd8562a5109..2ca408c40369 100644
+> --- a/drivers/gpu/drm/msm/msm_gem_vma.c
+> +++ b/drivers/gpu/drm/msm/msm_gem_vma.c
+> @@ -1172,10 +1172,17 @@ vm_bind_job_lock_objects(struct msm_vm_bind_job *job, struct drm_exec *exec)
+>  				break;
+>  			case MSM_VM_BIND_OP_MAP:
+>  			case MSM_VM_BIND_OP_MAP_NULL:
+> -				ret = drm_gpuvm_sm_map_exec_lock(job->vm, exec, 1,
+> -							    op->iova, op->range,
+> -							    op->obj, op->obj_offset);
+> +			{
+> +				struct drm_gpuvm_map_req map_req = {
+> +					.op_map.va.addr = op->iova,
+> +					.op_map.va.range = op->range,
+> +					.op_map.gem.obj = op->obj,
+> +					.op_map.gem.offset = op->obj_offset,
+> +				};
+> +
+> +				ret = drm_gpuvm_sm_map_exec_lock(job->vm, exec, 1, &map_req);
+>  				break;
+> +			}
+>  			default:
+>  				/*
+>  				 * lookup_op() should have already thrown an error for
+> @@ -1283,9 +1290,17 @@ vm_bind_job_prepare(struct msm_vm_bind_job *job)
+>  				arg.flags |= MSM_VMA_DUMP;
+>  			fallthrough;
+>  		case MSM_VM_BIND_OP_MAP_NULL:
+> -			ret = drm_gpuvm_sm_map(job->vm, &arg, op->iova,
+> -					       op->range, op->obj, op->obj_offset);
+> +		{
+> +			struct drm_gpuvm_map_req map_req = {
+> +				.op_map.va.addr = op->iova,
+> +				.op_map.va.range = op->range,
+> +				.op_map.gem.obj = op->obj,
+> +				.op_map.gem.offset = op->obj_offset,
+> +			};
+> +
+> +			ret = drm_gpuvm_sm_map(job->vm, &arg, &map_req);
+>  			break;
+> +		}
+>  		default:
+>  			/*
+>  			 * lookup_op() should have already thrown an error for
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> index ddfc46bc1b3e..92f87520eeb8 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> @@ -1276,6 +1276,12 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
+>  			break;
+>  		case OP_MAP: {
+>  			struct nouveau_uvma_region *reg;
+> +			struct drm_gpuvm_map_req map_req = {
+> +				.op_map.va.addr = op->va.addr,
+> +				.op_map.va.range = op->va.range,
+> +				.op_map.gem.obj = op->gem.obj,
+> +				.op_map.gem.offset = op->gem.offset,
+> +			};
+>  
+>  			reg = nouveau_uvma_region_find_first(uvmm,
+>  							     op->va.addr,
+> @@ -1301,10 +1307,7 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
+>  			}
+>  
+>  			op->ops = drm_gpuvm_sm_map_ops_create(&uvmm->base,
+> -							      op->va.addr,
+> -							      op->va.range,
+> -							      op->gem.obj,
+> -							      op->gem.offset);
+> +							      &map_req);
+>  			if (IS_ERR(op->ops)) {
+>  				ret = PTR_ERR(op->ops);
+>  				goto unwind_continue;
+> diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
+> index 4140f697ba5a..5ed4573b3a6b 100644
+> --- a/drivers/gpu/drm/panthor/panthor_mmu.c
+> +++ b/drivers/gpu/drm/panthor/panthor_mmu.c
+> @@ -2169,15 +2169,22 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct panthor_vm_op_ctx *op,
+>  	mutex_lock(&vm->op_lock);
+>  	vm->op_ctx = op;
+>  	switch (op_type) {
+> -	case DRM_PANTHOR_VM_BIND_OP_TYPE_MAP:
+> +	case DRM_PANTHOR_VM_BIND_OP_TYPE_MAP: {
+> +		const struct drm_gpuvm_map_req map_req = {
+> +			.op_map.va.addr = op->va.addr,
+> +			.op_map.va.range = op->va.range,
+> +			.op_map.gem.obj = op->map.vm_bo->obj,
+> +			.op_map.gem.offset = op->map.bo_offset,
+> +		};
+> +
+>  		if (vm->unusable) {
+>  			ret = -EINVAL;
+>  			break;
+>  		}
+>  
+> -		ret = drm_gpuvm_sm_map(&vm->base, vm, op->va.addr, op->va.range,
+> -				       op->map.vm_bo->obj, op->map.bo_offset);
+> +		ret = drm_gpuvm_sm_map(&vm->base, vm, &map_req);
+>  		break;
+> +	}
+>  
+>  	case DRM_PANTHOR_VM_BIND_OP_TYPE_UNMAP:
+>  		ret = drm_gpuvm_sm_unmap(&vm->base, vm, op->va.addr, op->va.range);
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 432ea325677d..9fcc52032a1d 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2316,10 +2316,17 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+>  
+>  	switch (operation) {
+>  	case DRM_XE_VM_BIND_OP_MAP:
+> -	case DRM_XE_VM_BIND_OP_MAP_USERPTR:
+> -		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, addr, range,
+> -						  obj, bo_offset_or_userptr);
+> +	case DRM_XE_VM_BIND_OP_MAP_USERPTR: {
+> +		struct drm_gpuvm_map_req map_req = {
+> +			.op_map.va.addr = addr,
+> +			.op_map.va.range = range,
+> +			.op_map.gem.obj = obj,
+> +			.op_map.gem.offset = bo_offset_or_userptr,
+> +		};
+> +
+> +		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, &map_req);
+>  		break;
+> +	}
+>  	case DRM_XE_VM_BIND_OP_UNMAP:
+>  		ops = drm_gpuvm_sm_unmap_ops_create(&vm->gpuvm, addr, range);
+>  		break;
+> diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+> index 274532facfd6..3cf0a84b8b08 100644
+> --- a/include/drm/drm_gpuvm.h
+> +++ b/include/drm/drm_gpuvm.h
+> @@ -1058,10 +1058,20 @@ struct drm_gpuva_ops {
+>   */
+>  #define drm_gpuva_next_op(op) list_next_entry(op, entry)
+>  
+> +/**
+> + * struct drm_gpuvm_map_req - arguments passed to drm_gpuvm_sm_map[_ops_create]()
+> + */
+> +struct drm_gpuvm_map_req {
+> +	/**
+> +	 * @op_map: struct drm_gpuva_op_map
+> +	 */
+> +	struct drm_gpuva_op_map op_map;
+> +};
+> +
+>  struct drm_gpuva_ops *
+>  drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+> -			    u64 addr, u64 range,
+> -			    struct drm_gem_object *obj, u64 offset);
+> +			    const struct drm_gpuvm_map_req *req);
+> +
+>  struct drm_gpuva_ops *
+>  drm_gpuvm_sm_unmap_ops_create(struct drm_gpuvm *gpuvm,
+>  			      u64 addr, u64 range);
+> @@ -1205,16 +1215,14 @@ struct drm_gpuvm_ops {
+>  };
+>  
+>  int drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+> -		     u64 addr, u64 range,
+> -		     struct drm_gem_object *obj, u64 offset);
+> +		     const struct drm_gpuvm_map_req *req);
+>  
+>  int drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm, void *priv,
+>  		       u64 addr, u64 range);
+>  
+>  int drm_gpuvm_sm_map_exec_lock(struct drm_gpuvm *gpuvm,
+>  			  struct drm_exec *exec, unsigned int num_fences,
+> -			  u64 req_addr, u64 req_range,
+> -			  struct drm_gem_object *obj, u64 offset);
+> +			  struct drm_gpuvm_map_req *req);
+>  
+>  int drm_gpuvm_sm_unmap_exec_lock(struct drm_gpuvm *gpuvm, struct drm_exec *exec,
+>  				 u64 req_addr, u64 req_range);
+> -- 
+> 2.34.1
+> 
