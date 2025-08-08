@@ -4,78 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F2A0C87FD3
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 12:20:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A160AC87FD3
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 12:20:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1733410E021;
-	Fri,  8 Aug 2025 12:20:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="AxHJ8C85";
-	dkim-atps=neutral
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
- [209.85.208.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1F9B10E04D
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 12:20:35 +0000 (UTC)
-Received: by mail-ed1-f53.google.com with SMTP id
- 4fb4d7f45d1cf-5f438523d6fso7865a12.1
- for <intel-xe@lists.freedesktop.org>; Fri, 08 Aug 2025 05:20:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1754655634; x=1755260434;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3rzYVptOKE6RcZ0qvjvmsPnga1215NKTSv+ot9kbgm8=;
- b=AxHJ8C85rnvxZh/AJ6EKIHo22yjfjCsXfqVEI/ZPAPscFlys3wYzoTPWSSe9zDO0ob
- 5yirFi5FU4jnbg4Q/pRT1rBnkAw5srtpec6ScyNLmOffl7IT6oGlTPhulSnpvXMNth3i
- iim9az5cvQDoQoVLQ0Nj3IQPgIN12UaUapesQHpi5R/J5j0OZiDCRzb/WRQuu/V5IY1t
- xi2MoEZ85uHaD3zT/vUkDcnHwxM5jNkclfHwkkC65GKyG8GYwj1sCHlnlFhuVu/Eq0fa
- 8Y5OTeQeZkaTvq9wSr1F0pqjmX4QqvC1/15AUZUNdrSpLSfnxirNx/z8wagV91KkZ4/a
- KVYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754655634; x=1755260434;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=3rzYVptOKE6RcZ0qvjvmsPnga1215NKTSv+ot9kbgm8=;
- b=OAgtmO1v95HtaRg7hSI4c8AakDRM+tmpjIzhVlyR/JNYVh9fIIq0EIPQ7y3v7pFxlo
- BXuD3PoxDoNkO5khDh/ZMsqIh7hq00z/JzB1hgkpBVcS+IaFRrUd6v8SEqa7sZgZfM+R
- PvrbDD1CQ5fG6LvX9Tu/AfIBuCX8kd2WhuuTo7KCXkO4hrbuw/3aY8XSwC26uMl2m3Fa
- vkQ+J+baYz2Y3mpQpsY75XfQCzkjvWzzYv7M+dgc5ljvNhIC31MsBv5iyUNTxwnn4DHz
- xHe9N6i5mgXEe62HUJ014il1dR8VfUdY4Elltr/0FHdIkaBxKyx8AMCnzZHfo1cXx313
- Ha9g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWjsf8Foh3JedjjeHkab/r2J37Bp/cBpSuVZjUPOwyYxKXBfjnHMiRA6Ut+TRix3Ahrr2N68M7ZVw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwsxYN1xaZduhS787Rzxx3L9t9sevuBj/RKJW0JppV/ll8cLXxt
- kgpYCx+h/ajO6d9H7Cw0KKbU/bBaLjsSielwFtlBTvIeQxCdh4q7Guwffvh2g/weyESPNq5IxkI
- UEYPelBPKLgK5k5SWkqN0WHyFO4j2fMYdlZztae0B
-X-Gm-Gg: ASbGncv4gTOlEX17bsYpWhqSAbZgV2qbGig8su5H3YQTg19QCgYuxMZ4yl6OQBW7zOa
- DMxb7Jg7OH26ODNfQM5OCrzNGSvCXao0hnIZyb0UZwOtJT98MyjrQm6PwoTTUkT4dHWH/DNuKHD
- tWIxqkZPJnKJH2rtRq24ypb35X5Coh5kN+vtlyUpNWUAuO8EBN6Ug6PvwLKOsf5rORqcaAkhCdG
- hiXPZZ/
-X-Google-Smtp-Source: AGHT+IG4063AzftLr2nNg6LP2eisixxrOm1cn9iuvLVn3oLVwkWGVefZC3UWEn6Yr/d0q/zLPSnZ+hF/HN7uvjRhvSY=
-X-Received: by 2002:a50:9351:0:b0:615:60d2:c013 with SMTP id
- 4fb4d7f45d1cf-617e48ffd8cmr60281a12.3.1754655633629; Fri, 08 Aug 2025
- 05:20:33 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4977D10E1AF;
+	Fri,  8 Aug 2025 12:20:56 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC78710E1AF;
+ Fri,  8 Aug 2025 12:20:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6305951238120474358=="
 MIME-Version: 1.0
-References: <20250729193647.3410634-1-marievic@google.com>
- <20250729193647.3410634-2-marievic@google.com>
- <CA+GJov4BQ1mRa-JaHoML+gF7rk=XY=hCRL+Shag6Aj6VbUgUeg@mail.gmail.com>
-In-Reply-To: <CA+GJov4BQ1mRa-JaHoML+gF7rk=XY=hCRL+Shag6Aj6VbUgUeg@mail.gmail.com>
-From: Marie Zhussupova <marievic@google.com>
-Date: Fri, 8 Aug 2025 08:20:20 -0400
-X-Gm-Features: Ac12FXxk_i-p3y5IMbqA_cUeg1wd-aJHm01gFGsskeUDN6bJI53lY7PD-TwOzYw
-Message-ID: <CAAkQn5JNmbuv=nj3Z5hDQNE0sAzrRNE_rJXrZVN4EqUDikV9=Q@mail.gmail.com>
-Subject: Re: [PATCH 1/9] kunit: Add parent kunit for parameterized test context
-To: Rae Moar <rmoar@google.com>
-Cc: davidgow@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
- elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com, 
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_rework_PDE_PAT_in?=
+ =?utf-8?q?dex_selection_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 08 Aug 2025 12:20:55 -0000
+Message-ID: <175465565569.222611.16855929768258010218@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250808103455.462424-2-matthew.auld@intel.com>
+In-Reply-To: <20250808103455.462424-2-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,218 +36,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 5, 2025 at 11:17=E2=80=AFAM Rae Moar <rmoar@google.com> wrote:
->
-> On Tue, Jul 29, 2025 at 3:37=E2=80=AFPM Marie Zhussupova <marievic@google=
-.com> wrote:
-> >
-> > Currently, KUnit parameterized tests lack a mechanism
-> > to share resources across individual test invocations
-> > because the same `struct kunit` instance is reused for
-> > each test.
-> >
-> > This patch refactors kunit_run_tests() to provide each
-> > parameterized test with its own `struct kunit` instance.
-> > A new parent pointer is added to `struct kunit`, allowing
-> > individual parameterized tests to reference a shared
-> > parent kunit instance. Resources added to this parent
-> > will then be accessible to all individual parameter
-> > test executions.
-> >
-> > Signed-off-by: Marie Zhussupova <marievic@google.com>
->
-> Hello!
->
-> Thank you so much for sending out this series. I have wanted to see an
-> update of our parameterized test framework for a while. I have a few
-> comments below for this patch. But otherwise it is looking good.
->
-> Reviewed-by: Rae Moar <rmoar@google.com>
->
-> Thanks!
-> -Rae
->
-> > ---
-> >  include/kunit/test.h | 12 ++++++++++--
-> >  lib/kunit/test.c     | 32 +++++++++++++++++++-------------
-> >  2 files changed, 29 insertions(+), 15 deletions(-)
-> >
-> > diff --git a/include/kunit/test.h b/include/kunit/test.h
-> > index 39c768f87dc9..a42d0c8cb985 100644
-> > --- a/include/kunit/test.h
-> > +++ b/include/kunit/test.h
-> > @@ -268,14 +268,22 @@ struct kunit_suite_set {
-> >   *
-> >   * @priv: for user to store arbitrary data. Commonly used to pass data
-> >   *       created in the init function (see &struct kunit_suite).
-> > + * @parent: for user to store data that they want to shared across
-> > + *         parameterized tests.
-> >   *
->
-> As David mentioned, I would also prefer that this provides a more
-> general description of the @parent field here. Although this is
-> currently only used for parameterized tests, it could have other use
-> cases in the future.
->
+--===============6305951238120474358==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Will edit this in v2.
+== Series Details ==
 
-> >   * Used to store information about the current context under which the=
- test
-> >   * is running. Most of this data is private and should only be accesse=
-d
-> > - * indirectly via public functions; the one exception is @priv which c=
-an be
-> > - * used by the test writer to store arbitrary data.
-> > + * indirectly via public functions; the two exceptions are @priv and @=
-parent
-> > + * which can be used by the test writer to store arbitrary data or dat=
-a that is
-> > + * available to all parameter test executions, respectively.
->
-> In addition, I would prefer that the call out to @parent here is also
-> changed to a more general description of the @parent field. However,
-> feel free to also include the description of the use case for the
-> parameterized tests.
->
+Series: drm/xe: rework PDE PAT index selection (rev2)
+URL   : https://patchwork.freedesktop.org/series/152432/
+State : success
 
-I will edit this in v2, as well.
+== Summary ==
 
-> >   */
-> >  struct kunit {
-> >         void *priv;
-> > +       /*
-> > +        * Reference to the parent struct kunit for storing shared reso=
-urces
-> > +        * during parameterized testing.
-> > +        */
->
-> I am more 50/50 on changing this description. Could change it just to:
-> "Reference to the parent struct kunit for storing shared resources."
+CI Bug Log - changes from xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba_BAT -> xe-pw-152432v2_BAT
+====================================================
 
-Thank you for the suggestion! The description would sound good.
+Summary
+-------
 
->
-> > +       struct kunit *parent;
-> >
-> >         /* private: internal use only. */
-> >         const char *name; /* Read only after initialization! */
-> > diff --git a/lib/kunit/test.c b/lib/kunit/test.c
-> > index f3c6b11f12b8..4d6a39eb2c80 100644
-> > --- a/lib/kunit/test.c
-> > +++ b/lib/kunit/test.c
-> > @@ -647,6 +647,7 @@ int kunit_run_tests(struct kunit_suite *suite)
-> >         struct kunit_case *test_case;
-> >         struct kunit_result_stats suite_stats =3D { 0 };
-> >         struct kunit_result_stats total_stats =3D { 0 };
-> > +       const void *curr_param;
-> >
-> >         /* Taint the kernel so we know we've run tests. */
-> >         add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
-> > @@ -679,36 +680,39 @@ int kunit_run_tests(struct kunit_suite *suite)
-> >                 } else {
-> >                         /* Get initial param. */
-> >                         param_desc[0] =3D '\0';
-> > -                       test.param_value =3D test_case->generate_params=
-(NULL, param_desc);
-> > +                       /* TODO: Make generate_params try-catch */
-> > +                       curr_param =3D test_case->generate_params(NULL,=
- param_desc);
-> >                         test_case->status =3D KUNIT_SKIPPED;
-> >                         kunit_log(KERN_INFO, &test, KUNIT_SUBTEST_INDEN=
-T KUNIT_SUBTEST_INDENT
-> >                                   "KTAP version 1\n");
-> >                         kunit_log(KERN_INFO, &test, KUNIT_SUBTEST_INDEN=
-T KUNIT_SUBTEST_INDENT
-> >                                   "# Subtest: %s", test_case->name);
-> >
-> > -                       while (test.param_value) {
-> > -                               kunit_run_case_catch_errors(suite, test=
-_case, &test);
-> > +                       while (curr_param) {
-> > +                               struct kunit param_test =3D {
-> > +                                       .param_value =3D curr_param,
-> > +                                       .param_index =3D ++test.param_i=
-ndex,
-> > +                                       .parent =3D &test,
-> > +                               };
-> > +                               kunit_init_test(&param_test, test_case-=
->name, test_case->log);
-> > +                               kunit_run_case_catch_errors(suite, test=
-_case, &param_test);
-> >
-> >                                 if (param_desc[0] =3D=3D '\0') {
-> >                                         snprintf(param_desc, sizeof(par=
-am_desc),
-> >                                                  "param-%d", test.param=
-_index);
->
-> This probably doesn't matter too much either way but should this be
-> param_test.param_index instead? This would cover the case where the
-> param_index is changed during the test run even though it shouldn't.
->
+  **SUCCESS**
 
-Thank you for catching this!
+  No regressions found.
 
-> >                                 }
-> >
-> > -                               kunit_print_ok_not_ok(&test, KUNIT_LEVE=
-L_CASE_PARAM,
-> > -                                                     test.status,
-> > -                                                     test.param_index =
-+ 1,
-> > +                               kunit_print_ok_not_ok(&param_test, KUNI=
-T_LEVEL_CASE_PARAM,
-> > +                                                     param_test.status=
-,
-> > +                                                     param_test.param_=
-index,
-> >                                                       param_desc,
-> > -                                                     test.status_comme=
-nt);
-> > +                                                     param_test.status=
-_comment);
-> >
-> > -                               kunit_update_stats(&param_stats, test.s=
-tatus);
-> > +                               kunit_update_stats(&param_stats, param_=
-test.status);
-> >
-> >                                 /* Get next param. */
-> >                                 param_desc[0] =3D '\0';
-> > -                               test.param_value =3D test_case->generat=
-e_params(test.param_value, param_desc);
-> > -                               test.param_index++;
-> > -                               test.status =3D KUNIT_SUCCESS;
-> > -                               test.status_comment[0] =3D '\0';
-> > -                               test.priv =3D NULL;
-> > +                               curr_param =3D test_case->generate_para=
-ms(curr_param, param_desc);
-> >                         }
-> >                 }
-> >
-> > @@ -723,6 +727,8 @@ int kunit_run_tests(struct kunit_suite *suite)
-> >
-> >                 kunit_update_stats(&suite_stats, test_case->status);
-> >                 kunit_accumulate_stats(&total_stats, param_stats);
-> > +               /* TODO: Put this kunit_cleanup into a try-catch. */
-> > +               kunit_cleanup(&test);
->
-> I might be missing something here but why not do this cleanup before
-> the printing stage and only if the test was a parent param test?
->
+  
 
-Thank you for catching this too, it should be only for the parent param tes=
-t.
+Participating hosts (11 -> 9)
+------------------------------
 
->
->
-> >         }
-> >
-> >         if (suite->suite_exit)
-> > --
-> > 2.50.1.552.g942d659e1b-goog
-> >
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152432v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
+    - bat-bmg-1:          [SKIP][1] -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba/bat-bmg-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152432v2/bat-bmg-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+
+  * igt@xe_exec_compute_mode@twice-rebind:
+    - bat-bmg-1:          [FAIL][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba/bat-bmg-1/igt@xe_exec_compute_mode@twice-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152432v2/bat-bmg-1/igt@xe_exec_compute_mode@twice-rebind.html
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-2}:        [FAIL][5] ([Intel XE#5783]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152432v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba -> xe-pw-152432v2
+
+  IGT_8489: 4972020ea0f3d0ac8a0d7dd4f5419119b1b30995 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba: 0a8f74a5dde6c5327dac9522cf1441003f2ebcba
+  xe-pw-152432v2: 152432v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152432v2/index.html
+
+--===============6305951238120474358==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: rework PDE PAT index selection (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152432/">https://patchwork.freedesktop.org/series/152432/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152432v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152432v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba_BAT -&gt; xe-pw-152432v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152432v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba/bat-bmg-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152432v2/bat-bmg-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_compute_mode@twice-rebind:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba/bat-bmg-1/igt@xe_exec_compute_mode@twice-rebind.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152432v2/bat-bmg-1/igt@xe_exec_compute_mode@twice-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@bind-execqueues-independent:</p>
+<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152432v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba -&gt; xe-pw-152432v2</li>
+</ul>
+<p>IGT_8489: 4972020ea0f3d0ac8a0d7dd4f5419119b1b30995 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3517-0a8f74a5dde6c5327dac9522cf1441003f2ebcba: 0a8f74a5dde6c5327dac9522cf1441003f2ebcba<br />
+  xe-pw-152432v2: 152432v2</p>
+
+</body>
+</html>
+
+--===============6305951238120474358==--
