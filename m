@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0BFACA0EC1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E98C0CA0EC4
 	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 13:22:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D1A410E46B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FD8E10E46F;
 	Mon, 11 Aug 2025 13:22:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=listout.xyz header.i=@listout.xyz header.b="XiDB561x";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bpVMEvVV";
 	dkim-atps=neutral
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4365910E10E;
- Mon, 11 Aug 2025 13:11:52 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4c0w5K2YKqz9snW;
- Mon, 11 Aug 2025 15:11:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=listout.xyz; s=MBO0001;
- t=1754917909;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=+H2ZqlQ2Jh2MhyNBjLJU7iks+MBvU2kShwz8Ja2mpHA=;
- b=XiDB561xAW0IlYlKP6duqbY5ECPR9xxcsgehRM+K4TRrCjoD4pNkS598Bqh/BjaCDNoBMn
- pvxB8DP07kZycr71gl05Khcq50WNXLZCYh2mY17qIb+aXH8ti/FwEVHfdncczIuplYNSkE
- 6dOvfoe4cngSICuSNcjHeRUTE8NN12qGFeSwjWMJdDinoqb3FJnhsMnS++K9twaVRLPYzG
- slwiQZGr7yWPeCRwThadTCiXyJyc1OPOsP4o0ma5Cm5WKS86neNTyfujPLKW7YMD1eT3os
- I3C+Xe2lVQoT/xVZh2zjNp2sfIDkWq0ynZC/hyHsLmn8vXHy9TZdt1uASftr1g==
-From: Brahmajit Das <listout@listout.xyz>
-To: jani.nikula@linux.intel.com
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
- linux-next@vger.kernel.org, listout@listout.xyz, rodrigo.vivi@intel.com,
- simona@ffwll.ch, tursulin@ursulin.net
-Subject: [RFC PATCH 1/2] drm/i915/debugfs: use new debugfs device-centered
- functions
-Date: Mon, 11 Aug 2025 18:41:25 +0530
-Message-ID: <20250811131126.71883-2-listout@listout.xyz>
-In-Reply-To: <20250811131126.71883-1-listout@listout.xyz>
-References: <32c55ab0b1452a1fd8ef49e8a1ca640ad5bd9d76@intel.com>
- <20250811131126.71883-1-listout@listout.xyz>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6419010E911;
+ Fri,  8 Aug 2025 10:45:59 +0000 (UTC)
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
+ [91.158.153.178])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6F313185B;
+ Fri,  8 Aug 2025 12:45:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1754649908;
+ bh=brJMRHo/8Tl3e7xMygG9eyiFT2hDjy5O7wtChHaeNYM=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=bpVMEvVV/KjgNPSTx09Y1zAid5VLUpMgHxMncGlh/eIqSnOEbYo/e7pfZcCaLnvMR
+ a4WP/S0JCHnwihLwBpo0WvGkuChuDoTi3adY52UACj4F5WD116oIVmo+wa34Zq++Sp
+ qyMsD/KygsGrVig9ySGURL4Ju5+a5JMr5a6kJVSM=
+Message-ID: <20be7c9d-ad67-4157-b03e-18f91534a1cd@ideasonboard.com>
+Date: Fri, 8 Aug 2025 13:45:54 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 17/25] drm/renesas/rcar-du: Compute dumb-buffer sizes
+ with drm_mode_size_dumb()
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, simona@ffwll.ch,
+ airlied@gmail.com, mripard@kernel.org, maarten.lankhorst@linux.intel.com,
+ geert@linux-m68k.org
+References: <20250613090431.127087-1-tzimmermann@suse.de>
+ <20250613090431.127087-18-tzimmermann@suse.de>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+In-Reply-To: <20250613090431.127087-18-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 11 Aug 2025 13:22:00 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,40 +67,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace the use of drm_debugfs_create_files() with the new
-drm_debugfs_add_files() function, which centers the debugfs files
-management on the drm_device instead of drm_minor.
+On 13/06/2025 12:00, Thomas Zimmermann wrote:
+> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
+> buffer size. Align the pitch according to hardware requirements.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> ---
+>  drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
+> index 4c8fe83dd610..dd353fb858ef 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
+> @@ -11,6 +11,7 @@
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_device.h>
+> +#include <drm/drm_dumb_buffers.h>
+>  #include <drm/drm_framebuffer.h>
+>  #include <drm/drm_gem_dma_helper.h>
+>  #include <drm/drm_gem_framebuffer_helper.h>
+> @@ -407,8 +408,8 @@ int rcar_du_dumb_create(struct drm_file *file, struct drm_device *dev,
+>  			struct drm_mode_create_dumb *args)
+>  {
+>  	struct rcar_du_device *rcdu = to_rcar_du_device(dev);
+> -	unsigned int min_pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
+>  	unsigned int align;
+> +	int ret;
+>  
+>  	/*
+>  	 * The R8A7779 DU requires a 16 pixels pitch alignment as documented,
+> @@ -419,7 +420,9 @@ int rcar_du_dumb_create(struct drm_file *file, struct drm_device *dev,
+>  	else
+>  		align = 16 * args->bpp / 8;
+>  
+> -	args->pitch = roundup(min_pitch, align);
+> +	ret = drm_mode_size_dumb(dev, args, align, 0);
+> +	if (ret)
+> +		return ret;
+>  
+>  	return drm_gem_dma_dumb_create_internal(file, dev, args);
+>  }
 
-Signed-off-by: Brahmajit Das <listout@listout.xyz>
----
- drivers/gpu/drm/i915/i915_debugfs.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 23fa098c4479..e411ff3ac1fd 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -699,7 +699,7 @@ static const struct file_operations i915_forcewake_fops = {
- 	.release = i915_forcewake_release,
- };
- 
--static const struct drm_info_list i915_debugfs_list[] = {
-+static const struct drm_debugfs_info i915_debugfs_list[] = {
- 	{"i915_capabilities", i915_capabilities, 0},
- 	{"i915_gem_objects", i915_gem_object_info, 0},
- 	{"i915_frequency_info", i915_frequency_info, 0},
-@@ -735,9 +735,8 @@ void i915_debugfs_register(struct drm_i915_private *i915)
- 				    i915_debugfs_files[i].fops);
- 	}
- 
--	drm_debugfs_create_files(i915_debugfs_list,
--				 ARRAY_SIZE(i915_debugfs_list),
--				 debugfs_root, i915->drm.primary);
-+	drm_debugfs_add_files(&i915->drm, i915_debugfs_list,
-+			      ARRAY_SIZE(i915_debugfs_list));
- 
- 	i915_gpu_error_debugfs_register(i915);
- }
--- 
-2.50.1
+ Tomi
 
