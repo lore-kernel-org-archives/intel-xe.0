@@ -4,166 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 929DEC87FCA
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 00:31:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21CF5C87FCF
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 01:23:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56F5610E077;
-	Fri,  8 Aug 2025 00:31:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3B3E10E8B0;
+	Fri,  8 Aug 2025 01:23:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XLn2hSRE";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="x/1qNIEB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DCA810E077
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 00:31:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754613062; x=1786149062;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=y+eqL7eUfJHRsfGIgzahVlp1EWyZfqE0Q1EWDXGNKiA=;
- b=XLn2hSREqbgON/ivlZ63M+/ri4oR5qCea+AOc/kWmBT1PvJN4q84uXjF
- Rg0S+I7jvDbuGsF7tEkdZB1txtXs7L2nFicY3xtz6PszR3bfb4qa6XDJ4
- TaF3OqHeKicBq70E7Z1Iu/QktGx1AatBaTcPXPFXNCougmPliRlCNBdzY
- Ax823gT+PjSLiQyc8hRVWOlbV9pe5lgllj2x6RB9KXs5uK/uk2ujPIRzy
- SkTlXiLb4LD3crRmmG6a2WOZQlXJwQw26o4shbtbv/ZV4Y6iRBBeQg4Fh
- GMG2zLOnhPJZIL3cwANIUzhqzXk8/jaC9IdzLFiZhRJteQPKgm2rBXAEz g==;
-X-CSE-ConnectionGUID: JsO7vKkRRuud3wOyXywlPA==
-X-CSE-MsgGUID: 3YUYKPazS9W89r2zOGPJGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="60588283"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="60588283"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 17:31:02 -0700
-X-CSE-ConnectionGUID: mXq5fwDBQ8a0Li5PVZ0etg==
-X-CSE-MsgGUID: CWuGNm4cSUWFElfvK2EsOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="196027455"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 17:31:01 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 7 Aug 2025 17:31:00 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Thu, 7 Aug 2025 17:31:00 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.45)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 7 Aug 2025 17:31:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NpoCgQ7W8SiAe1WuEV8Oio4D++BT5FeAUbkWb8Z2gWThIgpuoDXXdLt74aDgt5thE3ZwXeIj5suHfs/9LL/3i70VnmR9JtYBwFMsUcCDY8l79IVp5jrAW1eXDF5KURMsIyP0AZ1HknhmdKJibdmpDgpoNcgkkgsHhtadAIRQliL4w728QCX1MYmaXsVA/HJgBcr62MJxDEngdLJK0Us5F8qzSS22ipBb1kcJgW1wyhV8cnP5corWV0D3EGoGNSicrjnajDqbWScznfznQx0j0LXddKJZ9BB+qPjvj9PxnX79xZvIIwiKeucHda8gzMO9inxw1y6ZVVRXvocV48zHhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q8pnc0ZVLH0a1+j7dn4aD8lmY6QhNhLvUiw3WtuADZs=;
- b=rmN/VBo89vzTvleBQsK/ibLvscpid8IjLDJDj+ZuOd8Y7yxYMGZJd9uOa8LpPOzZHaPQz8Jz0wLrPtwSZAecdbhnB50Ue1Djvj4NfD/CmjXNCx4hIeVBMhn0VVMczMMCXr4S70Ust3tEaPtI+FuGDFn2HgQCZGht8FA4ojyGBVZyvK8E28oy4TTrTvEM8UqVEpLYLwrrjrDf0p/hf4yevZTDVZvK3khMT0vSq46rOotYh9StySiSpHyzoY4Zr9OXCrNX3cYilUUTag/jd9m/dR32ZgheV9QsA7rQV+RmCXX4qTs0lZOXoueh1BfKGm0pk8lc1efxf9LWR3jaGbjzxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DM4PR11MB6527.namprd11.prod.outlook.com (2603:10b6:8:8e::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.15; Fri, 8 Aug
- 2025 00:30:58 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.9009.013; Fri, 8 Aug 2025
- 00:30:52 +0000
-Date: Thu, 7 Aug 2025 17:30:49 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v6 19/26] drm/xe/svm: Consult madvise preferred location
- in prefetch
-Message-ID: <aJVFOfc9lqVORNNo@lstrano-desk.jf.intel.com>
-References: <20250807164338.1832254-1-himal.prasad.ghimiray@intel.com>
- <20250807164338.1832254-20-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250807164338.1832254-20-himal.prasad.ghimiray@intel.com>
-X-ClientProxiedBy: MW4PR03CA0158.namprd03.prod.outlook.com
- (2603:10b6:303:8d::13) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
+ [209.85.208.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A1C810E195
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 01:23:04 +0000 (UTC)
+Received: by mail-ed1-f52.google.com with SMTP id
+ 4fb4d7f45d1cf-5f438523d6fso3218a12.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 07 Aug 2025 18:23:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1754616183; x=1755220983;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=2D00aj35qn0lgLEWR00CYBcQuTXDPk0GIrAj2AelFpM=;
+ b=x/1qNIEBAGGz/BX6hC8/Qhuu2js5JgTLYB+nSRwIGe4fpKRq5K2zeGqUqz06GMixAT
+ sImwawnJPGyroBZVipRWZcmusgeKW116scImfoR/buePcszam+Y/NDFbtdX3E5jzy/nu
+ IcsvaYfqoMqktWVBIbcklJzJjWwlcepCsCzimve4nZiBYQfY8Yv/yV0wl5XCgr1yLKVe
+ W4cLvke3a4rSvpVLj7jSDJ6wqEUAxA7eB+szehnC7cLiLTYk/mG3P+on/tp1C14TQCZZ
+ BTBsRfCpCePCkZ0DwZJWutiYXrgZ53XswoYCFaQKNsoDIlNYpDUvheovy0qPjivpOsw8
+ cjpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754616183; x=1755220983;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=2D00aj35qn0lgLEWR00CYBcQuTXDPk0GIrAj2AelFpM=;
+ b=g3uzvlmlYRWbaRh3+oWwQFPSfrDnpKA5s3sMaNrRyrF5ZI2+3jwBIAl0qIoxUyq6b+
+ VAcAXq29UuDyscvJQaKT1RsOatnkiO+JpKZdQE5sKQuJFLNubbZruoXaAvSNfRWNwPc6
+ WAdMn4ZdKMF1EzfP1IJTD56N3borgYV27N6utBfgskARD40eqURnI/mWeilpfDOTQgpC
+ jED/JD2DyBQvPWJIOMftNyIeR3G6TIa9OwIxYTfe19L3z7RRBXxasNCAO82ShhSsMP2U
+ 79KnYD2n6hpU7Z0EvXvDK3huc+BWb08IA0gRYhDFYleh1PLDi9hNAOYcTmutYYRDZkl9
+ 2XCw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX856rWgzdN/bh4L8Yen2BBEK8xF4miUhpY3wgdvmffZLSwpJ9u0vk7ypzF5WqGknukkrO8bfossw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyqfva74YLeB2P9WnttbrEilh5BbOON2616mYXlU8IeqUi+FOsY
+ xDW7rK5uzUWOHF9kJ7P9acu0sSg1g9xHjBC8eWTZd36EbYVGvBxlB4CbjSsCMyBXaWzf0wZ9SMn
+ 80GvzPagB8B7oiD/S4HdWnAqMgnOiFFOo5/NM29IP
+X-Gm-Gg: ASbGnctI5kJgLBCPSPB1d/yery9zFiIo07GHp/2lhE8hevTXqfDbb6Cyvn3kqQ5fXKl
+ yTrAtGI3zQ1l9toIu/F1hrdcCObEfhxXgl0SEjPfYOVn4uyp7EXJ5qi3C3OrRVZZUByjpU7nj3r
+ LJrsQK1/bUX2RWo3U7zNCufggcx+43pMMWBtpEI2SSzTrXPr26o7Y1Do0PizUMBrtZvF9DOVHsN
+ DdnkpmY
+X-Google-Smtp-Source: AGHT+IGaR/h/J9/1J1DqeC39jxSWn0nyV0BCQ8iE+VjGFJZUiVPSq0jiBZsdGYmezeXImgpn13C2HiTTQedvJM4YdKE=
+X-Received: by 2002:a50:8ac9:0:b0:615:6167:4835 with SMTP id
+ 4fb4d7f45d1cf-617e4938cc5mr22550a12.7.1754616182348; Thu, 07 Aug 2025
+ 18:23:02 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB6527:EE_
-X-MS-Office365-Filtering-Correlation-Id: 212a5033-3d8e-4773-c9ac-08ddd612d4a2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?FXdz4txkl7aM9PizWX7BuTqK9H827j4do4zpKXKn1tzC4yapi3qaDmbwsPsv?=
- =?us-ascii?Q?8IEKLg1mCLdT5voIjjkOB80tOueTQEV8fJEHLNgbvgFqI9uf/vOf5clkccnX?=
- =?us-ascii?Q?POg1XpHZ3ppzO+A68ei6w+2+KjoTBHbkYuXvFhAQHJooB1Zlt0nhlls4GXEx?=
- =?us-ascii?Q?yn10Oer+kniVPsdMhWW0zCv0/CTHI7E4dIrE46fEdKudAT3nBIOTOgfOGGOZ?=
- =?us-ascii?Q?fPeM0N/wmlZ2h+mOrnoadF6hE4R3L1AhfuqJ+F6rNRJvNviDO7pvU0/YW0x7?=
- =?us-ascii?Q?+JEHAVKRAa00yIt0KBKVb3K2QEJHWuE31klTqr9sx8rj2xBt+HQkPKnr68f0?=
- =?us-ascii?Q?FjATLUBuiDviQ0uL7dIiltlFewZyWOAx/d5Vm5BZ7ccj5DYj6Bn9WayC3nB0?=
- =?us-ascii?Q?asERBNk/GgXqtph48BP5+YYvak7Adx5iQgmnYhX0TIvcZriISedp0ywDXwG5?=
- =?us-ascii?Q?eExt+fejPPKCanjQPyVDf9q4bR5FD04YQaLgr17XV9LLECkZdfmcGElkIS27?=
- =?us-ascii?Q?KM3aDLnl1gRTv/N/5Bh0j8DNxLpfNAotCM8/n4cB5Km1jZI3zquDhaw5y9Be?=
- =?us-ascii?Q?S3w/rvkEBG6wP0PLk8y80mdTRHmYzdNVHQKVd20hFg/VPcO/RevppCVupI/E?=
- =?us-ascii?Q?F079SNnah4fcR8q0h7eVU+KCyBwD5ncHK2IWHWvrA5J0ZYVaof8tLzzauKDG?=
- =?us-ascii?Q?2XukW+xciDZoCqziNRO3lz8MtNAU6jq5jmqpbWh9bP5F9r3NG1nC7q9oY5zI?=
- =?us-ascii?Q?9lW7MXT8mbvx7qoif6DXWzczwAdPx6SzrJKLuafnKmfPhdUGfZiEc9KsBxdK?=
- =?us-ascii?Q?JaPEWHJntOCV61EvgAkIegwUMqHbLtXmuQqi3xUFBrsyY6G4MUPoAuPWotTO?=
- =?us-ascii?Q?k1rAlkYTIotI/ZmXpj+EwJkX9El6YJsy+PyMDRSTW/DD3HjAu0N/3XIA++KR?=
- =?us-ascii?Q?/wwgKUKJ0Vo+M0KiZENu9EdH+vrNuBQByE4tZn7ERl6fjQ0FmeNaICfOfljs?=
- =?us-ascii?Q?GCf2qje8z/k2F2tmx2wM54DTRt7EOEpaVRcOdAACzUqcnVamrDi9dvjuUP/P?=
- =?us-ascii?Q?PoSHYTOnFESur15PbD65mFGAedzfBKFELG+1OS2d6YoxtzdyZPJxaW890yAE?=
- =?us-ascii?Q?pgzKmb+WdsY53vqyzaOQnzM37eZicSg00noiCSvWVKL4FzPe1X3qRcza5IL0?=
- =?us-ascii?Q?tKycH8+RJefcFx/aK7ooOh8u4wqn8QAa4zjPO+pf15v+J3yMfCdn4HxNev0A?=
- =?us-ascii?Q?rupwabqDLrtyjtbQ8qsf4+8Lujn+RPOK91ixSyuHy7EbqdPDV9sTiyXIUt8l?=
- =?us-ascii?Q?GNA4Sll5GLvraPbSW4deYHlIjtO2ipSPvbvk2ib14ocCviSpcdz5LTkgalQz?=
- =?us-ascii?Q?OroC2drCuZrqd0K+f4954Czrst7Q3/6/Kq8PGyaJ4PxnQ4TXjqOQ49W1f596?=
- =?us-ascii?Q?+r66vE3dGcU=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IfvgZhcudXwyxi6sQZ4ySsZfXTtr3TRqsNIC7D+4AkEGfMuKUUTkvWz4Koyu?=
- =?us-ascii?Q?aOsyYcLpkXER4Dke59fnq2fmbkIN35wgyNXlrD2ZgcwX7jgcZuMpTOeC0o6P?=
- =?us-ascii?Q?Br9KXBVG3XzA3bC8AXE+DMhlMXshK4Fu/EWRo9URRQys1VcRtr5yZkfy+Li/?=
- =?us-ascii?Q?tmo3lskCj2yqJH6aJZnmaQ7xscqk6jRCd6pylnXi2qoAX1+Vd7NBvhfli+jH?=
- =?us-ascii?Q?zqV18sQV4ufx761izMp3dQkmhE8ig0yOMt4VCp7zYtx2zv8vHkeWPeWywfoy?=
- =?us-ascii?Q?b9HnMxqdsQ4NcCWV0Mx3Xk8kiXiWrnKZfkYyLaAKUM/uSr8mAd7C5DzmT4sM?=
- =?us-ascii?Q?rlJ/vfwunCTbT7RYe6UssBw2gSNMtZnKMCsY2HDow+yV4QG8H9NMDAeG2vZR?=
- =?us-ascii?Q?0UUJvoAmu6YrHEU5gbhiRNa0yb4OIwmXgqCwrnGfgKJo0091JLoBVlAaIbx2?=
- =?us-ascii?Q?nIUuoVuBXpWVXB8hkrko+8+myz/53d+lbWttOV8pBHXf/1G/mr0KdKsJloTm?=
- =?us-ascii?Q?Xm92o0cRuADuwO4BMMccjh21iuQ2HyF11a2bfklBbfEM1oKbakVU2GfYAwoY?=
- =?us-ascii?Q?304o7guKzPgyEs5sZknhPvrN5wz7klpWYqWXjfmMsu0id7YzFEHswsZuaBTM?=
- =?us-ascii?Q?MZeS1OvESHcn0/JtwXMjmY4Z0odaz5tK4J1Z3y3lddcgw0dGC/fZnNBx6vrj?=
- =?us-ascii?Q?wYl+nbbfZDviIMzQ+wYTFexeAUOvawBS8aC3saMrce0YjcBDVOEE6P8VMqW8?=
- =?us-ascii?Q?t5CEe0nhHtoFf6z6CDGpM08/SERgxzAr85L3tQZOGFl5pp08B5zAJCTUVBSX?=
- =?us-ascii?Q?E2IjuDwSCig/HJa0YvGSrRUcOIY/9s5+LeVncx52b3iUwFmGD12uNG6G5X/4?=
- =?us-ascii?Q?ph22v3X1Wu/DEqzIojpgwWu/9RkIAwZTq6pLlos9v1mfVVCiO7jA+j4c4w5N?=
- =?us-ascii?Q?KySdtTyJuBcQU5D/m4W7lhSZ3gY1WD9DgtlohXctTwT3a0DwTbX6GCiHBYOQ?=
- =?us-ascii?Q?o5l6pjfvwn99Z3w+3ycg6CHDKx+ZvMVkTUUj9epRu6lYwV8epN/y3N45lcXH?=
- =?us-ascii?Q?tQf4gV9Lvmg59N0AGp4ujCeFZni5WwHOBpiPI4Z59aEJbaAHiGL/CTMCNJIG?=
- =?us-ascii?Q?Dg3PsjDj73F4/B42Ig+QsrzeMTpmruBoJv6KJLGjE1dnPj1mo4aNhTkdCna8?=
- =?us-ascii?Q?RVRQwGecvHjyxVciizCFBlyKapWYu5dckyt9VS7BGxBSumysISEkX1jcNk/Q?=
- =?us-ascii?Q?Y5zGRZNIpAv0G+Y6NnyAlRiZc9LoQv2vEirhvyipTdQGYdhMKiezAAjd1Alv?=
- =?us-ascii?Q?JKh4YQGELpBcQKhVnen82XVFzhc50ZU90zDFG0aOgFRi2W+u/8uI0Nf/DEGp?=
- =?us-ascii?Q?Gbyf2Hy1ZauKUSSWH6s6atjy8WTswzQDZMzhYiyLQro7o7BqIsym/Pmco2UU?=
- =?us-ascii?Q?dyPIqioJuvamzGI3S8xz/OLzzDMCb5qkkJTmPu4+/S4vO+Xw+aCTwIfcg12H?=
- =?us-ascii?Q?jJW3PwVssF3AxGwwAdNT1oYT9LSN7ARTAYAp5KWGHXtj/7dTiNYPl4IJ5UqT?=
- =?us-ascii?Q?0IqTq80DZpBj+DpH1kYcJV20/nQZ7WjqnnJ/PekTUIVrnzSYcsWX5n/s2tPU?=
- =?us-ascii?Q?bg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 212a5033-3d8e-4773-c9ac-08ddd612d4a2
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 00:30:52.3774 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k0QrB8CqkXT89PP53ra0MOng1Sm7zjlBqTuJS8snJuet2+zrWdkjkLjuiRNhlL9opQbVvZU5mpE7U4Wrv5kjdg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6527
-X-OriginatorOrg: intel.com
+References: <20250729193647.3410634-1-marievic@google.com>
+ <20250729193647.3410634-7-marievic@google.com>
+ <CA+GJov7AH5Qyiaua7LKZjVNRoUd==DiSXvd1UP7TcSzvn5JZtQ@mail.gmail.com>
+In-Reply-To: <CA+GJov7AH5Qyiaua7LKZjVNRoUd==DiSXvd1UP7TcSzvn5JZtQ@mail.gmail.com>
+From: Marie Zhussupova <marievic@google.com>
+Date: Thu, 7 Aug 2025 21:22:50 -0400
+X-Gm-Features: Ac12FXy83TfjpYK_0eq_uQ1ZcPI2DWSWUtOe3NX9vC6swmGOuFsU9to_-ct3_vs
+Message-ID: <CAAkQn5LUA-gRj9nypcf0jE+gjRwN2axkJ4KO14Aj8AB3dhZHsw@mail.gmail.com>
+Subject: Re: [PATCH 6/9] kunit: Enable direct registration of parameter arrays
+ to a KUnit test
+To: Rae Moar <rmoar@google.com>
+Cc: davidgow@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
+ elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com, 
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -178,111 +91,371 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 07, 2025 at 10:13:31PM +0530, Himal Prasad Ghimiray wrote:
-> When prefetch region is DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, prefetch svm
-> ranges to preferred location provided by madvise.
-> 
-> v2 (Matthew Brost)
-> - Fix region, devmem_fd usages
-> - consult madvise is applicable for other vma's too.
-> 
-> v3
-> - Fix atomic handling
-> 
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_vm.c | 30 ++++++++++++++++++++++--------
->  1 file changed, 22 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index aa8d4c4fe0f0..ae966755255d 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -38,6 +38,7 @@
->  #include "xe_res_cursor.h"
->  #include "xe_svm.h"
->  #include "xe_sync.h"
-> +#include "xe_tile.h"
->  #include "xe_trace_bo.h"
->  #include "xe_wa.h"
->  #include "xe_hmm.h"
-> @@ -2913,15 +2914,28 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
->  	int err = 0;
->  
->  	struct xe_svm_range *svm_range;
-> +	struct drm_pagemap *dpagemap;
->  	struct drm_gpusvm_ctx ctx = {};
-> -	struct xe_tile *tile;
-> +	struct xe_tile *tile = NULL;
->  	unsigned long i;
->  	u32 region;
->  
->  	if (!xe_vma_is_cpu_addr_mirror(vma))
->  		return 0;
->  
-> -	region = op->prefetch_range.region;
-> +	if (op->prefetch_range.region == DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC) {
-> +		dpagemap = xe_vma_resolve_pagemap(vma, xe_device_get_root_tile(vm->xe));
-> +		/*
-> +		 * TODO: Once multigpu support is enabled will need
-> +		 * something to dereference tile from dpagemap.
-> +		 */
-> +		if (dpagemap)
-> +			tile = xe_device_get_root_tile(vm->xe);
-> +	} else {
-> +		region = op->prefetch_range.region;
-> +		if (region)
-> +			tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
-> +	}
+On Tue, Aug 5, 2025 at 11:18=E2=80=AFAM Rae Moar <rmoar@google.com> wrote:
+>
+> On Tue, Jul 29, 2025 at 3:37=E2=80=AFPM Marie Zhussupova <marievic@google=
+.com> wrote:
+> >
+> > KUnit parameterized tests currently support two
+> > primary methods for getting parameters:
+> > 1.  Defining custom logic within a `generate_params`
+> >     function.
+> > 2.  Using the KUNIT_ARRAY_PARAM and KUNIT_ARRAY_PARAM_DESC
+> >     macros with pre-defined static arrays.
+> >
+> > These methods present limitations when dealing with
+> > dynamically generated parameter arrays, or in scenarios
+> > where populating parameters sequentially via
+> > `generate_params` is inefficient or overly complex.
+> >
+> > This patch addresses these limitations by adding a new
+> > `params_data` field to `struct kunit`, of the type
+> > `kunit_params`. The struct `kunit_params` is designed to
+> > store the parameter array itself, along with essential metadata
+> > including the parameter count, parameter size, and a
+> > `get_description` function for providing custom descriptions
+> > for individual parameters.
+> >
+> > The `params_data` field can be populated by calling the new
+> > `kunit_register_params_array` macro from within a
+> > `param_init` function. By attaching the parameter array
+> > directly to the parent kunit test instance, these parameters
+> > can be iterated over in kunit_run_tests() behind the scenes.
+> >
+> > This modification provides greater flexibility to the
+> > KUnit framework, allowing testers to easily register and
+> > utilize both dynamic and static parameter arrays.
+> >
+> > Signed-off-by: Marie Zhussupova <marievic@google.com>
+>
+> Hello!
+>
+> Very excited by the prospect of setting up an array dynamically
+> instead of statically for parameterized tests. In general, I am happy
+> to see this framework is becoming more flexible and therefore more
+> tailored to our test author's needs.
+>
+> I already commented on the modpost error but I have a few more
+> comments and ideas below. Let me know what you think.
+>
+> Thanks!
+> -Rae
+>
 
-You need similar logic in vm_bind_ioctl_ops_create ahead of
-xe_svm_range_validate.
+Hello Rae,
 
-Maybe pull this out into a helper for do this calculation there and
-stick the result in the op which could be used here.
+I have added replies to your comments below.
 
-Matt
+Thank you,
+-Marie
 
->  
->  	ctx.read_only = xe_vma_read_only(vma);
->  	ctx.devmem_possible = devmem_possible;
-> @@ -2929,11 +2943,10 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
->  
->  	/* TODO: Threading the migration */
->  	xa_for_each(&op->prefetch_range.range, i, svm_range) {
-> -		if (!region)
-> +		if (!tile)
->  			xe_svm_range_migrate_to_smem(vm, svm_range);
->  
-> -		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, region)) {
-> -			tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
-> +		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, !!tile)) {
->  			err = xe_svm_alloc_vram(tile, svm_range, &ctx);
->  			if (err) {
->  				drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
-> @@ -3001,7 +3014,8 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
->  		else
->  			region = op->prefetch.region;
->  
-> -		xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
-> +		xe_assert(vm->xe, region == DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC ||
-> +			  region <= ARRAY_SIZE(region_to_mem_type));
->  
->  		err = vma_lock_and_validate(exec,
->  					    gpuva_to_vma(op->base.prefetch.va),
-> @@ -3419,8 +3433,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
->  				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
->  		    XE_IOCTL_DBG(xe, prefetch_region &&
->  				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
-> -		    XE_IOCTL_DBG(xe, !(BIT(prefetch_region) &
-> -				       xe->info.mem_region_mask)) ||
-> +		    XE_IOCTL_DBG(xe,  (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
-> +				       !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
->  		    XE_IOCTL_DBG(xe, obj &&
->  				 op == DRM_XE_VM_BIND_OP_UNMAP)) {
->  			err = -EINVAL;
-> -- 
-> 2.34.1
-> 
+> > ---
+> >  include/kunit/test.h | 54 ++++++++++++++++++++++++++++++++++++++++----
+> >  lib/kunit/test.c     | 26 ++++++++++++++++++++-
+> >  2 files changed, 75 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/include/kunit/test.h b/include/kunit/test.h
+> > index 4ba65dc35710..9143f0e22323 100644
+> > --- a/include/kunit/test.h
+> > +++ b/include/kunit/test.h
+> > @@ -245,7 +245,8 @@ static inline char *kunit_status_to_ok_not_ok(enum =
+kunit_status status)
+> >   */
+> >  #define KUNIT_CASE_PARAM_WITH_INIT(test_name, gen_params, init, exit) =
+         \
+> >                 { .run_case =3D test_name, .name =3D #test_name,       =
+             \
+> > -                 .generate_params =3D gen_params,                     =
+           \
+> > +                 .generate_params =3D (gen_params)                    =
+           \
+> > +                  ?: kunit_get_next_param_and_desc,                   =
+         \
+> >                   .param_init =3D init, .param_exit =3D exit,          =
+             \
+> >                   .module_name =3D KBUILD_MODNAME}
+> >
+> > @@ -294,6 +295,21 @@ struct kunit_suite_set {
+> >         struct kunit_suite * const *end;
+> >  };
+> >
+> > +/* Stores the pointer to the parameter array and its metadata. */
+> > +struct kunit_params {
+> > +       /*
+> > +        * Reference to the parameter array for the parameterized tests=
+. This
+> > +        * is NULL if a parameter array wasn't directly passed to the
+> > +        * parent kunit struct via the kunit_register_params_array macr=
+o.
+> > +        */
+> > +       const void *params;
+> > +       /* Reference to a function that gets the description of a param=
+eter. */
+> > +       void (*get_description)(const void *param, char *desc);
+> > +
+> > +       int num_params;
+>
+> Since in some cases we know the number of params within a series/suite
+> of the parameterized tests, is it possible for us to print a test plan
+> line in KTAP when this number is known? This would be helpful for
+> reading test results but also the parser could verify the number of
+> subtests is the number expected.
+
+This sounds like a great idea. My initial worry was that the availability
+of the test plan would be inconsistent since there would be no parameter
+count information when the parameters are generated using a custom
+generate_params function unless a test user provides them.
+However, it is good to provide any information that we have.
+
+>
+> > +       size_t elem_size;
+> > +};
+> > +
+> >  /**
+> >   * struct kunit - represents a running instance of a test.
+> >   *
+> > @@ -302,12 +318,14 @@ struct kunit_suite_set {
+> >   * @parent: for user to store data that they want to shared across
+> >   *         parameterized tests. Typically, the data is provided in
+> >   *         the param_init function (see &struct kunit_case).
+> > + * @params_data: for users to directly store the parameter array.
+> >   *
+> >   * Used to store information about the current context under which the=
+ test
+> >   * is running. Most of this data is private and should only be accesse=
+d
+> > - * indirectly via public functions; the two exceptions are @priv and @=
+parent
+> > - * which can be used by the test writer to store arbitrary data or dat=
+a that is
+> > - * available to all parameter test executions, respectively.
+> > + * indirectly via public functions. There are three exceptions to this=
+: @priv,
+> > + * @parent, and @params_data. These members can be used by the test wr=
+iter to
+> > + * store arbitrary data, data available to all parameter test executio=
+ns, and
+> > + * the parameter array, respectively.
+> >   */
+> >  struct kunit {
+> >         void *priv;
+> > @@ -316,6 +334,8 @@ struct kunit {
+> >          * during parameterized testing.
+> >          */
+> >         struct kunit *parent;
+> > +       /* Stores the params array and all data related to it. */
+> > +       struct kunit_params params_data;
+>
+> I might slightly prefer the term params_array rather than params_data.
+> Up to what you prefer.
+
+I like params_array because it's a naming convention similar
+to what object-oriented programming (OOP) languages like
+Java use. For instance, an ArrayList object encapsulates
+both an array and its size. I will make this change in v2.
+
+>
+> >
+> >         /* private: internal use only. */
+> >         const char *name; /* Read only after initialization! */
+> > @@ -386,6 +406,8 @@ void kunit_exec_list_tests(struct kunit_suite_set *=
+suite_set, bool include_attr)
+> >  struct kunit_suite_set kunit_merge_suite_sets(struct kunit_suite_set i=
+nit_suite_set,
+> >                 struct kunit_suite_set suite_set);
+> >
+> > +const void *kunit_get_next_param_and_desc(struct kunit *test, const vo=
+id *prev, char *desc);
+> > +
+> >  #if IS_BUILTIN(CONFIG_KUNIT)
+> >  int kunit_run_all_tests(void);
+> >  #else
+> > @@ -1735,6 +1757,30 @@ do {                                            =
+                                \
+> >                 return NULL;                                           =
+                         \
+> >         }
+> >
+> > +/**
+> > + * kunit_register_params_array() - Register parameters for a KUnit tes=
+t.
+> > + * @test: The KUnit test structure to which parameters will be added.
+> > + * @params_arr: An array of test parameters.
+> > + * @param_cnt: Number of parameters.
+> > + * @get_desc: A pointer to a function that generates a string descript=
+ion for
+> > + * a given parameter element.
+> > + *
+> > + * This macro initializes the @test's parameter array data, storing in=
+formation
+> > + * including the parameter array, its count, the element size, and the=
+ parameter
+> > + * description function within `test->params_data`. KUnit's built-in
+> > + * `kunit_get_next_param_and_desc` function will automatically read th=
+is
+> > + * data when a custom `generate_params` function isn't provided.
+> > + */
+> > +#define kunit_register_params_array(test, params_arr, param_cnt, get_d=
+esc)                     \
+>
+> I also might slightly prefer params_array and param_count here instead
+> of params_arr and param_cnt. Again this is definitely a nitpick so up
+> to you.
+
+I will do params_arr and param_cnt in v2, it definitely looks better.
+
+>
+> > +       do {                                                           =
+                         \
+> > +               struct kunit *_test =3D (test);                        =
+                   \
+> > +               const typeof((params_arr)[0]) * _params_ptr =3D &(param=
+s_arr)[0];                 \
+> > +               _test->params_data.params =3D _params_ptr;             =
+                           \
+> > +               _test->params_data.num_params =3D (param_cnt);         =
+                           \
+> > +               _test->params_data.elem_size =3D sizeof(*_params_ptr); =
+                           \
+> > +               _test->params_data.get_description =3D (get_desc);     =
+                           \
+> > +       } while (0)
+> > +
+> >  // TODO(dlatypov@google.com): consider eventually migrating users to e=
+xplicitly
+> >  // include resource.h themselves if they need it.
+> >  #include <kunit/resource.h>
+> > diff --git a/lib/kunit/test.c b/lib/kunit/test.c
+> > index f50ef82179c4..2f4b7087db3f 100644
+> > --- a/lib/kunit/test.c
+> > +++ b/lib/kunit/test.c
+> > @@ -337,6 +337,13 @@ void __kunit_do_failed_assertion(struct kunit *tes=
+t,
+> >  }
+> >  EXPORT_SYMBOL_GPL(__kunit_do_failed_assertion);
+> >
+> > +static void __kunit_init_params(struct kunit *test)
+> > +{
+> > +       test->params_data.params =3D NULL;
+> > +       test->params_data.num_params =3D 0;
+> > +       test->params_data.elem_size =3D 0;
+> > +}
+> > +
+> >  void kunit_init_test(struct kunit *test, const char *name, struct stri=
+ng_stream *log)
+> >  {
+> >         spin_lock_init(&test->lock);
+> > @@ -347,6 +354,7 @@ void kunit_init_test(struct kunit *test, const char=
+ *name, struct string_stream
+> >                 string_stream_clear(log);
+> >         test->status =3D KUNIT_SUCCESS;
+> >         test->status_comment[0] =3D '\0';
+> > +       __kunit_init_params(test);
+> >  }
+> >  EXPORT_SYMBOL_GPL(kunit_init_test);
+> >
+> > @@ -641,6 +649,22 @@ static void kunit_accumulate_stats(struct kunit_re=
+sult_stats *total,
+> >         total->total +=3D add.total;
+> >  }
+> >
+> > +const void *kunit_get_next_param_and_desc(struct kunit *test, const vo=
+id *prev, char *desc)
+> > +{
+> > +       struct kunit_params *params_arr =3D &test->params_data;
+> > +       const void *param;
+> > +
+> > +       if (test->param_index < params_arr->num_params) {
+> > +               param =3D (char *)params_arr->params
+> > +                       + test->param_index * params_arr->elem_size;
+> > +
+> > +               if (params_arr->get_description)
+> > +                       params_arr->get_description(param, desc);
+> > +               return param;
+> > +       }
+> > +       return NULL;
+> > +}
+>
+> I also agree with David that it should definitely be considered: 1 -
+> whether to utilize struct kunit_params for the case of using
+> KUNIT_ARRAY_PARAM and 2 - whether the user should actively input this
+> function instead of setting generate_params to NULL.
+>
+> Another idea that just popped into my head is if we have access to
+> struct kunit* test now in all of the generate_params functions,
+> instead of setting a "desc" could we just set the test->name field?
+>
+
+Utilizing struct kunit_params in KUNIT_ARRAY_PARAM is a great idea
+as that would mean greater test plan availability as well as the consistenc=
+y
+of storing parameter array information in struct kunit_params.
+
+To the second point, I think the user being asked to explicitly input
+kunit_get_next_param_and_desc if they are registering a parameter
+array in param_init is a good solution. It would make the code easier
+as there would be no extra logic happening behind the scenes.
+Moreover, we would always know that if it's a parameterized
+test then the generate_params function is not NULL. The only thing
+is that we would have to document it really well.
+
+Another potential solution could be to assign the
+kunit_get_next_param_and_desc function to generate_params
+in the  __kunit_init_parent_test function that runs param_init, if we
+keep its run before we determine that a test
+is parameterized (I know you commented on this here:
+https://lore.kernel.org/all/CA+GJov5R2GnBfxXR=3D28vS3F4b1E-=3DWLDXpgdJo0SpK=
+AXb1dpsw@mail.gmail.com/).
+
+__kunit_init_parent_test could set generate_params to
+kunit_get_next_param_and_desc if generate_params is NULL
+and kunit_params is non NULL, after the param_init call.
+What are your thoughts?
+
+Finally, utilizing test->name could be something to do in a future patch.
+First, we wouldn't need to pass char *desc as an argument to
+generate_params and second, the variable naming would be better
+as we are using the test name for KTAP output for regular tests.
+The downside would be having to change existing implementations
+that use char *desc and to explicitly specify to use test->name to users.
+
+> > +
+> >  static void __kunit_init_parent_test(struct kunit_case *test_case, str=
+uct kunit *test)
+> >  {
+> >         if (test_case->param_init) {
+> > @@ -687,7 +711,7 @@ int kunit_run_tests(struct kunit_suite *suite)
+> >                         /* Test marked as skip */
+> >                         test.status =3D KUNIT_SKIPPED;
+> >                         kunit_update_stats(&param_stats, test.status);
+> > -               } else if (!test_case->generate_params) {
+> > +               } else if (!test_case->generate_params && !test.params_=
+data.params) {
+>
+> I agree with David that it is helpful to have one check for whether a
+> test is a parameterized test rather than two. My instinct is that if
+> test_case->generate_params is NULL it should be safe to assume the
+> test isn't a parameterized test.
+
+Agreed.
+
+>
+> However, as an alternative or even as a helpful addition, I like the
+> idea of a simple kunit_test_is_param function that can pass in the
+> test and it will return a bool whether the test is parameterized or
+> not.
+>
+That could be a good idea. At the same time, if it remains true
+that generate_params being NULL implies that it's not a
+parameterized test, I think a simple check would be enough.
+
+>
+>
+>
+> >                         /* Non-parameterised test. */
+> >                         test_case->status =3D KUNIT_SKIPPED;
+> >                         kunit_run_case_catch_errors(suite, test_case, &=
+test);
+> > --
+> > 2.50.1.552.g942d659e1b-goog
+> >
