@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 714BCCA0EC1
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 17:30:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBC53C87FDA
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 17:30:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33AF510E97E;
-	Fri,  8 Aug 2025 17:30:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B5E110E97C;
+	Fri,  8 Aug 2025 17:30:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n/35nbgs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UHrq+MZf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E59FD10E1EC
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 17:30:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4E510E1EB
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 17:30:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1754674211; x=1786210211;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OfQfbgOtpSjoS/vJbFtCM+SDj61Fz6t+7e7KCY6Bkuo=;
- b=n/35nbgs20hA2+lIXbDwCXTnAQWMrU1cDjdvofeqeLju+l/9oG3VlY50
- i8z9LBrN68H69GCbWS8wbW5uVqs8xNB4LCp41pJ5c/b/9pRo3SCjay7cX
- Wa0snB/e3QEbXWiOUxQClHtg0Ckrwe99rXUgzkH/uiKjtz4AbtJJmo8q4
- bCsPI+ftmqhD54gQz3qV7z5UuZL0tt3SgzbYvpYNew8Qof9TE1FO6jyD0
- ZqLn8Q3QSyXgnJDFj31khg4V8fP+Dd2K/ZR8W2UkKtZnxx6wJaIFTNd2s
- g5hgRFWHslypq+kLENOUpLw8uK4EoQMsuXBRUvdLQiS0pHMvF5WP6pXOn g==;
-X-CSE-ConnectionGUID: QQ6Bb1H1Qtm2p4x2i8krng==
-X-CSE-MsgGUID: 0Pooh38ITLWZKWloo9FG3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11515"; a="68109822"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="68109822"
+ bh=vAPlf+xeMdPuYWHCpTMr2ueBXV9OnYYdQt6yIoPa0dk=;
+ b=UHrq+MZfKQk2Mu3HD1uWr0Xg3wRnFIVtD4qZ0OK/P/SvkDOVhIMc5gsM
+ LpyopgSpCpImFK4h3IHiLrkp4bdZEcIxNppRZGwImRYB4e8OTORrldgj5
+ mntI4z8LOFRGHWdnbplHZSErGU6xsSX2axWmX6ZKiskF/Oj8wzcTJqAJU
+ u/QpLL2OYurhyOSMk7EXRCA8foz38t1NgyjAqXURT54JS7u9nAMIHBjPE
+ KxNz3GsfVwLPAjEhNZpyvqGeZdnl0tlnn/Zu5mu6s4G3AkA7yXssbcPXw
+ AnfSnNI6RjIcmFo/EJpPevWc9DOaQhQT/gnbYxrj/6dt7y1sBjFifwnwO g==;
+X-CSE-ConnectionGUID: F6+NMo+wSIuB1CpsRmj/Kg==
+X-CSE-MsgGUID: 3O2c2qRXQraSJYvxCShJZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11515"; a="68109824"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="68109824"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Aug 2025 10:30:09 -0700
-X-CSE-ConnectionGUID: cVqISLgYRdiYsQXK3ByPsg==
-X-CSE-MsgGUID: bRF59/EOQmuMwu7HzGlVyA==
+X-CSE-ConnectionGUID: OX2RVUE4TQ+INONJK/h47A==
+X-CSE-MsgGUID: 9tMZ45V6SaGSYrCCI0e7GQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="165387410"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="165387419"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Aug 2025 10:30:08 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>, prashanth.kumar@intel.com,
- dnyaneshwar.bhadane@intel.com,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: [PATCH v3 05/13] drm/xe/psmi: Add Wa_16023683509
-Date: Fri,  8 Aug 2025 10:29:48 -0700
-Message-ID: <20250808-psmi-v3-5-a111e9f1e4b7@intel.com>
+ dnyaneshwar.bhadane@intel.com
+Subject: [PATCH v3 08/13] drm/xe/configfs: Use guard() for dev->lock
+Date: Fri,  8 Aug 2025 10:29:51 -0700
+Message-ID: <20250808-psmi-v3-8-a111e9f1e4b7@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250808-psmi-v3-0-a111e9f1e4b7@intel.com>
 References: <20250808-psmi-v3-0-a111e9f1e4b7@intel.com>
@@ -70,61 +69,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Instead of the manual lock()/unlock() pattern, use guard() which will
+make things easier for handling errors or early returns.
 
-This WA ensures GuC will restore the media MCFG registers at C6
-exit.
-
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2:
- - Enable only when PSMI is enabled
----
- drivers/gpu/drm/xe/xe_guc.c        | 3 +++
- drivers/gpu/drm/xe/xe_guc_fwif.h   | 1 +
- drivers/gpu/drm/xe/xe_wa_oob.rules | 2 ++
- 3 files changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_configfs.c | 13 +++++--------
+ 1 file changed, 5 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index cb757a53de856..f55c4a37cfed1 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -219,6 +219,9 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
- 	if (XE_WA(gt, 14018913170))
- 		flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 8cf6b1375b7d4..4c2d4ff6a70f5 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -5,6 +5,7 @@
  
-+	if (XE_WA(gt, 16023683509))
-+		flags |= GUC_WA_SAVE_RESTORE_MCFG_REG_AT_MC6;
-+
- 	return flags;
+ #include <linux/bitops.h>
+ #include <linux/configfs.h>
++#include <linux/cleanup.h>
+ #include <linux/find.h>
+ #include <linux/init.h>
+ #include <linux/module.h>
+@@ -164,9 +165,8 @@ static ssize_t survivability_mode_store(struct config_item *item, const char *pa
+ 	if (ret)
+ 		return ret;
+ 
+-	mutex_lock(&dev->lock);
++	guard(mutex)(&dev->lock);
+ 	dev->config.survivability_mode = survivability_mode;
+-	mutex_unlock(&dev->lock);
+ 
+ 	return len;
  }
+@@ -248,9 +248,8 @@ static ssize_t engines_allowed_store(struct config_item *item, const char *page,
+ 		val |= mask;
+ 	}
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index 4dc000c977faf..a169ad0da0d47 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -108,6 +108,7 @@ struct guc_update_exec_queue_policy {
- #define   GUC_WA_RENDER_RST_RC6_EXIT	BIT(19)
- #define   GUC_WA_RCS_REGS_IN_CCS_REGS_LIST	BIT(21)
- #define   GUC_WA_ENABLE_TSC_CHECK_ON_RC6	BIT(22)
-+#define   GUC_WA_SAVE_RESTORE_MCFG_REG_AT_MC6	BIT(25)
+-	mutex_lock(&dev->lock);
++	guard(mutex)(&dev->lock);
+ 	dev->config.engines_allowed = val;
+-	mutex_unlock(&dev->lock);
  
- #define GUC_CTL_FEATURE			2
- #define   GUC_CTL_ENABLE_SLPC		BIT(2)
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 303a5e05d9932..fe369e8a01012 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -72,6 +72,8 @@ no_media_l3	MEDIA_VERSION(3000)
- 		MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
- 		MEDIA_VERSION(3000), FUNC(xe_rtp_match_psmi_enabled)
- 		MEDIA_VERSION(3002), FUNC(xe_rtp_match_psmi_enabled)
-+16023683509	MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
-+		MEDIA_VERSION(3000), GRAPHICS_STEP(A0, B0), FUNC(xe_rtp_match_psmi_enabled)
+ 	return len;
+ }
+@@ -272,9 +271,8 @@ static ssize_t enable_psmi_store(struct config_item *item, const char *page, siz
+ 	if (ret)
+ 		return ret;
  
- # SoC workaround - currently applies to all platforms with the following
- # primary GT GMDID
+-	mutex_lock(&dev->lock);
++	guard(mutex)(&dev->lock);
+ 	dev->config.enable_psmi = val;
+-	mutex_unlock(&dev->lock);
+ 
+ 	return len;
+ }
+@@ -454,9 +452,8 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
+ 	if (!dev)
+ 		return;
+ 
+-	mutex_lock(&dev->lock);
++	guard(mutex)(&dev->lock);
+ 	dev->config.survivability_mode = 0;
+-	mutex_unlock(&dev->lock);
+ 
+ 	config_group_put(&dev->group);
+ }
 
 -- 
 2.50.1
