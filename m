@@ -4,79 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFA50C87FD2
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 13:05:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA9A8C87FD2
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 13:18:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D88310E12B;
-	Fri,  8 Aug 2025 13:05:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="da3Yjl1d";
-	dkim-atps=neutral
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com
- [209.85.166.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0F3410E12B
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 13:05:31 +0000 (UTC)
-Received: by mail-il1-f179.google.com with SMTP id
- e9e14a558f8ab-3e40df3c68fso149405ab.0
- for <intel-xe@lists.freedesktop.org>; Fri, 08 Aug 2025 06:05:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1754658331; x=1755263131;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=w6neGwwteSVypDmYCIRvpySKaDxtfHqm3VMcPtWq+jw=;
- b=da3Yjl1dUgWmzqBtwz8Z2HqNCjnxheEsEHnmCINBic0i5xDn0m8Ne2ELgMudgbfN4T
- MTxevx49hsFi0dm2WueGSX5qnGzk/HUIwGzc9Wkd2/SbJb1/pwTZMkotyNVQimHDgg85
- Ez3+AyTFlm7KIsLzwy78XZg/fgJAVXsWtsQ2U9QN1BOwMZVD4XXxqdwQK2S3AeW64RpU
- fg/Em3pwkHW94s1Fd9SbWTKifAXDGWF6X3bby1f4+tawWqt86SQsHsivT4yu8c1h3lVT
- gtFkf71piAIceIm9maZ8VKZv5xu7Qo2ASgP2YMsLvYQ98SYBf9p9oZ2qVF1KcW25crAy
- Gt/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754658331; x=1755263131;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=w6neGwwteSVypDmYCIRvpySKaDxtfHqm3VMcPtWq+jw=;
- b=uNiZO1w2l3LLeMOlQSZpJKwfG3kTbwt5RUjotsGgLmjDwPG9/9SsTIDjGDwi56mmU2
- bIA9y1s5Zv1ij7PeRmUnHGRweo+1qohFjx5xl5WrnkDC2V6kWtSJAVo86hM20avt0i/J
- eQUi/PmEjx43r43i8YCuu85A6K90NX5sWJepYK3n3BrOzcouK2SYA2URZ4M14h3588eq
- 0tmBaT7rwsdFaQo9Wc+B2IW9+2hsOZC8ftekniRJweX0EUeGY3EqBVH0hfktPuvfeWI5
- pPHAzK5ecS6ULgAWrsGUsU+a4ikH8Q8okevIL8tTDUIPeO351diluOcpcJ4nhqNebO5Y
- SLlA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXOTt+jDq3jDgABh6xFcq3fzplAnS7WGmzQU71biLDhT0Z/JaO+NYPkqfqXctOkD6PqvGWaiA7LOQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzYUUlJPHgIGAJQ41cCtIMC1aDtxaf8BGChOfuncU4j2/I9mGKw
- 2g/e+xAJ7XT1Q04puMgGSRN0tdQmYjmLKRSACfNzTnT9fr9EPNIw5+QwwLEYK/uDg7imJjNKG0T
- 9OdMrj6YPiK4RtVOl/YGkOIU+KfmP+aLgpHLzkfAG
-X-Gm-Gg: ASbGncuAKO5ZWtr5xqp5kvCNeMyxWwesWVqskvozBcJjWet5SqImUzSaIIQm/nEnOBx
- yBui1m+g3YqdQ+2joMlpquWZKHK5UTQTb1kSQBfRFeI9GUV2JVSJAGk2zaaTxVAB6TKvAuqgDiS
- l8y68tCM5fjHr+BkhVBg9B3dIHnbYf8p22+6eoUxjs49LBjgdTu3tyuGWsiV4kKC7TB/hqPwMAM
- Tn/apJvrt70W1biiSY=
-X-Google-Smtp-Source: AGHT+IElda8Px3WBkuAh+8esNh5W/6PzA9lCZzA5dDUubyQK+2MWaXBkidAPg3lcnQIigGwLuSLe2dzRKNkf5liJ1ns=
-X-Received: by 2002:a05:6e02:12ca:b0:3e2:865b:6b64 with SMTP id
- e9e14a558f8ab-3e5340e2741mr3830955ab.3.1754658330147; Fri, 08 Aug 2025
- 06:05:30 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9962410E1E2;
+	Fri,  8 Aug 2025 13:18:28 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECBB010E1E2;
+ Fri,  8 Aug 2025 13:18:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20250729193647.3410634-1-marievic@google.com>
- <20250729193647.3410634-10-marievic@google.com>
- <CA+GJov5q-mAHuchZNqS6DEv1zFmDzhF1SSdjBfJyB0ZnqUCQfg@mail.gmail.com>
-In-Reply-To: <CA+GJov5q-mAHuchZNqS6DEv1zFmDzhF1SSdjBfJyB0ZnqUCQfg@mail.gmail.com>
-From: Marie Zhussupova <marievic@google.com>
-Date: Fri, 8 Aug 2025 09:05:15 -0400
-X-Gm-Features: Ac12FXznLJ3D8UlToiHeLT2K71-cEF7aX5NUvAOWyQU8KC2MUoJs-V9Mnp3-vlM
-Message-ID: <CAAkQn5+Z2mb0yrQt3Q4zOmM-7xA+dVzT7dEOi7W-1HphYAFTcw@mail.gmail.com>
-Subject: Re: [PATCH 9/9] Documentation: kunit: Document new parameterized test
- features
-To: Rae Moar <rmoar@google.com>
-Cc: davidgow@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
- elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com, 
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Intel_Xe_GPU_Debug_Suppor?=
+ =?utf-8?q?t_=28eudebug=29_v4?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 08 Aug 2025 13:18:26 -0000
+Message-ID: <175465910696.222611.17737544255357738723@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,707 +36,324 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 5, 2025 at 11:19=E2=80=AFAM Rae Moar <rmoar@google.com> wrote:
->
-> On Tue, Jul 29, 2025 at 3:37=E2=80=AFPM Marie Zhussupova <marievic@google=
-.com> wrote:
-> >
-> > -Update the KUnit documentation to explain the concept
-> > of a parent parameterized test.
-> > -Add examples demonstrating different ways of passing
-> > parameters to parameterized tests and how to manage
-> > shared resources between them.
-> >
-> > Signed-off-by: Marie Zhussupova <marievic@google.com>
->
-> Hello!
->
-> This is amazing! I have a few comments below but I appreciate the
-> effort to document this new feature. It is always incredibly helpful
-> to have documentation to go along with the code.
->
-> Reviewed-by: Rae Moar <rmoar@google.com>
->
-> Thanks!
-> -Rae
->
-> > ---
-> >  Documentation/dev-tools/kunit/usage.rst | 455 +++++++++++++++++++++++-
-> >  1 file changed, 449 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/Documentation/dev-tools/kunit/usage.rst b/Documentation/de=
-v-tools/kunit/usage.rst
-> > index 066ecda1dd98..be1d656053cf 100644
-> > --- a/Documentation/dev-tools/kunit/usage.rst
-> > +++ b/Documentation/dev-tools/kunit/usage.rst
-> > @@ -542,11 +542,21 @@ There is more boilerplate code involved, but it c=
-an:
-> >  Parameterized Testing
-> >  ~~~~~~~~~~~~~~~~~~~~~
-> >
-> > -The table-driven testing pattern is common enough that KUnit has speci=
-al
-> > -support for it.
-> > -
-> > -By reusing the same ``cases`` array from above, we can write the test =
-as a
-> > -"parameterized test" with the following.
-> > +To efficiently and elegantly validate a test case against a variety of=
- inputs,
-> > +KUnit also provides a parameterized testing framework. This feature fo=
-rmalizes
-> > +and extends the concept of table-driven tests discussed previously, of=
-fering
-> > +a more integrated and flexible way to handle multiple test scenarios w=
-ith
-> > +minimal code duplication.
-> > +
-> > +Passing Parameters to the Test Cases
-> > +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> > +There are three main ways to provide the parameters to a test case:
-> > +
-> > +Array Parameter Macros (``KUNIT_ARRAY_PARAM`` or ``KUNIT_ARRAY_PARAM_D=
-ESC``):
-> > +   KUnit provides special support for the common table-driven testing =
-pattern.
-> > +   By applying either ``KUNIT_ARRAY_PARAM`` or ``KUNIT_ARRAY_PARAM_DES=
-C`` to the
-> > +   ``cases`` array from the previous section, we can create a paramete=
-rized test
-> > +   as shown below:
->
-> Is it possible to bold the titles of the ways to pass in parameters:
-> Array Parameter Macros, etc.? I feel like they should stand out more
-> from the rest of the text. Also I think I would prefer if there was an
-> empty line between the title and the rest of the indented text, to
-> again further separate these titles from the rest of the text.
+== Series Details ==
 
-Bolding may clutter the title a bit for people reading the .rst file.
-Adding an empty line is a great idea, I will do that in v2.
+Series: Intel Xe GPU Debug Support (eudebug) v4
+URL   : https://patchwork.freedesktop.org/series/152682/
+State : warning
 
->
-> >
-> >  .. code-block:: c
-> >
-> > @@ -555,7 +565,7 @@ By reusing the same ``cases`` array from above, we =
-can write the test as a
-> >                 const char *str;
-> >                 const char *sha1;
-> >         };
-> > -       const struct sha1_test_case cases[] =3D {
-> > +       static const struct sha1_test_case cases[] =3D {
-> >                 {
-> >                         .str =3D "hello world",
-> >                         .sha1 =3D "2aae6c35c94fcfb415dbe95f408b9ce91ee8=
-46ed",
-> > @@ -590,6 +600,439 @@ By reusing the same ``cases`` array from above, w=
-e can write the test as a
-> >                 {}
-> >         };
-> >
-> > +Custom Parameter Generator (``generate_params``):
-> > +   You can pass your own ``generate_params`` function to the ``KUNIT_C=
-ASE_PARAM``
-> > +   or ``KUNIT_CASE_PARAM_WITH_INIT`` macros. This function is responsi=
-ble for
-> > +   generating parameters one by one. It receives the previously genera=
-ted parameter
-> > +   as the ``prev`` argument (which is ``NULL`` on the first call) and =
-can also
-> > +   access any context available from the parent ``struct kunit`` passe=
-d as the
-> > +   ``test`` argument. KUnit calls this function repeatedly until it re=
-turns
-> > +   ``NULL``. Below is an example of how it works:
-> > +
-> > +.. code-block:: c
-> > +
-> > +       #define MAX_TEST_BUFFER_SIZE 8
-> > +
-> > +       // Example generator function. It produces a sequence of buffer=
- sizes that
-> > +       // are powers of two, starting at 1 (e.g., 1, 2, 4, 8).
-> > +       static const void *buffer_size_gen_params(struct kunit *test, c=
-onst void *prev, char *desc)
-> > +       {
-> > +               long prev_buffer_size =3D (long)prev;
-> > +               long next_buffer_size =3D 1; // Start with an initial s=
-ize of 1.
-> > +
-> > +               // Stop generating parameters if the limit is reached o=
-r exceeded.
-> > +               if (prev_buffer_size >=3D MAX_TEST_BUFFER_SIZE)
-> > +                       return NULL;
-> > +
-> > +               // For subsequent calls, calculate the next size by dou=
-bling the previous one.
-> > +               if (prev)
-> > +                       next_buffer_size =3D prev_buffer_size << 1;
-> > +
-> > +               return (void *)next_buffer_size;
-> > +       }
-> > +
-> > +       // Simple test to validate that kunit_kzalloc provides zeroed m=
-emory.
-> > +       static void buffer_zero_test(struct kunit *test)
-> > +       {
-> > +               long buffer_size =3D (long)test->param_value;
-> > +               // Use kunit_kzalloc to allocate a zero-initialized buf=
-fer. This makes the
-> > +               // memory "parameter managed," meaning it's automatical=
-ly cleaned up at
-> > +               // the end of each parameter execution.
-> > +               int *buf =3D kunit_kzalloc(test, buffer_size * sizeof(i=
-nt), GFP_KERNEL);
-> > +
-> > +               // Ensure the allocation was successful.
-> > +               KUNIT_ASSERT_NOT_NULL(test, buf);
-> > +
-> > +               // Loop through the buffer and confirm every element is=
- zero.
-> > +               for (int i =3D 0; i < buffer_size; i++)
-> > +                       KUNIT_EXPECT_EQ(test, buf[i], 0);
-> > +       }
-> > +
-> > +       static struct kunit_case buffer_test_cases[] =3D {
-> > +               KUNIT_CASE_PARAM(buffer_zero_test, buffer_size_gen_para=
-ms),
-> > +               {}
-> > +       };
-> > +
-> > +Direct Registration in Parameter Init Function (using ``kunit_register=
-_params_array``):
-> > +   For more complex scenarios, you can directly register a parameter a=
-rray with
-> > +   a test case instead of using a ``generate_params`` function. This i=
-s done by
-> > +   passing the array to the ``kunit_register_params_array`` macro with=
-in an
-> > +   initialization function for the parameterized test series
-> > +   (i.e., a function named ``param_init``). To better understand this =
-mechanism
-> > +   please refer to the "Adding Shared Resources" section below.
-> > +
-> > +   This method supports both dynamically built and static arrays.
-> > +
-> > +   As the following code shows, the ``example_param_init_dynamic_arr``=
- function
-> > +   utilizes ``make_fibonacci_params`` to create a dynamic array, which=
- is then
-> > +   registered using ``kunit_register_params_array``. The corresponding=
- exit
-> > +   function, ``example_param_exit``, is responsible for freeing this d=
-ynamically
-> > +   allocated params array after the parameterized test series ends.
-> > +
-> > +.. code-block:: c
->
-> As David mentioned, this example code is a bit long. I would also
-> prefer if this example had just the highlights and then a link to the
-> source code.
->
+== Summary ==
 
-I agree it's a bit long. I will do highlights and a link to the source code
-in v2.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c298eac5978c38dcc62a70c0d73c91765e7cc296
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 661233e829023403fa3a46d8ef6d0a0e5a130e1b
+Author: Christoph Manszewski <christoph.manszewski@intel.com>
+Date:   Fri Aug 8 13:43:50 2025 +0300
 
-> > +
-> > +       /*
-> > +        * Helper function to create a parameter array of Fibonacci num=
-bers. This example
-> > +        * highlights a parameter generation scenario that is:
-> > +        * 1. Not feasible to fully pre-generate at compile time.
-> > +        * 2. Challenging to implement with a standard 'generate_params=
-' function,
-> > +        * as it typically only provides the immediately 'prev' paramet=
-er, while
-> > +        * Fibonacci requires access to two preceding values for calcul=
-ation.
-> > +        */
-> > +       static void *make_fibonacci_params(int seq_size)
-> > +       {
-> > +               int *seq;
-> > +
-> > +               if (seq_size <=3D 0)
-> > +                       return NULL;
-> > +
-> > +               seq =3D kmalloc_array(seq_size, sizeof(int), GFP_KERNEL=
-);
-> > +
-> > +               if (!seq)
-> > +                       return NULL;
-> > +
-> > +               if (seq_size >=3D 1)
-> > +                       seq[0] =3D 0;
-> > +               if (seq_size >=3D 2)
-> > +                       seq[1] =3D 1;
-> > +               for (int i =3D 2; i < seq_size; i++)
-> > +                       seq[i] =3D seq[i - 1] + seq[i - 2];
-> > +               return seq;
-> > +       }
-> > +
-> > +       // This is an example of a function that provides a description=
- for each of the
-> > +       // parameters.
-> > +       static void example_param_dynamic_arr_get_desc(const void *p, c=
-har *desc)
-> > +       {
-> > +               const int *fib_num =3D p;
-> > +
-> > +               snprintf(desc, KUNIT_PARAM_DESC_SIZE, "fibonacci param:=
- %d", *fib_num);
-> > +       }
-> > +
-> > +       // Example of a parameterized test init function that registers=
- a dynamic array.
-> > +       static int example_param_init_dynamic_arr(struct kunit *test)
-> > +       {
-> > +               int seq_size =3D 6;
-> > +               int *fibonacci_params =3D make_fibonacci_params(seq_siz=
-e);
-> > +
-> > +               if (!fibonacci_params)
-> > +                       return -ENOMEM;
-> > +
-> > +               /*
-> > +                * Passes the dynamic parameter array information to th=
-e parent struct kunit.
-> > +                * The array and its metadata will be stored in test->p=
-arent->params_data.
-> > +                * The array itself will be located in params_data.para=
-ms.
-> > +                */
-> > +               kunit_register_params_array(test, fibonacci_params, seq=
-_size,
-> > +                                           example_param_dynamic_arr_g=
-et_desc);
-> > +               return 0;
-> > +       }
-> > +
-> > +       // Function to clean up the parameterized test's parent kunit s=
-truct if
-> > +       // there were custom allocations.
-> > +       static void example_param_exit_dynamic_arr(struct kunit *test)
-> > +       {
-> > +               /*
-> > +                * We allocated this array, so we need to free it.
-> > +                * Since the parent parameter instance is passed here,
-> > +                * we can directly access the array via `test->params_d=
-ata.params`
-> > +                * instead of `test->parent->params_data.params`.
-> > +                */
-> > +               kfree(test->params_data.params);
-> > +       }
-> > +
-> > +       /*
-> > +        * Example of test that uses the registered dynamic array to pe=
-rform assertions
-> > +        * and expectations.
-> > +        */
-> > +       static void example_params_test_with_init_dynamic_arr(struct ku=
-nit *test)
-> > +       {
-> > +               const int *param =3D test->param_value;
-> > +               int param_val;
-> > +
-> > +               /* By design, param pointer will not be NULL. */
-> > +               KUNIT_ASSERT_NOT_NULL(test, param);
-> > +
-> > +               param_val =3D *param;
-> > +               KUNIT_EXPECT_EQ(test, param_val - param_val, 0);
-> > +       }
-> > +
-> > +       static struct kunit_case example_tests[] =3D {
-> > +               // The NULL here stands in for the generate_params func=
-tion
-> > +               KUNIT_CASE_PARAM_WITH_INIT(example_params_test_with_ini=
-t_dynamic_arr, NULL,
-> > +                                          example_param_init_dynamic_a=
-rr,
-> > +                                          example_param_exit_dynamic_a=
-rr),
-> > +               {}
-> > +       };
-> > +
-> > +
-> > +Adding Shared Resources
-> > +^^^^^^^^^^^^^^^^^^^^^^^
-> > +All parameterized test executions in this framework have a parent test=
- of type
-> > +``struct kunit``. This parent is not used to execute any test logic it=
-self;
-> > +instead, it serves as a container for shared context that can be acces=
-sed by
-> > +all its individual test executions (or parameters). Therefore, each in=
-dividual
-> > +test execution holds a pointer to this parent, accessible via a field =
-named
-> > +``parent``.
-> > +
-> > +It's possible to add resources to share between the individual test ex=
-ecutions
-> > +within a parameterized test series by using the ``KUNIT_CASE_PARAM_WIT=
-H_INIT``
-> > +macro, to which you pass custom ``param_init`` and ``param_exit`` func=
-tions.
-> > +These functions run once before and once after the entire parameterize=
-d test
-> > +series, respectively. The ``param_init`` function can be used for addi=
-ng any
-> > +resources to the resources field of a parent test and also provide an =
-additional
-> > +way of setting the parameter array. The ``param_exit`` function can be=
- used
-> > +release any resources that were not test managed i.e. not automaticall=
-y cleaned
-> > +up after the test ends.
-> > +
-> > +.. note::
-> > +   If both a ``generate_params`` function is passed to ``KUNIT_CASE_PA=
-RAM_WITH_INIT``
-> > +   and an array is registered via ``kunit_register_params_array`` in
-> > +   ``param_init``, the ``generate_params`` function will be used to ge=
-t
-> > +   the parameters.
-> > +
-> > +Both ``param_init`` and ``param_exit`` are passed the parent instance =
-of a test
-> > +(parent ``struct kunit``) behind the scenes. However, the test case fu=
-nction
-> > +receives the individual instance of a test for each parameter. Therefo=
-re, to
-> > +manage and access shared resources from within a test case function, y=
-ou must use
-> > +``test->parent``.
-> > +
-> > +.. note::
-> > +   The ``suite->init()`` function, which runs before each parameter ex=
-ecution,
-> > +   receives the individual instance of a test for each parameter. Ther=
-efore,
-> > +   resources set up in ``suite->init()`` are reset for each individual
-> > +   parameterized test execution and are only visible within that speci=
-fic test.
-> > +
-> > +For instance, finding a shared resource allocated by the Resource API =
-requires
-> > +passing ``test->parent`` to ``kunit_find_resource()``. This principle =
-extends to
-> > +all other APIs that might be used in the test case function, including
-> > +``kunit_kzalloc()``, ``kunit_kmalloc_array()``, and others (see
-> > +Documentation/dev-tools/kunit/api/test.rst and the
-> > +Documentation/dev-tools/kunit/api/resource.rst).
-> > +
-> > +The code below shows how you can add the shared resources. Note that t=
-his code
-> > +utilizes the Resource API, which you can read more about here:
-> > +Documentation/dev-tools/kunit/api/resource.rst.
->
-> It would be nice if these references to the Documentation files were
-> actual links to the webpages. This would look something like -
-> ":ref:`kunit-resource`" and then also labeling that section: "..
-> _kunit-resource:".
+    drm/xe: Add xe_client_debugfs and introduce debug_data file
+    
+    Create a debug_data file for each xe file/client which is supposed to
+    list all mapped debug data and attempts to mimic '/proc/pid/maps'.
+    Each line represents a single mapping and has the following format:
+    
+      <vm id> <begin>-<end> <flags> <offset> <pathname>
+    
+    Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
++ /mt/dim checkpatch 2632d3c5d7f7c1b80996fc74d27bed6612a0ff9b drm-intel
+68cf7e3e7e4f drm/xe/eudebug: Introduce eudebug interface
+-:220: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#220: 
+new file mode 100644
 
-Thank you for this suggestion, I will do that in v2.
+-:475: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_err' - possible side-effects?
+#475: FILE: drivers/gpu/drm/xe/xe_eudebug.c:251:
++#define xe_eudebug_disconnect(_d, _err) ({ \
++	if (_xe_eudebug_disconnect((_d), (_err))) { \
++		if ((_err) == 0 || (_err) == -ETIMEDOUT) \
++			eu_dbg(d, "Session closed (%d)", (_err)); \
++		else \
++			eu_err(d, "Session disconnected, err = %d (%s:%d)", \
++			       (_err), __func__, __LINE__); \
++	} \
++})
 
->
-> > +
-> > +.. code-block:: c
-> > +
-> > +       /* An example parameter array. */
-> > +       static const struct example_param {
-> > +               int value;
-> > +       } example_params_array[] =3D {
-> > +               { .value =3D 3, },
-> > +               { .value =3D 2, },
-> > +               { .value =3D 1, },
-> > +               { .value =3D 0, },
-> > +       };
-> > +
-> > +       /*
-> > +        * This custom function allocates memory for the kunit_resource=
- data field.
-> > +        * The function is passed to kunit_alloc_resource() and execute=
-d once
-> > +        * by the internal helper __kunit_add_resource().
-> > +        */
-> > +       static int example_resource_init(struct kunit_resource *res, vo=
-id *context)
-> > +       {
-> > +               int *info =3D kmalloc(sizeof(*info), GFP_KERNEL);
-> > +
-> > +               if (!info)
-> > +                       return -ENOMEM;
-> > +               *info =3D *(int *)context;
-> > +               res->data =3D info;
-> > +               return 0;
-> > +       }
-> > +
-> > +       /*
-> > +        * This function deallocates memory for the 'kunit_resource' da=
-ta field.
-> > +        * The function is passed to kunit_alloc_resource() and automat=
-ically
-> > +        * executes within kunit_release_resource() when the resource's=
- reference
-> > +        * count, via kunit_put_resource(), drops to zero. KUnit uses r=
-eference
-> > +        * counting to ensure that resources are not freed prematurely.
-> > +        */
-> > +       static void example_resource_free(struct kunit_resource *res)
-> > +       {
-> > +               kfree(res->data);
-> > +       }
-> > +
-> > +       /*
-> > +        * This match function is invoked by kunit_find_resource() to l=
-ocate
-> > +        * a test resource based on defined criteria. The current examp=
-le
-> > +        * uniquely identifies the resource by its free function; howev=
-er,
-> > +        * alternative custom criteria can be implemented. Refer to
-> > +        * lib/kunit/platform.c and lib/kunit/static_stub.c for further=
- examples.
-> > +        */
-> > +       static bool example_resource_alloc_match(struct kunit *test,
-> > +                                                struct kunit_resource =
-*res,
-> > +                                                void *match_data)
-> > +       {
-> > +               return res->data && res->free =3D=3D example_resource_f=
-ree;
-> > +       }
-> > +
-> > +       /*
-> > +        * This is an example of a function that provides a description=
- for each of the
-> > +        * parameters.
-> > +       */
-> > +       static void example_param_array_get_desc(const void *p, char *d=
-esc)
-> > +       {
-> > +               const struct example_param *param =3D p;
-> > +
-> > +               snprintf(desc, KUNIT_PARAM_DESC_SIZE,
-> > +                       "example check if %d is less than or equal to 3=
-", param->value);
-> > +       }
-> > +
-> > +       /*
-> > +        * Initializes the parent kunit struct for parameterized KUnit =
-tests.
-> > +        * This function enables sharing resources across all parameter=
-ized
-> > +        * tests by adding them to the `parent` kunit test struct. It a=
-lso supports
-> > +        * registering either static or dynamic arrays of test paramete=
-rs.
-> > +        */
-> > +       static int example_param_init(struct kunit *test)
-> > +       {
-> > +               int ctx =3D 3; /* Data to be stored. */
-> > +               int arr_size =3D ARRAY_SIZE(example_params_array);
-> > +
-> > +               /*
-> > +                * This allocates a struct kunit_resource, sets its dat=
-a field to
-> > +                * ctx, and adds it to the kunit struct's resources lis=
-t. Note that
-> > +                * this is test managed so we don't need to have a cust=
-om exit function
-> > +                * to free it.
-> > +                */
-> > +               void *data =3D kunit_alloc_resource(test, example_resou=
-rce_init, example_resource_free,
-> > +                                                 GFP_KERNEL, &ctx);
-> > +
-> > +               if (!data)
-> > +                       return -ENOMEM;
-> > +               /* Pass the static param array information to the paren=
-t struct kunit. */
-> > +               kunit_register_params_array(test, example_params_array,=
- arr_size,
-> > +                                           example_param_array_get_des=
-c);
-> > +               return 0;
-> > +       }
-> > +
-> > +       /*
-> > +       * This is an example of a parameterized test that uses shared r=
-esources
-> > +       * available from the struct kunit parent field of the kunit str=
-uct.
-> > +       */
-> > +       static void example_params_test_with_init(struct kunit *test)
-> > +       {
-> > +               int threshold;
-> > +               struct kunit_resource *res;
-> > +               const struct example_param *param =3D test->param_value=
-;
-> > +
-> > +               /* By design, param pointer will not be NULL. */
-> > +               KUNIT_ASSERT_NOT_NULL(test, param);
-> > +
-> > +               /* Here we need to access the parent pointer of the tes=
-t to find the shared resource. */
-> > +               res =3D kunit_find_resource(test->parent, example_resou=
-rce_alloc_match, NULL);
-> > +
-> > +               KUNIT_ASSERT_NOT_NULL(test, res);
-> > +
-> > +               /* Since the data field in kunit_resource is a void poi=
-nter we need to typecast it. */
-> > +               threshold =3D *((int *)res->data);
-> > +
-> > +               /* Assert that the parameter is less than or equal to a=
- certain threshold. */
-> > +               KUNIT_ASSERT_LE(test, param->value, threshold);
-> > +
-> > +               /* This decreases the reference count after calling kun=
-it_find_resource(). */
-> > +               kunit_put_resource(res);
-> > +       }
-> > +
-> > +
-> > +       static struct kunit_case example_tests[] =3D {
-> > +               KUNIT_CASE_PARAM_WITH_INIT(example_params_test_with_ini=
-t, NULL,
-> > +                                          example_param_init, NULL),
-> > +               {}
-> > +       };
-> > +
-> > +As an alternative to using the KUnit Resource API for shared resources=
-, you can
-> > +place them in ``test->parent->priv``. It can store data that needs to =
-persist
-> > +and be accessible across all executions within a parameterized test se=
-ries.
-> > +
-> > +As stated previously ``param_init`` and ``param_exit`` receive the par=
-ent
-> > +``struct kunit`` instance. So, you can directly use ``test->priv`` wit=
-hin them
-> > +to manage shared resources. However, from within the test case functio=
-n, you must
-> > +navigate up to the parent i.e. use ``test->parent->priv`` to access th=
-ose same
-> > +resources.
-> > +
-> > +The resources placed in ``test->parent-priv`` will also need to be all=
-ocated in
->
-> Nit: I think this is a typo for test->parent->priv.
->
-Thank you for catching this!
+-:824: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_d' - possible side-effects?
+#824: FILE: drivers/gpu/drm/xe/xe_eudebug.c:600:
++#define xe_eudebug_event_put(_d, _err) ({ \
++	if ((_err)) \
++		xe_eudebug_disconnect((_d), (_err)); \
++	xe_eudebug_put((_d)); \
++	})
 
->
->
-> > +memory to persist across the parameterized tests executions. If memory=
- is
-> > +allocated using the memory allocation APIs provided by KUnit (describe=
-d more in
-> > +the section below), you will not need to worry about deallocating them=
- as they
-> > +will be managed by the parent parameterized test that gets automatical=
-ly cleaned
-> > +up upon the end of the parameterized test series.
-> > +
-> > +The code below demonstrates example usage of the ``priv`` field for sh=
-ared
-> > +resources:
-> > +
-> > +.. code-block:: c
-> > +
-> > +       /* An example parameter array. */
-> > +       static const struct example_param {
-> > +               int value;
-> > +       } example_params_array[] =3D {
-> > +               { .value =3D 3, },
-> > +               { .value =3D 2, },
-> > +               { .value =3D 1, },
-> > +               { .value =3D 0, },
-> > +       };
-> > +
-> > +       /*
-> > +        * Initializes the parent kunit struct for parameterized KUnit =
-tests.
-> > +        * This function enables sharing resources across all parameter=
-ized
-> > +        * tests.
-> > +        */
-> > +       static int example_param_init_priv(struct kunit *test)
-> > +       {
-> > +               int ctx =3D 3; /* Data to be stored. */
-> > +               int arr_size =3D ARRAY_SIZE(example_params_array);
-> > +
-> > +               /*
-> > +                * Allocate memory using kunit_kzalloc(). Since the `pa=
-ram_init`
-> > +                * function receives the parent instance of test, this =
-memory
-> > +                * allocation will be scoped to the lifetime of the who=
-le
-> > +                * parameterized test series.
-> > +                */
-> > +               test->priv =3D kunit_kzalloc(test, sizeof(int), GFP_KER=
-NEL);
-> > +
-> > +               /* Assign the context value to test->priv.*/
-> > +               *((int *)test->priv) =3D ctx;
-> > +
-> > +               /* Pass the static param array information to the paren=
-t struct kunit. */
-> > +               kunit_register_params_array(test, example_params_array,=
- arr_size, NULL);
-> > +               return 0;
-> > +       }
-> > +
-> > +       /*
-> > +       * This is an example of a parameterized test that uses shared r=
-esources
-> > +       * available from the struct kunit parent field of the kunit str=
-uct.
-> > +       */
-> > +       static void example_params_test_with_init_priv(struct kunit *te=
-st)
-> > +       {
-> > +               int threshold;
-> > +               const struct example_param *param =3D test->param_value=
-;
-> > +
-> > +               /* By design, param pointer will not be NULL. */
-> > +               KUNIT_ASSERT_NOT_NULL(test, param);
-> > +
-> > +               /* By design, test->parent will also not be NULL. */
-> > +               KUNIT_ASSERT_NOT_NULL(test, test->parent);
-> > +
-> > +               /* Assert that test->parent->priv has data. */
-> > +               KUNIT_ASSERT_NOT_NULL(test, test->parent->priv);
-> > +
-> > +               /* Here we need to use test->parent->priv to access the=
- shared resource. */
-> > +               threshold =3D *(int *)test->parent->priv;
-> > +
-> > +               /* Assert that the parameter is less than or equal to a=
- certain threshold. */
-> > +               KUNIT_ASSERT_LE(test, param->value, threshold);
-> > +       }
-> > +
-> > +
-> > +       static struct kunit_case example_tests[] =3D {
-> > +               KUNIT_CASE_PARAM_WITH_INIT(example_params_test_with_ini=
-t_priv, NULL,
-> > +                                          example_param_init_priv, NUL=
-L),
-> > +               {}
-> > +       };
-> > +
-> >  Allocating Memory
-> >  -----------------
-> >
-> > --
-> > 2.50.1.552.g942d659e1b-goog
-> >
+-:824: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_err' - possible side-effects?
+#824: FILE: drivers/gpu/drm/xe/xe_eudebug.c:600:
++#define xe_eudebug_event_put(_d, _err) ({ \
++	if ((_err)) \
++		xe_eudebug_disconnect((_d), (_err)); \
++	xe_eudebug_put((_d)); \
++	})
+
+-:1288: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#1288: FILE: drivers/gpu/drm/xe/xe_eudebug.h:20:
++#define XE_EUDEBUG_DBG_ARGS(d) (d)->session, \
++		atomic_long_read(&(d)->events.seqno), \
++		!READ_ONCE(d->target.xef) ? "disconnected" : "", \
++		current->pid, \
++		task_tgid_nr(current), \
++		READ_ONCE(d->target.xef) ? d->target.xef->pid : -1
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:1288: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1288: FILE: drivers/gpu/drm/xe/xe_eudebug.h:20:
++#define XE_EUDEBUG_DBG_ARGS(d) (d)->session, \
++		atomic_long_read(&(d)->events.seqno), \
++		!READ_ONCE(d->target.xef) ? "disconnected" : "", \
++		current->pid, \
++		task_tgid_nr(current), \
++		READ_ONCE(d->target.xef) ? d->target.xef->pid : -1
+
+-:1295: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1295: FILE: drivers/gpu/drm/xe/xe_eudebug.h:27:
++#define eu_err(d, fmt, ...) drm_err(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
++				    XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
+
+-:1297: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1297: FILE: drivers/gpu/drm/xe/xe_eudebug.h:29:
++#define eu_warn(d, fmt, ...) drm_warn(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
++				      XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
+
+-:1299: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1299: FILE: drivers/gpu/drm/xe/xe_eudebug.h:31:
++#define eu_dbg(d, fmt, ...) drm_dbg(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
++				    XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
+
+-:1516: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
+#1516: FILE: include/uapi/drm/xe_drm.h:121:
++#define DRM_IOCTL_XE_EUDEBUG_CONNECT		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EUDEBUG_CONNECT, struct drm_xe_eudebug_connect)
+
+total: 1 errors, 2 warnings, 7 checks, 1496 lines checked
+c3e29a81b6cf drm/xe/eudebug: Introduce discovery for resources
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#8: 
+currently existing resources to the debugger. The client is held on selected
+
+total: 0 errors, 1 warnings, 0 checks, 295 lines checked
+fef08eb1019d drm/xe/eudebug: Introduce exec_queue events
+3c7af8a08a0d drm/xe: Add EUDEBUG_ENABLE exec queue property
+41d8134d1d7f drm/xe: Introduce ADD_DEBUG_DATA and REMOVE_DEBUG_DATA vm bind ops
+-:41: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#41: 
+new file mode 100644
+
+-:77: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#77: FILE: drivers/gpu/drm/xe/xe_debug_data.c:32:
++		if (XE_IOCTL_DBG(xe, (dd->addr < ext->addr + ext->range) &&
++				     (ext->addr < dd->addr + dd->range))) {
+
+-:119: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#119: FILE: drivers/gpu/drm/xe/xe_debug_data.c:74:
++	if (XE_IOCTL_DBG(xe, operation != DRM_XE_VM_BIND_OP_ADD_DEBUG_DATA &&
++			     operation != DRM_XE_VM_BIND_OP_REMOVE_DEBUG_DATA))
+
+-:133: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#133: FILE: drivers/gpu/drm/xe/xe_debug_data.c:88:
++	    XE_IOCTL_DBG(xe, ext->flags & DRM_XE_VM_BIND_DEBUG_DATA_FLAG_PSEUDO &&
++			     ext->offset != 0) ||
+
+-:135: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#135: FILE: drivers/gpu/drm/xe/xe_debug_data.c:90:
++	    XE_IOCTL_DBG(xe, ext->flags & DRM_XE_VM_BIND_DEBUG_DATA_FLAG_PSEUDO &&
++			     (ext->pseudopath < DRM_XE_VM_BIND_DEBUG_DATA_PSEUDO_MODULE_AREA ||
+
+-:138: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#138: FILE: drivers/gpu/drm/xe/xe_debug_data.c:93:
++	    XE_IOCTL_DBG(xe, !(ext->flags & DRM_XE_VM_BIND_DEBUG_DATA_FLAG_PSEUDO) &&
++			     strnlen(ext->pathname, PATH_MAX) >= PATH_MAX)) {
+
+-:575: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#575: FILE: drivers/gpu/drm/xe/xe_vm.c:3403:
++		if (XE_IOCTL_DBG(xe, operation != DRM_XE_VM_BIND_OP_ADD_DEBUG_DATA &&
++				     operation != DRM_XE_VM_BIND_OP_REMOVE_DEBUG_DATA &&
+
+-:578: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#578: FILE: drivers/gpu/drm/xe/xe_vm.c:3406:
++		    XE_IOCTL_DBG(xe, ext.name == XE_VM_BIND_OP_EXTENSIONS_DEBUG_DATA &&
++				     ++debug_data_count > 1))
+
+-:698: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#698: FILE: drivers/gpu/drm/xe/xe_vm_types.h:337:
++		struct mutex lock;
+
+total: 0 errors, 1 warnings, 8 checks, 720 lines checked
+3b6e470bce74 drm/xe/eudebug: Introduce vm bind and vm bind debug data events
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+This patch adds events to track the bind ioctl and associated debug data add
+
+-:641: WARNING:LONG_LINE_COMMENT: line length of 102 exceeds 100 columns
+#641: FILE: include/uapi/drm/xe_drm_eudebug.h:92:
++ *  │  EVENT_VM_BIND        ├──────────────────┬─┬┄┐
+
+-:642: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
+#642: FILE: include/uapi/drm/xe_drm_eudebug.h:93:
++ *  └───────────────────────┘                  │ │ ┊
+
+-:643: WARNING:LONG_LINE_COMMENT: line length of 130 exceeds 100 columns
+#643: FILE: include/uapi/drm/xe_drm_eudebug.h:94:
++ *      ┌──────────────────────────────────┐   │ │ ┊
+
+-:645: WARNING:LONG_LINE_COMMENT: line length of 128 exceeds 100 columns
+#645: FILE: include/uapi/drm/xe_drm_eudebug.h:96:
++ *      └──────────────────────────────────┘     │ ┊
+
+-:647: WARNING:LONG_LINE_COMMENT: line length of 128 exceeds 100 columns
+#647: FILE: include/uapi/drm/xe_drm_eudebug.h:98:
++ *      ┌──────────────────────────────────┐     │ ┊
+
+-:649: WARNING:LONG_LINE_COMMENT: line length of 126 exceeds 100 columns
+#649: FILE: include/uapi/drm/xe_drm_eudebug.h:100:
++ *      └──────────────────────────────────┘       ┊
+
+-:651: WARNING:LONG_LINE_COMMENT: line length of 126 exceeds 100 columns
+#651: FILE: include/uapi/drm/xe_drm_eudebug.h:102:
++ *      ┌┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┐       ┊
+
+-:653: WARNING:LONG_LINE_COMMENT: line length of 116 exceeds 100 columns
+#653: FILE: include/uapi/drm/xe_drm_eudebug.h:104:
++ *      └┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┘
+
+total: 0 errors, 9 warnings, 0 checks, 641 lines checked
+b4689918317b drm/xe/eudebug: Add UFENCE events with acks
+-:184: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#184: FILE: drivers/gpu/drm/xe/xe_eudebug.c:1097:
+ 
++
+
+-:355: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "ufence"
+#355: FILE: drivers/gpu/drm/xe/xe_eudebug.c:1389:
++				fill_vm_bind_fields(vm, e, ufence != NULL, bind_ops);
+
+-:696: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#696: FILE: drivers/gpu/drm/xe/xe_sync_types.h:26:
++		spinlock_t lock;
+
+total: 0 errors, 0 warnings, 3 checks, 681 lines checked
+998f2efed412 drm/xe/eudebug: vm open/pread/pwrite
+-:113: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#113: FILE: drivers/gpu/drm/xe/xe_eudebug.c:675:
++{
++
+
+-:137: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#137: FILE: drivers/gpu/drm/xe/xe_eudebug.c:699:
++
++
+
+-:177: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#177: FILE: drivers/gpu/drm/xe/xe_eudebug.h:41:
++#define xe_eudebug_for_each_hw_engine(__hwe, __gt, __id) \
++	for_each_hw_engine(__hwe, __gt, __id)	       \
++		if (xe_hw_engine_has_eudebug(__hwe))
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:177: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__hwe' - possible side-effects?
+#177: FILE: drivers/gpu/drm/xe/xe_eudebug.h:41:
++#define xe_eudebug_for_each_hw_engine(__hwe, __gt, __id) \
++	for_each_hw_engine(__hwe, __gt, __id)	       \
++		if (xe_hw_engine_has_eudebug(__hwe))
+
+-:213: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#213: 
+new file mode 100644
+
+total: 1 errors, 1 warnings, 3 checks, 599 lines checked
+2658ec32785d drm/xe/eudebug: userptr vm pread/pwrite
+be47d563271c drm/xe/eudebug: hw enablement for eudebug
+-:107: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#107: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 463 lines checked
+f1a8db89f118 drm/xe/eudebug: Introduce EU control interface
+-:272: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#272: FILE: drivers/gpu/drm/xe/xe_eudebug_hw.c:183:
++static bool engine_has_runalone_set(const struct xe_hw_engine * const hwe,
++				   u32 rcu_debug1)
+
+-:278: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#278: FILE: drivers/gpu/drm/xe/xe_eudebug_hw.c:189:
++static bool engine_has_context_set(const struct xe_hw_engine * const hwe,
++				  u32 rcu_debug1)
+
+-:910: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#910: FILE: include/uapi/drm/xe_drm_eudebug.h:185:
++struct drm_xe_eudebug_eu_control {
++
+
+total: 0 errors, 0 warnings, 3 checks, 855 lines checked
+4998a58f01f2 drm/xe/eudebug: Introduce per device attention scan worker
+599ac1c9ef4e drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
+-:16: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#16: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 201 lines checked
+492a2cde2be8 drm/xe: Implement SR-IOV and eudebug exclusivity
+661233e82902 drm/xe: Add xe_client_debugfs and introduce debug_data file
+-:29: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#29: 
+new file mode 100644
+
+-:83: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#83: FILE: drivers/gpu/drm/xe/xe_client_debugfs.c:50:
++			len = snprintf(kbuf, MAX_LINE_LEN, "%lu 0x%llx-0x%llx 0x%llx 0x%x\t%s\n",
++				vm_index,
+
+total: 0 errors, 1 warnings, 1 checks, 161 lines checked
+
+
