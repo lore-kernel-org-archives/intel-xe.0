@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46F52C87FD2
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 10:45:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83273C87FD2
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 10:45:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 121B210E4EE;
-	Fri,  8 Aug 2025 10:45:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49F2D10E4E6;
+	Fri,  8 Aug 2025 10:45:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Co0JRGdn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G9CVJk19";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 055A110E4EE
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 10:45:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89D0010E4E6
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Aug 2025 10:45:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754649900; x=1786185900;
+ t=1754649904; x=1786185904;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MOyIbWlXbKLXsXWwrN2kmnGiMtxmlonCa4c91ppKSZc=;
- b=Co0JRGdn9t584mxlewCO/q3j20luVeQiLaFiGUMTGpN7VVWSl2GV/2Jj
- 9NSlrCfALj8n/pKaCH22GXpMjUzQiwCNk4eVG6sQPvCHu1pcFHfbIu00h
- MtsPyY5h65wK0ub0s5veF7h6TehhtQUydJ3cR1ZAsNdC6iU3h57c7uvNI
- 1e4sEfjCfyl6+RfdVNCXc6aZ0q8253UbOblZmv86g5f4nIMQLZXTABqBK
- k+xNqXjAGaFM+GK3N1QDQIZIVojYOxsa9NphffhBDeqcALcn3PecrWFZp
- 8z1fcHIcy/EQUpAMwIcOpxPwu/HTv7vwCVITY6BaI9GSB0pdW0MFfmKBu g==;
-X-CSE-ConnectionGUID: Kw2zq8bnQmOkajkY1T6MbQ==
-X-CSE-MsgGUID: 0HXhboQVSSuGhUn9xajRGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="67265713"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="67265713"
+ bh=Lkw9ennKtldcnXkXYZTdAz9tqBtVJGANFHDwzbfONgM=;
+ b=G9CVJk19Api3GWukjQocKkvxnVZ92WNQdwijxlzbkhVk3x5NZ4G5SVNO
+ LEOlk/64z3TRzf5EEATpyPfskrCZH6eoFpkxCBKxU3IKW4sOACyg7QqgV
+ qcgCQnzi1Be/tlCcPfq4TvVTdf9CZ8L6RRx+w2TNzXKk3B/aeaMg3WEIO
+ gNcJtb0YS1Ijv9O/DEzmmPQKIaeOzBCDXZ2GZgD02AQ7mttsnn7d+fcNR
+ RIHA+aX27w4Fx7vBkw/ak3KDBMwTqukw9SMNuEHsmP5YDD8CntBKTx8pX
+ 3a0ZXSnSFEuuk3cpWD1V6hGc0ZiIFoSaTYlQHwW3wiLeX+HGc0Pu8WEFr g==;
+X-CSE-ConnectionGUID: a/JXHWbFTPGwCEJ5/+YB2A==
+X-CSE-MsgGUID: maleQlmQS0Cyoz6TejIJ5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="67265723"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="67265723"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 03:45:00 -0700
-X-CSE-ConnectionGUID: 7W7qtjnRSmagx2GaDo50Kg==
-X-CSE-MsgGUID: d3kemTpiQP6pheHB/amSLw==
+ 08 Aug 2025 03:45:03 -0700
+X-CSE-ConnectionGUID: YWkDamuASS6MhUvDJJTUyw==
+X-CSE-MsgGUID: srqQra9KQI2ExqBTQCTxOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="164519044"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="164519097"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO mkuoppal-desk.lan)
  ([10.245.245.185])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 03:44:57 -0700
+ 08 Aug 2025 03:45:00 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
@@ -49,16 +49,15 @@ Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
  christoph.manszewski@intel.com, rodrigo.vivi@intel.com,
  lucas.demarchi@intel.com, andrzej.hajda@intel.com, matthew.auld@intel.com,
  maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 12/15] drm/xe/eudebug: Introduce per device attention scan
- worker
-Date: Fri,  8 Aug 2025 13:43:47 +0300
-Message-ID: <20250808104356.3294210-14-mika.kuoppala@linux.intel.com>
+Subject: [PATCH 13/15] drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
+Date: Fri,  8 Aug 2025 13:43:48 +0300
+Message-ID: <20250808104356.3294210-15-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
 References: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,364 +73,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+From: Christoph Manszewski <christoph.manszewski@intel.com>
 
-Scan for EU debugging attention bits periodically to detect if some EU
-thread has entered the system routine (SIP) due to EU thread exception.
+Introduce kunit test for eudebug. For now it checks the dynamic
+application of WAs.
 
-Make the scanning interval 10 times slower when there is no debugger
-connection open. Send attention event whenever we see attention with
-debugger presence. If there is no debugger connection active - reset.
+v2: adapt to removal of call_for_each_device (Mika)
+v3: s/FW_RENDER/FORCEWAKE_ALL (Mika)
 
-Based on work by authors and other folks who were part of attentions in
-i915.
-
-v2: - use xa_array for files
-    - null ptr deref fix for non-debugged context (Dominik)
-    - checkpatch (Tilak)
-    - use discovery_lock during list traversal
-
-v3: - engine status per gen improvements, force_wake ref
-    - __counted_by (Mika)
-
-v4: - attention register naming (Dominik)
-
-Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
 Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
-Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h  |   3 +
- drivers/gpu/drm/xe/xe_eudebug.c       | 171 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_eudebug_hw.c    |   6 +-
- drivers/gpu/drm/xe/xe_eudebug_types.h |   3 +-
- include/uapi/drm/xe_drm_eudebug.h     |  12 ++
- 5 files changed, 190 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_eudebug.c       | 183 ++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   5 +
+ drivers/gpu/drm/xe/xe_eudebug.c             |   4 +
+ 3 files changed, 192 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index f6fc455fd286..cfb805686259 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -594,6 +594,9 @@ struct xe_device {
- 
- 		/** @wq: used for client discovery */
- 		struct workqueue_struct *wq;
+diff --git a/drivers/gpu/drm/xe/tests/xe_eudebug.c b/drivers/gpu/drm/xe/tests/xe_eudebug.c
+new file mode 100644
+index 000000000000..f839fb292b9b
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_eudebug.c
+@@ -0,0 +1,183 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
 +
-+		/** @attention_poll: attention poll work */
-+		struct delayed_work attention_dwork;
- 	} eudebug;
- #endif
- 
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index ca9930ff3dcf..5c85c8412754 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.c
-+++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -21,7 +21,10 @@
- #include "xe_exec_queue.h"
- #include "xe_gt.h"
- #include "xe_hw_engine.h"
-+#include "xe_gt.h"
-+#include "xe_gt_debug.h"
- #include "xe_macros.h"
-+#include "xe_pm.h"
- #include "xe_sync.h"
- #include "xe_vm.h"
- 
-@@ -1876,6 +1879,154 @@ static const struct file_operations fops = {
- 	.unlocked_ioctl	= xe_eudebug_ioctl,
- };
- 
-+static int send_attention_event(struct xe_eudebug *d, struct xe_exec_queue *q, int lrc_idx)
++#include <kunit/visibility.h>
++
++#include "regs/xe_gt_regs.h"
++#include "regs/xe_engine_regs.h"
++
++#include "xe_force_wake.h"
++#include "xe_gt_mcr.h"
++#include "xe_mmio.h"
++
++#include "tests/xe_kunit_helpers.h"
++#include "tests/xe_pci_test.h"
++#include "tests/xe_test.h"
++
++#undef XE_REG_MCR
++#define XE_REG_MCR(r_, ...)	((const struct xe_reg_mcr){					\
++				 .__reg = XE_REG_INITIALIZER(r_,  ##__VA_ARGS__, .mcr = 1)	\
++				 })
++
++static const char *reg_to_str(struct xe_reg reg)
 +{
-+	struct drm_xe_eudebug_event_eu_attention *e;
-+	struct drm_xe_eudebug_event *event;
-+	const u32 size = xe_gt_eu_attention_bitmap_size(q->gt);
-+	const u32 sz = struct_size(e, bitmask, size);
-+	int h_queue, h_lrc;
-+	int ret;
-+
-+	XE_WARN_ON(lrc_idx < 0 || lrc_idx >= q->width);
-+
-+	XE_WARN_ON(!xe_exec_queue_is_debuggable(q));
-+
-+	h_queue = find_handle(d->res, XE_EUDEBUG_RES_TYPE_EXEC_QUEUE, q);
-+	if (h_queue < 0)
-+		return h_queue;
-+
-+	h_lrc = find_handle(d->res, XE_EUDEBUG_RES_TYPE_LRC, q->lrc[lrc_idx]);
-+	if (h_lrc < 0)
-+		return h_lrc;
-+
-+	event = xe_eudebug_create_event(d, DRM_XE_EUDEBUG_EVENT_EU_ATTENTION, 0,
-+					DRM_XE_EUDEBUG_EVENT_STATE_CHANGE, sz);
-+
-+	if (!event)
-+		return -ENOSPC;
-+
-+	e = cast_event(e, event);
-+	e->exec_queue_handle = h_queue;
-+	e->lrc_handle = h_lrc;
-+	e->bitmask_size = size;
-+
-+	mutex_lock(&d->hw.lock);
-+	event->seqno = atomic_long_inc_return(&d->events.seqno);
-+	ret = xe_gt_eu_attention_bitmap(q->gt, &e->bitmask[0], e->bitmask_size);
-+	mutex_unlock(&d->hw.lock);
-+
-+	if (ret)
-+		return ret;
-+
-+	return xe_eudebug_queue_event(d, event);
-+}
-+
-+static int xe_send_gt_attention(struct xe_gt *gt)
-+{
-+	struct xe_eudebug *d;
-+	struct xe_exec_queue *q;
-+	int ret, lrc_idx;
-+
-+	q = xe_gt_runalone_active_queue_get(gt, &lrc_idx);
-+	if (IS_ERR(q))
-+		return PTR_ERR(q);
-+
-+	if (!xe_exec_queue_is_debuggable(q)) {
-+		ret = -EPERM;
-+		goto err_exec_queue_put;
-+	}
-+
-+	d = _xe_eudebug_get(q->vm->xef);
-+	if (!d) {
-+		ret = -ENOTCONN;
-+		goto err_exec_queue_put;
-+	}
-+
-+	if (!completion_done(&d->discovery)) {
-+		eu_dbg(d, "discovery not yet done\n");
-+		ret = -EBUSY;
-+		goto err_eudebug_put;
-+	}
-+
-+	ret = send_attention_event(d, q, lrc_idx);
-+	if (ret)
-+		xe_eudebug_disconnect(d, ret);
-+
-+err_eudebug_put:
-+	xe_eudebug_put(d);
-+err_exec_queue_put:
-+	xe_exec_queue_put(q);
-+
-+	return ret;
-+}
-+
-+static int xe_eudebug_handle_gt_attention(struct xe_gt *gt)
-+{
-+	int ret;
-+
-+	ret = xe_gt_eu_threads_needing_attention(gt);
-+	if (ret <= 0)
-+		return ret;
-+
-+	ret = xe_send_gt_attention(gt);
-+
-+	/* Discovery in progress, fake it */
-+	if (ret == -EBUSY)
-+		return 0;
-+
-+	return ret;
-+}
-+
-+static void attention_poll_work(struct work_struct *work)
-+{
-+	struct xe_device *xe = container_of(work, typeof(*xe),
-+					    eudebug.attention_dwork.work);
-+	const unsigned int poll_interval_ms = 100;
-+	long delay = msecs_to_jiffies(poll_interval_ms);
-+	struct xe_gt *gt;
-+	u8 gt_id;
-+
-+	if (list_empty(&xe->eudebug.targets))
-+		delay *= 11;
-+
-+	if (delay >= HZ)
-+		delay = round_jiffies_up_relative(delay);
-+
-+	if (xe_pm_runtime_get_if_active(xe)) {
-+		for_each_gt(gt, xe, gt_id) {
-+			int ret;
-+
-+			if (gt->info.type != XE_GT_TYPE_MAIN)
-+				continue;
-+
-+			ret = xe_eudebug_handle_gt_attention(gt);
-+			if (ret) {
-+				/* TODO: error capture */
-+				drm_info(&gt_to_xe(gt)->drm,
-+					 "gt:%d unable to handle eu attention ret=%d\n",
-+					 gt_id, ret);
-+
-+				xe_gt_reset_async(gt);
-+			}
-+		}
-+
-+		xe_pm_runtime_put(xe);
-+	}
-+
-+	schedule_delayed_work(&xe->eudebug.attention_dwork, delay);
-+}
-+
-+static void attention_poll_stop(struct xe_device *xe)
-+{
-+	cancel_delayed_work_sync(&xe->eudebug.attention_dwork);
-+}
-+
-+static void attention_poll_start(struct xe_device *xe)
-+{
-+	mod_delayed_work(system_wq, &xe->eudebug.attention_dwork, 0);
-+}
-+
- static int
- xe_eudebug_connect(struct xe_device *xe,
- 		   struct drm_file *file,
-@@ -1947,6 +2098,7 @@ xe_eudebug_connect(struct xe_device *xe,
- 
- 	kref_get(&d->ref);
- 	queue_work(xe->eudebug.wq, &d->discovery_work);
-+	attention_poll_start(xe);
- 
- 	eu_dbg(d, "connected session %lld", d->session);
- 
-@@ -2011,6 +2163,11 @@ static int xe_eudebug_enable(struct xe_device *xe, bool enable)
- 		XE_EUDEBUG_ENABLED : XE_EUDEBUG_DISABLED;
- 	mutex_unlock(&xe->eudebug.lock);
- 
-+	if (enable)
-+		attention_poll_start(xe);
++	if (reg.raw == TD_CTL.__reg.raw)
++		return "TD_CTL";
++	else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw)
++		return "CS_DEBUG_MODE2";
++	else if (reg.raw == ROW_CHICKEN.__reg.raw)
++		return "ROW_CHICKEN";
++	else if (reg.raw == ROW_CHICKEN2.__reg.raw)
++		return "ROW_CHICKEN2";
++	else if (reg.raw == ROW_CHICKEN3.__reg.raw)
++		return "ROW_CHICKEN3";
 +	else
-+		attention_poll_stop(xe);
-+
- 	return 0;
- }
- 
-@@ -2052,6 +2209,15 @@ static void xe_eudebug_sysfs_fini(void *arg)
- 			  &dev_attr_enable_eudebug.attr);
- }
- 
-+static void xe_eudebug_fini(struct drm_device *dev, void *__unused)
-+{
-+	struct xe_device *xe = to_xe_device(dev);
-+
-+	xe_assert(xe, list_empty(&xe->eudebug.targets));
-+
-+	attention_poll_stop(xe);
++		return "UNKNOWN REG";
 +}
 +
- void xe_eudebug_init(struct xe_device *xe)
- {
- 	struct drm_device *dev = &xe->drm;
-@@ -2059,6 +2225,7 @@ void xe_eudebug_init(struct xe_device *xe)
- 	int err;
- 
- 	INIT_LIST_HEAD(&xe->eudebug.targets);
-+	INIT_DELAYED_WORK(&xe->eudebug.attention_dwork, attention_poll_work);
- 
- 	xe->eudebug.state = XE_EUDEBUG_NOT_SUPPORTED;
- 
-@@ -2073,6 +2240,10 @@ void xe_eudebug_init(struct xe_device *xe)
- 	}
- 	xe->eudebug.wq = wq;
- 
-+	err = drmm_add_action_or_reset(&xe->drm, xe_eudebug_fini, NULL);
-+	if (err)
-+		goto out_err;
++static u32 get_reg_mask(struct xe_device *xe, struct xe_reg reg)
++{
++	struct kunit *test = kunit_get_current_test();
++	u32 val = 0;
 +
- 	err = sysfs_create_file(&dev->dev->kobj,
- 				&dev_attr_enable_eudebug.attr);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_eudebug_hw.c b/drivers/gpu/drm/xe/xe_eudebug_hw.c
-index bc8cd6ee0e06..f4554a952fc5 100644
---- a/drivers/gpu/drm/xe/xe_eudebug_hw.c
-+++ b/drivers/gpu/drm/xe/xe_eudebug_hw.c
-@@ -301,7 +301,7 @@ static struct xe_exec_queue *active_hwe_to_exec_queue(struct xe_hw_engine *hwe,
- 	return found;
- }
- 
--static struct xe_exec_queue *runalone_active_queue_get(struct xe_gt *gt, int *lrc_idx)
-+struct xe_exec_queue *xe_gt_runalone_active_queue_get(struct xe_gt *gt, int *lrc_idx)
- {
- 	struct xe_hw_engine *active;
- 
-@@ -612,7 +612,7 @@ static int xe_eu_control_resume(struct xe_eudebug *d,
- 	struct xe_exec_queue *active;
- 	int lrc_idx;
- 
--	active = runalone_active_queue_get(q->gt, &lrc_idx);
-+	active = xe_gt_runalone_active_queue_get(q->gt, &lrc_idx);
- 	if (IS_ERR(active))
- 		return PTR_ERR(active);
- 
-@@ -654,7 +654,7 @@ static int xe_eu_control_stopped(struct xe_eudebug *d,
- 	if (XE_WARN_ON(!q) || XE_WARN_ON(!q->gt))
- 		return -EINVAL;
- 
--	active = runalone_active_queue_get(q->gt, &lrc_idx);
-+	active = xe_gt_runalone_active_queue_get(q->gt, &lrc_idx);
- 	if (IS_ERR(active))
- 		return PTR_ERR(active);
- 
-diff --git a/drivers/gpu/drm/xe/xe_eudebug_types.h b/drivers/gpu/drm/xe/xe_eudebug_types.h
-index 205777a851a3..85fc321f8b0e 100644
---- a/drivers/gpu/drm/xe/xe_eudebug_types.h
-+++ b/drivers/gpu/drm/xe/xe_eudebug_types.h
-@@ -37,7 +37,7 @@ enum xe_eudebug_state {
- };
- 
- #define CONFIG_DRM_XE_DEBUGGER_EVENT_QUEUE_SIZE 64
--#define XE_EUDEBUG_MAX_EVENT_TYPE DRM_XE_EUDEBUG_EVENT_VM_BIND_UFENCE
-+#define XE_EUDEBUG_MAX_EVENT_TYPE DRM_XE_EUDEBUG_EVENT_EU_ATTENTION
- 
- /**
-  * struct xe_eudebug_handle - eudebug resource handle
-@@ -172,4 +172,3 @@ struct xe_eudebug {
- };
- 
- #endif /* _XE_EUDEBUG_TYPES_H_ */
--
-diff --git a/include/uapi/drm/xe_drm_eudebug.h b/include/uapi/drm/xe_drm_eudebug.h
-index 24bf3887d556..1c797a8b4d32 100644
---- a/include/uapi/drm/xe_drm_eudebug.h
-+++ b/include/uapi/drm/xe_drm_eudebug.h
-@@ -55,12 +55,14 @@ struct drm_xe_eudebug_event {
- #define DRM_XE_EUDEBUG_EVENT_VM_BIND		4
- #define DRM_XE_EUDEBUG_EVENT_VM_BIND_OP_DEBUG_DATA	5
- #define DRM_XE_EUDEBUG_EVENT_VM_BIND_UFENCE	6
-+#define DRM_XE_EUDEBUG_EVENT_EU_ATTENTION	7
- 
- 	__u16 flags;
- #define DRM_XE_EUDEBUG_EVENT_CREATE		(1 << 0)
- #define DRM_XE_EUDEBUG_EVENT_DESTROY		(1 << 1)
- #define DRM_XE_EUDEBUG_EVENT_STATE_CHANGE	(1 << 2)
- #define DRM_XE_EUDEBUG_EVENT_NEED_ACK		(1 << 3)
++	if (reg.raw == TD_CTL.__reg.raw) {
++		val = TD_CTL_BREAKPOINT_ENABLE |
++		      TD_CTL_FORCE_THREAD_BREAKPOINT_ENABLE |
++		      TD_CTL_FEH_AND_FEE_ENABLE;
 +
- 	__u64 seqno;
- 	__u64 reserved;
- };
-@@ -198,6 +200,16 @@ struct drm_xe_eudebug_eu_control {
- 	__u64 bitmask_ptr;
- };
- 
-+struct drm_xe_eudebug_event_eu_attention {
-+	struct drm_xe_eudebug_event base;
++		if (GRAPHICS_VERx100(xe) >= 1250)
++			val |= TD_CTL_GLOBAL_DEBUG_ENABLE;
 +
-+	__u64 exec_queue_handle;
-+	__u64 lrc_handle;
-+	__u32 flags;
-+	__u32 bitmask_size;
-+	__u8 bitmask[];
++	} else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw) {
++		val = GLOBAL_DEBUG_ENABLE;
++	} else if (reg.raw == ROW_CHICKEN.__reg.raw) {
++		val = STALL_DOP_GATING_DISABLE;
++	} else if (reg.raw == ROW_CHICKEN2.__reg.raw) {
++		val = XEHPC_DISABLE_BTB;
++	} else if (reg.raw == ROW_CHICKEN3.__reg.raw) {
++		val = XE2_EUPEND_CHK_FLUSH_DIS;
++	} else {
++		kunit_warn(test, "Invalid register selection: %u\n", reg.raw);
++	}
++
++	return val;
++}
++
++static u32 get_reg_expected(struct xe_device *xe, struct xe_reg reg, bool enable_eudebug)
++{
++	u32 reg_mask = get_reg_mask(xe, reg);
++	u32 reg_bits = 0;
++
++	if (enable_eudebug || reg.raw == ROW_CHICKEN3.__reg.raw)
++		reg_bits = reg_mask;
++	else
++		reg_bits = 0;
++
++	return reg_bits;
++}
++
++static void check_reg(struct xe_gt *gt, bool enable_eudebug, struct xe_reg reg)
++{
++	struct kunit *test = kunit_get_current_test();
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 reg_bits_expected = get_reg_expected(xe, reg, enable_eudebug);
++	u32 reg_mask = get_reg_mask(xe, reg);
++	u32 reg_bits = 0;
++
++	if (reg.mcr)
++		reg_bits = xe_gt_mcr_unicast_read_any(gt, (struct xe_reg_mcr){.__reg = reg});
++	else
++		reg_bits = xe_mmio_read32(&gt->mmio, reg);
++
++	reg_bits &= reg_mask;
++
++	kunit_printk(KERN_DEBUG, test, "%s bits: expected == 0x%x; actual == 0x%x\n",
++		     reg_to_str(reg), reg_bits_expected, reg_bits);
++	KUNIT_EXPECT_EQ_MSG(test, reg_bits_expected, reg_bits,
++			    "Invalid bits set for %s\n", reg_to_str(reg));
++}
++
++static void __check_regs(struct xe_gt *gt, bool enable_eudebug)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++
++	if (GRAPHICS_VERx100(xe) >= 1200)
++		check_reg(gt, enable_eudebug, TD_CTL.__reg);
++
++	if (GRAPHICS_VERx100(xe) >= 1250 && GRAPHICS_VERx100(xe) <= 1274)
++		check_reg(gt, enable_eudebug, ROW_CHICKEN.__reg);
++
++	if (xe->info.platform == XE_PVC)
++		check_reg(gt, enable_eudebug, ROW_CHICKEN2.__reg);
++
++	if (GRAPHICS_VERx100(xe) >= 2000 && GRAPHICS_VERx100(xe) <= 2004)
++		check_reg(gt, enable_eudebug, ROW_CHICKEN3.__reg);
++}
++
++static void check_regs(struct xe_device *xe, bool enable_eudebug)
++{
++	struct kunit *test = kunit_get_current_test();
++	struct xe_gt *gt;
++	unsigned int fw_ref;
++	u8 id;
++
++	kunit_printk(KERN_DEBUG, test, "Check regs for eudebug %s\n",
++		     enable_eudebug ? "enabled" : "disabled");
++
++	xe_pm_runtime_get(xe);
++	for_each_gt(gt, xe, id) {
++		if (xe_gt_is_media_type(gt))
++			continue;
++
++		/* XXX: Figure out per platform proper domain */
++		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++		KUNIT_ASSERT_TRUE_MSG(test, fw_ref, "Forcewake failed.\n");
++
++		__check_regs(gt, enable_eudebug);
++
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	}
++	xe_pm_runtime_put(xe);
++}
++
++static int toggle_reg_value(struct xe_device *xe)
++{
++	struct kunit *test = kunit_get_current_test();
++	bool enable_eudebug = xe_eudebug_is_enabled(xe);
++
++	kunit_printk(KERN_DEBUG, test, "Test eudebug WAs for graphics version: %u\n",
++		     GRAPHICS_VERx100(xe));
++
++	check_regs(xe, enable_eudebug);
++
++	xe_eudebug_enable(xe, !enable_eudebug);
++	check_regs(xe, !enable_eudebug);
++
++	xe_eudebug_enable(xe, enable_eudebug);
++	check_regs(xe, enable_eudebug);
++
++	return 0;
++}
++
++static void xe_eudebug_toggle_reg_kunit(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++
++	toggle_reg_value(xe);
++}
++
++static struct kunit_case xe_eudebug_tests[] = {
++	KUNIT_CASE_PARAM(xe_eudebug_toggle_reg_kunit,
++			 xe_pci_live_device_gen_param),
++	{}
 +};
 +
- #if defined(__cplusplus)
++VISIBLE_IF_KUNIT
++struct kunit_suite xe_eudebug_test_suite = {
++	.name = "xe_eudebug",
++	.test_cases = xe_eudebug_tests,
++	.init = xe_kunit_helper_xe_device_live_test_init,
++};
++EXPORT_SYMBOL_IF_KUNIT(xe_eudebug_test_suite);
+diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+index 81277c77016d..663ef0e9d13e 100644
+--- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
++++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+@@ -17,6 +17,11 @@ kunit_test_suite(xe_dma_buf_test_suite);
+ kunit_test_suite(xe_migrate_test_suite);
+ kunit_test_suite(xe_mocs_test_suite);
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
++extern struct kunit_suite xe_eudebug_test_suite;
++kunit_test_suite(xe_eudebug_test_suite);
++#endif
++
+ MODULE_AUTHOR("Intel Corporation");
+ MODULE_LICENSE("GPL");
+ MODULE_DESCRIPTION("xe live kunit tests");
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
+index 5c85c8412754..2426bb92792e 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.c
++++ b/drivers/gpu/drm/xe/xe_eudebug.c
+@@ -2270,3 +2270,7 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
+ 
+ 	return xe_eudebug_connect(xe, file, param);
  }
- #endif
++
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_eudebug.c"
++#endif
 -- 
 2.43.0
 
