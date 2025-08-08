@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC262C87FD2
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 08:37:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75E39C87FD3
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Aug 2025 08:49:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70DBD10E8E9;
-	Fri,  8 Aug 2025 08:37:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mwqpAMj1";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE37E10E8E8;
- Fri,  8 Aug 2025 08:37:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754642235; x=1786178235;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5E5xnXchGM6rh0VOmcIU34/DNZwywZkbQUqlsdvWhA0=;
- b=mwqpAMj1dzKCkUKaPbb6vhiSEBFIHheIeLMTg2cyqMIdasKrB7R/l6zL
- JTU9rxkV9WHj2fRVNysJS7VO7Sh9vxojss6C4nzzy5HRg9QYifSI8ndmi
- Iz858m21a4b5I589RD8SMHIX6zNaX2oymW6WtRPbhMC0TeDt5bRv1PYo3
- 1V5ERq8+a8ufVbqfXjkTDWADXACIHd96558kxwmq7cX/HXTd8krwMetxF
- Arfj0F3Y/dfNE2xQZ5PV7wZBcGn9O+aJB9wD+0+NYv/vi35DIq6aDy6uo
- EorSlSjhjJfWopnUSBkX22s4vgv35S4PibAQFtHYmVzESoTWT0wYj8bEd g==;
-X-CSE-ConnectionGUID: umsZSZ3BThOfbWWqTRYpaw==
-X-CSE-MsgGUID: H/RHSirjR/GLc10/Z2bLMA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="79544604"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="79544604"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 01:37:15 -0700
-X-CSE-ConnectionGUID: zCRdgI7rQTqFZDsEO673Ug==
-X-CSE-MsgGUID: cvVikfaGTjWugRw9h6X8ig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="165663835"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa009.fm.intel.com with ESMTP; 08 Aug 2025 01:37:13 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: imre.deak@intel.com,
-	gustavo.sousa@intel.com
-Subject: [PATCH 2/2] drm/i915/wcl: Add display device info
-Date: Fri,  8 Aug 2025 13:49:31 +0530
-Message-Id: <20250808081931.4101388-2-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250808081931.4101388-1-chaitanya.kumar.borah@intel.com>
-References: <20250808081931.4101388-1-chaitanya.kumar.borah@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27B5910E1D7;
+	Fri,  8 Aug 2025 08:49:21 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7B0910E1CE;
+ Fri,  8 Aug 2025 08:49:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915=3A_Add_debugfs_?=
+ =?utf-8?q?control_to_prefer_YCbCr_4=3A2=3A0_output_for_HDMI/DP?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 08 Aug 2025 08:49:20 -0000
+Message-ID: <175464296080.221846.8740723947327528641@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250808075351.304612-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20250808075351.304612-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,53 +36,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Imre Deak <imre.deak@intel.com>
+== Series Details ==
 
-Add device info for wildcat lake. WCL has 3 pipes and 2 TC ports.
+Series: drm/i915: Add debugfs control to prefer YCbCr 4:2:0 output for HDMI/DP
+URL   : https://patchwork.freedesktop.org/series/152671/
+State : warning
 
-Suggested-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- .../gpu/drm/i915/display/intel_display_device.c   | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 089cffabbad5..65f0efc35bb7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1354,6 +1354,19 @@ static const struct intel_display_device_info xe2_lpd_display = {
- 	.__runtime_defaults.has_dbuf_overlap_detection = true,
- };
- 
-+static const struct intel_display_device_info wcl_display = {
-+	XE_LPDP_FEATURES,
-+
-+	.__runtime_defaults.cpu_transcoder_mask =
-+		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
-+	.__runtime_defaults.pipe_mask =
-+		BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-+	.__runtime_defaults.fbc_mask =
-+		BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B) | BIT(INTEL_FBC_C),
-+	.__runtime_defaults.port_mask =
-+		BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_TC1) | BIT(PORT_TC2),
-+};
-+
- static const struct intel_display_device_info xe2_hpd_display = {
- 	XE_LPDP_FEATURES,
- 	.__runtime_defaults.port_mask = BIT(PORT_A) |
-@@ -1480,7 +1493,7 @@ static const struct {
- 	{ 14,  1, &xe2_hpd_display },
- 	{ 20,  0, &xe2_lpd_display },
- 	{ 30,  0, &xe2_lpd_display },
--	{ 30,  2, &xe2_lpd_display },
-+	{ 30,  2, &wcl_display },
- };
- 
- static const struct intel_display_device_info *
--- 
-2.25.1
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast c59a466c9c1d514e151d30f0a66ce76ce8d21aef
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2024:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2037:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2037:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2037:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
