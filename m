@@ -4,145 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49ADEC87FDB
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 14:33:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0981DC87FDB
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 14:39:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D83AB10E48C;
-	Mon, 11 Aug 2025 14:33:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C74C710E080;
+	Mon, 11 Aug 2025 14:39:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="eNSS/Qvo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QzYC9+yl";
 	dkim-atps=neutral
-X-Greylist: delayed 17242 seconds by postgrey-1.36 at gabe;
- Mon, 11 Aug 2025 14:33:51 UTC
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net
- [217.70.183.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 226E210E473;
- Mon, 11 Aug 2025 14:33:50 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 042444430A;
- Mon, 11 Aug 2025 14:33:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1754922829;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=wTUV/wLZIMYdqty+r1jRvD/WCdLTcjwUAx61UzLB4es=;
- b=eNSS/Qvofj5nSoCHVcOGcJp0njAlVBOmCRz5B/OEAOhslGJNbnro6w8uOsULqaJQzoDJcP
- JmJ77aoS2DlWaZh2qSpP+Fxy5T7V1/LBJWsWIVJGvUQIYdYrOXmxA9LhLdDMcEQLEbMboE
- y9BUChGwBvlsCmJaeW4a/WSVmBW8Ek5juUcrjhwRSFYd++uWrAapGa2xJV5UtCUt6hJ10i
- dOAM1O6z8DCSbptWJx4Bgdvog7N402FJx3elu/sHsbCv8G+q+CmpQdZyjI4RpXO1rrCtWq
- tY4WUyfTGbIlaLKgl0Jo0TgQI3V2GIgaNu4goBNHS2oY/OhFD2wzvM+ZfME5xw==
-Message-ID: <22f997ff-bf26-4dc2-899f-361513d0546f@bootlin.com>
-Date: Mon, 11 Aug 2025 16:33:43 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54F3010E080
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 14:39:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754923194; x=1786459194;
+ h=message-id:subject:from:to:cc:in-reply-to:references:
+ content-transfer-encoding:mime-version:date;
+ bh=BwSD8QPFQ4rAxykCXfv/VUqEleoPcYZKT9Bh36DdN6U=;
+ b=QzYC9+ylxtwwKVkCaBeRCPEV9m7QF6qPck6Valhp8kUIueMU+pICAZz/
+ hFFR+hXrPZBS/eifq8rfjwtB4VI+FgxnLmmqeEfEeDBkE1XzO09WPaGeN
+ q/vActf4cc+m0c4hGfkDFFx3kU7p+4Q4CXCF7xdfsVPkaBG68M6ZFeFVa
+ bIOgbISEctPQw7YXZ+PFy4oRZgWV6ttya4htVmjL3z2teH1XINg/OyFBJ
+ g9iHWc7zx/E2xYYbMKRddkKLvgY9iHOaT+f0v0MjNurFb0mLxp74N9bXf
+ Izars0ZD6kQzTLL6f4RCBYvLtrA0ExYjxQwuGm/NTWxqOnxBVelQT7Jkh g==;
+X-CSE-ConnectionGUID: Kv/fPrY5RliO7dDDX/35fw==
+X-CSE-MsgGUID: Nd7kmBleRR+Yp6Gob2zGVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="60979182"
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="60979182"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2025 07:39:54 -0700
+X-CSE-ConnectionGUID: zz/dGTkBSuizsIYw0hJwtg==
+X-CSE-MsgGUID: qHnosE+8RHWT/FEj3jkrJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="165565593"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.228])
+ ([10.245.244.228])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2025 07:39:51 -0700
+Message-ID: <e62cbfa7867055bb368762c86a91e78c7afbf087.camel@linux.intel.com>
+Subject: Re: [PATCH] locking/mutex: Add p->blocked_on wrappers for
+ correctness checks
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Valentin Schneider <valentin.schneider@arm.com>
+Cc: intel-xe@lists.freedesktop.org, Connor O'Brien <connoro@google.com>, 
+ John Stultz <jstultz@google.com>, "Peter Zijlstra (Intel)"
+ <peterz@infradead.org>, K Prateek Nayak	 <kprateek.nayak@amd.com>
+In-Reply-To: <274f61b98745426050e545a37131b9408c3666f9.camel@arm.com>
+References: <274f61b98745426050e545a37131b9408c3666f9.camel@arm.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 6/8] drm/vkms: Adapt vkms writeback to new
- drm_writeback_connector
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>, "Nikula, Jani"
- <jani.nikula@intel.com>,
- "dmitry.baryshkov@oss.qualcomm.com" <dmitry.baryshkov@oss.qualcomm.com>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>,
- "siqueira@igalia.com" <siqueira@igalia.com>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
- <simona@ffwll.ch>, "liviu.dudau@arm.com" <liviu.dudau@arm.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>,
- "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "jessica.zhang@oss.qualcomm.com" <jessica.zhang@oss.qualcomm.com>,
- "sean@poorly.run" <sean@poorly.run>,
- "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
- "laurent.pinchart+renesas@ideasonboard.com"
- <laurent.pinchart+renesas@ideasonboard.com>,
- "mcanal@igalia.com" <mcanal@igalia.com>,
- "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>,
- "tomi.valkeinen+renesas@ideasonboard.com"
- <tomi.valkeinen+renesas@ideasonboard.com>,
- "kieran.bingham+renesas@ideasonboard.com"
- <kieran.bingham+renesas@ideasonboard.com>
-References: <20250811092707.3986802-1-suraj.kandpal@intel.com>
- <20250811092707.3986802-7-suraj.kandpal@intel.com>
- <28e1e51b-759c-4470-aef7-6ccb116e3920@bootlin.com>
- <DM3PPF208195D8D04EA6C19CE47313430EFE328A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Louis Chauvet <louis.chauvet@bootlin.com>
-Autocrypt: addr=louis.chauvet@bootlin.com; keydata=
- xsFNBGCG5KEBEAD1yQ5C7eS4rxD0Wj7JRYZ07UhWTbBpbSjHjYJQWx/qupQdzzxe6sdrxYSY
- 5K81kIWbtQX91pD/wH5UapRF4kwMXTAqof8+m3XfYcEDVG31Kf8QkJTG/gLBi1UfJgGBahbY
- hjP40kuUR/mr7M7bKoBP9Uh0uaEM+DuKl6bSXMSrJ6fOtEPOtnfBY0xVPmqIKfLFEkjh800v
- jD1fdwWKtAIXf+cQtC9QWvcdzAmQIwmyFBmbg+ccqao1OIXTgu+qMAHfgKDjYctESvo+Szmb
- DFBZudPbyTAlf2mVKpoHKMGy3ndPZ19RboKUP0wjrF+Snif6zRFisHK7D/mqpgUftoV4HjEH
- bQO9bTJZXIoPJMSb+Lyds0m83/LYfjcWP8w889bNyD4Lzzzu+hWIu/OObJeGEQqY01etOLMh
- deuSuCG9tFr0DY6l37d4VK4dqq4Snmm87IRCb3AHAEMJ5SsO8WmRYF8ReLIk0tJJPrALv8DD
- lnLnwadBJ9H8djZMj24+GC6MJjN8dDNWctpBXgGZKuCM7Ggaex+RLHP/+14Vl+lSLdFiUb3U
- ljBXuc9v5/9+D8fWlH03q+NCa1dVgUtsP2lpolOV3EE85q1HdMyt5K91oB0hLNFdTFYwn1bW
- WJ2FaRhiC1yV4kn/z8g7fAp57VyIb6lQfS1Wwuj5/53XYjdipQARAQABzSlMb3VpcyBDaGF1
- dmV0IDxsb3Vpcy5jaGF1dmV0QGJvb3RsaW4uY29tPsLBlAQTAQgAPgIbAwULCQgHAgYVCgkI
- CwIEFgIDAQIeAQIXgBYhBItxBK6aJy1mk/Un8uwYg/VeC0ClBQJod7hIBQkJ0gcjAAoJEOwY
- g/VeC0ClghwP/RQeixyghRVZEQtZO5/UsHkNkRRUWeVF9EoFXqFFnWqh4XXKos242btk5+Ew
- +OThuqDx9iLhLJLUc8XXuVw6rbJEP5j5+z0jI40e7Y+kVWCli/O2H/CrK98mGWwicBPEzrDD
- 4EfRgD0MeQ9fo2XJ3Iv+XiiZaBFQIKMAEynYdbqECIXxuzAnofhq2PcCrjZmqThwu8jHSc55
- KwdknZU3aEKSrTYiCIRrsHHi1N6vwiTZ098zL1efw7u0Q8rcqxHu3OWNIAeKHkozsMy9yo1h
- h3Yc7CA1PrKDGcywuY4MrV726/0VlrWcypYOCM1XG+/4ezIChYizpAiBNlAmd7witTK0d2HT
- UNSZF8KAOQRlHsIPrkA5qLr94OrFHYx6Ek07zS8LmVTtHricbYxFAXnQ5WbugNSE0uwRyrL/
- Kies5F0Sst2PcVYguoWcHfoNxes6OeU3xDmzclnpYQTanIU7SBzWXB1fr5WgHF7SAcAVxPY8
- wAlJBe+zMeA6oWidrd1u37eaEhHfpKX38J1VaSDTNRE+4SPQ+hKGDuMrDn0mXfcqR5wO7n1Z
- Q6uhKj3k6SJNksAWh1u13NP0DRS6rpRllvGWIyp+653R03NN8TE9JNRWAtSqoGvsiryhQyCE
- FlPOsv6+Ed/5a4dfLcO1qScJwiuP/XjFHAaWFK9RoOX52lR4zsFNBGCG6KUBEADZhvm9TZ25
- JZa7wbKMOpvSH36K8wl74FhuVuv7ykeFPKH2oC7zmP1oqs1IF1UXQQzNkCHsBpIZq+TSE74a
- mG4sEhZP0irrG/w3JQ9Vbxds7PzlQzDarJ1WJvS2KZ4AVnwc/ucirNuxinAuAmmNBUNF8w6o
- Y97sdgFuIZUP6h972Tby5bu7wmy1hWL3+2QV+LEKmRpr0D9jDtJrKfm25sLwoHIojdQtGv2g
- JbQ9Oh9+k3QG9Kh6tiQoOrzgJ9pNjamYsnti9M2XHhlX489eXq/E6bWOBRa0UmD0tuQKNgK1
- n8EDmFPW3L0vEnytAl4QyZEzPhO30GEcgtNkaJVQwiXtn4FMw4R5ncqXVvzR7rnEuXwyO9RF
- tjqhwxsfRlORo6vMKqvDxFfgIkVnlc2KBa563qDNARB6caG6kRaLVcy0pGVlCiHLjl6ygP+G
- GCNfoh/PADQz7gaobN2WZzXbsVS5LDb9w/TqskSRhkgXpxt6k2rqNgdfeyomlkQnruvkIIjs
- Sk2X68nwHJlCjze3IgSngS2Gc0NC/DDoUBMblP6a2LJwuF/nvaW+QzPquy5KjKUO2UqIO9y+
- movZqE777uayqmMeIy4cd/gg/yTBBcGvWVm0Dh7dE6G6WXJUhWIUtXCzxKMmkvSmZy+gt1rN
- OyCd65HgUXPBf+hioCzGVFSoqQARAQABwsOyBBgBCAAmAhsuFiEEi3EErponLWaT9Sfy7BiD
- 9V4LQKUFAmh3uH8FCQnSA1kCQMF0IAQZAQgAHRYhBE+PuD++eDwxDFBZBCCtLsZbECziBQJg
- huilAAoJECCtLsZbECziB8YQAJwDRdU16xtUjK+zlImknL7pyysfjLLbfegZyVfY/ulwKWzn
- nCJXrLAK1FpdYWPO1iaSVCJ5pn/Or6lS5QO0Fmj3mtQ/bQTnqBhXZcUHXxZh56RPAfl3Z3+P
- 77rSIcTFZMH6yAwS/cIQaKRQGPuJoxfYq1oHWT0r7crp3H+zUpbE4KUWRskRX+2Z6rtNrwuL
- K1Az1vjJjnnS3MLSkQR4VwsVejWbkpwlq5icCquU5Vjjw0WkVR32gBl/8/OnegSz7Of/zMrY
- 8GtlkIPoCGtui1HLuKsTl6KaHFywWbX4wbm5+dpBRYetFhdW4WG+RKipnyMY+A8SkWivg2NH
- Jf88wuCVDtLmyeS8pyvcu6fjhrJtcQer/UVPNbaQ6HqQUcUU49sy/W+gkowjOuYOgNL7EA23
- 8trs7CkLKUKAXq32gcdNMZ8B/C19hluJ6kLroUN78m39AvCQhd4ih5JLU7jqsl0ZYbaQe2FQ
- z64htRtpElbwCQmnM/UzPtOJ5H/2M7hg95Sb20YvmQ/bLI23MWKVyg56jHU1IU0A/P7M9yi9
- WbEBpIMZxLOFBUlWWTzE+JvyDh+cjyoncaPvHLDwP13PGEJHYMgWZkvzgSc3tGP6ThUgZjsz
- 9xW/EvzWOVswYwREyZv3oK5r3PVE6+IYDUd7aBsc5ynqqYs27eemuV4bw8tlCRDsGIP1XgtA
- pT1zD/0dT+clFbGoCMaIQ5qXypYoO0DYLmBD1aFjJy1YLsS1SCzuwROy4qWWaFMNBoDMF2cY
- D+XbM+C/4XBS8/wruAUrr+8RSbABBI/rfiVmqv0gPQWDm676V8iMDgyyvMG2DotMjnG/Dfxj
- w9WVnQUs/kQSPD8GZCZZ3AcycFmxN24ibGHo4zC947VKR5ZYdFHknX+Dt92TdNDkmoBg2CEm
- 9S2Skki9Pwyvb/21zCYq/o4pRMfKmQgpF2LT2m51rdtmNg9oj9F4+BJUmkgyNxMyGEA1V1jM
- xQaVX4mRY61O4CimPByUDp2EH2VaEr2rEwvHszaWqFJdSQE8hdSDc4cqhik7rznNBjwgZAzq
- cefLctAVnKjasfKEWp0VhgkIVB8/Sos4S8YaG4qbeGviSfIQJ2GO1Vd9WQ2n1XGth3cY2Qwk
- dIo13GCFJF7b6y0J13bm+siRpPZQ3aOda7pn07GXqREjFsfq5gF04/9am5x/haehPse2yzcP
- wDN7ORknPndzxrq3CyB7b/Tk1e8Qx+6HU/pnMb4ZqwwMwZAMk24TZpsgg28o9MQiUNzad0h2
- gIszbeej9ryrtLHxMzyK8yKhHoI2i2ovxy5O+hsWeAoCPE9xwbqnAjLjOn4Jzd/pPovizrq/
- kUoX66YgvCuHfQMC/aBPLnVunZSP23J2CrkTrnsUzw==
-In-Reply-To: <DM3PPF208195D8D04EA6C19CE47313430EFE328A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddufedvjedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomhepnfhouhhishcuvehhrghuvhgvthcuoehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekieevtdefgedtkeehteehtddttdefhffhgeejleejjeeluddvhfdugedvkeehveenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduledvrdduieekrddtrddvtdgnpdhmrghilhhfrhhomheplhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfeehpdhrtghpthhtohepshhurhgrjhdrkhgrnhguphgrlhesihhnthgvlhdrtghomhdprhgtphhtthhopehkvghrnhgvlhdqlhhishhtsehrrghsphgsvghrrhihphhirdgtohhmpdhrtghpthhtoheprghmugdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesv
- hhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhrvghnvghsrghsqdhsohgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqmhhsmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehfrhgvvggurhgvnhhosehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtohepughrihdquggvvhgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
-X-GND-Sasl: louis.chauvet@bootlin.com
+Date: Mon, 11 Aug 2025 16:39:13 +0200
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,112 +72,294 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Valentin,
+
+On Sat, 2025-07-12 at 03:33 +0000, Valentin Schneider wrote:
+> This lets us assert mutex::wait_lock is held whenever we access
+> p->blocked_on, as well as warn us for unexpected state changes.
+>=20
+> [fix conflicts, call in more places]
+> [jstultz: tweaked commit subject, reworked a good bit]
+> Signed-off-by: Valentin Schneider <valentin.schneider@arm.com>
+> Signed-off-by: Connor O'Brien <connoro@google.com>
+> Signed-off-by: John Stultz <jstultz@google.com>
+> Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+> Tested-by: K Prateek Nayak <kprateek.nayak@amd.com>
+> Link:
+> https://lkml.kernel.org/r/20250712033407.2383110-4-jstultz@google.com
+> ---
+> =C2=A0include/linux/sched.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 6=
+4
+> ++++++++++++++++++++++++++++++++++--
+> =C2=A0kernel/locking/mutex-debug.c |=C2=A0 4 +--
+> =C2=A0kernel/locking/mutex.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 32 +++=
++++++----------
+> =C2=A0kernel/locking/ww_mutex.h=C2=A0=C2=A0=C2=A0 |=C2=A0 8 ++---
+> =C2=A04 files changed, 81 insertions(+), 27 deletions(-)
+>=20
+
+Our CI is hitting a lot of these:
+
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5826
+
+From looking at the code, the wound-wait code after wounding the mutex
+owner, wakes it up opportunistically, so that *if* it is waiting on
+another wound-wait mutex, should re-evaluate whether it should
+rollback.=C2=A0Ideally in this case, the blocked-on status should be remove=
+d
+by the process that was woken up?
+
+Otherwise if the wound-wait code misbehaves in doing this we need to
+fix it.
+
+Thanks,
+Thomas
 
 
-Le 11/08/2025 à 13:23, Kandpal, Suraj a écrit :
->>> --- a/drivers/gpu/drm/vkms/vkms_drv.h
->>> +++ b/drivers/gpu/drm/vkms/vkms_drv.h
->>> @@ -213,7 +213,7 @@ struct vkms_crtc_state {
->>>     */
->>>    struct vkms_output {
->>>    	struct drm_crtc crtc;
->>> -	struct drm_writeback_connector wb_connector;
->>> +	struct drm_connector connector;
->>
->> Can you keep wb_connector here?
-> 
-> Reason for keeping drm_connector here is that drm_writeback_connector now resides within
-> drm_connector so kzalloc for drm_writeback_connector wont allocate memory for drm_connector
-> hence the reason for drm_connector.
-> Unless you meant that I keep the variable name as wb_connector then yes can be done 😃
-
-Ho yes sorry, that was the variable name yes!
-
-> Regards,
-> Suraj Kandpal
-> 
->>
->>>    	struct drm_encoder wb_encoder;
->>>    	struct hrtimer vblank_hrtimer;
->>>    	ktime_t period_ns;
->>> diff --git a/drivers/gpu/drm/vkms/vkms_writeback.c
->>> b/drivers/gpu/drm/vkms/vkms_writeback.c
->>> index 45d69a3b85f6..13c2a5c8f57a 100644
->>> --- a/drivers/gpu/drm/vkms/vkms_writeback.c
->>> +++ b/drivers/gpu/drm/vkms/vkms_writeback.c
->>> @@ -102,13 +102,16 @@ static int vkms_wb_prepare_job(struct
->> drm_writeback_connector *wb_connector,
->>>    	return ret;
->>>    }
->>>
->>> -static void vkms_wb_cleanup_job(struct drm_writeback_connector
->>> *connector,
->>> +static void vkms_wb_cleanup_job(struct drm_writeback_connector
->>> +*wb_connector,
->>>    				struct drm_writeback_job *job)
->>>    {
->>>    	struct vkms_writeback_job *vkmsjob = job->priv;
->>> +	struct drm_connector *connector = container_of(wb_connector,
->>> +						       struct drm_connector,
->>> +						       writeback);
->>>    	struct vkms_output *vkms_output = container_of(connector,
->>>    						       struct vkms_output,
->>> -						       wb_connector);
->>> +						       connector);
->>>
->>>    	if (!job->fb)
->>>    		return;
->>> @@ -127,8 +130,8 @@ static void vkms_wb_atomic_commit(struct
->> drm_connector *conn,
->>>    	struct drm_connector_state *connector_state =
->> drm_atomic_get_new_connector_state(state,
->>>
->> 		 conn);
->>>    	struct vkms_output *output =
->> drm_crtc_to_vkms_output(connector_state->crtc);
->>> -	struct drm_writeback_connector *wb_conn = &output-
->>> wb_connector;
->>> -	struct drm_connector_state *conn_state = wb_conn->base.state;
->>> +	struct drm_writeback_connector *wb_conn = &output-
->>> connector.writeback;
->>> +	struct drm_connector_state *conn_state = output->connector.state;
->>>    	struct vkms_crtc_state *crtc_state = output->composer_state;
->>>    	struct drm_framebuffer *fb = connector_state->writeback_job->fb;
->>>    	u16 crtc_height = crtc_state->base.mode.vdisplay; @@ -166,7 +169,7
->>> @@ static const struct drm_connector_helper_funcs
->> vkms_wb_conn_helper_funcs = {
->>>    int vkms_enable_writeback_connector(struct vkms_device *vkmsdev,
->>>    				    struct vkms_output *vkms_output)
->>>    {
->>> -	struct drm_writeback_connector *wb = &vkms_output-
->>> wb_connector;
->>> +	struct drm_writeback_connector *wb =
->>> +&vkms_output->connector.writeback;
->>>    	int ret;
->>>
->>>    	ret = drmm_encoder_init(&vkmsdev->drm, &vkms_output-
->>> wb_encoder, @@
->>> -177,7 +180,7 @@ int vkms_enable_writeback_connector(struct vkms_device
->> *vkmsdev,
->>>    	vkms_output->wb_encoder.possible_clones |=
->>>    		drm_encoder_mask(&vkms_output->wb_encoder);
->>>
->>> -	drm_connector_helper_add(&wb->base,
->> &vkms_wb_conn_helper_funcs);
->>> +	drm_connector_helper_add(&vkms_output->connector,
->>> +&vkms_wb_conn_helper_funcs);
->>>
->>>    	return drmm_writeback_connector_init(&vkmsdev->drm, wb,
->>>    					     &vkms_wb_connector_funcs,
->>
->> --
->> Louis Chauvet, Bootlin
->> Embedded Linux and Kernel engineering
->> https://bootlin.com
-> 
-
--- 
-Louis Chauvet, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> diff --git a/include/linux/sched.h b/include/linux/sched.h
+> index 33ad240ec900..5b4e1cd52e27 100644
+> --- a/include/linux/sched.h
+> +++ b/include/linux/sched.h
+> @@ -34,6 +34,7 @@
+> =C2=A0#include <linux/sched/prio.h>
+> =C2=A0#include <linux/sched/types.h>
+> =C2=A0#include <linux/signal_types.h>
+> +#include <linux/spinlock.h>
+> =C2=A0#include <linux/syscall_user_dispatch_types.h>
+> =C2=A0#include <linux/mm_types_task.h>
+> =C2=A0#include <linux/netdevice_xmit.h>
+> @@ -2129,6 +2130,67 @@ extern int
+> __cond_resched_rwlock_write(rwlock_t *lock);
+> =C2=A0 __cond_resched_rwlock_write(lock); \
+> =C2=A0})
+> =C2=A0
+> +#ifndef CONFIG_PREEMPT_RT
+> +static inline struct mutex *__get_task_blocked_on(struct task_struct
+> *p)
+> +{
+> + struct mutex *m =3D p->blocked_on;
+> +
+> + if (m)
+> + lockdep_assert_held_once(&m->wait_lock);
+> + return m;
+> +}
+> +
+> +static inline void __set_task_blocked_on(struct task_struct *p,
+> struct mutex *m)
+> +{
+> + WARN_ON_ONCE(!m);
+> + /* The task should only be setting itself as blocked */
+> + WARN_ON_ONCE(p !=3D current);
+> + /* Currently we serialize blocked_on under the mutex::wait_lock */
+> + lockdep_assert_held_once(&m->wait_lock);
+> + /*
+> + * Check ensure we don't overwrite existing mutex value
+> + * with a different mutex. Note, setting it to the same
+> + * lock repeatedly is ok.
+> + */
+> + WARN_ON_ONCE(p->blocked_on && p->blocked_on !=3D m);
+> + p->blocked_on =3D m;
+> +}
+> +
+> +static inline void set_task_blocked_on(struct task_struct *p, struct
+> mutex *m)
+> +{
+> + guard(raw_spinlock_irqsave)(&m->wait_lock);
+> + __set_task_blocked_on(p, m);
+> +}
+> +
+> +static inline void __clear_task_blocked_on(struct task_struct *p,
+> struct mutex *m)
+> +{
+> + WARN_ON_ONCE(!m);
+> + /* Currently we serialize blocked_on under the mutex::wait_lock */
+> + lockdep_assert_held_once(&m->wait_lock);
+> + /*
+> + * There may be cases where we re-clear already cleared
+> + * blocked_on relationships, but make sure we are not
+> + * clearing the relationship with a different lock.
+> + */
+> + WARN_ON_ONCE(m && p->blocked_on && p->blocked_on !=3D m);
+> + p->blocked_on =3D NULL;
+> +}
+> +
+> +static inline void clear_task_blocked_on(struct task_struct *p,
+> struct mutex *m)
+> +{
+> + guard(raw_spinlock_irqsave)(&m->wait_lock);
+> + __clear_task_blocked_on(p, m);
+> +}
+> +#else
+> +static inline void __clear_task_blocked_on(struct task_struct *p,
+> struct rt_mutex *m)
+> +{
+> +}
+> +
+> +static inline void clear_task_blocked_on(struct task_struct *p,
+> struct rt_mutex *m)
+> +{
+> +}
+> +#endif /* !CONFIG_PREEMPT_RT */
+> +
+> =C2=A0static __always_inline bool need_resched(void)
+> =C2=A0{
+> =C2=A0 return unlikely(tif_need_resched());
+> @@ -2168,8 +2230,6 @@ extern bool sched_task_on_rq(struct task_struct
+> *p);
+> =C2=A0extern unsigned long get_wchan(struct task_struct *p);
+> =C2=A0extern struct task_struct *cpu_curr_snapshot(int cpu);
+> =C2=A0
+> -#include <linux/spinlock.h>
+> -
+> =C2=A0/*
+> =C2=A0 * In order to reduce various lock holder preemption latencies
+> provide an
+> =C2=A0 * interface to see if a vCPU is currently running or not.
+> diff --git a/kernel/locking/mutex-debug.c b/kernel/locking/mutex-
+> debug.c
+> index 758b7a6792b0..949103fd8e9b 100644
+> --- a/kernel/locking/mutex-debug.c
+> +++ b/kernel/locking/mutex-debug.c
+> @@ -54,13 +54,13 @@ void debug_mutex_add_waiter(struct mutex *lock,
+> struct mutex_waiter *waiter,
+> =C2=A0 lockdep_assert_held(&lock->wait_lock);
+> =C2=A0
+> =C2=A0 /* Current thread can't be already blocked (since it's executing!)
+> */
+> - DEBUG_LOCKS_WARN_ON(task->blocked_on);
+> + DEBUG_LOCKS_WARN_ON(__get_task_blocked_on(task));
+> =C2=A0}
+> =C2=A0
+> =C2=A0void debug_mutex_remove_waiter(struct mutex *lock, struct
+> mutex_waiter *waiter,
+> =C2=A0 struct task_struct *task)
+> =C2=A0{
+> - struct mutex *blocked_on =3D READ_ONCE(task->blocked_on);
+> + struct mutex *blocked_on =3D __get_task_blocked_on(task);
+> =C2=A0
+> =C2=A0 DEBUG_LOCKS_WARN_ON(list_empty(&waiter->list));
+> =C2=A0 DEBUG_LOCKS_WARN_ON(waiter->task !=3D task);
+> diff --git a/kernel/locking/mutex.c b/kernel/locking/mutex.c
+> index e2f59863a866..80d778fedd60 100644
+> --- a/kernel/locking/mutex.c
+> +++ b/kernel/locking/mutex.c
+> @@ -644,8 +644,7 @@ __mutex_lock_common(struct mutex *lock, unsigned
+> int state, unsigned int subclas
+> =C2=A0 goto err_early_kill;
+> =C2=A0 }
+> =C2=A0
+> - WARN_ON(current->blocked_on);
+> - current->blocked_on =3D lock;
+> + __set_task_blocked_on(current, lock);
+> =C2=A0 set_current_state(state);
+> =C2=A0 trace_contention_begin(lock, LCB_F_MUTEX);
+> =C2=A0 for (;;) {
+> @@ -685,9 +684,9 @@ __mutex_lock_common(struct mutex *lock, unsigned
+> int state, unsigned int subclas
+> =C2=A0 /*
+> =C2=A0 * As we likely have been woken up by task
+> =C2=A0 * that has cleared our blocked_on state, re-set
+> - * it to the lock we are trying to aquire.
+> + * it to the lock we are trying to acquire.
+> =C2=A0 */
+> - current->blocked_on =3D lock;
+> + set_task_blocked_on(current, lock);
+> =C2=A0 set_current_state(state);
+> =C2=A0 /*
+> =C2=A0 * Here we order against unlock; we must either see it change
+> @@ -699,11 +698,15 @@ __mutex_lock_common(struct mutex *lock,
+> unsigned int state, unsigned int subclas
+> =C2=A0
+> =C2=A0 if (first) {
+> =C2=A0 trace_contention_begin(lock, LCB_F_MUTEX | LCB_F_SPIN);
+> - /* clear blocked_on as mutex_optimistic_spin may schedule() */
+> - current->blocked_on =3D NULL;
+> + /*
+> + * mutex_optimistic_spin() can call schedule(), so
+> + * clear blocked on so we don't become unselectable
+> + * to run.
+> + */
+> + clear_task_blocked_on(current, lock);
+> =C2=A0 if (mutex_optimistic_spin(lock, ww_ctx, &waiter))
+> =C2=A0 break;
+> - current->blocked_on =3D lock;
+> + set_task_blocked_on(current, lock);
+> =C2=A0 trace_contention_begin(lock, LCB_F_MUTEX);
+> =C2=A0 }
+> =C2=A0
+> @@ -711,7 +714,7 @@ __mutex_lock_common(struct mutex *lock, unsigned
+> int state, unsigned int subclas
+> =C2=A0 }
+> =C2=A0 raw_spin_lock_irqsave(&lock->wait_lock, flags);
+> =C2=A0acquired:
+> - current->blocked_on =3D NULL;
+> + __clear_task_blocked_on(current, lock);
+> =C2=A0 __set_current_state(TASK_RUNNING);
+> =C2=A0
+> =C2=A0 if (ww_ctx) {
+> @@ -741,11 +744,11 @@ __mutex_lock_common(struct mutex *lock,
+> unsigned int state, unsigned int subclas
+> =C2=A0 return 0;
+> =C2=A0
+> =C2=A0err:
+> - current->blocked_on =3D NULL;
+> + __clear_task_blocked_on(current, lock);
+> =C2=A0 __set_current_state(TASK_RUNNING);
+> =C2=A0 __mutex_remove_waiter(lock, &waiter);
+> =C2=A0err_early_kill:
+> - WARN_ON(current->blocked_on);
+> + WARN_ON(__get_task_blocked_on(current));
+> =C2=A0 trace_contention_end(lock, ret);
+> =C2=A0 raw_spin_unlock_irqrestore_wake(&lock->wait_lock, flags, &wake_q);
+> =C2=A0 debug_mutex_free_waiter(&waiter);
+> @@ -956,14 +959,7 @@ static noinline void __sched
+> __mutex_unlock_slowpath(struct mutex *lock, unsigne
+> =C2=A0 next =3D waiter->task;
+> =C2=A0
+> =C2=A0 debug_mutex_wake_waiter(lock, waiter);
+> - /*
+> - * Unlock wakeups can be happening in parallel
+> - * (when optimistic spinners steal and release
+> - * the lock), so blocked_on may already be
+> - * cleared here.
+> - */
+> - WARN_ON(next->blocked_on && next->blocked_on !=3D lock);
+> - next->blocked_on =3D NULL;
+> + __clear_task_blocked_on(next, lock);
+> =C2=A0 wake_q_add(&wake_q, next);
+> =C2=A0 }
+> =C2=A0
+> diff --git a/kernel/locking/ww_mutex.h b/kernel/locking/ww_mutex.h
+> index 45fe05e51db1..086fd5487ca7 100644
+> --- a/kernel/locking/ww_mutex.h
+> +++ b/kernel/locking/ww_mutex.h
+> @@ -283,15 +283,13 @@ __ww_mutex_die(struct MUTEX *lock, struct
+> MUTEX_WAITER *waiter,
+> =C2=A0 if (waiter->ww_ctx->acquired > 0 && __ww_ctx_less(waiter->ww_ctx,
+> ww_ctx)) {
+> =C2=A0#ifndef WW_RT
+> =C2=A0 debug_mutex_wake_waiter(lock, waiter);
+> +#endif
+> =C2=A0 /*
+> =C2=A0 * When waking up the task to die, be sure to clear the
+> =C2=A0 * blocked_on pointer. Otherwise we can see circular
+> =C2=A0 * blocked_on relationships that can't resolve.
+> =C2=A0 */
+> - WARN_ON(waiter->task->blocked_on &&
+> - waiter->task->blocked_on !=3D lock);
+> -#endif
+> - waiter->task->blocked_on =3D NULL;
+> + __clear_task_blocked_on(waiter->task, lock);
+> =C2=A0 wake_q_add(wake_q, waiter->task);
+> =C2=A0 }
+> =C2=A0
+> @@ -345,7 +343,7 @@ static bool __ww_mutex_wound(struct MUTEX *lock,
+> =C2=A0 * blocked_on pointer. Otherwise we can see circular
+> =C2=A0 * blocked_on relationships that can't resolve.
+> =C2=A0 */
+> - owner->blocked_on =3D NULL;
+> + __clear_task_blocked_on(owner, lock);
+> =C2=A0 wake_q_add(wake_q, owner);
+> =C2=A0 }
+> =C2=A0 return true;
 
