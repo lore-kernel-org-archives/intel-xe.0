@@ -4,78 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1088DCA0EC0
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 08:31:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29BCFCA0EC0
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 08:37:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC97A10E396;
-	Mon, 11 Aug 2025 08:31:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E865210E3A3;
+	Mon, 11 Aug 2025 08:37:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="IYmABeC5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HY9Vw9Ge";
 	dkim-atps=neutral
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0083C10E396
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 08:31:11 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-459ebb6bbdfso25618685e9.0
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 01:31:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1754901070; x=1755505870;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id:from
- :to:cc:subject:date:message-id:reply-to;
- bh=/qhj6VYgT7H+jqBCdnSt7pwyU3P2IpV6h0XAGx27x40=;
- b=IYmABeC5fecRbuF5Sl4Y6S2R674gHnZ5tSv41CHpphpRLDGzeUBQunLmwOvTvzk4gf
- fvLxGMPLz1CahBDOhdk2X/6+vgjh8hs0DUSq618//8DfVgUMD03FII6Vf1pwKc2NY8SB
- IzPJfgujf977padQcDb/EyFcdU1Wg0SrsYq7TEihFB/a4YSMHdB0AiIhcyXWZAsovmgP
- wSoQC/YnBRbhmqrnoQuB3BS1xwcWl1DTnfOBXCq6Se+hVXU/5A3AihWx8Qfjt8EW28Sq
- uelsILVRzVQWRQtsNmsGEou7q7kmqKK8C9Jf8laMa57X0uoegePnyTXBpnCOajcNBdRX
- fjqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754901070; x=1755505870;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=/qhj6VYgT7H+jqBCdnSt7pwyU3P2IpV6h0XAGx27x40=;
- b=QRIA3t769Bj4/XrkGZRxcBN3DG7pDzEDVEO1pqIrjggsHwpNrgSCyhj6rUZxgFVrr+
- 3l6yExKtFZalLnzOH62e0elvKMYz19dgr4MD5PpW9KiGHTuc3ETiO2AJuCqDabb0RZtj
- utM8szwi6sAtmLwVNS72p2+P+nf/Jd0trz4k/MK9PNBFhrLUtpgA402NeFJkTIVcixuu
- fdAvWrxASrqJj/VCKlPTO/gzn4DnG0hHghfXeOFViJuWjngWBkBWAF+cDMN9WMQWkiLL
- GvMUiPArHbuoFmayhq6i9Lx08Yonz7qPotj3y3AG4ca4BCXJGxOdWwMBlubLeKzHcb7S
- CW5w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWMnxDDxM5uyf3S+bE7ydDd0/7KJ44rkBoug5dpJFMkx0zc2DeGI3yAVzFd8y0Q1dLzlJtSXpxjBg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwEtVq3ZvnlnR682rPDsDwruH769R2UCzqt0PLNd0le4EyaJ0kW
- iwN/0Prn5i83RTxwvkl5fHz8n9h2H/ABJd3J7t+5NKcNs+ZnrcoXP5fj1jJRXZwQQkuCmlJzY5u
- OBLVJ
-X-Gm-Gg: ASbGncvpLg+3dpNcM28G409yKYux21w4HvQU5hw2hO46TzhIln4iIuJd4bl7jQNqDeM
- 6fRMhJTPzg4/vRRFDEZDu5+EgHIJ3Xr1jDzgMZCUtQwoKHC2z5WGIaZSF9huW2PseX+FcdbxUPu
- uD0Nzy8DTnsW3/D7Rh8KPuH9lJUGbZc4fuIilc/Ls6HqcGsSpSeXbJDnyYMA6ogF9oOwVJ9RuOI
- JbJ+B9MgRG8hQdk75C4tV+3oysLaDZlU1oD85OvUstGNHBduWURgXsULK+LHfo/fXj7e9Q4QBVu
- a0nbp3aTLQ9bbZwxYBllEPyUnMEZ2WkWyw7gy3A3RmcCZcL9u2ZSh+aMV9RMNe2Kq7rLYx3qyrl
- nbikDm0hF2YDPFOba97LlsK3FXJk1B2EtDcY=
-X-Google-Smtp-Source: AGHT+IFn23PaWk3PQnrIPkf6ZCopOeH/Zus2huh2KXr0Dv+cdMktIF1IwrcEhxzOFeH+N0kvucBgZg==
-X-Received: by 2002:a05:600c:4589:b0:456:fc1:c26d with SMTP id
- 5b1f17b1804b1-459f4f3f430mr107334605e9.2.1754901070107; 
- Mon, 11 Aug 2025 01:31:10 -0700 (PDT)
-Received: from [192.168.0.101] ([84.66.36.92])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-459e5c84b8csm135992585e9.4.2025.08.11.01.31.09
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Aug 2025 01:31:09 -0700 (PDT)
-Message-ID: <5339ecf6-05f7-4714-8032-c0508259f4a5@ursulin.net>
-Date: Mon, 11 Aug 2025 09:31:08 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A16AE10E3A6
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 08:37:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754901469; x=1786437469;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GsVCmiuVHd9tVkyavtVOWgPJMmQek0CTBe5f2wi346Y=;
+ b=HY9Vw9Ge/8pOWgCkXt/baLPW8KMSZaydIT4RNV5NT/4ncsmSlT+IqiN8
+ VN0WcQUhZ05LQgndJ+MdHUTcZ1ND4wBxHS6Kolfuq9XkI31C/apjdHvlP
+ 2eI7r3GxCHfjgOyTs3bIV1u4BoVDiuYdZbqEfyGL2F29vizH372l/filQ
+ e4hsVqahLXDoWv2///jPrqiKz37N7eqjLbkl4lCgMJa3HvD1LCiAihmSd
+ hHRDa8pVaok7pkucK//cAbe6r2wPhWW0UU5Nc8ng89C5TnAnCT4AMlVlZ
+ 2KNrM+AWmCYPeJyNFmgSdSbfcbB0fYicpsyCgyjqbpQTeXv0Qp+har+w8 Q==;
+X-CSE-ConnectionGUID: w80InvsET8yhwlbYfhqGqQ==
+X-CSE-MsgGUID: TWlDvfTISWKTbKkAweGPSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="57105186"
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="57105186"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2025 01:37:49 -0700
+X-CSE-ConnectionGUID: h6YOtMlMRBeN9hiT9cdWKA==
+X-CSE-MsgGUID: kpxlgG8VRNKLD1nrrwm2yQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="165849388"
+Received: from intel-s2600wft.iind.intel.com ([10.223.26.143])
+ by orviesa007.jf.intel.com with ESMTP; 11 Aug 2025 01:37:46 -0700
+From: S Sebinraj <s.sebinraj@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: jeevaka.badrappan@intel.com,
+	S Sebinraj <s.sebinraj@intel.com>
+Subject: [PATCH v2] drm/xe: GPU frequency tracing support
+Date: Mon, 11 Aug 2025 14:04:14 +0530
+Message-Id: <20250811083414.3863103-1-s.sebinraj@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/7] Use DRM scheduler for delayed GT TLB invalidations
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20250724191216.4076566-1-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20250724191216.4076566-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,86 +65,583 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+A periodic GPU frequency monitoring and tracing program for the
+Xe driver. The implementation provides periodic sampling of
+GPU frequency through the Linux ftrace infrastructure.
 
-On 24/07/2025 20:12, Matthew Brost wrote:
-> MIME-Version: 1.0
-> Content-Type: text/plain; charset=UTF-8
-> Content-Transfer-Encoding: 8bit
-> 
->        Use the DRM scheduler for delayed GT TLB invalidations, which properly
-> fixes the issue raised in [1]. GT TLB fences have their own dma-fence
-> context, so even if the invalidations are ordered, the dma-resv/DRM
-> scheduler cannot squash the fences. This results in O(M*N*N) complexity
-> in the garbage collector, where M is the number of ranges in the garbage
-> collector and N is the number of pending GT TLB invalidations. After
-> this change, the resulting complexity in O(M*C) where C is the number of
-> TLB invalidation contexts (i.e., number of exec queue, GTs tuples) with
-> an invalidation in flight.
+Key features:
+- Periodic GPU frequency sampling with configurable intervals
+- Immediate frequency change reporting via tracepoints
+- Integration with Linux ftrace subsystem under 'power' events
+- Per-GT (Graphics Technology) monitoring support
+- Dedicated workqueue for non-blocking frequency sampling
+- Configurable via CONFIG_DRM_XE_GPUFREQTRACER kernel option
+- The monitoring interval can be configured at runtime via the sysfs
+  (default 5sec).
 
-Does this series improve the performance of the TLB invalidations in 
-general?
+The sysfs entry is at:
+/sys/module/xe/parameters/gpufreq_monitoring_interval_ms
 
-I am asking because we are currently investigating a problem with Google 
-Chrome which apparently suffers a lot from latencies caused by TLB 
-invalidations piling up after a lot of tab switching causes a lot of vm 
-bind ioctl activity.
+The tracepoint is exposed at:
+/sys/kernel/debug/tracing/events/power/gpu_frequency
 
-Also, is it related to 
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2162 ?
+Format: {unsigned int state, unsigned int gpu_id}
+- state: GPU frequency in KHz
+- gpu_id: GPU clock domain identifier
 
-Regards,
+This enables userspace tools and system monitoring applications to track
+GPU frequency changes for power management analysis, performance tuning,
+and debugging purposes.
 
-Tvrtko
+Signed-off-by: S Sebinraj <s.sebinraj@intel.com>
+---
+ drivers/gpu/drm/xe/Kconfig                  |  22 ++
+ drivers/gpu/drm/xe/Makefile                 |   3 +
+ drivers/gpu/drm/xe/xe_device.c              |   7 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   4 +
+ drivers/gpu/drm/xe/xe_gpufreqtracer.c       | 292 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gpufreqtracer.h       |  30 ++
+ drivers/gpu/drm/xe/xe_gpufreqtracer_trace.h |  48 ++++
+ drivers/gpu/drm/xe/xe_module.c              |  12 +
+ drivers/gpu/drm/xe/xe_module.h              |   3 +
+ 9 files changed, 421 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_gpufreqtracer.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gpufreqtracer.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gpufreqtracer_trace.h
 
-> Admittedly, it's quite a lot of code, but the series includes extensive
-> kernel documentation and clear code comments. It introduces a generic
-> dependency scheduler that can be reused in the future and is logically
-> much cleaner than the previous open-coded solution for delaying GT TLB
-> invalidations until a bind job completes.
-> 
-> v2:
->   - Various cleanup covered in detail in change logs
->   - Use a per-GT ordered workqueue as DRM scheduler workqueue
->   - Remove unused ftrace points
-> v3:
->   - Address Stuarts feedback
->   - Fix kernel doc, minor cleanups
-> v4:
->   - Rebase
-> 
-> Matt
-> 
-> [1] https://patchwork.freedesktop.org/patch/658370/?series=150188&rev=1
-> 
-> Matthew Brost (7):
->    drm/xe: Explicitly mark migration queues with flag
->    drm/xe: Add generic dependecy jobs / scheduler
->    drm/xe: Create ordered workqueue for GT TLB invalidation jobs
->    drm/xe: Add dependency scheduler for GT TLB invalidations to bind
->      queues
->    drm/xe: Add GT TLB invalidation jobs
->    drm/xe: Use GT TLB invalidation jobs in PT layer
->    drm/xe: Remove unused GT TLB invalidation trace points
-> 
->   drivers/gpu/drm/xe/Makefile                 |   2 +
->   drivers/gpu/drm/xe/xe_dep_job_types.h       |  29 +++
->   drivers/gpu/drm/xe/xe_dep_scheduler.c       | 143 ++++++++++
->   drivers/gpu/drm/xe/xe_dep_scheduler.h       |  21 ++
->   drivers/gpu/drm/xe/xe_exec_queue.c          |  48 ++++
->   drivers/gpu/drm/xe/xe_exec_queue_types.h    |  15 ++
->   drivers/gpu/drm/xe/xe_gt_tlb_inval_job.c    | 274 ++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_gt_tlb_inval_job.h    |  34 +++
->   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   8 +
->   drivers/gpu/drm/xe/xe_gt_types.h            |   2 +
->   drivers/gpu/drm/xe/xe_migrate.c             |  42 ++-
->   drivers/gpu/drm/xe/xe_migrate.h             |  13 +
->   drivers/gpu/drm/xe/xe_pt.c                  | 178 +++++--------
->   drivers/gpu/drm/xe/xe_trace.h               |  16 --
->   14 files changed, 700 insertions(+), 125 deletions(-)
->   create mode 100644 drivers/gpu/drm/xe/xe_dep_job_types.h
->   create mode 100644 drivers/gpu/drm/xe/xe_dep_scheduler.c
->   create mode 100644 drivers/gpu/drm/xe/xe_dep_scheduler.h
->   create mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_inval_job.c
->   create mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_inval_job.h
-> 
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 714d5702dfd7..d9d07ec69875 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -129,6 +129,28 @@ config DRM_XE_FORCE_PROBE
+ 
+ 	  Use "!*" to block the probe of the driver for all known devices.
+ 
++config DRM_XE_GPUFREQTRACER
++	bool "Enable XE GPU frequency tracing"
++	depends on DRM_XE && FTRACE
++	default n
++	help
++	  Enable GPU frequency tracing support for Intel XE driver.
++	  This adds an ftrace tracepoint that reports GPU frequency changes
++	  at periodic boundaries (default 5 secs, configurable via the
++	  gpufreq_monitoring_interval_ms module parameter) and
++	  on direct frequency change events.
++
++	  The monitoring interval can be configured at runtime via the sysfs module parameter:
++	  /sys/module/xe/parameters/gpufreq_monitoring_interval_ms
++
++	  The tracepoint will be available at:
++	  /sys/kernel/debug/tracing/events/power/gpu_frequency
++
++	  Format: {unsigned int state, unsigned int gpu_id}
++	  Where state is the frequency in KHz and gpu_id is the GPU clock domain.
++
++	  If unsure, say N.
++
+ menu "drm/Xe Debugging"
+ depends on DRM_XE
+ depends on EXPERT
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 8e0c3412a757..61d46cc4dc25 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -170,6 +170,9 @@ xe-$(CONFIG_PCI_IOV) += \
+ 	xe_sriov_pf.o \
+ 	xe_sriov_pf_service.o
+ 
++# GPU frequency tracer
++xe-$(CONFIG_DRM_XE_GPUFREQTRACER) += xe_gpufreqtracer.o
++
+ # include helpers for tests even when XE is built-in
+ ifdef CONFIG_DRM_XE_KUNIT_TEST
+ xe-y += tests/xe_kunit_helpers.o
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 57edbc63da6f..88198ceb519b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -34,6 +34,7 @@
+ #include "xe_exec_queue.h"
+ #include "xe_force_wake.h"
+ #include "xe_ggtt.h"
++#include "xe_gpufreqtracer.h"
+ #include "xe_gsc_proxy.h"
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
+@@ -896,6 +897,12 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_GPUFREQTRACER)
++	err = xe_gpufreqtracer_init(xe);
++	if (err)
++		return err;
++#endif
++
+ 	err = xe_oa_init(xe);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 01e8fa0d2f9f..0634dbbbdc3f 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -35,6 +35,7 @@ struct dram_info;
+ struct intel_display;
+ struct intel_dg_nvm_dev;
+ struct xe_ggtt;
++struct xe_gpufreqtracer_data;
+ struct xe_i2c;
+ struct xe_pat_ops;
+ struct xe_pxp;
+@@ -529,6 +530,9 @@ struct xe_device {
+ 	/** @oa: oa observation subsystem */
+ 	struct xe_oa oa;
+ 
++	/** @gpufreqtracer_data: GPU frequency tracer data */
++	struct xe_gpufreqtracer_data *gpufreqtracer_data;
++
+ 	/** @pxp: Encapsulate Protected Xe Path support */
+ 	struct xe_pxp *pxp;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gpufreqtracer.c b/drivers/gpu/drm/xe/xe_gpufreqtracer.c
+new file mode 100644
+index 000000000000..07eedfb79e93
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gpufreqtracer.c
+@@ -0,0 +1,292 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include "xe_gpufreqtracer.h"
++
++#include <linux/workqueue.h>
++#include <linux/slab.h>
++#include <linux/jiffies.h>
++#include <linux/kernel.h>
++#include <linux/moduleparam.h>
++#include <linux/types.h>
++#include <linux/container_of.h>
++#include <linux/gfp.h>
++#include <linux/atomic.h>
++#include <drm/drm_managed.h>
++
++#include "xe_device.h"
++#include "xe_gt.h"
++#include "xe_gt_types.h"
++#include "xe_guc_pc.h"
++#include "xe_module.h"
++
++/* GPU frequency monitoring interval constants (in milliseconds) */
++#define XE_GPUFREQ_MONITORING_MIN_INTERVAL_MS	100
++#define XE_GPUFREQ_MONITORING_MAX_INTERVAL_MS	10000
++#define XE_GPUFREQ_MONITORING_DEFAULT_INTERVAL_MS	5000
++
++#define CREATE_TRACE_POINTS
++#include "xe_gpufreqtracer_trace.h"
++
++/**
++ * struct xe_gpufreqtracer_gt_data - Per-GT frequency monitoring data
++ * @gt: Reference to the GT
++ * @delayed_work: Delayed work for periodic monitoring
++ * @last_frequency: Last reported frequency to avoid duplicate reports
++ * @monitoring_active: Whether monitoring is currently active
++ */
++struct xe_gpufreqtracer_gt_data {
++	struct xe_gt *gt;
++	struct delayed_work delayed_work;
++	atomic_t last_frequency;
++	atomic_t monitoring_active;
++};
++
++/**
++ * struct xe_gpufreqtracer_data - Per-device frequency tracer data
++ * @xe: Reference to the XE device
++ * @gt_data: Array of per-GT monitoring data
++ */
++struct xe_gpufreqtracer_data {
++	struct xe_device *xe;
++	struct xe_gpufreqtracer_gt_data *gt_data;
++};
++
++
++/**
++ * xe_gpufreqtracer_sample_work - Worker function to sample GPU frequency.
++ * @work: Pointer to the delayed_work_struct representing the scheduled work.
++ *
++ * This function is executed in a workqueue context to periodically sample
++ * the GPU frequency and perform any necessary tracing or logging operations.
++ * It reschedules itself for the next sampling interval.
++ */
++static void xe_gpufreqtracer_sample_work(struct work_struct *work)
++{
++	struct xe_gpufreqtracer_gt_data *gt_data =
++		container_of(work, struct xe_gpufreqtracer_gt_data, delayed_work.work);
++	struct xe_gt *gt = gt_data->gt;
++	struct xe_guc_pc *pc = &gt->uc.guc.pc;
++	u32 current_freq, last_freq;
++
++	if (!atomic_read(&gt_data->monitoring_active)) {
++		drm_warn(&gt_to_xe(gt)->drm, "monitoring not active for GT%u, exiting",
++			 gt->info.id);
++		return;
++	}
++
++	current_freq = xe_guc_pc_get_act_freq(pc) * 1000; /* Convert MHz to KHz */
++	last_freq = atomic_read(&gt_data->last_frequency);
++
++	/* Only report if frequency has changed or this is the first sample */
++	if (current_freq != last_freq) {
++		drm_dbg(&gt_to_xe(gt)->drm, "GT%u frequency changed, tracing %u KHz",
++			gt->info.id, current_freq);
++		trace_gpu_frequency(current_freq, gt->info.id);
++		atomic_set(&gt_data->last_frequency, current_freq);
++	}
++
++	/* Reschedule for the next sampling interval if monitoring is still active */
++	if (atomic_read(&gt_data->monitoring_active)) {
++		schedule_delayed_work(&gt_data->delayed_work,
++				      msecs_to_jiffies(xe_modparam.gpufreq_monitoring_interval_ms));
++	}
++}
++
++/**
++ * xe_gpufreqtracer_start_monitoring - Start periodic frequency monitoring
++ * @gt: The GT instance
++ *
++ * Starts periodic sampling of GPU frequency for the specified GT using the global
++ * monitoring interval from module parameters.
++ *
++ * Return: 0 on success, negative error code on failure
++ */
++static int xe_gpufreqtracer_start_monitoring(struct xe_gt *gt)
++{
++	struct xe_gpufreqtracer_data *tracer_data = gt_to_xe(gt)->gpufreqtracer_data;
++	struct xe_gpufreqtracer_gt_data *gt_data;
++
++	if (!tracer_data) {
++		drm_warn(&gt_to_xe(gt)->drm, "no tracer data for GT%u, not supported", gt->info.id);
++		return -EOPNOTSUPP;
++	}
++
++	if (gt->info.id >= gt_to_xe(gt)->info.gt_count) {
++		drm_err(&gt_to_xe(gt)->drm, "invalid GT ID %u, max supported is %u",
++			gt->info.id, gt_to_xe(gt)->info.gt_count - 1);
++		return -EINVAL;
++	}
++
++	gt_data = &tracer_data->gt_data[gt->info.id];
++
++	if (atomic_read(&gt_data->monitoring_active)) {
++		drm_warn(&gt_to_xe(gt)->drm, "monitoring already active for GT%u", gt->info.id);
++		return -EALREADY;
++	}
++
++	atomic_set(&gt_data->monitoring_active, 1);
++	atomic_set(&gt_data->last_frequency, 0);
++
++	/* Start the delayed work using global interval */
++	schedule_delayed_work(&gt_data->delayed_work,
++			      msecs_to_jiffies(xe_modparam.gpufreq_monitoring_interval_ms));
++
++	drm_dbg(&gt_to_xe(gt)->drm, "monitoring started for GT%u with interval %u ms",
++		 gt->info.id, xe_modparam.gpufreq_monitoring_interval_ms);
++
++	return 0;
++}
++
++/**
++ * xe_gpufreqtracer_stop_monitoring - Stop periodic frequency monitoring
++ * @gt: The GT instance
++ *
++ * Stops periodic sampling of GPU frequency for the specified GT.
++ */
++static void xe_gpufreqtracer_stop_monitoring(struct xe_gt *gt)
++{
++	struct xe_gpufreqtracer_data *tracer_data = gt_to_xe(gt)->gpufreqtracer_data;
++	struct xe_gpufreqtracer_gt_data *gt_data;
++
++	if (!tracer_data || gt->info.id >= gt_to_xe(gt)->info.gt_count) {
++		drm_err(&gt_to_xe(gt)->drm, "invalid tracer data or GT ID %u for stop request",
++			gt->info.id);
++		return;
++	}
++
++	gt_data = &tracer_data->gt_data[gt->info.id];
++
++	if (!atomic_read(&gt_data->monitoring_active)) {
++		drm_warn(&gt_to_xe(gt)->drm, "monitoring not active for GT%u, nothing to stop",
++			 gt->info.id);
++		return;
++	}
++
++	atomic_set(&gt_data->monitoring_active, 0);
++
++	cancel_delayed_work_sync(&gt_data->delayed_work);
++}
++
++/**
++ * xe_gpufreqtracer_validate_params - Validate GPU frequency monitoring parameters
++ *
++ * Validates and corrects the GPU frequency monitoring interval parameter.
++ * If the parameter is out of range, it will be reset to the default value.
++ */
++static void xe_gpufreqtracer_validate_params(void)
++{
++	if (xe_modparam.gpufreq_monitoring_interval_ms < XE_GPUFREQ_MONITORING_MIN_INTERVAL_MS ||
++	    xe_modparam.gpufreq_monitoring_interval_ms > XE_GPUFREQ_MONITORING_MAX_INTERVAL_MS) {
++		pr_warn("xe: gpufreq_monitoring_interval_ms %u out of range [%u, %u], using default %u ms\n",
++			xe_modparam.gpufreq_monitoring_interval_ms,
++			XE_GPUFREQ_MONITORING_MIN_INTERVAL_MS,
++			XE_GPUFREQ_MONITORING_MAX_INTERVAL_MS,
++			XE_GPUFREQ_MONITORING_DEFAULT_INTERVAL_MS);
++		xe_modparam.gpufreq_monitoring_interval_ms = XE_GPUFREQ_MONITORING_DEFAULT_INTERVAL_MS;
++	}
++}
++
++/**
++ * xe_gpufreqtracer_cleanup_action - DRM managed cleanup action
++ * @drm: DRM device
++ * @ptr: Pointer to xe_device
++ *
++ * Cleanup function called automatically by DRM managed resource system.
++ */
++static void xe_gpufreqtracer_cleanup_action(struct drm_device *drm, void *ptr)
++{
++	struct xe_device *xe = ptr;
++	struct xe_gpufreqtracer_data *tracer_data = xe->gpufreqtracer_data;
++	struct xe_gt *gt;
++	u8 tile_id;
++
++	if (!tracer_data) {
++		drm_warn(drm, "no tracer data found, nothing to cleanup");
++		return;
++	}
++
++	/* Stop all monitoring */
++	for_each_gt(gt, xe, tile_id) {
++		drm_dbg(drm, "stopping monitoring for GT%u", gt->info.id);
++		xe_gpufreqtracer_stop_monitoring(gt);
++	}
++
++	/* Memory is automatically freed by drmm - just clear the pointer */
++	xe->gpufreqtracer_data = NULL;
++}
++
++/**
++ * xe_gpufreqtracer_init - Initialize GPU frequency tracer for a device
++ * @xe: The XE device
++ *
++ * Sets up the frequency tracer infrastructure for all GTs in the device.
++ *
++ * Return: 0 on success, negative error code on failure
++ */
++int xe_gpufreqtracer_init(struct xe_device *xe)
++{
++	struct xe_gpufreqtracer_data *tracer_data;
++	struct xe_gt *gt;
++	u8 tile_id;
++	int ret = 0;
++
++	/* Validate module parameters first */
++	xe_gpufreqtracer_validate_params();
++
++	tracer_data = drmm_kzalloc(&xe->drm, sizeof(*tracer_data), GFP_KERNEL);
++	if (!tracer_data)
++		return -ENOMEM;
++
++	tracer_data->xe = xe;
++
++	/* Allocate GT data array based on actual GT count */
++	tracer_data->gt_data = drmm_kcalloc(&xe->drm, xe->info.gt_count,
++				       sizeof(*tracer_data->gt_data),
++				       GFP_KERNEL);
++	if (!tracer_data->gt_data) {
++		ret = -ENOMEM;
++		goto err_free_tracer;
++	}
++
++	/* Initialize per-GT data */
++	for_each_gt(gt, xe, tile_id) {
++		struct xe_gpufreqtracer_gt_data *gt_data =
++			&tracer_data->gt_data[gt->info.id];
++
++		drm_dbg(&xe->drm, "initializing GT%u (tile %u)", gt->info.id, tile_id);
++
++		gt_data->gt = gt;
++		atomic_set(&gt_data->monitoring_active, 0);
++		atomic_set(&gt_data->last_frequency, 0);
++
++		INIT_DELAYED_WORK(&gt_data->delayed_work, xe_gpufreqtracer_sample_work);
++
++		drm_dbg(&xe->drm, "GT%u initialized with global interval=%u ms",
++			 gt->info.id, xe_modparam.gpufreq_monitoring_interval_ms);
++	}
++
++	xe->gpufreqtracer_data = tracer_data;
++
++	/* Start periodic monitoring on all GTs using global module parameter */
++	for_each_gt(gt, xe, tile_id) {
++		ret = xe_gpufreqtracer_start_monitoring(gt);
++		if (ret) {
++			drm_err(&xe->drm, "xe_gpufreqtracer: failed to start monitoring for GT%u, err=%d\n",
++				gt->info.id, ret);
++		}
++	}
++
++	/* Register cleanup action for proper work cancellation */
++	ret = drmm_add_action(&xe->drm, xe_gpufreqtracer_cleanup_action, xe);
++	if (ret)
++		return ret;
++
++	return 0;
++
++err_free_tracer:
++	drm_err(&xe->drm, "initialization failed, freeing tracer data");
++	return ret;
++}
+diff --git a/drivers/gpu/drm/xe/xe_gpufreqtracer.h b/drivers/gpu/drm/xe/xe_gpufreqtracer.h
+new file mode 100644
+index 000000000000..561abe27b6e2
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gpufreqtracer.h
+@@ -0,0 +1,30 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_GPUFREQTRACER_H_
++#define _XE_GPUFREQTRACER_H_
++
++#include <linux/types.h>
++
++struct xe_device;
++struct xe_gt;
++
++#ifdef CONFIG_DRM_XE_GPUFREQTRACER
++
++/*
++ * Initialize the GPU frequency tracer for a device
++ */
++int xe_gpufreqtracer_init(struct xe_device *xe);
++
++#else /* CONFIG_DRM_XE_GPUFREQTRACER */
++
++static inline int xe_gpufreqtracer_init(struct xe_device *xe)
++{
++	return 0;
++}
++
++#endif /* CONFIG_DRM_XE_GPUFREQTRACER */
++
++#endif /* _XE_GPUFREQTRACER_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_gpufreqtracer_trace.h b/drivers/gpu/drm/xe/xe_gpufreqtracer_trace.h
+new file mode 100644
+index 000000000000..5664db62e3fb
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gpufreqtracer_trace.h
+@@ -0,0 +1,48 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM power
++
++#if !defined(_XE_GPUFREQTRACER_TRACE_H) || defined(TRACE_HEADER_MULTI_READ)
++#define _XE_GPUFREQTRACER_TRACE_H
++
++#include <linux/tracepoint.h>
++
++/*
++ * Tracepoint for GPU frequency changes
++ * This tracepoint is exposed at /sys/kernel/debug/tracing/events/power/gpu_frequency
++ *
++ * location: /d/events/power/gpu_frequency
++ * format: {unsigned int state, unsigned int gpu_id}
++ * where state holds the frequency(in Khz) and the gpu_id holds the GPU clock domain.
++ */
++
++TRACE_EVENT(gpu_frequency,
++	TP_PROTO(unsigned int state, unsigned int gpu_id),
++
++	TP_ARGS(state, gpu_id),
++
++	TP_STRUCT__entry(
++		__field(unsigned int, state)
++		__field(unsigned int, gpu_id)
++	),
++
++	TP_fast_assign(
++		__entry->state = state;
++		__entry->gpu_id = gpu_id;
++	),
++
++	TP_printk("state=%u gpu_id=%u", __entry->state, __entry->gpu_id)
++);
++
++#endif /* _XE_GPUFREQTRACER_TRACE_H */
++
++/* This part must be outside protection */
++#undef TRACE_INCLUDE_PATH
++#undef TRACE_INCLUDE_FILE
++#define TRACE_INCLUDE_PATH .
++#define TRACE_INCLUDE_FILE xe_gpufreqtracer_trace
++#include <trace/define_trace.h>
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index d08338fc3bc1..f5d4f8bca61f 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -31,6 +31,7 @@
+ #define DEFAULT_MAX_VFS_STR		"unlimited"
+ #define DEFAULT_WEDGED_MODE		1
+ #define DEFAULT_SVM_NOTIFIER_SIZE	512
++#define DEFAULT_GPUFREQ_MONITORING_INTERVAL_MS	5000
+ 
+ struct xe_modparam xe_modparam = {
+ 	.probe_display =	DEFAULT_PROBE_DISPLAY,
+@@ -41,6 +42,9 @@ struct xe_modparam xe_modparam = {
+ #endif
+ 	.wedged_mode =		DEFAULT_WEDGED_MODE,
+ 	.svm_notifier_size =	DEFAULT_SVM_NOTIFIER_SIZE,
++#ifdef CONFIG_DRM_XE_GPUFREQTRACER
++	.gpufreq_monitoring_interval_ms = DEFAULT_GPUFREQ_MONITORING_INTERVAL_MS,
++#endif
+ 	/* the rest are 0 by default */
+ };
+ 
+@@ -93,6 +97,14 @@ MODULE_PARM_DESC(wedged_mode,
+ 		 "Module's default policy for the wedged mode (0=never, 1=upon-critical-errors, 2=upon-any-hang "
+ 		 "[default=" __stringify(DEFAULT_WEDGED_MODE) "])");
+ 
++#ifdef CONFIG_DRM_XE_GPUFREQTRACER
++module_param_named(gpufreq_monitoring_interval_ms,
++		   xe_modparam.gpufreq_monitoring_interval_ms, uint, 0644);
++MODULE_PARM_DESC(gpufreq_monitoring_interval_ms,
++		 "GPU frequency monitoring interval in milliseconds (100-10000, default: "
++		 __stringify(DEFAULT_GPUFREQ_MONITORING_INTERVAL_MS) ")");
++#endif
++
+ static int xe_check_nomodeset(void)
+ {
+ 	if (drm_firmware_drivers_only())
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 5a3bfea8b7b4..fd60de38d24d 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -23,6 +23,9 @@ struct xe_modparam {
+ #endif
+ 	int wedged_mode;
+ 	u32 svm_notifier_size;
++#ifdef CONFIG_DRM_XE_GPUFREQTRACER
++	u32 gpufreq_monitoring_interval_ms;
++#endif
+ };
+ 
+ extern struct xe_modparam xe_modparam;
+-- 
+2.34.1
 
