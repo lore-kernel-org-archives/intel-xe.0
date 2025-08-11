@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1346C87FD2
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 13:19:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C334AC87FD2
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 13:22:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74C8710E10E;
-	Mon, 11 Aug 2025 13:19:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8966010E10E;
+	Mon, 11 Aug 2025 13:22:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kGDQCrrq";
+	dkim=pass (2048-bit key; unprotected) header.d=listout.xyz header.i=@listout.xyz header.b="Pj/pccSS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B985010E3D6
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 13:19:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754918361; x=1786454361;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=HsnahDEipj1gGYRjWoPeACDQkGO5oJd5wbH1opwvXLQ=;
- b=kGDQCrrqC7SncnjKw+PtHLu54Jo9BdRpjQOM4PLAswrgwmidFD4bEaqE
- I9O7zjkX4d8oRdete3m2IvzLi/zzGiuRBXsPuIG2Zyk5Jca20rBS1HW64
- E8jUsHeLP8pVlJFIxqPU6d7jQ2qg3Nf3R25brN1pxILlRq2KOAcCRSa9i
- MDmAOnYYjEZTNWD6QGGepweEy3VK4GlXn6vNB5MgCPE5V/O9/7BX3Q2R/
- CV0YDjeg1KU+PaXoxsz+VEV0lkIsY7xa97lk+1JVrvawvKBxMYAn959Ec
- M0BVrh7PFTcFmxeTntJEbYQZBzaBG05NWYJUrLVJwbgnXShiFFAb/ipw7 g==;
-X-CSE-ConnectionGUID: LZ2FNYAuRQyq2+jgjwiFjw==
-X-CSE-MsgGUID: IJ2NApfAQXC8tTFxnyNHFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="67439314"
-X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="67439314"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2025 06:19:21 -0700
-X-CSE-ConnectionGUID: NIvnHQMzSWCU6LboNl4lmQ==
-X-CSE-MsgGUID: sIvLvguGROWH1AZ7rZf8fw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="170031772"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.155])
- ([10.245.244.155])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2025 06:19:20 -0700
-Message-ID: <b0152e7a-aebd-41df-a2f5-ea5ca8893983@intel.com>
-Date: Mon, 11 Aug 2025 14:19:18 +0100
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 319EB10E10E;
+ Mon, 11 Aug 2025 13:11:49 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4c0w5D5vn9z9slH;
+ Mon, 11 Aug 2025 15:11:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=listout.xyz; s=MBO0001;
+ t=1754917904;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=nn7J5B2Aq1IDeL4KLSwsL1A7sTtX38IT2nssYyCR2Hg=;
+ b=Pj/pccSSXFpsAeFaoXQdP4xi95b2D8/Lrnk3ADAfSu9xaqbTEEFaTjiyu7hz9Kszb5je5e
+ bzXcvxB6yt+DAP1A1hcWrymIBx9a7kDVD42WinC40b+MmghsnlQcG0RkTthtN15SweynMo
+ Fo9ZNScmCnTRlc+DA84/C6xOZX+jDHRV8fF2x4qnB8SUeoV1PtSwGDyOx3zWgrhE7eTrIu
+ 8XDJDDZcOmNFhyztRNrI4vCH20TvwpmLebkARK3Xh1hwC0aTDzrqbI1zKDUrTZ7yj86yfO
+ xIoNpD0CN1QGK1XD+WsyNZp6jza4a7oKXtTKaeu7jMYdJ/3JNQyXs2xLOKVPYA==
+Authentication-Results: outgoing_mbo_mout; dkim=none;
+ spf=pass (outgoing_mbo_mout: domain of listout@listout.xyz designates
+ 2001:67c:2050:b231:465::102 as permitted sender)
+ smtp.mailfrom=listout@listout.xyz
+From: Brahmajit Das <listout@listout.xyz>
+To: jani.nikula@linux.intel.com
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
+ linux-next@vger.kernel.org, listout@listout.xyz, rodrigo.vivi@intel.com,
+ simona@ffwll.ch, tursulin@ursulin.net
+Subject: [RFC PATCH 0/2] use new debugfs device-centered functions
+Date: Mon, 11 Aug 2025 18:41:24 +0530
+Message-ID: <20250811131126.71883-1-listout@listout.xyz>
+In-Reply-To: <32c55ab0b1452a1fd8ef49e8a1ca640ad5bd9d76@intel.com>
+References: <32c55ab0b1452a1fd8ef49e8a1ca640ad5bd9d76@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] drm/xe: Move ASID allocation and user PT BO
- tracking into xe_vm_create
-To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20250811104358.2064150-1-piotr.piorkowski@intel.com>
- <20250811104358.2064150-3-piotr.piorkowski@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250811104358.2064150-3-piotr.piorkowski@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4c0w5D5vn9z9slH
+X-Mailman-Approved-At: Mon, 11 Aug 2025 13:22:00 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,89 +67,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11/08/2025 11:43, Piórkowski, Piotr wrote:
-> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> 
-> Currently, ASID assignment for user VMs and page-table BO accounting for
-> client memory tracking are performed in xe_vm_create_ioctl.
-> To consolidate VM object initialization, move this logic to
-> xe_vm_create.
-> 
-> v2:
->   - removed unnecessary duplicate BO tracking code
->   - using the local variable xef to verify whether the VM is being created
->     by userspace
-> 
-> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Replace the use of drm_debugfs_create_files() with the new
+drm_debugfs_add_files() function, which centers the debugfs files
+management on the drm_device.
 
-Having the vm initialisation fully contained within vm_create() seems 
-less error prone to me.
+Refer:
+https://docs.kernel.org/gpu/todo.html#clean-up-the-debugfs-support
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Brahmajit Das (2):
+  drm/i915/debugfs: use new debugfs device-centered functions
+  drm/i915: use new debugfs device-centered functions
 
-> ---
->   drivers/gpu/drm/xe/xe_vm.c | 34 +++++++++++++++-------------------
->   1 file changed, 15 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 157e11bd2121..486d345b82de 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1795,6 +1795,20 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
->   	if (number_tiles > 1)
->   		vm->composite_fence_ctx = dma_fence_context_alloc(1);
->   
-> +	if (xef && xe->info.has_asid) {
-> +		u32 asid;
-> +
-> +		down_write(&xe->usm.lock);
-> +		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, vm,
-> +				      XA_LIMIT(1, XE_MAX_ASID - 1),
-> +				      &xe->usm.next_asid, GFP_KERNEL);
-> +		up_write(&xe->usm.lock);
-> +		if (err < 0)
-> +			goto err_unlock_close;
-> +
-> +		vm->usm.asid = asid;
-> +	}
-> +
->   	trace_xe_vm_create(vm);
->   
->   	return vm;
-> @@ -2062,9 +2076,8 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
->   	struct xe_device *xe = to_xe_device(dev);
->   	struct xe_file *xef = to_xe_file(file);
->   	struct drm_xe_vm_create *args = data;
-> -	struct xe_tile *tile;
->   	struct xe_vm *vm;
-> -	u32 id, asid;
-> +	u32 id;
->   	int err;
->   	u32 flags = 0;
->   
-> @@ -2104,23 +2117,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
->   	if (IS_ERR(vm))
->   		return PTR_ERR(vm);
->   
-> -	if (xe->info.has_asid) {
-> -		down_write(&xe->usm.lock);
-> -		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, vm,
-> -				      XA_LIMIT(1, XE_MAX_ASID - 1),
-> -				      &xe->usm.next_asid, GFP_KERNEL);
-> -		up_write(&xe->usm.lock);
-> -		if (err < 0)
-> -			goto err_close_and_put;
-> -
-> -		vm->usm.asid = asid;
-> -	}
-> -
-> -	/* Record BO memory for VM pagetable created against client */
-> -	for_each_tile(tile, xe, id)
-> -		if (vm->pt_root[id])
-> -			xe_drm_client_add_bo(vm->xef->client, vm->pt_root[id]->bo);
-> -
->   #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->   	/* Warning: Security issue - never enable by default */
->   	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, XE_PAGE_SIZE);
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 7 +++----
+ drivers/gpu/drm/i915/i915_debugfs.c                  | 7 +++----
+ 2 files changed, 6 insertions(+), 8 deletions(-)
+
+-- 
+2.50.1
 
