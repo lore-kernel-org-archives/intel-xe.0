@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0981DC87FDB
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 14:39:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37168C87FDB
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 15:15:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C74C710E080;
-	Mon, 11 Aug 2025 14:39:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC4A10E4F2;
+	Mon, 11 Aug 2025 15:15:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QzYC9+yl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n6jcPShN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54F3010E080
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 14:39:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B401010E18A;
+ Mon, 11 Aug 2025 15:14:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754923194; x=1786459194;
- h=message-id:subject:from:to:cc:in-reply-to:references:
- content-transfer-encoding:mime-version:date;
- bh=BwSD8QPFQ4rAxykCXfv/VUqEleoPcYZKT9Bh36DdN6U=;
- b=QzYC9+ylxtwwKVkCaBeRCPEV9m7QF6qPck6Valhp8kUIueMU+pICAZz/
- hFFR+hXrPZBS/eifq8rfjwtB4VI+FgxnLmmqeEfEeDBkE1XzO09WPaGeN
- q/vActf4cc+m0c4hGfkDFFx3kU7p+4Q4CXCF7xdfsVPkaBG68M6ZFeFVa
- bIOgbISEctPQw7YXZ+PFy4oRZgWV6ttya4htVmjL3z2teH1XINg/OyFBJ
- g9iHWc7zx/E2xYYbMKRddkKLvgY9iHOaT+f0v0MjNurFb0mLxp74N9bXf
- Izars0ZD6kQzTLL6f4RCBYvLtrA0ExYjxQwuGm/NTWxqOnxBVelQT7Jkh g==;
-X-CSE-ConnectionGUID: Kv/fPrY5RliO7dDDX/35fw==
-X-CSE-MsgGUID: Nd7kmBleRR+Yp6Gob2zGVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="60979182"
-X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="60979182"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2025 07:39:54 -0700
-X-CSE-ConnectionGUID: zz/dGTkBSuizsIYw0hJwtg==
-X-CSE-MsgGUID: qHnosE+8RHWT/FEj3jkrJw==
+ t=1754925300; x=1786461300;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=DIxIfxVV5KFzgHdSDDfIUYKudUgT3m9cqnT8nW72w18=;
+ b=n6jcPShN1ay8jo0T4dUrNSs+Ef9IKdQUzzLTq5A5OZtAC9G5qsqLTTjL
+ x3kkuxgWxBxf0e5G2IDKprLsR7sbwAuu2gLEIbtu8tbS88RcE8jMYGfQ1
+ 0u0mVRKgnPw3mbkzmMXhtV4e+R1SPgYV2iEapcB610lRqZN8DsRPhHsUj
+ AnmEdXlnCPk42LHmiCesrF2ntTVYoxlQboszIuJUq72xvuSYGCpMkMH65
+ rVq8uVJLtUxqCx7q4rtDFYoH2a01DgcxMZqMXUerL8YpKkvjFhEKmpayG
+ NQgSHSK/nEiApRRurR5d9dYYlaG3MIdkcbufeTxfnAheEY89r/XkG54QE w==;
+X-CSE-ConnectionGUID: 0BNWp+Y/TJOUQQhqq5bzDA==
+X-CSE-MsgGUID: DJgWqtF/TdymVsj/6hvHRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="67451198"
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="67451198"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2025 08:15:00 -0700
+X-CSE-ConnectionGUID: sCmYt8NoRn6OTz90nFG/oQ==
+X-CSE-MsgGUID: of3UoGiDQYmRWGZUZge5PA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="165565593"
-Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.228])
- ([10.245.244.228])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2025 07:39:51 -0700
-Message-ID: <e62cbfa7867055bb368762c86a91e78c7afbf087.camel@linux.intel.com>
-Subject: Re: [PATCH] locking/mutex: Add p->blocked_on wrappers for
- correctness checks
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Valentin Schneider <valentin.schneider@arm.com>
-Cc: intel-xe@lists.freedesktop.org, Connor O'Brien <connoro@google.com>, 
- John Stultz <jstultz@google.com>, "Peter Zijlstra (Intel)"
- <peterz@infradead.org>, K Prateek Nayak	 <kprateek.nayak@amd.com>
-In-Reply-To: <274f61b98745426050e545a37131b9408c3666f9.camel@arm.com>
-References: <274f61b98745426050e545a37131b9408c3666f9.camel@arm.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="166340649"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.226])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2025 08:14:57 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 08/12] drm/i915/display: Add guardband check for feature
+ latencies
+In-Reply-To: <20250807111548.1490624-9-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250807111548.1490624-1-ankit.k.nautiyal@intel.com>
+ <20250807111548.1490624-9-ankit.k.nautiyal@intel.com>
+Date: Mon, 11 Aug 2025 18:14:54 +0300
+Message-ID: <58f184781929da07c8968970e1bc92f141223410@intel.com>
 MIME-Version: 1.0
-Date: Mon, 11 Aug 2025 16:39:13 +0200
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,294 +71,226 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Valentin,
-
-On Sat, 2025-07-12 at 03:33 +0000, Valentin Schneider wrote:
-> This lets us assert mutex::wait_lock is held whenever we access
-> p->blocked_on, as well as warn us for unexpected state changes.
->=20
-> [fix conflicts, call in more places]
-> [jstultz: tweaked commit subject, reworked a good bit]
-> Signed-off-by: Valentin Schneider <valentin.schneider@arm.com>
-> Signed-off-by: Connor O'Brien <connoro@google.com>
-> Signed-off-by: John Stultz <jstultz@google.com>
-> Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
-> Tested-by: K Prateek Nayak <kprateek.nayak@amd.com>
-> Link:
-> https://lkml.kernel.org/r/20250712033407.2383110-4-jstultz@google.com
+On Thu, 07 Aug 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> Add a check during atomic crtc check phase to ensure the programmed VRR
+> guardband is sufficient to cover latencies introduced by enabled features
+> such as DSC, PSR/PR, scalers, and DP SDPs.
+>
+> Currently, the guardband is programmed to match the vblank length, so
+> existing checks in skl_is_vblank_too_short() are valid. However, upcoming
+> changes will optimize the guardband independently of vblank, making those
+> checks incorrect.
+>
+> Introduce an explicit guardband check to prepare for future updates
+> that will remove checking against the vblank length and later program an
+> optimized guardband.
+>
+> v2: Use new helper for PSR2/Panel Replay latency.
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
-> =C2=A0include/linux/sched.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 6=
-4
-> ++++++++++++++++++++++++++++++++++--
-> =C2=A0kernel/locking/mutex-debug.c |=C2=A0 4 +--
-> =C2=A0kernel/locking/mutex.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 32 +++=
-+++++----------
-> =C2=A0kernel/locking/ww_mutex.h=C2=A0=C2=A0=C2=A0 |=C2=A0 8 ++---
-> =C2=A04 files changed, 81 insertions(+), 27 deletions(-)
->=20
-
-Our CI is hitting a lot of these:
-
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5826
-
-From looking at the code, the wound-wait code after wounding the mutex
-owner, wakes it up opportunistically, so that *if* it is waiting on
-another wound-wait mutex, should re-evaluate whether it should
-rollback.=C2=A0Ideally in this case, the blocked-on status should be remove=
-d
-by the process that was woken up?
-
-Otherwise if the wound-wait code misbehaves in doing this we need to
-fix it.
-
-Thanks,
-Thomas
-
-
-> diff --git a/include/linux/sched.h b/include/linux/sched.h
-> index 33ad240ec900..5b4e1cd52e27 100644
-> --- a/include/linux/sched.h
-> +++ b/include/linux/sched.h
-> @@ -34,6 +34,7 @@
-> =C2=A0#include <linux/sched/prio.h>
-> =C2=A0#include <linux/sched/types.h>
-> =C2=A0#include <linux/signal_types.h>
-> +#include <linux/spinlock.h>
-> =C2=A0#include <linux/syscall_user_dispatch_types.h>
-> =C2=A0#include <linux/mm_types_task.h>
-> =C2=A0#include <linux/netdevice_xmit.h>
-> @@ -2129,6 +2130,67 @@ extern int
-> __cond_resched_rwlock_write(rwlock_t *lock);
-> =C2=A0 __cond_resched_rwlock_write(lock); \
-> =C2=A0})
-> =C2=A0
-> +#ifndef CONFIG_PREEMPT_RT
-> +static inline struct mutex *__get_task_blocked_on(struct task_struct
-> *p)
+>  drivers/gpu/drm/i915/display/intel_display.c | 138 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/skl_watermark.c |   2 +-
+>  drivers/gpu/drm/i915/display/skl_watermark.h |   1 +
+>  3 files changed, 140 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index af4d54672d0d..c542a3110051 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4227,6 +4227,138 @@ static int hsw_compute_linetime_wm(struct intel_atomic_state *state,
+>  	return 0;
+>  }
+>  
+> +static int
+> +cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
 > +{
-> + struct mutex *m =3D p->blocked_on;
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_atomic_state *state =
+> +		to_intel_atomic_state(crtc_state->uapi.state);
+> +	const struct intel_cdclk_state *cdclk_state;
 > +
-> + if (m)
-> + lockdep_assert_held_once(&m->wait_lock);
-> + return m;
+> +	cdclk_state = intel_atomic_get_cdclk_state(state);
+> +	if (IS_ERR(cdclk_state)) {
+> +		drm_WARN_ON(display->drm, PTR_ERR(cdclk_state));
+> +		return 1;
+> +	}
+> +
+> +	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
+> +				   2 * intel_cdclk_logical(cdclk_state)));
 > +}
 > +
-> +static inline void __set_task_blocked_on(struct task_struct *p,
-> struct mutex *m)
+> +static int
+> +dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
 > +{
-> + WARN_ON_ONCE(!m);
-> + /* The task should only be setting itself as blocked */
-> + WARN_ON_ONCE(p !=3D current);
-> + /* Currently we serialize blocked_on under the mutex::wait_lock */
-> + lockdep_assert_held_once(&m->wait_lock);
-> + /*
-> + * Check ensure we don't overwrite existing mutex value
-> + * with a different mutex. Note, setting it to the same
-> + * lock repeatedly is ok.
-> + */
-> + WARN_ON_ONCE(p->blocked_on && p->blocked_on !=3D m);
-> + p->blocked_on =3D m;
+> +	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
+> +	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	int num_scaler_users = hweight32(scaler_state->scaler_users);
+> +	u64 hscale_k[ARRAY_SIZE(scaler_state->scalers)];
+> +	u64 vscale_k[ARRAY_SIZE(scaler_state->scalers)];
+> +	u32 dsc_prefill_latency = 0;
+> +
+> +	if (!crtc_state->dsc.compression_enable ||
+> +	    !num_scaler_users ||
+> +	    num_scaler_users > crtc->num_scalers ||
+> +	    num_scaler_users > ARRAY_SIZE(scaler_state->scalers))
+> +		return dsc_prefill_latency;
+> +
+> +	for (int i = 0; i < num_scaler_users; i++) {
+> +		hscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
+> +		vscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
+> +	}
+> +
+> +	dsc_prefill_latency =
+> +		intel_display_dsc_prefill_latency(num_scaler_users, hscale_k, vscale_k,
+> +						  chroma_downscaling_factor,
+> +						  cdclk_prefill_adjustment(crtc_state),
+> +						  linetime);
+> +
+> +	return dsc_prefill_latency;
 > +}
 > +
-> +static inline void set_task_blocked_on(struct task_struct *p, struct
-> mutex *m)
+> +static int
+> +scaler_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
 > +{
-> + guard(raw_spinlock_irqsave)(&m->wait_lock);
-> + __set_task_blocked_on(p, m);
+> +	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
+> +	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+> +	int num_scaler_users = hweight32(scaler_state->scaler_users);
+> +	u64 hscale_k = 1000, vscale_k = 1000;
+> +	int scaler_prefill_latency = 0;
+> +
+> +	if (!num_scaler_users)
+> +		return scaler_prefill_latency;
+> +
+> +	if (num_scaler_users > 1) {
+> +		hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
+> +		vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
+> +	}
+> +
+> +	scaler_prefill_latency =
+> +		intel_display_scaler_prefill_latency(num_scaler_users, hscale_k, vscale_k,
+> +						     chroma_downscaling_factor,
+> +						     cdclk_prefill_adjustment(crtc_state),
+> +						     linetime);
+> +
+> +	return scaler_prefill_latency;
 > +}
 > +
-> +static inline void __clear_task_blocked_on(struct task_struct *p,
-> struct mutex *m)
-> +{
-> + WARN_ON_ONCE(!m);
-> + /* Currently we serialize blocked_on under the mutex::wait_lock */
-> + lockdep_assert_held_once(&m->wait_lock);
-> + /*
-> + * There may be cases where we re-clear already cleared
-> + * blocked_on relationships, but make sure we are not
-> + * clearing the relationship with a different lock.
-> + */
-> + WARN_ON_ONCE(m && p->blocked_on && p->blocked_on !=3D m);
-> + p->blocked_on =3D NULL;
-> +}
-> +
-> +static inline void clear_task_blocked_on(struct task_struct *p,
-> struct mutex *m)
-> +{
-> + guard(raw_spinlock_irqsave)(&m->wait_lock);
-> + __clear_task_blocked_on(p, m);
-> +}
-> +#else
-> +static inline void __clear_task_blocked_on(struct task_struct *p,
-> struct rt_mutex *m)
-> +{
-> +}
-> +
-> +static inline void clear_task_blocked_on(struct task_struct *p,
-> struct rt_mutex *m)
-> +{
-> +}
-> +#endif /* !CONFIG_PREEMPT_RT */
-> +
-> =C2=A0static __always_inline bool need_resched(void)
-> =C2=A0{
-> =C2=A0 return unlikely(tif_need_resched());
-> @@ -2168,8 +2230,6 @@ extern bool sched_task_on_rq(struct task_struct
-> *p);
-> =C2=A0extern unsigned long get_wchan(struct task_struct *p);
-> =C2=A0extern struct task_struct *cpu_curr_snapshot(int cpu);
-> =C2=A0
-> -#include <linux/spinlock.h>
-> -
-> =C2=A0/*
-> =C2=A0 * In order to reduce various lock holder preemption latencies
-> provide an
-> =C2=A0 * interface to see if a vCPU is currently running or not.
-> diff --git a/kernel/locking/mutex-debug.c b/kernel/locking/mutex-
-> debug.c
-> index 758b7a6792b0..949103fd8e9b 100644
-> --- a/kernel/locking/mutex-debug.c
-> +++ b/kernel/locking/mutex-debug.c
-> @@ -54,13 +54,13 @@ void debug_mutex_add_waiter(struct mutex *lock,
-> struct mutex_waiter *waiter,
-> =C2=A0 lockdep_assert_held(&lock->wait_lock);
-> =C2=A0
-> =C2=A0 /* Current thread can't be already blocked (since it's executing!)
-> */
-> - DEBUG_LOCKS_WARN_ON(task->blocked_on);
-> + DEBUG_LOCKS_WARN_ON(__get_task_blocked_on(task));
-> =C2=A0}
-> =C2=A0
-> =C2=A0void debug_mutex_remove_waiter(struct mutex *lock, struct
-> mutex_waiter *waiter,
-> =C2=A0 struct task_struct *task)
-> =C2=A0{
-> - struct mutex *blocked_on =3D READ_ONCE(task->blocked_on);
-> + struct mutex *blocked_on =3D __get_task_blocked_on(task);
-> =C2=A0
-> =C2=A0 DEBUG_LOCKS_WARN_ON(list_empty(&waiter->list));
-> =C2=A0 DEBUG_LOCKS_WARN_ON(waiter->task !=3D task);
-> diff --git a/kernel/locking/mutex.c b/kernel/locking/mutex.c
-> index e2f59863a866..80d778fedd60 100644
-> --- a/kernel/locking/mutex.c
-> +++ b/kernel/locking/mutex.c
-> @@ -644,8 +644,7 @@ __mutex_lock_common(struct mutex *lock, unsigned
-> int state, unsigned int subclas
-> =C2=A0 goto err_early_kill;
-> =C2=A0 }
-> =C2=A0
-> - WARN_ON(current->blocked_on);
-> - current->blocked_on =3D lock;
-> + __set_task_blocked_on(current, lock);
-> =C2=A0 set_current_state(state);
-> =C2=A0 trace_contention_begin(lock, LCB_F_MUTEX);
-> =C2=A0 for (;;) {
-> @@ -685,9 +684,9 @@ __mutex_lock_common(struct mutex *lock, unsigned
-> int state, unsigned int subclas
-> =C2=A0 /*
-> =C2=A0 * As we likely have been woken up by task
-> =C2=A0 * that has cleared our blocked_on state, re-set
-> - * it to the lock we are trying to aquire.
-> + * it to the lock we are trying to acquire.
-> =C2=A0 */
-> - current->blocked_on =3D lock;
-> + set_task_blocked_on(current, lock);
-> =C2=A0 set_current_state(state);
-> =C2=A0 /*
-> =C2=A0 * Here we order against unlock; we must either see it change
-> @@ -699,11 +698,15 @@ __mutex_lock_common(struct mutex *lock,
-> unsigned int state, unsigned int subclas
-> =C2=A0
-> =C2=A0 if (first) {
-> =C2=A0 trace_contention_begin(lock, LCB_F_MUTEX | LCB_F_SPIN);
-> - /* clear blocked_on as mutex_optimistic_spin may schedule() */
-> - current->blocked_on =3D NULL;
-> + /*
-> + * mutex_optimistic_spin() can call schedule(), so
-> + * clear blocked on so we don't become unselectable
-> + * to run.
-> + */
-> + clear_task_blocked_on(current, lock);
-> =C2=A0 if (mutex_optimistic_spin(lock, ww_ctx, &waiter))
-> =C2=A0 break;
-> - current->blocked_on =3D lock;
-> + set_task_blocked_on(current, lock);
-> =C2=A0 trace_contention_begin(lock, LCB_F_MUTEX);
-> =C2=A0 }
-> =C2=A0
-> @@ -711,7 +714,7 @@ __mutex_lock_common(struct mutex *lock, unsigned
-> int state, unsigned int subclas
-> =C2=A0 }
-> =C2=A0 raw_spin_lock_irqsave(&lock->wait_lock, flags);
-> =C2=A0acquired:
-> - current->blocked_on =3D NULL;
-> + __clear_task_blocked_on(current, lock);
-> =C2=A0 __set_current_state(TASK_RUNNING);
-> =C2=A0
-> =C2=A0 if (ww_ctx) {
-> @@ -741,11 +744,11 @@ __mutex_lock_common(struct mutex *lock,
-> unsigned int state, unsigned int subclas
-> =C2=A0 return 0;
-> =C2=A0
-> =C2=A0err:
-> - current->blocked_on =3D NULL;
-> + __clear_task_blocked_on(current, lock);
-> =C2=A0 __set_current_state(TASK_RUNNING);
-> =C2=A0 __mutex_remove_waiter(lock, &waiter);
-> =C2=A0err_early_kill:
-> - WARN_ON(current->blocked_on);
-> + WARN_ON(__get_task_blocked_on(current));
-> =C2=A0 trace_contention_end(lock, ret);
-> =C2=A0 raw_spin_unlock_irqrestore_wake(&lock->wait_lock, flags, &wake_q);
-> =C2=A0 debug_mutex_free_waiter(&waiter);
-> @@ -956,14 +959,7 @@ static noinline void __sched
-> __mutex_unlock_slowpath(struct mutex *lock, unsigne
-> =C2=A0 next =3D waiter->task;
-> =C2=A0
-> =C2=A0 debug_mutex_wake_waiter(lock, waiter);
-> - /*
-> - * Unlock wakeups can be happening in parallel
-> - * (when optimistic spinners steal and release
-> - * the lock), so blocked_on may already be
-> - * cleared here.
-> - */
-> - WARN_ON(next->blocked_on && next->blocked_on !=3D lock);
-> - next->blocked_on =3D NULL;
-> + __clear_task_blocked_on(next, lock);
-> =C2=A0 wake_q_add(&wake_q, next);
-> =C2=A0 }
-> =C2=A0
-> diff --git a/kernel/locking/ww_mutex.h b/kernel/locking/ww_mutex.h
-> index 45fe05e51db1..086fd5487ca7 100644
-> --- a/kernel/locking/ww_mutex.h
-> +++ b/kernel/locking/ww_mutex.h
-> @@ -283,15 +283,13 @@ __ww_mutex_die(struct MUTEX *lock, struct
-> MUTEX_WAITER *waiter,
-> =C2=A0 if (waiter->ww_ctx->acquired > 0 && __ww_ctx_less(waiter->ww_ctx,
-> ww_ctx)) {
-> =C2=A0#ifndef WW_RT
-> =C2=A0 debug_mutex_wake_waiter(lock, waiter);
-> +#endif
-> =C2=A0 /*
-> =C2=A0 * When waking up the task to die, be sure to clear the
-> =C2=A0 * blocked_on pointer. Otherwise we can see circular
-> =C2=A0 * blocked_on relationships that can't resolve.
-> =C2=A0 */
-> - WARN_ON(waiter->task->blocked_on &&
-> - waiter->task->blocked_on !=3D lock);
-> -#endif
-> - waiter->task->blocked_on =3D NULL;
-> + __clear_task_blocked_on(waiter->task, lock);
-> =C2=A0 wake_q_add(wake_q, waiter->task);
-> =C2=A0 }
-> =C2=A0
-> @@ -345,7 +343,7 @@ static bool __ww_mutex_wound(struct MUTEX *lock,
-> =C2=A0 * blocked_on pointer. Otherwise we can see circular
-> =C2=A0 * blocked_on relationships that can't resolve.
-> =C2=A0 */
-> - owner->blocked_on =3D NULL;
-> + __clear_task_blocked_on(owner, lock);
-> =C2=A0 wake_q_add(wake_q, owner);
-> =C2=A0 }
-> =C2=A0 return true;
+> +static int intel_crtc_check_guardband(struct intel_crtc_state *crtc_state)
 
+Please avoid "check" naming like this. In general, it's a poor verb to
+use, because what it does is ambiguous from the name. Is it an
+assertion, does it return a value, what does it do?
+
+However, as a special case, if a function gets called form the atomic
+check path (which I also think is ill-named, but what can you do), with
+the same parameters and conventions, then name it accordingly.
+
+Thus intel_crtc_guardband_atomic_check().
+
+BR,
+Jani.
+
+
+
+
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +	int dsc_prefill_time = 0;
+> +	int scaler_prefill_time;
+> +	int wm0_prefill_time;
+> +	int pkgc_max_latency;
+> +	int psr2_pr_latency;
+> +	int min_guardband;
+> +	int guardband_us;
+> +	int sagv_latency;
+> +	int linetime_us;
+> +	int sdp_latency;
+> +	int pm_delay;
+> +
+> +	if (!crtc_state->vrr.enable && !intel_vrr_always_use_vrr_tg(display))
+> +		return 0;
+> +
+> +	if (!adjusted_mode->crtc_clock)
+> +		return 0;
+> +
+> +	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
+> +				   adjusted_mode->crtc_clock);
+> +
+> +	pkgc_max_latency = skl_watermark_max_latency(display, 1);
+> +	sagv_latency = display->sagv.block_time_us;
+> +
+> +	wm0_prefill_time = skl_max_wm0_lines(crtc_state) * linetime_us + 20;
+> +
+> +	scaler_prefill_time = scaler_prefill_latency(crtc_state, linetime_us);
+> +
+> +	if (crtc_state->dsc.compression_enable)
+> +		dsc_prefill_time = dsc_prefill_latency(crtc_state, linetime_us);
+> +
+> +	pm_delay = crtc_state->framestart_delay +
+> +		   max(sagv_latency, pkgc_max_latency) +
+> +		   wm0_prefill_time +
+> +		   scaler_prefill_time +
+> +		   dsc_prefill_time;
+> +
+> +	psr2_pr_latency = intel_alpm_compute_max_link_wake_latency(crtc_state, false);
+> +	sdp_latency = intel_dp_compute_sdp_latency(crtc_state, false);
+> +
+> +	guardband_us = max(sdp_latency, psr2_pr_latency);
+> +	guardband_us = max(guardband_us, pm_delay);
+> +	min_guardband = DIV_ROUND_UP(guardband_us, linetime_us);
+> +
+> +	if (crtc_state->vrr.guardband < min_guardband) {
+> +		drm_dbg_kms(display->drm, "vrr.guardband %d < min guardband %d\n",
+> +			    crtc_state->vrr.guardband, min_guardband);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+>  				   struct intel_crtc *crtc)
+>  {
+> @@ -4289,6 +4421,12 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (HAS_VRR(display) && intel_vrr_possible(crtc_state)) {
+> +		ret = intel_crtc_check_guardband(crtc_state);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index 4474f987de06..5ffa76cb1633 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -2249,7 +2249,7 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+>  		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
+>  }
+>  
+> -static int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
+> +int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	enum plane_id plane_id;
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
+> index 62790816f030..8706c2010ebe 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.h
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
+> @@ -78,6 +78,7 @@ void intel_dbuf_mbus_post_ddb_update(struct intel_atomic_state *state);
+>  void intel_program_dpkgc_latency(struct intel_atomic_state *state);
+>  
+>  bool intel_dbuf_pmdemand_needs_update(struct intel_atomic_state *state);
+> +int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state);
+>  
+>  #endif /* __SKL_WATERMARK_H__ */
+
+-- 
+Jani Nikula, Intel
