@@ -4,96 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3492C87FD2
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 13:22:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C90AC87FDB
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 13:26:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99A8310E473;
-	Mon, 11 Aug 2025 13:22:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2AA10E10E;
+	Mon, 11 Aug 2025 13:26:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="gmw+egsw";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="p8f6b7Kw";
 	dkim-atps=neutral
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5872010E90C;
- Fri,  8 Aug 2025 10:43:32 +0000 (UTC)
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
- [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8DD69185B;
- Fri,  8 Aug 2025 12:42:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1754649761;
- bh=CO/fvxXdKYelSk5S5fAYN0XS8+AAuk2srS4DoLT3ZxM=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=gmw+egswFeELA4hrEgb/gv6AnnuHPDpLKEaeIB6/fk/2O9nUlvYYatSDjAwEXj/Ji
- PZ6qJC94/wghfA7P0erc6aW5f8PYvf1NjL6Eoy6vro58JfA7g7zkJzP7EiDoApj54S
- Fea8twCe/sZIRdtDy5B1s4rc9z9k1UtPtpr4rcZs=
-Message-ID: <c07ff778-3d5d-448f-95ba-1c770c388fcc@ideasonboard.com>
-Date: Fri, 8 Aug 2025 13:43:27 +0300
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C5A510E46B
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 13:26:23 +0000 (UTC)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57B9dFfs021869
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 13:26:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=vRikIynOffv5hukm3CKQ6SgT
+ vsP8Ryyr+lMrwvSQIzY=; b=p8f6b7KwJiYJ1X2hf94LyRPBUQyawbhk9VSvJzGE
+ DcS0zOtYY2HjC5TEq5XRYFGd5ZmWt2OniURI87DtmkMygR94tLhXxzwXev1O7sGM
+ wsnL8Uct1JMYVLGowrnGkSpgkpzztPyGRQ/l6RrB4EQ/ZU87Pfn4saIFdqqWNQvw
+ 0jmZ9nrljs7UUKQDs3hC5RJ71aqmfRcMwozM5IlDwOWBowpH9tKj/JmmgZrhQyqg
+ CutdLldAKoUXN5szorjHp7uTnYgn3AFufDl9qK7gZs3Cu+KcQp7ZWP+bD+kY3qHg
+ Xom/m64tqGBryAwEH7hMeuLe2b9WBcvSctNuyWxldJyHdQ==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dxj44jr8-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 13:26:22 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id
+ 6a1803df08f44-7074bad0561so127129046d6.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 06:26:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754918781; x=1755523581;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=vRikIynOffv5hukm3CKQ6SgTvsP8Ryyr+lMrwvSQIzY=;
+ b=FchQTJRtem1p5i4fLdwG7/nLa9dac3ASh/k/JD/Y7iDssPX/hnHrFRFndawMVlm1xH
+ PclXAVimWh71pUVT4lIZjQ2HAnQfw/y8I42spqAiTKhVzNWi8hYBo85ZwoajM/o8L8qs
+ Un2uH+b9cdlPPSakiMN0aV1AyOY1Z3NXMnLzZ23yKw6R7C+iSD+2YfE8gXvxLZQlSBA7
+ +vTHwnL4pZm4Gn6jmmVZKPVFdC5tVJca1/wrvpOCQy9sfjFNCIyJ7PuAU7phflCPtMEN
+ L/+ofYr9RDfm/yNU0Ao9cJDHxWmx4Kk70wyHHdFTLjLeFNbD+fmeeTinrEE7zGmZaV54
+ JZPA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUGHbcMBa23G4teq0fT0eXpgEbzCrAT6gZTw7xjsvuJnmFI3guX53jMBqDhIDOgIiuh8jgKojWtEQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy8Zyrs+hXmfZz7exBg+DIWYNwPbfJjKw7Fs4E4AL3pYfCrQdzL
+ n0US4BcGlWzH52ADzM6ALE+2s0ZgrvZn9MVJ/eTg3HbbDB8Yyfi8wQixNvrfvEsdo6wJaCrgmy7
+ e7pE4Z/mlZEzf3cUb6vHzu+cTnYZZj7/Am8R06cn9aK5p7G1EQxpoXuPtTvo+541gE7XQEA==
+X-Gm-Gg: ASbGncs7L6Gvhbg8rq8Q+u8c8ScBt1VSaZCOI1ZbiLpwj4i1EGgzkphkltQDZCBTgT2
+ tMMebrWi+6WRNRRHo7/2MsAaLbr1vCiRZS11lPh5agHq/Duh1pahOhixMTE3NY7T+9yquitGCSb
+ SUix3gzg5D14vpOGtJNwcCg6tbvsUs7enDX3vD7K8peBJPVqUsthjfO0yyW/LVmxwHuVA1n1GNn
+ hXyOX+kFjZjNSOfZb2xbOcFcaQ5pY9kM6JLSaiA0o3FhjKcx5zGs5g/VmS/IxoYw2V+5RFVxsDF
+ zhMsvTkucgZW1yv9L370lBE1GZMpwEqNK1M+J8HgokZ63avnn1LuFJ+BifRng02vvwBs9p9jIds
+ mPoD3EMUNvkitB9dS7T6zUBMx+DZ+yjP/g4BuwDvcEsjkv8teno0f
+X-Received: by 2002:a05:622a:58c6:b0:4b0:75f1:4cd5 with SMTP id
+ d75a77b69052e-4b0aed5ec14mr139029621cf.44.1754918780945; 
+ Mon, 11 Aug 2025 06:26:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH0wKTLCLx4/yIBgQvD8Ue94ZiVJ7wpTEfZ89QbuRpyBiuJsOKla4drlyaZDIdLWLJCAt0VIQ==
+X-Received: by 2002:a05:622a:58c6:b0:4b0:75f1:4cd5 with SMTP id
+ d75a77b69052e-4b0aed5ec14mr139028901cf.44.1754918780301; 
+ Mon, 11 Aug 2025 06:26:20 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-55cc7c67a5asm1192051e87.77.2025.08.11.06.26.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 11 Aug 2025 06:26:19 -0700 (PDT)
+Date: Mon, 11 Aug 2025 16:26:17 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>, kernel-list@raspberrypi.com,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
+ uma.shankar@intel.com, jani.nikula@intel.com, harry.wentland@amd.com,
+ siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, robin.clark@oss.qualcomm.com,
+ abhinav.kumar@linux.dev, tzimmermann@suse.de,
+ jessica.zhang@oss.qualcomm.com, sean@poorly.run,
+ marijn.suijten@somainline.org, mcanal@igalia.com,
+ dave.stevenson@raspberrypi.com, tomi.valkeinen+renesas@ideasonboard.com,
+ kieran.bingham+renesas@ideasonboard.com, louis.chauvet@bootlin.com
+Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
+ structure
+Message-ID: <2ah3pau7p7brgw7huoxznvej3djct76vgfwtc72n6uub7sjojd@zzaebjdcpdwf>
+References: <20250811092707.3986802-1-suraj.kandpal@intel.com>
+ <20250811092707.3986802-2-suraj.kandpal@intel.com>
+ <20250811094429.GE21313@pendragon.ideasonboard.com>
+ <awtqznhquyn7etojonmjn7karznefsb7fdudawcjsj5g2bok3u@2iqcdviuiz2s>
+ <20250811111546.GA30760@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 03/25] drm/gem-dma: Compute dumb-buffer sizes with
- drm_mode_size_dumb()
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- simona@ffwll.ch, airlied@gmail.com, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, geert@linux-m68k.org
-References: <20250613090431.127087-1-tzimmermann@suse.de>
- <20250613090431.127087-4-tzimmermann@suse.de>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20250613090431.127087-4-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 11 Aug 2025 13:22:00 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250811111546.GA30760@pendragon.ideasonboard.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAyNyBTYWx0ZWRfX36jbPf8iUZE8
+ vn9ONi1LPyUcrTOWEzYtiYaym7qFD4ZtcatDuF/O82P5cRxyD30ejUNM9RCFAvJ0I0uWyNCDoy3
+ Byi8U6dNkFPjYVtb49PiGg67SwJmFCpNPRbxQUVVfjbtfJmZKuZ3nLXbHTX8NYHZ3T0Cuy0KOrF
+ PYLdBEX7VjQZMJXLUmMto+lEEG9+O/WErrVV+GiZTDoBGAO0pRK+wq/gxlwP9tPGH1ZPTZ+rZnP
+ BOpRpOj1tr8eCgpYlSzYnVGW34U9HBiIqn16YxFrg30slrociyU23ZgAaUPqy7pKud700KycmYz
+ 89UUFaRgzPM/gx7etm0GiXQySpqUnSEonDBYRQ/SS/rJK3zp00VAVOI0NTUfCkyGxmquRdQftT1
+ 7/DLNR7s
+X-Authority-Analysis: v=2.4 cv=fvDcZE4f c=1 sm=1 tr=0 ts=6899ef7e cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=QyXUC8HyAAAA:8 a=4yu1Or5Oec3-_3BIJ7kA:9 a=CjuIK1q_8ugA:10
+ a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-ORIG-GUID: 1vwrCyybvtKMyIvuAmeYkrcV-XTY1sFf
+X-Proofpoint-GUID: 1vwrCyybvtKMyIvuAmeYkrcV-XTY1sFf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-11_02,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 priorityscore=1501 spamscore=0 suspectscore=0
+ clxscore=1015 phishscore=0 bulkscore=0 impostorscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090027
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,75 +139,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 13/06/2025 12:00, Thomas Zimmermann wrote:
-> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
-> buffer size. Align the pitch to a multiple of 8.
+On Mon, Aug 11, 2025 at 02:15:46PM +0300, Laurent Pinchart wrote:
+> On Mon, Aug 11, 2025 at 01:22:30PM +0300, Dmitry Baryshkov wrote:
+> > On Mon, Aug 11, 2025 at 12:44:29PM +0300, Laurent Pinchart wrote:
+> > > On Mon, Aug 11, 2025 at 02:57:00PM +0530, Suraj Kandpal wrote:
+> > > > Some drivers cannot work with the current design where the connector
+> > > > is embedded within the drm_writeback_connector such as intel and
+> > > > some drivers that can get it working end up adding a lot of checks
+> > > > all around the code to check if it's a writeback conenctor or not.
+> > > > To solve this we move the drm_writeback_connector within the
+> > > > drm_connector and remove the drm_connector base which was in
+> > > > drm_writeback_connector. We do all other required
+> > > > modifications that come with these changes along with addition
+> > > > of new function which returns the drm_connector when
+> > > > drm_writeback_connector is present.
+> > > > All drivers will be expected to allocate the drm_connector.
+> > > > 
+> > > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/drm_writeback.c | 33 ++++++++++------
+> > > >  include/drm/drm_connector.h     | 60 +++++++++++++++++++++++++++++
+> > > >  include/drm/drm_writeback.h     | 68 ++++-----------------------------
+> > > >  3 files changed, 89 insertions(+), 72 deletions(-)
+> > > > 
+> > > > @@ -2305,6 +2360,11 @@ struct drm_connector {
+> > > >  	 * @cec: CEC-related data.
+> > > >  	 */
+> > > >  	struct drm_connector_cec cec;
+> > > > +
+> > > > +	/**
+> > > > +	 * @writeback: Writeback related valriables.
+> > > > +	 */
+> > > > +	struct drm_writeback_connector writeback;
+> > > 
+> > > No, sorry, that's a bad idea. Most connectors have nothing to do with
+> > > writeback, you shouldn't introduce writeback-specific fields here.
+> > > drm_writeback_connector happens to be a drm_connector because of
+> > > historical reasons (it was decided to reuse the connector API exposed to
+> > > userspace instead of exposing a completely separate API in order to
+> > > simplify the implementation), but that does not mean that every
+> > > connector is related to writeback.
+> > > 
+> > > I don't know what issues the Intel driver(s) have with
+> > > drm_writeback_connector, but you shouldn't make things worse for
+> > > everybody due to a driver problem.
+> > 
+> > Suraj is trying to solve a problem that in Intel code every drm_connector
+> > must be an intel_connector too. His previous attempt resulted in a loose
+> > abstraction where drm_writeback_connector.base wasn't initialized in
+> > some cases (which is a bad idea IMO).
+> > 
+> > I know the historical reasons for drm_writeback_connector, but I think
+> > we can do better now.
+> > 
+> > So, I think, a proper approach would be:
+> > 
+> > struct drm_connector {
+> >     // other fields
+> > 
+> >     union {
+> >         struct drm_connector_hdmi hdmi; // we already have it
+> >         struct drm_connector_wb wb;  // this is new
+> >     };
+> > 
+> >     // rest of the fields.
+> > };
 > 
-> Push the current calculation into the only direct caller imx. Imx's
-> hardware requires the framebuffer width to be aligned to 8. The
-> driver's current approach is actually incorrect, as it only guarantees
-> this implicitly and requires bpp to be a multiple of 8 already. A
-> later commit will fix this problem by aligning the scanline pitch
-> such that an aligned width still fits into each scanline's memory.
-> 
-> A number of other drivers are build on top of gem-dma helpers and
-> implement their own dumb-buffer allocation. These drivers invoke
-> drm_gem_dma_dumb_create_internal(), which is not affected by this
-> commit.
-> 
-> v5:
-> - avoid reset of arguments (Tomi)
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->  drivers/gpu/drm/drm_gem_dma_helper.c     | 7 +++++--
->  drivers/gpu/drm/imx/ipuv3/imx-drm-core.c | 4 +++-
->  2 files changed, 8 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_gem_dma_helper.c b/drivers/gpu/drm/drm_gem_dma_helper.c
-> index b7f033d4352a..49be9b033610 100644
-> --- a/drivers/gpu/drm/drm_gem_dma_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_dma_helper.c
-> @@ -20,6 +20,7 @@
->  #include <drm/drm.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_drv.h>
-> +#include <drm/drm_dumb_buffers.h>
->  #include <drm/drm_gem_dma_helper.h>
->  #include <drm/drm_vma_manager.h>
->  
-> @@ -304,9 +305,11 @@ int drm_gem_dma_dumb_create(struct drm_file *file_priv,
->  			    struct drm_mode_create_dumb *args)
->  {
->  	struct drm_gem_dma_object *dma_obj;
-> +	int ret;
->  
-> -	args->pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
-> -	args->size = args->pitch * args->height;
-> +	ret = drm_mode_size_dumb(drm, args, SZ_8, 0);
-> +	if (ret)
-> +		return ret;
->  
->  	dma_obj = drm_gem_dma_create_with_handle(file_priv, drm, args->size,
->  						 &args->handle);
-> diff --git a/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c b/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
-> index ec5fd9a01f1e..af4a30311e18 100644
-> --- a/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
-> +++ b/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
-> @@ -145,8 +145,10 @@ static int imx_drm_dumb_create(struct drm_file *file_priv,
->  	int ret;
->  
->  	args->width = ALIGN(width, 8);
-> +	args->pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
-> +	args->size = args->pitch * args->height;
->  
-> -	ret = drm_gem_dma_dumb_create(file_priv, drm, args);
-> +	ret = drm_gem_dma_dumb_create_internal(file_priv, drm, args);
->  	if (ret)
->  		return ret;
->  
+> I still don't like that. This really doesn't belong here. If anything,
+> the drm_connector for writeback belongs to drm_crtc.
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Why? We already have generic HDMI field inside drm_connector. I am
+really hoping to be able to land DP parts next to it. In theory we can
+have a DVI-specific entry there (e.g. with the subconnector type).
+The idea is not to limit how the drivers subclass those structures.
 
- Tomi
+I don't see a good case why WB should deviate from that design.
 
+> If the issue is that some drivers need a custom drm_connector subclass,
+> then I'd rather turn the connector field of drm_writeback_connector into
+> a pointer.
+
+Having a pointer requires additional ops in order to get drm_connector
+from WB code and vice versa. Having drm_connector_wb inside
+drm_connector saves us from those ops (which don't manifest for any
+other kind of structure). Nor will it take any more space since union
+will reuse space already taken up by HDMI part.
+
+> 
+> > I plan to add drm_connector_dp in a similar way, covering DP needs
+> > (currently WIP).
+
+-- 
+With best wishes
+Dmitry
